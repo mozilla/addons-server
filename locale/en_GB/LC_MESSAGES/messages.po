@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 08:14:11.772941\n"
+"PO-Revision-Date: 2015-08-13 17:08:59.917511\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4460,11 +4460,11 @@ msgstr "Password incorrect."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Invalid JSON object"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Message not eligible for annotation"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
@@ -9788,31 +9788,31 @@ msgstr "given preliminary review"
 
 #: apps/editors/views.py:735
 msgid "rejected"
-msgstr ""
+msgstr "rejected"
 
 #: apps/editors/views.py:736
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "escalated"
 
 #: apps/editors/views.py:738
 msgid "needs more information"
-msgstr ""
+msgstr "needs more information"
 
 #: apps/editors/views.py:739
 msgid "needs super review"
-msgstr ""
+msgstr "needs super review"
 
 #: apps/editors/views.py:740
 msgid "commented"
-msgstr ""
+msgstr "commented"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} theme review successfully processed (+{1} points, {2} total)."
+msgstr[1] "{0} theme reviews successfully processed (+{1} points, {2} total)."
 
 #: apps/editors/views_themes.py:341
 msgid ""
@@ -9820,66 +9820,69 @@ msgid ""
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
+"Your theme locks have successfully been released. Other reviewers may now "
+"review those released themes. You may have to refresh the page to see the "
+"changes reflected in the table below."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Abuse Reports"
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Abuse Reports for {addon} ({num})"
 
 #: apps/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s on %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Return to the Editor Tools homepage"
 
 #: apps/editors/templates/editors/base.html:43
 #: apps/editors/templates/editors/themes/base.html:14
 #: apps/editors/templates/editors/themes/base.html:28
 #: apps/editors/templates/editors/themes/queue.html:25
 msgid "Queues"
-msgstr ""
+msgstr "Queues"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Unlisted Queues"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
 #: apps/editors/templates/editors/themes/base.html:38
 msgid "Logs"
-msgstr ""
+msgstr "Logs"
 
 #: apps/editors/templates/editors/base.html:78
 #: apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Add-on Review Log"
 
 #: apps/editors/templates/editors/base.html:80
 #: apps/editors/templates/editors/eventlog.html:4
 #: apps/editors/templates/editors/eventlog.html:8
 #: apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Moderated Review Log"
 
 #: apps/editors/templates/editors/base.html:82
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Signed Beta Files Log"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
-msgstr ""
+msgstr "Announcement"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/beta_signed_log.html:17
@@ -9887,344 +9890,353 @@ msgstr ""
 #: apps/editors/templates/editors/themes/macros.html:45
 #: apps/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: apps/editors/templates/editors/beta_signed_log.html:23
 #: apps/editors/templates/editors/eventlog.html:30
 #: apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: apps/editors/templates/editors/beta_signed_log.html:24
 #: apps/editors/templates/editors/eventlog.html:31
 #: apps/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "Event"
 
 #: apps/editors/templates/editors/beta_signed_log.html:37
 #: apps/editors/templates/editors/eventlog.html:44
 #: apps/editors/templates/editors/home.html:180
 msgid "More details."
-msgstr ""
+msgstr "More details."
 
 #: apps/editors/templates/editors/beta_signed_log.html:46
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
-msgstr ""
+msgstr "No events found for this period."
 
 #: apps/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
-msgstr ""
+msgstr "Log Details"
 
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr ""
+msgstr "Log details"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Add-on Title"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Review Title"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Review Text"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Review was flagged prior to deletion."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Undelete"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Full Review ({num})"
+msgstr[1] "Full Reviews ({num})"
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pending Update ({num})"
+msgstr[1] "Pending Updates ({num})"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Preliminary Review ({num})"
+msgstr[1] "Preliminary Reviews ({num})"
 
 #: apps/editors/templates/editors/home.html:36
 #: apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Current waiting times:"
 
 #: apps/editors/templates/editors/home.html:44
 #: apps/editors/templates/editors/home.html:94
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} add-on"
+msgstr[1] "{0} add-ons"
 
 #: apps/editors/templates/editors/home.html:45
 #: apps/editors/templates/editors/home.html:95
 msgid "{0}%"
-msgstr ""
+msgstr "{0}%"
 
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Full Review ({num})"
+msgstr[1] "Unlisted Full Reviews ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Pending Update ({num})"
+msgstr[1] "Unlisted Pending Updates ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unlisted Preliminary Review ({num})"
+msgstr[1] "Unlisted Preliminary Reviews ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
 #: apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
-msgstr ""
+msgstr "Total Reviews"
 
 #: apps/editors/templates/editors/home.html:110
 #: apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Reviews This Month"
 
 #: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
-msgstr ""
+msgstr "New Editors"
 
 #: apps/editors/templates/editors/home.html:126
 #: apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "You're #{0} with {1} reviews"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Moderated Review ({num})"
+msgstr[1] "Moderated Reviews ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Reviewer Leaderboard"
 
 #: apps/editors/templates/editors/leaderboard.html:18
 #: apps/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "No review points awarded yet."
 
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "Rank"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Message of the Day"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Update message of the day"
 
 #: apps/editors/templates/editors/motd.html:15
 #: apps/editors/templates/editors/review.html:223
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: apps/editors/templates/editors/performance.html:10
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Add-on Editor Performance"
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
-msgstr ""
+msgstr "View statistics for user"
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Range"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
-msgstr ""
+msgstr "Your Reviews"
 
 #: apps/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
-msgstr ""
+msgstr "By {user_name}"
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr ""
+msgstr "Active Contributors"
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "This Month"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "This Year"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Monthly Performance"
 
 #: apps/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "All-time Point Breakdown by Type"
 
 #: apps/editors/templates/editors/performance.html:74
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: apps/editors/templates/editors/performance.html:79
 msgid "Month"
-msgstr ""
+msgstr "Month"
 
 #: apps/editors/templates/editors/performance.html:86
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
-msgstr ""
+msgstr "All-Time"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
-msgstr ""
+msgstr "Advanced Search"
 
 #: apps/editors/templates/editors/queue.html:30
 msgid "clear search"
-msgstr ""
+msgstr "clear search"
 
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr ""
+msgstr "Process Reviews"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Moderation actions:"
 
 #: apps/editors/templates/editors/queue.html:90
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:106
 msgid ""
 "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
 "%(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
+"%(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "All reviews have been moderated. Good work!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Version Notes / Notes for Reviewer"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "There are currently no add-ons of this type to review."
 
 #: apps/editors/templates/editors/queue.html:181
 #: apps/editors/templates/editors/themes/queue_list.html:91
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Helpful Links:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Add-on Policy"
 
 #: apps/editors/templates/editors/queue.html:184
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Editors' Guide"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr ""
+msgstr "Review {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Add-on user change history"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:265
 msgid "Add-on History"
-msgstr ""
+msgstr "Add-on History"
 
 #: apps/editors/templates/editors/review.html:64
 msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
+"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
-msgstr ""
+msgstr "Compatibility:"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Additional sources:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Download files"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "The developer has provided source code."
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "This version has not been reviewed."
 
 #: apps/editors/templates/editors/review.html:154
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"You can still submit this form, however only do so if you know it won't "
+"conflict."
 
 #: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Insert canned response..."
 
 #: apps/editors/templates/editors/review.html:181
 msgid ""
 "Notice: Only review more than one file if you have tested "
 "<strong>every</strong> file you select."
 msgstr ""
+"Notice: Only review more than one file if you have tested "
+"<strong>every</strong> file you select."
 
 #: apps/editors/templates/editors/review.html:189
 msgid "Tested on:"
-msgstr ""
+msgstr "Tested on:"
 
 #: apps/editors/templates/editors/review.html:219
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Warning!</strong> Another user was viewing this page before you."
 
 #: apps/editors/templates/editors/review.html:236
 msgid ""
@@ -10232,31 +10244,34 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"The whiteboard is the place to exchange information relevant to this add-on "
+"(whatever the version), between the developer and the editor. This is "
+"visible and editable by both."
 
 #: apps/editors/templates/editors/review.html:240
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Update the whiteboard"
 
 #: apps/editors/templates/editors/review.html:256
 #: apps/editors/templates/editors/review.html:257
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: apps/editors/templates/editors/review.html:257
 msgid "Admin Page"
-msgstr ""
+msgstr "Admin Page"
 
 #: apps/editors/templates/editors/review.html:262
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Review This Add-on"
 
 #: apps/editors/templates/editors/review.html:264
 msgid "More Information"
-msgstr ""
+msgstr "More Information"
 
 #: apps/editors/templates/editors/review.html:266
 msgid "Resolution"
-msgstr ""
+msgstr "Resolution"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/reviewlog.html:21
@@ -10276,79 +10291,79 @@ msgstr ""
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Add-on has been deleted."
 
 #: apps/editors/templates/editors/reviewlog.html:59
 #: apps/editors/templates/editors/themes/logs.html:36
 msgid "Show Comments"
-msgstr ""
+msgstr "Show Comments"
 
 #: apps/editors/templates/editors/reviewlog.html:60
 #: apps/editors/templates/editors/themes/logs.html:37
 msgid "Hide Comments"
-msgstr ""
+msgstr "Hide Comments"
 
 #: apps/editors/templates/editors/reviewlog.html:72
 #: apps/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "No reviews found for this period."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Dismiss this announcement"
 
 #: apps/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
-msgstr ""
+msgstr "Files in this version:"
 
 #: apps/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr ""
+msgstr "Contents"
 
 #: apps/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
-msgstr ""
+msgstr "Compare"
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>By %(user)s on %(date)s</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "Older"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "Newer"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Recent Points"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "No points awarded yet."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Top Reviewers (past 7 days)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "No top reviewers yet."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "All Time"
 
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "You have <span>{0}</span> points."
 
 #: apps/editors/templates/editors/includes/search_results_themes.html:6
 #: apps/editors/templates/editors/themes/history_table.html:7
@@ -10357,86 +10372,86 @@ msgstr ""
 #: apps/editors/templates/editors/themes/single.html:26
 #: apps/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr ""
+msgstr "Reviewer"
 
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Deleted Themes"
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Date Deleted"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "No deleted themes found for this period."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Theme Review History for {0}"
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Review Date"
 
 #: apps/editors/templates/editors/themes/history_table.html:9
 #: apps/editors/templates/editors/themes/logs.html:18
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: apps/editors/templates/editors/themes/history_table.html:10
 msgid "Reason"
-msgstr ""
+msgstr "Reason"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "There are currently no reviews."
 
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Pending Theme Review"
+msgstr[1] "{num} Pending Theme Reviews"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Flagged Review"
+msgstr[1] "{num} Flagged Reviews"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Update"
+msgstr[1] "{num} Updates"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Theme Review Log"
 
 #: apps/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Theme Review Queue"
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Review Options"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Auto-advance after review"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Enable keyboard shortcuts"
 
 #: apps/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Keyboard Shortcuts"
 
 #: apps/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Next Theme"
 
 #: apps/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
@@ -10675,187 +10690,188 @@ msgstr "Tab stops:"
 #: apps/files/templates/files/viewer.html:79
 #: apps/files/templates/files/viewer.html:80
 msgid "Up file"
-msgstr ""
+msgstr "Up file"
 
 #: apps/files/templates/files/viewer.html:84
 #: apps/files/templates/files/viewer.html:85
 msgid "Down file"
-msgstr ""
+msgstr "Down file"
 
 #: apps/files/templates/files/viewer.html:90
 #: apps/files/templates/files/viewer.html:91
 msgid "Previous diff"
-msgstr ""
+msgstr "Previous diff"
 
 #: apps/files/templates/files/viewer.html:93
 #: apps/files/templates/files/viewer.html:94
 msgid "Previous note"
-msgstr ""
+msgstr "Previous note"
 
 #: apps/files/templates/files/viewer.html:100
 #: apps/files/templates/files/viewer.html:101
 msgid "Next diff"
-msgstr ""
+msgstr "Next diff"
 
 #: apps/files/templates/files/viewer.html:103
 #: apps/files/templates/files/viewer.html:104
 msgid "Next note"
-msgstr ""
+msgstr "Next note"
 
 #: apps/files/templates/files/viewer.html:109
 #: apps/files/templates/files/viewer.html:110
 msgid "Expand all"
-msgstr ""
+msgstr "Expand all"
 
 #: apps/files/templates/files/viewer.html:114
 #: apps/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Hide or unhide tree"
 
 #: apps/files/templates/files/viewer.html:119
 #: apps/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Wrap or unwrap text"
 
 #: apps/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "No files in the uploaded file."
 
 #: apps/files/templates/files/viewer.html:134
 msgid "Fetching file."
-msgstr ""
+msgstr "Fetching file."
 
 #: apps/localizers/views.py:39
 msgid "An error occurred saving this message."
-msgstr ""
+msgstr "An error occurred saving this message."
 
 #: apps/localizers/views.py:42
 msgid "Access Denied"
-msgstr ""
+msgstr "Access Denied"
 
 #: apps/localizers/templates/localizers/base.html:3
 #: apps/localizers/templates/localizers/summary.html:3
 msgid "Localizer Dashboard"
-msgstr ""
+msgstr "Localiser Dashboard"
 
 #. %s is a locale name or code ('German' or 'de')
 #: apps/localizers/templates/localizers/categories.html:5
 #: apps/localizers/templates/localizers/dashboard.html:5
 #: apps/localizers/templates/localizers/dashboard.html:13
 msgid "Localization Summary for {0}"
-msgstr ""
+msgstr "Localisation Summary for {0}"
 
 #: apps/localizers/templates/localizers/categories.html:11
 #: apps/localizers/templates/localizers/dashboard.html:11
 #: apps/localizers/templates/localizers/summary.html:8
 msgid "Localization Dashboard"
-msgstr ""
+msgstr "Localisation Dashboard"
 
 #: apps/localizers/templates/localizers/categories.html:12
 msgid "Category Localization for {0}"
-msgstr ""
+msgstr "Category Localisation for {0}"
 
 #: apps/localizers/templates/localizers/categories.html:58
 #: apps/stats/templates/stats/popup.html:27
 #: apps/users/templates/users/pwreset_confirm.html:33
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:24
 msgid "Want to get in touch with the {0} L10n team?"
-msgstr ""
+msgstr "Want to get in touch with the {0} L10n team?"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:28
 msgid "Visit the {0} L10n Homepage"
-msgstr ""
+msgstr "Visit the {0} L10n Homepage"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:33
 msgid "Current Localizers for {0}:"
-msgstr ""
+msgstr "Current Localisers for {0}:"
 
 #: apps/localizers/templates/localizers/locale_switcher.html:3
 msgid "Change Locale:"
-msgstr ""
+msgstr "Change Locale:"
 
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
 msgid "Good to know"
-msgstr ""
+msgstr "Good to know"
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
-msgstr ""
+msgstr "Want the bigger picture?"
 
 #: apps/localizers/templates/localizers/sidebar.html:15
 msgid "Visit localize.mozilla.org"
-msgstr ""
+msgstr "Visit localize.mozilla.org"
 
 #: apps/localizers/templates/localizers/sidebar.html:21
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: apps/localizers/templates/localizers/sidebar.html:31
 msgid "Need Help?"
-msgstr ""
+msgstr "Need Help?"
 
 #: apps/localizers/templates/localizers/sidebar.html:34
 msgid "Visit the Newsgroup"
-msgstr ""
+msgstr "Visit the Newsgroup"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
-msgstr ""
+msgstr "E-Mail Your Team:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8
 #: apps/reviews/templates/reviews/reply.html:36
 #: apps/reviews/templates/reviews/report_review.html:12
 msgid "Submit"
-msgstr ""
+msgstr "Submit"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:16
 msgid "(edit)"
-msgstr ""
+msgstr "(edit)"
 
 #: apps/localizers/templates/localizers/summary.html:9
 msgid "Mozilla Add-ons Localization"
-msgstr ""
+msgstr "Mozilla Add-ons Localisation"
 
 #: apps/localizers/templates/localizers/summary.html:16
 msgid "Want to help?"
-msgstr ""
+msgstr "Want to help?"
 
 #: apps/localizers/templates/localizers/summary.html:17
 msgid ""
 "AMO is available in so many languages thanks to the help of people like you!"
 msgstr ""
+"AMO is available in so many languages thanks to the help of people like you!"
 
 #: apps/localizers/templates/localizers/summary.html:19
 msgid "Get started with AMO L10n"
-msgstr ""
+msgstr "Get started with AMO L10n"
 
 #: apps/localizers/templates/localizers/summary.html:23
 msgid "Existing AMO locales"
-msgstr ""
+msgstr "Existing AMO locales"
 
 #: apps/localizers/templates/localizers/summary.html:27
 msgid "Locale code"
-msgstr ""
+msgstr "Locale code"
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
+msgstr "Locale name"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "About Mozilla Add-ons"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "What is this web site?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -10865,10 +10881,15 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site "
+"for add-ons to Mozilla software, such as Firefox, Thunderbird, and "
+"SeaMonkey. Add-ons let you add new features and change the way your browser "
+"or application works. Take a look around and explore the thousands of ways "
+"to customise the way you do things online."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Who creates these add-ons?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -10878,49 +10899,65 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"The add-ons listed here have been created by thousands of developers from "
+"our community, ranging from individual hobbyists to large corporations. All "
+"publicly listed add-ons are reviewed by a team of editors before being "
+"released. Add-ons marked as Experimental have not been reviewed and should "
+"only be installed with caution."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "How do I keep up with what's happening at AMO?"
 
 #: apps/pages/templates/pages/about.lhtml:27
 msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
 msgstr ""
+"There are several ways to find out the latest news from the world of add-"
+"ons:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
+"Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
+"information for both add-on enthusiasts and developers."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a "
 "href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"We often post news, tips, and tricks to our Twitter account, <a "
+"href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the "
 "add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Our <a href=\"%(url)s\">forums</a> are a good place to interact with the "
+"add-ons community and discuss upcoming changes to AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "This sounds great! How can I get involved?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
+"There are plenty of ways to get involved. If you're on the technical side:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
+"update services and can help you reach a large audience of users."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
@@ -10928,6 +10965,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"If you have add-on development experience, <a href=\"%(url)s\"> become an "
+"editor</a>! Our editors are add-on fans with a technical background who "
+"review add-ons for code quality and stability."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid ""
@@ -10935,30 +10975,37 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our "
 "current bugs."
 msgstr ""
+"Help improve this web site. It's open source, and you can file bugs and "
+"submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our "
+"current bugs."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"If you're interested in add-ons but not quite as technical, there are still "
+"ways to help:"
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Tell your friends! Let people know which add-ons you use."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participate in our <a href=\"%(url)s\">forums</a>."
 
 #: apps/pages/templates/pages/about.lhtml:61
 msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Review add-ons on the site. Add-on authors are more likely to improve their "
+"add-ons and write new ones when they know people appreciate their work."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "I have a question"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
@@ -10966,16 +11013,21 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an "
 "answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an "
+"answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"If you really need to contact someone from the Mozilla team, please see our "
+"<a href=\"%(url)s\"> contact information</a> page."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Who works on this web site?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -10984,24 +11036,30 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
+"Over the years, many people have contributed to this web site, including "
+"both volunteers from the community and a dedicated AMO team. A list of "
+"significant contributors can be found on our <a href=\"%(url)s\"> Site "
+"Credits</a> page."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Add-on Compatibility Reporter"
 
 #: apps/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Add-on Compatibility Reporter has been installed"
 
 #: apps/pages/templates/pages/acr_firstrun.html:28
 msgid ""
 "It’s easy to help us make sure add-ons are updated in time for the release "
 "of the next version of Firefox."
 msgstr ""
+"It’s easy to help us make sure add-ons are updated in time for the release "
+"of the next version of Firefox."
 
 #: apps/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Here’s how to get started reporting add-on compatibility:"
 
 #: apps/pages/templates/pages/acr_firstrun.html:40
 msgid ""
@@ -11010,6 +11068,10 @@ msgid ""
 "display glitch, such as a menu item missing, or something more serious, like"
 " the add-on not working at all or showing errors."
 msgstr ""
+"As you start browsing and using your add-ons, take careful note of anything "
+"that seems different from when you last used the extension. This might be a "
+"display glitch, such as a menu item missing, or something more serious, like"
+" the add-on not working at all or showing errors."
 
 #: apps/pages/templates/pages/acr_firstrun.html:49
 msgid ""
@@ -11019,6 +11081,11 @@ msgid ""
 "us tell the add-on developer whether their add-on is working properly in "
 "this version or might need some fixes."
 msgstr ""
+"Once you know whether a particular add-on works properly or has problems, "
+"open the Add-ons Manager and click Compatibility next to the add-on to let "
+"Mozilla know what you found in your testing. Submitting a report will help "
+"us tell the add-on developer whether their add-on is working properly in "
+"this version or might need some fixes."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -11027,6 +11094,10 @@ msgid ""
 "version. If you have any questions, please ask in <a href=\"%(url)s\">our "
 "forums</a>."
 msgstr ""
+"If you upgrade to a new version of Firefox or update your add-ons, your "
+"reports for the old versions will be hidden to allow you to test the new "
+"version. If you have any questions, please ask in <a href=\"%(url)s\">our "
+"forums</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -11034,14 +11105,17 @@ msgid ""
 "assistance with compatibility testing helps us make sure these add-ons stay "
 "useful as we strive to provide a great user experience."
 msgstr ""
+"Thousands of add-ons are made by our community every year, and your "
+"assistance with compatibility testing helps us make sure these add-ons stay "
+"useful as we strive to provide a great user experience."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
-msgstr ""
+msgstr "Thank you!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Site Credits"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid ""
@@ -11053,32 +11127,32 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Developers &amp; Administrators"
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
-msgstr ""
+msgstr "Localisers"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr ""
+msgstr "Reviewers"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "More than {0} add-on reviews"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Other Contributors"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Past Developers &amp; Administrators"
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
-msgstr ""
+msgstr "Software and Images"
 
 #: apps/pages/templates/pages/credits.html:59
 msgid ""
@@ -11088,6 +11162,11 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>."
 msgstr ""
+"Some icons used are from the <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon "
+"Set</a>, licensed under a <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5 Licence</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -11096,6 +11175,10 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 msgstr ""
+"Some icons used are from the <a href=\"http://www.fatcow.com/free-"
+"icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution 3.0 Licence</a>."
 
 #: apps/pages/templates/pages/credits.html:61
 msgid ""
@@ -11104,6 +11187,10 @@ msgid ""
 "commercial), licensed under a <a href=\"http://creativecommons.org/licenses"
 "/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Some pages use elements of <a "
+"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-"
+"commercial), licensed under a <a href=\"http://creativecommons.org/licenses"
+"/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 Licence</a>."
 
 #: apps/pages/templates/pages/credits.html:65
 msgid ""
@@ -11115,23 +11202,23 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Developer FAQ"
 
 #: apps/pages/templates/pages/dev_faq.html:31
 #: apps/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Sections"
 
 #: apps/pages/templates/pages/dev_faq.html:33
 #: apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Developing an Add-on"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34
 #: apps/pages/templates/pages/dev_faq.html:209
 msgid "Support Resources"
-msgstr ""
+msgstr "Support Resources"
 
 #: apps/pages/templates/pages/dev_faq.html:35
 #: apps/pages/templates/pages/dev_faq.html:262
@@ -11141,26 +11228,26 @@ msgstr "Contributing your Add-on"
 #: apps/pages/templates/pages/dev_faq.html:36
 #: apps/pages/templates/pages/dev_faq.html:382
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Add-on Review Process"
 
 #: apps/pages/templates/pages/dev_faq.html:37
 #: apps/pages/templates/pages/dev_faq.html:445
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Managing Your Add-on"
 
 #: apps/pages/templates/pages/dev_faq.html:38
 #: apps/pages/templates/pages/dev_faq.html:485
 msgid "Recommended Status"
-msgstr ""
+msgstr "Recommended Status"
 
 #: apps/pages/templates/pages/dev_faq.html:40
 #: apps/pages/templates/pages/dev_faq.html:581
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "References for Open Source Licences"
 
 #: apps/pages/templates/pages/dev_faq.html:44
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Add-on Developer FAQ"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid ""
@@ -11168,22 +11255,25 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how"
+" to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
+"Network</a>. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
-msgstr ""
+msgstr "Other resources include:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "\"How to develop a Firefox extension\" post in the Add-ons Blog"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Mozilla Add-ons Blog"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "What tools do I need to be able to build an Add-on?"
 
 #: apps/pages/templates/pages/dev_faq.html:69
 msgid ""
@@ -11191,10 +11281,13 @@ msgid ""
 " the add-on for and a code editor of your choice. Add-ons can be built for "
 "almost all Mozilla software but are primarily targeted for:"
 msgstr ""
+"You will need to have a version of the Mozilla software that you're building"
+" the add-on for and a code editor of your choice. Add-ons can be built for "
+"almost all Mozilla software but are primarily targeted for:"
 
 #: apps/pages/templates/pages/dev_faq.html:83
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Popular code editors include:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:86
@@ -11204,6 +11297,10 @@ msgid ""
 "://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
 "href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid ""
@@ -11211,20 +11308,25 @@ msgid ""
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
+"You can also learn more about setting up your development environment via "
+"the MDN article <a href=\"%(url)s\">Setting up extension development "
+"environment</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "What is a \".xpi\" file?"
 
 #: apps/pages/templates/pages/dev_faq.html:103
 msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
 msgstr ""
+"Extensions are packaged and distributed in ZIP files or Bundles, with the "
+"XPI (pronounced \"zippy\") file extension."
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
-msgstr ""
+msgstr "What is XUL?"
 
 #: apps/pages/templates/pages/dev_faq.html:111
 msgid ""
@@ -11233,10 +11335,14 @@ msgid ""
 "interface widgets like buttons, menus, toolbars, trees, etc that can be used"
 " to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language) is Mozilla's XML-based language that lets "
+"you build feature-rich cross platform applications. It provides user "
+"interface widgets like buttons, menus, toolbars, trees, etc that can be used"
+" to enhance add-ons by modifying parts of the browser UI."
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "What is the \"install.rdf\" file used for?"
 
 #: apps/pages/templates/pages/dev_faq.html:122
 msgid ""
@@ -11248,10 +11354,17 @@ msgid ""
 "with, how it should be updated, and so on. The format of the Install "
 "Manifest is RDF/XML."
 msgstr ""
+"This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by "
+"Add-on Manager-enabled XUL applications to determine information about an "
+"add-on as it is being installed. It contains metadata identifying the add-"
+"on, providing information about who created it, where more information can "
+"be found about it, which versions of what applications it is compatible "
+"with, how it should be updated, and so on. The format of the Install "
+"Manifest is RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "What does \"maxVersion\" mean?"
 
 #: apps/pages/templates/pages/dev_faq.html:135
 msgid ""
@@ -11259,10 +11372,13 @@ msgid ""
 "will work with. Set this to be no newer than the newest currently available "
 "version!"
 msgstr ""
+"This determines the maximum version of Firefox you're saying this extension "
+"will work with. Set this to be no newer than the newest currently available "
+"version!"
 
 #: apps/pages/templates/pages/dev_faq.html:142
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Can my add-on contain binary components?"
 
 #: apps/pages/templates/pages/dev_faq.html:144
 msgid ""
@@ -11270,12 +11386,17 @@ msgid ""
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object "
+"model</a> to enhance your add-ons. XPCOM components be used and implemented "
+"in JavaScript, Java, and Python in addition to C++."
 
 #: apps/pages/templates/pages/dev_faq.html:151
 msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
+"Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
+"my add-on?"
 
 #: apps/pages/templates/pages/dev_faq.html:153
 msgid ""
@@ -11288,19 +11409,28 @@ msgid ""
 "on. Developers need to be very, very careful with using them. Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Yes. It's possible, but some of the functionality provided by these "
+"libraries are available through XPCOM, XUL, and JavaScript. In addition, "
+"authors should take care if libraries modify primitive object prototypes "
+"(String.prototype, Date.prototype, etc.) and/or define global functions (eg."
+" the $ function). These are prone to cause conflict with other add-ons, in "
+"particular if different add-ons use different versions of libraries and so "
+"on. Developers need to be very, very careful with using them. Mozilla does "
+"not offer documentation on using them to build add-ons."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "How do I debug my add-on?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
+"How do I test for compatibility with the latest version of Mozilla software?"
 
 #: apps/pages/templates/pages/dev_faq.html:175
 msgid ""
@@ -11313,10 +11443,18 @@ msgid ""
 " that your add-on users are not negatively impacted upon final release of "
 "Mozilla software."
 msgstr ""
+"To ensure compatibility with the latest Mozilla software, it's important to "
+"download updates as they become available and test your add-on to ensure "
+"that it is still functioning as expected. In many cases, the latest version "
+"of Mozilla software may be a beta release. Since these releases at times "
+"introduce architectural changes that may impact the functionality of your "
+"add-on, it's important to be actively involved in the beta process to ensure"
+" that your add-on users are not negatively impacted upon final release of "
+"Mozilla software."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "How to improve the performance of my add-on?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
@@ -11881,20 +12019,25 @@ msgid ""
 "reviewer but this feature is being investigated and considered for a future "
 "update."
 msgstr ""
+"Currently, AMO does not provide a mechanism to directly communicate with a "
+"reviewer but this feature is being investigated and considered for a future "
+"update."
 
 #: apps/pages/templates/pages/dev_faq.html:564
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Can I request that a review be removed if the review is negative?"
 
 #: apps/pages/templates/pages/dev_faq.html:566
 msgid ""
 "No. We do not remove negative reviews from add-ons unless they are found to "
 "be false."
 msgstr ""
+"No. We do not remove negative reviews from add-ons unless they are found to "
+"be false."
 
 #: apps/pages/templates/pages/dev_faq.html:572
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Can I request that a review be removed if the review is inaccurate?"
 
 #: apps/pages/templates/pages/dev_faq.html:574
 msgid ""
@@ -11902,6 +12045,9 @@ msgid ""
 "inaccurate information to be removed, we will review the post and consider "
 "removing it."
 msgstr ""
+"If an author contacts us and asks for a review containing false or "
+"inaccurate information to be removed, we will review the post and consider "
+"removing it."
 
 #: apps/pages/templates/pages/dev_faq.html:583
 msgid ""
@@ -11916,6 +12062,16 @@ msgid ""
 "guarantees nor is responsible for the content of these sites or your "
 "reliance on such content."
 msgstr ""
+"Do you need more information about the various open source licences? Are you"
+" confused as to which licence you should select? What rights does a specific"
+" licence grant? While nothing replaces reading the full terms of a licence, "
+"below are some sites that contain information about some of the key open "
+"source licences that may help you sort out the differences between them. "
+"These sites are being provided solely for your convenience and as a "
+"reference for your personal use. These resources do not constitute legal "
+"advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your "
+"reliance on such content."
 
 #: apps/pages/templates/pages/dev_faq.html:598
 msgid ""
@@ -11924,6 +12080,10 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr> to help you if you want to "
 "use or distribute code licensed under it."
 msgstr ""
+"In addition to the full text of the Mozilla Public Licence(\"MPL\"), this "
+"also provides an annotated version of the MPL and an <abbr "
+"title=\"Frequently Asked Questions\">FAQ</abbr> to help you if you want to "
+"use or distribute code licensed under it."
 
 #: apps/pages/templates/pages/dev_faq.html:612
 msgid ""
@@ -11931,6 +12091,9 @@ msgid ""
 "treat distributions, proprietary software linking, and redistribution of "
 "code with changes."
 msgstr ""
+"A table summarising and comparing how some of the key open source licences "
+"treat distributions, proprietary software linking, and redistribution of "
+"code with changes."
 
 #: apps/pages/templates/pages/dev_faq.html:625
 msgid ""
@@ -11941,35 +12104,45 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"Free Software Foundation provides short summaries of the key open source "
+"licences, including whether the licence qualifies as a free software licence"
+" or a copyleft licence. Also includes a discussion of what constitutes a "
+"free software licence or a copyleft licence (e.g., a Copyleft licence is a "
+"general method for making a program or other work free, and requiring all "
+"modified and extended versions of the program to be free as well.)"
 
 #: apps/pages/templates/pages/dev_faq.html:642
 msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
+"Open Source Initiative provides the terms of some of the key open source "
+"licences."
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "A comparison of known open source licences on Wikipedia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"A site to provide non-judgemental guidance on choosing a licence for your "
+"open source project."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Frequently Asked Questions"
 
 #: apps/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Using Add-ons"
 
 #: apps/pages/templates/pages/faq.html:15
 msgid "What is an add-on?"
-msgstr ""
+msgstr "What is an add-on?"
 
 #: apps/pages/templates/pages/faq.html:16
 msgid ""
