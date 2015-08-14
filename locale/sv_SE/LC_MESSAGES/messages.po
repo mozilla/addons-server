@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-12 12:37:10.865631\n"
+"PO-Revision-Date: 2015-08-13 18:24:57.140927\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8160,31 +8160,31 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Vilka kommer att få bidrag för detta tillägg?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Vad är namnet på organisationen?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:19
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Vad är URL:en för organisationen?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:22
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Vad är PayPal-ID för organisationen?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:28
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Vad är ditt PayPal-ID?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:29
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Registrera dig för PayPal"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Vad är ditt föreslagna bidrag?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
@@ -8192,17 +8192,19 @@ msgstr "(Exempel: 3,99)"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "När bör användare frågas om bidrag?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Skicka ett tackkort?"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:47
 msgid ""
 "We'll automatically email users who contribute to your add-on with this "
 "message."
 msgstr ""
+"Vi kommer automatiskt att skicka användare som bidrar till ditt tillägg med "
+"detta meddelande."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -8213,7 +8215,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Aktiva bidragsgivare"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
@@ -8221,7 +8223,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Överför ägarskapet"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77
 #: apps/devhub/templates/devhub/personas/submit.html:31
@@ -9244,7 +9246,7 @@ msgstr ""
 
 #: apps/editors/forms.py:31
 msgid "Approved reviews"
-msgstr ""
+msgstr "Godkända granskningar"
 
 #: apps/editors/forms.py:32
 msgid "Deleted reviews"
@@ -9264,15 +9266,15 @@ msgstr "Filtrera efter typ/åtgärd"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Klarade automatisk validering"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Automatisk valideringen misslyckades"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrera efter automatisk validering"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -9371,7 +9373,7 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:349
 msgid "theme name"
-msgstr ""
+msgstr "namn på tema"
 
 #: apps/editors/forms.py:375
 msgid "Someone else is reviewing this theme."
@@ -9384,15 +9386,15 @@ msgstr ""
 
 #: apps/editors/helpers.py:49
 msgid "Pending Preliminary Review"
-msgstr ""
+msgstr "Väntande preliminär granskning"
 
 #: apps/editors/helpers.py:53
 msgid "Pending Full Review"
-msgstr ""
+msgstr "Väntande fullständig granskning"
 
 #: apps/editors/helpers.py:60
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Avvisad och ogranskad"
 
 #: apps/editors/helpers.py:117 apps/editors/helpers.py:130
 msgid "Queue"
@@ -9401,7 +9403,7 @@ msgstr "Kö"
 #: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50
 #: apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
-msgstr ""
+msgstr "Väntande uppdateringar"
 
 #: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48
 #: apps/editors/templates/editors/base.html:63
@@ -9411,11 +9413,11 @@ msgstr "Fullständig granskning"
 #: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52
 #: apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Preliminära granskningar"
 
 #: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Modererade granskningar"
 
 #: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
@@ -9517,7 +9519,7 @@ msgstr "Applikationer"
 
 #: apps/editors/helpers.py:266
 msgid "Additional"
-msgstr ""
+msgstr "Ytterligare"
 
 #: apps/editors/helpers.py:281
 msgid "Site Specific"
@@ -9529,7 +9531,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:285
 msgid "Binary Components"
-msgstr ""
+msgstr "Binära komponenter"
 
 #: apps/editors/helpers.py:309
 msgid "moments ago"
@@ -9539,22 +9541,22 @@ msgstr ""
 #: apps/editors/helpers.py:312
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minut"
+msgstr[1] "{0} minuter"
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:316
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} timme"
+msgstr[1] "{0} timmar"
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:320
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} dag"
+msgstr[1] "{0} dagar"
 
 #: apps/editors/helpers.py:480
 msgid "Push to public"
