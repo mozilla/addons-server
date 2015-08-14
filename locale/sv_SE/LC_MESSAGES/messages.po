@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 18:24:57.140927\n"
+"PO-Revision-Date: 2015-08-13 18:37:26.992931\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -9523,11 +9523,11 @@ msgstr "Ytterligare"
 
 #: apps/editors/helpers.py:281
 msgid "Site Specific"
-msgstr ""
+msgstr "Platsspecifik"
 
 #: apps/editors/helpers.py:283
 msgid "Requires External Software"
-msgstr ""
+msgstr "Kräver extern programvara"
 
 #: apps/editors/helpers.py:285
 msgid "Binary Components"
@@ -9730,7 +9730,7 @@ msgstr ""
 
 #: apps/editors/views.py:733
 msgid "was approved"
-msgstr ""
+msgstr "godkändes"
 
 #: apps/editors/views.py:734
 msgid "given preliminary review"
@@ -9747,7 +9747,7 @@ msgstr "upptrappad"
 
 #: apps/editors/views.py:738
 msgid "needs more information"
-msgstr ""
+msgstr "behöver mer information"
 
 #: apps/editors/views.py:739
 msgid "needs super review"
@@ -9888,7 +9888,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Ångra ta bort"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -10013,7 +10013,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Intervall"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
@@ -10130,6 +10130,8 @@ msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
+"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
@@ -10137,11 +10139,11 @@ msgstr "Kompatibilitet:"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Ytterligare källor:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Hämta filer"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
@@ -10487,7 +10489,7 @@ msgstr ""
 
 #: apps/files/helpers.py:153
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Filen finns inte längre."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: apps/files/helpers.py:162
@@ -10506,15 +10508,15 @@ msgstr ""
 
 #: apps/files/helpers.py:194
 msgid "This file is a directory."
-msgstr ""
+msgstr "Filen är en katalog."
 
 #: apps/files/tasks.py:50
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Det uppstod ett fel vid åtkomst av filen %s. %s."
 
 #: apps/files/tasks.py:53
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Det gick inte att komma åt filen %s."
 
 #: apps/files/utils.py:259
 msgid "Could not parse uploaded file."
@@ -10743,15 +10745,15 @@ msgstr "Alternativ"
 
 #: apps/localizers/templates/localizers/sidebar.html:31
 msgid "Need Help?"
-msgstr ""
+msgstr "Behöver du hjälp?"
 
 #: apps/localizers/templates/localizers/sidebar.html:34
 msgid "Visit the Newsgroup"
-msgstr ""
+msgstr "Besök diskussionsgruppen"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
-msgstr ""
+msgstr "E-posta din grupp:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8
 #: apps/reviews/templates/reviews/reply.html:36
@@ -10769,7 +10771,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:16
 msgid "Want to help?"
-msgstr ""
+msgstr "Vill du hjälpa till?"
 
 #: apps/localizers/templates/localizers/summary.html:17
 msgid ""
@@ -11169,7 +11171,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
-msgstr ""
+msgstr "Vad är XUL?"
 
 #: apps/pages/templates/pages/dev_faq.html:111
 msgid ""
@@ -12040,7 +12042,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:207
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Hur mycket kostar ett tillägg att köpa?"
 
 #: apps/pages/templates/pages/faq.html:208
 msgid ""
@@ -12409,15 +12411,15 @@ msgstr ""
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Läs mer om Sunbird"
 
 #: apps/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "Det gick inte att kommunicera med PayPal. Försök igen senare."
 
 #: apps/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Det uppstod ett fel med denna valuta."
 
 #: apps/paypal/__init__.py:68
 msgid "The amount is too small for conversion into the receiver's currency."
@@ -12425,12 +12427,12 @@ msgstr ""
 
 #: apps/paypal/__init__.py:70
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Köparen och säljaren måste ha olika PayPal-konton."
 
 #. L10n: {0} is the currency.
 #: apps/paypal/__init__.py:73
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Säljaren accepterar inte betalningar i %s."
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
@@ -12460,7 +12462,7 @@ msgstr ""
 #. colon.
 #: apps/perf/templates/perf/index.html:40
 msgid "Show:"
-msgstr ""
+msgstr "Visa:"
 
 #: apps/perf/templates/perf/index.html:57
 msgid "Impact"
@@ -12477,7 +12479,7 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
-msgstr ""
+msgstr "Visa fler tillägg"
 
 #: apps/perf/templates/perf/index.html:115
 msgid "For Add-on Developers"
@@ -12617,7 +12619,7 @@ msgstr "Redigera recension"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Ta bort svar"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -12664,7 +12666,7 @@ msgstr "Skriv en ny recension"
 #: apps/reviews/templates/reviews/review_list.html:81
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:15
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Bli först med att skriva en recension."
 
 #: apps/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
@@ -12674,7 +12676,7 @@ msgstr[1] "{num} recensioner"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Betygsatt {0} utav 5 stjärnor"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
@@ -12887,7 +12889,7 @@ msgstr[1] "{0} tweets"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Dela på g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
@@ -13187,7 +13189,7 @@ msgstr "Bidrag efter datum"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Nedladdade efter datum"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
@@ -13210,7 +13212,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Nedladdningar"
 
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
@@ -13219,15 +13221,15 @@ msgstr "Laddar..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Genomsnittliga dagliga användare"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Bästa program"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Se fler program&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
@@ -13235,7 +13237,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Se fler språk&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
@@ -13243,7 +13245,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Se fler plattformar&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
@@ -13292,7 +13294,7 @@ msgstr "Dagliga användare efter datum"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Vad är dagliga användare?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -13312,7 +13314,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Registrerade användare efter datum"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -13330,7 +13332,7 @@ msgstr "{0} topptaggar"
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Översätt för: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16
 #: apps/translations/templates/translations/trans-menu.html:29
@@ -13343,7 +13345,7 @@ msgstr "Befintliga språkversioner"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Nya språk"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:42
@@ -13401,7 +13403,7 @@ msgstr "Fel lösenord har angetts!"
 
 #: apps/users/forms.py:243
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Användarnamn kan inte endast innehålla siffror."
 
 #: apps/users/forms.py:246
 msgid ""
