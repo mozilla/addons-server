@@ -14,6 +14,7 @@ To get started, you'll need:
  * Python 2.6 (greater than 2.6.1)
  * Node 0.10.x or higher
  * MySQL
+ * ElasticSearch
  * libxml2 (for building lxml, used in tests)
 
 :ref:`OS X <osx-packages>` and :ref:`Ubuntu <ubuntu-packages>` instructions
@@ -34,7 +35,7 @@ The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
 <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,memcached,libssl-dev,swig openssl,curl,libjpeg-dev,zlib1g-dev,libsasl2-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev
+    sudo apt-get install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
 
 .. note:: As of writing, M2Crypto is only compatible with swig <=3.0.4 version's. So, if you encounter a libssl exception while running 
           ``make full_init``, you might have to downgrade swig to version <=3.0.4. 
@@ -56,8 +57,17 @@ The following packages will get you set for olympia::
 MySQL
 ~~~~~
 
+By default, Olympia connects to the ``olympia`` database running on ``localhost`` as the user ``root``, with no password. If you want to change this, you can either add the database settings in your :ref:`local_settings.py <example-settings>` or set the environment variable ``DATABASE_URL``::
+
+    export DATABASE_URL mysql://<user>:<password>@<hostname>/<database>
+
 You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
 (especially on Mac OS X) according to advanced installation.
+
+Elasticsearch
+~~~~~~~~~~~~~
+
+You'll need an Elasticsearch server up and running during the init script. See :doc:`./elasticsearch` for more instructions.
 
 
 Use the Source
@@ -136,7 +146,10 @@ To get back into the olympia environment later, type::
 Finish the install
 ~~~~~~~~~~~~~~~~~~
 
-First make sure you have a recent `pip`_ for security reasons.
+First make sure you have a recent `pip`_ for security reasons::
+
+    pip install --upgrade pip
+
 From inside your activated virtualenv, install the required python packages,
 initialize the database, create a super user, compress the assets, ...::
 
