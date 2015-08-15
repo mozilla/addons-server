@@ -1,7 +1,5 @@
-import json
 import os
 import re
-import urllib2
 
 from django import forms
 from django.conf import settings
@@ -220,35 +218,6 @@ class FileStatusForm(ModelForm):
 
 FileFormSet = modelformset_factory(File, form=FileStatusForm,
                                    formset=BaseModelFormSet, extra=0)
-
-
-class JetpackUpgradeForm(happyforms.Form):
-    minver = forms.CharField()
-    maxver = forms.CharField()
-
-    def __init__(self, *args, **kw):
-        super(JetpackUpgradeForm, self).__init__(*args, **kw)
-        fields = self.fields
-        url = settings.BUILDER_VERSIONS_URL
-        try:
-            page = urllib2.urlopen(url)
-            choices = [('', '')] + [(v, v) for v in json.loads(page.read())]
-            fields['minver'] = fields['maxver'] = forms.ChoiceField()
-            fields['minver'].choices = fields['maxver'].choices = choices
-        except urllib2.URLError, e:
-            log.error('Could not open %r: %s' % (url, e))
-        except ValueError, e:
-            log.error('Could not parse %r: %s' % (url, e))
-        if not ('minver' in self.data or 'maxver' in self.data):
-            fields['minver'].required = fields['maxver'].required = False
-
-    def clean(self):
-        if not self.errors:
-            minver = self.cleaned_data.get('minver')
-            maxver = self.cleaned_data.get('maxver')
-            if minver and maxver and minver >= maxver:
-                raise forms.ValidationError('Invalid version range.')
-        return self.cleaned_data
 
 
 class SiteEventForm(ModelForm):

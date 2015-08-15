@@ -12,8 +12,6 @@ services_patterns = patterns(
         name='amo.monitor'),
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
     url('^csp/report$', views.cspreport, name='amo.csp.report'),
-    url('^builder-pingback', views.builder_pingback,
-        name='amo.builder-pingback'),
     url('^timing/record$', views.record, name='amo.timing.record'),
     url('^pfs.php$', views.plugin_check_redirect, name='api.plugincheck'),
     url('^install.php$', install.install, name='api.install'),

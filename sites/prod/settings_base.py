@@ -122,13 +122,9 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'addons'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 # ES_INDEXES doesn't change for prod.
-
-BUILDER_UPGRADE_URL = "https://builder.addons.mozilla.org/repackage/rebuild/"
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT

@@ -202,7 +202,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "",
             "created": "2009-05-21 05:37:16",
             "modified": "2009-08-27 14:29:14",

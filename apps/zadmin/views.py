@@ -30,13 +30,11 @@ from amo.decorators import (any_permission_required, json_view, login_required,
                             post_required)
 from amo.mail import DevEmailBackend
 from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, chunked, sorted_groupby
+from amo.utils import HttpResponseSendFile, chunked
 from bandwagon.models import Collection
 from compat.models import AppCompat, CompatTotals
 from devhub.models import ActivityLog
 from files.models import Approval, File, FileUpload
-from files.tasks import start_upgrade as start_upgrade_task
-from files.utils import find_jetpacks, JetpackUpgrader
 from stats.search import get_mappings as get_stats_mappings
 from users.models import UserProfile
 from versions.compare import version_int as vint
@@ -48,8 +46,8 @@ from . import tasks
 from .decorators import admin_required
 from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
                     DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
-                    JetpackUpgradeForm, MonthlyPickFormSet, NotifyForm,
-                    OAuthConsumerForm, YesImSure)
+                    MonthlyPickFormSet, NotifyForm, OAuthConsumerForm,
+                    YesImSure)
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -338,71 +336,6 @@ def validation_tally_csv(request, job_id):
         writer.writerow([smart_str(msg[k], encoding='utf8', strings_only=True)
                          for k in keys])
     return resp
-
-
-@admin.site.admin_view
-def jetpack(request):
-    upgrader = JetpackUpgrader()
-    minver, maxver = upgrader.jetpack_versions()
-    form = JetpackUpgradeForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            if 'minver' in request.POST:
-                data = form.cleaned_data
-                upgrader.jetpack_versions(data['minver'], data['maxver'])
-            elif 'upgrade' in request.POST:
-                if upgrader.version(maxver):
-                    start_upgrade(minver, maxver)
-            elif 'cancel' in request.POST:
-                upgrader.cancel()
-            return redirect('zadmin.jetpack')
-        else:
-            messages.error(request, form.errors.as_text())
-
-    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
-
-    upgrading = upgrader.version()    # Current Jetpack version upgrading to.
-    repack_status = upgrader.files()  # The files being repacked.
-
-    show = request.GET.get('show', upgrading or minver)
-    subset = filter(
-        lambda f: not f.needs_upgrade and f.jetpack_version == show, jetpacks)
-    need_upgrade = filter(lambda f: f.needs_upgrade, jetpacks)
-    repacked = []
-
-    if upgrading:
-        # Group the repacked files by status for this Jetpack upgrade.
-        grouped_files = sorted_groupby(repack_status.values(),
-                                       key=lambda f: f['status'])
-        for group, rows in grouped_files:
-            rows = sorted(list(rows), key=lambda f: f['file'])
-            for idx, row in enumerate(rows):
-                rows[idx]['file'] = File.objects.get(id=row['file'])
-            repacked.append((group, rows))
-
-    groups = sorted_groupby(jetpacks, 'jetpack_version')
-    by_version = dict((version, len(list(files))) for version, files in groups)
-    return render(request, 'zadmin/jetpack.html',
-                  dict(form=form, upgrader=upgrader,
-                       by_version=by_version, upgrading=upgrading,
-                       need_upgrade=need_upgrade, subset=subset,
-                       show=show, repacked=repacked,
-                       repack_status=repack_status))
-
-
-def start_upgrade(minver, maxver):
-    jetpacks = find_jetpacks(minver, maxver, from_builder_only=True)
-    ids = [f.id for f in jetpacks if f.needs_upgrade]
-    log.info('Starting a jetpack upgrade to %s [%s files].'
-             % (maxver, len(ids)))
-    start_upgrade_task.delay(ids, sdk_version=maxver)
-
-
-def jetpack_resend(request, file_id):
-    maxver = JetpackUpgrader().version()
-    log.info('Starting a jetpack upgrade to %s [1 file].' % maxver)
-    start_upgrade_task.delay([file_id], sdk_version=maxver)
-    return redirect('zadmin.jetpack')
 
 
 @admin_required

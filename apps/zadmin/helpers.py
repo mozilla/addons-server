@@ -13,7 +13,6 @@ def admin_site_links():
             ('Discovery Pane promo modules',
              reverse('discovery.module_admin')),
             ('Monthly Pick', reverse('zadmin.monthly_pick')),
-            ('Upgrade jetpack add-ons', reverse('zadmin.jetpack')),
             ('Bulk add-on validation', reverse('zadmin.validation')),
             ('Fake mail', reverse('zadmin.mail')),
             ('Flagged reviews', reverse('zadmin.flagged')),

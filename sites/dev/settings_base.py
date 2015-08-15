@@ -121,17 +121,9 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'addons-dev'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = (
-    "https://builder-addons-dev.allizom.org/repackage/sdk-versions/")
-
-
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_dev' % v) for k, v in ES_INDEXES.items())
-
-BUILDER_UPGRADE_URL = (
-    "https://builder-addons-dev.allizom.org/repackage/rebuild/")
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT

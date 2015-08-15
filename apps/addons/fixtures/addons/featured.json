@@ -247,7 +247,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:5b5a",
             "created": "2007-03-05 13:19:15",
             "modified": "2007-04-04 12:30:11",
@@ -263,14 +262,12 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:5b5a",
             "created": "2007-03-05 13:19:15",
             "modified": "2007-04-04 12:30:11",
             "filename": "del.icio.us_bookmarks-1.0.43-fx.xpi",
             "platform": 1,
             "version": 1003,
-            "modified": "2007-04-04 12:30:11",
             "size": 173056
         }
     }

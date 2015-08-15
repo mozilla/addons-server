@@ -19,14 +19,13 @@ from nose.tools import eq_
 import amo
 import amo.tests
 import amo.utils
-import devhub.signals
 
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
 from applications.models import AppVersion
 from files.models import File, FileUpload, FileValidation, nfd_str
 from files.helpers import copyfileobj
-from files.utils import check_xpi_info, JetpackUpgrader, parse_addon, parse_xpi
+from files.utils import check_xpi_info, parse_addon, parse_xpi
 from versions.models import Version
 
 
@@ -780,21 +779,13 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
         eq_(file_.jetpack_version, '1.0b4')
-        eq_(file_.builder_version, None)
         eq_(['jetpack'], [t.tag_text for t in self.addon.tags.all()])
-
-    def test_jetpack_builder_version(self):
-        upload = self.upload('jetpack_builder')
-        f = File.from_upload(upload, self.version, self.platform)
-        file_ = File.objects.get(id=f.id)
-        eq_(file_.builder_version, '1.1.1.1')
 
     def test_jetpack_with_invalid_json(self):
         upload = self.upload('jetpack_invalid')
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
         eq_(file_.jetpack_version, None)
-        eq_(file_.builder_version, None)
         assert not self.addon.tags.exists()
 
     def test_filename(self):
@@ -1052,32 +1043,6 @@ def test_parse_xpi():
                           'apps/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(open(firefm))
     eq_(rdf['name'], 'Fire.fm')
-
-
-class TestCheckJetpackVersion(amo.tests.TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestCheckJetpackVersion, self).setUp()
-        self.addon = Addon.objects.get(id=3615)
-        JetpackUpgrader().jetpack_versions('1.0', '1.1')
-
-    @mock.patch('files.tasks.start_upgrade.delay')
-    def test_upgrade(self, upgrade_mock):
-        File.objects.update(jetpack_version='1.0')
-        ids = list(File.objects.values_list('id', flat=True))
-        devhub.signals.submission_done.send(sender=self.addon)
-        upgrade_mock.assert_called_with(ids, priority='high')
-
-    @mock.patch('files.tasks.start_upgrade.delay')
-    def test_no_upgrade(self, upgrade_mock):
-        File.objects.update(jetpack_version=None)
-        devhub.signals.submission_done.send(sender=self.addon)
-        assert not upgrade_mock.called
-
-        File.objects.update(jetpack_version='0.9')
-        devhub.signals.submission_done.send(sender=self.addon)
-        assert not upgrade_mock.called
 
 
 class LanguagePackBase(UploadTest):

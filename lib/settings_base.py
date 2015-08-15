@@ -1246,13 +1246,6 @@ VALID_LOGIN_REDIRECTS = {
     'buildertrunk': 'https://builder-addons-dev.allizom.org',
 }
 
-# Secret key we send to builder so we can trust responses from the builder.
-BUILDER_SECRET_KEY = 'love will tear us apart'
-# The builder URL we hit to upgrade jetpacks.
-BUILDER_UPGRADE_URL = 'https://addons.mozilla.org/services/builder'
-BUILDER_VERSIONS_URL = ('https://builder.addons.mozilla.org/repackage/' +
-                        'sdk-versions/')
-
 # Elasticsearch
 ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]

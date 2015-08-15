@@ -115,18 +115,12 @@ RESPONSYS_ID = private.RESPONSYS_ID
 
 CRONJOB_LOCK_PREFIX = 'marketplace-stage'
 
-BUILDER_SECRET_KEY = private.BUILDER_SECRET_KEY
-BUILDER_VERSIONS_URL = (
-    "https://builder-addons.allizom.org/repackage/sdk-versions/")
-
 GOOGLE_ANALYTICS_CREDENTIALS = private.GOOGLE_ANALYTICS_CREDENTIALS
 GOOGLE_API_CREDENTIALS = private.GOOGLE_API_CREDENTIALS
 
 ES_HOSTS = splitstrip(private.ES_HOSTS)
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_stage' % v) for k, v in ES_INDEXES.items())
-
-BUILDER_UPGRADE_URL = "https://builder-addons.allizom.org/repackage/rebuild/"
 
 STATSD_HOST = private.STATSD_HOST
 STATSD_PORT = private.STATSD_PORT
