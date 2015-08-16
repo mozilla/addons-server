@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 18:37:26.992931\n"
+"PO-Revision-Date: 2015-08-16 14:44:36.075157\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -9438,15 +9438,15 @@ msgstr "Uppdatera teman"
 
 #: apps/editors/helpers.py:131
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Olistad vändande uppdateringar"
 
 #: apps/editors/helpers.py:132
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Olistad fullständig granskning"
 
 #: apps/editors/helpers.py:133
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Olistad preliminär granskning"
 
 #: apps/editors/helpers.py:166
 msgid "Fast Track ({0})"
@@ -9463,20 +9463,20 @@ msgstr[1] "Fullständiga granskningar ({0})"
 #: apps/editors/helpers.py:176
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Väntande uppdatering({0})"
+msgstr[1] "Väntande uppdateringar({0})"
 
 #: apps/editors/helpers.py:181
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Preliminär granskning({0})"
+msgstr[1] "Preliminära granskningar({0})"
 
 #: apps/editors/helpers.py:186
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Modererad granskning({0})"
+msgstr[1] "Modererade granskningar({0})"
 
 #: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
@@ -9535,7 +9535,7 @@ msgstr "Binära komponenter"
 
 #: apps/editors/helpers.py:309
 msgid "moments ago"
-msgstr ""
+msgstr "nyss"
 
 #. L10n: first argument is number of minutes
 #: apps/editors/helpers.py:312
@@ -9564,11 +9564,11 @@ msgstr ""
 
 #: apps/editors/helpers.py:482
 msgid "Grant full review"
-msgstr ""
+msgstr "Bevilja fullständig granskning"
 
 #: apps/editors/helpers.py:497
 msgid "Request more information"
-msgstr ""
+msgstr "Begär mer information"
 
 #: apps/editors/helpers.py:500
 msgid "Request super-review"
@@ -9576,11 +9576,11 @@ msgstr ""
 
 #: apps/editors/helpers.py:511
 msgid "Grant preliminary review"
-msgstr ""
+msgstr "Bevilja preliminär granskning"
 
 #: apps/editors/helpers.py:512
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Detta kommer att markera filerna som preliminärt granskad."
 
 #: apps/editors/helpers.py:514
 msgid ""
@@ -9991,11 +9991,11 @@ msgstr "Poäng"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Meddelande för dagen"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Uppdatera meddelande för dagen"
 
 #: apps/editors/templates/editors/motd.html:15
 #: apps/editors/templates/editors/review.html:223
@@ -10009,7 +10009,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
-msgstr ""
+msgstr "Visa statistik för användare"
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
@@ -10485,7 +10485,7 @@ msgstr "Beskriv din anledning till flaggning"
 
 #: apps/files/forms.py:87
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Kan inte jämföra en version mot sig själv"
 
 #: apps/files/helpers.py:153
 msgid "That file no longer exists."
@@ -10494,11 +10494,11 @@ msgstr "Filen finns inte längre."
 #. L10n: {0} is the file size limit of the file viewer.
 #: apps/files/helpers.py:162
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Filstorleken är över gränsen på {0}."
 
 #: apps/files/helpers.py:176
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problem med avkodningen av {0}."
 
 #: apps/files/helpers.py:186
 msgid ""
