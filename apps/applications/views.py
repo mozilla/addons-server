@@ -1,4 +1,7 @@
+import json
+
 from django.contrib.syndication.views import Feed
+from django.http import HttpResponse
 from django.shortcuts import render
 
 import caching.base as caching
@@ -12,20 +15,26 @@ from .models import AppVersion
 def get_versions(order=('application', 'version_int')):
     def f():
         apps = amo.APP_USAGE
-        versions = dict((app.id, []) for app in apps)
+        versions = dict((app.id, {"name": unicode(app.pretty),
+                                  "guid": app.guid,
+                                  "versions": []}) for app in apps)
         qs = list(AppVersion.objects.order_by(*order)
                   .filter(application__in=versions)
                   .values_list('application', 'version'))
         for app, version in qs:
-            versions[app].append(version)
-        return apps, versions
+            versions[app]["versions"].append(version)
+        return versions
     return caching.cached(f, 'getv' + ''.join(order))
 
 
 def appversions(request):
-    apps, versions = get_versions()
-    return render(request, 'applications/appversions.html',
-                  dict(apps=apps, versions=versions))
+    apps = get_versions()
+    return render(request, 'applications/appversions.html', dict(apps=apps))
+
+
+def appversions_json(request):
+    data = json.dumps(get_versions())
+    return HttpResponse(data, mimetype='application/json')
 
 
 class AppversionsFeed(Feed):
@@ -42,14 +51,11 @@ class AppversionsFeed(Feed):
         return _('Acceptable versions for all applications on AMO.')
 
     def items(self):
-        apps, versions = get_versions(order=('application', '-version_int'))
-        return [(app, version) for app in apps
-                for version in versions[app.id][:3]]
-        return [(app, versions[app.id][:3]) for app in apps]
+        versions = get_versions().itervalues()
+        return versions
 
     def item_title(self, item):
-        app, version = item
-        return u'%s %s' % (app.pretty, version)
+        return u'%s %s' % (item['name'], item['versions'][-1])
 
     item_description = ''
 
@@ -57,4 +63,5 @@ class AppversionsFeed(Feed):
         return self.link()
 
     def item_guid(self, item):
-        return self.item_link() + '%s:%s' % item
+        return self.item_link() + '%s:%s' % (item['name'],
+                                             item['versions'][-1])

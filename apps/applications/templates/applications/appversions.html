@@ -15,15 +15,16 @@ one of the below applications supported. Only the versions listed below are
 allowed for these applications.
 {% endtrans %}</p>
 
-{% for app in apps %}
+{% for app in apps.values() %}
 <div class="appversion prose">
   <h3>
-    <img src="{{ static('img/app-icons/small/' +  app.short + '.png') }}" alt="">
-    {{ app.pretty }}
+    {% set icon_name = app.name.lower() if app.name != 'Firefox for Android' else 'android'  %}
+    <img src="{{ static('img/app-icons/small/' + icon_name + '.png') }}" alt="">
+    {{ app.name }}
   </h3>
   <ul>
     <li>{{ _('GUID') }}: <code>{{ app.guid }}</code></li>
-    <li>{{ _('Versions') }}: <code>{{ versions[app.id]|join(', ') }}</code></li>
+    <li>{{ _('Versions') }}: <code>{{ app.versions|join(', ') }}</code></li>
   </ul>
 </div>
 {% endfor %}

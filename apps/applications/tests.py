@@ -54,6 +54,9 @@ class TestViews(amo.tests.TestCase):
     def test_appversions_feed(self):
         eq_(self.client.get(url('apps.appversions.rss')).status_code, 200)
 
+    def test_appversions_json(self):
+        eq_(self.client.get(url('apps.appversions.json')).status_code, 200)
+
 
 class TestCommands(amo.tests.TestCase):
     fixtures = ['base/appversion']
