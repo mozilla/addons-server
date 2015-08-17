@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-07-30 08:32+0000\n"
+"PO-Revision-Date: 2015-08-17 21:56+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438245175.0\n"
+"X-POOTLE-MTIME: 1439848576.0\n"
 
 #: apps/addons/buttons.py:164
 msgid "Download Now"
@@ -3649,11 +3649,11 @@ msgstr "Wachtwoord onjuist."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Ongeldig JSON-object"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Bericht niet geschikt voor annotatie"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
