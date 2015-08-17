@@ -47,7 +47,8 @@ class SHA512PasswordHasher(BasePasswordHasher):
     def encode(self, password, salt):
         assert password is not None
         assert salt and '$' not in salt
-        hash = hashlib.new('sha512', smart_str(salt + password)).hexdigest()
+        hash = hashlib.new(self.algorithm,
+                           smart_str(salt + password)).hexdigest()
         return "%s$%s$%s" % (self.algorithm, salt, hash)
 
     def verify(self, password, encoded):
