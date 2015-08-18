@@ -615,6 +615,9 @@ class TestDownloadsBase(amo.tests.TestCase):
         self.beta_file = File.objects.get(id=64874)
         self.file_url = reverse('downloads.file', args=[self.file.id])
         self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
+        self.latest_beta_url = reverse('downloads.latest',
+                                        kwargs={'addon_id': self.addon.slug,
+                                                'beta': '-beta'})
 
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
@@ -651,6 +654,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -661,6 +665,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 302
         assert self.client.get(self.latest_url).status_code == 302
+        assert self.client.get(self.latest_beta_url).status_code == 302
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -671,6 +676,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
@@ -681,6 +687,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 302
         assert self.client.get(self.latest_url).status_code == 302
+        assert self.client.get(self.latest_beta_url).status_code == 302
 
 
 class TestDownloads(TestDownloadsBase):
@@ -832,6 +839,22 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_success(self):
         assert self.addon.current_version
         self.assert_served_by_mirror(self.client.get(self.latest_url))
+
+    def test_beta(self):
+        r = self.client.get(self.latest_beta_url)
+        eq_(r.status_code, 302)
+        beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
+        url = beta_file_url + '/' + self.beta_file.filename
+        assert r['Location'].endswith(url), r['Location']
+
+        # No beta downloads for unreviewed addons 
+        self.addon.status = amo.STATUS_PENDING
+        self.addon.save()
+        r = self.client.get(self.latest_beta_url)
+        eq_(r.status_code, 302)
+        beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
+        url = self.file_url + '/' + self.file.filename
+        assert r['Location'].endswith(url), r['Location']
 
     def test_platform(self):
         # We still match PLATFORM_ALL.

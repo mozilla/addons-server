@@ -110,12 +110,16 @@ def guard():
 
 
 @addon_view_factory(guard)
-def download_latest(request, addon, type='xpi', platform=None):
+def download_latest(request, addon, beta=False, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
+    if beta and addon.show_beta:
+      version = addon.current_beta_version.id
+    else:
+      version = addon._current_version_id
     files = File.objects.filter(platform__in=platforms,
-                                version=addon._current_version_id)
+                                version=version)
     try:
         # If there's a file matching our platform, it'll float to the end.
         file = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
