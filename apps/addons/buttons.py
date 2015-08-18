@@ -90,7 +90,11 @@ class InstallButton(object):
                  detailed=False, impala=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
-        self.version = version or addon.current_version
+        self.latest_beta = version == 'beta'
+        if version == 'beta':
+            self.version = addon.current_beta_version
+        else:
+            self.version = version or addon.current_version
         self.src = src
         self.collection = collection
         self.size = size
@@ -157,6 +161,8 @@ class InstallButton(object):
         if self.latest and (
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
+        elif self.latest_beta and self.addon.show_beta:
+            url = file.latest_xpi_url(beta=True)
         else:
             url = file.get_url_path(self.src)
 
