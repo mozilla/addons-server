@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-18 06:34:52.152808\n"
+"PO-Revision-Date: 2015-08-18 08:00:16.463719\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5853,7 +5853,7 @@ msgstr "Testi"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
-msgstr "Testi Splošno"
+msgstr "Splošni testi"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
@@ -7142,7 +7142,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
-msgstr "Testne metode in pogosti problemi"
+msgstr "Metode testiranja in pogosti problemi"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
@@ -7278,11 +7278,12 @@ msgid ""
 "placed in the Notes to Reviewer field when editing a version in the "
 "Developer Hub."
 msgstr ""
-"Če je dodatek vezan na določeno spletno stran, je priporočljivo, da se "
-"omogoči testni račun, ki se ga lahko uporablja med postopkom revizije. Dalje"
-" bodo podrobna navodila testiranja omogočila uredniku bolje razumeti, kako "
-"dodatek deluje, in tako pospešila proces testiranja. Te podatke se lahko da "
-"v opombe na področju za recenzente, ko se v Developer Hub ureja različico."
+"Če je dodatek vezan na določeno spletno stran, je priporočljivo, da uredniku"
+" ponudite testni račun, ki ga bo lahko uporabil med postopkom pregleda. "
+"Dalje bodo podrobna navodila za testiranje omogočila uredniku bolje "
+"razumeti, kako dodatek deluje, in tako pospešila proces testiranja. Te "
+"podatke lahko vnesete v opombe na področju za recenzente, ko v Razvojnem "
+"centru urejate različico."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -8701,8 +8702,8 @@ msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
 msgstr ""
-"Datoteke, ki se jih je dodalo pregledanim različicam, je treba pregledati, "
-"preden bodo na voljo za prenos."
+"Datoteke, ki jih dodate pregledanim različicam, je treba pregledati, preden "
+"bodo na voljo za prenos."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:17
 msgid ""
