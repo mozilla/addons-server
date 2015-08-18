@@ -115,9 +115,9 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
     if beta and addon.show_beta:
-      version = addon.current_beta_version.id
+        version = addon.current_beta_version.id
     else:
-      version = addon._current_version_id
+        version = addon._current_version_id
     files = File.objects.filter(platform__in=platforms,
                                 version=version)
     try:

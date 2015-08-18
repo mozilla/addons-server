@@ -616,8 +616,8 @@ class TestDownloadsBase(amo.tests.TestCase):
         self.file_url = reverse('downloads.file', args=[self.file.id])
         self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
         self.latest_beta_url = reverse('downloads.latest',
-                                        kwargs={'addon_id': self.addon.slug,
-                                                'beta': '-beta'})
+                                       kwargs={'addon_id': self.addon.slug,
+                                               'beta': '-beta'})
 
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
@@ -847,7 +847,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         url = beta_file_url + '/' + self.beta_file.filename
         assert r['Location'].endswith(url), r['Location']
 
-        # No beta downloads for unreviewed addons 
+        # No beta downloads for unreviewed addons
         self.addon.status = amo.STATUS_PENDING
         self.addon.save()
         r = self.client.get(self.latest_beta_url)
