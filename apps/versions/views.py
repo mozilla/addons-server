@@ -114,7 +114,9 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
-    if beta and addon.show_beta:
+    if beta:
+        if not addon.show_beta:
+            raise http.Http404()
         version = addon.current_beta_version.id
     else:
         version = addon._current_version_id

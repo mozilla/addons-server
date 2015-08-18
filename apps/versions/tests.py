@@ -841,20 +841,20 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_by_mirror(self.client.get(self.latest_url))
 
     def test_beta(self):
-        r = self.client.get(self.latest_beta_url)
-        eq_(r.status_code, 302)
+        response = self.client.get(self.latest_beta_url)
+        assert response.status_code == 302
         beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
         url = beta_file_url + '/' + self.beta_file.filename
-        assert r['Location'].endswith(url), r['Location']
+        assert response['Location'].endswith(url)
 
-        # No beta downloads for unreviewed addons
+    def test_beta_unreviewed_addon(self):
         self.addon.status = amo.STATUS_PENDING
         self.addon.save()
-        r = self.client.get(self.latest_beta_url)
-        eq_(r.status_code, 302)
-        beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
-        url = self.file_url + '/' + self.file.filename
-        assert r['Location'].endswith(url), r['Location']
+        assert self.client.get(self.latest_beta_url).status_code == 404
+
+    def test_beta_no_files(self):
+        self.beta_file.update(status=amo.STATUS_PUBLIC)
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     def test_platform(self):
         # We still match PLATFORM_ALL.
