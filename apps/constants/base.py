@@ -530,6 +530,9 @@ REVIEWED_LEVELS = [
     {'name': _('Level 4'), 'points': 21000},
     {'name': _('Level 5'), 'points': 45000},
     {'name': _('Level 6'), 'points': 96000},
+    {'name': _('Level 7'), 'points': 300000},
+    {'name': _('Level 8'), 'points': 1200000},
+    {'name': _('Level 9'), 'points': 3000000},
 ]
 
 # Login credential source. We'll also include the site source in that.
