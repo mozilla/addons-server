@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-18 01:20:15.179069\n"
+"PO-Revision-Date: 2015-08-18 06:34:52.152808\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5644,8 +5644,8 @@ msgid ""
 " new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 "Vsi podatki , ki jih končni uporabniki želijo vedeti in se ne nanašajo nujno"
-" na povzetek opisa dodatka. To pogosto vključujejo navedbo glavnih znanih "
-"hroščev, podatke o poročanju o hroščih, pričakovani datum izdaje noe "
+" na povzetek opisa dodatka. To pogosto vključuje navedbo glavnih znanih "
+"hroščev, podatke o poročanju o hroščih, pričakovani datum izdaje nove "
 "različice itd. To velja samo za navedene dodatke."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
@@ -14098,7 +14098,7 @@ msgstr "Uporaba platforme po datumu"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> Prenosov"
+msgstr "<b>{0}</b> prenosov"
 
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
