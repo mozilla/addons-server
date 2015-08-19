@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-09 09:35+0000\n"
+"PO-Revision-Date: 2015-08-19 07:49+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439112909.0\n"
+"X-POOTLE-MTIME: 1439970542.0\n"
 
 #: apps/addons/buttons.py:164
 msgid "Download Now"
@@ -3668,11 +3668,11 @@ msgstr "Neplatné heslo."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Neplatný JSON objekt"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Zpráva není způsobilá anotace"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94 apps/users/templates/users/edit.html:136
 msgid "Details"
@@ -3780,7 +3780,7 @@ msgstr "Zaškrtněte, pokud chcete doplněk distribuovat sami a pouze jej potře
 
 #: apps/devhub/forms.py:540
 msgid "This add-on will be side-loaded via application installers."
-msgstr ""
+msgstr "Tento doplněk bude načítán pomocí instalátorů aplikací."
 
 #: apps/devhub/forms.py:542
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
@@ -4416,6 +4416,9 @@ msgstr "Souhrn"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Krátký popis základních funkcí doplňku, který je zobrazen v seznamech, "
+"výsledcích vyhledávání a na začátku stránky s detaily doplňku. Relevantní "
+"pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -4475,6 +4478,8 @@ msgstr "Výchozí lokalizace"
 #: apps/devhub/templates/devhub/addons/edit/details.html:45
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
+"Nebude-li k dispozici překlad, informace o vašem doplňku budou zobrazeny v "
+"tomto jazyce. Relevantní pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:108 apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
@@ -4729,11 +4734,11 @@ msgstr "Testy kompatibility"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29 apps/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Skrýt zprávy, které nejsou důležité pro automatické podepsání"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35 apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Skrýt zprávy ignorované v minulých verzích"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -6124,7 +6129,7 @@ msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získ�
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be side-loaded."
-msgstr ""
+msgstr "Váš doplněk byl podepsán a může být načítán."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
@@ -6149,6 +6154,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid "You will receive an email when the full review is complete, making your add-on side-loadable."
 msgstr ""
+"Jakmile bude váš doplněk plně zkontrolován a učiněn načitatelným, obdržíte "
+"e-mail."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:89
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6288,6 +6295,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany "
+"soukromí vysvětlit, jaká data jsou odesílána a jak jsou použita. Relevantní "
+"pouze pro zveřejněné doplňky."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6667,6 +6677,10 @@ msgid ""
 "Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Odesílání aktualizací nezveřejněných doplňků k automatickému podepisování je "
+"ve stádiu otevřené bety. Pro velké množství doplňků může být stále "
+"vyžadována ruční kontrola. <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">Nahlaste</a> prosím všechny chyby, na který narazíte."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -6939,25 +6953,34 @@ msgstr "Jste si jisti, že chcete skrýt svůj doplněk?"
 
 #: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Zrušit zveřejnění doplňku"
 
 #: apps/devhub/templates/devhub/versions/list.html:290
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
 msgstr ""
+"Zrušením zveřejnění doplňku jej na této stránce zneviditelníte (včetně všech "
+"jeho verzí/souborů). Nebude se ukazovat ve výsledcích vyhledávání a nebude "
+"mít svou veřejně zobrazitelnou stránku. Aktuální uživatelé nebudou dostávat "
+"aktualizace. Aby byly nadále zachovány automatické aktualizace, doporučujeme "
+"mít u všech doplňků vyplněnu vlastní <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> v souboru install.rdf."
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Změna stavu doplňku na neveřejný je aktuálně ve fázi otevřené bety. <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">Nahlaste</a> prosím jakékoli chyby, "
+"na které narazíte."
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Změna stavu doplňku na neveřejný je nevratná!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Neveřejný doplněk nelze změnit na veřejný."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
@@ -7285,15 +7308,15 @@ msgstr "Filtrovat dle typu/akce"
 
 #: apps/editors/forms.py:61
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Prošlo automatickou kontrolou"
 
 #: apps/editors/forms.py:63
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Neprošlo automatickou kontrolou"
 
 #: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrovat podle stavu automatické kontroly"
 
 #: apps/editors/forms.py:72
 msgid "containing"
@@ -7820,7 +7843,7 @@ msgstr "Seznam moderovaných recenzí"
 
 #: apps/editors/templates/editors/base.html:82 apps/editors/templates/editors/beta_signed_log.html:4 apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Žurnál podepsaných beta souborů"
 
 #: apps/editors/templates/editors/base.html:87 apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
@@ -9778,6 +9801,9 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"S tisíci dostupnými doplňky je tady pro každého něco. Pokud však hledáte "
+"určitý doplněk a nemůžete jej najít, zkuste hledat na jiných stránkách nebo "
+"o něm napište na našem <a href=\"%(forum_url)s\">fóru</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -10320,7 +10346,7 @@ msgstr "Odpovědět na recenzi"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Upravit odpověď"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10328,7 +10354,7 @@ msgstr "Upravit recenzi"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Smazat odpověď"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -10600,7 +10626,7 @@ msgstr[2] ""
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweetnout na Twitteru"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -10615,11 +10641,11 @@ msgstr "Sdílet na g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Zveřejnit na Redditu"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Zveřejnit na Tumblru"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
@@ -11335,7 +11361,7 @@ msgstr "Změněné údaje obsahují chyby. Opravte je prosím a formulář znova
 
 #: apps/users/views.py:274
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Omlouváme se, ale aktuálně nemůžete o tričko požádat."
 
 #: apps/users/views.py:330
 msgid "Your email address was changed successfully"
@@ -11788,6 +11814,8 @@ msgstr "Poznámka:"
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
 msgstr ""
+"Žádost o triko již byla podána. Pro upřesnění dříve zadaných informací "
+"můžete tento formulář znovu odeslat, ale získáte pouze jedno triko."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
@@ -11803,7 +11831,7 @@ msgstr "Kontaktní informace budou Mozillou použity pouze k odeslání trika."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Poštovní adresa"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
@@ -11839,7 +11867,7 @@ msgstr "Telefon"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informace o triku"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
@@ -11851,13 +11879,17 @@ msgstr "Po odeslání budete přesměrováni na Google Formuláře."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Požádat o triko"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
+"Omlouváme se, ale abyste mohli získat speciální edici našeho trika, musíte "
+"být vývojářem doplňků s minimálně jedním veřejným či neveřejným podepsaným "
+"doplňkem nebo jakéhokoli množství motivů s průměrným celkovým množstvím "
+"denních uživatelů přesahujícím 10 000."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
