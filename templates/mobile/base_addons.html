@@ -85,9 +85,6 @@
     {% block site_js %}
       <script src="{{ cache_buster(url('jsi18n')) }}"></script>
       {{ js('zamboni/mobile') }}
-      {% if waffle.switch('browserid-login') %}
-        <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
-      {% endif %}
     {% endblock %}
     {% block js %}{% endblock %}
   </body>

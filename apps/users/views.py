@@ -7,19 +7,16 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
-from django.db import IntegrityError, transaction
+from django.db import IntegrityError
 from django.db.models import Q, Sum
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.template import Context, loader
 from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import waffle
-from django_browserid import get_audience, verify
-from django_statsd.clients import statsd
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
@@ -35,7 +32,6 @@ from amo import messages
 from amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
 from amo.forms import AbuseForm
-from amo.helpers import loc
 from amo.urlresolvers import get_url_prefix, reverse
 from amo.utils import escape_all, log_cef, send_mail
 from bandwagon.models import Collection
@@ -47,7 +43,7 @@ import tasks
 from . import forms
 from .models import UserProfile
 from .signals import logged_out
-from .utils import autocreate_username, EmailResetCode, UnsubscribeCode
+from .utils import EmailResetCode, UnsubscribeCode
 
 
 log = commonware.log.getLogger('z.users')
@@ -350,98 +346,6 @@ def _clean_next_url(request):
     return request
 
 
-def browserid_authenticate(request, assertion, is_mobile=False,
-                           browserid_audience=get_audience):
-    """
-    Verify a BrowserID login attempt. If the BrowserID assertion is
-    good, but no account exists, create one.
-
-    """
-    url = settings.BROWSERID_VERIFICATION_URL
-
-    # We must always force the Firefox OS identity provider. This is because
-    # we are sometimes allowing unverified assertions and you can't mix that
-    # feature with bridged IdPs. See bug 910938.
-    extra_params = {}
-    if settings.UNVERIFIED_ISSUER:
-        extra_params['experimental_forceIssuer'] = settings.UNVERIFIED_ISSUER
-
-    if is_mobile:
-        # When persona is running in a mobile OS then we can allow unverified
-        # assertions.
-        url = settings.NATIVE_BROWSERID_VERIFICATION_URL
-        extra_params['experimental_allowUnverified'] = 'true'
-
-    log.debug('Verifying Persona at %s, audience: %s, '
-              'extra_params: %s' % (url, browserid_audience, extra_params))
-    result = verify(assertion, browserid_audience,
-                    url=url, extra_params=extra_params)
-    if not result:
-        return None, _('Persona authentication failure.')
-
-    if 'unverified-email' in result:
-        email = result['unverified-email']
-        verified = False
-    else:
-        email = result['email']
-        verified = True
-
-    try:
-        profile = UserProfile.objects.filter(email=email)[0]
-    except IndexError:
-        profile = None
-
-    if profile:
-        if profile.is_verified and not verified:
-            # An attempt to log in to a verified address with an unverified
-            # assertion is a very bad thing. Don't let that happen.
-            log.debug('Verified user %s attempted to log in with an '
-                      'unverified assertion!' % profile)
-            return None, _('Please use the verified email for this account.')
-        else:
-            profile.is_verified = verified
-            profile.save()
-
-        return profile, None
-
-    username = autocreate_username(email.partition('@')[0])
-    source = amo.LOGIN_SOURCE_AMO_BROWSERID
-    profile = UserProfile.objects.create(username=username, email=email,
-                                         source=source, display_name=username,
-                                         is_verified=verified)
-    log_cef('New Account', 5, request, username=username,
-            signature='AUTHNOTICE',
-            msg='User created a new account (from Persona)')
-    return profile, None
-
-
-@csrf_exempt
-@post_required
-@transaction.commit_on_success
-def browserid_login(request, browserid_audience=None):
-    msg = ''
-    if waffle.switch_is_active('browserid-login'):
-        if request.user.is_authenticated():
-            # If username is different, maybe sign in as new user?
-            return http.HttpResponse(status=200)
-        try:
-            is_mobile = bool(int(request.POST.get('is_mobile', 0)))
-        except ValueError:
-            is_mobile = False
-        with statsd.timer('auth.browserid.verify'):
-            profile, msg = browserid_authenticate(
-                request, request.POST.get('assertion'),
-                is_mobile=is_mobile,
-                browserid_audience=browserid_audience or get_audience(request))
-        if profile is not None:
-            auth.login(request, profile)
-            profile.log_login_attempt(True)
-            return http.HttpResponse(status=200)
-    else:
-        msg = 'browserid-login waffle switch is not enabled'
-    return http.HttpResponse(msg, status=401)
-
-
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
 def login_modal(request, template=None):
@@ -667,13 +571,7 @@ def themes(request, user, category=None):
 @anonymous_csrf
 def register(request):
 
-    if waffle.switch_is_active('browserid-login'):
-        messages.error(request,
-                       loc('Registrations must be through browserid.'))
-        form = None
-        raise http.Http404()
-
-    elif request.user.is_authenticated():
+    if request.user.is_authenticated():
         messages.info(request, _('You are already logged in to an account.'))
         form = None
 
@@ -717,18 +615,12 @@ def register(request):
             return http.HttpResponseRedirect(reverse('users.login'))
 
         elif mkt_user.exists():
-            # Handle BrowserID
-            if (mkt_user.count() == 1 and
-                    mkt_user[0].source in amo.LOGIN_SOURCE_BROWSERIDS):
-                messages.info(request, _('You already have an account.'))
-                form = None
-            else:
-                f = PasswordResetForm()
-                f.users_cache = [mkt_user[0]]
-                f.save(use_https=request.is_secure(),
-                       email_template_name='users/email/pwreset.ltxt',
-                       request=request)
-                return render(request, 'users/newpw_sent.html', {})
+            f = PasswordResetForm()
+            f.users_cache = [mkt_user[0]]
+            f.save(use_https=request.is_secure(),
+                   email_template_name='users/email/pwreset.ltxt',
+                   request=request)
+            return render(request, 'users/newpw_sent.html', {})
         else:
             messages.error(request, _('There are errors in this form'),
                            _('Please correct them and resubmit.'))

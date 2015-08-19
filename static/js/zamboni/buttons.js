@@ -453,12 +453,6 @@ jQuery.fn.addPaypal = function(html, allowClick) {
                 var $modal = $(this);
                 checkForAddon(this);
 
-                $('.browserid-login', this).bind('login-complete', function(){
-                    $(this).addClass('loading-submit');
-                    $('.ajax-submit', $modal).load(url, function() {
-                        checkForAddon(this);
-                    });
-                });
             }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
         }
     }));

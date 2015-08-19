@@ -14,17 +14,8 @@
 
 <div class="primary">
   {% include "users/login_help.html" %}
-  <section class="island hero primary grid {{ 'browserid' if waffle.switch('browserid-login') else 'prettyform' }}">
+  <section class="island hero primary grid prettyform">
     <h1>{{ _('Log In') }}</h1>
-    {% if waffle.switch('browserid-login') %}
-      <p>
-        {# TODO: Localize! #}
-        {% with url='https://login.persona.org/' %}
-          The add-ons website is now using <a href="{{ url }}">BrowserID</a> for sign in. If you already have an account here, just use the
-          same email when signing in to BrowserID.
-        {% endwith %}
-      </p>
-    {% endif %}
     {% include "users/login_form.html" %}
   </section>
 </div>
