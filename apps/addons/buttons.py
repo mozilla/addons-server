@@ -16,7 +16,7 @@ from translations.models import Translation
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_contrib=True,
                    show_warning=True, src='', collection=None, size='',
-                   detailed=False, mobile=False, impala=False):
+                   detailed=False, mobile=False, impala=False, is_beta=False):
     """If version isn't given, we use the latest version."""
     request = context['request']
     app, lang = context['APP'], context['LANG']
@@ -29,7 +29,7 @@ def install_button(context, addon, version=None, show_contrib=True,
                   or request.GET.get('collection_uuid'))
     button = install_button_factory(addon, app, lang, version, show_contrib,
                                     show_warning, src, collection, size,
-                                    detailed, impala)
+                                    detailed, impala, is_beta)
     installed = (request.user.is_authenticated() and
                  addon.id in request.amo_user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
@@ -87,14 +87,14 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None, show_contrib=True,
                  show_warning=True, src='', collection=None, size='',
-                 detailed=False, impala=False):
+                 detailed=False, impala=False, is_beta=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
-        self.latest_beta = version == 'beta'
-        if version == 'beta':
-            self.version = addon.current_beta_version
+        if version:
+            self.version = version
         else:
-            self.version = version or addon.current_version
+            self.version = (addon.current_beta_version if is_beta
+                            else addon.current_version)
         self.src = src
         self.collection = collection
         self.size = size
@@ -158,10 +158,10 @@ class InstallButton(object):
 
     def file_details(self, file):
         platform = file.platform
-        if self.latest and (
+        if self.latest and not self.is_beta and (
                 self.addon.status == file.status == amo.STATUS_PUBLIC):
             url = file.latest_xpi_url()
-        elif self.latest_beta and self.addon.show_beta:
+        elif self.latest and self.is_beta and self.addon.show_beta:
             url = file.latest_xpi_url(beta=True)
         else:
             url = file.get_url_path(self.src)
