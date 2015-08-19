@@ -557,7 +557,7 @@ class TestFeeds(amo.tests.TestCase):
     def get_feed(self, slug, **kwargs):
         status = kwargs.get('status')
         if status:
-          del kwargs['status']
+            del kwargs['status']
 
         url = reverse('addons.versions.rss',
                       kwargs={'addon_id': slug, 'status': status})
