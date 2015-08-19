@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 17:08:59.917511\n"
+"PO-Revision-Date: 2015-08-13 17:08\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -3505,7 +3505,7 @@ msgstr "Created"
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr ""
+msgstr "Downloads"
 
 #: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84
 #: apps/discovery/templates/discovery/addons/detail.html:67
@@ -3513,7 +3513,7 @@ msgstr ""
 #: apps/reviews/templates/reviews/edit_review.html:9
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
-msgstr ""
+msgstr "Rating"
 
 #. {0} is the category name. Ex: Sports
 #: apps/browse/templates/browse/creatured.html:5
@@ -5392,7 +5392,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
-msgstr ""
+msgstr "Tags"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:119
 msgid ""
@@ -5520,7 +5520,7 @@ msgstr "Technical Details for {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "Developer Comments"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
@@ -8601,7 +8601,7 @@ msgstr "Upload Another File"
 #: apps/devhub/templates/devhub/versions/edit.html:73
 #: apps/editors/templates/editors/review.html:98
 msgid "Version Notes"
-msgstr ""
+msgstr "Version Notes"
 
 #: apps/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8680,7 +8680,7 @@ msgstr "Edit this version"
 #: apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
 msgid "Version {0}"
-msgstr ""
+msgstr "Version {0}"
 
 #. {0} is the number of files
 #: apps/devhub/templates/devhub/versions/list.html:22
@@ -10277,17 +10277,17 @@ msgstr "Resolution"
 #: apps/editors/templates/editors/reviewlog.html:21
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Add-on Review Log"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
@@ -15039,7 +15039,7 @@ msgstr "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
 msgid "What's this?"
-msgstr ""
+msgstr "What's this?"
 
 #: apps/versions/templates/versions/version.html:60
 msgid "View the source"
