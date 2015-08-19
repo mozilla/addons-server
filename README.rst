@@ -13,6 +13,10 @@ created a base template for new websites.
 
 Please report bugs or suggest features here: https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org
 
+You can access the AMO dev enviroment at https://addons-dev.allizom.org/
+
+You can access the AMO stage enviroment at https://addons.allizom.org/
+
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`install docs`: http://olympia.readthedocs.org/en/latest/topics/install-olympia/index.html
 .. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo
