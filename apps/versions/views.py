@@ -28,13 +28,15 @@ log = commonware.log.getLogger('z.versions')
 
 @addon_view
 @mobile_template('versions/{mobile/}version_list.html')
-def version_list(request, addon, template):
-    qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+def version_list(request, addon, template, beta=False):
+    status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
+    qs = (addon.versions.filter(files__status__in=status_list)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return render(request, template, {'addon': addon, 'versions': versions})
+    return render(request, template, {'addon': addon, 'beta': beta,
+                                      'versions': versions})
 
 
 @addon_view

@@ -504,8 +504,9 @@ class TestViews(amo.tests.TestCase):
                                     args=[self.addon.slug, 2]))
         eq_(r.status_code, 404)
 
-    def get_content(self):
-        url = reverse('addons.versions', args=[self.addon.slug])
+    def get_content(self, beta=False):
+        url = reverse('addons.beta-versions' if beta else 'addons.versions',
+                      args=[self.addon.slug])
         return PyQuery(self.client.get(url).content)
 
     def test_version_source(self):
@@ -528,6 +529,17 @@ class TestViews(amo.tests.TestCase):
         eq_(link, reverse('addons.versions', args=[addon.slug, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
+    def test_beta_without_beta_builds(self):
+        doc = self.get_content(beta=True)
+        assert len(doc('.version')) == 0
+
+    def test_beta_with_beta_builds(self):
+        qs = File.objects.filter(version=self.addon.current_version)
+        qs.update(status=amo.STATUS_BETA)
+        doc = self.get_content(beta=True)
+        version = self.addon.current_version.version
+        assert doc('.version').attr('id') == 'version-%s' % version
+
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.addon.update(is_listed=False)
@@ -546,7 +558,10 @@ class TestFeeds(amo.tests.TestCase):
         self.addCleanup(patcher.stop)
 
     def get_feed(self, slug, **kwargs):
-        url = reverse('addons.versions.rss', args=[slug])
+        beta = kwargs.pop('beta', False)
+        url = reverse('addons.beta-versions.rss' if beta
+                      else 'addons.versions.rss',
+                      args=[slug])
         r = self.client.get(url, kwargs, follow=True)
         return PyQuery(r.content)
 
@@ -571,6 +586,19 @@ class TestFeeds(amo.tests.TestCase):
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
+
+    def test_status_beta_without_beta_builds(self):
+        doc = self.get_feed('a11730', beta=True)
+        assert len(doc('rss channel item link')) == 0
+
+    def test_status_beta_with_beta_builds(self):
+        addon = Addon.objects.get(id=11730)
+        qs = File.objects.filter(version=addon.current_version)
+        qs.update(status=amo.STATUS_BETA)
+
+        doc = self.get_feed('a11730', beta=True)
+        item_link = doc('rss channel item link')[0]
+        assert item_link.text.endswith('/addon/a11730/versions/20090521')
 
     def assert_page_relations(self, doc, page_relations):
         rel = doc[0].xpath('//channel/atom:link', namespaces=self.rel_ns)
