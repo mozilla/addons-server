@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -10,13 +11,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.8.1\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
@@ -57,12 +61,16 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/common/upload-addon.js:191
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:509
 msgid "See full validation report"
@@ -90,6 +98,8 @@ msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/common/upload-addon.js:410
 msgid "Your add-on was validated with no errors or warnings."
@@ -112,11 +122,16 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:463
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:464
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
 msgstr ""
 
 #: static/js/common/upload-addon.js:477
@@ -124,13 +139,17 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 #: static/js/common/upload-addon.js:478
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
 #: static/js/common/upload-addon.js:480
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
 msgstr ""
 
 #: static/js/common/upload-addon.js:498
@@ -138,7 +157,9 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 #: static/js/common/upload-addon.js:515
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr ""
 
 #: static/js/common/upload-addon.js:551
@@ -286,11 +307,13 @@ msgstr ""
 msgid "{0} installs"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
 msgstr ""
 
@@ -347,11 +370,13 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:107
 msgid "Sales"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:106
 msgid "Installs"
 msgstr ""
 
@@ -367,7 +392,8 @@ msgstr ""
 msgid "Search Results"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46
+#: static/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
 msgstr ""
 
@@ -395,7 +421,8 @@ msgstr ""
 msgid "Detail Page (Development Channel)"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59
+#: static/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
 msgstr ""
 
@@ -747,7 +774,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr ""
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+#: static/js/impala/stats/csv_keys.js:264
+#: static/js/impala/stats/csv_keys.js:270
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr ""
 
@@ -768,7 +796,8 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252
+#: static/js/zamboni/editors.js:319
 msgid "Select an application first"
 msgstr ""
 
@@ -777,12 +806,16 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -821,7 +854,9 @@ msgid "Admins and editors must provide a password to log in."
 msgstr ""
 
 #: static/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgid ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
 msgstr ""
 
 #. L10n: {0} is an app name like Firefox.
@@ -846,7 +881,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr ""
 
 #: static/js/zamboni/buttons.js:145
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -876,7 +912,9 @@ msgid "View other versions"
 msgstr ""
 
 #: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr ""
 
 #: static/js/zamboni/collections.js:193
@@ -968,12 +1006,16 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub.js:679
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub.js:791
 msgid "Learn more"
@@ -1008,7 +1050,9 @@ msgid "No results found."
 msgstr ""
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
 
 #: static/js/zamboni/discovery_pane.js:247
@@ -1081,9 +1125,13 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr ""
 
 #: static/js/zamboni/l10n.js:45
@@ -1099,6 +1147,8 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
 msgid "All"
@@ -1136,7 +1186,8 @@ msgstr ""
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567
+#: static/js/zamboni/validator.js:586
 msgid "Error"
 msgstr ""
 
@@ -1165,18 +1216,24 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/validator.js:475
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/validator.js:477
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/validator.js:569
 msgid "Validation task could not complete or completed with errors"
@@ -1202,7 +1259,8 @@ msgstr ""
 msgid "Experimental <span>(Learn More)</span>"
 msgstr ""
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr ""
 
