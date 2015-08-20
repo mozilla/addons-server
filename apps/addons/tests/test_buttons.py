@@ -7,6 +7,7 @@ import jingo
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery
+import pytest
 
 import amo
 import amo.models
@@ -44,6 +45,18 @@ class ButtonTest(amo.tests.TestCase):
 
         self.file = self.get_file(amo.PLATFORM_ALL.id)
         v.all_files = [self.file]
+
+        self.beta_version = v = Mock()
+        v.is_compatible = False
+        v.compat_override_app_versions.return_value = []
+        v.is_unreviewed = False
+        v.is_beta = True
+        v.is_lite = False
+        v.version = 'v2-beta'
+        self.addon.current_beta_version = v
+
+        self.beta_file = self.get_file(amo.PLATFORM_ALL.id)
+        v.all_files = [self.beta_file]
 
         self.platforms = amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id
         self.platform_files = map(self.get_file, self.platforms)
@@ -133,6 +146,26 @@ class TestButtonSetup(ButtonTest):
         b = self.get_button(collection=c)
         eq_(b.collection, 'ff')
 
+    def test_version(self):
+        b = self.get_button()
+        assert b.version == self.version
+        assert not b.is_beta
+
+        b = self.get_button(latest_beta=True)
+        assert b.version == self.beta_version
+        assert b.is_beta
+
+        b = self.get_button(version=self.version)
+        assert b.version == self.version
+        assert not b.is_beta
+
+        b = self.get_button(version=self.beta_version)
+        assert b.version == self.beta_version
+        assert b.is_beta
+
+        with pytest.raises(AssertionError):
+            self.get_button(version=self.version, latest_beta=True)
+
 
 class TestButton(ButtonTest):
     """Tests for the InstallButton class."""
@@ -195,8 +228,7 @@ class TestButton(ButtonTest):
     def test_beta(self):
         # Throw featured in there to make sure it's ignored.
         self.addon.is_featured.return_value = True
-        self.version.is_beta = True
-        b = self.get_button()
+        b = self.get_button(version=self.beta_version)
         assert not b.featured
         assert b.is_beta
         eq_(b.button_class, ['download', 'caution'])

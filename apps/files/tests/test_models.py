@@ -187,14 +187,24 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
     def test_latest_url(self):
         # With platform.
         f = File.objects.get(id=74797)
-        base = '/firefox/downloads/latest/'
+        base = '/firefox/downloads/latest{1}/'
         expected = base + '{0}/platform:3/addon-{0}-latest.xpi'
-        eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
+
+        actual = f.latest_xpi_url()
+        assert expected.format(f.version.addon_id, '') == actual
+
+        actual = f.latest_xpi_url(beta=True)
+        assert expected.format(f.version.addon_id, '-beta') == actual
 
         # No platform.
         f = File.objects.get(id=67442)
         expected = base + '{0}/addon-{0}-latest.xpi'
-        eq_(expected.format(f.version.addon_id), f.latest_xpi_url())
+
+        actual = f.latest_xpi_url()
+        assert expected.format(f.version.addon_id, '') == actual
+
+        actual = f.latest_xpi_url(beta=True)
+        assert expected.format(f.version.addon_id, '-beta') == actual
 
     def test_eula_url(self):
         f = File.objects.get(id=67442)
