@@ -45,18 +45,13 @@ class VersionsRss(Feed):
     feed_type = PagedFeed
     addon = None
 
-    def get_object(self, request, addon_id, status=None):
+    def get_object(self, request, addon_id, beta=False):
         """Get the Addon for which we are about to output
            the RSS feed of it Versions"""
         qs = Addon.objects
         self.addon = get_object_or_404(qs.id_or_slug(addon_id) & qs.valid())
 
-        status = amo.STATUS_CHOICES_API_LOOKUP.get(status)
-        if status is not None and status in amo.VALID_STATUSES:
-            status_list = (status,)
-        else:
-            status_list = amo.VALID_STATUSES
-
+        status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
         items_qs = (self.addon.versions
                     .filter(files__status__in=status_list)
                     .distinct().order_by('-created'))

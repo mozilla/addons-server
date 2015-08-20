@@ -6,10 +6,15 @@ from . import views
 
 urlpatterns = patterns(
     '',
-    url('^(?:status:(?P<status>[^/]+))?$',
+    url('^$',
         views.version_list, name='addons.versions'),
-    url('^(?:status:(?P<status>[^/]+)/)format:rss$',
+    url('^beta$',
+        views.version_list, name='addons.beta-versions',
+        kwargs={'beta': True}),
+    url('^format:rss$',
         VersionsRss(), name='addons.versions.rss'),
+    url('^beta/format:rss$',
+        VersionsRss(), name='addons.beta-versions.rss', kwargs={'beta': True}),
     url('^(?P<version_num>[^/]+)$', views.version_detail,
         name='addons.versions'),
     url('^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,

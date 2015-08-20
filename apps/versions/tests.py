@@ -491,9 +491,9 @@ class TestViews(amo.tests.TestCase):
                                     args=[self.addon.slug, 2]))
         eq_(r.status_code, 404)
 
-    def get_content(self, status=None):
-        url = reverse('addons.versions',
-                      kwargs={'addon_id': self.addon.slug, 'status': status})
+    def get_content(self, beta=False):
+        url = reverse('addons.beta-versions' if beta else 'addons.versions',
+                      args=[self.addon.slug])
         return PyQuery(self.client.get(url).content)
 
     def test_version_source(self):
@@ -516,24 +516,14 @@ class TestViews(amo.tests.TestCase):
         eq_(link, reverse('addons.versions', args=[addon.slug, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
-    def test_status_public_only(self):
-        doc = self.get_content(status='public')
-        version = self.addon.current_version.version
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_bogus_status_listing_all(self):
-        doc = self.get_content(status='foobardummy')
-        version = self.addon.current_version.version
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_status_beta_without_beta_builds(self):
-        doc = self.get_content(status='beta')
+    def test_beta_without_beta_builds(self):
+        doc = self.get_content(beta=True)
         assert len(doc('.version')) == 0
 
-    def test_status_beta_with_beta_builds(self):
+    def test_beta_with_beta_builds(self):
         qs = File.objects.filter(version=self.addon.current_version)
         qs.update(status=amo.STATUS_BETA)
-        doc = self.get_content(status='beta')
+        doc = self.get_content(beta=True)
         version = self.addon.current_version.version
         assert doc('.version').attr('id') == 'version-%s' % version
 
@@ -555,12 +545,10 @@ class TestFeeds(amo.tests.TestCase):
         self.addCleanup(patcher.stop)
 
     def get_feed(self, slug, **kwargs):
-        status = kwargs.get('status')
-        if status:
-            del kwargs['status']
-
-        url = reverse('addons.versions.rss',
-                      kwargs={'addon_id': slug, 'status': status})
+        beta = kwargs.pop('beta', False)
+        url = reverse('addons.beta-versions.rss' if beta
+                      else 'addons.versions.rss',
+                      args=[slug])
         r = self.client.get(url, kwargs, follow=True)
         return PyQuery(r.content)
 
@@ -586,18 +574,8 @@ class TestFeeds(amo.tests.TestCase):
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
 
-    def test_status_public_only(self):
-        doc = self.get_feed('a11730', status='public')
-        item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/a11730/versions/20090521')
-
-    def test_bogus_status_listing_all(self):
-        doc = self.get_feed('a11730', status='foobardummy')
-        item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/a11730/versions/20090521')
-
     def test_status_beta_without_beta_builds(self):
-        doc = self.get_feed('a11730', status='beta')
+        doc = self.get_feed('a11730', beta=True)
         assert len(doc('rss channel item link')) == 0
 
     def test_status_beta_with_beta_builds(self):
@@ -605,7 +583,7 @@ class TestFeeds(amo.tests.TestCase):
         qs = File.objects.filter(version=addon.current_version)
         qs.update(status=amo.STATUS_BETA)
 
-        doc = self.get_feed('a11730', status='beta')
+        doc = self.get_feed('a11730', beta=True)
         item_link = doc('rss channel item link')[0]
         assert item_link.text.endswith('/addon/a11730/versions/20090521')
 
