@@ -35,7 +35,8 @@ def version_list(request, addon, template, beta=False):
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return render(request, template, {'addon': addon, 'versions': versions})
+    return render(request, template, {'addon': addon, 'beta': beta,
+                                      'versions': versions})
 
 
 @addon_view
