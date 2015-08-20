@@ -669,7 +669,7 @@ def id_to_path(pk):
     12 => 2/12/12
     123456 => 6/56/123456
     """
-    pk = str(pk)
+    pk = unicode(pk)
     path = [pk[-1]]
     if len(pk) >= 2:
         path.append(pk[-2:])

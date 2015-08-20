@@ -60,9 +60,9 @@ def source_upload_path(instance, filename):
             break
 
     return os.path.join(
-        'version_source',
+        u'version_source',
         id_to_path(instance.pk),
-        '{0}-{1}-src{2}'.format(
+        u'{0}-{1}-src{2}'.format(
             instance.addon.slug,
             instance.version,
             ext)

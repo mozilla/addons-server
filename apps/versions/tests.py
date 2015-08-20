@@ -35,7 +35,7 @@ from files.models import File
 from files.tests.test_models import UploadTest
 from users.models import UserProfile
 from versions import feeds, views
-from versions.models import Version, ApplicationsVersions
+from versions.models import Version, ApplicationsVersions, source_upload_path
 from versions.compare import (MAXVERSION, version_int, dict_from_int,
                               version_dict)
 
@@ -457,6 +457,19 @@ class TestVersion(amo.tests.TestCase):
     def test_unlisted_addon_get_url_path(self):
         self.version.addon.update(is_listed=False)
         eq_(self.version.get_url_path(), '')
+
+    def test_source_upload_path(self):
+        addon = Addon.objects.get(id=3615)
+        version = amo.tests.version_factory(addon=addon, version='0.1')
+        uploaded_name = source_upload_path(version, 'foo.tar.gz')
+        assert uploaded_name.endswith(u'a3615-0.1-src.tar.gz')
+
+    def test_source_upload_path_utf8_chars(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(slug=u'crosswarpex-확장')
+        version = amo.tests.version_factory(addon=addon, version='0.1')
+        uploaded_name = source_upload_path(version, 'crosswarpex-확장.tar.gz')
+        assert uploaded_name.endswith(u'crosswarpex-확장-0.1-src.tar.gz')
 
 
 class TestViews(amo.tests.TestCase):
@@ -888,6 +901,8 @@ class TestDownloadSource(amo.tests.TestCase):
     def setUp(self):
         super(TestDownloadSource, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
+        # Make sure non-ascii is ok.
+        self.addon.update(slug=u'crosswarpex-확장')
         self.version = self.addon._latest_version
         tdir = temp.gettempdir()
         self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
@@ -909,8 +924,14 @@ class TestDownloadSource(amo.tests.TestCase):
         eq_(response.status_code, 200)
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        assert self.filename in response['Content-Disposition']
-        eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
+        filename = self.filename
+        if not isinstance(filename, unicode):
+            filename = filename.decode('utf8')
+        assert filename in response['Content-Disposition'].decode('utf8')
+        path = self.version.source.path
+        if not isinstance(path, unicode):
+            path = path.decode('utf8')
+        assert response[settings.XSENDFILE_HEADER].decode('utf8') == path
 
     def test_anonymous_should_not_be_allowed(self):
         response = self.client.get(self.url)
@@ -923,8 +944,14 @@ class TestDownloadSource(amo.tests.TestCase):
         eq_(response.status_code, 200)
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        assert self.filename in response['Content-Disposition']
-        eq_(response[settings.XSENDFILE_HEADER], self.version.source.path)
+        filename = self.filename
+        if not isinstance(filename, unicode):
+            filename = filename.decode('utf8')
+        assert filename in response['Content-Disposition'].decode('utf8')
+        path = self.version.source.path
+        if not isinstance(path, unicode):
+            path = path.decode('utf8')
+        assert response[settings.XSENDFILE_HEADER].decode('utf8') == path
 
     def test_no_source_should_go_in_404(self):
         self.version.source = None
