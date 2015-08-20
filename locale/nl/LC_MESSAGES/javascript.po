@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-17 21:56+0000\n"
+"PO-Revision-Date: 2015-08-20 12:37+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439848566.0\n"
+"X-POOTLE-MTIME: 1440074274.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1077,7 +1077,7 @@ msgstr "Dit bericht in toekomstige updates negeren"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr "Ernst voor automatisch ondertekenen:"
+msgstr "Ernst voor automatische ondertekening:"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."

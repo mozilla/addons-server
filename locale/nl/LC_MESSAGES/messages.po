@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-17 21:56+0000\n"
+"PO-Revision-Date: 2015-08-20 12:38+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439848576.0\n"
+"X-POOTLE-MTIME: 1440074294.0\n"
 
 #: apps/addons/buttons.py:164
 msgid "Download Now"
@@ -1808,7 +1808,7 @@ msgstr "{file} is ondertekend."
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Add-on kenmerk {0} met GUID {1} is verwijderd"
+msgstr "Add-on-id {0} met GUID {1} is verwijderd"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4709,7 +4709,7 @@ msgstr "Compatibiliteitstests"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29 apps/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr "Berichten die niet nodig zijn voor automatisch ondertekenen verbergen"
+msgstr "Berichten die niet nodig zijn voor automatische ondertekening verbergen"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35 apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
