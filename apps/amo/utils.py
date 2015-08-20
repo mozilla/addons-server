@@ -628,8 +628,11 @@ class HttpResponseSendFile(http.HttpResponse):
         self.path = path
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
+        header_path = self.path
+        if isinstance(header_path, unicode):
+            header_path = header_path.encode('utf8')
         if settings.XSENDFILE:
-            self[settings.XSENDFILE_HEADER] = path
+            self[settings.XSENDFILE_HEADER] = header_path
         if etag:
             self['ETag'] = '"%s"' % etag
 

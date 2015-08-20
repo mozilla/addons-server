@@ -142,6 +142,10 @@ def download_source(request, version_id):
         if not owner_or_unlisted_reviewer(request, version.addon):
             raise http.Http404  # Not listed, not owner or admin.
     res = HttpResponseSendFile(request, version.source.path)
-    name = os.path.basename(version.source.path.replace('"', ''))
-    res['Content-Disposition'] = 'attachment; filename="{0}"'.format(name)
+    path = version.source.path
+    if not isinstance(path, unicode):
+        path = path.decode('utf8')
+    name = os.path.basename(path.replace(u'"', u''))
+    disposition = u'attachment; filename="{0}"'.format(name).encode('utf8')
+    res['Content-Disposition'] = disposition
     return res
