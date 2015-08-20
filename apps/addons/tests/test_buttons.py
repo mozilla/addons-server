@@ -7,6 +7,7 @@ import jingo
 from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery
+import pytest
 
 import amo
 import amo.models
@@ -150,7 +151,7 @@ class TestButtonSetup(ButtonTest):
         assert b.version == self.version
         assert not b.is_beta
 
-        b = self.get_button(is_beta=True)
+        b = self.get_button(latest_beta=True)
         assert b.version == self.beta_version
         assert b.is_beta
 
@@ -161,6 +162,9 @@ class TestButtonSetup(ButtonTest):
         b = self.get_button(version=self.beta_version)
         assert b.version == self.beta_version
         assert b.is_beta
+
+        with pytest.raises(AssertionError):
+            self.get_button(version=self.version, latest_beta=True)
 
 
 class TestButton(ButtonTest):

@@ -286,7 +286,7 @@
           <dl>
             <dt class="beta-version">{{ _('Version {0}:')|f(
               addon.current_beta_version.version) }}</dt>
-            <dd>{{ install_button(addon, is_beta=True,
+            <dd>{{ install_button(addon, latest_beta=True,
                                   show_warning=False, impala=True,
                                   src=request.GET.get('src', 'dp-btn-devchannel')) }}</dd>
           </dl>
