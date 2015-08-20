@@ -90,9 +90,8 @@ class InstallButton(object):
                  detailed=False, impala=False, is_beta=False):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
-        if version:
-            self.version = version
-        else:
+        self.version = version
+        if not self.version:
             self.version = (addon.current_beta_version if is_beta
                             else addon.current_version)
         self.src = src
