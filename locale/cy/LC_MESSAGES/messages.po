@@ -68,6 +68,8 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:95
@@ -75,12 +77,16 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/forms.py:103
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/forms.py:109
 msgid ""
@@ -92,6 +98,8 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/forms.py:226
 msgid ""
@@ -105,6 +113,8 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/forms.py:238
 msgid ""
@@ -153,7 +163,6 @@ msgid "Featured"
 msgstr ""
 
 #: apps/addons/models.py:312
-#, fuzzy
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Users have the option of contributing more or less than this amount."
 
@@ -166,7 +175,6 @@ msgstr ""
 #: apps/addons/models.py:1891 apps/addons/templates/addons/details_box.html:59
 #: apps/devhub/templates/devhub/index.html:92
 #: apps/devhub/templates/devhub/includes/addon_details.html:100
-#, fuzzy
 msgid "Listed"
 msgstr "Listed"
 
@@ -177,7 +185,6 @@ msgstr ""
 
 #: apps/addons/views.py:314 apps/browse/views.py:234 apps/browse/views.py:274
 #: apps/browse/views.py:473
-#, fuzzy
 msgid "Recently Added"
 msgstr "Recently Added"
 
@@ -189,7 +196,6 @@ msgstr ""
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
 #: apps/addons/views.py:500
-#, fuzzy
 msgid "Contribution for {0}"
 msgstr "Contribution for {0}"
 
@@ -225,7 +231,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/button.html:82
 #: apps/addons/templates/addons/mobile/button.html:28
-#, fuzzy
 msgid "View privacy policy"
 msgstr "View privacy policy"
 
@@ -252,7 +257,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/contribution.html:11
 #: apps/addons/templates/addons/impala/developers.html:44
-#, fuzzy
 msgid ""
 "The developer of this add-on asks that you help support its continued "
 "development by making a small contribution."
@@ -275,7 +279,6 @@ msgstr ""
 #: apps/addons/templates/addons/contribution.html:30
 #: apps/addons/templates/addons/impala/contribution.html:18
 #: templates/menu_links.html:25
-#, fuzzy
 msgid "Contribute"
 msgstr "Contribute"
 
@@ -303,7 +306,6 @@ msgstr "Contribute"
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
-#, fuzzy
 msgid "or"
 msgstr "or"
 
@@ -330,7 +332,6 @@ msgid ""
 msgstr ""
 
 #: apps/addons/templates/addons/contribution.html:76
-#, fuzzy
 msgid ""
 "Mozilla is committed to supporting a vibrant and healthy developer "
 "ecosystem. Your optional contribution helps sustain further development of "
@@ -436,7 +437,6 @@ msgstr ""
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:450 apps/devhub/views.py:74
-#, fuzzy
 msgid "Updated"
 msgstr "Updated"
 
@@ -452,7 +452,6 @@ msgstr ""
 #: apps/addons/templates/addons/mobile/details.html:80
 #: apps/search/templates/search/results.html:72
 #: apps/versions/templates/versions/version.html:21
-#, fuzzy
 msgid "Works with"
 msgstr "Works with"
 
@@ -479,7 +478,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/details_box.html:85
 #: apps/addons/templates/addons/persona_detail_table.html:15
-#, fuzzy
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
 msgstr "Rating"
@@ -526,17 +524,14 @@ msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:175
 #: apps/addons/templates/addons/details_box.html:235
-#, fuzzy
 msgid "More about this add-on"
 msgstr "More about this add-on"
 
 #: apps/addons/templates/addons/details_box.html:184
-#, fuzzy
 msgid "Image Gallery"
 msgstr "Image Gallery"
 
 #: apps/addons/templates/addons/details_box.html:194
-#, fuzzy
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Developer Comments"
@@ -595,7 +590,6 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:320
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
-#, fuzzy
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
@@ -700,12 +694,16 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
@@ -714,6 +712,8 @@ msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
@@ -724,6 +724,8 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -832,7 +834,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/license_form.html:5
 #: apps/devhub/templates/devhub/versions/edit.html:89
 #: apps/editors/templates/editors/themes/themes.html:41
-#, fuzzy
 msgid "License"
 msgstr "License"
 
@@ -858,6 +859,8 @@ msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
@@ -1128,7 +1131,6 @@ msgstr ""
 #: apps/addons/templates/addons/impala/review_add_box.html:42
 #: apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
-#, fuzzy
 msgid "Review Guidelines"
 msgstr "Review Guidelines"
 
@@ -1162,9 +1164,10 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/tags_box.html:3
-#, fuzzy
 msgctxt "tags_header_tags_title"
 msgid "Tags"
 msgstr "Tags"
@@ -1234,12 +1237,16 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1264,10 +1271,11 @@ msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:144
-#, fuzzy
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "Learn why {0} was created and find out what's next for this add-on."
 
@@ -1306,7 +1314,6 @@ msgstr ""
 #: apps/amo/helpers.py:377 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
-#, fuzzy
 msgid "Custom License"
 msgstr "Custom License"
 
@@ -1364,12 +1371,10 @@ msgstr ""
 #. {0} is an add-on name.
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
-#, fuzzy
 msgid "Meet the {0} Developer"
 msgstr "Meet the {0} Developer"
 
 #: apps/addons/templates/addons/impala/developers.html:41
-#, fuzzy
 msgid ""
 "Before downloading this add-on, please consider supporting the development "
 "of this add-on by making a small contribution."
@@ -1379,13 +1384,11 @@ msgstr ""
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
-#, fuzzy
 msgid "Why was {0} created?"
 msgstr "Why was {0} created?"
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:84
-#, fuzzy
 msgid "What's next for {0}"
 msgstr "What's next for {0}"
 
@@ -1394,6 +1397,8 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/developers.html:96
 #: apps/users/templates/users/edit.html:116
@@ -1419,7 +1424,6 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/license.html:21
 #: apps/versions/templates/versions/mobile/version.html:18
-#, fuzzy
 msgid "Source Code License"
 msgstr "Source Code License"
 
@@ -1448,6 +1452,8 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
@@ -1520,6 +1526,8 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
@@ -1542,7 +1550,6 @@ msgstr ""
 #: apps/compat/templates/compat/reporter_detail.html:46
 #: apps/devhub/forms.py:782
 #: apps/devhub/templates/devhub/versions/list.html:179
-#, fuzzy
 msgid "Version"
 msgstr "Version"
 
@@ -1619,7 +1626,6 @@ msgstr ""
 #: apps/discovery/templates/discovery/addons/detail.html:22
 #: apps/discovery/templates/discovery/modules/featured.html:21
 #: apps/discovery/templates/discovery/modules/monthly.html:22
-#, fuzzy
 msgid "Learn More"
 msgstr "Learn More"
 
@@ -1689,7 +1695,6 @@ msgid "Theme Info &raquo;"
 msgstr ""
 
 #: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
-#, fuzzy
 msgid "Tools"
 msgstr "Tools"
 
@@ -1708,14 +1713,12 @@ msgstr ""
 #: apps/discovery/templates/discovery/pane_account.html:11
 #: apps/users/templates/users/profile.html:86
 #: apps/users/templates/users/includes/navigation.html:4
-#, fuzzy
 msgid "My Collections"
 msgstr "My Collections"
 
 #: apps/amo/context_processors.py:79
 #: apps/discovery/templates/discovery/pane_account.html:10
 #: apps/users/templates/users/includes/navigation.html:7
-#, fuzzy
 msgid "My Favorites"
 msgstr "My Favorites"
 
@@ -1785,7 +1788,6 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
 #: apps/stats/templates/stats/stats.html:77 templates/menu_links.html:12
-#, fuzzy
 msgid "Collections"
 msgstr "Collections"
 
@@ -2280,7 +2282,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:102
-#, fuzzy
 msgid "Prev"
 msgstr "Prev"
 
@@ -2298,7 +2299,6 @@ msgstr "Prev"
 #: apps/discovery/templates/discovery/pane.html:72
 #: apps/discovery/templates/discovery/addons/detail.html:49
 #: apps/stats/templates/stats/stats.html:159
-#, fuzzy
 msgid "Next"
 msgstr "Next"
 
@@ -2327,7 +2327,6 @@ msgid ""
 msgstr ""
 
 #: apps/amo/templates/amo/recaptcha.html:4
-#, fuzzy
 msgid "Are you human?"
 msgstr "Are you human?"
 
@@ -2346,7 +2345,6 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:276
 #: apps/search/forms.py:86
-#, fuzzy
 msgid "Top Rated"
 msgstr "Top Rated"
 
@@ -2361,7 +2359,6 @@ msgstr ""
 #: apps/browse/templates/browse/creatured.html:10
 #: apps/browse/templates/browse/impala/base_listing.html:37
 #: apps/constants/base.py:171 templates/menu_links.html:8
-#, fuzzy
 msgid "Extensions"
 msgstr "Extensions"
 
@@ -2438,6 +2435,8 @@ msgid "Page {n}"
 msgid_plural "Page {n}"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/amo/templates/services/install.html:38
 msgid ""
@@ -2533,7 +2532,6 @@ msgstr ""
 
 #: apps/applications/views.py:36
 #: apps/applications/templates/applications/appversions.html:3
-#, fuzzy
 msgid "Application Versions"
 msgstr "Application Versions"
 
@@ -2617,7 +2615,6 @@ msgid "Privacy:"
 msgstr ""
 
 #: apps/bandwagon/forms.py:136
-#, fuzzy
 msgid "Icon"
 msgstr "Icon"
 
@@ -2643,32 +2640,26 @@ msgid "Please use images smaller than %dMB."
 msgstr ""
 
 #: apps/bandwagon/helpers.py:49
-#, fuzzy
 msgid "Remove from Favorites"
 msgstr "Remove from Favorites"
 
 #: apps/bandwagon/helpers.py:53
-#, fuzzy
 msgid "Add to Favorites"
 msgstr "Add to Favorites"
 
 #: apps/bandwagon/helpers.py:74
-#, fuzzy
 msgid "Add a positive vote for this collection"
 msgstr "Add to a collection:"
 
 #: apps/bandwagon/helpers.py:75
-#, fuzzy
 msgid "Add a negative vote for this collection"
 msgstr "Add to a collection:"
 
 #: apps/bandwagon/helpers.py:76
-#, fuzzy
 msgid "Remove my vote for this collection"
 msgstr "Dim adolygiadau wedi eu canfod ar gyfer y cyfnod yma"
 
 #: apps/bandwagon/helpers.py:87
-#, fuzzy
 msgid "Log in to vote for this collection"
 msgstr "Dim adolygiadau wedi eu canfod ar gyfer y cyfnod yma"
 
@@ -2753,7 +2744,6 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/add.html:33
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:38
-#, fuzzy
 msgid "Create Collection"
 msgstr "Create Collection"
 
@@ -2807,6 +2797,8 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:62
 msgid "About this Collection"
@@ -2846,12 +2838,16 @@ msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:119
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:133
 #: apps/compat/templates/compat/index.html:25
@@ -2863,7 +2859,6 @@ msgid "Go"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:144
-#, fuzzy
 msgid "What are Collections?"
 msgstr "What are Collections?"
 
@@ -2886,7 +2881,6 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:182
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-#, fuzzy
 msgid "Recently Viewed"
 msgstr "Recently Added"
 
@@ -2915,12 +2909,16 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:32
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2931,6 +2929,8 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2939,6 +2939,8 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2949,6 +2951,8 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -2978,7 +2982,6 @@ msgstr ""
 #: apps/stats/templates/stats/stats.html:75
 #: apps/stats/templates/stats/stats.html:79
 #: apps/stats/templates/stats/stats.html:81
-#, fuzzy
 msgid "Statistics"
 msgstr "Statistics"
 
@@ -2998,7 +3001,6 @@ msgid "Delete"
 msgstr "Dileu"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:16
-#, fuzzy
 msgid "Are you sure?"
 msgstr "Are you sure?"
 
@@ -3064,7 +3066,6 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58
 #: apps/constants/base.py:132
-#, fuzzy
 msgid "Owner"
 msgstr "Owner"
 
@@ -3107,7 +3108,6 @@ msgstr ""
 
 # Column name in a table.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
-#, fuzzy
 msgid "Role"
 msgstr "Role"
 
@@ -3124,7 +3124,6 @@ msgid "Contributor"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
-#, fuzzy
 msgid "Admin Settings"
 msgstr "Admin Settings"
 
@@ -3145,7 +3144,6 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
-#, fuzzy
 msgid "Continue"
 msgstr "Contribute"
 
@@ -3159,7 +3157,6 @@ msgid "Collections by {0}"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
-#, fuzzy
 msgid "No collections found."
 msgstr "No files found."
 
@@ -3253,7 +3250,6 @@ msgid "Enter the name of the add-on to include"
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
-#, fuzzy
 msgid "Add to Collection"
 msgstr "Add to Collection"
 
@@ -3386,7 +3382,6 @@ msgstr ""
 
 #: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82
 #: apps/discovery/templates/discovery/addons/detail.html:76
-#, fuzzy
 msgid "Created"
 msgstr "Created"
 
@@ -3495,6 +3490,8 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -3609,6 +3606,8 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
@@ -3724,7 +3723,6 @@ msgid "Non-binary"
 msgstr ""
 
 #: apps/compat/views.py:85 apps/constants/base.py:419 apps/devhub/forms.py:162
-#, fuzzy
 msgid "Other"
 msgstr "Other"
 
@@ -3805,12 +3803,16 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:21
 #: apps/users/templates/users/profile.html:73
@@ -3882,7 +3884,6 @@ msgid "Firefox for Android"
 msgstr ""
 
 #: apps/constants/applications.py:138
-#, fuzzy
 msgid "Mozilla"
 msgstr "Mozilla"
 
@@ -3960,13 +3961,11 @@ msgid "Preliminary"
 msgstr ""
 
 #: apps/constants/base.py:133 apps/users/notifications.py:157
-#, fuzzy
 msgid "Developer"
 msgstr "Developer"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:134
-#, fuzzy
 msgid "Viewer"
 msgstr "Viewer"
 
@@ -3980,7 +3979,6 @@ msgid "Any"
 msgstr ""
 
 #: apps/constants/base.py:158
-#, fuzzy
 msgid "Extension"
 msgstr "Extension"
 
@@ -3989,12 +3987,10 @@ msgid "Complete Theme"
 msgstr ""
 
 #: apps/constants/base.py:161
-#, fuzzy
 msgid "Search Engine"
 msgstr "Search Engine"
 
 #: apps/constants/base.py:162
-#, fuzzy
 msgid "Language Pack (Application)"
 msgstr "Language Pack (Application)"
 
@@ -4003,7 +3999,6 @@ msgid "Language Pack (Add-on)"
 msgstr ""
 
 #: apps/constants/base.py:164
-#, fuzzy
 msgid "Plugin"
 msgstr "Plugin"
 
@@ -4017,13 +4012,11 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:173
-#, fuzzy
 msgid "Dictionaries"
 msgstr "Dictionaries"
 
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:175
-#, fuzzy
 msgid "Language Packs (Application)"
 msgstr "Language Packs (Application)"
 
@@ -4350,7 +4343,6 @@ msgstr ""
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
-#, fuzzy
 msgid "Details"
 msgstr "Details"
 
@@ -4553,24 +4545,25 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 # {0} is a number
 #: apps/devhub/helpers.py:200
-#, fuzzy
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} error"
 msgstr[1] "{0} errors"
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
 #: apps/devhub/helpers.py:203
-#, fuzzy
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} warning"
 msgstr[1] "{0} warnings"
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58
 #: apps/reviews/templates/reviews/edit_review.html:10
-#, fuzzy
 msgid "Review"
 msgstr "Review"
 
@@ -4746,7 +4739,6 @@ msgstr ""
 #: apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
 #: templates/impala/search.html:18
-#, fuzzy
 msgid "Search"
 msgstr "Search"
 
@@ -5092,6 +5084,8 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/addons/edit.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -5117,7 +5111,6 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/owner.html:29
 #: apps/editors/templates/editors/review.html:269
-#, fuzzy
 msgid "Authors"
 msgstr "Authors"
 
@@ -5138,7 +5131,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/profile.html:3
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:53
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
-#, fuzzy
 msgid "Manage Developer Profile"
 msgstr "Manage Developer Profile"
 
@@ -5189,7 +5181,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/edit.html:56
 #: apps/editors/templates/editors/review.html:254
 #: apps/editors/templates/editors/themes/single.html:33
-#, fuzzy
 msgid "View Listing"
 msgstr "View Listing"
 
@@ -5236,6 +5227,8 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:132
 #: apps/devhub/templates/devhub/personas/edit.html:100
@@ -5248,6 +5241,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
@@ -5266,7 +5261,6 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44
 #: apps/translations/templates/translations/trans-menu.html:13
-#, fuzzy
 msgid "Default Locale"
 msgstr "Default Locale"
 
@@ -5627,7 +5621,6 @@ msgid "Upload a new version of this add-on."
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:30
-#, fuzzy
 msgid "New Version"
 msgstr "New Version"
 
@@ -5689,7 +5682,6 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
-#, fuzzy
 msgid "Disabled"
 msgstr "Disabled"
 
@@ -5703,6 +5695,8 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
@@ -7323,6 +7317,8 @@ msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
@@ -7429,7 +7425,6 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2
 #: apps/stats/templates/stats/addon_report_menu.html:39
-#, fuzzy
 msgid "Contributions"
 msgstr "Contributions"
 
@@ -7830,7 +7825,6 @@ msgstr ""
 #. {0} is an add-on name.
 # {0} is the name of the collection
 #: apps/devhub/templates/devhub/versions/edit.html:16
-#, fuzzy
 msgid "Manage {0}"
 msgstr "Manage {0}"
 
@@ -7925,6 +7919,8 @@ msgid "{0} file"
 msgid_plural "{0} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -7955,6 +7951,8 @@ msgid "Full nomination will be available in {0} day"
 msgid_plural "Full nomination will be available in {0} days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/devhub/templates/devhub/versions/list.html:88
 #: apps/devhub/templates/devhub/versions/list.html:328
@@ -8016,7 +8014,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:161
 #: apps/devhub/templates/devhub/versions/list.html:181
 #: apps/editors/templates/editors/includes/files_view.html:11
-#, fuzzy
 msgid "Validation"
 msgstr "Validation"
 
@@ -8025,7 +8022,6 @@ msgstr "Validation"
 #: apps/devhub/templates/devhub/versions/list.html:183
 #: apps/editors/templates/editors/base.html:72
 #: apps/editors/templates/editors/performance.html:6
-#, fuzzy
 msgid "Performance"
 msgstr "Performance"
 
@@ -8334,7 +8330,6 @@ msgid "Discover Add-ons"
 msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:24
-#, fuzzy
 msgid "What are Add-ons?"
 msgstr "What are Add-ons?"
 
@@ -8402,7 +8397,6 @@ msgid "Active Users"
 msgstr ""
 
 #: apps/discovery/templates/discovery/addons/detail.html:80
-#, fuzzy
 msgid "Last Updated"
 msgstr "Last Updated"
 
@@ -8545,7 +8539,6 @@ msgid "Add-on Types"
 msgstr ""
 
 #: apps/editors/forms.py:129 apps/editors/helpers.py:263
-#, fuzzy
 msgid "Platforms"
 msgstr "Platforms"
 
@@ -8675,48 +8668,64 @@ msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:171
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:176
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:181
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:186
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:197
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:202
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:257
 msgid "Addon"
@@ -8765,6 +8774,8 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:316
@@ -8772,6 +8783,8 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:320
@@ -8779,6 +8792,8 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/helpers.py:480
 msgid "Push to public"
@@ -8985,6 +9000,8 @@ msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/views_themes.py:341
 msgid ""
@@ -9117,18 +9134,24 @@ msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:36
 #: apps/editors/templates/editors/home.html:86
@@ -9141,6 +9164,8 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:45
 #: apps/editors/templates/editors/home.html:95
@@ -9152,18 +9177,24 @@ msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
@@ -9191,6 +9222,8 @@ msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56
@@ -9569,18 +9602,24 @@ msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -10896,19 +10935,16 @@ msgstr ""
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
-#, fuzzy
 msgid "Spam or otherwise non-review content"
 msgstr "Spam or otherwise non-review content"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
-#, fuzzy
 msgid "Inappropriate language/dialog"
 msgstr "Inappropriate language/dialog"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
-#, fuzzy
 msgid "Misplaced bug report or support request"
 msgstr "Misplaced bug report or support request"
 
@@ -11723,17 +11759,14 @@ msgid "Skip for now"
 msgstr ""
 
 #: apps/reviews/forms.py:121 apps/reviews/templates/reviews/review.html:107
-#, fuzzy
 msgid "Delete review"
 msgstr "Delete review"
 
 #: apps/reviews/models.py:162
-#, fuzzy
 msgid "Other (please specify)"
 msgstr "Other (please specify)"
 
 #: apps/reviews/views.py:146
-#, fuzzy
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "Thanks; this review has been flagged for editor approval."
 
@@ -11799,6 +11832,8 @@ msgid_plural ""
 "of this add-on."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid ""
@@ -11811,7 +11846,6 @@ msgid "Flagged for review"
 msgstr ""
 
 #: apps/reviews/templates/reviews/review.html:76
-#, fuzzy
 msgid "Report this review"
 msgstr "Report this review"
 
@@ -11849,6 +11883,8 @@ msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -11860,6 +11896,8 @@ msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/reviews/templates/reviews/review_list.html:42
 msgid "No reviews found."
@@ -11883,6 +11921,8 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -11914,6 +11954,8 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
@@ -11928,19 +11970,18 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/search/forms.py:11
-#, fuzzy
 msgid "Most popular this week"
 msgstr "Most popular this week"
 
 #: apps/search/forms.py:12
-#, fuzzy
 msgid "Most popular this month"
 msgstr "Most popular this month"
 
 #: apps/search/forms.py:13
-#, fuzzy
 msgid "Most popular all time"
 msgstr "Most popular all time"
 
@@ -11949,7 +11990,6 @@ msgid "search for add-ons"
 msgstr "chwilio am ychwanegion"
 
 #: apps/search/forms.py:24
-#, fuzzy
 msgid "search for collections"
 msgstr "search for collections"
 
@@ -11962,7 +12002,6 @@ msgid "search for apps"
 msgstr ""
 
 #: apps/search/forms.py:49
-#, fuzzy
 msgid "Sort By"
 msgstr "Sort By"
 
@@ -11981,7 +12020,6 @@ msgstr ""
 # {3} is the word the person is searching for
 # {4} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:44
-#, fuzzy
 msgid ""
 "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with "
 "<strong>{4}</strong>"
@@ -11994,7 +12032,6 @@ msgstr ""
 # {2} is a number
 # {3} is the word the person is searching for
 #: apps/search/helpers.py:49
-#, fuzzy
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 
@@ -12003,7 +12040,6 @@ msgstr "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 # {2} is a number
 # {3} is a word (the add-on is tagged with it)
 #: apps/search/helpers.py:52
-#, fuzzy
 msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
 msgstr "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
 
@@ -12011,7 +12047,6 @@ msgstr "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
 # {1} is a number
 # {2} is a number
 #: apps/search/helpers.py:56
-#, fuzzy
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Showing {0} - {1} of {2} results"
 
@@ -12077,13 +12112,14 @@ msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
 msgstr ""
 
 #: apps/search/templates/search/results.html:69
-#, fuzzy
 msgid "Category"
 msgstr "Category"
 
@@ -12100,9 +12136,10 @@ msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/sharing/__init__.py:20
-#, fuzzy
 msgid "Post to Facebook"
 msgstr "Post to Facebook"
 
@@ -12111,6 +12148,8 @@ msgid "{0} Like"
 msgid_plural "{0} Likes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -12121,6 +12160,8 @@ msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
@@ -12155,6 +12196,8 @@ msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:76
@@ -12177,6 +12220,8 @@ msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:91
@@ -12199,14 +12244,14 @@ msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/sharing/templates/sharing/sharing_widget.html:2
-#, fuzzy
 msgid "Share this Add-on"
 msgstr "Share this Add-on"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:5
-#, fuzzy
 msgid "Share this Collection"
 msgstr "Create Collection"
 
@@ -12559,7 +12604,6 @@ msgstr ""
 
 # {0} is a number
 #: apps/tags/templates/tags/top_cloud.html:4
-#, fuzzy
 msgid "Top {0} Tags"
 msgstr "Top {0} Tags"
 
@@ -12958,7 +13002,6 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:4
 #: apps/users/templates/users/delete.html:10
-#, fuzzy
 msgid "Delete User Account"
 msgstr "Delete User Account"
 
@@ -12987,7 +13030,6 @@ msgid ""
 msgstr ""
 
 #: apps/users/templates/users/delete.html:46
-#, fuzzy
 msgid "Confirm account deletion"
 msgstr "Confirm account deletion"
 
@@ -13004,7 +13046,6 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 #: apps/users/templates/users/delete.html:64
-#, fuzzy
 msgid "Delete my user account now"
 msgstr "Delete my user account now"
 
@@ -13120,7 +13161,6 @@ msgid "Display collections I'm following"
 msgstr ""
 
 #: apps/users/templates/users/edit.html:179
-#, fuzzy
 msgid "Notifications"
 msgstr "Notifications"
 
@@ -13131,7 +13171,6 @@ msgid ""
 msgstr ""
 
 #: apps/users/templates/users/edit.html:191
-#, fuzzy
 msgid ""
 "Mozilla reserves the right to contact you individually about specific "
 "concerns with your hosted add-ons."
@@ -13166,7 +13205,6 @@ msgstr ""
 
 #: apps/users/templates/users/login.html:18
 #: apps/users/templates/users/mobile/login.html:25
-#, fuzzy
 msgid "Log In"
 msgstr "Log In"
 
@@ -13195,19 +13233,16 @@ msgstr ""
 # This is a header for additional help options
 #: apps/users/templates/users/login_help.html:3
 #: apps/users/templates/users/mobile/login.html:70
-#, fuzzy
 msgid "Login Problems?"
 msgstr "Login Problems?"
 
 #: apps/users/templates/users/login_help.html:5
 #: apps/users/templates/users/mobile/login.html:72
-#, fuzzy
 msgid "I don't have an account."
 msgstr "I don't have an account."
 
 #: apps/users/templates/users/login_help.html:6
 #: apps/users/templates/users/mobile/login.html:73
-#, fuzzy
 msgid "I forgot my password."
 msgstr "I forgot my password."
 
@@ -13246,7 +13281,6 @@ msgstr ""
 
 # The title for a user if they are a developer
 #: apps/users/templates/users/profile.html:32
-#, fuzzy
 msgid "Add-ons Developer"
 msgstr "Add-ons Developer"
 
@@ -13280,13 +13314,11 @@ msgstr ""
 
 # "Me" in this context is the user shown on the User Info page
 #: apps/users/templates/users/profile.html:89
-#, fuzzy
 msgid "Created by Me"
 msgstr "Created by Me"
 
 # "My" in this context is the logged in user who is reading the page
 #: apps/users/templates/users/profile.html:97
-#, fuzzy
 msgid "My Reviews"
 msgstr "My Reviews"
 
@@ -13546,12 +13578,10 @@ msgid ""
 msgstr ""
 
 #: apps/users/templates/users/vcard.html:2
-#, fuzzy
 msgid "Developer Information"
 msgstr "Developer Information"
 
 #: apps/users/templates/users/vcard.html:34
-#, fuzzy
 msgid "User since"
 msgstr "User since"
 
@@ -13576,12 +13606,16 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/users/templates/users/vcard.html:68
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
@@ -13612,7 +13646,6 @@ msgid "{app} {min} and later"
 msgstr ""
 
 #: apps/versions/templates/versions/version.html:5
-#, fuzzy
 msgid "Permanent link to this version"
 msgstr "Permanent link to this version"
 
@@ -13630,7 +13663,6 @@ msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr ""
 
 #: apps/versions/templates/versions/version.html:52
-#, fuzzy
 msgctxt "addons_display_a_license_what"
 msgid "What's this?"
 msgstr "What's this?"
@@ -13651,6 +13683,8 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: apps/versions/templates/versions/version_list.html:30
 #: apps/versions/templates/versions/mobile/version_list.html:14
@@ -13714,7 +13748,6 @@ msgid ""
 msgstr ""
 
 #: templates/base_nav.html:8
-#, fuzzy
 msgid "Find add-ons for other applications"
 msgstr "Find add-ons for other applications"
 
@@ -13744,13 +13777,11 @@ msgstr ""
 
 # Link text to the AMO blog.
 #: templates/footer.html:5 templates/menu_links.html:32
-#, fuzzy
 msgid "Blog"
 msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
 #: templates/footer.html:7
-#, fuzzy
 msgid "FAQ"
 msgstr "FAQ"
 
