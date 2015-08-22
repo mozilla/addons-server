@@ -279,9 +279,9 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return u'%s...%s' % (m.group('slug')[0:(maxlen - 3)],
                              m.group('suffix'))
 
-    def latest_xpi_url(self):
+    def latest_xpi_url(self, beta=False):
         addon = self.version.addon
-        kw = {'addon_id': addon.pk}
+        kw = {'addon_id': addon.pk, 'beta': '-beta' if beta else ''}
         if self.platform != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform
         return os.path.join(reverse('downloads.latest', kwargs=kw),

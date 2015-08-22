@@ -1,8 +1,13 @@
 {% extends "impala/base_shared.html" %}
 
 {% block rss_feed %}
+{% if beta %}
+  {% set feed_view = 'addons.beta-versions.rss' %}
+{% else %}
+  {% set feed_view = 'addons.versions.rss' %}
+{% endif %}
 <link  rel="alternate" type="application/rss+xml"
-       title="RSS" href="{{ request.get_full_path() }}format:rss">
+       title="RSS" href="{{ url(feed_view, addon_id=addon.slug) }}">
 {% endblock %}
 
 {# L10n: {0} is an add-on name. #}

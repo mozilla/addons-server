@@ -504,8 +504,9 @@ class TestViews(amo.tests.TestCase):
                                     args=[self.addon.slug, 2]))
         eq_(r.status_code, 404)
 
-    def get_content(self):
-        url = reverse('addons.versions', args=[self.addon.slug])
+    def get_content(self, beta=False):
+        url = reverse('addons.beta-versions' if beta else 'addons.versions',
+                      args=[self.addon.slug])
         return PyQuery(self.client.get(url).content)
 
     def test_version_source(self):
@@ -528,6 +529,17 @@ class TestViews(amo.tests.TestCase):
         eq_(link, reverse('addons.versions', args=[addon.slug, version]))
         eq_(doc('.version').attr('id'), 'version-%s' % version)
 
+    def test_beta_without_beta_builds(self):
+        doc = self.get_content(beta=True)
+        assert len(doc('.version')) == 0
+
+    def test_beta_with_beta_builds(self):
+        qs = File.objects.filter(version=self.addon.current_version)
+        qs.update(status=amo.STATUS_BETA)
+        doc = self.get_content(beta=True)
+        version = self.addon.current_version.version
+        assert doc('.version').attr('id') == 'version-%s' % version
+
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.addon.update(is_listed=False)
@@ -546,7 +558,10 @@ class TestFeeds(amo.tests.TestCase):
         self.addCleanup(patcher.stop)
 
     def get_feed(self, slug, **kwargs):
-        url = reverse('addons.versions.rss', args=[slug])
+        beta = kwargs.pop('beta', False)
+        url = reverse('addons.beta-versions.rss' if beta
+                      else 'addons.versions.rss',
+                      args=[slug])
         r = self.client.get(url, kwargs, follow=True)
         return PyQuery(r.content)
 
@@ -571,6 +586,19 @@ class TestFeeds(amo.tests.TestCase):
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
         assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
+
+    def test_status_beta_without_beta_builds(self):
+        doc = self.get_feed('a11730', beta=True)
+        assert len(doc('rss channel item link')) == 0
+
+    def test_status_beta_with_beta_builds(self):
+        addon = Addon.objects.get(id=11730)
+        qs = File.objects.filter(version=addon.current_version)
+        qs.update(status=amo.STATUS_BETA)
+
+        doc = self.get_feed('a11730', beta=True)
+        item_link = doc('rss channel item link')[0]
+        assert item_link.text.endswith('/addon/a11730/versions/20090521')
 
     def assert_page_relations(self, doc, page_relations):
         rel = doc[0].xpath('//channel/atom:link', namespaces=self.rel_ns)
@@ -628,6 +656,9 @@ class TestDownloadsBase(amo.tests.TestCase):
         self.beta_file = File.objects.get(id=64874)
         self.file_url = reverse('downloads.file', args=[self.file.id])
         self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
+        self.latest_beta_url = reverse('downloads.latest',
+                                       kwargs={'addon_id': self.addon.slug,
+                                               'beta': '-beta'})
 
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
@@ -664,6 +695,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -674,6 +706,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 302
         assert self.client.get(self.latest_url).status_code == 302
+        assert self.client.get(self.latest_beta_url).status_code == 302
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -684,6 +717,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
@@ -694,6 +728,7 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
         self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 302
         assert self.client.get(self.latest_url).status_code == 302
+        assert self.client.get(self.latest_beta_url).status_code == 302
 
 
 class TestDownloads(TestDownloadsBase):
@@ -845,6 +880,22 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_success(self):
         assert self.addon.current_version
         self.assert_served_by_mirror(self.client.get(self.latest_url))
+
+    def test_beta(self):
+        response = self.client.get(self.latest_beta_url)
+        assert response.status_code == 302
+        beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
+        url = beta_file_url + '/' + self.beta_file.filename
+        assert response['Location'].endswith(url)
+
+    def test_beta_unreviewed_addon(self):
+        self.addon.status = amo.STATUS_PENDING
+        self.addon.save()
+        assert self.client.get(self.latest_beta_url).status_code == 404
+
+    def test_beta_no_files(self):
+        self.beta_file.update(status=amo.STATUS_PUBLIC)
+        assert self.client.get(self.latest_beta_url).status_code == 404
 
     def test_platform(self):
         # We still match PLATFORM_ALL.

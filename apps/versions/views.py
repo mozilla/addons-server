@@ -28,13 +28,15 @@ log = commonware.log.getLogger('z.versions')
 
 @addon_view
 @mobile_template('versions/{mobile/}version_list.html')
-def version_list(request, addon, template):
-    qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+def version_list(request, addon, template, beta=False):
+    status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
+    qs = (addon.versions.filter(files__status__in=status_list)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return render(request, template, {'addon': addon, 'versions': versions})
+    return render(request, template, {'addon': addon, 'beta': beta,
+                                      'versions': versions})
 
 
 @addon_view
@@ -110,12 +112,18 @@ def guard():
 
 
 @addon_view_factory(guard)
-def download_latest(request, addon, type='xpi', platform=None):
+def download_latest(request, addon, beta=False, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
         platforms.append(int(platform))
+    if beta:
+        if not addon.show_beta:
+            raise http.Http404()
+        version = addon.current_beta_version.id
+    else:
+        version = addon._current_version_id
     files = File.objects.filter(platform__in=platforms,
-                                version=addon._current_version_id)
+                                version=version)
     try:
         # If there's a file matching our platform, it'll float to the end.
         file = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]

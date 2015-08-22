@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-13 17:08\n"
-"Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
+"PO-Revision-Date: 2015-08-04 09:18\n"
+"Last-Translator: David Weir (satdav) <david.weir@mozilla.org.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "Enter a new author's email address"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Not Reviewed"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:312
 #: apps/addons/templates/addons/impala/details.html:117
@@ -152,7 +152,7 @@ msgstr ""
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr ""
+msgstr "Featured"
 
 #: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
