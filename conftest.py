@@ -1,12 +1,4 @@
-import os
-
 import pytest
-
-
-def pytest_configure():
-    # The following line is needed for all the hackery done to the python path.
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'settings_test'
-    import manage  # noqa
 
 
 @pytest.fixture(autouse=True)
