@@ -83,6 +83,20 @@ MOBILE_SITE_URL = ''
 # is just too annoying for tests, so disable it.
 CACHE_COUNT_TIMEOUT = -1
 
+# We don't want to share cache state between processes. Always use the local
+# memcache backend for tests.
+#
+# Note: Per settings.py, this module can cause deadlocks when running as a web
+# server. It's safe to use in tests, since we don't use threads, and there's
+# no opportunity for contention, but it shouldn't be used in the base settings
+# until we're sure the deadlock issues are fixed.
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'LOCATION': 'olympia',
+    }
+}
+
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
 
