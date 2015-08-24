@@ -24,46 +24,37 @@
   {% endif %}
   <h2>{{ _('Log In') }}</h2>
   <section id="content">
-    {% if waffle.switch('browserid-login') %}
-      <section id="browserid">
-        <a href="#" class="browserid-login button"
-                data-url="{{ url('users.browserid_login') }}">
-          {{ _('Log in with BrowserID') }}
-        </a>
-      </section>
-    {% else %}
-      <form method="post" class="form-mobile featured-inner object-lead user-input">
-        {{ csrf() }}
-        <fieldset>
-          <ul>
-            <li>
-              <label for="id_username">{{ _('Email address') }}</label>
-              {{ form.username }}
-              {{ form.username.errors }}
-            </li>
-            <li>
-              <label for="id_password">{{ _('Password') }}</label>
-              {{ form.password }}
-              {{ form.password.errors }}
-            </li>
-            <li>
-              <label for="id_rememberme" class="check">
-                {{ form.rememberme }}
-                {{ _('Remember me on this device') }}
-              </label>
-              {{ form.rememberme.errors }}
-            </li>
-            {% if form.recaptcha %}
-              {{ form.recaptcha_shown }}
-              {{ recaptcha(form) }}
-            {% endif %}
-          </ul>
-        </fieldset>
-        <div class="fm-control">
-          <button id="login-submit" class="button">{{ _('Log in') }}</button>
-        </div>
-      </form>
-    {% endif %}
+    <form method="post" class="form-mobile featured-inner object-lead user-input">
+      {{ csrf() }}
+      <fieldset>
+        <ul>
+          <li>
+            <label for="id_username">{{ _('Email address') }}</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+          </li>
+          <li>
+            <label for="id_password">{{ _('Password') }}</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+          </li>
+          <li>
+            <label for="id_rememberme" class="check">
+              {{ form.rememberme }}
+              {{ _('Remember me on this device') }}
+            </label>
+            {{ form.rememberme.errors }}
+          </li>
+          {% if form.recaptcha %}
+            {{ form.recaptcha_shown }}
+            {{ recaptcha(form) }}
+          {% endif %}
+        </ul>
+      </fieldset>
+      <div class="fm-control">
+        <button id="login-submit" class="button">{{ _('Log in') }}</button>
+      </div>
+    </form>
   </section>
 
   <div id="login-help" class="article">

@@ -263,7 +263,6 @@ JINGO_EXCLUDE_APPS = (
     'djcelery',
     'django_extensions',
     'admin',
-    'browserid',
     'toolbar_statsd',
     'registration',
     'debug_toolbar',
@@ -357,7 +356,6 @@ MIDDLEWARE_CLASSES = (
 # Auth
 AUTHENTICATION_BACKENDS = (
     'users.backends.AmoUserBackend',
-    'django_browserid.auth.BrowserIDBackend'
 )
 AUTH_USER_MODEL = 'users.UserProfile'
 
@@ -417,7 +415,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Has to load after auth
-    'django_browserid',
     'django_statsd',
 )
 
@@ -686,9 +683,6 @@ MINIFY_BUNDLES = {
             'js/impala/footer.js',
             'js/common/keys.js',
 
-            # BrowserID
-            'js/zamboni/browserid_support.js',
-
             # jQuery UI
             'js/lib/jquery-ui/jquery.ui.core.js',
             'js/lib/jquery-ui/jquery.ui.position.js',
@@ -853,7 +847,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/helpers.js',
             'js/zamboni/mobile/general.js',
             'js/common/ratingwidget.js',
-            'js/zamboni/browserid_support.js',
         ),
         'zamboni/stats': (
             'js/lib/jquery-datepicker.js',
@@ -1387,33 +1380,6 @@ GOOGLE_API_CREDENTIALS = ''
 GOOGLE_TRANSLATE_API_URL = 'https://www.googleapis.com/language/translate/v2'
 GOOGLE_TRANSLATE_REDIRECT_URL = (
     'https://translate.google.com/#auto/{lang}/{text}')
-
-# Domain to allow cross-frame requests from for privacy policy and TOS.
-BROWSERID_DOMAIN = 'login.persona.org'
-
-# Adjust these settings if you need to use a custom verifier.
-BROWSERID_VERIFICATION_URL = 'https://verifier.login.persona.org/verify'
-BROWSERID_JS_URL = 'https://login.persona.org/include.js'
-
-# The issuer for unverified Persona email addresses.
-# We only trust one issuer to grant us unverified emails.
-# If UNVERIFIED_ISSUER is set to None, forceIssuer will not
-# be sent to the client or the verifier.
-NATIVE_BROWSERID_DOMAIN = 'firefoxos.persona.org'
-UNVERIFIED_ISSUER = 'firefoxos.persona.org'
-
-# This is a B2G (or other native) verifier. Adjust accordingly.
-NATIVE_BROWSERID_VERIFICATION_URL = ('https://%s/verify'
-                                     % NATIVE_BROWSERID_DOMAIN)
-NATIVE_BROWSERID_JS_URL = ('https://%s/include.js'
-                           % NATIVE_BROWSERID_DOMAIN)
-
-# These domains get `x-frame-options: allow-from` for Privacy Policy / TOS.
-LEGAL_XFRAME_ALLOW_FROM = [
-    BROWSERID_DOMAIN,
-    UNVERIFIED_ISSUER,
-    'fxos.login.persona.org',
-]
 
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'

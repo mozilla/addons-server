@@ -561,14 +561,6 @@ class TestUserRegisterForm(UserFormBase):
         self.assertContains(r, "You are already logged in")
         self.assertNotContains(r, '<button type="submit">Register</button>')
 
-    def test_browserid_registered(self):
-        u = UserProfile.objects.create(email='bid_test@mozilla.com',
-                                       source=amo.LOGIN_SOURCE_BROWSERID,
-                                       password='')
-        data = {'email': u.email}
-        r = self.client.post('/en-US/firefox/users/register', data)
-        self.assertContains(r, 'already have an account')
-
     def good_data(self):
         return {
             'email': 'john.connor@sky.net',

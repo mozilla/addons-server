@@ -16,17 +16,10 @@
     </ul>
   </li>
 {% else %}
-  <li class="account anonymous nomenu login{{ ' legacy' if not waffle.switch('browserid-login') }}">
-    {% if waffle.switch('browserid-login') %}
-    <a href="{{ login_link() }}" class="browserid-login browserid"
-       data-url="{{ url('users.browserid_login') }}">
-       {{ _('Log in / Register') }}</a>
-
-    {% else %}
-        {% trans reg=url('users.register'), login=login_link() %}
-            <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
-        {% endtrans %}
-    {% endif %}
+  <li class="account anonymous nomenu login legacy">
+    {% trans reg=url('users.register'), login=login_link() %}
+        <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+    {% endtrans %}
   </li>
 {% endif %}
 

@@ -1225,33 +1225,6 @@ button:active,
 }
 
 /************************************/
-/*               LOGIN              */
-/************************************/
-
-.browserid-divider {
-    text-align: center;
-    margin: 2em 1em 0;
-    border-bottom: 1px dashed rgb(204, 204, 204);
-}
-
-.browserid-divider span {
-    background-color: #FFFFFF;
-    font-style: italic;
-    padding: 0 15px;
-    position: relative;
-    top: 0.4em;
-}
-
-#browserid {
-    margin-bottom: 2em;
-    text-align: center;
-}
-#browserid .button {
-    margin: auto;
-    display: inline-block;
-}
-
-/************************************/
 /*              EXPANDO             */
 /************************************/
 

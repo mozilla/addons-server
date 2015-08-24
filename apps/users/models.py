@@ -25,7 +25,6 @@ import caching.base as caching
 import commonware.log
 import tower
 from tower import ugettext as _
-import waffle
 
 import amo
 import amo.models
@@ -185,8 +184,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                                              editable=False)
     failed_login_attempts = models.PositiveIntegerField(default=0,
                                                         editable=False)
-    source = models.PositiveIntegerField(default=amo.LOGIN_SOURCE_UNKNOWN,
-                                         editable=False, db_index=True)
 
     is_verified = models.BooleanField(default=True)
     region = models.CharField(max_length=11, null=True, blank=True,
@@ -223,16 +220,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def has_module_perms(self, app_label):
         return self.is_superuser
 
-    def get_backend(self):
-        if waffle.switch_is_active('browserid-login'):
-            return 'django_browserid.auth.BrowserIDBackend'
-        else:
-            return 'users.backends.AmoUserBackend'
-
-    def set_backend(self, val):
-        pass
-
-    backend = property(get_backend, set_backend)
+    backend = 'users.backends.AmoUserBackend'
 
     def is_anonymous(self):
         return False
@@ -325,8 +313,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     @amo.cached_property
     def needs_tougher_password(user):
-        if user.source in amo.LOGIN_SOURCE_BROWSERIDS:
-            return False
         from access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
                 acl.action_allowed_user(user, 'Addons', 'Edit') or
