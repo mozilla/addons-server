@@ -10,7 +10,8 @@ import amo.tests
 from access.models import Group
 from addons.models import Addon, AddonRecommendation
 from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionWatcher, RecommendedCollection)
+                              CollectionWatcher, RecommendedCollection,
+                              SyncedCollection)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -228,3 +229,22 @@ class TestRecommendations(amo.tests.TestCase):
         recs = RecommendedCollection.build_recs([7, 3, 8])
         # 3 should not be in the list since we already have it.
         eq_(recs, [1, 2])
+
+
+class TestSyncedCollection(amo.tests.TestCase):
+    fixtures = ['base/addon-recs']
+    ids = (5299, 1843, 2464, 7661, 5369)
+
+    def test_set_addons(self):
+        synced_collection = SyncedCollection.objects.create()
+        synced_collection.set_addons(self.ids)
+        synced_collection.reload()
+        assert tuple(
+            synced_collection.addons.values_list('id', flat=True)) == self.ids
+
+    def test_set_addons_empty_list(self):
+        """This is really to make sure it doesn't blow up: see bug 1197471."""
+        synced_collection = SyncedCollection.objects.create()
+        synced_collection.set_addons([])
+        synced_collection.reload()
+        assert synced_collection.addons.count() == 0
