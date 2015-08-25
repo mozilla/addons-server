@@ -63,12 +63,18 @@ handlers = {
 
 loggers = {
     'z': {},
+    'amo': {},
     'django.request': {
         'handlers': ['statsd'],
         'level': 'ERROR',
         'propagate': True,
     },
     'z.celery': {
+        'handlers': ['statsd'],
+        'level': 'ERROR',
+        'propagate': True,
+    },
+    'amo.validator': {
         'handlers': ['statsd'],
         'level': 'ERROR',
         'propagate': True,
