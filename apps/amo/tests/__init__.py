@@ -770,12 +770,6 @@ class ESTestCase(TestCase):
     def setUpClass(cls):
         cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
 
-        # The ES setting are set before we call super()
-        # because we may have indexation occuring in upper classes.
-        for key, index in settings.ES_INDEXES.items():
-            if not index.startswith('test_'):
-                settings.ES_INDEXES[key] = 'test_%s_%s' % ('amo', index)
-
         super(ESTestCase, cls).setUpClass()
         try:
             cls.es.cluster.health()
