@@ -1,6 +1,6 @@
-from celeryutils import task
 import commonware.log
 
+from amo.celery import task
 from amo.utils import slugify
 from tags.models import AddonTag, Tag
 

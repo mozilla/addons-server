@@ -4,9 +4,8 @@ import shutil
 
 from django.conf import settings
 
-from celeryutils import task
-
 import amo
+from amo.celery import task
 from amo.decorators import set_modified_on
 from lib.video import library
 import waffle

@@ -3,9 +3,9 @@ import logging
 from django.db.models import Count, Avg, F
 
 import caching.base as caching
-from celeryutils import task
 
 from addons.models import Addon
+from amo.celery import task
 from .models import Review, GroupedRating
 
 log = logging.getLogger('z.task')

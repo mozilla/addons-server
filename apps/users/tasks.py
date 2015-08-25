@@ -1,9 +1,9 @@
 from django.core.files.storage import default_storage as storage
 
 import commonware.log
-from celeryutils import task
 from lib.es.utils import index_objects
 
+from amo.celery import task
 from amo.decorators import set_modified_on
 from amo.utils import resize_image
 from amo.helpers import user_media_path

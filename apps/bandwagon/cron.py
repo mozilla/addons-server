@@ -6,9 +6,9 @@ from django.db.models import Count
 
 import commonware.log
 from celery.task.sets import TaskSet
-from celeryutils import task
 
 import amo
+from amo.celery import task
 from amo.utils import chunked, slugify
 from bandwagon.models import (Collection, SyncedCollection, CollectionVote,
                               CollectionWatcher)

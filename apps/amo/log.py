@@ -1,8 +1,12 @@
-from inspect import isclass
+# The absolute import feature is required so that we get the root celery
+# module rather than `amo.celery`.
+from __future__ import absolute_import
 
+from inspect import isclass
 
 from celery.datastructures import AttributeDict
 from tower import ugettext_lazy as _
+
 
 __all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP',)
 

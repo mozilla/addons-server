@@ -1,10 +1,6 @@
 import os
 import site
-import sys
-import setup_olympia
 from datetime import datetime
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
@@ -12,12 +8,12 @@ wsgi_loaded = datetime.now()
 # Tell celery that we're using Django.
 os.environ['CELERY_LOADER'] = 'django'
 
-# Add the zamboni dir to the python path so we can import manage.
+# Add the zamboni dir to the python path so we can import olympia.
 wsgidir = os.path.dirname(__file__)
 site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 
-# manage adds /apps and /lib to the Python path.
-import manage
+# adds /apps and /lib to the Python path.
+import olympia
 
 import django.conf
 import django.core.handlers.wsgi
@@ -47,7 +43,7 @@ def application(env, start_response):
     return django_app(env, start_response)
 
 
-if setup_olympia.load_newrelic:
+if olympia.load_newrelic:
     import newrelic.agent
     application = newrelic.agent.wsgi_application()(application)
 # Uncomment this to figure out what's going on with the mod_wsgi environment.

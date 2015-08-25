@@ -13,15 +13,14 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
-from celery.worker.job import Request
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
-from celeryutils import task
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import amo
 import validator
+from amo.celery import task
 from amo.decorators import write, set_modified_on
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
@@ -60,40 +59,18 @@ def validate(file_, listed=None):
 validator.ValidationTimeout = SoftTimeLimitExceeded
 
 
-# This shouldn't be necessary, but we currently use an ancient version of
-# Celery, and the wrapper in celeryutils is full of cruft, so we need
-# to go to extraordinary lengths to avoid storing errors.
-# TODO: Upgrade celery and cleanup/remove celeryutils so this can be removed.
-def task_strategy(task, app, consumer):
-    """A slightly modified version of celery.worker.strategy.default
-    which uses a Request that does not store errors."""
-    hostname = consumer.hostname
-    eventer = consumer.event_dispatcher
-    handle = consumer.on_task
-    connection_errors = consumer.connection_errors
-
-    class Req(Request):
-        # Prevent celery from storing a SoftTimeLimitExceeded exception as the
-        # task result even if we've handled it.
-        store_errors = False
-
-    def task_message_handler(message, body, ack):
-        handle(Req(body, on_ack=ack, app=app, hostname=hostname,
-                   eventer=eventer, task=task,
-                   connection_errors=connection_errors,
-                   delivery_info=message.delivery_info))
-    return task_message_handler
-
-
 def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags, then
     parse and annotate the results before returning."""
 
-    @task(Strategy='devhub.tasks:task_strategy',
-          ignore_result=False,  # Required for groups/chains.
+    @task(bind=True, ignore_result=False,  # Required for groups/chains.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
-    def wrapper(id_, hash_, *args, **kw):
+    def wrapper(task, id_, hash_, *args, **kw):
+        # This is necessary to prevent timeout exceptions from being set
+        # as our result, and replacing the partial validation results we'd
+        # prefer to return.
+        task.ignore_result = True
         try:
             data = fn(id_, hash_, *args, **kw)
             result = json.loads(data)
@@ -107,6 +84,10 @@ def validation_task(fn):
         except Exception, e:
             log.exception('Unhandled error during validation: %r' % e)
             return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION)
+        finally:
+            # But we do want to return a result after that exception has
+            # been handled.
+            task.ignore_result = False
     return wrapper
 
 
@@ -146,10 +127,12 @@ def handle_upload_validation_result(results, upload_id, annotate=True):
     upload = FileUpload.objects.get(pk=upload_id)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
-    return upload
 
 
-@task
+# We need to explicitly not ignore the result, for the sake of `views.py` code
+# that needs to wait on a result, rather than just trigger the task to save
+# the result to a FileValidation object.
+@task(ignore_result=False)
 @write
 def handle_file_validation_result(results, file_id, annotate=True):
     """Annotates a set of validation results, unless `annotate is false, and

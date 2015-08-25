@@ -8,13 +8,13 @@ from django.db.models import Sum, Max
 
 import commonware.log
 from apiclient.discovery import build
-from celeryutils import task
 from elasticsearch.helpers import bulk_index
 from oauth2client.client import OAuth2Credentials
 
 import amo
 import amo.search
 from addons.models import Addon
+from amo.celery import task
 from bandwagon.models import Collection
 from reviews.models import Review
 from stats.models import Contribution

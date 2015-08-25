@@ -55,7 +55,7 @@ RabbitMQ and Celery
 
 See the :doc:`./celery` page for installation instructions.  The
 :ref:`example settings <example-settings>` set ``CELERY_ALWAYS_EAGER = True``.
-If you're setting up Rabbit and want to use ``celeryd``, make sure you remove
+If you're setting up Rabbit and want to use ``celery``, make sure you remove
 that line from your ``local_settings.py``.
 
 
