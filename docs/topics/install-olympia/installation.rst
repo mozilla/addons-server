@@ -67,7 +67,13 @@ You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
 Elasticsearch
 ~~~~~~~~~~~~~
 
-You'll need an Elasticsearch server up and running during the init script. See :doc:`./elasticsearch` for more instructions.
+You'll need an Elasticsearch server up and running during the init script. See
+:doc:`./elasticsearch` for more instructions.
+
+If you don't want to use Elasticsearch, add the following setting to your
+``local_settings.py``::
+
+    ES_DISABLED = True
 
 
 Use the Source

@@ -129,6 +129,9 @@ class Command(BaseCommand):
         """
         force = kwargs.get('force', False)
 
+        if settings.ES_DISABLED:
+            return
+
         if is_reindexing_amo() and not force:
             raise CommandError('Indexation already occuring - use --force to '
                                'bypass')
