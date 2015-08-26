@@ -118,6 +118,14 @@ $(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
 
+    if (window.location.hash) {
+        // If the page URL is pointing directly to an expando section (e.g.
+        // external link to that section), make sure the contents are visible.
+        var $target = $(window.location.hash);
+        if ($target.hasClass('expando'))
+            $target.addClass('expanded');
+    }
+
     $('#page').delegate('.scrollto', 'click', function(e) {
         e.preventDefault();
         var href = $(this).attr('href'),
