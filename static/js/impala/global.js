@@ -118,6 +118,12 @@ $(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
 
+    if (window.location.hash) {
+        var $target = $(window.location.hash);
+        if ($target.hasClass('expando'))
+            $target.addClass('expanded');
+    }
+
     $('#page').delegate('.scrollto', 'click', function(e) {
         e.preventDefault();
         var href = $(this).attr('href'),
