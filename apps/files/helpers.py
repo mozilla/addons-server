@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
+from django.utils.translation import get_language
 from django.template.defaultfilters import filesizeformat
 
 import jinja2
@@ -219,7 +220,7 @@ class FileViewer(object):
         # In case a cron job comes along and deletes the files
         # mid tree building.
         try:
-            self._files = self._get_files()
+            self._files = self._get_files(locale=get_language())
             return self._files
         except (OSError, IOError):
             return {}
@@ -262,7 +263,16 @@ class FileViewer(object):
         return 'plain'
 
     @memoize(prefix='file-viewer', time=60 * 60)
-    def _get_files(self):
+    def _get_files(self, locale=None):
+        """We need the `locale` parameter for the memoization.
+
+        The `@memoize` decorator uses the prefix *and the parameters* to come
+        up with a memoize key. We thus add a (seemingly useless) `locale`
+        parameter.
+
+        Otherwise, we would just always have the urls for the files with the
+        locale from the first person checking them.
+        """
         all_files, res = [], SortedDict()
         # Not using os.path.walk so we get just the right order.
 
