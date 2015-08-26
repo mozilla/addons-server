@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:26-0700\n"
+"POT-Creation-Date: 2015-08-26 09:25-0700\n"
 "PO-Revision-Date: 2014-02-06 10:18+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:304
 msgid "Select an application first"
 msgstr ""
 
@@ -816,14 +816,6 @@ msgstr ""
 
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
-
-#: static/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr ""
-
-#: static/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
 
 #. L10n: {0} is an app name like Firefox.
@@ -877,7 +869,7 @@ msgstr ""
 msgid "View other versions"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
@@ -1021,47 +1013,47 @@ msgstr ""
 msgid "Updating recommendations&hellip;"
 msgstr ""
 
-#: static/js/zamboni/editors.js:145
+#: static/js/zamboni/editors.js:130
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/editors.js:195
+#: static/js/zamboni/editors.js:180
 msgid "Receipt checked by app."
 msgstr ""
 
-#: static/js/zamboni/editors.js:197
+#: static/js/zamboni/editors.js:182
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: static/js/zamboni/editors.js:268
+#: static/js/zamboni/editors.js:253
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/editors.js:279
+#: static/js/zamboni/editors.js:264
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/editors.js:284
+#: static/js/zamboni/editors.js:269
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/editors.js:289
+#: static/js/zamboni/editors.js:274
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/editors.js:294
+#: static/js/zamboni/editors.js:279
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/editors.js:354
+#: static/js/zamboni/editors.js:339
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/editors.js:410
+#: static/js/zamboni/editors.js:395
 msgid "Number of Reviews"
 msgstr ""
 
-#: static/js/zamboni/editors.js:469
+#: static/js/zamboni/editors.js:454
 msgid "Error loading translation"
 msgstr ""
 

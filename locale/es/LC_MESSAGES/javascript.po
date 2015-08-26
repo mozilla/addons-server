@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:26-0700\n"
+"POT-Creation-Date: 2015-08-26 09:25-0700\n"
 "PO-Revision-Date: 2015-06-05 17:11+0000\n"
 "Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -773,7 +773,7 @@ msgstr "Fecha"
 msgid "Other"
 msgstr "Otros"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:304
 msgid "Select an application first"
 msgstr "Selecciona primero una aplicación"
 
@@ -820,14 +820,6 @@ msgstr "Error al instalar la aplicación."
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
 msgstr "Este sistema no permite instalar aplicaciones."
-
-#: static/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "Los administradores y editores deben proporcionar una contraseña para poder entrar."
-
-#: static/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "Error en la identificación con BrowserID. ¿Tal vez no dispones de una cuenta con esta dirección de correo?"
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
@@ -880,7 +872,7 @@ msgstr "Funciona con {app} {min} - {max}"
 msgid "View other versions"
 msgstr "Ver otras versiones"
 
-#: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Lo sentimos, necesitas un navegador basado en Mozilla (como Firefox) para instalar un plugin de búsqueda."
 
@@ -1024,47 +1016,47 @@ msgstr "Encontrando recomendaciones&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Actualizando recomendaciones&hellip;"
 
-#: static/js/zamboni/editors.js:145
+#: static/js/zamboni/editors.js:130
 msgid "{name} was viewing this page first."
 msgstr "{name} estuvo viendo esta página antes."
 
-#: static/js/zamboni/editors.js:195
+#: static/js/zamboni/editors.js:180
 msgid "Receipt checked by app."
 msgstr "El recibo fue comprobado por la aplicación."
 
-#: static/js/zamboni/editors.js:197
+#: static/js/zamboni/editors.js:182
 msgid "Receipt was not checked by app."
 msgstr "El recibo no fue comprobado por la aplicación."
 
-#: static/js/zamboni/editors.js:268
+#: static/js/zamboni/editors.js:253
 msgid "{name} was viewing this add-on first."
 msgstr "{name} fue el primero en ver este complemento."
 
-#: static/js/zamboni/editors.js:279
+#: static/js/zamboni/editors.js:264
 msgid "Loading&hellip;"
 msgstr "Cargando &hellip;"
 
-#: static/js/zamboni/editors.js:284
+#: static/js/zamboni/editors.js:269
 msgid "Version Notes"
 msgstr "Notas de la versión"
 
-#: static/js/zamboni/editors.js:289
+#: static/js/zamboni/editors.js:274
 msgid "Notes for Reviewers"
 msgstr "Notas para los revisores"
 
-#: static/js/zamboni/editors.js:294
+#: static/js/zamboni/editors.js:279
 msgid "No version notes found"
 msgstr "No se han encontrado las notas de la versión"
 
-#: static/js/zamboni/editors.js:354
+#: static/js/zamboni/editors.js:339
 msgid "Average Reviews"
 msgstr "Promedio de valoraciones"
 
-#: static/js/zamboni/editors.js:410
+#: static/js/zamboni/editors.js:395
 msgid "Number of Reviews"
 msgstr "Número de valoraciones"
 
-#: static/js/zamboni/editors.js:469
+#: static/js/zamboni/editors.js:454
 msgid "Error loading translation"
 msgstr "Error al cargar traducción"
 

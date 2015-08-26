@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:26-0700\n"
+"POT-Creation-Date: 2015-08-26 09:25-0700\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -766,7 +766,7 @@ msgstr "วันที่"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:319
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:304
 msgid "Select an application first"
 msgstr "เลือกแอพพลิเคชั่นก่อน"
 
@@ -811,14 +811,6 @@ msgstr "การติดตั้งแอพล้มเหลว"
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
 msgstr "ระบบนี้ไม่รองรับการติดตั้งแอพ"
-
-#: static/js/zamboni/browserid_support.js:37
-msgid "Admins and editors must provide a password to log in."
-msgstr "ผู้ดูแลระบบและผู้แก้ไขต้องใช้รหัสผ่านสำหรับการเข้าระบบ"
-
-#: static/js/zamboni/browserid_support.js:42
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr "การเข้าสู่ระบบ BrowserID ล้มเหลว บางทีคุณอาจจะไม่ได้มีบัญชีที่ใช้ที่อยู่อีเมลนั้น?"
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
@@ -871,7 +863,7 @@ msgstr "ทำงานได้กับ {app} {min} - {max}"
 msgid "View other versions"
 msgstr "ดูรุ่นอื่น"
 
-#: static/js/zamboni/buttons.js:557 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
 
@@ -1013,47 +1005,47 @@ msgstr "กำลังค้นหารายการแนะนำ&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "กำลังอัพเดตรายการแนะนำ&hellip;"
 
-#: static/js/zamboni/editors.js:145
+#: static/js/zamboni/editors.js:130
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
-#: static/js/zamboni/editors.js:195
+#: static/js/zamboni/editors.js:180
 msgid "Receipt checked by app."
 msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
 
-#: static/js/zamboni/editors.js:197
+#: static/js/zamboni/editors.js:182
 msgid "Receipt was not checked by app."
 msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
 
-#: static/js/zamboni/editors.js:268
+#: static/js/zamboni/editors.js:253
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/editors.js:279
+#: static/js/zamboni/editors.js:264
 msgid "Loading&hellip;"
 msgstr "กำลังโหลด&hellip;"
 
-#: static/js/zamboni/editors.js:284
+#: static/js/zamboni/editors.js:269
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
-#: static/js/zamboni/editors.js:289
+#: static/js/zamboni/editors.js:274
 msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
-#: static/js/zamboni/editors.js:294
+#: static/js/zamboni/editors.js:279
 msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
-#: static/js/zamboni/editors.js:354
+#: static/js/zamboni/editors.js:339
 msgid "Average Reviews"
 msgstr "คำวิจารณ์โดยเฉลี่ย"
 
-#: static/js/zamboni/editors.js:410
+#: static/js/zamboni/editors.js:395
 msgid "Number of Reviews"
 msgstr "จำนวนคำวิจารณ์"
 
-#: static/js/zamboni/editors.js:469
+#: static/js/zamboni/editors.js:454
 msgid "Error loading translation"
 msgstr ""
 
