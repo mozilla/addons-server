@@ -159,7 +159,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": false,
             "hash": "sha256:e70fbb49f3c420de78802e126877daa0351c5bcc6cb27a62310bb1278023fb3e",
             "created": "2010-04-25 20:08:37",
             "modified": "2010-04-27 14:23:48",

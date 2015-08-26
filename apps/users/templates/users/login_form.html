@@ -9,21 +9,6 @@
         </ul>
       </div>
   {% endif %}
-  {% if waffle.switch('browserid-login') %}
-  <fieldset id="browserid-login">
-    <a href="#" class="browserid-login button prominent"
-      data-url="{{ url('users.browserid_login') }}">
-      {{ loc('Log in / Register') }}
-    </a>
-    <div class="user-message">
-      <p>
-          {% trans %}
-          <a href="#" id="show-normal-login">Are you an admin or editor?</a>
-          {% endtrans %}
-      </p>
-    </div>
-  </fieldset>
-  {% endif %}
   <div class="login-option grid devhub-form prettyform">
     <fieldset id="normal-login">
       <ul>
@@ -52,12 +37,6 @@
       </ul>
       <div class="listing-footer footer c">
         <button id="login-submit" type="submit">{{ _('Log in') }}</button>
-        {% if waffle.switch('browserid-login') %}
-          <a href="#" class="browserid-login browserid-login-alt button premium"
-             data-url="{{ url('users.browserid_login') }}">
-            {{ loc('Use BrowserID') }}
-          </a>
-        {% endif %}
       </div>
     </fieldset>
   </div>

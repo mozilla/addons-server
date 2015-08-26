@@ -1,6 +1,7 @@
 import os
 import site
 import sys
+import setup_olympia
 from datetime import datetime
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
@@ -46,7 +47,7 @@ def application(env, start_response):
     return django_app(env, start_response)
 
 
-if manage.load_newrelic:
+if setup_olympia.load_newrelic:
     import newrelic.agent
     application = newrelic.agent.wsgi_application()(application)
 # Uncomment this to figure out what's going on with the mod_wsgi environment.

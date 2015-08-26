@@ -9,5 +9,5 @@ Comments:
 
 {{ tested }}
 
-To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews#selection
+To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
 {% endblock %}

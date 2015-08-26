@@ -301,8 +301,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": false,
-            "builder_version": null,
             "hash": "",
             "created": "2011-12-05 14:46:43",
             "modified": "2011-12-05 14:46:43",
@@ -325,8 +323,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": false,
-            "builder_version": null,
             "hash": "",
             "created": "2011-12-05 14:46:43",
             "modified": "2011-12-05 14:46:43",
@@ -349,8 +345,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": false,
-            "builder_version": null,
             "hash": "",
             "created": "2011-12-05 14:46:43",
             "modified": "2011-12-05 14:46:43",
@@ -373,8 +367,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": false,
-            "builder_version": null,
             "hash": "",
             "created": "2011-12-05 14:46:43",
             "modified": "2011-12-05 14:46:43",

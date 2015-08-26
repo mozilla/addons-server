@@ -19,7 +19,6 @@ from django_statsd.clients import statsd
 
 import amo
 import api
-import files.tasks
 from amo.decorators import post_required
 from amo.utils import log_cef
 from amo.context_processors import get_collect_timings
@@ -153,25 +152,6 @@ def cspreport(request):
         return HttpResponseBadRequest()
 
     return HttpResponse()
-
-
-@csrf_exempt
-@post_required
-def builder_pingback(request):
-    data = dict(request.POST.items())
-    jp_log.info('Pingback from builder: %r' % data)
-    try:
-        # We expect all these attributes to be available.
-        attrs = 'result msg location secret request'.split()
-        for attr in attrs:
-            assert attr in data, '%s not in %s' % (attr, data)
-        # Only AMO and the builder should know this secret.
-        assert data.get('secret') == settings.BUILDER_SECRET_KEY
-    except Exception:
-        jp_log.warning('Problem with builder pingback.', exc_info=True)
-        return http.HttpResponseBadRequest()
-    files.tasks.repackage_jetpack(data)
-    return http.HttpResponse()
 
 
 @csrf_exempt

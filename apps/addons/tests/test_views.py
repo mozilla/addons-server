@@ -590,6 +590,11 @@ class TestDetailPage(amo.tests.TestCase):
         beta = get_pq_content()
         eq_(beta('#beta-channel').length, 1)
 
+        # Beta channel section should link to beta versions listing
+        versions_url = reverse('addons.beta-versions', args=[self.addon.slug])
+        assert beta('#beta-channel a.more-info').length == 1
+        assert beta('#beta-channel a.more-info').attr('href') == versions_url
+
         # Now hide it.  Beta is only shown for STATUS_PUBLIC.
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         beta = get_pq_content()
@@ -735,6 +740,12 @@ class TestDetailPage(amo.tests.TestCase):
         r = self.client.get(self.url + '?src=trickleortreat', follow=True)
         eq_((pq(r.content)('#detail-relnotes .button').attr('href')
              .endswith('?src=trickleortreat')), True)
+
+    def test_version_more_link(self):
+        doc = pq(self.client.get(self.url).content)
+        versions_url = reverse('addons.versions', args=[self.addon.slug])
+        assert (doc('#detail-relnotes a.more-info').attr('href') ==
+                versions_url)
 
     def test_invalid_version(self):
         """Only render details pages for add-ons that have a version."""

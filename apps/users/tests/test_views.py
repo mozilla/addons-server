@@ -1,5 +1,4 @@
 import collections
-from datetime import datetime
 import json
 from urlparse import urlparse
 
@@ -10,12 +9,11 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import urlsafe_base64_encode
 
-from mock import ANY, Mock, patch
+from mock import Mock, patch
 from nose.tools import eq_
 
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers  # NOQA
-import waffle
 
 import amo
 import amo.tests
@@ -31,7 +29,7 @@ from reviews.models import Review
 from users.models import BlacklistedPassword, UserProfile, UserNotification
 import users.notifications as email
 from users.utils import EmailResetCode, UnsubscribeCode
-from users.views import browserid_authenticate, tshirt_eligible
+from users.views import tshirt_eligible
 
 
 def fake_request():
@@ -576,15 +574,6 @@ class TestLogin(UserViewBase):
         text = 'Please enter a correct username and password.'
         assert res.context['form'].errors['__all__'][0].startswith(text)
 
-    def test_login_pwd(self):
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        user.source = amo.LOGIN_SOURCE_BROWSERID
-        user.password = ''
-        user.save()
-
-        self.client.get(self.url)
-        eq_(self.client.post(self.url, data=self.data).status_code, 200)
-
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)
@@ -670,276 +659,6 @@ class TestLogin(UserViewBase):
                                 data={'username': 'charlie@example.com',
                                       'password': 'bazpassword'})
         eq_(res2.status_code, 302)
-
-
-class TestPersonaLogin(UserViewBase):
-    fixtures = ('users/test_backends',)
-
-    def setUp(self):
-        super(TestPersonaLogin, self).setUp()
-        self.url = reverse('users.browserid_login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_login_success(self, http_request):
-        """
-        A success response from BrowserID results in successful login.
-        """
-        url = reverse('users.browserid_login')
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        res = self.client.post(url, data=dict(assertion='fake-assertion',
-                                              audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-
-        # If they're already logged in we return fast.
-        eq_(self.client.post(url).status_code, 200)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_unverified_login_success(self, http_request):
-        """A success response from BrowserID results in a successful login."""
-
-        # Preverified accounts should not be accessible to unverified
-        # logins.
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'unverified-email': 'jbalogh@mozilla.com'}))
-        res = self.client.post(self.url, {'assertion': 'fake-assertion',
-                                          'audience': 'fakeamo.org'})
-        eq_(res.status_code, 401)
-        eq_(self.user.reload().is_verified, True)
-
-        # A completely unverified address should be able to log in.
-        self.user.update(is_verified=False)
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'unverified-email': 'unverified@example.org'}))
-        res = self.client.post(self.url, {'assertion': 'fake-assertion',
-                                          'audience': 'fakeamo.org'})
-        eq_(res.status_code, 200)
-        eq_(self.user.reload().is_verified, False)
-
-        # If the user is already logged in, then we return fast.
-        eq_(self.client.post(self.url).status_code, 200)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('users.models.UserProfile.log_login_attempt')
-    @patch('requests.post')
-    def test_browserid_login_logged(self, http_request, log_login_attempt):
-        url = reverse('users.browserid_login')
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        self.client.post(url, data=dict(assertion='fake-assertion',
-                                        audience='fakeamo.org'))
-        log_login_attempt.assert_called_once_with(True)
-
-    def _make_admin_user(self, email):
-        """
-        Create a user with at least one admin privilege.
-        """
-        p = UserProfile.objects.create(
-            username='admin', email=email,
-            password='hunter2', created=datetime.now(), pk=998)
-        admingroup = Group.objects.create(rules='Users:Edit')
-        GroupUser.objects.create(group=admingroup, user=p)
-
-    def _browserid_login(self, email, http_request):
-        http_request.return_value = FakeResponse(
-            200, json.dumps({'status': 'okay', 'email': email}))
-        return self.client.post(reverse('users.browserid_login'),
-                                data=dict(assertion='fake-assertion',
-                                          audience='fakeamo.org'))
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_restricted_login(self, http_request):
-        """
-        A success response from BrowserID for accounts restricted to
-        password login results in a 400 error, for which the frontend
-        will display a message about the restriction.
-        """
-        email = 'admin@mozilla.com'
-        self._make_admin_user(email)
-        res = self._browserid_login(email, http_request)
-        eq_(res.status_code, 200)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_no_account(self, http_request):
-        """
-        BrowserID login for an email address with no account creates a
-        new account.
-        """
-        email = 'newuser@example.com'
-        res = self._browserid_login(email, http_request)
-        eq_(res.status_code, 200)
-        profiles = UserProfile.objects.filter(email=email)
-        eq_(len(profiles), 1)
-        eq_(profiles[0].username, 'newuser')
-        eq_(profiles[0].display_name, 'newuser')
-
-    @patch('requests.post')
-    def test_browserid_misplaced_auth_user(self, http_request):
-        """
-        Login still works even after the user has changed his email
-        address on AMO.
-        """
-        self.create_switch('browserid-login')
-        url = reverse('users.browserid_login')
-        profile = UserProfile.objects.create(username='login_test',
-                                             email='bob@example.com')
-        profile.email = 'charlie@example.com'
-        profile.save()
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'charlie@example.com'}))
-        res = self.client.post(url, data=dict(assertion='fake-assertion',
-                                              audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-
-    @patch('requests.post')
-    def test_browserid_no_auth_user(self, http_request):
-        """
-        Login still works after a new UserProfile has been created for an
-        email address another UserProfile formerly used.
-        """
-        self.create_switch('browserid-login')
-        url = reverse('users.browserid_login')
-        UserProfile.objects.get(email="jbalogh@mozilla.com").update(
-            email="badnews@example.com")
-        UserProfile.objects.create(email="jbalogh@mozilla.com")
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        res = self.client.post(url, data=dict(assertion='fake-assertion',
-                                              audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_no_mark_as_market(self, post):
-        email = 'newuser@example.com'
-        self._browserid_login(email, post)
-        profile = UserProfile.objects.get(email=email)
-        assert not profile.notes
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_login_failure(self, http_request):
-        """
-        A failure response from BrowserID results in login failure.
-        """
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'busted'}))
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 401)
-        assert 'Persona authentication failure' in res.content
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_browserid_duplicate_username(self, post):
-        email = 'jbalogh@example.com'  # existing
-        post.return_value = FakeResponse(200, json.dumps({'status': 'okay',
-                                                          'email': email}))
-        res = self.client.post(reverse('users.browserid_login'),
-                               data=dict(assertion='fake-assertion',
-                                         audience='fakeamo.org'))
-        eq_(res.status_code, 200)
-        profiles = UserProfile.objects.filter(email=email)
-        eq_(profiles[0].username, 'jbalogh2')
-        eq_(profiles[0].display_name, 'jbalogh2')
-        # Note: lower level unit tests for this functionality are in
-        # TestAutoCreateUsername()
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def create_profile(self, http_request):
-        email = 'user@example.com'
-        http_request.return_value = FakeResponse(200,
-                                                 json.dumps({'status': 'okay',
-                                                             'email': email}))
-        request = fake_request()
-        browserid_authenticate(request=request, assertion='fake-assertion')
-        return UserProfile.objects.get(email=email)
-
-    def test_amo_source(self):
-        profile = self.create_profile()
-        eq_(profile.source, amo.LOGIN_SOURCE_AMO_BROWSERID)
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
-                  'http://my-custom-b2g-verifier.org/verify')
-    @patch.object(settings, 'SITE_URL', 'http://testserver')
-    @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
-    @patch('requests.post')
-    def test_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        self.client.post(reverse('users.browserid_login'),
-                         data=dict(assertion='fake-assertion',
-                                   audience='fakeamo.org',
-                                   is_mobile='1'))
-        http_request.assert_called_with(
-            settings.NATIVE_BROWSERID_VERIFICATION_URL,
-            verify=ANY, proxies=ANY, data=ANY, timeout=ANY,
-            headers=ANY)
-        data = http_request.call_args[1]['data']
-        eq_(data['audience'], 'http://testserver')
-        eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
-        eq_(data['experimental_allowUnverified'], 'true')
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch.object(settings, 'SITE_URL', 'http://testserver')
-    @patch.object(settings, 'UNVERIFIED_ISSUER', 'some-issuer')
-    @patch('requests.post')
-    def test_non_mobile_persona_login(self, http_request):
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        self.client.post(reverse('users.browserid_login'),
-                         data=dict(assertion='fake-assertion',
-                                   audience='fakeamo.org'))
-        assert http_request.called
-        data = http_request.call_args[1]['data']
-        eq_(data['audience'], 'http://testserver')
-        eq_(data['experimental_forceIssuer'], settings.UNVERIFIED_ISSUER)
-        assert 'experimental_allowUnverified' not in data, (
-            'not allowing unverfied when not native')
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch.object(settings, 'NATIVE_BROWSERID_VERIFICATION_URL',
-                  'http://my-custom-b2g-verifier.org/verify')
-    @patch.object(settings, 'SITE_URL', 'http://testserver')
-    @patch.object(settings, 'UNVERIFIED_ISSUER', None)
-    @patch('requests.post')
-    def test_mobile_persona_login_without_issuer(self, http_request):
-        http_request.return_value = FakeResponse(200, json.dumps(
-            {'status': 'okay',
-             'email': 'jbalogh@mozilla.com'}))
-        self.client.post(reverse('users.browserid_login'),
-                         data=dict(assertion='fake-assertion',
-                                   audience='fakeamo.org',
-                                   is_mobile='1'))
-        data = http_request.call_args[1]['data']
-        eq_(data['audience'], 'http://testserver')
-        assert 'experimental_forceIssuer' not in data, (
-            'not forcing issuer when the setting is blank')
-
-    @patch.object(waffle, 'switch_is_active', lambda x: True)
-    @patch('requests.post')
-    def test_mobile_persona_login_ignores_garbage(self, http_request):
-        http_request.return_value = FakeResponse(
-            200,
-            json.dumps({'status': 'okay', 'email': 'jbalogh@mozilla.com'}))
-        self.client.post(reverse('users.browserid_login'),
-                         data=dict(assertion='fake-assertion',
-                                   audience='fakeamo.org',
-                                   is_mobile='<garbage>'))
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')

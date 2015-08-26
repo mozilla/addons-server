@@ -57,12 +57,11 @@ The following packages will get you set for olympia::
 MySQL
 ~~~~~
 
-By default, Olympia connects to the ``olympia`` database running on ``localhost`` as the user ``root``, with no password. If you want to change this, you can either add the database settings in your :ref:`local_settings.py <example-settings>` or set the environment variable ``DATABASE_URL``::
-
-    export DATABASE_URL mysql://<user>:<password>@<hostname>/<database>
-
 You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
 (especially on Mac OS X) according to advanced installation.
+
+See :ref:`installation-database` for creating and managing the database.
+
 
 Elasticsearch
 ~~~~~~~~~~~~~
@@ -177,18 +176,44 @@ It's awesome, you want it.
 The file ``local_settings.py`` is for local use only; it will be ignored by
 git.
 
+.. _installation-database:
 
 Database
 --------
 
-The database is initialized automatically using the `make full_init` command
-you saw earlier. If you want to start from scratch and recreate the database,
-you can just run the `make initialize_db` command.
+By default, Olympia connects to the ``olympia`` database running on
+``localhost`` as the user ``root``, with no password. To create a database,
+run::
 
-This will also fake all the `schematic`_ migrations, and allow you to create a
-superuser.
+    $ mysql -u root -p
+    mysql> CREATE DATABASE olympia CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-.. _schematic: https://github.com/mozilla/schematic
+
+If you want to change settings, you can either add the database settings in
+your :ref:`local_settings.py<example-settings>` or set the environment variable
+``DATABASE_URL``::
+
+    export DATABASE_URL=mysql://<user>:<password>@<hostname>/<database>
+
+If you've changed the user and password information, you need to grant
+permissions to the new user::
+
+    $ mysql -u root -p
+    mysql> GRANT ALL ON olympia.* TO <YOUR_USER>@localhost IDENTIFIED BY '<YOUR_PASSWORD>';
+
+Finally, to run the test suite, you'll need to add an extra grant in MySQL for
+your database user::
+
+    $ mysql -u root -p
+    mysql> GRANT ALL ON test_olympia.* TO <YOUR_USER>@localhost IDENTIFIED BY '<YOUR_PASSWORD>';
+
+.. warning::
+
+   Don't forget to change ``<YOUR_USER>`` and ``<YOUR_PASSWORD>`` to your
+   actual database credentials.
+
+The database is initialized automatically using the ``make full_init`` command
+you saw earlier.
 
 
 Database Migrations
@@ -198,10 +223,13 @@ Each incremental change we add to the database is done with a versioned SQL
 (and sometimes Python) file. To keep your local DB fresh and up to date, run
 migrations like this::
 
-    schematic migrations
+    $ schematic migrations/
 
-More info on schematic: https://github.com/mozilla/schematic
+If, at some point, you want to start from scratch and recreate the database,
+you can just run the ``make initialize_db`` command. This will also fake all
+the `schematic`_ migrations, and allow you to create a superuser.
 
+.. _schematic: https://github.com/mozilla/schematic
 
 Run the Server
 --------------

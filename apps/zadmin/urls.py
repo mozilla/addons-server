@@ -41,9 +41,6 @@ urlpatterns = patterns(
     url(r'^email_preview/(?P<topic>.*)\.csv$',
         views.email_preview_csv, name='zadmin.email_preview_csv'),
     url(r'^compat$', views.compat, name='zadmin.compat'),
-    url(r'^jetpack$', views.jetpack, name='zadmin.jetpack'),
-    url(r'^jetpack/resend/(?P<file_id>\d+)$', views.jetpack_resend,
-        name='zadmin.jetpack.resend'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
         views.download_file, name='zadmin.download_file'),

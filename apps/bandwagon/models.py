@@ -564,11 +564,10 @@ class SyncedCollection(CollectionBase, amo.models.ModelBase):
     def set_addons(self, addon_ids):
         # SyncedCollections are only written once so we don't need to deal with
         # updates or deletes.
-        cursor = connection.cursor()
-        values = ['(%s,%s)' % (addon, self.id) for addon in addon_ids]
-        cursor.execute("""
-            INSERT INTO synced_addons_collections (addon_id, collection_id)
-            VALUES %s""" % ','.join(values))
+        relations = [
+            SyncedCollectionAddon(addon_id=addon_id, collection_id=self.pk)
+            for addon_id in addon_ids]
+        SyncedCollectionAddon.objects.bulk_create(relations)
         if not self.addon_index:
             self.addon_index = self.make_index(addon_ids)
             self.save()

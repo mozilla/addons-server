@@ -291,6 +291,11 @@
                                   src=request.GET.get('src', 'dp-btn-devchannel')) }}</dd>
           </dl>
         </div>
+        <p class="more c">
+          <a class="more-info" href="{{ url('addons.beta-versions', addon.slug) }}">
+            {{ _('See complete development channel history') }}
+          </a>
+        </p>
       </div>
     </section>
   {% endif %}

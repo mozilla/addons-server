@@ -1,16 +1,15 @@
-web:
+worker: &worker
   build: .
-  command: python manage.py runserver 0.0.0.0:8000
+  command: ./manage.py celeryd
   entrypoint: ./scripts/start-docker.sh
-  ports:
-    - "8000:8000"
   volumes:
     - .:/code
   links:
-    - memcached:memcached
-    - mysqld:mysqld
-    - elasticsearch:elasticsearch
-    - redis:redis
+    - memcached
+    - mysqld
+    - elasticsearch
+    - redis
+    - rabbitmq
   environment:
     - DATABASE_URL=mysql://root:@mysqld/olympia
     - MEMCACHE_LOCATION=memcached:11211
@@ -19,6 +18,13 @@ web:
     - MYSQL_ROOT_PASSWORD='docker'
     - MYSQL_DATABASE='olympia'
     - PYTHONDONTWRITEBYTECODE=1
+    - BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+
+web:
+  <<: *worker
+  command: python manage.py runserver 0.0.0.0:8000
+  ports:
+    - "8000:8000"
 
 memcached:
   image: memcached
@@ -34,3 +40,14 @@ elasticsearch:
 
 redis:
   image: redis
+
+rabbitmq:
+  image: rabbitmq
+  hostname: olympia
+  name: olympia
+  expose:
+    - "5672:5672"
+  environment:
+    - RABBITMQ_DEFAULT_USER=olympia
+    - RABBITMQ_DEFAULT_PASS=olympia
+    - RABBITMQ_DEFAULT_VHOST=olympia

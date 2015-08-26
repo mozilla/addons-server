@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-16 14:44\n"
+"PO-Revision-Date: 2015-08-25 15:34\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12510,7 +12510,7 @@ msgstr "Fick %d av 5 stjärnor"
 
 #: apps/reviews/forms.py:118
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Behåll recension; ta bort flaggor"
 
 #: apps/reviews/forms.py:119
 msgid "Skip for now"
@@ -12579,7 +12579,7 @@ msgstr "av %(user)s <b>(Utvecklare)</b> den %(date)s"
 #: apps/reviews/templates/reviews/review.html:50
 #: apps/reviews/templates/reviews/mobile/review_list.html:41
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Denna recension är för en tidigare version av tillägget ({0})."
 
 #: apps/reviews/templates/reviews/review.html:56
 msgid ""
@@ -12589,13 +12589,19 @@ msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
 msgstr[0] ""
+"Denna användare har en <a href=\"%(user_review_url)s\">tidigare "
+"recension</a> för detta tillägg."
 msgstr[1] ""
+"Denna användare har <a href=\"%(user_review_url)s\">%(cnt)s tidigare "
+"recensioner</a> för detta tillägg."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid ""
 "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-"
 "on."
 msgstr ""
+"Denna användare har <a href=\"%(user_review_url)s\">andra recensioner</a> "
+"för detta tillägg."
 
 #: apps/reviews/templates/reviews/review.html:72
 msgid "Flagged for review"
@@ -12611,7 +12617,7 @@ msgstr "Besvara recension"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Redigera svar"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -12657,7 +12663,7 @@ msgstr "Inga recensioner funna."
 
 #: apps/reviews/templates/reviews/review_list.html:57
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Genomsnitt</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
@@ -12680,7 +12686,7 @@ msgstr "Betygsatt {0} utav 5 stjärnor"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Betygsatt %(rating)s utav 5 stjärnor"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3
 #: apps/reviews/templates/reviews/mobile/add_form.html:8
@@ -12697,13 +12703,13 @@ msgstr "Titel:"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr "Inget betyg ännu."
+msgstr "Inga betyg ännu."
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Genomsnitt från {0} betyg"
+msgstr[1] "Genomsnitt från {0} betyg"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
@@ -12823,11 +12829,11 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Teman sökresultat för {0}"
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Teman sökresultat"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -12864,8 +12870,8 @@ msgstr "Sökresultat <i>({num})</i>"
 #: apps/sharing/__init__.py:14
 msgid "{0} post"
 msgid_plural "{0} posts"
-msgstr[0] "{0} postning"
-msgstr[1] "{0} postningar"
+msgstr[0] "{0} inlägg"
+msgstr[1] "{0} inlägg"
 
 #: apps/sharing/__init__.py:20
 msgid "Post to Facebook"
@@ -12874,12 +12880,12 @@ msgstr "Posta till Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} Gilla"
+msgstr[1] "{0} Gillar"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweet på Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -12893,11 +12899,11 @@ msgstr "Dela på g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Posta till Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Posta till Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61

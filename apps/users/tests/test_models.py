@@ -299,20 +299,6 @@ class TestPasswords(amo.tests.TestCase):
         assert u.check_password('password') is True
         assert u.has_usable_password() is True
 
-    def test_browserid_password(self):
-        u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
-        assert not u.check_password('foo')
-        assert u.has_usable_password() is True
-
-    @patch('access.acl.action_allowed_user')
-    def test_needs_tougher_password(self, action_allowed_user):
-        for source in amo.LOGIN_SOURCE_BROWSERIDS:
-            u = UserProfile(password=self.utf, source=source)
-            assert not u.needs_tougher_password
-
-        u = UserProfile(password=self.utf, source=amo.LOGIN_SOURCE_UNKNOWN)
-        assert u.needs_tougher_password
-
     def test_sha512(self):
         encoded = make_password('lètmein', 'seasalt', 'sha512')
         self.assertEqual(

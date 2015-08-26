@@ -458,16 +458,13 @@ class ReviewHelper:
             self.review_type = 'nominated'
             self.handler = ReviewAddon(request, addon, version, 'nominated')
 
-        elif self.addon.status == amo.STATUS_UNREVIEWED:
+        elif self.addon.status in PRELIMINARY_STATUSES:
             self.review_type = 'preliminary'
             self.handler = ReviewAddon(request, addon, version, 'preliminary')
 
-        elif self.addon.status == amo.STATUS_LITE:
-            self.review_type = 'preliminary'
-            self.handler = ReviewFiles(request, addon, version, 'preliminary')
         else:
             self.review_type = 'pending'
-            self.handler = ReviewFiles(request, addon, version, 'pending')
+            self.handler = ReviewAddon(request, addon, version, 'pending')
 
     def get_actions(self, request, addon):
         labels, details = self._review_actions()
@@ -790,105 +787,6 @@ class ReviewAddon(ReviewBase):
         self.addon.update(admin_review=True)
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
-        self.send_super_mail()
-
-
-class ReviewFiles(ReviewBase):
-
-    def set_data(self, data):
-        self.data = data
-        self.files = data.get('addon_files', None)
-
-    def process_public(self):
-        """Set an addons files to public."""
-        if self.review_type == 'preliminary':
-            raise AssertionError('Preliminary addons cannot be made public.')
-
-        # Sign addon.
-        for file_ in self.files:
-            sign_file(file_, settings.SIGNING_SERVER)
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
-
-        self.log_action(amo.LOG.APPROVE_VERSION)
-        template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
-        self.notify_email(template, subject)
-
-        log.info(u'Making %s files %s public' %
-                 (self.addon, ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
-
-    def process_sandbox(self):
-        """Set an addons files to sandbox."""
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_DISABLED, self.files,
-                       hide_disabled_file=True)
-
-        self.log_action(amo.LOG.REJECT_VERSION)
-        template = u'%s_to_sandbox' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Rejected'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_sandbox'
-            subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
-        self.notify_email(template, subject)
-
-        log.info(u'Making %s files %s disabled' %
-                 (self.addon,
-                  ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
-
-    def process_preliminary(self, auto_validation=False):
-        """Set an addons files to preliminary."""
-        # Sign addon.
-        for file_ in self.files:
-            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_LITE, self.files, copy_to_mirror=True)
-
-        self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        template = u'%s_to_preliminary' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            if auto_validation:
-                template = u'unlisted_to_reviewed_auto'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
-        self.notify_email(template, subject)
-
-        log.info(u'Making %s files %s preliminary' %
-                 (self.addon, ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        if self.request and not auto_validation:
-            # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
-
-    def process_super_review(self):
-        """Give an addon super review when preliminary."""
-        self.addon.update(admin_review=True)
-
-        self.notify_email('author_super_review',
-                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
-
         self.send_super_mail()
 
 

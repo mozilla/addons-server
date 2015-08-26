@@ -19,7 +19,7 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block tabzilla_css %}
-      <link href="{{ STATIC_URL }}css/tabzilla/tabzilla.css" %}" rel="stylesheet" />
+      <link href="{{ STATIC_URL }}css/tabzilla/tabzilla.css" rel="stylesheet" />
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/impala') }}
@@ -202,9 +202,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ cache_buster(url('jsi18n')) }}"></script>
-      {% if waffle.switch('browserid-login') %}
-        <script async defer src="{{ settings.BROWSERID_JS_URL }}"></script>
-      {% endif %}
       {{ js('impala') }}
       <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}

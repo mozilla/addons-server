@@ -18,8 +18,7 @@ from addons.models import Addon, Persona
 from amo.urlresolvers import reverse
 from amo.utils import raise_required
 from applications.models import AppVersion
-from editors.helpers import (file_review_status, ReviewAddon, ReviewFiles,
-                             ReviewHelper)
+from editors.helpers import file_review_status, ReviewHelper
 from editors.models import CannedResponse, ReviewerScore, ThemeLock
 from editors.tasks import approve_rereview, reject_rereview, send_mail
 from files.models import File
@@ -331,9 +330,7 @@ class ReviewFileForm(ReviewAddonForm):
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
-    form = {ReviewAddon: ReviewAddonForm,
-            ReviewFiles: ReviewFileForm}[helper.handler.__class__]
-    return form(data, helper=helper)
+    return ReviewAddonForm(data, helper=helper)
 
 
 class MOTDForm(happyforms.Form):

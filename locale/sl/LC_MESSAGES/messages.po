@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-12 08:26-0700\n"
-"PO-Revision-Date: 2015-08-18 08:00\n"
+"PO-Revision-Date: 2015-08-25 00:49\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -163,7 +163,7 @@ msgstr "Ni pregledan"
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
-msgstr "Izbrane"
+msgstr "Izbran"
 
 #: apps/addons/models.py:312
 msgid "Users have the option of contributing more or less than this amount."
@@ -187,12 +187,12 @@ msgstr "Na seznamu"
 #: apps/addons/views.py:313
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr "Popularno"
+msgstr "Priljubljeni"
 
 #: apps/addons/views.py:314 apps/browse/views.py:234 apps/browse/views.py:274
 #: apps/browse/views.py:473
 msgid "Recently Added"
-msgstr "Pred kratkim dodano"
+msgstr "Pred kratkim dodani"
 
 #: apps/addons/views.py:315 apps/bandwagon/views.py:91 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91

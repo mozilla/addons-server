@@ -9,7 +9,7 @@ from django.core.cache import cache
 from django.utils.http import http_date
 
 from cache_nuggets.lib import Message
-from mock import Mock, patch
+from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 from waffle.models import Switch
@@ -573,26 +573,3 @@ class TestDiffViewer(FilesBase, amo.tests.TestCase):
             str(self.files[0].id))
         eq_(doc('#id_right option[selected]').attr('value'),
             str(self.files[1].id))
-
-
-class TestBuilderPingback(amo.tests.TestCase):
-
-    def post(self, data):
-        return self.client.post(reverse('amo.builder-pingback'), data)
-
-    @patch('files.tasks.repackage_jetpack')
-    def test_success(self, repackage_jetpack):
-        repackage_jetpack.delay = Mock()
-        r = self.post({'result': '', 'msg': '', 'filename': '',
-                       'location': '', 'request': '',
-                       'secret': settings.BUILDER_SECRET_KEY})
-        assert repackage_jetpack.called
-        eq_(r.status_code, 200)
-
-    def test_bad_secret(self):
-        r = self.post({'secret': 1})
-        eq_(r.status_code, 400)
-
-    def test_bad_data(self):
-        r = self.post({'wut': 0})
-        eq_(r.status_code, 400)

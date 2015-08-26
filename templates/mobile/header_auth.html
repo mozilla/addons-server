@@ -4,12 +4,7 @@
     <li class="logout"><a href="{{ url('users.logout') }}">
       {{ _('Log out') }}</a></li>
   {% else %}
-    {% if waffle.switch('browserid-login') %}
-      <li class="login"><a href="{{ login_link() }}">
-        {{ loc('Log in / Register')  }}</a></li>
-    {% else %}
-      <li class="register"><a href="{{ url('users.register') }}">{{ _('Register') }}</a></li>
-      <li class="login"><a href="{{ login_link() }}">{{ _('Log in')  }}</a></li>
-    {% endif %}
+    <li class="register"><a href="{{ url('users.register') }}">{{ _('Register') }}</a></li>
+    <li class="login"><a href="{{ login_link() }}">{{ _('Log in')  }}</a></li>
   {% endif %}
 </ul>

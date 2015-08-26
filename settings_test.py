@@ -33,6 +33,22 @@ def _polite_tmpdir():
 # Make sure the app needed to test translations is present.
 INSTALLED_APPS += TEST_INSTALLED_APPS
 
+# Make sure our initialization code gets loaded before any other apps.
+#
+# Since ordinary runs currently load this module from `manage.py`, it would
+# be nice to load it from `conftest.py` in tests, for symmetry. Unfortunately,
+# the `conftest.py` does not reliably load early enough for our setup to have
+# any effect.
+#
+# In particular, pytest-django will load our settings module and initialize
+# django immediately well before our own `conftest.py` file is even collected,
+# if it already has a `DJANGO_SETTINGS_MODULE` environment variable or config
+# setting at that point. When using pytest-xdist to split the tests into
+# multiple, parallel processes, that variable is always set when worker
+# processes are forked, so those processes will always initialize django
+# before we would otherwise have a chance to configure it.
+INSTALLED_APPS = ('setup_olympia',) + INSTALLED_APPS
+
 # See settings.py for documentation:
 IN_TEST_SUITE = True
 MEDIA_ROOT = _polite_tmpdir()
@@ -66,6 +82,20 @@ MOBILE_SITE_URL = ''
 # COUNT() caching can't be invalidated, it just expires after x seconds. This
 # is just too annoying for tests, so disable it.
 CACHE_COUNT_TIMEOUT = -1
+
+# We don't want to share cache state between processes. Always use the local
+# memcache backend for tests.
+#
+# Note: Per settings.py, this module can cause deadlocks when running as a web
+# server. It's safe to use in tests, since we don't use threads, and there's
+# no opportunity for contention, but it shouldn't be used in the base settings
+# until we're sure the deadlock issues are fixed.
+CACHES = {
+    'default': {
+        'BACKEND': 'caching.backends.locmem.LocMemCache',
+        'LOCATION': 'olympia',
+    }
+}
 
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
