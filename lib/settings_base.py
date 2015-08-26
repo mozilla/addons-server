@@ -976,7 +976,8 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 
 
 # Celery
-BROKER_URL = 'amqp://olympia:olympia@localhost:5672/olympia'
+BROKER_URL = os.environ.get('BROKER_URL',
+                            'amqp://olympia:olympia@localhost:5672/olympia')
 BROKER_CONNECTION_TIMEOUT = 0.1
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
