@@ -1047,7 +1047,7 @@ msgstr "<strong>Warnung:</strong> Entwicklerversionen dieses Add-ons wurde nicht
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Die vollständige Versionsgeschichte des Entwicklerkanals ansehen"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3507,15 +3507,15 @@ msgstr "Stufe 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Stufe 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Stufe 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Stufe 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
