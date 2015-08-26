@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-12 21:49+0000\n"
+"PO-Revision-Date: 2015-08-26 22:08+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439416154.0\n"
+"X-POOTLE-MTIME: 1440626883.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1040,7 +1040,7 @@ msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste extra n
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Consulte o histórico completo do canal de desenvolvimento"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3481,15 +3481,15 @@ msgstr "Nível 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Nível 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Nível 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Nível 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
