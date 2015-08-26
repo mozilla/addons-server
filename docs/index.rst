@@ -41,13 +41,6 @@ prefix, eg::
 
     docker-compose run web py.test
 
-.. note:: If you wish to use the Makefile provided with the environment, you
-          should first set the `DOCKER_PREFIX` environment variable::
-
-              export DOCKER_PREFIX="docker-compose run --rm web"
-
-          The `make` command will then automatically add the prefix for you!
-
 Any time you update Olympia (e.g., running `git pull`), you should make sure to
 update your Docker image and database with any new requirements or migrations::
 
