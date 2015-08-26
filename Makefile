@@ -50,12 +50,15 @@ tdd:
 test_failed:
 	$(DOCKER_PREFIX) py.test --lf $(ARGS)
 
+HIGHEST_MIGRATION = $$(cd migrations; \
+		       ls | sort -rn | sed -n 's/^\([0-9]\+\).*/\1/p' | head -1)
+
 initialize_db:
 	$(DOCKER_PREFIX) python manage.py reset_db
 	$(DOCKER_PREFIX) python manage.py syncdb --noinput
 	$(DOCKER_PREFIX) python manage.py loaddata initial.json
 	$(DOCKER_PREFIX) python manage.py import_prod_versions
-	$(DOCKER_PREFIX) schematic --fake migrations/
+	$(DOCKER_PREFIX) schematic -u $(HIGHEST_MIGRATION) migrations
 	$(DOCKER_PREFIX) python manage.py createsuperuser
 	$(DOCKER_PREFIX) python manage.py loaddata zadmin/users
 
