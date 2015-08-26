@@ -17,7 +17,7 @@ from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from amo.tests import BaseTestCase, test_pre_setup, test_post_teardown
+from amo.tests import BaseTestCase
 from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
 from translations import widgets
 from translations.query import order_by_translation
@@ -443,14 +443,6 @@ class TranslationTestCase(BaseTestCase):
 
 class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
-
-    def _pre_setup(self):
-        super(TranslationMultiDbTests, self)._pre_setup()
-        test_pre_setup()
-
-    def _post_teardown(self):
-        test_post_teardown()
-        super(TranslationMultiDbTests, self)._post_teardown()
 
     def setUp(self):
         super(TranslationMultiDbTests, self).setUp()
