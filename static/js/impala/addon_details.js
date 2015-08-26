@@ -114,12 +114,31 @@ $(function () {
         var $moreEl = $('#more-webpage');
             url = $moreEl.attr('data-more-url');
         $.get(url, function(resp) {
+            var $document = $(document);
+            var scrollTop = $document.scrollTop();
+            var origHeight = $document.height();
+
+            // We need to correct scrolling position if the user scrolled down
+            // already (e.g. by using a link with anchor). This corection is
+            // only necessary if the scrolling position is below the element we
+            // replace or the user scrolled down to the bottom of the document.
+            var shouldCorrectScrolling = scrollTop > $moreEl.offset().top;
+            if (scrollTop && scrollTop >= origHeight - $(window).height())
+                shouldCorrectScrolling = true;
+
             var $newContent = $(resp);
             $moreEl.replaceWith($newContent);
             $newContent.find('.listing-grid h3').truncate( {dir: 'h'} );
             $newContent.find('.install').installButton();
             $newContent.find('.listing-grid').each(listing_grid);
             $('#reviews-link').addClass('scrollto').attr('href', '#reviews');
+
+            if (shouldCorrectScrolling) {
+                // User scrolled down already, adjust scrolling position so
+                // that the same content stays visible.
+                var heightDifference = $document.height() - origHeight;
+                $document.scrollTop(scrollTop + heightDifference);
+            }
         });
     }
 
