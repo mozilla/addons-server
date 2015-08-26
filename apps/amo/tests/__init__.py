@@ -270,51 +270,56 @@ def default_prefixer():
     amo.urlresolvers.set_url_prefix(prefixer)
 
 
+def test_pre_setup():
+    cache.clear()
+    # Override django-cache-machine caching.base.TIMEOUT because it's
+    # computed too early, before settings_test.py is imported.
+    caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+    translation.trans_real.deactivate()
+    # Django fails to clear this cache.
+    translation.trans_real._translations = {}
+    translation.trans_real.activate(settings.LANGUAGE_CODE)
+
+    # Make sure the "templates" list in a response is properly updated,
+    # even though we're using Jinja2 and not the default django template
+    # engine.
+    global JINJA_INSTRUMENTED
+    if not JINJA_INSTRUMENTED:
+        import jinja2
+        old_render = jinja2.Template.render
+
+        def instrumented_render(self, *args, **kwargs):
+            context = dict(*args, **kwargs)
+            test.signals.template_rendered.send(
+                sender=self, template=self, context=context)
+            return old_render(self, *args, **kwargs)
+
+        jinja2.Template.render = instrumented_render
+        JINJA_INSTRUMENTED = True
+
+    # Reset the prefixer.
+    default_prefixer()
+
+
+def test_post_teardown():
+    amo.set_user(None)
+    clean_translations(None)  # Make sure queued translations are removed.
+
+    # Make sure we revert everything we might have changed to prefixers.
+    amo.urlresolvers.clean_url_prefixes()
+
+
 class BaseTestCase(test.TestCase):
     """Base test case that each and every test cases should inherit from."""
 
     def _pre_setup(self):
         super(BaseTestCase, self)._pre_setup()
-
-        cache.clear()
-        # Override django-cache-machine caching.base.TIMEOUT because it's
-        # computed too early, before settings_test.py is imported.
-        caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
-
-        translation.trans_real.deactivate()
-        # Django fails to clear this cache.
-        translation.trans_real._translations = {}
-        translation.trans_real.activate(settings.LANGUAGE_CODE)
-
-        # Make sure the "templates" list in a response is properly updated,
-        # even though we're using Jinja2 and not the default django template
-        # engine.
-        global JINJA_INSTRUMENTED
-        if not JINJA_INSTRUMENTED:
-            import jinja2
-            old_render = jinja2.Template.render
-
-            def instrumented_render(self, *args, **kwargs):
-                context = dict(*args, **kwargs)
-                test.signals.template_rendered.send(
-                    sender=self, template=self, context=context)
-                return old_render(self, *args, **kwargs)
-
-            jinja2.Template.render = instrumented_render
-            JINJA_INSTRUMENTED = True
-
-        # Reset the prefixer.
-        default_prefixer()
-
+        test_pre_setup()
         self.client = self.client_class()
 
     def _post_teardown(self):
-        amo.set_user(None)
-        clean_translations(None)  # Make sure queued translations are removed.
-
-        # Make sure we revert everything we might have changed to prefixers.
-        amo.urlresolvers.clean_url_prefixes()
-
+        test_post_teardown()
         super(BaseTestCase, self)._post_teardown()
 
     def shortDescription(self):

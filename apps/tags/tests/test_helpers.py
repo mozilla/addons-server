@@ -1,5 +1,3 @@
-from django import test
-
 from jingo import env
 from mock import Mock
 from nose.tools import eq_
@@ -20,7 +18,7 @@ def render(s, context={}):
     return t.render(context)
 
 
-class TestHelpers(test.TestCase):
+class TestHelpers(amo.tests.BaseTestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'tags/tags')
 
