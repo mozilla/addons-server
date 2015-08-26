@@ -738,13 +738,10 @@ function bind_viewer(nodes) {
             });
             return k;
         };
-        this.toggle_wrap = function(state, quick) {
+        this.toggle_wrap = function(state) {
             /* Toggles the content wrap in the page, starts off wrapped */
             this.wrapped = (state == 'wrap' || !this.wrapped);
             $('code').toggleClass('unwrapped');
-            if (!quick) {
-                this.size_line_numbers($('#content-wrapper'), false);
-            }
         };
         this.toggle_files = function(action) {
             var collapse = null;
@@ -754,7 +751,6 @@ function bind_viewer(nodes) {
                 collapse = false;
 
             $('#file-viewer').toggleClass('collapsed-files', collapse);
-            this.size_line_numbers($('#content-wrapper'), false);
         };
         this.toggle_known = function(hide) {
             if (hide == null)
