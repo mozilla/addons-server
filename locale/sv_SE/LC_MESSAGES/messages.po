@@ -6278,7 +6278,7 @@ msgstr "Du begär för närvarande <b>bidrag</b> från användare"
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr "Din bidragssida: <a href=\"%(url)s\">%s (url_full)</a>"
+msgstr "Din bidragssida: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
