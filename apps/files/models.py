@@ -8,7 +8,6 @@ import unicodedata
 import uuid
 import zipfile
 
-import django.dispatch
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -30,10 +29,8 @@ from amo.storage_utils import copy_stored_file, move_stored_file
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, user_media_url
 from applications.models import AppVersion
-import devhub.signals
 from files.utils import SafeUnzip
 from tags.models import Tag
-from versions.compare import version_int as vint
 
 log = commonware.log.getLogger('z.files')
 
@@ -56,12 +53,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # The original hash of the file, before we sign it, or repackage it in
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
-    # TODO: delete this column
-    codereview = models.BooleanField(default=False)
     jetpack_version = models.CharField(max_length=10, null=True)
-    # The jetpack builder version, if applicable.
-    builder_version = models.CharField(max_length=10, null=True,
-                                       db_index=True)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES.items(),
                                               default=amo.STATUS_UNREVIEWED)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -163,7 +155,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             file_.jetpack_version = data['sdkVersion'][:10]
         if file_.jetpack_version:
             Tag(tag_text='jetpack').save_tag(addon)
-        file_.builder_version = data['builderVersion']
         file_.no_restart = parse_data.get('no_restart', False)
         file_.strict_compatibility = parse_data.get('strict_compatibility',
                                                     False)
@@ -213,7 +204,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @classmethod
     def get_jetpack_metadata(cls, path):
-        data = {'sdkVersion': None, 'builderVersion': None}
+        data = {'sdkVersion': None}
         try:
             zip_ = zipfile.ZipFile(path)
         except (zipfile.BadZipfile, IOError):
@@ -228,7 +219,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                          (path, exc))
             else:
                 data['sdkVersion'] = opts.get('sdkVersion')
-                data['builderVersion'] = opts.get('builderVersion')
         return data
 
     def generate_hash(self, filename=None):
@@ -687,17 +677,3 @@ def nfd_str(u):
     if isinstance(u, unicode):
         return unicodedata.normalize('NFD', u).encode('utf-8')
     return u
-
-
-@django.dispatch.receiver(devhub.signals.submission_done)
-def check_jetpack_version(sender, **kw):
-    import files.tasks
-    from files.utils import JetpackUpgrader
-
-    minver, maxver = JetpackUpgrader().jetpack_versions()
-    qs = File.objects.filter(version__addon=sender,
-                             jetpack_version__isnull=False)
-    ids = [f.id for f in qs
-           if vint(minver) <= vint(f.jetpack_version) < vint(maxver)]
-    if ids:
-        files.tasks.start_upgrade.delay(ids, priority='high')

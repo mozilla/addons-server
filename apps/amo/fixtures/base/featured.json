@@ -555,7 +555,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:f153612e10edab9f14267909f4aaa179ce368d47c128a1d3090d7bb4ff44c153",
             "created": "2010-01-14 11:39:41",
             "modified": "2010-01-14 11:40:45",
@@ -571,7 +570,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:63296bbbc92c47c53052459c14a4b60b77bb31e0b85ebab2e0e3e68c5afe3369",
             "created": "2010-01-12 20:50:21",
             "modified": "2010-01-13 08:21:42",
@@ -587,7 +585,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:a0de832991d6cd499373e6181e62e18989213a22b31e2febe01cd641ba6193cd",
             "created": "2009-12-24 18:30:11",
             "modified": "2009-12-24 18:31:24",
@@ -603,7 +600,6 @@
         "model": "files.file",
         "fields": {
             "status": 1,
-            "codereview": 0,
             "hash": "sha256:daa986b10ca0b72aabd1bfa07dbc2aa445a1bf1c887b74c883719348b074d6a7",
             "created": "2009-05-08 05:26:22",
             "modified": "2009-05-08 05:26:22",

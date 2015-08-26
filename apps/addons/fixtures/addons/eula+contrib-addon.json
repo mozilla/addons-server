@@ -102,7 +102,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:b2097453fca95fc7d7622164483902abf2e24e2cebdbb8a240e4b0ed05769f5a",
             "created": "2009-05-21 05:37:16",
             "modified": "2009-08-27 14:29:14",
@@ -131,7 +130,6 @@
         "model": "files.file",
         "fields": {
             "status": 4,
-            "codereview": 0,
             "hash": "sha256:b2097453fca95fc7d7622164483902abf2e24e2cebdbb8a240e4b0ed05769f5a",
             "created": "2008-05-21 05:37:16",
             "modified": "2008-08-27 14:29:14",

@@ -116,16 +116,6 @@ class TestFindJetpacks(amo.tests.TestCase):
         eq_(files[0].needs_upgrade, False)
         assert all(f.needs_upgrade for f in files[1:])
 
-    def test_ignore_non_builder_jetpacks(self):
-        File.objects.update(builder_version=None)
-        files = find_jetpacks('.1', '1.0', from_builder_only=True)
-        eq_(files, [])
-
-    def test_find_builder_jetpacks_only(self):
-        File.objects.update(builder_version='2.0.1')
-        files = find_jetpacks('.1', '1.0', from_builder_only=True)
-        eq_(files, [self.file])
-
 
 class TestPackageJSONExtractor(amo.tests.TestCase):
 
