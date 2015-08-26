@@ -22,6 +22,9 @@ get_indices = Reindexing.objects.get_indices
 
 def index_objects(ids, model, search, index=None, transforms=None,
                   objects=None):
+    if settings.ES_DISABLED:
+        return
+
     if index is None:
         index = model._get_index()
     if objects is None:
