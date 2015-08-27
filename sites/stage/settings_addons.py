@@ -34,8 +34,9 @@ SYSLOG_TAG2 = "http_app_addons_stage_timer"
 SYSLOG_CSP = "http_app_addons_stage_csp"
 
 # Signing
-SIGNING_SERVER = private_addons.SIGNING_SERVER
-PRELIMINARY_SIGNING_SERVER = private_addons.PRELIMINARY_SIGNING_SERVER
+# bug 1197226
+# SIGNING_SERVER = private_addons.SIGNING_SERVER
+# PRELIMINARY_SIGNING_SERVER = private_addons.PRELIMINARY_SIGNING_SERVER
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'

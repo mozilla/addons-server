@@ -426,7 +426,6 @@ class TestAnimatedImages(amo.tests.TestCase):
 
 
 def test_site_nav():
-    amo.tests.default_prefixer()
     r = Mock()
     r.APP = amo.FIREFOX
     assert 'id="site-nav"' in helpers.site_nav({'request': r})

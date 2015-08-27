@@ -1,4 +1,13 @@
+from django import http, test
+from django.conf import settings
+from django.core.cache import cache
+from django.utils import translation
+
+import caching
 import pytest
+
+import amo
+from translations.hold import clean_translations
 
 
 @pytest.fixture(autouse=True)
@@ -44,3 +53,54 @@ def prefix_indexes(config):
 
 def pytest_configure(config):
     prefix_indexes(config)
+
+
+@pytest.fixture(autouse=True, scope='session')
+def instrument_jinja():
+    """Make sure the "templates" list in a response is properly updated, even
+    though we're using Jinja2 and not the default django template engine."""
+    import jinja2
+    old_render = jinja2.Template.render
+
+    def instrumented_render(self, *args, **kwargs):
+        context = dict(*args, **kwargs)
+        test.signals.template_rendered.send(
+            sender=self, template=self, context=context)
+        return old_render(self, *args, **kwargs)
+
+    jinja2.Template.render = instrumented_render
+
+
+def default_prefixer():
+    """Make sure each test starts with a default URL prefixer."""
+    request = http.HttpRequest()
+    request.META['SCRIPT_NAME'] = ''
+    prefixer = amo.urlresolvers.Prefixer(request)
+    prefixer.app = settings.DEFAULT_APP
+    prefixer.locale = settings.LANGUAGE_CODE
+    amo.urlresolvers.set_url_prefix(prefixer)
+
+
+@pytest.fixture(autouse=True)
+def test_pre_setup():
+    cache.clear()
+    # Override django-cache-machine caching.base.TIMEOUT because it's
+    # computed too early, before settings_test.py is imported.
+    caching.base.TIMEOUT = settings.CACHE_COUNT_TIMEOUT
+
+    translation.trans_real.deactivate()
+    # Django fails to clear this cache.
+    translation.trans_real._translations = {}
+    translation.trans_real.activate(settings.LANGUAGE_CODE)
+
+    # Reset the prefixer.
+    default_prefixer()
+
+
+@pytest.fixture(autouse=True)
+def test_post_teardown():
+    amo.set_user(None)
+    clean_translations(None)  # Make sure queued translations are removed.
+
+    # Make sure we revert everything we might have changed to prefixers.
+    amo.urlresolvers.clean_url_prefixes()
