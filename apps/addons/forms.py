@@ -37,15 +37,21 @@ from versions.models import Version
 log = commonware.log.getLogger('z.addons')
 
 
-def clean_name(name, instance=None):
+def clean_name(name, instance=None, addon_type=None):
     if not instance:
         log.debug('clean_name called without an instance: %s' % name)
 
-    # We don't enforce uniqueness for unlsited addons.
+    # We don't need to do anything to prevent an unlisted addon name from
+    # clashing with listed addons, because the `reverse_name_lookup` util below
+    # uses the Addon.objects manager, which filters out unlisted addons.
     if instance and not instance.is_listed:
         return name
 
-    id = reverse_name_lookup(name)
+    assert instance or addon_type
+    if not addon_type:
+        addon_type = instance.type
+
+    id = reverse_name_lookup(name, addon_type)
 
     # If we get an id and either there's no instance or the instance.id != id.
     if id and (not instance or id != instance.id):
@@ -410,7 +416,7 @@ class AddonForm(happyforms.ModelForm):
         exclude = ('status', )
 
     def clean_name(self):
-        return clean_name(self.cleaned_data['name'])
+        return clean_name(self.cleaned_data['name'], instance=self.instance)
 
     def save(self):
         desc = self.data.get('description')
@@ -453,7 +459,8 @@ class ThemeFormBase(AddonFormBase):
             }
 
     def clean_name(self):
-        return clean_name(self.cleaned_data['name'])
+        return clean_name(self.cleaned_data['name'],
+                          addon_type=amo.ADDON_PERSONA)
 
     def clean_slug(self):
         return clean_slug(self.cleaned_data['slug'], self.instance)

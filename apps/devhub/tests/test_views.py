@@ -42,6 +42,11 @@ from users.models import UserProfile
 from versions.models import ApplicationsVersions, License, Version
 
 
+def get_addon_count(name):
+    """Return the number of addons with the given name."""
+    return Addon.unfiltered.filter(name__localized_string=name).count()
+
+
 class HubTest(amo.tests.TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
@@ -1262,12 +1267,31 @@ class TestSubmitStep3(TestSubmitBase):
         error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
-    def test_submit_unlisted_name_not_unique(self):
-        # Make sure name is accepted even if not unique for unlisted.
-        Addon.objects.get(pk=3615).update(is_listed=False)
-        data = self.get_dict(name='Cooliris', is_unlisted=True)
-        response = self.client.post(self.url, data)
+    def test_submit_name_unique_only_for_listed(self):
+        """A listed add-on can use the same name as unlisted add-ons."""
+        # Change the existing add-on with the 'Cooliris' name to be unlisted.
+        Addon.objects.get(name__localized_string='Cooliris').update(
+            is_listed=False)
+        assert get_addon_count('Cooliris') == 1
+        # It's allowed for the '3615' listed add-on to reuse the same name as
+        # the other 'Cooliris' unlisted add-on.
+        response = self.client.post(self.url, self.get_dict(name='Cooliris'))
         assert response.status_code == 302
+        assert get_addon_count('Cooliris') == 2
+
+    def test_submit_unlisted_name_not_unique(self):
+        """Unlisted add-ons names aren't unique."""
+        # Change the existing add-on with the 'Cooliris' name to be unlisted.
+        Addon.objects.get(name__localized_string='Cooliris').update(
+            is_listed=False)
+        # Change the '3615' add-on to be unlisted.
+        Addon.objects.get(pk=3615).update(is_listed=False)
+        assert get_addon_count('Cooliris') == 1
+        # It's allowed for the '3615' unlisted add-on to reuse the same name as
+        # the other 'Cooliris' unlisted add-on.
+        response = self.client.post(self.url, self.get_dict(name='Cooliris'))
+        assert response.status_code == 302
+        assert get_addon_count('Cooliris') == 2
 
     def test_submit_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
@@ -3007,6 +3031,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
         addon_factory(name='xpi name', is_listed=False)
+        assert get_addon_count('xpi name') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
@@ -3015,6 +3040,21 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
         assert 'new_addon_form' not in response.context
+        assert get_addon_count('xpi name') == 2
+
+    def test_name_not_unique_between_types(self):
+        """We don't enforce name uniqueness between add-ons types."""
+        addon_factory(name='xpi name', type=amo.ADDON_THEME)
+        assert get_addon_count('xpi name') == 1
+        # We're not passing `expected_errors=True`, so if there was any errors
+        # like "This name is already in use. Please choose another one", the
+        # test would fail.
+        response = self.post()
+        # Kind of redundant with the `self.post()` above: we just want to make
+        # really sure there's no errors raised by posting an add-on with a name
+        # that is already used by an unlisted add-on.
+        assert 'new_addon_form' not in response.context
+        assert get_addon_count('xpi name') == 2
 
     def test_success_listed(self):
         eq_(Addon.objects.count(), 0)
