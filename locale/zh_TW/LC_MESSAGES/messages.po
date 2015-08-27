@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-12 17:14+0000\n"
+"PO-Revision-Date: 2015-08-27 00:50+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439399665.0\n"
+"X-POOTLE-MTIME: 1440636645.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1016,7 +1016,7 @@ msgstr "<strong>警告:</strong> Mozilla 還沒有審查過這套附加元件的
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "檢視完整的開發頻道紀錄"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3419,39 +3419,39 @@ msgstr "已還原附加元件審查管理"
 
 #: apps/constants/base.py:527
 msgid "Level 1"
-msgstr "第1級"
+msgstr "第 1 級"
 
 #: apps/constants/base.py:528
 msgid "Level 2"
-msgstr "第2級"
+msgstr "第 2 級"
 
 #: apps/constants/base.py:529
 msgid "Level 3"
-msgstr "第3級"
+msgstr "第 3 級"
 
 #: apps/constants/base.py:530
 msgid "Level 4"
-msgstr "第4級"
+msgstr "第 4 級"
 
 #: apps/constants/base.py:531
 msgid "Level 5"
-msgstr "第5級"
+msgstr "第 5 級"
 
 #: apps/constants/base.py:532
 msgid "Level 6"
-msgstr "第6級"
+msgstr "第 6 級"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "第 7 級"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "第 8 級"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "第 9 級"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
