@@ -11,9 +11,13 @@ log = commonware.log.getLogger('z.redis')
 rnlog = logging.getLogger('z.rn')
 
 
-def reverse_name_lookup(key):
+def reverse_name_lookup(key, addon_type):
     from addons.models import Addon
-    qs = Addon.objects.filter(name__localized_string=key).no_cache()
+    # This uses the Addon.objects manager, which filters out unlisted addons,
+    # on purpose. We don't want to enforce name uniqueness between listed and
+    # unlisted addons.
+    qs = Addon.objects.filter(name__localized_string=key,
+                              type=addon_type).no_cache()
     values = list(qs.distinct().values_list('id', flat=True))
     if values:
         if len(values) > 1:
