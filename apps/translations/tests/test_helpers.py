@@ -117,7 +117,7 @@ def test_l10n_menu():
     # Use the remove_locale_url taken from the addon in the context.
     menu = helpers.l10n_menu({'addon': Addon()},
                              remove_locale_url='some/url/')
-    assert 'data-rm-locale="/developers/addon/None/rmlocale"' in menu, menu
+    assert 'data-rm-locale="/en-US/developers/addon/None/rmlocale"' in menu
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
