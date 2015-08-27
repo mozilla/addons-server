@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 03:50\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2015-08-27 09:44\n"
+"Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -8156,7 +8156,7 @@ msgstr "Konfigurera bidrag"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Steg 2. Priser och tillgänglighet"
 
 #: apps/devhub/templates/devhub/payments/tier.html:18
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
@@ -8235,7 +8235,7 @@ msgstr "Aktiva bidragsgivare"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"setup-cancel\" href=\"#\">Avbryt</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
@@ -8487,6 +8487,8 @@ msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
+"Ge mer information om ditt tema genom att <a href=\"%(edit_url)s\">redigera "
+"dess listning</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid ""
@@ -11553,7 +11555,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Hur lång tid tar det innan mitt tillägg granskas?"
 
 #: apps/pages/templates/pages/dev_faq.html:421
 msgid ""
@@ -11564,7 +11566,7 @@ msgstr ""
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:428
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "antalet inskickade tillägg"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:430
@@ -11609,7 +11611,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:465
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Hur skickar jag in en uppdatering för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid ""
@@ -11620,7 +11622,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Behöver min uppdatering granskas av redigerare?"
 
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid ""
@@ -13231,7 +13233,7 @@ msgstr "Användarspråk efter datum"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Plattformsanvändning efter datum"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -13474,7 +13476,7 @@ msgstr ""
 
 #: apps/users/forms.py:312
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Detta visningsnamn kan inte användas."
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
@@ -13731,7 +13733,7 @@ msgstr ""
 
 #: apps/users/views.py:641
 msgid "User reported."
-msgstr ""
+msgstr "Användare rapporterad."
 
 #: apps/users/widgets.py:37
 msgid "new"
@@ -13760,16 +13762,20 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"Genom att klicka på \"ta bort\" kommer ditt konto att <strong>tas bort "
+"permanent</strong>. Det innebär:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Du kommer inte att kunna logga in på %(site)s längre."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Dina recensioner och betyg tas inte bort, men de kommer inte längre att vara"
+" associerade med dig."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
