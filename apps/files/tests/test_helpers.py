@@ -130,7 +130,19 @@ class TestFileHelper(amo.tests.TestCase):
         files = self.viewer.get_files()
         url = reverse('files.list', args=[self.viewer.file.id,
                                           'file', 'install.js'])
-        assert files['install.js']['url'].endswith(url)
+        file_url = files['install.js']['url']
+        assert file_url == url
+        assert file_url.startswith('/en-US')
+
+        # Make sure that the locale is properly used (see bug 1168794).
+        with self.activate('fr'):
+            self.viewer._files = {}  # Reset the viewer's internal cache.
+            files = self.viewer.get_files()
+            url = reverse('files.list', args=[self.viewer.file.id,
+                                              'file', 'install.js'])
+            file_url = files['install.js']['url']
+            assert file_url == url
+            assert file_url.startswith('/fr')
 
     def test_get_files_depth(self):
         self.viewer.extract()
