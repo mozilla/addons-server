@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 11:33\n"
+"PO-Revision-Date: 2015-08-27 12:47\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -14007,7 +14007,7 @@ msgstr "Jag har glömt mitt lösenord."
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Du är inloggad som <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3
 #: apps/users/templates/users/newpw_sent.html:8
@@ -14044,7 +14044,7 @@ msgstr "Tilläggsutvecklare"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr ""
+msgstr "Temats upphovsman"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
@@ -14419,7 +14419,7 @@ msgstr "Versionshistorik med ändringsloggar"
 
 #: apps/versions/models.py:302
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Tillägget använder binära komponenter."
 
 #: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
@@ -14427,7 +14427,7 @@ msgstr ""
 
 #: apps/versions/models.py:682
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} och senare"
 
 #: apps/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
@@ -14440,11 +14440,11 @@ msgstr "Släppt den {0}"
 
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Källkoden släpptes under <a target=\"_blank\" href=\"%(url)s\">%s (namn)</a>"
 
 #: apps/versions/templates/versions/version.html:44
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Källkoden släpptes under <a href=\"%(url)s\">%s (namn)</a>"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
