@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 12:47\n"
+"PO-Revision-Date: 2015-08-27 13:39\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -13170,7 +13170,7 @@ msgstr "Ingen data tillgänglig."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Den här översikten är för tillfället <b>publik</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
@@ -13178,7 +13178,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Den här översikten är för tillfället <b>privat</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
