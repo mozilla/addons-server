@@ -711,7 +711,9 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        if self.request:
+            ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                       status)
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
@@ -741,7 +743,9 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        ReviewerScore.award_points(self.request.amo_user, self.addon, status)
+        if self.request:
+            ReviewerScore.award_points(self.request.amo_user, self.addon,
+                                       status)
 
     def process_preliminary(self, auto_validation=False):
         """Set an addon to preliminary."""
