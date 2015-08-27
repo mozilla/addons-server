@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 10:15\n"
+"PO-Revision-Date: 2015-08-27 11:33\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -13822,6 +13822,7 @@ msgstr "Mitt konto"
 #: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Hantera grundläggande kontoinformation, såsom användarnamn och e-postadress."
 
 #: apps/users/templates/users/edit.html:32
 #: apps/users/templates/users/register.html:48
@@ -13872,14 +13873,16 @@ msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Ge oss lite mer information om dig själv. Alla dessa fält är valfria, men de"
+" hjälper andra användare att lära känna dig bättre."
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Denna URL kommer endast att visas om du är en utvecklare."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Välj foto&hellip;"
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
@@ -13890,6 +13893,8 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Detta är standardspråket som används för att visa information om dig (som "
+"din beskrivning)."
 
 #: apps/users/templates/users/edit.html:138
 msgid ""
@@ -13901,7 +13906,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Tillåten HTML: {0}. Länkar är förbjudna."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -13909,7 +13914,7 @@ msgstr "Övrigt"
 
 #: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Bestäm dig vilka samlingar som ska visas i din profil."
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
@@ -14083,7 +14088,7 @@ msgstr "Rapportera användare"
 
 #: apps/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
-msgstr ""
+msgstr "Succé!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
