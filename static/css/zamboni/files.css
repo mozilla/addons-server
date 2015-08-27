@@ -395,8 +395,37 @@ a.selected > span {
     color: white;
 }
 
-div.diff-bar {
+.diff-bar {
     margin-left: -1px;
+}
+
+.diff-bar > a {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.diff-bar > .add,
+.diff-bar > .remove,
+.diff-bar > .error,
+.diff-bar > .warning,
+.diff-bar > .notice {
+    min-height: 3px;
+}
+
+.diff-bar > .add,
+.diff-bar > .remove {
+    z-index: 2;
+}
+.diff-bar > .error {
+    z-index: 5;
+}
+.diff-bar > .warning {
+    z-index: 3;
+}
+.diff-bar > .notice {
+    z-index: 3;
 }
 
 .waiting {
@@ -470,6 +499,7 @@ div.diff-bar {
     right: 0;
     min-height: 2px;
     border: 1px solid rgba(0, 0, 0, .4) !important;
+    z-index: 10;
 }
 
 #tooltip {

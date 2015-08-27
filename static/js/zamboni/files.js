@@ -435,8 +435,10 @@ function bind_viewer(nodes) {
                      * the DOM so that we don't force unnecessary reflows. */
                     var changes = [];
                     var flush = function($line, bottom) {
-                        var height = (bottom - $start.offset().top) * 100 / $gutter.height(),
-                            style = { 'height': Math.min(height, 100) + "%" };
+                        var top = ($start.offset().top - gutter_top) * 100 / gutter_height;
+                        var height = (bottom - $start.offset().top) * 100 / gutter_height,
+                            style = { 'height': Math.min(height, 100) + '%',
+                                      'top': top + '%'};
 
                         if ($prev && !$prev.attr('class')) {
                             style['border-top-width'] = '1px';
@@ -453,6 +455,8 @@ function bind_viewer(nodes) {
                         $start = $line;
                     };
 
+                    var gutter_top = $gutter.offset().top;
+                    var gutter_height = $gutter.height();
                     var $prev, $start = null;
                     $lines.each(function() {
                         var $line = $(this);
@@ -462,7 +466,7 @@ function bind_viewer(nodes) {
                             flush($line, $line.offset().top);
                         }
                     });
-                    flush(null, $gutter.offset().top + $gutter.height());
+                    flush(null, gutter_top + gutter_height);
 
                     $.each(changes, function(i, change) {
                         var $start = change[0], style = change[1];
@@ -792,12 +796,17 @@ function bind_viewer(nodes) {
             }
         };
         this.next_delta = function(forward) {
-            var classes = $("#diff").length ? 'add delete' : 'warning notice error',
-                $deltas = $(classes.split(/ /g)
-                                   .map(function(className) { return 'td.code .line.' + className; }).join(', ')),
-                $lines = $('td.code .line');
-            $lines.indexOf = Array.prototype.indexOf;
+            var $lines, $deltas;
 
+            if ($("#diff").length) {
+                $lines =  $('.td-line-code');
+                $deltas = $lines.filter('.add, .delete');
+            } else {
+                $lines = $('.td-line-number >.line');
+                $deltas = $lines.filter('.warning, .notice, .error');
+            }
+
+            $lines.indexOf = Array.prototype.indexOf;
             if (forward) {
                 var height = $(window).height();
                 for (var i = 0; i < $deltas.length; i++) {
