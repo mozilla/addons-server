@@ -598,6 +598,10 @@ div.diff-bar {
     margin: .5em 0;
 }
 
+#tab-stops {
+    max-width: 3em;
+}
+
 #toggle-known-container {
     margin-top: .3em;
 }

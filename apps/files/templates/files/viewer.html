@@ -18,6 +18,32 @@
      {% if automated_signing %}data-automated-signing="true"{% endif %}
      data-validation-failed="{{ _("Validation failed:") }}"></div>
 
+<script type="text/x-template" id="syntax-table">
+{% raw %}
+    <div class="syntaxhighlighter">
+       <table border="0" cellpadding="0" cellspacing="0">
+           <colgroup><col class="highlighter-column-line-numbers" style="width: {{ lines_width }}ex;"/>
+                     <col class="highlighter-column-code"/></colgroup>
+           <tbody>
+           {% _.each(lines, function(line) { %}
+               <tr class="tr-line">
+                   <td class="td-line-number">
+                       <a href="#{{ line.id }}" id="{{ line.id }}"
+                          class="{{ line.class }} original line line-number"
+                          data-linenumber="{{ line.number }}"></a>
+                   </td>
+                   <td class="{{ line.class }} td-line-code alt{{ line.number % 2 + 1}}"><span
+                           class="original line line-code"><%=
+                       line.code
+                   %></span></td>
+               </tr>
+           {% }) %}
+           </tbody>
+       </table>
+    </div>
+{% endraw %}
+</script>
+
 <h3>
   <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
   {% if file.platform != amo.PLATFORM_ALL.id %}({{ file.get_platform_display() }}){% endif %}
@@ -71,7 +97,7 @@
                 </div>
                 <div id="tab-stops-container">
                   <label class="control" for="tab-stops">{{ _('Tab stops:') }}</label>
-                  <input id="tab-stops" type="range" size="1" />
+                  <input id="tab-stops" type="number" size="1" />
                 </div>
 
                 <table id="commands">
