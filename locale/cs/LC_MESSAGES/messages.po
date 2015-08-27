@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 11:16+0000\n"
+"PO-Revision-Date: 2015-08-27 12:39+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440674214.0\n"
+"X-POOTLE-MTIME: 1440679146.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -3524,15 +3524,15 @@ msgstr "Úroveň 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Úroveň 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Úroveň 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Úroveň 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
