@@ -792,12 +792,17 @@ function bind_viewer(nodes) {
             }
         };
         this.next_delta = function(forward) {
-            var classes = $("#diff").length ? 'add delete' : 'warning notice error',
-                $deltas = $(classes.split(/ /g)
-                                   .map(function(className) { return 'td.code .line.' + className; }).join(', ')),
-                $lines = $('td.code .line');
-            $lines.indexOf = Array.prototype.indexOf;
+            var $lines, $deltas;
 
+            if ($("#diff").length) {
+                $lines =  $('.td-line-code');
+                $deltas = $lines.filter('.add, .delete');
+            } else {
+                $lines = $('.td-line-number >.line');
+                $deltas = $lines.filter('.warning, .notice, .error');
+            }
+
+            $lines.indexOf = Array.prototype.indexOf;
             if (forward) {
                 var height = $(window).height();
                 for (var i = 0; i < $deltas.length; i++) {
