@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-25 00:49\n"
+"PO-Revision-Date: 2015-08-27 02:42\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1445,7 +1445,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Glej celotno zgodovino razvojnega kanala"
 
 #: apps/addons/templates/addons/impala/details.html:315
 #: apps/addons/templates/addons/impala/details.html:324
@@ -4405,15 +4405,15 @@ msgstr "Raven 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Raven 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Raven 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Raven 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
@@ -14381,7 +14381,7 @@ msgstr "Gesli se nista ujemali."
 
 #: apps/users/forms.py:344 apps/users/templates/users/edit.html:114
 msgid "Profile Photo"
-msgstr "Foto za profil"
+msgstr "Slika za profil"
 
 #: apps/users/forms.py:352 apps/users/templates/users/edit.html:128
 msgid "Default locale"
@@ -14459,12 +14459,12 @@ msgstr "moj na osnovi sdk zgrajen dodatek je uspešno nadgrajen"
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr "nekdo piše recenzijo za moj dodatek"
+msgstr "nekdo napiše recenzijo mojega dodatka"
 
 # 86%
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "nekdo piše recenzijo za mojo aplikacijo"
+msgstr "nekdo napiše recenzijo moje aplikacije"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -14547,7 +14547,7 @@ msgstr "Profil izbrisan"
 
 #: apps/users/views.py:165
 msgid "Photo Deleted"
-msgstr "Fotografija izbrisana"
+msgstr "Slika izbrisana"
 
 #: apps/users/views.py:184 apps/users/views.py:291
 msgid "Profile Updated"
@@ -14711,11 +14711,11 @@ msgstr "Izbriši moj uporabniški račun zdaj"
 #: apps/users/templates/users/delete_photo.html:3
 #: apps/users/templates/users/delete_photo.html:9
 msgid "Delete User Photo"
-msgstr "Izbriši foto uporabnika"
+msgstr "Izbriši sliko uporabnika"
 
 #: apps/users/templates/users/delete_photo.html:14
 msgid "Delete my user picture now"
-msgstr "Izbriši moj foto uporabnika sedaj"
+msgstr "Izbriši sliko mojega računa zdaj"
 
 #: apps/users/templates/users/edit.html:24
 #: apps/users/templates/users/includes/navigation.html:12
@@ -14787,11 +14787,11 @@ msgstr "Ta URL bo viden samo, če ste razvijalec."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
-msgstr "Izberite fotografijo&hellip;"
+msgstr "Izberite sliko &hellip;"
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
-msgstr "Izbriši trenutni foto"
+msgstr "Izbriši trenutno sliko"
 
 #: apps/users/templates/users/edit.html:130
 msgid ""
