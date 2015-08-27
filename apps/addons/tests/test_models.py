@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import itertools
+import json
 import os
 import time
 from datetime import datetime, timedelta
@@ -2147,6 +2148,23 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform], is_listed=False)
         assert not addon.is_listed
 
+    def test_validation_completes(self):
+        upload = self.get_upload('extension.xpi')
+        assert not upload.validation_timeout
+        addon = Addon.from_upload(upload, [self.platform])
+        assert not addon.admin_review
+
+    def test_validation_timeout(self):
+        upload = self.get_upload('extension.xpi')
+        validation = json.loads(upload.validation)
+        timeout_message = {
+            'id': ['validator', 'unexpected_exception', 'validation_timeout'],
+        }
+        validation['messages'] = [timeout_message] + validation['messages']
+        upload.validation = json.dumps(validation)
+        assert upload.validation_timeout
+        addon = Addon.from_upload(upload, [self.platform])
+        assert addon.admin_review
 
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 

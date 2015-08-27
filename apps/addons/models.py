@@ -529,6 +529,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
+        if upload.validation_timeout:
+            addon.admin_review = True
         addon.save()
         Version.from_upload(upload, addon, platforms, source=source)
 

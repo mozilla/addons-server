@@ -512,6 +512,7 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
 
     def _clean_upload(self):
         if not (self.cleaned_data['upload'].valid or
+                self.cleaned_data['upload'].validation_timeout or
                 self.cleaned_data['admin_override_validation'] and
                 acl.action_allowed(self.request, 'ReviewerAdminTools',
                                    'View')):
