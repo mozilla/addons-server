@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-19 07:49+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-08-27 11:16+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439970542.0\n"
+"X-POOTLE-MTIME: 1440674214.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -4803,7 +4803,7 @@ msgstr "Pokračovat"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr "Smazat doplněk"
+msgstr "Smazat tento doplněk."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -5500,8 +5500,11 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně (každé tři měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké zaměření doplňku, neoptimální provedení, špatnou "
-"kvalitu či bezpečnostní problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
+"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně "
+"(každé 3 měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké "
+"zaměření doplňku, neoptimální provedení, špatnou kvalitu či bezpečnostní "
+"problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. "
+"Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -5774,8 +5777,10 @@ msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
-"Předběžné kontroly jsou vhodné pro experimentální doplňky a poskytují způsob, jak získat zpětnou vazbu od uživatelů bez toho, aby doplněk procházel delším a podrobnějším procesem kontroly. Snažíme "
-"se, aby tyto kontroly byly do tří dní."
+"Předběžné kontroly jsou vhodné pro experimentální doplňky a poskytují "
+"způsob, jak získat zpětnou vazbu od uživatelů bez toho, aby doplněk "
+"procházel delším a podrobnějším procesem kontroly. Snažíme se, aby tyto "
+"kontroly byly do 3 dnů."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -6644,7 +6649,7 @@ msgstr "3000 &times; 200 pixelů"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr "max 300 kB"
+msgstr "max 300 KB"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
@@ -9451,7 +9456,10 @@ msgstr "Jak přidám aktualizaci mého doplňku?"
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Aktualizaci svého doplňku můžete přidat na nástěnce nástrojů pro vývojáře, kde zvolíte volbu \"Nahrát novou verzi\"  a nahrajete nový .xpi soubor s vaším doplňkem."
+msgstr ""
+"Aktualizaci svého doplňku můžete přidat na nástěnce nástrojů pro vývojáře, "
+"kde zvolíte volbu \"Nahrát novou verzi\" a nahrajete nový .xpi soubor s vaším "
+"doplňkem."
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
@@ -10898,7 +10906,7 @@ msgstr "Tato nástěnka je aktuálně <b>soukromá</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
-msgstr "Změnit nastavení"
+msgstr "Změnit nastavení."
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
@@ -11156,7 +11164,9 @@ msgstr "Zaměstnání"
 
 #: apps/users/forms.py:296
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Tato adresa nemá platný formát. Platné adresy mají tvar http://moje.domena.cz/moje-stranka/."
+msgstr ""
+"Tato URL adresa nemá platný formát. Platné adresy mají tvar "
+"http://moje.domena.cz/moje-stranka/."
 
 #: apps/users/forms.py:304
 msgid "Please use an email address from a different provider to complete your registration."
