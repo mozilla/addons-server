@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-13 17:47+0000\n"
-"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-08-27 15:34+0000\n"
+"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439488047.0\n"
+"X-POOTLE-MTIME: 1440689640.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1053,7 +1053,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Visualizza la cronologia completa del canale di sviluppo"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3514,15 +3514,15 @@ msgstr "Livello 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Livello 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Livello 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Livello 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
