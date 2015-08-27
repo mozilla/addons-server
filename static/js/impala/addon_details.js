@@ -119,12 +119,13 @@ $(function () {
             var origHeight = $document.height();
 
             // We need to correct scrolling position if the user scrolled down
-            // already (e.g. by using a link with anchor). This corection is
+            // already (e.g. by using a link with anchor). This correction is
             // only necessary if the scrolling position is below the element we
             // replace or the user scrolled down to the bottom of the document.
             var shouldCorrectScrolling = scrollTop > $moreEl.offset().top;
-            if (scrollTop && scrollTop >= origHeight - $(window).height())
+            if (scrollTop && scrollTop >= origHeight - $(window).height()) {
                 shouldCorrectScrolling = true;
+            }
 
             var $newContent = $(resp);
             $moreEl.replaceWith($newContent);
