@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 09:44\n"
+"PO-Revision-Date: 2015-08-27 10:15\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -13680,6 +13680,7 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Vi beklagar, men du har inte rätt att begära en t-shirt för tillfället."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
@@ -13698,6 +13699,8 @@ msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
+"En länk för att aktivera ditt användarkonto skickades via e-post till din "
+"adress {0}. Du måste klicka på den innan du kan logga in."
 
 #: apps/users/views.py:429
 msgid ""
@@ -13706,6 +13709,10 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
+"Om du inte har fått en e-postbekräftelse, se till att din e-posttjänst inte "
+"markerat den som \"skräppost\" eller \"spam\". Om du behöver, kan vi <a "
+"href=\"%s\">skicka bekräftelsemeddelandet igen</a> till din e-postadress som"
+" nämns ovan."
 
 #: apps/users/views.py:434
 msgid "Activation Email Sent"
@@ -13725,11 +13732,11 @@ msgstr "Grattis! Ditt konto skapades."
 
 #: apps/users/views.py:625
 msgid "There are errors in this form"
-msgstr ""
+msgstr "Det finns fel i detta formulär"
 
 #: apps/users/views.py:626
 msgid "Please correct them and resubmit."
-msgstr ""
+msgstr "Vänligen rätta till dem och skicka in igen."
 
 #: apps/users/views.py:641
 msgid "User reported."
