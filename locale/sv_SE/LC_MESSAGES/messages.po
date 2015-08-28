@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 03:50\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2015-08-27 16:12\n"
+"Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -8156,7 +8156,7 @@ msgstr "Konfigurera bidrag"
 
 #: apps/devhub/templates/devhub/payments/tier.html:13
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Steg 2. Priser och tillgänglighet"
 
 #: apps/devhub/templates/devhub/payments/tier.html:18
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
@@ -8235,7 +8235,7 @@ msgstr "Aktiva bidragsgivare"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"setup-cancel\" href=\"#\">Avbryt</a>"
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
@@ -8487,6 +8487,8 @@ msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
+"Ge mer information om ditt tema genom att <a href=\"%(edit_url)s\">redigera "
+"dess listning</a>."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:25
 msgid ""
@@ -11553,7 +11555,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Hur lång tid tar det innan mitt tillägg granskas?"
 
 #: apps/pages/templates/pages/dev_faq.html:421
 msgid ""
@@ -11564,7 +11566,7 @@ msgstr ""
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:428
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "antalet inskickade tillägg"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:430
@@ -11609,7 +11611,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:465
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Hur skickar jag in en uppdatering för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid ""
@@ -11620,7 +11622,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Behöver min uppdatering granskas av redigerare?"
 
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid ""
@@ -13062,11 +13064,11 @@ msgstr "Samlingar skapade"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
-msgstr ""
+msgstr "Skrivna recensioner"
 
 #: apps/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
-msgstr ""
+msgstr "Användarregistreringar"
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
@@ -13168,7 +13170,7 @@ msgstr "Ingen data tillgänglig."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Den här översikten är för tillfället <b>publik</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
@@ -13176,7 +13178,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Den här översikten är för tillfället <b>privat</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
@@ -13231,7 +13233,7 @@ msgstr "Användarspråk efter datum"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Plattformsanvändning efter datum"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -13474,7 +13476,7 @@ msgstr ""
 
 #: apps/users/forms.py:312
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Detta visningsnamn kan inte användas."
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
@@ -13678,6 +13680,7 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Vi beklagar, men du har inte rätt att begära en t-shirt för tillfället."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
@@ -13696,6 +13699,8 @@ msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
+"En länk för att aktivera ditt användarkonto skickades via e-post till din "
+"adress {0}. Du måste klicka på den innan du kan logga in."
 
 #: apps/users/views.py:429
 msgid ""
@@ -13704,6 +13709,10 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
+"Om du inte har fått en e-postbekräftelse, se till att din e-posttjänst inte "
+"markerat den som \"skräppost\" eller \"spam\". Om du behöver, kan vi <a "
+"href=\"%s\">skicka bekräftelsemeddelandet igen</a> till din e-postadress som"
+" nämns ovan."
 
 #: apps/users/views.py:434
 msgid "Activation Email Sent"
@@ -13723,15 +13732,15 @@ msgstr "Grattis! Ditt konto skapades."
 
 #: apps/users/views.py:625
 msgid "There are errors in this form"
-msgstr ""
+msgstr "Det finns fel i detta formulär"
 
 #: apps/users/views.py:626
 msgid "Please correct them and resubmit."
-msgstr ""
+msgstr "Vänligen rätta till dem och skicka in igen."
 
 #: apps/users/views.py:641
 msgid "User reported."
-msgstr ""
+msgstr "Användare rapporterad."
 
 #: apps/users/widgets.py:37
 msgid "new"
@@ -13760,16 +13769,20 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"Genom att klicka på \"ta bort\" kommer ditt konto att <strong>tas bort "
+"permanent</strong>. Det innebär:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Du kommer inte att kunna logga in på %(site)s längre."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Dina recensioner och betyg tas inte bort, men de kommer inte längre att vara"
+" associerade med dig."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -13809,6 +13822,7 @@ msgstr "Mitt konto"
 #: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Hantera grundläggande kontoinformation, såsom användarnamn och e-postadress."
 
 #: apps/users/templates/users/edit.html:32
 #: apps/users/templates/users/register.html:48
@@ -13859,14 +13873,16 @@ msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Ge oss lite mer information om dig själv. Alla dessa fält är valfria, men de"
+" hjälper andra användare att lära känna dig bättre."
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Denna URL kommer endast att visas om du är en utvecklare."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Välj foto&hellip;"
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
@@ -13877,6 +13893,8 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Detta är standardspråket som används för att visa information om dig (som "
+"din beskrivning)."
 
 #: apps/users/templates/users/edit.html:138
 msgid ""
@@ -13888,7 +13906,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Tillåten HTML: {0}. Länkar är förbjudna."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -13896,7 +13914,7 @@ msgstr "Övrigt"
 
 #: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Bestäm dig vilka samlingar som ska visas i din profil."
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
@@ -13989,7 +14007,7 @@ msgstr "Jag har glömt mitt lösenord."
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Du är inloggad som <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3
 #: apps/users/templates/users/newpw_sent.html:8
@@ -14026,7 +14044,7 @@ msgstr "Tilläggsutvecklare"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr ""
+msgstr "Temats upphovsman"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
@@ -14070,7 +14088,7 @@ msgstr "Rapportera användare"
 
 #: apps/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
-msgstr ""
+msgstr "Succé!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
@@ -14401,7 +14419,7 @@ msgstr "Versionshistorik med ändringsloggar"
 
 #: apps/versions/models.py:302
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Tillägget använder binära komponenter."
 
 #: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
@@ -14409,7 +14427,7 @@ msgstr ""
 
 #: apps/versions/models.py:682
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} och senare"
 
 #: apps/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
@@ -14422,11 +14440,11 @@ msgstr "Släppt den {0}"
 
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Källkoden släpptes under <a target=\"_blank\" href=\"%(url)s\">%s (namn)</a>"
 
 #: apps/versions/templates/versions/version.html:44
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Källkoden släpptes under <a href=\"%(url)s\">%s (namn)</a>"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
