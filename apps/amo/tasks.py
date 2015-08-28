@@ -5,11 +5,11 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import commonware.log
 import phpserialize
-from celeryutils import task
 from hera.contrib.django_utils import flush_urls
 
 import amo
 from addons.models import Addon
+from amo.celery import task
 from amo.utils import get_email_backend
 from bandwagon.models import Collection
 from devhub.models import ActivityLog

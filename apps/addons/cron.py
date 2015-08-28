@@ -15,10 +15,10 @@ import cronjobs
 import multidb
 from lib import recommend
 from celery.task.sets import TaskSet
-from celeryutils import task
 import waffle
 
 import amo
+from amo.celery import task
 from amo.decorators import write
 from amo.utils import chunked, walkfiles
 from addons.models import Addon, AppSupport, FrozenAddon, Persona

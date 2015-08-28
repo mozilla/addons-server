@@ -18,11 +18,11 @@ from django.template import Context, Template
 from django.utils import translation
 
 import requests
-from celeryutils import task
 
 import amo
 from addons.models import Addon, AddonUser
 from amo import set_user
+from amo.celery import task
 from amo.decorators import write
 from amo.helpers import absolutify
 from amo.urlresolvers import reverse

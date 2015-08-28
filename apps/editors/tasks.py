@@ -4,11 +4,11 @@ from django.conf import settings
 from django.utils.translation import override
 
 import commonware.log
-from celeryutils import task
 from tower import ugettext as _
 
 import constants.editors as rvw
 from addons.tasks import create_persona_preview_images
+from amo.celery import task
 from amo.decorators import write
 from amo.helpers import user_media_path
 from amo.storage_utils import copy_stored_file, move_stored_file

@@ -8,6 +8,8 @@ import sys
 import warnings
 
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
 prev_sys_path = list(sys.path)
@@ -37,6 +39,9 @@ trans_log = logging.getLogger('z.trans')
 # anything else imports waffle.
 import amo  # noqa
 
+# This is required by the `celery` command.
+from amo.celery import app as celery_app  # noqa
+
 # Hardcore monkeypatching action.
 import jingo.monkey  # noqa
 jingo.monkey.patch()
@@ -50,9 +55,6 @@ def new(self, arg):
         return ''
 
 Markup.__mod__ = new
-
-import djcelery  # noqa
-djcelery.setup_loader()
 
 # Import for side-effect: configures our logging handlers.
 # pylint: disable-msg=W0611
@@ -70,3 +72,13 @@ if newrelic_ini:
     except Exception:
         startup_logger = logging.getLogger('z.startup')
         startup_logger.exception('Failed to load new relic config.')
+
+
+# If product details aren't present, get them.
+from product_details import product_details  # noqa
+if not product_details.last_update:
+    from django.core.management import call_command
+
+    print 'Product details missing, downloading...'
+    call_command('update_product_details')
+    product_details.__init__()  # reload the product details

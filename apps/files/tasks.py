@@ -3,8 +3,10 @@ import logging
 from django.conf import settings
 
 from cache_nuggets.lib import Message
-from celeryutils import task
 from tower import ugettext as _
+
+from amo.celery import task
+
 
 task_log = logging.getLogger('z.task')
 jp_log = logging.getLogger('z.jp.repack')
