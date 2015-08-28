@@ -3,7 +3,7 @@
     data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
     data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}"
     data-addon-is-listed="{% if addon.is_listed %}true{% else %}false{% endif %}"
-    data-addon-is-sideload="{% if not addon.is_listed and addon.status == amo.STATUS_PUBLIC %}true{% else %}false{% endif %}">
+    data-addon-is-sideload="{% if not addon.is_listed and addon.status in [amo.STATUS_PUBLIC, amo.STATUS_NOMINATED] %}true{% else %}false{% endif %}">
     <h3>{{ title }}</h3>
     <div class="upload-file-box">
       <p>
