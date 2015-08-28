@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-20 12:38+0000\n"
+"PO-Revision-Date: 2015-08-28 06:15+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440074294.0\n"
+"X-POOTLE-MTIME: 1440742539.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -764,8 +764,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Waarschuwing:</strong> Deze add-on is niet door Mozilla beoordeeld en kan niet in vrijgegeven versies van Firefox worden geïnstalleerd. Wees voorzichtig bij het installeren van software van "
-"derden die mogelijk schade aan uw computer kan toebrengen."
+"<strong>Waarschuwing:</strong> deze add-on is niet door Mozilla beoordeeld "
+"en kan niet in vrijgegeven versies van Firefox worden geïnstalleerd. Wees "
+"voorzichtig bij het installeren van software van derden die mogelijk schade "
+"aan uw computer kan toebrengen."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1041,11 +1043,14 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr "<strong>Waarschuwing:</strong> Ontwikkelversies van deze add-on zijn niet door Mozilla beoordeeld en kunnen niet op vrijgegeven versies van Firefox worden geïnstalleerd."
+msgstr ""
+"<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet "
+"door Mozilla beoordeeld en kunnen niet in vrijgegeven versies van Firefox "
+"worden geïnstalleerd."
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Volledige geschiedenis van ontwikkelingskanaal bekijken"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -3505,15 +3510,15 @@ msgstr "Niveau 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
@@ -6921,7 +6926,9 @@ msgstr "Door verwijdering van deze versie wordt verwijderd:"
 
 #: apps/devhub/templates/devhub/versions/list.html:226
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Belangrijk:</strong> Als een versie eenmaal is verwijderd, kunt u geen nieuwe versie met hetzelfde versienummer uploaden."
+msgstr ""
+"<strong>Belangrijk:</strong> als een versie eenmaal is verwijderd, kunt u "
+"geen nieuwe versie met hetzelfde versienummer uploaden."
 
 #: apps/devhub/templates/devhub/versions/list.html:231
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
