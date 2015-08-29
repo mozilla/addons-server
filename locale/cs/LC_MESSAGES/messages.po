@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 12:39+0000\n"
+"PO-Revision-Date: 2015-08-29 21:41+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440679146.0\n"
+"X-POOTLE-MTIME: 1440884462.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -7613,7 +7613,7 @@ msgstr "Schválit"
 
 #: apps/editors/helpers.py:479
 msgid "Grant full review"
-msgstr ""
+msgstr "Udělit plnou kontrolu"
 
 #: apps/editors/helpers.py:494
 msgid "Request more information"
@@ -11836,7 +11836,7 @@ msgstr "Město"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Stát/Provincie (je-li třeba)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
@@ -11844,7 +11844,7 @@ msgstr "Poštovní směrovací číslo (je-li nutné)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Země"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
