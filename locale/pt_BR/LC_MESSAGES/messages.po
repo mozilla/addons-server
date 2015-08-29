@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-12 20:35\n"
+"PO-Revision-Date: 2015-08-29 12:47\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1448,7 +1448,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Veja o histórico completo de desenvolvimento no canal"
 
 #: apps/addons/templates/addons/impala/details.html:315
 #: apps/addons/templates/addons/impala/details.html:324
@@ -4432,15 +4432,15 @@ msgstr "Nível 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Nível 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Nível 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Nível 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
