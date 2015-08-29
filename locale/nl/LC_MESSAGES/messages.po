@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-28 06:15+0000\n"
+"PO-Revision-Date: 2015-08-29 20:16+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440742539.0\n"
+"X-POOTLE-MTIME: 1440879368.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -3518,7 +3518,7 @@ msgstr "Niveau 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr "Niveau 9"
+msgstr "Niveau 9 "
 
 #: apps/constants/base.py:544
 msgid "Not signed"
