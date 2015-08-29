@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 16:12\n"
+"PO-Revision-Date: 2015-08-29 12:51\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -7824,6 +7824,8 @@ msgid ""
 "Terms of Service for submitting your work to our site. Developers are "
 "required to accept this agreement before submission."
 msgstr ""
+"Användarvillkor för att skicka in ditt arbete till vår webbplats. Utvecklare"
+" måste acceptera detta avtal innan inskickning."
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -7887,12 +7889,17 @@ msgid ""
 "our gallery. If you have any questions, please email marketplace-"
 "staff@mozilla.org."
 msgstr ""
+"Ditt tillägg har inaktiverats av administratör och visas inte längre i vårt "
+"galleri. Om du har några frågor, vänligen maila marketplace-"
+"staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:69
 msgid ""
 "Your add-on is displayed in our gallery as experimental and users are "
 "receiving automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"Ditt tillägg visas i vårt galleri på försök och användare får automatiska "
+"uppdateringar. Vissa funktioner är inte tillgängliga för ditt tillägg."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:73
 msgid "Your add-on has been signed."
@@ -7904,6 +7911,10 @@ msgid ""
 " add-on is displayed in our gallery as experimental and users are receiving "
 "automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"Du kommer att få ett mail när den fullständiga granskningen är klar. Fram "
+"till dess är ditt tillägg som visas i vårt galleri på försök och användare "
+"får automatiska uppdateringar. Vissa funktioner är inte tillgängliga för "
+"ditt tillägg."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:83
 msgid ""
@@ -7981,6 +7992,10 @@ msgid ""
 "requesting contributions, but can be useful for any developer interested in "
 "connecting with users."
 msgstr ""
+"Din utvecklarprofil informerar användarna om dig, varför du gjorde detta "
+"tillägg och vad som är nästa steg för tillägget. Denna profil krävs för "
+"tillägg som begär bidrag, men kan vara användbar för alla utvecklare som är "
+"intresserade av få kontakt med användare."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
@@ -7995,6 +8010,8 @@ msgid ""
 "Whether it was an idea while in line at the grocery store or the solution to"
 " one of life's great problems, share your story."
 msgstr ""
+"Om det var en idé som du fick i kön i mataffären eller lösningen på ett av "
+"livets stora problem, dela din berättelse."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:61
 msgid ""
@@ -8018,15 +8035,15 @@ msgstr "Kompatibilitetsrapporter"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:45
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} misslyckade rapporter"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} godkända rapporter"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
-msgstr "Utvecklar nyheter "
+msgstr "Utvecklarnyheter"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
@@ -8037,6 +8054,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
 msgstr ""
+"Välj en licens lämplig för de rättigheter du beviljar på din källkod. Det är"
+" endast relevant för listade tillägg."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -8056,8 +8075,8 @@ msgstr "Ta bort denna applikation"
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Välj <b>upp till {0}</b> {1} kategori för detta tillägg:"
+msgstr[1] "Välj <b>upp till {0}</b> {1} kategorier för detta tillägg:"
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""

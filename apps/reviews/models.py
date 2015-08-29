@@ -6,11 +6,11 @@ from django.db import models
 
 import bleach
 import caching.base as caching
-from celeryutils import task
 from tower import ugettext_lazy as _
 
 import amo.models
 from amo import helpers
+from amo.celery import task
 from translations.fields import save_signal, TranslatedField
 from users.models import UserProfile
 

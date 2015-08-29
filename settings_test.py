@@ -33,22 +33,6 @@ def _polite_tmpdir():
 # Make sure the app needed to test translations is present.
 INSTALLED_APPS += TEST_INSTALLED_APPS
 
-# Make sure our initialization code gets loaded before any other apps.
-#
-# Since ordinary runs currently load this module from `manage.py`, it would
-# be nice to load it from `conftest.py` in tests, for symmetry. Unfortunately,
-# the `conftest.py` does not reliably load early enough for our setup to have
-# any effect.
-#
-# In particular, pytest-django will load our settings module and initialize
-# django immediately well before our own `conftest.py` file is even collected,
-# if it already has a `DJANGO_SETTINGS_MODULE` environment variable or config
-# setting at that point. When using pytest-xdist to split the tests into
-# multiple, parallel processes, that variable is always set when worker
-# processes are forked, so those processes will always initialize django
-# before we would otherwise have a chance to configure it.
-INSTALLED_APPS = ('setup_olympia',) + INSTALLED_APPS
-
 # See settings.py for documentation:
 IN_TEST_SUITE = True
 MEDIA_ROOT = _polite_tmpdir()

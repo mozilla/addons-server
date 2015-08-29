@@ -4,9 +4,8 @@ import math
 from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
-from celeryutils import task
-
 import amo
+from amo.celery import task
 from amo.decorators import set_modified_on
 from amo.helpers import user_media_path
 from amo.utils import attach_trans_dict, resize_image

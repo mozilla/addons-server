@@ -7,11 +7,11 @@ import zipfile
 from django.conf import settings
 from django.db.models import Q
 
-from celeryutils import task
 from lxml import etree
 
 import amo
 from addons.models import AddonUser
+from amo.celery import task
 from lib.crypto.packaged import sign_file
 from versions.compare import version_int
 from versions.models import Version

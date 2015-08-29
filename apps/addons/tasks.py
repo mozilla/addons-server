@@ -6,12 +6,12 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
-from celeryutils import task
 from PIL import Image
 
+import amo
 from addons.models import AppSupport, Persona
 from editors.models import RereviewQueueTheme
-import amo
+from amo.celery import task
 from amo.decorators import set_modified_on, write
 from amo.helpers import user_media_path
 from amo.storage_utils import rm_stored_dir

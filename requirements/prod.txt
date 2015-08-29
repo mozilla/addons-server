@@ -1,15 +1,15 @@
 -r compiled.txt
 amo-validator==1.8.5
-amqp==1.0.13
+amqp==1.4.6
 anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
 basket-client==0.3.7
-billiard==2.7.3.34
+billiard==3.3.0.20
 bleach==1.4
 boto==2.20.0
 cef==0.5
-celery==3.0.24
+celery==3.1.18
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==2.1.1
@@ -20,7 +20,6 @@ dennis==0.4.2
 Django==1.6.11
 dj-database-url==0.2.2
 django-cache-nuggets==0.1.1
-django-celery==3.0.23
 django-cronjobs==0.2.3
 django_csp==2.0.3
 django-extensions==1.2.5
@@ -48,7 +47,7 @@ html5lib==0.999
 httplib2==0.8.0
 importlib-no-failure==1.0.2
 jingo==0.7
-kombu==2.5.16
+kombu==3.0.26
 heka-py==0.30.3
 heka-py-cef==0.3.1
 heka-py-raven==0.6

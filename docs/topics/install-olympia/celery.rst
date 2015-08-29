@@ -52,7 +52,7 @@ Then run the following commands: ::
 
 Back in safe and happy django-land you should be able to run: ::
 
-  ./manage.py celeryd $OPTIONS
+  celery -A olympia worker -E
 
 Celery understands python and any tasks that you have defined in your app are
 now runnable asynchronously.
@@ -76,7 +76,7 @@ that it happens.  We can define it like so: ::
               task_log.debug("Missing addon: %d" % pk)
 
 ``@task`` is a decorator for Celery to find our tasks.  We can specify a
-``rate_limit`` like ``2/m`` which means ``celeryd`` will only run this command
+``rate_limit`` like ``2/m`` which means ``celery`` will only run this command
 2 times a minute at most.  This keeps write-heavy tasks from killing your
 database.
 
@@ -129,7 +129,7 @@ rate, and your data will be updated ... eventually.
 During Development
 ------------------
 
-``celeryd`` only knows about code as it was defined at instantiation time.  If
+``celery`` only knows about code as it was defined at instantiation time.  If
 you change your ``@task`` function, you'll need to ``HUP`` the process.
 
 However, if you've got the ``@task`` running perfectly you can tweak all the

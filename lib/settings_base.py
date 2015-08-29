@@ -260,7 +260,6 @@ TEMPLATE_LOADERS = (
 # apps that don't use Jinja2. The Following is a list of prefixes for jingo to
 # ignore.
 JINGO_EXCLUDE_APPS = (
-    'djcelery',
     'django_extensions',
     'admin',
     'toolbar_statsd',
@@ -363,8 +362,9 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'lib.urls_base'
 
 INSTALLED_APPS = (
-    # Import ordering issues ahoy.
-    'djcelery',
+    # This the path management and monkey-patching required to load the rest,
+    # so it must come first.
+    'olympia',
 
     'amo',  # amo comes first so it always takes precedence.
     'abuse',
