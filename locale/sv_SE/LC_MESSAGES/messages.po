@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-30 14:48\n"
+"PO-Revision-Date: 2015-08-31 09:39\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8091,6 +8091,11 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Användarna kommer att behöva godkänna följande slutanvändaravtal (EULA) "
+"innan de installerar ditt tillägg. Närvaron av en EULA påverkar avsevärt "
+"antalet nedladdningar ett tillägg får. Observera att en EULA är inte samma "
+"sak som en programvarulicens, såsom GPL eller MPL. Det är endast relevant "
+"för listade tillägg."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
@@ -8098,26 +8103,33 @@ msgid ""
 " is required that explains what data is sent and how it is used. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Om ditt tillägg överför data från användarens dator, krävs en "
+"sekretesspolicy som förklarar vilka data som skickas och hur den används. "
+"Det är endast relevant för listade tillägg."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
 "If your add-on contains binary or obfuscated code other than known "
 "libraries, upload its sources for review."
 msgstr ""
+"Om ditt tillägg innehåller binär eller förvrängd kod annat än kända "
+"bibliotek, ladda upp dess källor för granskning."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Läs mer om granskningspolicyn för källkod."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
 msgstr ""
+"Du kan inte ta bort en enskild fil efter granskningsprocessen har inletts. "
+"Du måste ta bort hela versionen."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
-msgstr "Filen kommer att tas bort vid sparning."
+msgstr "Filen kommer att tas bort vid sparande."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:39
 msgid "Undo"
@@ -8144,34 +8156,40 @@ msgid ""
 "Add-ons enrolled in our contributions program can request voluntary "
 "financial support from users."
 msgstr ""
+"Tillägg inskrivna i vårt bidragsprogram kan begära frivillig finansiellt "
+"stöd från användarna."
 
 #: apps/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Uppmuntra användare att stödja ditt tillägg genom din utvecklarprofil"
 
 #: apps/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Välja när och hur användarna uppmanas att bidra"
 
 #: apps/devhub/templates/devhub/payments/payments.html:42
 msgid ""
 "Receive contributions in your PayPal account or send them to an organization"
 " of your choice"
 msgstr ""
+"Få bidrag till ditt PayPal-konto eller skicka dem till en organisation som "
+"du väljer"
 
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Bidrag är endast tillgängliga för listade tillägg."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid ""
 "Contributions are only available for add-ons with a <a "
 "href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
+"Bidrag är endast tillgängliga för tillägg med en <a href=\"%(url)s\">färdig "
+"utvecklarprofil</a>."
 
 #: apps/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr ""
+msgstr "Bidrag är endast tillgängliga för fullständigt granskade tillägg."
 
 #: apps/devhub/templates/devhub/payments/payments.html:65
 #: apps/devhub/templates/devhub/payments/voluntary.html:2
@@ -8252,6 +8270,10 @@ msgid ""
 "their support. You might also want to tell them about what's next for your "
 "add-on and about any other add-ons you've made for them to try."
 msgstr ""
+"Vi rekommenderar att tacka användaren och berätta för dem hur mycket du "
+"uppskattar deras stöd. Du kanske också vill berätta om vad som händer med "
+"ditt tillägg och om eventuella andra tillägg som du har gjort för dem att "
+"prova."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
@@ -9860,7 +9882,7 @@ msgstr ""
 #: apps/editors/templates/editors/eventlog.html:8
 #: apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Modererad granskningslogg"
 
 #: apps/editors/templates/editors/base.html:82
 #: apps/editors/templates/editors/beta_signed_log.html:4
@@ -9947,8 +9969,8 @@ msgstr[1] "Väntande uppdateringar ({num})"
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Preliminär granskning ({num})"
+msgstr[1] "Preliminära granskningar ({num})"
 
 #: apps/editors/templates/editors/home.html:36
 #: apps/editors/templates/editors/home.html:86
@@ -10255,7 +10277,7 @@ msgstr "Filtrera"
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Granskningslogg för tillägg"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
@@ -10400,7 +10422,7 @@ msgstr[1] "{num} Uppdateringar"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Granskningslogg för teman"
 
 #: apps/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
