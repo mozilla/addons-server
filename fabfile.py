@@ -161,7 +161,6 @@ def update():
     execute(compress_assets)
     execute(collectstatic)
     execute(schematic)
-    managecmd('dump_apps')
     managecmd('statsd_ping --key=update')
 
 
@@ -188,7 +187,6 @@ def deploy_jenkins():
 
     install_dir = os.path.join(rpmbuild.install_to, 'olympia')
     execute(schematic, install_dir)
-    managecmd('dump_apps', install_dir)
 
     rpmbuild.remote_install(['web', 'celery'])
     helpers.restart_uwsgi(getattr(settings, 'UWSGI', []))
