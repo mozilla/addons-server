@@ -11,7 +11,7 @@ steps at your own peril. Here we go!
 Requirements
 ------------
 To get started, you'll need:
- * Python 2.6 (greater than 2.6.1)
+ * Python 2.7 (2.7 -> 2.7.10)
  * Node 0.10.x or higher
  * MySQL
  * ElasticSearch
