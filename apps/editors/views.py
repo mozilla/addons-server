@@ -48,17 +48,17 @@ from .decorators import (addons_reviewer_required, any_reviewer_required,
 
 
 def base_context(**kw):
-    ctx = dict(motd=get_config('editors_review_motd'))
+    ctx = {'motd': get_config('editors_review_motd')}
     ctx.update(kw)
     return ctx
 
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    ctx = dict(admin_reviewer=admin_reviewer,
-               queue_counts=queue_counts(admin_reviewer=admin_reviewer),
-               unlisted_queue_counts=queue_counts(
-                   unlisted=True, admin_reviewer=admin_reviewer))
+    ctx = {'admin_reviewer': admin_reviewer,
+           'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
+           'unlisted_queue_counts': queue_counts(
+               unlisted=True, admin_reviewer=admin_reviewer)}
     ctx.update(base_context(**kw))
     return ctx
 
