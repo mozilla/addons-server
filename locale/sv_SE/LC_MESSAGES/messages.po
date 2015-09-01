@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-01 14:25\n"
+"PO-Revision-Date: 2015-09-01 15:17\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -9263,6 +9263,9 @@ msgid ""
 " personalize your browser anytime, anywhere. Easily discover and install "
 "add-ons from the mobile Add-ons Manager."
 msgstr ""
+"Besök <a href=\"%(url)s\">firefox.com/m</a> för att få Firefox till din "
+"telefon och anpassa webbläsaren när som helst, var som helst. Enkelt att "
+"upptäcka och installera tillägg från den mobila tilläggshanteraren."
 
 #: apps/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
@@ -9270,7 +9273,7 @@ msgstr "Hämta mobila tillägg"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Handla smart den här julen"
 
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
@@ -9306,7 +9309,7 @@ msgstr "Följ med oss för att fira den globala andan av en gemenskap."
 
 #: apps/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Visa ditt stöd"
 
 #: apps/editors/forms.py:30
 msgid "Approved reviews"
@@ -9318,7 +9321,7 @@ msgstr "Borttagna granskningar"
 
 #: apps/editors/forms.py:39 apps/editors/forms.py:69
 msgid "View entries between"
-msgstr ""
+msgstr "Visa poster emellan"
 
 #: apps/editors/forms.py:41 apps/editors/forms.py:70
 msgid "and"
@@ -9385,7 +9388,7 @@ msgstr "Dagar sedan inskickning"
 
 #: apps/editors/forms.py:124
 msgid "Add-on Types"
-msgstr ""
+msgstr "Tilläggstyper"
 
 #: apps/editors/forms.py:128 apps/editors/helpers.py:263
 msgid "Platforms"
@@ -9417,6 +9420,8 @@ msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not"
 " generate an email)"
 msgstr ""
+"Meddela mig nästa gång detta tillägg uppdateras. (Senare uppdateringar "
+"kommer inte att generera ett e-postmeddelande)"
 
 #: apps/editors/forms.py:271
 msgid "Clear Admin Review Flag"
@@ -9424,15 +9429,15 @@ msgstr ""
 
 #: apps/editors/forms.py:291
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Välj ett standardsvar..."
 
 #: apps/editors/forms.py:320
 msgid "You must select some files."
-msgstr ""
+msgstr "Du måste välja några filer."
 
 #: apps/editors/forms.py:326
 msgid "File %s is not pending review."
-msgstr ""
+msgstr "Filen %s avvaktar inte granskning."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:346
@@ -9441,12 +9446,12 @@ msgstr "namn på tema"
 
 #: apps/editors/forms.py:372
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Någon annan granskar detta tema."
 
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:469
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "app, granskare eller kommentar"
 
 #: apps/editors/helpers.py:49
 msgid "Pending Preliminary Review"
@@ -9485,7 +9490,7 @@ msgstr "Modererade granskningar"
 
 #: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
-msgstr ""
+msgstr "Snabbspår"
 
 #: apps/editors/helpers.py:124
 msgid "Pending Themes"
@@ -9515,8 +9520,8 @@ msgstr "Olistad preliminär granskning"
 #: apps/editors/helpers.py:166
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Snabbspår ({0})"
+msgstr[1] "Snabbspår ({0})"
 
 #: apps/editors/helpers.py:171
 msgid "Full Review ({0})"
@@ -9545,20 +9550,20 @@ msgstr[1] "Modererade granskningar({0})"
 #: apps/editors/helpers.py:192
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad fullständig granskning ({0})"
+msgstr[1] "Olistad fullständiga granskningar ({0})"
 
 #: apps/editors/helpers.py:197
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad väntande uppdatering ({0})"
+msgstr[1] "Olistad väntande uppdateringar ({0})"
 
 #: apps/editors/helpers.py:202
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad preliminär granskning ({0})"
+msgstr[1] "Olistad preliminära granskningar ({0})"
 
 #: apps/editors/helpers.py:257
 msgid "Addon"
@@ -9624,7 +9629,7 @@ msgstr[1] "{0} dagar"
 
 #: apps/editors/helpers.py:477
 msgid "Push to public"
-msgstr ""
+msgstr "Gör publik"
 
 #: apps/editors/helpers.py:479
 msgid "Grant full review"
@@ -9636,7 +9641,7 @@ msgstr "Begär mer information"
 
 #: apps/editors/helpers.py:497
 msgid "Request super-review"
-msgstr ""
+msgstr "Begär supergranskning"
 
 #: apps/editors/helpers.py:508
 msgid "Grant preliminary review"
@@ -9864,7 +9869,7 @@ msgstr "Köer"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Olistade köer"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -11346,7 +11351,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Hur förbättrar jag prestanda för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
