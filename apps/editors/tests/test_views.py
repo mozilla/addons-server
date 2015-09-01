@@ -1413,6 +1413,13 @@ class SearchTest(EditorTest):
         return r
 
 
+def login_as_admin(fn):
+    def inner(suite, *args, **kwargs):
+        suite.login_as_admin()
+        return fn(suite, *args, **kwargs)
+    return inner
+
+
 class TestQueueSearch(SearchTest):
     fixtures = ['base/users', 'base/appversion']
 
@@ -1423,6 +1430,11 @@ class TestQueueSearch(SearchTest):
     def generate_files(self, subset=[]):
         files = SortedDict([
             ('Not Admin Reviewed', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_NOMINATED,
+                'file_status': amo.STATUS_UNREVIEWED,
+            }),
+            ('Another Not Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_UNREVIEWED,
@@ -1473,13 +1485,36 @@ class TestQueueSearch(SearchTest):
     def generate_file(self, name):
         return self.generate_files([name])[name]
 
-    def test_search_by_admin_reviewed(self):
+    @login_as_admin
+    def test_search_by_admin_reviewed_admin(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
         r = self.search(admin_review=1)
         eq_(self.named_addons(r), ['Admin Reviewed'])
 
-    def test_queue_counts(self):
+    @login_as_admin
+    def test_queue_counts_admin(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
+        r = self.search(text_query='admin', per_page=1)
+        doc = pq(r.content)
+        eq_(doc('.data-grid-top .num-results').text(),
+            u'Results 1 \u2013 1 of 2')
+
+    @login_as_admin
+    def test_search_by_addon_name_admin(self):
+        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
+                             'Justin Bieber Theme'])
+        r = self.search(text_query='admin')
+        eq_(sorted(self.named_addons(r)), ['Admin Reviewed',
+                                           'Not Admin Reviewed'])
+
+    def test_search_by_admin_reviewed_regular(self):
+        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
+        r = self.search(admin_review=1)
+        eq_(self.named_addons(r), [])
+
+    def test_queue_counts(self):
+        self.generate_files(['Not Admin Reviewed', 'Another Not Admin Reviewed',
+                             'Admin Reviewed'])
         r = self.search(text_query='admin', per_page=1)
         doc = pq(r.content)
         eq_(doc('.data-grid-top .num-results').text(),
@@ -1489,8 +1524,7 @@ class TestQueueSearch(SearchTest):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
                              'Justin Bieber Theme'])
         r = self.search(text_query='admin')
-        eq_(sorted(self.named_addons(r)), ['Admin Reviewed',
-                                           'Not Admin Reviewed'])
+        eq_(sorted(self.named_addons(r)), ['Not Admin Reviewed'])
 
     def test_search_by_addon_in_locale(self):
         name = 'Not Admin Reviewed'
