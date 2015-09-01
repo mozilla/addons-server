@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-29 21:41+0000\n"
+"PO-Revision-Date: 2015-09-01 13:40+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440884462.0\n"
+"X-POOTLE-MTIME: 1441114832.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1062,7 +1062,7 @@ msgstr "<strong>Upozornění:</strong> Vývojové verze tohoto doplňku nebyly z
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Zobrazit úplnou historii vývoje"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -6708,6 +6708,11 @@ msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Chování beta kanálu bylo změněno, aby odpovídalo <a href=\"%"
+"(addon_signing_url)s\" target=\"_blank\">povinnému podepisování doplňků</a>. "
+"Nový proces je ve fázi otevřeného testování a může se v budoucnu změnit. <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">Nahlaste nám prosím jakékoliv "
+"chyby</a>, kterých si všimnete."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -10621,9 +10626,9 @@ msgstr "Přidat na Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} like"
+msgstr[1] "{0} liky"
+msgstr[2] "{0} liků"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
