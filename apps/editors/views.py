@@ -55,8 +55,7 @@ def base_context(**kw):
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    ctx = {'admin_reviewer': admin_reviewer,
-           'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
+    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
            'unlisted_queue_counts': queue_counts(
                unlisted=True, admin_reviewer=admin_reviewer)}
     ctx.update(base_context(**kw))

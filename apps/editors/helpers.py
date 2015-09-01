@@ -155,11 +155,8 @@ def queue_tabnav(context):
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
-    from .views import queue_counts
-
-    counts = queue_counts(admin_reviewer=context.get('admin_reviewer'))
-    unlisted_counts = queue_counts(
-        admin_reviewer=context.get('admin_reviewer'), unlisted=True)
+    counts = context['queue_counts']
+    unlisted_counts = context['unlisted_queue_counts']
     listed = not context.get('unlisted')
 
     if listed:
