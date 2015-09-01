@@ -360,7 +360,7 @@ def is_admin_reviewer(request):
     return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
 
-def filter_admin_only_addons(queryset):
+def exclude_admin_only_addons(queryset):
     return queryset.filter(admin_review=False, has_info_request=False)
 
 
@@ -369,7 +369,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
         qs = TableObj.Meta.model.objects.all()
     admin_reviewer = is_admin_reviewer(request)
     if not admin_reviewer:
-        qs = filter_admin_only_addons(qs)
+        qs = exclude_admin_only_addons(qs)
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
         if search_form.is_valid():
@@ -398,19 +398,15 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
 
 def queue_counts(type=None, unlisted=False, admin_reviewer=None, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
-        def apply_query(query, *args):
-            query = query.having(*args)
-            return query
-
         query = query_type.objects
+
         # admin_reviewer defaults to True so explicitly check against False.
         if admin_reviewer is False:
-            query = filter_admin_only_addons(query)
-
+            query = exclude_admin_only_addons(query)
         if days_min:
-            query = apply_query(query, 'waiting_time_days >=', days_min)
+            query = query.having('waiting_time_days >=', days_min)
         if days_max:
-            query = apply_query(query, 'waiting_time_days <=', days_max)
+            query = query.having('waiting_time_days <=', days_max)
 
         return query.count
 
