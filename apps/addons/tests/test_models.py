@@ -1174,60 +1174,6 @@ class TestAddonModels(amo.tests.TestCase):
         entries = ActivityLog.objects.all()
         eq_(entries[0].action, amo.LOG.CHANGE_STATUS.id)
 
-    def test_can_request_review_waiting_period(self):
-        now = datetime.now()
-        a = Addon.objects.create(type=1)
-        v = Version.objects.create(addon=a)
-        # The first LITE version is only 5 days old, no dice.
-        first_f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        first_f.update(datestatuschanged=now - timedelta(days=5),
-                       created=now - timedelta(days=20))
-        # TODO(andym): can this go in Addon.objects.create? bug 618444
-        a.update(status=amo.STATUS_LITE)
-        eq_(a.can_request_review(), ())
-
-        # Now the first LITE is > 10 days old, change can happen.
-        first_f.update(datestatuschanged=now - timedelta(days=11))
-        # Add a second file, to be sure that we test the date
-        # of the first created file.
-        second_f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        second_f.update(datestatuschanged=now - timedelta(days=5))
-        eq_(a.status, amo.STATUS_LITE)
-        eq_(a.can_request_review(), (amo.STATUS_PUBLIC,))
-
-    def test_days_until_full_nomination(self):
-        # Normalize to 12am for reliable day subtraction:
-        now = datetime.now().date()
-        a = Addon.objects.create(type=1)
-        v = Version.objects.create(addon=a)
-        f = File.objects.create(status=amo.STATUS_LITE, version=v)
-        a.update(status=amo.STATUS_LITE)
-        f.update(datestatuschanged=now - timedelta(days=4))
-        eq_(a.days_until_full_nomination(), 6)
-
-        f.update(datestatuschanged=now - timedelta(days=1))
-        eq_(a.days_until_full_nomination(), 9)
-
-        f.update(datestatuschanged=now - timedelta(days=10))
-        eq_(a.days_until_full_nomination(), 0)
-
-        f.update(datestatuschanged=now)
-        eq_(a.days_until_full_nomination(), 10)
-
-        # Only calculate days from first submitted version:
-        f.update(datestatuschanged=now - timedelta(days=2),
-                 created=now - timedelta(days=2))
-        # Ignore this one:
-        f2 = File.objects.create(status=amo.STATUS_LITE, version=v)
-        f2.update(datestatuschanged=now - timedelta(days=1),
-                  created=now - timedelta(days=1))
-        eq_(a.days_until_full_nomination(), 8)
-
-        # Wrong status:
-        f.update(datestatuschanged=now - timedelta(days=4))
-        a.update(status=amo.STATUS_PUBLIC)
-        eq_(a.days_until_full_nomination(), 0)
-
     def setup_files(self, status):
         addon = Addon.objects.create(type=1)
         version = Version.objects.create(addon=addon)

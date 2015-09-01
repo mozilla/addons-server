@@ -65,9 +65,8 @@
     </td>
   </tr>
   {% set request_reviews=addon.can_request_review() %}
-  {% set days = addon.days_until_full_nomination() %}
   {% set can_cancel=(not addon.is_disabled and addon.is_under_review) %}
-  {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or days or can_cancel) %}
+  {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
@@ -79,11 +78,6 @@
             <button class="link" type="submit">{{ req[status] }}</button> &middot;
           </form>
         {% endfor %}
-        {% if days != 0 %}
-          <span class="warning">{{ ngettext('Full nomination will be available in {0} day',
-                                            'Full nomination will be available in {0} days',
-                                            days)|f(days) }}</span>
-        {% endif %}
         {% if can_cancel %}
           <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a>
         {% endif %}
