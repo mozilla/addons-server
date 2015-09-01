@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-31 14:23\n"
-"Last-Translator: az@kth.se <az@kth.se>\n"
+"PO-Revision-Date: 2015-09-01 06:56\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -9377,7 +9377,7 @@ msgstr ""
 
 #: apps/editors/forms.py:115
 msgid "Max. Version"
-msgstr ""
+msgstr "Max. Version"
 
 #: apps/editors/forms.py:119
 msgid "Days Since Submission"
@@ -10250,7 +10250,7 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:252
 #: apps/editors/templates/editors/review.html:253
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: apps/editors/templates/editors/review.html:253
 msgid "Admin Page"
@@ -10777,7 +10777,7 @@ msgstr ""
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:28
 msgid "Visit the {0} L10n Homepage"
-msgstr ""
+msgstr "Besök {0} L10n Hemsida"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:33
@@ -10799,7 +10799,7 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/sidebar.html:15
 msgid "Visit localize.mozilla.org"
-msgstr ""
+msgstr "Besök localize.mozilla.org"
 
 #: apps/localizers/templates/localizers/sidebar.html:21
 msgid "Options"
@@ -10829,7 +10829,7 @@ msgstr "(redigera)"
 
 #: apps/localizers/templates/localizers/summary.html:9
 msgid "Mozilla Add-ons Localization"
-msgstr ""
+msgstr "Mozilla Tilläggs översättningar"
 
 #: apps/localizers/templates/localizers/summary.html:16
 msgid "Want to help?"
@@ -10838,7 +10838,7 @@ msgstr "Vill du hjälpa till?"
 #: apps/localizers/templates/localizers/summary.html:17
 msgid ""
 "AMO is available in so many languages thanks to the help of people like you!"
-msgstr ""
+msgstr "AMO! finns i många olika språk tack för hjälpen från personer som du!"
 
 #: apps/localizers/templates/localizers/summary.html:19
 msgid "Get started with AMO L10n"
@@ -13549,7 +13549,7 @@ msgstr ""
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "andra"
 
 #: apps/users/models.py:63
 msgid "algorithm"
