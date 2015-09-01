@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-01 12:19\n"
+"PO-Revision-Date: 2015-09-01 14:25\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10850,11 +10850,11 @@ msgstr "Befintliga AMO språkversioner"
 
 #: apps/localizers/templates/localizers/summary.html:27
 msgid "Locale code"
-msgstr ""
+msgstr "Språkkod"
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
+msgstr "Språknamn"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
@@ -10873,6 +10873,11 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, allmänt känd som \"AMO\", är Mozillas officiella "
+"webbplats för tillägg till Mozilla programvara, såsom Firefox, Thunderbird "
+"och SeaMonkey. Tillägg låter dig lägga till nya funktioner och ändra hur "
+"dina webbläsare eller applikation fungerar. Ta en titt och utforska "
+"tusentals sätt att anpassa ditt sätt att göra saker på nätet."
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10886,6 +10891,11 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"De tillägg som anges här har skapats av tusentals utvecklare från vår "
+"gemenskap, som sträcker sig från enskilda hobbyister till storföretag. Alla "
+"publkit listade tillägg granskas av ett team av redigerare innan det släpps."
+" Tillägg markerade som experimentella har inte granskats och bör endast "
+"installeras med försiktighet."
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -10896,6 +10906,8 @@ msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
 msgstr ""
+"Det finns flera sätt att ta reda på de senaste nyheterna från världen av "
+"tillägg:"
 
 #: apps/pages/templates/pages/about.lhtml:29
 msgid ""
