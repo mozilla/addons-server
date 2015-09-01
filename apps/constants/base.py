@@ -5,20 +5,19 @@ from tower import ugettext_lazy as _
 
 
 # Add-on and File statuses.
-STATUS_NULL = 0
-STATUS_UNREVIEWED = 1
-STATUS_PENDING = 2
-STATUS_NOMINATED = 3
-STATUS_PUBLIC = 4
-STATUS_DISABLED = 5
+STATUS_NULL = 0  # No review type chosen yet, add-on is incomplete.
+STATUS_UNREVIEWED = 1  # Waiting for prelim review.
+STATUS_PENDING = 2  # Personas (lightweight themes) waiting for review.
+STATUS_NOMINATED = 3  # Waiting for full review.
+STATUS_PUBLIC = 4  # Fully reviewed.
+STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7
-STATUS_LITE = 8
-STATUS_LITE_AND_NOMINATED = 9
+STATUS_BETA = 7  # Beta file, only available on fully reviewed add-ons.
+STATUS_LITE = 8  # Preliminary reviewed.
+STATUS_LITE_AND_NOMINATED = 9  # Preliminary reviewed, waiting for full review.
 STATUS_PURGATORY = 10  # A temporary home; bug 614686
-STATUS_DELETED = 11
-STATUS_REJECTED = 12  # This applies only to apps (for now)
-STATUS_PUBLIC_WAITING = 13  # bug 740967
+STATUS_DELETED = 11  # Add-on has been deleted.
+STATUS_REJECTED = 12  # This applies only to rejected personas.
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 STATUS_BLOCKED = 15
 
