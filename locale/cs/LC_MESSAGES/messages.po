@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-01 13:40+0000\n"
+"PO-Revision-Date: 2015-09-01 16:51+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441114832.0\n"
+"X-POOTLE-MTIME: 1441126283.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -3801,6 +3801,8 @@ msgstr "Tento doplněk bude načítán pomocí instalátorů aplikací."
 #: apps/devhub/forms.py:542
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Kód doplňků, které jsou načítány, bude před jejich podepsáním Mozillou "
+"zkontrolován a doplňky budou od nich požadována vyšší kvalita."
 
 #: apps/devhub/forms.py:560 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4994,10 +4996,14 @@ msgstr "Váš doplněk byl podepsán a je připraven k použití. Můžete jej s
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Váš doplněk byl přidán do fronty pro předběžnou kontrolu doplňků, které "
+"nebudou na seznamu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Váš doplněk byl přidán do fronty pro plnou kontrolu doplňků, které nebudou "
+"na seznamu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
