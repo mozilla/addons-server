@@ -395,12 +395,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
                           unlisted=unlisted))
 
 
-def queue_counts(type=None, unlisted=False, admin_reviewer=None, **kw):
+def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         query = query_type.objects
 
-        # admin_reviewer defaults to True so explicitly check against False.
-        if admin_reviewer is False:
+        if not admin_reviewer:
             query = exclude_admin_only_addons(query)
         if days_min:
             query = query.having('waiting_time_days >=', days_min)
