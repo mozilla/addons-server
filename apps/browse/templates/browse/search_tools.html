@@ -36,7 +36,7 @@
         <h2>{{ title }}</h2>
     {% endif %}
       {% with cnt=addons.paginator.count %}
-        <h3>{{ ngettext('<b>{0}</b> add-on', '<b>{0}</b> add-ons', cnt)
+        <h3>{{ ngettext('<strong>{0}</strong> add-on', '<strong>{0}</strong> add-ons', cnt)
                 |f(cnt|numberfmt)|safe }}</h3>
       {% endwith %}
       </hgroup>

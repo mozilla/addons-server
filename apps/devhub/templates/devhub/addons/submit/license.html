@@ -15,7 +15,7 @@
 <form method="post" class="item devhub-form submit-license">
   {{ csrf() }}
   {% if license_form %}
-    <b>{{ _('Select a license for your add-on:') }}</b>
+    <strong>{{ _('Select a license for your add-on:') }}</strong>
     <div class="addon-submission-field">
       {{ license_form.builtin.errors }}
       {{ license_form.builtin }}

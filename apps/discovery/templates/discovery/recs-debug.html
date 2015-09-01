@@ -34,7 +34,7 @@ collection we sum up all the similarity scores for the add-ons you have and take
 the top 10 again. We only consider app/platform similarity after finding the top
 10, so your top recommendations could all be incompatible.
 </p>
-<b>Use this page's URL for bugs. It's great.</b>
+<strong>Use this page's URL for bugs. It's great.</strong>
 <a href="{{ url('discovery.pane', '4.0', 'Darwin') }}#{{ fragment }}">
   View the disco pane with these guids.</a>
 
@@ -42,7 +42,7 @@ the top 10 again. We only consider app/platform similarity after finding the top
 <ul>
 {% for addon in addons %}
   <li>
-    <b>{{ addon.id }}: {{ a(addon) }}</b>
+    <strong>{{ addon.id }}: {{ a(addon) }}</strong>
     <table style="margin-left: 1em">
       {% for other in recs[addon.id] %}
       <tr>

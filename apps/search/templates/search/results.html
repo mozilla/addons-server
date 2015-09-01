@@ -53,8 +53,8 @@
 {% macro num_results() %}
   {% set cnt = pager.paginator.count %}
   <p class="cnt">
-    {{ ngettext('<b>{0}</b> matching result',
-                '<b>{0}</b> matching results',
+    {{ ngettext('<strong>{0}</strong> matching result',
+                '<strong>{0}</strong> matching results',
                 cnt)|f(cnt|numberfmt)|safe }}
   </p>
 {% endmacro %}

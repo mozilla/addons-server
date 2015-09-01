@@ -34,7 +34,7 @@
           </span>
         {% endif %}
         {% if title %}
-          <span class="addon-title"><b>{{ addon.name }}</b></span>
+          <span class="addon-title"><strong>{{ addon.name }}</strong></span>
         {% endif %}
         {% if caption %}
           <span class="caption">{{ _('Hover to Preview') }}</span>
@@ -75,7 +75,7 @@
             <span>{{ _('Not yet rated') }}</span>
           {% endif %}
           <span class="users">
-            {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt) }}
+            {{ _('<strong>{0}</strong> users')|f(addon.persona.popularity|numberfmt) }}
           </span>
         </div>
       {% endif %}

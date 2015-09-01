@@ -166,12 +166,12 @@
     {% if addon %}
       <div id="stats-permissions">
         {% if addon.public_stats %}
-          <p>{{ _('This dashboard is currently <b>public</b>.') }}</p>
+          <p>{{ _('This dashboard is currently <strong>public</strong>.') }}</p>
           {% if request.check_ownership(addon) %}
-            <p>{{ _('Contribution stats are currently <b>private</b>.') }}</p>
+            <p>{{ _('Contribution stats are currently <strong>private</strong>.') }}</p>
           {% endif %}
         {% else %}
-          <p>{{ _('This dashboard is currently <b>private</b>.') }}</p>
+          <p>{{ _('This dashboard is currently <strong>private</strong>.') }}</p>
         {% endif %}
         {% if request.check_ownership(addon) %}
           <p><a href="{{ addon.get_dev_url() }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>

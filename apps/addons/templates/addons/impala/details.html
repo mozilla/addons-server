@@ -237,7 +237,7 @@
 <section class="primary island more-island">
   {% if addon.developer_comments %}
     <section class="expando" id="developer-comments">
-      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
+      <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><strong></strong></a></h2>
       <div class="content prose">
         <p{{ addon.developer_comments|locale_html }}>
           {{ addon.developer_comments|nl2br }}</p>
@@ -247,7 +247,7 @@
 
   {% if version %}
     <section id="detail-relnotes" class="expando">
-      <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><b></b></a></h2>
+      <h2>{{ _('Version Information') }}<a class="toggle" href="#detail-relnotes"><strong></strong></a></h2>
       <div class="content listing">
         <div class="items">
           {{ version_detail(addon, version, src=version_src, impala=True) }}
@@ -263,7 +263,7 @@
 
   {% if addon.show_beta %}
     <section id="beta-channel" class="expando">
-      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><b></b></a></h2>
+      <h2>{{ _('Development Channel') }}<a class="toggle" href="#beta-channel"><strong></strong></a></h2>
       <div class="content">
         <p>
           {% trans %}

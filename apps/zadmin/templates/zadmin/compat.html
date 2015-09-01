@@ -58,8 +58,8 @@ button { margin: 4px; padding: 0 2px }
         </td>
         <td class="incompat">
           {% if addon.works %}
-          <b class="bad">{{ addon.works.failure|numberfmt }}</b> of
-          <b class="total">{{ addon.works.total|numberfmt }}</b> incompatible reports
+          <b class="bad">{{ addon.works.failure|numberfmt }}</strong> of
+          <b class="total">{{ addon.works.total|numberfmt }}</strong> incompatible reports
           ({{ 100 * addon.works.failure_ratio|round(4) }}%)
           {% endif %}
         </td>

@@ -3,9 +3,9 @@
 
 {% macro status_and_tip(addon, tip) %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
-    <span class="{{ status_class(addon) }}"><b>{{ _('You have disabled this add-on') }}</b></span>
+    <span class="{{ status_class(addon) }}"><strong>{{ _('You have disabled this add-on') }}</strong></span>
   {% else %}
-    <span class="{{ status_class(addon) }}"><b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
+    <span class="{{ status_class(addon) }}"><strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong></span>
   {% endif %}
   <span class="tip tooltip" title="{{ tip }}">?</span>
 {% endmacro %}

@@ -7,7 +7,7 @@
 {% include "zadmin/includes/search_addons.html" %}
 
 {% if q %}
-<h3>Results for <b>{{ q }}</b> (1&ndash;{{ addons|length }} of {{ addons.count() }}):</h3>
+<h3>Results for <strong>{{ q }}</strong> (1&ndash;{{ addons|length }} of {{ addons.count() }}):</h3>
   {% if addons %}
   <ul>
     {% for addon in addons %}

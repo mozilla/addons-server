@@ -13,7 +13,7 @@
       {{ addon.average_rating|float|stars }}
       <a href="{{ base }}">({{ num|numberfmt }})</a>
     {% else %}
-      <b>{{ _('Not yet rated') }}</b>
+      <strong>{{ _('Not yet rated') }}</strong>
     {% endif %}
   {% endwith %}
 </span>

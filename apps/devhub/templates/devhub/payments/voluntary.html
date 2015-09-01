@@ -8,7 +8,7 @@
     <div>
       {{ contrib_form.non_field_errors() }}
       {{ contrib_form.recipient.errors }}
-      <b>{{ _('Who will receive contributions to this add-on?') }}</b>
+      <strong>{{ _('Who will receive contributions to this add-on?') }}</strong>
       {{ contrib_form.recipient }}
       <div id="org-org" class="brform paypal {{ 'hidden' if (values.recipient != 'org') }}">
         {{ charity_form.non_field_errors() }}
@@ -36,12 +36,12 @@
     </div>
     <div class="nag">
       {{ contrib_form.annoying.errors }}
-      <b>{{ _('When should users be asked for contributions?') }}</b>
+      <strong>{{ _('When should users be asked for contributions?') }}</strong>
       <div class="extra">{{ contrib_form.annoying.help_text }}</div>
       {{ contrib_form.annoying }}
     </div>
     <div>
-      <b>{{ _('Send a thank-you note?') }}</b><br>
+      <strong>{{ _('Send a thank-you note?') }}</strong><br>
       {{ contrib_form.enable_thankyou }}
       <label for="{{ contrib_form.enable_thankyou.auto_id }}">
         {{ _("We'll automatically email users who contribute to your add-on with this message.") }}</label>

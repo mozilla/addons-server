@@ -15,7 +15,7 @@
   {% endif %}
   {% with tag = 'h4' if show_addon else 'h3' %}
     <{{ tag }}>
-      <b>{{ review.title }}</b>
+      <strong>{{ review.title }}</strong>
       {% if not is_reply %}
         {{ review.rating|stars }}
       {% endif %}
@@ -24,7 +24,7 @@
   <p class="byline">
     {% if is_reply %}
       {% trans user=review.user|user_link, date=review.created|datetime %}
-        by {{ user }} <b>(Developer)</b> on {{ date }}
+        by {{ user }} <strong>(Developer)</strong> on {{ date }}
       {% endtrans %}
     {% else %}
       {% trans user=review.user|user_link, date=review.created|datetime %}

@@ -13,13 +13,13 @@
           {% endtrans %}
         {% elif addon.charity_id == amo.FOUNDATION_ORG %}
           {% trans %}
-            To show your support for <b>{{ addon_name }}</b>, the developer asks
+            To show your support for <strong>{{ addon_name }}</strong>, the developer asks
             that you make a donation to the <a href="{{ charity_url }}">{{ charity_name }}</a>
             through <a href="{{ paypal_url }}">PayPal</a>.
           {% endtrans %}
         {% else %}
           {% trans %}
-            To show your support for <b>{{ addon_name }}</b>, the developer asks
+            To show your support for <strong>{{ addon_name }}</strong>, the developer asks
             that you make a small contribution to <a href="{{ charity_url }}">{{ charity_name }}</a>
             through <a href="{{ paypal_url }}">PayPal</a>.
           {% endtrans %}

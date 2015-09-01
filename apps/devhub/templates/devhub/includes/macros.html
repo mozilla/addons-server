@@ -5,7 +5,7 @@
 {# L10n: {0} is a list of HTML tags. #}
 <span class="tooltip" title="{% if title %}{{ title }}{% else %}{{
       _('Allowed HTML: {0}')|f('<a href title> <abbr title>
-                                <acronym title> <b> <blockquote> <code>
+                                <acronym title> <strong> <blockquote> <code>
                                 <em> <i> <li> <ol> <strong> <ul>')|e
     }}{% endif %}">{{ _('Some HTML supported.') }}</span>
 </p>
@@ -67,8 +67,8 @@
     <label>
       {# L10n: {0} is the maximum number of add-on categories allowed.
                {1} is the application name. #}
-      {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
-                  'Select <b>up to {0}</b> {1} categories for this add-on:',
+      {{ ngettext('Select <strong>up to {0}</strong> {1} category for this add-on:',
+                  'Select <strong>up to {0}</strong> {1} categories for this add-on:',
                   max)|f(max, form.app.pretty if form.app else '')|safe }}
     </label>
     {{ form.application }}

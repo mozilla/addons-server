@@ -24,8 +24,8 @@
         <h1>{{ _('Reviews for {0}')|fe(addon.name) }}</h1>
         {% with num = reviews.paginator.count %}
           {# L10n: {0} is a number. #}
-          <h3>{{ ngettext('<b>{0}</b> review for this add-on',
-                          '<b>{0}</b> reviews for this add-on',
+          <h3>{{ ngettext('<strong>{0}</strong> review for this add-on',
+                          '<strong>{0}</strong> reviews for this add-on',
                           num)|f(num|numberfmt)|safe }}</h3>
         {% endwith %}
       {% elif reply %}

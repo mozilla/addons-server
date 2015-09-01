@@ -43,9 +43,9 @@
             <span>{{ _('Compatibility Reports') }}</span>
             {% set compat_counts = get_compat_counts(addon) %}
             <b class="failure" title="{{ _('{0} failure reports')|f(compat_counts.failure) }}">
-              {{ compat_counts.failure|numberfmt }}</b>
+              {{ compat_counts.failure|numberfmt }}</strong>
             <b class="success" title="{{ _('{0} success reports')|f(compat_counts.success) }}">
-              {{ compat_counts.success|numberfmt }}</b>
+              {{ compat_counts.success|numberfmt }}</strong>
           </a>
         </li>
       {% endif %}

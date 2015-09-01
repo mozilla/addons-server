@@ -15,14 +15,14 @@
   <div class="aux">
     <div class="button-wrapper">
       <a class="button contribute prominent" id="contribute-button" href="#">
-        <b></b>{{ _('Contribute') }}
+        <strong></strong>{{ _('Contribute') }}
       </a>
     </div>{# /button-wrapper #}
 
     <p class="suggestion">
       {% if has_suggested %}
         {% trans amt = addon.suggested_amount|currencyfmt('USD') %}
-          <b>{{ amt }}</b> suggested
+          <strong>{{ amt }}</strong> suggested
         {% endtrans %}
       {% endif %}
     </p>{# /suggestion #}

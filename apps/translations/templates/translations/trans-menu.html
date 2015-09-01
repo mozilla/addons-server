@@ -10,17 +10,17 @@
   </p>
   <div id="locale-popup" class="popup hidden">
     <section>
-      <b>{{ _('Default Locale') }}</b>
+      <strong>{{ _('Default Locale') }}</strong>
       <div>
         <a class="default-locale" href="#{{ default_locale }}">
         {% trans title=dl, lang=default_locale %}
         {{ title }} <em>&middot; {{ lang }}</em>
         {% endtrans %}
       </a></div>
-      <b>{{ _('Existing Locales') }}</b>
+      <strong>{{ _('Existing Locales') }}</strong>
       <ul id="existing_locales">
       </ul>
-      <b>{{ _('New Locales') }}</b>
+      <strong>{{ _('New Locales') }}</strong>
       <ul id="all_locales">
         {% for lang, title in languages|dictsort %}
           {% if lang != default_locale %}
@@ -40,7 +40,7 @@
     <p class="msg">
     {# l10n: {0} is a language name, like 'French' #}
     {% trans %}
-      You have unsaved changes in the <b>{0}</b> locale.
+      You have unsaved changes in the <strong>{0}</strong> locale.
       Would you like to save your changes before switching locales?
     {% endtrans %}
     </p>
@@ -54,7 +54,7 @@
     <p class="msg">
     {# l10n: {0} is a language name, like 'French' #}
     {% trans %}
-      Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone.
+      Are you sure you want to remove all <strong>{0}</strong> translations? This cannot be undone.
     {% endtrans %}
     </p>
     <p class="listing-footer modal-actions">

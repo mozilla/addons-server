@@ -24,17 +24,17 @@
             <li id="version-status-item">
               <strong>{{ _('Status:') }}</strong>
               {% if addon.disabled_by_user %}
-                <span class="{{ status_class(addon) }}"><b>{{ _('Disabled') }}</b></span>
+                <span class="{{ status_class(addon) }}"><strong>{{ _('Disabled') }}</strong></span>
               {% else %}
                 <span class="{{ status_class(addon) }}">
-                  <b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
+                  <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong></span>
               {% endif %}
             </li>
             {% with position = get_position(addon) %}
               {% if position.pos and position.total %}
                 <li class="queue-position">
                   {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
-                    <b>Queue position:</b> {{ pos }} of {{ total }}
+                    <strong>Queue position:</strong> {{ pos }} of {{ total }}
                   {% endtrans %}
                 </li>
               {% endif %}
