@@ -59,7 +59,7 @@ td.rank {
     font-size: 1.4em;
 }
 
-.rank b {
+.rank strong {
     font-weight: normal;
     vertical-align: top;
 }
@@ -137,7 +137,7 @@ th.impact .slower,
     width: 70%;
 }
 
-.impact b {
+.impact strong {
     color: #444;
     display: block;
 }

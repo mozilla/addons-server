@@ -67,7 +67,7 @@ th {
     background-size: 18px;
 }
 
-.ui-autocomplete a b {
+.ui-autocomplete a strong {
     color: #999;
     display: block;
     font-size: 10px;

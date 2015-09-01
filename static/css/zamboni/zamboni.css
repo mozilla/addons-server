@@ -668,40 +668,40 @@ a.button.concealed:active {
 .button.download b,
 .button.mobile b,
 .button.contribute b,
-.button.status.ok b {
+.button.status.ok strong {
     padding: .3em 1em .2em .85em;
     margin: 0 0 0 -.5em;
     width: 16px;
     background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
 }
 
-.button.add b { background-position: 25% 0; }
-.button.add.prominent b {
+.button.add strong { background-position: 25% 0; }
+.button.add.prominent strong {
     background-position: 25% -49px;
     position: relative;
     right: 1px;
     top: 2px;
 }
-.button.download b { background-position: 25% -100px; }
-.button.download.prominent b { background-position: 25% -150px; }
-.button.add.caution b { background-position: 25% -400px; }
-.button.add.caution.prominent b { background-position: 25% -450px; }
-.button.download.caution b { background-position: 25% -500px; }
-.button.download.caution.prominent b { background-position: 25% -550px; }
-.button.add.concealed b { background-position: 25% -200px; }
-.button.add.concealed.prominent b { background-position: 25% -250px; }
-.button.download.concealed b { background-position: 25% -300px; }
-.button.download.concealed.prominent b { background-position: 25% -350px; }
-.button.mobile b { background-position: 25% -600px; }
-.button.mobile.prominent b { background-position: 25% -650px; }
-.button.mobile.caution b { background-position: 25% -700px; }
-.button.mobile.caution.prominent b { background-position: 25% -750px; }
-.button.contribute b { background-position: 25% -800px; }
-.button.contribute.prominent b { background-position: 25% -850px; }
-.button.status.ok b { background-position: 25% -900px; }
+.button.download strong { background-position: 25% -100px; }
+.button.download.prominent strong { background-position: 25% -150px; }
+.button.add.caution strong { background-position: 25% -400px; }
+.button.add.caution.prominent strong { background-position: 25% -450px; }
+.button.download.caution strong { background-position: 25% -500px; }
+.button.download.caution.prominent strong { background-position: 25% -550px; }
+.button.add.concealed strong { background-position: 25% -200px; }
+.button.add.concealed.prominent strong { background-position: 25% -250px; }
+.button.download.concealed strong { background-position: 25% -300px; }
+.button.download.concealed.prominent strong { background-position: 25% -350px; }
+.button.mobile strong { background-position: 25% -600px; }
+.button.mobile.prominent strong { background-position: 25% -650px; }
+.button.mobile.caution strong { background-position: 25% -700px; }
+.button.mobile.caution.prominent strong { background-position: 25% -750px; }
+.button.contribute strong { background-position: 25% -800px; }
+.button.contribute.prominent strong { background-position: 25% -850px; }
+.button.status.ok strong { background-position: 25% -900px; }
 
 .html-rtl .button b,
-.html-rtl button b {
+.html-rtl button strong {
     padding: .3em 1em .2em .65em;
     margin: 0 -.5em 0 .25em;
 }
@@ -1267,7 +1267,7 @@ ul.license li.copyr { background-position: 0 -260px; }
     color: #222;
 }
 
-.personas .users b {
+.personas .users strong {
     font-weight: bold;
 }
 
@@ -2402,7 +2402,7 @@ form .error .note.error {
     padding: 0;
     position: static;
 }
-.personas-grid li .details .users b {
+.personas-grid li .details .users strong {
     font-weight: bold;
 }
 .html-rtl .personas-grid li .details .users {

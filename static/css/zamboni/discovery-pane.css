@@ -584,11 +584,11 @@ section#featured-addons {
 }
 
 .featured .featured-addons a.addon-title,
-.featured .featured-themes span.addon-title b {
+.featured .featured-themes span.addon-title strong {
     padding: 0.5em 30px 0.5em 10px;
 }
 
-.featured .featured-themes span.addon-title b {
+.featured .featured-themes span.addon-title strong {
     display: block;
     font-weight: normal;
 }
@@ -1360,14 +1360,14 @@ a.button {
 }
 
 .button.download b,
-.button.add b {
+.button.add strong {
     padding: 3px 16px 3px 12px;
     margin: 0 0 0 -12px;
     width: 16px;
     background: transparent url("../../img/zamboni/icons/button-icons.png") 25% 0 no-repeat;
 }
 
-.html-rtl .button b {
+.html-rtl .button strong {
     padding: 3px 12px 3px 16px;
     margin: 0 -12px 0 0;
 }

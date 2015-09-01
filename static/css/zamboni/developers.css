@@ -122,7 +122,7 @@ form .edit-addon-details .html-support {
 }
 
 form .char-count.error,
-form .char-count.error b {
+form .char-count.error strong {
     color: #c00;
     margin-bottom: 0;
 }
@@ -179,7 +179,7 @@ table .prose {
 }
 
 .edit-addon-details,
-form .char-count b {
+form .char-count strong {
     color: #555;
 }
 
@@ -242,7 +242,7 @@ form .char-count b {
     font-weight: normal;
 }
 
-.addon-app-cats-inline li b {
+.addon-app-cats-inline li strong {
     margin-right: 0.25em;
 }
 
@@ -649,7 +649,7 @@ a.extra {
 
 .status-lite-nom i,
 .status-nominated b,
-.status-unreviewed b {
+.status-unreviewed strong {
     font-style: normal;
     color: #3e7987;
 }
@@ -657,17 +657,17 @@ a.extra {
 .status-incomplete b,
 .status-disabled b,
 .status-admin-disabled b,
-.status-purgatory b {
+.status-purgatory strong {
     color: #851006;
 }
 
 .status-fully-approved b,
 .status-lite b,
-.status-lite-nom b {
+.status-lite-nom strong {
     color: #329902;
 }
 
-#version-status-item b {
+#version-status-item strong {
     font-weight: normal;
 }
 
