@@ -157,8 +157,9 @@ def queue_tabnav(context):
     """
     from .views import queue_counts
 
-    counts = queue_counts()
-    unlisted_counts = queue_counts(unlisted=True)
+    counts = queue_counts(admin_reviewer=context.get('admin_reviewer'))
+    unlisted_counts = queue_counts(
+        admin_reviewer=context.get('admin_reviewer'), unlisted=True)
     listed = not context.get('unlisted')
 
     if listed:

@@ -47,10 +47,13 @@ from .decorators import (addons_reviewer_required, any_reviewer_required,
                          unlisted_addons_reviewer_required)
 
 
-def context(**kw):
+def context(request, **kw):
+    admin_reviewer = is_admin_reviewer(request)
     ctx = dict(motd=get_config('editors_review_motd'),
-               queue_counts=queue_counts(),
-               unlisted_queue_counts=queue_counts(unlisted=True))
+               admin_reviewer=admin_reviewer,
+               queue_counts=queue_counts(admin_reviewer=admin_reviewer),
+               unlisted_queue_counts=queue_counts(
+                   unlisted=True, admin_reviewer=admin_reviewer))
     ctx.update(kw)
     return ctx
 
@@ -70,7 +73,7 @@ def eventlog(request):
 
     pager = amo.utils.paginate(request, eventlog, 50)
 
-    data = context(form=form, pager=pager)
+    data = context(request, form=form, pager=pager)
     return render(request, 'editors/eventlog.html', data)
 
 
@@ -100,7 +103,7 @@ def eventlog_detail(request, id):
             review.undelete()
         return redirect('editors.eventlog.detail', id)
 
-    data = context(log=log, can_undelete=can_undelete)
+    data = context(request, log=log, can_undelete=can_undelete)
     return render(request, 'editors/eventlog_detail.html', data)
 
 
@@ -117,7 +120,7 @@ def beta_signed_log(request):
 
     pager = amo.utils.paginate(request, beta_signed_log, 50)
 
-    data = context(form=form, pager=pager)
+    data = context(request, form=form, pager=pager)
     return render(request, 'editors/beta_signed_log.html', data)
 
 
@@ -154,6 +157,7 @@ def home(request):
         or ActivityLog.objects.monthly_reviews_user_position(request.user))
 
     data = context(
+        request,
         reviews_total=reviews_total,
         reviews_monthly=reviews_monthly,
         reviews_total_count=reviews_total_count,
@@ -240,7 +244,8 @@ def performance(request, user_id=False):
         }
     }
 
-    data = context(monthly_data=json.dumps(monthly_data),
+    data = context(request,
+                   monthly_data=json.dumps(monthly_data),
                    performance_month=performance_total['month'],
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
@@ -329,7 +334,7 @@ def motd(request):
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    data = context(form=form)
+    data = context(request, form=form)
     return render(request, 'editors/motd.html', data)
 
 
@@ -342,13 +347,24 @@ def save_motd(request):
     if form.is_valid():
         set_config('editors_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('editors.motd'))
-    data = context(form=form)
+    data = context(request, form=form)
     return render(request, 'editors/motd.html', data)
+
+
+def is_admin_reviewer(request):
+    return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+
+
+def filter_admin_only_addons(queryset):
+    return queryset.filter(admin_review=False, has_info_request=False)
 
 
 def _queue(request, TableObj, tab, qs=None, unlisted=False):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
+    admin_reviewer = is_admin_reviewer(request)
+    if not admin_reviewer:
+        qs = filter_admin_only_addons(qs)
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
         if search_form.is_valid():
@@ -369,19 +385,22 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
     page = paginate(request, table.rows, per_page=per_page)
     table.set_page(page)
     return render(request, 'editors/queue.html',
-                  context(table=table, page=page, tab=tab,
+                  context(request, table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
                           unlisted=unlisted))
 
 
-def queue_counts(type=None, unlisted=False, **kw):
+def queue_counts(type=None, unlisted=False, admin_reviewer=None, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         def apply_query(query, *args):
             query = query.having(*args)
             return query
 
         query = query_type.objects
+        # admin_reviewer defaults to True so explicitly check against False.
+        if admin_reviewer is False:
+            query = filter_admin_only_addons(query)
 
         if days_min:
             query = apply_query(query, 'waiting_time_days >=', days_min)
@@ -461,7 +480,7 @@ def queue_moderated(request):
         return redirect(reverse('editors.queue_moderated'))
 
     return render(request, 'editors/queue.html',
-                  context(reviews_formset=reviews_formset,
+                  context(request, reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
                           point_types=amo.REVIEWED_AMO))
@@ -620,7 +639,7 @@ def review(request, addon):
     user_changes_log = AddonLog.objects.filter(
         activity_log__action__in=user_changes_actions,
         addon=addon).order_by('id')
-    ctx = context(version=version, addon=addon,
+    ctx = context(request, version=version, addon=addon,
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
@@ -735,7 +754,7 @@ def reviewlog(request):
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
         amo.LOG.COMMENT_VERSION.id: _('commented'),
     }
-    data = context(form=form, pager=pager, ACTION_DICT=ad)
+    data = context(request, form=form, pager=pager, ACTION_DICT=ad)
     return render(request, 'editors/reviewlog.html', data)
 
 
@@ -745,15 +764,14 @@ def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
     total = reports.count()
     reports = amo.utils.paginate(request, reports)
-    data = context(addon=addon, reports=reports, total=total)
+    data = context(request, addon=addon, reports=reports, total=total)
     return render(request, 'editors/abuse_reports.html', data)
 
 
 @addons_reviewer_required
 def leaderboard(request):
-    return render(request, 'editors/leaderboard.html', context(**{
-        'scores': ReviewerScore.all_users_by_score(),
-    }))
+    return render(request, 'editors/leaderboard.html', context(
+        request, scores=ReviewerScore.all_users_by_score()))
 
 
 @addons_reviewer_required
