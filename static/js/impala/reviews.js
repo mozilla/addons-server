@@ -79,7 +79,17 @@ $(document).ready(function() {
         }
 
         $form.find('#id_title').val($review.find(title_selector).text());
-        $form.find('.ratingwidget input:radio[value=' + rating + ']').click();
+
+        if (rating == "") {
+            // Replies do not have ratings, so do not show the label or widget for them
+            $("label[for='id_rating']").hide();
+            $form.find('.ratingwidget').hide();
+        } else {
+            // Fake a click on the right star rating for reviews that already have one.
+            $("label[for='id_rating']").show();
+            $form.find('.ratingwidget').show();
+            $form.find('.ratingwidget input:radio[value=' + rating + ']').click();
+        }
         $form.find('#id_body').val($review.children('p.description').html().replace(/<br>/g, '\n'));
         $review.hide();
         $form.show();

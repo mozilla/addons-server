@@ -1,4 +1,6 @@
 .env
+tests/.hitch
+__pycache__
 settings_local.py*
 settings_local_*.py
 local_settings.py

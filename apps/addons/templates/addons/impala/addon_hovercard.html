@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="summary">
-      <a href="{{ details_link }}">
+      <a class="details_link" href="{{ details_link }}">
         <h3>{{ addon.name }}</h3>
         {% with cat = addon.get_category(APP.id) %}
           {% if cat %}
