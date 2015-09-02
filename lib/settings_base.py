@@ -1006,9 +1006,13 @@ CELERY_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
-    'devhub.tasks.validator': {'queue': 'devhub'},
+    'devhub.tasks.validate_file': {'queue': 'devhub'},
+    'devhub.tasks.validate_file_path': {'queue': 'devhub'},
+    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+    # This is currently used only by validation tasks.
+    'celery.chord_unlock': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
-    'devhub.tasks.file_validator': {'queue': 'devhub'},
 
     # Videos.
     'lib.video.tasks.resize_video': {'queue': 'devhub'},
