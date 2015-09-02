@@ -1,5 +1,4 @@
 import re
-from datetime import datetime, timedelta
 
 import mock
 from nose.tools import eq_
@@ -414,14 +413,6 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
         eq_(buttons, None)
-
-    def test_days_until_full_nomination(self):
-        f = File.objects.create(status=amo.STATUS_LITE, version=self.version)
-        f.update(datestatuschanged=datetime.now() - timedelta(days=4))
-        self.addon.update(status=amo.STATUS_LITE)
-        doc = pq(self.client.get(self.url).content)
-        eq_(doc('.version-status-actions .warning').text(),
-            'Full nomination will be available in 6 days')
 
     def test_add_version_modal(self):
         r = self.client.get(self.url)
