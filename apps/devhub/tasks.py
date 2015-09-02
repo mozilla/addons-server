@@ -144,7 +144,6 @@ def handle_file_validation_result(results, file_id, annotate=True):
     return FileValidation.from_json(file_, results)
 
 
-@task
 def annotate_validation_results(results):
     """Annotates validation results with information such as whether the
     results pass auto validation, and which results are unchanged from a
