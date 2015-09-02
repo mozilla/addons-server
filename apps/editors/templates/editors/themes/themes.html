@@ -40,6 +40,13 @@
       <dt>{{ _('Submitted') }}</dt><dd>{{ theme.addon.created|datetime('%Y-%m-%d') }}</dd>
       <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
     </dl>
+    <dl class="meta">
+      {% if hasOneToOne(theme, 'themelock') %}
+        {% if theme.themelock.reviewer != user %}
+            <dt>{{ _('Reviewer') }}</dt><dd>{{ emaillink(theme.themelock.reviewer.email) }}</dd>
+        {% endif %}
+      {% endif %}
+    </dl>
 
     <div class="preview">
       <img src="{{ header_url or theme.header_url }}" width="1250" height="100" alt="">
