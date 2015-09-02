@@ -1413,13 +1413,6 @@ class SearchTest(EditorTest):
         return r
 
 
-def login_as_admin(fn):
-    def inner(suite, *args, **kwargs):
-        suite.login_as_admin()
-        return fn(suite, *args, **kwargs)
-    return inner
-
-
 class TestQueueSearch(SearchTest):
     fixtures = ['base/users', 'base/appversion']
 
@@ -1485,22 +1478,22 @@ class TestQueueSearch(SearchTest):
     def generate_file(self, name):
         return self.generate_files([name])[name]
 
-    @login_as_admin
     def test_search_by_admin_reviewed_admin(self):
+        self.login_as_admin()
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
         r = self.search(admin_review=1)
         eq_(self.named_addons(r), ['Admin Reviewed'])
 
-    @login_as_admin
     def test_queue_counts_admin(self):
+        self.login_as_admin()
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
         r = self.search(text_query='admin', per_page=1)
         doc = pq(r.content)
         eq_(doc('.data-grid-top .num-results').text(),
             u'Results 1 \u2013 1 of 2')
 
-    @login_as_admin
     def test_search_by_addon_name_admin(self):
+        self.login_as_admin()
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
                              'Justin Bieber Theme'])
         r = self.search(text_query='admin')
