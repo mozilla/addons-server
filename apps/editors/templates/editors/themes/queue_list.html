@@ -74,14 +74,8 @@
       {{ no_results_amo() }}
     {% endif %}
 
-    {% if queue_counts[tab] == 0 %}
-      <div class="no-results">
-        {{ _('There are currently no items of this type to review.') }}
-      </div>
-    {% else %}
-      <div class="impala-paginator">{{ pager|impala_paginator }}</div>
-      <div class="mobile-paginator hidden">{{ pager|mobile_impala_paginator }}</div>
-    {% endif %}
+    <div class="impala-paginator">{{ pager|impala_paginator }}</div>
+    <div class="mobile-paginator hidden">{{ pager|mobile_impala_paginator }}</div>
   </section>
 
   {# Populated by dynamic search #}
