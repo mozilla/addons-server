@@ -1,0 +1,20 @@
+environment:
+  - debs:
+      - xsltproc
+      - erlang-nox
+      - erlang-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libmysqlclient-dev
+      - libssl-dev
+      - swig
+      - openssl
+      - curl
+      - libjpeg-dev
+      - zlib1g-dev
+      - libsasl2-dev
+      - nodejs
+      - nodejs-legacy
+      - libncurses5-dev
+      - libevent-dev
+      - openjdk-7-jre

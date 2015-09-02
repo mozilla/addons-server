@@ -1,0 +1,6 @@
+- name: Stub
+  preconditions:
+    addons: 10
+  scenario:
+    - Load website
+    - Pause
