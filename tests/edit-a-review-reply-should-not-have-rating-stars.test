@@ -1,0 +1,33 @@
+- name:  Edit a review reply should not have rating stars
+  tags:
+    - issue-1196293
+    - reviews
+  preconditions:
+    addons: 10
+  scenario:
+    - Go: /en-US/firefox/users/register
+    - Fill form:
+        id_username: aaa
+        id_email: aaa@aaa.com
+        id_password: aaaaaaaa
+        id_password2: aaaaaaaa
+    - Click: register
+    - Wait for email:
+        Containing: Please confirm your email address
+    - Click on link in last email: 1
+    - Fill form:
+        id_username: aaa@aaa.com
+        id_password: aaaaaaaa
+    - Click: login-submit
+    - Click:
+        item: details_link
+        which: 1
+    - Click: add-review
+    - Fill form:
+        id_body: This is a great add on.
+    - Click: star-rating-5
+    - Click: submit-review
+    - Click:
+        item: review-edit
+        which: 1
+    - Doesn't exist: star-rating-1

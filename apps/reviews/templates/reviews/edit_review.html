@@ -6,13 +6,12 @@
     <fieldset>
       <ul>
         {{ pretty_field(form.title, _('Title')) }}
-        {{ pretty_field(form.rating, _('Rating')) }}
         {{ pretty_field(form.body, _('Review')) }}
       </ul>
     </fieldset>
     <footer>
       {{ required_note() }}
-      <input type="submit" value="{{ _('Submit review') }}">
+      <input id="submit-review" type="submit" value="{{ _('Submit review') }}">
        {{ _('or') }} <a href="#" id="review-edit-cancel">{{ _('Cancel') }}</a>
     </footer>
   </form>
