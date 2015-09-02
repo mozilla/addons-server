@@ -1513,8 +1513,8 @@ class TestQueueSearch(SearchTest):
         eq_(self.named_addons(r), [])
 
     def test_queue_counts(self):
-        self.generate_files(['Not Admin Reviewed', 'Another Not Admin Reviewed',
-                             'Admin Reviewed'])
+        self.generate_files(['Not Admin Reviewed',
+                             'Another Not Admin Reviewed', 'Admin Reviewed'])
         r = self.search(text_query='admin', per_page=1)
         doc = pq(r.content)
         eq_(doc('.data-grid-top .num-results').text(),
