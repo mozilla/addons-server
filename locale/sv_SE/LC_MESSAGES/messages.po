@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-01 15:17\n"
+"PO-Revision-Date: 2015-09-02 08:49\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -13113,19 +13113,19 @@ msgstr "Statistik för tillägg"
 
 #: apps/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Tillägg som används"
 
 #: apps/stats/templates/stats/global_report_menu.html:10
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Tillägg som skapats"
 
 #: apps/stats/templates/stats/global_report_menu.html:14
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Tillägg som nedladdats"
 
 #: apps/stats/templates/stats/global_report_menu.html:18
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Tillägg som uppdaterats"
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
@@ -13243,7 +13243,7 @@ msgstr "Den här översikten är för tillfället <b>publik</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Bidragsstatisk är för tillfället <b>privat</b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
@@ -13447,6 +13447,8 @@ msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
 msgstr ""
+"Du har ändringar som inte sparats i språket <b>{0}</b>. Vill du spara "
+"ändringarna innan du byter språk?"
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -13504,6 +13506,8 @@ msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
+"Ange ett giltigt användarnamn som består av bokstäver, siffror, understreck "
+"eller bindestreck."
 
 #: apps/users/forms.py:249
 msgid "This username cannot be used."
@@ -13564,10 +13568,12 @@ msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
+"För att anonymisera, ange en orsak till förändringen men ändra inte något "
+"annat textfält."
 
 #: apps/users/forms.py:535
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Ange minst ett namn till svartlistan."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
@@ -13604,72 +13610,75 @@ msgstr "Mina Mobile-tillägg"
 
 #: apps/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "en tilläggsutvecklare tack mig för ett bidrag"
 
 #: apps/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "en tilläggsutvecklare svarar på min recension"
 
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "en apputvecklare svarar på min recension"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nya tillägg eller funktioner i Firefox är tillgängliga"
 
 #: apps/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "mitt tilläggs kompatibilitet har uppgraderats"
 
 #: apps/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mitt sdk-baserade tillägg har uppgraderats"
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "någon skriver en recension av mitt tillägg"
 
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "någon skriver en recension av min app"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "tävlingar och evenemang för tillägg meddelas"
 
 #: apps/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "mitt tilläggs kompatibilitet kan inte uppgraderas"
 
 #: apps/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mitt sdk-baserade tillägg kan inte uppgraderas"
 
 #: apps/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "mitt tillägg granskas av en redigerare"
 
 #: apps/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla behöver kontakta mig om mitt individuella tillägg"
 
 #: apps/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "min app granskas av en redigerare"
 
 #: apps/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla behöver kontakta mig om min individuella app"
 
 #: apps/users/notifications.py:139
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla vill kontakta mig om relevanta utvecklarnyheter och undersökningar "
+"för app"
 
 #: apps/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla vill kontakta mig om nya regioner som har lagts till i Marketplace"
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
@@ -14636,7 +14645,7 @@ msgstr "Blogg"
 
 #: templates/footer.html:7
 msgid "FAQ"
-msgstr "Vanliga frågor"
+msgstr "FAQ"
 
 #: templates/footer.html:8
 msgid "Forum"
