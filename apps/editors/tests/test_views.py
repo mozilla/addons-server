@@ -1500,7 +1500,7 @@ class TestQueueSearch(SearchTest):
         eq_(sorted(self.named_addons(r)), ['Admin Reviewed',
                                            'Not Admin Reviewed'])
 
-    def test_search_by_admin_reviewed_regular(self):
+    def test_search_by_admin_reviewed(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
         r = self.search(admin_review=1)
         eq_(self.named_addons(r), [])
