@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-03 16:31+0000\n"
+"PO-Revision-Date: 2015-09-03 19:29+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8515,6 +8515,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Jag godkänner <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox "
+"distributionsavtal för tilägg</a> och min information hanteras enligt "
+"beskrivningen i <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">sekretesspolicyn för webbplatser, kommunikation och "
+"kakor</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8612,7 +8617,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publicera endast denna version till min beta kanal."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
@@ -10536,7 +10541,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Välj ett skäl för avslag"
 
 #: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
@@ -10544,7 +10549,7 @@ msgstr "Beskriv dina skäl för avslag"
 
 #: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Ställa en fråga till konstnären"
 
 #: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
@@ -10572,6 +10577,7 @@ msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
+"Denna fil kan inte visas online. Ladda ner filen för att visa innehållet."
 
 #: apps/files/helpers.py:194
 msgid "This file is a directory."
@@ -10595,7 +10601,7 @@ msgstr "Ogiltigt filnamn i arkivet: {0}"
 
 #: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Fil överskrider storleksgränsen i arkiv: {0}"
 
 #: apps/files/utils.py:354
 msgid "Invalid archive."
@@ -11085,10 +11091,12 @@ msgid ""
 "Mozilla would like to thank the following people for their contributions to "
 "the addons.mozilla.org project over the years:"
 msgstr ""
+"Mozilla vill tacka följande personer för deras bidrag till "
+"addons.mozilla.org projektet genom åren:"
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Utvecklare &amp; administratörer"
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
@@ -14140,7 +14148,7 @@ msgstr "Tilläggsutvecklare"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr "Temats upphovsman"
+msgstr "Temats konstnär"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
