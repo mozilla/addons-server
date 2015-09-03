@@ -27,7 +27,7 @@ $.fn.ratingwidget = function(classes) {
         }
         for (var i=1; i<=5; i++) {
             var checked = rating === i ? ' checked' : '';
-            rs += format('<label data-stars="{0}">{1}<input type="radio" name="rating"{2} value="{3}"></label>',
+            rs += format('<label id="star-rating-{0}" data-stars="{0}">{1}<input type="radio" name="rating"{2} value="{3}"></label>',
                          [i, format(ngettext('{0} star', '{0} stars', i), [i]), checked, i]);
         }
         $widget.click(function(evt) {

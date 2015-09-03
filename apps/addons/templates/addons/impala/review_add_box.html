@@ -18,7 +18,7 @@
       {{ csrf() }}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}
-      <p><input type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}></p>
+      <p><input id="submit-review" type="submit" value="{{ _('Submit review') }}" {{ attrs|xmlattr }}></p>
     </form>
 
     <div>
