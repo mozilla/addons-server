@@ -65,9 +65,10 @@ class CollectionManager(amo.models.ManagerBase):
 
     def publishable_by(self, user):
         """Collections that are publishable by a user."""
-        owned_by = list(self.filter(author=user.id))
-        publishable_by = list(self.filter(users=user.id))
-        return set(owned_by + publishable_by)
+        owned_by = models.Q(author=user.id)
+        publishable_by = models.Q(users=user.id)
+        collections = self.filter(owned_by | publishable_by)
+        return collections.distinct().order_by('name__localized_string')
 
 
 class CollectionBase:
