@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-03 19:29+0000\n"
+"PO-Revision-Date: 2015-09-03 20:26+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8598,6 +8598,8 @@ msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
 msgstr ""
+"Filer som läggs till granskade versioner måste granskas innan de kommer att "
+"finnas tillgängliga för nedladdning."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:17
 msgid ""
@@ -8613,7 +8615,7 @@ msgstr "Välj målplattform för den här filen."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Vilken granskningstyp vill du nominera för?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
