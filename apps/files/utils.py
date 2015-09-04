@@ -456,13 +456,16 @@ def parse_xpi(xpi, addon=None, check=True):
 
 def check_xpi_info(xpi_info, addon=None):
     from addons.models import Addon, BlacklistedGuid
-    if not xpi_info['guid']:
+    guid = xpi_info['guid']
+    if not guid:
         raise forms.ValidationError(_("Could not find a UUID."))
-    if addon and addon.guid != xpi_info['guid']:
+    if len(guid) > 64:
+        raise forms.ValidationError(_("UUID must be less than 64chars"))
+    if addon and addon.guid != guid:
         raise forms.ValidationError(_("UUID doesn't match add-on."))
     if (not addon
-            and Addon.with_unlisted.filter(guid=xpi_info['guid']).exists()
-            or BlacklistedGuid.objects.filter(guid=xpi_info['guid']).exists()):
+            and Addon.with_unlisted.filter(guid=guid).exists()
+            or BlacklistedGuid.objects.filter(guid=guid).exists()):
         raise forms.ValidationError(_('Duplicate UUID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(

@@ -2,6 +2,7 @@
 import json
 from copy import deepcopy
 
+from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -88,6 +89,12 @@ class TestUploadErrors(BaseUploadTest):
             [{'tier': 1, 'message': 'Duplicate UUID found.',
               'type': 'error', 'fatal': True}])
         eq_(data['validation']['ending_tier'], 1)
+
+    def test_too_long_uuid(self):
+        """An add-on uuid must be 64chars at most, see bug 1201176."""
+        with self.assertRaises(forms.ValidationError,
+                               msg='UUID must be less than 64chars'):
+            parse_addon(self.get_upload('extension-too-long-guid.xpi'))
 
 
 class TestFileValidation(amo.tests.TestCase):
