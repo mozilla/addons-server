@@ -591,6 +591,18 @@ class FileUpload(amo.models.ModelBase):
         return bool(self.valid or self.validation)
 
     @property
+    def validation_timeout(self):
+        if self.processed:
+            validation = json.loads(self.validation)
+            messages = validation['messages']
+            timeout_id = ['validator',
+                          'unexpected_exception',
+                          'validation_timeout']
+            return any(msg['id'] == timeout_id for msg in messages)
+        else:
+            return False
+
+    @property
     def processed_validation(self):
         """Return processed validation results as expected by the frontend."""
         if self.validation:
