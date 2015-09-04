@@ -527,7 +527,7 @@ class TestAddon(BaseOAuth):
                          self.token, data=self.version_data)
         eq_(r.status_code, 400)
         eq_(r.content, 'Bad Request: Add-on did not validate: '
-            "UUID doesn't match add-on.")
+            "Add-on ID doesn't match add-on.")
 
     def test_duplicate_guid(self):
         self.create_addon()
@@ -536,7 +536,7 @@ class TestAddon(BaseOAuth):
         r = self.make_create_request(data)
         eq_(r.status_code, 400)
         eq_(r.content, 'Bad Request: Add-on did not validate: '
-            'Duplicate UUID found.')
+            'Duplicate add-on ID found.')
 
     def test_create_version(self):
         # Create an addon and let's use this for the new version.

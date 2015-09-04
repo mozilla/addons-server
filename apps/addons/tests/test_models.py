@@ -2016,7 +2016,7 @@ class TestAddonFromUpload(UploadTest):
         with self.assertRaises(forms.ValidationError) as e:
             Addon.from_upload(self.get_upload('extension.xpi'),
                               [self.platform])
-        eq_(e.exception.messages, ['Duplicate UUID found.'])
+        eq_(e.exception.messages, ['Duplicate add-on ID found.'])
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
