@@ -33,7 +33,7 @@
       </fieldset>
       <footer>
         {{ required_note() }}
-        <button type="submit">{{ _('Submit') }}</button>
+        <button id="submit" type="submit">{{ _('Submit') }}</button>
         {# L10n: this string is following a <button>. #}
         {% trans url=addon.reviews_url %}
           or <a href="{{ url }}">Cancel</a>
