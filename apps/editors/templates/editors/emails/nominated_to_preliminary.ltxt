@@ -10,5 +10,5 @@ Comments:
 
 {{ tested }}
 
-Your add-on will now appear in search results and categories with some limitations. You may re-request full review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
+Your add-on will now appear in search results and categories with some limitations. You may re-request full review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews
 {% endblock %}

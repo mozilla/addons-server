@@ -9,5 +9,5 @@ Comments:
 
 {{ tested }}
 
-Your add-on will now appear in search results and categories with some limitations. After 10 days you may request full review to remove these limitations and enable additional features. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
+Your add-on will now appear in search results and categories with some limitations. After 10 days you may request full review to remove these limitations and enable additional features. To learn more about the review process, please visit https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews
 {% endblock %}
