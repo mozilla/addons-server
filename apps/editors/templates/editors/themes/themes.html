@@ -41,7 +41,7 @@
       <dt class="license">{{ _('License') }}</dt><dd>{{ license_link(theme.license) }}</dd>
     </dl>
     <dl class="meta">
-      {% if hasOneToOne(theme, 'themelock') %}
+      {% if hasOneToOne(theme, 'themelock') and theme.themelock.reviewer != request.user %}
         <dt>{{ _('Reviewer') }}</dt><dd>{{ emaillink(theme.themelock.reviewer.email) }}</dd>
       {% endif %}
     </dl>
