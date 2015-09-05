@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-02 08:49\n"
+"PO-Revision-Date: 2015-09-03 20:26+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8515,6 +8515,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Jag godkänner <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox "
+"distributionsavtal för tilägg</a> och min information hanteras enligt "
+"beskrivningen i <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">sekretesspolicyn för webbplatser, kommunikation och "
+"kakor</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8593,6 +8598,8 @@ msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
 msgstr ""
+"Filer som läggs till granskade versioner måste granskas innan de kommer att "
+"finnas tillgängliga för nedladdning."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:17
 msgid ""
@@ -8604,15 +8611,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Välj målplattform för den här filen."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Vilken granskningstyp vill du nominera för?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publicera endast denna version till min beta kanal."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
@@ -9759,19 +9766,19 @@ msgstr ""
 
 #: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Tack för att du skickade in ditt tema"
 
 #: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Ett problem med ditt inskickade tema"
 
 #: apps/editors/tasks.py:90
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Inskickat tema flaggat för granskning"
 
 #: apps/editors/tasks.py:97
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "En fråga om ditt inskickade tema"
 
 #: apps/editors/views.py:130
 msgid "New Add-ons (Under 5 days)"
@@ -9820,7 +9827,7 @@ msgstr "behöver mer information"
 
 #: apps/editors/views.py:735
 msgid "needs super review"
-msgstr ""
+msgstr "behöver supergranskning"
 
 #: apps/editors/views.py:736
 msgid "commented"
@@ -9941,19 +9948,19 @@ msgstr "Loggdetaljer"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Titel för tillägg"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Granskningstitel"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Granskningstext"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Granskning har flaggats innan borttagning."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
@@ -9997,20 +10004,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad fullständig granskning ({num})"
+msgstr[1] "Olistad fullständiga granskningar ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad väntande uppdatering ({num})"
+msgstr[1] "Olistad väntande uppdateringar ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olistad preliminär granskning ({num})"
+msgstr[1] "Olistad preliminära granskningar ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
@@ -10086,7 +10093,7 @@ msgstr "Intervall"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
-msgstr ""
+msgstr "Dina recensioner"
 
 #: apps/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
@@ -10154,10 +10161,12 @@ msgid ""
 "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
 "%(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Flaggad av %(user)s den "
+"%(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Alla granskningar är modererade. Bra jobbat!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -10165,7 +10174,7 @@ msgstr "Versionsanteckningar / Anteckningar för granskare"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Det finns för tillfället inga tillägg av denna typ att granska."
 
 #: apps/editors/templates/editors/queue.html:181
 #: apps/editors/templates/editors/themes/queue_list.html:91
@@ -10174,16 +10183,16 @@ msgstr "Nyttiga länkar:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Policy för tillägg"
 
 #: apps/editors/templates/editors/queue.html:184
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Guide för redigerare"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr ""
+msgstr "Granska {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
@@ -10230,7 +10239,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Infoga standardsvar..."
 
 #: apps/editors/templates/editors/review.html:185
 msgid "Tested on:"
@@ -10240,6 +10249,8 @@ msgstr "Testad på:"
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Varning!</strong> En annan användare tittade på denna sida innan "
+"dig."
 
 #: apps/editors/templates/editors/review.html:232
 msgid ""
@@ -10532,7 +10543,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Välj ett skäl för avslag"
 
 #: apps/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
@@ -10540,7 +10551,7 @@ msgstr "Beskriv dina skäl för avslag"
 
 #: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Ställa en fråga till konstnären"
 
 #: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
@@ -10568,6 +10579,7 @@ msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
+"Denna fil kan inte visas online. Ladda ner filen för att visa innehållet."
 
 #: apps/files/helpers.py:194
 msgid "This file is a directory."
@@ -10591,7 +10603,7 @@ msgstr "Ogiltigt filnamn i arkivet: {0}"
 
 #: apps/files/utils.py:304
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Fil överskrider storleksgränsen i arkiv: {0}"
 
 #: apps/files/utils.py:354
 msgid "Invalid archive."
@@ -10683,7 +10695,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:73
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tabbstopp:"
 
 #: apps/files/templates/files/viewer.html:79
 #: apps/files/templates/files/viewer.html:80
@@ -10732,7 +10744,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Inga filer i den uppladdade filen."
 
 #: apps/files/templates/files/viewer.html:134
 msgid "Fetching file."
@@ -10740,7 +10752,7 @@ msgstr "Hämtar fil."
 
 #: apps/localizers/views.py:39
 msgid "An error occurred saving this message."
-msgstr ""
+msgstr "Ett fel uppstod när meddelandet skulle sparas."
 
 #: apps/localizers/views.py:42
 msgid "Access Denied"
@@ -10800,7 +10812,7 @@ msgstr "Bra att veta"
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
-msgstr ""
+msgstr "Vill ha den större bilden?"
 
 #: apps/localizers/templates/localizers/sidebar.html:15
 msgid "Visit localize.mozilla.org"
@@ -10934,7 +10946,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Detta låter bra! Hur kan jag bli involverad?"
 
 #: apps/pages/templates/pages/about.lhtml:40
 msgid ""
@@ -11081,10 +11093,12 @@ msgid ""
 "Mozilla would like to thank the following people for their contributions to "
 "the addons.mozilla.org project over the years:"
 msgstr ""
+"Mozilla vill tacka följande personer för deras bidrag till "
+"addons.mozilla.org projektet genom åren:"
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Utvecklare &amp; administratörer"
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
@@ -11092,7 +11106,7 @@ msgstr "Översättare"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr ""
+msgstr "Granskare"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
@@ -11457,13 +11471,15 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Kan Mozilla hysa mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:280
 msgid ""
 "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on "
 "website</a>."
 msgstr ""
+"Ja. Du kan hysa ditt tillägg på <a href=\"%(url)s\">Mozillas webbplats för "
+"tillägg</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:285
 msgid "What is AMO?"
@@ -12210,7 +12226,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:249
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Vad är en källkodslicens?"
 
 #: apps/pages/templates/pages/faq.html:250
 msgid ""
@@ -12255,11 +12271,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:279
 msgid "Personalized recommendations"
-msgstr ""
+msgstr "Personliga rekommendationer"
 
 #: apps/pages/templates/pages/faq.html:282
 msgid "What are personalized recommendations?"
-msgstr ""
+msgstr "Vad är personliga rekommendationer?"
 
 #: apps/pages/templates/pages/faq.html:283
 msgid ""
@@ -12267,10 +12283,13 @@ msgid ""
 "installed. If you have at least 3 add-ons installed, just visit the Get Add-"
 "ons area of the Add-ons Manager to see the \"Recommended for You\" box."
 msgstr ""
+"Firefox rekommenderar tillägg för dig baserat på de tillägg som du redan har"
+" installerat. Om du har minst 3 tillägg installerat, besök "
+"tilläggshanteraren för att se rutan \"Rekommenderas för dig\"."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
-msgstr ""
+msgstr "Hur bestäms personliga rekommendationer?"
 
 #: apps/pages/templates/pages/faq.html:289
 msgid ""
@@ -12280,16 +12299,24 @@ msgid ""
 "Policy</a>. Add-ons that are often used together are determined from the "
 "aggregate data and displayed to you as personalized recommendations."
 msgstr ""
+"Firefox skickar information om tillägg du har installerat till Mozilla en "
+"gång per dag för att uppdatera den information som visas för dig i "
+"tilläggshanteraren som förklaras i vår <a "
+"href=\"%(privacy_url)s\">sekretesspolicy</a>. Tillägg som ofta används "
+"tillsammans bestäms utifrån aggregerad data och visas för dig som personliga"
+" rekommendationer."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
-msgstr ""
+msgstr "Hur kan jag välja bort dessa rekommendationer?"
 
 #: apps/pages/templates/pages/faq.html:297
 msgid ""
 "Please see <a href=\"%(support_url)s\">this support article</a> for "
 "instructions on how to opt out."
 msgstr ""
+"Se <a href=\"%(support_url)s\">denna hjälpartikel</a> för instruktioner om "
+"hur man gör för att välja bort."
 
 #: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13
 #: templates/impala/header_title.html:13
@@ -12349,12 +12376,13 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
-msgstr ""
+msgstr "Att göra:"
 
 #: apps/pages/templates/pages/review_guide.html:56
 msgid ""
 "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
+"Skriv som om du berättar för en vän om dina erfarenheter med tillägget."
 
 #: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
@@ -12391,7 +12419,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
-msgstr ""
+msgstr "Att inte göra:"
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
@@ -14122,7 +14150,7 @@ msgstr "Tilläggsutvecklare"
 
 #: apps/users/templates/users/profile.html:37
 msgid "Themes Artist"
-msgstr "Temats upphovsman"
+msgstr "Temats konstnär"
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"

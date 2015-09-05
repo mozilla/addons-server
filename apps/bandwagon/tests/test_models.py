@@ -138,6 +138,18 @@ class TestCollections(amo.tests.TestCase):
         CollectionUser(collection=c, user=self.user).save()
         eq_(c.publishable_by(self.user), True)
 
+    def test_manager_publishable_by(self):
+        c1 = Collection.objects.create(author=self.user, name='B')
+        c2 = Collection.objects.create(author=self.user, name='A')
+        c3 = Collection.objects.create(author=self.other, name='D')
+        c4 = Collection.objects.create(author=self.other, name='C')
+        CollectionUser(collection=c1, user=self.user).save()
+        CollectionUser(collection=c2, user=self.other).save()
+        CollectionUser(collection=c3, user=self.user).save()
+        CollectionUser(collection=c4, user=self.other).save()
+        collections = Collection.objects.publishable_by(self.user)
+        assert list(collections) == [c2, c1, c3]
+
     def test_collection_meta(self):
         c = Collection.objects.create(author=self.user)
         eq_(c.addon_count, 0)

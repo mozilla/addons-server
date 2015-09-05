@@ -19,6 +19,13 @@
       return errors;
     }
 
+    function checkTimeout(validation) {
+        var timeout_id = ['validator', 'unexpected_exception', 'validation_timeout'];
+        return _.some(validation.messages, function(message) {
+            return _.isEqual(message.id, timeout_id);
+        });
+    }
+
     $.fn.addonUploader = function( options ) {
         var settings = {'filetypes': ['xpi', 'jar', 'xml'], 'getErrors': getErrors, 'cancel': $()};
 
@@ -383,8 +390,9 @@
                     }, 1000);
                 } else {
                     var errors = getErrors(results),
-                        v = results.validation;
-                    if (errors.length > 0) {
+                        v = results.validation,
+                        timeout = checkTimeout(v);
+                    if (errors.length > 0 && !timeout) {
                         $upload_field.trigger("upload_errors", [file, errors, results]);
                         return;
                     }
@@ -401,7 +409,10 @@
                     var message = "";
 
                     var warnings = v.warnings + v.notices;
-                    if (warnings > 0) {
+                    if (timeout) {
+                        message = gettext(
+                                    "Your add-on validation timed out, it will be manually reviewed.");
+                    } else if (warnings > 0) {
                         message = format(ngettext(
                                     "Your add-on was validated with no errors and {0} message.",
                                     "Your add-on was validated with no errors and {0} messages.",
