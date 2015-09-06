@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-13 09:27+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2015-09-06 16:42+0000\n"
+"Last-Translator: 星 <604733992@qq.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439458021.0\n"
+"X-POOTLE-MTIME: 1441557768.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1016,7 +1016,7 @@ msgstr "<strong>注意：</strong>此附加组件的开发版本未经过 Mozill
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "查阅完整的开发通道历史记录"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1830,7 +1830,7 @@ msgstr "找不到结果"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:76 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:89
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
-msgstr "上一类"
+msgstr "上一页"
 
 #: apps/amo/templates/amo/paginator.html:26 apps/amo/templates/amo/impala/paginator.html:26 apps/amo/templates/amo/mobile/impala_paginator.html:16 apps/amo/templates/amo/mobile/paginator.html:14
 #: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51
@@ -1838,7 +1838,7 @@ msgstr "上一类"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
-msgstr "下一类"
+msgstr "下一页"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -3436,15 +3436,15 @@ msgstr "第6级"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "第7级"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "第8级"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "第9级"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
