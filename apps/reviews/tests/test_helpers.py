@@ -119,4 +119,5 @@ class HelpersTest(amo.tests.TestCase):
         eq_(doc('#review-edit-form').length, 1)
         eq_(doc('p.req').length, 1)
         for name in ReviewForm().fields.keys():
-            eq_(doc('[name=%s]' % name).length, 1)
+            if name != 'rating':
+                eq_(doc('[name=%s]' % name).length, 1)
