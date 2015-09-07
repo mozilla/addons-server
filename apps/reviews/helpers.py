@@ -69,7 +69,6 @@ def edit_review_reply_form(context):
     return c
 
 
-
 def user_can_delete_review(request, review):
     """Return whether or not the request.user can delete reviews.
 
