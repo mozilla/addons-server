@@ -105,7 +105,7 @@ AMO_LANGUAGES = (
 )
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
-TASK_USER_ID = '4043307'
+TASK_USER_ID = 4043307
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
