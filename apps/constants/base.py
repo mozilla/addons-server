@@ -109,6 +109,12 @@ LITE_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
                    STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
+# Fully reviewed of waiting for a full review.
+FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_LITE_AND_NOMINATED,
+                        STATUS_PUBLIC]
+# Prelim reviewed of waiting for a prelim review.
+PRELIM_REVIEW_STATUSES = [STATUS_UNREVIEWED, STATUS_LITE]
+
 # An add-on in one of these statuses can become premium.
 PREMIUM_STATUSES = (STATUS_NULL,) + UNDER_REVIEW_STATUSES
 
