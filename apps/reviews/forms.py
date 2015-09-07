@@ -22,12 +22,12 @@ class ReviewReplyForm(forms.Form):
         required=False,
         label="Title",
         widget=forms.TextInput(
-            attrs={'id':'id_review_reply_title'},
+            attrs={'id': 'id_review_reply_title', },
         ),
     )
     body = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 3, 'id':'id_review_reply_body'},
+            attrs={'rows': 3, 'id': 'id_review_reply_body', },
         ),
         label="Review",
     )
@@ -48,12 +48,12 @@ class ReviewForm(ReviewReplyForm):
         required=False,
         label="Title",
         widget=forms.TextInput(
-            attrs={'id':'id_review_title'},
+            attrs={'id': 'id_review_title', },
         ),
     )
     body = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': 3, 'id':'id_review_body'},
+            attrs={'rows': 3, 'id': 'id_review_body', },
         ),
         label="Review",
     )
