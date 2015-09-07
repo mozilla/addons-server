@@ -90,23 +90,23 @@ def test_approve_addons_get_files_bad_guid():
 @pytest.fixture(
     params=[(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, 'prelim'),
             (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, 'prelim'),
-            (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, 'full'),
-            (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, 'full'),
+            (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
+            (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full'),
             (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, 'full')],
     ids=['1-1-prelim',  # Those are used to build better test names, for the
          '8-1-prelim',  # tests using this fixture, eg:
-         '3-3-full',    # > test_approve_addons_get_files[1-1-prelim]
-         '4-3-full',    # instead of simply:
+         '3-1-full',    # > test_approve_addons_get_files[1-1-prelim]
+         '4-1-full',    # instead of simply:
          '9-8-full'])   # > test_approve_addons_get_files[usecase0]
 def use_case(request, db):
     """This fixture will return quadruples for different use cases.
 
     Addon                   | File1 and 2        | Review type
     ==============================================================
-    waiting for prelim      | waiting for prelim | prelim reviewed
-    prelim reviewed         | waiting for prelim | prelim reviewed
-    waiting for full        | waiting for full   | fully reviewed
-    fully reviewed          | waiting for full   | fully reviewed
+    waiting for prelim      | unreviewed         | prelim reviewed
+    prelim reviewed         | unreviewed         | prelim reviewed
+    waiting for full        | unreviewed         | fully reviewed
+    fully reviewed          | unreviewed         | fully reviewed
     prelim waiting for full | prelim reviewed    | fully reviewed
     """
     addon_status, file_status, review_type = request.param

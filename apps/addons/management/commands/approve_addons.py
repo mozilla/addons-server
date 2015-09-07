@@ -92,9 +92,16 @@ def approve_files(files_with_review_type):
 
 def get_review_type(file_):
     """Return 'full', 'prelim' or None depending on the file/addon status."""
-    if file_.status == amo.STATUS_NOMINATED:
+    addon_status = file_.version.addon.status
+    if addon_status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+        # Add-on is waiting for a full review.
         return 'full'
-    if file_.status == amo.STATUS_UNREVIEWED:
+    if addon_status == amo.STATUS_UNREVIEWED:
+        # Add-on is waiting for a prelim review.
         return 'prelim'
-    if file_.version.addon.status == amo.STATUS_LITE_AND_NOMINATED:
-        return 'full'
+    if file_.status == amo.STATUS_UNREVIEWED:
+        # Addon is reviewed, not file.
+        if addon_status == amo.STATUS_PUBLIC:
+            return 'full'
+        elif addon_status == amo.STATUS_LITE:
+            return 'prelim'
