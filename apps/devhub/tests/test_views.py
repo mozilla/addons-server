@@ -2229,7 +2229,7 @@ class TestVersionAddFile(UploadTest):
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
         r = self.post()
-        assert_json_error(r, None, "UUID doesn't match add-on.")
+        assert_json_error(r, None, "Add-on ID doesn't match add-on.")
 
     def test_version_matches(self):
         self.version.update(version='2.0')
@@ -2637,7 +2637,7 @@ class TestUploadErrors(UploadTest):
 
         messages = data['validation']['messages']
         assert len(messages) == 1
-        assert messages[0]['message'] == u'Duplicate UUID found.'
+        assert messages[0]['message'] == u'Duplicate add-on ID found.'
 
     def test_dupe_xpi_unlisted_addon(self):
         """Submitting an xpi with the same UUID as an unlisted addon."""

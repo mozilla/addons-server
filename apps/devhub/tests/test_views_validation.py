@@ -2,6 +2,7 @@
 import json
 from copy import deepcopy
 
+from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
@@ -20,7 +21,7 @@ from devhub.tasks import compatibility_check
 from files.helpers import copyfileobj
 from files.models import File, FileUpload, FileValidation, ValidationAnnotation
 from files.tests.test_models import UploadTest as BaseUploadTest
-from files.utils import parse_addon
+from files.utils import check_xpi_info, parse_addon
 from users.models import UserProfile
 from zadmin.models import ValidationResult
 
@@ -85,9 +86,18 @@ class TestUploadErrors(BaseUploadTest):
         eq_(res.status_code, 400, res.content)
         data = json.loads(res.content)
         eq_(data['validation']['messages'],
-            [{'tier': 1, 'message': 'Duplicate UUID found.',
+            [{'tier': 1, 'message': 'Duplicate add-on ID found.',
               'type': 'error', 'fatal': True}])
         eq_(data['validation']['ending_tier'], 1)
+
+    def test_too_long_uuid(self):
+        """An add-on uuid must be 64chars at most, see bug 1201176."""
+        with self.assertRaises(forms.ValidationError) as exc:
+            check_xpi_info({
+                'guid': u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
+                        u'bug_1201176_and_should_fail@xpi'})
+        expected = 'Add-on ID must be 64 characters or less.'
+        assert exc.exception.message == expected
 
 
 class TestFileValidation(amo.tests.TestCase):
