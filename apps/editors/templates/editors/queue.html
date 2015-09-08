@@ -37,6 +37,10 @@
                 <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
                 <div class="form-elem">{{ search_form[elem] }}</div>
               {% endfor %}
+              <label>
+                <input type="checkbox" value="1" name="include_admin_only" />
+                {{ _('Include admin only review addons.') }}
+              </label>
             </div>
           </div>
           <div class="column2">

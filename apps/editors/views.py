@@ -54,10 +54,10 @@ def base_context(**kw):
 
 
 def context(request, **kw):
-    admin_reviewer = is_admin_reviewer(request)
-    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
+    exclude_admin_only = should_exclude_admin_only(request)
+    ctx = {'queue_counts': queue_counts(exclude_admin_only=exclude_admin_only),
            'unlisted_queue_counts': queue_counts(
-               unlisted=True, admin_reviewer=admin_reviewer)}
+               unlisted=True, exclude_admin_only=exclude_admin_only)}
     ctx.update(base_context(**kw))
     return ctx
 
@@ -359,6 +359,15 @@ def is_admin_reviewer(request):
     return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
 
+def should_exclude_admin_only(request):
+    return not (is_admin_reviewer(request) or
+                should_include_admin_only(request))
+
+
+def should_include_admin_only(request):
+    return request.GET.get('include_admin_only') == '1'
+
+
 def exclude_admin_only_addons(queryset):
     return queryset.filter(admin_review=False, has_info_request=False)
 
@@ -366,8 +375,8 @@ def exclude_admin_only_addons(queryset):
 def _queue(request, TableObj, tab, qs=None, unlisted=False):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
-    admin_reviewer = is_admin_reviewer(request)
-    if not admin_reviewer:
+    exclude_admin_only = should_exclude_admin_only(request)
+    if exclude_admin_only:
         qs = exclude_admin_only_addons(qs)
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
@@ -395,11 +404,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
                           unlisted=unlisted))
 
 
-def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
+def queue_counts(type=None, unlisted=False, exclude_admin_only=False, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         query = query_type.objects
 
-        if not admin_reviewer:
+        if exclude_admin_only:
             query = exclude_admin_only_addons(query)
         if days_min:
             query = query.having('waiting_time_days >=', days_min)
