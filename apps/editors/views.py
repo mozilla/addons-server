@@ -54,10 +54,10 @@ def base_context(**kw):
 
 
 def context(request, **kw):
-    exclude_admin_only = should_exclude_admin_only(request)
-    ctx = {'queue_counts': queue_counts(exclude_admin_only=exclude_admin_only),
+    admin_reviewer = is_admin_reviewer(request)
+    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
            'unlisted_queue_counts': queue_counts(
-               unlisted=True, exclude_admin_only=exclude_admin_only)}
+               unlisted=True, admin_reviewer=admin_reviewer)}
     ctx.update(base_context(**kw))
     return ctx
 
@@ -359,15 +359,6 @@ def is_admin_reviewer(request):
     return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
 
-def should_exclude_admin_only(request):
-    return not (is_admin_reviewer(request) or
-                should_include_admin_only(request))
-
-
-def should_include_admin_only(request):
-    return request.GET.get('include_admin_only') == '1'
-
-
 def exclude_admin_only_addons(queryset):
     return queryset.filter(admin_review=False, has_info_request=False)
 
@@ -375,15 +366,15 @@ def exclude_admin_only_addons(queryset):
 def _queue(request, TableObj, tab, qs=None, unlisted=False):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
-    exclude_admin_only = should_exclude_admin_only(request)
-    if exclude_admin_only:
-        qs = exclude_admin_only_addons(qs)
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
         if search_form.is_valid():
             qs = search_form.filter_qs(qs)
     else:
         search_form = forms.QueueSearchForm()
+    admin_reviewer = is_admin_reviewer(request)
+    if not admin_reviewer and not search_form.data.get('searching'):
+        qs = exclude_admin_only_addons(qs)
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
@@ -404,11 +395,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
                           unlisted=unlisted))
 
 
-def queue_counts(type=None, unlisted=False, exclude_admin_only=False, **kw):
+def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         query = query_type.objects
 
-        if exclude_admin_only:
+        if not admin_reviewer:
             query = exclude_admin_only_addons(query)
         if days_min:
             query = query.having('waiting_time_days >=', days_min)
