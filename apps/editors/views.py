@@ -222,21 +222,32 @@ def performance(request, user_id=False):
     months = ReviewerScore.get_breakdown_since(user, month_ago)
     years = ReviewerScore.get_breakdown_since(user, year_ago)
 
-    def _sum(iter, types):
-        return sum(s.total for s in iter if s.atype in types)
+    def _sum(iter, types, exclude=False):
+        """Sum the `total` property for items in `iter` that have an `atype`
+        that is included in `types` when `exclude` is False (default) or not in
+        `types` when `exclude` is True."""
+        return sum(s.total
+                   for s in iter
+                   if (s.atype in types) == (not exclude))
 
     breakdown = {
         'month': {
             'addons': _sum(months, amo.GROUP_TYPE_ADDON),
             'themes': _sum(months, amo.GROUP_TYPE_THEME),
+            'other': _sum(months, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME,
+                          exclude=True)
         },
         'year': {
             'addons': _sum(years, amo.GROUP_TYPE_ADDON),
             'themes': _sum(years, amo.GROUP_TYPE_THEME),
+            'other': _sum(years, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME,
+                          exclude=True)
         },
         'total': {
             'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
             'themes': _sum(totals, amo.GROUP_TYPE_THEME),
+            'other': _sum(totals, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME,
+                          exclude=True)
         }
     }
 
