@@ -66,6 +66,7 @@ def context(request, **kw):
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
     if form.is_valid():
         if form.cleaned_data['start']:
@@ -77,7 +78,9 @@ def eventlog(request):
 
     pager = amo.utils.paginate(request, eventlog, 50)
 
-    data = context(request, form=form, pager=pager)
+    data = context(request, form=form, pager=pager,
+                   motd_editable=motd_editable)
+
     return render(request, 'editors/eventlog.html', data)
 
 
@@ -116,6 +119,7 @@ def beta_signed_log(request):
     """Log of all the beta files that got signed."""
     form = forms.BetaSignedLogForm(request.GET)
     beta_signed_log = ActivityLog.objects.beta_signed_events()
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
     if form.is_valid():
         if form.cleaned_data['filter']:
@@ -124,7 +128,8 @@ def beta_signed_log(request):
 
     pager = amo.utils.paginate(request, beta_signed_log, 50)
 
-    data = context(request, form=form, pager=pager)
+    data = context(request, form=form, pager=pager,
+                   motd_editable=motd_editable)
     return render(request, 'editors/beta_signed_log.html', data)
 
 
@@ -218,6 +223,8 @@ def performance(request, user_id=False):
         except UserProfile.DoesNotExist:
             pass  # Use request.amo_user from above.
 
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
 
@@ -265,7 +272,8 @@ def performance(request, user_id=False):
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
                    editors=editors, current_user=user, is_admin=is_admin,
-                   is_user=(request.amo_user.id == user.id))
+                   is_user=(request.amo_user.id == user.id),
+                   motd_editable=motd_editable)
 
     return render(request, 'editors/performance.html', data)
 
@@ -386,6 +394,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
     admin_reviewer = is_admin_reviewer(request)
     if not admin_reviewer and not search_form.data.get('searching'):
         qs = exclude_admin_only_addons(qs)
+
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     order_by = request.GET.get('sort', TableObj.default_order_by())
     order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
@@ -403,7 +413,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
                   context(request, table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
-                          unlisted=unlisted))
+                          unlisted=unlisted,
+                          motd_editable=motd_editable))
 
 
 def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
@@ -473,6 +484,7 @@ def queue_moderated(request):
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
     flags = dict(ReviewFlag.FLAGS)
 
@@ -493,7 +505,8 @@ def queue_moderated(request):
                   context(request, reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
-                          point_types=amo.REVIEWED_AMO))
+                          point_types=amo.REVIEWED_AMO,
+                          motd_editable=motd_editable))
 
 
 @unlisted_addons_reviewer_required
@@ -728,6 +741,8 @@ def queue_version_notes(request, addon_id):
 def reviewlog(request):
     data = request.GET.copy()
 
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+
     if not data.get('start') and not data.get('end'):
         today = date.today()
         data['start'] = date(today.year, today.month, 1)
@@ -764,7 +779,9 @@ def reviewlog(request):
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
         amo.LOG.COMMENT_VERSION.id: _('commented'),
     }
-    data = context(request, form=form, pager=pager, ACTION_DICT=ad)
+
+    data = context(request, form=form, pager=pager, ACTION_DICT=ad,
+                   motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 
 
