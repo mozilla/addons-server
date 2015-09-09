@@ -20,7 +20,7 @@ from amo.utils import paginate
 from devhub.models import ActivityLog
 from editors import forms
 from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
-from editors.views import context
+from editors.views import base_context as context
 from search.views import name_only_query
 from zadmin.decorators import admin_required
 from .decorators import personas_reviewer_required
