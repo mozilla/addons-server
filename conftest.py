@@ -7,7 +7,9 @@ import caching
 import pytest
 
 import amo
+from access.models import Group, GroupUser
 from translations.hold import clean_translations
+from users.models import UserProfile
 
 
 @pytest.fixture(autouse=True)
@@ -104,3 +106,21 @@ def test_post_teardown():
 
     # Make sure we revert everything we might have changed to prefixers.
     amo.urlresolvers.clean_url_prefixes()
+
+
+@pytest.fixture
+def admin_group(db):
+    """Create the Admins group."""
+    return Group.objects.create(name='Admins', rules='*:*')
+
+
+@pytest.fixture
+def mozilla_user(admin_group):
+    """Create a "Mozilla User"."""
+    user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
+                                      email='admin@mozilla.com',
+                                      username='admin')
+    user.set_password('password')
+    user.save()
+    GroupUser.objects.create(user=user, group=admin_group)
+    return user
