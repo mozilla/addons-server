@@ -82,7 +82,7 @@
           {{ _('Signed Beta Files Log') }}</a></li>
       </ul>
     </li>
-    {% if is_admin %}
+    {% if motd_editable %}
       <li class="top">
         <a href="{{ url('editors.motd') }}" class="controller">{{ _('Announcement') }}</a>
       </li>
