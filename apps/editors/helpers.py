@@ -683,9 +683,13 @@ class ReviewAddon(ReviewBase):
         """Set an addon to public."""
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
+        import ipdb; ipdb.set_trace()
+
+
+        files_reviewing = self.version.files.filter(status=amo.STATUS_UNREVIEWED)
 
         # Sign addon.
-        for file_ in self.files:
+        for file_ in files_reviewing:
             sign_file(file_, settings.SIGNING_SERVER)
 
         # Hold onto the status before we change it.
@@ -693,7 +697,7 @@ class ReviewAddon(ReviewBase):
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, files_reviewing, copy_to_mirror=True)
         self.set_addon(highest_status=amo.STATUS_PUBLIC,
                        status=amo.STATUS_PUBLIC)
 
@@ -716,17 +720,21 @@ class ReviewAddon(ReviewBase):
     def process_sandbox(self):
         """Set an addon back to sandbox."""
 
+        files_reviewing = self.files.filter(status=amo.STATUS_UNREVIEWED)
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        if (not self.is_upgrade or
-            not self.addon.versions.exclude(id=self.version.id)
-                          .filter(files__status__in=amo.REVIEWED_STATUSES)):
+        if status in amo.UNREVIEWED_STATUSES:
             self.set_addon(status=amo.STATUS_NULL)
-        else:
-            self.set_addon(status=amo.STATUS_LITE)
+        elif self.is_upgrade:
+            if (not self.addon.versions.exclude(id=self.version.id)
+                       .filter(files__status__in=amo.REVIEWED_STATUSES)):
+                self.set_addon(status=amo.STATUS_NULL)
+            else:
+                self.set_addon(status=amo.STATUS_LITE)
 
-        self.set_files(amo.STATUS_DISABLED, self.files,
+        self.set_files(amo.STATUS_DISABLED, files_reviewing,
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
@@ -747,14 +755,21 @@ class ReviewAddon(ReviewBase):
 
     def process_preliminary(self, auto_validation=False):
         """Set an addon to preliminary."""
+        import ipdb; ipdb.set_trace()
+
+        files_reviewing = self.files.filter(status=amo.STATUS_UNREVIEWED)
+
         # Sign addon.
-        for file_ in self.files:
+        for file_ in files_reviewing:
             sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
 
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        changes = {'status': amo.STATUS_LITE}
+        changes = {'status' : status}
+        if status in amo.UNREVIEWED_STATUSES:
+            changes = {'status': amo.STATUS_LITE}
+
         if (self.addon.status in (amo.STATUS_PUBLIC,
                                   amo.STATUS_LITE_AND_NOMINATED)):
             changes['highest_status'] = amo.STATUS_LITE
