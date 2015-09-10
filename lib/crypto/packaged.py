@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import shutil
@@ -51,6 +52,17 @@ def get_endpoint(server):
     return u'{server}/1.0/sign_addon'.format(server=server)
 
 
+def get_id(addon):
+    """Return the addon GUID if <= 64 chars, or its sha256 hash otherwise.
+
+    We don't want GUIDs longer than 64 chars: bug 1203365.
+    """
+    guid = addon.guid
+    if len(guid) <= 64:
+        return guid
+    return hashlib.sha256(guid).hexdigest()
+
+
 def call_signing(file_obj, endpoint):
     """Get the jar signature and send it to the signing server to be signed."""
     # We only want the (unique) temporary file name.
@@ -70,7 +82,7 @@ def call_signing(file_obj, endpoint):
         response = requests.post(
             endpoint,
             timeout=settings.SIGNING_SERVER_TIMEOUT,
-            data={'addon_id': file_obj.version.addon.guid},
+            data={'addon_id': get_id(file_obj.version.addon)},
             files={'file': (u'mozilla.sf', unicode(jar.signatures))})
     if response.status_code != 200:
         msg = u'Posting to add-on signing failed: {0}'.format(response.reason)
