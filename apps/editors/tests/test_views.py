@@ -2555,6 +2555,33 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
+    def test_prelim_from_lite_no_files(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        del data['addon_files']
+        response = self.client.post(self.url, data)
+        eq_(response.context['form'].errors['addon_files'][0],
+            'You must select some files.')
+
+    def test_prelim_from_lite_wrong(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        response = self.client.post(self.url, self.prelim_dict())
+        eq_(response.context['form'].errors['addon_files'][0],
+            'File Public.xpi is not pending review.')
+
+    def test_prelim_from_lite_wrong_two(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        f = self.version.files.all()[0]
+
+        statuses = dict(File.STATUS_CHOICES)  # Shallow copy.
+        del statuses[amo.STATUS_BETA], statuses[amo.STATUS_UNREVIEWED]
+        for status in statuses:
+            f.update(status=status)
+            response = self.client.post(self.url, data)
+            eq_(response.context['form'].errors['addon_files'][0],
+                'File Public.xpi is not pending review.')
+
     def test_prelim_from_lite_files(self):
         self.addon.update(status=amo.STATUS_LITE)
         self.client.post(self.url, self.prelim_dict())
@@ -2568,6 +2595,18 @@ class TestReviewPreliminary(ReviewBase):
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
         assert mock_sign.called
+
+    def test_prelim_multiple_files(self):
+        file_ = self.version.files.all()[0]
+        file_.pk = None
+        file_.status = amo.STATUS_DISABLED
+        file_.save()
+        self.addon.update(status=amo.STATUS_LITE)
+        data = self.prelim_dict()
+        data['addon_files'] = [file_.pk]
+        self.client.post(self.url, data)
+        eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
+            [f.status for f in self.version.files.all().order_by('status')])
 
 
 class TestReviewPending(ReviewBase):
