@@ -28,8 +28,8 @@ pytestmark = pytest.mark.django_db
 
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                         amo.STATUS_UNREVIEWED, amo.STATUS_BETA,
-                         amo.STATUS_NULL, amo.STATUS_PUBLIC,
+                         amo.STATUS_UNREVIEWED)
+REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
                          amo.STATUS_DISABLED, amo.STATUS_LITE)
 
 
@@ -228,6 +228,11 @@ class TestReviewHelper(amo.tests.TestCase):
         helper = helpers.ReviewHelper(request=self.request, addon=self.addon,
                                       version=None)
         eq_(helper.review_type, 'pending')
+
+    def test_review_files(self):
+        for status in REVIEW_FILES_STATUSES:
+            self.setup_data(status=status)
+            eq_(self.helper.handler.__class__, helpers.ReviewFiles)
 
     def test_review_addon(self):
         for status in REVIEW_ADDON_STATUSES:
@@ -916,8 +921,7 @@ class TestReviewHelper(amo.tests.TestCase):
         for status in REVIEW_ADDON_STATUSES:
             for process in ['process_sandbox', 'process_preliminary',
                             'process_public']:
-                if ((status == amo.STATUS_UNREVIEWED or
-                        status == amo.STATUS_LITE) and
+                if (status == amo.STATUS_UNREVIEWED and
                         process == 'process_public'):
                     continue
                 self.version.update(reviewed=None)
@@ -925,6 +929,15 @@ class TestReviewHelper(amo.tests.TestCase):
                 getattr(self.helper.handler, process)()
                 assert self.version.reviewed, ('Reviewed for status %r, %s()'
                                                % (status, process))
+
+    def test_preliminary_review_time_set(self):
+        for status in REVIEW_FILES_STATUSES:
+            for process in ['process_sandbox', 'process_preliminary']:
+                self.file.update(reviewed=None)
+                self.setup_data(status)
+                getattr(self.helper.handler, process)()
+                assert File.objects.get(pk=self.file.pk).reviewed, (
+                    'Reviewed for status %r, %s()' % (status, process))
 
 
 def test_page_title_unicode():
