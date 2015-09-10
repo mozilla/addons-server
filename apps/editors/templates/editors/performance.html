@@ -1,6 +1,6 @@
 {% extends "editors/base.html" %}
 
-{% set types = ('addons', 'themes') %}
+{% set types = ('addons', 'themes', 'other') %}
 
 {% block breadcrumbs %}
 {{ editors_breadcrumbs(items=[(None, _('Performance'))]) }}
@@ -71,6 +71,8 @@
           <th></th>
           <th>{{ _('Add-ons') }}</th>
           <th>{{ _('Themes') }}</th>
+          {# L10n: Review points sources other than add-ons and themes. #}
+          <th>{{ _('Other') }}</th>
           <th>{{ _('Total') }}</th>
         </tr>
       </thead>
