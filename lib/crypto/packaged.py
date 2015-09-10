@@ -70,7 +70,8 @@ def call_signing(file_obj, endpoint):
         response = requests.post(
             endpoint,
             timeout=settings.SIGNING_SERVER_TIMEOUT,
-            data={'addon_id': file_obj.version.addon.guid},
+            # We don't want GUIDs longer than 64 chars: bug 1202880.
+            data={'addon_id': file_obj.version.addon.guid[:64]},
             files={'file': (u'mozilla.sf', unicode(jar.signatures))})
     if response.status_code != 200:
         msg = u'Posting to add-on signing failed: {0}'.format(response.reason)
