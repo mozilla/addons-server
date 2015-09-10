@@ -101,9 +101,11 @@ function initReviewActions() {
     /* File checkboxes */
     var $files_input = $('#review-actions .review-actions-files').find('input:enabled');
 
-    // Add a dummy, disabled input
-    $files_input.prop('checked', true).hide();
-    $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
+    if($files_input.length == 1) {
+        // Add a dummy, disabled input
+        $files_input.prop('checked', true).hide();
+        $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
+    }
 
     /* Install Triggers */
 
