@@ -4,9 +4,9 @@
     <div class="icon">
       <a href="{{ details_link }}">
       {% if lazyload %}
-        <img src="{{ addon.icon_url }}" alt="">
+      <img src="{{ addon.icon_url }}" alt="{{ _('Icon for {0}')|fe(addon.name) }}">
       {% else %}
-        <img data-defer-src="{{ addon.icon_url }}" alt=""
+        <img data-defer-src="{{ addon.icon_url }}" alt="{{ _('Icon for {0}')|fe(addon.name) }}"
              src="{{ static('img/addon-icons/default-32.png') }}">
       {% endif %}
       </a>

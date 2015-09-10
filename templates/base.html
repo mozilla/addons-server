@@ -155,7 +155,7 @@
         <div id="footer" role="contentinfo">
           <div class="section">
             {% block footer_extras %}
-              <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="">
+            <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="{{ _('Footer logo') }}">
             {% endblock %}
             {% include "footer.html" %}
           </div> {# section #}
