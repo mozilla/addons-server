@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-01 16:51+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-09-10 07:18+0000\n"
+"Last-Translator: Anonymous Pootle User\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441126283.0\n"
+"X-POOTLE-MTIME: 1441869489.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -6969,7 +6969,7 @@ msgstr "Skrytím svého doplňku zabráníte, aby se zobrazoval kdekoliv v naš�
 
 #: apps/devhub/templates/devhub/versions/list.html:266
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Jste si jisti, že chcete skrýt svůj doplněk?"
+msgstr "Opravdu chcete skrýt svůj doplněk?"
 
 #: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
 msgid "Unlist Add-on"
@@ -6998,7 +6998,7 @@ msgstr "Neveřejný doplněk nelze změnit na veřejný."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr "Jste si jisti, že chcete zrušit zařazení svého doplňku v seznamech?"
+msgstr "Opravdu chcete zrušit zařazení svého doplňku v seznamech?"
 
 #: apps/devhub/templates/devhub/versions/list.html:331
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
