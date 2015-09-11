@@ -13,5 +13,13 @@ uid=$(ls -nd . | awk '{ print $3 }')
 # as its home directory.
 useradd -Md $(pwd) -u $uid olympia
 
+# Check database exists. If not create it first.
+mysql -u root --host mysqld -e 'use olympia;'
+if [ $? -ne 0 ]; then
+    echo "Olympia database doesn't exist. Let's create it"
+    mysql -u root --host mysqld -e 'create database olympia'
+    make initialize_docker
+fi
+
 # Switch to that user and execute our actual command.
 exec su olympia -c 'exec "$@"' sh "$@"
