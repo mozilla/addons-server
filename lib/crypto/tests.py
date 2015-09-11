@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import os
 import shutil
 import tempfile
@@ -47,12 +48,17 @@ class TestPackaged(amo.tests.TestCase):
     @pytest.fixture(autouse=True)
     def mock_post(self, monkeypatch):
         """Fake a standard trunion response."""
+        self.requests_post_calls = []
+
         class FakeResponse:
             status_code = 200
             content = '{"mozilla.rsa": ""}'
 
-        monkeypatch.setattr(
-            'requests.post', lambda url, timeout, data, files: FakeResponse)
+        def mock_post_call(url, timeout, data, files):
+            self.requests_post_calls.append((url, timeout, data, files))
+            return FakeResponse
+
+        monkeypatch.setattr('requests.post', mock_post_call)
 
     @pytest.fixture(autouse=True)
     def mock_get_signature_serial_number(self, monkeypatch):
@@ -65,12 +71,14 @@ class TestPackaged(amo.tests.TestCase):
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
         assert not packaged.is_signed(self.file_.file_path)
+        assert not self.requests_post_calls
 
     def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
         assert packaged.is_signed(self.file_.file_path)
+        assert len(self.requests_post_calls) == 1
 
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -204,6 +212,49 @@ class TestPackaged(amo.tests.TestCase):
                     os.path.join(folder, 'random_theme.xpi'))
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
+
+    def test_call_signing(self):
+        packaged.call_signing(self.file_, 'endpoint_url')
+        assert self.requests_post_calls == [
+            ('endpoint_url',
+             settings.SIGNING_SERVER_TIMEOUT,
+             {'addon_id': 'xxxxx'},
+             {'file': (u'mozilla.sf',
+                       u'Signature-Version: 1.0\nMD5-Digest-Manifest: '
+                       u'//axi91xGZwlaVjKiw9xuw==\nSHA1-Digest-Manifest: '
+                       u'ep9V9fWlCso0PZUcnM60watGvrM=\n\n')})]
+
+    def test_call_signing_too_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        packaged.call_signing(self.file_, 'endpoint_url')
+        assert self.requests_post_calls == [
+            ('endpoint_url',
+             settings.SIGNING_SERVER_TIMEOUT,
+             {'addon_id': hashed},  # Truncated to 64 chars.
+             {'file': (u'mozilla.sf',
+                       u'Signature-Version: 1.0\nMD5-Digest-Manifest: '
+                       u'//axi91xGZwlaVjKiw9xuw==\nSHA1-Digest-Manifest: '
+                       u'ep9V9fWlCso0PZUcnM60watGvrM=\n\n')})]
+
+    def test_get_id_short_guid(self):
+        assert len(self.addon.guid) <= 64
+        assert len(packaged.get_id(self.addon)) <= 64
+        assert packaged.get_id(self.addon) == self.addon.guid
+
+    def test_get_id_longest_allowed_guid_bug_1203365(self):
+        long_guid = 'x' * 64
+        self.addon.update(guid=long_guid)
+        assert packaged.get_id(self.addon) == self.addon.guid
+
+    def test_get_id_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        assert len(self.addon.guid) > 64
+        assert len(packaged.get_id(self.addon)) <= 64
+        assert packaged.get_id(self.addon) == hashed
 
 
 class TestTasks(amo.tests.TestCase):
