@@ -1,0 +1,26 @@
+version: 0
+metadata:
+  name: "Olympia Tests"
+  description: "AMO tests"
+  owner: "{{ event.head.user.email }}"
+  source: "{{ event.head.repo.url }}"
+tasks:
+  - provisionerId: "{{ taskcluster.docker.provisionerId }}"
+    workerType: "olympia-test-worker"
+    extra:
+      github:
+        env: true
+        events:
+          - pull_request.*
+    payload:
+      maxRunTime: 7200
+      image: "kmaglione/olympia-test:latest"
+      command:
+        - "py.test"
+        - "-v"
+        - "-n8"
+    metadata:
+      name: "Olympia Tests"
+      description: "AMO tests"
+      owner: "{{ event.head.user.email }}"
+      source: "{{ event.head.repo.url }}"
