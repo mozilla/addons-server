@@ -139,6 +139,7 @@ def home(request):
             acl.action_allowed(request, 'Personas', 'Review')):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     durations = (('new', _('New Add-ons (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
                  ('old', _('Overdue (Over 10 days)')))
@@ -180,7 +181,8 @@ def home(request):
         percentage=percentage,
         unlisted_percentage=unlisted_percentage,
         durations=durations,
-        reviews_max_display=reviews_max_display)
+        reviews_max_display=reviews_max_display,
+        motd_editable=motd_editable)
 
     return render(request, 'editors/home.html', data)
 
