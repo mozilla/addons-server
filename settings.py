@@ -15,6 +15,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = False
 # These apps are great during development.
 INSTALLED_APPS += (
     'django_extensions',
+    'djcelery',
     'landfill',
 )
 

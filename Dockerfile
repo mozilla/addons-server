@@ -28,5 +28,8 @@ RUN cd /pip && \
 	--no-deps -r requirements/docker.txt && \
     rm -r build cache
 
+# Need uglify for code minimization.
+RUN npm install
+
 RUN mkdir /code
 WORKDIR /code

@@ -51,7 +51,7 @@ test_failed:
 	$(DOCKER_PREFIX) py.test --lf $(ARGS)
 
 initialize_db:
-	$(DOCKER_PREFIX) python manage.py reset_db
+	$(DOCKER_PREFIX) python manage.py reset_db --noinput
 	$(DOCKER_PREFIX) python manage.py syncdb --noinput
 	$(DOCKER_PREFIX) python manage.py loaddata initial.json
 	$(DOCKER_PREFIX) python manage.py import_prod_versions
@@ -83,7 +83,15 @@ update_assets: update_npm_deps
 	$(DOCKER_PREFIX) python manage.py compress_assets
 	$(DOCKER_PREFIX) python manage.py collectstatic --noinput
 
-initialize_docker: initialize_db update_assets
+initialize_docker:
+	$(DOCKER_PREFIX) python manage.py reset_db --noinput
+	$(DOCKER_PREFIX) python manage.py syncdb --noinput
+	$(DOCKER_PREFIX) python manage.py loaddata initial.json
+	$(DOCKER_PREFIX) python manage.py import_prod_versions
+	$(DOCKER_PREFIX) schematic --fake migrations/
+	$(DOCKER_PREFIX) python manage.py loaddata zadmin/users
+	$(DOCKER_PREFIX) python manage.py compress_assets
+	$(DOCKER_PREFIX) python manage.py collectstatic --noinput
 	$(MAKE) populate_data
 
 update_docker: update_db update_assets

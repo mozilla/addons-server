@@ -20,6 +20,7 @@ dennis==0.4.2
 Django==1.6.11
 dj-database-url==0.2.2
 django-cache-nuggets==0.1.1
+django-celery==3.0.23
 django-cronjobs==0.2.3
 django_csp==2.0.3
 django-extensions==1.2.5
