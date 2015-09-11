@@ -6,7 +6,7 @@ metadata:
   source: "{{ event.head.repo.url }}"
 tasks:
   - provisionerId: "{{ taskcluster.docker.provisionerId }}"
-    workerType: "olympia-test-worker"
+    workerType: "{{ taskcluster.docker.workerType }}"
     extra:
       github:
         env: true
