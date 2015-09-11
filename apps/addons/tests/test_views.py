@@ -755,14 +755,6 @@ class TestDetailPage(amo.tests.TestCase):
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
 
-    def test_detailed_review_link(self):
-        self.client.login(username='regular@mozilla.com', password='password')
-        r = self.client.get(reverse('addons.detail', args=['a3615']))
-        doc = pq(r.content)
-        href = doc('#review-box a[href*="reviews/add"]').attr('href')
-        assert href.endswith(reverse('addons.reviews.add', args=['a3615'])), (
-            href)
-
     def test_no_listed_authors(self):
         r = self.client.get(reverse('addons.detail', args=['a59']))
         # We shouldn't show an avatar since this has no listed_authors.
