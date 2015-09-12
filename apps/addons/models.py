@@ -1596,6 +1596,19 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             f.hide_disabled_file()
 
 
+@Addon.on_change
+def watch_developer_notes(old_attr={}, new_attr={}, instance=None, sender=None,
+                          **kw):
+    whiteboard_changed = (
+        new_attr.get('whiteboard') and
+        old_attr.get('whiteboard') != new_attr.get('whiteboard'))
+    developer_comments_changed = (new_attr.get('_developer_comments_cache') and
+                                  old_attr.get('_developer_comments_cache') !=
+                                  new_attr.get('_developer_comments_cache'))
+    if whiteboard_changed or developer_comments_changed:
+        instance.versions.update(has_info_request=False)
+
+
 def attach_categories(addons):
     """Put all of the add-on's categories into a category_ids list."""
     addon_dict = dict((a.id, a) for a in addons)
