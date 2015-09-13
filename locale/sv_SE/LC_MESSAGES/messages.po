@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-09 21:02+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2015-09-13 14:39+0000\n"
+"Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -8546,6 +8546,9 @@ msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity "
 "feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Visa och prenumerera på ditt temas <a "
+"href=\"%(feed_url)s\">aktivitetsflöde</a> för att hålla dig uppdaterad på "
+"recensioner, samlingar och mer."
 
 #: apps/devhub/templates/devhub/personas/submit_done.html:32
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
@@ -8608,6 +8611,10 @@ msgid ""
 "ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
 "bugs</a> that you encounter."
 msgstr ""
+"Inskickning av uppdateringar till olistade tillägg för signering är för "
+"närvarande i en öppen beta. Manuell granskning kan fortfarande krävas för "
+"ett stort antal tillägg. Vänligen <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">rapportera eventuella buggar</a> som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -8629,6 +8636,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(bugzilla_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Beteendet hos betakanalen har ändrats för att passa <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">obligatorisk "
+"tilläggssignering</a>. Den nya processen är för närvarande i en öppen beta "
+"och kan förändras avsevärt inom en snar framtid. Vänligen <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">rapportera eventuella buggar</a>"
+" som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8663,6 +8676,9 @@ msgid ""
 "other useful information specific to this release/version. This information "
 "is also shown in the Add-ons Manager when updating."
 msgstr ""
+"Information om ändringar i denna release, nya funktioner, kända buggar och "
+"annan användbar information specifik till denna release/version. Denna "
+"information visas också i tilläggshanteraren när du uppdaterar."
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8678,6 +8694,8 @@ msgid ""
 "Optionally, enter any information that may be useful to the Editor reviewing"
 " this add-on, such as test account information."
 msgstr ""
+"Alternativt, ange någon information som kan vara till nytta för den som "
+"granskar detta tillägg, till exempel testkontoinformation."
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8688,6 +8706,8 @@ msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Om ditt tillägg innehåller binär eller förvrängd kod, gör källan tillgänglig"
+" här för granskarna."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 #: apps/devhub/templates/devhub/versions/edit.html:149
@@ -8763,8 +8783,8 @@ msgstr "Begär preliminär granskning"
 #: apps/devhub/templates/devhub/versions/list.html:83
 msgid "Full nomination will be available in {0} day"
 msgid_plural "Full nomination will be available in {0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fullständig nominering kommer att finnas tillgänglig i {0} dag"
+msgstr[1] "Fullständig nominering kommer att finnas tillgänglig i {0} dagar"
 
 #: apps/devhub/templates/devhub/versions/list.html:88
 #: apps/devhub/templates/devhub/versions/list.html:328
@@ -8957,15 +8977,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Olistning av ett tillägg är bestående!"
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Ett olistat tillägg kan inte ändras till att bli listad."
 
 #: apps/devhub/templates/devhub/versions/list.html:308
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr "Är du säker på att du vill ej vill lista ditt tillägg?"
+msgstr "Är du säker på att du vill olista ditt tillägg?"
 
 #: apps/devhub/templates/devhub/versions/list.html:331
 msgid ""
@@ -9170,7 +9190,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Tillägg för Australis vinnare i tävlingen"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
@@ -9285,22 +9305,27 @@ msgstr "Handla smart den här julen"
 #: apps/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr ""
+"Hitta bra tillägg som hjälper dig med alla dina behov vid semestershopping."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:13
 msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at"
 " your fingertips."
 msgstr ""
+"Installera webbläsare appar från Amazon och få särskilda Amazon-funktioner i"
+" din hand."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:22
 msgid ""
 "Keep an eye on your eBay activity wherever you are on the web when you "
 "install the eBay Sidebar for Firefox."
 msgstr ""
+"Hålla ett öga på din eBay aktivitet var du än är på webben när du "
+"installerar eBay sidofältet för Firefox."
 
 #: apps/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "Se hela tilläggssamlingen för semestershopping."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -9371,7 +9396,7 @@ msgstr "tillägg, editor eller kommentar"
 
 #: apps/editors/forms.py:100
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Sök efter tilläggsnamn / upphovsman e-post"
 
 #: apps/editors/forms.py:105
 msgid "yes"
@@ -9383,7 +9408,7 @@ msgstr "nej"
 
 #: apps/editors/forms.py:107
 msgid "Admin Flag"
-msgstr ""
+msgstr "Administratörsflagga"
 
 #: apps/editors/forms.py:115
 msgid "Max. Version"
@@ -9432,7 +9457,7 @@ msgstr ""
 
 #: apps/editors/forms.py:271
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Rensa administratörs granskningsflagga"
 
 #: apps/editors/forms.py:291
 msgid "Choose a canned response..."
@@ -13355,7 +13380,7 @@ msgstr "Se fler program&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Ledande språk"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
@@ -13363,7 +13388,7 @@ msgstr "Se fler språk&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Ledande plattformar"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
