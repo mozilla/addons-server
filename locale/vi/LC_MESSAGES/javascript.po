@@ -3,20 +3,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2011-06-09 17:05+0200\n"
-"Last-Translator: thanhhuong116 <thanhhuong116@gmail.com>\n"
+"PO-Revision-Date: 2015-09-13 20:11+0000\n"
+"Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1442175092.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "{0} sao{0} sao"
 
 #: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
@@ -24,7 +25,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:52
 msgid "Select a file..."
-msgstr ""
+msgstr "Chọn tập tin…"
 
 #: static/js/common/upload-addon.js:53
 msgid "Your add-on should end with .xpi, .jar or .xml"
@@ -42,7 +43,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:123
 msgid "Cancel"
-msgstr ""
+msgstr "Hủy bỏ"
 
 #: static/js/common/upload-addon.js:145
 msgid "Uploading {0}"
@@ -140,11 +141,11 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:551
 msgid "Some platforms are not available for this type of add-on."
-msgstr ""
+msgstr "Một số nền tảng không hỗ trợ loại tiện ích này."
 
 #: static/js/common/upload-addon.js:553
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Rất tiếc, không tìm thấy nền tảng nào được hỗ trợ."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
@@ -156,11 +157,11 @@ msgstr ""
 
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Các video phải dưới dạng WebM."
 
 #: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
 msgid "Follow this Collection"
@@ -181,35 +182,35 @@ msgstr ""
 
 #: static/js/impala/persona_creation.js:102
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Bảo lưu toàn quyền"
 
 #: static/js/impala/persona_creation.js:106
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công 3.0"
 
 #: static/js/impala/persona_creation.js:111
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công/Phi thương mại 3.0"
 
 #: static/js/impala/persona_creation.js:116
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công/Phi thương mại/Không phái sinh 3.0"
 
 #: static/js/impala/persona_creation.js:121
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công/Phi thương mại/Chia sẻ tương tự 3.0"
 
 #: static/js/impala/persona_creation.js:126
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công/Không phái sinh 3.0"
 
 #: static/js/impala/persona_creation.js:131
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Ghi công/Chia sẻ tương tự 3.0"
 
 #: static/js/impala/persona_creation.js:338
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Tên giao diện của bạn"
 
 #: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -229,19 +230,19 @@ msgstr ""
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "Phân mục"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Tìm <b>{0}</b> trong các giao diện"
 
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Tìm <b>{0}</b> trong các ứng dụng"
 
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Tìm <b>{0}</b> trong các tiện ích"
 
 #: static/js/impala/users.js:33
 msgid "use original"
@@ -249,27 +250,27 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:267
 msgid "Week of {0}"
-msgstr ""
+msgstr "Tuần {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid "downloads"
-msgstr ""
+msgstr "lần tải về"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
-msgstr ""
+msgstr "{0} người dùng"
 
 #: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} tiện ích"
 
 #: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} bộ sưu tập"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} đánh giá"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
@@ -281,7 +282,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} lần cài đặt"
 
 #: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
 msgid "Downloads"
@@ -289,7 +290,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
 msgid "Daily Users"
-msgstr ""
+msgstr "Người dùng Hàng ngày"
 
 #: static/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
@@ -301,7 +302,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr ""
+msgstr "Thêm thông tin…"
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451
@@ -310,27 +311,27 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Bộ sưu tập được Tạo ra"
 
 #: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Số Tiện ích được Sử dụng"
 
 #: static/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Số Tiện ích được Tạo"
 
 #: static/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Số Tiện ích được Tải về"
 
 #: static/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Số Tiện ích được Cập nhật"
 
 #: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Số bài xem xét được viết"
 
 #: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
@@ -342,7 +343,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Số đánh giá"
 
 #: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
 msgid "Sales"
@@ -350,19 +351,19 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
 msgid "Installs"
-msgstr ""
+msgstr "Lần Cài đặt"
 
 #: static/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
-msgstr ""
+msgstr "Không rõ"
 
 #: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Trình Quản lý Tiện ích"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Search Results"
-msgstr ""
+msgstr "Kết quả tìm kiếm"
 
 #: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
 msgid "Homepage Promo"
@@ -378,19 +379,19 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:52
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Thông dụng Nhất trên Trang chủ"
 
 #: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
 msgid "Detail Page"
-msgstr ""
+msgstr "Trang Chi tiết"
 
 #: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Trang Chi tiết (cuối)"
 
 #: static/js/impala/stats/csv_keys.js:57
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Trang Chi tiết (Kênh Phát triển)"
 
 #: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
 msgid "Often Used With"
@@ -414,11 +415,11 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:69
 msgid "Category Pages"
-msgstr ""
+msgstr "Trang Phân mục"
 
 #: static/js/impala/stats/csv_keys.js:70
 msgid "Collections"
-msgstr ""
+msgstr "Bộ sưu tập"
 
 #: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
 msgid "Category Landing Featured Carousel"
@@ -426,15 +427,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Trang đầu Phân mục Xếp hạng Cao nhất"
 
 #: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Trang đầu Phân mục Thông dụng Nhất"
 
 #: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Trang đầu Phân mục Đã thêm Gần đây"
 
 #: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
 msgid "Browse Listing Featured Sort"
@@ -474,7 +475,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:99
 msgid "Average Contribution"
-msgstr ""
+msgstr "Khoản góp Trung bình"
 
 #: static/js/impala/stats/csv_keys.js:108
 msgid "Usage"
@@ -511,112 +512,112 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Lượt tải và Người dùng Hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Lần Cài đặt và Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:128
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Lần Cài đặt và Người dùng Hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:130
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Lần Cài đặt và Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:134
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Lượt tải, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:136
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Lượt tải từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:140
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Người dùng Hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:142
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:146
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Ứng dụng, {0} ngày truớc"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:148
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Ứng dụng từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:152
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Nền tảng, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:154
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Nền tảng từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:158
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Ngôn ngữ, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:160
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Ngôn ngữ từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:164
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Phiên bản Tiện ích, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:166
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Phiên bản Tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:170
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Trạng thái Tiện ích, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:172
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Trạng thái Tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:176
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Nguồn Tải về, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:178
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Nguồn Tải về từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:182
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Khoản Đóng góp, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:184
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Khoảng Đóng góp từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:188
@@ -631,7 +632,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:194
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Tiện ích được Sử dụng, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:196
@@ -691,12 +692,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:230
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Bộ sưu tập được Tạo ra, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:232
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Bộ sưu tập được Tạo ra từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:236
@@ -711,7 +712,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:242
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Đánh giá, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:244
@@ -731,17 +732,17 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:254
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Lần Cài đặt, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:256
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Lần Cài đặt từ {0} đến {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:262
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> vào {1} ngày trước"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
@@ -751,23 +752,23 @@ msgstr ""
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:268
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "Trung bình <b>{0}</b> vào {1} ngày trước"
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Không có dữ liệu."
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Ngày tháng"
 
 #: static/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Khác"
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:304
 msgid "Select an application first"
-msgstr ""
+msgstr "Chọn một ứng dụng trước tiên"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -781,7 +782,7 @@ msgstr[0] ""
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Không cho phép cài đặt ứng dụng."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
@@ -801,28 +802,28 @@ msgstr ""
 
 #: static/js/zamboni/apps.js:69
 msgid "Install failed. Please try again later."
-msgstr ""
+msgstr "Thất bại khi cài đặt. Xin hãy thử lại sau."
 
 #: static/js/zamboni/apps.js:80
 msgid "App installation failed."
-msgstr ""
+msgstr "Thất bại khi cài đặt ứng dụng."
 
 #: static/js/zamboni/apps.js:81
 msgid "This system does not support installing apps."
-msgstr ""
+msgstr "Hệ thống này không hỗ trợ việc cài đặt ứng dụng."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:82
 msgid "Accept and Install"
-msgstr ""
+msgstr "Chấp nhận và cài đặt"
 
 #: static/js/zamboni/buttons.js:82
 msgid "Add to {0}"
-msgstr ""
+msgstr "Thêm vào {0}"
 
 #: static/js/zamboni/buttons.js:87
 msgid "Download Now"
-msgstr ""
+msgstr "Tải về ngay"
 
 #: static/js/zamboni/buttons.js:128
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -830,41 +831,45 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Bạn cần phải sử dụng Firefox 10.0 trở lên."
 
 #: static/js/zamboni/buttons.js:145
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla đã đánh dấu phiên bản này là không tương thích với phiên bản Firefox "
+"của bạn."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Vẫn cứ cài đặt vào {0}"
 
 #: static/js/zamboni/buttons.js:227
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Cứ tải về cho {0}"
 
 #: static/js/zamboni/buttons.js:284
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Không có sẵn cho nền của bạn"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Không có sẵn cho {0} {1}"
 
 #: static/js/zamboni/buttons.js:358
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Hoạt động trên {app} {min} – {max}"
 
 #: static/js/zamboni/buttons.js:360
 msgid "View other versions"
-msgstr ""
+msgstr "Xem các phiên bản khác"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
+"Rất tiếc, bạn cần phải sử dụng một trình duyệt gốc Mozilla (ví dụ như "
+"Firefox) để cài đặt một công cụ tìm kiếm."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -888,15 +893,15 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:437
 msgid "Pending"
-msgstr ""
+msgstr "Đang chờ đợi"
 
 #: static/js/zamboni/collections.js:438
 msgid "Add a comment"
-msgstr ""
+msgstr "Thêm bình luận"
 
 #: static/js/zamboni/collections.js:438
 msgid "Comment"
-msgstr ""
+msgstr "Bình luận"
 
 #: static/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
@@ -912,7 +917,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr ""
+msgstr "Yêu cầu địa chỉ thư điện tử."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
@@ -936,7 +941,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Trình duyệt của bạn không hỗ trợ thẻ video"
 
 #: static/js/zamboni/devhub.js:368
 msgid "Changes Saved"
@@ -958,7 +963,7 @@ msgstr[0] ""
 #: static/js/zamboni/devhub.js:679
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} đánh giá của người dùng{reviews} đánh giá của người dùng"
 
 #: static/js/zamboni/devhub.js:791
 msgid "Learn more"
@@ -982,15 +987,15 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:1289 static/js/zamboni/devhub.js:1294
 msgid "Internal Server Error"
-msgstr ""
+msgstr "Lỗi nội bộ máy chủ"
 
 #: static/js/zamboni/devhub.js:1329
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Yêu cầu địa chỉ thư điện tử hợp lệ."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Không tìm thấy kết quả."
 
 #: static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
@@ -1022,23 +1027,23 @@ msgstr ""
 
 #: static/js/zamboni/editors.js:264
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Đang tải&hellip;"
 
 #: static/js/zamboni/editors.js:269
 msgid "Version Notes"
-msgstr ""
+msgstr "Ghi chú về phiên bản"
 
 #: static/js/zamboni/editors.js:274
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Ghi chú cho người duyệt"
 
 #: static/js/zamboni/editors.js:279
 msgid "No version notes found"
-msgstr ""
+msgstr "Không tìm thấy ghi chú về phiên bản"
 
 #: static/js/zamboni/editors.js:339
 msgid "Average Reviews"
-msgstr ""
+msgstr "Đánh giá trung bình"
 
 #: static/js/zamboni/editors.js:395
 msgid "Number of Reviews"
@@ -1072,7 +1077,7 @@ msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tô
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Xóa bản dịch này"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
@@ -1081,31 +1086,31 @@ msgstr ""
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
+msgstr[0] "Còn ít nhất {0} ký tự.Còn ít nhất {0} ký tự."
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
 msgid "All"
-msgstr ""
+msgstr "Tất cả"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "Thông tin được yêu cầu"
 
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr ""
+msgstr "Đánh cờ"
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Bản sao"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Từ chối"
 
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr ""
+msgstr "Chấp nhận"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1121,11 +1126,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
 msgid "Error"
-msgstr ""
+msgstr "Lỗi"
 
 #: static/js/zamboni/validator.js:247
 msgid "Warning"
-msgstr ""
+msgstr "Cảnh báo"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
@@ -1156,7 +1161,7 @@ msgstr[0] ""
 #: static/js/zamboni/validator.js:477
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} chú ý{0} chú ý"
 
 #: static/js/zamboni/validator.js:569
 msgid "Validation task could not complete or completed with errors"
@@ -1164,7 +1169,7 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:587
 msgid "Internal server error"
-msgstr ""
+msgstr "Lỗi nội bộ máy chủ"
 
 #: static/js/zamboni/mobile/buttons.js:77
 msgid "Not Updated for {0} {1}"
@@ -1172,7 +1177,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js:78
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Cần phiên bản mới hơn của {0}"
 
 #: static/js/zamboni/mobile/buttons.js:79
 msgid "Unreviewed"
@@ -1180,27 +1185,27 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js:80
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Thử nghiệm <span>(tìm hiểu thêm)</span>"
 
 #: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Không có sẵn cho {0}"
 
 #: static/js/zamboni/mobile/buttons.js:83
 msgid "Experimental"
-msgstr ""
+msgstr "Thử nghiệm"
 
 #: static/js/zamboni/mobile/buttons.js:84
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Các giao diện cần phiên bản mới hơn của {0}"
 
 #: static/js/zamboni/mobile/buttons.js:85
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Các giao diện cần {0}"
 
 #: static/js/zamboni/mobile/buttons.js:130
 msgid "Installing..."
-msgstr ""
+msgstr "Đang cài đặt…"
 
 #: static/js/zamboni/mobile/buttons.js:150
 msgid "This add-on has been preliminarily reviewed by Mozilla."
@@ -1208,7 +1213,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js:277
 msgid "Keep it"
-msgstr ""
+msgstr "Giữ nó"
 
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
@@ -1216,4 +1221,4 @@ msgstr ""
 
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Đã thêm vào Firefox"

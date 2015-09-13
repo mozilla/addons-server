@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2011-04-05 16:16+0200\n"
-"Last-Translator: Hùng. <loveleeyoungae@yahoo.com>\n"
+"PO-Revision-Date: 2015-09-13 20:29+0000\n"
+"Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1442176168.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -413,15 +414,16 @@ msgstr "Bình luận Nhà phát triển"
 
 #: apps/addons/templates/addons/details_box.html:203 apps/addons/templates/addons/impala/details.html:266
 msgid "Development Channel"
-msgstr "Kênh Phát Triển"
+msgstr "Kênh Phát triển"
 
 #: apps/addons/templates/addons/details_box.html:206 apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"Kênh Phát Triển cho phép bạn thử phiên bản thử nghiệm mới của tiện ích này trước khi nó được phát hành ra công chúng. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ "
-"kênh này."
+"Kênh Phát triển cho phép bạn thử phiên bản thử nghiệm mới của tiện ích này "
+"trước khi nó được phát hành ra công chúng. Một khi cài đặt phiên bản phát "
+"triển, bạn sẽ tiếp tục nhận được cập nhật từ kênh này."
 
 #: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:276
 msgid "Install development version"
@@ -432,8 +434,10 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Cẩn trọng:</strong> Phiên bản phát triển của tiện ích này chưa được duyệt bởi Mozilla. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ nhà phát triển. Để ngừng "
-"nhận cập nhật kiểu này, hãy cài lại phiên bản mặc định từ liên kết bên trên."
+"<strong>Cẩn thận:</strong> Phiên bản phát triển của tiện ích này chưa được "
+"duyệt bởi Mozilla. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục "
+"nhận được cập nhật từ nhà phát triển. Để ngừng nhận cập nhật kiểu này, hãy "
+"cài lại phiên bản mặc định từ liên kết bên trên."
 
 #: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
 msgid "Version {0}:"
@@ -471,29 +475,29 @@ msgstr ""
 # Sunbird
 #: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:228
 msgid "Add-ons for {0}"
-msgstr "Tiện ích (Addon) {0}"
+msgstr "Tiện ích {0}"
 
 #: apps/addons/templates/addons/home.html:10 apps/addons/templates/addons/home.html:51 apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Phần mở rộng Chọn lọc"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Phần mở rộng Thông dụng Nhất"
 
 #: apps/addons/templates/addons/home.html:42 apps/amo/templates/amo/side_nav.html:3 apps/amo/templates/amo/side_nav.html:11 apps/amo/templates/amo/site_nav.html:3
 #: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232 apps/browse/views.py:275 apps/browse/views.py:472
 msgid "Most Popular"
-msgstr "Thông dụng nhất"
+msgstr "Thông dụng Nhất"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "Tất cả »"
 
 #: apps/addons/templates/addons/home.html:52 apps/addons/templates/addons/home.html:61 apps/addons/templates/addons/home.html:70 apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Xem tất cả »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -530,25 +534,24 @@ msgstr "Đã thêm {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s lượt tải hàng tuần%(num)s lượt tải hàng tuần"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s người dùng%(num)s người dùng"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} lượt tải hàng tuần"
-msgstr[1] "{0} lượt tải hàng tuần"
+msgstr[0] "{0} lượt tải hàng tuần{0} lượt tải hàng tuần"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} người dùng{0} người dùng"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -598,7 +601,7 @@ msgstr ""
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Xem tất cả {0} Giao diện"
 
 #: apps/addons/templates/addons/persona_detail.html:47
 msgid "More by this Artist"
@@ -645,7 +648,7 @@ msgstr ""
 #: apps/addons/templates/addons/persona_preview.html:26 apps/addons/templates/addons/listing/items_mobile.html:36 apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> người dùng<strong>{0}</strong> người dùng"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
@@ -748,6 +751,9 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
+"<strong>Cẩn thận:</strong> Tiện ích này chưa được Mozilla xem lại nên không "
+"thể cài đặt nó vào các phiên bản ổn định của Firefox. Hãy cẩn thận khi cài "
+"đặt phần mềm bên thứ ba có thể làm hại máy tính của bạn."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -759,7 +765,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
 msgid "View other versions"
-msgstr ""
+msgstr "Xem các phiên bản khác"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -874,11 +880,11 @@ msgstr "bởi %(users)s"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "Đề nghị đóng góp <b>%(amt)s</b>"
 
 #: apps/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Thích dùng tiện ích này?"
 
 #: apps/addons/templates/addons/impala/contribution.html:43
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
@@ -898,7 +904,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Trung bình"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
@@ -906,7 +912,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Phân mục có Liên quan"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Often used with&hellip;"
@@ -914,7 +920,7 @@ msgstr "Thường dùng với&hellip;"
 
 #: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Thuộc về các Bộ sưu tập này"
 
 #: apps/addons/templates/addons/impala/details-more.html:72
 msgid "Other add-ons by %(author)s"
@@ -925,6 +931,8 @@ msgstr[0] "Tiện ích khác bởi %(author)s"
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] ""
+"<span itemprop=\"ratingCount\">%(num)s</span> đánh giá của người dùng<span "
+"itemprop=\"ratingCount\">%(num)s</span> đánh giá của người dùng"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -932,7 +940,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:87
 msgid "Manage"
-msgstr ""
+msgstr "Quản lý"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:99
@@ -947,6 +955,8 @@ msgstr ""
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] ""
+"Gặp Nhà phát triển: <a href=\"%(url)s\">%(name)s</a><a href=\"%(url)s\">Gặp các "
+"Nhà phát triển</a>"
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:144
@@ -960,15 +970,15 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
-msgstr ""
+msgstr "Trang chủ tiện ích"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr ""
+msgstr "Trang trợ giúp"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr ""
+msgstr "Trợ giúp qua Thư điện tử"
 
 #: apps/addons/templates/addons/impala/details.html:201 apps/devhub/models.py:381
 msgid "Version {0}"
@@ -976,11 +986,11 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr ""
+msgstr "Thông tin"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Được phát hành theo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
@@ -989,23 +999,23 @@ msgstr "Giấy phép Tùy biến"
 
 #: apps/addons/templates/addons/impala/details.html:212
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Được phát hành theo <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/addons/templates/addons/impala/details.html:224
 msgid "About this Add-on"
-msgstr ""
+msgstr "Giới thiệu về Tiện ích này"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Nhà phát triển Ghi chú"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
-msgstr ""
+msgstr "Thông tin về Phiên bản"
 
 #: apps/addons/templates/addons/impala/details.html:257
 msgid "See complete version history"
-msgstr ""
+msgstr "Xem lịch sử phiên bản đầy đủ"
 
 #: apps/addons/templates/addons/impala/details.html:269
 msgid ""
@@ -1016,10 +1026,13 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
 msgstr ""
+"<strong>Cẩn thận:</strong> Các phiên bản thử nghiệm của tiện ích này chưa "
+"được Mozilla xem lại nên không thể cài đặt chúng vào các phiên bản ổn định "
+"của Firefox."
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Xem lịch sử kênh phát triển đầy đủ"
 
 #: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1087,20 +1100,21 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16 apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} người dùng"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19 apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "liên kết thường trực"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23 apps/editors/templates/editors/queue.html:98 apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "dịch"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] ""
+"Xem tất cả đánh giá của người dùngXem tất cả %(cnt)s đánh giá của người dùng"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47 apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
@@ -1162,8 +1176,9 @@ msgstr "Chưa được Xếp hạng"
 #: apps/addons/templates/addons/listing/items_mobile.html:27 apps/addons/templates/addons/listing/macros.html:24 apps/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> lượt tải hàng tuần"
-msgstr[1] "<strong>{0}</strong> lượt tải hàng tuần"
+msgstr[0] ""
+"<strong>{0}</strong> lượt tải hàng tuần<strong>{0}</strong> lượt tải hàng "
+"tuần"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
@@ -1175,11 +1190,11 @@ msgstr "Đọc Thêm"
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Người dùng"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:59 apps/browse/views.py:70 apps/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Lượt tải Hàng tuần"
 
 #: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:782 apps/devhub/templates/devhub/versions/list.html:179
 msgid "Version"
@@ -1200,11 +1215,11 @@ msgstr "Hiển thị Phiên bản Phát triển"
 
 #: apps/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr "Cẩn trọng"
+msgstr "Cẩn thận"
 
 #: apps/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr "Vào trang Hỗ Trợ"
+msgstr "Vào trang Trợ giúp"
 
 #: apps/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
@@ -1225,6 +1240,8 @@ msgstr "Chấp thuận"
 #: apps/addons/templates/addons/mobile/home.html:9 templates/mobile/base_addons.html:48
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"Bạn cần Firefox để cài đặt các tiện ích. <a "
+"href=\"http://mozilla.com/mobile\">Tìm hiểu thêm&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: apps/addons/templates/addons/mobile/home.html:15 templates/header_title.html:4 templates/impala/header_title.html:3
@@ -1292,7 +1309,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Thông tin Giao diện &raquo;"
 
 #: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
@@ -1316,11 +1333,11 @@ msgstr "Ưa thích của Tôi"
 
 #: apps/amo/context_processors.py:84 apps/discovery/templates/discovery/pane_account.html:13 templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr "Thoát"
+msgstr "Đăng xuất"
 
 #: apps/amo/context_processors.py:89 apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Quản lý Bản Gửi lên của Tôi"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27 apps/devhub/templates/devhub/addons/dashboard.html:25 apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
@@ -1328,7 +1345,7 @@ msgstr "Gửi lên một Tiện ích Mới"
 
 #: apps/amo/context_processors.py:94 apps/browse/templates/browse/personas/base.html:50 apps/devhub/templates/devhub/index.html:24 apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Gửi lên một Giao diện Mới"
 
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
@@ -1498,11 +1515,11 @@ msgstr ""
 
 #: apps/amo/log.py:214
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Đã yêu cầu thêm thông tin về {addon} {version}."
 
 #: apps/amo/log.py:215
 msgid "More information requested"
-msgstr ""
+msgstr "Đã yêu cầu thêm thông tin"
 
 #: apps/amo/log.py:223
 msgid "{addon} {version} super review requested."
@@ -1599,7 +1616,7 @@ msgstr ""
 
 #: apps/amo/log.py:350
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Đã cập nhật phiên bản tối đa cho {version}."
 
 #: apps/amo/log.py:355
 msgid "Authors emailed about compatibility of {version}."
@@ -1635,7 +1652,7 @@ msgstr ""
 
 #: apps/amo/log.py:395
 msgid "{addon} installed."
-msgstr ""
+msgstr "Đã cài đặt {addon}."
 
 #: apps/amo/log.py:400
 msgid "Account updated."
@@ -1786,7 +1803,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Không cho phép"
 
 #: apps/amo/templates/amo/403.html:7
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -1846,7 +1863,7 @@ msgstr "Trước"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:46 apps/discovery/templates/discovery/pane.html:72 apps/discovery/templates/discovery/addons/detail.html:49 apps/stats/templates/stats/stats.html:159
 msgid "Next"
-msgstr "Tiếp"
+msgstr "Sau"
 
 #: apps/amo/templates/amo/paginator.html:32 apps/editors/templates/editors/includes/paginator_history.html:11
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -1881,7 +1898,7 @@ msgstr "Xếp hạng Cao nhất"
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "Khám phá"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
@@ -1891,7 +1908,7 @@ msgstr "Phần mở rộng"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Muốn tùy chỉnh nhiều hơn? Hãy thử <b>Giao diện Đầy đủ</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:88
 msgid "Most Followers"
@@ -1913,7 +1930,7 @@ msgstr "Tiện ích Ưa thích của Tôi"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Tiện ích Di động"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
 msgid "Search Tools"
@@ -1939,11 +1956,12 @@ msgstr "Trước"
 #: apps/amo/templates/amo/impala/paginator.html:35 apps/amo/templates/amo/mobile/impala_paginator.html:38
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
+"Đang hiện <b>%(begin)s</b>&ndash;<b>%(end)s</b> trên tổng <b>%(count)s</b>"
 
 #: apps/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] "Trang {n}"
+msgstr[0] "Trang {n}Trang {n}"
 
 #: apps/amo/templates/services/install.html:38
 msgid "If you are not prompted to install %(addon_name)s in a moment, please <a href=\"%(addon_xpi)s\">click here</a>."
@@ -2055,7 +2073,10 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: apps/applications/templates/applications/appversions.html:31
 msgid "If your supported application does not require an install.rdf file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Nếu chương trình của bạn không yêu cầu một tập tin install.rdf, bạn vẫn phải kèm thêm một cái với các thuộc tính yêu cầu như có chỉ ra <a href=\"%(url)s\">tại đây</a>."
+msgstr ""
+"Nếu ứng dụng của bạn không yêu cầu một tập tin install.rdf, bạn vẫn phải kèm "
+"thêm một cái với các thuộc tính yêu cầu như có chỉ ra <a href=\"%(url)s\">tại "
+"đây</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: apps/bandwagon/feeds.py:44
@@ -2163,7 +2184,7 @@ msgstr "Tên"
 
 #: apps/bandwagon/views.py:92
 msgid "Recently Popular"
-msgstr ""
+msgstr "Thông dụng Gần đây"
 
 #: apps/bandwagon/views.py:178 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
@@ -2551,7 +2572,7 @@ msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Bộ sưu tập Thông dụng Gần đây"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
@@ -2718,7 +2739,7 @@ msgstr "Công cụ tìm kiếm"
 
 #: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:85
 msgid "Most Users"
-msgstr ""
+msgstr "Người dùng Nhiều nhất"
 
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:273 apps/browse/templates/browse/personas/mobile/category_landing.html:63 apps/discovery/templates/discovery/pane.html:90
 #: apps/search/forms.py:92
@@ -2797,7 +2818,7 @@ msgstr "Gói ngôn ngữ"
 
 #: apps/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Tất cả bản địa"
 
 #: apps/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
@@ -2855,11 +2876,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Phần mở rộng Thông dụng Nhất"
 
 #: apps/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Phần mở rộng Xếp hạng Cao nhất"
 
 #: apps/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
@@ -2871,7 +2892,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Phần mở rộng theo Lượt tải Hàng tuần"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
@@ -2888,11 +2909,11 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Giao diện Đầy đủ Thông dụng Nhất"
 
 #: apps/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Giao diện Đầy đủ Xếp hạng Cao nhất"
 
 #: apps/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
@@ -2904,7 +2925,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Giao diện Đầy đủ theo Lượt tải Hàng tuần"
 
 #: apps/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
@@ -2996,7 +3017,7 @@ msgstr ""
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Tất cả Giao diện"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
@@ -3004,7 +3025,7 @@ msgstr "Tất cả"
 
 #: apps/compat/forms.py:23 apps/search/views.py:521
 msgid "All Add-ons"
-msgstr ""
+msgstr "Tất cả Tiện ích"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
@@ -3028,15 +3049,15 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:17
 msgid "Top 95% compatible with previous version"
-msgstr ""
+msgstr "95% hạng nhất tương thích với phiên bản trước"
 
 #: apps/compat/templates/compat/index.html:18
 msgid "Top 95% of all add-ons"
-msgstr ""
+msgstr "95% tiện ích hạng nhất"
 
 #: apps/compat/templates/compat/index.html:19
 msgid "All active add-ons"
-msgstr ""
+msgstr "Tất cả tiện ích hoạt động"
 
 #: apps/compat/templates/compat/index.html:23 apps/constants/base.py:432
 msgid "App"
@@ -3048,7 +3069,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Xem tất cả phiên bản"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
@@ -3096,11 +3117,11 @@ msgstr[0] ""
 
 #: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
 msgid "View all"
-msgstr ""
+msgstr "Xem tất cả"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Lọc theo Ứng dụng"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
@@ -3108,7 +3129,7 @@ msgstr ""
 
 #: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:779 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:110 apps/zadmin/forms.py:45
 msgid "Application"
-msgstr "Chương trình"
+msgstr "Ứng dụng"
 
 #: apps/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
@@ -3156,7 +3177,7 @@ msgstr "Di động"
 
 #: apps/constants/applications.py:103
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox cho Android"
 
 #: apps/constants/applications.py:138
 msgid "Mozilla"
@@ -3168,7 +3189,7 @@ msgstr ""
 
 #: apps/constants/applications.py:153 templates/mobile/header.html:5
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Máy để bàn"
 
 #: apps/constants/applications.py:160
 msgid "Firefox Mobile"
@@ -3265,7 +3286,7 @@ msgstr "Máy tìm kiếm"
 
 #: apps/constants/base.py:162
 msgid "Language Pack (Application)"
-msgstr "Gói ngôn ngữ (Chương trình)"
+msgstr "Gói ngôn ngữ (Ứng dụng)"
 
 #: apps/constants/base.py:163
 msgid "Language Pack (Add-on)"
@@ -3288,7 +3309,7 @@ msgstr "Từ điển"
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:175
 msgid "Language Packs (Application)"
-msgstr "Gói ngôn ngữ (Chương trình)"
+msgstr "Gói ngôn ngữ (Ứng dụng)"
 
 #: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
@@ -3472,7 +3493,7 @@ msgstr ""
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr ""
+msgstr "Yêu cầu Thêm Thông tin"
 
 #: apps/constants/editors.py:15 apps/editors/templates/editors/themes/queue.html:74 apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
@@ -3696,7 +3717,7 @@ msgstr "Khoảng phiên bản bất hợp lệ."
 
 #: apps/devhub/forms.py:485
 msgid "Need at least one compatible application."
-msgstr "Cần ít nhất một chương trình tương thích."
+msgstr "Cần ít nhất một ứng dụng tương thích."
 
 #: apps/devhub/forms.py:498 apps/devhub/forms.py:518
 msgid "There was an error with your upload. Please try again."
@@ -3780,7 +3801,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:783 apps/editors/forms.py:116 apps/zadmin/forms.py:49 apps/zadmin/forms.py:52
 msgid "Select an application first"
-msgstr "Đầu tiên hãy chọn một chương trình"
+msgstr "Trước tiên hãy chọn một ứng dụng"
 
 #: apps/devhub/forms.py:835
 msgid "There cannot be more than 3 required add-ons."
@@ -3792,7 +3813,7 @@ msgstr ""
 
 #: apps/devhub/helpers.py:69
 msgid "My Submissions"
-msgstr ""
+msgstr "Bản Gửi lên của Tôi"
 
 #: apps/devhub/helpers.py:103
 msgid "Developer Docs"
@@ -3928,7 +3949,7 @@ msgstr ""
 
 #: apps/devhub/views.py:1072
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Hình ảnh không thể vuợt quá %d kB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: apps/devhub/views.py:1082
@@ -3967,7 +3988,7 @@ msgstr "Trở lại Tiện ích"
 #. {0} is a search query.
 #: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Tìm kiếm"
 
 #: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:457 apps/editors/forms.py:459 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
@@ -3977,12 +3998,12 @@ msgstr "Tìm kiếm"
 
 #: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
 msgid "Search Results"
-msgstr ""
+msgstr "Kết quả Tìm kiếm"
 
 #. {0} is a search term, such as Firebug.
 #: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Kết quả Tìm kiếm cho \"{0}\""
 
 #: apps/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
@@ -4010,7 +4031,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Tìm hiểu Đầy đủ về Tiện ích"
 
 #: apps/devhub/templates/devhub/index.html:41
 msgid ""
@@ -4054,7 +4075,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:128
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Xem tất cả tiện ích ►"
 
 #: apps/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
@@ -4071,7 +4092,7 @@ msgstr ""
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Trung tâm Nhà phát triển <small>Tiện ích</small>"
 
 #: apps/devhub/templates/devhub/nav.html:20
 msgid "more add-ons..."
@@ -4126,7 +4147,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Tìm kiếm trong Tài liệu Nhà phát triển"
 
 #: apps/devhub/templates/devhub/validate_addon.html:15
 msgid "Use the field below to upload your add-on package."
@@ -4220,7 +4241,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr "Xem và cập nhật khoảng tương thích với chương trình."
+msgstr "Xem và cập nhật khoảng tương thích với ứng dụng."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_status.html:6 apps/devhub/templates/devhub/versions/edit.html:44
 msgid "Compatibility"
@@ -4232,7 +4253,10 @@ msgstr "Cập nhật Tính tương thích"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:4 apps/devhub/templates/devhub/versions/edit.html:45
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Điều chỉnh thông tin chương trình tại đây sẽ cho phép người dùng cài đặt tiện ích của bạn cho dù tập tin chỉ dẫn cài đặt trong gói có ghi rằng tiện ích của bạn không tương thích."
+msgstr ""
+"Điều chỉnh thông tin ứng dụng tại đây sẽ cho phép người dùng cài đặt tiện "
+"ích của bạn cho dù tập tin chỉ dẫn cài đặt trong gói có ghi rằng tiện ích "
+"của bạn không tương thích."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -4240,7 +4264,7 @@ msgstr "Phiên bản Được hỗ trợ"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:31 apps/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr "Thêm Chương Trình Khác&hellip;"
+msgstr "Thêm Ứng dụng Khác&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
@@ -4413,12 +4437,12 @@ msgstr "Hình ảnh"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:5
 msgid "Support Information"
-msgstr "Thông tin Hỗ trợ"
+msgstr "Thông tin Trợ giúp"
 
 #. {0} is an addon name
 #: apps/devhub/templates/devhub/addons/edit/support.html:15
 msgid "Support Information for {0}"
-msgstr "Thông tin Hỗ trợ cho {0}"
+msgstr "Thông tin Trợ giúp cho {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:22
 msgid ""
@@ -5312,7 +5336,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Tiện ích phải có ít nhất 2.000 người dùng."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -5896,6 +5920,9 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:62
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email marketplace-staff@mozilla.org."
 msgstr ""
+"Tiện ích của bạn đã được vô hiệu bởi một nhà quản lý trang Web và không còn "
+"được hiển thị trong trang trưng bày của chúng tôi. Nếu bạn có thắc mắc gì, "
+"xin vui lòng gửi thư điện tử cho marketplace-staff@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:69
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -5992,7 +6019,7 @@ msgstr "Nói cho người dùng về những gì sắp tới sẽ cho họ đi�
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
-msgstr ""
+msgstr "Xem Tất cả"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "View Statistics Dashboard"
@@ -6025,7 +6052,7 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
 msgid "Allowed HTML: {0}"
-msgstr "HTML được dùng: {0}"
+msgstr "HTML được cho phép: {0}"
 
 #: apps/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
@@ -6078,7 +6105,7 @@ msgstr "Bạn hiện đang đề nghị <b>khoản đóng góp</b> từ người
 
 #: apps/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Trang quyên góp của bạn: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -6390,7 +6417,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:9 apps/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr ""
+msgstr "tối đa 300 kB"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:10 apps/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
@@ -6512,7 +6539,7 @@ msgstr "Thêm tập tin"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Tập tin {file_id} ({platform})"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -6528,7 +6555,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "Bởi %(user_name)s vào %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
@@ -6608,7 +6635,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
-msgstr ""
+msgstr "Phiên bản hiện thời"
 
 #: apps/devhub/templates/devhub/versions/list.html:138
 msgid "Currently on AMO"
@@ -6636,7 +6663,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:173
 msgid "Older versions"
-msgstr ""
+msgstr "Phiên bản cũ hơn"
 
 #: apps/devhub/templates/devhub/versions/list.html:189
 msgid "Upload a New Version"
@@ -6937,7 +6964,7 @@ msgstr "Duyệt xem tất cả tiện ích"
 
 #: apps/discovery/templates/discovery/pane.html:108
 msgid "See all complete themes"
-msgstr ""
+msgstr "Xem tất cả giao diện đầy đủ"
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
@@ -7124,7 +7151,7 @@ msgstr "Hệ điều hành:"
 
 #: apps/editors/forms.py:264
 msgid "Applications:"
-msgstr "Chương trình:"
+msgstr "Ứng dụng:"
 
 #: apps/editors/forms.py:266
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -7278,7 +7305,7 @@ msgstr "Cờ"
 
 #: apps/editors/helpers.py:261
 msgid "Applications"
-msgstr "Chương trình"
+msgstr "Ứng dụng"
 
 #: apps/editors/helpers.py:266
 msgid "Additional"
@@ -7404,7 +7431,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:825 apps/editors/helpers.py:844
 msgid "Updates"
-msgstr ""
+msgstr "Cập nhật"
 
 #: apps/editors/models.py:182
 msgid "Admin Review"
@@ -7452,15 +7479,15 @@ msgstr ""
 
 #: apps/editors/views.py:130
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Tiện ích Mới (chưa tới 5 ngày)"
 
 #: apps/editors/views.py:131
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Được (5 đến 10 ngày)"
 
 #: apps/editors/views.py:132
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Quá hạn (hơn 10 ngày)"
 
 #: apps/editors/views.py:459
 msgid "An unknown error occurred"
@@ -7526,7 +7553,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>vô danh</i> vào %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
@@ -7619,7 +7646,7 @@ msgstr[0] ""
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] ""
+msgstr[0] "Cập nhật Đang đợi ({num})Cập nhật Đang đợi ({num})"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
@@ -7759,7 +7786,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:93
 msgid "All-Time"
-msgstr ""
+msgstr "Từ Trước đến Nay"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
@@ -7964,7 +7991,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Người Đánh giá Hạng nhất (7 ngày trước)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
@@ -7972,7 +7999,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Từ Trước đến Nay"
 
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
@@ -7990,7 +8017,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Ngày Xóa"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
@@ -8002,7 +8029,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Ngày Duyệt"
 
 #: apps/editors/templates/editors/themes/history_table.html:9 apps/editors/templates/editors/themes/logs.html:18
 msgid "Action"
@@ -8029,7 +8056,7 @@ msgstr[0] ""
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num} Cập nhật{num} Cập nhật"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -8085,7 +8112,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Xóa trắng Tìm kiếm"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
@@ -8307,7 +8334,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:109 apps/files/templates/files/viewer.html:110
 msgid "Expand all"
-msgstr ""
+msgstr "Mở rộng tất cả"
 
 #: apps/files/templates/files/viewer.html:114 apps/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
@@ -8613,7 +8640,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Người Đóng góp Khác"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
@@ -8692,7 +8719,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
-msgstr ""
+msgstr "Những tài nguyên khác bao gồm:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -9234,7 +9261,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr "Tiện ích có hoạt động trên chương trình hoặc trình duyệt web của tôi không?"
+msgstr "Tiện ích có hoạt động trên ứng dụng hoặc trình duyệt web của tôi không?"
 
 #: apps/pages/templates/pages/faq.html:27
 msgid ""
@@ -9242,10 +9269,15 @@ msgid ""
 "\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
 "Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"Tiện ích được liệt kê tại trang trưng bày này chỉ hoạt động trên các chương trình nền Mozilla, như <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Tuy nhiên, không phải tất cả tiện ích hoạt động với mỗi chương trình đó hoặc mỗi phiên bản của "
-"các chương trình đó. Mỗi tiện ích đều chỉ rõ chương trình và phiên bản mà nó hoạt động được, như Firefox 2.0 - 3.6.*. Đối với các tiện ích Firefox, nút cài đặt sẽ cho biết liệu tiện ích có tương "
-"thích hay không."
+"Tiện ích được liệt kê tại trang trưng bày này chỉ hoạt động trên các ứng "
+"dụng nền Mozilla, như <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%"
+"(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%"
+"(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%"
+"(getthunderbird_url)s\">Thunderbird</a>. Tuy nhiên, không phải tất cả tiện "
+"ích hoạt động với mỗi ứng dụng đó hoặc mỗi phiên bản của các ứng dụng đó. "
+"Mỗi tiện ích đều chỉ rõ ứng dụng và phiên bản mà nó hoạt động được, như "
+"Firefox 2.0 - 3.6.*. Đối với các tiện ích Firefox, nút cài đặt sẽ cho biết "
+"liệu tiện ích có tương thích hay không."
 
 #: apps/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
@@ -9260,12 +9292,18 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Phần mở rộng</a></strong> thêm các tính năng mới vào %(app_name)s hoặc sửa đổi các chức năng có sẵn. Có các phần mở rộng cho phép bạn chặn quảng cáo, tải đoạn "
-"phim từ trang web, tích hợp chặt chẽ với các trang xã hội, và thêm các tính năng mà bạn thấy trong chương trình khác."
+"<strong><a href=\"%(browse_url)s\">Phần mở rộng</a></strong> thêm các tính "
+"năng mới vào %(app_name)s hoặc sửa đổi các chức năng có sẵn. Có các phần mở "
+"rộng cho phép bạn chặn quảng cáo, tải đoạn phim từ trang web, tích hợp chặt "
+"chẽ với các trang xã hội, và thêm các tính năng mà bạn thấy trong ứng dụng "
+"khác."
 
 #: apps/pages/templates/pages/faq.html:55
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Giao diện Đầy đủ</a></strong> thay đổi toàn "
+"bộ giao diện của %(app_name)s, thường bao gồm các hình tượng, màu sắc, hộp "
+"thoại, và các kiểu trực quan khác."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
@@ -9963,7 +10001,7 @@ msgstr "Không tìm thấy đánh giá."
 
 #: apps/reviews/templates/reviews/review_list.html:57
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Trung bình</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
@@ -10039,15 +10077,15 @@ msgstr "tìm kiếm tiện ích"
 
 #: apps/search/forms.py:24
 msgid "search for collections"
-msgstr "tìm kiếm các bộ sưu tập"
+msgstr "tìm kiếm bộ sưu tập"
 
 #: apps/search/forms.py:25
 msgid "search for themes"
-msgstr ""
+msgstr "tìm kiếm giao diện"
 
 #: apps/search/forms.py:26
 msgid "search for apps"
-msgstr ""
+msgstr "tìm kiếm ứng dụng"
 
 #: apps/search/forms.py:49
 msgid "Sort By"
@@ -10055,7 +10093,7 @@ msgstr "Sắp xếp theo"
 
 #: apps/search/forms.py:84
 msgid "Relevance"
-msgstr ""
+msgstr "Trùng khớp"
 
 #: apps/search/helpers.py:24
 msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
@@ -10102,16 +10140,16 @@ msgstr "{0} Tiện ích"
 #. Firefox."
 #: apps/search/views.py:550
 msgid "Any {0}"
-msgstr ""
+msgstr "Bất kỳ {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:585
 msgid "All Systems"
-msgstr ""
+msgstr "Tất cả Hệ điều hành"
 
 #: apps/search/views.py:596
 msgid "All Tags"
-msgstr ""
+msgstr "Tất cả Nhãn"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
@@ -10124,39 +10162,40 @@ msgstr "Kết quả Tìm kiếm Bộ sưu tập"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Tìm kiếm Không có sẵn"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Công cụ tìm kiếm tạm không có sẵn. Xin vui lòng thử lại trong vài phút nữa."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Kết quả Tìm kiếm Giao diện cho {0}"
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Kết quả Tìm kiếm Giao diện"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Nhãn"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Kết quả Tìm kiếm cho nhãn \"{0}\""
 
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> kết quả trùng khớp<b>{0}</b> kết quả trùng khớp"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr ""
+msgstr "Lọc Kết quả"
 
 #: apps/search/templates/search/results.html:69
 msgid "Category"
@@ -10164,7 +10203,7 @@ msgstr "Phân mục"
 
 #: apps/search/templates/search/results.html:84
 msgid "Tag"
-msgstr ""
+msgstr "Nhãn"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
@@ -10288,7 +10327,7 @@ msgstr "Tổng quan"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "theo Nguồn"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
@@ -10296,7 +10335,7 @@ msgstr "theo Phiên bản Tiện ích"
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr "theo Chương trình"
+msgstr "theo Ứng dụng"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
@@ -10304,7 +10343,7 @@ msgstr "theo Ngôn ngữ"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "theo Nền tảng"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
@@ -10352,7 +10391,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Khoảng Thời gian Tùy biến"
 
 #: apps/stats/templates/stats/popup.html:12
 msgid "From"
@@ -10364,7 +10403,7 @@ msgstr "Tới"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Xuất"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
@@ -10381,7 +10420,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
-msgstr ""
+msgstr "Điều khiển:"
 
 #: apps/stats/templates/stats/stats.html:33
 msgid "reset zoom"
@@ -10389,7 +10428,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:40
 msgid "Group by:"
-msgstr ""
+msgstr "Nhóm lại theo:"
 
 #: apps/stats/templates/stats/stats.html:42
 msgid "day"
@@ -10397,7 +10436,7 @@ msgstr "ngày"
 
 #: apps/stats/templates/stats/stats.html:45
 msgid "week"
-msgstr ""
+msgstr "tuần"
 
 #: apps/stats/templates/stats/stats.html:48
 msgid "month"
@@ -10405,27 +10444,27 @@ msgstr "tháng"
 
 #: apps/stats/templates/stats/stats.html:54
 msgid "For last:"
-msgstr ""
+msgstr "Thời gian về trước:"
 
 #: apps/stats/templates/stats/stats.html:57
 msgid "7 days"
-msgstr ""
+msgstr "7 ngày"
 
 #: apps/stats/templates/stats/stats.html:60
 msgid "30 days"
-msgstr ""
+msgstr "30 ngày"
 
 #: apps/stats/templates/stats/stats.html:63
 msgid "90 days"
-msgstr ""
+msgstr "90 ngày"
 
 #: apps/stats/templates/stats/stats.html:66
 msgid "365 days"
-msgstr ""
+msgstr "365 ngày"
 
 #: apps/stats/templates/stats/stats.html:69
 msgid "Custom..."
-msgstr ""
+msgstr "Tùy biến…"
 
 #. {0} is an add-on name
 #: apps/stats/templates/stats/stats.html:88 apps/stats/templates/stats/stats.html:91
@@ -10443,19 +10482,19 @@ msgstr "Đang nạp dữ liệu mới nhất&hellip;"
 #: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr ""
+msgstr "Không có dữ liệu."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Bảng điều khiển này hiện đang <b>công khai</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Thống kê đóng góp hiện đang <b>riêng tư</b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Bảng điều khiển này hiện đang <b>riêng tư</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
@@ -10479,7 +10518,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr "Sử dụng chương trình theo Ngày"
+msgstr "Sử dụng ứng dụng theo Ngày"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
@@ -10509,7 +10548,7 @@ msgstr "Ngôn ngữ người dùng theo Ngày"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Sử dụng Nền tảng theo Ngày"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -10521,31 +10560,31 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Người dùng Hàng ngày Trung bình"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Ứng dụng Hạng nhất"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Xem thêm ứng dụng&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Ngôn ngữ Hạng nhất"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Xem thêm ngôn ngữ&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Nền tảng Hạng nhất"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Xem thêm nền tảng&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
@@ -10561,7 +10600,7 @@ msgstr "Nguồn tải theo Ngày"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Giới thiệu về theo dõi nguồn bên ngoài…"
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -10586,7 +10625,7 @@ msgstr "Người dùng Hàng ngày theo Ngày"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Người dùng hàng ngày là ai?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -10606,17 +10645,17 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr "Phiên bản chương trình theo Ngày"
+msgstr "Phiên bản ứng dụng theo Ngày"
 
 # {0} is a number
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr "Top {0} Nhãn"
+msgstr "{0} Nhãn Hạng nhất"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
 msgid "{0} Top Tags"
-msgstr "Top Nhãn {0}"
+msgstr "Nhãn {0} Hạng nhất"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
@@ -10663,7 +10702,7 @@ msgstr ""
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Không cho phép mật khẩu đó."
 
 #: apps/users/forms.py:87
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
@@ -10727,7 +10766,7 @@ msgstr "Hình ảnh Hồ sơ"
 
 #: apps/users/forms.py:352 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Bản địa mặc định"
 
 #: apps/users/forms.py:489
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10840,7 +10879,7 @@ msgstr ""
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Thông báo cho Người dùng"
 
 #: apps/users/views.py:86
 msgid "An email address is required."
@@ -11015,6 +11054,8 @@ msgstr "Tài khoản của Tôi"
 #: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Quản lý thông tin tài khoản cơ bản, ví dụ như tên đăng nhập và địa chỉ thư "
+"điện tử."
 
 #: apps/users/templates/users/edit.html:32 apps/users/templates/users/register.html:48
 msgid "Username"
@@ -11055,6 +11096,8 @@ msgstr ""
 #: apps/users/templates/users/edit.html:86
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr ""
+"Cung cấp một tí thông tin thêm về chính bạn. Tất cả các thông tin này là "
+"không bắt buộc nhưng sẽ giúp người dùng khác quen thuộc với bạn."
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
@@ -11062,15 +11105,17 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Chọn Hình ảnh&hellip;"
 
 #: apps/users/templates/users/edit.html:123
 msgid "Delete current photo"
-msgstr ""
+msgstr "Xóa hình ảnh hiện tại"
 
 #: apps/users/templates/users/edit.html:130
 msgid "This is the default locale used to display information about you (like your description)."
 msgstr ""
+"Đây là bản địa mặc định dùng để hiển thị thông tin về bạn (ví dụ như lời "
+"miêu tả)."
 
 #: apps/users/templates/users/edit.html:138
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -11078,15 +11123,15 @@ msgstr "Giới thiệu bản thân tới cộng đồng, nếu bạn thích! Đo
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "HTML được cho phép: {0}. Các liên kết bị cấm."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Linh tinh"
 
 #: apps/users/templates/users/edit.html:156
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Quyết định chọn các bộ sưu tập để hiển thị trong hồ sơ của bạn."
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display the collections I have created"
@@ -11118,15 +11163,15 @@ msgstr "Xóa tài khoản"
 
 #: apps/users/templates/users/edit.html:235
 msgid "Update Account"
-msgstr ""
+msgstr "Cập nhật Tài khoản"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "không"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "tất cả"
 
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -11177,7 +11222,7 @@ msgstr "Thông tin Người dùng cho {0}"
 
 #: apps/users/templates/users/profile.html:12
 msgid "Edit profile"
-msgstr ""
+msgstr "Chỉnh sửa Hồ sơ"
 
 #: apps/users/templates/users/profile.html:17
 msgid "Manage user"
@@ -11198,7 +11243,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr ""
+msgstr "Giới thiệu về tôi"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -11282,6 +11327,8 @@ msgstr "Tại sao nên đăng kí?"
 #: apps/users/templates/users/register.html:15
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
 msgstr ""
+"Bạn <strong>không cần phải</strong> đăng ký vào Tiện ích Mozilla nếu chỉ "
+"muốn tải về và cài đặt các tiện ích công khai."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
@@ -11435,7 +11482,7 @@ msgstr ""
 
 #: apps/users/templates/users/unsubscribe.html:24
 msgid "edit your profile"
-msgstr ""
+msgstr "chỉnh sửa hồ sơ của bạn"
 
 #: apps/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
@@ -11455,15 +11502,15 @@ msgstr "Người dùng kể từ"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "Time of last login"
-msgstr ""
+msgstr "Lúc đăng nhập cuối cùng"
 
 #: apps/users/templates/users/vcard.html:46
 msgid "IP address of last login"
-msgstr ""
+msgstr "Địa chỉ IP lần cuối cùng đăng nhập"
 
 #: apps/users/templates/users/vcard.html:53
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Số tiện ích được phát triển"
 
 #: apps/users/templates/users/vcard.html:58
 msgid "{0} add-ons"
@@ -11481,7 +11528,7 @@ msgstr[0] ""
 
 #: apps/users/templates/users/vcard.html:81
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Đánh giá trung bình của các tiện ích của nhà phát triển"
 
 #: apps/versions/feeds.py:63
 msgid "%s Version History"
@@ -11501,7 +11548,7 @@ msgstr ""
 
 #: apps/versions/models.py:682
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} trở lên"
 
 #: apps/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
@@ -11510,15 +11557,16 @@ msgstr "Liên kết tĩnh đến tiện ích này"
 #. {0} is a timestamp, such as September 28, 2011.
 #: apps/versions/templates/versions/version.html:10
 msgid "Released {0}"
-msgstr ""
+msgstr "Phát hành vào {0}"
 
 #: apps/versions/templates/versions/version.html:39
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr ""
+"Mã nguồn được phát hành theo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:44
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Mã nguồn được phát hành theo <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/versions/templates/versions/version.html:52
 msgctxt "addons_display_a_license_what"
@@ -11539,7 +11587,7 @@ msgstr "{0} Lược sử Phiên bản"
 #: apps/versions/templates/versions/version_list.html:29
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> phiên bản<b>{0}</b> phiên bản"
 
 #: apps/versions/templates/versions/version_list.html:35 apps/versions/templates/versions/mobile/version_list.html:14
 msgid "Be careful with old versions!"
@@ -11592,11 +11640,11 @@ msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chún
 
 #: templates/base.html:81 templates/impala/base.html:71
 msgid "Find add-ons for other applications"
-msgstr "Tìm tiện ích cho các chương trình khác"
+msgstr "Tìm tiện ích cho các ứng dụng khác"
 
 #: templates/base.html:82 templates/impala/base.html:71
 msgid "Other Applications"
-msgstr "Chương trình Khác"
+msgstr "Ứng dụng Khác"
 
 #: templates/base.html:131 templates/impala/base.html:173
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
@@ -11743,7 +11791,7 @@ msgstr "yêu cầu"
 
 #: templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Trường bắt buộc"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
