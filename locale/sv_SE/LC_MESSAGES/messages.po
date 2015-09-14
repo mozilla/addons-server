@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 10:33+0000\n"
+"PO-Revision-Date: 2015-09-14 11:41+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10466,7 +10466,7 @@ msgstr "Orsak"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Det finns för närvarande inga granskningar."
 
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
@@ -10500,7 +10500,7 @@ msgstr "Granskningsalternativ"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Automatiskt avancera efter granskning"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -10981,18 +10981,24 @@ msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
+"Vår <a href=\"%(url)s\">blogg för tillägg</a> uppdateras regelbundet med "
+"information för tilläggsentusiaster och utvecklare."
 
 #: apps/pages/templates/pages/about.lhtml:32
 msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a "
 "href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"Vi postar ofta nyheter, tips och tricks till vårt Twitter-konto, <a "
+"href=\"%(url)s\">mozamo</a>"
 
 #: apps/pages/templates/pages/about.lhtml:34
 msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the "
 "add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Våra <a href=\"%(url)s\">forum</a> är ett bra ställe att interagera med "
+"gemenskapen för tillägg och diskutera kommande förändringar till AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -11002,12 +11008,16 @@ msgstr "Detta låter bra! Hur kan jag bli involverad?"
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
+"Det finns många sätt att engagera sig. Om du är på den tekniska sidan:"
 
 #: apps/pages/templates/pages/about.lhtml:42
 msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Göra egna tillägg</a>. Vi tillhandahåller gratis "
+"webbhotell och uppdateringstjänster och kan hjälpa dig att nå en stor publik"
+" av användare."
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid ""
@@ -11015,6 +11025,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Om du har erfarenhet av tilläggsutveckling, <a href=\"%(url)s\"> bli en "
+"redigerare</a>! Våra redigerare är tilläggsfans med teknisk bakgrund som "
+"granskar tillägg för kodkvalitet och stabilitet."
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid ""
@@ -11048,6 +11061,9 @@ msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Granska tillägg på webbplatsen. Det är med sannolikt att upphovsmän "
+"förbättrar deras tillägg och skriver nya när de vet att personer uppskattar "
+"deras arbete."
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -11059,16 +11075,21 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an "
 "answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Ett bra ställe att börja är vår <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">FAQ</abbr></a>. Om du inte hittar ett "
+"svar där, kan du <a href=\"%(forum_url)s\"> fråga på vårt forum</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Om du verkligen behöver kontakta någon från Mozillas grupp, se vår <a "
+"href=\"%(url)s\"> kontaktinformationssida</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr "Vem jobbar på denna webbsidan?"
+msgstr "Som arbetar på denna webbplats?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -11077,6 +11098,10 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
+"Genom åren har många bidragit till denna webbplats, inklusive både "
+"volontärer från gemenskapen och särskilda AMO-medlemmar. En lista över "
+"betydande bidragsgivare kan hittas på vår <a "
+"href=\"%(url)s\">medarbetarsida</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -11136,7 +11161,7 @@ msgstr "Tack!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Medarbetarsida"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid ""
@@ -11161,15 +11186,15 @@ msgstr "Granskare"
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Mer än {0} tilläggsgrasnkningar"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Andra medarbetare"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Tidigare utvecklare &amp; administratörer"
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
