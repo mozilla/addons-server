@@ -4,6 +4,12 @@
 Installing Olympia
 ==================
 
+The following instructions walk you through installing and configuring all
+required services from scratch. If you'd prefer to use
+`Docker <http://docs.docker.com/>`_ to install everything automatically
+in containers, read the
+:ref:`Docker installation instructions <install-with-docker>`.
+
 We're going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!
 
@@ -37,8 +43,8 @@ if you're running a recent version, you can `install them automatically
 
     sudo apt-get install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev memcached libssl-dev swig openssl curl libjpeg-dev zlib1g-dev libsasl2-dev nodejs nodejs-legacy
 
-.. note:: As of writing, M2Crypto is only compatible with swig <=3.0.4 version's. So, if you encounter a libssl exception while running 
-          ``make full_init``, you might have to downgrade swig to version <=3.0.4. 
+.. note:: As of writing, M2Crypto is only compatible with swig <=3.0.4 version's. So, if you encounter a libssl exception while running
+          ``make full_init``, you might have to downgrade swig to version <=3.0.4.
 
 .. _osx-packages:
 

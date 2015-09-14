@@ -10,6 +10,8 @@ optimizations for security, scalability, L10n, and ease of use, check out
 Mozilla's `Playdoh starter kit <http://playdoh.readthedocs.org/>`_.
 
 
+.. _install-with-docker:
+
 Quickstart
 ----------
 
