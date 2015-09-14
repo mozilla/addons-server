@@ -94,6 +94,22 @@ def test_dict_from_int():
     eq_(d['pre_ver'], 2)
 
 
+@pytest.mark.parametrize("addon_type", amo.GROUP_TYPE_ADDON)
+def test_watch_source(addon_type, mozilla_user):
+    """watch_source flags addons as needing admin_review if there's source
+    attached and the add-on is an extension."""
+    # "mozilla_user" is a pytest fixture declared in the conftest.py file.
+    # "addon_type" is a parameter from the "pytest.mark.parametrize" decorator:
+    # This means this test will be run once for each addon_type in
+    # amo.GROUP_TYPE_ADDON.
+    addon = addon_factory(type=addon_type)
+    version = addon.versions.get()
+    version.update(source='some source file')
+    # The add-on is admin flagged only if it needed the sources.
+    is_extension = (addon_type == amo.ADDON_EXTENSION)
+    assert addon.admin_review == is_extension
+
+
 class TestVersion(amo.tests.TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 

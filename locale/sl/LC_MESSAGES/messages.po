@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-27 02:42\n"
+"PO-Revision-Date: 2015-09-13 18:50+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4245,7 +4245,7 @@ msgstr "Slovarji"
 # Plural in this context means many of the add-on type
 #: apps/constants/base.py:175
 msgid "Language Packs (Application)"
-msgstr "Jezikovni paketi(aplikacija)"
+msgstr "Jezikovni paketi (aplikacija)"
 
 #: apps/constants/base.py:176
 msgid "Language Packs (Add-on)"
@@ -5389,7 +5389,7 @@ msgstr "Uredi objavo"
 #: apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6
 msgid "None"
-msgstr "Noben"
+msgstr "Brez"
 
 #: apps/devhub/templates/devhub/addons/owner.html:4
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:52
