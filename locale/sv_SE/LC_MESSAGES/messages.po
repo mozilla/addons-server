@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 13:50+0000\n"
+"PO-Revision-Date: 2015-09-14 14:50+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4490,7 +4490,7 @@ msgstr "Ogiltigt JSON-objekt"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Meddelande berättigar inte till anteckning"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
@@ -10725,7 +10725,7 @@ msgstr "Valideringen misslyckades:"
 
 #: apps/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Fil för tillägg bearbetas, vänta."
 
 #: apps/files/templates/files/viewer.html:46
 msgid "Fetching validation results..."
@@ -10790,7 +10790,7 @@ msgstr "Dölj eller visa träd"
 #: apps/files/templates/files/viewer.html:119
 #: apps/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Radbryt eller radbryt ej text"
 
 #: apps/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
@@ -10818,7 +10818,7 @@ msgstr "Översättningsöversikt"
 #: apps/localizers/templates/localizers/dashboard.html:5
 #: apps/localizers/templates/localizers/dashboard.html:13
 msgid "Localization Summary for {0}"
-msgstr ""
+msgstr "Översättningssammanfattning för {0}"
 
 #: apps/localizers/templates/localizers/categories.html:11
 #: apps/localizers/templates/localizers/dashboard.html:11
@@ -10839,7 +10839,7 @@ msgstr "Uppdatera"
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:24
 msgid "Want to get in touch with the {0} L10n team?"
-msgstr ""
+msgstr "Vill du komma i kontakt med {0} L10n gruppen?"
 
 #. {0} is a language name, e.g. 'Deutsch'
 #: apps/localizers/templates/localizers/dashboard.html:28
@@ -11105,11 +11105,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Add-on Compatibility Reporter"
 
 #: apps/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Add-on Compatibility Reporter har installerats"
 
 #: apps/pages/templates/pages/acr_firstrun.html:28
 msgid ""
@@ -11122,6 +11122,7 @@ msgstr ""
 #: apps/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
 msgstr ""
+"Här är hur du kommer igång med rapportering av ett tilläggs kompatibilitet:"
 
 #: apps/pages/templates/pages/acr_firstrun.html:40
 msgid ""
@@ -11130,6 +11131,10 @@ msgid ""
 "display glitch, such as a menu item missing, or something more serious, like"
 " the add-on not working at all or showing errors."
 msgstr ""
+"När du börjar surfa och använda ditt tillägg, ta del av det som verkar "
+"annorlunda från när du senast använde utökningen. Detta kan vara ett "
+"tekniskt fel, till exempel et menyobjekt saknas eller något mer allvarligt, "
+"som att tillägget inte fungerar alls eller visar fel."
 
 #: apps/pages/templates/pages/acr_firstrun.html:49
 msgid ""
@@ -11139,6 +11144,12 @@ msgid ""
 "us tell the add-on developer whether their add-on is working properly in "
 "this version or might need some fixes."
 msgstr ""
+"När du vet om ett särskilt tillägg fungerar som den ska eller har problem, "
+"öppna tilläggshanteraren och klicka på kompatibilitet bredvid tillägget för "
+"att låta Mozilla vet vad du hittat under testen. Genom att skicka in en "
+"rapport kommer du att hjälpa oss att berätta för tilläggsutvecklaren om "
+"deras tillägg fungerar korrekt i denna version eller kanske behöver vissa "
+"korrigeringar."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -11147,6 +11158,10 @@ msgid ""
 "version. If you have any questions, please ask in <a href=\"%(url)s\">our "
 "forums</a>."
 msgstr ""
+"Om du uppgraderar till en ny version av Firefox eller uppdaterar ditt "
+"tillägg, dina rapporter för de gamla versionerna döljas så att du kan testa "
+"den nya versionen. Om du har några frågor, vänligen fråga i <a "
+"href=\"%(url)s\">vårt forum</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -11154,6 +11169,9 @@ msgid ""
 "assistance with compatibility testing helps us make sure these add-ons stay "
 "useful as we strive to provide a great user experience."
 msgstr ""
+"Tusentals tillägg görs i vår gemenskap varje år och din hjälp med "
+"kompatibilitetstester hjälper oss se till att dessa tillägg fortsätter vara "
+"användbara eftersom vi strävar efter att ge en bra användarupplevelse."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
@@ -11208,6 +11226,11 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>."
 msgstr ""
+"Vissa ikoner som används är från <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon "
+"Set</a>, licensierat under en <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5 License</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -11216,6 +11239,10 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 msgstr ""
+"Vissa ikoner som används är från <a href=\"http://www.fatcow.com/free-"
+"icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensierat under en <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution 3.0 License</a>."
 
 #: apps/pages/templates/pages/credits.html:61
 msgid ""
@@ -11224,6 +11251,11 @@ msgid ""
 "commercial), licensed under a <a href=\"http://creativecommons.org/licenses"
 "/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Vissa sidor använda element av <a "
+"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (icke-"
+"kommersiell), licensierat under en <a "
+"href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative Commons "
+"Attribution-NonCommercial 3.0 License</a>."
 
 #: apps/pages/templates/pages/credits.html:65
 msgid ""
@@ -11254,7 +11286,7 @@ msgstr "Support Resurser"
 #: apps/pages/templates/pages/dev_faq.html:35
 #: apps/pages/templates/pages/dev_faq.html:262
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Bidrar ditt tillägg"
 
 #: apps/pages/templates/pages/dev_faq.html:36
 #: apps/pages/templates/pages/dev_faq.html:382
@@ -11274,7 +11306,7 @@ msgstr "Rekommenderad status"
 #: apps/pages/templates/pages/dev_faq.html:40
 #: apps/pages/templates/pages/dev_faq.html:581
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Referenser för Open Source licenser"
 
 #: apps/pages/templates/pages/dev_faq.html:44
 msgid "Add-on Developer FAQ"
@@ -11286,6 +11318,9 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>Hur skapar jag ett tillägg?</h3> <p> Mozilla tillhandahåller "
+"dokumentation om hur man bygger en tillägg via <a href=\"%(url)s\">Mozilla "
+"Developer Network</a>. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -11293,11 +11328,11 @@ msgstr "Andra resurser inkluderar:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "\"Hur man utvecklar en utökning för Firefox\" post i bloggen för tillägg"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr "Mozilla Tillägg Blogg"
+msgstr "Mozilla blogg för tillägg"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -11309,6 +11344,9 @@ msgid ""
 " the add-on for and a code editor of your choice. Add-ons can be built for "
 "almost all Mozilla software but are primarily targeted for:"
 msgstr ""
+"Du måste ha en version av Mozillas mjukvara som du bygger tillägget för och "
+"en kodredigerare som du väljer. Tillägg kan byggas för nästan alla Mozillas "
+"mjukvara men är huvudsakligen måltavlan för:"
 
 #: apps/pages/templates/pages/dev_faq.html:83
 msgid "Popular code editors include:"
@@ -11333,6 +11371,9 @@ msgid ""
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
+"Du kan också lära dig mer om hur du konfigurerar din utvecklingsmiljö via "
+"MDN artikeln <a href=\"%(url)s\">Konfigurera utvecklingsmiljö för "
+"utökningar</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -11343,6 +11384,8 @@ msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
 msgstr ""
+"Utökningar är paketerade och distribueras i ZIP-filer eller Bundles, med "
+"filtillägget XPI (uttalas \"zippy\")."
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
@@ -11355,6 +11398,11 @@ msgid ""
 "interface widgets like buttons, menus, toolbars, trees, etc that can be used"
 " to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language) är Mozillas XML-baserade språk som låter "
+"dig bygga funktionsrika plattformsoberoende program. Det ger ett "
+"användargränssnitt med widgets som knappar, menyer, verktygsfält, träd, etc "
+"som kan användas för att förbättra tillägg genom att ändra delar av "
+"webbläsarens UI."
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
@@ -12020,6 +12068,11 @@ msgid ""
 "more closely with social websites, and add features you see in other "
 "applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Utökningar</a></strong> lägger till nya "
+"funktioner i %(app_name)s eller ändrar befintliga funktioner. Det finns "
+"utökningar som gör att du kan blockera annonser, ladda ner video från "
+"webbplatser, integreras närmare med sociala webbplatser och lägga till "
+"funktioner som du ser i andra program."
 
 #: apps/pages/templates/pages/faq.html:55
 msgid ""
@@ -12027,12 +12080,17 @@ msgid ""
 "entire appearance of %(app_name)s, usually including icons, colors, dialogs,"
 " and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Kompletta teman</a></strong> ändrar hela "
+"utseendet på %(app_name)s, oftast inklusive ikoner, färger, dialogrutor och "
+"andra visuella stilar."
 
 #: apps/pages/templates/pages/faq.html:61
 msgid ""
 "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight "
 "themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Teman</a></strong> är lätta teman som "
+"använder bakgrundsbilder för att anpassa verktygsfälten för %(app_name)s."
 
 #: apps/pages/templates/pages/faq.html:66
 msgid ""
@@ -12040,6 +12098,9 @@ msgid ""
 "additional choices to the search box dropdown. These providers allow you to "
 "quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Sökleverantörer</a> </strong> lägger till"
+" ytterligare alternativ i listrutan Sök. Dessa leverantörer gör att du "
+"snabbt kan söka på webbplatsen."
 
 #: apps/pages/templates/pages/faq.html:72
 msgid ""
@@ -12055,6 +12116,9 @@ msgid ""
 "display or understand different types of media, such as Adobe Flash or Apple"
 " Quicktime."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Insticksmoduler</a></strong> hjälper "
+"%(app_name)s visa eller förstå olika typer av media, till exempel Adobe "
+"Flash eller Apple Quicktime."
 
 #: apps/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
@@ -12166,7 +12230,7 @@ msgstr "Galleri för tillägg"
 
 #: apps/pages/templates/pages/faq.html:172
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Hur väljer jag mellan tillägg som verkar göra samma sak?"
 
 #: apps/pages/templates/pages/faq.html:174
 msgid ""
@@ -12292,10 +12356,15 @@ msgid ""
 "installed, all beta releases are unreviewed by Mozilla and may harm your "
 "computer."
 msgstr ""
+"Observera att när du installerar ett tillägg från sektionen \"Betaversion\" "
+"i ett tilläggs listning, kommer du att fortsätta att ta emot uppdateringar "
+"för detta tillägg när de blir tillgängliga. Som den första versionen du "
+"installerat, alla betaversioner är inte granskade av Mozilla och kan skada "
+"din dator."
 
 #: apps/pages/templates/pages/faq.html:230
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
+msgstr "Vad betyder det när ett tillägg är flaggad som långsam?"
 
 #: apps/pages/templates/pages/faq.html:232
 msgid ""
@@ -12305,10 +12374,16 @@ msgid ""
 " decide about installing them, and also to help you diagnose performance "
 "issues you may run into in the future."
 msgstr ""
+"De flesta tillägg laddar kod och resurser på samma gång Firefox startas. I "
+"de flesta fall är effekterna i starttid minimal, men vissa "
+"tilläggskomponenter kan orsaka en märkbar nedgång. Vi varnar dig för dessa "
+"tillägg för att hjälpa dig avgöra om hur du installerar dem och även genom "
+"att hjälpa dig att diagnostisera prestandaproblem du kan stöta på i "
+"framtiden."
 
 #: apps/pages/templates/pages/faq.html:239
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "Hur gör jag rapportera en olämplig eller skräppost användarrecension?"
 
 #: apps/pages/templates/pages/faq.html:240
 msgid ""
@@ -12317,6 +12392,10 @@ msgid ""
 "this review\" and select a reason. Our editorial team will investigate the "
 "review and take appropriate action."
 msgstr ""
+"För att rapportera en användarrecension av ett tillägg, logga in med ditt "
+"konto och besöka det tilläggets recensionssida. Hitta recension du vill "
+"rapportera, klicka på \"Rapportera denna recension\" och välj en orsak. Vår "
+"redaktion kommer att undersöka recensionen och vidta lämpliga åtgärder."
 
 #: apps/pages/templates/pages/faq.html:245
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -12611,7 +12690,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird har upphört"
 
 #: apps/pages/templates/pages/sunbird.html:29
 msgid ""
@@ -12654,7 +12733,7 @@ msgstr "Säljaren accepterar inte betalningar i %s."
 
 #: apps/perf/templates/perf/index.html:3
 msgid "Slow Performing Add-ons"
-msgstr ""
+msgstr "Långsamt presterande tillägg"
 
 #: apps/perf/templates/perf/index.html:24
 msgid ""
@@ -12668,13 +12747,15 @@ msgstr ""
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
-msgstr ""
+msgstr "Tillägg med långsam start"
 
 #: apps/perf/templates/perf/index.html:34
 msgid ""
 "The following add-ons have a significant impact on how long it takes %(app)s"
 " to start up."
 msgstr ""
+"Följande tillägg har en betydande inverkan på hur lång tid det tar för "
+"%(app)s att starta upp."
 
 #. Show All, Windows, Mac, Linux. The other names are inserted after the
 #. colon.
@@ -12684,16 +12765,16 @@ msgstr "Visa:"
 
 #: apps/perf/templates/perf/index.html:57
 msgid "Impact"
-msgstr ""
+msgstr "Inverkan"
 
 #: apps/perf/templates/perf/index.html:58
 msgid "Longer lines are slower"
-msgstr ""
+msgstr "Längre rader är långsammare"
 
 #. {0} is an add-on's percentage of slowness
 #: apps/perf/templates/perf/index.html:92
 msgid "<b>{0}%</b> <span>slower</span>"
-msgstr ""
+msgstr "<b>{0}%</b> <span>långsammare</span>"
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
@@ -12701,13 +12782,15 @@ msgstr "Visa fler tillägg"
 
 #: apps/perf/templates/perf/index.html:115
 msgid "For Add-on Developers"
-msgstr ""
+msgstr "För tilläggsutvecklare"
 
 #: apps/perf/templates/perf/index.html:116
 msgid ""
 "Don't let poor performance affect the experience of your users. Here are a "
 "few tips on how to keep your add-ons responsive and nimble."
 msgstr ""
+"Låt inte dåliga resultat påverka upplevelsen för användarna. Här är några "
+"tips på hur du håller dina tillägg snabba och smidiga."
 
 #: apps/perf/templates/perf/index.html:121
 msgid "Learn more about performance"
@@ -12827,7 +12910,7 @@ msgstr "Flaggad för granskning"
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
-msgstr "Rapportera recensionen"
+msgstr "Rapportera denna recension"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
@@ -13485,7 +13568,7 @@ msgstr "Hämta källkod efter datum"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Om spåra externa källor..."
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -13503,6 +13586,19 @@ msgid ""
 "blog\", \"external-sidebar\", \"external-campaign225\", etc. The following "
 "URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Spåra externa källor</h2> <p> Om du länkar till ditt tilläggs detaljsida"
+" eller direkt till en fil från en extern plats, till exempel din blogg eller"
+" hemsida, kan du lägga till en parameter så att du kan spåras som en "
+"ytterligare nedladdningskälla på den här sidan. Exempelvis följande länkar "
+"skulle visas som källa för din blogg: <dl> <dt>Tilläggets detaljsida</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blogg</b></dd>"
+" <dt>Direkt fillänk</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blogg</b></dd> </dl> <p> Endast src-parametrar som börjar med "
+"\"external-\" kommer att spåras, upp till 61 ytterligare tecken. All text "
+"efter \"external-\" kan användas att beskriva källan, till exempel "
+"\"external-blogg\", \"external-sidebar\", \"external-campaign225\", etc. "
+"Följande URL-säkra tecken är tillåtna: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
