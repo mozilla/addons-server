@@ -23,6 +23,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 
 import rdflib
+import waffle
 from tower import ugettext as _
 
 import amo
@@ -459,7 +460,7 @@ def check_xpi_info(xpi_info, addon=None):
     guid = xpi_info['guid']
     if not guid:
         raise forms.ValidationError(_("Could not find an add-on ID."))
-    if len(guid) > 64:
+    if not waffle.switch_is_active('allow-long-addon-guid') and len(guid) > 64:
         raise forms.ValidationError(
             _("Add-on ID must be 64 characters or less."))
     if addon and addon.guid != guid:
