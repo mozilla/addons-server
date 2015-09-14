@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 08:39+0000\n"
+"PO-Revision-Date: 2015-09-14 10:33+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -9689,6 +9689,9 @@ msgid ""
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr ""
+"Använd detta formulär för att begära mer information från upphovsmannen. De "
+"kommer att få ett mail och det kan besvaras här. Du kommer att meddelas via "
+"e-post när de svarat."
 
 #: apps/editors/helpers.py:515
 msgid ""
@@ -9696,51 +9699,67 @@ msgid ""
 "other concerns that an administrator should look into, enter your comments "
 "in the area below. They will be sent to administrators, not the author."
 msgstr ""
+"Om du har frågor om den här tilläggets säkerhet, upphovsrättsliga frågor "
+"eller andra funderingar som en administratör bör titta på, ange dina "
+"kommentarer i fältet nedan. De kommer att skickas till administratörer, inte"
+" upphovsmän."
 
 #: apps/editors/helpers.py:521
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
+"Detta kommer att avvisa tillägget och ta bort den från granskningskön."
 
 #: apps/editors/helpers.py:523
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
+"Kommentera den här versionen. Upphovmannen kommer inte att kunna se detta."
 
 #: apps/editors/helpers.py:527
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "Detta kommer att avvisa filer och ta bort dem från granskningskön."
 
 #: apps/editors/helpers.py:531
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Detta kommer att markera tillägget som preliminärt granskat. Framtida "
+"versioner kommer att genomgå preliminär granskning."
 
 #: apps/editors/helpers.py:536
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Detta kommer att markera filerna som preliminärt granskade. Framtida "
+"versioner kommer att genomgå preliminär granskning."
 
 #: apps/editors/helpers.py:541
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Behåll preliminär granskning"
 
 #: apps/editors/helpers.py:542
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Detta kommer att behålla tillägget som preliminärt granskad. Framtida "
+"versioner kommer att genomgå preliminär granskning."
 
 #: apps/editors/helpers.py:547
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr ""
+"Detta kommer att godkänna en sandboxad version av ett offentligt tillägg att"
+" synas på den offentliga sidan."
 
 #: apps/editors/helpers.py:550
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
+"Detta kommer att avvisa en version av ett offentligt tillägg och ta bort den"
+" från kön."
 
 #: apps/editors/helpers.py:553
 msgid ""
@@ -9748,6 +9767,9 @@ msgid ""
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr ""
+"Detta kommer att markera tillägget och dess senaste version och filer som "
+"publika. Framtida versioner kommer att gå in i sandbox tills de granskas av "
+"en redigerare."
 
 #: apps/editors/helpers.py:626
 msgid "add-on"
@@ -9771,7 +9793,7 @@ msgstr "Jetpack-tillägg"
 
 #: apps/editors/models.py:185
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Tillägg som ej kräver omstart"
 
 #: apps/editors/models.py:186
 msgid "More Information Requested"
@@ -9783,11 +9805,11 @@ msgstr "Innehåller redigeringskommentar"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Källor tillgänglig"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Duplicerade inskickningar"
 
 #: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
@@ -9811,11 +9833,11 @@ msgstr "Nya tillägg (Under 5 dagar)"
 
 #: apps/editors/views.py:131
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Väntande (5 till 10 dagar)"
 
 #: apps/editors/views.py:132
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Försenad (Över 10 dagar)"
 
 #: apps/editors/views.py:459
 msgid "An unknown error occurred"
@@ -9823,11 +9845,11 @@ msgstr "Ett okänt fel uppstod"
 
 #: apps/editors/views.py:511
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Det är inte tillåtet att granska sig själv."
 
 #: apps/editors/views.py:533
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Granskning behandlad."
 
 #: apps/editors/views.py:729
 msgid "was approved"
@@ -9835,7 +9857,7 @@ msgstr "godkändes"
 
 #: apps/editors/views.py:730
 msgid "given preliminary review"
-msgstr ""
+msgstr "beviljad preliminär granskning"
 
 #: apps/editors/views.py:731
 msgid "rejected"
@@ -9862,8 +9884,8 @@ msgstr "kommenterade"
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} granskning av tema behandlad (+{1} poäng, {2} totalt)."
+msgstr[1] "{0} granskningar av teman behandlade (+{1} poäng, {2} totalt)."
 
 #: apps/editors/views_themes.py:341
 msgid ""
@@ -9871,6 +9893,9 @@ msgid ""
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
+"Ditt låsta tema har framgångsrikt släppts. Andra granskare kan nu se över "
+"dessa släppta teman. Du kanske måste uppdatera sidan för att se ändringarna "
+"i nedanstående tabell."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -9890,7 +9915,7 @@ msgstr "<i>anonym</i> den %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Gå tillbaka till hemsidan för redigeringsverktyg"
 
 #: apps/editors/templates/editors/base.html:43
 #: apps/editors/templates/editors/themes/base.html:14
@@ -9925,7 +9950,7 @@ msgstr "Modererad granskningslogg"
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Signerad Beta fillogg"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
@@ -10074,7 +10099,7 @@ msgstr[1] "Modererade granskningar ({num})"
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Granskarnas ledartavla"
 
 #: apps/editors/templates/editors/leaderboard.html:18
 #: apps/editors/templates/editors/performance.html:65
@@ -10106,7 +10131,7 @@ msgstr "Spara"
 #: apps/editors/templates/editors/performance.html:10
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Tillägg prestanda editor"
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10142,7 +10167,7 @@ msgstr "Månadsprestanda"
 
 #: apps/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Total poängfördelning efter typ"
 
 #: apps/editors/templates/editors/performance.html:74
 msgid "Total"
@@ -10171,11 +10196,11 @@ msgstr "rensa sökning"
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr ""
+msgstr "Behandla granskningar"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Modererade åtgärder:"
 
 #: apps/editors/templates/editors/queue.html:90
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -10250,11 +10275,11 @@ msgstr "Hämta filer"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Utvecklaren har lämnat källkod."
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Denna version har inte granskats."
 
 #: apps/editors/templates/editors/review.html:154
 msgid ""
@@ -10446,14 +10471,14 @@ msgstr ""
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} väntande tema-granskning"
+msgstr[1] "{num} väntande tema-granskningar"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} flaggad granskning"
+msgstr[1] "{num} flaggade granskningar"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
@@ -10467,7 +10492,7 @@ msgstr "Granskningslogg för teman"
 
 #: apps/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Granskningskö för teman"
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
@@ -10688,11 +10713,11 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Filjämförelse :: Redigeringsverktyg"
 
 #: apps/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Filvisare :: Redigeringsverktyg"
 
 #: apps/files/templates/files/viewer.html:19
 msgid "Validation failed:"
@@ -14064,6 +14089,8 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
+"Från tid till annan, skickar Mozilla dig e-post om kommande releaser och "
+"tilläggshändelser. Välj de ämnen du är intresserad."
 
 #: apps/users/templates/users/edit.html:191
 msgid ""
@@ -14554,7 +14581,7 @@ msgstr "Tillägget använder binära komponenter."
 
 #: apps/versions/models.py:305
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Tillägg har valt in i strikt kompatibilitetskontroll."
 
 #: apps/versions/models.py:682
 msgid "{app} {min} and later"
@@ -14635,7 +14662,7 @@ msgstr "Målversion"
 
 #: apps/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr ""
+msgstr "E-post när det är klart"
 
 #: apps/zadmin/forms.py:105
 msgid "Log emails instead of sending"
@@ -14750,7 +14777,7 @@ msgstr "Presscenter"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Varumärkesverktyg"
 
 #: templates/menu_links.html:28
 msgid "Careers"
@@ -14803,11 +14830,11 @@ msgstr "Lägg till extra funktioner och stilar för att göra %(app)s till ditt.
 
 #: templates/impala/base.html:143
 msgid "On the go?"
-msgstr ""
+msgstr "På språng?"
 
 #: templates/impala/base.html:145
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Kolla in vår <a class=\"mobile-link\" href=\"#\">mobila tilläggssida</a>."
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
@@ -14823,7 +14850,7 @@ msgstr "Obligatoriska fält"
 
 #: templates/mobile/base_addons.html:56
 msgid "Mobile Home"
-msgstr ""
+msgstr "Mobil hem"
 
 #: templates/mobile/base_addons.html:75
 msgid "View full site"
