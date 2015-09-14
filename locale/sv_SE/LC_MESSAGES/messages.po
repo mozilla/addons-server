@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 14:56+0000\n"
+"PO-Revision-Date: 2015-09-14 22:21+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -11557,7 +11557,7 @@ msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Erbjuder Mozilla utvecklingstjänster?"
 
 #: apps/pages/templates/pages/dev_faq.html:245
 #: apps/pages/templates/pages/dev_faq.html:528
@@ -11567,6 +11567,7 @@ msgstr "Nej."
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Finns det tredjepartsutvecklare som jag kan hyra för att bygga mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:249
 msgid ""
@@ -11576,10 +11577,16 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Ja. Du kan hitta tredjepartsutvecklare via <a "
+"href=\"%(forum_url)s\">tilläggsforum</a>, <a "
+"href=\"%(list_url)s\">mozilla.jobs lista</a>, <a "
+"href=\"%(mz_url)s\">mozillaZine forum</a> eller <a "
+"href=\"%(wiki_url)s\">Mozilla Wiki</a>. Observera att Mozilla inte erbjuder "
+"utvecklare rekommendationer."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Kan jag hysa mina egna tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid ""
@@ -11620,17 +11627,19 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:296
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Ser Mozilla till att min kontoinformation är privat?"
 
 #: apps/pages/templates/pages/dev_faq.html:298
 msgid ""
 "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your "
 "information is managed by Mozilla."
 msgstr ""
+"Ja. Vår <a href=\"%(url)s\">Sekretesspolicy</a> beskriver hur din "
+"information hanteras av Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:303
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Vad innehåller \"utvecklingsverktygen\" som är listade på AMO?"
 
 #: apps/pages/templates/pages/dev_faq.html:305
 msgid ""
@@ -11679,7 +11688,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Vilken kategori måste jag välja för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:347
 msgid ""
@@ -11692,7 +11701,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:356
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Vad betyder det att \"nominera\" mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:358
 msgid ""
@@ -11713,7 +11722,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:373
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Jag kan inkludera en sekretesspolicy för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:375
 msgid ""
@@ -11724,7 +11733,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:384
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Varför måste mitt tillägg bli granskat?"
 
 #: apps/pages/templates/pages/dev_faq.html:386
 msgid ""
@@ -12654,7 +12663,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Hur kan jag rapportera en problematisk recension?"
 
 #: apps/pages/templates/pages/review_guide.html:135
 msgid ""
@@ -12671,7 +12680,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Jag är upphovsman för ett tillägg, kan jag svara på recensioner?"
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
@@ -12679,6 +12688,9 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
+"Ja, upphovsmän till tillägg kan ge ett enda svar på en recension. Du kan "
+"ställa in ett diskussionsämne i vårt <a href=\"%(forum_url)s\">forum</a> för"
+" att engagera dig i ytterligare diskussion eller uppföljning."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
