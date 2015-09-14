@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 11:57+0000\n"
+"PO-Revision-Date: 2015-09-14 13:50+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12195,12 +12195,18 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Med tusentals tillägg tillgängliga finns det något för alla. Men om du letar"
+" efter ett särskilt tillägg och kan inte hitta det, kan du prova söka på "
+"andra webbplatser eller trådar om det i vårt <a "
+"href=\"%(forum_url)s\">tilläggsforum</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
 msgstr ""
+"Vad innebär det om en tillägg är \"experimentell\" eller \"preliminärt "
+"granskad\"?"
 
 #: apps/pages/templates/pages/faq.html:189
 msgid ""
@@ -12210,10 +12216,15 @@ msgid ""
 " add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more "
 "about our review process</a></dd>"
 msgstr ""
+"Experimentella tillägg har kontrollerats av våra redigerare för att se till "
+"att de inte har säkerhetsproblem, men de kan fortfarande har fel eller "
+"fungerar inte korrekt. Var försiktig när du installerar experimentella "
+"tillägg och avinstallera tillägget omedelbart om du upptäcker problem. <a "
+"href=\"%(url)s\">Mer information om vår granskningsprocess</a></dd>"
 
 #: apps/pages/templates/pages/faq.html:197
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Vad innebär det om en tillägg är \"ej granskad\"?"
 
 #: apps/pages/templates/pages/faq.html:198
 msgid ""
@@ -12224,6 +12235,12 @@ msgid ""
 "reviewed add-ons. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
+"Eftersom alla tillägg är publikt tillgängliga i vårt galleri granskas de av "
+"en redigerare, du kan få en direkt länk till ett tillägg som ännu inte har "
+"granskats. Var försiktig när du installerar detta tillägg, eftersom de kan "
+"skada din dator eller bryta mot sekretessen. Vi rekommenderar att du bara "
+"installerar granskade tillägg. <a href=\"%(url)s\">Mer information om vår "
+"granskningsprocess</a></dd>"
 
 #: apps/pages/templates/pages/faq.html:207
 msgid "How much do add-ons cost to purchase?"
@@ -12237,7 +12254,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:211
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Vad betyder det när ett tillägg ber om bidrag?"
 
 #: apps/pages/templates/pages/faq.html:212
 msgid ""
@@ -12246,6 +12263,10 @@ msgid ""
 "directly to the developer unless a third party is indicated, such as the "
 "non-profit Mozilla Foundation."
 msgstr ""
+"Några upphovsmän för tillägg kan begära från användare som uppskattar ett "
+"tillägg att bidra till dess utveckling genom ett monetärt bidrag. Dessa "
+"bidrag går direkt till utvecklaren om inte tredje part anges, såsom den "
+"ideella Mozilla Foundation."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
