@@ -240,6 +240,11 @@ class OnChangeMixin(object):
                     new_instance.save(_signal=False)
             TheModel.on_change(watch_status)
 
+        ``old_atr`` will be a dict of the old instance attributes.
+        ``new_attr`` will be a dict of the new instance attributes, including
+        any that had not been changed by the operation that triggered the
+        callback (such as an update only of one field).
+
         .. note::
 
             Any call to instance.save() or instance.update() within a callback
