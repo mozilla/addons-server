@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-14 22:21+0000\n"
+"PO-Revision-Date: 2015-09-15 07:56+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10308,10 +10308,13 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"Whiteboard är platsen att utbyta information relevant för detta tillägg "
+"(oavsett version), mellan utvecklaren och redigeraren. Denna är synlig och "
+"redigerbar för båda."
 
 #: apps/editors/templates/editors/review.html:236
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Uppdatera whiteboard"
 
 #: apps/editors/templates/editors/review.html:252
 #: apps/editors/templates/editors/review.html:253
@@ -10449,7 +10452,7 @@ msgstr "Inga borttagna teman hittades för denna period."
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Tema granskningshistorik för {0}"
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
@@ -10552,19 +10555,19 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
-msgstr ""
+msgstr "Det finns inga objekt av den här typen att granska."
 
 #: apps/editors/templates/editors/themes/queue_list.html:92
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Riktlinjer för granskare"
 
 #: apps/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Tema granskning för {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Sannolikt dubbel inskickning)"
 
 #: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
@@ -10589,7 +10592,7 @@ msgstr "Fältet krävs"
 
 #: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Ange ID eller URL för den dubblerade"
 
 #: apps/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
@@ -11745,7 +11748,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:394
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Vem granskar mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:396
 msgid ""
@@ -11852,7 +11855,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "What are the Recommended Lists?"
-msgstr ""
+msgstr "Vad är rekommenderade listor?"
 
 #: apps/pages/templates/pages/dev_faq.html:489
 msgid ""
@@ -11884,6 +11887,13 @@ msgid ""
 "chance for increased visibility to users. Featured add-ons are rotated "
 "regularly to prevent staleness."
 msgstr ""
+"Huvudsidan för AMO liksom huvudsidan för varje kategori innehåller tre "
+"platser som används för att visa en uppsättning Utvalda tillägg. Dessa "
+"tillägg hämtas från respektive Rekommenderat och kategorin Rekommenderade "
+"listor och roterar periodvis som beskrivs i <a href=\"%(url)s\">Utvalda "
+"tillägg FAQ</a> för att tillåta rekommenderade tillägg en chans för ökad "
+"synlighet för användarna.. Utvalda tillägg roterar regelbundet för att "
+"förhindra att de blir gamla."
 
 #: apps/pages/templates/pages/dev_faq.html:520
 msgid "How can my add-on be listed as Recommended?"
@@ -11895,6 +11905,8 @@ msgid ""
 "<a href=\"%(url)s\">This page</a> describes the process by which the "
 "Recommended lists are managed."
 msgstr ""
+"<a href=\"%(url)s\">Denna sida</a> beskriver den process genom vilka de "
+"rekommenderade listorna hanteras."
 
 #: apps/pages/templates/pages/dev_faq.html:527
 msgid "Can I pay to have my add-on listed as Recommended?"
@@ -12550,7 +12562,7 @@ msgstr ""
 #: apps/pages/templates/pages/review_guide.html:36
 #: apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Några tips för att skriva en bra recension"
 
 #: apps/pages/templates/pages/review_guide.html:39
 #: apps/pages/templates/pages/review_guide.html:131
@@ -12576,36 +12588,38 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Håll recensioner koncisa och lätt att förstå."
 
 #: apps/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Ge konkreta och användbara detaljer. Till exempel:"
 
 #: apps/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Fungerade tillägget som du förväntat det skulle?"
 
 #: apps/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Vilka funktioner gillar eller ogillar du?"
 
 #: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
-msgstr ""
+msgstr "Var det användbart?"
 
 #: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Var det lätt att använda?"
 
 #: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Kommer du fortsätta att använda detta tillägg?"
 
 #: apps/pages/templates/pages/review_guide.html:73
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Ta en stund och läs igenom din recension innan du skickar in den för att "
+"minimera stavfel."
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
@@ -12614,6 +12628,8 @@ msgstr "Att inte göra:"
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Skicka inte in recensioner med ett ord, som \"Bra!\", \"underbar\" eller "
+"\"dålig\"."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -12695,6 +12711,8 @@ msgstr ""
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
+"Jag är upphovsman för tillägg, kan jag ta bort negativa recensioner eller "
+"betyg?"
 
 #: apps/pages/templates/pages/review_guide.html:151
 msgid ""
@@ -12704,6 +12722,11 @@ msgid ""
 "release of your add-on, we may consider deleting the review. Submit your "
 "detailed request to amo-editors@mozilla.org."
 msgstr ""
+"I allmänhet, nej. Men om recensionen inte uppfyllde riktlinjerna ovan, kan "
+"du klicka på \"Rapportera denna recension\" och få den modererad. Om ett "
+"klagomål ingår i recensionen som inte längre är giltig på grund av en ny "
+"version av ditt tillägg, kan vi överväga att ta bort recensionen. Skicka in "
+"din detaljerade begäran till amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -12716,12 +12739,18 @@ msgid ""
 " the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Utveckling med Sunbird projektet har stoppats och den slutliga versionen var"
+" den 30 mars 2010. Vi har varit stolta att hysa tillägget Sunbird på denna "
+"webbplats men eftersom projektet inte längre underhålls har vi stängt vårt "
+"stöd för tillägg."
 
 #: apps/pages/templates/pages/sunbird.html:38
 msgid ""
 "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a "
 "href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
+"Vi rekommenderar uppgradering till <a href=\"%(tb_url)s\">Thunderbird</a> "
+"och <a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: apps/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -12737,7 +12766,7 @@ msgstr "Det uppstod ett fel med denna valuta."
 
 #: apps/paypal/__init__.py:68
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Beloppet är för litet för att växlas till mottagarens valuta."
 
 #: apps/paypal/__init__.py:70
 msgid "The buyer and seller must have different PayPal accounts."
@@ -13525,6 +13554,10 @@ msgid ""
 "evening and only include original add-on downloads, not updates. Downloads "
 "can be broken down by the specific source referring the download. </p>"
 msgstr ""
+"<h2>Hur räknas nedladdningar?</h2> <p> Antal nedladdningar uppdateras varje "
+"kväll och inkluderar bara ursprungliga nedladdningar av tillägg, inte "
+"uppdateringar. Nedladdningar kan brytas ner efter specifika källor gällande "
+"nedladdningen. </p>"
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -13640,6 +13673,10 @@ msgid ""
 "Active Daily Users, or the total number of people using your theme by day. "
 "</p>"
 msgstr ""
+"<h2>Vad är dagliga användare?</h2> <p> Teman installerade från denna "
+"webbplats kontrollerar efter uppdaterar en gång per dag. Det totala antalet "
+"uppdateringar kallas aktiva dagliga användare eller det totala antalet "
+"personer som använder ditt tema per dag. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -13648,6 +13685,11 @@ msgid ""
 " Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Vad är dagliga användare?</h2> <p> Tillägg nedladdade från denna "
+"webbplats kontrollerar efter uppdateringar en gång per dag. Det totala "
+"antalet uppdateringar kallas aktiva dagliga användare. Dagliga användare kan"
+" brytas ner efter tilläggsversion, operativsystem, tilläggsstatus, "
+"applikation och språk. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
