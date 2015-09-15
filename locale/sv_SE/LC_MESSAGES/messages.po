@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-15 07:56+0000\n"
+"PO-Revision-Date: 2015-09-15 08:02+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -11681,13 +11681,14 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:337
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Vilket operativsystem ska jag välja för mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:339
 msgid ""
 "You must choose the operating systems on which your add-on will successfully"
 " function."
 msgstr ""
+"Du måste välja de operativsystem som ditt tillägg kommer att fungera på."
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "What category do I choose for my add-on?"
@@ -11759,6 +11760,12 @@ msgid ""
 "hard to ensure that your add-on is set up correctly and follows the "
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Tillägg granskas av AMO:s redigerare, en grupp begåvade utvecklare som "
+"frivilligt hjälper Mozilla-projekt genom att granska tillägg för att "
+"säkerställa en stabil och säker upplevelse för Mozillas användare. Vid "
+"kommunikation med redigerare, vänligen var artig, tålmodig och respektfull, "
+"eftersom de arbetar hårt för att se till att ditt tillägg är korrekt och "
+"följer riktlinjerna i <a href=\"%(url)s\">riktlinjer för redigerare</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:407
 msgid "What are the guidelines used to review my add-on?"
