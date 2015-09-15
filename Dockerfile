@@ -26,7 +26,6 @@ RUN pip install -U pip wheel
 COPY requirements /pip/requirements/
 RUN cd /pip && \
     pip install --build ./build --cache-dir ./cache \
-        --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ \
         --find-links https://pyrepo.addons.mozilla.org/ \
         --no-index --no-deps \
         -r requirements/docker.txt && \
