@@ -2726,14 +2726,21 @@ class TestStatusFile(ReviewBase):
         eq_(pq(r.content)('#review-files .file-info div').text(), expected)
 
     def test_status_prelim(self):
+        self.get_file().update(status=amo.STATUS_UNREVIEWED)
         for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
             self.addon.update(status=status)
             self.check_status('Pending Preliminary Review')
 
     def test_status_full(self):
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                       amo.STATUS_PUBLIC]:
+        self.get_file().update(status=amo.STATUS_UNREVIEWED)
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
             self.addon.update(status=status)
+            self.check_status('Pending Full Review')
+
+    def test_status_upgrade_to_full(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
+            self.get_file().update(status=status)
             self.check_status('Pending Full Review')
 
     def test_status_full_reviewed(self):
