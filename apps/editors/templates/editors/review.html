@@ -210,6 +210,15 @@
         {{ form.adminflag.errors }}
       </div>
       {% endif %}
+      {% if version.has_info_request %}
+      <div class="review-actions-section">
+        {{ form.clear_info_request }}
+        <label for="{{ form.clear_info_request.auto_id }}">
+          {{ form.clear_info_request.label }}
+        </label>
+        {{ form.clear_info_request.errors }}
+      </div>
+      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}
