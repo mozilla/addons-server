@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-01-07 23:11+0000\n"
-"Last-Translator: Peter <kollenix@gmail.com>\n"
+"PO-Revision-Date: 2015-09-15 21:50+0000\n"
+"Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1420672294.0\n"
+"X-POOTLE-MTIME: 1442353853.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -366,7 +366,7 @@ msgstr "Funguje s"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Viditeľnosť"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
@@ -1826,7 +1826,7 @@ msgstr ""
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} bol podpísaný."
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
@@ -3528,15 +3528,15 @@ msgstr "Úroveň 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Úroveň 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Úroveň 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Úroveň 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
@@ -4117,7 +4117,7 @@ msgstr "Stav:"
 
 #: apps/devhub/templates/devhub/index.html:90 apps/devhub/templates/devhub/includes/addon_details.html:98
 msgid "Visibility:"
-msgstr ""
+msgstr "Viditeľnosť:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
