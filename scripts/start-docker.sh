@@ -14,4 +14,4 @@ uid=$(ls -nd . | awk '{ print $3 }')
 useradd -Md $(pwd) -u $uid olympia
 
 # Switch to that user and execute our actual command.
-exec su olympia -c 'exec "$@"' sh "$@"
+exec su olympia -c 'exec "$@"' sh -- "$@"
