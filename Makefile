@@ -67,7 +67,7 @@ populate_data:
 	python manage.py generate_addons --app android $(NUM_ADDONS)
 	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
-	python manage.py reindex --wipe --force
+	python manage.py reindex --wipe --force --noinput
 
 update_code:
 	git checkout master && git pull

@@ -117,6 +117,10 @@ class Command(BaseCommand):
         make_option('--with-stats', action='store_true',
                     help=('Whether to also reindex AMO stats. Default: False'),
                     default=False),
+        make_option('--noinput', action='store_true',
+                    help=('Do not ask for confirmation before wiping. '
+                          'Default: False'),
+                    default=False),
     )
 
     def handle(self, *args, **kwargs):
@@ -140,13 +144,16 @@ class Command(BaseCommand):
             modules.append('stats')
 
         if kwargs.get('wipe', False):
-            confirm = raw_input('Are you sure you want to wipe all AMO '
-                                'Elasticsearch indexes? (yes/no): ')
+            skip_confirmation = kwargs.get('noinput', False)
+            confirm = ''
+            if not skip_confirmation:
+                confirm = raw_input('Are you sure you want to wipe all AMO '
+                                    'Elasticsearch indexes? (yes/no): ')
 
-            while confirm not in ('yes', 'no'):
-                confirm = raw_input('Please enter either "yes" or "no": ')
+                while confirm not in ('yes', 'no'):
+                    confirm = raw_input('Please enter either "yes" or "no": ')
 
-            if confirm == 'yes':
+            if (confirm == 'yes' or skip_confirmation):
                 unflag_database(stdout=self.stdout)
                 for index in set(MODULES[m].get_alias() for m in modules):
                     ES.indices.delete(index, ignore=404)
