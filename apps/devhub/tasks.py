@@ -144,6 +144,18 @@ def handle_file_validation_result(results, file_id, annotate=True):
     return FileValidation.from_json(file_, results)
 
 
+def addon_can_be_signed(validation):
+    """
+    Given a dict of add-on validation results, returns True if add-on can be
+    signed.
+    """
+    summary = validation.get('signing_summary', {})
+    # Check for any errors that should prevent signing.
+    return (summary.get('low', 0) == 0 and
+            summary.get('medium', 0) == 0 and
+            summary.get('high', 0) == 0)
+
+
 def annotate_validation_results(results):
     """Annotates validation results with information such as whether the
     results pass auto validation, and which results are unchanged from a
@@ -158,13 +170,11 @@ def annotate_validation_results(results):
         validation = (ValidationComparator(results[1])
                       .compare_results(results[0]))
 
-    summary = validation.setdefault('signing_summary',
-                                    {'trivial': 0, 'low': 0,
-                                     'medium': 0, 'high': 0})
+    validation.setdefault('signing_summary',
+                          {'trivial': 0, 'low': 0,
+                           'medium': 0, 'high': 0})
 
-    validation['passed_auto_validation'] = (summary['low'] +
-                                            summary['medium'] +
-                                            summary['high']) == 0
+    validation['passed_auto_validation'] = addon_can_be_signed(validation)
 
     if not settings.SIGNING_SERVER:
         validation = skip_signing_warning(validation)
@@ -272,17 +282,43 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
             path = temp.name
 
         with statsd.timer('devhub.validator'):
-            return validate(path,
-                            for_appversions=for_appversions,
-                            format='json',
-                            # When False, this flag says to stop testing after
-                            # one tier fails.
-                            determined=test_all_tiers,
-                            approved_applications=apps,
-                            spidermonkey=settings.SPIDERMONKEY,
-                            overrides=overrides,
-                            compat_test=compat,
-                            listed=listed)
+            json_result = validate(
+                path,
+                for_appversions=for_appversions,
+                format='json',
+                # When False, this flag says to stop testing after one
+                # tier fails.
+                determined=test_all_tiers,
+                approved_applications=apps,
+                spidermonkey=settings.SPIDERMONKEY,
+                overrides=overrides,
+                compat_test=compat,
+                listed=listed
+            )
+
+        track_validation_stats(json_result)
+
+        return json_result
+
+
+def track_validation_stats(json_result):
+    """
+    Given a raw JSON string of validator results, log some stats.
+    """
+    result = json.loads(json_result)
+    result_kind = 'success' if result['errors'] == 0 else 'failure'
+    statsd.incr('devhub.validator.results.all.{}'.format(result_kind))
+
+    listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
+    signable_tag = ('is_signable' if addon_can_be_signed(result)
+                    else 'is_not_signable')
+
+    # Track listed/unlisted success/fail.
+    statsd.incr('devhub.validator.results.{}.{}'
+                .format(listed_tag, result_kind))
+    # Track how many listed/unlisted add-ons can be automatically signed.
+    statsd.incr('devhub.validator.results.{}.{}'
+                .format(listed_tag, signable_tag))
 
 
 @task(rate_limit='4/m')

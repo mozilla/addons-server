@@ -26,6 +26,7 @@ from applications.models import AppVersion
 from bandwagon.models import FeaturedCollection, MonthlyPick
 from compat.cron import compatibility_report
 from compat.models import CompatReport
+from constants.base import VALIDATOR_SKELETON_RESULTS
 from devhub.models import ActivityLog
 from files.models import Approval, File, FileUpload
 from stats.models import UpdateCount
@@ -37,11 +38,6 @@ from zadmin.forms import DevMailerForm
 from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
 from zadmin.tasks import updated_versions
 from zadmin.views import find_files
-
-
-no_op_validation = dict(errors=0, warnings=0, notices=0, messages=[],
-                        compatibility_summary=dict(errors=0, warnings=0,
-                                                   notices=0))
 
 
 class TestSiteEvents(amo.tests.TestCase):
@@ -786,7 +782,7 @@ class TestBulkValidationTask(BulkValidationTest):
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_validate_all_tiers(self, run_validator):
-        run_validator.return_value = json.dumps(no_op_validation)
+        run_validator.return_value = json.dumps(VALIDATOR_SKELETON_RESULTS)
         res = self.create_result(self.create_job(), self.create_file(), **{})
         tasks.bulk_validate_file(res.id)
         assert run_validator.called
@@ -844,7 +840,7 @@ class TestBulkValidationTask(BulkValidationTest):
 
     @mock.patch('validator.validate.validate')
     def test_app_version_overrides(self, validate):
-        validate.return_value = json.dumps(no_op_validation)
+        validate.return_value = json.dumps(VALIDATOR_SKELETON_RESULTS)
         self.start_validation(new_max='3.7a4')
         assert validate.called
         overrides = validate.call_args[1]['overrides']
