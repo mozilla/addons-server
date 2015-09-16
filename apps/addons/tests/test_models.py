@@ -2382,6 +2382,38 @@ class TestAddonWatchDeveloperNotes(amo.tests.TestCase):
         self.assertHasInfoSet(addon)
 
 
+class TestTrackAddonStatusChange(amo.tests.TestCase):
+
+    def create_addon(self, **kwargs):
+        kwargs.setdefault('type', amo.ADDON_EXTENSION)
+        addon = Addon(**kwargs)
+        addon.save()
+        return addon
+
+    def test_increment_udpated_status(self):
+        addon = self.create_addon()
+        with patch('addons.models.statsd.incr') as mock_incr:
+            addon.update(status=amo.STATUS_PUBLIC)
+        mock_incr.assert_called_with(
+            'addon_status_change.status_{}'.format(amo.STATUS_PUBLIC)
+        )
+
+    def test_increment_new_status(self):
+        with patch('addons.models.statsd.incr') as mock_incr:
+            self.create_addon()
+        mock_incr.assert_called_with(
+            'addon_status_change.status_{}'.format(amo.STATUS_NULL)
+        )
+
+    def test_ignore_non_status_changes(self):
+        addon = self.create_addon()
+        with patch('addons.models.statsd.incr') as mock_incr:
+            addon.update(type=amo.ADDON_THEME)
+        assert not mock_incr.called, (
+            'Unexpected call: {}'.format(self.mock_incr.call_args)
+        )
+
+
 class TestSearchSignals(amo.tests.ESTestCase):
 
     def setUp(self):

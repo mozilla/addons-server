@@ -19,6 +19,7 @@ from django.utils.translation import trans_real as translation
 import caching.base as caching
 import commonware.log
 import json_field
+from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
@@ -2320,3 +2321,24 @@ models.signals.post_save.connect(update_incompatible_versions,
 models.signals.post_delete.connect(update_incompatible_versions,
                                    sender=CompatOverrideRange,
                                    dispatch_uid='cor_update_incompatible')
+
+
+def track_new_status(sender, instance, *args, **kw):
+    if kw.get('raw'):
+        # The addon is being loaded from a fixure.
+        return
+    if kw.get('created'):
+        statsd.incr('addon_status_change.status_{}'.format(instance.status))
+
+
+models.signals.post_save.connect(track_new_status,
+                                 sender=Addon,
+                                 dispatch_uid='track_new_addon_status')
+
+
+@Addon.on_change
+def track_status_change(old_attr={}, new_attr={}, **kw):
+    new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
+    if new_status != old_status:
+        statsd.incr('addon_status_change.status_{}'.format(new_status))

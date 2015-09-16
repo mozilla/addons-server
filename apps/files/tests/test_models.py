@@ -14,6 +14,7 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
+from mock import patch
 from nose.tools import eq_
 
 import amo
@@ -298,6 +299,45 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         addon = Addon.objects.no_cache().get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
         eq_(f.addon.id, addon_id)
+
+
+class TestTrackFileStatusChange(amo.tests.TestCase):
+
+    def create_file(self, **kwargs):
+        addon = Addon()
+        addon.save()
+        ver = Version(version='0.1')
+        ver.addon = addon
+        ver.save()
+
+        f = File(**kwargs)
+        f.version = ver
+        f.save()
+
+        return f
+
+    def test_increment_udpated_status(self):
+        f = self.create_file()
+        with patch('files.models.statsd.incr') as mock_incr:
+            f.update(status=amo.STATUS_PUBLIC)
+        mock_incr.assert_called_with(
+            'file_status_change.status_{}'.format(amo.STATUS_PUBLIC)
+        )
+
+    def test_increment_new_status(self):
+        with patch('files.models.statsd.incr') as mock_incr:
+            self.create_file()
+        mock_incr.assert_called_with(
+            'file_status_change.status_{}'.format(amo.STATUS_UNREVIEWED)
+        )
+
+    def test_ignore_non_status_changes(self):
+        f = self.create_file()
+        with patch('files.models.statsd.incr') as mock_incr:
+            f.update(size=1024)
+        assert not mock_incr.called, (
+            'Unexpected call: {}'.format(self.mock_incr.call_args)
+        )
 
 
 class TestParseXpi(amo.tests.TestCase):

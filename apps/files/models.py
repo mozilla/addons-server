@@ -514,6 +514,27 @@ def clear_d2c_version(old_attr, new_attr, instance, sender, **kw):
         instance.version.addon.invalidate_d2c_versions()
 
 
+def track_new_status(sender, instance, *args, **kw):
+    if kw.get('raw'):
+        # The file is being loaded from a fixure.
+        return
+    if kw.get('created'):
+        statsd.incr('file_status_change.status_{}'.format(instance.status))
+
+
+models.signals.post_save.connect(track_new_status,
+                                 sender=File,
+                                 dispatch_uid='track_new_file_status')
+
+
+@File.on_change
+def track_status_change(old_attr={}, new_attr={}, **kw):
+    new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
+    if new_status != old_status:
+        statsd.incr('file_status_change.status_{}'.format(new_status))
+
+
 # TODO(davedash): Get rid of this table once /editors is on zamboni
 class Approval(amo.models.ModelBase):
 
