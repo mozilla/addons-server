@@ -9,56 +9,101 @@ If you want to build a completely different site with all the same Django
 optimizations for security, scalability, L10n, and ease of use, check out
 Mozilla's `Playdoh starter kit <http://playdoh.readthedocs.org/>`_.
 
-
 .. _install-with-docker:
 
 Quickstart
 ----------
+Want the easiest way to start contributing to AMO? Try our docker-based
+development environment.
 
-Want the easiest way to start contributing to AMO? Try our docker install in a
-few easy steps::
+First you'll need to install docker_, please check the information for
+the installation steps specific to your operating system.
+
+.. note::
+  Docker recommends installing docker-toolbox_ if you're on OSX or
+  windows and that will provide you with the ``docker-machine`` and
+  ``docker-compose`` (mac-only).
+
+Creating the docker vm (mac/windows)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you go the docker-machine route your first step is to create a vm::
+
+    docker-machine create --driver=virtualbox addons-dev
+
+Then you can export the variables so that docker-compose can talk to
+the docker service. This command will tell you how to do that::
+
+    docker-machine env addons-dev
+
+On a mac it's a case of running::
+
+    eval $(docker-machine env addons-dev)
+
+Setting up the containers
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Next once you have docker up and running follow these steps
+on your host machine::
 
     git clone git://github.com/mozilla/olympia.git
     cd olympia
-    pip install docker-compose
-    docker-compose build  # Can be very long depending on your internet bandwidth.
-    docker-compose run web make initialize_docker  # Answer yes, and create your superuser when asked.
-    docker-compose up
+    pip install docker-compose docker-utils
+    docker-compose pull  # Can take a while depending on your internet bandwidth.
+    docker-compose up -d
+    docker-utils bash web # Opens a shell on the running web container.
+
+    # On the shell opened by docker-utils:
+    make initialize_docker  # Answer yes, and create your superuser when asked.
     # Once it's all loaded, go to http://localhost:8000 and enjoy!
 
-On the last step, if you're using boot2docker, you-ll need to first find its
-ip, and connect to that instead::
 
-    boot2docker ip
+On the last step, if you're using docker-machine, you'll
+need to first find its ip, and connect to that instead::
 
-This needs a working installation of docker_, please check the information for
-your operating system.
+    docker-machine ip addons-dev
 
-.. _docker: https://docs.docker.com/installation/#installation
+.. note::
+    If you're still using boot2docker then the command is `boot2docker ip`.
+    At this point you can look at installing docker-toolbox and migrating
+    your old boot2docker vm across to running via docker-machine. See
+    docker-toolbox_ for more info.
 
-All the commands should then be run with the `docker-compose run web`
-prefix, eg::
+Any other commands can now be run in a shell on the running container:
 
-    docker-compose run web py.test
+    docker-utils bash web
 
-Any time you update Olympia (e.g., running `git pull`), you should make sure to
+Then just run this command in the shell::
+
+    py.test
+
+Any time you update Olympia (e.g., running ``git pull``), you should make sure to
 update your Docker image and database with any new requirements or migrations::
 
-    docker-compose build  # Installs any new Python requirements in `requirements/*.txt`
-    docker-compose run make update_docker  # Runs database migrations, installs npm modules, rebuilds assets.
+    docker-compose stop
+    docker-compose pull
+    docker-compose up -d
+
+Then from a shell on the running container run::
+
+    make update_docker  # Runs database migrations, installs npm modules, rebuilds assets.
 
 Please note that any command that would result in files added or modified
 outside of the `olympia` folder (eg modifying pip or npm dependencies) won't be
 persisted, and so won't survive after the container is finished.
-If you need persistence, make sure this command is run in the `Dockerfile` and
-do a full rebuild::
 
-    docker-compose build
+.. note::
+    If you need to persist any changes to the image, they should be carried out
+    via the `Dockerfile`. Commits to master will result in the Dockerfile being
+    rebuilt on the docker hub.
 
-Installation
-------------
-If you need more, or would rather install manually, follow the :ref:`manual
-Olymia installation <installation>` instructions.
+Full Installation (deprecated)
+------------------------------
+Using :ref:`Docker <install-with-docker>` is the recommended and
+supported approach for running the development environment.
+
+However, if you would rather install manually, follow
+the :ref:`manual Olymia installation <installation>` instructions.
 
 
 Contents
@@ -154,3 +199,7 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
+
+
+.. _docker: https://docs.docker.com/installation/#installation
+.. _docker-toolbox: https://www.docker.com/toolbox
