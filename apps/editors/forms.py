@@ -270,6 +270,8 @@ class ReviewAddonForm(happyforms.Form):
                                             'email)'))
     adminflag = forms.BooleanField(required=False,
                                    label=_lazy(u'Clear Admin Review Flag'))
+    clear_info_request = forms.BooleanField(
+        required=False, label=_lazy(u'Clear more info requested flag'))
 
     def is_valid(self):
         result = super(ReviewAddonForm, self).is_valid()

@@ -248,6 +248,21 @@ class TestReviewHelper(amo.tests.TestCase):
         self.helper.process()
         eq_(len(mail.outbox), 1)
 
+    def test_clear_has_info_request(self):
+        self.version.update(has_info_request=True)
+        assert self.version.has_info_request
+        self.helper.set_data({'action': 'comment', 'comments': 'foo',
+                              'clear_info_request': True})
+        self.helper.process()
+        assert not self.version.has_info_request
+
+    def test_do_not_clear_has_info_request(self):
+        self.version.update(has_info_request=True)
+        assert self.version.has_info_request
+        self.helper.set_data({'action': 'comment', 'comments': 'foo'})
+        self.helper.process()
+        assert self.version.has_info_request
+
     def test_action_details(self):
         for status in Addon.STATUS_CHOICES:
             self.addon.update(status=status)

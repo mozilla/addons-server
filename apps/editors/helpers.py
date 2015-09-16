@@ -666,7 +666,10 @@ class ReviewBase(object):
                   Context(self.get_context_data()))
 
     def process_comment(self):
-        self.version.update(has_editor_comment=True)
+        kw = {'has_editor_comment': True}
+        if self.data.get('clear_info_request'):
+            kw['has_info_request'] = False
+        self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 

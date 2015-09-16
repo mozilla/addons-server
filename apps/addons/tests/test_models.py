@@ -2294,6 +2294,94 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
         assert not mock.hide_disabled_file.called
 
 
+class TestAddonWatchDeveloperNotes(amo.tests.TestCase):
+
+    def make_addon(self, **kwargs):
+        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
+                      **kwargs)
+        addon.save()
+        addon.versions.create(has_info_request=True)
+        addon.versions.create(has_info_request=False)
+        addon.versions.create(has_info_request=True)
+        return addon
+
+    def assertHasInfoSet(self, addon):
+        assert any([v.has_info_request for v in addon.versions.all()])
+
+    def assertHasInfoNotSet(self, addon):
+        assert all([not v.has_info_request for v in addon.versions.all()])
+
+    def test_has_info_save(self):
+        """Test saving without a change doesn't clear has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_update_whiteboard(self):
+        """Test saving with a change to whiteboard clears has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = 'Info about things.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_whiteboard_no_change(self):
+        """Test saving without a change to whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = 'Info about things.'
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_whiteboard_removed(self):
+        """Test saving with an empty whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = ''
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_update_developer_comments(self):
+        """Test saving with a change to developer_comments clears
+        has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_developer_comments_again(self):
+        """Test saving a change to developer_comments when developer_comments
+        was already set clears has_info_request (developer_comments is a
+        PurifiedField so it is really just an id)."""
+        addon = self.make_addon(developer_comments='Wat things like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_developer_comments_no_change(self):
+        """Test saving without a change to developer_comments doesn't clear
+        has_info_request."""
+        addon = self.make_addon(developer_comments='Things are thing-like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_remove_developer_comments(self):
+        """Test saving with an empty developer_comments doesn't clear
+        has_info_request."""
+        addon = self.make_addon(developer_comments='Things are thing-like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = ''
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+
 class TestSearchSignals(amo.tests.ESTestCase):
 
     def setUp(self):
