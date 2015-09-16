@@ -8,4 +8,7 @@ m2crypto==0.22.3
 Pillow==2.8.1
 
 # For the addon validator, including C speedups.
-simplejson==2.3.2
+# 'simplejson>=3.0.5' is used so that docker hub doesn't remove the
+# pre-installed version as that causes a segfault. Other use-cases
+# need '>' so that they can install a version that exists in PyPi.
+simplejson>=3.0.5
