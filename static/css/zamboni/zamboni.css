@@ -2976,10 +2976,15 @@ h6.author, .author a {
 
 #review-box form {
     width: 48%;
-    height: 200px;
     float: left;
     padding: 0 10px 1em 0;
     margin-right: 1em;
+    margin-bottom: 0;
+}
+
+#review-box input {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 #review-box textarea {
