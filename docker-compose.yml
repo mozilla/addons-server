@@ -1,5 +1,5 @@
 worker: &worker
-  build: .
+  image: addons/olympia
   command: -- celery worker --app=olympia
   entrypoint: ./scripts/start-docker.sh
   volumes:

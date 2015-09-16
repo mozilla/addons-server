@@ -1,14 +1,18 @@
 .. _installation:
 
-==================
-Installing Olympia
-==================
+===============================
+Installing Olympia the long way
+===============================
+
+.. note::
+
+    `Docker <http://docs.docker.com/>`_ is the recommended and supported
+    approach for running the amo development environment.
+    See the :ref:`Docker installation instructions <install-with-docker>`.
+
 
 The following instructions walk you through installing and configuring all
-required services from scratch. If you'd prefer to use
-`Docker <http://docs.docker.com/>`_ to install everything automatically
-in containers, read the
-:ref:`Docker installation instructions <install-with-docker>`.
+required services from scratch.
 
 We're going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!
