@@ -52,9 +52,10 @@ class FileSelectWidget(widgets.Select):
             for f in ver.files.filter(id__in=file_ids):
                 hashes[f.hash].append(f)
 
+            label = '{0} ({1})'.format(ver.version, ver.nomination)
             distinct_files = hashes.values()
             if len(distinct_files) == 1:
-                output.extend(option(distinct_files[0], ver.version))
+                output.extend(option(distinct_files[0], label))
             elif distinct_files:
                 output.extend((u'<optgroup label="',
                                jinja2.escape(ver.version), u'">'))
