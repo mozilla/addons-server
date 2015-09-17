@@ -27,7 +27,7 @@ help:
 	@echo "  linkcheck to check all external links for integrity"
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
 
-loop:
+loop: html
 	python watcher.py 'make html SPHINXOPTS=-nW' `find .. -name '*.rst' -o -name '*.py'`
 
 clean:
