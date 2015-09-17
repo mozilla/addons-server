@@ -1,5 +1,10 @@
 FROM mozillamarketplace/centos-mysql-mkt:0.2
 
+# Set the locale. This is mainly so that tests can write non-ascii files to
+# disk.
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
 # Fix multilib issues when installing openssl-devel.
 RUN yum install -y --enablerepo=centosplus libselinux-devel && yum clean all
 
