@@ -17,7 +17,6 @@ from amo.helpers import absolutify
 from amo.urlresolvers import reverse
 from amo.utils import cache_ns_key, send_mail
 from addons.models import Addon, Persona
-from constants.base import REVIEWED_OVERDUE_BONUS
 from devhub.models import ActivityLog
 from editors.sql_model import RawSQLModel
 from translations.fields import save_signal, TranslatedField
@@ -398,14 +397,15 @@ class ReviewerScore(amo.models.ModelBase):
         score = amo.REVIEWED_SCORES.get(event)
 
         try:
+            # Add bonus to reviews greater than our limit to encourage fixing
+            # old reviews.
             vq = ViewQueue.objects.get(
-                addon_name=addon.name,
                 addon_slug=addon.slug,
             )
 
-            if vq.waiting_time_days > 10:
-                days_over = vq.waiting_time_days - 10
-                bonus = days_over * REVIEWED_OVERDUE_BONUS
+            if vq.waiting_time_days > amo.REVIEWED_OVERDUE_LIMIT:
+                days_over = vq.waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
+                bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
                 score = score + bonus
         except ViewQueue.DoesNotExist:
             # If the object does not exist then we simply do not add a bonus

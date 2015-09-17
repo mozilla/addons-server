@@ -10,7 +10,6 @@ import amo
 import amo.tests
 from amo.tests import addon_factory
 from addons.models import Addon
-from constants.base import REVIEWED_OVERDUE_BONUS
 from versions.models import Version, version_uploaded, ApplicationsVersions
 from files.models import File
 from applications.models import AppVersion
@@ -40,11 +39,8 @@ def create_addon_file(name, version_str, addon_status, file_status,
         defaults={'type': addon_type, 'name': name, 'is_listed': listed})
     if admin_review:
         ad.update(admin_review=True)
-    vr, created_ = Version.objects.get_or_create(
-        addon=ad,
-        version=version_str,
-        defaults=version_kw,
-    )
+    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
+                                                 defaults=version_kw)
     if nomination is not None:
         vr.nomination = nomination
         vr.save()
@@ -481,20 +477,21 @@ class TestReviewerScore(amo.tests.TestCase):
 
     def test_award_points_bonus(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
+        bonus_days = 2
+        days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
         addon_objects = create_addon_file(
             u'AwardBonus',
             u'1.0',
             amo.STATUS_NOMINATED,
             amo.STATUS_UNREVIEWED,
-            nomination=(datetime.now() - timedelta(days=11))
+            nomination=(datetime.now() - timedelta(days=days))
         )
         self._give_points(user2, addon_objects['addon'], 1)
-        score = ReviewerScore.objects.all()[0]
-        eq_(
-            score.score,
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM] +
-            REVIEWED_OVERDUE_BONUS
-        )
+        score = ReviewerScore.objects.get(user=user2)
+        expected = (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM] +
+                    (amo.REVIEWED_OVERDUE_BONUS * bonus_days))
+
+        assert score.score == expected
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
