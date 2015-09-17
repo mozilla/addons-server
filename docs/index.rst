@@ -20,9 +20,9 @@ First you'll need to install docker_, please check the information for
 the installation steps specific to your operating system.
 
 .. note::
-  Docker recommends installing docker-toolbox_ if you're on OSX or
-  windows and that will provide you with the ``docker-machine`` and
-  ``docker-compose`` (mac-only).
+    Docker recommends installing docker-toolbox_ if you're on OSX or
+    windows and that will provide you with the ``docker-machine`` and
+    ``docker-compose`` (mac-only).
 
 Creating the docker vm (mac/windows)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,6 +56,12 @@ on your host machine::
     # On the shell opened by docker-utils:
     make initialize_docker  # Answer yes, and create your superuser when asked.
     # Once it's all loaded, go to http://localhost:8000 and enjoy!
+
+.. note::
+    docker-utils_ is a wrapper library written in Python that wraps the
+    docker-compose command. It adds sugar for things like getting a bash shell
+    on a running container. As it wraps ``docker-compose`` once installed you can
+    alias ``docker-utils`` and use that in place of ``docker-compose``.
 
 
 On the last step, if you're using docker-machine, you'll
@@ -202,4 +208,5 @@ Indices and tables
 
 
 .. _docker: https://docs.docker.com/installation/#installation
+.. _docker-utils: https://pypi.python.org/pypi/docker-utils
 .. _docker-toolbox: https://www.docker.com/toolbox
