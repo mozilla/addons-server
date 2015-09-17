@@ -99,6 +99,14 @@ class TestUploadErrors(BaseUploadTest):
         expected = 'Add-on ID must be 64 characters or less.'
         assert exc.exception.message == expected
 
+    def test_long_uuid(self):
+        """An add-on uuid may be more than 64 chars, see bug 1203915."""
+        self.create_switch('allow-long-addon-guid')
+        long_guid = (u'this_guid_is_longer_than_the_limit_of_64_chars_see_'
+                     u'bug_1201176_but_should_not_fail_see_bug_1203915@xpi')
+        xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
+        assert xpi_info['guid'] == long_guid
+
 
 class TestFileValidation(amo.tests.TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
