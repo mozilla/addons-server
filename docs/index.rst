@@ -97,6 +97,22 @@ persisted, and so won't survive after the container is finished.
     via the `Dockerfile`. Commits to master will result in the Dockerfile being
     rebuilt on the docker hub.
 
+Hacking on the Docker image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want to test out changes to the Olympia Docker image locally, use the
+normal `Docker commands <https://docs.docker.com/reference/commandline/cli/>`_
+such as this to build a new image::
+
+    cd olympia
+    docker build -t addons/olympia .
+    docker-compose up -d
+
+After you've tested your new image, simply commit to master and the
+image will be published to Docker Hub for other developers to use after
+they pull image changes.
+
+
 Full Installation (deprecated)
 ------------------------------
 Using :ref:`Docker <install-with-docker>` is the recommended and
