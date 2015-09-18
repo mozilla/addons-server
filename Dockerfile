@@ -8,12 +8,12 @@ ENV LC_ALL en_US.UTF-8
 # Fix multilib issues when installing openssl-devel.
 RUN yum install -y --enablerepo=centosplus libselinux-devel && yum clean all
 
-RUN yum install -y supervisor bash-completion && yum clean all
-
 ADD docker-mysql.repo /etc/yum.repos.d/mysql.repo
 
 RUN yum update -y \
     && yum install -y \
+        supervisor \
+        bash-completion \
         gcc-c++ \
         curl \
         libjpeg-devel \
