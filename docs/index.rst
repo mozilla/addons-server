@@ -55,7 +55,6 @@ on your host machine::
 
     # On the shell opened by docker-utils:
     make initialize_docker  # Answer yes, and create your superuser when asked.
-    # Once it's all loaded, go to http://localhost:8000 and enjoy!
 
 .. note::
     docker-utils_ is a wrapper library written in Python that wraps the
@@ -63,9 +62,8 @@ on your host machine::
     on a running container. As it wraps ``docker-compose`` once installed you can
     alias ``docker-utils`` and use that in place of ``docker-compose``.
 
-
-On the last step, if you're using docker-machine, you'll
-need to first find its ip, and connect to that instead::
+The last step is to grab the ip of the vm. If you're using docker-machine,
+you can get the ip like so::
 
     docker-machine ip addons-dev
 
@@ -74,6 +72,17 @@ need to first find its ip, and connect to that instead::
     At this point you can look at installing docker-toolbox and migrating
     your old boot2docker vm across to running via docker-machine. See
     docker-toolbox_ for more info.
+
+Now you can connect to port 8000 of that ip address. Here's an example
+(your ip might be different)::
+
+    http://192.168.99.100:8000/
+
+.. note::
+    Bear in mind docker-machine hands out ip addresses as each vm is started;
+    so you might find this ip address changes over time. You can always find out
+    what ip is being used with ``docker-machine ip [machine name]``
+
 
 Any other commands can now be run in a shell on the running container:
 
