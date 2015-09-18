@@ -454,6 +454,8 @@ REVIEWED_DICT_UPDATE = 22
 REVIEWED_LP_FULL = 30
 REVIEWED_LP_PRELIM = 31
 REVIEWED_LP_UPDATE = 32
+REVIEWED_OVERDUE_BONUS = 2
+REVIEWED_OVERDUE_LIMIT = 7
 REVIEWED_PERSONA = 40
 # TODO: Leaving room for persona points based on queue.
 REVIEWED_SEARCH_FULL = 50
@@ -476,6 +478,8 @@ REVIEWED_CHOICES = {
     REVIEWED_LP_FULL: _('Full Language Pack Review'),
     REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
     REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
+    REVIEWED_OVERDUE_BONUS: _('Bonus for overdue reviews'),
+    REVIEWED_OVERDUE_LIMIT: _('Days Before Bonus Points Applied'),
     REVIEWED_PERSONA: _('Theme Review'),
     REVIEWED_SEARCH_FULL: _('Full Search Provider Review'),
     REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
@@ -498,6 +502,8 @@ REVIEWED_SCORES = {
     REVIEWED_LP_FULL: 60,
     REVIEWED_LP_PRELIM: 20,
     REVIEWED_LP_UPDATE: 60,
+    REVIEWED_OVERDUE_BONUS: 2,
+    REVIEWED_OVERDUE_LIMIT: 7,
     REVIEWED_PERSONA: 5,
     REVIEWED_SEARCH_FULL: 30,
     REVIEWED_SEARCH_PRELIM: 10,

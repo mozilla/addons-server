@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
+from datetime import datetime, timedelta
 import time
 
 from django.core import mail
@@ -27,7 +27,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
                       platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
                       admin_review=False, addon_type=amo.ADDON_EXTENSION,
                       created=None, file_kw=None, version_kw=None,
-                      listed=True):
+                      listed=True, nomination=None):
     if file_kw is None:
         file_kw = {}
     if version_kw is None:
@@ -41,6 +41,10 @@ def create_addon_file(name, version_str, addon_status, file_status,
         ad.update(admin_review=True)
     vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
                                                  defaults=version_kw)
+    if nomination is not None:
+        vr.nomination = nomination
+        vr.save()
+
     if not created_:
         vr.update(**version_kw)
     va, created_ = ApplicationsVersions.objects.get_or_create(
@@ -152,7 +156,7 @@ class TestPendingQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(created=datetime.datetime.utcnow())
+        Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone will be off, hard to test this.
@@ -237,7 +241,7 @@ class TestFullReviewQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(nomination=datetime.datetime.utcnow())
+        Version.objects.update(nomination=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone will be off, hard to test this.
@@ -270,7 +274,7 @@ class TestPreliminaryQueue(TestQueue):
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(created=datetime.datetime.utcnow())
+        Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         eq_(row.waiting_time_days, 0)
         # Time zone might be off due to your MySQL install, hard to test this.
@@ -470,6 +474,24 @@ class TestReviewerScore(amo.tests.TestCase):
         self._give_points()
         eq_(ReviewerScore.objects.all()[0].score,
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+
+    def test_award_points_bonus(self):
+        user2 = UserProfile.objects.get(email='admin@mozilla.com')
+        bonus_days = 2
+        days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
+        addon_objects = create_addon_file(
+            u'AwardBonus',
+            u'1.0',
+            amo.STATUS_NOMINATED,
+            amo.STATUS_UNREVIEWED,
+            nomination=(datetime.now() - timedelta(days=days))
+        )
+        self._give_points(user2, addon_objects['addon'], 1)
+        score = ReviewerScore.objects.get(user=user2)
+        expected = (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM] +
+                    (amo.REVIEWED_OVERDUE_BONUS * bonus_days))
+
+        assert score.score == expected
 
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
