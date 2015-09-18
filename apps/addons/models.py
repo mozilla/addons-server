@@ -2328,7 +2328,7 @@ def track_new_status(sender, instance, *args, **kw):
         # The addon is being loaded from a fixure.
         return
     if kw.get('created'):
-        statsd.incr('addon_status_change.status_{}'.format(instance.status))
+        track_addon_status_change(instance)
 
 
 models.signals.post_save.connect(track_new_status,
@@ -2341,4 +2341,13 @@ def track_status_change(old_attr={}, new_attr={}, **kw):
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
     if new_status != old_status:
-        statsd.incr('addon_status_change.status_{}'.format(new_status))
+        track_addon_status_change(kw['instance'])
+
+
+def track_addon_status_change(addon):
+    statsd.incr('addon_status_change.all.status_{}'
+                .format(addon.status))
+
+    listed_tag = 'listed' if addon.is_listed else 'unlisted'
+    statsd.incr('addon_status_change.{}.status_{}'
+                .format(listed_tag, addon.status))
