@@ -12,6 +12,8 @@ ADD docker-mysql.repo /etc/yum.repos.d/mysql.repo
 
 RUN yum update -y \
     && yum install -y \
+        supervisor \
+        bash-completion \
         gcc-c++ \
         curl \
         libjpeg-devel \
@@ -36,5 +38,16 @@ RUN cd /pip && \
         -r requirements/docker.txt && \
     rm -r build cache
 
-RUN mkdir /code
+
+COPY . /code
 WORKDIR /code
+
+# Preserve bash history across image updates.
+# This works best when you link your local source code
+# as a volume.
+ENV HISTFILE /code/docker/artifacts/bash_history
+# Configure bash history.
+ENV HISTSIZE 50000
+ENV HISTIGNORE ls:exit:"cd .."
+# This prevents dupes but only in memory for the current session.
+ENV HISTCONTROL erasedups
