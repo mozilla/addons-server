@@ -24,7 +24,9 @@ import amo.utils
 from amo.utils import rm_local_tmp_dir
 from addons.models import Addon
 from applications.models import AppVersion
-from files.models import File, FileUpload, FileValidation, nfd_str
+from files.models import (
+    File, FileUpload, FileValidation, nfd_str, track_file_status_change,
+)
 from files.helpers import copyfileobj
 from files.utils import check_xpi_info, parse_addon, parse_xpi
 from versions.models import Version
@@ -316,27 +318,47 @@ class TestTrackFileStatusChange(amo.tests.TestCase):
 
         return f
 
-    def test_increment_udpated_status(self):
-        f = self.create_file()
-        with patch('files.models.statsd.incr') as mock_incr:
-            f.update(status=amo.STATUS_PUBLIC)
-        mock_incr.assert_called_with(
-            'file_status_change.status_{}'.format(amo.STATUS_PUBLIC)
-        )
+    def test_track_stats_on_new_file(self):
+        with patch('files.models.track_file_status_change') as mock_:
+            f = self.create_file()
+        mock_.assert_called_with(f)
 
-    def test_increment_new_status(self):
-        with patch('files.models.statsd.incr') as mock_incr:
-            self.create_file()
-        mock_incr.assert_called_with(
-            'file_status_change.status_{}'.format(amo.STATUS_UNREVIEWED)
-        )
+    def test_track_stats_on_updated_file(self):
+        f = self.create_file()
+        with patch('files.models.track_file_status_change') as mock_:
+            f.update(status=amo.STATUS_PUBLIC)
+
+        f.reload()
+        assert mock_.call_args[0][0].status == f.status
 
     def test_ignore_non_status_changes(self):
         f = self.create_file()
-        with patch('files.models.statsd.incr') as mock_incr:
+        with patch('files.models.track_file_status_change') as mock_:
             f.update(size=1024)
-        assert not mock_incr.called, (
-            'Unexpected call: {}'.format(self.mock_incr.call_args)
+        assert not mock_.called, (
+            'Unexpected call: {}'.format(self.mock_.call_args)
+        )
+
+    def test_increment_file_status(self):
+        f = self.create_file(status=amo.STATUS_PUBLIC)
+        with patch('files.models.statsd.incr') as mock_incr:
+            track_file_status_change(f)
+        mock_incr.assert_any_call(
+            'file_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
+        )
+
+    def test_increment_jetpack_sdk_only_status(self):
+        f = self.create_file(
+            status=amo.STATUS_PUBLIC,
+            jetpack_version='1.0',
+            no_restart=True,
+            requires_chrome=False,
+        )
+        with patch('files.models.statsd.incr') as mock_incr:
+            track_file_status_change(f)
+        mock_incr.assert_any_call(
+            'file_status_change.jetpack_sdk_only.status_{}'
+            .format(amo.STATUS_PUBLIC)
         )
 
 

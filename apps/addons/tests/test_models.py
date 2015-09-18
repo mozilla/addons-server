@@ -28,7 +28,8 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
-                           IncompatibleVersions, Persona, Preview)
+                           IncompatibleVersions, Persona, Preview,
+                           track_addon_status_change)
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from constants.applications import DEVICE_TYPES
@@ -2390,27 +2391,49 @@ class TestTrackAddonStatusChange(amo.tests.TestCase):
         addon.save()
         return addon
 
-    def test_increment_udpated_status(self):
-        addon = self.create_addon()
-        with patch('addons.models.statsd.incr') as mock_incr:
-            addon.update(status=amo.STATUS_PUBLIC)
-        mock_incr.assert_called_with(
-            'addon_status_change.status_{}'.format(amo.STATUS_PUBLIC)
-        )
-
     def test_increment_new_status(self):
-        with patch('addons.models.statsd.incr') as mock_incr:
-            self.create_addon()
-        mock_incr.assert_called_with(
-            'addon_status_change.status_{}'.format(amo.STATUS_NULL)
-        )
+        with patch('addons.models.track_addon_status_change') as mock_:
+            addon = self.create_addon()
+        mock_.assert_called_with(addon)
+
+    def test_increment_updated_status(self):
+        addon = self.create_addon()
+        with patch('addons.models.track_addon_status_change') as mock_:
+            addon.update(status=amo.STATUS_PUBLIC)
+
+        addon.reload()
+        mock_.call_args[0][0].status == addon.status
 
     def test_ignore_non_status_changes(self):
         addon = self.create_addon()
-        with patch('addons.models.statsd.incr') as mock_incr:
+        with patch('addons.models.track_addon_status_change') as mock_:
             addon.update(type=amo.ADDON_THEME)
-        assert not mock_incr.called, (
+        assert not mock_.called, (
             'Unexpected call: {}'.format(self.mock_incr.call_args)
+        )
+
+    def test_increment_all_addon_statuses(self):
+        addon = self.create_addon(status=amo.STATUS_PUBLIC)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
+        )
+
+    def test_increment_listed_addon_statuses(self):
+        addon = self.create_addon(is_listed=True)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.listed.status_{}'.format(addon.status)
+        )
+
+    def test_increment_unlisted_addon_statuses(self):
+        addon = self.create_addon(is_listed=False)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.unlisted.status_{}'.format(addon.status)
         )
 
 
