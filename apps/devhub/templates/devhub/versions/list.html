@@ -73,7 +73,10 @@
                       amo.STATUS_LITE: _('Request Preliminary Review')} %}
         {% for status in request_reviews %}
           <form method="post"
-                action="{{ url('devhub.request-review', addon.slug, status) }}">
+                action="{{ url('devhub.request-review', addon.slug, status) }}"
+                {% if not addon.is_listed and status == amo.STATUS_PUBLIC %}
+                data-confirm="#modal-full-review"
+                {% endif %}>
             {{ csrf() }}
             <button class="link" type="submit">{{ req[status] }}</button> &middot;
           </form>
@@ -204,6 +207,24 @@
   {% if addon.can_be_deleted() %}
     <div id="modal-delete" class="modal modal-delete">
       {% include "devhub/addons/listing/delete_form.html" %}
+    </div>
+  {% endif %}
+
+  {% if not addon.is_listed %}
+    <div id="modal-full-review" class="modal modal-full-review modal-confirm">
+      <form>
+        <h3>{{ _('Full review may not be required') }}</h3>
+        <p>{{ _('Unlisted add-ons don\'t need Full Review unless they '
+                'are distributed as part of an application installer. Read '
+                '<a href="{link}" target="_blank">this documentation</a> for '
+                'more information.').format(
+                link='https://developer.mozilla.org/Add-ons/Distribution') }}
+        </p>
+        <p>
+          <button class="cancel">{{ _('Cancel') }}</button>
+          <button class="delete-button" type="submit">{{ _('Request full review') }}</button>
+        </p>
+      </form>
     </div>
   {% endif %}
 

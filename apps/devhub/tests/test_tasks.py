@@ -13,6 +13,7 @@ from PIL import Image
 
 import amo
 import amo.tests
+from constants.base import VALIDATOR_SKELETON_RESULTS
 from addons.models import Addon
 from amo.helpers import user_media_path
 from amo.tests.test_helpers import get_image_path
@@ -235,6 +236,129 @@ class TestValidator(amo.tests.TestCase):
                 {"passed_auto_validation": True, "errors": 0,
                  "signing_summary": {"high": 0, "medium": 0,
                                      "low": 0, "trivial": 0}})
+
+    @mock.patch('validator.validate.validate')
+    @mock.patch('devhub.tasks.track_validation_stats')
+    def test_track_validation_stats(self, mock_track, mock_validate):
+        mock_validate.return_value = '{"errors": 0}'
+        tasks.validate(self.upload)
+        mock_track.assert_called_with(mock_validate.return_value)
+
+
+class TestTrackValidatorStats(amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestTrackValidatorStats, self).setUp()
+        patch = mock.patch('devhub.tasks.statsd.incr')
+        self.mock_incr = patch.start()
+        self.addCleanup(patch.stop)
+
+    def result(self, **overrides):
+        result = VALIDATOR_SKELETON_RESULTS.copy()
+        result.update(overrides)
+        return json.dumps(result)
+
+    def test_count_all_successes(self):
+        tasks.track_validation_stats(self.result(errors=0))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.all.success'
+        )
+
+    def test_count_all_errors(self):
+        tasks.track_validation_stats(self.result(errors=1))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.all.failure'
+        )
+
+    def test_count_listed_results(self):
+        tasks.track_validation_stats(self.result(metadata={'listed': True}))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.listed.success'
+        )
+
+    def test_count_unlisted_results(self):
+        tasks.track_validation_stats(self.result(metadata={'listed': False}))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.unlisted.success'
+        )
+
+    def test_count_unsignable_addon_for_low_error(self):
+        tasks.track_validation_stats(self.result(
+            errors=1,
+            signing_summary={
+                'low': 1,
+                'medium': 0,
+                'high': 0,
+            },
+            metadata={
+                'listed': False,
+            },
+        ))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.unlisted.is_not_signable'
+        )
+
+    def test_count_unsignable_addon_for_medium_error(self):
+        tasks.track_validation_stats(self.result(
+            errors=1,
+            signing_summary={
+                'low': 0,
+                'medium': 1,
+                'high': 0,
+            },
+            metadata={
+                'listed': False,
+            },
+        ))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.unlisted.is_not_signable'
+        )
+
+    def test_count_unsignable_addon_for_high_error(self):
+        tasks.track_validation_stats(self.result(
+            errors=1,
+            signing_summary={
+                'low': 0,
+                'medium': 0,
+                'high': 1,
+            },
+            metadata={
+                'listed': False,
+            },
+        ))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.unlisted.is_not_signable'
+        )
+
+    def test_count_unlisted_signable_addons(self):
+        tasks.track_validation_stats(self.result(
+            signing_summary={
+                'low': 0,
+                'medium': 0,
+                'high': 0,
+            },
+            metadata={
+                'listed': False,
+            },
+        ))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.unlisted.is_signable'
+        )
+
+    def test_count_listed_signable_addons(self):
+        tasks.track_validation_stats(self.result(
+            signing_summary={
+                'low': 0,
+                'medium': 0,
+                'high': 0,
+            },
+            metadata={
+                'listed': True,
+            },
+        ))
+        self.mock_incr.assert_any_call(
+            'devhub.validator.results.listed.is_signable'
+        )
 
 
 class TestFlagBinary(amo.tests.TestCase):

@@ -28,7 +28,8 @@ from addons.models import (Addon, AddonCategory, AddonDependency,
                            AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
-                           IncompatibleVersions, Persona, Preview)
+                           IncompatibleVersions, Persona, Preview,
+                           track_addon_status_change)
 from applications.models import AppVersion
 from bandwagon.models import Collection
 from constants.applications import DEVICE_TYPES
@@ -2292,6 +2293,148 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
+
+
+class TestAddonWatchDeveloperNotes(amo.tests.TestCase):
+
+    def make_addon(self, **kwargs):
+        addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
+                      **kwargs)
+        addon.save()
+        addon.versions.create(has_info_request=True)
+        addon.versions.create(has_info_request=False)
+        addon.versions.create(has_info_request=True)
+        return addon
+
+    def assertHasInfoSet(self, addon):
+        assert any([v.has_info_request for v in addon.versions.all()])
+
+    def assertHasInfoNotSet(self, addon):
+        assert all([not v.has_info_request for v in addon.versions.all()])
+
+    def test_has_info_save(self):
+        """Test saving without a change doesn't clear has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_update_whiteboard(self):
+        """Test saving with a change to whiteboard clears has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = 'Info about things.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_whiteboard_no_change(self):
+        """Test saving without a change to whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = 'Info about things.'
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_whiteboard_removed(self):
+        """Test saving with an empty whiteboard doesn't clear
+        has_info_request."""
+        addon = self.make_addon(whiteboard='Info about things.')
+        self.assertHasInfoSet(addon)
+        addon.whiteboard = ''
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_update_developer_comments(self):
+        """Test saving with a change to developer_comments clears
+        has_info_request."""
+        addon = self.make_addon()
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_developer_comments_again(self):
+        """Test saving a change to developer_comments when developer_comments
+        was already set clears has_info_request (developer_comments is a
+        PurifiedField so it is really just an id)."""
+        addon = self.make_addon(developer_comments='Wat things like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoNotSet(addon)
+
+    def test_has_info_update_developer_comments_no_change(self):
+        """Test saving without a change to developer_comments doesn't clear
+        has_info_request."""
+        addon = self.make_addon(developer_comments='Things are thing-like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = 'Things are thing-like.'
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+    def test_has_info_remove_developer_comments(self):
+        """Test saving with an empty developer_comments doesn't clear
+        has_info_request."""
+        addon = self.make_addon(developer_comments='Things are thing-like.')
+        self.assertHasInfoSet(addon)
+        addon.developer_comments = ''
+        addon.save()
+        self.assertHasInfoSet(addon)
+
+
+class TestTrackAddonStatusChange(amo.tests.TestCase):
+
+    def create_addon(self, **kwargs):
+        kwargs.setdefault('type', amo.ADDON_EXTENSION)
+        addon = Addon(**kwargs)
+        addon.save()
+        return addon
+
+    def test_increment_new_status(self):
+        with patch('addons.models.track_addon_status_change') as mock_:
+            addon = self.create_addon()
+        mock_.assert_called_with(addon)
+
+    def test_increment_updated_status(self):
+        addon = self.create_addon()
+        with patch('addons.models.track_addon_status_change') as mock_:
+            addon.update(status=amo.STATUS_PUBLIC)
+
+        addon.reload()
+        mock_.call_args[0][0].status == addon.status
+
+    def test_ignore_non_status_changes(self):
+        addon = self.create_addon()
+        with patch('addons.models.track_addon_status_change') as mock_:
+            addon.update(type=amo.ADDON_THEME)
+        assert not mock_.called, (
+            'Unexpected call: {}'.format(self.mock_incr.call_args)
+        )
+
+    def test_increment_all_addon_statuses(self):
+        addon = self.create_addon(status=amo.STATUS_PUBLIC)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
+        )
+
+    def test_increment_listed_addon_statuses(self):
+        addon = self.create_addon(is_listed=True)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.listed.status_{}'.format(addon.status)
+        )
+
+    def test_increment_unlisted_addon_statuses(self):
+        addon = self.create_addon(is_listed=False)
+        with patch('addons.models.statsd.incr') as mock_incr:
+            track_addon_status_change(addon)
+        mock_incr.assert_any_call(
+            'addon_status_change.unlisted.status_{}'.format(addon.status)
+        )
 
 
 class TestSearchSignals(amo.tests.ESTestCase):

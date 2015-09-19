@@ -188,6 +188,29 @@ $(document).ready(function() {
             $modalUnlist.render();
         }
     }
+    // Show a confirmation modal for forms that have [data-confirm="selector"].
+    // This is specifically used for the request full review form for unlisted
+    // add-ons.
+    $(document.body).delegate('[data-confirm]', 'submit', function(e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var $modal = $form.data('modal');
+        if (!$modal) {
+            $modal = $($form.data('confirm')).modal();
+            $form.data('modal', $modal);
+        }
+        $modal.render();
+        $modal.delegate('.cancel', 'click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $modal.trigger('close');
+        });
+        $modal.delegate('form', 'submit', function(e) {
+            e.preventDefault();
+            $form.removeAttr('data-confirm');
+            $form.submit();
+        });
+    });
 
     $('.enable-addon').bind('click', function() {
         $.ajax({

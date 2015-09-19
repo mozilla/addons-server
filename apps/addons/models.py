@@ -19,6 +19,7 @@ from django.utils.translation import trans_real as translation
 import caching.base as caching
 import commonware.log
 import json_field
+from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
@@ -1596,6 +1597,19 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
             f.hide_disabled_file()
 
 
+@Addon.on_change
+def watch_developer_notes(old_attr={}, new_attr={}, instance=None, sender=None,
+                          **kw):
+    whiteboard_changed = (
+        new_attr.get('whiteboard') and
+        old_attr.get('whiteboard') != new_attr.get('whiteboard'))
+    developer_comments_changed = (new_attr.get('_developer_comments_cache') and
+                                  old_attr.get('_developer_comments_cache') !=
+                                  new_attr.get('_developer_comments_cache'))
+    if whiteboard_changed or developer_comments_changed:
+        instance.versions.update(has_info_request=False)
+
+
 def attach_categories(addons):
     """Put all of the add-on's categories into a category_ids list."""
     addon_dict = dict((a.id, a) for a in addons)
@@ -2307,3 +2321,33 @@ models.signals.post_save.connect(update_incompatible_versions,
 models.signals.post_delete.connect(update_incompatible_versions,
                                    sender=CompatOverrideRange,
                                    dispatch_uid='cor_update_incompatible')
+
+
+def track_new_status(sender, instance, *args, **kw):
+    if kw.get('raw'):
+        # The addon is being loaded from a fixure.
+        return
+    if kw.get('created'):
+        track_addon_status_change(instance)
+
+
+models.signals.post_save.connect(track_new_status,
+                                 sender=Addon,
+                                 dispatch_uid='track_new_addon_status')
+
+
+@Addon.on_change
+def track_status_change(old_attr={}, new_attr={}, **kw):
+    new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
+    if new_status != old_status:
+        track_addon_status_change(kw['instance'])
+
+
+def track_addon_status_change(addon):
+    statsd.incr('addon_status_change.all.status_{}'
+                .format(addon.status))
+
+    listed_tag = 'listed' if addon.is_listed else 'unlisted'
+    statsd.incr('addon_status_change.{}.status_{}'
+                .format(listed_tag, addon.status))

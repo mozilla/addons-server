@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-13 18:50+0000\n"
+"PO-Revision-Date: 2015-09-19 11:53+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1952,7 +1952,7 @@ msgstr "Statistika za {addon} nastavljena na zasebno."
 #. L10n: {0} is the status
 #: apps/amo/log.py:90
 msgid "{addon} status changed to {0}."
-msgstr "Status {addon} se je spremenil na {0}."
+msgstr "Stanje {addon} spremenjeno na {0}."
 
 #: apps/amo/log.py:97
 msgid "Preview added to {addon}."
@@ -5995,7 +5995,7 @@ msgstr "Upravljanje plačil"
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:55
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:6
 msgid "Manage Status & Versions"
-msgstr "Urejaj status in različice"
+msgstr "Uredi stanje in različice"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
@@ -8841,13 +8841,11 @@ msgstr "Datoteka {file_id} ({platform})"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
-"Ustvarjen dne %(created)s in na status %(status)s prestavljen dne "
-"%(status_date)s"
+msgstr "Ustvarjen dne %(created)s in %(status)s dne %(status_date)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr "Ustvarjen dne %(created)s in prestavljen na status %(status)s"
+msgstr "Ustvarjen dne %(created)s in %(status)s"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
@@ -8855,7 +8853,7 @@ msgstr "Prikaži zgodovino datoteke"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
-msgstr "po %(user_name)s na %(date)s"
+msgstr "- %(user_name)s, %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"

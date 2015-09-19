@@ -4,9 +4,9 @@ NUM_THEMES=$(NUM_ADDONS)
 
 UNAME_S := $(shell uname -s)
 
-# If you're using docker and docker-compose, you can use this Makefile to run
-# commands in your docker images by setting the DOCKER_PREFIX environment variable
-# to: DOCKER_PREFIX="docker-compose run --rm web"
+ # If you use docker you can get a shell by executing
+ # `docker exec -t -i [container-id] /bin/bash`
+ # If you use docker-utils you can execute `docker-utils bash web` instead
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
@@ -27,61 +27,63 @@ help:
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "  flake8            to run the flake8 linter"
-	@echo "Check the Makefile  to know exactly what each target is doing. If you see a "
+	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
+	@echo "target using something like $$(SETTINGS), you can make it use another value:"
+	@echo "  make SETTINGS=settings_mine docs"
 
 docs:
-	$(DOCKER_PREFIX) $(MAKE) -C docs html
+	$(MAKE) -C docs html
 
 test:
-	$(DOCKER_PREFIX) py.test $(ARGS)
+	py.test $(ARGS)
 
 test_es:
-	$(DOCKER_PREFIX) py.test -m es_tests $(ARGS)
+	py.test -m es_tests $(ARGS)
 
 test_no_es:
-	$(DOCKER_PREFIX) py.test -m "not es_tests" $(ARGS)
+	py.test -m "not es_tests" $(ARGS)
 
 test_force_db:
-	$(DOCKER_PREFIX) py.test --create-db $(ARGS)
+	py.test --create-db $(ARGS)
 
 tdd:
-	$(DOCKER_PREFIX) py.test -x --pdb $(ARGS)
+	py.test -x --pdb $(ARGS)
 
 test_failed:
-	$(DOCKER_PREFIX) py.test --lf $(ARGS)
+	py.test --lf $(ARGS)
 
 initialize_db:
-	$(DOCKER_PREFIX) python manage.py reset_db
-	$(DOCKER_PREFIX) python manage.py syncdb --noinput
-	$(DOCKER_PREFIX) python manage.py loaddata initial.json
-	$(DOCKER_PREFIX) python manage.py import_prod_versions
-	$(DOCKER_PREFIX) schematic --fake migrations/
-	$(DOCKER_PREFIX) python manage.py createsuperuser
-	$(DOCKER_PREFIX) python manage.py loaddata zadmin/users
+	python manage.py reset_db
+	python manage.py syncdb --noinput
+	python manage.py loaddata initial.json
+	python manage.py import_prod_versions
+	schematic --fake migrations/
+	python manage.py createsuperuser
+	python manage.py loaddata zadmin/users
 
 populate_data:
-	$(DOCKER_PREFIX) python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	$(DOCKER_PREFIX) python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
-	$(DOCKER_PREFIX) python manage.py generate_addons --app android $(NUM_ADDONS)
-	$(DOCKER_PREFIX) python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
-	$(DOCKER_PREFIX) python manage.py generate_themes $(NUM_THEMES)
-	$(DOCKER_PREFIX) python manage.py reindex --wipe --force
+	python manage.py generate_addons --app firefox $(NUM_ADDONS)
+	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
+	python manage.py generate_addons --app android $(NUM_ADDONS)
+	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
+	python manage.py generate_themes $(NUM_THEMES)
+	python manage.py reindex --wipe --force --noinput
 
 update_code:
-	$(DOCKER_PREFIX) git checkout master && git pull
+	git checkout master && git pull
 
 update_deps: update_npm_deps
-	$(DOCKER_PREFIX) pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
+	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
 
 update_npm_deps:
-	$(DOCKER_PREFIX) npm install
+	npm install
 
 update_db:
-	$(DOCKER_PREFIX) schematic migrations
+	schematic migrations
 
 update_assets: update_npm_deps
-	$(DOCKER_PREFIX) python manage.py compress_assets
-	$(DOCKER_PREFIX) python manage.py collectstatic --noinput
+	python manage.py compress_assets
+	python manage.py collectstatic --noinput
 
 initialize_docker: initialize_db update_assets
 	$(MAKE) populate_data
@@ -93,7 +95,7 @@ full_init: update_deps initialize_db populate_data update_assets
 full_update: update_code update_deps update_db update_assets
 
 reindex:
-	$(DOCKER_PREFIX) python manage.py reindex $(ARGS)
+	python manage.py reindex $(ARGS)
 
 flake8:
-	$(DOCKER_PREFIX) flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .
+	flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .

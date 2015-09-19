@@ -1,5 +1,5 @@
 worker: &worker
-  build: .
+  image: addons/olympia
   command: -- celery worker --app=olympia
   entrypoint: ./scripts/start-docker.sh
   volumes:
@@ -11,18 +11,20 @@ worker: &worker
     - redis
     - rabbitmq
   environment:
-    - DATABASE_URL=mysql://root:@mysqld/olympia
-    - MEMCACHE_LOCATION=memcached:11211
-    - ELASTICSEARCH_LOCATION=elasticsearch:9200
-    - REDIS_LOCATION=redis:6379
-    - MYSQL_ROOT_PASSWORD='docker'
-    - MYSQL_DATABASE='olympia'
-    - PYTHONDONTWRITEBYTECODE=1
     - BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+    - DATABASE_URL=mysql://root:@mysqld/olympia
+    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - MEMCACHE_LOCATION=memcached:11211
+    - MYSQL_DATABASE='olympia'
+    - MYSQL_ROOT_PASSWORD='docker'
+    - PYTHONDONTWRITEBYTECODE=1
+    - PYTHONUNBUFFERED=1
+    - REDIS_LOCATION=redis:6379
+    - TERM=xterm-256color
 
 web:
   <<: *worker
-  command: python manage.py runserver 0.0.0.0:8000
+  command: supervisord -n -c /code/docker/supervisor.conf
   ports:
     - "8000:8000"
 

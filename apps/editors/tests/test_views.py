@@ -2656,13 +2656,14 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    def test_disabled_file(self):
+    def test_disabled_and_not_disabled_files_are_disabled(self):
+        """Files checkboxes aren't enabled, see bug 1197261."""
         obj = File.objects.create(version=self.version,
                                   status=amo.STATUS_DISABLED)
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
         assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
-        assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
+        assert 'disabled' in doc('#file-%s' % self.file.pk)[0].keys()
 
 
 class TestEditorMOTD(EditorTest):
@@ -2726,14 +2727,21 @@ class TestStatusFile(ReviewBase):
         eq_(pq(r.content)('#review-files .file-info div').text(), expected)
 
     def test_status_prelim(self):
+        self.get_file().update(status=amo.STATUS_UNREVIEWED)
         for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
             self.addon.update(status=status)
             self.check_status('Pending Preliminary Review')
 
     def test_status_full(self):
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                       amo.STATUS_PUBLIC]:
+        self.get_file().update(status=amo.STATUS_UNREVIEWED)
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
             self.addon.update(status=status)
+            self.check_status('Pending Full Review')
+
+    def test_status_upgrade_to_full(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
+            self.get_file().update(status=status)
             self.check_status('Pending Full Review')
 
     def test_status_full_reviewed(self):

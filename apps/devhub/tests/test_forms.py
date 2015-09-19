@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
+import paypal
 from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
@@ -14,7 +15,6 @@ import amo.tests
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path
-import paypal
 from applications.models import AppVersion
 from addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
 from addons.models import Addon, Category, Charity, Persona
@@ -24,7 +24,7 @@ from files.helpers import copyfileobj
 from files.models import FileUpload
 from tags.models import Tag
 from users.models import UserProfile
-from versions.models import ApplicationsVersions, License
+from versions.models import ApplicationsVersions, License, Version
 
 
 class TestNewAddonForm(amo.tests.TestCase):
@@ -44,6 +44,92 @@ class TestNewAddonForm(amo.tests.TestCase):
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
+
+    # Those three patches are so files.utils.parse_addon doesn't fail on a
+    # non-existent file even before having a chance to call check_xpi_info.
+    @mock.patch('files.utils.Extractor.parse')
+    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('files.utils.get_file', lambda xpi: None)
+    # This is the one we want to test.
+    @mock.patch('files.utils.check_xpi_info')
+    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
+        """Make sure the check_xpi_info helper is called.
+
+        There's some important checks made in check_xpi_info, if we ever
+        refactor the form to not call it anymore, we need to make sure those
+        checks are run at some point.
+        """
+        mock_parse.return_value = None
+        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
+        f = FileUpload.objects.create(valid=True)
+        form = forms.NewAddonForm(
+            {'upload': f.pk, 'supported_platforms': [1]},
+            request=mock.Mock())
+        form.clean()
+        assert mock_check_xpi_info.called
+
+
+class TestNewVersionForm(amo.tests.TestCase):
+
+    # Those three patches are so files.utils.parse_addon doesn't fail on a
+    # non-existent file even before having a chance to call check_xpi_info.
+    @mock.patch('files.utils.Extractor.parse')
+    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('files.utils.get_file', lambda xpi: None)
+    # This is the one we want to test.
+    @mock.patch('files.utils.check_xpi_info')
+    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
+        """Make sure the check_xpi_info helper is called.
+
+        There's some important checks made in check_xpi_info, if we ever
+        refactor the form to not call it anymore, we need to make sure those
+        checks are run at some point.
+        """
+        mock_parse.return_value = None
+        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
+        f = FileUpload.objects.create(valid=True)
+        addon = Addon.objects.create()
+        form = forms.NewVersionForm(
+            {'upload': f.pk, 'supported_platforms': [1],
+             'nomination_type': amo.STATUS_NOMINATED},
+            addon=addon,
+            request=mock.Mock())
+        form.clean()
+        assert mock_check_xpi_info.called
+
+
+class TestNewFileForm(amo.tests.TestCase):
+
+    # Those three patches are so files.utils.parse_addon doesn't fail on a
+    # non-existent file even before having a chance to call check_xpi_info.
+    @mock.patch('files.utils.Extractor.parse')
+    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('files.utils.get_file', lambda xpi: None)
+    # This is the one we want to test.
+    @mock.patch('files.utils.check_xpi_info')
+    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
+        """Make sure the check_xpi_info helper is called.
+
+        There's some important checks made in check_xpi_info, if we ever
+        refactor the form to not call it anymore, we need to make sure those
+        checks are run at some point.
+        """
+        mock_parse.return_value = None
+        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
+        f = FileUpload.objects.create(valid=True)
+        addon = Addon.objects.create()
+        version = Version.objects.create(addon=addon)
+        version.compatible_platforms = mock.Mock()
+        version.compatible_platforms.return_value = amo.SUPPORTED_PLATFORMS
+        form = forms.NewFileForm(
+            {'upload': f.pk, 'supported_platforms': [1],
+             'nomination_type': amo.STATUS_NOMINATED,
+             'platform': '1'},
+            addon=addon,
+            version=version,
+            request=mock.Mock())
+        form.clean()
+        assert mock_check_xpi_info.called
 
 
 class TestContribForm(amo.tests.TestCase):

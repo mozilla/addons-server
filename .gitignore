@@ -52,3 +52,7 @@ user-media/*
 .tox/
 .cache/
 MANIFEST
+docker/artifacts/*
+logs/*
+supervisord.pid
+.ipython

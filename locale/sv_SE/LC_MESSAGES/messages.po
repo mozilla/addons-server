@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-15 08:02+0000\n"
+"PO-Revision-Date: 2015-09-16 17:43+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10286,6 +10286,8 @@ msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"Du kan fortfarande skicka in formuläret, men endast om du vet att det inte "
+"kommer skapa en konflikt."
 
 #: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
@@ -10551,7 +10553,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interaktiv kö för tema"
 
 #: apps/editors/templates/editors/themes/queue_list.html:79
 msgid "There are currently no items of this type to review."
@@ -11449,6 +11451,8 @@ msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
+"Kan jag använda ett JavaScript-bibliotek som jQuery, MooTools eller Prototyp"
+" för att bygga mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:153
 msgid ""
@@ -11468,7 +11472,7 @@ msgstr "Hur kan jag felsöka mitt tillägg"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Du kan använda <a href=\"%(url)s\">felsökaren för tillägg</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid ""
@@ -11504,7 +11508,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Kan mitt tillägg stödja flera språk?"
 
 #: apps/pages/templates/pages/dev_faq.html:198
 msgid ""
@@ -11517,16 +11521,17 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr ""
+"Jag behöver några råd för att bygga mitt tillägg. Var hittar jag hjälp?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:217
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (för diskussioner om tilläggsutveckling)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:219
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (för support relaterat till att hysa ditt tillägg på AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:221
@@ -11534,6 +11539,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (för diskussioner om tillägg SDK och cfx/jpm - tidigare känd som "
+"Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -11601,6 +11608,14 @@ msgid ""
 " with tools to help manage source code, version control, bug tracking and "
 "documentation."
 msgstr ""
+"Ja. Många utvecklare väljer att vara värd för sina egna tillägg. Att välja "
+"att vara värd för dina tillägg på <a href=\"%(amo_url)s\">Mozillas webbplats"
+" för tillägg</a>, det möjliggör en mycket större exponering för ditt tillägg"
+" på grund av den stora mängden besökare den webbplatsen. <a "
+"href=\"%(md_url)s\">mozdev.org</a> erbjuder att hysa projekt gratis för "
+"Mozilla applikationer och utökningar, tillhandahåller även verktyg för "
+"utvecklare för att hantera källkod, versionskontroll, felrapporteringssystem"
+" och dokumentation."
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
@@ -11668,7 +11683,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Hur skickar jag in mitt tillägg för granskning?"
 
 #: apps/pages/templates/pages/dev_faq.html:327
 msgid ""
@@ -11715,7 +11730,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:364
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Kan jag ange ett licensavtal för att använda mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:366
 msgid ""
@@ -11769,7 +11784,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:407
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Vilka riktlinjer används för att granska mitt tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:409
 msgid ""
@@ -11816,7 +11831,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:447
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Hur kan jag se hur många gånger mitt tillägg har laddats ner?"
 
 #: apps/pages/templates/pages/dev_faq.html:449
 msgid ""
@@ -11882,7 +11897,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:506
 msgid "What is a Featured add-on?"
-msgstr ""
+msgstr "Vad är utvalda tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:508
 msgid ""
@@ -11904,7 +11919,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:520
 msgid "How can my add-on be listed as Recommended?"
-msgstr ""
+msgstr "Hur kan mitt tillägg listas som Rekommenderad?"
 
 #: apps/pages/templates/pages/dev_faq.html:522
 #: apps/pages/templates/pages/dev_faq.html:532
@@ -11917,16 +11932,18 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:527
 msgid "Can I pay to have my add-on listed as Recommended?"
-msgstr ""
+msgstr "Kan jag betala för att få mitt tillägg listad som rekommenderad?"
 
 #: apps/pages/templates/pages/dev_faq.html:530
 msgid "Why is my add-on no longer listed as Recommended?"
-msgstr ""
+msgstr "Varför visas inte längre mitt tillägg som rekommenderad?"
 
 #: apps/pages/templates/pages/dev_faq.html:539
 msgid ""
 "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
+"Hur svarar jag på en användare som har postat en negativ recension av mitt "
+"tillägg?"
 
 #: apps/pages/templates/pages/dev_faq.html:541
 msgid ""
@@ -11963,17 +11980,20 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:564
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Kan jag begära att en granskning tas bort om granskningen är negativ?"
 
 #: apps/pages/templates/pages/dev_faq.html:566
 msgid ""
 "No. We do not remove negative reviews from add-ons unless they are found to "
 "be false."
 msgstr ""
+"Nej. Vi tar inte bort negativa granskningar från tillägg om de inte visar "
+"sig vara falska."
 
 #: apps/pages/templates/pages/dev_faq.html:572
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
+"Kan jag begära att en granskning tas bort om granskningen är felaktig?"
 
 #: apps/pages/templates/pages/dev_faq.html:574
 msgid ""
@@ -11981,6 +12001,9 @@ msgid ""
 "inaccurate information to be removed, we will review the post and consider "
 "removing it."
 msgstr ""
+"Om en upphovsmannen kontaktar oss och ber om att en granskning tas bort som "
+"innehåller falska eller felaktiga uppgifter, går vi igenom posten och "
+"överväger att ta bort den."
 
 #: apps/pages/templates/pages/dev_faq.html:583
 msgid ""
@@ -12240,7 +12263,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Vad gör jag om jag har problem med ett tillägg?"
 
 #: apps/pages/templates/pages/faq.html:158
 msgid ""
@@ -12427,11 +12450,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:245
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Hur rapporterar jag ett fel eller kontaktar Mozilla tilläggsgrupp?"
 
 #: apps/pages/templates/pages/faq.html:246
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "Vänligen besök vår <a href=\"%(contact_url)s\">kontaktsida</a>."
 
 #: apps/pages/templates/pages/faq.html:249
 msgid "What is a Source Code License?"
@@ -12452,6 +12475,8 @@ msgstr ""
 msgid ""
 "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
+"Firefox och andra Mozilla programvaror är <a href=\"%(url)s\">open "
+"source</a>."
 
 #: apps/pages/templates/pages/faq.html:267
 msgid "Collections and Favorites"
@@ -12647,34 +12672,43 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Skriv omdömen om tillägg som du inte personligen har använt."
 
 #: apps/pages/templates/pages/review_guide.html:97
 msgid ""
 "Use profanity, sexual language or language that can be construed as hateful."
 msgstr ""
+"Använd svordomar, sexuellt språk eller språk som kan uppfattas som hatiskt."
 
 #: apps/pages/templates/pages/review_guide.html:103
 msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
+"Inkludera HTML, länkar, källkod eller kodavsnitt. Omdömen är avsedda att "
+"vara enbart text."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid ""
 "Make false statements, disparage add-on authors or personally insult them."
 msgstr ""
+"Gör felaktiga uppgifter, nedvärdera tilläggs upphovsmän eller personligen "
+"förolämpa dem."
 
 #: apps/pages/templates/pages/review_guide.html:114
 msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
+"Inkludera din egen eller någon annans e-post, telefonnummer eller andra "
+"personliga detaljer."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid ""
 "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
+"Posta recensioner för ett tillägg som du eller din organisation har skrivit "
+"eller representerar."
 
 #: apps/pages/templates/pages/review_guide.html:125
 msgid ""

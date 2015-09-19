@@ -44,12 +44,17 @@ def file_compare(file_obj, version):
 
 @register.function
 def file_review_status(addon, file):
-    if file.status not in [amo.STATUS_DISABLED, amo.STATUS_PUBLIC]:
+    # If the file is pending review, check the add-on status
+    if file.status == amo.STATUS_UNREVIEWED:
+        if addon.status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
+            return _(u'Pending Full Review')
         if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
             return _(u'Pending Preliminary Review')
-        elif addon.status in [amo.STATUS_NOMINATED,
-                              amo.STATUS_LITE_AND_NOMINATED,
-                              amo.STATUS_PUBLIC]:
+    # Special case: prelim upgrading to full approval,
+    # file can already be preliminary reviewed or not
+    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]
+            and addon.status == amo.STATUS_LITE_AND_NOMINATED):
+        if addon.latest_version.version_int == file.version.version_int:
             return _(u'Pending Full Review')
     if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
         if file.reviewed is not None:
@@ -666,7 +671,10 @@ class ReviewBase(object):
                   Context(self.get_context_data()))
 
     def process_comment(self):
-        self.version.update(has_editor_comment=True)
+        kw = {'has_editor_comment': True}
+        if self.data.get('clear_info_request'):
+            kw['has_info_request'] = False
+        self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 

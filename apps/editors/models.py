@@ -395,6 +395,22 @@ class ReviewerScore(amo.models.ModelBase):
         """
         event = cls.get_event(addon, status, **kwargs)
         score = amo.REVIEWED_SCORES.get(event)
+
+        try:
+            # Add bonus to reviews greater than our limit to encourage fixing
+            # old reviews.
+            vq = ViewQueue.objects.get(
+                addon_slug=addon.slug,
+            )
+
+            if vq.waiting_time_days > amo.REVIEWED_OVERDUE_LIMIT:
+                days_over = vq.waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
+                bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
+                score = score + bonus
+        except ViewQueue.DoesNotExist:
+            # If the object does not exist then we simply do not add a bonus
+            pass
+
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event)

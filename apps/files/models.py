@@ -514,6 +514,39 @@ def clear_d2c_version(old_attr, new_attr, instance, sender, **kw):
         instance.version.addon.invalidate_d2c_versions()
 
 
+def track_new_status(sender, instance, *args, **kw):
+    if kw.get('raw'):
+        # The file is being loaded from a fixure.
+        return
+    if kw.get('created'):
+        track_file_status_change(instance)
+
+
+models.signals.post_save.connect(track_new_status,
+                                 sender=File,
+                                 dispatch_uid='track_new_file_status')
+
+
+@File.on_change
+def track_status_change(old_attr={}, new_attr={}, **kw):
+    new_status = new_attr.get('status')
+    old_status = old_attr.get('status')
+    if new_status != old_status:
+        track_file_status_change(kw['instance'])
+
+
+def track_file_status_change(file_):
+    statsd.incr('file_status_change.all.status_{}'.format(file_.status))
+
+    if (file_.jetpack_version and
+            file_.no_restart and
+            not file_.requires_chrome):
+        # These files are easier to review and typically go into the
+        # "fast queue"
+        statsd.incr('file_status_change.jetpack_sdk_only.status_{}'
+                    .format(file_.status))
+
+
 # TODO(davedash): Get rid of this table once /editors is on zamboni
 class Approval(amo.models.ModelBase):
 
