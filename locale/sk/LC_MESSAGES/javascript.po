@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-04-08 21:13+0000\n"
-"Last-Translator: Branislav <rozbora@mozilla.sk>\n"
+"PO-Revision-Date: 2015-09-19 21:17+0000\n"
+"Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1428527620.0\n"
+"X-POOTLE-MTIME: 1442697439.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -99,7 +99,7 @@ msgstr[2] ""
 
 #: static/js/common/upload-addon.js:410
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Váš doplnok bol overený bez chýb alebo varovaní."
 
 #: static/js/common/upload-addon.js:428
 msgid "Your submission will go through a manual review."

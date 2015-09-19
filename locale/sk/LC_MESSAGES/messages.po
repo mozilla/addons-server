@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-15 21:50+0000\n"
+"PO-Revision-Date: 2015-09-19 21:20+0000\n"
 "Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1442353853.0\n"
+"X-POOTLE-MTIME: 1442697600.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -370,7 +370,7 @@ msgstr "Viditeľnosť"
 
 #: apps/addons/templates/addons/details_box.html:61 apps/devhub/templates/devhub/index.html:94 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Hidden"
-msgstr ""
+msgstr "Skryté"
 
 #: apps/addons/templates/addons/details_box.html:63 apps/devhub/templates/devhub/index.html:96 apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Unlisted"
@@ -4141,7 +4141,7 @@ msgstr "Zobraziť všetky doplnky ►"
 
 #: apps/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Publikujte svoj doplnok!"
 
 #: apps/devhub/templates/devhub/index.html:136
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
@@ -4194,7 +4194,7 @@ msgstr "Nástroje pre vývojárov"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Komunita a podpora"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -4231,7 +4231,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:299
 msgid "Warning:"
-msgstr ""
+msgstr "Varovanie:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:53 apps/devhub/templates/devhub/addons/submit/upload.html:34
 msgid ""
@@ -6910,7 +6910,7 @@ msgstr "Pridať verziu"
 
 #: apps/devhub/templates/devhub/versions/list.html:257 apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Skryť doplnok"
 
 #: apps/devhub/templates/devhub/versions/list.html:260
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -10358,7 +10358,7 @@ msgstr "Odpoveď na recenziu"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Upraviť odpoveď"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -10366,7 +10366,7 @@ msgstr "Upraviť recenziu"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Zmazať odpoveď"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -10634,9 +10634,9 @@ msgstr "Odoslať na Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} like"
+msgstr[1] "{0} liky"
+msgstr[2] "{0} likov"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -10651,7 +10651,7 @@ msgstr[2] "{0} príspevkov"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Zdieľať na g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
@@ -11811,7 +11811,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:14 apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Poznámka:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
@@ -11828,6 +11828,7 @@ msgstr ""
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
 msgstr ""
+"Vaše kontaktné informácie budú Mozillou použité len na odoslanie trička."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -11835,7 +11836,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Celé meno"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
@@ -11847,31 +11848,31 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Mesto"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Kraj (pokiaľ je to nutné)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Poštové smerovacie číslo (pokiaľ je to nutné)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Krajina"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefónne číslo"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informácie o tričku"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Veľkosť trička"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
