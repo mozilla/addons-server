@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-08-13 06:18\n"
+"PO-Revision-Date: 2015-09-20 19:43+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11540,17 +11540,17 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
 msgid "Mailing List"
-msgstr ""
+msgstr "Список розсилки"
 
 #. Label for a link to the extension developers newsgroup
 #: apps/pages/templates/pages/dev_faq.html:230
 msgid "Newsgroup"
-msgstr ""
+msgstr "Група новин"
 
 #. Label for a link to the extension developers Google Group
 #: apps/pages/templates/pages/dev_faq.html:234
 msgid "Google Group"
-msgstr ""
+msgstr "Група Google"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
@@ -11562,16 +11562,17 @@ msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Чи пропонує Mozilla послуги з розробки?"
 
 #: apps/pages/templates/pages/dev_faq.html:245
 #: apps/pages/templates/pages/dev_faq.html:528
 msgid "No."
-msgstr ""
+msgstr "Ні."
 
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Чи є сторонні розробники, яких я можу найняти для створення свого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:249
 msgid ""
@@ -11581,6 +11582,11 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Так. Ви можете знайти сторонніх розробників через <a "
+"href=\"%(forum_url)s\">форум додатків</a>, <a href=\"%(list_url)s\">список "
+"mozilla.jobs</a>, <a href=\"%(mz_url)s\">форуми mozillaZine</a> або <a "
+"href=\"%(wiki_url)s\">Mozilla Wiki</a>. Зауважте, що Mozilla не пропонує "
+"рекомендації розробників."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -11787,17 +11793,17 @@ msgstr ""
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:428
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "кількість представлень додатка"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:430
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "складність програмного коду додатка"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:432
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "кількість виявлених проблемних зон"
 
 #: apps/pages/templates/pages/dev_faq.html:435
 msgid ""
