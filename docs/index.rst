@@ -24,6 +24,9 @@ the installation steps specific to your operating system.
     windows and that will provide you with the ``docker-machine`` and
     ``docker-compose`` (mac-only).
 
+
+.. _creating-the-docker-vm:
+
 Creating the docker vm (mac/windows)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -84,11 +87,11 @@ Now you can connect to port 8000 of that ip address. Here's an example
     what ip is being used with ``docker-machine ip [machine name]``
 
 
-Any other commands can now be run in a shell on the running container:
+Any other commands can now be run in a shell on the running container::
 
     docker-utils bash web
 
-Then just run this command in the shell::
+Then, to run the tests for example, just run this command in the shell::
 
     py.test
 
@@ -111,6 +114,16 @@ persisted, and so won't survive after the container is finished.
     If you need to persist any changes to the image, they should be carried out
     via the `Dockerfile`. Commits to master will result in the Dockerfile being
     rebuilt on the docker hub.
+
+If you quit docker-machine, or restart your computer, docker-machine will need
+to be started again using::
+
+    docker-machine start addons-dev
+
+You'll then need to :ref:`export the variables <creating-the-docker-vm>` again,
+and start the services::
+
+    docker-compose up -d
 
 Hacking on the Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
