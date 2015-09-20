@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-16 17:43+0000\n"
+"PO-Revision-Date: 2015-09-20 21:56+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10246,7 +10246,7 @@ msgstr "Granska {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Användarändringshistorik för tillägg"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:261
@@ -10549,7 +10549,7 @@ msgstr "Rensa sökning"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Frigör mina lås för mitt tema"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
@@ -11445,6 +11445,9 @@ msgid ""
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Ja. Du kan använda Mozillas <a href=\"%(url)s\">XPCOM "
+"komponentobjektmodell</a> för att förbättra ditt tillägg. XPCOM komponenter "
+"kan användas och implementeras i JavaScript, Java och Python förutom C ++."
 
 #: apps/pages/templates/pages/dev_faq.html:151
 msgid ""
