@@ -24,7 +24,7 @@ From here you can run supervisorctl::
 
     supervisorctl
 
-This will show you somthing like the following::
+This will show you something like the following::
 
     bash-4.1# supervisorctl
     olympia                          RUNNING    pid 21, uptime 0:18:38
@@ -36,7 +36,10 @@ prompt::
     supervisor> fg olympia
 
 This will bring the Django management server to the foreground and you
-can interact with ipdb as you would normally.
+can interact with ipdb as you would normally. To quit you can just type
+``Ctrl+c`` (this will bring you back to the supervisorctl prompt). There
+you can type ``exit`` to quit (sometimes exiting the supervisorctl prompt
+doesn't respond so closing that shell is another option).
 
 All being well it should look like this:
 
