@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-12 21:48+0000\n"
+"PO-Revision-Date: 2015-09-21 22:22+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439416121.0\n"
+"X-POOTLE-MTIME: 1442874145.0\n"
 
 #: static/js/common-all.js:10461 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:10428 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:10989
 #: static/js/zamboni/mobile-min.js:4
@@ -250,10 +250,14 @@ msgstr "Categoria"
 #: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268 static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
 msgstr ""
+"Administradores e editores devem fornecer uma palavra-passe para iniciar "
+"sessão."
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273 static/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
 msgstr ""
+"A autenticação com o BrowserID falhou. Talvez não tenha uma conta sob esse "
+"endereço de email?"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6 static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
@@ -387,7 +391,7 @@ msgstr "Terminou a validação de {0}"
 
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "A validação do extra expirou, será automaticamente revisto."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -1005,16 +1009,18 @@ msgstr[1] "Envie um email aos autores de {2} extras que falharam a validação."
 #: static/js/zamboni/devhub-all.js:550 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra passou na validação sem erros e com {0} mensagem."
+msgstr[1] "O seu extra passou na validação sem erros e com {0} mensagens."
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "O seu extra passou na validação sem erros ou avisos."
 
 #: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
 msgstr ""
+"Se o seu extra é direcionado a uma audiência limitada, deve escolher uma "
+"Revisão Preliminar em vez de uma Revisão Completa."
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
@@ -1099,11 +1105,11 @@ msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "A aplicação falhou a validação."
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "A aplicação passou a validação."
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:458
 msgid "Add-on failed validation."
@@ -1142,7 +1148,7 @@ msgstr "Erro interno do servidor"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Descarregar {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."

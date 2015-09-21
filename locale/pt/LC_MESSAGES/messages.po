@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-26 22:08+0000\n"
+"PO-Revision-Date: 2015-09-21 22:33+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440626883.0\n"
+"X-POOTLE-MTIME: 1442874824.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -264,16 +264,18 @@ msgstr "Ajude a suportar o desenvolvimento contínuo de <strong>%(addon_name)s</
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Para mostrar o seu apoio a <strong>%(addon_name)s</strong>, o programador solicita que faça uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> através do <a href=\"%(paypal_url)s"
-"\">PayPal</a>."
+"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o programador solicita que "
+"faça uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> através "
+"do <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
 msgid ""
 "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
 "a>."
 msgstr ""
-"Para mostrar o seu apoio a <strong>%(addon_name)s</strong>, o programador solicita que faça uma pequena doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> através do <a href="
-"\"%(paypal_url)s\">PayPal</a>."
+"Para mostrar o seu apoio a <b>%(addon_name)s</b>, o programador solicita que "
+"faça uma pequena doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"através do <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -758,6 +760,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla e não pode "
+"ser instalado em versões de lançamento do Firefox 43 e superiores. Tenha "
+"cuidado quando instalar software de terceiros que pode danificar o seu "
+"computador."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -884,7 +890,7 @@ msgstr "Etiquetas"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ícone para {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1043,6 +1049,8 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>Atenção:</strong> As versões de desenvolvimento deste extra não "
+"foram revistas pela Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -3428,11 +3436,11 @@ msgstr "Análise do pacote de idioma atualizada"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bónus por revisões atrasadas"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dias antes dos pontos bónus aplicados"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -4939,7 +4947,9 @@ msgstr "Forneça mais detalhes <a href=\"{0}\">editando a respetiva listagem</a>
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:35
 msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "Diga aos seus utilizadores porque  criou isto no seu <a href=\\\"{0}\\\">Perfil de programador</a>."
+msgstr ""
+"Diga aos seus utilizadores porque  criou isto no seu <a href=\"{0}\">Perfil de "
+"Programador</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
@@ -6885,15 +6895,18 @@ msgstr "Enviar uma nova versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Revisão completa pode não ser necessária"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"Extras não listados não precisam de Revisões Completas a menos que sejam "
+"distribuídas como uma parte de um instalador de aplicações. Leia <a "
+"href=\"{link}\" target=\"_blank\">esta documentação</a> para mais informação."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Solicitar uma revisão completa"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7393,7 +7406,7 @@ msgstr "Limpar etiqueta de revisão de administração"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Limpar a etiqueta de mais informação solicitada"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -8490,19 +8503,19 @@ msgstr "Não foi possível interpretar o install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Não foi possível encontrar um ID do extra."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "O ID do extra deve ter no máximo 64 caracteres."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "O ID do extra não coincide com o extra."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Foi encontrado um ID de extra duplicado."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -12035,7 +12048,7 @@ msgstr "Para criar as suas próprias coleções, tem de ter uma conta nos extras
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logótipo do rodapé"
 
 #: templates/categories.html:2
 msgid "Choose a category"
