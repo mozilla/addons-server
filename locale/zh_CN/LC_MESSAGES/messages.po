@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 09:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:56-0700\n"
 "PO-Revision-Date: 2015-09-06 16:42+0000\n"
 "Last-Translator: 星 <604733992@qq.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -46,75 +46,75 @@ msgstr "实验性"
 msgid "Add to {0}"
 msgstr "添加到 {0}"
 
-#: apps/addons/forms.py:52
+#: apps/addons/forms.py:58
 msgid "This name is already in use. Please choose another."
 msgstr "这个名字已被使用，请另选一个。"
 
-#: apps/addons/forms.py:63
+#: apps/addons/forms.py:69
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
 
-#: apps/addons/forms.py:66
+#: apps/addons/forms.py:72
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "短网址不能是“%s”。请另选一个。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:85
+#: apps/addons/forms.py:91
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "无效的标签：{0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:95
+#: apps/addons/forms.py:101
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "“{0}”为保留标签，不能使用。"
 
-#: apps/addons/forms.py:103
+#: apps/addons/forms.py:109
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "您的标签多出了 {0} 个。"
 
-#: apps/addons/forms.py:109
+#: apps/addons/forms.py:115
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符。"
 
-#: apps/addons/forms.py:113
+#: apps/addons/forms.py:119
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
 
-#: apps/addons/forms.py:226
+#: apps/addons/forms.py:232
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:230
+#: apps/addons/forms.py:236
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您只能选择 {0} 个分类。"
 
-#: apps/addons/forms.py:238
+#: apps/addons/forms.py:244
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "这个杂项分类不能与其他分类混用。"
 
-#: apps/addons/forms.py:361
+#: apps/addons/forms.py:367
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更改您的默认语言之前，您必须为那个语言环境输入名称、概述及描述。您目前没有输入 %s。"
 
-#: apps/addons/forms.py:474 apps/addons/forms.py:565
+#: apps/addons/forms.py:481 apps/addons/forms.py:572
 msgid "A license must be selected."
 msgstr "必须选择一种许可协议。"
 
-#: apps/addons/forms.py:546
+#: apps/addons/forms.py:553
 msgid "Give Your Theme a Name."
 msgstr "为您的主题取个名字吧。"
 
-#: apps/addons/forms.py:552 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:559 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "描述您的主题。"
 
-#: apps/addons/forms.py:693
+#: apps/addons/forms.py:700
 msgid "Enter a new author's email address"
 msgstr "输入新的作者电子邮件地址"
 
@@ -138,7 +138,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
-#: apps/addons/models.py:1891 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
+#: apps/addons/models.py:1882 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
 msgstr "已上架"
 
@@ -225,8 +225,8 @@ msgstr "捐助"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:258
+#: apps/devhub/templates/devhub/versions/list.html:292 apps/devhub/templates/devhub/versions/list.html:333 apps/devhub/templates/devhub/versions/list.html:367
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "或"
@@ -387,7 +387,7 @@ msgstr "报告滥用行为"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:316 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:314 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "隐私政策"
 
@@ -422,7 +422,7 @@ msgid ""
 "updates from this channel."
 msgstr "开发通道让您可以在此附加组件的正式版本发布前体验实验性的新版本。一旦您安装了开发版本，您将持续从此通道获得更新。"
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/details_box.html:211
 msgid "Install development version"
 msgstr "安装开发版本"
 
@@ -432,7 +432,7 @@ msgid ""
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。一旦您安装此开发版本，您将持续收到来自此开发者的开发版本的更新。如果您不想再收到此更新，请从上面的链接重新安装默认版本。"
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "版本 {0}："
 
@@ -451,7 +451,7 @@ msgstr "版本说明"
 msgid "End-User License Agreement for {0}"
 msgstr "{0} 的最终用户许可协议"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:325
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:323
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "最终用户许可协议"
@@ -605,7 +605,7 @@ msgid "See all Themes by this Artist"
 msgstr "查看本作者的全部主题"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:272
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:280
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "类别"
@@ -625,15 +625,15 @@ msgstr "每日用户量"
 msgid "License"
 msgstr "许可协议"
 
-#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:49
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:48
 msgid "Awaiting Review"
 msgstr "等待审核"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:56
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180 apps/constants/base.py:42 apps/editors/helpers.py:61
 msgid "Rejected"
 msgstr "已被退回"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:155
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:159
 msgid "Approved"
 msgstr "已核准"
 
@@ -654,7 +654,7 @@ msgstr "添加"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:252
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:260
 msgid "Edit"
 msgstr "编辑"
 
@@ -743,9 +743,9 @@ msgstr "此炫彩风格需要 %(app)s %(new_version)s，您目前使用的是 %(
 
 #: apps/addons/templates/addons/popups.html:109
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
-"computer."
-msgstr "<strong>注意：</strong>此附加组件未经过 Mozilla 审核，不能在 Firefox 的正式发布版本上安装。安装第三方软件有可能会损害您的计算机，请慎重。"
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
+"harm your computer."
+msgstr ""
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -777,7 +777,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "想在您的移动版火狐上使用 {0} 吗？扫描此 QR 码（一种二维码）后会直接安装到您的手机上。（您需要一个 QR 码扫描器。如果您的手机上没有，请在您的手机的应用市场里搜索。）"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:337
+#: apps/addons/templates/addons/impala/details.html:335
 msgid "Report Abuse"
 msgstr "报告滥用"
 
@@ -796,9 +796,9 @@ msgstr "发送报告"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:90 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
-#: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
-#: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
+#: apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:258 apps/devhub/templates/devhub/versions/list.html:292
+#: apps/devhub/templates/devhub/versions/list.html:333 apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16
+#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "取消"
 
@@ -810,37 +810,37 @@ msgstr "您觉得怎么样？"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "请先<a href=\"%(login)s\">登录</a>以发表评论"
 
-#: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
+#: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:13
+msgid "Title:"
+msgstr "职务："
+
+#: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
 msgstr "评论："
 
-#: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:16
+#: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
 msgstr "评分："
 
-#: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/add.html:63
+#: apps/addons/templates/addons/review_add_box.html:20 apps/addons/templates/addons/impala/review_add_box.html:22 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
 msgstr "提交评论"
 
-#: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:26
+#: apps/addons/templates/addons/review_add_box.html:25 apps/addons/templates/addons/impala/review_add_box.html:27
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr "请不要在评论中提交缺陷报告。我们不会将您的电子邮件地址显示给附加组件的开发者，而开发者可能需要联系您以便帮助解决问题。"
 
-#: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
+#: apps/addons/templates/addons/review_add_box.html:33 apps/addons/templates/addons/impala/review_add_box.html:36
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
 msgstr "参阅<a href=\"%(support)s\">用户支持</a>章节了解如何获得有关此附加组件的帮助。"
 
-#: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
+#: apps/addons/templates/addons/review_add_box.html:39 apps/addons/templates/addons/impala/review_add_box.html:43 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "评论撰写指南"
 
-#: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:45
-msgid "Detailed Review"
-msgstr "详细评论"
-
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:802 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:918 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "评论"
@@ -862,6 +862,10 @@ msgstr[0] "查看此附加组件的所有评论"
 msgctxt "tags_header_tags_title"
 msgid "Tags"
 msgstr "标签"
+
+#: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
+msgid "Icon for {0}"
+msgstr ""
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -974,6 +978,10 @@ msgstr "版本 {0}"
 msgid "Info"
 msgstr "信息"
 
+#: apps/addons/templates/addons/impala/details.html:202 apps/devhub/templates/devhub/includes/addon_details.html:127
+msgid "Last Updated:"
+msgstr "最近更新："
+
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
@@ -1010,15 +1018,15 @@ msgid ""
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr "在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更新，请从上面的链接重新安装默认版。"
 
-#: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr "<strong>注意：</strong>此附加组件的开发版本未经过 Mozilla 审核，不能在 Firefox 的正式发布版本上安装。"
+#: apps/addons/templates/addons/impala/details.html:279
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:296
+#: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
 msgstr "查阅完整的开发通道历史记录"
 
-#: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
+#: apps/addons/templates/addons/impala/details.html:313 apps/addons/templates/addons/impala/details.html:322 apps/addons/templates/addons/impala/details.html:334
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -1177,7 +1185,7 @@ msgstr "用户量"
 msgid "Weekly Downloads"
 msgstr "周下载量"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:782 apps/devhub/templates/devhub/versions/list.html:179
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:783 apps/devhub/templates/devhub/versions/list.html:176
 msgid "Version"
 msgstr "版本"
 
@@ -1254,7 +1262,7 @@ msgstr "附加组件是一种通过增添额外的功能和样式来让您实现
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:99 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:183 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "主题"
@@ -1329,7 +1337,7 @@ msgstr "提交一个新主题"
 msgid "Developer Hub"
 msgstr "开发者中心"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:76 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "审核员工具"
 
@@ -1367,414 +1375,414 @@ msgstr "字典及语言包"
 msgid "{0} ago"
 msgstr "{0} 前"
 
-#: apps/amo/log.py:17
+#: apps/amo/log.py:21
 msgid "{addon} was created."
 msgstr "{addon} 已创建。"
 
-#: apps/amo/log.py:25
+#: apps/amo/log.py:29
 msgid "{addon} properties edited."
 msgstr "{addon} 的属性已编辑。"
 
-#: apps/amo/log.py:31
+#: apps/amo/log.py:35
 msgid "{addon} description edited."
 msgstr "{addon} 的描述已编辑。"
 
-#: apps/amo/log.py:37
+#: apps/amo/log.py:41
 msgid "Categories edited for {addon}."
 msgstr "{addon} 的分类已编辑。"
 
-#: apps/amo/log.py:43
+#: apps/amo/log.py:47
 msgid "{0.name} ({1}) added to {addon}."
 msgstr "{addon} 已添加 {0.name}（{1}）。"
 
 #. L10n: {0} is the user being removed, {1} is their role.
-#: apps/amo/log.py:51
+#: apps/amo/log.py:55
 msgid "{0.name} ({1}) removed from {addon}."
 msgstr "{addon} 已移除 {0.name}（{1}）。"
 
-#: apps/amo/log.py:58
+#: apps/amo/log.py:62
 msgid "Contributions for {addon}."
 msgstr "捐款给 {addon}。"
 
-#: apps/amo/log.py:63 apps/amo/log.py:413
+#: apps/amo/log.py:67 apps/amo/log.py:417
 msgid "{addon} disabled."
 msgstr "{addon} 已停用。"
 
-#: apps/amo/log.py:69
+#: apps/amo/log.py:73
 msgid "{addon} enabled."
 msgstr "{addon} 已启用。"
 
-#: apps/amo/log.py:76
+#: apps/amo/log.py:80
 msgid "Stats set public for {addon}."
 msgstr "{addon} 的状态设置为公开。"
 
-#: apps/amo/log.py:83
+#: apps/amo/log.py:87
 msgid "{addon} stats set to private."
 msgstr "{addon} 的状态设置为私有。"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:90
+#: apps/amo/log.py:94
 msgid "{addon} status changed to {0}."
 msgstr "{addon} 的状态已更改为 {0}。"
 
-#: apps/amo/log.py:97
+#: apps/amo/log.py:101
 msgid "Preview added to {addon}."
 msgstr "预览图已添加到 {addon}。"
 
-#: apps/amo/log.py:103
+#: apps/amo/log.py:107
 msgid "Preview edited for {addon}."
 msgstr "{addon} 的预览图已编辑。"
 
-#: apps/amo/log.py:109
+#: apps/amo/log.py:113
 msgid "Preview deleted from {addon}."
 msgstr "{addon} 的预览图已删除。"
 
-#: apps/amo/log.py:115
+#: apps/amo/log.py:119
 msgid "{version} added to {addon}."
 msgstr "{addon} 已添加版本 {version}。"
 
-#: apps/amo/log.py:122
+#: apps/amo/log.py:126
 msgid "{version} edited for {addon}."
 msgstr "{addon} 的版本 {version} 已编辑。"
 
 #. L10n: {0} is the version number
-#: apps/amo/log.py:130
+#: apps/amo/log.py:134
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} 已删除版本 {0}。"
 
-#: apps/amo/log.py:137
+#: apps/amo/log.py:141
 msgid "File {0.name} added to {version} of {addon}."
 msgstr "文件 {0.name} 已添加到 {addon} {version}。"
 
-#: apps/amo/log.py:148
+#: apps/amo/log.py:152
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "已经从 {addon} {version} 中删除文件 {0}。"
 
-#: apps/amo/log.py:154
+#: apps/amo/log.py:158
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} 已通过审核。"
 
-#: apps/amo/log.py:164
+#: apps/amo/log.py:168
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} 已提交初步审核。"
 
-#: apps/amo/log.py:165
+#: apps/amo/log.py:169
 msgid "Preliminarily approved"
 msgstr "已通过初步审核"
 
-#: apps/amo/log.py:175
+#: apps/amo/log.py:179
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} 已被退回。"
 
-#: apps/amo/log.py:185
+#: apps/amo/log.py:189
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} 已被保留。"
 
-#: apps/amo/log.py:186
+#: apps/amo/log.py:190
 msgid "Retained"
 msgstr "已被保留"
 
-#: apps/amo/log.py:195
+#: apps/amo/log.py:199
 msgid "{addon} {version} escalated."
 msgstr "{addon} {version} 已向上呈报。"
 
-#: apps/amo/log.py:196
+#: apps/amo/log.py:200
 msgid "Escalated"
 msgstr "已向上呈报"
 
-#: apps/amo/log.py:205
+#: apps/amo/log.py:209
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} 已申请审核。"
 
-#: apps/amo/log.py:206
+#: apps/amo/log.py:210
 msgid "Review requested"
 msgstr "已申请审核"
 
-#: apps/amo/log.py:214
+#: apps/amo/log.py:218
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} 被要求更多信息。"
 
-#: apps/amo/log.py:215
+#: apps/amo/log.py:219
 msgid "More information requested"
 msgstr "要求更多信息"
 
-#: apps/amo/log.py:223
+#: apps/amo/log.py:227
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} 已要求高级审核。"
 
-#: apps/amo/log.py:224
+#: apps/amo/log.py:228
 msgid "Super review requested"
 msgstr "已要求高级审核"
 
-#: apps/amo/log.py:231
+#: apps/amo/log.py:235
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} 的评论。"
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:500
+#: apps/amo/log.py:236 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:506
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "评论"
 
-#: apps/amo/log.py:241
+#: apps/amo/log.py:245
 msgid "{tag} added to {addon}."
 msgstr "{addon} 已添加标签 {tag}。"
 
-#: apps/amo/log.py:247
+#: apps/amo/log.py:251
 msgid "{tag} removed from {addon}."
 msgstr "{addon} 已移除标签 {tag}。"
 
-#: apps/amo/log.py:253
+#: apps/amo/log.py:257
 msgid "{addon} added to {collection}."
 msgstr "{addon} 已添加到收藏集 {collection}。"
 
-#: apps/amo/log.py:259
+#: apps/amo/log.py:263
 msgid "{addon} removed from {collection}."
 msgstr "{addon} 已从 {collection} 中移除。"
 
-#: apps/amo/log.py:265
+#: apps/amo/log.py:269
 msgid "{review} for {addon} written."
 msgstr "{addon} 的评论 {review} 已撰写。"
 
 #. L10n: {0} is a category name.
-#: apps/amo/log.py:273
+#: apps/amo/log.py:277
 msgid "{addon} featured in {0}."
 msgstr "{addon} 已精选到分类 {0}。"
 
 #. L10n: {0} is a category name.
-#: apps/amo/log.py:280
+#: apps/amo/log.py:284
 msgid "{addon} no longer featured in {0}."
 msgstr "{addon} 已从分类 {0} 精选中移除。"
 
-#: apps/amo/log.py:285
+#: apps/amo/log.py:289
 msgid "{addon} is now featured."
 msgstr "{addon} 已成为精选附加组件。"
 
-#: apps/amo/log.py:291
+#: apps/amo/log.py:295
 msgid "{addon} is no longer featured."
 msgstr "{addon} 已不再是精选项目。"
 
 #. L10n: {0} is the application, {1} is the version of the app
-#: apps/amo/log.py:299
+#: apps/amo/log.py:303
 msgid "{0} {1} added."
 msgstr "{0} {1} 已添加。"
 
 #. L10n: {0} is a user, {1} is their role
-#: apps/amo/log.py:306
+#: apps/amo/log.py:310
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} 在 {addon} 的角色已更改为 {1}。"
 
-#: apps/amo/log.py:314
+#: apps/amo/log.py:318
 msgid "{addon} is now licensed under {0.name}."
 msgstr "{addon} 的许可协议已更改为 {0.name}。"
 
-#: apps/amo/log.py:320
+#: apps/amo/log.py:324
 msgid "{addon} policy changed."
 msgstr "{addon} 政策已更改。"
 
-#: apps/amo/log.py:326
+#: apps/amo/log.py:330
 msgid "{addon} icon changed."
 msgstr "{addon} 图标已更改。"
 
-#: apps/amo/log.py:332
+#: apps/amo/log.py:336
 msgid "{review} for {addon} approved."
 msgstr "{addon} 的 {review} 已通过审核。"
 
-#: apps/amo/log.py:333
+#: apps/amo/log.py:337
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} 通过了 {addon} 的 {review}。"
 
-#: apps/amo/log.py:342
+#: apps/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
 msgstr "对 {addon} 进行 {review} 已删除。"
 
-#: apps/amo/log.py:343
+#: apps/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
 msgstr "{user} 删除了对 {addon} 进行 {review}。"
 
-#: apps/amo/log.py:350
+#: apps/amo/log.py:354
 msgid "Application max version for {version} updated."
 msgstr "{version} 版本的应用程序最大版本号已更新。"
 
-#: apps/amo/log.py:355
+#: apps/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
 msgstr "已发送电子邮件通知作者关于 {version} 的兼容性。"
 
-#: apps/amo/log.py:360
+#: apps/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
 msgstr "邮件通知作者有关附加组件兼容性的问题。"
 
-#: apps/amo/log.py:365
+#: apps/amo/log.py:369
 msgid "Password changed."
 msgstr "密码已更改。"
 
-#: apps/amo/log.py:370
+#: apps/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
 msgstr "{addon} 无法向 PayPal 确认。"
 
-#: apps/amo/log.py:375
+#: apps/amo/log.py:379
 msgid "{addon} manifest updated."
 msgstr "{addon} 的清单已更新。"
 
-#: apps/amo/log.py:381
+#: apps/amo/log.py:385
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} 已通过审核但正在等候公开发布。"
 
-#: apps/amo/log.py:382
+#: apps/amo/log.py:386
 msgid "Approved but waiting"
 msgstr "已通过审核，正在等待公开发布"
 
-#: apps/amo/log.py:390
+#: apps/amo/log.py:394
 msgid "{addon} purchased."
 msgstr "已购买 {addon}。"
 
-#: apps/amo/log.py:395
+#: apps/amo/log.py:399
 msgid "{addon} installed."
 msgstr "已安装 {addon}。"
 
-#: apps/amo/log.py:400
+#: apps/amo/log.py:404
 msgid "Account updated."
 msgstr "账户已更新。"
 
-#: apps/amo/log.py:405
+#: apps/amo/log.py:409
 msgid "Escalation cleared for {addon}."
 msgstr "{addon} 的向上呈报已清除。"
 
-#: apps/amo/log.py:406
+#: apps/amo/log.py:410
 msgid "Escalation cleared"
 msgstr "向上呈报已清除"
 
-#: apps/amo/log.py:414
+#: apps/amo/log.py:418
 msgid "App disabled"
 msgstr "应用已停用"
 
-#: apps/amo/log.py:421
+#: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "因为滥用报告量过高，{addon} 已向上呈报。"
 
-#: apps/amo/log.py:422
+#: apps/amo/log.py:426
 msgid "High Abuse Reports"
 msgstr "高滥用报告量"
 
-#: apps/amo/log.py:429
+#: apps/amo/log.py:433
 msgid "{addon} escalated by reviewer."
 msgstr "{addon} 已经由审核者向上呈报。"
 
-#: apps/amo/log.py:430
+#: apps/amo/log.py:434
 msgid "Reviewer escalation"
 msgstr "审核者向上呈报"
 
-#: apps/amo/log.py:438
+#: apps/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video."
 msgstr "因为该视频存在问题，视频已从 {addon} 移除。"
 
-#: apps/amo/log.py:440
+#: apps/amo/log.py:444
 msgid "Video removed"
 msgstr "视频被移除"
 
-#: apps/amo/log.py:445
+#: apps/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
 msgstr "{addon} 因为添加了新设备，需要重新审核。"
 
-#: apps/amo/log.py:446
+#: apps/amo/log.py:450
 msgid "Device(s) Added"
 msgstr "设备已添加"
 
-#: apps/amo/log.py:453
+#: apps/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
 msgstr "审核者已手动更改 {addon} 支持的设备。"
 
-#: apps/amo/log.py:454
+#: apps/amo/log.py:458
 msgid "Device(s) Changed by Reviewer"
 msgstr "审核者已更改设备"
 
-#: apps/amo/log.py:471
+#: apps/amo/log.py:475
 msgid "Created: {0}."
 msgstr "已创建：{0}。"
 
-#: apps/amo/log.py:477
+#: apps/amo/log.py:481
 msgid "Edited field: {2} set to: {0}."
 msgstr "已编辑字段：{2} 设置为：{0}。"
 
-#: apps/amo/log.py:483
+#: apps/amo/log.py:487
 msgid "Deleted: {1}."
 msgstr "已删除：{1}。"
 
-#: apps/amo/log.py:489
+#: apps/amo/log.py:493
 msgid "User {user} edited, reason: {1}"
 msgstr "用户 {user} 已编辑，原因：{1}"
 
-#: apps/amo/log.py:495
+#: apps/amo/log.py:499
 msgid "User {user} anonymized."
 msgstr "用户 {user} 已匿名。"
 
-#: apps/amo/log.py:501
+#: apps/amo/log.py:505
 msgid "User {user} restricted."
 msgstr "用户 {user} 已限制。"
 
-#: apps/amo/log.py:507
+#: apps/amo/log.py:511
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "管理员 {0} 查看了 {user} 的活动日志。"
 
-#: apps/amo/log.py:514
+#: apps/amo/log.py:518
 msgid "{review} for {addon} updated."
 msgstr "{addon} 的 {review} 已更新。"
 
-#: apps/amo/log.py:520
+#: apps/amo/log.py:524
 msgid "{addon} reviewed."
 msgstr "{addon} 已审核。"
 
-#: apps/amo/log.py:526
+#: apps/amo/log.py:530
 msgid "User {0.name} added to {group}."
 msgstr "用户 {0.name} 已添加到组 {group}。"
 
-#: apps/amo/log.py:534
+#: apps/amo/log.py:538
 msgid "User {0.name} removed from {group}."
 msgstr "用户 {0.name} 已从组 {group} 移除。"
 
-#: apps/amo/log.py:541
+#: apps/amo/log.py:545
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "审核者修改了 {addon} 的最低版本需求。"
 
-#: apps/amo/log.py:542
+#: apps/amo/log.py:546
 msgid "Requirements Changed by Reviewer"
 msgstr "请求已被审核者更改"
 
-#: apps/amo/log.py:549
+#: apps/amo/log.py:553
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} 最低版本需求已被手动修改。"
 
-#: apps/amo/log.py:550
+#: apps/amo/log.py:554
 msgid "Requirements Changed"
 msgstr "需求已变更"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:558
+#: apps/amo/log.py:562
 msgid "{version} status changed to {0}."
 msgstr "{version} 状态已更改为 {0}。"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:565
+#: apps/amo/log.py:569
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "已通过查找工具删除用户 {0.name} {0.id}。"
 
-#: apps/amo/log.py:571
+#: apps/amo/log.py:575
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} 内容分级已改为成人。"
 
-#: apps/amo/log.py:577
+#: apps/amo/log.py:581
 msgid "{addon} content rating changed."
 msgstr "{addon} 内容分级已更改。"
 
-#: apps/amo/log.py:582
+#: apps/amo/log.py:586
 msgid "{addon} unlisted."
 msgstr "{addon} 已下架。"
 
-#: apps/amo/log.py:588 apps/amo/log.py:594
+#: apps/amo/log.py:592 apps/amo/log.py:598
 msgid "{file} was signed."
 msgstr "{file} 已签名。"
 
 #. L10n: {0} is the add-on GUID.
-#: apps/amo/log.py:602
+#: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "带有 GUID {1} 的附加组件 id {0} 已被删除"
 
@@ -1879,7 +1887,7 @@ msgstr "浏览"
 
 # Plural in this context means many of the add-on type
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:171 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:176 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "扩展"
 
@@ -1909,7 +1917,7 @@ msgstr "我收藏的附加组件"
 msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:179 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "搜索工具"
 
@@ -2397,7 +2405,7 @@ msgid "Delete {0}"
 msgstr "删除 {0}"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
-#: apps/devhub/templates/devhub/versions/list.html:144 apps/devhub/templates/devhub/versions/list.html:165 apps/devhub/templates/devhub/versions/list.html:185
+#: apps/devhub/templates/devhub/versions/list.html:141 apps/devhub/templates/devhub/versions/list.html:162 apps/devhub/templates/devhub/versions/list.html:182
 msgid "Delete"
 msgstr "删除"
 
@@ -2441,7 +2449,7 @@ msgstr "保存更改"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:132
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:137
 msgid "Owner"
 msgstr "所有者"
 
@@ -2589,7 +2597,7 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr "要在此收藏集中增加一个附加组件，请在下面的框中输入其名称然后回车。您也可以使用遍布整个网站的<strong>添加到收藏集</strong>链接来添加附加组件。"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:431 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:436 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "附加组件"
 
@@ -2601,7 +2609,7 @@ msgstr "输入要加入的附加组件名称"
 msgid "Add to Collection"
 msgstr "添加到收藏集"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:817 apps/editors/helpers.py:837
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:933 apps/editors/helpers.py:953
 msgid "Pending"
 msgstr "等待中"
 
@@ -2777,7 +2785,7 @@ msgstr "您的语言下可用的语言包和字典列表。"
 msgid "Language"
 msgstr "语言"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:160
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:165
 msgid "Dictionary"
 msgstr "字典"
 
@@ -2837,7 +2845,7 @@ msgstr "到 <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> 浏览
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "在 <a href=\"https://developer.mozilla.org/\">Mozilla 开发者中心</a> <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">创建你自己的</a>"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:177
 msgid "Complete Themes"
 msgstr "完整主题"
 
@@ -3002,7 +3010,8 @@ msgstr "二进制"
 msgid "Non-binary"
 msgstr "非二进制"
 
-#: apps/compat/views.py:85 apps/constants/base.py:419 apps/devhub/forms.py:162
+#. Review points sources other than add-ons and themes.
+#: apps/compat/views.py:85 apps/constants/base.py:424 apps/devhub/forms.py:162 apps/editors/templates/editors/performance.html:75
 msgid "Other"
 msgstr "其他"
 
@@ -3026,7 +3035,7 @@ msgstr "全部附加组件的前 95%"
 msgid "All active add-ons"
 msgstr "全部活跃的附加组件"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:432
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:437
 msgid "App"
 msgstr "应用"
 
@@ -3094,7 +3103,7 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:779 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:110 apps/zadmin/forms.py:45
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:780 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:111 apps/zadmin/forms.py:45
 msgid "Application"
 msgstr "应用程序"
 
@@ -3170,291 +3179,299 @@ msgstr "Firefox 平板电脑"
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
-#: apps/constants/base.py:26
+#: apps/constants/base.py:25
 msgid "Incomplete"
 msgstr "未完成"
 
-#: apps/constants/base.py:27
+#: apps/constants/base.py:26
 msgid "Awaiting Preliminary Review"
 msgstr "等待初步审核"
 
-#: apps/constants/base.py:28
+#: apps/constants/base.py:27
 msgid "Awaiting Full Review"
 msgstr "等待全面审核"
 
-#: apps/constants/base.py:29 apps/constants/base.py:50
+#: apps/constants/base.py:28 apps/constants/base.py:49
 msgid "Fully Reviewed"
 msgstr "已全面审核"
 
-#: apps/constants/base.py:30 apps/constants/base.py:51
+#: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: apps/constants/base.py:31 apps/constants/base.py:53
+#: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Preliminarily Reviewed"
 msgstr "已初步审核"
 
-#: apps/constants/base.py:32
+#: apps/constants/base.py:31
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "已初步审核并等待全面审核"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:805 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:33 apps/editors/helpers.py:921 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已删除"
 
-#: apps/constants/base.py:39
+#: apps/constants/base.py:38
 msgid "Pending approval"
 msgstr "等待审核"
 
-#: apps/constants/base.py:45
+#: apps/constants/base.py:44
 msgid "Flagged for further review"
 msgstr "标记以做进一步审核"
 
-#: apps/constants/base.py:52
+#: apps/constants/base.py:51
 msgid "Beta"
 msgstr "公开测试版"
 
-#: apps/constants/base.py:121
+#: apps/constants/base.py:126
 msgid "Full"
 msgstr "全面"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:127
 msgid "Preliminary"
 msgstr "初步"
 
-#: apps/constants/base.py:133 apps/users/notifications.py:157
+#: apps/constants/base.py:138 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "开发者"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:134
+#: apps/constants/base.py:139
 msgid "Viewer"
 msgstr "查看者"
 
-#: apps/constants/base.py:135 templates/mobile/header.html:7
+#: apps/constants/base.py:140 templates/mobile/header.html:7
 msgid "Support"
 msgstr "支持"
 
-#: apps/constants/base.py:157 apps/constants/base.py:170 apps/constants/platforms.py:11
+#: apps/constants/base.py:162 apps/constants/base.py:175 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "任意"
 
-#: apps/constants/base.py:158
+#: apps/constants/base.py:163
 msgid "Extension"
 msgstr "扩展"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:164
 msgid "Complete Theme"
 msgstr "完整主题"
 
-#: apps/constants/base.py:161
+#: apps/constants/base.py:166
 msgid "Search Engine"
 msgstr "搜索引擎"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:167
 msgid "Language Pack (Application)"
 msgstr "语言包（应用程序）"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:168
 msgid "Language Pack (Add-on)"
 msgstr "语言包（附加组件）"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:169
 msgid "Plugin"
 msgstr "插件"
 
-#: apps/constants/base.py:165 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:170 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "主题"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:173
+#: apps/constants/base.py:178
 msgid "Dictionaries"
 msgstr "字典"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:175
+#: apps/constants/base.py:180
 msgid "Language Packs (Application)"
 msgstr "语言包（应用程序）"
 
-#: apps/constants/base.py:176
+#: apps/constants/base.py:181
 msgid "Language Packs (Add-on)"
 msgstr "语言包（附加组件）"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:182
 msgid "Plugins"
 msgstr "插件"
 
-#: apps/constants/base.py:242
+#: apps/constants/base.py:247
 msgid "Free"
 msgstr "免费版"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:248
 msgid "Premium"
 msgstr "付费版"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:249
 msgid "Premium with in-app payments"
 msgstr "付费版，使用“应用内付款”"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:250
 msgid "Free with in-app payments"
 msgstr "免费版，使用“应用内付款”"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:251
 msgid "I'll use my own system for in-app payments"
 msgstr "我将使用我自己的系统进行应用内收费"
 
-#: apps/constants/base.py:302
+#: apps/constants/base.py:307
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "仅在此附加组件页面和开发者简介中询问"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:308
 msgid "Ask after users start downloading this add-on"
 msgstr "用户开始下载这个附加组件后询问"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:309
 msgid "Ask before users can download this add-on"
 msgstr "用户下载这个附加组件前询问"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:425
 msgid "Exception"
 msgstr "例外"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:426
 msgid "Release"
 msgstr "发布"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:427
 msgid "Change"
 msgstr "更改"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:438
 msgid "Persona"
 msgstr "炫彩风格"
 
-#: apps/constants/base.py:464
+#: apps/constants/base.py:471
 msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
 
-#: apps/constants/base.py:465
+#: apps/constants/base.py:472
 msgid "Full Add-on Review"
 msgstr "全面附加组件审核"
 
-#: apps/constants/base.py:466
+#: apps/constants/base.py:473
 msgid "Preliminary Add-on Review"
 msgstr "初步附加组件审核"
 
-#: apps/constants/base.py:467
+#: apps/constants/base.py:474
 msgid "Updated Add-on Review"
 msgstr "已更新附加组件审核"
 
-#: apps/constants/base.py:468
+#: apps/constants/base.py:475
 msgid "Full Dictionary Review"
 msgstr "字典全面审核"
 
-#: apps/constants/base.py:469
+#: apps/constants/base.py:476
 msgid "Preliminary Dictionary Review"
 msgstr "初步字典审核"
 
-#: apps/constants/base.py:470
+#: apps/constants/base.py:477
 msgid "Updated Dictionary Review"
 msgstr "已更新字典审核"
 
-#: apps/constants/base.py:471
+#: apps/constants/base.py:478
 msgid "Full Language Pack Review"
 msgstr "语言包全面审核"
 
-#: apps/constants/base.py:472
+#: apps/constants/base.py:479
 msgid "Preliminary Language Pack Review"
 msgstr "首选语言包审核"
 
-#: apps/constants/base.py:473
+#: apps/constants/base.py:480
 msgid "Updated Language Pack Review"
 msgstr "已更新语言包审核"
 
-#: apps/constants/base.py:474
+#: apps/constants/base.py:481
+msgid "Bonus for overdue reviews"
+msgstr ""
+
+#: apps/constants/base.py:482
+msgid "Days Before Bonus Points Applied"
+msgstr ""
+
+#: apps/constants/base.py:483
 msgid "Theme Review"
 msgstr "主题审核"
 
-#: apps/constants/base.py:475
+#: apps/constants/base.py:484
 msgid "Full Search Provider Review"
 msgstr "搜索提供商全面审核"
 
-#: apps/constants/base.py:476
+#: apps/constants/base.py:485
 msgid "Preliminary Search Provider Review"
 msgstr "搜索提供商初步审核"
 
-#: apps/constants/base.py:477
+#: apps/constants/base.py:486
 msgid "Updated Search Provider Review"
 msgstr "已更新搜索提供商审核"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:487
 msgid "Complete Theme Review"
 msgstr "完整主题审核"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:488
 msgid "Preliminary Complete Theme Review"
 msgstr "完整主题初步审核"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:489
 msgid "Updated Complete Theme Review"
 msgstr "完整主题更新审核"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:490
 msgid "Moderated Addon Review"
 msgstr "提请仲裁的附加组件评论"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:491
 msgid "Addon Review Moderation Reverted"
 msgstr "附加组件评论仲裁已恢复"
 
-#: apps/constants/base.py:527
+#: apps/constants/base.py:538
 msgid "Level 1"
 msgstr "第1级"
 
-#: apps/constants/base.py:528
+#: apps/constants/base.py:539
 msgid "Level 2"
 msgstr "第2级"
 
-#: apps/constants/base.py:529
+#: apps/constants/base.py:540
 msgid "Level 3"
 msgstr "第3级"
 
-#: apps/constants/base.py:530
+#: apps/constants/base.py:541
 msgid "Level 4"
 msgstr "第4级"
 
-#: apps/constants/base.py:531
+#: apps/constants/base.py:542
 msgid "Level 5"
 msgstr "第5级"
 
-#: apps/constants/base.py:532
+#: apps/constants/base.py:543
 msgid "Level 6"
 msgstr "第6级"
 
-#: apps/constants/base.py:533
+#: apps/constants/base.py:544
 msgid "Level 7"
 msgstr "第7级"
 
-#: apps/constants/base.py:534
+#: apps/constants/base.py:545
 msgid "Level 8"
 msgstr "第8级"
 
-#: apps/constants/base.py:535
+#: apps/constants/base.py:546
 msgid "Level 9"
 msgstr "第9级"
 
-#: apps/constants/base.py:544
+#: apps/constants/base.py:555
 msgid "Not signed"
 msgstr "未签名"
 
-#: apps/constants/base.py:545
+#: apps/constants/base.py:556
 msgid "Signed for a full review"
 msgstr "已签名为全面审核"
 
-#: apps/constants/base.py:546
+#: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
 msgstr "已签名为初步审核"
 
@@ -3470,7 +3487,7 @@ msgstr "标记"
 msgid "Duplicate"
 msgstr "重复"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:491 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:497 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "拒绝"
 
@@ -3686,7 +3703,7 @@ msgstr "版本范围无效。"
 msgid "Need at least one compatible application."
 msgstr "需要至少一个兼容的应用程序。"
 
-#: apps/devhub/forms.py:498 apps/devhub/forms.py:518
+#: apps/devhub/forms.py:498 apps/devhub/forms.py:519
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上传过程中发生错误，请重试。"
 
@@ -3698,79 +3715,79 @@ msgstr "无视验证失败"
 msgid "Submit my add-on for manual review."
 msgstr "提交我的附加组件进行人工审核。"
 
-#: apps/devhub/forms.py:533
+#: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
 msgstr "不要在此网站上展示我的附加组件（测试版功能）"
 
-#: apps/devhub/forms.py:534
+#: apps/devhub/forms.py:535
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr "选中此项，如果您打算自行分发您的附加组件，并且只需要 Mozilla 进行签名。"
 
-#: apps/devhub/forms.py:540
+#: apps/devhub/forms.py:541
 msgid "This add-on will be side-loaded via application installers."
 msgstr "将通过软件的安装程序将此附加组件安装到用户电脑。"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:543
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "Mozilla 会对将安装到其他用户电脑的附加组件进行代码审核，确保其保持较高的质量标准，然后才会进行签名。"
 
-#: apps/devhub/forms.py:560 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:561 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "全面审核"
 
-#: apps/devhub/forms.py:561 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "初步审核"
 
-#: apps/devhub/forms.py:565
+#: apps/devhub/forms.py:566
 msgid "Please choose a review nomination type"
 msgstr "请选择提交审核的类型"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:570
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "文件中的版本以 a|alpha|b|beta|pre|rc 结尾（及可选的数字）将被检测为测试版（beta）。"
 
-#: apps/devhub/forms.py:587
+#: apps/devhub/forms.py:588
 msgid "Version %s already exists"
 msgstr "版本 %s 已存在"
 
-#: apps/devhub/forms.py:599
+#: apps/devhub/forms.py:600
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "请选择一个有效的选项。目前的选项不是可用的选项之一。"
 
-#: apps/devhub/forms.py:605
+#: apps/devhub/forms.py:606
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
 
-#: apps/devhub/forms.py:628
+#: apps/devhub/forms.py:629
 msgid "You cannot upload any more files for this version."
 msgstr "您不能再为此版本上传文件。"
 
-#: apps/devhub/forms.py:634
+#: apps/devhub/forms.py:635
 msgid "Version doesn't match"
 msgstr "版本不匹配"
 
-#: apps/devhub/forms.py:663
+#: apps/devhub/forms.py:664
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "审核过程开始后您不能删除文件。您必须删除整个版本。"
 
-#: apps/devhub/forms.py:683
+#: apps/devhub/forms.py:684
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "不能既选择所有平台又指定特定平台。"
 
-#: apps/devhub/forms.py:688
+#: apps/devhub/forms.py:689
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#: apps/devhub/forms.py:701
+#: apps/devhub/forms.py:702
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
 
-#: apps/devhub/forms.py:783 apps/editors/forms.py:116 apps/zadmin/forms.py:49 apps/zadmin/forms.py:52
+#: apps/devhub/forms.py:784 apps/editors/forms.py:117 apps/zadmin/forms.py:49 apps/zadmin/forms.py:52
 msgid "Select an application first"
 msgstr "请先选择一个应用程序"
 
-#: apps/devhub/forms.py:835
+#: apps/devhub/forms.py:836
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
@@ -3804,15 +3821,15 @@ msgstr[0] "{0} 个警告"
 msgid "Review"
 msgstr "评论"
 
-#: apps/devhub/tasks.py:441
+#: apps/devhub/tasks.py:459
 msgid "%s responded with %s (%s)."
 msgstr "%s 响应 %s（%s）。"
 
-#: apps/devhub/tasks.py:445
+#: apps/devhub/tasks.py:463
 msgid "Connection to \"%s\" timed out."
 msgstr "连接“%s”超时。"
 
-#: apps/devhub/tasks.py:447
+#: apps/devhub/tasks.py:465
 msgid "Could not contact host at \"%s\"."
 msgstr "无法连接到主机“%s”。"
 
@@ -3955,7 +3972,7 @@ msgstr "返回附加组件"
 msgid "{0} :: Search"
 msgstr "{0} :: 搜索"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:457 apps/editors/forms.py:459 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:462 apps/editors/forms.py:464 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -4133,7 +4150,7 @@ msgid "Do you want your add-on to be distributed on this site?"
 msgstr "您想要在本网站上分发您的附加组件？"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:299
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:314
 msgid "Warning:"
 msgstr "警告："
 
@@ -4228,7 +4245,7 @@ msgid "Add Another Application&hellip;"
 msgstr "添加其他应用程序&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
+#: apps/devhub/templates/devhub/versions/list.html:367 apps/devhub/templates/devhub/versions/list.html:369 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
 msgid "Close"
 msgstr "关闭"
 
@@ -4260,7 +4277,7 @@ msgstr "无"
 msgid "Manage Authors & License"
 msgstr "管理作者和许可协议"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:265
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:273
 msgid "Authors"
 msgstr "作者"
 
@@ -4319,7 +4336,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "给您的附加组件选择一个短小、唯一的网址。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:250 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:258 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "查看公开页面"
 
@@ -4642,7 +4659,7 @@ msgstr "回到顶部"
 msgid "Delete Theme"
 msgstr "删除主题"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:127
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:124
 msgid "Delete Add-on"
 msgstr "删除附加组件"
 
@@ -4668,7 +4685,7 @@ msgstr "请告诉我们您删除此主题的原因："
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "请告诉我们您删除此附加组件的原因："
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:248
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:256
 msgid "Actions"
 msgstr "动作"
 
@@ -5986,10 +6003,6 @@ msgstr "创建于："
 msgid "%b %e, %Y"
 msgstr "%Y-%b-%e"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:127
-msgid "Last Updated:"
-msgstr "最近更新："
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:134
 msgid "Next Version:"
 msgstr "下一个版本："
@@ -6610,145 +6623,152 @@ msgstr "尚未验证。"
 msgid "Validate now."
 msgstr "立即验证。"
 
-#: apps/devhub/templates/devhub/versions/list.html:73
+#: apps/devhub/templates/devhub/versions/list.html:72
 msgid "Request Full Review"
 msgstr "请求全面审核"
 
-#: apps/devhub/templates/devhub/versions/list.html:74
+#: apps/devhub/templates/devhub/versions/list.html:73
 msgid "Request Preliminary Review"
 msgstr "请求初步审核"
 
-#: apps/devhub/templates/devhub/versions/list.html:83
-msgid "Full nomination will be available in {0} day"
-msgid_plural "Full nomination will be available in {0} days"
-msgstr[0] "完整提名将会在 {0} 天内完成"
-
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:328 apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:85 apps/devhub/templates/devhub/versions/list.html:343 apps/devhub/templates/devhub/versions/list.html:366
 msgid "Cancel Review Request"
 msgstr "撤回审核请求"
 
-#: apps/devhub/templates/devhub/versions/list.html:101
+#: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
 msgstr "附加组件公开程度"
 
-#: apps/devhub/templates/devhub/versions/list.html:110
+#: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
 msgstr "上架："
 
-#: apps/devhub/templates/devhub/versions/list.html:110
+#: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr "对所有 {0} 的使用者可见，并包含在搜索结果和列表页面中"
 
-#: apps/devhub/templates/devhub/versions/list.html:116
+#: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
 msgstr "隐藏："
 
-#: apps/devhub/templates/devhub/versions/list.html:116
+#: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr "在 {0} 上托管，但只对作者可见。可用于暂时在列表中隐藏或暂时下架。"
 
-#: apps/devhub/templates/devhub/versions/list.html:123
+#: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
 msgstr "不上架："
 
-#: apps/devhub/templates/devhub/versions/list.html:123
+#: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 msgstr "不在 {0} 上发行。开发者将上传新的版本进行签名，然后自行在自己的渠道分发该附加组件。（测试版功能）"
 
-#: apps/devhub/templates/devhub/versions/list.html:132
+#: apps/devhub/templates/devhub/versions/list.html:129
 msgid "Current versions"
 msgstr "当前版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:138
+#: apps/devhub/templates/devhub/versions/list.html:135
 msgid "Currently on AMO"
 msgstr "目前在 AMO"
 
-#: apps/devhub/templates/devhub/versions/list.html:139 apps/devhub/templates/devhub/versions/list.html:160 apps/devhub/templates/devhub/versions/list.html:180
+#: apps/devhub/templates/devhub/versions/list.html:136 apps/devhub/templates/devhub/versions/list.html:157 apps/devhub/templates/devhub/versions/list.html:177
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
 msgstr "状态"
 
 # Header for a column in a table
-#: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
+#: apps/devhub/templates/devhub/versions/list.html:137 apps/devhub/templates/devhub/versions/list.html:158 apps/devhub/templates/devhub/versions/list.html:178
 #: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "验证"
 
-#: apps/devhub/templates/devhub/versions/list.html:142 apps/devhub/templates/devhub/versions/list.html:163 apps/devhub/templates/devhub/versions/list.html:183
+#: apps/devhub/templates/devhub/versions/list.html:139 apps/devhub/templates/devhub/versions/list.html:160 apps/devhub/templates/devhub/versions/list.html:180
 #: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "性能"
 
-#: apps/devhub/templates/devhub/versions/list.html:159
+#: apps/devhub/templates/devhub/versions/list.html:156
 msgid "Next version of this add-on"
 msgstr "这个附加组件的下一个版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:173
+#: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Older versions"
 msgstr "旧版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:189
+#: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Upload a New Version"
 msgstr "上传新版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:218
+#: apps/devhub/templates/devhub/versions/list.html:216
+msgid "Full review may not be required"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:217
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:225
+msgid "Request full review"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
 msgstr "删除版本 {version}"
 
-#: apps/devhub/templates/devhub/versions/list.html:219
+#: apps/devhub/templates/devhub/versions/list.html:234
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr "您准备删除附加组件的当前版本，如果这是唯一的公开发布版本，将会导致附加组件状态改变，或者公众在列表中看不到您的作品。"
 
-#: apps/devhub/templates/devhub/versions/list.html:220
+#: apps/devhub/templates/devhub/versions/list.html:235
 msgid "Deleting this version will permanently delete:"
 msgstr "删除此版本将永久地删除："
 
-#: apps/devhub/templates/devhub/versions/list.html:226
+#: apps/devhub/templates/devhub/versions/list.html:241
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr "<strong>重要：</strong>一个版本一旦被删除，就不能再上传有相同版本号的新版本。"
 
-#: apps/devhub/templates/devhub/versions/list.html:231
+#: apps/devhub/templates/devhub/versions/list.html:246
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr "删除已审核的版本会导致下次更新时的审核时间显著延长。"
 
-#: apps/devhub/templates/devhub/versions/list.html:234
+#: apps/devhub/templates/devhub/versions/list.html:249
 msgid "Are you sure you wish to delete this version?"
 msgstr "您确定要删除此版本吗？"
 
-#: apps/devhub/templates/devhub/versions/list.html:239
+#: apps/devhub/templates/devhub/versions/list.html:254
 msgid "Delete Version"
 msgstr "删除版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Disable Version"
 msgstr "停用版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:248
+#: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Add a new Version"
 msgstr "添加新版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:250
+#: apps/devhub/templates/devhub/versions/list.html:265
 msgid "Add Version"
 msgstr "添加版本"
 
-#: apps/devhub/templates/devhub/versions/list.html:257 apps/devhub/templates/devhub/versions/list.html:275
+#: apps/devhub/templates/devhub/versions/list.html:272 apps/devhub/templates/devhub/versions/list.html:290
 msgid "Hide Add-on"
 msgstr "隐藏附加组件"
 
-#: apps/devhub/templates/devhub/versions/list.html:260
+#: apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "隐藏您的附加组件会使它从我们的列表和公开页面中消失，并且用户也不会再收到自动更新。"
 
-#: apps/devhub/templates/devhub/versions/list.html:266
+#: apps/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "您确定想要隐藏您的附加组件？"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
+#: apps/devhub/templates/devhub/versions/list.html:302 apps/devhub/templates/devhub/versions/list.html:331
 msgid "Unlist Add-on"
 msgstr "将附加组件下架"
 
-#: apps/devhub/templates/devhub/versions/list.html:290
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
@@ -6756,31 +6776,31 @@ msgstr ""
 "下架您的附加组件将使其（包括其所有版本和文件）在本网站上消失。它将不会在搜索结果中出现，亦不会再拥有一个公开页面，且不会再为现有的用户提供自动更新。建议您在下架的附加组件中的 install.rdf 文件中提供"
 "一个自定义的 <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> 以提供自动更新。"
 
-#: apps/devhub/templates/devhub/versions/list.html:300
+#: apps/devhub/templates/devhub/versions/list.html:315
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr "切换附加组件到不展示目前正在公测。请<a href=\"%(bugzilla_url)s\" target=\"_blank\">报告任何您遇到的 bug</a>。"
 
-#: apps/devhub/templates/devhub/versions/list.html:306
+#: apps/devhub/templates/devhub/versions/list.html:321
 msgid "Unlisting an add-on is irreversible!"
 msgstr "下架一个附加组件是不可逆的！"
 
-#: apps/devhub/templates/devhub/versions/list.html:306
+#: apps/devhub/templates/devhub/versions/list.html:321
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr "一个未上架的附加组件不能切换到上架。"
 
-#: apps/devhub/templates/devhub/versions/list.html:308
+#: apps/devhub/templates/devhub/versions/list.html:323
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "您真的确定要将您的附加组件下架吗？"
 
-#: apps/devhub/templates/devhub/versions/list.html:331
+#: apps/devhub/templates/devhub/versions/list.html:346
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "撤销您的附加组件审核请求将使其停留在已通过初步审核状态。"
 
-#: apps/devhub/templates/devhub/versions/list.html:336
+#: apps/devhub/templates/devhub/versions/list.html:351
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "撤销您的附加组件审核请求将使其停留在未完成状态。如果您不在几天内重新请求审核，它将被删除。"
 
-#: apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/list.html:359
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您确定要撤销您的审核请求吗？"
 
@@ -7069,385 +7089,389 @@ msgstr "加入我们庆祝全球社区精神。"
 msgid "Show your support"
 msgstr "展示您的支持"
 
-#: apps/editors/forms.py:30
+#: apps/editors/forms.py:31
 msgid "Approved reviews"
 msgstr "已通过的审核"
 
-#: apps/editors/forms.py:31
+#: apps/editors/forms.py:32
 msgid "Deleted reviews"
 msgstr "已删除的审核"
 
-#: apps/editors/forms.py:39 apps/editors/forms.py:69
+#: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
 msgstr "查看条目从"
 
-#: apps/editors/forms.py:41 apps/editors/forms.py:70
+#: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
 msgstr "至"
 
-#: apps/editors/forms.py:43
+#: apps/editors/forms.py:44
 msgid "Filter by type/action"
 msgstr "按类型或操作过滤"
 
-#: apps/editors/forms.py:60
+#: apps/editors/forms.py:61
 msgid "Passed automatic validation"
 msgstr "已通过自动验证"
 
-#: apps/editors/forms.py:62
+#: apps/editors/forms.py:63
 msgid "Failed automatic validation"
 msgstr "自动验证失败"
 
-#: apps/editors/forms.py:64
+#: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
 msgstr "按自动验证筛选"
 
-#: apps/editors/forms.py:71
+#: apps/editors/forms.py:72
 msgid "containing"
 msgstr "包含"
 
 #. L10n: start, as in "start date"
-#: apps/editors/forms.py:77
+#: apps/editors/forms.py:78
 msgid "start"
 msgstr "开始日期"
 
 #. L10n: end, as in "end date"
-#: apps/editors/forms.py:81
+#: apps/editors/forms.py:82
 msgid "end"
 msgstr "结束日期"
 
 #. L10n: Description of what can be searched for
-#: apps/editors/forms.py:84
+#: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
 msgstr "附加组件、审核员或意见"
 
-#: apps/editors/forms.py:100
+#: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
 msgstr "以附加组件名称或作者电子邮件地址搜索"
 
-#: apps/editors/forms.py:105
+#: apps/editors/forms.py:106
 msgid "yes"
 msgstr "是"
 
-#: apps/editors/forms.py:106
+#: apps/editors/forms.py:107
 msgid "no"
 msgstr "否"
 
-#: apps/editors/forms.py:107
+#: apps/editors/forms.py:108
 msgid "Admin Flag"
 msgstr "管理员标记"
 
-#: apps/editors/forms.py:115
+#: apps/editors/forms.py:116
 msgid "Max. Version"
 msgstr "最大版本"
 
-#: apps/editors/forms.py:119
+#: apps/editors/forms.py:120
 msgid "Days Since Submission"
 msgstr "已等待天数"
 
-#: apps/editors/forms.py:124
+#: apps/editors/forms.py:125
 msgid "Add-on Types"
 msgstr "附加组件类型"
 
-#: apps/editors/forms.py:128 apps/editors/helpers.py:263
+#: apps/editors/forms.py:129 apps/editors/helpers.py:266
 msgid "Platforms"
 msgstr "平台"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
-#: apps/editors/forms.py:240
+#: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
 msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
-#: apps/editors/forms.py:255 apps/files/templates/files/viewer.html:54
+#: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:54
 msgid "Files:"
 msgstr "文件："
 
-#: apps/editors/forms.py:258
+#: apps/editors/forms.py:259
 msgid "Comments:"
 msgstr "意见："
 
-#: apps/editors/forms.py:262
+#: apps/editors/forms.py:263
 msgid "Operating systems:"
 msgstr "操作系统："
 
-#: apps/editors/forms.py:264
+#: apps/editors/forms.py:265
 msgid "Applications:"
 msgstr "应用程序："
 
-#: apps/editors/forms.py:266
+#: apps/editors/forms.py:267
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "在此附加组件下次更新时通知我。（之后的更新不会发送电子邮件通知）"
 
-#: apps/editors/forms.py:271
+#: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
 msgstr "清除管理员审核标记"
 
-#: apps/editors/forms.py:291
+#: apps/editors/forms.py:274
+msgid "Clear more info requested flag"
+msgstr ""
+
+#: apps/editors/forms.py:294
 msgid "Choose a canned response..."
 msgstr "选择一项预置的回复..."
 
-#: apps/editors/forms.py:320
+#: apps/editors/forms.py:323
 msgid "You must select some files."
 msgstr "您必须选择一些文件。"
 
-#: apps/editors/forms.py:326
+#: apps/editors/forms.py:329
 msgid "File %s is not pending review."
 msgstr "文件 %s 没有在等待审核。"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:346
+#: apps/editors/forms.py:351
 msgid "theme name"
 msgstr "主题名称"
 
-#: apps/editors/forms.py:372
+#: apps/editors/forms.py:377
 msgid "Someone else is reviewing this theme."
 msgstr "其他人正在审核这个主题。"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:469
+#: apps/editors/forms.py:474
 msgid "app, reviewer, or comment"
 msgstr "应用，审核者或评论"
 
-#: apps/editors/helpers.py:49
-msgid "Pending Preliminary Review"
-msgstr "等待初步审核"
-
-#: apps/editors/helpers.py:53
+#: apps/editors/helpers.py:50 apps/editors/helpers.py:58
 msgid "Pending Full Review"
 msgstr "等待全面审核"
 
-#: apps/editors/helpers.py:60
+#: apps/editors/helpers.py:52
+msgid "Pending Preliminary Review"
+msgstr "等待初步审核"
+
+#: apps/editors/helpers.py:65
 msgid "Rejected or Unreviewed"
 msgstr "已拒绝或未审核"
 
-#: apps/editors/helpers.py:117 apps/editors/helpers.py:130
+#: apps/editors/helpers.py:122 apps/editors/helpers.py:135
 msgid "Queue"
 msgstr "队列"
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:123 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "等待更新"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:124 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "全面审核"
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "初步审核"
 
-#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "提请仲裁的评论"
 
-#: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "快速审核"
 
-#: apps/editors/helpers.py:124
+#: apps/editors/helpers.py:129
 msgid "Pending Themes"
 msgstr "待定主题"
 
-#: apps/editors/helpers.py:125 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:130 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "已标记的主题"
 
-#: apps/editors/helpers.py:126
+#: apps/editors/helpers.py:131
 msgid "Update Themes"
 msgstr "更新主题"
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
 msgstr "未上架的待定更新"
 
-#: apps/editors/helpers.py:132
+#: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
 msgstr "未上架的全面审核"
 
-#: apps/editors/helpers.py:133
+#: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
 msgstr "未上架的初步审核"
 
-#: apps/editors/helpers.py:166
+#: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "快速审核（{0}）"
 
-#: apps/editors/helpers.py:171
+#: apps/editors/helpers.py:174
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "全面审核（{0}）"
 
-#: apps/editors/helpers.py:176
+#: apps/editors/helpers.py:179
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "等待更新（{0}）"
 
-#: apps/editors/helpers.py:181
+#: apps/editors/helpers.py:184
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "初步审核（{0}）"
 
-#: apps/editors/helpers.py:186
+#: apps/editors/helpers.py:189
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "提请仲裁的评论（{0}）"
 
-#: apps/editors/helpers.py:192
+#: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "未上架的全面审核 ({0})"
 
-#: apps/editors/helpers.py:197
+#: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "未上架的待定更新 ({0})"
 
-#: apps/editors/helpers.py:202
+#: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "未上架的初步审核 ({0})"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:260
 msgid "Addon"
 msgstr "附加组件"
 
-#: apps/editors/helpers.py:258 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:261 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "类型"
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:262
 msgid "Waiting Time"
 msgstr "等待时间"
 
-#: apps/editors/helpers.py:260 apps/editors/templates/editors/review.html:280
+#: apps/editors/helpers.py:263 apps/editors/templates/editors/review.html:288
 msgid "Flags"
 msgstr "标记"
 
-#: apps/editors/helpers.py:261
+#: apps/editors/helpers.py:264
 msgid "Applications"
 msgstr "应用程序"
 
-#: apps/editors/helpers.py:266
+#: apps/editors/helpers.py:269
 msgid "Additional"
 msgstr "额外信息"
 
-#: apps/editors/helpers.py:281
+#: apps/editors/helpers.py:284
 msgid "Site Specific"
 msgstr "特定网站"
 
-#: apps/editors/helpers.py:283
+#: apps/editors/helpers.py:286
 msgid "Requires External Software"
 msgstr "需要外部软件"
 
-#: apps/editors/helpers.py:285
+#: apps/editors/helpers.py:288
 msgid "Binary Components"
 msgstr "二进制组件"
 
-#: apps/editors/helpers.py:309
+#: apps/editors/helpers.py:312
 msgid "moments ago"
 msgstr "刚刚"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:312
+#: apps/editors/helpers.py:315
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 分钟"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:316
+#: apps/editors/helpers.py:319
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 小时"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:320
+#: apps/editors/helpers.py:323
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#: apps/editors/helpers.py:477
+#: apps/editors/helpers.py:483
 msgid "Push to public"
 msgstr "发布为公开"
 
-#: apps/editors/helpers.py:479
+#: apps/editors/helpers.py:485
 msgid "Grant full review"
 msgstr "通过全面审核"
 
-#: apps/editors/helpers.py:494
+#: apps/editors/helpers.py:500
 msgid "Request more information"
 msgstr "要求更多信息"
 
-#: apps/editors/helpers.py:497
+#: apps/editors/helpers.py:503
 msgid "Request super-review"
 msgstr "要求超级审核"
 
-#: apps/editors/helpers.py:508
+#: apps/editors/helpers.py:514
 msgid "Grant preliminary review"
 msgstr "批准通过初步审核"
 
-#: apps/editors/helpers.py:509
+#: apps/editors/helpers.py:515
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "这将会把该文件标记为“已通过初步审核”。"
 
-#: apps/editors/helpers.py:511
+#: apps/editors/helpers.py:517
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "使用此表单向作者要求更多信息。他们会收到电子邮件通知，而且可以在此回复。当他们回复时您会收到通知。"
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:521
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或者有其他需要管理员深入调查的事项，请在下方输入您的意见。意见将会发送给管理员，而不会发送给作者。"
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:527
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "这将会退回附加组件并从审核队列中移除。"
 
-#: apps/editors/helpers.py:523
+#: apps/editors/helpers.py:529
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "对此版本提出意见。作者不会看到。"
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:533
 msgid "This will reject the files and remove them from the review queue."
 msgstr "这将会退回文件并从审核队列中移除。"
 
-#: apps/editors/helpers.py:531
+#: apps/editors/helpers.py:537
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "这将会标记附加组件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:536
+#: apps/editors/helpers.py:542
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "这将会标记文件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:541
+#: apps/editors/helpers.py:547
 msgid "Retain preliminary review"
 msgstr "保留初步审核"
 
-#: apps/editors/helpers.py:542
+#: apps/editors/helpers.py:548
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "这将会保留附加组件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:547
+#: apps/editors/helpers.py:553
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "这将会批准一个公开附加组件的沙盒版本并显示在公开区域。"
 
-#: apps/editors/helpers.py:550
+#: apps/editors/helpers.py:556
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "这将退回一个公开附加组件的一个版本并从审核队列中移除。"
 
-#: apps/editors/helpers.py:553
+#: apps/editors/helpers.py:559
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "这将会标记附加组件及其最新版本和文件为公开。未来的版本将会放入沙盒中等待审核员审核。"
 
-#: apps/editors/helpers.py:626
+#: apps/editors/helpers.py:632
 msgid "add-on"
 msgstr "附加组件"
 
-#: apps/editors/helpers.py:821 apps/editors/helpers.py:841
+#: apps/editors/helpers.py:937 apps/editors/helpers.py:957
 msgid "Flagged"
 msgstr "已标记"
 
-#: apps/editors/helpers.py:825 apps/editors/helpers.py:844
+#: apps/editors/helpers.py:941 apps/editors/helpers.py:960
 msgid "Updates"
 msgstr "更新"
 
@@ -7495,56 +7519,56 @@ msgstr "主题提交标记供审核"
 msgid "A question about your Theme submission"
 msgstr "您提交的主题的一个问题"
 
-#: apps/editors/views.py:130
+#: apps/editors/views.py:143
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
 
-#: apps/editors/views.py:131
+#: apps/editors/views.py:144
 msgid "Passable (5 to 10 days)"
 msgstr "可通过（五至十天）"
 
-#: apps/editors/views.py:132
+#: apps/editors/views.py:145
 msgid "Overdue (Over 10 days)"
 msgstr "逾期（超过十天）"
 
-#: apps/editors/views.py:459
+#: apps/editors/views.py:502
 msgid "An unknown error occurred"
 msgstr "发生未知错误"
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:555
 msgid "Self-reviews are not allowed."
 msgstr "不允许自我审核。"
 
-#: apps/editors/views.py:533
+#: apps/editors/views.py:577
 msgid "Review successfully processed."
 msgstr "审核处理成功。"
 
-#: apps/editors/views.py:729
+#: apps/editors/views.py:775
 msgid "was approved"
 msgstr "已通过审核"
 
-#: apps/editors/views.py:730
+#: apps/editors/views.py:776
 msgid "given preliminary review"
 msgstr "已给予初步审核"
 
-#: apps/editors/views.py:731
+#: apps/editors/views.py:777
 msgid "rejected"
 msgstr "已拒绝"
 
-#: apps/editors/views.py:732
+#: apps/editors/views.py:778
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "已向上呈报"
 
-#: apps/editors/views.py:734
+#: apps/editors/views.py:780
 msgid "needs more information"
 msgstr "需要更多信息"
 
-#: apps/editors/views.py:735
+#: apps/editors/views.py:781
 msgid "needs super review"
 msgstr "需要超级审核"
 
-#: apps/editors/views.py:736
+#: apps/editors/views.py:782
 msgid "commented"
 msgstr "已留言"
 
@@ -7745,7 +7769,7 @@ msgstr "每日消息"
 msgid "Update message of the day"
 msgstr "更新每日消息"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:219
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:227
 msgid "Save"
 msgstr "保存"
 
@@ -7790,19 +7814,19 @@ msgstr "每月效绩"
 msgid "All-time Point Breakdown by Type"
 msgstr "全程故障点（按类型）"
 
-#: apps/editors/templates/editors/performance.html:74
+#: apps/editors/templates/editors/performance.html:76
 msgid "Total"
 msgstr "总共"
 
-#: apps/editors/templates/editors/performance.html:79
+#: apps/editors/templates/editors/performance.html:81
 msgid "Month"
 msgstr "月"
 
-#: apps/editors/templates/editors/performance.html:86
+#: apps/editors/templates/editors/performance.html:88
 msgid "Year"
 msgstr "年"
 
-#: apps/editors/templates/editors/performance.html:93
+#: apps/editors/templates/editors/performance.html:95
 msgid "All-Time"
 msgstr "全部时间"
 
@@ -7842,7 +7866,7 @@ msgstr "版本说明 / 给审核员的备注"
 msgid "There are currently no add-ons of this type to review."
 msgstr "目前此类型下没有要审核的附加组件。"
 
-#: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:91
+#: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:85
 msgid "Helpful Links:"
 msgstr "有用的链接："
 
@@ -7863,7 +7887,7 @@ msgstr "审核 {0}"
 msgid "Add-on user change history"
 msgstr "附加组件用户变化历史记录"
 
-#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:261
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:269
 msgid "Add-on History"
 msgstr "附加组件历史"
 
@@ -7899,39 +7923,39 @@ msgstr "您依然可以提交此表单，但请在确保它不会发生冲突时
 msgid "Insert canned response..."
 msgstr "插入一项预置的回复..."
 
-#: apps/editors/templates/editors/review.html:185
+#: apps/editors/templates/editors/review.html:184
 msgid "Tested on:"
 msgstr "已测试于："
 
-#: apps/editors/templates/editors/review.html:215
+#: apps/editors/templates/editors/review.html:223
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
-#: apps/editors/templates/editors/review.html:232
+#: apps/editors/templates/editors/review.html:240
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr "此白板用来放置有关开发者与网站编辑之间对此附加组件（不限版本）的交流信息。这对两方可见并可编辑。"
 
-#: apps/editors/templates/editors/review.html:236
+#: apps/editors/templates/editors/review.html:244
 msgid "Update the whiteboard"
 msgstr "更新白板"
 
-#: apps/editors/templates/editors/review.html:252 apps/editors/templates/editors/review.html:253
+#: apps/editors/templates/editors/review.html:260 apps/editors/templates/editors/review.html:261
 msgid "(admin)"
 msgstr "（管理员）"
 
-#: apps/editors/templates/editors/review.html:253
+#: apps/editors/templates/editors/review.html:261
 msgid "Admin Page"
 msgstr "管理员页面"
 
-#: apps/editors/templates/editors/review.html:258
+#: apps/editors/templates/editors/review.html:266
 msgid "Review This Add-on"
 msgstr "审核此附加组件"
 
-#: apps/editors/templates/editors/review.html:260
+#: apps/editors/templates/editors/review.html:268
 msgid "More Information"
 msgstr "更多信息"
 
-#: apps/editors/templates/editors/review.html:262
+#: apps/editors/templates/editors/review.html:270
 msgid "Resolution"
 msgstr "决定"
 
@@ -8140,11 +8164,7 @@ msgstr "释放我的主题锁"
 msgid "Interactive Theme Queue"
 msgstr "交互主题队列"
 
-#: apps/editors/templates/editors/themes/queue_list.html:79
-msgid "There are currently no items of this type to review."
-msgstr "当前类别没有待审核的项目。"
-
-#: apps/editors/templates/editors/themes/queue_list.html:92
+#: apps/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
 msgstr "审核者指南"
 
@@ -8197,80 +8217,84 @@ msgstr "向艺术家提问"
 msgid "Describe your reason for flagging"
 msgstr "描述您标注的理由"
 
-#: apps/files/forms.py:87
+#: apps/files/forms.py:88
 msgid "Cannot diff a version against itself"
 msgstr "无法判断一个版本与他自身的差别"
 
-#: apps/files/helpers.py:153
+#: apps/files/helpers.py:154
 msgid "That file no longer exists."
 msgstr "此文件已不存在。"
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: apps/files/helpers.py:162
+#: apps/files/helpers.py:163
 msgid "File size is over the limit of {0}."
 msgstr "文件大小超过了{0}限制。"
 
-#: apps/files/helpers.py:176
+#: apps/files/helpers.py:177
 msgid "Problems decoding {0}."
 msgstr "解码 {0} 时遇到问题。"
 
-#: apps/files/helpers.py:186
+#: apps/files/helpers.py:187
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "此文件无法在线查看。请下载文件以查看内容。"
 
-#: apps/files/helpers.py:194
+#: apps/files/helpers.py:195
 msgid "This file is a directory."
 msgstr "此文件是一个目录。"
 
-#: apps/files/tasks.py:28
+#: apps/files/tasks.py:30
 msgid "There was an error accessing file %s. %s."
 msgstr "访问文件 %s 时遇到错误。%s。"
 
-#: apps/files/tasks.py:31
+#: apps/files/tasks.py:33
 msgid "There was an error accessing file %s."
 msgstr "访问文件 %s 时遇到错误。"
 
-#: apps/files/utils.py:259
+#: apps/files/utils.py:260
 msgid "Could not parse uploaded file."
 msgstr "无法解析上传的文件。"
 
-#: apps/files/utils.py:296
+#: apps/files/utils.py:297
 msgid "Invalid file name in archive: {0}"
 msgstr "无效文件名存在于压缩包：{0}"
 
-#: apps/files/utils.py:304
+#: apps/files/utils.py:305
 msgid "File exceeding size limit in archive: {0}"
 msgstr "超过体积限制的文件存在于压缩包：{0}"
 
-#: apps/files/utils.py:354
+#: apps/files/utils.py:355
 msgid "Invalid archive."
 msgstr "无效的压缩文件。"
 
-#: apps/files/utils.py:444 apps/files/utils.py:447
+#: apps/files/utils.py:445 apps/files/utils.py:448
 msgid "Could not parse install.rdf."
 msgstr "无法解析 install.rdf。"
 
-#: apps/files/utils.py:460
-msgid "Could not find a UUID."
-msgstr "无法找到 UUID。"
-
 #: apps/files/utils.py:462
-msgid "UUID doesn't match add-on."
-msgstr "UUID 与附加组件不匹配。"
+msgid "Could not find an add-on ID."
+msgstr ""
 
-#: apps/files/utils.py:466
-msgid "Duplicate UUID found."
-msgstr "发现重复的 UUID。"
+#: apps/files/utils.py:465
+msgid "Add-on ID must be 64 characters or less."
+msgstr ""
 
-#: apps/files/utils.py:469
+#: apps/files/utils.py:467
+msgid "Add-on ID doesn't match add-on."
+msgstr ""
+
+#: apps/files/utils.py:471
+msgid "Duplicate add-on ID found."
+msgstr ""
+
+#: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "版本号应少于 32 个字符。"
 
-#: apps/files/utils.py:472
+#: apps/files/utils.py:477
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.-_。"
 
-#: apps/files/utils.py:489
+#: apps/files/utils.py:494
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 与附加组件不匹配"
 
@@ -10080,10 +10104,6 @@ msgstr "添加评论"
 msgid "Log in to add a review"
 msgstr "登录以添加评论"
 
-#: apps/reviews/templates/reviews/mobile/add_form.html:13
-msgid "Title:"
-msgstr "职务："
-
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
 msgstr "尚未评分。"
@@ -11586,7 +11606,7 @@ msgstr "添加使用二进制的附加组件。"
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "附加组件选择采用严格的兼容性检查。"
 
-#: apps/versions/models.py:682
+#: apps/versions/models.py:689
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 
@@ -11688,6 +11708,10 @@ msgstr "其他应用程序"
 #: templates/base.html:131 templates/impala/base.html:173
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "创建您自已的收藏集，您必须一个 Mozilla 附加组件账户。"
+
+#: templates/base.html:158 templates/impala/base.html:194
+msgid "Footer logo"
+msgstr ""
 
 #: templates/categories.html:2
 msgid "Choose a category"

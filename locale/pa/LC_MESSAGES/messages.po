@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 09:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:56-0700\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,80 +46,80 @@ msgstr "ਤਜਰਬੇ"
 msgid "Add to {0}"
 msgstr "{0} ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ"
 
-#: apps/addons/forms.py:52
+#: apps/addons/forms.py:58
 msgid "This name is already in use. Please choose another."
 msgstr "ਇਹ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
-#: apps/addons/forms.py:63
+#: apps/addons/forms.py:69
 msgid "This slug is already in use. Please choose another."
 msgstr "ਇਹ ਸਲੱਗ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
-#: apps/addons/forms.py:66
+#: apps/addons/forms.py:72
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "\"%s\" ਸਲੱਗ ਨਹੀਂ ਕਰ ਸਕਦਾ| ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:85
+#: apps/addons/forms.py:91
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "ਗਲਤ ਟੈਗ: {0}"
 msgstr[1] "ਗਲਤ ਟੈਗ: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:95
+#: apps/addons/forms.py:101
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" ਇੱਕ ਰਾਖਵਾਂ ਟੈਗ ਹੈ ਅਤੇ ਵਰਤਿਆ ਨਹੀਂਂ ਜਾ ਸਕਦਾ।"
 msgstr[1] "\"{0}\" ਰਾਖਵੇਂ ਟੈਗ ਹਨ ਅਤੇ ਵਰਤੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ।"
 
-#: apps/addons/forms.py:103
+#: apps/addons/forms.py:109
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
 msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
 
-#: apps/addons/forms.py:109
+#: apps/addons/forms.py:115
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "ਗਲਤ ਅੱਖਰਾਂ ਨੂੰ ਹਟਾਉਣ ਤੋਂ ਬਾਅਦ ਸਾਰੇ ਟੈਗ ਕੋਲ %s ਜਾਂ ਇਸ ਤੋਂ ਘੱਟ ਅੱਖਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: apps/addons/forms.py:113
+#: apps/addons/forms.py:119
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: apps/addons/forms.py:226
+#: apps/addons/forms.py:232
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:230
+#: apps/addons/forms.py:236
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ ਕੇਵਲ {0} ਵਰਗ ਹੋ ਸਕਦਾ ਹਨ।"
 msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ ਕੇਵਲ {0} ਵਰਗ ਹੋ ਸਕਦੇ ਹਨ।"
 
-#: apps/addons/forms.py:238
+#: apps/addons/forms.py:244
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "ਫ਼ੁਟਕਲ ਵਰਗ ਹੋਰ ਵਰਗਾਂ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂਂ ਜਾ ਸਕਦਾ।"
 
-#: apps/addons/forms.py:361
+#: apps/addons/forms.py:367
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਡੇ ਕੋਲ ਉਸ ਲੋਕੇਲ ਵਿੱਚ ਇੱਕ ਨਾਂ, ਸੰਖੇਪ ਖੁਲਾਸਾ, ਅਤੇ ਵੇਰਵਾ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਤੁਸੀਂ %s ਭੁੱਲ ਗਏ ਹੋ।"
 
-#: apps/addons/forms.py:474 apps/addons/forms.py:565
+#: apps/addons/forms.py:481 apps/addons/forms.py:572
 msgid "A license must be selected."
 msgstr "ਇਕ ਲਾਇਸੰਸ ਚੁਣਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: apps/addons/forms.py:546
+#: apps/addons/forms.py:553
 msgid "Give Your Theme a Name."
 msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
 
-#: apps/addons/forms.py:552 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:559 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "ਤੁਹਾਡਾ ਥੀਮ ਦਾ ਵਰਣਨ ਕਰੋ।"
 
-#: apps/addons/forms.py:693
+#: apps/addons/forms.py:700
 msgid "Enter a new author's email address"
 msgstr "ਇੱਕ ਨਵੇਂ ਲੇਖਕ ਦਾ ਈਮੇਲ ਪਤਾ ਭਰੋ"
 
@@ -142,7 +142,7 @@ msgstr "ਉਪਭੋਗੀਆਂ ਕੋਲ ਇਸ ਰਕਮ ਨਾਲੋਂ ਵ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "ਉਪਭੋਗੀਆਂ ਨੂੰ ਹਮੇਸ਼ਾ ਐਡ-ਆਨ ਮੈਨੇਜਰ ਵਿੱਚ ਕਿਹਾ ਜਾਵੇਗਾ (ਫ਼ਾਇਰਫ਼ਾਕਸ 4 ਅਤੇ ਉਪਰੋਕਤ)"
 
-#: apps/addons/models.py:1891 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
+#: apps/addons/models.py:1882 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
@@ -226,8 +226,8 @@ msgstr "ਯੋਗਦਾਨ ਪਾਓ"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:243
-#: apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318 apps/devhub/templates/devhub/versions/list.html:352
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:89 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:258
+#: apps/devhub/templates/devhub/versions/list.html:292 apps/devhub/templates/devhub/versions/list.html:333 apps/devhub/templates/devhub/versions/list.html:367
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ਜਾਂ"
@@ -388,7 +388,7 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:316 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
+#: apps/addons/templates/addons/impala/details.html:314 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:77
 msgid "Privacy Policy"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
 
@@ -423,7 +423,7 @@ msgid ""
 "updates from this channel."
 msgstr "ਵਿਕਾਸ ਚੈਨਲ ਤੁਹਾਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਨਵੇਂ ਪ੍ਰਯੋਗਆਤਮਕ ਵਰਜਨ ਦੀ ਪਰਖ ਕਰਨ ਦਵੇਗਾ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਇਹ ਆਮ ਲੋਕਾਂ ਲਈ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ, ਤੁਹਾਡਾ ਇਸ ਚੈਨਲ ਤੋਂ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ।"
 
-#: apps/addons/templates/addons/details_box.html:211 apps/addons/templates/addons/impala/details.html:276
+#: apps/addons/templates/addons/details_box.html:211
 msgid "Install development version"
 msgstr "ਇੰਸਟਾਲ ਵਿਕਾਸ ਵਰਜਨ"
 
@@ -435,7 +435,7 @@ msgstr ""
 "<strong>ਸਾਵਧਾਨੀ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨ ਦੀ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਇੱਕ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ ਤਾਂ ਤੁਹਾਡਾ ਇਸ ਦੇ ਡਿਵੈਲਪਰ ਤੋਂ ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣੀਆਂ ਬੰਦ ਕਰਨ ਲਈ, "
 "ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
 
-#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:287
+#: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
 msgstr "ਵਰਜਨ {0}:"
 
@@ -454,7 +454,7 @@ msgstr "ਵਰਜਨ ਨੋਟ"
 msgid "End-User License Agreement for {0}"
 msgstr "ਲਈ ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ {0}"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:325
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:323
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ"
@@ -610,7 +610,7 @@ msgid "See all Themes by this Artist"
 msgstr "ਇਸ ਕਲਾਕਾਰ ਦੇ ਸਾਰੇ ਥੀਮ ਵੇਖੋ"
 
 #: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:38 apps/amo/templates/amo/side_nav.html:22
-#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:272
+#: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:280
 #: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
 msgid "Categories"
 msgstr "ਵਰਗ"
@@ -630,15 +630,15 @@ msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 msgid "License"
 msgstr "ਲਾਇਸੰਸ"
 
-#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:49
+#: apps/addons/templates/addons/persona_preview.html:12 apps/constants/base.py:48
 msgid "Awaiting Review"
 msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:176 apps/constants/base.py:43 apps/editors/helpers.py:56
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180 apps/constants/base.py:42 apps/editors/helpers.py:61
 msgid "Rejected"
 msgstr "ਠੁਕਰਾਇਆ"
 
-#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:155
+#: apps/addons/templates/addons/persona_preview.html:16 apps/amo/log.py:159
 msgid "Approved"
 msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
 
@@ -660,7 +660,7 @@ msgstr "ਜੋੜੋ"
 #: apps/addons/templates/addons/persona_preview.html:57 apps/bandwagon/templates/bandwagon/ajax_new.html:16 apps/bandwagon/templates/bandwagon/edit.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:16 apps/devhub/templates/devhub/addons/edit/admin.html:13 apps/devhub/templates/devhub/addons/edit/basic.html:10
 #: apps/devhub/templates/devhub/addons/edit/details.html:8 apps/devhub/templates/devhub/addons/edit/media.html:6 apps/devhub/templates/devhub/addons/edit/support.html:8
-#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:252
+#: apps/devhub/templates/devhub/addons/edit/technical.html:9 apps/devhub/templates/devhub/addons/submit/describe.html:29 apps/editors/templates/editors/review.html:260
 msgid "Edit"
 msgstr "ਸੋਧ"
 
@@ -749,10 +749,9 @@ msgstr "ਇਸ ਪਰਸੋਨਾ ਨੂੰ %(app)s %(new_version)s ਦੀ ਲ�
 
 #: apps/addons/templates/addons/popups.html:109
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
-"computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
+"harm your computer."
 msgstr ""
-"<strong>ਸਾਵਧਾਨ:</strong> ਇਹ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਮੌਜੀਲਾ ਵੱਲੋਂ ਨਹੀਂ ਕੀਤੀ ਗਈ ਅਤੇ ਫਾਇਰਫਾਕਸ ਦੇ ਜਾਰੀ ਵਰਜਨਾਂ ਤੇ ਇੰਸਟਾਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ । ਤੀਜੀ-ਧਿਰ ਦੇ ਸਾਫਟਵੇਅਰ ਇੰਸਟਾਲ ਕਰਦੇ ਸਮੇਂ ਸਾਵਧਾਨੀ ਵਰਤੋਂ ਜੋ ਤੁਹਾਨੂੰ ਕੰਪਿਊਟਰ ਦਾ ਨੁਕਸਾਨ ਕਰ ਸਕਦੇ ਹਨ।"
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -784,7 +783,7 @@ msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to
 msgstr "ਆਪਣੇ ਮੋਬਾਈਲ ਫ਼ਾਇਰਫ਼ਾਕਸ ਤੇ {0}ਚਾਹੀਦਾ? ਆਪਣੇ ਫ਼ੋਨ ਤੇ ਸਿੱਧਾ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਇਸ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰੋ। ( ਤੁਹਾਨੂੰ ਇੱਕ QR ਰੀਡਰ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਆਪਣੇ ਫ਼ੋਨ ਦਾ ਬਾਜ਼ਾਰ ਖੋਜੋ ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਨਹੀਂ ਹੈ।)"
 
 #: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:337
+#: apps/addons/templates/addons/impala/details.html:335
 msgid "Report Abuse"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
@@ -805,9 +804,9 @@ msgstr "ਰਿਪੋਰਟ ਭੇਜੋ"
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:90 apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:243 apps/devhub/templates/devhub/versions/list.html:277 apps/devhub/templates/devhub/versions/list.html:318
-#: apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
-#: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
+#: apps/devhub/templates/devhub/versions/list.html:224 apps/devhub/templates/devhub/versions/list.html:258 apps/devhub/templates/devhub/versions/list.html:292
+#: apps/devhub/templates/devhub/versions/list.html:333 apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16
+#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "ਰੱਦ"
 
@@ -819,37 +818,37 @@ msgstr "ਤੁਹਾਨੂੰ ਕੀ ਲੱਗਦਾ ਹੈ?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮੀਖਿਆ ਭੇਜਣ ਲਈ <a href=\"%(login)s\">ਲਾਗ ਇਨ</a> ਕਰੋ।"
 
-#: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:17
+#: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:13
+msgid "Title:"
+msgstr "ਸਿਰਲੇਖ:"
+
+#: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
 msgstr "ਸਮੀਖਿਆ:"
 
-#: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:16
+#: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
 msgstr "ਰੇਟਿੰਗ:"
 
-#: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/add.html:63
+#: apps/addons/templates/addons/review_add_box.html:20 apps/addons/templates/addons/impala/review_add_box.html:22 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
 msgstr "ਸਮੀਖਿਆ ਦਿਓ"
 
-#: apps/addons/templates/addons/review_add_box.html:24 apps/addons/templates/addons/impala/review_add_box.html:26
+#: apps/addons/templates/addons/review_add_box.html:25 apps/addons/templates/addons/impala/review_add_box.html:27
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆਵਾਂ ਵਿੱਚ ਬੱਗ ਰਿਪੋਰਟਾਂ ਪੋਸਟ ਨਾ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ ਐਡ-ਆਨ ਡਿਵੈਲਪਰਾਂ ਨੂੰ ਨਹੀਂ ਦਿੰਦੇ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਤੁਹਾਡਾ ਮੁੱਦਾ ਹਲ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਸੰਪਰਕ ਕਰਨ ਦੀ ਲੋੜ ਪੈ ਸਕਦੀ ਹੈ।"
 
-#: apps/addons/templates/addons/review_add_box.html:32 apps/addons/templates/addons/impala/review_add_box.html:35
+#: apps/addons/templates/addons/review_add_box.html:33 apps/addons/templates/addons/impala/review_add_box.html:36
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
 msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਸਹਾਇਤਾ ਕਿੱਥੋਂ ਲਈ ਜਾਵੇ ਇਹ ਜਾਣਨ ਲਈ <a href=\"%(support)s\">ਸਹਿਯੋਗ ਹਿੱਸਾ</a> ਵੇਖੋ।"
 
-#: apps/addons/templates/addons/review_add_box.html:38 apps/addons/templates/addons/impala/review_add_box.html:42 apps/pages/templates/pages/review_guide.html:3
+#: apps/addons/templates/addons/review_add_box.html:39 apps/addons/templates/addons/impala/review_add_box.html:43 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
 msgstr "ਹਿਦਾਇਤਾਂ ਦੀ ਸਮੀਖਿਆ"
 
-#: apps/addons/templates/addons/review_add_box.html:41 apps/addons/templates/addons/impala/review_add_box.html:45
-msgid "Detailed Review"
-msgstr "ਸਮੀਖਿਆ ਵੇਰਵਾ"
-
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:802 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:918 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ"
@@ -872,6 +871,10 @@ msgstr[1] ""
 msgctxt "tags_header_tags_title"
 msgid "Tags"
 msgstr "ਟੈਗ"
+
+#: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
+msgid "Icon for {0}"
+msgstr ""
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -986,6 +989,10 @@ msgstr "ਵਰਜਨ {0}"
 msgid "Info"
 msgstr "ਇੰਫ਼ੋ"
 
+#: apps/addons/templates/addons/impala/details.html:202 apps/devhub/templates/devhub/includes/addon_details.html:127
+msgid "Last Updated:"
+msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ:"
+
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
@@ -1023,15 +1030,15 @@ msgstr ""
 "ਵਿਕਾਸ ਚੈਨਲ ਤੁਹਾਨੂੰ ਇਸ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਨਵੇਂ ਪ੍ਰਯੋਗਆਤਮਕ ਵਰਜਨ ਦੀ ਪਰਖ ਕਰਨ ਦਵੇਗਾ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਇਹ ਆਮ ਲੋਕਾਂ ਲਈ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇ। ਇੱਕ ਵਾਰ ਤੁਸੀਂ ਵਿਕਾਸ ਵਰਜਨ ਇੰਸਟਾਲ ਕਰ ਲਿਆ, ਤੁਹਾਡਾ ਇਸ ਚੈਨਲ ਤੋਂ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਜਾਰੀ ਰਹੇਗਾ। ਵਿਕਾਸ ਅੱਪਡੇਟਾਂ ਲੈਣਾ ਬੰਦ "
 "ਕਰਨ ਲਈ, ਉੱਪਰ ਦਿੱਤੇ ਲਿੰਕ ਤੋਂ ਮੂਲ ਵਰਜਨ ਮੁੜ ਇੰਸਟਾਲ ਕਰੋ।"
 
-#: apps/addons/templates/addons/impala/details.html:280
-msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr "<strong>ਸਾਵਧਾਨ:</strong> ਇਸ ਐਡ-ਆਨ ਦੇ ਵਿਕਾਸ ਵਰਜਨਾਂ ਦੀ ਸਮੀਖਿਆ ਮੌਜੀਲਾ ਵੱਲੋਂ ਨਹੀਂ ਹੋਈ ਅਤੇ ਫਾਇਰਫਾਕਸ ਦੇ ਜਾਰੀ ਵਰਜਨਾਂ ਤੇ ਇੰਸਟਾਲ ਨਹੀਂ ਕੀਤੇ ਜਾ ਸਕਦੇ।"
+#: apps/addons/templates/addons/impala/details.html:279
+msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
+msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:296
+#: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:324 apps/addons/templates/addons/impala/details.html:336
+#: apps/addons/templates/addons/impala/details.html:313 apps/addons/templates/addons/impala/details.html:322 apps/addons/templates/addons/impala/details.html:334
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
 #: apps/users/templates/users/profile.html:122
 msgid "close"
@@ -1190,7 +1197,7 @@ msgstr "ਉਪਭੋਗੀ"
 msgid "Weekly Downloads"
 msgstr "ਹਫ਼ਤੇਵਾਰ ਡਾਊਨਲੋਡ"
 
-#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:782 apps/devhub/templates/devhub/versions/list.html:179
+#: apps/addons/templates/addons/mobile/details.html:99 apps/compat/templates/compat/reporter_detail.html:46 apps/devhub/forms.py:783 apps/devhub/templates/devhub/versions/list.html:176
 msgid "Version"
 msgstr "ਵਰਜਨ"
 
@@ -1268,7 +1275,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:178 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:99 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:183 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "ਥੀਮ"
@@ -1343,7 +1350,7 @@ msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 
-#: apps/amo/context_processors.py:101 apps/editors/helpers.py:76 apps/editors/helpers.py:96 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:101 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "ਸੰਪਾਦਕ ਟੂਲ"
 
@@ -1381,414 +1388,414 @@ msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
 msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
 
-#: apps/amo/log.py:17
+#: apps/amo/log.py:21
 msgid "{addon} was created."
 msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
 
-#: apps/amo/log.py:25
+#: apps/amo/log.py:29
 msgid "{addon} properties edited."
 msgstr "{addon} ਵਿਸ਼ੇਸਤਾਵਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
-#: apps/amo/log.py:31
+#: apps/amo/log.py:35
 msgid "{addon} description edited."
 msgstr "{addon} ਵੇਰਵੇ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
-#: apps/amo/log.py:37
+#: apps/amo/log.py:41
 msgid "Categories edited for {addon}."
 msgstr "{addon}ਲਈ ਵਰਗਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
-#: apps/amo/log.py:43
+#: apps/amo/log.py:47
 msgid "{0.name} ({1}) added to {addon}."
 msgstr "{0.name} ({1}) {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 
 #. L10n: {0} is the user being removed, {1} is their role.
-#: apps/amo/log.py:51
+#: apps/amo/log.py:55
 msgid "{0.name} ({1}) removed from {addon}."
 msgstr "{0.name} ({1}) {addon}ਵਿੱਚੋਂ ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:58
+#: apps/amo/log.py:62
 msgid "Contributions for {addon}."
 msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
 
-#: apps/amo/log.py:63 apps/amo/log.py:413
+#: apps/amo/log.py:67 apps/amo/log.py:417
 msgid "{addon} disabled."
 msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
 
-#: apps/amo/log.py:69
+#: apps/amo/log.py:73
 msgid "{addon} enabled."
 msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
 
-#: apps/amo/log.py:76
+#: apps/amo/log.py:80
 msgid "Stats set public for {addon}."
 msgstr "{addon} ਲਈ ਅੰਕੜੇ ਜਨਤਕ ਸੈੱਟ।"
 
-#: apps/amo/log.py:83
+#: apps/amo/log.py:87
 msgid "{addon} stats set to private."
 msgstr "{addon} ਅੰਕੜੇ ਨਿੱਜੀ ਤੇ ਸੈੱਟ।"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:90
+#: apps/amo/log.py:94
 msgid "{addon} status changed to {0}."
 msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
 
-#: apps/amo/log.py:97
+#: apps/amo/log.py:101
 msgid "Preview added to {addon}."
 msgstr "ਝਲਕ {addon} ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 
-#: apps/amo/log.py:103
+#: apps/amo/log.py:107
 msgid "Preview edited for {addon}."
 msgstr "{addon}ਲਈ ਝਲਕ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
-#: apps/amo/log.py:109
+#: apps/amo/log.py:113
 msgid "Preview deleted from {addon}."
 msgstr "ਝਲਕ {addon}ਤੋਂ ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:115
+#: apps/amo/log.py:119
 msgid "{version} added to {addon}."
 msgstr "{version} {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 
-#: apps/amo/log.py:122
+#: apps/amo/log.py:126
 msgid "{version} edited for {addon}."
 msgstr "{addon} ਲਈ {version}ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
 
 #. L10n: {0} is the version number
-#: apps/amo/log.py:130
+#: apps/amo/log.py:134
 msgid "Version {0} deleted from {addon}."
 msgstr "ਵਰਜਨ {0} {addon}ਤੋਂ ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:137
+#: apps/amo/log.py:141
 msgid "File {0.name} added to {version} of {addon}."
 msgstr "{addon}ਦੇ {version} ਵਿੱਚ File {0.name} ਸ਼ਾਮਲ ਹੋਇਆ।"
 
-#: apps/amo/log.py:148
+#: apps/amo/log.py:152
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
 
-#: apps/amo/log.py:154
+#: apps/amo/log.py:158
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
-#: apps/amo/log.py:164
+#: apps/amo/log.py:168
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
-#: apps/amo/log.py:165
+#: apps/amo/log.py:169
 msgid "Preliminarily approved"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇਆ।"
 
-#: apps/amo/log.py:175
+#: apps/amo/log.py:179
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
 
-#: apps/amo/log.py:185
+#: apps/amo/log.py:189
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} ਰੱਖਿਆ।"
 
-#: apps/amo/log.py:186
+#: apps/amo/log.py:190
 msgid "Retained"
 msgstr "ਰੱਖਿਆ"
 
-#: apps/amo/log.py:195
+#: apps/amo/log.py:199
 msgid "{addon} {version} escalated."
 msgstr "{addon} {version} ਵਧਾਇਆ।"
 
-#: apps/amo/log.py:196
+#: apps/amo/log.py:200
 msgid "Escalated"
 msgstr "ਵਧਾਇਆ"
 
-#: apps/amo/log.py:205
+#: apps/amo/log.py:209
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
-#: apps/amo/log.py:206
+#: apps/amo/log.py:210
 msgid "Review requested"
 msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
 
-#: apps/amo/log.py:214
+#: apps/amo/log.py:218
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ।"
 
-#: apps/amo/log.py:215
+#: apps/amo/log.py:219
 msgid "More information requested"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
-#: apps/amo/log.py:223
+#: apps/amo/log.py:227
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
-#: apps/amo/log.py:224
+#: apps/amo/log.py:228
 msgid "Super review requested"
 msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
 
-#: apps/amo/log.py:231
+#: apps/amo/log.py:235
 msgid "Comment on {addon} {version}."
 msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 
-#: apps/amo/log.py:232 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:500
+#: apps/amo/log.py:236 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:506
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "ਟਿੱਪਣੀ"
 
-#: apps/amo/log.py:241
+#: apps/amo/log.py:245
 msgid "{tag} added to {addon}."
 msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
 
-#: apps/amo/log.py:247
+#: apps/amo/log.py:251
 msgid "{tag} removed from {addon}."
 msgstr "{tag} {addon}ਤੋਂ ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:253
+#: apps/amo/log.py:257
 msgid "{addon} added to {collection}."
 msgstr "{addon} {collection}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
 
-#: apps/amo/log.py:259
+#: apps/amo/log.py:263
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:265
+#: apps/amo/log.py:269
 msgid "{review} for {addon} written."
 msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
 
 #. L10n: {0} is a category name.
-#: apps/amo/log.py:273
+#: apps/amo/log.py:277
 msgid "{addon} featured in {0}."
 msgstr "{addon} {0}ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ।"
 
 #. L10n: {0} is a category name.
-#: apps/amo/log.py:280
+#: apps/amo/log.py:284
 msgid "{addon} no longer featured in {0}."
 msgstr "{addon} {0} ਵਿੱਚ ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
 
-#: apps/amo/log.py:285
+#: apps/amo/log.py:289
 msgid "{addon} is now featured."
 msgstr "{addon} ਹੁਣ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
 
-#: apps/amo/log.py:291
+#: apps/amo/log.py:295
 msgid "{addon} is no longer featured."
 msgstr "{addon} ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
 
 #. L10n: {0} is the application, {1} is the version of the app
-#: apps/amo/log.py:299
+#: apps/amo/log.py:303
 msgid "{0} {1} added."
 msgstr "{0} {1} ਸ਼ਾਮਲ ਹੋਏ।"
 
 #. L10n: {0} is a user, {1} is their role
-#: apps/amo/log.py:306
+#: apps/amo/log.py:310
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{addon} ਲਈ {0.name}ਭੂਮਿਕਾ ਨੂੰ {1} ਵਿੱਚ ਬਦਲਿਆ।"
 
-#: apps/amo/log.py:314
+#: apps/amo/log.py:318
 msgid "{addon} is now licensed under {0.name}."
 msgstr "{addon} ਨੂੰ ਹੁਣ {0.name}ਦੇ ਅਧੀਨ ਲਾਇਸੰਸ ਮਿਲਿਆ।"
 
-#: apps/amo/log.py:320
+#: apps/amo/log.py:324
 msgid "{addon} policy changed."
 msgstr "{addon} ਨੀਤੀ ਬਦਲ ਗਈ।"
 
-#: apps/amo/log.py:326
+#: apps/amo/log.py:330
 msgid "{addon} icon changed."
 msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
 
-#: apps/amo/log.py:332
+#: apps/amo/log.py:336
 msgid "{review} for {addon} approved."
 msgstr "{addon} ਲਈ {review} ਸਵੀਕਾਰ ਹੋਇਆ।"
 
-#: apps/amo/log.py:333
+#: apps/amo/log.py:337
 msgid "{user} approved {review} for {addon}."
 msgstr "{user} ਨੇ {addon} ਲਈ {review}ਸਵੀਕਾਰ ਕੀਤਾ।"
 
-#: apps/amo/log.py:342
+#: apps/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
 msgstr "{addon} ਦੀ {review} ਸਮੀਖਿਆ ਹਟਾਈ।"
 
-#: apps/amo/log.py:343
+#: apps/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
 msgstr "{addon} ਦੀ {user} {review} ਹਟਾਈ।"
 
-#: apps/amo/log.py:350
+#: apps/amo/log.py:354
 msgid "Application max version for {version} updated."
 msgstr "{version} ਲਈ ਐਪਲੀਕੇਸ਼ਨ ਮੈਕਸ ਵਰਜਨ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
-#: apps/amo/log.py:355
+#: apps/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
 msgstr "ਲੇਖਕਾਂ ਨੂੰ {version} ਦੀ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਈਮੇਲ ਕੀਤੀ ਗਈ।"
 
-#: apps/amo/log.py:360
+#: apps/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਭੇਜੀ ਗਈ।"
 
-#: apps/amo/log.py:365
+#: apps/amo/log.py:369
 msgid "Password changed."
 msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ।"
 
-#: apps/amo/log.py:370
+#: apps/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
 msgstr "{addon} ਦੀ PayPal ਨਾਲ ਪੜਤਾਲ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 
-#: apps/amo/log.py:375
+#: apps/amo/log.py:379
 msgid "{addon} manifest updated."
 msgstr "{addon} ਜ਼ਾਹਰ ਹੋਣਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
-#: apps/amo/log.py:381
+#: apps/amo/log.py:385
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਜਨਤਕ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ।"
 
-#: apps/amo/log.py:382
+#: apps/amo/log.py:386
 msgid "Approved but waiting"
 msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
-#: apps/amo/log.py:390
+#: apps/amo/log.py:394
 msgid "{addon} purchased."
 msgstr "{addon} ਖਰੀਦਿਆ ਗਿਆ।"
 
-#: apps/amo/log.py:395
+#: apps/amo/log.py:399
 msgid "{addon} installed."
 msgstr "{addon} ਇੰਸਟਾਲ ਹੋਇਆ।"
 
-#: apps/amo/log.py:400
+#: apps/amo/log.py:404
 msgid "Account updated."
 msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
-#: apps/amo/log.py:405
+#: apps/amo/log.py:409
 msgid "Escalation cleared for {addon}."
 msgstr "{addon}ਲਈ ਅੱਗੇ ਵੱਧਣਾ ਸਾਫ਼ ਹੋਇਆ।"
 
-#: apps/amo/log.py:406
+#: apps/amo/log.py:410
 msgid "Escalation cleared"
 msgstr "ਅੱਗੇ ਵੱਧਣਾ ਸਾਫ਼ ਹੋਇਆ"
 
-#: apps/amo/log.py:414
+#: apps/amo/log.py:418
 msgid "App disabled"
 msgstr "ਐਪ ਅਯੋਗ ਹੋਈ"
 
-#: apps/amo/log.py:421
+#: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr "ਜਿਆਦਾ ਗਿਣਤੀ ਵਿੱਚ ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ ਕਾਰਨ {addon} ਅੱਗੇ ਵਧਿਆ।"
 
-#: apps/amo/log.py:422
+#: apps/amo/log.py:426
 msgid "High Abuse Reports"
 msgstr "ਜਿਆਦਾ ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
 
-#: apps/amo/log.py:429
+#: apps/amo/log.py:433
 msgid "{addon} escalated by reviewer."
 msgstr "ਸਮੀਖਿਅਕ ਨੇ {addon} ਅੱਗੇ ਵਧਾਇਆ।"
 
-#: apps/amo/log.py:430
+#: apps/amo/log.py:434
 msgid "Reviewer escalation"
 msgstr "ਸਮੀਖਿਅਕ ਅੱਗੇ ਵਧਣਾ"
 
-#: apps/amo/log.py:438
+#: apps/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video."
 msgstr "ਵੀਡੀਓ ਨਾਲ ਇੱਕ ਸਮੱਸਿਆ ਆਉਣ ਕਾਰਨ ਵੀਡੀਓ {addon} ਤੋਂ ਹਟਾਈ ਗਈ।"
 
-#: apps/amo/log.py:440
+#: apps/amo/log.py:444
 msgid "Video removed"
 msgstr "ਵੀਡੀਓ ਹਟਾਈ"
 
-#: apps/amo/log.py:445
+#: apps/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
 msgstr "ਨਵੇਂ ਜੰਤਰ(s) ਸ਼ਾਮਲ ਹੋਣ ਕਾਰਨ {addon} ਦੀ ਮੁੜ-ਸਮੀਖਿਆ।"
 
-#: apps/amo/log.py:446
+#: apps/amo/log.py:450
 msgid "Device(s) Added"
 msgstr "ਜੰਤਰ(s) ਸ਼ਾਮਲ"
 
-#: apps/amo/log.py:453
+#: apps/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
 msgstr "{addon} ਜੰਤਰ ਸਹਿਯੋਗ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਖੁਦ ਬਦਲਿਆ ਗਿਆ।"
 
-#: apps/amo/log.py:454
+#: apps/amo/log.py:458
 msgid "Device(s) Changed by Reviewer"
 msgstr "ਜੰਤਰ(s) ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਬਦਲੇ ਗਏ"
 
-#: apps/amo/log.py:471
+#: apps/amo/log.py:475
 msgid "Created: {0}."
 msgstr "ਰਚਿਆ: {0}।"
 
-#: apps/amo/log.py:477
+#: apps/amo/log.py:481
 msgid "Edited field: {2} set to: {0}."
 msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
 
-#: apps/amo/log.py:483
+#: apps/amo/log.py:487
 msgid "Deleted: {1}."
 msgstr "ਹਟਾਇਆ: {1}।"
 
-#: apps/amo/log.py:489
+#: apps/amo/log.py:493
 msgid "User {user} edited, reason: {1}"
 msgstr "ਉਪਭੋਗੀ {user} ਸੋਧਿਆ ਗਿਆ, ਕਾਰਨ: {1}"
 
-#: apps/amo/log.py:495
+#: apps/amo/log.py:499
 msgid "User {user} anonymized."
 msgstr "ਉਪਭੋਗੀ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
 
-#: apps/amo/log.py:501
+#: apps/amo/log.py:505
 msgid "User {user} restricted."
 msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
 
-#: apps/amo/log.py:507
+#: apps/amo/log.py:511
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "ਐਡਮਿਨ {0} ਨੇ { user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
 
-#: apps/amo/log.py:514
+#: apps/amo/log.py:518
 msgid "{review} for {addon} updated."
 msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
 
-#: apps/amo/log.py:520
+#: apps/amo/log.py:524
 msgid "{addon} reviewed."
 msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
 
-#: apps/amo/log.py:526
+#: apps/amo/log.py:530
 msgid "User {0.name} added to {group}."
 msgstr "ਉਪਭੋਗੀ {0.name} ਨੂੰ {group}ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।"
 
-#: apps/amo/log.py:534
+#: apps/amo/log.py:538
 msgid "User {0.name} removed from {group}."
 msgstr "{group} ਤੋਂ ਉਪਭੋਗੀ {0.name} ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:541
+#: apps/amo/log.py:545
 msgid "{addon} minimum requirements manually changed by reviewer."
 msgstr "{addon} ਲਈ ਘੱਟੋ ਘੱੱਟ ਜ਼ਰੂਰਤਾਂ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਹੱਥੀਂ ਬਦਲੀਆਂ ਗਈਆਂ।"
 
-#: apps/amo/log.py:542
+#: apps/amo/log.py:546
 msgid "Requirements Changed by Reviewer"
 msgstr "ਜ਼ਰੂਰਤਾਂ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਹੱਥੀਂ ਬਦਲੀਆਂ ਗਈਆਂ"
 
-#: apps/amo/log.py:549
+#: apps/amo/log.py:553
 msgid "{addon} minimum requirements manually changed."
 msgstr "{addon} ਲਈ ਘੱਟੋ ਘੱਟ ਜ਼ਰੂਰਤਾਂ ਹੱਥੀਂ ਬਦਲੀਆਂ।"
 
-#: apps/amo/log.py:550
+#: apps/amo/log.py:554
 msgid "Requirements Changed"
 msgstr "ਜ਼ਰੂਰਤਾਂ ਬਦਲੀਆਂ।"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:558
+#: apps/amo/log.py:562
 msgid "{version} status changed to {0}."
 msgstr "{version} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
 
 #. L10n: {0} is the status
-#: apps/amo/log.py:565
+#: apps/amo/log.py:569
 msgid "User {0.name} {0.id} deleted via lookup tool."
 msgstr "ਉਪਭੋਗੀ {0.name} {0.id} ਲੁੱਕਅੱਪ ਟੂਲ ਦੁਆਰਾ ਹਟਾਇਆ।"
 
-#: apps/amo/log.py:571
+#: apps/amo/log.py:575
 msgid "{addon} content rating changed to Adult."
 msgstr "{addon} ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਬਾਲਗ ਵਿੱਚ ਬਦਲੀ ਗਈ।"
 
-#: apps/amo/log.py:577
+#: apps/amo/log.py:581
 msgid "{addon} content rating changed."
 msgstr "{addon} ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਬਦਲ ਗਈ।"
 
-#: apps/amo/log.py:582
+#: apps/amo/log.py:586
 msgid "{addon} unlisted."
 msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
 
-#: apps/amo/log.py:588 apps/amo/log.py:594
+#: apps/amo/log.py:592 apps/amo/log.py:598
 msgid "{file} was signed."
 msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 
 #. L10n: {0} is the add-on GUID.
-#: apps/amo/log.py:602
+#: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
@@ -1893,7 +1900,7 @@ msgid "Explore"
 msgstr "ਪੜਚੋਲ"
 
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65 apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100 apps/browse/templates/browse/base_listing.html:7
-#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:171 templates/menu_links.html:8
+#: apps/browse/templates/browse/creatured.html:10 apps/browse/templates/browse/impala/base_listing.html:37 apps/constants/base.py:176 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
@@ -1923,7 +1930,7 @@ msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 msgid "Add-ons for Mobile"
 msgstr "ਮੋਬਾਈਲ ਲਈ ਐਡ-ਆਨ"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:174 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:179 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "ਖੋਜ ਟੂਲ"
 
@@ -2424,7 +2431,7 @@ msgid "Delete {0}"
 msgstr "ਹਟਾਓ {0}"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:13 apps/devhub/templates/devhub/addons/listing/item_actions.html:14 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
-#: apps/devhub/templates/devhub/versions/list.html:144 apps/devhub/templates/devhub/versions/list.html:165 apps/devhub/templates/devhub/versions/list.html:185
+#: apps/devhub/templates/devhub/versions/list.html:141 apps/devhub/templates/devhub/versions/list.html:162 apps/devhub/templates/devhub/versions/list.html:182
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
@@ -2467,7 +2474,7 @@ msgid "Save Changes"
 msgstr "ਤਬਦੀਲੀ ਸੰਭਾਲ੍ਹੋ"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:9 apps/bandwagon/templates/bandwagon/edit_contributors.html:12 apps/bandwagon/templates/bandwagon/edit_contributors.html:17
-#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:132
+#: apps/bandwagon/templates/bandwagon/edit_contributors.html:58 apps/constants/base.py:137
 msgid "Owner"
 msgstr "ਮਾਲਕ"
 
@@ -2614,7 +2621,7 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਇੱਕ ਐਡ-ਆਨ ਸ਼ਾਮਲ ਕਰ ਲਈ, ਉਸਦਾ ਨਾਂ ਹੇਠ ਦਿੱਤੇ ਬਾਕਸ ਵਿੱਚ ਦਰਜ ਕਰੋ ਅਤੇ ਐਂਟਰ ਦੱਬੋ। ਤੁਸੀਂ ਐਡ-ਆਨ ਨੂੰ ਬਾਅਦ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਪੂਰੀ ਸਾਈਟ ਵਿੱੱਚ ਦਿੱਤੇ <strong>ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਜੋੜੋ</strong> ਲਿੰਕਾਂ ਦੀ ਵੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:431 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17 apps/constants/base.py:436 apps/devhub/templates/devhub/addons/activity.html:62 apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "ਐਡ-ਆਨ"
 
@@ -2626,7 +2633,7 @@ msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਦਾ ਨਾਂ ਦਰ�
 msgid "Add to Collection"
 msgstr "ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਜੋੜੋ"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:817 apps/editors/helpers.py:837
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:933 apps/editors/helpers.py:953
 msgid "Pending"
 msgstr "ਅਧੂਰਾ"
 
@@ -2802,7 +2809,7 @@ msgstr "ਤੁਹਾਡੇ ਲੋਕੇਲ ਵਿੱਚ ਉੱਪਲਬਧ ਭ�
 msgid "Language"
 msgstr "ਭਾਸ਼ਾ"
 
-#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:160
+#: apps/browse/templates/browse/language_tools.html:42 apps/browse/templates/browse/language_tools.html:64 apps/constants/base.py:165
 msgid "Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
@@ -2863,7 +2870,7 @@ msgstr " <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>ਤੇ ਹ
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
 msgstr "<a href=\"https://developer.mozilla.org/\">ਮੌਜੀਲਾ ਡਿਵੈਲਪਰ ਕੇਂਦਰ</a>ਤੇ <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\"> ਆਪਣੇ ਆਪ ਬਣਾਓ"
 
-#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:172
+#: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:177
 msgid "Complete Themes"
 msgstr "ਮੁਕਮੰਲ ਥੀਮ"
 
@@ -3029,7 +3036,8 @@ msgstr "ਬਾਈਨਰੀ"
 msgid "Non-binary"
 msgstr "ਨਾਨ-ਬਾਈਨਰੀ"
 
-#: apps/compat/views.py:85 apps/constants/base.py:419 apps/devhub/forms.py:162
+#. Review points sources other than add-ons and themes.
+#: apps/compat/views.py:85 apps/constants/base.py:424 apps/devhub/forms.py:162 apps/editors/templates/editors/performance.html:75
 msgid "Other"
 msgstr "ਦੂਜੇ"
 
@@ -3053,7 +3061,7 @@ msgstr "ਸਾਰੇ ਐਡ-ਆਨ ਵਿੱਚੋਂ ਚੋਟੀ ਦੇ 95%"
 msgid "All active add-ons"
 msgstr "ਸਾਰੇ ਕਾਰਜਸ਼ੀਲ ਐਡ-ਆਨ"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:432
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:437
 msgid "App"
 msgstr "ਐੱਪ"
 
@@ -3125,7 +3133,7 @@ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੁਆਰਾ ਫ਼ਿਲਟਰ"
 msgid "Report Type"
 msgstr "ਰਿਪਰੋਟ ਟਾਈਪ"
 
-#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:779 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:110 apps/zadmin/forms.py:45
+#: apps/compat/templates/compat/reporter_detail.html:47 apps/devhub/forms.py:780 apps/devhub/templates/devhub/addons/ajax_compat_update.html:17 apps/editors/forms.py:111 apps/zadmin/forms.py:45
 msgid "Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ"
 
@@ -3201,288 +3209,296 @@ msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਟੈਬਲੇਟ"
 msgid "Firefox OS"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ OS"
 
-#: apps/constants/base.py:26
+#: apps/constants/base.py:25
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
 
-#: apps/constants/base.py:27
+#: apps/constants/base.py:26
 msgid "Awaiting Preliminary Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
-#: apps/constants/base.py:28
+#: apps/constants/base.py:27
 msgid "Awaiting Full Review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
-#: apps/constants/base.py:29 apps/constants/base.py:50
+#: apps/constants/base.py:28 apps/constants/base.py:49
 msgid "Fully Reviewed"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਹੋਈ"
 
-#: apps/constants/base.py:30 apps/constants/base.py:51
+#: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Disabled by Mozilla"
 msgstr "ਮੌਜੀਲਾ ਵੱਲੋਂ ਅਯੋਗ ਕੀਤਾ"
 
-#: apps/constants/base.py:31 apps/constants/base.py:53
+#: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Preliminarily Reviewed"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਹੋਈ"
 
-#: apps/constants/base.py:32
+#: apps/constants/base.py:31
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਹੋਈ ਅਤੇ ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
-#: apps/constants/base.py:34 apps/editors/helpers.py:805 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:33 apps/editors/helpers.py:921 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "ਹਟਾਇਆ"
 
-#: apps/constants/base.py:39
+#: apps/constants/base.py:38
 msgid "Pending approval"
 msgstr "ਮਨਜ਼ੂਰੀ ਬਕਾਇਆ"
 
-#: apps/constants/base.py:45
+#: apps/constants/base.py:44
 msgid "Flagged for further review"
 msgstr "ਹੋਰ ਸਮੀਖਿਆ ਲਈ ਫ਼ਲੈਗ ਕੀਤਾ"
 
-#: apps/constants/base.py:52
+#: apps/constants/base.py:51
 msgid "Beta"
 msgstr "ਬੀਟਾ"
 
-#: apps/constants/base.py:121
+#: apps/constants/base.py:126
 msgid "Full"
 msgstr "ਪੂੂਰਾ"
 
-#: apps/constants/base.py:122
+#: apps/constants/base.py:127
 msgid "Preliminary"
 msgstr "ਸ਼ੁਰੂਆਤੀ"
 
-#: apps/constants/base.py:133 apps/users/notifications.py:157
+#: apps/constants/base.py:138 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "ਡਿਵੈਲਪਰ"
 
-#: apps/constants/base.py:134
+#: apps/constants/base.py:139
 msgid "Viewer"
 msgstr "ਦਰਸ਼ਕ"
 
-#: apps/constants/base.py:135 templates/mobile/header.html:7
+#: apps/constants/base.py:140 templates/mobile/header.html:7
 msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
 
-#: apps/constants/base.py:157 apps/constants/base.py:170 apps/constants/platforms.py:11
+#: apps/constants/base.py:162 apps/constants/base.py:175 apps/constants/platforms.py:11
 msgid "Any"
 msgstr "ਕੋਈ"
 
-#: apps/constants/base.py:158
+#: apps/constants/base.py:163
 msgid "Extension"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
-#: apps/constants/base.py:159
+#: apps/constants/base.py:164
 msgid "Complete Theme"
 msgstr "ਮੁਕੰਮਲ ਥੀਮ"
 
-#: apps/constants/base.py:161
+#: apps/constants/base.py:166
 msgid "Search Engine"
 msgstr "ਖੋਜ ਇੰਜਨ"
 
-#: apps/constants/base.py:162
+#: apps/constants/base.py:167
 msgid "Language Pack (Application)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਪਲੀਕੇਸ਼ਨ)"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:168
 msgid "Language Pack (Add-on)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:169
 msgid "Plugin"
 msgstr "ਪਲੱਗਇਨ"
 
-#: apps/constants/base.py:165 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
+#: apps/constants/base.py:170 apps/editors/templates/editors/includes/search_results_themes.html:5 apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8 apps/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
 msgstr "ਥੀਮ"
 
-#: apps/constants/base.py:173
+#: apps/constants/base.py:178
 msgid "Dictionaries"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
-#: apps/constants/base.py:175
+#: apps/constants/base.py:180
 msgid "Language Packs (Application)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਪਲੀਕੇਸ਼ਨ)"
 
-#: apps/constants/base.py:176
+#: apps/constants/base.py:181
 msgid "Language Packs (Add-on)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
-#: apps/constants/base.py:177
+#: apps/constants/base.py:182
 msgid "Plugins"
 msgstr "ਪਲੱਗਇਨ"
 
-#: apps/constants/base.py:242
+#: apps/constants/base.py:247
 msgid "Free"
 msgstr "ਮੁਫ਼ਤ"
 
-#: apps/constants/base.py:243
+#: apps/constants/base.py:248
 msgid "Premium"
 msgstr "ਪ੍ਰੀਮੀਅਮ"
 
-#: apps/constants/base.py:244
+#: apps/constants/base.py:249
 msgid "Premium with in-app payments"
 msgstr "ਇਨ-ਐਪ ਭੁਗਤਾਨਾਂ ਨਾਲ ਪ੍ਰੀਮੀਅਮ"
 
-#: apps/constants/base.py:245
+#: apps/constants/base.py:250
 msgid "Free with in-app payments"
 msgstr "ਇਨ-ਐਪ ਭੁਗਤਾਨਾਂ ਨਾਲ ਮੁਫ਼ਤ"
 
-#: apps/constants/base.py:246
+#: apps/constants/base.py:251
 msgid "I'll use my own system for in-app payments"
 msgstr "ਇਨ-ਐਪ ਭੁਗਤਾਨਾਂ ਲਈ ਮੈਂ ਮੇਰੇ ਆਪਣੇ ਸਿਸਟਮ ਵਰਤੋਂ ਕਰਾਂਗਾ।"
 
-#: apps/constants/base.py:302
+#: apps/constants/base.py:307
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "ਕੇਵਲ ਇਸ ਐਡ-ਆਨ ਸਫ਼ੇ ਅਤੇ ਡਿਵੈਲਪਰ ਪ੍ਰੋਫ਼ਾਈਲ ਤੇ ਪੁੱਛੋ"
 
-#: apps/constants/base.py:303
+#: apps/constants/base.py:308
 msgid "Ask after users start downloading this add-on"
 msgstr "ਉਪਭੋਗੀ ਨੂੰ ਇਸ ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਬਾਅਦ ਪੁੱਛੋ"
 
-#: apps/constants/base.py:304
+#: apps/constants/base.py:309
 msgid "Ask before users can download this add-on"
 msgstr "ਉਪਭੋਗੀਆਂ ਨੂੰ ਇਸ ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਪੁੱਛੋ"
 
-#: apps/constants/base.py:420
+#: apps/constants/base.py:425
 msgid "Exception"
 msgstr "ਅਪਵਾਦ"
 
-#: apps/constants/base.py:421
+#: apps/constants/base.py:426
 msgid "Release"
 msgstr "ਰਿਲੀਜ਼"
 
-#: apps/constants/base.py:422
+#: apps/constants/base.py:427
 msgid "Change"
 msgstr "ਬਦਲੋ"
 
-#: apps/constants/base.py:433
+#: apps/constants/base.py:438
 msgid "Persona"
 msgstr "ਪਰਸੋਨਾ"
 
-#: apps/constants/base.py:464
+#: apps/constants/base.py:471
 msgid "Manual Reviewer Points"
 msgstr "ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਅਕ ਅੰਕ"
 
-#: apps/constants/base.py:465
+#: apps/constants/base.py:472
 msgid "Full Add-on Review"
 msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:466
+#: apps/constants/base.py:473
 msgid "Preliminary Add-on Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:467
+#: apps/constants/base.py:474
 msgid "Updated Add-on Review"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋੋਈ"
 
-#: apps/constants/base.py:468
+#: apps/constants/base.py:475
 msgid "Full Dictionary Review"
 msgstr "ਪੂਰੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:469
+#: apps/constants/base.py:476
 msgid "Preliminary Dictionary Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:470
+#: apps/constants/base.py:477
 msgid "Updated Dictionary Review"
 msgstr "ਸ਼ਬਦਕੋਸ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-#: apps/constants/base.py:471
+#: apps/constants/base.py:478
 msgid "Full Language Pack Review"
 msgstr "ਪੂਰੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:472
+#: apps/constants/base.py:479
 msgid "Preliminary Language Pack Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:473
+#: apps/constants/base.py:480
 msgid "Updated Language Pack Review"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-#: apps/constants/base.py:474
+#: apps/constants/base.py:481
+msgid "Bonus for overdue reviews"
+msgstr ""
+
+#: apps/constants/base.py:482
+msgid "Days Before Bonus Points Applied"
+msgstr ""
+
+#: apps/constants/base.py:483
 msgid "Theme Review"
 msgstr "ਥੀਮ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:475
+#: apps/constants/base.py:484
 msgid "Full Search Provider Review"
 msgstr "ਪੂਰੇ ਖੋਜ ਪ੍ਰਦਾਤਾ ਦੀ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:476
+#: apps/constants/base.py:485
 msgid "Preliminary Search Provider Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:477
+#: apps/constants/base.py:486
 msgid "Updated Search Provider Review"
 msgstr "ਖੋਜ ਪ੍ਰਦਾਤਾ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-#: apps/constants/base.py:478
+#: apps/constants/base.py:487
 msgid "Complete Theme Review"
 msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:479
+#: apps/constants/base.py:488
 msgid "Preliminary Complete Theme Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:489
 msgid "Updated Complete Theme Review"
 msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹੋਈ"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:490
 msgid "Moderated Addon Review"
 msgstr "ਮੱਧਮ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:491
 msgid "Addon Review Moderation Reverted"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਸੰਜਮ ਵਾਪਸ ਲਿਆ"
 
-#: apps/constants/base.py:527
+#: apps/constants/base.py:538
 msgid "Level 1"
 msgstr "ਮਿਆਰ 1"
 
-#: apps/constants/base.py:528
+#: apps/constants/base.py:539
 msgid "Level 2"
 msgstr "ਮਿਆਰ 2"
 
-#: apps/constants/base.py:529
+#: apps/constants/base.py:540
 msgid "Level 3"
 msgstr "ਮਿਆਰ 3"
 
-#: apps/constants/base.py:530
+#: apps/constants/base.py:541
 msgid "Level 4"
 msgstr "ਮਿਆਰ 4"
 
-#: apps/constants/base.py:531
+#: apps/constants/base.py:542
 msgid "Level 5"
 msgstr "ਮਿਆਰ 5"
 
-#: apps/constants/base.py:532
+#: apps/constants/base.py:543
 msgid "Level 6"
 msgstr "ਮਿਆਰ 6"
 
-#: apps/constants/base.py:533
+#: apps/constants/base.py:544
 msgid "Level 7"
 msgstr ""
 
-#: apps/constants/base.py:534
+#: apps/constants/base.py:545
 msgid "Level 8"
 msgstr ""
 
-#: apps/constants/base.py:535
+#: apps/constants/base.py:546
 msgid "Level 9"
 msgstr ""
 
-#: apps/constants/base.py:544
+#: apps/constants/base.py:555
 msgid "Not signed"
 msgstr "ਦਸਤਖਤ ਨਹੀਂ ਹੋਏ"
 
-#: apps/constants/base.py:545
+#: apps/constants/base.py:556
 msgid "Signed for a full review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਲਈ ਦਸਤਖਤ ਹੋਏ"
 
-#: apps/constants/base.py:546
+#: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਲਈ ਦਸਤਖਤ ਹੋਏ"
 
@@ -3498,7 +3514,7 @@ msgstr "ਫ਼ਲੈਗ"
 msgid "Duplicate"
 msgstr "ਨਕਲ"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:491 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:497 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "ਰੱਦ"
 
@@ -3714,7 +3730,7 @@ msgstr "ਗਲਤ ਵਰਜਨ ਹੱਦ।"
 msgid "Need at least one compatible application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
 
-#: apps/devhub/forms.py:498 apps/devhub/forms.py:518
+#: apps/devhub/forms.py:498 apps/devhub/forms.py:519
 msgid "There was an error with your upload. Please try again."
 msgstr "ਤੁਹਾਡੇ ਅੱਪਲੋਡ ਵਿੱਚ ਇੱਕ ਖਾਮੀ ਆਈ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ ਕਰੋ।"
 
@@ -3726,79 +3742,79 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 msgid "Submit my add-on for manual review."
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
-#: apps/devhub/forms.py:533
+#: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਨੂੰ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ ਨਾ ਕਰੋ(ਬੀਟਾ)"
 
-#: apps/devhub/forms.py:534
+#: apps/devhub/forms.py:535
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
 msgstr "ਇਸ ਚੋਣ ਤੇ ਨਿਸ਼ਾਨ ਲਗਾਓ ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਆਪ ਵੰਡਣਾ ਤੈਅ ਕੀਤਾ ਅਤੇ ਕੇਵਲ ਇਸ ਨੂੰ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਹਸਤਾਖਰਿਤ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
 
-#: apps/devhub/forms.py:540
+#: apps/devhub/forms.py:541
 msgid "This add-on will be side-loaded via application installers."
 msgstr "ਇਹ ਐਡ-ਆਨ ਐਪਲੀਕੇਸ਼ਨ ਇੰਸਟਾਲਰਾਂ ਦੁਆਰਾ ਸਾਈਡ-ਲੋਡ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
-#: apps/devhub/forms.py:542
+#: apps/devhub/forms.py:543
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "ਸਾਈਡ-ਲੋਡ ਹੋਏ ਐਡ-ਆਨਾਂ ਦੇ ਕੋਡ ਦੀ ਸਮੀਖਿਆ ਮੌਜੀਲਾ ਵੱਲੋਂ ਕੀਤੀ ਜਾਵੇਗੀ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਦੀ ਉਹ ਹਸਤਾਖਰਿਤ ਹੋਣ ਅਤੇ ਉੱਚ ਗੁਣਵੱਤਾ ਮਿਆਰ ਤੇ ਰੱਖੇ ਜਾਣਗੇ।"
 
-#: apps/devhub/forms.py:560 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
+#: apps/devhub/forms.py:561 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ"
 
-#: apps/devhub/forms.py:561 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
+#: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:46 apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ"
 
-#: apps/devhub/forms.py:565
+#: apps/devhub/forms.py:566
 msgid "Please choose a review nomination type"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮੀਖਿਆ ਨਾਮਜ਼ਦਗੀ ਕਿਸਮ ਚੁਣੋ"
 
-#: apps/devhub/forms.py:569
+#: apps/devhub/forms.py:570
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
 
-#: apps/devhub/forms.py:587
+#: apps/devhub/forms.py:588
 msgid "Version %s already exists"
 msgstr "ਵਰਜਨ %s ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ"
 
-#: apps/devhub/forms.py:599
+#: apps/devhub/forms.py:600
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr "ਇੱਕ ਠੀਕ ਪਸੰਦ ਨੂੰ ਚੁਣੋ। ਇਹ ਪਸੰਦ ਉੱਪਲਬਧ ਪਸੰਦਾਂ ਵਿੱਚੋਂ ਇੱਕ ਨਹੀਂ ਹੈ।"
 
-#: apps/devhub/forms.py:605
+#: apps/devhub/forms.py:606
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "ਇੱਕ ਫ਼ਾਈਲ ਦਾ ਏ|ਐਲਫ਼ਾ|ਬੀ|ਬੀਟਾ ਦੇ ਇੱਕ ਵਰਜਨ ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਅੰਕ ਨਾਲ ਅੰਤ ਹੋਵੇ ਬੀਟਾ ਪਛਾਣੀ ਜਾਵੇਗੀ।"
 
-#: apps/devhub/forms.py:628
+#: apps/devhub/forms.py:629
 msgid "You cannot upload any more files for this version."
 msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
 
-#: apps/devhub/forms.py:634
+#: apps/devhub/forms.py:635
 msgid "Version doesn't match"
 msgstr "ਵਰਜਨ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
 
-#: apps/devhub/forms.py:663
+#: apps/devhub/forms.py:664
 msgid "You cannot delete a file once the review process has started. You must delete the whole version."
 msgstr "ਜਦੋਂ ਸਮੀਖਿਆ ਕਾਰਜ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਤੁਸੀਂ ਇੱਕ ਫ਼ਾਈਲ ਹਟਾ ਨਹੀਂ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਸਾਰਾ ਵਰਜਨ ਹਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: apps/devhub/forms.py:683
+#: apps/devhub/forms.py:684
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "ਪਲੇਟਫ਼ਾਰਮ ਆਲ ਨੂੰ ਖਾਸ ਪਲੇਟਫ਼ਾਰਮਾਂ ਦੇ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: apps/devhub/forms.py:688
+#: apps/devhub/forms.py:689
 msgid "A platform can only be chosen once."
 msgstr "ਇੱਕ ਪਲੇਟਫ਼ਾਰਮ ਨੂੰ ਇੱਕ ਵਾਰ ਹੀ ਚੁਣਿਆ ਜਾ ਸਕਦਾ।"
 
-#: apps/devhub/forms.py:701
+#: apps/devhub/forms.py:702
 msgid "A review type must be selected."
 msgstr "ਇੱਕ ਸਮੀਖਿਆ ਕਿਸਮ ਚੁਣੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
-#: apps/devhub/forms.py:783 apps/editors/forms.py:116 apps/zadmin/forms.py:49 apps/zadmin/forms.py:52
+#: apps/devhub/forms.py:784 apps/editors/forms.py:117 apps/zadmin/forms.py:49 apps/zadmin/forms.py:52
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁਣੋ"
 
-#: apps/devhub/forms.py:835
+#: apps/devhub/forms.py:836
 msgid "There cannot be more than 3 required add-ons."
 msgstr "ਇੱਥੇ 3 ਤੋਂ ਜਿਆਦਾ ਲੋੜੀਂਦੇ ਐਡ-ਆਨ ਨਹੀਂ ਹੋ ਸਕਦੇ।"
 
@@ -3832,15 +3848,15 @@ msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
 
-#: apps/devhub/tasks.py:441
+#: apps/devhub/tasks.py:459
 msgid "%s responded with %s (%s)."
 msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
 
-#: apps/devhub/tasks.py:445
+#: apps/devhub/tasks.py:463
 msgid "Connection to \"%s\" timed out."
 msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋਇਆ।"
 
-#: apps/devhub/tasks.py:447
+#: apps/devhub/tasks.py:465
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -3983,7 +3999,7 @@ msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
 msgid "{0} :: Search"
 msgstr "{0} :: ਖੋਜ"
 
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:457 apps/editors/forms.py:459 apps/editors/templates/editors/queue.html:27
+#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:462 apps/editors/forms.py:464 apps/editors/templates/editors/queue.html:27
 #: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
 #: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
 msgid "Search"
@@ -4161,7 +4177,7 @@ msgid "Do you want your add-on to be distributed on this site?"
 msgstr "ਕੀ ਤੁਸੀਂ ਚਾਹੁੰਦੇ ਹੋ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇਸ ਸਾਈਟ ਤੇ ਵਰਤਾਇਆ ਜਾਵੇ?"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52 apps/devhub/templates/devhub/addons/submit/upload.html:33 apps/devhub/templates/devhub/versions/add_file_modal.html:16
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:299
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:55 apps/devhub/templates/devhub/versions/list.html:314
 msgid "Warning:"
 msgstr "ਚੇਤਾਵਨੀ:"
 
@@ -4259,7 +4275,7 @@ msgid "Add Another Application&hellip;"
 msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਜੋੜੋ&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:352 apps/devhub/templates/devhub/versions/list.html:354 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
+#: apps/devhub/templates/devhub/versions/list.html:367 apps/devhub/templates/devhub/versions/list.html:369 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
 msgid "Close"
 msgstr "ਬੰਦ"
 
@@ -4292,7 +4308,7 @@ msgstr "ਕੋਈ ਨਹੀਂ"
 msgid "Manage Authors & License"
 msgstr "ਲੇਖਕਾਂ ਅਤੇ ਲਾਇਸੰਸ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:265
+#: apps/devhub/templates/devhub/addons/owner.html:29 apps/editors/templates/editors/review.html:273
 msgid "Authors"
 msgstr "ਲੇਖਕ"
 
@@ -4351,7 +4367,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਛੋਟਾ, ਵਿਲੱਖਣ URL ਸਲੱਗ ਚੁਣੋ।"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:43 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:14 apps/devhub/templates/devhub/includes/addons_edit_nav.html:35
-#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:250 apps/editors/templates/editors/themes/single.html:33
+#: apps/devhub/templates/devhub/personas/edit.html:56 apps/editors/templates/editors/review.html:258 apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "ਸੂਚੀ ਵੇਖੋ"
 
@@ -4680,7 +4696,7 @@ msgstr "  ਚੋਟੀ ਦੇ"
 msgid "Delete Theme"
 msgstr "ਥੀਮ ਹਟਾਓ"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:127
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:124
 msgid "Delete Add-on"
 msgstr "ਐਡ-ਆਨ ਹਟਾਓ"
 
@@ -4706,7 +4722,7 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀ�
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਕਿਉਂ ਹਟਾ ਰਹੇ ਹੋ:"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:248
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:1 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1 apps/editors/templates/editors/review.html:256
 msgid "Actions"
 msgstr "ਕਾਰਵਾਈਆਂ"
 
@@ -6065,10 +6081,6 @@ msgstr "ਰਚਿਆ:"
 msgid "%b %e, %Y"
 msgstr "%b %e, %Y"
 
-#: apps/devhub/templates/devhub/includes/addon_details.html:127
-msgid "Last Updated:"
-msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ:"
-
 #: apps/devhub/templates/devhub/includes/addon_details.html:134
 msgid "Next Version:"
 msgstr "ਅਗਲਾ ਵਰਜਨ:"
@@ -6692,145 +6704,151 @@ msgstr "ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ।"
 msgid "Validate now."
 msgstr "ਹੁਣੇ ਪ੍ਰਮਾਣਿਤ ਕਰਵਾਓ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:73
+#: apps/devhub/templates/devhub/versions/list.html:72
 msgid "Request Full Review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:74
+#: apps/devhub/templates/devhub/versions/list.html:73
 msgid "Request Preliminary Review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:83
-msgid "Full nomination will be available in {0} day"
-msgid_plural "Full nomination will be available in {0} days"
-msgstr[0] "ਮੁਕੰਮਲ ਨੁਮਾਇੰਦਗੀ {0} ਦਿਨ ਵਿੱਚ ਉੱਪਲਬਧ ਹੋਵੇਗੀ"
-msgstr[1] "ਮੁਕੰਮਲ ਨੁਮਾਇੰਦਗੀ {0} ਦਿਨਾਂ ਵਿੱਚ ਉੱਪਲਬਧ ਹੋਵੇਗੀ"
-
-#: apps/devhub/templates/devhub/versions/list.html:88 apps/devhub/templates/devhub/versions/list.html:328 apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:85 apps/devhub/templates/devhub/versions/list.html:343 apps/devhub/templates/devhub/versions/list.html:366
 msgid "Cancel Review Request"
 msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:101
+#: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਤੱਖਤਾ"
 
-#: apps/devhub/templates/devhub/versions/list.html:110
+#: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
 msgstr "ਸੂਚੀਬੱਧ:"
 
-#: apps/devhub/templates/devhub/versions/list.html:110
+#: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr "ਖੋਜ ਨਤੀਜੇ ਅਤੇ ਸੂਚੀਬੱਧ ਸਫ਼ੇ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ {0} ਤੇ ਹਰੇਕ ਨੂੰ ਵਿਖਾਈ ਦਿੰਦਾ"
 
-#: apps/devhub/templates/devhub/versions/list.html:116
+#: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
 msgstr "ਲੁਕਿਆ:"
 
-#: apps/devhub/templates/devhub/versions/list.html:116
+#: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr "{0} ਤੇ ਮੇਜ਼ਬਾਨ ਹੋਇਆ, ਪਰ ਲੇਖਕਾਂ ਨੂੰ ਛੱਡ ਕੇ ਹਰੇਕ ਲਈ ਲੁਕਿਆ। ਅਸਥਾਈ ਤੌਰ ਤੇ ਸੂਚੀਆਂ ਨੂੰ ਲੁਕਾਉਣ ਜਾਂ ਬੰਦ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:123
+#: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
 msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ:"
 
-#: apps/devhub/templates/devhub/versions/list.html:123
+#: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 msgstr "{0} ਤੇ ਵੰਡਿਆ ਨਹੀਂ ਗਿਆ। ਡਿਵੈਲਪਰ ਸਾਈਨਿੰਗ ਲਈ ਨਵੇਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰਨਗੇ ਅਤੇ ਨਿੱਜੀ ਤੌਰ ਤੇ ਐਡ-ਆਨ ਵੰਡਣਗੇ। (ਬੀਟਾ)"
 
-#: apps/devhub/templates/devhub/versions/list.html:132
+#: apps/devhub/templates/devhub/versions/list.html:129
 msgid "Current versions"
 msgstr "ਮੌਜੂਦਾ ਵਰਜਨ"
 
-#: apps/devhub/templates/devhub/versions/list.html:138
+#: apps/devhub/templates/devhub/versions/list.html:135
 msgid "Currently on AMO"
 msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ AMO"
 
-#: apps/devhub/templates/devhub/versions/list.html:139 apps/devhub/templates/devhub/versions/list.html:160 apps/devhub/templates/devhub/versions/list.html:180
+#: apps/devhub/templates/devhub/versions/list.html:136 apps/devhub/templates/devhub/versions/list.html:157 apps/devhub/templates/devhub/versions/list.html:177
 #: apps/editors/templates/editors/includes/search_results_themes.html:7 apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
 msgstr "ਦਰਜਾ"
 
-#: apps/devhub/templates/devhub/versions/list.html:140 apps/devhub/templates/devhub/versions/list.html:161 apps/devhub/templates/devhub/versions/list.html:181
+#: apps/devhub/templates/devhub/versions/list.html:137 apps/devhub/templates/devhub/versions/list.html:158 apps/devhub/templates/devhub/versions/list.html:178
 #: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
 
-#: apps/devhub/templates/devhub/versions/list.html:142 apps/devhub/templates/devhub/versions/list.html:163 apps/devhub/templates/devhub/versions/list.html:183
+#: apps/devhub/templates/devhub/versions/list.html:139 apps/devhub/templates/devhub/versions/list.html:160 apps/devhub/templates/devhub/versions/list.html:180
 #: apps/editors/templates/editors/base.html:72 apps/editors/templates/editors/performance.html:6
 msgid "Performance"
 msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
 
-#: apps/devhub/templates/devhub/versions/list.html:159
+#: apps/devhub/templates/devhub/versions/list.html:156
 msgid "Next version of this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਅਗਲਾ ਵਰਜਨ"
 
-#: apps/devhub/templates/devhub/versions/list.html:173
+#: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Older versions"
 msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
 
-#: apps/devhub/templates/devhub/versions/list.html:189
+#: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Upload a New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:218
+#: apps/devhub/templates/devhub/versions/list.html:216
+msgid "Full review may not be required"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:217
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:225
+msgid "Request full review"
+msgstr ""
+
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
 msgstr "ਵਰਜਨ ਹਟਾਓ {version}"
 
-#: apps/devhub/templates/devhub/versions/list.html:219
+#: apps/devhub/templates/devhub/versions/list.html:234
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr "ਤੁਸੀਂ  ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਮੌਜੂਦਾ ਵਰਜਨ ਹਟਾਉਣ ਜਾ ਰਹੇ ਹੋ। ਹੋ ਸਕਦਾ ਇਸ ਨਾਲ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਦਰਜਾ ਬਦਲ ਜਾਏ, ਜਾਂ ਤੁਹਾਡੀ ਸੂਚੀ ਜਨਤਕ ਦਿੱਖ ਗਵਾ ਦਵੇਗੀ, ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੇਵਲ ਇਹ ਹੀ ਜਨਤਕ ਵਰਜਨ ਹੈ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:220
+#: apps/devhub/templates/devhub/versions/list.html:235
 msgid "Deleting this version will permanently delete:"
 msgstr "ਇਸ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣਾ ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾ ਦੇਵੇਗਾ:"
 
-#: apps/devhub/templates/devhub/versions/list.html:226
+#: apps/devhub/templates/devhub/versions/list.html:241
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr "<strong>ਜ਼ਰੂਰੀ:</strong> ਜੇਕਰ ਇੱਕ ਵਾਰ ਵਰਜਨ ਹਟਾ ਲਿਆ ਗਿਆ, ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਉਸੇ ਵਰਜਨ ਨੰਬਰ ਨਾਲ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਪਾਓ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:231
+#: apps/devhub/templates/devhub/versions/list.html:246
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."
 msgstr "ਸਮੀਖਿਆ ਕੀਤੇ ਗਏ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣਾ ਤੁਹਾਡੇ ਅਗਲੇ ਅੱਪਡੇਟ ਦੀ ਸਮੀਖਿਆ ਵਿੱਚ ਕਾਫ਼ੀ ਦੇਰ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:234
+#: apps/devhub/templates/devhub/versions/list.html:249
 msgid "Are you sure you wish to delete this version?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:239
+#: apps/devhub/templates/devhub/versions/list.html:254
 msgid "Delete Version"
 msgstr "ਵਰਜਨ ਹਟਾਓ"
 
-#: apps/devhub/templates/devhub/versions/list.html:241
+#: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Disable Version"
 msgstr "ਵਰਜਨ ਅਯੋਗ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:248
+#: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Add a new Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਸ਼ਾਮਲ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:250
+#: apps/devhub/templates/devhub/versions/list.html:265
 msgid "Add Version"
 msgstr "ਵਰਜਨ ਸ਼ਾਮਲ ਕਰੋ"
 
-#: apps/devhub/templates/devhub/versions/list.html:257 apps/devhub/templates/devhub/versions/list.html:275
+#: apps/devhub/templates/devhub/versions/list.html:272 apps/devhub/templates/devhub/versions/list.html:290
 msgid "Hide Add-on"
 msgstr "ਐਡ-ਆਨ ਲੁਕਾਓ"
 
-#: apps/devhub/templates/devhub/versions/list.html:260
+#: apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਇਸ ਨੂੰ ਗੈਲਰੀ ਵਿੱਚ ਵਿਖਾਈ ਦੇਣ ਤੋਂ ਰੋਕੇਗਾ ਅਤੇ ਵਰਤੋਂਕਾਰਾਂ ਨੂੰ ਆਪਣੇ ਆਪ ਅੱਪਡੇਟਾਂ ਦੇਣਾ ਬੰਦ ਕਰ ਦੇਵੇਗਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:266
+#: apps/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਕੀ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:287 apps/devhub/templates/devhub/versions/list.html:316
+#: apps/devhub/templates/devhub/versions/list.html:302 apps/devhub/templates/devhub/versions/list.html:331
 msgid "Unlist Add-on"
 msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 
-#: apps/devhub/templates/devhub/versions/list.html:290
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf file for automatic updates."
@@ -6838,31 +6856,31 @@ msgstr ""
 "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀ ਤੋਂ ਹਟਾਉਣਾ ਇਸ ਨੂੰ (ਅਤੇ ਇਸ ਦੇ ਹਰੇਕ ਵਰਜਨ/ਫਾਈਲ) ਨੂੰ ਇਸ ਵੈੱਬਸਾਈਟ ਤੇ ਅਦਿੱਖ ਬਣਾ ਦੇਵੇਗਾ। ਇਹ ਖੋਜ ਵਿੱਚ ਨਹੀਂ ਵਿਖਾਈ ਦੇਵੇਗਾ, ਨਾ ਕੋਲ ਜਨਤਕ ਸਫ਼ਾ ਹੋਵੇਗਾ ਅਤੇ ਨਾ ਹੀ ਮੌਜੂਦਾ ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਆਪਣੇ ਆਪ ਅੱਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ। ਅਣਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਨੂੰ "
 "ਆਪਣੇ-ਆਪ ਅੱਪਡੇਟ ਹੋਣ ਲਈ ਉਹਨਾਂ ਦੀ install.rdf ਫਾਈਲ ਵਿੱਚ ਇੱਕ ਸੋਧ <a href=\"%(update_url)s\" target=\"_blank\">ਅੱਪਡੇਟURL</a> ਮੁਹੱਈਆ ਕਰਵਾਉਣ ਦੀ ਸ਼ਿਫਾਰਿਸ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:300
+#: apps/devhub/templates/devhub/versions/list.html:315
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr "ਐਡ-ਆਨਾਂ ਨੂੰ ਗੈਰ-ਸੂਚੀਬੱਧ ਵਿੱਚ ਬਦਲਣਾ ਮੌਜੂਦਾ ਤੌਰ ਤੇ ਇੱਕ ਓਪਨ ਬੀਟਾ ਵਿੱਚ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ <a href=\"%(bugzilla_url)s\" target=\"_blank\">ਕਿਸੇ ਬੱਗ ਦੀ ਸੂਚਨਾ ਦਿਓ</a> ਜਿਸ ਨਾਲ ਤੁਹਾਡਾ ਸਾਹਮਣਾ ਹੋਇਆ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:306
+#: apps/devhub/templates/devhub/versions/list.html:321
 msgid "Unlisting an add-on is irreversible!"
 msgstr "ਐਡ-ਆਨ ਨੂੰ ਗੈਰ-ਸੂਚੀਬੱਧ ਕਰਨਾ ਅਟੱਲ ਹੈ!"
 
-#: apps/devhub/templates/devhub/versions/list.html:306
+#: apps/devhub/templates/devhub/versions/list.html:321
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕਰਨ ਲਈ ਸਵਿੱਚ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:308
+#: apps/devhub/templates/devhub/versions/list.html:323
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀ ਤੋਂ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
-#: apps/devhub/templates/devhub/versions/list.html:331
+#: apps/devhub/templates/devhub/versions/list.html:346
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
 msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰਨਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਸ਼ਰੂਆਤੀ ਸਮੀਖਿਆ ਦੇ ਤੌਰ ਤੇ ਛੱਡ ਦੇਵੇਗਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:336
+#: apps/devhub/templates/devhub/versions/list.html:351
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਅਧੂਰੇ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ-ਬੇਨਤੀ ਸਮੀਖਿਆ ਦੁਆਰਾ ਕੁੱਝ ਦਿਨਾਂ ਬਾਅਦ ਵੀ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਨਹੀਂ ਕੀਤਾ, ਇਹ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
-#: apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/list.html:359
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
@@ -7151,396 +7169,400 @@ msgstr "ਭਾਈਚਾਰੇ ਦੇ ਗਲੋਬਲ ਜ਼ਜਬੇ ਦਾ ਜ�
 msgid "Show your support"
 msgstr "ਆਪਣਾ ਸਹਿਯੋਗ ਵਿਖਾਓ"
 
-#: apps/editors/forms.py:30
+#: apps/editors/forms.py:31
 msgid "Approved reviews"
 msgstr "ਮਨਜ਼ੂਰ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/forms.py:31
+#: apps/editors/forms.py:32
 msgid "Deleted reviews"
 msgstr "ਹਟਾਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/forms.py:39 apps/editors/forms.py:69
+#: apps/editors/forms.py:40 apps/editors/forms.py:70
 msgid "View entries between"
 msgstr "ਵਿਚਕਾਰਲੇ ਇੰਦਰਾਜ਼ ਵੇਖੋ"
 
-#: apps/editors/forms.py:41 apps/editors/forms.py:70
+#: apps/editors/forms.py:42 apps/editors/forms.py:71
 msgid "and"
 msgstr "ਅਤੇ"
 
-#: apps/editors/forms.py:43
+#: apps/editors/forms.py:44
 msgid "Filter by type/action"
 msgstr "ਕਿਸਮ/ਕੰਮ ਦੁਆਰਾ ਛਾਂਟੋ"
 
-#: apps/editors/forms.py:60
+#: apps/editors/forms.py:61
 msgid "Passed automatic validation"
 msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ"
 
-#: apps/editors/forms.py:62
+#: apps/editors/forms.py:63
 msgid "Failed automatic validation"
 msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਫੇਲ੍ਹ ਕੀਤੀ"
 
-#: apps/editors/forms.py:64
+#: apps/editors/forms.py:65
 msgid "Filter by automatic validation"
 msgstr "ਸਵੈਚਾਲਿਤ ਵੈਧਤਾ ਦੁਆਰਾ ਛਾਨਣਾ"
 
-#: apps/editors/forms.py:71
+#: apps/editors/forms.py:72
 msgid "containing"
 msgstr "ਸ਼ਾਮਲ"
 
 #. L10n: start, as in "start date"
-#: apps/editors/forms.py:77
+#: apps/editors/forms.py:78
 msgid "start"
 msgstr "ਸ਼ੁਰੂ"
 
 #. L10n: end, as in "end date"
-#: apps/editors/forms.py:81
+#: apps/editors/forms.py:82
 msgid "end"
 msgstr "ਅੰਤ"
 
 #. L10n: Description of what can be searched for
-#: apps/editors/forms.py:84
+#: apps/editors/forms.py:85
 msgid "add-on, editor or comment"
 msgstr "ਐਡ-ਆਨ, ਸੰਪਾਦਕ ਜਾਂ ਟਿੱਪਣੀ"
 
-#: apps/editors/forms.py:100
+#: apps/editors/forms.py:101
 msgid "Search by add-on name / author email"
 msgstr "ਐਡ-ਆਨ ਨਾਂ/ ਲੇਖਕ ਈਮੇਲ ਦੁਅਾਰਾ ਖੋਜ ਕਰੋ"
 
-#: apps/editors/forms.py:105
+#: apps/editors/forms.py:106
 msgid "yes"
 msgstr "ਹਾਂ"
 
-#: apps/editors/forms.py:106
+#: apps/editors/forms.py:107
 msgid "no"
 msgstr "ਨਹੀਂ"
 
-#: apps/editors/forms.py:107
+#: apps/editors/forms.py:108
 msgid "Admin Flag"
 msgstr "ਪ੍ਰਬੰਧਕ ਝੰਡਾ"
 
-#: apps/editors/forms.py:115
+#: apps/editors/forms.py:116
 msgid "Max. Version"
 msgstr "ਮੈਕਸ. ਵਰਜਨ"
 
-#: apps/editors/forms.py:119
+#: apps/editors/forms.py:120
 msgid "Days Since Submission"
 msgstr "ਦਾਖਲ ਕਾਰਜ ਬਾਅਦ ਦਿਨ"
 
-#: apps/editors/forms.py:124
+#: apps/editors/forms.py:125
 msgid "Add-on Types"
 msgstr "ਐਡ-ਆਨ ਕਿਸਮਾਂ"
 
-#: apps/editors/forms.py:128 apps/editors/helpers.py:263
+#: apps/editors/forms.py:129 apps/editors/helpers.py:266
 msgid "Platforms"
 msgstr "ਪਲੇਟਫ਼ਾਰਮ"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
-#: apps/editors/forms.py:240
+#: apps/editors/forms.py:241
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
 msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
-#: apps/editors/forms.py:255 apps/files/templates/files/viewer.html:54
+#: apps/editors/forms.py:256 apps/files/templates/files/viewer.html:54
 msgid "Files:"
 msgstr "ਫ਼ਾਈਲਾਂ:"
 
-#: apps/editors/forms.py:258
+#: apps/editors/forms.py:259
 msgid "Comments:"
 msgstr "ਟਿੱਪਣੀਆਂ:"
 
-#: apps/editors/forms.py:262
+#: apps/editors/forms.py:263
 msgid "Operating systems:"
 msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ:"
 
-#: apps/editors/forms.py:264
+#: apps/editors/forms.py:265
 msgid "Applications:"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ:"
 
-#: apps/editors/forms.py:266
+#: apps/editors/forms.py:267
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
 msgstr "ਅਗਲੀ ਵਾਰ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਹੋਵੇ ਮੈਨੂੰ ਸੂਚਿਤ ਕਰੋ। (ਪਿਛਲੀਆਂ ਅੱਪਡੇਟਾਂ ਈਮੇਲ ਜਾਰੀ ਨਹੀਂ ਕਰਨਗੀਆਂ)"
 
-#: apps/editors/forms.py:271
+#: apps/editors/forms.py:272
 msgid "Clear Admin Review Flag"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ ਝੰਡਾ ਮਿਟਾਓ"
 
-#: apps/editors/forms.py:291
+#: apps/editors/forms.py:274
+msgid "Clear more info requested flag"
+msgstr ""
+
+#: apps/editors/forms.py:294
 msgid "Choose a canned response..."
 msgstr "ਇੱਕ ਡਿੱਬਾਬੰਦ ਜਵਾਬ ਚੁਣੋ..."
 
-#: apps/editors/forms.py:320
+#: apps/editors/forms.py:323
 msgid "You must select some files."
 msgstr "ਤੁਹਾਨੂੰ ਕੁੱਝ ਫ਼ਾਈਲਾਂ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ।"
 
-#: apps/editors/forms.py:326
+#: apps/editors/forms.py:329
 msgid "File %s is not pending review."
 msgstr "ਫ਼ਾਈਲ %s ਅਧੂਰੀ ਸਮੀਖਿਆ ਨਹੀਂ ਹੈ।"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:346
+#: apps/editors/forms.py:351
 msgid "theme name"
 msgstr "ਥੀਮ ਨਾਂ"
 
-#: apps/editors/forms.py:372
+#: apps/editors/forms.py:377
 msgid "Someone else is reviewing this theme."
 msgstr "ਇਸ ਥੀਮ ਦੀ ਸਮੀਖਿਆ ਕੋਈ ਹੋਰ ਕਰ ਰਿਹਾ ਹੈ।"
 
 #. L10n: Description of what can be searched for.
-#: apps/editors/forms.py:469
+#: apps/editors/forms.py:474
 msgid "app, reviewer, or comment"
 msgstr "ਐਪ, ਸਮੀਖਿਅਕ, ਜਾਂ ਟਿੱਪਣੀ"
 
-#: apps/editors/helpers.py:49
-msgid "Pending Preliminary Review"
-msgstr "ਅਧੂਰੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ"
-
-#: apps/editors/helpers.py:53
+#: apps/editors/helpers.py:50 apps/editors/helpers.py:58
 msgid "Pending Full Review"
 msgstr "ਅਧੂਰੀ ਮੁਕੰਮਲ ਸਮੀਖਿਆ"
 
-#: apps/editors/helpers.py:60
+#: apps/editors/helpers.py:52
+msgid "Pending Preliminary Review"
+msgstr "ਅਧੂਰੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ"
+
+#: apps/editors/helpers.py:65
 msgid "Rejected or Unreviewed"
 msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
 
-#: apps/editors/helpers.py:117 apps/editors/helpers.py:130
+#: apps/editors/helpers.py:122 apps/editors/helpers.py:135
 msgid "Queue"
 msgstr "ਕਤਾਰ"
 
-#: apps/editors/helpers.py:118 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:123 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "ਅਧੂਰੀਆਂ ਅੱਪਡੇਟਾਂ"
 
-#: apps/editors/helpers.py:119 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:124 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "ਮੁਕੰਮਲ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/helpers.py:120 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/helpers.py:121 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/helpers.py:122 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "ਫ਼ਾਸਟ ਟਰੈਕ"
 
-#: apps/editors/helpers.py:124
+#: apps/editors/helpers.py:129
 msgid "Pending Themes"
 msgstr "ਅਧੂਰੇ ਥੀਮ"
 
-#: apps/editors/helpers.py:125 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:130 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ"
 
-#: apps/editors/helpers.py:126
+#: apps/editors/helpers.py:131
 msgid "Update Themes"
 msgstr "ਥੀਮ ਅੱਪਡੇਟ ਕਰੋ"
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਅਧੂਰੀਆਂ ਅੱਪਡੇਟਾਂ"
 
-#: apps/editors/helpers.py:132
+#: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਮੁਕੰਮਲ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/helpers.py:133
+#: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: apps/editors/helpers.py:166
+#: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "ਫ਼ਾਸਟ ਟਰੈਕ ({0})"
 msgstr[1] "ਫ਼ਾਸਟ ਟਰੈਕ ({0})"
 
-#: apps/editors/helpers.py:171
+#: apps/editors/helpers.py:174
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "ਮੁਕੰਮਲ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਮੁਕੰਮਲ ਸਮੀਖਿਆਵਾਂ ({0})"
 
-#: apps/editors/helpers.py:176
+#: apps/editors/helpers.py:179
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "ਅਧੂਰੀ ਅੱਪਡੇਟ ({0})"
 msgstr[1] "ਅਧੂਰੀਆਂ ਅੱਪਡੇਟਾਂ ({0})"
 
-#: apps/editors/helpers.py:181
+#: apps/editors/helpers.py:184
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆਵਾਂ ({0})"
 
-#: apps/editors/helpers.py:186
+#: apps/editors/helpers.py:189
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
 
-#: apps/editors/helpers.py:192
+#: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "ਗੈਰਸੂਚੀਬੱਧ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਗੈਰਸੂਚੀਬੱਧ ਮੁਕੰਮਲ ਸਮੀਖਿਆਵਾਂ ({0})"
 
-#: apps/editors/helpers.py:197
+#: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "ਗੈਰਸੂਚੀਬੱਧ ਅਧੂਰੀ ਅੱਪਡੇਟ ({0})"
 msgstr[1] "ਗੈਰਸੂਚੀਬੱਧ ਅਧੂਰੀਆਂ ਅੱਪਡੇਟਾਂ ({0})"
 
-#: apps/editors/helpers.py:202
+#: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "ਗੈਰਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਗੈਰਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ({0})"
 
-#: apps/editors/helpers.py:257
+#: apps/editors/helpers.py:260
 msgid "Addon"
 msgstr "ਐਡਆਨ"
 
-#: apps/editors/helpers.py:258 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:261 apps/localizers/templates/localizers/categories.html:35
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
-#: apps/editors/helpers.py:259
+#: apps/editors/helpers.py:262
 msgid "Waiting Time"
 msgstr "ਉਡੀਕ ਸਮਾਂ"
 
-#: apps/editors/helpers.py:260 apps/editors/templates/editors/review.html:280
+#: apps/editors/helpers.py:263 apps/editors/templates/editors/review.html:288
 msgid "Flags"
 msgstr "ਝੰਡੇ"
 
-#: apps/editors/helpers.py:261
+#: apps/editors/helpers.py:264
 msgid "Applications"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ"
 
-#: apps/editors/helpers.py:266
+#: apps/editors/helpers.py:269
 msgid "Additional"
 msgstr "ਵਾਧੂ"
 
-#: apps/editors/helpers.py:281
+#: apps/editors/helpers.py:284
 msgid "Site Specific"
 msgstr "ਸਾਈਟ ਖਾਸ਼"
 
-#: apps/editors/helpers.py:283
+#: apps/editors/helpers.py:286
 msgid "Requires External Software"
 msgstr "ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ"
 
-#: apps/editors/helpers.py:285
+#: apps/editors/helpers.py:288
 msgid "Binary Components"
 msgstr "ਬਾਇਨਰੀ ਹਿੱਸੇ"
 
-#: apps/editors/helpers.py:309
+#: apps/editors/helpers.py:312
 msgid "moments ago"
 msgstr "ਪਲ ਪਹਿਲਾਂ"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:312
+#: apps/editors/helpers.py:315
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} ਮਿੰਟ"
 msgstr[1] "{0} ਮਿੰਟਾਂ"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:316
+#: apps/editors/helpers.py:319
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} ਘੰਟਾ"
 msgstr[1] "{0} ਘੰਟੇ"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:320
+#: apps/editors/helpers.py:323
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} ਦਿਨ"
 msgstr[1] "{0} ਦਿਨਾਂ"
 
-#: apps/editors/helpers.py:477
+#: apps/editors/helpers.py:483
 msgid "Push to public"
 msgstr "ਜਨਤਕ ਵੱਲ ਭੇਜੋ"
 
-#: apps/editors/helpers.py:479
+#: apps/editors/helpers.py:485
 msgid "Grant full review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਮਨਜ਼ੂਰ ਕਰੋ"
 
-#: apps/editors/helpers.py:494
+#: apps/editors/helpers.py:500
 msgid "Request more information"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ ਕਰੋ"
 
-#: apps/editors/helpers.py:497
+#: apps/editors/helpers.py:503
 msgid "Request super-review"
 msgstr "ਉੱਤਮ-ਸਮੀਖਿਆ ਲਈ ਬੇਨਤੀ"
 
-#: apps/editors/helpers.py:508
+#: apps/editors/helpers.py:514
 msgid "Grant preliminary review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿਓ"
 
-#: apps/editors/helpers.py:509
+#: apps/editors/helpers.py:515
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "ਇਹ ਫ਼ਾਈਲਾਂ ਤੇ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ।"
 
-#: apps/editors/helpers.py:511
+#: apps/editors/helpers.py:517
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "ਲੇਖਕ ਕੋਲੋਂ ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਲਈ ਇਸ ਫ਼ਾਰਮ ਦੀ ਵਰਤੋਂ ਕਰੋ। ਉਹਨਾਂ ਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗਾ ਅਤੇ ਇੱਥੇ ਉਹ ਜਵਾਬ ਦੇਣਗੇ। ਤੁਹਾਨੂੰ ਈਮੇਲ ਰਾਹੀ ਸੂਚਨਾ ਦੇ ਦਿੱਤੀ ਜਾਵੇਗੀ ਜਦੋਂ ਉਹ ਜਵਾਬ ਦੇਣਗੇ।"
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:521
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਦੀ ਸੁਰੱਖਿਆ, ਕਾਪੀਰਾਈਟ ਮਸਲਿਆਂ, ਬਾਰੇ ਚਿੰਤਾਵਾਂ ਹਨ, ਜਾਂ ਕੋਈ ਚਿੰਤਾ ਹੈ ਜਿਸ ਬਾਰੇ ਪ੍ਰਬੰਧਕ ਨੂੰ ਧਿਆਨ ਦੇਣਾ ਚਾਹੀਦਾ, ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਵਿੱਚ ਆਪਣੀ ਟਿੱਪਣੀਆਂ ਲਿਖੋ। ਉਹ ਲੇਖਕ ਨੂੰ ਨਹੀਂ, ਪ੍ਰਬੰਧਕ ਨੂੰ ਭੇਜ ਦਿੱਤੀਆਂ ਜਾਣਗੀਆਂ।"
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:527
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹਟਾ ਦੇਣਗੇ।"
 
-#: apps/editors/helpers.py:523
+#: apps/editors/helpers.py:529
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖਕ ਇਸ ਨੂੰ ਨਹੀਂ ਵੇਖ ਸਕੇਗਾ।"
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:533
 msgid "This will reject the files and remove them from the review queue."
 msgstr "ਇਹ ਫ਼ਾਈਲਾਂ ਨੂੰ ਰੱਦ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚੋਂ ਹਟਾ ਦੇਵੇਗਾ।"
 
-#: apps/editors/helpers.py:531
+#: apps/editors/helpers.py:537
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "ਐਡ-ਆਨ ਤੇ ਇਹ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਭਵਿੱਖ ਦੇ ਵਰਜਨ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘਣਗੇ।"
 
-#: apps/editors/helpers.py:536
+#: apps/editors/helpers.py:542
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "ਫ਼ਾਈਲਾਂ ਤੇ ਇਹ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਭਵਿੱਖ ਦੇ ਵਰਜਨ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘਣਗੇ।"
 
-#: apps/editors/helpers.py:541
+#: apps/editors/helpers.py:547
 msgid "Retain preliminary review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਬਰਕਰਾਰ ਰੱਖੋ"
 
-#: apps/editors/helpers.py:542
+#: apps/editors/helpers.py:548
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "ਐਡ-ਆਨ ਨੂੰ ਇਹ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੇ ਤੌਰ ਤੇ ਬਰਕਰਾਰ ਰੱਖਣਗੇ। ਭਵਿੱਖ ਦੇ ਵਰਜਨ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘਣਗੇ।"
 
-#: apps/editors/helpers.py:547
+#: apps/editors/helpers.py:553
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "ਇਹ ਜਨਤਕ ਪਾਸੇ ਵਿਖਾਉਣ ਲਈ ਇੱਕ ਜਨਤਕ ਐਡ-ਆਨ ਦੇ ਸੈੰਡਬਾਕਸ ਵਰਜਨ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦੇ ਦੇਵੇਗਾ।"
 
-#: apps/editors/helpers.py:550
+#: apps/editors/helpers.py:556
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "ਇਹ ਜਨਤਕ ਐਡ-ਆਨ ਦੇ ਇੱਕ ਵਰਜਨ ਨੂੰ ਰੱਦ ਅਤੇ ਕਤਾਰ ਵਿੱਚੋਂ ਹਟਾ ਦੇਵੇਗਾ।"
 
-#: apps/editors/helpers.py:553
+#: apps/editors/helpers.py:559
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "ਇਹ ਐਡ-ਆਨ ਅਤੇ ਉਸਦੇ ਤਾਜ਼ੇ ਵਰਜਨ ਅਤੇ ਫ਼ਾਈਲਾਂ ਤੇ ਜਨਤਕ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਭਵਿੱਖ ਦੇ ਵਰਜਨ ਸੈੰਡਬਾਕਸ ਵਿੱਚ ਜਾਣਗੇ ਜਦੋਂ ਤੱਕ ਉਹਨਾਂ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਨਹੀਂ ਹੁੰਦੀ।"
 
-#: apps/editors/helpers.py:626
+#: apps/editors/helpers.py:632
 msgid "add-on"
 msgstr "ਐਡ-ਆਨ"
 
-#: apps/editors/helpers.py:821 apps/editors/helpers.py:841
+#: apps/editors/helpers.py:937 apps/editors/helpers.py:957
 msgid "Flagged"
 msgstr "ਨਿਸ਼ਾਨਬੱਧ"
 
-#: apps/editors/helpers.py:825 apps/editors/helpers.py:844
+#: apps/editors/helpers.py:941 apps/editors/helpers.py:960
 msgid "Updates"
 msgstr "ਅੱਪਡੇਟਾਂ"
 
@@ -7588,56 +7610,56 @@ msgstr "ਦਾਖਲ ਥੀਮ ਤੇ ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲ
 msgid "A question about your Theme submission"
 msgstr "ਤੁਹਾਡੇ ਦਾਖਲ ਕੀਤੇ ਥੀਮ ਬਾਰੇ ਇੱਕ ਸਵਾਲ"
 
-#: apps/editors/views.py:130
+#: apps/editors/views.py:143
 msgid "New Add-ons (Under 5 days)"
 msgstr "ਨਵੇਂ ਐਡ-ਆਨ (5 ਦਿਨਾਂ ਅੰਦਰ)"
 
-#: apps/editors/views.py:131
+#: apps/editors/views.py:144
 msgid "Passable (5 to 10 days)"
 msgstr "ਪਾਸਹੋਣਯੋਗ (5 ਤੋਂ 10 ਦਿਨ)"
 
-#: apps/editors/views.py:132
+#: apps/editors/views.py:145
 msgid "Overdue (Over 10 days)"
 msgstr "ਬਕਾਇਆ(10 ਦਿਨ ਬਾਅਦ)"
 
-#: apps/editors/views.py:459
+#: apps/editors/views.py:502
 msgid "An unknown error occurred"
 msgstr "ਅਣਜਾਣ ਖਾਮੀ ਆਈ"
 
-#: apps/editors/views.py:511
+#: apps/editors/views.py:555
 msgid "Self-reviews are not allowed."
 msgstr "ਸਵੈ-ਸਮੀਖਿਆਵਾਂ ਪ੍ਰਵਾਨ ਨਹੀਂ।"
 
-#: apps/editors/views.py:533
+#: apps/editors/views.py:577
 msgid "Review successfully processed."
 msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵਕ ਹੋਈ।"
 
-#: apps/editors/views.py:729
+#: apps/editors/views.py:775
 msgid "was approved"
 msgstr "ਪ੍ਰਵਾਨਿਤ ਹੋਇਆ ਸੀ"
 
-#: apps/editors/views.py:730
+#: apps/editors/views.py:776
 msgid "given preliminary review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ ਗਈ"
 
-#: apps/editors/views.py:731
+#: apps/editors/views.py:777
 msgid "rejected"
 msgstr "ਰੱਦ ਕੀਤਾ"
 
-#: apps/editors/views.py:732
+#: apps/editors/views.py:778
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ਵਧਿਆ"
 
-#: apps/editors/views.py:734
+#: apps/editors/views.py:780
 msgid "needs more information"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
 
-#: apps/editors/views.py:735
+#: apps/editors/views.py:781
 msgid "needs super review"
 msgstr "ਉੱਤਮ ਸਮੀਖਿਆ ਦੀ ਲੋੜ"
 
-#: apps/editors/views.py:736
+#: apps/editors/views.py:782
 msgid "commented"
 msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
@@ -7847,7 +7869,7 @@ msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ"
 msgid "Update message of the day"
 msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
 
-#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:219
+#: apps/editors/templates/editors/motd.html:15 apps/editors/templates/editors/review.html:227
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
 
@@ -7892,19 +7914,19 @@ msgstr "ਮਹੀਨਾਵਾਰ ਕਾਰਗੁਜ਼ਾਰੀ"
 msgid "All-time Point Breakdown by Type"
 msgstr "ਕਿਸਮ ਦੁਆਰਾ ਹਰ ਵੇਲੇ ਬਿੰਦੂ ਟੁੱਟਣਾ"
 
-#: apps/editors/templates/editors/performance.html:74
+#: apps/editors/templates/editors/performance.html:76
 msgid "Total"
 msgstr "ਕੁੱਲ"
 
-#: apps/editors/templates/editors/performance.html:79
+#: apps/editors/templates/editors/performance.html:81
 msgid "Month"
 msgstr "ਮਹੀਨਾ"
 
-#: apps/editors/templates/editors/performance.html:86
+#: apps/editors/templates/editors/performance.html:88
 msgid "Year"
 msgstr "ਸਾਲ"
 
-#: apps/editors/templates/editors/performance.html:93
+#: apps/editors/templates/editors/performance.html:95
 msgid "All-Time"
 msgstr "ਹਰ-ਵੇਲੇ"
 
@@ -7944,7 +7966,7 @@ msgstr "ਵਰਜਨ ਨੋਟ / ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ"
 msgid "There are currently no add-ons of this type to review."
 msgstr "ਇੱਥੇ ਸਮੀਖਿਆ ਲਈ ਮੌਜੂਦਾ ਤੌਰ ਤੇ ਇਸ ਕਿਸਮ ਦੇ ਕੋਈ ਐਡ-ਆਨ ਨਹੀਂ।"
 
-#: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:91
+#: apps/editors/templates/editors/queue.html:181 apps/editors/templates/editors/themes/queue_list.html:85
 msgid "Helpful Links:"
 msgstr "ਸਹਾਇਕ ਲਿੰਕ:"
 
@@ -7965,7 +7987,7 @@ msgstr "ਸਮੀਖਿਆ {0}"
 msgid "Add-on user change history"
 msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿਆ"
 
-#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:261
+#: apps/editors/templates/editors/review.html:52 apps/editors/templates/editors/review.html:269
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
 
@@ -8001,39 +8023,39 @@ msgstr "ਹਾਲੇ ਵੀ ਤੁਸੀਂ ਫ਼ਾਰਮ ਨੂੰ ਦਾਖਲ 
 msgid "Insert canned response..."
 msgstr "ਡਿੱਬਾਬੰਦ ਜਵਾਬ ਪਾਓ..."
 
-#: apps/editors/templates/editors/review.html:185
+#: apps/editors/templates/editors/review.html:184
 msgid "Tested on:"
 msgstr "ਤੇ ਟੈਸਟ ਕੀਤਾ:"
 
-#: apps/editors/templates/editors/review.html:215
+#: apps/editors/templates/editors/review.html:223
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>ਚੇਤਾਵਨੀ!</strong> ਦੂਜਾ ਉਪਭੋਗੀ ਤੁਹਾਡੇ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਸਫ਼ਾ ਵੇਖ ਰਿਹਾ ਸੀ।"
 
-#: apps/editors/templates/editors/review.html:232
+#: apps/editors/templates/editors/review.html:240
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
 msgstr "ਵਾਇਟਬੋਰਡ ਡਿਵੈਲਪਰ ਅਤੇ ਸੰਪਾਦਕ ਵਿਚਾਲੇ, ਇਸ ਐਡ-ਆਨ ਨਾਲ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਵਟਾਉਣ ਦੀ ਥਾਂ ਹੈ (ਜੋ ਵੀ ਵਰਜਨ ਹੋਵੇ)। ਇਹ ਦੋਨਾਂ ਵੱਲੋਂ ਵਿਖਾਈ ਦੇਣ ਅਤੇ ਸੋਧ ਕਰਨਯੋਗ ਹੈ।"
 
-#: apps/editors/templates/editors/review.html:236
+#: apps/editors/templates/editors/review.html:244
 msgid "Update the whiteboard"
 msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
 
-#: apps/editors/templates/editors/review.html:252 apps/editors/templates/editors/review.html:253
+#: apps/editors/templates/editors/review.html:260 apps/editors/templates/editors/review.html:261
 msgid "(admin)"
 msgstr "(ਪ੍ਰਬੰਧਕ)"
 
-#: apps/editors/templates/editors/review.html:253
+#: apps/editors/templates/editors/review.html:261
 msgid "Admin Page"
 msgstr "ਪ੍ਰਬੰਧਕ ਸਫ਼ਾ"
 
-#: apps/editors/templates/editors/review.html:258
+#: apps/editors/templates/editors/review.html:266
 msgid "Review This Add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
-#: apps/editors/templates/editors/review.html:260
+#: apps/editors/templates/editors/review.html:268
 msgid "More Information"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ"
 
-#: apps/editors/templates/editors/review.html:262
+#: apps/editors/templates/editors/review.html:270
 msgid "Resolution"
 msgstr "ਮਤਾ"
 
@@ -8245,11 +8267,7 @@ msgstr "ਮੇਰੇ ਥੀਮ ਲਾਕ ਜਾਰੀ ਕਰੋ"
 msgid "Interactive Theme Queue"
 msgstr "ਪਰਸਪਰ ਥੀਮ ਕਤਾਰ"
 
-#: apps/editors/templates/editors/themes/queue_list.html:79
-msgid "There are currently no items of this type to review."
-msgstr "ਮੌਜੂਦ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਲਈ ਇੱਥੇ ਇਸ ਕਿਸਮ ਦੀ ਕੋਈ ਚੀਜ਼ ਨਹੀਂ।"
-
-#: apps/editors/templates/editors/themes/queue_list.html:92
+#: apps/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
 msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
 
@@ -8302,80 +8320,84 @@ msgstr "ਕਲਾਕਾਰ ਤੋਂ ਇੱਕ ਸਵਾਲ ਪੁੱਛੋ"
 msgid "Describe your reason for flagging"
 msgstr "ਫ਼ਲੈਗ ਕਰਨ ਲਈ ਆਪਣੇ ਕਾਰਨ ਦਾ ਵਰਣਨ ਕਰੋ"
 
-#: apps/files/forms.py:87
+#: apps/files/forms.py:88
 msgid "Cannot diff a version against itself"
 msgstr "ਵਰਜਨ ਦਾ ਖੁਦ ਤੋਂ ਫ਼ਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ"
 
-#: apps/files/helpers.py:153
+#: apps/files/helpers.py:154
 msgid "That file no longer exists."
 msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
 
 #. L10n: {0} is the file size limit of the file viewer.
-#: apps/files/helpers.py:162
+#: apps/files/helpers.py:163
 msgid "File size is over the limit of {0}."
 msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
 
-#: apps/files/helpers.py:176
+#: apps/files/helpers.py:177
 msgid "Problems decoding {0}."
 msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
 
-#: apps/files/helpers.py:186
+#: apps/files/helpers.py:187
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
 
-#: apps/files/helpers.py:194
+#: apps/files/helpers.py:195
 msgid "This file is a directory."
 msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
 
-#: apps/files/tasks.py:28
+#: apps/files/tasks.py:30
 msgid "There was an error accessing file %s. %s."
 msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ। %s।"
 
-#: apps/files/tasks.py:31
+#: apps/files/tasks.py:33
 msgid "There was an error accessing file %s."
 msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
 
-#: apps/files/utils.py:259
+#: apps/files/utils.py:260
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
-#: apps/files/utils.py:296
+#: apps/files/utils.py:297
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
-#: apps/files/utils.py:304
+#: apps/files/utils.py:305
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
-#: apps/files/utils.py:354
+#: apps/files/utils.py:355
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
 
-#: apps/files/utils.py:444 apps/files/utils.py:447
+#: apps/files/utils.py:445 apps/files/utils.py:448
 msgid "Could not parse install.rdf."
 msgstr "install.rdf ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
-#: apps/files/utils.py:460
-msgid "Could not find a UUID."
-msgstr "ਇੱਕ UUID ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
-
 #: apps/files/utils.py:462
-msgid "UUID doesn't match add-on."
-msgstr "UUID ਐਡ-ਆਨ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦੀ।"
+msgid "Could not find an add-on ID."
+msgstr ""
 
-#: apps/files/utils.py:466
-msgid "Duplicate UUID found."
-msgstr "UUID ਨਕਲ ਮਿਲੀ।"
+#: apps/files/utils.py:465
+msgid "Add-on ID must be 64 characters or less."
+msgstr ""
 
-#: apps/files/utils.py:469
+#: apps/files/utils.py:467
+msgid "Add-on ID doesn't match add-on."
+msgstr ""
+
+#: apps/files/utils.py:471
+msgid "Duplicate add-on ID found."
+msgstr ""
+
+#: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "ਵਰਜਨ ਨੰਬਰ 32 ਅੱਖਰਾਂ ਤੋਂ ਘੱਟ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: apps/files/utils.py:472
+#: apps/files/utils.py:477
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
-#: apps/files/utils.py:489
+#: apps/files/utils.py:494
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ਦਾ ਐਡ-ਆਨ ਨਾਲ ਮੇਲ ਨਹੀਂ"
 
@@ -10222,10 +10244,6 @@ msgstr "ਇੱਕ ਸਮੀਖਿਆ ਜੋੜੋ"
 msgid "Log in to add a review"
 msgstr "ਸਮੀਖਿਆ ਜੋੜਨ ਲਈ ਲਾਗਇਨ ਕਰੋ"
 
-#: apps/reviews/templates/reviews/mobile/add_form.html:13
-msgid "Title:"
-msgstr "ਸਿਰਲੇਖ:"
-
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
 msgstr "ਹਾਲੇ ਦਰਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
@@ -11725,7 +11743,7 @@ msgstr "ਐਡ-ਆਨ ਬਾਇਨਰੀ ਹਿੱਸੇ ਵਰਤਦਾ ਹੈ�
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "ਐਡ-ਆਨ ਸ਼ਖਤ ਅਨੁਕੂਲਤਾ ਪੜਤਾਲ ਲਈ ਚੁਣਿਆ ਗਿਆ।"
 
-#: apps/versions/models.py:682
+#: apps/versions/models.py:689
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
 
@@ -11827,6 +11845,10 @@ msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨਾਂ"
 #: templates/base.html:131 templates/impala/base.html:173
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "ਆਪਣੇ ਖੁਦ ਦੇ ਸੰਗ੍ਰਹਿ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਡੇ ਕੋਲ ਇੱਕ ਮੌਜੀਲਾ ਐਡ-ਆਨ ਖਾਤਾ ਹੋਣਾ ਚਾਹੀਦਾ।"
+
+#: templates/base.html:158 templates/impala/base.html:194
+msgid "Footer logo"
+msgstr ""
 
 #: templates/categories.html:2
 msgid "Choose a category"

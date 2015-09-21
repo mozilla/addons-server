@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 09:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:56-0700\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,122 +14,424 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1435618503.0\n"
 
-#: static/js/common/ratingwidget.js:31
+#: static/js/common-all.js:10461 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:10428 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:10989
+#: static/js/zamboni/mobile-min.js:4
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
+
+#: static/js/common-all.js:10873 static/js/impala-all.js:1923 static/js/zamboni/apps.js:54 static/js/zamboni/mobile-all.js:10726 static/js/zamboni/mobile-min.js:4
+msgid "App installation not allowed."
+msgstr "ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ"
+
+#: static/js/common-all.js:10876 static/js/impala-all.js:1926 static/js/zamboni/apps.js:57 static/js/zamboni/mobile-all.js:10729 static/js/zamboni/mobile-min.js:4
+msgid "App manifest is malformed."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਕਾਰਾ ਹੈ।"
+
+#: static/js/common-all.js:10879 static/js/impala-all.js:1929 static/js/zamboni/apps.js:60 static/js/zamboni/mobile-all.js:10732 static/js/zamboni/mobile-min.js:4
+msgid "App host could not be reached."
+msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+
+#: static/js/common-all.js:10882 static/js/impala-all.js:1932 static/js/zamboni/apps.js:63 static/js/zamboni/mobile-all.js:10735 static/js/zamboni/mobile-min.js:4
+msgid "App manifest is unparsable."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾਪਾਰਸਕਰਨਯੋਗ ਹੈ।"
+
+#: static/js/common-all.js:10885 static/js/impala-all.js:1935 static/js/zamboni/apps.js:66 static/js/zamboni/mobile-all.js:10738 static/js/zamboni/mobile-min.js:4
+msgid "App manifest is invalid."
+msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਗਲਤ ਹੈ।"
+
+#: static/js/common-all.js:10888 static/js/impala-all.js:1938 static/js/zamboni/apps.js:69 static/js/zamboni/mobile-all.js:10741 static/js/zamboni/mobile-min.js:4
+msgid "Install failed. Please try again later."
+msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
+
+#: static/js/common-all.js:10899 static/js/impala-all.js:1949 static/js/zamboni/apps.js:80 static/js/zamboni/mobile-all.js:10752 static/js/zamboni/mobile-min.js:4
+msgid "App installation failed."
+msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫ੍ਹੇਲ ਹੋਈ।"
+
+#: static/js/common-all.js:10900 static/js/impala-all.js:1950 static/js/zamboni/apps.js:81 static/js/zamboni/mobile-all.js:10753 static/js/zamboni/mobile-min.js:4
+msgid "This system does not support installing apps."
+msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਨਹੀਂ।"
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/common-all.js:11022 static/js/impala-all.js:2072 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10964
+msgid "Accept and Install"
+msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
+
+#: static/js/common-all.js:11022 static/js/impala-all.js:2072 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10964
+msgid "Add to {0}"
+msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
+
+#: static/js/common-all.js:11027 static/js/impala-all.js:2077 static/js/zamboni/buttons.js:87 static/js/zamboni/discovery-all.js:10969
+msgid "Download Now"
+msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
+
+#: static/js/common-all.js:11068 static/js/impala-all.js:2118 static/js/zamboni/buttons.js:128 static/js/zamboni/discovery-all.js:11010
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "ਮੂਲ ਤੌਰ ਤੇ ਅਨੁਕੂਲਤਾ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
+
+#: static/js/common-all.js:11073 static/js/impala-all.js:2123 static/js/zamboni/buttons.js:133 static/js/zamboni/discovery-all.js:11015
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "ਤੁਹਾਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ 10.0 ਜਾਂ ਅੱਗੇ ਵਰਤੋਂ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ।"
+
+#: static/js/common-all.js:11085 static/js/impala-all.js:2135 static/js/zamboni/buttons.js:145 static/js/zamboni/discovery-all.js:11027
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਵਰਜਨ ਤੇ ਤੁਹਾਡੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਨਾ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲੱਗਾ ਦਿੱਤਾ।"
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/common-all.js:11167 static/js/impala-all.js:2217 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11109
+msgid "Install for {0} anyway"
+msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
+
+#: static/js/common-all.js:11167 static/js/impala-all.js:2217 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11109
+msgid "Download for {0} anyway"
+msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
+
+#: static/js/common-all.js:11224 static/js/impala-all.js:2274 static/js/zamboni/buttons.js:284 static/js/zamboni/discovery-all.js:11166
+msgid "Not available for your platform"
+msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/common-all.js:11235 static/js/common-all.js:11272 static/js/impala-all.js:2285 static/js/impala-all.js:2322 static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/discovery-all.js:11177 static/js/zamboni/discovery-all.js:11214
+msgid "Not available for {0} {1}"
+msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
+
+#: static/js/common-all.js:11298 static/js/impala-all.js:2348 static/js/zamboni/buttons.js:358 static/js/zamboni/discovery-all.js:11240
+msgid "Works with {app} {min} - {max}"
+msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
+
+#: static/js/common-all.js:11300 static/js/impala-all.js:2350 static/js/zamboni/buttons.js:360 static/js/zamboni/discovery-all.js:11242
+msgid "View other versions"
+msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
+
+#: static/js/common-all.js:11514 static/js/impala-all.js:2564 static/js/zamboni/buttons.js:551 static/js/zamboni/discovery-all.js:11456 static/js/zamboni/mobile-all.js:11216
+#: static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:41
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
+
+#: static/js/common-all.js:16623 static/js/common-min.js:7 static/js/impala-all.js:8253 static/js/impala-min.js:5 static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/common-all.js:16696 static/js/common-min.js:7 static/js/impala-all.js:8326 static/js/impala-min.js:5 static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+
+#: static/js/common-all.js:17133 static/js/common-min.js:8 static/js/impala-all.js:8706 static/js/impala-min.js:5 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:12201
+#: static/js/zamboni/mobile-min.js:5
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ਤਾਰਾ"
 msgstr[1] "{0} ਤਾਰੇ"
 
-#: static/js/common/upload-addon.js:34 static/js/common/upload-image.js:128
+#: static/js/common-all.js:17277 static/js/common-min.js:8 static/js/impala-all.js:8850 static/js/impala-min.js:5 static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
+
+#: static/js/common-all.js:18470 static/js/common-min.js:8 static/js/impala-all.js:10160 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
+
+#: static/js/common-all.js:18486 static/js/common-min.js:8 static/js/impala-all.js:10177 static/js/impala-min.js:6 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
+
+#: static/js/common-all.js:18555 static/js/common-min.js:8 static/js/impala-all.js:10270 static/js/impala-min.js:6 static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
+
+#: static/js/common-all.js:19141 static/js/common-min.js:9 static/js/impala-all.js:12035 static/js/impala-min.js:7 static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "ਹੁਣੇ-ਹੁਣੇ ਨਿਰੀਖਣ ਸਾਫ਼"
+
+#: static/js/common-all.js:19313 static/js/common-min.js:9 static/js/impala-all.js:12207 static/js/impala-min.js:7 static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
+
+#: static/js/common-all.js:19316 static/js/common-min.js:9 static/js/impala-all.js:12210 static/js/impala-min.js:7 static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "ਪਸੰਦੀਦਾ ਹਟਾ ਰਿਹਾ&hellip;"
+
+#: static/js/common-all.js:19319 static/js/common-min.js:9 static/js/impala-all.js:12213 static/js/impala-min.js:7 static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "ਪਸੰਦ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ"
+
+#: static/js/common-all.js:19322 static/js/common-min.js:9 static/js/impala-all.js:12216 static/js/impala-min.js:7 static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "ਪਸੰਦ ਵਿਚੋਂ ਹਟਾਓ"
+
+#: static/js/common-all.js:19385 static/js/common-min.js:9 static/js/impala-all.js:12279 static/js/impala-min.js:7 static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "ਬਕਾਇਆ"
+
+#: static/js/common-all.js:19386 static/js/common-min.js:9 static/js/impala-all.js:12280 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
+
+#: static/js/common-all.js:19386 static/js/common-min.js:9 static/js/impala-all.js:12280 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "ਕਾਮੈਂਟ"
+
+#: static/js/common-all.js:19387 static/js/common-min.js:9 static/js/impala-all.js:12281 static/js/impala-min.js:7 static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
+
+#: static/js/common-all.js:19387 static/js/common-all.js:19416 static/js/common-min.js:9 static/js/impala-all.js:12281 static/js/impala-all.js:12310 static/js/impala-min.js:7
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "ਹਟਾਓ"
+
+#: static/js/common-all.js:19416 static/js/common-min.js:9 static/js/impala-all.js:12310 static/js/impala-min.js:7 static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "ਇਸ ਯੂਜਰ ਨੂੰ ਯੋਗਦਾਨ ਦੇ ਤੌਰ ਤੇ ਹਟਾਓ"
+
+#: static/js/common-all.js:19428 static/js/common-min.js:9 static/js/impala-all.js:12322 static/js/impala-min.js:7 static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "ਇੱਕ ਈਮੇਲ ਐੱਡਰੈਸ ਦੀ ਜਰੂਰਤ ਹੈ।"
+
+#: static/js/common-all.js:19446 static/js/common-min.js:9 static/js/impala-all.js:12340 static/js/impala-min.js:7 static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "ਹਟਾਓ"
+
+#: static/js/common-all.js:19448 static/js/common-min.js:9 static/js/impala-all.js:12342 static/js/impala-min.js:7 static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "ਤੁਸੀ ਇਸ ਯੂਜਰ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਸ਼ਾਮਲ ਕਰ ਚੁੱਕੇ ਹੋ"
+
+#: static/js/common-all.js:19655 static/js/common-min.js:9 static/js/impala-all.js:12549 static/js/impala-min.js:7 static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"
+
+#: static/js/common-all.js:19659 static/js/common-min.js:9 static/js/impala-all.js:12553 static/js/impala-min.js:7 static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
+
+#: static/js/common-all.js:19677 static/js/common-min.js:9 static/js/impala-all.js:12571 static/js/impala-all.js:12637 static/js/impala-min.js:7 static/js/impala/collections.js:10
+#: static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਸਮਰਥਨ ਕਰੋ"
+
+#: static/js/common-all.js:19686 static/js/common-min.js:9 static/js/impala-all.js:12580 static/js/impala-min.js:7 static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
+
+#: static/js/common-all.js:19762 static/js/common-all.js:19775 static/js/common-min.js:9 static/js/impala-all.js:12688 static/js/impala-all.js:12701 static/js/impala-min.js:7
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "ਸਾਰੇ"
+
+#: static/js/common-all.js:19924 static/js/common-min.js:9 static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
+
+#: static/js/common-all.js:19930 static/js/common-min.js:9 static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
+msgstr[1] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
+
+#: static/js/common-all.js:20114 static/js/common-min.js:9 static/js/impala-all.js:13083 static/js/impala-min.js:7 static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
+
+#: static/js/common-all.js:20116 static/js/common-min.js:9 static/js/impala-all.js:13085 static/js/impala-min.js:7 static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
+
+#: static/js/common-all.js:20118 static/js/common-min.js:9 static/js/impala-all.js:13087 static/js/impala-min.js:7 static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
+
+#: static/js/common-all.js:20349 static/js/common-min.js:9 static/js/impala-all.js:13318 static/js/impala-min.js:7 static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "ਕੈਟਾਗਿਰੀ"
+
+#: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268 static/js/zamboni/mobile-min.js:5
+msgid "Admins and editors must provide a password to log in."
+msgstr ""
+
+#: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273 static/js/zamboni/mobile-min.js:5
+msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
+msgstr ""
+
+#. L10n: {0} is an app name.
+#: static/js/impala-all.js:10298 static/js/impala-min.js:6 static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+
+#: static/js/impala-all.js:10809 static/js/impala-all.js:12817 static/js/impala-min.js:6 static/js/impala-min.js:7 static/js/common/upload-image.js:97 static/js/impala/users.js:51
+#: static/js/zamboni/devhub-all.js:775 static/js/zamboni/devhub-min.js:1
+msgid "Images must be either PNG or JPG."
+msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
+
+#: static/js/impala-all.js:10813 static/js/impala-min.js:6 static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:779 static/js/zamboni/devhub-min.js:1
+msgid "Videos must be in WebM."
+msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
+
+#: static/js/impala-all.js:10840 static/js/impala-min.js:6 static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128 static/js/zamboni/devhub-all.js:271
+#: static/js/zamboni/devhub-all.js:806 static/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
 msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼ਕਲ ਸੀ।"
 
-#: static/js/common/upload-addon.js:52
+#: static/js/impala-all.js:11559 static/js/impala-min.js:6 static/js/impala/persona_creation.js:102
+msgid "All Rights Reserved"
+msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
+
+#: static/js/impala-all.js:11563 static/js/impala-min.js:6 static/js/impala/persona_creation.js:106
+msgid "Creative Commons Attribution 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
+
+#: static/js/impala-all.js:11568 static/js/impala-min.js:6 static/js/impala/persona_creation.js:111
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ-ਕਮਰਸ਼ੀਅਲ 3.0"
+
+#: static/js/impala-all.js:11573 static/js/impala-min.js:6 static/js/impala/persona_creation.js:116
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਨੋਨ ਡਰਾਈਵ 3.0"
+
+#: static/js/impala-all.js:11578 static/js/impala-min.js:6 static/js/impala/persona_creation.js:121
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਸ਼ੇਅਰ-ਅਲਾਈਕ 3.0"
+
+#: static/js/impala-all.js:11583 static/js/impala-min.js:6 static/js/impala/persona_creation.js:126
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
+
+#: static/js/impala-all.js:11588 static/js/impala-min.js:6 static/js/impala/persona_creation.js:131
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
+
+#: static/js/impala-all.js:11795 static/js/impala-min.js:6 static/js/impala/persona_creation.js:338
+msgid "Your Theme's Name"
+msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
+
+#: static/js/impala-all.js:12646 static/js/impala-min.js:7 static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "ਸਮਰਥਨ ਰੋਕੋ"
+
+#: static/js/impala-all.js:12647 static/js/impala-min.js:7 static/js/impala/collections.js:20
+msgid "Following"
+msgstr "ਸਮਰਥਨ ਕਰ ਰਿਹਾ"
+
+#: static/js/impala-all.js:12799 static/js/impala-min.js:7 static/js/impala/users.js:33
+msgid "use original"
+msgstr "ਅਸਲੀ ਵਰਤੋ"
+
+#: static/js/impala-all.js:12974 static/js/impala-min.js:7 static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
+
+#: static/js/common/upload-addon.js:59 static/js/zamboni/devhub-all.js:289 static/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
 msgstr "ਇੱਕ ਫਾਈਲ ਚੁਣੋ..."
 
-#: static/js/common/upload-addon.js:53
+#: static/js/common/upload-addon.js:60 static/js/zamboni/devhub-all.js:290 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ .xpi, .jar ਜਾਂ .xml ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:87
+#: static/js/common/upload-addon.js:94 static/js/zamboni/devhub-all.js:324 static/js/zamboni/devhub-min.js:1
 msgid "{0}% complete"
 msgstr "{0}% ਮੁਕੰਮਲ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:90
+#: static/js/common/upload-addon.js:97 static/js/zamboni/devhub-all.js:327 static/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
 
-#: static/js/common/upload-addon.js:123
+#: static/js/common/upload-addon.js:130 static/js/zamboni/devhub-all.js:357 static/js/zamboni/devhub-min.js:1
 msgid "Cancel"
 msgstr "ਰੱਦ"
 
-#: static/js/common/upload-addon.js:145
+#: static/js/common/upload-addon.js:152 static/js/zamboni/devhub-all.js:379 static/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
 msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ"
 
-#: static/js/common/upload-addon.js:172
+#: static/js/common/upload-addon.js:179 static/js/zamboni/devhub-all.js:406 static/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਖਾਮੀ"
 
-#: static/js/common/upload-addon.js:177
+#: static/js/common/upload-addon.js:184 static/js/zamboni/devhub-all.js:411 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ {0} ਖਾਮੀ ਨਾਲ ਵੈਧਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 msgstr[1] "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ {0} ਖਾਮੀਆਂ ਨਾਲ ਵੈਧਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 
-#: static/js/common/upload-addon.js:191
+#: static/js/common/upload-addon.js:198 static/js/zamboni/devhub-all.js:425 static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: static/js/common/upload-addon.js:205 static/js/common/upload-addon.js:509
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:520 static/js/zamboni/devhub-all.js:439 static/js/zamboni/devhub-all.js:619 static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
 
-#: static/js/common/upload-addon.js:217
+#: static/js/common/upload-addon.js:224 static/js/zamboni/devhub-all.js:451 static/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
 msgstr "{0} ਵੈਧਤਾ"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:256
+#: static/js/common/upload-addon.js:263 static/js/zamboni/devhub-all.js:490 static/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
 
-#: static/js/common/upload-addon.js:361
+#: static/js/common/upload-addon.js:368 static/js/zamboni/devhub-all.js:506 static/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
 msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
 
-#: static/js/common/upload-addon.js:399
+#: static/js/common/upload-addon.js:407 static/js/zamboni/devhub-all.js:544 static/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
 msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 
-#: static/js/common/upload-addon.js:405
+#: static/js/common/upload-addon.js:413
+msgid "Your add-on validation timed out, it will be manually reviewed."
+msgstr ""
+
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹੇ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
 msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹਿਆਂ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
-#: static/js/common/upload-addon.js:428
+#: static/js/common/upload-addon.js:439
 msgid "Your submission will go through a manual review."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
-#: static/js/common/upload-addon.js:432
+#: static/js/common/upload-addon.js:443
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ ਅਤੇ ਆਪਣੇ ਆਪ ਹੀ ਹਸਤਾਖਰਿਤ ਹੋ ਜਾਵੇਗੀ।"
 
-#: static/js/common/upload-addon.js:434
+#: static/js/common/upload-addon.js:445
 msgid "Your submission passed validation and will go through a manual review."
 msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ ਅਤੇ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
 
-#: static/js/common/upload-addon.js:462
+#: static/js/common/upload-addon.js:473 static/js/zamboni/devhub-all.js:571 static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:463
+#: static/js/common/upload-addon.js:474 static/js/zamboni/devhub-all.js:572 static/js/zamboni/devhub-min.js:1
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਵਰਤੋਂਕਾਰ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:464
+#: static/js/common/upload-addon.js:475
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੱਕ ਸੀਮਿਤ ਜਨਤਾ ਲਈ ਨਿਯਤ ਹੈ ਤੁਹਾਨੂੰ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਦੀ ਥਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: static/js/common/upload-addon.js:477
+#: static/js/common/upload-addon.js:488 static/js/zamboni/devhub-all.js:587 static/js/zamboni/devhub-min.js:1
 msgid "Add-on submission checklist"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
-#: static/js/common/upload-addon.js:478
+#: static/js/common/upload-addon.js:489 static/js/zamboni/devhub-all.js:588 static/js/zamboni/devhub-min.js:1
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਸ ਨਾਲ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ:"
 
-#: static/js/common/upload-addon.js:480
+#: static/js/common/upload-addon.js:491 static/js/zamboni/devhub-all.js:590 static/js/zamboni/devhub-min.js:1
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -137,927 +439,790 @@ msgstr ""
 "ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
 "ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:498
+#: static/js/common/upload-addon.js:509 static/js/zamboni/devhub-all.js:608 static/js/zamboni/devhub-min.js:1
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
 
-#: static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:526 static/js/zamboni/devhub-all.js:625 static/js/zamboni/devhub-min.js:1
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:551
+#: static/js/common/upload-addon.js:562 static/js/zamboni/devhub-all.js:662 static/js/zamboni/devhub-min.js:1
 msgid "Some platforms are not available for this type of add-on."
 msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
 
-#: static/js/common/upload-addon.js:553
+#: static/js/common/upload-addon.js:564 static/js/zamboni/devhub-all.js:664 static/js/zamboni/devhub-min.js:1
 msgid "Sorry, no supported platform has been found."
 msgstr "ਮੁਆਫ਼ੀ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 
-#: static/js/common/upload-base.js:57
+#: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:193 static/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
 
-#: static/js/common/upload-base.js:79
+#: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:215 static/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
 msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਨੂੰ ਰੱਦ ਕੀਤਾ।"
 
-#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
-msgid "Images must be either PNG or JPG."
-msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-#: static/js/common/upload-image.js:101
-msgid "Videos must be in WebM."
-msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
-msgid "Follow this Collection"
-msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਸਮਰਥਨ ਕਰੋ"
-
-#: static/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "ਸਮਰਥਨ ਰੋਕੋ"
-
-#: static/js/impala/collections.js:20
-msgid "Following"
-msgstr "ਸਮਰਥਨ ਕਰ ਰਿਹਾ"
-
-#. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-#: static/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
-
-#: static/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
-
-#: static/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ-ਕਮਰਸ਼ੀਅਲ 3.0"
-
-#: static/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਨੋਨ ਡਰਾਈਵ 3.0"
-
-#: static/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਸ਼ੇਅਰ-ਅਲਾਈਕ 3.0"
-
-#: static/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
-
-#: static/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
-
-#: static/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
-
-#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
-
-#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
-
-#: static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
-
-#: static/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
-
-#: static/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "ਕੈਟਾਗਿਰੀ"
-
-#: static/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
-
-#: static/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
-
-#: static/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
-
-#: static/js/impala/users.js:33
-msgid "use original"
-msgstr "ਅਸਲੀ ਵਰਤੋ"
-
-#: static/js/impala/stats/chart.js:267
+#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16986 static/js/zamboni/stats-min.js:6
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-#: static/js/impala/stats/chart.js:269
+#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16988 static/js/zamboni/stats-min.js:6
 msgid "downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
-#: static/js/impala/stats/chart.js:270
+#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16989 static/js/zamboni/stats-min.js:6
 msgid "{0} users"
 msgstr "{0} ਯੂਜਰ"
 
-#: static/js/impala/stats/chart.js:271
+#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16990 static/js/zamboni/stats-min.js:6
 msgid "{0} add-ons"
 msgstr "{0} ਐਡ-ਆਨ"
 
-#: static/js/impala/stats/chart.js:272
+#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16991 static/js/zamboni/stats-min.js:6
 msgid "{0} collections"
 msgstr "{0} ਭੰਡਾਰ"
 
-#: static/js/impala/stats/chart.js:273
+#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16992 static/js/zamboni/stats-min.js:6
 msgid "{0} reviews"
 msgstr "{0} ਸਮੀਖਿਅਕ"
 
-#: static/js/impala/stats/chart.js:275
+#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16994 static/js/zamboni/stats-min.js:6
 msgid "{0} sales"
 msgstr "{0} ਸੇਲ"
 
-#: static/js/impala/stats/chart.js:276
+#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16995 static/js/zamboni/stats-min.js:6
 msgid "{0} refunds"
 msgstr "{0} ਰਿਫੰਡ"
 
-#: static/js/impala/stats/chart.js:277
+#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16996 static/js/zamboni/stats-min.js:6
 msgid "{0} installs"
 msgstr "{0} ਇੰਸਟਾਲ"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102 static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15478
+#: static/js/zamboni/stats-all.js:17088 static/js/zamboni/stats-min.js:6
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103 static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-all.js:15479
+#: static/js/zamboni/stats-all.js:17098 static/js/zamboni/stats-min.js:6
 msgid "Daily Users"
 msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
-#: static/js/impala/stats/chart.js:410
+#: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17129 static/js/zamboni/stats-min.js:6
 msgid "Amount, in USD"
 msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
 
-#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97 static/js/zamboni/stats-all.js:15473 static/js/zamboni/stats-all.js:17140 static/js/zamboni/stats-min.js:6
 msgid "Number of Contributions"
 msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
 
-#: static/js/impala/stats/chart.js:447
+#: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17166 static/js/zamboni/stats-min.js:6
 msgid "More Info..."
 msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js:451
+#: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17170 static/js/zamboni/stats-min.js:6
 msgid "Details for {0}"
 msgstr "{0} ਲਈ ਵੇਰਵਾ"
 
-#: static/js/impala/stats/csv_keys.js:9
+#: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-min.js:6
 msgid "Collections Created"
 msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
 
-#: static/js/impala/stats/csv_keys.js:12
+#: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15388 static/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use"
 msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
 
-#: static/js/impala/stats/csv_keys.js:15
+#: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Created"
 msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:18
+#: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded"
 msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
 
-#: static/js/impala/stats/csv_keys.js:21
+#: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15397 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated"
 msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
 
-#: static/js/impala/stats/csv_keys.js:24
+#: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15400 static/js/zamboni/stats-min.js:6
 msgid "Reviews Written"
 msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
-#: static/js/impala/stats/csv_keys.js:27
+#: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15403 static/js/zamboni/stats-min.js:6
 msgid "User Signups"
 msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
 
-#: static/js/impala/stats/csv_keys.js:30
+#: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15406 static/js/zamboni/stats-min.js:6
 msgid "Subscribers"
 msgstr "ਗਾਹਕ"
 
-#: static/js/impala/stats/csv_keys.js:33
+#: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15409 static/js/zamboni/stats-min.js:6
 msgid "Ratings"
 msgstr "ਰੇਟਿੰਗ"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107 static/js/zamboni/stats-all.js:15412 static/js/zamboni/stats-all.js:15483 static/js/zamboni/stats-min.js:6
 msgid "Sales"
 msgstr "ਸੇਲ"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15415 static/js/zamboni/stats-all.js:15482 static/js/zamboni/stats-min.js:6
 msgid "Installs"
 msgstr "ਇੰਸਟਾਲ"
 
-#: static/js/impala/stats/csv_keys.js:42
+#: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15418 static/js/zamboni/stats-min.js:6
 msgid "Unknown"
 msgstr "ਅਣਜਾਣ"
 
-#: static/js/impala/stats/csv_keys.js:43
+#: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15419 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Manager"
 msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
 
-#: static/js/impala/stats/csv_keys.js:44
+#: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15420 static/js/zamboni/stats-min.js:6
 msgid "Search Results"
 msgstr "ਨਤੀਜੇ ਖੋਜੋ"
 
-#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47
+#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15421 static/js/zamboni/stats-all.js:15422
+#: static/js/zamboni/stats-all.js:15423 static/js/zamboni/stats-min.js:6
 msgid "Homepage Promo"
 msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
 
-#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49
+#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49 static/js/zamboni/stats-all.js:15424 static/js/zamboni/stats-all.js:15425 static/js/zamboni/stats-min.js:6
 msgid "Homepage Featured"
 msgstr "ਮੁੱਖ ਸਫਾ ਗੁਣ"
 
-#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15426 static/js/zamboni/stats-all.js:15427 static/js/zamboni/stats-min.js:6
 msgid "Homepage Up and Coming"
 msgstr "ਮੁੱਖ ਸਫਾ ਉੱਪਰ ਅਤੇ ਆਉਣਾ"
 
-#: static/js/impala/stats/csv_keys.js:52
+#: static/js/impala/stats/csv_keys.js:52 static/js/zamboni/stats-all.js:15428 static/js/zamboni/stats-min.js:6
 msgid "Homepage Most Popular"
 msgstr "ਮੱਖ ਸਫਾ ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ"
 
-#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55
+#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55 static/js/zamboni/stats-all.js:15429 static/js/zamboni/stats-all.js:15431 static/js/zamboni/stats-min.js:6
 msgid "Detail Page"
 msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ"
 
-#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15430 static/js/zamboni/stats-all.js:15432 static/js/zamboni/stats-min.js:6
 msgid "Detail Page (bottom)"
 msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਹੇਠਾਂ)"
 
-#: static/js/impala/stats/csv_keys.js:57
+#: static/js/impala/stats/csv_keys.js:57 static/js/zamboni/stats-all.js:15433 static/js/zamboni/stats-min.js:6
 msgid "Detail Page (Development Channel)"
 msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਵਾਧਾ ਪ੍ਰਣਾਲੀ)"
 
-#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60 static/js/zamboni/stats-all.js:15434 static/js/zamboni/stats-all.js:15435
+#: static/js/zamboni/stats-all.js:15436 static/js/zamboni/stats-min.js:6
 msgid "Often Used With"
 msgstr "ਆਮ ਕਰਕੇ ਨਾਲ ਵਰਤਿਆ"
 
-#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62
+#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62 static/js/zamboni/stats-all.js:15437 static/js/zamboni/stats-all.js:15438 static/js/zamboni/stats-min.js:6
 msgid "Others By Author"
 msgstr "ਲੇਖਕ ਵਲੋ ਹੋਰ"
 
-#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15439 static/js/zamboni/stats-all.js:15440 static/js/zamboni/stats-min.js:6
 msgid "Dependencies"
 msgstr "ਨਿਰਭਰਤਾਵਾਂ"
 
-#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66 static/js/zamboni/stats-all.js:15441 static/js/zamboni/stats-all.js:15442 static/js/zamboni/stats-min.js:6
 msgid "Upsell"
 msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
 
-#: static/js/impala/stats/csv_keys.js:68
+#: static/js/impala/stats/csv_keys.js:68 static/js/zamboni/stats-all.js:15444 static/js/zamboni/stats-min.js:6
 msgid "Sharing"
 msgstr "ਵੰਡਣਾ"
 
-#: static/js/impala/stats/csv_keys.js:69
+#: static/js/impala/stats/csv_keys.js:69 static/js/zamboni/stats-all.js:15445 static/js/zamboni/stats-min.js:6
 msgid "Category Pages"
 msgstr "ਸੰਗ੍ਰਹਿ ਪੰਨੇ"
 
-#: static/js/impala/stats/csv_keys.js:70
+#: static/js/impala/stats/csv_keys.js:70 static/js/zamboni/stats-all.js:15446 static/js/zamboni/stats-min.js:6
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ"
 
-#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72
+#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15447 static/js/zamboni/stats-all.js:15448 static/js/zamboni/stats-min.js:6
 msgid "Category Landing Featured Carousel"
 msgstr "ਸੰਗ੍ਰਹਿ ਭੂਮੀ ਗੁਣ ਝੂਲਣਾ"
 
-#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74
+#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74 static/js/zamboni/stats-all.js:15449 static/js/zamboni/stats-all.js:15450 static/js/zamboni/stats-min.js:6
 msgid "Category Landing Top Rated"
 msgstr "ਚੋਟੀ ਦੀ ਰੇਟਿੰਗ ਵਿੱਚ ਆਉਂਦੇ ਸੰਗ੍ਰਹਿ"
 
-#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76
+#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15451 static/js/zamboni/stats-all.js:15452 static/js/zamboni/stats-min.js:6
 msgid "Category Landing Most Popular"
 msgstr "ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ ਵਿੱਚ ਆਉਂਦੇ ਸੰਗ੍ਰਹਿ"
 
-#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78
+#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78 static/js/zamboni/stats-all.js:15453 static/js/zamboni/stats-all.js:15454 static/js/zamboni/stats-min.js:6
 msgid "Category Landing Recently Added"
 msgstr "ਤਾਜਾ ਸ਼ਾਮਿਲ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
 
-#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80
+#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80 static/js/zamboni/stats-all.js:15455 static/js/zamboni/stats-all.js:15456 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Featured Sort"
 msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82
+#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82 static/js/zamboni/stats-all.js:15457 static/js/zamboni/stats-all.js:15458 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Users Sort"
 msgstr "ਯੂਜਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84
+#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84 static/js/zamboni/stats-all.js:15459 static/js/zamboni/stats-all.js:15460 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Rating Sort"
 msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86
+#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86 static/js/zamboni/stats-all.js:15461 static/js/zamboni/stats-all.js:15462 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Created Sort"
 msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88
+#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88 static/js/zamboni/stats-all.js:15463 static/js/zamboni/stats-all.js:15464 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Name Sort"
 msgstr "ਨਾਮ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90
+#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90 static/js/zamboni/stats-all.js:15465 static/js/zamboni/stats-all.js:15466 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Popular Sort"
 msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92
+#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92 static/js/zamboni/stats-all.js:15467 static/js/zamboni/stats-all.js:15468 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Updated Sort"
 msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
-#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94
+#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94 static/js/zamboni/stats-all.js:15469 static/js/zamboni/stats-all.js:15470 static/js/zamboni/stats-min.js:6
 msgid "Browse Listing Up and Coming Sort"
 msgstr "ਸੂਚੀਬੱਧਤਾ ਅਤੇ ਲੜੀਬੱਧਤਾ ਦੀ ਝਲਕ"
 
-#: static/js/impala/stats/csv_keys.js:98
+#: static/js/impala/stats/csv_keys.js:98 static/js/zamboni/stats-all.js:15474 static/js/zamboni/stats-min.js:6
 msgid "Total Amount Contributed"
 msgstr "ਕੁੱਲ ਰਕਮ ਯੋਗਦਾਨ ਪਾਇਆ"
 
-#: static/js/impala/stats/csv_keys.js:99
+#: static/js/impala/stats/csv_keys.js:99 static/js/zamboni/stats-all.js:15475 static/js/zamboni/stats-min.js:6
 msgid "Average Contribution"
 msgstr "ਔਸਤ ਯੋਗਦਾਨ"
 
-#: static/js/impala/stats/csv_keys.js:108
+#: static/js/impala/stats/csv_keys.js:108 static/js/zamboni/stats-all.js:15484 static/js/zamboni/stats-min.js:6
 msgid "Usage"
 msgstr "ਵਰਤੋਂ"
 
-#: static/js/impala/stats/csv_keys.js:111
+#: static/js/impala/stats/csv_keys.js:111 static/js/zamboni/stats-all.js:15487 static/js/zamboni/stats-min.js:6
 msgid "Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ"
 
-#: static/js/impala/stats/csv_keys.js:112
+#: static/js/impala/stats/csv_keys.js:112 static/js/zamboni/stats-all.js:15488 static/js/zamboni/stats-min.js:6
 msgid "Mozilla"
 msgstr "ਮੌਜੀਲਾ"
 
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15489 static/js/zamboni/stats-min.js:6
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
 
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15490 static/js/zamboni/stats-min.js:6
 msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
 
-#: static/js/impala/stats/csv_keys.js:115
+#: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15491 static/js/zamboni/stats-min.js:6
 msgid "SeaMonkey"
 msgstr "ਸੀਮੌਂਕੀ"
 
-#: static/js/impala/stats/csv_keys.js:116
+#: static/js/impala/stats/csv_keys.js:116 static/js/zamboni/stats-all.js:15492 static/js/zamboni/stats-min.js:6
 msgid "Fennec"
 msgstr "ਫਿੱਨਸ"
 
-#: static/js/impala/stats/csv_keys.js:117
+#: static/js/impala/stats/csv_keys.js:117 static/js/zamboni/stats-all.js:15493 static/js/zamboni/stats-min.js:6
 msgid "Android"
 msgstr "ਐਨਡਰੋਇਡ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:122
+#: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15498 static/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:124
+#: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15500 static/js/zamboni/stats-min.js:6
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:128
+#: static/js/impala/stats/csv_keys.js:128 static/js/zamboni/stats-all.js:15504 static/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users, last {0} days"
 msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:130
+#: static/js/impala/stats/csv_keys.js:130 static/js/zamboni/stats-all.js:15506 static/js/zamboni/stats-min.js:6
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:134
+#: static/js/impala/stats/csv_keys.js:134 static/js/zamboni/stats-all.js:15510 static/js/zamboni/stats-min.js:6
 msgid "Downloads, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:136
+#: static/js/impala/stats/csv_keys.js:136 static/js/zamboni/stats-all.js:15512 static/js/zamboni/stats-min.js:6
 msgid "Downloads from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:140
+#: static/js/impala/stats/csv_keys.js:140 static/js/zamboni/stats-all.js:15516 static/js/zamboni/stats-min.js:6
 msgid "Daily Users, last {0} days"
 msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:142
+#: static/js/impala/stats/csv_keys.js:142 static/js/zamboni/stats-all.js:15518 static/js/zamboni/stats-min.js:6
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:146
+#: static/js/impala/stats/csv_keys.js:146 static/js/zamboni/stats-all.js:15522 static/js/zamboni/stats-min.js:6
 msgid "Applications, last {0} days"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:148
+#: static/js/impala/stats/csv_keys.js:148 static/js/zamboni/stats-all.js:15524 static/js/zamboni/stats-min.js:6
 msgid "Applications from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:152
+#: static/js/impala/stats/csv_keys.js:152 static/js/zamboni/stats-all.js:15528 static/js/zamboni/stats-min.js:6
 msgid "Platforms, last {0} days"
 msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:154
+#: static/js/impala/stats/csv_keys.js:154 static/js/zamboni/stats-all.js:15530 static/js/zamboni/stats-min.js:6
 msgid "Platforms from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:158
+#: static/js/impala/stats/csv_keys.js:158 static/js/zamboni/stats-all.js:15534 static/js/zamboni/stats-min.js:6
 msgid "Languages, last {0} days"
 msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:160
+#: static/js/impala/stats/csv_keys.js:160 static/js/zamboni/stats-all.js:15536 static/js/zamboni/stats-min.js:6
 msgid "Languages from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:164
+#: static/js/impala/stats/csv_keys.js:164 static/js/zamboni/stats-all.js:15540 static/js/zamboni/stats-min.js:6
 msgid "Add-on Versions, last {0} days"
 msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:166
+#: static/js/impala/stats/csv_keys.js:166 static/js/zamboni/stats-all.js:15542 static/js/zamboni/stats-min.js:6
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:170
+#: static/js/impala/stats/csv_keys.js:170 static/js/zamboni/stats-all.js:15546 static/js/zamboni/stats-min.js:6
 msgid "Add-on Status, last {0} days"
 msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:172
+#: static/js/impala/stats/csv_keys.js:172 static/js/zamboni/stats-all.js:15548 static/js/zamboni/stats-min.js:6
 msgid "Add-on Status from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:176
+#: static/js/impala/stats/csv_keys.js:176 static/js/zamboni/stats-all.js:15552 static/js/zamboni/stats-min.js:6
 msgid "Download Sources, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:178
+#: static/js/impala/stats/csv_keys.js:178 static/js/zamboni/stats-all.js:15554 static/js/zamboni/stats-min.js:6
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:182
+#: static/js/impala/stats/csv_keys.js:182 static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:6
 msgid "Contributions, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:184
+#: static/js/impala/stats/csv_keys.js:184 static/js/zamboni/stats-all.js:15560 static/js/zamboni/stats-min.js:6
 msgid "Contributions from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:188
+#: static/js/impala/stats/csv_keys.js:188 static/js/zamboni/stats-all.js:15564 static/js/zamboni/stats-min.js:6
 msgid "Site Metrics, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:190
+#: static/js/impala/stats/csv_keys.js:190 static/js/zamboni/stats-all.js:15566 static/js/zamboni/stats-min.js:6
 msgid "Site Metrics from {0} to {1}"
 msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:194
+#: static/js/impala/stats/csv_keys.js:194 static/js/zamboni/stats-all.js:15570 static/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use, last {0} days"
 msgstr "ਅੈਡ-ਓਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:196
+#: static/js/impala/stats/csv_keys.js:196 static/js/zamboni/stats-all.js:15572 static/js/zamboni/stats-min.js:6
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:200
+#: static/js/impala/stats/csv_keys.js:200 static/js/zamboni/stats-all.js:15576 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ,"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:202
+#: static/js/impala/stats/csv_keys.js:202 static/js/zamboni/stats-all.js:15578 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "ਐਡ-ਆਨ {0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਹੋਇਆ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:206
+#: static/js/impala/stats/csv_keys.js:206 static/js/zamboni/stats-all.js:15582 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Created, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਅੈਡ-ਓਨ ਰਚੇ ਗਏ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:208
+#: static/js/impala/stats/csv_keys.js:208 static/js/zamboni/stats-all.js:15584 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Created from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਓ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:212
+#: static/js/impala/stats/csv_keys.js:212 static/js/zamboni/stats-all.js:15588 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated, last {0} days"
 msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:214
+#: static/js/impala/stats/csv_keys.js:214 static/js/zamboni/stats-all.js:15590 static/js/zamboni/stats-min.js:6
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:218
+#: static/js/impala/stats/csv_keys.js:218 static/js/zamboni/stats-all.js:15594 static/js/zamboni/stats-min.js:6
 msgid "Reviews Written, last {0} days"
 msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:220
+#: static/js/impala/stats/csv_keys.js:220 static/js/zamboni/stats-all.js:15596 static/js/zamboni/stats-min.js:6
 msgid "Reviews Written from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:224
+#: static/js/impala/stats/csv_keys.js:224 static/js/zamboni/stats-all.js:15600 static/js/zamboni/stats-min.js:6
 msgid "User Signups, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:226
+#: static/js/impala/stats/csv_keys.js:226 static/js/zamboni/stats-all.js:15602 static/js/zamboni/stats-min.js:6
 msgid "User Signups from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:230
+#: static/js/impala/stats/csv_keys.js:230 static/js/zamboni/stats-all.js:15606 static/js/zamboni/stats-min.js:6
 msgid "Collections Created, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:232
+#: static/js/impala/stats/csv_keys.js:232 static/js/zamboni/stats-all.js:15608 static/js/zamboni/stats-min.js:6
 msgid "Collections Created from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:236
+#: static/js/impala/stats/csv_keys.js:236 static/js/zamboni/stats-all.js:15612 static/js/zamboni/stats-min.js:6
 msgid "Subscribers, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:238
+#: static/js/impala/stats/csv_keys.js:238 static/js/zamboni/stats-all.js:15614 static/js/zamboni/stats-min.js:6
 msgid "Subscribers from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:242
+#: static/js/impala/stats/csv_keys.js:242 static/js/zamboni/stats-all.js:15618 static/js/zamboni/stats-min.js:6
 msgid "Ratings, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:244
+#: static/js/impala/stats/csv_keys.js:244 static/js/zamboni/stats-all.js:15620 static/js/zamboni/stats-min.js:6
 msgid "Ratings from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:248
+#: static/js/impala/stats/csv_keys.js:248 static/js/zamboni/stats-all.js:15624 static/js/zamboni/stats-min.js:6
 msgid "Sales, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:250
+#: static/js/impala/stats/csv_keys.js:250 static/js/zamboni/stats-all.js:15626 static/js/zamboni/stats-min.js:6
 msgid "Sales from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:254
+#: static/js/impala/stats/csv_keys.js:254 static/js/zamboni/stats-all.js:15630 static/js/zamboni/stats-min.js:6
 msgid "Installs, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:256
+#: static/js/impala/stats/csv_keys.js:256 static/js/zamboni/stats-all.js:15632 static/js/zamboni/stats-min.js:6
 msgid "Installs from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:262
+#: static/js/impala/stats/csv_keys.js:262 static/js/zamboni/stats-all.js:15638 static/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ਆਖਰ ਵਿੱਚ {1} ਦਿਨ"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270
+#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270 static/js/zamboni/stats-all.js:15640 static/js/zamboni/stats-all.js:15646 static/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ਵੱਲੋਂ {1} ਤੋਂ {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:268
+#: static/js/impala/stats/csv_keys.js:268 static/js/zamboni/stats-all.js:15644 static/js/zamboni/stats-min.js:6
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
 
-#: static/js/impala/stats/overview.js:19
+#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16557 static/js/zamboni/stats-min.js:6
 msgid "No data available."
 msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜ਼ੂਦ ਨਹੀ"
 
-#: static/js/impala/stats/table.js:74
+#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17297 static/js/zamboni/stats-min.js:6
 msgid "Date"
 msgstr "ਤਾਰੀਖ"
 
-#: static/js/impala/stats/topchart.js:96
+#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16688 static/js/zamboni/stats-min.js:6
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1252 static/js/zamboni/editors.js:304
+#: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2306 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:1275 static/js/zamboni/editors-all.js:15600 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
 
-#: static/js/zamboni/admin_validation.js:51
+#: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "{0} ਐਡ-ਆਨ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 msgstr[1] "{0} ਐਡ-ਆਨਾਂ ਨੂੰ {1} ਦੇ ਮੈਕਸ ਵਰਜਨ ਤੇ ਸੈੱਟ ਕਰੋ ਅਤੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 
-#: static/js/zamboni/admin_validation.js:54
+#: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨ ਦੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 msgstr[1] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨਾਂ ਦੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ"
+#: static/js/zamboni/devhub-all.js:550 static/js/zamboni/devhub-min.js:1
+msgid "Your add-on passed validation with no errors and {0} message."
+msgid_plural "Your add-on passed validation with no errors and {0} messages."
+msgstr[0] ""
+msgstr[1] ""
 
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਕਾਰਾ ਹੈ।"
+#: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
+msgid "Your add-on passed validation with no errors or warnings."
+msgstr ""
 
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
+#: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
+msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
+msgstr ""
 
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾਪਾਰਸਕਰਨਯੋਗ ਹੈ।"
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਗਲਤ ਹੈ।"
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫ੍ਹੇਲ ਹੋਈ।"
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਨਹੀਂ।"
-
-#. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
-msgid "Accept and Install"
-msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-#: static/js/zamboni/buttons.js:82
-msgid "Add to {0}"
-msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
-
-#: static/js/zamboni/buttons.js:87
-msgid "Download Now"
-msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
-
-#: static/js/zamboni/buttons.js:128
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "ਮੂਲ ਤੌਰ ਤੇ ਅਨੁਕੂਲਤਾ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
-
-#: static/js/zamboni/buttons.js:133
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "ਤੁਹਾਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ 10.0 ਜਾਂ ਅੱਗੇ ਵਰਤੋਂ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ।"
-
-#: static/js/zamboni/buttons.js:145
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਵਰਜਨ ਤੇ ਤੁਹਾਡੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਨਾ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲੱਗਾ ਦਿੱਤਾ।"
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
-msgid "Install for {0} anyway"
-msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
-
-#: static/js/zamboni/buttons.js:227
-msgid "Download for {0} anyway"
-msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
-
-#: static/js/zamboni/buttons.js:284
-msgid "Not available for your platform"
-msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
-msgid "Not available for {0} {1}"
-msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#: static/js/zamboni/buttons.js:358
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-#: static/js/zamboni/buttons.js:360
-msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
-
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
-
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "ਹੁਣੇ-ਹੁਣੇ ਨਿਰੀਖਣ ਸਾਫ਼"
-
-#: static/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
-
-#: static/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "ਪਸੰਦੀਦਾ ਹਟਾ ਰਿਹਾ&hellip;"
-
-#: static/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "ਪਸੰਦ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ"
-
-#: static/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "ਪਸੰਦ ਵਿਚੋਂ ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "ਬਕਾਇਆ"
-
-#: static/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
-
-#: static/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "ਕਾਮੈਂਟ"
-
-#: static/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "ਇਸ ਯੂਜਰ ਨੂੰ ਯੋਗਦਾਨ ਦੇ ਤੌਰ ਤੇ ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "ਇੱਕ ਈਮੇਲ ਐੱਡਰੈਸ ਦੀ ਜਰੂਰਤ ਹੈ।"
-
-#: static/js/zamboni/collections.js:498
-msgid "You cannot add yourself as a contributor."
-msgstr "ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "ਤੁਸੀ ਇਸ ਯੂਜਰ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਸ਼ਾਮਲ ਕਰ ਚੁੱਕੇ ਹੋ"
-
-#: static/js/zamboni/collections.js:707
-msgid "Add to favorites"
-msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"
-
-#: static/js/zamboni/collections.js:711
-msgid "Remove from favorites"
-msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
-
-#: static/js/zamboni/collections.js:738
-msgid "Stop following"
-msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
-
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
 msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
-#: static/js/zamboni/devhub.js:368
+#: static/js/zamboni/devhub-all.js:1424 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:391
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
-#: static/js/zamboni/devhub.js:384
+#: static/js/zamboni/devhub-all.js:1440 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:407
 msgid "Enter a new author's email address"
 msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
 
-#: static/js/zamboni/devhub.js:531
+#: static/js/zamboni/devhub-all.js:1587 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
-#: static/js/zamboni/devhub.js:676
+#: static/js/zamboni/devhub-all.js:1732 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
 msgstr[1] "{files} ਫਾਈਲਾਂ"
 
-#: static/js/zamboni/devhub.js:679
+#: static/js/zamboni/devhub-all.js:1735 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: static/js/zamboni/devhub.js:791
+#: static/js/zamboni/devhub-all.js:1847 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
-#: static/js/zamboni/devhub.js:795
+#: static/js/zamboni/devhub-all.js:1851 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "ਉਦਾਹਰਨ"
 
-#: static/js/zamboni/devhub.js:1153
+#: static/js/zamboni/devhub-all.js:2207 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1176
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: static/js/zamboni/devhub.js:1280
+#: static/js/zamboni/devhub-all.js:2334 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1303
 msgid "Starting tests..."
 msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
 
-#: static/js/zamboni/devhub.js:1287
+#: static/js/zamboni/devhub-all.js:2341 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1310
 msgid "Waiting for test results..."
 msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
-#: static/js/zamboni/devhub.js:1289 static/js/zamboni/devhub.js:1294
+#: static/js/zamboni/devhub-all.js:2343 static/js/zamboni/devhub-all.js:2348 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1312 static/js/zamboni/devhub.js:1317
 msgid "Internal Server Error"
 msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
 
-#: static/js/zamboni/devhub.js:1329
+#: static/js/zamboni/devhub-all.js:2383 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1352
 msgid "Must be a valid e-mail address."
 msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
+
+#: static/js/zamboni/devhub-all.js:2528 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:80
+msgid "All tests passed successfully."
+msgstr "ਸਾਰੇ ਟੈਸਟ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਹੋਏ।"
+
+#: static/js/zamboni/devhub-all.js:2531 static/js/zamboni/devhub-all.js:2824 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:470
+msgid "These tests were not run."
+msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਉਣੇ ਸਨ।"
+
+#: static/js/zamboni/devhub-all.js:2577 static/js/zamboni/devhub-all.js:2590 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
+msgid "Tests"
+msgstr "ਟੈਸਟ"
+
+#: static/js/zamboni/devhub-all.js:2651 static/js/zamboni/devhub-all.js:2906 static/js/zamboni/devhub-all.js:2925 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:246
+#: static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
+msgid "Error"
+msgstr "ਗਲਤੀ"
+
+#: static/js/zamboni/devhub-all.js:2652 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:247
+msgid "Warning"
+msgstr "ਚੇਤਾਵਨੀ"
+
+#: static/js/zamboni/devhub-all.js:2739 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:387
+msgid "Compatibility Tests"
+msgstr "ਅਨਕੂਲਤਾ ਟੈਸਟ"
+
+#: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
+msgid "App failed validation."
+msgstr ""
+
+#: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
+msgid "App passed validation."
+msgstr ""
+
+#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:458
+msgid "Add-on failed validation."
+msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
+
+#: static/js/zamboni/devhub-all.js:2796 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:460
+msgid "Add-on passed validation."
+msgstr "ਐਡ-ਆਨ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਪਾਸ ਕੀਤੀ।"
+
+#: static/js/zamboni/devhub-all.js:2827 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:473
+msgid "{0} error"
+msgid_plural "{0} errors"
+msgstr[0] "{0} ਗਲਤੀ"
+msgstr[1] "{0}ਗਲਤੀਆਂ"
+
+#: static/js/zamboni/devhub-all.js:2829 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:475
+msgid "{0} warning"
+msgid_plural "{0} warnings"
+msgstr[0] "{0} ਚੇਤਾਵਨੀ"
+msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
+
+#: static/js/zamboni/devhub-all.js:2831 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:477
+msgid "{0} notice"
+msgid_plural "{0} notices"
+msgstr[0] "{0} ਨੋਟਿਸ"
+msgstr[1] "{0} ਨੋਟਿਸ"
+
+#: static/js/zamboni/devhub-all.js:2908 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:569
+msgid "Validation task could not complete or completed with errors"
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਮੁਕੰਮਲ ਨਹੀਂ ਹੋਇਆ ਜਾਂ ਖਾਮੀਆਂ ਨਾਲ ਮੁਕੰਮਲ ਹੋਇਆ"
+
+#: static/js/zamboni/devhub-all.js:2926 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:587
+msgid "Internal server error"
+msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
+
+#. L10n: {0} is a filename, such as `addon.zip`.
+#: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
+msgid "Download {0}"
+msgstr ""
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
 
-#: static/js/zamboni/discovery_pane.js:217
+#: static/js/zamboni/discovery-all.js:12754 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr "ਖਿਮਾ ਕਰੋ, ਅਸੀਂ ਤੁਹਾਡੇ ਲਈ ਕੋਈ ਸਿਫ਼ਾਰਿਸ਼ ਨਹੀਂ ਲੱਭ ਸਕੇ।</br> ਆਪਣੇ ਲਈ ਇੱਕ ਉਚਿਤ ਐਡ-ਆਨ ਖੋਜਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ <a href=\"{0}\">ਐਡ-ਆਨ ਸਾਈਟ</a> ਤੇ ਜਾਓ।"
 
-#: static/js/zamboni/discovery_pane.js:247
+#: static/js/zamboni/discovery-all.js:12784 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
 msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਲੱਭ ਰਿਹਾ&hellip;"
 
-#: static/js/zamboni/discovery_pane.js:249
+#: static/js/zamboni/discovery-all.js:12786 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
 msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਅੱਪਡੇਟ ਕਰ ਰਿਹਾ&hellip;"
 
-#: static/js/zamboni/editors.js:130
+#: static/js/zamboni/editors-all.js:15426 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/editors.js:180
+#: static/js/zamboni/editors-all.js:15476 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ।"
 
-#: static/js/zamboni/editors.js:182
+#: static/js/zamboni/editors-all.js:15478 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ ਨਹੀਂ ਕੀਤੀ ਸੀ।"
 
-#: static/js/zamboni/editors.js:253
+#: static/js/zamboni/editors-all.js:15549 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/editors.js:264
+#: static/js/zamboni/editors-all.js:15560 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
 
-#: static/js/zamboni/editors.js:269
+#: static/js/zamboni/editors-all.js:15565 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
 
-#: static/js/zamboni/editors.js:274
+#: static/js/zamboni/editors-all.js:15570 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
 
-#: static/js/zamboni/editors.js:279
+#: static/js/zamboni/editors-all.js:15575 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
 
-#: static/js/zamboni/editors.js:339
+#: static/js/zamboni/editors-all.js:15635 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:330
 msgid "Average Reviews"
 msgstr "ਔਸਤ ਸਮੀਖਿਆ"
 
-#: static/js/zamboni/editors.js:395
+#: static/js/zamboni/editors-all.js:15691 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
 msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
 
-#: static/js/zamboni/editors.js:454
+#: static/js/zamboni/editors-all.js:15750 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "ਲ੍ਹੋਡ ਕਰਨ ਦੌਰਾਨ ਅਨੁਵਾਦ ਗਲਤੀ"
+
+#: static/js/zamboni/editors-all.js:16144 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
+
+#: static/js/zamboni/editors-all.js:16145 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "ਫਲੈਗ ਕੀਤੇ ਹੋਏ"
+
+#: static/js/zamboni/editors-all.js:16146 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "ਨਕਲੀ"
+
+#: static/js/zamboni/editors-all.js:16147 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: static/js/zamboni/editors-all.js:16148 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "ਮੰਨਜੂਰੀ ਦੇਣਾ"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
@@ -1067,169 +1232,58 @@ msgstr ""
 msgid "Severity for automated signing:"
 msgstr ""
 
-#: static/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+#: static/js/zamboni/mobile-all.js:11252 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:77
+msgid "Not Updated for {0} {1}"
+msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
 
-#. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
-msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
+#: static/js/zamboni/mobile-all.js:11253 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:78
+msgid "Requires Newer Version of {0}"
+msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
 
-#: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
+#: static/js/zamboni/mobile-all.js:11254 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:79
+msgid "Unreviewed"
+msgstr "ਨਾ-ਸਮੀਖਿਆ"
 
-#: static/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
+#: static/js/zamboni/mobile-all.js:11255 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:80
+msgid "Experimental <span>(Learn More)</span>"
+msgstr "ਪ੍ਰਯੋਗਆਤਮਕ <span>(ਹੋਰ ਜਾਣੋ)</span>"
 
-#: static/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
+#: static/js/zamboni/mobile-all.js:11256 static/js/zamboni/mobile-all.js:11257 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+msgid "Not Available for {0}"
+msgstr "{0} ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ"
 
-#: static/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
-msgstr[1] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
+#: static/js/zamboni/mobile-all.js:11258 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:83
+msgid "Experimental"
+msgstr "ਤਜਰਬੇ"
 
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "ਸਾਰੇ"
+#: static/js/zamboni/mobile-all.js:11259 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:84
+msgid "Themes Require Newer Version of {0}"
+msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੇ ਨਵੇਂ ਵਰਜਨ ਦੀ ਲੋੜ"
 
-#: static/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
+#: static/js/zamboni/mobile-all.js:11260 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:85
+msgid "Themes Require {0}"
+msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੀ ਲੋੜ"
 
-#: static/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "ਫਲੈਗ ਕੀਤੇ ਹੋਏ"
+#: static/js/zamboni/mobile-all.js:11305 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:130
+msgid "Installing..."
+msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
 
-#: static/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "ਨਕਲੀ"
+#: static/js/zamboni/mobile-all.js:11325 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:150
+msgid "This add-on has been preliminarily reviewed by Mozilla."
+msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕੀਤੀ।"
 
-#: static/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "ਰੱਦ ਕਰੋ"
+#: static/js/zamboni/mobile-all.js:11452 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:277
+msgid "Keep it"
+msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
 
-#: static/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "ਮੰਨਜੂਰੀ ਦੇਣਾ"
+#: static/js/zamboni/mobile-all.js:12127 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:344
+msgid "You're trying it on!"
+msgstr "ਤੁਸੀਂ ਇਸਦੀ ਪਰਖ ਕਰ ਰਹੇ ਹੋ!"
 
-#: static/js/zamboni/validator.js:80
-msgid "All tests passed successfully."
-msgstr "ਸਾਰੇ ਟੈਸਟ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਹੋਏ।"
-
-#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:470
-msgid "These tests were not run."
-msgstr "ਇਹ ਟੈਸਟ ਨਹੀਂ ਚਲਾਉਣੇ ਸਨ।"
-
-#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
-msgid "Tests"
-msgstr "ਟੈਸਟ"
-
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
-msgid "Error"
-msgstr "ਗਲਤੀ"
-
-#: static/js/zamboni/validator.js:247
-msgid "Warning"
-msgstr "ਚੇਤਾਵਨੀ"
+#: static/js/zamboni/mobile-all.js:12139 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:356
+msgid "Added to Firefox"
+msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਸ਼ਾਮਲ"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
 msgstr ""
-
-#: static/js/zamboni/validator.js:387
-msgid "Compatibility Tests"
-msgstr "ਅਨਕੂਲਤਾ ਟੈਸਟ"
-
-#: static/js/zamboni/validator.js:458
-msgid "Add-on failed validation."
-msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
-
-#: static/js/zamboni/validator.js:460
-msgid "Add-on passed validation."
-msgstr "ਐਡ-ਆਨ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਪਾਸ ਕੀਤੀ।"
-
-#: static/js/zamboni/validator.js:473
-msgid "{0} error"
-msgid_plural "{0} errors"
-msgstr[0] "{0} ਗਲਤੀ"
-msgstr[1] "{0}ਗਲਤੀਆਂ"
-
-#: static/js/zamboni/validator.js:475
-msgid "{0} warning"
-msgid_plural "{0} warnings"
-msgstr[0] "{0} ਚੇਤਾਵਨੀ"
-msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
-
-#: static/js/zamboni/validator.js:477
-msgid "{0} notice"
-msgid_plural "{0} notices"
-msgstr[0] "{0} ਨੋਟਿਸ"
-msgstr[1] "{0} ਨੋਟਿਸ"
-
-#: static/js/zamboni/validator.js:569
-msgid "Validation task could not complete or completed with errors"
-msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਮੁਕੰਮਲ ਨਹੀਂ ਹੋਇਆ ਜਾਂ ਖਾਮੀਆਂ ਨਾਲ ਮੁਕੰਮਲ ਹੋਇਆ"
-
-#: static/js/zamboni/validator.js:587
-msgid "Internal server error"
-msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
-
-#: static/js/zamboni/mobile/buttons.js:77
-msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
-
-#: static/js/zamboni/mobile/buttons.js:78
-msgid "Requires Newer Version of {0}"
-msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
-
-#: static/js/zamboni/mobile/buttons.js:79
-msgid "Unreviewed"
-msgstr "ਨਾ-ਸਮੀਖਿਆ"
-
-#: static/js/zamboni/mobile/buttons.js:80
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "ਪ੍ਰਯੋਗਆਤਮਕ <span>(ਹੋਰ ਜਾਣੋ)</span>"
-
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
-msgid "Not Available for {0}"
-msgstr "{0} ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ"
-
-#: static/js/zamboni/mobile/buttons.js:83
-msgid "Experimental"
-msgstr "ਤਜਰਬੇ"
-
-#: static/js/zamboni/mobile/buttons.js:84
-msgid "Themes Require Newer Version of {0}"
-msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੇ ਨਵੇਂ ਵਰਜਨ ਦੀ ਲੋੜ"
-
-#: static/js/zamboni/mobile/buttons.js:85
-msgid "Themes Require {0}"
-msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੀ ਲੋੜ"
-
-#: static/js/zamboni/mobile/buttons.js:130
-msgid "Installing..."
-msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
-
-#: static/js/zamboni/mobile/buttons.js:150
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕੀਤੀ।"
-
-#: static/js/zamboni/mobile/buttons.js:277
-msgid "Keep it"
-msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
-
-#: static/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr "ਤੁਸੀਂ ਇਸਦੀ ਪਰਖ ਕਰ ਰਹੇ ਹੋ!"
-
-#: static/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਸ਼ਾਮਲ"
