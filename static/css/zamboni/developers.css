@@ -80,10 +80,6 @@ ul.refinements:last-child {
     width: 370px;
 }
 
-#submit-describe.unlisted .slug-edit {
-    display: none;
-}
-
 /*#id_homepage, #id_support_url, #id_support_email {*/
 #trans-support_email input,
 #trans-homepage input,

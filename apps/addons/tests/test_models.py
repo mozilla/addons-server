@@ -56,14 +56,14 @@ class TestCleanSlug(amo.tests.TestCase):
         # We're not saving yet, we're testing the slug creation without an id.
         b = Addon()
         b.clean_slug()
-        eq_(b.slug, 'addon-1')
+        eq_(b.slug, 'addon1')
         # Now save the instance to the database for future clashes.
         b.save()
 
         # Test on another object without an id.
         c = Addon()
         c.clean_slug()
-        eq_(c.slug, 'addon-2')
+        eq_(c.slug, 'addon2')
 
         # Even if an addon is deleted, don't clash with its slug.
         c.status = amo.STATUS_DELETED
@@ -74,7 +74,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # assign the 'addon-2' slug from the deleted addon.
         d = Addon()
         d.clean_slug()
-        eq_(d.slug, 'addon-3')
+        eq_(d.slug, 'addon3')
 
     def test_clean_slug_with_id(self):
         # Create an addon and save it to have an id.
@@ -95,7 +95,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # Now start over for b.
         b.slug = b.name = ""
         b.clean_slug()
-        eq_(b.slug, "%s~-1" % b.id)
+        eq_(b.slug, "%s~1" % b.id)
 
     def test_clean_slug_with_name(self):
         # Make sure there's at least an addon with the "fooname" slug,
@@ -105,7 +105,7 @@ class TestCleanSlug(amo.tests.TestCase):
 
         b = Addon(name="fooname")
         b.clean_slug()
-        eq_(b.slug, "fooname-1")
+        eq_(b.slug, "fooname1")
 
     def test_clean_slug_with_slug(self):
         # Make sure there's at least an addon with the "fooslug" slug,
@@ -115,7 +115,7 @@ class TestCleanSlug(amo.tests.TestCase):
 
         b = Addon(name="fooslug")
         b.clean_slug()
-        eq_(b.slug, "fooslug-1")
+        eq_(b.slug, "fooslug1")
 
     def test_clean_slug_blacklisted_slug(self):
         blacklisted_slug = 'fooblacklisted'
@@ -131,7 +131,7 @@ class TestCleanSlug(amo.tests.TestCase):
 
         b = Addon(slug=blacklisted_slug)
         b.clean_slug()
-        eq_(b.slug, "%s~-1" % blacklisted_slug)
+        eq_(b.slug, "%s~1" % blacklisted_slug)
 
     def test_clean_slug_blacklisted_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
@@ -143,7 +143,7 @@ class TestCleanSlug(amo.tests.TestCase):
 
         # If there's a clash, use the standard clash resolution.
         a = Addon.objects.create(slug=long_slug[:30])
-        eq_(a.slug, "%s-1" % long_slug[:27])
+        eq_(a.slug, "%s1" % long_slug[:28])
 
     def test_clean_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
@@ -155,7 +155,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        eq_(b.slug, "%s-1" % long_slug[:27])
+        eq_(b.slug, "%s1" % long_slug[:28])
 
     def test_clean_slug_always_slugify(self):
         illegal_chars = "some spaces and !?@"
@@ -181,6 +181,16 @@ class TestCleanSlug(amo.tests.TestCase):
             Addon.objects.create(slug=long_slug)
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
+
+    def test_clean_slug_ends_with_dash(self):
+        """Addon name ending with a dash should still work: See bug 1206063."""
+        a = Addon.objects.create(name='ends with dash -')
+        assert a.slug == 'ends-with-dash-'
+        assert a.slug == amo.utils.slugify(a.slug)
+
+        b = Addon.objects.create(name='ends with dash -')
+        assert b.slug == 'ends-with-dash-1'
+        assert b.slug == amo.utils.slugify(b.slug)
 
 
 class TestAddonManager(amo.tests.TestCase):

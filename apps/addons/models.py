@@ -96,20 +96,19 @@ def clean_slug(instance, slug_field='slug'):
     # available.
     clash = qs.filter(**{slug_field: slug})
     if clash.exists():
-        # Leave space for "-" and 99 clashes.
-        slug = slugify(slug)[:max_length - 3]
+        # Leave space for 99 clashes.
+        slug = slugify(slug)[:max_length - 2]
 
         # There is a clash, so find a suffix that will make this slug unique.
-        prefix = '%s-' % slug
-        lookup = {'%s__startswith' % slug_field: prefix}
+        lookup = {'%s__startswith' % slug_field: slug}
         clashes = qs.filter(**lookup)
 
         # Try numbers between 1 and the number of clashes + 1 (+ 1 because we
         # start the range at 1, not 0):
-        # if we have two clashes "foo-1" and "foo-2", we need to try "foo-x"
+        # if we have two clashes "foo1" and "foo2", we need to try "foox"
         # for x between 1 and 3 to be absolutely sure to find an available one.
         for idx in range(1, len(clashes) + 2):
-            new = ('%s%s' % (prefix, idx))[:max_length]
+            new = ('%s%s' % (slug, idx))[:max_length]
             if new not in clashes:
                 slug = new
                 break
