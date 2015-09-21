@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-21 06:37+0000\n"
+"PO-Revision-Date: 2015-09-21 08:58+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10319,23 +10319,23 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
-msgstr ""
+msgstr "Сумісність:"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Додаткові ресурси:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Завантажити файли"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Розробник надав програмний код."
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Ця версія не була розглянута."
 
 #: apps/editors/templates/editors/review.html:154
 msgid ""
