@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-21 08:58+0000\n"
+"PO-Revision-Date: 2015-09-21 09:22+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10449,11 +10449,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "Старіший"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "Новіший"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -10545,15 +10545,15 @@ msgstr[2] "{num} Оновлень"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Журнал розгляду теми"
 
 #: apps/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Черга розгляду теми"
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Опції розгляду"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
@@ -10795,7 +10795,7 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Версія SDK додатку:"
 
 #: apps/files/templates/files/viewer.html:73
 msgid "Tab stops:"
@@ -11225,6 +11225,8 @@ msgid ""
 "Mozilla would like to thank the following people for their contributions to "
 "the addons.mozilla.org project over the years:"
 msgstr ""
+"Mozilla бажає висловити подяку наступним людям за їх внески в проект "
+"addons.mozilla.org протягом років:"
 
 #: apps/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
@@ -11469,16 +11471,18 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Як я можу зневаджувати свій додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Ви можете скористатись <a href=\"%(url)s\">зневаджувачем додатків</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
+"Як мені перевірити сумісність з останньою версією програмного забезпечення "
+"Mozilla?"
 
 #: apps/pages/templates/pages/dev_faq.html:175
 msgid ""
@@ -11491,6 +11495,15 @@ msgid ""
 " that your add-on users are not negatively impacted upon final release of "
 "Mozilla software."
 msgstr ""
+"Щоб переконатися в сумісності з останньою версією програмного забезпечення "
+"Mozilla, важливо завантажувати оновлення, як тільки вони стають доступними, "
+"і тестувати додаток для впевненості в тому, що він працює належним чином. В "
+"багатьох випадках остання версія програмного забезпечення Mozilla може бути "
+"випуском бета. Так як ці випуски представляють технічні зміни, які можуть "
+"впливати на функціональність вашого додатку, важливо брати активну участь в "
+"процесі їх тестування для переконання в тому, що користувачі вашого додатку "
+"не зіткнуться з проблемами після випуску фінальної версії програмного "
+"забезпечення Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
@@ -11504,6 +11517,11 @@ msgid ""
 "you improve performance, whether you're developing core Mozilla code or an "
 "add-on."
 msgstr ""
+"Погано написане розширення може мати серйозний вплив на роботу браузера, "
+"включаючи загальну швидкодію Firefox. Наступна сторінка містить багато "
+"хороших <a href=\"%(url)s\">інструкцій</a>, які допоможуть вам покращити "
+"швидкодію, чи-то ви займаєтесь розробкою ключового коду Mozilla, чи-то "
+"додатку."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -11516,6 +11534,10 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Так. Докладні відомості з локалізації вашого додатку можна знайти на <a "
+"href=\"%(l10n_url)s\">сторінці з локалізації Мережі Розробників Mozilla</a>."
+" <a href=\"%(bz_url)s\">проект BabelZilla</a> також є чудовим ресурсом для "
+"вивчення локалізації та допомоги з перекладом додатків."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -11525,12 +11547,12 @@ msgstr ""
 #. #extdev is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:217
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (для обговорення розробки додатків)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:219
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (для підтримки з питань розміщення вашого додатку на AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:221
@@ -11538,6 +11560,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (для обговорення з питань SDK додатку та cfx/jpm - раніше відомого "
+"як Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -11592,7 +11616,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Чи можу я розмістити власний додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid ""
