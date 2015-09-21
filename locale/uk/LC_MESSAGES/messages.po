@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2015-09-20 19:43+0000\n"
+"PO-Revision-Date: 2015-09-21 06:37+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1429,7 +1429,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Дивитися повну історію каналу розробки"
 
 #: apps/addons/templates/addons/impala/details.html:315
 #: apps/addons/templates/addons/impala/details.html:324
@@ -2289,12 +2289,12 @@ msgstr "{addon} прибрано зі списку."
 
 #: apps/amo/log.py:588 apps/amo/log.py:594
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} був підписаний."
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:602
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Додаток id {0} з GUID {1} було видалено"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4359,15 +4359,15 @@ msgstr "Рівень 6"
 
 #: apps/constants/base.py:533
 msgid "Level 7"
-msgstr ""
+msgstr "Рівень 7"
 
 #: apps/constants/base.py:534
 msgid "Level 8"
-msgstr ""
+msgstr "Рівень 8"
 
 #: apps/constants/base.py:535
 msgid "Level 9"
-msgstr ""
+msgstr "Рівень 9"
 
 #: apps/constants/base.py:544
 msgid "Not signed"
@@ -4635,13 +4635,15 @@ msgstr "Подати мій додаток на ручну перевірку."
 
 #: apps/devhub/forms.py:533
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "Не показувати мій додаток на цьому сайті (бета)"
 
 #: apps/devhub/forms.py:534
 msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr ""
+"Відмітьте цю опцію, якщо ви збираєтесь розповсюджувати свій додаток "
+"власноруч і потребуєте лише підпис Mozilla."
 
 #: apps/devhub/forms.py:540
 msgid "This add-on will be side-loaded via application installers."
@@ -9419,15 +9421,15 @@ msgstr "Фільтр за типом/дією"
 
 #: apps/editors/forms.py:60
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Пройшов автоматичне затвердження"
 
 #: apps/editors/forms.py:62
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Не пройшов автоматичне затвердження"
 
 #: apps/editors/forms.py:64
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Фільтр за автоматичним затвердженням"
 
 #: apps/editors/forms.py:71
 msgid "containing"
@@ -9849,23 +9851,23 @@ msgstr ""
 
 #: apps/editors/models.py:186
 msgid "More Information Requested"
-msgstr ""
+msgstr "Запитано додаткову інформацію"
 
 #: apps/editors/models.py:187
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Містить коментар рецензента"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Надано джерела"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Дублікат представлення"
 
 #: apps/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Дякуємо за представлення вашої теми"
 
 #: apps/editors/tasks.py:86
 msgid "A problem with your Theme submission"
@@ -9913,16 +9915,16 @@ msgstr ""
 
 #: apps/editors/views.py:731
 msgid "rejected"
-msgstr ""
+msgstr "відхилено"
 
 #: apps/editors/views.py:732
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "передано вище"
 
 #: apps/editors/views.py:734
 msgid "needs more information"
-msgstr ""
+msgstr "потребує додаткову інформацію"
 
 #: apps/editors/views.py:735
 msgid "needs super review"
