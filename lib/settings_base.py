@@ -588,7 +588,8 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -662,7 +663,8 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
@@ -752,7 +754,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
         ),
         'zamboni/discovery': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -829,7 +832,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
