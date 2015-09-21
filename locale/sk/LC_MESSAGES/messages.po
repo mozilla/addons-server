@@ -11827,8 +11827,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-"Vaše kontaktné informácie budú Mozillou použité len na odoslanie trička."
+msgstr "Vaše kontaktné informácie budú Mozillou použité len na odoslanie trička."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"

@@ -764,10 +764,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox. Be careful when installing third-party software that might harm your "
 "computer."
 msgstr ""
-"<strong>Waarschuwing:</strong> deze add-on is niet door Mozilla beoordeeld "
-"en kan niet in vrijgegeven versies van Firefox worden geïnstalleerd. Wees "
-"voorzichtig bij het installeren van software van derden die mogelijk schade "
-"aan uw computer kan toebrengen."
+"<strong>Waarschuwing:</strong> deze add-on is niet door Mozilla beoordeeld en kan niet in vrijgegeven versies van Firefox worden geïnstalleerd. Wees voorzichtig bij het installeren van software van "
+"derden die mogelijk schade aan uw computer kan toebrengen."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1043,10 +1041,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:280
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla and can't be installed on release versions of Firefox."
-msgstr ""
-"<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet "
-"door Mozilla beoordeeld en kunnen niet in vrijgegeven versies van Firefox "
-"worden geïnstalleerd."
+msgstr "<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet door Mozilla beoordeeld en kunnen niet in vrijgegeven versies van Firefox worden geïnstalleerd."
 
 #: apps/addons/templates/addons/impala/details.html:296
 msgid "See complete development channel history"
@@ -6926,9 +6921,7 @@ msgstr "Door verwijdering van deze versie wordt verwijderd:"
 
 #: apps/devhub/templates/devhub/versions/list.html:226
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
-"<strong>Belangrijk:</strong> als een versie eenmaal is verwijderd, kunt u "
-"geen nieuwe versie met hetzelfde versienummer uploaden."
+msgstr "<strong>Belangrijk:</strong> als een versie eenmaal is verwijderd, kunt u geen nieuwe versie met hetzelfde versienummer uploaden."
 
 #: apps/devhub/templates/devhub/versions/list.html:231
 msgid "Deleting a version which has already been reviewed may also cause a significant delay in the review of your next update."

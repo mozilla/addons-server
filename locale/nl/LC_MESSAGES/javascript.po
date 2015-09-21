@@ -136,10 +136,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Bronnen van gecompileerde binaire bestanden dienen, net als verkleinde of "
-"verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te "
-"worden ingediend. Zorg ervoor dat u het uploadveld voor broncode gebruikt "
-"om te voorkomen dat uw inzending wordt afgewezen."
+"Bronnen van gecompileerde binaire bestanden dienen, net als verkleinde of verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te worden ingediend. Zorg ervoor dat u het "
+"uploadveld voor broncode gebruikt om te voorkomen dat uw inzending wordt afgewezen."
 
 #: static/js/common/upload-addon.js:498
 msgid "The validation process found these issues that can lead to rejections:"

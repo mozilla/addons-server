@@ -8538,8 +8538,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org 又稱為「AMO」，是 Mozilla 軟體（像是 Firefox、Thunderbird 和 SeaMonkey "
-"等）的附加元件的官方網站。附加元件讓您可修改、新增瀏覽器或應用程式的功能。歡迎您四處晃晃，探索自訂專屬於您的上網經驗的成千上萬種不同方式。"
+"addons.mozilla.org 又稱為「AMO」，是 Mozilla 軟體（像是 Firefox、Thunderbird 和 SeaMonkey 等）的附加元件的官方網站。附加元件讓您可修改、新增瀏覽器或應用程式的功能。歡迎您四處晃晃，探索自訂專屬於您的"
+"上網經驗的成千上萬種不同方式。"
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -8550,8 +8550,7 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由編輯人員進行審核。但標示為「實驗"
-"中」的附加元件尚未經過審核，安裝前請小心。"
+"在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由編輯人員進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
 
 #: apps/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -8587,9 +8586,7 @@ msgstr "<a href=\"%(url)s\">製作您自己的附加元件</a>。我們提供免
 
 #: apps/pages/templates/pages/about.lhtml:45
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
-msgstr ""
-"如果您已有附加元件的開發經驗，<a href=\"%"
-"(url)s\">快來成為編輯</a>！我們的編輯是具有技術背景的附加元件粉絲，負責審核附加元件原始碼的品質和穩定性。"
+msgstr "如果您已有附加元件的開發經驗，<a href=\"%(url)s\">快來成為編輯</a>！我們的編輯是具有技術背景的附加元件粉絲，負責審核附加元件原始碼的品質和穩定性。"
 
 #: apps/pages/templates/pages/about.lhtml:49
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
@@ -8619,10 +8616,7 @@ msgstr "我有問題"
 msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
-msgstr ""
-"您可以從我們的<a href=\"%(faq_url)s\"><abbr "
-"title=\"常見問題\">常見問題解答</abbr>開始</a>。如果您沒有找到答案，可以<a href=\"%"
-"(forum_url)s\">到我們的論壇詢問</a>。"
+msgstr "您可以從我們的<a href=\"%(faq_url)s\"><abbr title=\"常見問題\">常見問題解答</abbr>開始</a>。如果您沒有找到答案，可以<a href=\"%(forum_url)s\">到我們的論壇詢問</a>。"
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -8743,10 +8737,8 @@ msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"部份頁面使用了來自 <a "
-"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a>（非商業版）的元素，依照<a "
-"href=\"http://creativecommons.org/licenses/by-nc/3.0/\">創用 CC 姓名標示-非商業性 3.0 "
-"授權條款</a>進行授權。"
+"部份頁面使用了來自 <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a>（非商業版）的元素，依照<a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">創用 CC 姓名標示-非商業性 "
+"3.0 授權條款</a>進行授權。"
 
 #: apps/pages/templates/pages/credits.html:65
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
@@ -9404,9 +9396,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">完整主題</a></strong>更改 %(app
 
 #: apps/pages/templates/pages/faq.html:61
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">佈景主題</a></strong>是一種輕量級的主題，使用背景圖片來妝點您的 %"
-"(app_name)s 工具列。"
+msgstr "<strong><a href=\"%(browse_url)s\">佈景主題</a></strong>是一種輕量級的主題，使用背景圖片來妝點您的 %(app_name)s 工具列。"
 
 #: apps/pages/templates/pages/faq.html:66
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
@@ -9455,9 +9445,8 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"與外掛程式不同，附加元件每天都會自動檢查更新。在 Firefox 裡，預設情況下附加元件會自行安裝更新。Firefox 4 "
-"以前（以及其他應用程式）的版本會告訴您有附加元件可進行更新。目前不會自動檢查 <a href=\"%(plugin_url)s\">外掛程式</a> "
-"是否已有更新，請您定期前往 <a href=\"%(plugincheck_url)s\">外掛程式檢查</a> 頁面確認外掛程式版本。"
+"與外掛程式不同，附加元件每天都會自動檢查更新。在 Firefox 裡，預設情況下附加元件會自行安裝更新。Firefox 4 以前（以及其他應用程式）的版本會告訴您有附加元件可進行更新。目前不會自動檢查 <a href="
+"\"%(plugin_url)s\">外掛程式</a> 是否已有更新，請您定期前往 <a href=\"%(plugincheck_url)s\">外掛程式檢查</a> 頁面確認外掛程式版本。"
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -9469,9 +9458,8 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
 "\">Learn more about our approval process</a>"
 msgstr ""
-"除非特別告知，本藝廊的附加元件已經由 Mozilla 的審核群檢查並審核通過，可以安全地安裝。我們建議您只安裝通過審核的附加元件。如果您想要安裝未通過審"
-"核的附加元件，或由第三方網站安裝未通過審核的附加元件，請多加小心，這些附加元件可能損害您的電腦或侵害您的隱私。<a href=\"%"
-"(learnmore_url)s\">了解我們的審核過程</a>"
+"除非特別告知，本藝廊的附加元件已經由 Mozilla 的審核群檢查並審核通過，可以安全地安裝。我們建議您只安裝通過審核的附加元件。如果您想要安裝未通過審核的附加元件，或由第三方網站安裝未通過審核的附加元件，"
+"請多加小心，這些附加元件可能損害您的電腦或侵害您的隱私。<a href=\"%(learnmore_url)s\">了解我們的審核過程</a>"
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
@@ -9577,9 +9565,7 @@ msgstr "附加元件的捐款請求是什麼？"
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"一些附加元件的作者希望使用者在享用附加元件的同時也能捐款來幫助開發。這些款項會直接資助開發者，除非開發者明確指出希望捐出給其他單位（像是非營利性質的 "
-"Mozilla 基金會）。"
+msgstr "一些附加元件的作者希望使用者在享用附加元件的同時也能捐款來幫助開發。這些款項會直接資助開發者，除非開發者明確指出希望捐出給其他單位（像是非營利性質的 Mozilla 基金會）。"
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -9589,8 +9575,7 @@ msgstr "測試版附加元件是什麼？"
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
 "ons are less stable than the general add-on releases."
-msgstr ""
-"測試版附加元件是尚未審核的較新附加元件。不同的作者可能對於程式碼品質有不同的標準，您應該假設這些附加元件在品質、效能和功能上，可能不如正式版本穩定。"
+msgstr "測試版附加元件是尚未審核的較新附加元件。不同的作者可能對於程式碼品質有不同的標準，您應該假設這些附加元件在品質、效能和功能上，可能不如正式版本穩定。"
 
 #: apps/pages/templates/pages/faq.html:223
 msgid ""
@@ -9638,9 +9623,8 @@ msgid ""
 "\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
 "the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"除非在原始碼當中有特別指定使用哪種授權方式，用來打造附加元件的原始碼是附加元件作者專屬的智慧財產。這個網站上的許多附加元件作者都使用在某些條件下讓原始碼"
-"可以公開被複製或重新使用的 <a href=\"%(url)s\" lang=\"en\">開放原始碼授權</a>。多數的作者都選擇諸如 GPL 或 BSD "
-"等被廣泛使用的開放原始碼授權，而不自己撰寫授權條款。"
+"除非在原始碼當中有特別指定使用哪種授權方式，用來打造附加元件的原始碼是附加元件作者專屬的智慧財產。這個網站上的許多附加元件作者都使用在某些條件下讓原始碼可以公開被複製或重新使用的 <a href=\"%(url)s"
+"\" lang=\"en\">開放原始碼授權</a>。多數的作者都選擇諸如 GPL 或 BSD 等被廣泛使用的開放原始碼授權，而不自己撰寫授權條款。"
 
 #: apps/pages/templates/pages/faq.html:259
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
@@ -9689,9 +9673,8 @@ msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla once a day in order to update the information displayed to you in the Add-ons Manager, as explained in our <a href="
 "\"%(privacy_url)s\">Privacy Policy</a>. Add-ons that are often used together are determined from the aggregate data and displayed to you as personalized recommendations."
 msgstr ""
-"如同<a href=\"%(privacy_url)s\">隱私權保護政策</a>當中所提，Firefox "
-"每天會傳送一次關於您已經安裝了什麼附加元件的資訊到 "
-"Mozilla，以更新要顯示於附加元件管理員的資訊。我們會從取得的統計資料來判斷哪些附加元件常被一起使用，並顯示給您做為個人化的推薦。"
+"如同<a href=\"%(privacy_url)s\">隱私權保護政策</a>當中所提，Firefox 每天會傳送一次關於您已經安裝了什麼附加元件的資訊到 Mozilla，以更新要顯示於附加元件管理員的資訊。我們會從取得的統計資料來判斷哪些附"
+"加元件常被一起使用，並顯示給您做為個人化的推薦。"
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"

@@ -3781,9 +3781,7 @@ msgstr "No listar mi complemento en esta página (beta)"
 
 #: apps/devhub/forms.py:534
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-"Marca esta opción si quieres distribuir tu complemento por tu cuenta y solo "
-"necesitas que esté firmado por Mozilla."
+msgstr "Marca esta opción si quieres distribuir tu complemento por tu cuenta y solo necesitas que esté firmado por Mozilla."
 
 #: apps/devhub/forms.py:540
 msgid "This add-on will be side-loaded via application installers."
@@ -4221,10 +4219,8 @@ msgid ""
 "Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
 "\">report any bugs</a> that you encounter."
 msgstr ""
-"El envío de complementos no listados para su firma actualmente está en "
-"estado de beta abierta. Todavía podría requerirse la revisión manual para un "
-"gran número de complementos. Por favor <a href=\"%(bugzilla_url)s\" "
-"target=\"_blank\">reporta cualquier incidencia</a> que encuentres."
+"El envío de complementos no listados para su firma actualmente está en estado de beta abierta. Todavía podría requerirse la revisión manual para un gran número de complementos. Por favor <a href="
+"\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que encuentres."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -5143,9 +5139,8 @@ msgstr "Paso 1. Comenzar"
 #: apps/devhub/templates/devhub/addons/submit/start.html:9
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de "
-"complementos de Firefox. En este, encontrarás también un enlace a nuestro "
-"Aviso de privacidad, que explica cómo manejaremos tu información."
+"Antes de comenzar, por favor lee y acepta nuestro Acuerdo de distribución de complementos de Firefox. En este, encontrarás también un enlace a nuestro Aviso de privacidad, que explica cómo "
+"manejaremos tu información."
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:20
 msgid "Printable Version"
@@ -6652,11 +6647,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Estoy de acuerdo con el <a href=\"%(agreement_url)s\" target=\"_blank\">Acuerdo "
-"de distribución de complementos de Firefox</a> y con que mi información se "
-"maneje según está descrito en el <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Aviso de privacidad de sitios web, comunicaciones y "
-"cookies</a>."
+"Estoy de acuerdo con el <a href=\"%(agreement_url)s\" target=\"_blank\">Acuerdo de distribución de complementos de Firefox</a> y con que mi información se maneje según está descrito en el <a href="
+"\"%(privacy_notice_url)s\" target=\"_blank\">Aviso de privacidad de sitios web, comunicaciones y cookies</a>."
 
 # 77%
 # 85%
@@ -6733,11 +6725,8 @@ msgid ""
 "Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
 "\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
-"El envío de actualizaciones de complementos no listados para su firma "
-"actualmente está en estado de beta abierta. Todavía podría requerirse la "
-"revisión manual para un gran número de complementos. Por favor <a href=\"%"
-"(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que "
-"encuentres."
+"El envío de actualizaciones de complementos no listados para su firma actualmente está en estado de beta abierta. Todavía podría requerirse la revisión manual para un gran número de complementos. "
+"Por favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que encuentres."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -6756,12 +6745,8 @@ msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
-"El comportamiento del canal beta se ha cambiado para incluir <a href=\"%"
-"(addon_signing_url)s\" target=\"_blank\">la firma obligatoria de "
-"complementos</a>. El nuevo proceso actualmente está en estado de beta "
-"abierta, y puede cambiar de forma significativa próximamente. Por favor, <a "
-"href=\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que "
-"encuentres."
+"El comportamiento del canal beta se ha cambiado para incluir <a href=\"%(addon_signing_url)s\" target=\"_blank\">la firma obligatoria de complementos</a>. El nuevo proceso actualmente está en "
+"estado de beta abierta, y puede cambiar de forma significativa próximamente. Por favor, <a href=\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que encuentres."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -6921,9 +6906,7 @@ msgstr "No listados:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
-msgstr ""
-"No distribuido en {0}. Los desarrolladores subirán nuevas versiones para su "
-"firma y distribuirán los complementos por su cuenta. (beta)"
+msgstr "No distribuido en {0}. Los desarrolladores subirán nuevas versiones para su firma y distribuirán los complementos por su cuenta. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -7031,10 +7014,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:300
 msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
-msgstr ""
-"El cambio de complementos a no listados actualmente está en estado beta. Por "
-"favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier "
-"incidencia</a> que encuentres."
+msgstr "El cambio de complementos a no listados actualmente está en estado beta. Por favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">reporta cualquier incidencia</a> que encuentres."
 
 #: apps/devhub/templates/devhub/versions/list.html:306
 msgid "Unlisting an add-on is irreversible!"
@@ -9879,10 +9859,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
-"Con miles de complementos disponibles, hay algo para todos. Pero si lo que "
-"buscas es un complemento en particular y no lo encuentras, puedes intentar "
-"buscar en otros sitios o publicar algo al respecto en nuestro foro de<a "
-"href=\"%(forum_url)s\"> Complementos</a>."
+"Con miles de complementos disponibles, hay algo para todos. Pero si lo que buscas es un complemento en particular y no lo encuentras, puedes intentar buscar en otros sitios o publicar algo al "
+"respecto en nuestro foro de<a href=\"%(forum_url)s\"> Complementos</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -11441,8 +11419,7 @@ msgstr "Hay errores en los cambios que ha hecho. Por favor, corrígelos y vuelva
 
 #: apps/users/views.py:270
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
-"Lo sentimos, pero en este momento no calificas para solicitar una camiseta."
+msgstr "Lo sentimos, pero en este momento no calificas para solicitar una camiseta."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
@@ -11878,28 +11855,19 @@ msgstr "Nota:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-"Ya has enviado una petición para una camiseta. Puedes reenviar este "
-"formulario para actualizar tus datos, pero solo recibirás una camiseta."
+msgstr "Ya has enviado una petición para una camiseta. Puedes reenviar este formulario para actualizar tus datos, pero solo recibirás una camiseta."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-"¡Gracias por ayudar a hacer de Firefox el navegador más personalizable que "
-"hay! "
+msgstr "¡Gracias por ayudar a hacer de Firefox el navegador más personalizable que hay! "
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-"Como regalo de agradecimiento, nos gustaría enviarte una camiseta de edición "
-"especial diseñada por la comunidad. Para recibir tu camiseta, por favor "
-"rellena el formulario de aquí abajo."
+msgstr "Como regalo de agradecimiento, nos gustaría enviarte una camiseta de edición especial diseñada por la comunidad. Para recibir tu camiseta, por favor rellena el formulario de aquí abajo."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-"Tu información de contacto solo será utilizada por Mozilla para enviar esta "
-"camiseta de edición especial."
+msgstr "Tu información de contacto solo será utilizada por Mozilla para enviar esta camiseta de edición especial."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -11958,10 +11926,8 @@ msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
-"Lo sentimos, pero para calificar para recibir nuestra camiseta de edición "
-"especial, debes ser un desarrollador de complementos con al menos un "
-"complemento listado, uno no listado pero firmado, o cualquier número de "
-"temas con un total combinado de 10.000 usuarios diarios en promedio."
+"Lo sentimos, pero para calificar para recibir nuestra camiseta de edición especial, debes ser un desarrollador de complementos con al menos un complemento listado, uno no listado pero firmado, o "
+"cualquier número de temas con un total combinado de 10.000 usuarios diarios en promedio."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

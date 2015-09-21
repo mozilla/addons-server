@@ -17,8 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1440268708.0\n"
 
@@ -3805,9 +3804,7 @@ msgstr "Не вносить в список моё дополнение на д�
 
 #: apps/devhub/forms.py:534
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
-"Отметьте данную опцию, если намереваетесь самостоятельно распространять своё "
-"дополнение и вам необходимо только подписать его компанией Mozilla."
+msgstr "Отметьте данную опцию, если намереваетесь самостоятельно распространять своё дополнение и вам необходимо только подписать его компанией Mozilla."
 
 #: apps/devhub/forms.py:540
 msgid "This add-on will be side-loaded via application installers."
@@ -4770,8 +4767,7 @@ msgstr "Скрыть сообщения, не требующие автомат�
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35 apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
-"Скрыть сообщения, присутствовавшие в предыдущей версии и проигнорированные"
+msgstr "Скрыть сообщения, присутствовавшие в предыдущей версии и проигнорированные"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:77 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:90
@@ -6909,9 +6905,7 @@ msgstr "Неотображаемо:"
 
 #: apps/devhub/templates/devhub/versions/list.html:123
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
-msgstr ""
-"Не распространяется через {0}. Разработчики будут загружать новые версии для "
-"подписи и потом сами распространять дополнения. (бета)"
+msgstr "Не распространяется через {0}. Разработчики будут загружать новые версии для подписи и потом сами распространять дополнения. (бета)"
 
 #: apps/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"

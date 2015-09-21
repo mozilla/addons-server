@@ -3800,9 +3800,7 @@ msgstr "Tento doplněk bude načítán pomocí instalátorů aplikací."
 
 #: apps/devhub/forms.py:542
 msgid "Add-ons that are side-loaded will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-"Kód doplňků, které jsou načítány, bude před jejich podepsáním Mozillou "
-"zkontrolován a doplňky budou od nich požadována vyšší kvalita."
+msgstr "Kód doplňků, které jsou načítány, bude před jejich podepsáním Mozillou zkontrolován a doplňky budou od nich požadována vyšší kvalita."
 
 #: apps/devhub/forms.py:560 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4995,15 +4993,11 @@ msgstr "Váš doplněk byl podepsán a je připraven k použití. Můžete jej s
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
-"Váš doplněk byl přidán do fronty pro předběžnou kontrolu doplňků, které "
-"nebudou na seznamu."
+msgstr "Váš doplněk byl přidán do fronty pro předběžnou kontrolu doplňků, které nebudou na seznamu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
-"Váš doplněk byl přidán do fronty pro plnou kontrolu doplňků, které nebudou "
-"na seznamu."
+msgstr "Váš doplněk byl přidán do fronty pro plnou kontrolu doplňků, které nebudou na seznamu."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5506,11 +5500,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně "
-"(každé 3 měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké "
-"zaměření doplňku, neoptimální provedení, špatnou kvalitu či bezpečnostní "
-"problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. "
-"Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
+"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně (každé 3 měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké zaměření doplňku, neoptimální provedení, špatnou "
+"kvalitu či bezpečnostní problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -5638,10 +5629,8 @@ msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
-"Plné kontroly jsou doporučeny pro doplňky, které jsou dobře otestovány, "
-"stabilní, rychlé a jsou určeny pro běžné uživatele. Pokud si nejste jisti, "
-"zda váš doplněk splňuje tato kritéria, zvolte předběžnou kontrolu a získejte "
-"nejprve zpětnou vazbu od uživatelů."
+"Plné kontroly jsou doporučeny pro doplňky, které jsou dobře otestovány, stabilní, rychlé a jsou určeny pro běžné uživatele. Pokud si nejste jisti, zda váš doplněk splňuje tato kritéria, zvolte "
+"předběžnou kontrolu a získejte nejprve zpětnou vazbu od uživatelů."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
@@ -5785,10 +5774,8 @@ msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
-"Předběžné kontroly jsou vhodné pro experimentální doplňky a poskytují "
-"způsob, jak získat zpětnou vazbu od uživatelů bez toho, aby doplněk "
-"procházel delším a podrobnějším procesem kontroly. Snažíme se, aby tyto "
-"kontroly byly do 3 dnů."
+"Předběžné kontroly jsou vhodné pro experimentální doplňky a poskytují způsob, jak získat zpětnou vazbu od uživatelů bez toho, aby doplněk procházel delším a podrobnějším procesem kontroly. Snažíme "
+"se, aby tyto kontroly byly do 3 dnů."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -6716,11 +6703,8 @@ msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
 "change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
-"Chování beta kanálu bylo změněno, aby odpovídalo <a href=\"%"
-"(addon_signing_url)s\" target=\"_blank\">povinnému podepisování doplňků</a>. "
-"Nový proces je ve fázi otevřeného testování a může se v budoucnu změnit. <a "
-"href=\"%(bugzilla_url)s\" target=\"_blank\">Nahlaste nám prosím jakékoliv "
-"chyby</a>, kterých si všimnete."
+"Chování beta kanálu bylo změněno, aby odpovídalo <a href=\"%(addon_signing_url)s\" target=\"_blank\">povinnému podepisování doplňků</a>. Nový proces je ve fázi otevřeného testování a může se v "
+"budoucnu změnit. <a href=\"%(bugzilla_url)s\" target=\"_blank\">Nahlaste nám prosím jakékoliv chyby</a>, kterých si všimnete."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9330,11 +9314,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před "
-"nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se "
-"ujistěte, že jste si přečetli <a href=\"%(url)s\">Editors Reviewing Guide</a> "
-"serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk "
-"splňovat, aby byl redaktory schválen."
+"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a href=\"%(url)s"
+"\">Editors Reviewing Guide</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat, aby byl redaktory schválen."
 
 #: apps/pages/templates/pages/dev_faq.html:337
 msgid "What operating system do I choose for my add-on?"
@@ -9353,10 +9334,8 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
 "\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou "
-"funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie "
-"by měl váš doplněk spadat, zvolte \"Ostatní\". Tým AMO může kategorie u vašeho "
-"doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
+"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie by měl váš doplněk spadat, zvolte \"Ostatní\". "
+"Tým AMO může kategorie u vašeho doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
 
 #: apps/pages/templates/pages/dev_faq.html:356
 msgid "What does \"nominating\" my add-on mean?"
@@ -9474,10 +9453,7 @@ msgstr "Jak přidám aktualizaci mého doplňku?"
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
-"Aktualizaci svého doplňku můžete přidat na nástěnce nástrojů pro vývojáře, "
-"kde zvolíte volbu \"Nahrát novou verzi\" a nahrajete nový .xpi soubor s vaším "
-"doplňkem."
+msgstr "Aktualizaci svého doplňku můžete přidat na nástěnce nástrojů pro vývojáře, kde zvolíte volbu \"Nahrát novou verzi\" a nahrajete nový .xpi soubor s vaším doplňkem."
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
@@ -11182,9 +11158,7 @@ msgstr "Zaměstnání"
 
 #: apps/users/forms.py:296
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
-"Tato URL adresa nemá platný formát. Platné adresy mají tvar "
-"http://moje.domena.cz/moje-stranka/."
+msgstr "Tato URL adresa nemá platný formát. Platné adresy mají tvar http://moje.domena.cz/moje-stranka/."
 
 #: apps/users/forms.py:304
 msgid "Please use an email address from a different provider to complete your registration."
