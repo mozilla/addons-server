@@ -1974,8 +1974,8 @@ class TestUpload(BaseUploadTest):
     def test_create_fileupload(self):
         self.post()
 
-        upload = FileUpload.objects.get(name='animated.png')
-        eq_(upload.name, 'animated.png')
+        upload = FileUpload.objects.filter().order_by('-created').first()
+        assert 'animated.png' in upload.name
         data = open(self.image_path, 'rb').read()
         eq_(storage.open(upload.path).read(), data)
 
@@ -1988,7 +1988,7 @@ class TestUpload(BaseUploadTest):
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
-        fu = FileUpload.objects.get(name='animated.png')
+        fu = FileUpload.objects.filter().order_by('-created').first()
         assert fu.validation
         validation = json.loads(fu.validation)
 
@@ -2075,12 +2075,13 @@ class TestUploadDetail(BaseUploadTest):
 
     def test_detail_view(self):
         self.post()
-        upload = FileUpload.objects.get(name='animated.png')
+        upload = FileUpload.objects.filter().order_by('-created').first()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('header h2').text(), 'Validation Results for animated.png')
+        assert (doc('header h2').text() ==
+                'Validation Results for {0}_animated.png'.format(upload.pk))
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.standalone_upload_detail', args=[upload.uuid]))

@@ -597,7 +597,9 @@ class FileUpload(amo.models.ModelBase):
         super(FileUpload, self).save()
 
     def add_file(self, chunks, filename, size):
-        filename = smart_str(filename)
+        if not self.pk:
+            self.save()
+        filename = smart_str(u'{0}_{1}'.format(self.pk, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(amo.utils.smart_path(filename))
         if ext in EXTENSIONS:

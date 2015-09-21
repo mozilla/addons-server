@@ -561,7 +561,8 @@ class TestFileUpload(UploadTest):
         eq_(storage.open(self.upload().path).read(), self.data)
 
     def test_from_post_filename(self):
-        eq_(self.upload().name, 'filename.xpi')
+        upload = self.upload()
+        eq_(upload.name, '{0}_filename.xpi'.format(upload.pk))
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
