@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2012-03-08 05:44+0200\n"
-"Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
+"PO-Revision-Date: 2015-09-21 10:44+0000\n"
+"Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1442832249.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -111,36 +112,52 @@ msgstr ""
 #: static/js/common/upload-addon.js:462
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο "
+"επόμενο βήμα)."
 
 #: static/js/common/upload-addon.js:463
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Εάν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί "
+"πλήρως, συμπεριλάβετε ένα όνομα χρήστη και κωδικό για δοκιμή στα Σημειώματα "
+"του Ελεγκτή (αυτό μπορεί να γίνει στο επόμενο βήμα). "
 
 #: static/js/common/upload-addon.js:464
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "Λίστα καταχωρήσεων προσθέτων"
 
 #: static/js/common/upload-addon.js:477
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Λίστα καταχωρήσεων προσθέτων"
 
 #: static/js/common/upload-addon.js:478
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Παρακαλώ επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής "
+"σας. Αυτό θα μειώσει καθυστερήσεις είτε ασάφειες κατά την διαδικασία της "
+"αξιολόγησης."
 
 #: static/js/common/upload-addon.js:480
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Μεταγλωττισμένα εκτελέσιμα , καθώς και ελαχιστοποιημένα ή ασαφή σενάρια (με "
+"εξαίρεση γνωστές βιβλιοθήκες) είναι αναγκαίο να έχουν υποβάλει τις πηγές "
+"τους ξεχωριστά για αξιολόγηση. Βεβαιωθείτε ότι χρησιμοποιείτε το πεδίο "
+"μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψή της υποβολή σας."
 
 #: static/js/common/upload-addon.js:498
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε "
+"απόρριψη."
 
 #: static/js/common/upload-addon.js:515
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
+"Εάν δεν είστε εξοικειωμένος με την διαδικασία αξιολόγισης στα πρόσθετα, "
+"μπορείτε να διαβάσετε γι' αυτό εδώ."
 
 #: static/js/common/upload-addon.js:551
 msgid "Some platforms are not available for this type of add-on."
@@ -148,7 +165,7 @@ msgstr "Μερικές πλατφόρμες δεν είναι διαθέσιμε
 
 #: static/js/common/upload-addon.js:553
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
@@ -510,7 +527,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:117
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:122
@@ -783,7 +800,11 @@ msgstr[1] "Ορισμός του max version για τα πρόσθετα {0} σ
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
+"Στείλτε e-mail στον δημιουργό του {2} πρόσθετου το οποίου η επαλήθευση "
+"απέτυχε."
 msgstr[1] ""
+"Στείλτε e-mail στους δημιουργούς των {2} πρόσθετων των οποίων η επαλήθευση "
+"απέτυχε."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -965,8 +986,8 @@ msgstr[1] "{files} αρχεία"
 #: static/js/zamboni/devhub.js:679
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} αξιολόγηση χρήστη"
+msgstr[1] "{reviews} αξιολογήσεις χρήστη"
 
 #: static/js/zamboni/devhub.js:791
 msgid "Learn more"
@@ -1055,7 +1076,7 @@ msgstr "Αριθμός αξιολογήσεων"
 
 #: static/js/zamboni/editors.js:454
 msgid "Error loading translation"
-msgstr ""
+msgstr "Σφάλμα στο φόρτωμα της μετάφρασης"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
@@ -1169,8 +1190,8 @@ msgstr[1] "{0} προειδοποιήσεις"
 #: static/js/zamboni/validator.js:477
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} σημείωμα"
+msgstr[1] "{0} σημειώματα"
 
 #: static/js/zamboni/validator.js:569
 msgid "Validation task could not complete or completed with errors"

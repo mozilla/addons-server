@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:25-0700\n"
-"PO-Revision-Date: 2011-10-28 22:44+0200\n"
-"Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
+"PO-Revision-Date: 2015-09-21 10:45+0000\n"
+"Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1442832339.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -3560,27 +3561,27 @@ msgstr ""
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Ναζιστικό ή άλλο περιεχόμενο μίσους"
 
 #: apps/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "Συκοφαντικό περιεχόμενο"
 
 #: apps/constants/editors.py:28
 msgid "Online gambling"
-msgstr ""
+msgstr "Διαδικτυακός τζόγος"
 
 #: apps/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Ανεπιθύμητο περιεχόμενο"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Χαμηλής ποιότητας, παραποιημένη, ή κενή εικόνα"
 
 #: apps/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Πρόβλημα στοίχησης εικόνας τύπου κεφαλίδας"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -3688,7 +3689,7 @@ msgstr "Απαιτείται το κείμενο της άδειας αν επι
 
 #: apps/devhub/forms.py:231
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Αυτό το πρόσθετο έχει μια άδεια χρήσης Τελικού Χρήστη"
 
 #: apps/devhub/forms.py:234
 msgid "Please specify your add-on's End-User License Agreement:"
@@ -5276,7 +5277,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Μεταφορά ιδιοκτησίας"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid ""
@@ -5497,13 +5498,18 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:3 apps/devhub/templates/devhub/docs/policies-reviews.html:7 apps/devhub/templates/devhub/docs/policies-reviews.html:8
 #: apps/devhub/templates/devhub/docs/policies.html:15 apps/devhub/templates/devhub/docs/policies.html:64
 msgid "Review Process"
-msgstr ""
+msgstr "Διαδικασία Αξιολόγισης"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
 "are free to choose the best fit for their add-on."
 msgstr ""
+"Προκειμένου να διασφαλιστεί ότι όλα τα πρόσθετα  που φιλοξενούνται στην "
+"γκαλερί μας είναι ασφαλή για εγκατάσταση από τους χρήστες, ο Mozilla θα "
+"αρχίσει να απαιτεί από όλα τα φιλοξενούμενα πρόσθετα να υποβληθούν σε έλεγχο "
+". Προσφέρουμε δύο είδη αξιολόγησης και οι προγραμματιστές είναι ελεύθεροι "
+"να επιλέξουν αυτό που ταιριάζει καλύτερα στο πρόσθετό τους ."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
