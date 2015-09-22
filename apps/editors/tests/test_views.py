@@ -2656,14 +2656,13 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    def test_disabled_and_not_disabled_files_are_disabled(self):
-        """Files checkboxes aren't enabled, see bug 1197261."""
+    def test_disabled_file(self):
         obj = File.objects.create(version=self.version,
                                   status=amo.STATUS_DISABLED)
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
         assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
-        assert 'disabled' in doc('#file-%s' % self.file.pk)[0].keys()
+        assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
 
 
 class TestEditorMOTD(EditorTest):

@@ -78,6 +78,8 @@ function initReviewActions() {
         $data_toggle.hide();
         $data_toggle.filter('[data-value*="' + value + '"]').show();
 
+        toggle_input();
+
         /* Fade out canned responses */
         var label = $element.text().trim();
         groups.css('color', '#AAA');
@@ -97,6 +99,28 @@ function initReviewActions() {
     if(review_checked.length > 0) {
       showForm(review_checked.closest('li'), true);
     }
+
+    /* File checkboxes */
+    var $files_input = $('#review-actions .review-actions-files').find('input:enabled');
+
+    if($files_input.length == 1 || ! $('#review-actions .review-actions-files').attr('data-uncheckable')) {
+        // Add a dummy, disabled input
+        $files_input.prop('checked', true).hide();
+        $files_input.after($('<input>', {'type': 'checkbox', 'checked': true, 'disabled': true}));
+    }
+
+    function toggle_input(){
+        var $files_input = $('#review-actions .review-actions-files').find('input:enabled'),
+            $files_checked = $files_input.filter(':checked'),
+            disable_submit = $files_checked.length < 1 && $('.review-actions-files').is(':visible');
+
+        $('.review-actions-save input').prop('disabled', disable_submit);
+
+        // If it's not :visible, we can assume it's been replaced with a dummy :disabled input
+        $('#review-actions-files-warning').toggle($files_checked.filter(':enabled:visible').length > 1);
+    }
+
+    $files_input.change(toggle_input).each(toggle_input);
 
     /* Install Triggers */
 

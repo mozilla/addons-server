@@ -163,18 +163,23 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle"
-           data-value="{{ actions_minimal|join("|") }}">
+           data-value="{{ actions_minimal|join("|") }}"{% if allow_unchecking_files %} data-uncheckable="1"{% endif %}>
         <label for="id_addon_files"><strong>{{ form.addon_files.label }}</strong></label>
         <ul>
             {% for pk, label in form.fields.get('addon_files').choices %}
             <li>
               <label for="file-{{ pk }}"{% if pk in form.addon_files_disabled %} class="light"{% endif %}>
-                <input id="file-{{ pk }}" type="checkbox" value="{{ pk }}" name="addon_files" disabled checked />
+                <input id="file-{{ pk }}" type="checkbox" value="{{ pk }}" name="addon_files"
+                       {% if pk in form.addon_files_disabled %}disabled=""{% endif %} />
                 {{ label }}
               </label>
             </li>
             {% endfor %}
         </ul>
+
+        <div id="review-actions-files-warning">
+          {{ _('Notice: Only review more than one file if you have tested <strong>every</strong> file you select.') }}
+        </div>
 
         {{ form.addon_files.errors }}
       </div>
