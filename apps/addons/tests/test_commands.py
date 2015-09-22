@@ -87,17 +87,32 @@ def test_approve_addons_get_files_bad_guid():
     assert approve_addons.get_files(['foo']) == [addon1_file]
 
 
+def id_function(fixture_value):
+    """Convert a param from the use_case fixture to a nicer name.
+
+    By default, the name (used in the test generated from the parameterized
+    fixture) will use the fixture name and a number.
+    Eg: test_foo[use_case0]
+
+    Providing explicit 'ids' (either as strings, or as a function) will use
+    those names instead. Here the name will be something like
+    test_foo[public-unreviewed-full], for the status values, and if the file is
+    unreviewed.
+    """
+    addon_status, file_status, review_type = fixture_value
+    return '{0}-{1}-{2}'.format(amo.STATUS_CHOICES_API[addon_status],
+                                amo.STATUS_CHOICES_API[file_status],
+                                review_type)
+
+
 @pytest.fixture(
     params=[(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, 'prelim'),
             (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, 'prelim'),
             (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
             (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full'),
             (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, 'full')],
-    ids=['1-1-prelim',  # Those are used to build better test names, for the
-         '8-1-prelim',  # tests using this fixture, eg:
-         '3-1-full',    # > test_approve_addons_get_files[1-1-prelim]
-         '4-1-full',    # instead of simply:
-         '9-8-full'])   # > test_approve_addons_get_files[usecase0]
+    # ids are used to build better names for the tests using this fixture.
+    ids=id_function)
 def use_case(request, db):
     """This fixture will return quadruples for different use cases.
 

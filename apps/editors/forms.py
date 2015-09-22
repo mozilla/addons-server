@@ -3,7 +3,6 @@ import logging
 from datetime import timedelta
 
 from django import forms
-from django.core.validators import ValidationError
 from django.db.models import Q
 from django.forms import widgets
 from django.utils.translation import get_language
@@ -18,11 +17,9 @@ from addons.models import Addon, Persona
 from amo.urlresolvers import reverse
 from amo.utils import raise_required
 from applications.models import AppVersion
-from editors.helpers import (file_review_status, ReviewAddon, ReviewFiles,
-                             ReviewHelper)
+from editors.helpers import file_review_status, ReviewHelper
 from editors.models import CannedResponse, ReviewerScore, ThemeLock
 from editors.tasks import approve_rereview, reject_rereview, send_mail
-from files.models import File
 
 
 log = logging.getLogger('z.reviewers.forms')
@@ -250,11 +247,7 @@ class NonValidatingChoiceField(forms.ChoiceField):
         pass
 
 
-class ReviewAddonForm(happyforms.Form):
-    addon_files = AddonFilesMultipleChoiceField(
-        required=False,
-        queryset=File.objects.none(), label=_lazy(u'Files:'),
-        widget=forms.CheckboxSelectMultiple())
+class ReviewForm(happyforms.Form):
     comments = forms.CharField(required=True, widget=forms.Textarea(),
                                label=_lazy(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
@@ -274,7 +267,7 @@ class ReviewAddonForm(happyforms.Form):
         required=False, label=_lazy(u'Clear more info requested flag'))
 
     def is_valid(self):
-        result = super(ReviewAddonForm, self).is_valid()
+        result = super(ReviewForm, self).is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
         return result
@@ -282,13 +275,7 @@ class ReviewAddonForm(happyforms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
-        super(ReviewAddonForm, self).__init__(*args, **kw)
-        self.fields['addon_files'].queryset = self.helper.all_files
-        self.addon_files_disabled = (
-            self.helper.all_files
-            # We can't review disabled, and public are already reviewed.
-            .filter(status__in=[amo.STATUS_DISABLED, amo.STATUS_PUBLIC])
-            .values_list('pk', flat=True))
+        super(ReviewForm, self).__init__(*args, **kw)
 
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [['', [('', _('Choose a canned response...'))]]]
@@ -313,29 +300,15 @@ class ReviewAddonForm(happyforms.Form):
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]
 
-
-class ReviewFileForm(ReviewAddonForm):
-
-    def clean_addon_files(self):
-        files = self.data.getlist('addon_files')
-        if self.data.get('action', '') == 'prelim':
-            if not files:
-                raise ValidationError(_('You must select some files.'))
-            for pk in files:
-                file = self.helper.all_files.get(pk=pk)
-                if (file.status != amo.STATUS_UNREVIEWED and not
-                    (self.helper.addon.status == amo.STATUS_LITE and
-                     file.status == amo.STATUS_UNREVIEWED)):
-                    raise ValidationError(_('File %s is not pending review.')
-                                          % file.filename)
-        return self.fields['addon_files'].queryset.filter(pk__in=files)
+    @property
+    def unreviewed_files(self):
+        return (self.helper.version.unreviewed_files
+                if self.helper.version else [])
 
 
 def get_review_form(data, request=None, addon=None, version=None):
     helper = ReviewHelper(request=request, addon=addon, version=version)
-    form = {ReviewAddon: ReviewAddonForm,
-            ReviewFiles: ReviewFileForm}[helper.handler.__class__]
-    return form(data, helper=helper)
+    return ReviewForm(data, helper=helper)
 
 
 class MOTDForm(happyforms.Form):
