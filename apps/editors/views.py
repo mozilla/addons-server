@@ -604,6 +604,9 @@ def review(request, addon):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
+    # We only allow the user to check/uncheck files for "pending"
+    allow_unchecking_files = form.helper.review_type == "pending"
+
     versions = (Version.objects.filter(addon=addon)
                                .exclude(files__status=amo.STATUS_BETA)
                                .order_by('-created')
@@ -668,6 +671,7 @@ def review(request, addon):
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
+                  allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
