@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-21 22:03+0000\n"
+"PO-Revision-Date: 2015-09-21 22:20+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4270,11 +4270,11 @@ msgstr "Uppdaterad språkpaketsgranskning"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus för försenade granskningar"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dagar innan bonuspoäng läggs på"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -9487,7 +9487,7 @@ msgstr "Rensa administratörs granskningsflagga"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Rensa flaggan för mer information begärd"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
