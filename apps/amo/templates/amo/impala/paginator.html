@@ -26,6 +26,7 @@
         {{ _('Next') }} &#x25B8;</a>
       <a href="{{ pager.url|urlparams(page=pager.paginator.num_pages)
                   if pager.has_next() else '#' }}"
+         title="{{ _('Jump to last page') }}"
          class="jump{{ ' disabled' if not pager.has_next() }}">
         &#x25B8;&#x25B8;</a>
     </p>
