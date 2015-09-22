@@ -10,4 +10,5 @@ Hacking
    style
    contributing
    branching
+   vpn
    ../../README.rst
