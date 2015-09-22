@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-19 11:53+0000\n"
+"PO-Revision-Date: 2015-09-22 14:13+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1246,7 +1246,7 @@ msgstr "Oznake"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ikona za {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1447,6 +1447,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Pozor:</strong> Razvojnih različic tega dodatkoa Mozilla ni "
+"pregledala."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -9011,7 +9013,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Zahtevaj popoln pregled"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -10877,7 +10879,7 @@ msgstr ""
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID dodatka mora vsebovati 64 znakov ali manj."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
@@ -14375,8 +14377,8 @@ msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
-"Ta URL naslov ima neveljaven format. Veljaven URLs zgleda takole: "
-"http://example.com/my_page."
+"Oblika tega spletnega naslova je neveljavna. Veljaven URL je videti takole: "
+"http://primer.com/moja_stran."
 
 #: apps/users/forms.py:304
 msgid ""
@@ -14629,9 +14631,10 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
-"Če niste prejeli potrditvene e-pošte, preverite, da je niso označili za "
-"\"smeti\" ali \"spam\". Če je treba, vam lahko <a href=\"%s\">sporočilo za "
-"potrditev ponovno pošljemo</a> na vaš zgoraj omenjeni e-poštni naslov."
+"Če niste prejeli potrditvene e-pošte, preverite, da ni bila označena za "
+"\"neželeno\" ali \"vsiljeno pošto\". Če je treba, vam lahko <a "
+"href=\"%s\">sporočilo za potrditev ponovno pošljemo</a> na vaš zgoraj "
+"omenjeni e-poštni naslov."
 
 #: apps/users/views.py:434
 msgid "Activation Email Sent"
@@ -15477,7 +15480,7 @@ msgstr ""
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logotip noge"
 
 #: templates/categories.html:2
 msgid "Choose a category"

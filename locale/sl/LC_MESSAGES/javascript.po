@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-12 09:49\n"
+"PO-Revision-Date: 2015-09-22 14:19+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -370,6 +370,7 @@ msgid ""
 "BrowserID login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"Prijava z BrowserID ni uspela. Morda na ta e-poštni naslov nimate računa?"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6
@@ -1367,9 +1368,14 @@ msgstr[3] ""
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Vaš dodatek je prestal preverjanje veljavnosti brez napak in {0} sporočilom."
 msgstr[1] ""
+"Vaš dodatek je prestal preverjanje veljavnosti brez napak in {0} "
+"sporočiloma."
 msgstr[2] ""
+"Vaš dodatek je prestal preverjanje veljavnosti brez napak in {0} sporočili."
 msgstr[3] ""
+"Vaš dodatek je prestal preverjanje veljavnosti brez napak in {0} sporočili."
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
@@ -1380,6 +1386,8 @@ msgid ""
 "If your add-on is intended for a limited audience, you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Če je vaš dodatek namenjen ožjemu krogu uporabnikov, namesto popolnega "
+"izberite predhodni pregled."
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:111
@@ -1491,11 +1499,11 @@ msgstr "Preskusi združljivosti"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "Aplikacija ni prestala preverjanja veljavnosti."
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "Aplikacija je prestala preverjanje veljavnosti."
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:458
@@ -1549,7 +1557,7 @@ msgstr "Notranja napaka strežnika"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Prenesi {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
