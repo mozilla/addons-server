@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-17 03:37\n"
+"PO-Revision-Date: 2015-09-21 22:07+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -356,7 +356,7 @@ msgstr "Category"
 #: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268
 #: static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Admins and editors must provide a password to log in."
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273
 #: static/js/zamboni/mobile-min.js:5
@@ -364,6 +364,8 @@ msgid ""
 "BrowserID login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"BrowserID login failed. Maybe you don't have an account under that email "
+"address?"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6
@@ -531,7 +533,7 @@ msgstr "Finished validating {0}"
 
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Your add-on validation timed out, it will be manually reviewed."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -1333,18 +1335,20 @@ msgstr[1] "Email authors of {2} add-ons which failed validation."
 #: static/js/zamboni/devhub-all.js:550 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Your add-on passed validation with no errors and {0} message."
+msgstr[1] "Your add-on passed validation with no errors and {0} messages."
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Your add-on passed validation with no errors or warnings."
 
 #: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid ""
 "If your add-on is intended for a limited audience, you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"If your add-on is intended for a limited audience, you should choose "
+"Preliminary Review instead of Full Review."
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:111
@@ -1452,11 +1456,11 @@ msgstr "Compatibility Tests"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "App failed validation."
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "App passed validation."
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:458
@@ -1502,7 +1506,7 @@ msgstr "Internal server error"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Download {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."

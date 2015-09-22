@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-27 15:49\n"
+"PO-Revision-Date: 2015-09-21 22:08+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1023,6 +1023,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and "
+"can't be installed on release versions of Firefox 43 and above. Be careful "
+"when installing third-party software that might harm your computer."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1215,7 +1218,7 @@ msgstr "Tags"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Icon for {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1407,6 +1410,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Caution:</strong> Development versions of this add-on have not been "
+"reviewed by Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -4255,11 +4260,11 @@ msgstr "Updated Language Pack Review"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus for overdue reviews"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Days Before Bonus Points Applied"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -8830,7 +8835,7 @@ msgstr "Upload a New Version"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Full review may not be required"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -8838,10 +8843,13 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Unlisted add-ons don't need Full Review unless they are distributed as part "
+"of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
+"documentation</a> for more information."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Request full review"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -9429,7 +9437,7 @@ msgstr "Clear Admin Review Flag"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Clear more info requested flag"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -10634,19 +10642,19 @@ msgstr "Could not parse install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Could not find an add-on ID."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Add-on ID must be 64 characters or less."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "Add-on ID doesn't match add-on."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Duplicate add-on ID found."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -15142,7 +15150,7 @@ msgstr ""
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Footer logo"
 
 #: templates/categories.html:2
 msgid "Choose a category"
