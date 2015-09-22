@@ -54,7 +54,8 @@
                           _("Your add-on is displayed in our gallery and users are
                              receiving automatic updates.")
                           if addon.is_listed else
-                          _("Your add-on has been signed and can be side-loaded.")) }}
+                          _("Your add-on has been signed and can be bundled with an
+                             application installer.")) }}
       </a>
     {% elif addon.status == amo.STATUS_DISABLED %}
       <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload">
@@ -81,7 +82,8 @@
                              Some features are unavailable to your add-on.")
                           if addon.is_listed else
                           _('You will receive an email when the full review is
-                             complete, making your add-on side-loadable.')) }}
+                             complete, making you able to bundle your add-on with an
+                             application installer.')) }}
       </a>
     {% elif addon.status == amo.STATUS_PURGATORY %}
       <a href="{{ addon.get_dev_url('versions') }}">

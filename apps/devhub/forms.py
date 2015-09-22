@@ -538,9 +538,10 @@ class NewAddonForm(AddonUploadForm):
     is_sideload = forms.BooleanField(
         initial=False,
         required=False,
-        label=_lazy(u'This add-on will be side-loaded via application '
-                    u'installers.'),
-        help_text=_lazy(u'Add-ons that are side-loaded will be code reviewed '
+        label=_lazy(u'This add-on will be bundled with an application '
+                    u'installer.'),
+        help_text=_lazy(u'Add-ons that are bundled with application '
+                        u'installers will be code reviewed '
                         u'by Mozilla before they are signed and are held to a '
                         u'higher quality standard.'))
 
