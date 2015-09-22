@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-12 12:28\n"
+"PO-Revision-Date: 2015-09-22 18:38+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -358,7 +358,7 @@ msgstr "Категорія"
 #: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268
 #: static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Адміністратори та редактори повинні надати пароль для входу."
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273
 #: static/js/zamboni/mobile-min.js:5
@@ -366,6 +366,8 @@ msgid ""
 "BrowserID login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"Збій входу з використанням BrowserID. Можливо ви не маєте облікового запису "
+"для цієї адреси електронної пошти?"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6
@@ -536,6 +538,8 @@ msgstr "Завершена перевірка {0}"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Час очікування затвердження вашого додатку завершився, він буде розглянутий "
+"вручну."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -1347,18 +1351,23 @@ msgstr[2] "Надіслати лист авторам додатку {2}, яки
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленням."
 msgstr[1] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленнями."
 msgstr[2] ""
+"Ваш додаток пройшов затвердження без помилок та з {0} повідомленнями."
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Ваш додаток пройшов затвердження без помилок чи попереджень."
 
 #: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid ""
 "If your add-on is intended for a limited audience, you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні "
+"вибрати Попередній Розгляд замість Повного Розгляду."
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:111
@@ -1468,11 +1477,11 @@ msgstr "Тести сумісності"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "Застосунок не пройшов затвердження."
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "Застосунок пройшов затвердження."
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:458
@@ -1522,7 +1531,7 @@ msgstr "Внутрішня помилка сервера"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Завантажити {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
