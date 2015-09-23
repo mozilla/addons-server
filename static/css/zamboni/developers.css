@@ -1147,6 +1147,9 @@ form.select-review .errorlist {
 #addon-validator-suite .suite .tests-failed {
     background: url("../../img/developers/suite-fail.png") no-repeat top;
 }
+#addon-validator-suite .suite .tests-warnings {
+    background: url("../../img/developers/test-warning.png") no-repeat center 4px / 40px;
+}
 #addon-validator-suite .suite-summary {
     display: none;
     text-align: center;
