@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-06 16:42+0000\n"
-"Last-Translator: 星 <604733992@qq.com>\n"
+"PO-Revision-Date: 2015-09-21 20:44+0000\n"
+"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441557768.0\n"
+"X-POOTLE-MTIME: 1442868250.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -746,6 +746,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>注意：</strong>此附加组件尚未经过 Mozilla 审核，不能在 Firefox 43 "
+"及以上的发布版本上安装。安装第三方软件可能损害您的计算机，请小心。"
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -865,7 +867,7 @@ msgstr "标签"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} 的图标"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1020,7 +1022,7 @@ msgstr "在此附加组件发布给所有公众之前，您可以通过开发通
 
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。"
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -3385,11 +3387,11 @@ msgstr "已更新语言包审核"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "逾期审核奖励点数"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "天后适用奖励点数"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -6701,15 +6703,17 @@ msgstr "上传新版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "可能不需要全面审核"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"不上架的附加组件不需要全面审核，除非它们会通过一个安装程序进行分发。查阅<a href=\"{link}\" "
+"target=\"_blank\">此文档</a>了解更多信息。"
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "请求全面审核"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7203,7 +7207,7 @@ msgstr "清除管理员审核标记"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "清除请求更多信息的标记"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -8272,19 +8276,19 @@ msgstr "无法解析 install.rdf。"
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "无法找到附加组件 ID。"
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "附加组件 ID 必须少于或等于 64 个字符。"
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "附加组件 ID 与附加组件不匹配。"
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "发现重复的附加组件 ID。"
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -11711,7 +11715,7 @@ msgstr "创建您自已的收藏集，您必须一个 Mozilla 附加组件账户
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "页脚标志"
 
 #: templates/categories.html:2
 msgid "Choose a category"

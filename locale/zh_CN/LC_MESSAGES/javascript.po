@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-13 09:26+0000\n"
+"PO-Revision-Date: 2015-09-21 20:33+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439457998.0\n"
+"X-POOTLE-MTIME: 1442867635.0\n"
 
 #: static/js/common-all.js:10461 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:10428 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:10989
 #: static/js/zamboni/mobile-min.js:4
@@ -246,11 +246,11 @@ msgstr "分类"
 
 #: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268 static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "管理员和编辑必须提供密码进行登录。"
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273 static/js/zamboni/mobile-min.js:5
 msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
+msgstr "BrowserID 登录失败。也许您还没有用此电子邮件地址创建一个账号？"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6 static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
@@ -382,7 +382,7 @@ msgstr "已完成验证 {0}"
 
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "您的附加组件验证超时，它将经过人工审核。"
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -995,15 +995,15 @@ msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
 #: static/js/zamboni/devhub-all.js:550 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "您的附加组件通过验证，无错误，{0} 条消息。"
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "您的附加组件通过验证，无错误，无警告。"
 
 #: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+msgstr "如果您的附加组件是面向有限的受众，您应该选择初步审核而不是全面审核。"
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
@@ -1086,11 +1086,11 @@ msgstr "兼容性测试"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "应用验证失败。"
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "应用通过验证。"
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:458
 msgid "Add-on failed validation."
@@ -1126,7 +1126,7 @@ msgstr "内部服务器错误"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "下载 {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
