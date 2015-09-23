@@ -108,12 +108,12 @@ function initValidator($doc) {
                          'tests-notrun');
         if (this.counts.error > 0) {
             $top.addClass('tests-failed');
+        } else if (this.counts.warning > 0) {
+            $top.addClass('tests-warnings');
+        } else if (this.testsWereRun) {
+            $top.addClass('tests-passed');
         } else {
-            if (this.testsWereRun) {
-                $top.addClass('tests-passed');
-            } else {
-                $top.addClass('tests-notrun');
-            }
+            $top.addClass('tests-notrun');
         }
     };
 
