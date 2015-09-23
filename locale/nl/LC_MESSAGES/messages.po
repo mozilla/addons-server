@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-29 20:16+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2015-09-23 05:49+0000\n"
+"Last-Translator: Mark <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440879397.0\n"
+"X-POOTLE-MTIME: 1442987370.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -764,6 +764,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>Waarschuwing:</strong> deze add-on is niet door Mozilla beoordeeld "
+"en kan niet worden geïnstalleerd op Firefox-versies 43 of hoger. Wees "
+"voorzichtig bij het installeren van software van derden die mogelijk schade "
+"aan uw computer kan toebrengen."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -888,7 +892,7 @@ msgstr "Labels"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Pictogram voor {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1048,6 +1052,8 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>Waarschuwing:</strong> ontwikkelversies van deze add-on zijn niet "
+"beoordeeld door Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -3451,11 +3457,11 @@ msgstr "Bijgewerkte taalpakket-beoordeling"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus voor verlopen beoordelingen"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dagen voordat bonuspunten worden toegepast"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -6911,15 +6917,18 @@ msgstr "Nieuwe versie uploaden"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Volledige beoordeling mogelijk niet vereist"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"Niet vermelde add-ons hebben geen Volledige beoordeling nodig, tenzij ze als "
+"onderdeel van een toepassingsinstallatie worden verspreid. Lees <a "
+"href=\"{link}\" target=\"_blank\">deze documentatie</a> voor meer informatie."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Volledige beoordeling aanvragen"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7422,7 +7431,7 @@ msgstr "Beoordelingslabel voor beheerder wissen"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Label Meer informatie gevraagd wissen"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -8519,19 +8528,19 @@ msgstr "Kan install.rdf niet ontleden."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Kan add-on-ID niet vinden."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Add-on-ID dient uit maximaal 64 tekens te bestaan."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "Add-on-ID komt niet overeen met add-on."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Dubbele add-on-ID gevonden."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -12080,7 +12089,7 @@ msgstr "Om uw eigen collecties aan te maken dient u een Mozilla-add-ons-account 
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Voettekstlogo"
 
 #: templates/categories.html:2
 msgid "Choose a category"
