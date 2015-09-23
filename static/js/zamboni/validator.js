@@ -108,12 +108,12 @@ function initValidator($doc) {
                          'tests-notrun');
         if (this.counts.error > 0) {
             $top.addClass('tests-failed');
+        } else if (this.counts.warning > 0) {
+            $top.addClass('tests-warnings');
+        } else if (this.testsWereRun) {
+            $top.addClass('tests-passed');
         } else {
-            if (this.testsWereRun) {
-                $top.addClass('tests-passed');
-            } else {
-                $top.addClass('tests-notrun');
-            }
+            $top.addClass('tests-notrun');
         }
     };
 
@@ -443,13 +443,21 @@ function initValidator($doc) {
             rebuildResults();
         });
 
+        function sortBySeverity(messages) {
+            var signingSeverityOrderings = [
+                'high', 'medium', 'low', 'trivial', undefined /* no severity */];
+            return _.sortBy(messages, function(msg) {
+                return signingSeverityOrderings.indexOf(msg.signing_severity);
+            });
+        }
+
         function rebuildResults() {
             if ($('.results', suite).hasClass('compatibility-results')) {
                 vis = new CompatMsgVisitor(suite, data);
             } else {
                 vis = new MsgVisitor(suite, data);
             }
-            $.each(validation.messages, function(i, msg) {
+            $.each(sortBySeverity(validation.messages), function(i, msg) {
                 vis.message(msg);
             });
             vis.finish();
