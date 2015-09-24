@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-23 18:41+0000\n"
+"PO-Revision-Date: 2015-09-24 17:04+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1070,7 +1070,7 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
-"Ta dodatek ni združljiv z vašo različico %(app)s iz naslednjega razloga:"
+"Ta dodatek ni združljiv z vašo različico %(app)sa iz naslednjega razloga:"
 
 #: apps/addons/templates/addons/popups.html:142
 #: apps/addons/templates/addons/popups.html:152
@@ -1079,7 +1079,7 @@ msgstr "Prikaži druge različice"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ta dodatek ni združljiv z vašo različico %(app)s."
+msgstr "Ta dodatek ni združljiv z vašo različico %(app)sa."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -5318,9 +5318,9 @@ msgid ""
 "latest release of %(app_name)s. Please consider updating your add-on's "
 "compatibility info, or uploading a newer version of this add-on."
 msgstr ""
-"Ta dodatek ni združljiv z <b>%(app_name)s %(app_version)s</b>, najnovejšo "
-"različico %(app_name)s. Mislite prosim na to, da posodobite podatke o "
-"združljivosti ali pa naložite novejšo različico tega dodatka."
+"Ta dodatek ni združljiv s <b>%(app_name)som %(app_version)s</b>, najnovejšo "
+"različico %(app_name)sa. Razmislite o posodobitvi podatkov o združljivosti "
+"ali pa naložite novejšo različico tega dodatka."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
