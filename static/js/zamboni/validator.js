@@ -443,13 +443,21 @@ function initValidator($doc) {
             rebuildResults();
         });
 
+        function sortBySeverity(messages) {
+            var signingSeverityOrderings = [
+                'high', 'medium', 'low', 'trivial', undefined /* no severity */];
+            return _.sortBy(messages, function(msg) {
+                return signingSeverityOrderings.indexOf(msg.signing_severity);
+            });
+        }
+
         function rebuildResults() {
             if ($('.results', suite).hasClass('compatibility-results')) {
                 vis = new CompatMsgVisitor(suite, data);
             } else {
                 vis = new MsgVisitor(suite, data);
             }
-            $.each(validation.messages, function(i, msg) {
+            $.each(sortBySeverity(validation.messages), function(i, msg) {
                 vis.message(msg);
             });
             vis.finish();
