@@ -67,8 +67,14 @@ def limit_validation_results(validation):
     if lim and len(messages) > lim:
         # Sort messages by severity first so that the most important messages
         # are the one we keep.
-        TYPES = {'error': 0, 'warning': 1, 'notice': 2}
-        messages.sort(key=lambda msg: TYPES.get(msg.get('type')))
+        TYPES = {'error': 0, 'warning': 2, 'notice': 3}
+
+        def message_key(message):
+            if message.get('signing_severity'):
+                return 1
+            else:
+                return TYPES.get(message.get('type'))
+        messages.sort(key=message_key)
 
         leftover_count = len(messages) - lim
         del messages[lim:]
