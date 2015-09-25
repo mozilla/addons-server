@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-19 16:40+0000\n"
+"PO-Revision-Date: 2015-09-25 15:16+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442680807.0\n"
+"X-POOTLE-MTIME: 1443194167.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -745,6 +745,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>注意:</strong> 此附加元件尚未由 Mozilla 進行審查，無法安裝到 Firefox 43 "
+"以上的正式版本。請小心安裝第三方軟體可能會傷害您的電腦。"
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -837,7 +839,7 @@ msgstr "請見 <a href=\"%(support)s\">技術支援</a> 一節了解如何取得
 #: apps/addons/templates/addons/review_add_box.html:39 apps/addons/templates/addons/impala/review_add_box.html:43 apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
-msgstr "審查指南"
+msgstr "評論撰寫指南"
 
 #: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:918 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
@@ -864,7 +866,7 @@ msgstr "標籤"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} 的圖示"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1020,7 +1022,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>注意:</strong> 此附加元件的開發版本尚未經 Mozilla 審查。"
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -3392,11 +3394,11 @@ msgstr "更新語言包審核"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "過期審查的加分"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "天後將累計加分點數"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -6719,15 +6721,17 @@ msgstr "上傳一個新版本"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "可能不需要進行完整審查"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"未上架的附加元件除非要透過安裝程式來散佈，否則不需要進行完整審查。若需更多資訊請參考 <a href=\"{link}\" "
+"target=\"_blank\">此文件</a>。"
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "要求進行完整審查"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7223,7 +7227,7 @@ msgstr "清除管理員審核旗標"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "清除要求更多資訊的旗標"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -8310,19 +8314,19 @@ msgstr "無法解析 install.rdf。"
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "無法找到附加元件 ID。"
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "附加元件 ID 必須少於 64 字元。"
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "附加元件 ID 與附加元件不符。"
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "發現重複的附加元件 ID。"
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -8773,7 +8777,7 @@ msgstr "開發者常見問題"
 
 #: apps/pages/templates/pages/dev_faq.html:31 apps/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr "節"
+msgstr "章節"
 
 #: apps/pages/templates/pages/dev_faq.html:33 apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
@@ -9817,7 +9821,7 @@ msgstr "使用褻瀆、性暗示或者帶有恨意的言語。"
 
 #: apps/pages/templates/pages/review_guide.html:103
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "包含 HTML、超鏈結、程式碼等。評論內容請只留下純文字。"
+msgstr "包含 HTML、超連結、程式碼等。評論內容請只留下純文字。"
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid "Make false statements, disparage add-on authors or personally insult them."
@@ -11745,7 +11749,7 @@ msgstr "如果您要新增自己的收藏集，你必須先申請一個 Mozilla 
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "頁尾圖示"
 
 #: templates/categories.html:2
 msgid "Choose a category"
