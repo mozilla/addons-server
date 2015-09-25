@@ -182,7 +182,11 @@ def home(request):
         unlisted_percentage=unlisted_percentage,
         durations=durations,
         reviews_max_display=reviews_max_display,
-        motd_editable=motd_editable)
+        motd_editable=motd_editable,
+        queue_counts_total=queue_counts(admin_reviewer=True),
+        unlisted_queue_counts_total=queue_counts(admin_reviewer=True,
+                                                 unlisted=True),
+    )
 
     return render(request, 'editors/home.html', data)
 
@@ -192,10 +196,12 @@ def _editor_progress(unlisted=False):
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'prelim', 'pending']
-    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted),
+    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted,
+                                    admin_reviewer=True),
                 'med': queue_counts(types, days_min=5, days_max=10,
-                                    unlisted=unlisted),
-                'old': queue_counts(types, days_min=11, unlisted=unlisted)}
+                                    unlisted=unlisted, admin_reviewer=True),
+                'old': queue_counts(types, days_min=11, unlisted=unlisted,
+                                    admin_reviewer=True)}
 
     # Return the percent of (p)rogress out of (t)otal.
     def pct(p, t):

@@ -479,6 +479,22 @@ class TestHome(EditorTest):
         eq_(cols.eq(0).text(), self.user.display_name)
         eq_(int(cols.eq(1).text()), 2, 'Approval count should be 2')
 
+    def test_stats_total_admin(self):
+        self.login_as_admin()
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
+        amo.set_user(self.user)
+
+        create_addon_file('No admin review', version_str='1.0',
+                          addon_status=amo.STATUS_NOMINATED,
+                          file_status=amo.STATUS_UNREVIEWED)
+        create_addon_file('Admin review', version_str='1.0',
+                          addon_status=amo.STATUS_NOMINATED, admin_review=True,
+                          file_status=amo.STATUS_UNREVIEWED)
+
+        doc = pq(self.client.get(self.url).content)
+        tooltip = doc('.editor-stats-table').eq(0).find('.waiting_new')
+        assert '2 add-ons' in tooltip.attr('title')
+
     def test_stats_monthly(self):
         self.approve_reviews()
 
