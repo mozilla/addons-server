@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-21 20:44+0000\n"
+"PO-Revision-Date: 2015-09-25 03:19+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442868250.0\n"
+"X-POOTLE-MTIME: 1443151178.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -814,15 +814,15 @@ msgstr "请先<a href=\"%(login)s\">登录</a>以发表评论"
 
 #: apps/addons/templates/addons/review_add_box.html:17 apps/addons/templates/addons/impala/review_add_box.html:19 apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr "职务："
+msgstr "标题:"
 
 #: apps/addons/templates/addons/review_add_box.html:18 apps/addons/templates/addons/impala/review_add_box.html:20 apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr "评论："
+msgstr "评论:"
 
 #: apps/addons/templates/addons/review_add_box.html:19 apps/addons/templates/addons/impala/review_add_box.html:21 apps/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr "评分："
+msgstr "评分:"
 
 #: apps/addons/templates/addons/review_add_box.html:20 apps/addons/templates/addons/impala/review_add_box.html:22 apps/reviews/templates/reviews/add.html:63
 #: apps/reviews/templates/reviews/edit_review.html:15 apps/reviews/templates/reviews/mobile/add_form.html:18
