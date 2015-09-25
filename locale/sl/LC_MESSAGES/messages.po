@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-22 14:13+0000\n"
+"PO-Revision-Date: 2015-09-24 17:04+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1052,6 +1052,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Pozor:</strong> Tega dodatka Mozilla ni pregledala in ga ne morete "
+"namestiti v Firefox 43 oziroma novejši. Bodite previdni ob nameščanju "
+"programske opreme tretjih oseb, ki lahko škoduje vašemu računalniku."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1067,7 +1070,7 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
-"Ta dodatek ni združljiv z vašo različico %(app)s iz naslednjega razloga:"
+"Ta dodatek ni združljiv z vašo različico %(app)sa iz naslednjega razloga:"
 
 #: apps/addons/templates/addons/popups.html:142
 #: apps/addons/templates/addons/popups.html:152
@@ -1076,7 +1079,7 @@ msgstr "Prikaži druge različice"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Ta dodatek ni združljiv z vašo različico %(app)s."
+msgstr "Ta dodatek ni združljiv z vašo različico %(app)sa."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -5315,9 +5318,9 @@ msgid ""
 "latest release of %(app_name)s. Please consider updating your add-on's "
 "compatibility info, or uploading a newer version of this add-on."
 msgstr ""
-"Ta dodatek ni združljiv z <b>%(app_name)s %(app_version)s</b>, najnovejšo "
-"različico %(app_name)s. Mislite prosim na to, da posodobite podatke o "
-"združljivosti ali pa naložite novejšo različico tega dodatka."
+"Ta dodatek ni združljiv s <b>%(app_name)som %(app_version)s</b>, najnovejšo "
+"različico %(app_name)sa. Razmislite o posodobitvi podatkov o združljivosti "
+"ali pa naložite novejšo različico tega dodatka."
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_error.html:15
 msgid ""
@@ -9002,7 +9005,7 @@ msgstr "Naloži novo različico"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Popoln pregled morda ne bo potreben"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -9010,6 +9013,9 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Nenavedeni dodatki ne potrebujejo popolnega pregleda, razen če so "
+"distribuirani kot del namestitvenega programa. Za več informacij si "
+"preberite <a href=\"{link}\" target=\"_blank\">dokumentacijo</a>."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"

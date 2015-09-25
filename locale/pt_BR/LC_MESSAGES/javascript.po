@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-08-26 14:33\n"
+"PO-Revision-Date: 2015-09-24 02:23+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -359,6 +359,7 @@ msgstr "Categoria"
 #: static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
 msgstr ""
+"Administradores e editores devem fornecer uma senha para se identificar."
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273
 #: static/js/zamboni/mobile-min.js:5
@@ -366,6 +367,8 @@ msgid ""
 "BrowserID login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"A identificação usando o Persona falhou. Talvez você não possua uma conta "
+"com esse endereço de e-mail."
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:10298 static/js/impala-min.js:6
@@ -538,6 +541,8 @@ msgstr "Validação de {0} concluída"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"O tempo para validação do complemento esgotou, ele será avaliado "
+"manualmente."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -1350,17 +1355,21 @@ msgstr[1] ""
 msgid "Your add-on passed validation with no errors and {0} message."
 msgid_plural "Your add-on passed validation with no errors and {0} messages."
 msgstr[0] ""
+"Seu complemento passou pela validação sem erros e com {0} mensagem."
 msgstr[1] ""
+"Seu complemento passou pela validação sem erros e com {0} mensagem."
 
 #: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on passed validation with no errors or warnings."
-msgstr ""
+msgstr "Seu aplicativo passou na validação sem erros ou mensagens."
 
 #: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
 msgid ""
 "If your add-on is intended for a limited audience, you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Se um complemento é direcionado a uma audiência limitada deve escolher a "
+"avaliação preliminar em vez de uma avaliação completa."
 
 #: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:111
@@ -1468,11 +1477,11 @@ msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
 msgid "App failed validation."
-msgstr ""
+msgstr "O aplicativo não passou na validação."
 
 #: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
 msgid "App passed validation."
-msgstr ""
+msgstr "O aplicativo passou na validação."
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:458
@@ -1518,7 +1527,7 @@ msgstr "Erro interno do servidor"
 #. L10n: {0} is a filename, such as `addon.zip`.
 #: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Download {0}"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
