@@ -366,12 +366,12 @@ class TestValidationComparator(amo.tests.TestCase):
         utils.ValidationComparator(annotated).annotate_results(HASH)
 
         # The two annotations for this file should be applied.
-        assert annotated['messages'][0]['ignore_duplicates'] == False
-        assert annotated['messages'][1]['ignore_duplicates'] == True
+        assert annotated['messages'][0]['ignore_duplicates'] is False
+        assert annotated['messages'][1]['ignore_duplicates'] is True
         # The annotation for the wrong file should not be applied, and
         # `ignore_duplicates` should be set to the default for the messge
         # severity (false).
-        assert annotated['messages'][2]['ignore_duplicates'] == False
+        assert annotated['messages'][2]['ignore_duplicates'] is False
 
     def test_is_ignorable(self):
         """Test that is_ignorable returns the correct value in all relevant
