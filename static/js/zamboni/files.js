@@ -209,7 +209,7 @@ jQuery.fn.numberInput = function(increment) {
         var $self = $(this);
         $self.addClass("number-combo-input");
 
-        var height = $self.outerHeight() / 2;
+        var height = $self.outerHeight(false) / 2;
 
         var $dom = $('<span>', { 'class': 'number-combo' })
                      .append($('<a>', { 'class': 'number-combo-button-down',
@@ -690,7 +690,7 @@ function bind_viewer(nodes) {
             } else {
                 /* Unfortunately, jQuery does not provide anything
                    comparable to clientHeight, which we can't do without */
-                var offset = $sel.position().top + $sel.outerHeight() - $cont[0].clientHeight;
+                var offset = $sel.position().top + $sel.outerHeight(false) - $cont[0].clientHeight;
                 if (offset > 0) {
                     $cont.scrollTop($cont.scrollTop() + offset);
                 }

@@ -88,7 +88,7 @@ $(function() {
             current = $strip.find(".selected a").attr("href");
         if (isManaged) {
             if (isSlider)
-                $managed.css("height", $managed.find(current).outerHeight() + "px");
+                $managed.css("height", $managed.find(current).outerHeight(false) + "px");
         } else {
             $managed = $(document.body);
         }
@@ -106,7 +106,7 @@ $(function() {
                 $tgt.blur();
                 if (isManaged && isSlider && $pane.index() >= 0) {
                     $managed.css(prop, ($pane.index() * -100) + "%");
-                    $managed.css("height", $pane.outerHeight() + "px");
+                    $managed.css("height", $pane.outerHeight(false) + "px");
                 }
             }
             $window.trigger('resize');

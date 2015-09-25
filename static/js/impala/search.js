@@ -117,7 +117,7 @@
 
             // The loading throbber is absolutely positioned atop the
             // search results, so we do this to ensure a max-margin of sorts.
-            if ($container.outerHeight() > 300) {
+            if ($container.outerHeight(false) > 300) {
                 cls += ' tall';
             }
 
