@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-26 07:51+0000\n"
+"PO-Revision-Date: 2015-09-26 09:31+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12080,7 +12080,7 @@ msgstr "Felrapport eller begäran om hjälp på fel ställe"
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:554
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Annat (ger en pop-up prompt för information)"
 
 #: apps/pages/templates/pages/dev_faq.html:557
 msgid ""
