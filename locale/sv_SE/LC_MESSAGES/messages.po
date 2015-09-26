@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-26 09:31+0000\n"
+"PO-Revision-Date: 2015-09-26 09:58+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12061,6 +12061,9 @@ msgid ""
 "A developer may reply to any review posted to their add-on as long as they "
 "are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
+"En utvecklare kan besvara varje inlägg som postas till deras tillägg så "
+"länge de är inloggade på AMO. Dessutom kan alla användare flagga en "
+"granskning som:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
@@ -12088,6 +12091,9 @@ msgid ""
 "reviewer but this feature is being investigated and considered for a future "
 "update."
 msgstr ""
+"För närvarande tillhandahåller AMO inte en mekanism för att kommunicera "
+"direkt med en granskare men denna funktion är under utredning och beaktad "
+"för en framtida uppdatering."
 
 #: apps/pages/templates/pages/dev_faq.html:564
 msgid "Can I request that a review be removed if the review is negative?"
