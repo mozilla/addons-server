@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-27 15:36+0000\n"
+"PO-Revision-Date: 2015-09-27 18:06+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -8937,7 +8937,7 @@ msgstr "Завантажити нову версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Повний розгляд може бути необов'язковим"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -8948,7 +8948,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Запитати повний розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -10078,7 +10078,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Назва додатку"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
@@ -10094,7 +10094,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Відновити"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -10197,11 +10197,11 @@ msgstr ""
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "Рейтинг"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Оцінка"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
@@ -10259,15 +10259,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:76
 msgid "Total"
-msgstr ""
+msgstr "Усього"
 
 #: apps/editors/templates/editors/performance.html:81
 msgid "Month"
-msgstr ""
+msgstr "Місяць"
 
 #: apps/editors/templates/editors/performance.html:88
 msgid "Year"
-msgstr ""
+msgstr "Рік"
 
 #: apps/editors/templates/editors/performance.html:95
 msgid "All-Time"
@@ -10377,7 +10377,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:184
 msgid "Tested on:"
-msgstr ""
+msgstr "Перевірено на:"
 
 #: apps/editors/templates/editors/review.html:223
 msgid ""
@@ -10398,11 +10398,11 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:260
 #: apps/editors/templates/editors/review.html:261
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: apps/editors/templates/editors/review.html:261
 msgid "Admin Page"
-msgstr ""
+msgstr "Сторінка адміністратора"
 
 #: apps/editors/templates/editors/review.html:266
 msgid "Review This Add-on"
@@ -10434,7 +10434,7 @@ msgstr "Дата"
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
-msgstr ""
+msgstr "Редактор"
 
 #: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
@@ -10473,7 +10473,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Від %(user)s на %(date)s</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
