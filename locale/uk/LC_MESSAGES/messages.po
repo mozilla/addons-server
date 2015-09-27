@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-21 09:22+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-09-27 19:35+0000\n"
+"Last-Translator: pe3k.lutsk <pe3k.lutsk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1044,6 +1044,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Увага:</strong> Цей додаток не був розглянутий Mozilla і не може "
+"бути встановлений на реліз версій Firefox 43 і вище. Будьте обережні при "
+"установці стороннього програмного забезпечення, яке може пошкодити ваш "
+"комп'ютер."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1152,7 +1156,7 @@ msgstr "Будь ласка <a href=\"%(login)s\">увійдіть</a>, щоб �
 #: apps/addons/templates/addons/impala/review_add_box.html:19
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "Назва:"
 
 #: apps/addons/templates/addons/review_add_box.html:18
 #: apps/addons/templates/addons/impala/review_add_box.html:20
@@ -1236,7 +1240,7 @@ msgstr "Мітки"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Піктограма для {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1430,6 +1434,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Увага:</strong> Тестові версії цього додатку не були перевірені "
+"Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -4305,11 +4311,11 @@ msgstr "Перевірка оновленого мовного пакету"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Бонус за прострочені відгуки"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Днів до додання бонусних балів"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -8931,7 +8937,7 @@ msgstr "Завантажити нову версію"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Повний розгляд може бути необов'язковим"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -8942,7 +8948,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Запитати повний розгляд"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -9617,7 +9623,7 @@ msgstr "Оновити теми"
 
 #: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Невказані очікувані оновлення"
 
 #: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
@@ -10072,7 +10078,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Назва додатку"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
@@ -10088,7 +10094,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Відновити"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -10191,11 +10197,11 @@ msgstr ""
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "Рейтинг"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Оцінка"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
@@ -10253,15 +10259,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:76
 msgid "Total"
-msgstr ""
+msgstr "Усього"
 
 #: apps/editors/templates/editors/performance.html:81
 msgid "Month"
-msgstr ""
+msgstr "Місяць"
 
 #: apps/editors/templates/editors/performance.html:88
 msgid "Year"
-msgstr ""
+msgstr "Рік"
 
 #: apps/editors/templates/editors/performance.html:95
 msgid "All-Time"
@@ -10364,6 +10370,8 @@ msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"Ви все ще можете відправити цю форму, але все ж робіть це лише якщо ви "
+"впевнені, що не буде конфлікту."
 
 #: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
@@ -10371,7 +10379,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:184
 msgid "Tested on:"
-msgstr ""
+msgstr "Перевірено на:"
 
 #: apps/editors/templates/editors/review.html:223
 msgid ""
@@ -10392,11 +10400,11 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:260
 #: apps/editors/templates/editors/review.html:261
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: apps/editors/templates/editors/review.html:261
 msgid "Admin Page"
-msgstr ""
+msgstr "Сторінка адміністратора"
 
 #: apps/editors/templates/editors/review.html:266
 msgid "Review This Add-on"
@@ -10428,7 +10436,7 @@ msgstr "Дата"
 
 #: apps/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
-msgstr ""
+msgstr "Редактор"
 
 #: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
@@ -10467,7 +10475,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Від %(user)s на %(date)s</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
@@ -10771,7 +10779,7 @@ msgstr ""
 
 #: apps/files/views.py:53
 msgid "Back to review"
-msgstr ""
+msgstr "Назад до огляду"
 
 #: apps/files/views.py:57
 msgid "Back to addon"

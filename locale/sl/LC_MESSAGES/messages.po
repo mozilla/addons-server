@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-24 17:04+0000\n"
+"PO-Revision-Date: 2015-09-27 19:09+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1490,7 +1490,7 @@ msgstr ""
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
-msgstr "Zakaj se je ustvarilo {0}?"
+msgstr "Zakaj ste ustvarili {0}?"
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:84
@@ -4357,11 +4357,11 @@ msgstr "Posodbljena recenzija jezikovnega paketa"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Dodatek za zapadle preglede"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dnevi pred uveljavljanjem dodatnih točk"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -8310,8 +8310,8 @@ msgid ""
 "Contributions are only available for add-ons with a <a "
 "href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
-"Prispevke se lahko predlaga samo za dodatke, ki imajo  <a "
-"href=\"%(url)s\">izpolnjen profile razvijalca</a>."
+"Prispevke se lahko predlaga samo za dodatke, ki imajo <a "
+"href=\"%(url)s\">izpolnjen profil razvijalca</a>."
 
 #: apps/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
@@ -8944,8 +8944,8 @@ msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
-"Gostovano na {0}, vendar skrito za vse razne avtorje. Se uporablja za "
-"začasno skrivanje navedb ali njihovo prekinitev."
+"Gostovano na {0}, vendar skrito za vse razen avtorjev. Uporabite, če želite "
+"dodatek začasno skriti ali ga nehati razvijati."
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
@@ -9611,7 +9611,7 @@ msgstr "Zbriši zastavico za admin recenzijo"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Počisti zastavico zahtevanih več podatkov"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -10881,7 +10881,7 @@ msgstr "Ni bilo mogoče razčleniti install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "ID-ja dodatka ni bilo mogoče najti."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
@@ -10889,11 +10889,11 @@ msgstr "ID dodatka mora vsebovati 64 znakov ali manj."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "ID dodatka se ne ujema z dodatkom."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Najden podvojen ID dodatka."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -13675,7 +13675,7 @@ msgstr "Prikaz {0} - {1} od {2} rezultatov"
 #: apps/search/views.py:261 templates/base.html:17
 #: templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
-msgstr "{0} dodatkov"
+msgstr "Dodatki za {0}"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
