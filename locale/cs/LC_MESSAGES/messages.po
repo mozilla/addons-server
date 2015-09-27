@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-10 07:25+0000\n"
+"PO-Revision-Date: 2015-09-25 18:00+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441869943.0\n"
+"X-POOTLE-MTIME: 1443204005.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -778,6 +778,10 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>Varování:</strong> Tento doplněk nebyl zkontrolován Mozillou a "
+"nemůže být nainstalován na Firefox verze 43 a vyšší. Při instalaci softwaru "
+"třetích stran buďte opatrní, jelikož takový software může poškodit váš "
+"počítač."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -903,7 +907,7 @@ msgstr "Štítky"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ikona pro {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -1066,6 +1070,8 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>Varování:</strong> Vývojové verze tohoto doplňku nebyly "
+"zkontrolovány Mozillou."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -3472,11 +3478,11 @@ msgstr "Kontroly aktualizovaných jazykových balíčků"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus za zpožděné kontroly"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dny před uplatněním bonusových bodů"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -6911,15 +6917,18 @@ msgstr "Nahrát novou verzi"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Úplná kontrola nemusí být nutná"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"Nezveřejněné doplňky nepotřbují úplnou kontrolu, pokud nejsou distribujovány "
+"jako součást instalátoru aplikací. Pro více informací si přečtěte <a "
+"href=\"{link}\" target=\"_blank\">tuto dokumentaci</a>."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Vyžádat úplnou kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7417,7 +7426,7 @@ msgstr "Vymazat příznat kontroly administrátorem"
 
 #: apps/editors/forms.py:274
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Zrušit požadavek na více informací"
 
 #: apps/editors/forms.py:294
 msgid "Choose a canned response..."
@@ -8536,19 +8545,19 @@ msgstr "Nelze zpracovat soubor install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "ID doplňku nelze nalézt."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID doplňku může být maximálně 64 znaků dlouhé."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "ID doplňku neodpovídá doplňku."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Nalezeno duplicitní ID doplňku."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -12084,7 +12093,7 @@ msgstr "Pro založení své vlastní sbírky musíte mít účet na serveru Dopl
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo v patičce"
 
 #: templates/categories.html:2
 msgid "Choose a category"
