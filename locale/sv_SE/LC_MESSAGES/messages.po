@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-26 17:28+0000\n"
+"PO-Revision-Date: 2015-09-27 12:19+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -12192,16 +12192,20 @@ msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
+"Open Source Initiative ger villkoren för några av de viktigaste licenserna "
+"för öppen källkod."
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr "En jämförelse av kända opensource licenser finns på Wikipedia."
+msgstr "En jämförelse av kända licenser för öppen källkod finns på Wikipedia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"En webbplats för att ge icke-dömande vägledning om hur du väljer en licens "
+"för ditt projekt med öppen källkod."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
