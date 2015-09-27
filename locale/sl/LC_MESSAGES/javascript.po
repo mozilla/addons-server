@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-23 18:42+0000\n"
-"Last-Translator: Marko <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2015-09-27 09:43+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -362,7 +362,7 @@ msgstr "Kategorija"
 #: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268
 #: static/js/zamboni/mobile-min.js:5
 msgid "Admins and editors must provide a password to log in."
-msgstr ""
+msgstr "Skrbniki in uredniki morajo za prijavo vnesti geslo."
 
 #: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273
 #: static/js/zamboni/mobile-min.js:5
@@ -543,6 +543,7 @@ msgstr "Preverjanje veljavnosti {0} končano"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Preverjanje veljavnosti vašega dodatka je poteklo, pregledan bo ročno."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
