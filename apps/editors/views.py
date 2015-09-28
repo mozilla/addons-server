@@ -482,7 +482,12 @@ def queue_fast_track(request):
 def queue_moderated(request):
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
                                  Q(reviewflag__isnull=True))
-                        .filter(editorreview=1)
+                        .filter(editorreview=1,
+                                # Only show reviews for listed add-ons.
+                                # Unlisted add-ons typically won't have
+                                # reviews but they might if their status
+                                # is ever regressed.
+                                addon__status__in=amo.LISTED_STATUSES)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
