@@ -92,6 +92,19 @@ class TestPackaged(amo.tests.TestCase):
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_not_signed()
 
+    def test_supports_firefox_android_old_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Old, and not default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
+
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -104,14 +117,15 @@ class TestPackaged(amo.tests.TestCase):
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
 
-    def test_supports_firefox_recent_not_default_to_compatible(self):
+    def test_supports_firefox_android_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
-        # Recent, not default to compatible.
-        max_appversion.update(version=settings.MIN_NOT_D2C_VERSION,
+        # Old, and default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_D2C_VERSION,
                               version_int=version_int(
-                                  settings.MIN_NOT_D2C_VERSION))
-        self.file_.update(binary_components=True, strict_compatibility=True)
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
@@ -124,6 +138,19 @@ class TestPackaged(amo.tests.TestCase):
                               version_int=version_int(
                                   settings.MIN_NOT_D2C_VERSION))
         self.file_.update(binary_components=False, strict_compatibility=False)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_supports_firefox_android_recent_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Recent, not default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_NOT_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_NOT_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
