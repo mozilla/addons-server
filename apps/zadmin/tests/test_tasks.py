@@ -103,7 +103,8 @@ class TestLangpackFetcher(amo.tests.TestCase):
             [mock.call(list_url, verify=settings.CA_CERT_BUNDLE_PATH),
              mock.call(langpack_url, verify=settings.CA_CERT_BUNDLE_PATH)])
 
-    def test_fetch_new_langpack(self):
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_new_langpack(self, mock_sign_file):
         assert self.get_langpacks().count() == 0
 
         self.fetch_langpacks(amo.FIREFOX.latest_version)
@@ -111,17 +112,21 @@ class TestLangpackFetcher(amo.tests.TestCase):
         langpacks = self.get_langpacks()
         assert langpacks.count() == 1
 
-        a = langpacks[0]
-        assert a.default_locale == 'de-DE'
-        assert a.target_locale == 'de-DE'
+        addon = langpacks[0]
+        assert addon.default_locale == 'de-DE'
+        assert addon.target_locale == 'de-DE'
 
-        assert a._current_version
-        assert a.current_version.version == amo.FIREFOX.latest_version
+        assert addon._current_version
+        assert addon.current_version.version == amo.FIREFOX.latest_version
 
-        assert a.status == amo.STATUS_PUBLIC
-        assert a.current_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
 
-    def test_fetch_updated_langpack(self):
+        mock_sign_file.assert_called_once_with(
+            addon.current_version.files.get(), settings.SIGNING_SERVER)
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_updated_langpack(self, mock_sign_file):
         versions = ('16.0', '17.0')
 
         self.fetch_langpacks(versions[0])
@@ -133,13 +138,17 @@ class TestLangpackFetcher(amo.tests.TestCase):
         langpacks = self.get_langpacks()
         assert langpacks.count() == 1
 
-        a = langpacks[0]
-        assert a.versions.count() == 2
+        addon = langpacks[0]
+        assert addon.versions.count() == 2
 
-        v = a.versions.get(version=versions[1])
-        assert v.files.all()[0].status == amo.STATUS_PUBLIC
+        version = addon.versions.get(version=versions[1])
+        assert version.files.all()[0].status == amo.STATUS_PUBLIC
 
-    def test_fetch_duplicate_langpack(self):
+        mock_sign_file.assert_called_with(
+            version.files.get(), settings.SIGNING_SERVER)
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_duplicate_langpack(self, mock_sign_file):
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
         langpacks = self.get_langpacks()
@@ -152,11 +161,16 @@ class TestLangpackFetcher(amo.tests.TestCase):
 
         langpacks = self.get_langpacks()
         assert langpacks.count() == 1
-        assert langpacks[0].versions.count() == 1
-        assert (langpacks[0].versions.all()[0].version ==
+        addon = langpacks[0]
+        assert addon.versions.count() == 1
+        assert (addon.versions.all()[0].version ==
                 amo.FIREFOX.latest_version)
 
-    def test_fetch_updated_langpack_beta(self):
+        mock_sign_file.assert_called_once_with(
+            addon.current_version.files.get(), settings.SIGNING_SERVER)
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_updated_langpack_beta(self, mock_sign_file):
         versions = ('16.0', '16.0a2')
 
         self.fetch_langpacks(versions[0])
@@ -168,27 +182,39 @@ class TestLangpackFetcher(amo.tests.TestCase):
         langpacks = self.get_langpacks()
         assert langpacks.count() == 1
 
-        a = langpacks[0]
-        assert a.versions.count() == 2
+        addon = langpacks[0]
+        assert addon.versions.count() == 2
 
-        v = a.versions.get(version=versions[1])
-        assert v.files.all()[0].status == amo.STATUS_BETA
+        version = addon.versions.get(version=versions[1])
+        assert version.files.all()[0].status == amo.STATUS_BETA
 
-    def test_fetch_new_langpack_beta(self):
+        mock_sign_file.assert_called_with(
+            version.files.get(), settings.PRELIMINARY_SIGNING_SERVER)
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_new_langpack_beta(self, mock_sign_file):
         self.fetch_langpacks('16.0a2')
 
         assert self.get_langpacks().count() == 0
 
-    def test_fetch_langpack_wrong_owner(self):
+        assert not mock_sign_file.called
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_langpack_wrong_owner(self, mock_sign_file):
         Addon.objects.create(guid='langpack-de-DE@firefox.mozilla.org',
                              type=amo.ADDON_LPAPP)
 
         self.fetch_langpacks(amo.FIREFOX.latest_version)
         assert self.get_langpacks().count() == 0
 
-    def test_fetch_langpack_invalid_path_fails(self):
+        assert not mock_sign_file.called
+
+    @mock.patch('zadmin.tasks.sign_file')
+    def test_fetch_langpack_invalid_path_fails(self, mock_sign_file):
         self.mock_request.return_value = None
 
         with self.assertRaises(ValueError) as exc:
             tasks.fetch_langpacks('../foo/')
         assert str(exc.exception) == 'Invalid path'
+
+        assert not mock_sign_file.called

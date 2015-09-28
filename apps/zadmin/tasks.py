@@ -30,6 +30,7 @@ from amo.utils import chunked, send_mail, sorted_groupby
 from devhub.tasks import run_validator
 from files.models import FileUpload
 from files.utils import parse_addon
+from lib.crypto.packaged import sign_file
 from users.models import UserProfile
 from users.utils import get_task_user
 from versions.models import Version
@@ -546,7 +547,7 @@ def fetch_langpack(url, xpi, **kw):
             addon = None
 
         try:
-            # Parse againn now that we have the add-on.
+            # Parse again now that we have the add-on.
             data = parse_addon(upload, addon)
         except Exception, e:
             log.error('[@None] Error parsing "{0}" language pack: {1}'
@@ -611,10 +612,13 @@ def fetch_langpack(url, xpi, **kw):
             log.info('[@None] Created new "{0}" language pack, version {1}'
                      .format(xpi, data['version']))
 
-        if not is_beta:
+        file_ = version.files.get()
+        if is_beta:
+            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        else:
             # Not `version.files.update`, because we need to trigger save
             # hooks.
-            file_ = version.files.get()
             file_.update(status=amo.STATUS_PUBLIC)
+            sign_file(file_, settings.SIGNING_SERVER)
 
         addon.update_version()
