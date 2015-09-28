@@ -15,8 +15,8 @@ var Tabs = function(el) {
 Tabs.prototype = {
     init: function() {
         this.root.addClass('tab-wrapper');
-        this.tabMap = {}
-        this.panelMap = {}
+        this.tabMap = {};
+        this.panelMap = {};
         this.reset();
 
         this.select();
@@ -64,7 +64,7 @@ Tabs.prototype = {
         var panels = [];
         this.tabs.each(function() {
             var hash = self.getHash(this);
-            var panel = self.root.find('#' + hash)[0];
+            var panel = self.root.find(hash)[0];
             if (panel) {
                 self.tabMap[hash] = this;
                 self.panelMap[hash] = panel;
