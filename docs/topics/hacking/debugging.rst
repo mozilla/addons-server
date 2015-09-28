@@ -46,5 +46,25 @@ All being well it should look like this:
 .. image:: /screenshots/docker-ipdb.png
 
 
+Using the Django Debug Toolbar
+------------------------------
+
+The `Django Debug Toolbar`_ is very powerful and useful when viewing pages from
+the website, to check the view used, its parameters, the SQL queries, the
+templates rendered and their context...
+
+It should be enabled local development as long as ``settings.DEBUG`` is set to
+``True`` (which it is by default).
+
+All being well it should look like this at the top-right of any web page on
+olympia:
+
+.. image:: /screenshots/django-debug-toolbar.png
+
+If clicked, it looks like:
+
+.. image:: /screenshots/django-debug-toolbar-expanded.png
+
 .. _ipdb: https://pypi.python.org/pypi/ipdb
 .. _docker-utils: https://pypi.python.org/pypi/docker-utils
+.. _Django Debug Toolbar: http://django-debug-toolbar.readthedocs.org/en/1.3.2/index.html

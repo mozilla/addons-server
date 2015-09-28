@@ -109,3 +109,13 @@ class TestNoAddonsMiddleware(amo.tests.TestCase):
         self.assertRaises(http.Http404, self.process, 'some.addons')
         self.assertRaises(http.Http404, self.process, 'some.addons.thingy')
         assert not self.process('something.else')
+
+
+class TestNoDjangoDebugToolbar(amo.tests.TestCase):
+    """Make sure the Django Debug Toolbar isn't available when DEBUG=False."""
+
+    def test_no_django_debug_toolbar(self):
+        with self.settings(DEBUG=False):
+            res = self.client.get(reverse('home'), follow=True)
+            assert 'djDebug' not in res.content
+            assert 'debug_toolbar' not in res.content
