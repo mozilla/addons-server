@@ -480,13 +480,13 @@ def queue_fast_track(request):
 
 @addons_reviewer_required
 def queue_moderated(request):
+    # In addition to other checks, this only show reviews for public and
+    # listed add-ons. Unlisted add-ons typically won't have reviews anyway
+    # but they might if their status ever gets changed.
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
+                                 Q(addon__is_listed=False) |
                                  Q(reviewflag__isnull=True))
                         .filter(editorreview=1,
-                                # Only show reviews for listed add-ons.
-                                # Unlisted add-ons typically won't have
-                                # reviews but they might if their status
-                                # is ever regressed.
                                 addon__status__in=amo.LISTED_STATUSES)
                         .order_by('reviewflag__created'))
 

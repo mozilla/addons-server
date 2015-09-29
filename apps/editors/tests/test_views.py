@@ -1245,15 +1245,25 @@ class TestModeratedQueue(QueueTest):
         eq_(doc('.no-results').length, 1)
         eq_(doc('.review-saved button').length, 1)  # Show only one button.
 
-    def test_do_not_show_reviews_for_unlisted_addons(self):
+    def test_do_not_show_reviews_for_non_public_addons(self):
         Addon.objects.all().update(status=amo.STATUS_NULL)
 
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)('#reviews-flagged')
+        res = self.client.get(self.url)
+        assert res.status_code == 200
+        doc = pq(res.content)('#reviews-flagged')
+
+        # There should be no results since all add-ons are not public.
+        assert doc('.no-results').length == 1
+
+    def test_do_not_show_reviews_for_unlisted_addons(self):
+        Addon.objects.all().update(is_listed=False)
+
+        res = self.client.get(self.url)
+        assert res.status_code == 200
+        doc = pq(res.content)('#reviews-flagged')
 
         # There should be no results since all add-ons are unlisted.
-        eq_(doc('.no-results').length, 1)
+        assert doc('.no-results').length == 1
 
 
 class TestUnlistedPendingQueue(TestPendingQueue):
