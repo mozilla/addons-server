@@ -660,8 +660,8 @@ $(document).ready(function () {
                     $widget.setWidth(410);
                     $widget.setPos(ct);
                     $("#id_name").focus();
-                    $widget.delegate('#collections-new-cancel', 'click', loadList)
-                           .delegate('#add-to-collection form', 'submit', handleSubmit);
+                    $('#collections-new-cancel').on('click', loadList);
+                    $('#add-to-collection form').on('submit', handleSubmit);
                 });
             };
 
