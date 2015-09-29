@@ -15,10 +15,10 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        if len(args) == 0:  # Sign all the addons?
+        if len(args) == 0:  # Unsign all the addons?
             raise CommandError(
                 'Please provide at least one addon id to unsign. If you want '
                 'to unsign them all, use the '
-                '"process_addons --task sign_addons" management command.')
+                '"process_addons --task unsign_addons" management command.')
         addon_ids = [int(addon_id) for addon_id in args]
         unsign_addons(addon_ids, force=options['force'])
