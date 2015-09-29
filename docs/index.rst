@@ -104,7 +104,7 @@ update your Docker image and database with any new requirements or migrations::
 
 Then from a shell on the running container run::
 
-    make update_docker  # Runs database migrations, installs npm modules, rebuilds assets.
+    make update_docker  # Runs database migrations and rebuilds assets.
 
 Please note that any command that would result in files added or modified
 outside of the `olympia` folder (eg modifying pip or npm dependencies) won't be
