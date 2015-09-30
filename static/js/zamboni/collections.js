@@ -398,7 +398,7 @@ if (addon_ac.length) {
             .attr('data-icon', ui.item.icons['32']);
             return false;
         }
-    }).data('autocomplete')._renderItem = function(ul, item) {
+    }).data('ui-autocomplete')._renderItem = function(ul, item) {
         if (!$("#addons-list input[value=" + item.id + "]").length) {
             return $('<li>')
                 .data('item.autocomplete', item)
