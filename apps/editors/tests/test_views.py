@@ -1840,11 +1840,10 @@ class ReviewBase(QueueTest):
         return Addon.objects.get(pk=self.addon.pk)
 
     def get_dict(self, **kw):
-        files = [self.version.files.all()[0].pk]
-        d = {'operating_systems': 'win', 'applications': 'something',
-             'comments': 'something', 'addon_files': files}
-        d.update(kw)
-        return d
+        data = {'operating_systems': 'win', 'applications': 'something',
+                'comments': 'something'}
+        data.update(kw)
+        return data
 
 
 class TestReview(ReviewBase):
@@ -2027,11 +2026,10 @@ class TestReview(ReviewBase):
             v.update(created=v.created + timedelta(days=i))
 
             if 'action' in version:
-                d = dict(action=version['action'], operating_systems='win',
-                         applications='something',
-                         comments=version['comments'],
-                         addon_files=[v.files.all()[0].pk])
-                self.client.post(self.url, d)
+                data = dict(action=version['action'], operating_systems='win',
+                            applications='something',
+                            comments=version['comments'])
+                self.client.post(self.url, data)
                 v.delete()
 
     @patch('editors.helpers.sign_file')
@@ -2114,19 +2112,15 @@ class TestReview(ReviewBase):
         eq_(doc('th').eq(1).text(), 'Comment')
         eq_(doc('.history-comment').text(), 'hello sailor')
 
-    @patch('editors.helpers.sign_file')
-    def test_files_in_item_history(self, mock_sign):
+    def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
-                'applications': 'something', 'comments': 'something',
-                'addon_files': [self.version.files.all()[0].pk]}
+                'applications': 'something', 'comments': 'something'}
         self.client.post(self.url, data)
 
         r = self.client.get(self.url)
         items = pq(r.content)('#review-files .files .file-info')
         eq_(items.length, 1)
         eq_(items.find('a.editors-install').text(), 'All Platforms')
-
-        assert mock_sign.called
 
     def test_no_items(self):
         r = self.client.get(self.url)
@@ -2307,10 +2301,9 @@ class TestReview(ReviewBase):
     @patch('editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-        d = dict(action='prelim', operating_systems='win',
-                 applications='something', comments='something',
-                 addon_files=[version.files.all()[0].pk])
-        self.client.post(url, d)
+        data = dict(action='prelim', operating_systems='win',
+                    applications='something', comments='something')
+        self.client.post(url, data)
 
         assert mock_sign.called
 
@@ -2575,33 +2568,6 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
-    def test_prelim_from_lite_no_files(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        data = self.prelim_dict()
-        del data['addon_files']
-        response = self.client.post(self.url, data)
-        eq_(response.context['form'].errors['addon_files'][0],
-            'You must select some files.')
-
-    def test_prelim_from_lite_wrong(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        response = self.client.post(self.url, self.prelim_dict())
-        eq_(response.context['form'].errors['addon_files'][0],
-            'File Public.xpi is not pending review.')
-
-    def test_prelim_from_lite_wrong_two(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        data = self.prelim_dict()
-        f = self.version.files.all()[0]
-
-        statuses = dict(File.STATUS_CHOICES)  # Shallow copy.
-        del statuses[amo.STATUS_BETA], statuses[amo.STATUS_UNREVIEWED]
-        for status in statuses:
-            f.update(status=status)
-            response = self.client.post(self.url, data)
-            eq_(response.context['form'].errors['addon_files'][0],
-                'File Public.xpi is not pending review.')
-
     def test_prelim_from_lite_files(self):
         self.addon.update(status=amo.STATUS_LITE)
         self.client.post(self.url, self.prelim_dict())
@@ -2623,7 +2589,6 @@ class TestReviewPreliminary(ReviewBase):
         file_.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        data['addon_files'] = [file_.pk]
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
@@ -2638,22 +2603,21 @@ class TestReviewPending(ReviewBase):
         self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
-        files = list(self.version.files.values_list('id', flat=True))
-        return self.get_dict(action='public', addon_files=files)
+        return self.get_dict(action='public')
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LITE])
+        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]
 
-        r = self.client.post(self.url, self.pending_dict())
-        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
-        self.assertRedirects(r, reverse('editors.queue_pending'))
+        response = self.client.post(self.url, self.pending_dict())
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        self.assertRedirects(response, reverse('editors.queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        eq_(list(statuses), [amo.STATUS_PUBLIC] * 2)
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_LITE]
 
         assert mock_sign.called
 
@@ -2672,17 +2636,51 @@ class TestReviewPending(ReviewBase):
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_PUBLIC] * 2
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_LITE]
 
         assert mock_sign.called
 
-    def test_disabled_file(self):
-        obj = File.objects.create(version=self.version,
-                                  status=amo.STATUS_DISABLED)
+    def test_display_only_unreviewed_files(self):
+        """Only the currently unreviewed files are displayed."""
+        self.file.update(filename='somefilename.xpi')
+        reviewed = File.objects.create(version=self.version,
+                                       status=amo.STATUS_PUBLIC,
+                                       filename='file_reviewed.xpi')
+        disabled = File.objects.create(version=self.version,
+                                       status=amo.STATUS_DISABLED,
+                                       filename='file_disabled.xpi')
+        unreviewed = File.objects.create(version=self.version,
+                                         status=amo.STATUS_UNREVIEWED,
+                                         filename='file_unreviewed.xpi')
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
-        assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
-        assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
+        assert len(doc('.review-actions-files ul li')) == 2
+        assert reviewed.filename not in response.content
+        assert disabled.filename not in response.content
+        assert unreviewed.filename in response.content
+        assert self.file.filename in response.content
+
+    @patch('editors.helpers.sign_file')
+    def test_review_unreviewed_files(self, mock_sign):
+        """Review all the unreviewed files when submitting a review."""
+        reviewed = File.objects.create(version=self.version,
+                                       status=amo.STATUS_PUBLIC)
+        disabled = File.objects.create(version=self.version,
+                                       status=amo.STATUS_DISABLED)
+        unreviewed = File.objects.create(version=self.version,
+                                         status=amo.STATUS_UNREVIEWED)
+        self.login_as_admin()
+        response = self.client.post(self.url, self.pending_dict())
+        self.assertRedirects(response,
+                             reverse('editors.queue_pending'))
+
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        assert reviewed.reload().status == amo.STATUS_PUBLIC
+        assert disabled.reload().status == amo.STATUS_DISABLED
+        assert unreviewed.reload().status == amo.STATUS_PUBLIC
+        assert self.file.reload().status == amo.STATUS_PUBLIC
+
+        assert mock_sign.called
 
 
 class TestEditorMOTD(EditorTest):
