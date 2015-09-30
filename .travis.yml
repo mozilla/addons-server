@@ -1,25 +1,25 @@
 language: python
-sudo: false
+sudo: required
 python:
   - "2.7"
-env:
-  - TOX_ENV=flake8
-  - TOX_ENV=docs
-  - TOX_ENV=assets
-  - TOX_ENV=es
-  - TOX_ENV=addons-devhub-editors
-  - TOX_ENV=main
+#env:
+#  - TOX_ENV=flake8
+#  - TOX_ENV=docs
+#  - TOX_ENV=assets
+#  - TOX_ENV=es
+#  - TOX_ENV=addons-devhub-editors
+#  - TOX_ENV=main
 services:
-  - memcached
+  - docker
 before_install:
-  - scripts/travis_es.sh
-  - /tmp/elasticsearch/elasticsearch-1.3.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
-install:
-  - pip install tox==1.8.1
-before_script:
-  - mysql -e 'create database olympia;'
+  - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose pull
+  - docker-compose up -d
 script:
-  - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+  #- RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+  - docker-compose run web py.test
 notifications:
   irc:
     channels:
