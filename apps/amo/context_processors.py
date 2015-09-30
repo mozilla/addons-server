@@ -88,7 +88,7 @@ def global_settings(request):
         if request.amo_user.is_developer:
             tools_links.append({'text': _('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
-        tools_links += [
+        links = [
             {'text': _('Submit a New Add-on'),
              'href': reverse('devhub.submit.1')},
             {'text': _('Submit a New Theme'),
@@ -96,7 +96,11 @@ def global_settings(request):
             {'text': _('Developer Hub'),
              'href': reverse('devhub.index')},
         ]
+        if waffle.switch_is_active('signing-api'):
+            links.append({'text': _('Manage API Keys'),
+                          'href': reverse('devhub.api_key')})
 
+        tools_links += links
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})

@@ -1126,7 +1126,11 @@ class TestSubmitBase(amo.tests.TestCase):
         return SubmitStep.objects.get(addon=self.get_addon())
 
 
-class TestAgreement(TestSubmitBase):
+class TestAPIAgreement(TestSubmitBase):
+    def setUp(self):
+        super(TestAPIAgreement, self).setUp()
+        self.create_switch('signing-api', db=True)
+
     def test_agreement_first(self):
         with mock.patch('devhub.views.render_agreement') as mock_submit:
             mock_submit.return_value = http.HttpResponse("Okay")
@@ -1140,6 +1144,20 @@ class TestAgreement(TestSubmitBase):
                                     follow=True)
 
         self.assertRedirects(response, reverse('devhub.api_key'))
+
+
+class TestAPIKeyPage(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super(TestAPIKeyPage, self).setUp()
+        assert self.client.login(username='del@icio.us', password='password')
+        self.create_switch('signing-api', db=True)
+
+    def test_key_page(self):
+        response = self.client.get(reverse('devhub.api_key'))
+        # Not testing anything more until the actual key generation is working
+        assert response.status_code == 200
 
 
 class TestSubmitStep1(TestSubmitBase):

@@ -1,0 +1,36 @@
+{% extends "devhub/base_impala.html" %}
+
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
+  <h1>{{ title }}</h1>
+</header>
+
+<section class="primary full">
+  <div class="island prettyform row">
+    <form method="post" class="item">
+      {{ csrf() }}
+      <fieldset>
+        <legend>
+          {{ _('Generate a new API key.') }}
+        </legend>
+        <ul>
+          <li clas="row">
+            <label for="jwtkey" class="row api-label">{{ _('API ID') }}</label>
+            <input type="text" name="jwtkey" value="{{ key }}" class="api-input" disabled />
+          </li>
+          <li clas="row">
+            <label for="jwtsecret" class="row api-label">{{ _('API Secret') }}</label>
+            <input type="text" name="jwtsecret" value="{{ secret }}" class="api-input" disabled />
+          </li>
+        </ul>
+      </fieldset>
+      <div class="listing-footer">
+        <button class="button button prominent" type="submit">{{ _('Generate New Key') }}</button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}
