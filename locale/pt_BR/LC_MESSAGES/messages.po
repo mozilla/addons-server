@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-29 22:48+0000\n"
+"PO-Revision-Date: 2015-10-01 03:16+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4388,7 +4388,7 @@ msgstr "Bônus para avaliações em atraso"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dias antes da aplicação do bônus"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -9112,7 +9112,7 @@ msgstr "Enviar uma nova versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "A revisão completa pode não ser necessária"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -9120,6 +9120,10 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Complementos não listados não precisam de revisão completa, a menos que eles"
+" sejão distribuídos como parte de um instalador de aplicativo. Leia <a "
+"href=\"{link}\" target=\"_blank\">esta documentação</a> para obter mais "
+"informações."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
@@ -10977,7 +10981,7 @@ msgstr "O ID de complemento não corresponde com o complemento."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Encontrado ID de complemento duplicado."
 
 # %1$s is a number.
 #: apps/files/utils.py:474
