@@ -18,9 +18,11 @@ from editors.models import ReviewerScore
 
 
 class ReviewReplyForm(forms.Form):
+    form_id = "review-reply-edit"
+
     title = forms.CharField(
         required=False,
-        label="Title",
+        label=_lazy(u"Title"),
         widget=forms.TextInput(
             attrs={'id': 'id_review_reply_title', },
         ),
@@ -39,14 +41,13 @@ class ReviewReplyForm(forms.Form):
             raise_required()
         return body
 
-    def form_id(self):
-        return "review-reply-edit"
-
 
 class ReviewForm(ReviewReplyForm):
+    form_id = "review-edit"
+
     title = forms.CharField(
         required=False,
-        label="Title",
+        label=_lazy(u"Title"),
         widget=forms.TextInput(
             attrs={'id': 'id_review_title', },
         ),
@@ -57,7 +58,9 @@ class ReviewForm(ReviewReplyForm):
         ),
         label="Review",
     )
-    rating = forms.ChoiceField(zip(range(1, 6), range(1, 6)), label="Rating")
+    rating = forms.ChoiceField(
+        zip(range(1, 6), range(1, 6)), label=_lazy(u"Rating")
+    )
     flags = re.I | re.L | re.U | re.M
     # This matches the following three types of patterns:
     # http://... or https://..., generic domain names, and IPv4
@@ -76,9 +79,6 @@ class ReviewForm(ReviewReplyForm):
         if self.link_pattern.search(data) is not None:
             self.cleaned_data['flag'] = True
             self.cleaned_data['editorreview'] = True
-
-    def form_id(self):
-        return "review-edit"
 
 
 class ReviewFlagForm(forms.ModelForm):

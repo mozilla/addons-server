@@ -98,7 +98,8 @@ $(document).ready(function() {
 
             $form.submit(function (e) {
                 e.preventDefault();
-                $.ajax({type: 'POST',
+                $.ajax({
+                    type: 'POST',
                     url: edit_url,
                     data: $form.serialize(),
                     success: function(response, status) {
