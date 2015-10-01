@@ -85,7 +85,7 @@
     {% if review.user_id == request.user.id %}
       {% if is_reply %}
         <li>
-          <a class="review-edit" href="#">
+          <a class="review-reply-edit" href="#">
             {{ _('Edit reply') }}</a>
         </li>
       {% else %}

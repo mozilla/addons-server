@@ -95,6 +95,7 @@
     {{ reviews|impala_paginator }}
     {% endblock review_list %}
     {{ edit_review_form() }}
+    {{ edit_review_reply_form() }}
   </div>
   {{ report_review_popup() }}
 {% endblock content %}
