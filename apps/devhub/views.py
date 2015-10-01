@@ -64,7 +64,6 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.
-DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 MDN_BASE = 'https://developer.mozilla.org/Add-ons'
 
@@ -1387,19 +1386,14 @@ def _step_url(step):
 @login_required
 @submit_step(1)
 def submit(request, step):
-    if request.method == 'POST':
-        request.user.update(read_dev_agreement=now())
-        response = redirect(_step_url(2))
-        response.set_cookie(DEV_AGREEMENT_COOKIE)
-        return response
-
-    return render(request, 'devhub/addons/submit/start.html', {'step': step})
+    return render_agreement(request, 'devhub/addons/submit/start.html',
+                            _step_url(2), step)
 
 
 @login_required
 @submit_step(2)
 def submit_addon(request, step):
-    if DEV_AGREEMENT_COOKIE not in request.COOKIES:
+    if request.user.read_dev_agreement is None:
         return redirect(_step_url(1))
     form = forms.NewAddonForm(
         request.POST or None,
@@ -1735,3 +1729,26 @@ def docs(request, doc_name=None):
 def search(request):
     query = request.GET.get('q', '')
     return render(request, 'devhub/devhub_search.html', {'query': query})
+
+
+def api_key_agreement(request):
+    next_step = reverse('devhub.api_key')
+    return render_agreement(request, 'devhub/api/agreement.html', next_step)
+
+
+def render_agreement(request, template, next_step, step=None):
+    if request.method == 'POST':
+        request.user.update(read_dev_agreement=now())
+        return redirect(next_step)
+
+    if request.user.read_dev_agreement is None:
+        return render(request, template,
+                      {'step': step})
+    else:
+        response = redirect(next_step)
+        return response
+
+
+def api_key(request):
+    """TODO: this is simply a stub to be filled in at a later date"""
+    return http.HttpResponse('Ok')
