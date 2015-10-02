@@ -76,10 +76,10 @@ you can get the ip like so::
     your old boot2docker vm across to running via docker-machine. See
     docker-toolbox_ for more info.
 
-Now you can connect to port 8000 of that ip address. Here's an example
+Now you can connect to port 80 of that ip address. Here's an example
 (your ip might be different)::
 
-    http://192.168.99.100:8000/
+    http://192.168.99.100/
 
 .. note::
     Bear in mind docker-machine hands out ip addresses as each vm is started;
@@ -178,7 +178,7 @@ out::
     pybabel init -l en_US -d . -i javascript.pot -D javascript
     perl -pi -e 's/fuzzy//' en_US/LC_MESSAGES/javascript.po
     pybabel compile -d . -D javascript
-    open http://0:8000/en-US/jsi18n/
+    open http://0/en-US/jsi18n/
 
 Git Bisect
 ~~~~~~~~~~
