@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-27 19:09+0000\n"
+"PO-Revision-Date: 2015-10-04 19:39+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -13412,7 +13412,7 @@ msgstr "Odgovor na pregled za {0}"
 #: apps/reviews/templates/reviews/reply.html:15
 #: apps/reviews/templates/reviews/reply.html:31
 msgid "Reply"
-msgstr "Odgovori"
+msgstr "Odgovor"
 
 #: apps/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
