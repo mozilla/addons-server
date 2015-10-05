@@ -266,7 +266,7 @@
             function dayFormatter(d) { return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d)); }
             function weekFormatter(d) { return format(gettext('Week of {0}'), Highcharts.dateFormat('%b %e, %Y', new Date(d))); }
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
-            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + 'downloads'); }
+            function downloadFormatter(n) { return gettext(Highcharts.numberFormat(n, 0) + ' downloads'); }
             function userFormatter(n) { return format(gettext('{0} users'), Highcharts.numberFormat(n, 0)); }
             function addonsFormatter(n) { return format(gettext('{0} add-ons'), Highcharts.numberFormat(n, 0)); }
             function collectionsFormatter(n) { return format(gettext('{0} collections'), Highcharts.numberFormat(n, 0)); }
