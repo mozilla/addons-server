@@ -1,31 +1,11 @@
 {% extends "devhub/addons/submit/base.html" %}
 
+
 {% block title %}{{ dev_page_title(_('Step 1'), addon) }}{% endblock %}
 
 {% block primary %}
 <h3>{{ _('Step 1. Getting Started') }}</h3>
 
-<p>
-{% trans %}
-  Before starting, please read and accept our Firefox Add-on
-  Distribution Agreement. It also links to our Privacy Notice
-  which explains how we handle your information.
-{% endtrans %}
-</p>
-<div id="agreement-container">
-  {% include 'amo/developer_agreement.html' %}
-</div>
-<div id="agreement-extra-links">
-  <a href="{{ url('devhub.docs', 'policies/agreement') }}">
-    {{ _('Printable Version') }}</a>
-</div>
-<div class="submit-buttons">
-  <form method="post">
-    {{ csrf() }}
-    <button id="accept-agreement" type="submit">
-      {{ _('I Accept this Agreement') }}
-    </button>
-  {{ _('or <a href="{0}">Cancel</a>')|f(url('devhub.index')) }}
-  </form>
-</div>
+{% include "devhub/agreement.html" %}
+
 {% endblock %}

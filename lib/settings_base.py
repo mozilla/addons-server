@@ -604,13 +604,14 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
+            'js/lib/jquery-ui/core.js',
+            'js/lib/jquery-ui/position.js',
+            'js/lib/jquery-ui/widget.js',
+            'js/lib/jquery-ui/menu.js',
+            'js/lib/jquery-ui/mouse.js',
+            'js/lib/jquery-ui/autocomplete.js',
+            'js/lib/jquery-ui/datepicker.js',
+            'js/lib/jquery-ui/sortable.js',
 
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
@@ -686,13 +687,14 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
+            'js/lib/jquery-ui/core.js',
+            'js/lib/jquery-ui/position.js',
+            'js/lib/jquery-ui/widget.js',
+            'js/lib/jquery-ui/mouse.js',
+            'js/lib/jquery-ui/menu.js',
+            'js/lib/jquery-ui/autocomplete.js',
+            'js/lib/jquery-ui/datepicker.js',
+            'js/lib/jquery-ui/sortable.js',
 
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',

@@ -143,13 +143,12 @@ To get back into the olympia environment later, type::
 
     workon olympia  # requires virtualenvwrapper
 
-.. note:: Olympia requires at least Python 2.6.1, and at most Python 2.7,
-          production is using Python 2.6.6.
+.. note:: Olympia requires Python 2.7.
 
 .. note:: If you want to use a different Python binary, pass the name (if it is
           on your path) or the full path to mkvirtualenv with ``--python``::
 
-            mkvirtualenv --python=/usr/local/bin/python2.6 olympia
+            mkvirtualenv --python=/usr/local/bin/python2.7 olympia
 
 
 Finish the install

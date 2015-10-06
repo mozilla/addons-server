@@ -61,6 +61,14 @@ def edit_review_form(context):
     return c
 
 
+@jingo.register.inclusion_tag('reviews/edit_review.html')
+@jinja2.contextfunction
+def edit_review_reply_form(context):
+    c = dict(context.items())
+    c.update(form=forms.ReviewReplyForm())
+    return c
+
+
 def user_can_delete_review(request, review):
     """Return whether or not the request.user can delete reviews.
 

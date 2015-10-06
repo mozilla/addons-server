@@ -29,7 +29,7 @@ pytestmark = pytest.mark.django_db
 
 REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
                          amo.STATUS_UNREVIEWED)
-REVIEW_FILES_STATUSES = (amo.STATUS_BETA, amo.STATUS_NULL, amo.STATUS_PUBLIC,
+REVIEW_FILES_STATUSES = (amo.STATUS_PUBLIC,
                          amo.STATUS_DISABLED, amo.STATUS_LITE)
 
 
@@ -720,7 +720,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_preliminary_to_sandbox(self, sign_mock):
-        for status in helpers.PRELIMINARY_STATUSES:
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -737,7 +737,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_preliminary_to_sandbox_unlisted(self, sign_mock):
-        for status in helpers.PRELIMINARY_STATUSES:
+        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
@@ -807,7 +807,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_public(self, sign_mock):
-        for status in helpers.PENDING_STATUSES:
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status)
             self.create_paths()
             self.helper.handler.process_public()
@@ -829,7 +829,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_public_unlisted(self, sign_mock):
-        for status in helpers.PENDING_STATUSES:
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status, is_listed=False)
             self.create_paths()
             self.helper.handler.process_public()
@@ -851,7 +851,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_sandbox(self, sign_mock):
-        for status in helpers.PENDING_STATUSES:
+        for status in amo.UNDER_REVIEW_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -868,7 +868,7 @@ class TestReviewHelper(amo.tests.TestCase):
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_sandbox_unlisted(self, sign_mock):
-        for status in helpers.PENDING_STATUSES:
+        for status in amo.UNDER_REVIEW_STATUSES:
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
@@ -946,7 +946,7 @@ class TestReviewHelper(amo.tests.TestCase):
                                                % (status, process))
 
     def test_preliminary_review_time_set(self):
-        for status in REVIEW_FILES_STATUSES:
+        for status in amo.UNDER_REVIEW_STATUSES:
             for process in ['process_sandbox', 'process_preliminary']:
                 self.file.update(reviewed=None)
                 self.setup_data(status)

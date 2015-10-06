@@ -480,9 +480,14 @@ def queue_fast_track(request):
 
 @addons_reviewer_required
 def queue_moderated(request):
+    # In addition to other checks, this only show reviews for public and
+    # listed add-ons. Unlisted add-ons typically won't have reviews anyway
+    # but they might if their status ever gets changed.
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
+                                 Q(addon__is_listed=False) |
                                  Q(reviewflag__isnull=True))
-                        .filter(editorreview=1)
+                        .filter(editorreview=1,
+                                addon__status__in=amo.LISTED_STATUSES)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
@@ -558,8 +563,8 @@ def review(request, addon):
     form = forms.get_review_form(request.POST or None, request=request,
                                  addon=addon, version=version)
 
-    queue_type = (form.helper.review_type if form.helper.review_type
-                  != 'preliminary' else 'prelim')
+    queue_type = ('prelim' if form.helper.review_type == 'preliminary'
+                  else form.helper.review_type)
     if addon.is_listed:
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
@@ -603,9 +608,6 @@ def review(request, addon):
 
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
-
-    # We only allow the user to check/uncheck files for "pending"
-    allow_unchecking_files = form.helper.review_type == "pending"
 
     versions = (Version.objects.filter(addon=addon)
                                .exclude(files__status=amo.STATUS_BETA)
@@ -671,7 +673,6 @@ def review(request, addon):
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
-                  allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,

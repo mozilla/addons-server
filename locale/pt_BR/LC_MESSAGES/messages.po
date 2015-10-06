@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-25 11:00+0000\n"
+"PO-Revision-Date: 2015-10-01 03:16+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1053,6 +1053,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Atenção:</strong> Este complemento não foi revisado pela Mozilla e "
+"não pode ser instalado no Firefox 43 e acima. Tenha cuidado ao instalar "
+"software de terceiros que pode danificar o seu computador."
 
 # %1$s is an application name and version.  Example: Firefox 3.1
 #: apps/addons/templates/addons/popups.html:121
@@ -1450,6 +1453,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Atenção:</strong> Versões de desenvolvimento deste complemento não "
+"foram avaliadas pela Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -4379,11 +4384,11 @@ msgstr "Análise atualizada do pacote de idioma"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bônus para avaliações em atraso"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dias antes da aplicação do bônus"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -9107,7 +9112,7 @@ msgstr "Enviar uma nova versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "A revisão completa pode não ser necessária"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -9115,6 +9120,10 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Complementos não listados não precisam de revisão completa, a menos que eles"
+" sejão distribuídos como parte de um instalador de aplicativo. Leia <a "
+"href=\"{link}\" target=\"_blank\">esta documentação</a> para obter mais "
+"informações."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
@@ -10960,19 +10969,19 @@ msgstr "Não foi possível interpretar o arquivo install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Não foi possível encontrar um ID do complemento."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "O ID do complemento deve ter 64 caracteres ou menos."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "O ID de complemento não corresponde com o complemento."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Encontrado ID de complemento duplicado."
 
 # %1$s is a number.
 #: apps/files/utils.py:474
@@ -15631,7 +15640,7 @@ msgstr ""
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logotipo de rodapé"
 
 #: templates/categories.html:2
 msgid "Choose a category"

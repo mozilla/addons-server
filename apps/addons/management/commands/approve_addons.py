@@ -52,10 +52,7 @@ def get_files(addon_guids):
     # under review, or add-ons that are under review.
     files = []
     for addon in addons:
-        for file_ in addon.latest_version.files.all():
-            if (file_.status in amo.UNDER_REVIEW_STATUSES or
-                    addon.status in amo.UNDER_REVIEW_STATUSES):
-                files.append(file_)
+        files += addon.latest_version.unreviewed_files
     return files
 
 

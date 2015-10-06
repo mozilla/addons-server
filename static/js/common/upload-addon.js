@@ -407,16 +407,21 @@
                     upload_title.html(format(gettext('Finished validating {0}'), [escape_(file.name)]));
 
                     var message = "";
+                    var messageCount = v.warnings + v.notices;
 
-                    var warnings = v.warnings + v.notices;
                     if (timeout) {
                         message = gettext(
                                     "Your add-on validation timed out, it will be manually reviewed.");
-                    } else if (warnings > 0) {
+                    } else if (v.warnings > 0) {
+                        message = format(ngettext(
+                                    "Your add-on was validated with no errors and {0} warning.",
+                                    "Your add-on was validated with no errors and {0} warnings.",
+                                    v.warnings), [v.warnings]);
+                    } else if (v.notices > 0) {
                         message = format(ngettext(
                                     "Your add-on was validated with no errors and {0} message.",
                                     "Your add-on was validated with no errors and {0} messages.",
-                                    warnings), [warnings]);
+                                    v.notices), [v.notices]);
                     } else {
                         message = gettext("Your add-on was validated with no errors or warnings.");
                     }
@@ -466,7 +471,7 @@
                       }
                     }
 
-                    if (warnings > 0) {
+                    if (messageCount > 0) {
                         // Validation checklist
                         var checklist_box = $('<div>').attr('class', 'submission-checklist').appendTo(upload_results),
                             checklist = [

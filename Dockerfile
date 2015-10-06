@@ -38,6 +38,11 @@ RUN cd /pip && \
         -r requirements/docker.txt && \
     rm -r build cache
 
+# Install the node_modules.
+RUN mkdir -p /srv/olympia-node
+ADD package.json /srv/olympia-node/package.json
+WORKDIR /srv/olympia-node
+RUN npm install
 
 COPY . /code
 WORKDIR /code
@@ -51,3 +56,8 @@ ENV HISTSIZE 50000
 ENV HISTIGNORE ls:exit:"cd .."
 # This prevents dupes but only in memory for the current session.
 ENV HISTCONTROL erasedups
+
+ENV CLEANCSS_BIN /srv/olympia-node/node_modules/clean-css/bin/cleancss
+ENV LESS_BIN /srv/olympia-node/node_modules/less/bin/lessc
+ENV STYLUS_BIN /srv/olympia-node/node_modules/stylus/bin/stylus
+ENV UGLIFY_BIN /srv/olympia-node/node_modules/uglify-js/bin/uglifyjs

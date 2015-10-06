@@ -1,4 +1,4 @@
-.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8 update_docker initialize_docker update_npm_deps
+.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_code update_deps update_db update_assets full_init full_update reindex flake8 update_docker initialize_docker
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -18,8 +18,7 @@ help:
 	@echo "  initialize_db     to create a new database"
 	@echo "  populate_data     to populate a new database"
 	@echo "  update_code       to update the git repository"
-	@echo "  update_deps       to update the python and npm dependencies"
-	@echo "  update_npm_deps   to update only the npm dependencies"
+	@echo "  update_deps       to update the pythondependencies"
 	@echo "  update_db         to run the database migrations"
 	@echo "  initialize_docker to initialize a docker image"
 	@echo "  update_docker     to update a docker image"
@@ -72,16 +71,13 @@ populate_data:
 update_code:
 	git checkout master && git pull
 
-update_deps: update_npm_deps
+update_deps:
 	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.addons.mozilla.org/wheelhouse/ --find-links https://pyrepo.addons.mozilla.org/ --no-index
-
-update_npm_deps:
-	npm install
 
 update_db:
 	schematic migrations
 
-update_assets: update_npm_deps
+update_assets:
 	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 

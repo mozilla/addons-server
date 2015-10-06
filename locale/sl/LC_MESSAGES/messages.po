@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-09-27 19:09+0000\n"
+"PO-Revision-Date: 2015-10-06 15:17+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -13412,7 +13412,7 @@ msgstr "Odgovor na pregled za {0}"
 #: apps/reviews/templates/reviews/reply.html:15
 #: apps/reviews/templates/reviews/reply.html:31
 msgid "Reply"
-msgstr "Odgovori"
+msgstr "Odgovor"
 
 #: apps/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
@@ -14143,15 +14143,15 @@ msgstr "<b>{0}</b> uporabnikov povprečno na dan"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr "Prvo uvrščene aplikacije"
+msgstr "Najpogostejši programi"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr "Glejte nadaljnje aplikacije&hellip;"
+msgstr "Glejte več aplikacij &hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr "Prvo uvrščeni jeziki"
+msgstr "Najpogostejši jeziki"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
@@ -14159,7 +14159,7 @@ msgstr "Glejte druge jezike&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr "Prvo uvrščene platforme"
+msgstr "Najpogostejše platforme"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"

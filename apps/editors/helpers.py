@@ -449,7 +449,7 @@ class ReviewHelper:
         self.handler = None
         self.required = {}
         self.addon = addon
-        self.all_files = version.files.all() if version else []
+        self.version = version
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions(request, addon)
 
@@ -584,7 +584,7 @@ class ReviewBase(object):
         self.addon = addon
         self.version = version
         self.review_type = review_type
-        self.files = None
+        self.files = self.version.unreviewed_files if self.version else []
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
@@ -688,7 +688,6 @@ class ReviewAddon(ReviewBase):
 
     def set_data(self, data):
         self.data = data
-        self.files = self.version.files.all()
 
     def process_public(self):
         """Set an addon to public."""
@@ -807,7 +806,8 @@ class ReviewFiles(ReviewBase):
 
     def set_data(self, data):
         self.data = data
-        self.files = data.get('addon_files', None)
+        if 'addon_files' in data:
+            self.files = data['addon_files']
 
     def process_public(self):
         """Set an addons files to public."""

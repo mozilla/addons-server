@@ -253,9 +253,13 @@ def unsign_addons(addon_ids, force=False, **kw):
             file_supports_firefox(settings.MIN_NOT_D2C_VERSION)))
 
     addons_emailed = []
-    # We only care about extensions.
+    # We only care about extensions and themes which are multi-package XPIs.
+    # We don't sign multi-package XPIs since bug 1172696, but we had signed
+    # some before that, and we now have to deal with it, eg for bug 1205823.
     for version in Version.objects.filter(addon_id__in=addon_ids,
-                                          addon__type=amo.ADDON_EXTENSION):
+                                          addon__type__in=[
+                                              amo.ADDON_EXTENSION,
+                                              amo.ADDON_THEME]):
         # We only unsign files that have been reviewed and are compatible with
         # versions of Firefox that are recent enough.
         if not version.version.endswith(bumped_suffix):
@@ -263,6 +267,11 @@ def unsign_addons(addon_ids, force=False, **kw):
             continue
         to_unsign = version.files.filter(ff_version_filter,
                                          status__in=amo.REVIEWED_STATUSES)
+
+        # We only care about multi-package XPIs for themes, because they may
+        # have extensions inside.
+        if version.addon.type == amo.ADDON_THEME:
+            to_unsign = to_unsign.files.filter(is_multi_package=True)
 
         if force:
             to_unsign = to_unsign.all()
