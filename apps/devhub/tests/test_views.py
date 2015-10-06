@@ -5,6 +5,7 @@ import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from django import http
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
@@ -1112,6 +1113,7 @@ class TestSubmitBase(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitBase, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
 
     def get_addon(self):
@@ -1124,9 +1126,25 @@ class TestSubmitBase(amo.tests.TestCase):
         return SubmitStep.objects.get(addon=self.get_addon())
 
 
-class TestSubmitStep1(TestSubmitBase):
+class TestAgreement(TestSubmitBase):
+    def test_agreement_first(self):
+        with mock.patch('devhub.views.render_agreement') as mock_submit:
+            mock_submit.return_value = http.HttpResponse("Okay")
+            self.client.get(reverse('devhub.api_key_agreement'))
+        assert mock_submit.called
 
+    def test_agreement_second(self):
+        self.user.update(read_dev_agreement=None)
+
+        response = self.client.post(reverse('devhub.api_key_agreement'),
+                                    follow=True)
+
+        self.assertRedirects(response, reverse('devhub.api_key'))
+
+
+class TestSubmitStep1(TestSubmitBase):
     def test_step1_submit(self):
+        self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
@@ -1141,12 +1159,16 @@ class TestSubmitStep1(TestSubmitBase):
 
     def test_read_dev_agreement_set(self):
         """Store current date when the user agrees with the user agreement."""
-        response = self.client.get(reverse('devhub.submit.1'))
-        previous = response.context['user'].read_dev_agreement
+        self.user.update(read_dev_agreement=None)
 
         response = self.client.post(reverse('devhub.submit.1'), follow=True)
         user = response.context['user']
-        assert user.read_dev_agreement != previous
+        self.assertCloseToNow(user.read_dev_agreement)
+
+    def test_read_dev_agreement_skip(self):
+        # The current user fixture has already read the agreement so we skip
+        response = self.client.get(reverse('devhub.submit.1'))
+        self.assertRedirects(response, reverse('devhub.submit.2'))
 
 
 class TestSubmitStep2(amo.tests.TestCase):
@@ -1156,15 +1178,18 @@ class TestSubmitStep2(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitStep2, self).setUp()
         self.client.login(username='regular@mozilla.com', password='password')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
-    def test_step_2_with_cookie(self):
+    def test_step_2_seen(self):
         r = self.client.post(reverse('devhub.submit.1'))
         self.assertRedirects(r, reverse('devhub.submit.2'))
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
-    def test_step_2_no_cookie(self):
+    def test_step_2_not_seen(self):
         # We require a cookie that gets set in step 1.
+        self.user.update(read_dev_agreement=None)
+
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
         self.assertRedirects(r, reverse('devhub.submit.1'))
 
@@ -1856,6 +1881,7 @@ class TestSubmitSteps(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitSteps, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
 
     def assert_linked(self, doc, numbers):
         """Check that the nth <li> in the steps list is a link."""
@@ -1875,6 +1901,7 @@ class TestSubmitSteps(amo.tests.TestCase):
         eq_(len(pq('.current', lis)), 1)
 
     def test_step_1(self):
+        self.user.update(read_dev_agreement=None)
         r = self.client.get(reverse('devhub.submit.1'))
         eq_(r.status_code, 200)
 
@@ -1899,6 +1926,7 @@ class TestSubmitSteps(amo.tests.TestCase):
         self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']))
 
     def test_menu_step_1(self):
+        self.user.update(read_dev_agreement=None)
         doc = pq(self.client.get(reverse('devhub.submit.1')).content)
         self.assert_linked(doc, [1])
         self.assert_highlight(doc, 1)
