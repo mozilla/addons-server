@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:56-0700\n"
-"PO-Revision-Date: 2015-10-06 16:17+0000\n"
+"PO-Revision-Date: 2015-10-07 14:36+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444148222.0\n"
+"X-POOTLE-MTIME: 1444228611.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -8517,7 +8517,7 @@ msgstr "Tento soubor je adresář."
 
 #: apps/files/tasks.py:30
 msgid "There was an error accessing file %s. %s."
-msgstr "Vyskytl se problém při přístupu k souboru %s. %s."
+msgstr "Při přístupu k souboru %s došlo k chybě. %s"
 
 #: apps/files/tasks.py:33
 msgid "There was an error accessing file %s."
