@@ -96,7 +96,7 @@ class TestPackaged(amo.tests.TestCase):
         max_appversion = self.version.apps.first().max
 
         # Old, and not default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
+        max_appversion.update(application=amo.MOBILE.id,
                               version=settings.MIN_D2C_VERSION,
                               version_int=version_int(
                                   settings.MIN_D2C_VERSION))
@@ -121,7 +121,7 @@ class TestPackaged(amo.tests.TestCase):
         max_appversion = self.version.apps.first().max
 
         # Old, and default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
+        max_appversion.update(application=amo.MOBILE.id,
                               version=settings.MIN_D2C_VERSION,
                               version_int=version_int(
                                   settings.MIN_D2C_VERSION))
@@ -146,7 +146,7 @@ class TestPackaged(amo.tests.TestCase):
         max_appversion = self.version.apps.first().max
 
         # Recent, not default to compatible.
-        max_appversion.update(application=amo.ANDROID.id,
+        max_appversion.update(application=amo.MOBILE.id,
                               version=settings.MIN_NOT_D2C_VERSION,
                               version_int=version_int(
                                   settings.MIN_NOT_D2C_VERSION))
