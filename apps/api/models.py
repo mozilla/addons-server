@@ -3,6 +3,8 @@ import time
 
 from django.db import models
 
+from aesfield.field import AESField
+
 from users.models import UserProfile
 
 
@@ -74,6 +76,38 @@ class Nonce(models.Model):
     class Meta:
         db_table = 'piston_nonce'
         unique_together = ('token_key', 'consumer_key', 'key')
+
+
+# These are identifiers for the type of API keys that can be stored
+# in our database.
+SYMMETRIC_JWT_TYPE = 1
+
+API_KEY_TYPES = [
+    SYMMETRIC_JWT_TYPE,
+]
+
+
+class APIKey(models.Model):
+    """
+    A developer's key/secret pair to access the API.
+    """
+    user = models.ForeignKey(UserProfile, related_name='api_keys')
+    type = models.PositiveIntegerField(
+        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0)
+    key = models.CharField(max_length=255, db_index=True, unique=True)
+    # TODO: use RSA public keys instead? If we were to use JWT RSA keys
+    # then we'd only need to store the public key.
+    secret = AESField(aes_key='api_key:secret')
+
+    class Meta:
+        db_table = 'api_key'
+
+    @classmethod
+    def get_jwt_key(cls, **query):
+        """
+        Look up the config for a JWT key.
+        """
+        return cls.objects.get(type=SYMMETRIC_JWT_TYPE, **query)
 
 
 def generate():

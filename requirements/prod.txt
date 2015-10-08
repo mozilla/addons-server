@@ -19,6 +19,7 @@ defusedxml==0.4.1
 dennis==0.4.2
 Django==1.6.11
 dj-database-url==0.2.2
+django-aesfield==0.1.2
 django-cache-nuggets==0.1.1
 django-cronjobs==0.2.3
 django_csp==2.0.3
@@ -30,7 +31,7 @@ django-quieter-formset==0.4
 django-raven-heka==0.3
 django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.12
-#django-session-csrf==0.6
+djangorestframework-jwt==1.7.2
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8
 django-waffle==0.9.2
@@ -51,6 +52,7 @@ kombu==3.0.26
 heka-py==0.30.3
 heka-py-cef==0.3.1
 heka-py-raven==0.6
+m2secret==0.1.1
 mock==1.0.1
 monolith.client==0.9
 moz-addon-packager==1.0.1
@@ -65,6 +67,7 @@ pyhs2==0.4.1
 polib==1.0.3
 protobuf==2.5.0
 pyasn1==0.1.7
+PyJWT==1.4.0
 PyMySQL==0.5
 pyquery==0.4
 python-dateutil==1.5
