@@ -24,6 +24,7 @@ import waffle
 from PIL import Image
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
+from waffle.decorators import waffle_switch
 
 import amo
 import amo.utils
@@ -1731,6 +1732,8 @@ def search(request):
     return render(request, 'devhub/devhub_search.html', {'query': query})
 
 
+@login_required
+@waffle_switch('signing-api')
 def api_key_agreement(request):
     next_step = reverse('devhub.api_key')
     return render_agreement(request, 'devhub/api/agreement.html', next_step)
@@ -1749,6 +1752,17 @@ def render_agreement(request, template, next_step, step=None):
         return response
 
 
+@login_required
+@waffle_switch('signing-api')
 def api_key(request):
-    """TODO: this is simply a stub to be filled in at a later date"""
-    return http.HttpResponse('Ok')
+    user_id = None
+    secret = None
+
+    if request.method == 'POST':
+        # TODO: Generate an API key
+        pass
+
+    return render(request, 'devhub/api/key.html',
+                  {'title': _('Manage API Keys'),
+                   'id': user_id,
+                   'secret': secret})

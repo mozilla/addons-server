@@ -66,6 +66,7 @@ class TestCommon(amo.tests.TestCase):
     def setUp(self):
         super(TestCommon, self).setUp()
         self.url = reverse('home')
+        self.create_switch('signing-api', db=True)
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
@@ -83,6 +84,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
@@ -103,6 +105,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
@@ -118,6 +121,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -138,6 +142,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -156,6 +161,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
@@ -180,6 +186,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
