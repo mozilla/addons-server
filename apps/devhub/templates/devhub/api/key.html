@@ -17,13 +17,13 @@
           {{ _('Generate a new API key.') }}
         </legend>
         <ul>
-          <li clas="row">
-            <label for="jwtkey" class="row api-label">{{ _('API ID') }}</label>
-            <input type="text" name="jwtkey" value="{{ key }}" class="api-input" disabled />
+          <li class="row api-input">
+            <label for="jwtkey" class="row">{{ _('API ID') }}</label>
+            <input type="text" name="jwtkey" value="{{ key }}" disabled />
           </li>
-          <li clas="row">
-            <label for="jwtsecret" class="row api-label">{{ _('API Secret') }}</label>
-            <input type="text" name="jwtsecret" value="{{ secret }}" class="api-input" disabled />
+          <li class="row api-input">
+            <label for="jwtsecret" class="row">{{ _('API Secret') }}</label>
+            <input type="text" name="jwtsecret" value="{{ secret }}" disabled />
           </li>
         </ul>
       </fieldset>
