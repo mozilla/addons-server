@@ -41,7 +41,9 @@ var csv_keys = {
     sources: {
         "null"                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
-        'discovery-promo'       : gettext('Add-ons Manager Discovery Pane Promo'),
+        'discovery-promo'       : gettext('Add-ons Manager Promo'),
+        'discovery-featured'    : gettext('Add-ons Manager Featured'),
+        'discovery-learnmore'   : gettext('Add-ons Manager Learn More'),
         'ss'                    : gettext('Search Suggestions'),
         'search'                : gettext('Search Results'),
         'homepagepromo'         : gettext('Homepage Promo'),
