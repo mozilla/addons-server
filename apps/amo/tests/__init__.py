@@ -17,6 +17,8 @@ from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
+from django.conf import urls as django_urls
 from django.utils import translation
 
 import mock
@@ -26,6 +28,7 @@ from dateutil.parser import parse as dateutil_parser
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
+from rest_framework.views import APIView
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -46,6 +49,8 @@ from lib.es.signals import process, reset
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
 from users.models import RequestUser, UserProfile
+
+from . import dynamic_urls
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -823,3 +828,32 @@ def copy_file(source, dest, overwrite=False):
     yield
     if os.path.exists(dest):
         os.unlink(dest)
+
+
+# This sets up a module that we can patch dynamically with URLs.
+@override_settings(ROOT_URLCONF='amo.tests.dynamic_urls')
+class WithDynamicEndpoints(TestCase):
+    """
+    Mixin to allow registration of ad-hoc views.
+    """
+
+    def endpoint(self, view, url_regex=None):
+        """
+        Register a view function or view class temporarily
+        as the handler for requests to /dynamic-endpoint
+        """
+        url_regex = url_regex or r'^dynamic-endpoint$'
+        try:
+            is_class = issubclass(view, APIView)
+        except TypeError:
+            is_class = False
+        if is_class:
+            view = view.as_view()
+        dynamic_urls.urlpatterns = django_urls.patterns(
+            '',
+            django_urls.url(url_regex, view),
+        )
+        self.addCleanup(self._clean_up_dynamic_urls)
+
+    def _clean_up_dynamic_urls(self):
+        dynamic_urls.urlpatterns = None

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for olympia project.
 
+import datetime
 import logging
 import os
 import socket
@@ -401,6 +402,7 @@ INSTALLED_APPS = (
     'zadmin',
 
     # Third party apps
+    'aesfield',
     'django_extensions',
     'raven.contrib.django',
     'piston',
@@ -1432,3 +1434,35 @@ STATICFILES_DIRS = (
     JINGO_MINIFY_ROOT
 )
 NETAPP_STORAGE = TMP_PATH
+
+
+# These are key files that must be present on disk to encrypt/decrypt certain
+# database fields.
+AES_KEYS = {
+    #'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
+}
+
+# Time in seconds for how long a JWT auth token can live.
+# When developers are creating auth tokens they cannot set the expiration any
+# longer than this.
+MAX_JWT_AUTH_TOKEN_LIFETIME = 60
+
+
+# django-rest-framework-jwt settings:
+JWT_AUTH = {
+    # We don't want to refresh tokens right now. Refreshing a token is when
+    # you accept a request with a valid token and return a new one with a
+    # longer expiration.
+    'JWT_ALLOW_REFRESH': False,
+
+    # JWTs are only valid for one minute. Note that this setting only applies
+    # to token creation which we don't do (yet?).
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(
+        seconds=MAX_JWT_AUTH_TOKEN_LIFETIME),
+
+    'JWT_ENCODE_HANDLER': 'apps.api.jwt_auth.handlers.jwt_encode_handler',
+    'JWT_DECODE_HANDLER': 'apps.api.jwt_auth.handlers.jwt_decode_handler',
+    'JWT_PAYLOAD_HANDLER': 'apps.api.jwt_auth.handlers.jwt_payload_handler',
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_LEEWAY': 0,
+}

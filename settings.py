@@ -102,6 +102,12 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": "settings.show_toolbar_callback",
 }
 
+AES_KEYS = {
+    'api_key:secret': os.path.join(ROOT, 'apps', 'api', 'tests', 'assets',
+                                   'test-api-key.txt'),
+}
+
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa

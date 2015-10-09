@@ -94,4 +94,4 @@ reindex:
 	python manage.py reindex $(ARGS)
 
 flake8:
-	flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,build*.py .
+	flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,.npm,build*.py .
