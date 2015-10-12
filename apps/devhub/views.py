@@ -1755,6 +1755,9 @@ def render_agreement(request, template, next_step, step=None):
 @login_required
 @waffle_switch('signing-api')
 def api_key(request):
+    if request.user.read_dev_agreement is None:
+        return redirect(reverse('devhub.api_key_agreement'))
+
     user_id = None
     secret = None
 

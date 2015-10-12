@@ -1129,6 +1129,7 @@ class TestSubmitBase(amo.tests.TestCase):
 class TestAPIAgreement(TestSubmitBase):
     def setUp(self):
         super(TestAPIAgreement, self).setUp()
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.create_switch('signing-api', db=True)
 
     def test_agreement_first(self):
@@ -1152,7 +1153,13 @@ class TestAPIKeyPage(amo.tests.TestCase):
     def setUp(self):
         super(TestAPIKeyPage, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.create_switch('signing-api', db=True)
+
+    def test_key_redirect(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key'))
+        self.assertRedirects(response, reverse('devhub.api_key_agreement'))
 
     def test_key_page(self):
         response = self.client.get(reverse('devhub.api_key'))
