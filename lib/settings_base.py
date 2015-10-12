@@ -557,6 +557,7 @@ MINIFY_BUNDLES = {
             'css/devhub/submission.less',
             'css/devhub/search.less',
             'css/devhub/refunds.less',
+            'css/impala/devhub-api.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
