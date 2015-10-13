@@ -2733,6 +2733,13 @@ class TestEditorMOTD(EditorTest):
         doc = pq(r.content)
         eq_(doc('#editor-motd .errorlist').text(), 'This field is required.')
 
+    def test_motd_tab(self):
+        self.login_as_admin()
+        r = self.client.get(self.get_url())
+        announcement_tab = pq(r.content)(
+            'li.top:nth-child(5) > a:nth-child(1)').text()
+        assert announcement_tab == 'Announcement'
+
 
 class TestStatusFile(ReviewBase):
 
