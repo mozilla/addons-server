@@ -31,6 +31,7 @@ from amo.helpers import absolutify, user_media_path, url as url_reverse
 from amo.tests import addon_factory, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
+from api.models import APIKey, SYMMETRIC_JWT_TYPE
 from applications.models import AppVersion
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
@@ -1152,6 +1153,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
 
     def setUp(self):
         super(TestAPIKeyPage, self).setUp()
+        self.url = reverse('devhub.api_key')
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.create_switch('signing-api', db=True)
@@ -1161,10 +1163,32 @@ class TestAPIKeyPage(amo.tests.TestCase):
         response = self.client.get(reverse('devhub.api_key'))
         self.assertRedirects(response, reverse('devhub.api_key_agreement'))
 
-    def test_key_page(self):
-        response = self.client.get(reverse('devhub.api_key'))
-        # Not testing anything more until the actual key generation is working
+    def test_view_without_credentials(self):
+        response = self.client.get(self.url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        submit = doc('#generate-key')
+        eq_(submit.text(), 'Generate New Credentials')
+        inputs = doc('.api-input input')
+        assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
+
+    def test_view_with_credentials(self):
+        APIKey.objects.create(user=self.user,
+                              type=SYMMETRIC_JWT_TYPE,
+                              key='some-jwt-key',
+                              secret='some-jwt-secret')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        key_input = doc('.key-input input').val()
+        assert key_input == 'some-jwt-key'
+
+    def test_create_new_credentials(self):
+        patch = mock.patch('devhub.views.APIKey.new_jwt_credentials')
+        with patch as mock_creator:
+            response = self.client.post(self.url)
+        mock_creator.assert_called_with(self.user)
+        self.assertRedirects(response, self.url)
 
 
 class TestSubmitStep1(TestSubmitBase):

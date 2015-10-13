@@ -109,6 +109,30 @@ class APIKey(models.Model):
         """
         return cls.objects.get(type=SYMMETRIC_JWT_TYPE, **query)
 
+    @classmethod
+    def new_jwt_credentials(cls, user, **attributes):
+        # This could get more fancy if we allow multiple keys per user.
+        key = 'user:{}'.format(user.pk)
+        return cls.objects.create(key=key, secret=cls.generate_secret(32),
+                                  type=SYMMETRIC_JWT_TYPE, user=user,
+                                  **attributes)
+
+    @staticmethod
+    def generate_secret(byte_length):
+        """Return a true random ascii string containing byte_length of randomness.
+
+        The resulting key is suitable for cryptogrpahy.
+        The key will be hex encoded which means it will be twice as long
+        as byte_length, i.e. 40 random bytes yields an 80 byte string.
+
+        byte_length must be at least 32.
+        """
+        if byte_length < 32:  # at least 256 bit
+            raise ValueError(
+                'um, {} is probably not long enough for cryptography'
+                .format(byte_length))
+        return os.urandom(byte_length).encode('hex')
+
 
 def generate():
     return os.urandom(64).encode('hex')

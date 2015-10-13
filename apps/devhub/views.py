@@ -39,6 +39,7 @@ from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
 from amo.utils import escape_all, MenuItem
+from api.models import APIKey
 from applications.models import AppVersion
 from devhub import perf
 from devhub.decorators import dev_required
@@ -1758,14 +1759,16 @@ def api_key(request):
     if request.user.read_dev_agreement is None:
         return redirect(reverse('devhub.api_key_agreement'))
 
-    user_id = None
-    secret = None
-
     if request.method == 'POST':
-        # TODO: Generate an API key
-        pass
+        # TODO: support delete/regenerate. bug 1209224.
+        APIKey.new_jwt_credentials(request.user)
+        return redirect(reverse('devhub.api_key'))
+
+    try:
+        credentials = APIKey.get_jwt_key(user=request.user)
+    except APIKey.DoesNotExist:
+        credentials = None
 
     return render(request, 'devhub/api/key.html',
                   {'title': _('Manage API Keys'),
-                   'id': user_id,
-                   'secret': secret})
+                   'credentials': credentials})

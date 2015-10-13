@@ -14,21 +14,54 @@
       {{ csrf() }}
       <fieldset>
         <legend>
-          {{ _('Generate a new API key.') }}
+          {{ _('API Credentials') }}
         </legend>
-        <ul>
-          <li class="row api-input">
-            <label for="jwtkey" class="row">{{ _('API ID') }}</label>
-            <input type="text" name="jwtkey" value="{{ key }}" disabled />
-          </li>
-          <li class="row api-input">
-            <label for="jwtsecret" class="row">{{ _('API Secret') }}</label>
-            <input type="text" name="jwtsecret" value="{{ secret }}" disabled />
-          </li>
-        </ul>
+        {% if credentials %}
+          <ul class="api-credentials">
+            <li class="row api-input key-input">
+              <label for="jwtkey" class="row">{{ _('JWT issuer') }}</label>
+              <input type="text" name="jwtkey" value="{{ credentials.key }}" disabled />
+            </li>
+            <li class="row api-input">
+              <label for="jwtsecret" class="row">{{ _('JWT secret') }}</label>
+              <input type="text" name="jwtsecret" value="{{ credentials.secret }}" disabled />
+            </li>
+          </ul>
+          <p>
+          {% trans
+              jwt_url='https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html',
+              node_jwt_url='https://github.com/auth0/node-jsonwebtoken' %}
+            To make API requests, send a <a href="{{ jwt_url }}">JWT (JSON Web Token)</a> as the authorization header.
+            You'll need to generate a JWT for every request like in the following example using the
+            <a href="{{ node_jwt_url }}">node-jsonwebtoken</a> library.
+          {% endtrans %}
+          </p>
+          <p>
+            <code><pre>var jwt = require('jsonwebtoken');
+var secret = 'your-secret-key';  // store this securely.
+
+var token = jwt.sign({iss: '{{ credentials.key }}'}, secret, {
+  algorithm: 'HS256',  // HMAC-SHA256 signing algorithm
+  expiresIn: 60,  // one minute from now
+});
+
+var authorizationHeader = 'JWT ' + token;</pre></code>
+          </p>
+          <p>
+          {% trans docs_url='#' %}
+            Consult the <a href="{{ docs_url }}">documentation</a> for more details.
+          {% endtrans %}
+          </p>
+        {% else %}
+        <p>
+        {% trans %}
+          You don't have any API credentials yet.
+        {% endtrans %}
+        </p>
+        {% endif %}
       </fieldset>
       <div class="listing-footer">
-        <button class="button button prominent" type="submit">{{ _('Generate New Key') }}</button>
+        <button id="generate-key" class="button prominent" type="submit">{{ _('Generate New Credentials') }}</button>
       </div>
     </form>
   </div>
