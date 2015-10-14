@@ -1207,6 +1207,28 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert new_key.key != old_key.key
         assert new_key.secret != old_key.secret
 
+    def test_retreive_credentials(self):
+        patch = mock.patch('api.models.APIKey.get_jwt_key')
+        with patch as mock_creator:
+            mock_creator.return_value = APIKey(
+                key='abc123',
+                secret='supersekret',
+            )
+            response = self.client.get(reverse('devhub.api_creds'))
+
+        assert response.status_code == 200
+        response_json = json.loads(response.content)
+        assert response_json['key'] == 'abc123'
+        assert response_json['secret'] == 'supersekret'
+
+    def test_retreive_credentials_404(self):
+        patch = mock.patch('api.models.APIKey.get_jwt_key')
+        with patch as mock_creator:
+            mock_creator.side_effect = APIKey.DoesNotExist()
+            response = self.client.get(reverse('devhub.api_creds'))
+
+        assert response.status_code == 404
+
 
 class TestSubmitStep1(TestSubmitBase):
     def test_step1_submit(self):

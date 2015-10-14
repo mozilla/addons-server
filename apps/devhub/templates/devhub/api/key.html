@@ -17,14 +17,14 @@
           {{ _('API Credentials') }}
         </legend>
         {% if credentials %}
-          <ul class="api-credentials">
+          <ul id="api-credentials" class="api-credentials" data-key-url="{{ url('devhub.api_creds') }}">
             <li class="row api-input key-input">
               <label for="jwtkey" class="row">{{ _('JWT issuer') }}</label>
-              <input type="text" name="jwtkey" value="{{ credentials.key }}" disabled />
+              <input type="text" id="jwtkey" name="jwtkey" value="{{ credentials.key }}" disabled />
             </li>
             <li class="row api-input">
               <label for="jwtsecret" class="row">{{ _('JWT secret') }}</label>
-              <input type="text" name="jwtsecret" value="{{ credentials.secret }}" disabled />
+              <input type="text" id="jwtsecret" name="jwtsecret" value="{{ credentials.secret }}" disabled />
             </li>
           </ul>
           <p>
