@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-14 21:04+0000\n"
-"Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2015-10-15 05:25+0800\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-POOTLE-MTIME: 1444856696.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -223,7 +223,7 @@ msgstr "您的主题名称"
 
 #: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr "已标记评论"
+msgstr "已标记评价"
 
 #: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
@@ -279,7 +279,7 @@ msgstr "{0} 个收藏集"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr "{0} 条评论"
+msgstr "{0} 条评价"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
@@ -340,7 +340,7 @@ msgstr "附加组件更新量"
 
 #: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr "评论撰写量"
+msgstr "评价撰写量"
 
 #: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
@@ -709,12 +709,12 @@ msgstr "{0} 至 {1} 的附加组件更新量"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
 msgid "Reviews Written, last {0} days"
-msgstr "过去 {0} 天的评论撰写量"
+msgstr "过去 {0} 天的评价撰写量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr "{0} 至 {1} 的评论撰写量"
+msgstr "{0} 至 {1} 的评价撰写量"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
@@ -1000,7 +1000,7 @@ msgstr[0] "{files} 个文件"
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} 条用户评论"
+msgstr[0] "{reviews} 条用户评价"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
@@ -1016,7 +1016,7 @@ msgstr "正在处理图像更改"
 
 #: static/js/zamboni/devhub.js:1303
 msgid "Starting tests..."
-msgstr "开始测试..."
+msgstr "正在开始测试..."
 
 #: static/js/zamboni/devhub.js:1310
 msgid "Waiting for test results..."
@@ -1084,7 +1084,7 @@ msgstr "平均评价"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr "评论数"
+msgstr "评价数量"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
@@ -1110,7 +1110,7 @@ msgstr[0] "剩余 <b>{0}</b> 个字符。"
 
 #: static/js/zamboni/init.js:28
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "由于我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1131,7 +1131,7 @@ msgstr "全部"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr "请求的信息"
+msgstr "已请求信息"
 
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
@@ -1143,11 +1143,11 @@ msgstr "重复"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr "已被退回"
+msgstr "已拒绝"
 
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr "已同意"
+msgstr "已批准"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1202,7 +1202,7 @@ msgstr[0] "{0} 个提醒"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr "验证任务无法完成或完成时发生错误"
+msgstr "验证任务无法完成或者已完成但有错误"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
