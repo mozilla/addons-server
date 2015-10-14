@@ -30,11 +30,11 @@ class ProtectedView(JWTProtectedView):
 class JWTAuthTester(TestCase):
     fixtures = ['base/addon_3615']
 
-    def create_api_key(self, user, key='some-user-key',
+    def create_api_key(self, user, key='some-user-key', is_active=True,
                        secret='some-shared-secret', **kw):
         return APIKey.objects.create(type=SYMMETRIC_JWT_TYPE,
                                      user=user, key=key, secret=secret,
-                                     **kw)
+                                     is_active=is_active, **kw)
 
     def auth_token_payload(self, user, issuer):
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -55,6 +55,7 @@ class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
         super(TestJWTProtectedView, self).setUp()
         self.endpoint(ProtectedView)
         self.client.logout()  # just to be sure!
+        self.user = UserProfile.objects.get(email='del@icio.us')
 
     def request(self, method, *args, **kw):
         handler = getattr(self.client, method)
@@ -74,15 +75,21 @@ class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
         assert res.status_code == 401, res.content
 
     def test_can_post_with_jwt_header(self):
-        user = UserProfile.objects.get(email='del@icio.us')
-        api_key = self.create_api_key(user)
+        api_key = self.create_api_key(self.user)
         token = self.create_auth_token(api_key.user, api_key.key,
                                        api_key.secret)
         res = self.jwt_request(token, 'post', {})
 
         assert res.status_code == 200, res.content
         data = json.loads(res.content)
-        assert data['user_pk'] == user.pk
+        assert data['user_pk'] == self.user.pk
+
+    def test_api_key_must_be_active(self):
+        api_key = self.create_api_key(self.user, is_active=False)
+        token = self.create_auth_token(api_key.user, api_key.key,
+                                       api_key.secret)
+        res = self.jwt_request(token, 'post', {})
+        assert res.status_code == 401, res.content
 
 
 class TestJWTAuthHandlers(JWTAuthTester):

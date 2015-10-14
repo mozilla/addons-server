@@ -1168,7 +1168,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         submit = doc('#generate-key')
-        eq_(submit.text(), 'Generate New Credentials')
+        eq_(submit.text(), 'Generate new credentials')
         inputs = doc('.api-input input')
         assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
 
@@ -1180,6 +1180,8 @@ class TestAPIKeyPage(amo.tests.TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
+        submit = doc('#generate-key')
+        eq_(submit.text(), 'Revoke and regenerate credentials')
         key_input = doc('.key-input input').val()
         assert key_input == 'some-jwt-key'
 
@@ -1189,6 +1191,21 @@ class TestAPIKeyPage(amo.tests.TestCase):
             response = self.client.post(self.url)
         mock_creator.assert_called_with(self.user)
         self.assertRedirects(response, self.url)
+
+    def test_delete_and_recreate_credentials(self):
+        old_key = APIKey.objects.create(user=self.user,
+                                        type=SYMMETRIC_JWT_TYPE,
+                                        key='some-jwt-key',
+                                        secret='some-jwt-secret')
+        response = self.client.post(self.url)
+        self.assertRedirects(response, self.url)
+
+        old_key = APIKey.objects.get(pk=old_key.pk)
+        assert not old_key.is_active
+
+        new_key = APIKey.get_jwt_key(user=self.user)
+        assert new_key.key != old_key.key
+        assert new_key.secret != old_key.secret
 
 
 class TestSubmitStep1(TestSubmitBase):
