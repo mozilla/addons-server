@@ -1755,19 +1755,29 @@ def render_agreement(request, template, next_step, step=None):
 
 @login_required
 @waffle_switch('signing-api')
+@transaction.commit_on_success
 def api_key(request):
     if request.user.read_dev_agreement is None:
         return redirect(reverse('devhub.api_key_agreement'))
-
-    if request.method == 'POST':
-        # TODO: support delete/regenerate. bug 1209224.
-        APIKey.new_jwt_credentials(request.user)
-        return redirect(reverse('devhub.api_key'))
 
     try:
         credentials = APIKey.get_jwt_key(user=request.user)
     except APIKey.DoesNotExist:
         credentials = None
+
+    if request.method == 'POST':
+        if credentials:
+            log.info('JWT key was made inactive: {}'.format(credentials))
+            credentials.update(is_active=False)
+            msg = _(
+                'Your old credentials were revoked and are no longer valid. '
+                'Be sure to update all API clients with the new credentials.')
+            messages.success(request, msg)
+
+        new_credentials = APIKey.new_jwt_credentials(request.user)
+        log.info('new JWT key created: {}'.format(new_credentials))
+
+        return redirect(reverse('devhub.api_key'))
 
     return render(request, 'devhub/api/key.html',
                   {'title': _('Manage API Keys'),

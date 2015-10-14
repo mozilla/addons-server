@@ -61,7 +61,13 @@ var authorizationHeader = 'JWT ' + token;</pre></code>
         {% endif %}
       </fieldset>
       <div class="listing-footer">
-        <button id="generate-key" class="button prominent" type="submit">{{ _('Generate New Credentials') }}</button>
+        <button id="generate-key" class="button prominent" type="submit">
+          {% if credentials %}
+            {{ _('Revoke and regenerate credentials') }}
+          {% else %}
+            {{ _('Generate new credentials') }}
+          {% endif %}
+        </button>
       </div>
     </form>
   </div>
