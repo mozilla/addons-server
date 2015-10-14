@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-21 20:33+0000\n"
+"PO-Revision-Date: 2015-10-14 21:04+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442867635.0\n"
+"X-POOTLE-MTIME: 1444856696.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -91,7 +91,7 @@ msgstr "您的附加组件验证超时，它将经过人工审核。"
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "您的附加组件已通过验证，无错误，{0} 条警告。"
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -263,7 +263,7 @@ msgstr "每周有{0}次"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " 次下载"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -372,19 +372,19 @@ msgstr "附加组件管理器"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "附加组件管理器推广"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "附加组件管理器精选"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "附加组件管理器了解更多"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "搜索建议"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -436,15 +436,15 @@ msgstr "追加销售"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "结识开发者"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "用户个人资料"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "版本历史"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -881,7 +881,7 @@ msgstr "继续安装 {0} 版本"
 
 #: static/js/zamboni/buttons.js:227
 msgid "Download for {0} anyway"
-msgstr "坚持下载 {0}"
+msgstr "仍要下载 {0}"
 
 #: static/js/zamboni/buttons.js:284
 msgid "Not available for your platform"
@@ -902,7 +902,7 @@ msgstr "查看其他版本"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "只能用于 Firefox — 获取 Firefox！"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

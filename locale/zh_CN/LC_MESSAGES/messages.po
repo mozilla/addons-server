@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-25 03:19+0000\n"
+"PO-Revision-Date: 2015-10-14 21:18+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1443151178.0\n"
+"X-POOTLE-MTIME: 1444857533.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -686,7 +686,7 @@ msgstr "进一步了解 Firefox"
 
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "或者 <b><a class=\"installer\" href=\"{url}\">坚持下载</a></b>"
+msgstr "或者 <b><a class=\"installer\" href=\"{url}\">继续下载</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -714,7 +714,7 @@ msgstr "这个附加组件尚未更新以兼容您的 %(app)s 版本。"
 
 #: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "Install Anyway"
-msgstr "坚持安装"
+msgstr "继续安装"
 
 #: apps/addons/templates/addons/popups.html:71
 msgid "This add-on requires a version of Firefox that has not been released yet."
@@ -874,7 +874,7 @@ msgstr "作者：%(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "继续下载"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1028,7 +1028,7 @@ msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Moz
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr "查阅完整的开发通道历史记录"
+msgstr "查看完整的开发通道历史记录"
 
 #: apps/addons/templates/addons/impala/details.html:313 apps/addons/templates/addons/impala/details.html:322 apps/addons/templates/addons/impala/details.html:334
 #: apps/addons/templates/addons/impala/review_add_box.html:5 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
@@ -1343,7 +1343,7 @@ msgstr "开发者中心"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "管理 API 密钥"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -1945,7 +1945,7 @@ msgstr "上一页"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "跳到最后一页"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -3737,11 +3737,11 @@ msgstr "选中此项，如果您打算自行分发您的附加组件，并且只
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "此附加组件将捆绑到应用程序的安装程序中。"
 
 #: apps/devhub/forms.py:543
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
+msgstr "Mozilla 需要对捆绑在应用程序中的附加组件进行代码审核，确保其保持较高的质量标准，然后才会进行签名。"
 
 #: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4987,7 +4987,7 @@ msgstr "适合已完善的附加组件"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "必选，如果附加组件捆绑在安装程序中"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -5092,37 +5092,40 @@ msgstr "看起来您的附加组件需要经过人工审核才能被签名。"
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox 附加组件分发协议"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "API 证书"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT 签发者"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT 私钥"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"要执行 API 请求，请发送一个 <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> "
+"身份验证头。您需要为每个请求生成一个 JWT，比如参照下面的使用 <a href=\"%(node_jwt_url)s\">node-"
+"jsonwebtoken</a> 程序库的例子。"
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "参考<a href=\"%(docs_url)s\">文档</a>了解更多细节。"
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "您还没有任何 API 证书呢。"
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "生成新证书"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5170,7 +5173,7 @@ msgstr "附加组件安全漏洞"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6004,11 +6007,11 @@ msgstr "您的附加组件已经展示在我们的展示库中，并且用户会
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr ""
+msgstr "您的附加组件已被签名，可以捆绑在应用程序的安装程序中。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "您的附加组件已被一名网站管理员禁用，并将不再展示。如果您有任何疑问，请发邮件至 amo-admins@mozilla.org。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -6026,7 +6029,7 @@ msgstr "在全面审核完成后您会收到一封电子邮件通知。在此期
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr ""
+msgstr "在全面审核完成时，您将收到一封电子邮件，以便您可以捆绑您的附加组件到应用程序的安装程序中。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -8418,7 +8421,7 @@ msgstr "展开全部"
 
 #: apps/files/templates/files/viewer.html:114 apps/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
-msgstr "隐藏或取消隐藏树形列表"
+msgstr "隐藏或显示树形列表"
 
 #: apps/files/templates/files/viewer.html:119 apps/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
