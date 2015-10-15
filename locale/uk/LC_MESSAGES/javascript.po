@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-08-12 17:56+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2015-10-15 05:47+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -100,9 +100,9 @@ msgstr ""
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} попередженням."
+msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
+msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -305,7 +305,7 @@ msgstr "Тиждень {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " завантажень"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -418,19 +418,19 @@ msgstr "Менеджер додатків"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Менеджер додатків Промо"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Менеджер додатків Відібрані"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Менеджер додатків Докладніше"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Пошукові пропозиції"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -484,15 +484,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Познайомитися з розробником"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Профіль користувача"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Історія версій"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -961,7 +961,7 @@ msgstr "Дивитись інші версії"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Лише з Firefox — Отримайте Firefox зараз!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid ""
