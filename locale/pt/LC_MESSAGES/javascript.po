@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-21 22:22+0000\n"
+"PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442874145.0\n"
+"X-POOTLE-MTIME: 1444870302.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -94,8 +94,8 @@ msgstr "A validação do extra expirou, será automaticamente revisto."
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra foi validado sem erros e {0} aviso."
+msgstr[1] "O seu extra foi validado sem erros e {0} avisos."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -270,7 +270,7 @@ msgstr "Semana de {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " descargas"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -379,19 +379,19 @@ msgstr "Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Gestor de Promoção de Extras"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Gestor de Destaques de Extras"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Gestor de Saber Mais sobre Extras"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Sugestões de pesquisa"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -443,15 +443,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Conheça o programador"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Perfil do utilizador"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Histórico da versão"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -911,7 +911,7 @@ msgstr "Ver outras versões"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Apenas com o Firefox — Obter o Firefox agora!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

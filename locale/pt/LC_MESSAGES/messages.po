@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-21 22:33+0000\n"
+"PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442874824.0\n"
+"X-POOTLE-MTIME: 1444870897.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -894,7 +894,7 @@ msgstr "por %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Descarregar de qualquer modo"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1367,7 +1367,7 @@ msgstr "Central do programador"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gerir chaves da API"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -1969,7 +1969,7 @@ msgstr "Anterior"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Saltar para a última página"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -3781,11 +3781,14 @@ msgstr "Marque esta opção se pretender distribuir o seu extra pelos seus próp
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Este extra será incorporado com um instalador de aplicação."
 
 #: apps/devhub/forms.py:543
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Os extras que são incorporados com instaladores de aplicações terão o código "
+"revisto pela Mozilla antes de serem assinados e são acompanhados de um "
+"padrão de qualidade superior. "
 
 #: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -5068,7 +5071,7 @@ msgstr "Apropriada para extras mais refinados."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Necessário se o extra é incorporado num instalador."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -5174,37 +5177,41 @@ msgstr "Parece que o seu extra necessita de uma revisão manual antes de poder s
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acordo de distribuição de extras do Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Credenciais da API"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "Emissor JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "Segredo JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Para fazer pedidos à API, envie um <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> como um cabeçalho de autorização. Precisa de gerar um JWT para "
+"cada pedido, como no exemplo seguinte utilizando a biblioteca <a href=\"%"
+"(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "Consulte a <a href=\"%(docs_url)s\">documentação</a> para mais detalhes."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Ainda não tem quaisquer credenciais de API."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Gerar novas credenciais"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5255,7 +5262,7 @@ msgstr "Vulnerabilidades de segurança do extra"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins arroba mozilla ponto org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6176,10 +6183,15 @@ msgstr "O seu extra está a ser apresentado na nossa galeria e os utilizadores e
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be bundled with an application installer."
 msgstr ""
+"O seu extra foi assinado e pode ser incorporado com um instalador de "
+"aplicação."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"O seu extra foi desativado por um administrador do sítio e já não é "
+"apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie "
+"um email para amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -6201,6 +6213,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
+"Irá receber um email quando a revisão completa estiver concluída, fazendo "
+"com que possa incorporar o seu extra com um instalador de aplicação."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
