@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-21 18:54+0000\n"
+"PO-Revision-Date: 2015-10-15 07:05+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442861679.0\n"
+"X-POOTLE-MTIME: 1444892732.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -94,8 +94,8 @@ msgstr "Zeitüberschreitung bei Ihrer Add-on-Validierung, es gibt eine manuelle 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ihr Add-on wurde ohne Fehler und {0} Warnung validiert."
+msgstr[1] "Ihr Add-on wurde ohne Fehler und {0} Warnungen validiert."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -163,7 +163,7 @@ msgstr "Einige Plattformen stehen für diesen Add-on-Typ nicht zur Verfügung."
 
 #: static/js/common/upload-addon.js:569
 msgid "Sorry, no supported platform has been found."
-msgstr "Es tut uns Leid, es wurde keine unterstützte Plattform gefunden."
+msgstr "Es tut uns eid, es wurde keine unterstützte Plattform gefunden."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
@@ -272,7 +272,7 @@ msgstr "Woche von {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr "Downloads"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -381,19 +381,19 @@ msgstr "Add-ons-Manager"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Add-ons-Manager „Promo“"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Add-ons-Manager „Vorgestellt“"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Add-ons-Manager „Mehr erfahren“"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Suchvorschläge"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -445,15 +445,15 @@ msgstr "Zusatzverkäufe"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Lernen Sie den Entwickler kennen"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Benutzerprofil"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Versionsgeschichte"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -913,11 +913,13 @@ msgstr "Andere Versionen ansehen"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Nur in Firefox – Laden Sie Firefox jetzt herunter!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Es tut uns Leid, Sie benötigen einen Mozilla-basierten Browser (wie Firefox), um ein Such-Plugin zu installieren."
+msgstr ""
+"Es tut uns leid, Sie benötigen einen Mozilla-basierten Browser (wie "
+"Firefox), um ein Such-Plugin zu installieren."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1049,7 +1051,10 @@ msgstr "Keine Ergebnisse gefunden."
 
 #: static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Es tut uns Leid, wir konnten keine Empfehlungen für Sie finden.<br>Bitte besuchen Sie die <a href=\"{0}\">Add-ons-Website</a>, um ein Add-on zu finden, das zu Ihnen passt."
+msgstr ""
+"Es tut uns leid, wir konnten keine Empfehlungen für Sie finden.<br>Bitte "
+"besuchen Sie die <a href=\"{0}\">Add-ons-Website</a>, um ein Add-on zu finden, "
+"das zu Ihnen passt."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
