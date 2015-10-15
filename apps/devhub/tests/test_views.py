@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
+from django.test import Client
 
 import mock
 import waffle
@@ -1156,7 +1157,9 @@ class TestAPIKeyPage(amo.tests.TestCase):
         self.url = reverse('devhub.api_key')
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
+        self.api_user = UserProfile.objects.get(email='regular@mozilla.com')
         self.create_switch('signing-api', db=True)
+        self.credentials = {'key': 'abc123', 'secret': 'supersekret'}
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
@@ -1208,25 +1211,37 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert new_key.secret != old_key.secret
 
     def test_retreive_credentials(self):
-        patch = mock.patch('api.models.APIKey.get_jwt_key')
-        with patch as mock_creator:
-            mock_creator.return_value = APIKey(
-                key='abc123',
-                secret='supersekret',
-            )
-            response = self.client.get(reverse('devhub.api_creds'))
+        APIKey.objects.create(type=SYMMETRIC_JWT_TYPE,
+                              key=self.credentials['key'],
+                              secret=self.credentials['secret'],
+                              user=self.api_user)
 
+        assert self.client.login(username='regular@mozilla.com',
+                                 password='password')
+        response = self.client.post(reverse('devhub.api_secret'),
+                                    {'key': self.credentials['key']})
         assert response.status_code == 200
         response_json = json.loads(response.content)
-        assert response_json['key'] == 'abc123'
-        assert response_json['secret'] == 'supersekret'
+        assert response_json['secret'] == self.credentials['secret']
 
     def test_retreive_credentials_404(self):
-        patch = mock.patch('api.models.APIKey.get_jwt_key')
-        with patch as mock_creator:
-            mock_creator.side_effect = APIKey.DoesNotExist()
-            response = self.client.get(reverse('devhub.api_creds'))
+        response = self.client.post(reverse('devhub.api_secret'),
+                                    {'key': 'foobar'})
 
+        assert response.status_code == 404
+
+    def test_enforce_csrf(self):
+        client = Client(enforce_csrf_checks=True)
+        assert client.login(username='regular@mozilla.com',
+                            password='password')
+        response = client.post(reverse('devhub.api_secret'),
+                               {'key': self.credentials['key']})
+        assert response.status_code == 403
+
+    def test_cannot_get_other_users_secret(self):
+        assert self.client.login(username='del@icio.us', password='password')
+        response = self.client.post(reverse('devhub.api_secret'),
+                                    {'key': self.credentials['key']})
         assert response.status_code == 404
 
 

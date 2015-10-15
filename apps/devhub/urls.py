@@ -157,7 +157,7 @@ urlpatterns = decorate(write, patterns(
     url('^addon/submit/agreement/$', views.api_key_agreement,
         name='devhub.api_key_agreement'),
     url('^addon/api/key/$', views.api_key, name='devhub.api_key'),
-    url('^addon/api/creds/$', views.api_key_creds, name='devhub.api_creds'),
+    url('^addon/api/secret/$', views.api_key_secret, name='devhub.api_secret'),
 
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
