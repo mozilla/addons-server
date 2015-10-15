@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 03:44+0000\n"
+"PO-Revision-Date: 2015-10-15 03:58+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444880678.0\n"
+"X-POOTLE-MTIME: 1444881503.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -65,7 +65,7 @@ msgstr[0] "&hellip;還有 {0} 個"
 
 #: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:525
 msgid "See full validation report"
-msgstr "檢視完整的驗證報告"
+msgstr "檢視完整驗證報告"
 
 #: static/js/common/upload-addon.js:224
 msgid "Validating {0}"
