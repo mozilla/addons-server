@@ -118,43 +118,77 @@ msgstr "Parashtrimi juaj do t’i nënshtrohet një shqyrtimi dorazi."
 
 #: static/js/common/upload-addon.js:448
 msgid "Your submission passed validation and will be automatically signed."
-msgstr "Parashtrimi juaj e kaloi vleftësimin dhe do të nënshkruhet automatikisht."
+msgstr ""
+"Parashtrimi juaj e kaloi vleftësimin dhe do të nënshkruhet automatikisht."
 
 #: static/js/common/upload-addon.js:450
 msgid "Your submission passed validation and will go through a manual review."
-msgstr "Parashtrimi juaj e kaloi vleftësimin dhe do t’i nënshtrohet një shqyrtimi dorazi."
+msgstr ""
+"Parashtrimi juaj e kaloi vleftësimin dhe do t’i nënshtrohet një shqyrtimi "
+"dorazi."
 
 #: static/js/common/upload-addon.js:478
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."
+msgstr ""
+"Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin "
+"pasues)."
 
 #: static/js/common/upload-addon.js:479
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested, "
+"include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
+msgstr ""
+"Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet "
+"plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet "
+"për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
 
 #: static/js/common/upload-addon.js:480
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Nëse shtesa juaj është menduar për një publik të kufizuar, në vend të Shqyrtimit të Plotë do të duhej të zgjidhnit Shqyrtim Paraprak."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
+msgstr ""
+"Nëse shtesa juaj është menduar për një publik të kufizuar, në vend të "
+"Shqyrtimit të Plotë do të duhej të zgjidhnit Shqyrtim Paraprak."
 
 #: static/js/common/upload-addon.js:493
 msgid "Add-on submission checklist"
 msgstr "Listë kontrolli parashtrimi shtese"
 
 #: static/js/common/upload-addon.js:494
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë procesit të shqyrtimit:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
+msgstr ""
+"Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni "
+"parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë "
+"procesit të shqyrtimit:"
 
 #: static/js/common/upload-addon.js:496
-msgid "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."
-msgstr "Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e tyre, për shqyrtim. Mos harroni të përdorni fushën e ngarkimit të kodit burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review. "
+"Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
+msgstr ""
+"Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur "
+"njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e "
+"tyre, për shqyrtim. Mos harroni të përdorni fushën e ngarkimit të kodit "
+"burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
 
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
+msgstr ""
+"Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë "
+"të parashtrimit:"
 
 #: static/js/common/upload-addon.js:531
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni këtu."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it "
+"here."
+msgstr ""
+"Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni "
+"këtu."
 
 #: static/js/common/upload-addon.js:567
 msgid "Some platforms are not available for this type of add-on."
@@ -913,15 +947,19 @@ msgstr "Shkarkojeni Tani"
 
 #: static/js/zamboni/buttons.js:128
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
+msgstr ""
+"Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Lypset të përdorni Firefox 10.0 ose më të ri."
 
 #: static/js/zamboni/buttons.js:145
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj të Firefox-it."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj "
+"të Firefox-it."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
@@ -956,8 +994,12 @@ msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
 
 #: static/js/zamboni/buttons.js:551
 #: static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues "
+"me bazë Mozilla (si Firefox-i)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1090,8 +1132,13 @@ msgid "No results found."
 msgstr "Nuk u gjetën përfundime."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Na ndjeni, nuk gjetëm ndonjë këshillim për ju.<br>Ju lutemi, vizitoni <a href=\"{0}\">site-in e shtesave</a> që të gjeni një shtesë që ju vjen për shtat."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"Na ndjeni, nuk gjetëm ndonjë këshillim për ju.<br>Ju lutemi, vizitoni <a "
+"href=\"{0}\">site-in e shtesave</a> që të gjeni një shtesë që ju vjen për "
+"shtat."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1167,8 +1214,12 @@ msgstr[0] "Edhe <b>{0}</b> shenjë."
 msgstr[1] "Edhe <b>{0}</b> shenja."
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e "
+"\"site\"-it web. Ju lutemi, riprovoni pas pak."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1327,4 +1378,3 @@ msgstr "Po e provoni!"
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "U shtua te Firefox-i"
-
