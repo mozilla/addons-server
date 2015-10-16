@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-19 21:20+0000\n"
+"PO-Revision-Date: 2015-10-16 20:11+0000\n"
 "Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1442697600.0\n"
+"X-POOTLE-MTIME: 1445026310.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -5200,7 +5200,7 @@ msgstr "Pre načítanie balíčka so svojim doplnkom a výber cieľových platfo
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:66 apps/devhub/templates/devhub/versions/add_file_modal.html:41
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "S ktorými platformami je tento súbor kompatibilný?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74 apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Administrative overrides"
