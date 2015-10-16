@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 18:17+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-10-16 20:50+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445019437.0\n"
+"X-POOTLE-MTIME: 1445028614.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -392,7 +392,6 @@ msgid "Add-ons Manager Featured"
 msgstr "Doporučeno ve správci doplňků"
 
 #: static/js/impala/stats/csv_keys.js:46
-#, fuzzy
 msgid "Add-ons Manager Learn More"
 msgstr "Zjistit více ve správci doplňků"
 
