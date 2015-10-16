@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 13:50+0000\n"
-"Last-Translator: Marko <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 10:25+0000\n"
+"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -102,10 +102,10 @@ msgstr ""
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorilom."
+msgstr[1] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozoriloma."
+msgstr[2] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
+msgstr[3] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -498,11 +498,11 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Uporabniški profil"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Zgodovina različice"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -979,7 +979,7 @@ msgstr "Ogled drugih različic"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Samo pri Firefoxu – namestite ga!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid ""
