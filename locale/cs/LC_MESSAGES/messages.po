@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 18:27+0000\n"
+"PO-Revision-Date: 2015-10-16 21:29+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445020037.0\n"
+"X-POOTLE-MTIME: 1445030984.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -6070,8 +6070,9 @@ msgid ""
 "Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
 "and unrestricted:"
 msgstr ""
-"Doplňky hostované na serveru Doplňky Mozilly by měly mít odpovídající kvalitu a poskytovat uživatelům lepší zážitek z webu. Pro posouzení toho, zda má být doplněk schválen a veřejný, se díváme na "
-"následující kritéria:"
+"Doplňky hostované na serveru Doplňky Mozilly by měly mít odpovídající "
+"kvalitu a poskytovat uživatelům lepší prožitek z webu. Pro posouzení toho, "
+"zda má být doplněk schválen a veřejný, se díváme na následující kritéria:"
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:19
 msgid ""
@@ -6151,9 +6152,12 @@ msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
 msgstr ""
-"Pokud váš doplněk poskytuje pouze záložky nebo jiný jednoduchý přístup k vašemu webu, není patrně vhodný pro přidání do naší galerie. Stejně jako zbytek projektu Mozilla, tak i my máme rádi webové "
-"aplikace a nové webové služby, ale doplňky pro Firefox by měly poskytovat lepší zážitek z prohlížení webu pro uživatele a ne být pouze způsobem pro propagaci vlastního webu skrze web Doplňky "
-"Mozilly."
+"Pokud váš doplněk poskytuje pouze záložky nebo jiný jednoduchý přístup k "
+"vašemu webu, není patrně vhodný pro přidání do naší galerie. Stejně jako "
+"zbytek projektu Mozilla, tak i my máme rádi webové aplikace a nové webové "
+"služby, ale doplňky pro Firefox by měly poskytovat lepší prožitek z "
+"prohlížení webu pro uživatele a ne být pouze způsobem pro propagaci "
+"vlastního webu skrze web Doplňky Mozilly."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
@@ -6217,7 +6221,10 @@ msgstr "Správa mého doplňku"
 
 #: apps/devhub/templates/devhub/docs/policies.html:43
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
-msgstr "Snahou Mozilly je zajistit skvělé zážitky jak pro uživatele, tak vývojáře. Proto si prosím dříve, než odešlete svůj doplněk, pročtěte následující zásady."
+msgstr ""
+"Snahou Mozilly je zajistit skvělé prožitky jak pro uživatele, tak vývojáře. "
+"Proto si prosím dříve, než odešlete svůj doplněk, pročtěte následující "
+"zásady."
 
 #: apps/devhub/templates/devhub/docs/policies.html:55
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
@@ -6603,7 +6610,9 @@ msgstr "Přidejte štítky, které popisují váš motiv."
 
 #: apps/devhub/templates/devhub/personas/edit.html:106 apps/devhub/templates/devhub/personas/submit.html:54
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krátký popis vašeho motivu, který je zobrzazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu."
+msgstr ""
+"Krátký popis vašeho motivu, který je zobrazen ve vyhledávání, přehledu v "
+"kategorii či přímo na stránce detailu motivu."
 
 #: apps/devhub/templates/devhub/personas/edit.html:122 apps/devhub/templates/devhub/personas/submit.html:68
 msgid "Theme License"
