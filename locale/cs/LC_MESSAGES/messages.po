@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 15:28+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 18:27+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445009311.0\n"
+"X-POOTLE-MTIME: 1445020037.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -338,7 +338,7 @@ msgstr "Ne, děkuji"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr "Příspěvek byl dokončen. Děkujeme."
+msgstr "Příspěvek byl odeslán, děkujeme."
 
 #: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
@@ -451,8 +451,10 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Upozornění:</strong>Vývojové verze tohoto doplňku nebyly Mozillou zkontrolovány. Jakmile si jednou nainstalujete vývojovou verzi, budete od vývojáře automaticky získávat aktualizace "
-"vývojové verze. Pro ukončení získávání vývojových verzí si nainstalujte standardní verzi z odkazu výše."
+"<strong>Upozornění:</strong> Vývojové verze tohoto doplňku nebyly Mozillou "
+"zkontrolovány. Jakmile si jednou nainstalujete vývojovou verzi, budete od "
+"vývojáře automaticky získávat aktualizace vývojové verze. Pro ukončení "
+"získávání vývojových verzí si nainstalujte standardní verzi z odkazu výše."
 
 #: apps/addons/templates/addons/details_box.html:224 apps/addons/templates/addons/impala/details.html:285
 msgid "Version {0}:"
@@ -725,8 +727,11 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Jak provést instalaci v Thunderbirdu</strong><ol> <li>Stáhněte si a uložte soubor na váš pevný disk.</li> <li>V Mozilla Thunderbirdu otevřete v nabídce Nástroje Správce doplňků.</li> <li>Z "
-"tlačítka možností vedle pole vyhledávání zvolte položku \"Instalovat doplněk ze souboru...\" a vyhledejte stažený doplněk na disku.</li> </ol>"
+"<strong>Jak provést instalaci v Thunderbirdu</strong> <ol> <li>Stáhněte si a "
+"uložte soubor na váš pevný disk.</li> <li>V Mozilla Thunderbirdu otevřete v "
+"nabídce Nástroje Správce doplňků.</li> <li>Z tlačítka možností vedle pole "
+"vyhledávání zvolte položku \"Instalovat doplněk ze souboru...\" a vyhledejte "
+"stažený doplněk na disku.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -758,7 +763,9 @@ msgstr "Pomozte s otestování nových verzí Firefoxu"
 
 #: apps/addons/templates/addons/popups.html:77
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Doplněk vyžaduje %(app)s {new_version} a vy aktuálně používáte %(app)s {old_version}."
+msgstr ""
+"Doplněk vyžaduje %(app)s {new_version}. Aktuálně používáte %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
@@ -821,8 +828,10 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Pokud se domníváte, že tento doplňkě porušuje <a href=\"%(url)s\">naše zásady</a>, má bezpečnostní chybu či problémy s porušováním soukromí, použijte formulář níže a problém nám nahlaste. "
-"Nepoužívejte prosím tento formulář k jiným účelům."
+"Pokud se domníváte, že tento doplněk porušuje <a href=\"%(url)s\">naše "
+"zásady</a>, má bezpečnostní chybu či problémy s porušováním soukromí, "
+"použijte formulář níže a problém nám nahlaste. Nepoužívejte prosím tento "
+"formulář k jiným účelům."
 
 #: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
 msgid "Send Report"
@@ -1414,7 +1423,7 @@ msgstr "Nástroje administrátora"
 
 #: apps/amo/fields.py:72
 msgid "This must be a valid hex color code, such as #000000."
-msgstr "Musí se jednat o platnou barvu v hexa formátu. Např. #000000."
+msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
 
 #: apps/amo/fields.py:98
 msgid "Enter at least one value."
@@ -1874,11 +1883,19 @@ msgid ""
 "may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
 "ul>"
 msgstr ""
-"<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně jste klepli na neaktuální odkaz nebo napsali "
-"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, dejte nám o tom vědět na e-mail <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární "
-"stránky na našem serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a "
-"href=\"%(search)s\">hledání</a> a nebo použijte hledací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
+"<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo "
+"soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně "
+"jste klepli na neaktuální odkaz nebo napsali nesprávnou adresu.</p> <ul> "
+"<li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> "
+"<li> Pokud jste klepli na odkaz, dejte nám o tom vědět na e-mail <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Sdělte nám, "
+"odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> "
+"</ul> <p>A nebo můžete rovnou skočit na některé populární stránky na našem "
+"serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných "
+"doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak "
+"skočte na stránku <a href=\"%(search)s\">hledání</a> a nebo použijte "
+"vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte "
+"na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
 
 #: apps/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1937,8 +1954,10 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Vložte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné.</p><p>Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different\">zkusit "
-"jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>.</p>"
+"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je "
+"mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, "
+"můžete <a href=\"#\" id=\"recaptcha_different\">zkusit jiná slova</a> nebo <a "
+"href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4 apps/amo/templates/amo/side_nav.html:12 apps/amo/templates/amo/site_nav.html:4 apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
 #: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:276 apps/search/forms.py:86
@@ -2181,7 +2200,7 @@ msgstr "Odkazy nejsou povoleny."
 
 #: apps/bandwagon/forms.py:169
 msgid "This url is already in use by another collection"
-msgstr "Toto URL je používány jinou sbírkou"
+msgstr "Tato URL je používána jinou sbírkou"
 
 #: apps/bandwagon/forms.py:179 apps/devhub/views.py:1052
 msgid "Icons must be either PNG or JPG."
@@ -2763,7 +2782,9 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Zablokován dne %(date)s.<a href=\"%(link)s\">Zobrazit požadavek na zablokování</a>."
+msgstr ""
+"Zablokován dne %(date)s. <a href=\"%(link)s\">Zobrazit požadavek na "
+"zablokování</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
@@ -2776,7 +2797,7 @@ msgstr "U následujícího software je známo, že v kombinaci s aplikací {app}
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:76 apps/browse/feeds.py:98
 msgid "%s Add-ons"
-msgstr "doplňky aplikace %s"
+msgstr "Doplňky pro %s"
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:113
@@ -3943,7 +3964,9 @@ msgstr "Nepodařilo se kontaktovat host \"%s\"."
 
 #: apps/devhub/utils.py:100
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Kontrola vygenerovala příliš mnoho chyb/varování. %s zpráv tak není zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
+msgstr ""
+"Kontrola vygenerovala příliš mnoho chyb/varování a %s zpráv tak není "
+"zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
 
 #: apps/devhub/views.py:179
 msgid "All My Add-ons"
@@ -4423,9 +4446,12 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p><ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory.</li> <li><b>Vývojář:"
-"</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb.</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, ale nesmí "
-"dělat jakékoliv změny.</li> </ul>"
+"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> "
+"<li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a "
+"přidávat či odebírat jiné autory</li> <li><b>Vývojář:</b> Může spravovat "
+"vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a "
+"správy plateb</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a "
+"jeho statistiky, ale nesmí dělat jakékoliv změny</li> </ul>"
 
 #: apps/devhub/templates/devhub/addons/profile.html:3 apps/devhub/templates/devhub/addons/listing/item_actions.html:53 apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
@@ -5315,9 +5341,13 @@ msgid ""
 "issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
 "\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
-"Pokud si myslíte, že jste nalezli bezpečnostní chybu v doplňku (a to i tehdy, když zde není hostován), bude Mozilla za tuto informaci vděčna a spolu s autorem doplňku zapracuje co nejrychleji na "
-"nápravě . Bezpečnostní chyby v doplňcích mohou být hlášeny <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">důvěrně</a> v <a href=\"%(link_bugzilla)s\">Bugzille</a> "
-"nebo e-mailem na %(mail_admins)s."
+"Pokud si myslíte, že jste nalezli bezpečnostní chybu v doplňku, a to i "
+"tehdy, když zde není hostován, bude Mozilla za tuto informaci vděčna a spolu "
+"s autorem doplňku zapracuje co nejrychleji na nápravě . Bezpečnostní chyby "
+"v doplňcích mohou být hlášeny <a "
+"href=\"http://www.mozilla.org/projects/security/security-bugs-"
+"policy.html\">důvěrně</a> v <a href=\"%(link_bugzilla)s\">Bugzille</a> nebo "
+"e-mailem na %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -5384,10 +5414,16 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Ačkoliv mluvíme o \"betaverzích\", můžete používat tento kanál pro noční vývojové verze, alfaverze nebo předverze. Zkrátka jak si přejete. Mějte prosím na paměti, že pro tyto účely existuje pouze "
-"jeden kanál a všichni vaši uživatelé, kteří tento kanál používají, budou dostávat poslední verze doplňku, které zpřístupníte. Pokud například nahrajete verzi <code>1.0beta1</code>, a poté nahrajete "
-"verzi <code>1.1alpha1</code>, bude všem uživatelům verze <code>1.0beta1</code> nabídnuta aktualizace na verzi <code>1.1alpha1</code>. Aktualizace jsou řazeny dle data přidání a nikoliv dle čísla "
-"verze. Uživatelé tak dostanou vždy nejnovější aktualizaci bez ohledu na řazení verzí."
+"Ačkoliv mluvíme o \"betaverzích\", můžete používat tento kanál pro noční "
+"vývojové verze, alfaverze nebo předverze. Mějte prosím na paměti, že pro "
+"tyto účely existuje pouze jeden kanál a všichni vaši uživatelé, kteří tento "
+"kanál používají, budou dostávat poslední verze doplňku, které zpřístupníte. "
+"Pokud například nahrajete verzi <code>1.0beta1</code>, a poté nahrajete "
+"verzi <code>1.1alpha1</code>, bude všem uživatelům verze "
+"<code>1.0beta1</code> nabídnuta aktualizace na verzi <code>1.1alpha1</code>. "
+"Aktualizace jsou řazeny dle data přidání a nikoliv dle čísla verze a "
+"uživatelé tak dostanou vždy nejnovější aktualizaci bez ohledu na řazení "
+"verzí."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -5572,8 +5608,11 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně (každé 3 měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké zaměření doplňku, neoptimální provedení, špatnou "
-"kvalitu či bezpečnostní problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. Zamítnuté doplňky nemohou být další tři měsíce znovu nominovány."
+"Nominované doplňky jsou kontrolovány skupinou Advisory Board jednou měsíčně "
+"(každé 3 měsíce pro motivy). Běžné důvody pro zamítnutí zahrnují úzké "
+"zaměření doplňku, neoptimální provedení, špatnou kvalitu či bezpečnostní "
+"problémy, nekompatibilitu nebo podobnost s jiným již doporučeným doplňkem. "
+"Zamítnuté doplňky nemohou být další 3 měsíce znovu nominovány."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -5613,7 +5652,9 @@ msgstr "Každých šest měsíců je ustanoven nový Advisory Board, který je s
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
-msgstr "být aktivním členem komunity doplňků (nezáleží na tom, zda jako vývojář, evangelista či fanoušek)"
+msgstr ""
+"být aktivním členem komunity doplňků, ať už jako vývojář, evangelista či "
+"fanoušek"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
@@ -5675,8 +5716,11 @@ msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
-"<strong><a href=\"#preliminary\">Předběžná kontrola</a></strong> &mdash; jedná se o rychlejší kontrolu určenou hlavně pro experimentální doplňky. V rámci předběžné kontroly se nekontroluje "
-"funkcionalita, plná shoda se zásadami pro doplňky a u doplňku se na webu zobrazuje varování. Nejsou pro něj dostupné všechny funkce webu."
+"<strong><a href=\"#preliminary\">Předběžná kontrola</a></strong> &mdash; jedná "
+"se o rychlejší kontrolu určenou hlavně pro experimentální doplňky. V rámci "
+"předběžné kontroly se nekontroluje funkcionalita nebo plná shoda se zásadami "
+"pro doplňky, u doplňku se na webu zobrazuje varování a nejsou pro něj "
+"dostupné všechny funkce webu."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -5684,9 +5728,13 @@ msgid ""
 "org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
 "receive an email with any updates throughout the review process."
 msgstr ""
-"Detailní popisy jednotlivých možností jsou popsány níže. Po zvolení typu kontroly a odeslání je doplněk zařazen do fronty. Doplňky jsou kontrolovány <a href=\"https://wiki.mozilla.org/AMO:Editors"
-"\">redaktory serveru</a>. Jedná se o skupinu talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu Mozilla kontrolou doplňků a ujišťují se, že jsou stabilní a bezpečné pro uživatele. "
-"Vývojáři budou o jakýchkoliv aktualizacích v rámci kontroly vyrozuměni e-mailem."
+"Detailní popisy jednotlivých možností jsou popsány níže. Po zvolení typu "
+"kontroly a odeslání je doplněk zařazen do fronty. Doplňky jsou kontrolovány "
+"<a href=\"https://wiki.mozilla.org/AMO:Editors\">redaktory serveru</a>, "
+"skupinou talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu "
+"Mozilla kontrolou doplňků a ujišťují se, že jsou stabilní a bezpečné pro "
+"uživatele. Vývojáři budou o jakýchkoliv aktualizacích v rámci kontroly "
+"vyrozuměni e-mailem."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -5809,9 +5857,12 @@ msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Pokud je doplněk určen pro konkrétní stránku, pak je doporučeno, aby byl v rámci procesu kontroly poskytnut testovací účet pro zmíněnou stránku (pokud je vyžadován). Taktéž je dobré uvést instrukce "
-"pro redaktora, které mu pomohou lépe porozumět doplňku, jeho funkčnosti, a které mu usnadní jeho otestování. Tato informace může být vložena do pole s poznámkou pro redaktora při přidávání nové "
-"verze v rámci stránek pro vývojáře."
+"Pokud je doplněk určen pro konkrétní stránku, pak je doporučeno, aby byl v "
+"rámci procesu kontroly poskytnut testovací účet pro zmíněnou stránku, pokud "
+"je vyžadován. Taktéž je dobré uvést instrukce pro redaktora, které mu "
+"pomohou lépe porozumět doplňku, jeho funkčnosti, a které mu usnadní jeho "
+"otestování. Tato informace může být vložena do pole s poznámkou pro "
+"redaktora při přidávání nové verze v rámci stránek pro vývojáře."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134 apps/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
@@ -5951,11 +6002,18 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>Když doplněk obsahuje neočekávané* funkce, které </p> <ul> <li>kompromitují soukromí uživatele nebo jeho bezpečnost (např. posíláním dat třetí straně),</li> <li>mění výchozí nastavení jako je "
-"domovská stránka nebo vyhledávací modul,</li> <li>mění nastavení nebo funkce jiných doplňků (případně je deaktivuje),</li> </ul> <p>musí taková funkce splnit následující požadavky:</p> <ul> "
-"<li>Popis doplňku musí jasně uvádět, jaké změny činí. </li> <li> Všechny změny musí být schváleny uživatelem. To znamená, že uživatel musí realizovat nevýchozí akci, která provede změnu.</li> <li> "
-"Dialog změny musí jasně uvádět jméno doplňku, který změnu realizuje.</li> <li>Odinstalace doplňku obnoví výchozí nastavení uživatele, pokud bylo doplňkem změněno.</li> </ul> <p>*Neočekávané funkce "
-"jsou takové funkce, které nesouvisí s primární funkci doplňku.</p>"
+"<p> Když doplněk obsahuje neočekávané* funkce, které </p> <ul> "
+"<li>kompromitují soukromí uživatele nebo jeho bezpečnost (např. posíláním "
+"dat třetí straně),</li> <li>mění výchozí nastavení jako je domovská stránka "
+"nebo vyhledávací modul,</li> <li>mění nastavení nebo funkce jiných doplňků "
+"nebo je deaktivuje,</li> </ul> <p>musí taková funkce splnit následující "
+"požadavky:</p> <ul> <li>Popis doplňku musí jasně uvádět, jaké změny činí. "
+"</li> <li> Všechny změny musí být schváleny uživatelem. To znamená, že "
+"uživatel musí realizovat nevýchozí akci, která provede změnu.</li> <li> "
+"Dialog změny musí jasně uvádět jméno doplňku, který změnu realizuje.</li> "
+"<li>Odinstalace doplňku obnoví výchozí nastavení uživatele, pokud bylo "
+"doplňkem změněno.</li> </ul> <p>*Neočekávané funkce jsou takové funkce, "
+"které nesouvisí s primární funkci doplňku.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -6113,9 +6171,12 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
 "just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
-"Pokud v souvislosti s využitím kódu z jiných doplňků jejich autor jasně neřekl, že můžete jeho kód ve své práci použít (např. definováním, pod jakou open source licencí je dostupný), pak "
-"předpokládejte, že nemáte práva jej přebírat. Můžete autora takového kódu kontaktovat a požádat ho o svolení. My vám však nedáváme žádná speciální práva jen proto, že je doplněk umístěn na našem "
-"webu nebo proto, že autor doplňku neodpovídá na váš dotaz."
+"Pokud v souvislosti s využitím kódu z jiných doplňků jejich autor jasně "
+"neřekl, že můžete jeho kód ve své práci použít, např. definováním, pod jakou "
+"open source licencí je dostupný, pak předpokládejte, že nemáte práva jej "
+"přebírat. Můžete autora takového kódu kontaktovat a požádat ho o svolení. My "
+"vám však nedáváme žádná speciální práva jen proto, že je doplněk umístěn na "
+"našem webu nebo proto, že autor doplňku neodpovídá na váš dotaz."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:79
 msgid ""
@@ -6683,8 +6744,10 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Souhlasím s <a href=\"%(agreement_url)s\" target=\"_blank\">podmínkami distribce doplňků pro Firefox</a> a tím, že s mými informacemi dobe nakládáno tak, jak je pospáno v <a href="
-"\"%(privacy_notice_url)s\" target=\"_blank\"> poznámce k soukromí ohledně webových stránek, komunikace a cookies</a>."
+"Souhlasím s <a href=\"%(agreement_url)s\" target=\"_blank\">podmínkami distribce "
+"doplňků pro Firefox</a> a tím, že s mými informacemi dobe nakládáno tak, "
+"jak je pospáno v <a href=\"%(privacy_notice_url)s\" target=\"_blank\">poznámce k "
+"soukromí ohledně webových stránek, komunikace a cookies</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8160,7 +8223,9 @@ msgstr "od %(user)s dne %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:106
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil(a) %(user)s dne %(date)s</span>"
+msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s "
+"dne %(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
@@ -8562,11 +8627,11 @@ msgstr "Tento soubor je adresář."
 
 #: apps/files/tasks.py:30
 msgid "There was an error accessing file %s. %s."
-msgstr "Při přístupu k souboru %s došlo k chybě. %s"
+msgstr "Při přístupu k souboru %s došlo k chybě. %s."
 
 #: apps/files/tasks.py:33
 msgid "There was an error accessing file %s."
-msgstr "Vyskytl se problém při přístupu k souboru %s."
+msgstr "Při přístupu k souboru %s došlo k chybě."
 
 #: apps/files/utils.py:260
 msgid "Could not parse uploaded file."
@@ -8919,12 +8984,15 @@ msgid ""
 "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
 "forums</a>."
 msgstr ""
-"Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často kladené otázky (Frequently Asked Questions)\">FAQ</abbr></a>. Pokud tam nenaleznete odpověď na svůj dotaz, můžete se <a href="
-"\"%(forum_url)s\">zeptat v našem fóru</a>."
+"Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často "
+"kladené otázky\">FAQ</abbr></a>. Pokud tam nenaleznete odpověď na svůj dotaz, "
+"můžete se <a href=\"%(forum_url)s\"> zeptat v našem fóru</a>."
 
 #: apps/pages/templates/pages/about.lhtml:72
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "Pokud skutečně potřebujete kontaktovat někoho z týmu Mozilly, podívejte se na naši stránku s <a href=\"%(url)s\">kontaktními informacemi</a>."
+msgstr ""
+"Pokud skutečně potřebujete kontaktovat někoho z týmu Mozilly, podívejte se "
+"na naši stránku s <a href=\"%(url)s\"> kontaktními informacemi</a>."
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -8935,8 +9003,9 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
 "\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů můžete nalézt na <a href=\"%(url)s\">stránce s "
-"poděkováním</a>."
+"Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z "
+"řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů "
+"můžete nalézt na <a href=\"%(url)s\"> stránce s poděkováním</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -9098,7 +9167,10 @@ msgstr "Časté dotazy vývojářů doplňků"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<h3>Jak mohu vytvořit doplněk?</h3><p>Mozilla poskytuje dokumentaci k tomu, jak vytvořit doplněk, na <a href=\"%(url)s\">Mozilla Developer Network</a>.</p>"
+msgstr ""
+"<h3>Jak mohu vytvořit doplněk?</h3> <p> Mozilla poskytuje dokumentaci k "
+"tomu, jak vytvořit doplněk, na <a href=\"%(url)s\">Mozilla Developer "
+"Network</a>. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -9156,8 +9228,10 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
-"XUL (XML User Interface Language) je jazyk Mozilly založený na XML, který umožňuje vytvářet multiplatformní aplikace. Poskytuje prvky uživatelského rozhraní jako jsou tlačítka, nabídky, lišty, "
-"stromy atd, které mohou být použity k vylepšení doplňků, které upravují prvky grafického rozhraní prohlížeče."
+"XUL (XML User Interface Language) je jazyk Mozilly založený na XML, který "
+"umožňuje vytvářet multiplatformní aplikace. Poskytuje prvky uživatelského "
+"rozhraní jako jsou tlačítka, nabídky, lišty, stromy atd, které mohou být "
+"použity k vylepšení doplňků, které upravují prvky UI prohlížeče."
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
@@ -9788,9 +9862,13 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
 "\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"Doplňky, na rozdíl od zásuvných modulů, jsou automaticky kontrolovány na aktualizace jednou za den. Ve Firefoxu 4 budou ve výchozím nastavení aktualizace instalovány automaticky. Do této verze "
-"Firefoxu a u jiných aplikací jste na dostupnost aktualizací upozorněni. <a href=\"%(plugin_url)s\">Zásuvné moduly</a> nejsou aktuálně automaticky kontrolovány na aktualizace, takže pro kontrolu "
-"jejich aktuálnosti navštěvujte webovou stránku <a href=\"%(plugincheck_url)s\">Plugin Check</a>."
+"Doplňky, na rozdíl od zásuvných modulů, jsou automaticky kontrolovány na "
+"aktualizace jednou za den. Ve Firefoxu 4 (a dalších aplikacích) budou ve "
+"výchozím nastavení aktualizace instalovány automaticky. Do této verze "
+"Firefoxu a u jiných aplikací jste na dostupnost aktualizací upozorněni. <a "
+"href=\"%(plugin_url)s\">Zásuvné moduly</a> nejsou aktuálně automaticky "
+"kontrolovány na aktualizace, takže pro kontrolu jejich aktuálnosti "
+"navštěvujte webovou stránku <a href=\"%(plugincheck_url)s\">Plugin Check</a>."
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -9915,8 +9993,9 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Někteří autoři doplňků mohou žádat uživatele, kteří mají doplněk rádi, o finanční příspěvky na další vývoj. Tyto příspěvky jdou přímo vývojáři, pokud není uvedena třetí strana (například nezisková "
-"nadace Mozilla Foundation)."
+"Někteří autoři doplňků mohou žádat uživatele, kteří mají doplněk rádi, o "
+"finanční příspěvky na další vývoj. Tyto příspěvky jdou přímo vývojáři, pokud "
+"není uvedena třetí strana, například nezisková nadace Mozilla Foundation."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
@@ -10340,7 +10419,7 @@ msgstr "Jiné (prosím upřesněte)"
 
 #: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Děkujeme. Recenze bude zkontrolována redaktorem."
+msgstr "Děkujeme, tato recenze bude zkontrolována redaktorem."
 
 #: apps/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
@@ -10354,11 +10433,19 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Mějte prosím na paměti následující věci:</h2> <ul> <li> Pište jako byste říkali svému příteli, jak se vám doplněk líbí. Pište o užitečných detailech jako jsou například funkce, které máte (či "
-"nemáte) rádi, o tom, jak se vám doplněk snadno používá či jaké má podle vás nevýhody. Vyvarujte se také obecných zvolání jako \"Skvělé\" nebo \"Špatné\", pokud neposkytnete důvody, proč si tak "
-"myslíte. </li> <li> Nehlaste do recenzí chyby. Neposkytneme vaši e-mailovou adresu vývojáři doplňku a on by vás mohl chtít v souvislosti s vyřešením problému kontaktovat. Podívejte se do <a href="
-"\"%(support)s\">sekce podpory</a>, kde naleznete informace, jak můžete získat podporu.</li> <li>Mějte své recenze korektní a vyvarujte se nevhodného jazyka či zveřejňování osobních informací. </li> "
-"</ul> <p>Pro více informací o recenzích doplňků si přečtěte <a href=\"%(guide)s\" target=\"_blank\">zásady pro psaní recenzí</a>.</p>"
+"<h2>Mějte prosím na paměti následující věci:</h2> <ul> <li> Pište jako byste "
+"říkali svému příteli, jak se vám doplněk líbí. Pište o užitečných detailech "
+"jako jsou například funkce, které máte či nemáte rádi, o tom, jak se vám "
+"doplněk snadno používá či jaké má podle vás nevýhody. Vyvarujte se také "
+"obecných zvolání jako \"Skvělé\" nebo \"Špatné\", pokud neposkytnete důvody, "
+"proč si tak myslíte. </li> <li> Nehlaste do recenzí chyby. Neposkytneme vaši "
+"e-mailovou adresu vývojáři doplňku a on by vás mohl chtít v souvislosti s "
+"vyřešením problému kontaktovat. Podívejte se do <a href=\"%(support)s\">sekce "
+"podpory</a>, kde naleznete informace, jak můžete získat podporu.</li> "
+"<li>Mějte své recenze korektní a vyvarujte se nevhodného jazyka či "
+"zveřejňování osobních informací. </li> </ul> <p>Pro více informací o "
+"recenzích doplňků si přečtěte <a href=\"%(guide)s\" target=\"_blank\">zásady pro "
+"psaní recenzí</a>.</p>"
 
 #: apps/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -11084,11 +11171,20 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete přidat parametr, který vám umožní sledovat zdroje, "
-"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
-"src=<b>external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
-"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje (např. \"external-blog\", \"external-sidebar"
-"\", \"external-campaign225\" atd.). Jsou povoleny následující znaky, které jsou bezpečné pro URL: alfanumerické znaky a <code>- . _ ~ %% +</code>"
+"<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na "
+"stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete "
+"přidat parametr, který vám umožní sledovat zdroje, odkud je doplněk "
+"stahován. Například můžete použít následující odkazy jako zdroj pro svůj "
+"blog: <dl> <dt>Stránka s informacemi o doplňku</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> "
+"<dt>Přímý odkaz na soubor</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%"
+"(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
+"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 "
+"dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis "
+"zdroje jako je \"external-blog\", \"external-sidebar\", \"external-campaign225\" "
+"atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z "
+"A-Z - . _ ~ %% +</code>"
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -11111,16 +11207,21 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Co jsou denní uživatelé?</h2> <p>Motivy nainstalované z této stránky jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový počet těchto dotazů udává počet aktivních denních "
-"uživatelů či celkový počet lidí, kteří motiv v konkrétní den použili.</p>"
+"<h2>Co jsou denní uživatelé?</h2> <p> Motivy nainstalované z této stránky "
+"jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový "
+"počet těchto dotazů udává počet aktivních denních uživatelů či celkový počet "
+"lidí, kteří motiv v konkrétní den použili. </p>"
 
 #: apps/stats/templates/stats/reports/usage.html:20
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Kdo jsou denní uživatelé?</h2> <p>Doplňky stažené z tohoto webu se jednou denně kontrolují, zda nejsou dostupné v novější verzi. A právě celkový počet těchto dotazů je nazýván Aktivní denní "
-"uživatelé. Denní uživatelé mohou být členění dle verze doplňku, operačního systému, stavu doplňku, aplikace a jazyka.</p>"
+"<h2>Kdo jsou denní uživatelé?</h2> <p> Doplňky stažené z tohoto webu se "
+"jednou denně kontrolují, zda nejsou dostupné v novější verzi. A právě "
+"celkový počet těchto dotazů je nazýván Aktivní denní uživatelé. Denní "
+"uživatelé mohou být členění dle verze doplňku, operačního systému, stavu "
+"doplňku, aplikace a jazyka. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -11493,8 +11594,10 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Nemůžete smazat svůj uživatelský účet, protože jste veden(a) jako <a href=\"%(link)s\">autor(ka) některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás "
-"odstranil(a) ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
+"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%"
+"(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou "
+"osobu z vašeho vývojového týmu, aby vás odstranila ze seznamu autorů vašich "
+"doplňků. Poté budete na tomto místě moci váš účet smazat."
 
 #: apps/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -11842,7 +11945,9 @@ msgstr "Zobrazené jméno"
 
 #: apps/users/templates/users/report_abuse.html:7
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Popište prosím, proč tohoto uživatele reportujete (spam, pohoršující fotka apod.)."
+msgstr ""
+"Popište prosím, proč chcete tohoto uživatele nahlásit (spam, pohoršující "
+"fotka apod.)."
 
 #: apps/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
@@ -12313,4 +12418,4 @@ msgstr "Navštívit Mozillu"
 #. a link
 #: templates/mobile/header.html:10
 msgid "menu"
-msgstr "Nabídka"
+msgstr "nabídka"

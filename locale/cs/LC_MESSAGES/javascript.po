@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 11:33+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 18:17+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444995229.0\n"
+"X-POOTLE-MTIME: 1445019437.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1058,7 +1058,10 @@ msgstr "Nebyly nalezeny žádné výsledky."
 
 #: static/js/zamboni/discovery_pane.js:217
 msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení. <br>Navštivte prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám nejlépe sednou."
+msgstr ""
+"Omlouváme se, ale nemůžeme pro vás nalézt žádná doporučení.<br>Navštivte "
+"prosím <a href=\"{0}\">stránku s doplňky</a> a vyberte si takové, které vám "
+"nejlépe sednou."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
