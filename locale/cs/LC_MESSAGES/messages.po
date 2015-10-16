@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-07 14:38+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-10-16 15:28+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444228712.0\n"
+"X-POOTLE-MTIME: 1445009311.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -914,7 +914,7 @@ msgstr "od %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "I přesto stáhnout"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1398,7 +1398,7 @@ msgstr "Pro vývojáře"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Spravovat API klíče"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -2001,7 +2001,7 @@ msgstr "Předchozí"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Jít na poslední stranu"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -3826,11 +3826,14 @@ msgstr "Zaškrtněte, pokud chcete doplněk distribuovat sami a pouze jej potře
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Tento doplněk bude přibalen k instalátoru aplikace."
 
 #: apps/devhub/forms.py:543
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Předtím, než mohou být podepsány doplňky přibalené k instalátoru aplikace, "
+"musí být jejich kód zkontrolován Mozillou. Takovéto doplňky musí udržovat "
+"vyšší kvalitativní standard."
 
 #: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -5114,7 +5117,7 @@ msgstr "Vhodné pro otestované doplňky"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Požadováno pokud je doplněk přibalen k instalátoru."
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -5219,37 +5222,42 @@ msgstr "Vypadá to, že váš doplněk potřebuje ruční kontrolu, než bude mo
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Dohoda o distribuci doplňků pro Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Přihlašovací údaje k API"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT vystavitel"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT secret"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý "
+"požadavek, podobně jako v následujícím příkladu pomocí knihovny <a href=\"%"
+"(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 msgstr ""
+"Pro více informací nahlédněte do <a href=\"%(docs_url)s\">dokumentace</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Zatím nemáte žádné přihlašovací údaje k API."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Vygenerovat nové přihlašovací údaje"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5299,7 +5307,7 @@ msgstr "Hlášení bezpečnostních chyb v doplňcích"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins zavináč mozilla tečka org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6204,11 +6212,13 @@ msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získ�
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr ""
+msgstr "Váš doplněk byl podepsán a může být přibalen k instalátoru aplikace."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Váš doplněk byl zakázán správcem stránky a již není na našich stránkách "
+"dostupný. Máte-li nějaké dotazy, pošlete e-mail na amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -6229,6 +6239,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
+"Jakmile bude plná kontrola hotova a vy budete moci přibalit svůj doplněk k "
+"instalátoru, obdržíte e-mail."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."

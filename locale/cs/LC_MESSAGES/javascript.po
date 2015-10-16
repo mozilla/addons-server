@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-28 17:34+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-10-16 11:33+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1443461647.0\n"
+"X-POOTLE-MTIME: 1444995229.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -97,16 +97,17 @@ msgstr "Validace vašeho doplňku vypršela, doplněk bude manuálně zkontrolov
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
+msgstr[1] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
+msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 
 #: static/js/common/upload-addon.js:421
+#, fuzzy
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
-msgstr[1] "Váš doplněk byl zkontrolován bez chyb a se {0} varováními."
-msgstr[2] "Váš doplněk byl zkontrolován bez chyb a se {0} varováními."
+msgstr[1] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
+msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
@@ -275,7 +276,7 @@ msgstr "Týden {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " stažení"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -384,19 +385,20 @@ msgstr "Správce doplňků"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Propagace ve správci doplňků"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Doporučeno ve správci doplňků"
 
 #: static/js/impala/stats/csv_keys.js:46
+#, fuzzy
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Zjistit více ve správci doplňků"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Návrhy našeptávače"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -448,15 +450,15 @@ msgstr "Přechod na placenou variantu"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Poznejte vývojáře"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Profil uživatele"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Historie verzí"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -918,7 +920,7 @@ msgstr "Zobrazit ostatní verze"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Pouze pro Firefox — získejte Firefox nyní!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
