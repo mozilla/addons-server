@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-21 22:08+0000\n"
+"PO-Revision-Date: 2015-10-15 23:31+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1230,7 +1230,7 @@ msgstr "by %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Download Anyway"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1821,7 +1821,7 @@ msgstr "Developer Hub"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Manage API Keys"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2527,7 +2527,7 @@ msgstr "Previous"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Jump to last page"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -4625,13 +4625,15 @@ msgstr ""
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "This add-on will be bundled with an application installer."
 
 #: apps/devhub/forms.py:543
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Add-ons that are bundled with application installers will be code reviewed "
+"by Mozilla before they are signed and are held to a higher quality standard."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -6228,7 +6230,7 @@ msgstr "Appropriate for polished add-ons"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Required if add-on is bundled in an installer"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6351,19 +6353,19 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox Add-on Distribution Agreement"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "API Credentials"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT issuer"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT secret"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
@@ -6372,18 +6374,22 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> as the authorisation header. You'll need to generate a JWT for "
+"every request like in the following example using the <a "
+"href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "You don't have any API credentials yet."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Generate New Credentials"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6453,7 +6459,7 @@ msgstr "Add-on Security Vulnerabilities"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -7905,12 +7911,16 @@ msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Your add-on has been signed and can be bundled with an application "
+"installer."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Your add-on was disabled by a site administrator and is no longer shown in "
+"our gallery. If you have any questions, please email amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -7939,6 +7949,8 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"You will receive an email when the full review is complete, making you able "
+"to bundle your add-on with an application installer."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""

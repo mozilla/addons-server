@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 13:53+0000\n"
-"Last-Translator: Marko <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 10:44+0000\n"
+"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -4724,13 +4724,15 @@ msgstr ""
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Dodatek bo del pripomočka za nameščanje aplikacij."
 
 #: apps/devhub/forms.py:543
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Kodo dodatkov, ki so del pripomočka za nameščanje aplikacij, bo pred "
+"podpisom zaradi višjih standardov pregledala Mozilla."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -6352,7 +6354,7 @@ msgstr "Ustrezno za izglajene dodatke"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Zahtevano, če je dodatek del pripomočka za nameščanje"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6500,14 +6502,15 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 msgstr ""
+"Za več podrobnosti si oglejte <a href=\"%(docs_url)s\"> dokumentacijo </a>."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Nimate še poverilnice API."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Ustvari nove poverilnice"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -8054,12 +8057,16 @@ msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Dodatek je podpisan in je lahko del pripomočka za nameščanje aplikacij."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Skrbnik spletišča je onemogočil vaš dodatek in ni več na voljo v naši "
+"galeriji. Za vsa vprašanja smo vam na voljo na e-naslovu amo-"
+"admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8090,6 +8097,8 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"Po končanem popolnem pregledu boste prejeli e-pošto, po tem boste lahko svoj"
+" dodatek uporabili kot del pripomočka za nameščanje aplikacij."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
