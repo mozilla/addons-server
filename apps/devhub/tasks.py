@@ -29,6 +29,7 @@ from applications.models import AppVersion
 from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
+from versions.models import Version
 
 from PIL import Image
 
@@ -36,7 +37,7 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None):
+def validate(file_, listed=None, subtask=None):
     """Run the validator on the given File or FileUpload object, and annotate
     the results using the ValidationAnnotator. If a task has already begun
     for this file, instead return an AsyncResult object for that task."""
@@ -49,9 +50,36 @@ def validate(file_, listed=None):
     if task_id:
         return AsyncResult(task_id)
     else:
-        result = annotator.task.delay()
+        chain = annotator.task
+        if subtask is not None:
+            chain |= subtask
+        result = chain.delay()
         cache.set(annotator.cache_key, result.task_id, 5 * 60)
         return result
+
+
+def validate_and_submit(addon, file_, listed=None):
+    return validate(file_, listed=listed,
+                    subtask=submit_file.si(addon.pk, file_.pk))
+
+
+@task
+def submit_file(addon_pk, file_pk):
+    addon = Addon.unfiltered.get(pk=addon_pk)
+    file_ = FileUpload.objects.get(pk=file_pk)
+    validation = json.loads(file_.validation)
+    if (file_.automated_signing and validation['passed_auto_validation']) or (
+            not file_.automated_signing and file_.valid):
+        # Import loop.
+        from devhub.views import auto_sign_version
+
+        log.info('Creating version for {file_id} that passed '
+                 'validation'.format(file_id=file_pk))
+        version = Version.from_upload(file_, addon, [amo.PLATFORM_ALL.id])
+        auto_sign_version(version)
+    else:
+        log.info('Skipping version creation for {file_id} that failed '
+                 'validation'.format(file_id=file_pk))
 
 
 # Override the validator's stock timeout exception so that it can
