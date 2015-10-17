@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-24 02:23+0000\n"
+"PO-Revision-Date: 2015-10-17 01:01+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -97,8 +97,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seu complemento foi validado sem nenhum erro e {0} avisos."
+msgstr[1] "Seu complemento passou na validação sem erros e {0} alertas."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -305,7 +305,7 @@ msgstr "Semana de {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " downloads"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -418,19 +418,19 @@ msgstr "Gerenciador de complementos"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Gerenciador de complementos em promoção"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Gerenciador de complementos em destaque"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Gerenciador do saiba mais dos complementos"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Pesquisar Sugestões"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -484,15 +484,15 @@ msgstr "Divulgação"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Encontre o desenvolvedor"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Perfil de usuário"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Histórico da versão"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -965,7 +965,7 @@ msgstr "Ver outras versões"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Apenas com o Firefox — Adquira o Firefox agora!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid ""
