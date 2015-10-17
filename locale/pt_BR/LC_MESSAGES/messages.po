@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-17 00:54+0000\n"
+"PO-Revision-Date: 2015-10-17 01:09+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6403,7 +6403,7 @@ msgstr "Adequado para complementos finalizados"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Necessário se o complemento é empacotado em um instalador"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6529,7 +6529,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acordo de distribuição de complementos Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
@@ -6633,7 +6633,7 @@ msgstr "Vulnerabilidades de segurança de um complemento"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins arroba mozilla ponto org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -8149,12 +8149,17 @@ msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Seu complemento foi assinado e pode ser empacotado com um instalador de "
+"aplicativo."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Seu complemento foi desativado por um administrador do site e não é mais "
+"exibido na nossa galeria. Se você tiver quaisquer dúvidas, por favor escreva"
+" para amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8185,6 +8190,9 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"Você receberá um e-mail quando a revisão completa estiver concluída, fazendo"
+" com que o seu complemento possa ser empacotado com um instalador de "
+"aplicativo."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
