@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-17 01:01+0000\n"
+"PO-Revision-Date: 2015-10-17 12:35+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -58,8 +58,8 @@ msgstr "Erro com {0}"
 #: static/js/common/upload-addon.js:184
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Seu complemento apresentou {0} erro na validação."
-msgstr[1] "Seu complemento apresentou {0} erros na validação."
+msgstr[0] "Seu complemento falhou na validação com {0} erro."
+msgstr[1] "Seu complemento falhou na validação com {0} erros."
 
 #: static/js/common/upload-addon.js:198
 msgid "&hellip;and {0} more"
@@ -208,7 +208,7 @@ msgstr "As imagens devem ser PNG ou JPG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
-msgstr "Os vídeos devem estar no formato WebM."
+msgstr "Os vídeos devem ser WebM."
 
 #: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
 msgid "Follow this Collection"
