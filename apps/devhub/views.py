@@ -395,8 +395,6 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def unlist(request, addon_id, addon):
-    if not waffle.flag_is_active(request, 'unlisted-addons'):
-        raise PermissionDenied
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
     unindex_addons.delay([addon.id])
@@ -1270,11 +1268,10 @@ def version_add(request, addon_id, addon):
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
-    if waffle.flag_is_active(request, 'automatic-validation'):
-        override = form.cleaned_data.get('admin_override_validation')
-        # Sign all the files submitted, one for each platform.
-        for file_ in version.files.all():
-            auto_sign_file(file_, is_beta=is_beta, admin_override=override)
+    override = form.cleaned_data.get('admin_override_validation')
+    # Sign all the files submitted, one for each platform.
+    for file_ in version.files.all():
+        auto_sign_file(file_, is_beta=is_beta, admin_override=override)
 
     return dict(url=url)
 
@@ -1301,9 +1298,8 @@ def version_add_file(request, addon_id, addon, version_id):
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
-    if waffle.flag_is_active(request, 'automatic-validation'):
-        override = new_file_form.cleaned_data.get('admin_override_validation')
-        auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
+    override = new_file_form.cleaned_data.get('admin_override_validation')
+    auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
@@ -1409,8 +1405,6 @@ def submit_addon(request, step):
             p = data.get('supported_platforms', [])
 
             is_listed = not data['is_unlisted']
-            if not waffle.flag_is_active(request, 'unlisted-addons'):
-                is_listed = True
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'],
                                       is_listed=is_listed)
@@ -1422,10 +1416,9 @@ def submit_addon(request, step):
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
                     addon.update(status=amo.STATUS_UNREVIEWED)
-                    if waffle.flag_is_active(request, 'automatic-validation'):
-                        # Sign all the files submitted, one for each platform.
-                        for file_ in addon.versions.get().files.all():
-                            auto_sign_file(file_)
+                    # Sign all the files submitted, one for each platform.
+                    for file_ in addon.versions.get().files.all():
+                        auto_sign_file(file_)
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
