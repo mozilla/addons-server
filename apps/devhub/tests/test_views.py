@@ -1168,7 +1168,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         submit = doc('#generate-key')
-        eq_(submit.text(), 'Generate new credentials')
+        assert submit.text() == 'Generate new credentials'
         inputs = doc('.api-input input')
         assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
 
@@ -1181,7 +1181,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         submit = doc('#generate-key')
-        eq_(submit.text(), 'Revoke and regenerate credentials')
+        assert submit.text() == 'Revoke and regenerate credentials'
         key_input = doc('.key-input input').val()
         assert key_input == 'some-jwt-key'
 
