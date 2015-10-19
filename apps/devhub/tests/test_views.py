@@ -7,6 +7,7 @@ from decimal import Decimal
 
 from django import http
 from django.conf import settings
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
 
@@ -1190,6 +1191,12 @@ class TestAPIKeyPage(amo.tests.TestCase):
         with patch as mock_creator:
             response = self.client.post(self.url)
         mock_creator.assert_called_with(self.user)
+
+        email = mail.outbox[0]
+        assert len(mail.outbox) == 1
+        assert email.to == [self.user.email]
+        assert reverse('devhub.api_key') in email.body
+
         self.assertRedirects(response, self.url)
 
     def test_delete_and_recreate_credentials(self):
