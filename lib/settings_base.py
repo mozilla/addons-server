@@ -801,6 +801,7 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
+            'js/zamboni/devhub-api.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',

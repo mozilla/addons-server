@@ -1754,6 +1754,18 @@ def render_agreement(request, template, next_step, step=None):
 
 
 @login_required
+@json_view
+def api_key_secret(request):
+    if request.method == 'POST':
+        try:
+            credentials = APIKey.get_jwt_key(user=request.user,
+                                             key=request.POST.get('key'))
+            return {'secret': credentials.secret}
+        except APIKey.DoesNotExist:
+            raise http.Http404('API key does not exist.')
+
+
+@login_required
 @waffle_switch('signing-api')
 @transaction.commit_on_success
 def api_key(request):
