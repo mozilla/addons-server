@@ -1,9 +1,5 @@
 language: python
 sudo: false
-cache:
-  directories:
-    - $HOME/.cache/pip
-    - $HOME/wheels
 python:
   - "2.7"
 env:
@@ -23,7 +19,7 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
 script:
-  - tox -v -e $TOX_ENV --recreate
+  - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
 notifications:
   irc:
     channels:

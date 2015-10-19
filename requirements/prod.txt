@@ -26,7 +26,6 @@ django_csp==2.0.3
 django-environ==0.4.0
 django-extensions==1.2.5
 django-filter==0.7
-django-mozilla-product-details==0.7.1
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
 django-quieter-formset==0.4
@@ -93,7 +92,27 @@ thrift==0.9.1
 tower==0.4.1
 urllib3==1.9
 
--r git.txt
+## Not on pypi.
+-e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
+-e git+https://github.com/miracle2k/django-tables.git@546f339308103880c823b2056830fcdc9220edd0#egg=django-tables
+-e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
+
+# Temporary fork.
+-e git+https://github.com/mozilla/schematic.git@a3adf69738a2d99b718be35eef58addd5857e11c#egg=schematic
+-e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
+-e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
+-e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
+-e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
+-e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
+-e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
+## Forked.
+-e git+https://github.com/washort/django-piston-oauth2.git@c89afee6f98241eb7ef6df57d3d5156fabbfa759#egg=django-piston-oauth2
+-e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
+-e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool
+
+
+## Out of date or not sure on pypi.
+-e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
 
 ## moved for 2014/04/02 deployment expediency
 MySQL-python==1.2.5
