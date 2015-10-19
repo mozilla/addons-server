@@ -1,5 +1,9 @@
 FROM mozillamarketplace/centos-mysql-mkt:0.2
 
+# Copy the most recent git HEAD information so that we can debug
+# the state of the docker image better
+COPY .git/logs/HEAD /git-rev.txt
+
 # Set the locale. This is mainly so that tests can write non-ascii files to
 # disk.
 ENV LANG en_US.UTF-8
