@@ -23,6 +23,7 @@ django-aesfield==0.1.2
 django-cache-nuggets==0.1.1
 django-cronjobs==0.2.3
 django_csp==2.0.3
+django-environ==0.4.0
 django-extensions==1.2.5
 django-filter==0.7
 django-multidb-router==0.5.1
