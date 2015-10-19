@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 13:34+0000\n"
+"PO-Revision-Date: 2015-10-19 15:56+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -475,19 +475,19 @@ msgstr "Funciona com"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilidade"
 
 #: apps/addons/templates/addons/details_box.html:61
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "Oculta"
 
 #: apps/addons/templates/addons/details_box.html:63
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "Não listada"
 
 #: apps/addons/templates/addons/details_box.html:71
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
@@ -1039,6 +1039,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Atenção:</strong> Este extra não foi revisto pela Mozilla e não pode"
+" ser instalado em versões de lançamento do Firefox 43 e superiores. Tenha "
+"cuidado quando instalar software de terceiros que pode danificar o seu "
+"computador."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1233,7 +1237,7 @@ msgstr "Etiquetas"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ícone para {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1245,7 +1249,7 @@ msgstr "por %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Descarregar mesmo assim"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1433,10 +1437,12 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Atenção:</strong> As versões de desenvolvimento deste extra não "
+"foram revistas pela Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Consulte o histórico completo do canal de desenvolvimento"
 
 #: apps/addons/templates/addons/impala/details.html:313
 #: apps/addons/templates/addons/impala/details.html:322
@@ -1843,7 +1849,7 @@ msgstr "Hub do desenvolvedor"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gerir chaves da API"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2114,11 +2120,11 @@ msgstr "{user} aprovou a {review} para {addon}."
 
 #: apps/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revisão {review} para {addon} eliminada."
 
 #: apps/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} eliminou {review} para {addon}."
 
 #: apps/amo/log.py:354
 msgid "Application max version for {version} updated."
@@ -2307,16 +2313,16 @@ msgstr "Classificação de conteúdo de {addon} alterada."
 
 #: apps/amo/log.py:586
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} não listado."
 
 #: apps/amo/log.py:592 apps/amo/log.py:598
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} assinado."
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Extra com o ID {0} com o GUID {1} foi eliminado"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2470,6 +2476,11 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p> Por favor introduza <strong>todas as palavras</strong> abaixo, "
+"<strong>separadas por um espaço se necessário</strong>. </p> <p> Se isto for"
+" difícil de ler, pode <a href=\"#\" id=\"recaptcha_different\">tentar com "
+"palavras diferentes</a> ou <a href=\"#\" id=\"recaptcha_audio\">experimentar"
+" um tipo de desafio diferente</a>. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:12
@@ -2558,7 +2569,7 @@ msgstr "Anterior"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Saltar para a última página"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -2772,7 +2783,7 @@ msgstr "Ícone"
 
 #: apps/bandwagon/forms.py:149
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Este nome não pode ser utilizado."
 
 #: apps/bandwagon/forms.py:157 apps/users/forms.py:433
 msgid "No links are allowed."
@@ -4193,7 +4204,7 @@ msgstr "Pacote de Idioma (Aplicação)"
 
 #: apps/constants/base.py:168
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pacote de idioma (extra)"
 
 #: apps/constants/base.py:169
 msgid "Plugin"
@@ -4219,7 +4230,7 @@ msgstr "Pacotes de Idioma (Aplicações)"
 
 #: apps/constants/base.py:181
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Pacotes de idioma (extra)"
 
 #: apps/constants/base.py:182
 msgid "Plugins"
@@ -4315,11 +4326,11 @@ msgstr "Análise atualizada do pacote de idioma"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bónus por revisões atrasadas"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dias antes dos pontos bónus serem aplicados"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -4355,7 +4366,7 @@ msgstr "Análise de extra moderada"
 
 #: apps/constants/base.py:491
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderação de revisão do extra revertida"
 
 #: apps/constants/base.py:538
 msgid "Level 1"
@@ -4383,27 +4394,27 @@ msgstr "Nível 6"
 
 #: apps/constants/base.py:544
 msgid "Level 7"
-msgstr ""
+msgstr "Nível 7"
 
 #: apps/constants/base.py:545
 msgid "Level 8"
-msgstr ""
+msgstr "Nível 8"
 
 #: apps/constants/base.py:546
 msgid "Level 9"
-msgstr ""
+msgstr "Nível 9"
 
 #: apps/constants/base.py:555
 msgid "Not signed"
-msgstr ""
+msgstr "Não sinalizado"
 
 #: apps/constants/base.py:556
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Sinalizado para análise completa"
 
 #: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Sinalizado para análise preliminar"
 
 #: apps/constants/editors.py:14
 #: apps/editors/templates/editors/themes/queue.html:76
@@ -4552,11 +4563,11 @@ msgstr "Senha incorrecta."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Objeto JSON inválido"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Mensagem não elegível para anotação"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
@@ -4632,10 +4643,11 @@ msgstr "Não foi possível validar o id do PayPal."
 #: apps/devhub/forms.py:388
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Tipo de ficheiro não suportado, por favor envie um arquivo {extensions}."
 
 #: apps/devhub/forms.py:407
 msgid "View current"
-msgstr ""
+msgstr "Ver atual"
 
 #: apps/devhub/forms.py:456
 msgid "Invalid version range."
@@ -4655,27 +4667,32 @@ msgstr "Sobrepor avaliação falhada"
 
 #: apps/devhub/forms.py:507
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Enviar o meu extra para revisão manual."
 
 #: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "Não listar o meu extra neste sítio (beta)"
 
 #: apps/devhub/forms.py:535
 msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr ""
+"Marque esta opção se pretender distribuir o seu extra pelos seus próprios "
+"meios e apenas precisa que o mesmo esteja assinado pela Mozilla."
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Este extra será incorporado com um instalador de aplicação."
 
 #: apps/devhub/forms.py:543
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Os extras que são incorporados com instaladores de aplicações terão o código"
+" revisto pela Mozilla antes de serem assinados e são acompanhados de um "
+"padrão de qualidade superior."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -4698,6 +4715,8 @@ msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
 msgstr ""
+"Um ficheiro com uma versão terminada com a|alpha|b|beta|pre|rc e com um "
+"número opcional, é detetada como beta."
 
 #: apps/devhub/forms.py:589
 msgid "Version %s already exists"
@@ -4707,12 +4726,15 @@ msgstr "A versão %s já existe"
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Escolha uma opção válida. Essa escolha não é uma das escolhas disponíveis."
 
 #: apps/devhub/forms.py:607
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
 msgstr ""
+"Um ficheiro com uma versão que termine com a|alpha|b|beta e um número "
+"opcional é detetado como beta."
 
 #: apps/devhub/forms.py:630
 msgid "You cannot upload any more files for this version."
@@ -4860,15 +4882,15 @@ msgstr "A senha está incorrecta. O extra não foi eliminado."
 
 #: apps/devhub/views.py:447
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Foi adicionado um autor ao seu extra"
 
 #: apps/devhub/views.py:454
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Um autor teve o seu papel alterado no seu extra"
 
 #: apps/devhub/views.py:473
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Foi removido um autor do seu extra"
 
 #: apps/devhub/views.py:516
 msgid "There were errors in your submission."

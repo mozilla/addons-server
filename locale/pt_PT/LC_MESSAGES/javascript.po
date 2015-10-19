@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 13:35+0000\n"
+"PO-Revision-Date: 2015-10-19 20:55+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -89,39 +89,42 @@ msgstr "Validação {0} terminada"
 
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "A validação do seu extra expirou; será revisto manualmente."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra foi validado sem erros e com {0} aviso."
+msgstr[1] "O seu extra foi validado sem erros e com {0} avisos."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "O seu extra foi validado sem erros e com {0} mensagem."
+msgstr[1] "O seu extra foi validado sem erros e com {0} mensagens."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "O seu extra foi validado sem erros ou avisos."
 
 #: static/js/common/upload-addon.js:444
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "A sua submissão irá passar por uma revisão manual."
 
 #: static/js/common/upload-addon.js:448
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "A sua submissão passou a validação e será automaticamente assinada."
 
 #: static/js/common/upload-addon.js:450
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"A sua submissão passou a validação manual e irá passar por uma revisão "
+"manual."
 
 #: static/js/common/upload-addon.js:478
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:479
 msgid ""
@@ -129,22 +132,29 @@ msgid ""
 " include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
+"Se para ser completamente testado, o seu extra requer uma conta para um "
+"sítio web, inclua um nome de utilizador e palavra-passe de teste nas Notas "
+"ao Revisor (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:480
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Se o seu extra está direcionado para uma audiência limitada, deve escolher "
+"Revisão Preliminar em vez de Revisão Completa."
 
 #: static/js/common/upload-addon.js:493
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Lista de controlo de submissão de extra"
 
 #: static/js/common/upload-addon.js:494
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Por favor, confirme os pontos seguintes antes de finalizar a sua submissão. "
+"Isto irá minimizar atrasos ou lapsos durante o processo de revisão:"
 
 #: static/js/common/upload-addon.js:496
 msgid ""
@@ -153,16 +163,24 @@ msgid ""
 " Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
+"Binários compilados, bem como scripts minificados ou ofuscados (excluindo "
+"bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente "
+"para revisão. Tenha a certeza que utiliza o campo de envio de código fonte "
+"para evitar que as sua submissão seja rejeitada."
 
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"O processo de validação encontrou estes problemas que podem levar a "
+"rejeições:"
 
 #: static/js/common/upload-addon.js:531
 msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it"
 " here."
 msgstr ""
+"Se não está familiarizado com o processo de revisão de extras, pode ler mais"
+" aqui sobre este processo."
 
 #: static/js/common/upload-addon.js:567
 msgid "Some platforms are not available for this type of add-on."
@@ -279,7 +297,7 @@ msgstr "Semana de {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " descargas"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -392,19 +410,19 @@ msgstr "Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Gestor de Promoção de Extras"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Gestor de Destaques de Extras"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Gestor de Saber Mais sobre Extras"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Sugestões de Pesquisa"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -458,15 +476,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Conheça o programador"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Perfil do utilizador"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Histórico de versões"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -567,7 +585,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
@@ -935,7 +953,7 @@ msgstr "Ver outras versões"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Apenas com o Firefox — Obter o Firefox agora!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid ""
@@ -1136,11 +1154,11 @@ msgstr "Erro ao carregar a tradução"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Ignorar esta mensagem em futuras atualizações"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Severidade para sinalização automática:"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1222,7 +1240,7 @@ msgstr "Aviso"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Sugestões para passar a assinatura automática:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
