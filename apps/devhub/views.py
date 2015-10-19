@@ -38,7 +38,7 @@ from amo import messages
 from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
-from amo.utils import escape_all, MenuItem
+from amo.utils import escape_all, MenuItem, send_mail_jinja
 from api.models import APIKey
 from applications.models import AppVersion
 from devhub import perf
@@ -1777,8 +1777,23 @@ def api_key(request):
         new_credentials = APIKey.new_jwt_credentials(request.user)
         log.info('new JWT key created: {}'.format(new_credentials))
 
+        send_key_change_email(request.user.email, new_credentials.key)
+
         return redirect(reverse('devhub.api_key'))
 
     return render(request, 'devhub/api/key.html',
                   {'title': _('Manage API Keys'),
                    'credentials': credentials})
+
+
+def send_key_change_email(to_email, key):
+    subject = _('New API key created')
+    template = 'devhub/email/new-key-email.ltxt'
+
+    send_mail_jinja(
+        subject=subject,
+        template=template,
+        context={'key': key},
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[to_email],
+    )

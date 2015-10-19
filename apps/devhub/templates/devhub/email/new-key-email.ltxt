@@ -1,0 +1,11 @@
+{% trans key=key, manage_url=url('devhub.api_key')|absolutify %}
+
+The following API Key was added to your account:
+{{ key }}
+
+If you believe this key was created in error, you can remove the key and
+disable access at the following location:
+
+{{ manage_url }}
+
+{% endtrans %}
