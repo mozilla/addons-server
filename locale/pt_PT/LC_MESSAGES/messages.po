@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 15:56+0000\n"
+"PO-Revision-Date: 2015-10-19 23:12+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4965,6 +4965,9 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"Antes de começar, por favor leia e aceite o nosso acordo de distribuição de "
+"extras do Firefox. Também tem uma ligação para a nossa Política de "
+"Privacidade que explica como gerimos a sua informação."
 
 #: apps/devhub/templates/devhub/agreement.html:13
 msgid "Printable Version"
@@ -5047,7 +5050,7 @@ msgstr "Torne-se num revisor AMO"
 
 #: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Saber tudo sobre extras"
 
 #: apps/devhub/templates/devhub/index.html:41
 msgid ""
@@ -5058,6 +5061,12 @@ msgid ""
 "and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
 "already have all the necessary skills to make a great add-on."
 msgstr ""
+"Os extras permitem que milhões de utilizadores do Firefox melhorem e "
+"personalizem a sua experiência de navegação. Se é um programador web e sabe "
+"<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e "
+"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem"
+" todas as capacidades necessárias para fazer um ótimo extra."
 
 #: apps/devhub/templates/devhub/index.html:51
 msgid ""
