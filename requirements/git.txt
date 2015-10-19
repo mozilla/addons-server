@@ -38,8 +38,7 @@ django_moz_header==0.0.1
 nuggets==0.1
 # git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 django_session_csrf==0.5
-# git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
-django_cache_machine==0.8
+git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
 ## Forked.
 # git+https://github.com/washort/django-piston-oauth2.git@c89afee6f98241eb7ef6df57d3d5156fabbfa759#egg=django-piston-oauth2
 django_piston==0.3dev
