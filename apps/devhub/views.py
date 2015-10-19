@@ -1774,16 +1774,24 @@ def api_key(request):
                 'Be sure to update all API clients with the new credentials.')
             messages.success(request, msg)
 
-        new_credentials = APIKey.new_jwt_credentials(request.user)
+        new_key = APIKey.new_jwt_credentials(request.user)
+        new_credentials = new_key['credentials']
         log.info('new JWT key created: {}'.format(new_credentials))
 
         send_key_change_email(request.user.email, new_credentials.key)
 
-        return redirect(reverse('devhub.api_key'))
+        return render(request, 'devhub/api/key.html',
+                      {'title': _('Manage API Keys'),
+                       'credentials': credentials,
+                       'secret': new_key['secret']})
+
+    secret = _('Click "Revoke and regenerate credentials" to obtain a new ' +
+               'secret')
 
     return render(request, 'devhub/api/key.html',
                   {'title': _('Manage API Keys'),
-                   'credentials': credentials})
+                   'credentials': credentials,
+                   'secret': secret})
 
 
 def send_key_change_email(to_email, key):
