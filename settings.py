@@ -43,8 +43,7 @@ HAS_SYSLOG = False  # syslog is used if HAS_SYSLOG and NOT DEBUG.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
-# Disables custom routing in settings.py so that tasks actually run.
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 CELERY_ROUTES = {}
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
@@ -68,10 +67,7 @@ SITE_URL = 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# Turn off validation by default on development instances, until we have an
-# easy way to install a working copy of Spidermonkey. Real Soon Now(R).
-# No, really, though, soon.
-VALIDATE_ADDONS = False
+VALIDATE_ADDONS = True
 
 ADDON_COLLECTOR_ID = 1
 
