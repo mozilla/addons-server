@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-20 22:30+0000\n"
+"PO-Revision-Date: 2015-10-20 22:39+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -13212,6 +13212,9 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
+"Sim, os autores de um extra podem fornecer uma única resposta a uma análise."
+" Pode colocar um tópico de discussão no nosso <a "
+"href=\"%(forum_url)s\">fórum</a> para continuar a discussão."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -13227,6 +13230,12 @@ msgid ""
 "release of your add-on, we may consider deleting the review. Submit your "
 "detailed request to amo-editors@mozilla.org."
 msgstr ""
+"No geral, não. Mas se análise não cumprir com as linhas orientadoras de "
+"análise descritas acima, pode clicar em \"Reportar esta análise\" para que a"
+" mesma seja moderada. Se uma análise tiver uma reclamação que já não seja "
+"válida devido ao lançamento de uma nova versão do extra, podemos considerar "
+"eliminar a análise. Submeta o seu pedido detalhado para amo-"
+"editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -13486,7 +13495,7 @@ msgstr "Responder à avaliação"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Editar resposta"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -13494,7 +13503,7 @@ msgstr "Editar revisão"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Eliminar resposta"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -13766,12 +13775,12 @@ msgstr "Postar no Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} Like"
+msgstr[1] "{0} Likes"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweet no Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -13781,15 +13790,15 @@ msgstr[1] "{0} tweets"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Partilhar no g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Publicar no Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Publicar no Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
@@ -14315,6 +14324,9 @@ msgid ""
 "more. Please update your password by <a href=\"%s\">issuing a password "
 "reset</a>."
 msgstr ""
+"Como parte da nossa nova política de palavras-passe, a sua palavra-passe "
+"deve ter pelo menos %s caracteres. Por favor atualize a sua palavra-passe <a"
+" href=\"%s\">solicitando uma reposição de palavra-passe</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -14376,7 +14388,7 @@ msgstr ""
 
 #: apps/users/forms.py:312
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Este nome de apresentação não pode ser utilizado."
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
@@ -14400,7 +14412,7 @@ msgstr ""
 
 #: apps/users/forms.py:535
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Por favor introduza pelo menos um nome a bloquear."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
@@ -14590,6 +14602,7 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Pedimos desculpa, mas não é elegível a solicitar uma t-shirt neste momento."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
@@ -15133,91 +15146,100 @@ msgstr "Reportar utilizador {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Pedido de t-shirt"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "T-shirt especial, edição para criadores de extras"
 
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Nota:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
 "You have already submitted a request for a t-shirt. You may re-submit this "
 "form to update your information, but you will only receive one shirt."
 msgstr ""
+"Já submeteu um pedido para uma t-shirt. Pode reenviar este formulário para "
+"atualizar a sua informação, mas apenas irá receber uma t-shirt."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid ""
 "Thank you for helping to make Firefox the most extensible browser available!"
 msgstr ""
+"Obrigado por ajudar a tornar o Firefox o navegador mais extensível "
+"disponível!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Como prenda de agradecimento, gostaríamos de lhe enviar uma t-shirt "
+"especial, desenhada pela comunidade. Para receber a sua t-shirt, por favor "
+"preencha o formulário abaixo."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Os seus dados de contacto apenas serão utilizados pela Mozilla para lhe "
+"enviar esta t-shirt especial."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Endereço de correio"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Nome completo"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "1ª linha de endereço"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "2ª linha de endereço"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Cidade"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Estado/Província (se aplicável)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Código postal (se aplicável)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefone"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informação da t-shirt"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Tamanho da t-shirt"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Será redirecionado para os Formulários da Google após a submissão."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Solicitar t-shirt"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
@@ -15226,6 +15248,10 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Lamentamos, para se candidatar a nossa edição especial desta t-shirt, deve "
+"ser um programador de extras com pelo menos um extra listado, um extra não-"
+"listado mas assinado ou um qualquer número de temas de fundo com uma média "
+"total combinada de 10000 utilizadores diários."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
@@ -15457,7 +15483,7 @@ msgstr ""
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logótipo do rodapé"
 
 #: templates/categories.html:2
 msgid "Choose a category"
