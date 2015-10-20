@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 23:56+0000\n"
+"PO-Revision-Date: 2015-10-20 00:32+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -8690,6 +8690,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Eu concordo com o <a href=\"%(agreement_url)s\" target=\"_blank\">acordo de "
+"distribuição de extra do Firefox</a> e com o facto da minha informação ser "
+"gerida tal como descrito na <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">política de privacidade para sítios web, comunicação e "
+"cookies</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8782,6 +8787,10 @@ msgid ""
 "ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
 "bugs</a> that you encounter."
 msgstr ""
+"O envio de atualizações para extras sem publicação para serem assinados está"
+" em versão beta aberta. Uma revisão manual pode ainda ser necessária para um"
+" grande número de extras. Por favor <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">reporte quaisquer bugs</a> que encontrar."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -8793,7 +8802,7 @@ msgstr "Para que tipo de revisão gostaria de nomear?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publicar esta versão apenas para o meu canal beta."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
@@ -8803,6 +8812,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(bugzilla_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"O comportamento do canal beta foi alterado para acomodar <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">a assinatura mandatória de "
+"extras</a>. O novo processo está atualmente em versão beta aberta e pode ser"
+" significativamente alterado num futuro próximo. Por favor <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">reporte quaisquer bugs</a> que "
+"encontrar."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8862,13 +8877,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Código fonte"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Se o seu extra contem código binário ou código ofuscado, disponibilize o "
+"código aqui para os revisores."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 #: apps/devhub/templates/devhub/versions/edit.html:149
@@ -8949,40 +8966,46 @@ msgstr "Cancelar pedido de revisão"
 
 #: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
-msgstr ""
+msgstr "Visibilidade do extra"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
-msgstr ""
+msgstr "Listado:"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid ""
 "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Visível para todos no {0} e incluído nos resultados de pesquisas e listagens"
+" em páginas"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
-msgstr ""
+msgstr "Oculto:"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
+"Alojado no {0}, mas oculto para todos exceto os autores. Utilizado para "
+"ocultar temporariamente listagens ou para as descontinuar."
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
-msgstr ""
+msgstr "Não-listado:"
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Não distribuído em {0}. Os programadores irão enviar novas versões para "
+"serem assinadas e distribuir os extras utilizando meios próprios. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:129
 msgid "Current versions"
-msgstr ""
+msgstr "Versões atuais"
 
 #: apps/devhub/templates/devhub/versions/list.html:135
 msgid "Currently on AMO"
@@ -9026,7 +9049,7 @@ msgstr "Carregar uma nova versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Revisão completa pode não ser necessária"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -9034,10 +9057,14 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Extras não listados não precisam de Revisões Completas a menos que sejam "
+"distribuídas como uma parte de um instalador de aplicações. Leia <a "
+"href=\"{link}\" target=\"_blank\">esta documentação</a> para mais "
+"informação."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Solicitar uma revisão completa"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -9096,22 +9123,25 @@ msgstr "Adicionar versão"
 #: apps/devhub/templates/devhub/versions/list.html:272
 #: apps/devhub/templates/devhub/versions/list.html:290
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ocultar extra"
 
 #: apps/devhub/templates/devhub/versions/list.html:275
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
 msgstr ""
+"Ocultar o seu extra irá impedir que o mesmo seja apresentado em qualquer "
+"lugar na nossa galeria e irá impedir que os utilizadores possam receber "
+"atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Tem a certeza que pretende ocultar o seu extra?"
 
 #: apps/devhub/templates/devhub/versions/list.html:302
 #: apps/devhub/templates/devhub/versions/list.html:331
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Não listar extra"
 
 #: apps/devhub/templates/devhub/versions/list.html:305
 msgid ""
@@ -9122,6 +9152,13 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf"
 " file for automatic updates."
 msgstr ""
+"Ao não listar o seu extra irá fazer com que o mesmo (e respetivas "
+"versões/ficheiros) fiquem invisíveis para este sítio web. Não será "
+"apresentado em pesquisas, não terá uma página pública e não será atualizado "
+"de forma automática para os utilizadores atuais. É recomendável que os "
+"extras não listados forneçam uma <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> personalizada no seu ficheiro install.rdf "
+"para atualizações automáticas."
 
 #: apps/devhub/templates/devhub/versions/list.html:315
 msgid ""
@@ -9129,18 +9166,21 @@ msgid ""
 "href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Alterar os extras para o modo não listado está em versão beta aberta. Por "
+"favor <a href=\"%(bugzilla_url)s\" target=\"_blank\">reporte quaisquer "
+"bugs</a> que encontrar."
 
 #: apps/devhub/templates/devhub/versions/list.html:321
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "A não-listagem de um extra é irreversível!"
 
 #: apps/devhub/templates/devhub/versions/list.html:321
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Um extra não-listado não pode ser modificado para ser listado."
 
 #: apps/devhub/templates/devhub/versions/list.html:323
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Tem a certeza que pretende não listar o seu extra?"
 
 #: apps/devhub/templates/devhub/versions/list.html:346
 msgid ""
@@ -9349,7 +9389,7 @@ msgstr "Extras para vencedores do concurso Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Quais são os seus interesses?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9522,15 +9562,15 @@ msgstr "Filtro por tipo/acção"
 
 #: apps/editors/forms.py:58
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Passou a validação automática"
 
 #: apps/editors/forms.py:60
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Falhou a validação automática"
 
 #: apps/editors/forms.py:62
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrado por validação automática"
 
 #: apps/editors/forms.py:69
 msgid "containing"
@@ -9614,7 +9654,7 @@ msgstr "Limpar propriedade de administração"
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Limpar a etiqueta de mais informação solicitada"
 
 #: apps/editors/forms.py:281
 msgid "Choose a canned response..."
@@ -9688,15 +9728,15 @@ msgstr "Atualizar temas"
 
 #: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Atualizações pendentes não-listadas"
 
 #: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Análise completas não-listadas"
 
 #: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Análises preliminares não-listadas"
 
 #: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
@@ -9731,20 +9771,20 @@ msgstr[1] "Revisões moderadas ({0})"
 #: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Análise completa não-listada ({0})"
+msgstr[1] "Análises completas não-listadas ({0})"
 
 #: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Atualização pendente não-listada ({0})"
+msgstr[1] "Atualizações pendentes não-listadas ({0})"
 
 #: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Análise preliminar não-listada ({0})"
+msgstr[1] "Análises preliminares não-listadas ({0})"
 
 #: apps/editors/helpers.py:260
 msgid "Addon"
@@ -9814,7 +9854,7 @@ msgstr "Enviar para o público"
 
 #: apps/editors/helpers.py:485
 msgid "Grant full review"
-msgstr ""
+msgstr "Atribuir revisão completa"
 
 #: apps/editors/helpers.py:500
 msgid "Request more information"
@@ -9951,7 +9991,7 @@ msgstr "Contém comentários do editor"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Fontes fornecidas"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
@@ -10024,7 +10064,7 @@ msgstr "necessita de super revisão"
 
 #: apps/editors/views.py:787
 msgid "commented"
-msgstr ""
+msgstr "comentado"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -10074,7 +10114,7 @@ msgstr "Esperas"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Filas não-listadas"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -10098,7 +10138,7 @@ msgstr "Registo da moderação da revisão "
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Registo de ficheiros beta assinados"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
@@ -10146,23 +10186,23 @@ msgstr "Detalhes do registo"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Título do extra"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Título da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Texto da revisão"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "A revisão foi marcada antes da eliminação."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Cancelar eliminação"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -10202,20 +10242,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Análise completa não-listada ({num})"
+msgstr[1] "Análises completas não-listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Atualização pendente não-listada ({num})"
+msgstr[1] "Atualizações pendentes não-listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Análise preliminar não-listada ({num})"
+msgstr[1] "Análises preliminares não-listadas ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
@@ -10395,7 +10435,7 @@ msgstr "Revisão {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Histórico de alterações do utilizador para o extra"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
@@ -10416,15 +10456,15 @@ msgstr "Compatibilidade:"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Fontes adicionais:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Descarregar ficheiros"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "O programador forneceu o código fonte."
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
@@ -10464,10 +10504,13 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"O quadro branco é o sítio para trocar informação relevante para este extra "
+"(qualquer que seja a versão), entre o programador e o editor. Isto é visível"
+" e editável por ambos."
 
 #: apps/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Atualizar o quadro branco"
 
 #: apps/editors/templates/editors/review.html:257
 #: apps/editors/templates/editors/review.html:258
@@ -10819,19 +10862,19 @@ msgstr "Não foi possível fazer parse a install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Não foi possível encontrar um ID do extra."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "O ID do extra deve ter no máximo 64 caracteres."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "O ID do extra não coincide com o extra."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Foi encontrado um ID de extra duplicado."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -11485,6 +11528,9 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>Como construo um Extra?</h3> <p> A Mozilla fornece documentação sobre "
+"como construir um extra na <a href=\"%(url)s\">Rede de Programadores da "
+"Mozilla</a>. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -11493,10 +11539,11 @@ msgstr "Outros recursos incluem:"
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
 msgstr ""
+"Artigo \"Como desenvolver uma extensão para o Firefox\" no blogue de Extras"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blogue de extras da Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
