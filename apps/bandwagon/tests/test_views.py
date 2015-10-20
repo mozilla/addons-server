@@ -1272,3 +1272,33 @@ class TestCollectionForm(amo.tests.TestCase):
             'description': '<a href="http://example.com">example.com</a>'}
         with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
             form.clean_description()
+
+    def test_honeypot_not_required(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+            }
+        )
+
+        assert form.is_valid()
+
+    def test_honeypot_fails_on_entry(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+                'your_name': "I'm a super dumb bot",
+            }
+        )
+
+        assert not form.is_valid()
+        assert 'spam' in form.errors['__all__'][0]

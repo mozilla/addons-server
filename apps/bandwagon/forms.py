@@ -48,7 +48,6 @@ class AddonsForm(Form):
                                     required=False)
 
     def clean_addon(self):
-
         addons = []
         for a in self.data.getlist('addon'):
             try:
@@ -136,12 +135,27 @@ class CollectionForm(ModelForm):
     icon = forms.FileField(label=_lazy(u'Icon'),
                            required=False)
 
+    # This is just a honeypot field for bots to get caught
+    your_name = forms.CharField(
+        label=_lazy(
+            u"Please don't fill out this field, it's used to catch bots"),
+        required=False)
+
     def __init__(self, *args, **kw):
         super(CollectionForm, self).__init__(*args, **kw)
         # You can't edit the slugs for the special types.
         if (self.instance and
                 self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
             del self.fields['slug']
+
+    def clean(self):
+        # Raise the honeypot validation error here to
+        # keep it being rased in the __all__ section of the
+        # form errors.
+        if self.cleaned_data['your_name']:
+            raise forms.ValidationError(
+                "You've been flagged as spam, sorry about that.")
+        return super(CollectionForm, self).clean()
 
     def clean_name(self):
         name = self.cleaned_data['name']

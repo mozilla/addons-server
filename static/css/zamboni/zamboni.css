@@ -3396,6 +3396,11 @@ td.input {
     padding: 1em;
 }
 
+/* Hide this honeypot field for our users */
+.collection-create input[name="your_name"] {
+    display: none;
+}
+
 .contributor span {
     position: relative;
 }
