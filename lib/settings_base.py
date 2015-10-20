@@ -591,8 +591,6 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
