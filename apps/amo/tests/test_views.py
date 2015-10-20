@@ -5,6 +5,7 @@ import urllib
 
 from django import test
 from django.conf import settings
+from django.test.utils import override_settings
 
 import commonware.log
 from lxml import etree
@@ -394,6 +395,7 @@ class TestContribute(amo.tests.TestCase):
 
 class TestRobots(amo.tests.TestCase):
 
+    @override_settings(ENGAGE_ROBOTS=True)
     def test_disable_collections(self):
         """Make sure /en-US/firefox/collections/ gets disabled"""
         url = reverse('collections.list')
