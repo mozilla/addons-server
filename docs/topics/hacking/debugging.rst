@@ -53,8 +53,12 @@ The `Django Debug Toolbar`_ is very powerful and useful when viewing pages from
 the website, to check the view used, its parameters, the SQL queries, the
 templates rendered and their context...
 
-It should be enabled local development as long as ``settings.DEBUG`` is set to
-``True`` (which it is by default).
+To enable it add the following setting to your ``local_settings.py`` file (you
+may need to create it)::
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_enabled",
+    }
 
 All being well it should look like this at the top-right of any web page on
 olympia:

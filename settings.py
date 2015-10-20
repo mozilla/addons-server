@@ -43,8 +43,7 @@ HAS_SYSLOG = False  # syslog is used if HAS_SYSLOG and NOT DEBUG.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
-# Disables custom routing in settings.py so that tasks actually run.
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 CELERY_ROUTES = {}
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
@@ -68,10 +67,7 @@ SITE_URL = 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# Turn off validation by default on development instances, until we have an
-# easy way to install a working copy of Spidermonkey. Real Soon Now(R).
-# No, really, though, soon.
-VALIDATE_ADDONS = False
+VALIDATE_ADDONS = True
 
 ADDON_COLLECTOR_ID = 1
 
@@ -90,7 +86,12 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False  # Prevent DDT from patching the settings.
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 
 
-def show_toolbar_callback(request):
+def debug_toolbar_disabled(request):
+    """Callback used by the Django Debug Toolbar to decide when to display."""
+    return False
+
+
+def debug_toolbar_enabled(request):
     """Callback used by the Django Debug Toolbar to decide when to display."""
     # We want to make sure to have the DEBUG value at runtime, not the one we
     # have in this specific settings file.
@@ -99,7 +100,7 @@ def show_toolbar_callback(request):
 
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "settings.show_toolbar_callback",
+    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
 }
 
 AES_KEYS = {
