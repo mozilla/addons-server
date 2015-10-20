@@ -370,12 +370,15 @@ def ajax_list(request):
         return http.HttpResponseBadRequest()
 
     # Get collections associated with this user
-    collections = Collection.objects.publishable_by(request.amo_user)
+    has_addon = """
+        select 1 from addons_collections as ac
+            where ac.addon_id = %s and ac.collection_id = collections.id
+            limit 1"""
 
-    for collection in collections:
-        # See if the collections contains the addon
-        if addon_id in collection.addons.values_list('id', flat=True):
-            collection.has_addon = True
+    collections = Collection.objects.publishable_by(request.amo_user) \
+        .extra(
+            select={'has_addon': has_addon},
+            select_params=(addon_id,))
 
     return render(request, 'bandwagon/ajax_list.html',
                   {'collections': collections})
