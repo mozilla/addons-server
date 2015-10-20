@@ -25,7 +25,7 @@ class UserAdmin(admin.ModelAdmin):
         }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',
-                       'display_collections_fav', 'emailhidden',
+                       'display_collections_fav',
                        'notifycompat', 'notifyevents'),
         }),
         ('Admin', {

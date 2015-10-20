@@ -257,14 +257,6 @@ class Contribution(amo.models.ModelBase):
         from_email = settings.DEFAULT_FROM_EMAIL
         if self.addon.support_email:
             from_email = str(self.addon.support_email)
-        else:
-            try:
-                author = self.addon.listed_authors[0]
-                if author.email and not author.emailhidden:
-                    from_email = author.email
-            except (IndexError, TypeError):
-                # This shouldn't happen, but the default set above is still ok.
-                pass
 
         # We need the contributor's email.
         to_email = self.post_data['payer_email']

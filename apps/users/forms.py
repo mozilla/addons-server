@@ -284,8 +284,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     class Meta:
         model = UserProfile
         fields = ('username', 'display_name', 'location', 'occupation',
-                  'password', 'password2', 'recaptcha', 'homepage', 'email',
-                  'emailhidden')
+                  'password', 'password2', 'recaptcha', 'homepage', 'email')
 
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)

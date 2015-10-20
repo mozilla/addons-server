@@ -64,13 +64,6 @@
               {{ form.email }}
               {{ form.email.errors }}
             </li>
-            <li class="check">
-              <label for="id_emailhidden" class="check">
-                {{ form.emailhidden }}
-                {{ _('Hide email address from other users') }}
-              </label>
-              {{ form.emailhidden.errors }}
-            </li>
             <li{% if form.password.errors %} class="error"{% endif %}>
               <label for="id_password">{{ _('Password') }} {{ required() }}</label>
               {{ form.password }}
