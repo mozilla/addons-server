@@ -386,6 +386,11 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    @patch('bandwagon.views.statsd.incr')
+    def test_create_collection_statsd(self, mock_incr):
+        self.client.post(self.add_url, self.data, follow=True)
+        mock_incr.assert_any_call('collections.created')
+
     def test_restricted(self, **kw):
         g, created = Group.objects.get_or_create(rules='Restricted:UGC')
         self.client.login(username='clouserw@gmail.com',
@@ -1272,3 +1277,51 @@ class TestCollectionForm(amo.tests.TestCase):
             'description': '<a href="http://example.com">example.com</a>'}
         with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
             form.clean_description()
+
+    def test_honeypot_not_required(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+            }
+        )
+
+        assert form.is_valid()
+
+    def test_honeypot_fails_on_entry(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+                'your_name': "I'm a super dumb bot",
+            }
+        )
+
+        assert not form.is_valid()
+        assert 'spam' in form.errors['__all__'][0]
+
+    @patch('bandwagon.forms.statsd.incr')
+    def test_honeypot_statsd_incr(self, mock_incr):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+                'your_name': "I'm a super dumb bot",
+            }
+        )
+
+        assert not form.is_valid()
+
+        mock_incr.assert_any_call('collections.honeypotted')

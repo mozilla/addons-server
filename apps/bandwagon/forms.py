@@ -6,6 +6,7 @@ from django.core.files.storage import default_storage as storage
 
 import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
+from django_statsd.clients import statsd
 
 import amo
 from amo.utils import clean_nl, has_links, slug_validator, slugify
@@ -48,7 +49,6 @@ class AddonsForm(Form):
                                     required=False)
 
     def clean_addon(self):
-
         addons = []
         for a in self.data.getlist('addon'):
             try:
@@ -136,12 +136,29 @@ class CollectionForm(ModelForm):
     icon = forms.FileField(label=_lazy(u'Icon'),
                            required=False)
 
+    # This is just a honeypot field for bots to get caught
+    # L10n: bots is short for robots
+    your_name = forms.CharField(
+        label=_lazy(
+            u"Please don't fill out this field, it's used to catch bots"),
+        required=False)
+
     def __init__(self, *args, **kw):
         super(CollectionForm, self).__init__(*args, **kw)
         # You can't edit the slugs for the special types.
         if (self.instance and
                 self.instance.type in amo.COLLECTION_SPECIAL_SLUGS):
             del self.fields['slug']
+
+    def clean(self):
+        # Check the honeypot here instead of 'clean_your_name' so the
+        # error message appears at the top of the form in the __all__ section
+        if self.cleaned_data['your_name']:
+            statsd.incr('collections.honeypotted')
+            log.info('Bot trapped in honeypot at collections.create')
+            raise forms.ValidationError(
+                "You've been flagged as spam, sorry about that.")
+        return super(CollectionForm, self).clean()
 
     def clean_name(self):
         name = self.cleaned_data['name']

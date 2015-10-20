@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_protect
 import caching.base as caching
 import commonware.log
 from tower import ugettext_lazy as _lazy, ugettext as _
+from django_statsd.clients import statsd
 
 import amo
 from amo import messages
@@ -330,6 +331,7 @@ def add(request):
             if aform.is_valid():
                 aform.save(collection)
             collection_message(request, collection, 'add')
+            statsd.incr('collections.created')
             log.info('Created collection %s' % collection.id)
             return http.HttpResponseRedirect(collection.get_url_path())
         else:

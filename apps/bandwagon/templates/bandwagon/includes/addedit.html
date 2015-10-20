@@ -1,6 +1,9 @@
 {{ csrf() }}
 
 <fieldset>
+  {# Honeypot field for bots to get caught #}
+  {{ form.your_name }}
+
   {{ field(form.name, _('Name:'), class='long') }}
   {% if form.slug %}
     <p id="collection-form-slug">
