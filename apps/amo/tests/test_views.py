@@ -390,3 +390,13 @@ class TestContribute(amo.tests.TestCase):
         res = self.client.get('/contribute.json')
         eq_(res.status_code, 200)
         eq_(res._headers['content-type'], ('Content-Type', 'application/json'))
+
+
+class TestRobots(amo.tests.TestCase):
+
+    def test_disable_collections(self):
+        """Make sure /en-US/firefox/collections/ gets disabled"""
+        url = reverse('collections.list')
+        response = self.client.get('/robots.txt')
+        eq_(response.status_code, 200)
+        assert 'Disallow: %s' % url in response.content
