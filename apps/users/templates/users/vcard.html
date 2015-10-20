@@ -24,12 +24,6 @@
           {{ profile.homepage }}</a></td>
       </tr>
     {% endif %}
-    {% if not profile.emailhidden %}
-      <tr>
-        <th>{{ _('Email address') }}</th>
-        <td>{{ emaillink(profile.email) }}</td>
-      </tr>
-    {% endif %}
     <tr>
       <th>{{ _('User since') }}</th>
       <td>{{ profile.created|datetime }}</td>
