@@ -4,9 +4,7 @@
 
 {% block primary %}
 
-<form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
-    data-automatic-validation="{% if waffle.flag('automatic-validation') %}true{% else %}false{% endif %}"
-    data-unlisted-addons="{% if waffle.flag('unlisted-addons') %}true{% else %}false{% endif %}">
+<form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data">
   {{ csrf() }}
   <h3>{{ _('Step 2. Upload Your Add-on') }}</h3>
   <p>
@@ -21,41 +19,37 @@
   <div class="hidden">
     {{ new_addon_form.upload }}
   </div>
-  {% if waffle.flag('unlisted-addons') %}
-    <div class="list-addon">
-      <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
-      <div>
-        <label for="{{ new_addon_form.is_unlisted.auto_id }}">
-          {{ new_addon_form.is_unlisted }}
-          {{ new_addon_form.is_unlisted.label }}
-          <span class="tip tooltip"
-                title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
-          <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
-            {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
-              Submission of unlisted add-ons for signing is currently in an
-              open beta. Manual review may still be required for a large
-              number of add-ons. Please
-              <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
-              that you encounter.
-            {% endtrans %}
-          </span>
-        </label>
-        <label for="{{ new_addon_form.is_sideload.auto_id }}">
-          {{ new_addon_form.is_sideload }}
-          {{ new_addon_form.is_sideload.label }}
-          <span class="tip tooltip"
-                title="{{ new_addon_form.is_sideload.help_text }}">?</span>
-        </label>
-      </div>
+  <div class="list-addon">
+    <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
+    <div>
+      <label for="{{ new_addon_form.is_unlisted.auto_id }}">
+        {{ new_addon_form.is_unlisted }}
+        {{ new_addon_form.is_unlisted.label }}
+        <span class="tip tooltip"
+              title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
+        <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
+          {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+            Submission of unlisted add-ons for signing is currently in an
+            open beta. Manual review may still be required for a large
+            number of add-ons. Please
+            <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
+            that you encounter.
+          {% endtrans %}
+        </span>
+      </label>
+      <label for="{{ new_addon_form.is_sideload.auto_id }}">
+        {{ new_addon_form.is_sideload }}
+        {{ new_addon_form.is_sideload.label }}
+        <span class="tip tooltip"
+              title="{{ new_addon_form.is_sideload.help_text }}">?</span>
+      </label>
     </div>
-  {% endif %}
+  </div>
   <input type="file" id="upload-addon"
     data-upload-url="{{ url('devhub.upload') }}"
-    {% if waffle.flag('unlisted-addons') %}
-      data-upload-url-listed="{{ url('devhub.upload') }}"
-      data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}"
-      data-upload-url-sideload="{{ url('devhub.upload_sideload') }}"
-    {% endif %}>
+    data-upload-url-listed="{{ url('devhub.upload') }}"
+    data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}"
+    data-upload-url-sideload="{{ url('devhub.upload_sideload') }}">
 
   {{ new_addon_form.non_field_errors() }}
 

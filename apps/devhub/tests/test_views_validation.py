@@ -319,7 +319,6 @@ class TestValidateAddon(amo.tests.TestCase):
         eq_(r.status_code, 302)
 
     def test_context(self):
-        self.create_flag('unlisted-addons')
         r = self.client.get(reverse('devhub.validate_addon'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
