@@ -5,6 +5,7 @@ import urllib
 
 from django import test
 from django.conf import settings
+from django.test.utils import override_settings
 
 import commonware.log
 from lxml import etree
@@ -390,3 +391,14 @@ class TestContribute(amo.tests.TestCase):
         res = self.client.get('/contribute.json')
         eq_(res.status_code, 200)
         eq_(res._headers['content-type'], ('Content-Type', 'application/json'))
+
+
+class TestRobots(amo.tests.TestCase):
+
+    @override_settings(ENGAGE_ROBOTS=True)
+    def test_disable_collections(self):
+        """Make sure /en-US/firefox/collections/ gets disabled"""
+        url = reverse('collections.list')
+        response = self.client.get('/robots.txt')
+        eq_(response.status_code, 200)
+        assert 'Disallow: %s' % url in response.content

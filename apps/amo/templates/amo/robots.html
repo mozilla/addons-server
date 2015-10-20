@@ -17,6 +17,7 @@ Disallow: /{{ a.short }}{{ remora_url('downloads', lang='', app='') }}/
 
 Disallow: /{{ l }}/{{ a.short }}{{ url('search.search', add_prefix=False) }}
 Disallow: /{{ l }}/{{ a.short }}{{ url('password_reset_form', add_prefix=False) }}
+Disallow: /{{ l }}/{{ a.short }}{{ url('collections.list', add_prefix=False) }}
 {% endfor %}
 
 {% endfor %}
