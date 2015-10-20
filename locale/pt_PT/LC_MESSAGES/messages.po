@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-20 00:38+0000\n"
+"PO-Revision-Date: 2015-10-20 22:30+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -11733,7 +11733,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Como melhorar o desempenho do meu extra?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
@@ -11743,6 +11743,11 @@ msgid ""
 "you improve performance, whether you're developing core Mozilla code or an "
 "add-on."
 msgstr ""
+"Extensões mal escritas podem ter um impacto significativo na experiência de "
+"navegação, incluindo na performance geral do próprio Firefox. A página "
+"seguinte contém <a href=\"%(url)s\">guias</a> muito bons que podem ajudá-lo "
+"a melhorar o desempenho, quer esteja a desenvolver código central para a "
+"Mozilla ou um extra."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -11755,6 +11760,11 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Sim. Detalhes sobre como traduzir o seu extra podem ser encontrados na <a "
+"href=\"%(l10n_url)s\">página de Tradução da Central de Programadores da "
+"Mozilla</a>. <a href=\"%(bz_url)s\">O projeto BabelZilla</a> é também um "
+"ótimo recurso para saber mais sobre tradução e contribuir com a tradução de "
+"extras."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -11777,6 +11787,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (para discussões sobre o SDK de Extras e cfx/jpm - anteriormente "
+"conhecido por Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -11795,11 +11807,11 @@ msgstr "Grupo do Google"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Fórum de Extras"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -11824,6 +11836,11 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Sim. Pode encontrar outros programadores através do <a "
+"href=\"%(forum_url)s\">fórum de Extras</a>, <a href=\"%(list_url)s\">lista "
+"mozilla.jobs</a>, <a href=\"%(mz_url)s\">fóruns mozillaZine</a> ou <a "
+"href=\"%(wiki_url)s\">na Wiki da Mozilla</a>. Tenha em consideração que a "
+"Mozilla não fornece recomendações para programadores."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -12066,6 +12083,11 @@ msgid ""
 " are addressed prior to submitting their add-on for review. This will "
 "greatly assist in expediting the review process."
 msgstr ""
+"A equipa editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão "
+"para editores</a> ao testar um extra para aceitação no AMO. É importante que"
+" os programadores de extras analisem este guia para garantir que áreas "
+"problemáticas frequentes são trabalhadas antes de submeter os seus extras "
+"para revisão. Isto irá tornar o processo de revisão mais expedito."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -12395,13 +12417,15 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Uma comparação de licenças de código aberto conhecidas na Wikipédia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"Um sítio para fornecer indicações sem juízos de valor sobre a escolha da "
+"licença para o seu projeto de código aberto."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
@@ -12719,6 +12743,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Com milhares de extras disponíveis, existe sempre alguma algo para toda a "
+"gente. Mas se está à procura de um extra específico e não o consegue "
+"encontrar, pode tentar procurar em outros sítios ou fazer uma entrada no "
+"nosso fórum de <a href=\"%(forum_url)s\">Extras</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -13033,6 +13061,10 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
+"As análises de extras são uma forma de você partilhar as suas opiniões sobre"
+" os extras que instalou e utilizou. A nossa equipa de moderação reserva-se "
+"ao direito de recusar ou de remover qualquer análise que não cumpra estas "
+"orientações."
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
@@ -13077,6 +13109,8 @@ msgstr "Você continuará usando este extra?"
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Leia novamente a sua análise antes de a enviar para minimizar erros "
+"ortográficos."
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
@@ -13085,6 +13119,8 @@ msgstr "O que não fazer:"
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Submeter análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\" ou "
+"\"mau\"."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -13092,6 +13128,10 @@ msgid ""
 "available support options for each add-on, if available. You can find them "
 "in the side column next to the About this Add-on section."
 msgstr ""
+"Colocar problemas técnicos, pedidos de apoio ou sugestões de "
+"funcionalidades. Se disponível, utilize as opções de apoio disponíveis para "
+"cada extra. Pode encontrá-las na coluna lateral perto da secção Sobre este "
+"extra."
 
 #: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
@@ -13109,6 +13149,8 @@ msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
+"Incluir HTML, ligações, código fonte ou pedaços de código. As análises devem"
+" ser apenas texto."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid ""
@@ -13122,6 +13164,8 @@ msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
+"Incluir o seu e-mail, número de telefone ou quaisquer outros dados ou os de "
+"qualquer outra pessoa."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid ""
@@ -13137,6 +13181,10 @@ msgid ""
 "gathering, when that is the intended purpose of the add-on, or the add-on "
 "requires gathering data to function."
 msgstr ""
+"Criticar um extra por algo que é suposto fazer. Por exemplo, deixar uma "
+"análise negativa de um extra por apresentar publicidade ou necessitar de "
+"recolher dados, quando este é o objetivo do extra, ou se o extra necessita "
+"de recolher dados para funcionar."
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
@@ -13149,6 +13197,10 @@ msgid ""
 "moderation team will use the Review Guidelines to evaluate whether or not to"
 " delete the review or restore it back to the site."
 msgstr ""
+"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em "
+"\"Reportar esta análise\" e esta será submetida para o sítio para moderação."
+" A nossa equipa de moderação irá utilizar as linhas orientadoras da revisão "
+"para avaliar se análise deve ser eliminada ou reposta no sítio."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
