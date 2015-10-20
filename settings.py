@@ -86,7 +86,12 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False  # Prevent DDT from patching the settings.
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 
 
-def show_toolbar_callback(request):
+def debug_toolbar_disabled(request):
+    """Callback used by the Django Debug Toolbar to decide when to display."""
+    return False
+
+
+def debug_toolbar_enabled(request):
     """Callback used by the Django Debug Toolbar to decide when to display."""
     # We want to make sure to have the DEBUG value at runtime, not the one we
     # have in this specific settings file.
@@ -95,7 +100,7 @@ def show_toolbar_callback(request):
 
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "settings.show_toolbar_callback",
+    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
 }
 
 AES_KEYS = {
