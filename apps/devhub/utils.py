@@ -145,6 +145,8 @@ class ValidationAnnotator(object):
                 addon_data = parse_addon(file_, check=False)
             except ValidationError:
                 addon_data = None
+            else:
+                file_.update(version=addon_data.get('version'))
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
