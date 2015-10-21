@@ -372,7 +372,7 @@ def ajax_list(request):
     # Get collections associated with this user
     has_addon = """
         select 1 from addons_collections as ac
-            where ac.addon_id = %s and ac.collection_id = collections.id
+            where ac.addon_id = %d and ac.collection_id = collections.id
             limit 1"""
 
     collections = Collection.objects.publishable_by(request.amo_user) \
