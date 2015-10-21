@@ -369,7 +369,8 @@ def ajax_list(request):
     except (KeyError, ValueError):
         return http.HttpResponseBadRequest()
 
-    collections = (Collection.objects
+    collections = (
+        Collection.objects
         .publishable_by(request.amo_user)
         .with_has_addon(addon_id))
 

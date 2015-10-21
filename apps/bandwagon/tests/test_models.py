@@ -222,7 +222,10 @@ class TestCollectionQuerySet(amo.tests.TestCase):
         collection = Collection.objects.create(author=user)
         addon = Addon.objects.all()[0]
 
-        qset = Collection.objects.filter(pk=collection.id).with_has_addon(addon.id)
+        qset = (
+            Collection.objects
+            .filter(pk=collection.id)
+            .with_has_addon(addon.id))
 
         assert not qset.first().has_addon
 
