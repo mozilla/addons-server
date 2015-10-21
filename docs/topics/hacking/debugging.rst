@@ -15,8 +15,19 @@ As with ipdb normally just add a line in your code at the relevant point:
 
     import ipdb; ipdb.set_trace()
 
-Next open a shell on the running web container (requires you to have
-installed docker-utils_ first)::
+Next open a shell on the running web container::
+
+    docker exec -t -i olympia_web_1 supervisorctl fg olympia
+
+This will bring the Django management server to the foreground and you
+can interact with ipdb as you would normally. To quit you can just type
+``Ctrl+c``.
+
+All being well it should look like this:
+
+.. image:: /screenshots/docker-ipdb.png
+
+If you would rather use docker-utils_ you can do the following::
 
     docker-utils bash web
 
@@ -35,15 +46,11 @@ prompt::
 
     supervisor> fg olympia
 
-This will bring the Django management server to the foreground and you
-can interact with ipdb as you would normally. To quit you can just type
-``Ctrl+c`` (this will bring you back to the supervisorctl prompt). There
-you can type ``exit`` to quit (sometimes exiting the supervisorctl prompt
-doesn't respond so closing that shell is another option).
+To quit you can just type ``Ctrl+c`` (this will bring you back to the
+supervisorctl prompt). There you can type ``exit`` to quit (sometimes exiting
+the supervisorctl prompt doesn't respond so closing that shell is another
+option).
 
-All being well it should look like this:
-
-.. image:: /screenshots/docker-ipdb.png
 
 
 Using the Django Debug Toolbar
