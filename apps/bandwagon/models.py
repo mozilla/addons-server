@@ -48,7 +48,11 @@ class TopTags(object):
 class CollectionQuerySet(caching.CachingQuerySet):
 
     def with_has_addon(self, addon_id):
-        """Annotate a collection with a `has_addon` property related to `addon_id`"""
+        """Add a `has_addon` property to each collection.
+
+        `has_addon` will be `True` if `addon_id` exists in that
+        particular collection.
+        """
         has_addon = """
             select 1 from addons_collections as ac
                 where ac.addon_id = %s and ac.collection_id = collections.id
