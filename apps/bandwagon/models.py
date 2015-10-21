@@ -45,10 +45,25 @@ class TopTags(object):
         cache.set(self.key(obj), value, two_days)
 
 
+class CollectionQuerySet(caching.CachingQuerySet):
+
+    def with_has_addon(self, addon_id):
+        """Annotate a collection with a `has_addon` property related to `addon_id`"""
+        has_addon = """
+            select 1 from addons_collections as ac
+                where ac.addon_id = %s and ac.collection_id = collections.id
+                limit 1"""
+
+        return self.extra(
+            select={'has_addon': has_addon},
+            select_params=(addon_id,))
+
+
 class CollectionManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(CollectionManager, self).get_query_set()
+        qs = qs._clone(klass=CollectionQuerySet)
         return qs.transform(Collection.transformer)
 
     def manual(self):

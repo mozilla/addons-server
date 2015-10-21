@@ -369,16 +369,9 @@ def ajax_list(request):
     except (KeyError, ValueError):
         return http.HttpResponseBadRequest()
 
-    # Get collections associated with this user
-    has_addon = """
-        select 1 from addons_collections as ac
-            where ac.addon_id = %s and ac.collection_id = collections.id
-            limit 1"""
-
-    collections = Collection.objects.publishable_by(request.amo_user) \
-        .extra(
-            select={'has_addon': has_addon},
-            select_params=(addon_id,))
+    collections = (Collection.objects
+        .publishable_by(request.amo_user)
+        .with_has_addon(addon_id))
 
     return render(request, 'bandwagon/ajax_list.html',
                   {'collections': collections})
