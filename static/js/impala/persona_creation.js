@@ -3,9 +3,6 @@
         return;
     }
 
-    $(document).delegate('.email-autocomplete', 'keyup paste', validateUser);
-    validateUser();
-
     initOwnership();
 
     var $ownerForm = $('.owner-email form');
@@ -52,45 +49,6 @@
         }, false);
         toggleOwnership();
     }
-
-
-    var lastVal;
-    function validateUser(e) {
-        var $this = e ? $(this) :  $('.email-autocomplete');
-        if ($this.val() && $this.val().length > 2) {
-            var timeout, request;
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(function() {
-                $this.addClass('ui-autocomplete-loading')
-                     .removeClass('invalid valid');
-                lastVal = $this.val();
-                request = $.ajax({
-                    url: $this.attr('data-src'),
-                    data: {q: lastVal},
-                    success: function(data) {
-                        $this.removeClass('ui-autocomplete-loading tooltip formerror')
-                             .removeAttr('title')
-                             .removeAttr('data-oldtitle');
-                        $('#tooltip').hide();
-                        if (data.status == 1) {
-                            $this.addClass('valid');
-                        } else {
-                            $this.addClass('invalid tooltip formerror')
-                                 .attr('title', data.message);
-                        }
-                        checkOwnerValid();
-                    },
-                    error: function() {
-                        $this.removeClass('ui-autocomplete-loading')
-                             .addClass('invalid');
-                    }
-                });
-            }, 500);
-        }
-    }
-
 
     function initLicense() {
         var $licenseField = $('#id_license');
