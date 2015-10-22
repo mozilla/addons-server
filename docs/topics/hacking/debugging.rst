@@ -15,35 +15,49 @@ As with ipdb normally just add a line in your code at the relevant point:
 
     import ipdb; ipdb.set_trace()
 
-Next open a shell on the running web container (requires you to have
-installed docker-utils_ first)::
+Next connect to the running web container::
 
-    docker-utils bash web
-
-From here you can run supervisorctl::
-
-    supervisorctl
-
-This will show you something like the following::
-
-    bash-4.1# supervisorctl
-    olympia                          RUNNING    pid 21, uptime 0:18:38
-    supervisor>
-
-To bring the runserver to the foreground type ``fg olympia`` at the
-prompt::
-
-    supervisor> fg olympia
+    make debug
 
 This will bring the Django management server to the foreground and you
 can interact with ipdb as you would normally. To quit you can just type
-``Ctrl+c`` (this will bring you back to the supervisorctl prompt). There
-you can type ``exit`` to quit (sometimes exiting the supervisorctl prompt
-doesn't respond so closing that shell is another option).
+``Ctrl+c``.
 
-All being well it should look like this:
+All being well it should look like this::
 
-.. image:: /screenshots/docker-ipdb.png
+    $ make debug
+    docker exec -t -i olympia_web_1 supervisorctl fg olympia
+    :/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
+    11:02:08 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118: DeprecationWarning: The verify parameter is deprecated. Please use options instead.
+    'Please use options instead.', DeprecationWarning)
+    :/opt/rh/python27/root/usr/lib/python2.7/site-packages/jwt/api_jws.py:118
+    [21/Oct/2015 11:02:08] "PUT /en-US/firefox/api/v3/addons/%40unlisted/versions/0.0.5/ HTTP/1.1" 400 36
+    Validating models...
+
+    0 errors found
+    October 21, 2015 - 13:52:07
+    Django version 1.6.11, using settings 'settings'
+    Starting development server at http://0.0.0.0:8000/
+    Quit the server with CONTROL-C.
+    [21/Oct/2015 13:57:56] "GET /static/img/app-icons/16/sprite.png HTTP/1.1" 200 3810
+    13:58:01 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/task/sets.py:23: CDeprecationWarning: 
+        celery.task.sets and TaskSet is deprecated and scheduled for removal in
+        version 4.0. Please use "group" instead (see the Canvas section in the userguide)
+
+    """)
+    :/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
+    > /code/apps/browse/views.py(148)themes()
+        147     import ipdb;ipdb.set_trace()
+    --> 148     TYPE = amo.ADDON_THEME
+        149     if category is not None:
+
+    ipdb> n
+    > /code/apps/browse/views.py(149)themes()
+        148     TYPE = amo.ADDON_THEME
+    --> 149     if category is not None:
+        150         q = Category.objects.filter(application=request.APP.id, type=TYPE)
+
+    ipdb>
 
 
 Using the Django Debug Toolbar

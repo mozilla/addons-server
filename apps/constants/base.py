@@ -356,6 +356,15 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
 
+FIREFOX_IOS_USER_AGENTS = [
+    ('Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) '
+     'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
+     'Safari/600.1.4'),
+    ('Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) '
+     'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
+     'Safari/600.1.4')
+]
+
 # Validation.
 
 # A skeleton set of passing validation results.

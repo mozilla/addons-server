@@ -51,19 +51,10 @@ on your host machine::
 
     git clone git://github.com/mozilla/olympia.git
     cd olympia
-    pip install docker-compose docker-utils
+    pip install docker-compose
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     docker-compose up -d
-    docker-utils bash web # Opens a shell on the running web container.
-
-    # On the shell opened by docker-utils:
     make initialize_docker  # Answer yes, and create your superuser when asked.
-
-.. note::
-    docker-utils_ is a wrapper library written in Python that wraps the
-    docker-compose command. It adds sugar for things like getting a bash shell
-    on a running container. As it wraps ``docker-compose`` once installed you can
-    alias ``docker-utils`` and use that in place of ``docker-compose``.
 
 The last step is to grab the ip of the vm. If you're using docker-machine,
 you can get the ip like so::
@@ -89,7 +80,7 @@ Now you can connect to port 80 of that ip address. Here's an example
 
 Any other commands can now be run in a shell on the running container::
 
-    docker-utils bash web
+    make shell
 
 Then, to run the tests for example, just run this command in the shell::
 
@@ -101,9 +92,6 @@ update your Docker image and database with any new requirements or migrations::
     docker-compose stop
     docker-compose pull
     docker-compose up -d
-
-Then from a shell on the running container run::
-
     make update_docker  # Runs database migrations and rebuilds assets.
 
 Please note that any command that would result in files added or modified
@@ -246,5 +234,4 @@ Indices and tables
 
 
 .. _docker: https://docs.docker.com/installation/#installation
-.. _docker-utils: https://pypi.python.org/pypi/docker-utils
 .. _docker-toolbox: https://www.docker.com/toolbox

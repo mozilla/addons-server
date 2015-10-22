@@ -214,6 +214,26 @@ class TestCollections(amo.tests.TestCase):
         eq_(c.can_view_stats(fake_request), True)
 
 
+class TestCollectionQuerySet(amo.tests.TestCase):
+    fixtures = ('base/addon_3615',)
+
+    def test_with_has_addon(self):
+        user = UserProfile.objects.create(username='uhhh', email='uh@hh')
+        collection = Collection.objects.create(author=user)
+        addon = Addon.objects.all()[0]
+
+        qset = (
+            Collection.objects
+            .filter(pk=collection.id)
+            .with_has_addon(addon.id))
+
+        assert not qset.first().has_addon
+
+        collection.add_addon(addon)
+
+        assert qset.first().has_addon
+
+
 class TestRecommendations(amo.tests.TestCase):
     fixtures = ['base/addon-recs']
     ids = [5299, 1843, 2464, 7661, 5369]

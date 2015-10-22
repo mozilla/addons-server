@@ -1463,5 +1463,7 @@ JWT_AUTH = {
     'JWT_DECODE_HANDLER': 'apps.api.jwt_auth.handlers.jwt_decode_handler',
     'JWT_PAYLOAD_HANDLER': 'apps.api.jwt_auth.handlers.jwt_payload_handler',
     'JWT_ALGORITHM': 'HS256',
-    'JWT_LEEWAY': 0,
+    # This adds some padding to timestamp validation in case client/server
+    # clocks are off.
+    'JWT_LEEWAY': 5,
 }
