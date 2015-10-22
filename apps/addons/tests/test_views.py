@@ -24,6 +24,7 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
+from constants.base import FIREFOX_IOS_USER_AGENTS
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from users.helpers import users_list
@@ -831,6 +832,14 @@ class TestDetailPage(amo.tests.TestCase):
         """Unlisted addons are not listed and return 404."""
         self.addon.update(is_listed=False)
         assert self.client.get(self.url).status_code == 404
+
+    def test_fx_ios_addons_message(self):
+        c = Client(HTTP_USER_AGENT=FIREFOX_IOS_USER_AGENTS[0])
+        r = c.get(self.url)
+        addons_banner = pq(r.content)('.get-fx-message')
+        banner_message = ('Add-ons are not currently available on Firefox for '
+                          'iOS.')
+        assert addons_banner.text() == banner_message
 
 
 class TestImpalaDetailPage(amo.tests.TestCase):
