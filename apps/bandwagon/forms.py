@@ -6,6 +6,7 @@ from django.core.files.storage import default_storage as storage
 
 import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
+from django_statsd.clients import statsd
 
 import amo
 from amo.utils import clean_nl, has_links, slug_validator, slugify
@@ -152,6 +153,7 @@ class CollectionForm(ModelForm):
         # Check the honeypot here instead of 'clean_your_name' so the
         # error message appears at the top of the form in the __all__ section
         if self.cleaned_data['your_name']:
+            statsd.incr('collections.honeypotted')
             raise forms.ValidationError(
                 "You've been flagged as spam, sorry about that.")
         return super(CollectionForm, self).clean()
