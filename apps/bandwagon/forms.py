@@ -149,9 +149,8 @@ class CollectionForm(ModelForm):
             del self.fields['slug']
 
     def clean(self):
-        # Raise the honeypot validation error here to
-        # keep it being rased in the __all__ section of the
-        # form errors.
+        # Check the honeypot here instead of 'clean_your_name' so the
+        # error message appears at the top of the form in the __all__ section
         if self.cleaned_data['your_name']:
             raise forms.ValidationError(
                 "You've been flagged as spam, sorry about that.")
