@@ -1,3 +1,4 @@
+import hashlib
 import os
 import random
 import time
@@ -128,9 +129,14 @@ class APIKey(amo.models.ModelBase):
         Returns an instance of APIKey.
         """
         key = cls.get_unique_key('user:{}:'.format(user.pk))
-        return cls.objects.create(key=key, secret=cls.generate_secret(32),
-                                  type=SYMMETRIC_JWT_TYPE, user=user,
-                                  is_active=True, **attributes)
+        secret = cls.generate_secret(32)
+        hashed_secret = hashlib.sha512(secret)
+        credentials = cls.objects.create(key=key,
+                                         secret=hashed_secret.hexdigest(),
+                                         type=SYMMETRIC_JWT_TYPE, user=user,
+                                         is_active=True, **attributes)
+
+        return {'secret': secret, 'credentials': credentials}
 
     @classmethod
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):
