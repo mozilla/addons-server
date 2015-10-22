@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-08-12 17:56+0000\n"
-"Last-Translator: pe3k.lutsk <pe3k.lutsk@gmail.com>\n"
+"PO-Revision-Date: 2015-10-22 17:02+0000\n"
+"Last-Translator: danikanna <danikanna@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1252,7 +1252,7 @@ msgstr "від %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Все одно завантажити"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1849,7 +1849,7 @@ msgstr "Центр розробника"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Керувати API Ключами"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2557,7 +2557,7 @@ msgstr "Попередня"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "До останньої сторінки"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -4678,7 +4678,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Цей додаток буде встановлено разом із основною програмою."
 
 #: apps/devhub/forms.py:543
 msgid ""
@@ -5236,6 +5236,10 @@ msgid ""
 " href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Подання непублікованих додатків на підпис наразі є відкритою бетою. Велика "
+"кількість додатків все ще може потребувати ручної перевірки. Будь ласка, <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">повідомте про помилки</a> з "
+"якими Ви зіткнетеся."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -6307,7 +6311,7 @@ msgstr "Підходить до налагоджених додатків"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Необхідно, якщо додаток прив'язаний до встановлювача"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6431,7 +6435,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Угода Firefox про розповсюдження додатків"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
@@ -6443,7 +6447,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT таємниця"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
@@ -6455,7 +6459,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "Зверніться до <a href=\"%(docs_url)s\">документації</a> за подробицями."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
