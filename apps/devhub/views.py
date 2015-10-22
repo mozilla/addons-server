@@ -612,12 +612,9 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
     return {'success': True}
 
 
-@login_required
-@post_required
-def upload(request, addon=None, is_standalone=False, is_listed=True,
-           automated=False):
-    filedata = request.FILES['upload']
-
+def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
+                  is_standalone=False, is_listed=True, automated=False,
+                  submit=False):
     if addon:
         # TODO: Handle betas.
         automated = addon.automated_signing
@@ -626,18 +623,34 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
     fu.update(automated_signing=automated)
     log.info('FileUpload created: %s' % fu.pk)
-    if request.user.is_authenticated():
-        fu.user = request.amo_user
+    if user.is_authenticated():
+        fu.user = user
         fu.save()
-    app_id = request.POST.get('app_id')
-    if app_id and request.POST.get('version_id'):
+    if app_id and version_id:
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()
-        ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
+        ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
+    elif submit:
+        tasks.validate_and_submit(addon, fu, listed=is_listed)
     else:
         tasks.validate(fu, listed=is_listed)
+
+    return fu
+
+
+@login_required
+@post_required
+def upload(request, addon=None, is_standalone=False, is_listed=True,
+           automated=False):
+    filedata = request.FILES['upload']
+    app_id = request.POST.get('app_id')
+    version_id = request.POST.get('version_id')
+    fu = handle_upload(
+        filedata=filedata, user=request.user, app_id=app_id,
+        version_id=version_id, addon=addon, is_standalone=is_standalone,
+        is_listed=is_listed, automated=automated)
     if addon:
         return redirect('devhub.upload_detail_for_addon', addon.slug, fu.pk)
     elif is_standalone:
@@ -1227,6 +1240,12 @@ def auto_sign_file(file_, is_beta=False, admin_override=False):
         sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
 
 
+def auto_sign_version(version, **kwargs):
+    # Sign all the files submitted, one for each platform.
+    for file_ in version.files.all():
+        auto_sign_file(file_, **kwargs)
+
+
 @json_view
 @dev_required
 @post_required
@@ -1270,8 +1289,7 @@ def version_add(request, addon_id, addon):
 
     override = form.cleaned_data.get('admin_override_validation')
     # Sign all the files submitted, one for each platform.
-    for file_ in version.files.all():
-        auto_sign_file(file_, is_beta=is_beta, admin_override=override)
+    auto_sign_version(version, is_beta=is_beta, admin_override=override)
 
     return dict(url=url)
 
@@ -1417,8 +1435,7 @@ def submit_addon(request, step):
                 else:  # Otherwise, simply do a prelim review.
                     addon.update(status=amo.STATUS_UNREVIEWED)
                     # Sign all the files submitted, one for each platform.
-                    for file_ in addon.versions.get().files.all():
-                        auto_sign_file(file_)
+                    auto_sign_version(addon.versions.get())
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
