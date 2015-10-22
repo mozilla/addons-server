@@ -949,9 +949,7 @@ function initAuthorFields() {
             .attr("title", $(this).text());
     });
 
-    $("#author_list").delegate(".email-autocomplete", "keypress", validateUser)
-    .delegate(".email-autocomplete", "keyup", validateUser)
-    .delegate(".remove", "click", function (e) {
+    $("#author_list").delegate(".remove", "click", function (e) {
         e.preventDefault();
         var tgt = $(this),
             row = tgt.parents("li");
@@ -988,46 +986,6 @@ function initAuthorFields() {
                    .placeholder();
         manager.val(author_list.children(".author").length);
         renumberAuthors();
-    }
-    function validateUser(e) {
-        var tgt = $(this),
-            row = tgt.parents("li");
-        if (row.hasClass("blank")) {
-            tgt.removeClass("placeholder")
-               .attr("placeholder", undefined);
-            row.removeClass("blank")
-               .addClass("author");
-            addAuthorRow();
-        }
-        if (tgt.val().length > 2) {
-            if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(function() {
-                tgt.addClass("ui-autocomplete-loading")
-                   .removeClass("invalid")
-                   .removeClass("valid");
-                request = $.ajax({
-                    url: tgt.attr("data-src"),
-                    data: {q: tgt.val()},
-                    success: function(data) {
-                        tgt.removeClass('ui-autocomplete-loading tooltip')
-                           .removeClass('formerror')
-                           .removeAttr('title')
-                           .removeAttr('data-oldtitle');
-                        $('#tooltip').hide();
-                        if (data.status == 1) {
-                            tgt.addClass("valid");
-                        } else {
-                            tgt.addClass("invalid tooltip formerror")
-                               .attr('title', data.message);
-                        }
-                    },
-                    error: function() {
-                        tgt.removeClass("ui-autocomplete-loading")
-                           .addClass("invalid");
-                    }
-                });
-            }, 500);
-        }
     }
 }
 
