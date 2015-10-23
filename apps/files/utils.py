@@ -91,49 +91,77 @@ class Extractor(object):
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
         package_json = os.path.join(path, 'package.json')
+        manifest_json = os.path.join(path, 'manifest.json')
         if os.path.exists(install_rdf):
             return RDFExtractor(path).data
         elif os.path.exists(package_json):
             return PackageJSONExtractor(package_json).parse()
+        elif os.path.exists(manifest_json):
+            return ManifestJSONExtractor(manifest_json).parse()
         else:
-            raise forms.ValidationError("No install.rdf or package.json found")
+            raise forms.ValidationError(
+                "No install.rdf or package.json or manifest.json found")
 
 
-class PackageJSONExtractor(object):
-    def __init__(self, path):
+def get_appversions(app, min_version, max_version):
+    """Return the `AppVersion`s that correspond to the given versions."""
+    qs = AppVersion.objects.filter(application=app.id)
+    min_appver = qs.get(version=min_version)
+    max_appver = qs.get(version=max_version)
+    return min_appver, max_appver
+
+
+def get_simple_version(version_string):
+    """Extract the version number without the ><= requirements.
+
+    This simply extracts the version number without the ><= requirement so
+    it will not be accurate for version requirements that are not >=, <= or
+    = to a version.
+
+    >>> get_simple_version('>=33.0a1')
+    '33.0a1'
+    """
+    if not version_string:
+        return ''
+    return re.sub('[<=>]', '', version_string)
+
+
+class JSONExtractor(object):
+    def __init__(self, path, data=''):
         self.path = path
-        self.data = json.load(open(self.path))
+        self.data = json.loads(data) if data else json.load(open(self.path))
 
     def get(self, key, default=None):
         return self.data.get(key, default)
 
+
+class PackageJSONExtractor(JSONExtractor):
+
+    def find_appversion(self, app, version_req):
+        """
+        Convert an app and a package.json style version requirement to an
+        `AppVersion`.
+        """
+        version = get_simple_version(version_req)
+        try:
+            return AppVersion.objects.get(
+                application=app.id, version=version)
+        except AppVersion.DoesNotExist:
+            return None
+
     def apps(self):
-
-        def find_appversion(app, version_req):
-            """
-            Convert an app and a package.json style version requirement to an
-            `AppVersion`. This simply extracts the version number without the
-            ><= requirement so it will not be accurate for version requirements
-            that are not >=, <= or = to a version.
-
-            >>> find_appversion(amo.APPS['firefox'], '>=33.0a1')
-            <AppVersion: 33.0a1>
-            """
-            version = re.sub('>?=?<?', '', version_req)
-            try:
-                return AppVersion.objects.get(
-                    application=app.id, version=version)
-            except AppVersion.DoesNotExist:
-                return None
-
         for engine, version in self.get('engines', {}).items():
             name = 'android' if engine == 'fennec' else engine
             app = amo.APPS.get(name)
             if app and app.guid in amo.APP_GUIDS:
-                appversion = find_appversion(app, version)
-                if appversion:
-                    yield Extractor.App(
-                        appdata=app, id=app.id, min=appversion, max=appversion)
+                version = get_simple_version(version)
+                try:
+                    min_appver, max_appver = get_appversions(app, version,
+                                                             version)
+                except:
+                    continue
+                yield Extractor.App(
+                    appdata=app, id=app.id, min=min_appver, max=max_appver)
 
     def parse(self):
         return {
@@ -228,13 +256,55 @@ class RDFExtractor(object):
             if app.guid not in amo.APP_GUIDS:
                 continue
             try:
-                qs = AppVersion.objects.filter(application=app.id)
-                min = qs.get(version=self.find('minVersion', ctx))
-                max = qs.get(version=self.find('maxVersion', ctx))
+                min_appver, max_appver = get_appversions(
+                    app,
+                    self.find('minVersion', ctx),
+                    self.find('maxVersion', ctx))
             except AppVersion.DoesNotExist:
                 continue
-            rv.append(Extractor.App(appdata=app, id=app.id, min=min, max=max))
+            rv.append(Extractor.App(
+                appdata=app, id=app.id, min=min_appver, max=max_appver))
         return rv
+
+
+class ManifestJSONExtractor(JSONExtractor):
+
+    @property
+    def gecko(self):
+        """Return the "applications["gecko"]" part of the manifest."""
+        return self.get('applications', {}).get('gecko', {})
+
+    @property
+    def app(self):
+        """Get `AppVersion`s for the application."""
+        if not self.gecko:
+            return
+        app = amo.FIREFOX
+        strict_min_version = (
+            # At least this version supports installing.
+            get_simple_version(self.gecko.get('strict_min_version')) or '42.0')
+        strict_max_version = (
+            # Not sure what we should default to here.
+            get_simple_version(self.gecko.get('strict_max_version')) or '42.*')
+        try:
+            min_appver, max_appver = get_appversions(
+                app, strict_min_version, strict_max_version)
+        except AppVersion.DoesNotExist:
+            return
+        return Extractor.App(appdata=app, id=app.id, min=min_appver,
+                             max=max_appver)
+
+    def parse(self):
+        return {
+            'guid': self.gecko.get('id', {}) or self.get('name'),
+            'type': amo.ADDON_EXTENSION,
+            'name': self.get('name'),
+            'version': self.get('version'),
+            'homepage': self.get('homepage_url'),
+            'summary': self.get('description'),
+            'no_restart': True,
+            'apps': [self.app] if self.app else [],
+        }
 
 
 def extract_search(content):
