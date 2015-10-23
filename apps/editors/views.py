@@ -365,7 +365,8 @@ def motd(request):
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    data = context(request, form=form)
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'editors/motd.html', data)
 
 
