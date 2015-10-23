@@ -107,6 +107,9 @@ debug:
 shell:
 	docker exec -t -i olympia_web_1 bash
 
+djshell:
+	docker exec -t -i olympia_web_1 ./manage.py shell
+
 # Run a make command in docker.
 make:
 	docker exec -t -i olympia_web_1 make $(ARGS)
