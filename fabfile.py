@@ -185,6 +185,7 @@ def deploy_jenkins():
                                  package_dirs=['olympia', 'venv'])
 
     rpmbuild.local_install()
+    execute(update_info)
 
     install_dir = os.path.join(rpmbuild.install_to, 'olympia')
     execute(schematic, install_dir)
