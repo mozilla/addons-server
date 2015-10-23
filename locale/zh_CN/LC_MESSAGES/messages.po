@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 05:32+0800\n"
+"PO-Revision-Date: 2015-10-23 11:17+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -14165,7 +14165,7 @@ msgstr "添加额外的功能和样式打造您的专属 %(app)s。"
 
 #: templates/impala/base.html:143
 msgid "On the go?"
-msgstr "忙忙碌碌？"
+msgstr "随身查看？"
 
 #: templates/impala/base.html:145
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
