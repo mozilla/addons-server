@@ -1,9 +1,10 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 05:25+0800\n"
+"PO-Revision-Date: 2015-10-14 21:34+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1444856696.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -119,11 +120,16 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"
 
 #: static/js/common/upload-addon.js:479
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
 msgstr "如果您的附加组件需要有一个某网站的帐号才能进行全面的测试，请在给审核员的说明中写一个测试用的用户名和密码（这可以在下一步骤中完成）。"
 
 #: static/js/common/upload-addon.js:480
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
 msgstr "如果您的附加组件是面向有限的受众，您应该选择初步审核而不是全面审核。"
 
 #: static/js/common/upload-addon.js:493
@@ -131,21 +137,28 @@ msgid "Add-on submission checklist"
 msgstr "附加组件提交注意事项"
 
 #: static/js/common/upload-addon.js:494
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
 msgstr "请在完成您的提交前确认以下几点。这将最大限度的减少在审核过程中的延误或误解："
 
 #: static/js/common/upload-addon.js:496
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
-msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含知名库）需要单独提供它们的源代码以供审核。请确保您使用了源代码上传字段，以避免您的提交被拒绝。"
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
+msgstr ""
+"编译后的二进制文件，以及压缩或混淆后的脚本（不含知名库）需要单独提供它们的源代码以供审核。请确保您使用了源代码上传字段，以避免您的提交被拒绝。"
 
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "在验证过程中发现下列问题可导致被拒绝："
 
 #: static/js/common/upload-addon.js:531
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr "如果您不熟悉附加组件的审核流程，您可以到这里查看。"
 
 #: static/js/common/upload-addon.js:567
@@ -293,11 +306,13 @@ msgstr "{0} 次退款"
 msgid "{0} installs"
 msgstr "{0} 次安装"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "下载量"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "每日用户量"
 
@@ -354,11 +369,13 @@ msgstr "订阅者量"
 msgid "Ratings"
 msgstr "评分量"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "销量"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "安装量"
 
@@ -390,7 +407,8 @@ msgstr "搜索建议"
 msgid "Search Results"
 msgstr "搜索结果"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "主页推广"
 
@@ -418,7 +436,8 @@ msgstr "详情页面（底部）"
 msgid "Detail Page (Development Channel)"
 msgstr "详细信息页面（开发通道）"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "常用搭档"
 
@@ -502,7 +521,8 @@ msgstr "按热门程度浏览"
 msgid "Browse Listing Updated Sort"
 msgstr "按更新顺序浏览"
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "按新秀榜排序的浏览列表"
 
@@ -782,7 +802,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "过去 {1} 天中有 <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} 至 {2} 有 <b>{0}</b>"
 
@@ -803,7 +824,8 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1275 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1275
+#: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "首先选择一个应用程序"
 
@@ -871,7 +893,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您需要使用 Firefox 10.0 或更高的版本。"
 
 #: static/js/zamboni/buttons.js:145
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已标记此版本为不兼容您的 Firefox 版本。"
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -905,7 +928,9 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只能用于 Firefox — 获取 Firefox！"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
 
 #: static/js/zamboni/collections.js:193
@@ -1035,7 +1060,9 @@ msgid "No results found."
 msgstr "找不到结果。"
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr "抱歉，我们无法为您推荐内容。<br>请访问<a href=\"{0}\">附加组件网站</a>寻找适合您的附加组件。"
 
 #: static/js/zamboni/discovery_pane.js:247
@@ -1109,7 +1136,9 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "剩余 <b>{0}</b> 个字符。"
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
 
 #: static/js/zamboni/l10n.js:45
@@ -1161,7 +1190,8 @@ msgstr "这些测试没有运行。"
 msgid "Tests"
 msgstr "测试"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "错误"
 
@@ -1224,7 +1254,8 @@ msgstr "尚未审核"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "实验性<span>（详细了解）</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "无法用于 {0}"
 
