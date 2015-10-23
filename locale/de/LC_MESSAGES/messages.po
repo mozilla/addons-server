@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 21:11+0000\n"
-"Last-Translator: Michael <michael.koehler1@gmx.de>\n"
+"PO-Revision-Date: 2015-10-23 20:38+0000\n"
+"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -5528,7 +5528,7 @@ msgstr "Wählen Sie einen kurzen, nicht vergebenen URL-Namen für Ihr Add-on."
 #: apps/editors/templates/editors/review.html:255
 #: apps/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
-msgstr "Add-on-Webseite anzeigen"
+msgstr "Listeneintrag anzeigen"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:50
 msgid "Summary"
