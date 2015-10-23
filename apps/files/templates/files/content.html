@@ -1,19 +1,19 @@
 <div id="content-wrapper">
     <div>
         <div id="diff-wrapper">
-	    <div class="diff-bar js-hidden"></div>
+            <div class="diff-bar js-hidden"></div>
+            {# We need to put file content in attribues, rather than as
+               text children of the pre nodes, to prevent the DOM parser from
+               stripping leading and trailing whitespace, which is important
+               for matching line numbers. #}
             {% if viewer %}
-                {% if viewer.selected %}
-                    {% if not viewer.selected['binary'] %}
-                        <pre id="content" class="brush: {{ viewer.selected['syntax'] }}; toolbar: false">{{ content }}</pre>
-                    {% endif %}
+                {% if viewer.selected and not viewer.selected['binary'] %}
+                    <div id="content" data-brush="{{ viewer.selected['syntax'] }}" data-content="{{ content }}"></div>
                 {% endif %}
-            {% endif %}
-            {% if diff %}
+            {% elif diff %}
                 {% if left or right %}
-                    <pre id="diff" class="diff-bar-height js-hidden brush: diff; toolbar: false"></pre>
-                    <pre class="left js-hidden brush: {{ diff.left.selected['syntax'] }}; toolbar: false">{{ left }}</pre>
-                    <pre class="right js-hidden">{{ right }}</pre>
+                    <div id="diff" data-brush="{{ diff.left.selected['syntax'] }}"
+                         data-left="{{ left }}" data-right="{{ right }}"></div>
                 {% endif %}
             {% endif %}
         </div>
@@ -23,8 +23,7 @@
                     {% include "files/file.html" %}
                 {% endwith %}
             {% endif %}
-        {% endif %}
-        {% if diff %}
+        {% elif diff %}
             {% if diff.left and diff.left.selected %}
                 {% with selected = diff.left.selected %}
                     {% include "files/file.html" %}

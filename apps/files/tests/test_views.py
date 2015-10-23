@@ -360,7 +360,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
             res = self.client.get(self.file_url(name))
             doc = pq(res.content)
             # Note: this is text, not a DOM element, so escaped correctly.
-            assert doc('#content').text().startswith('<script')
+            assert doc('#content').attr('data-content').startswith('<script')
 
     def test_binary(self):
         self.file_viewer.extract()
@@ -501,7 +501,8 @@ class TestDiffViewer(FilesBase, amo.tests.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(len(doc('pre')), 3)
+        assert len(doc('#content')) == 0
+        assert len(doc('#diff[data-left][data-right]')) == 1
 
     def test_binary_serve_links(self):
         self.file_viewer.extract()
@@ -515,16 +516,18 @@ class TestDiffViewer(FilesBase, amo.tests.TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(len(doc('pre')), 3)
-        eq_(len(doc('#content-wrapper p')), 2)
+        assert len(doc('#content')) == 0
+        assert len(doc('#diff[data-left][data-right]')) == 1
+        assert len(doc('#content-wrapper p')) == 2
 
     def test_view_one_missing(self):
         self.file_viewer.extract()
         os.remove(os.path.join(self.file_viewer.right.dest, 'install.js'))
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        eq_(len(doc('pre')), 3)
-        eq_(len(doc('#content-wrapper p')), 1)
+        assert len(doc('#content')) == 0
+        assert len(doc('#diff[data-left][data-right]')) == 1
+        assert len(doc('#content-wrapper p')) == 1
 
     def test_view_left_binary(self):
         self.file_viewer.extract()
