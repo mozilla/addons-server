@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-24 18:00+0000\n"
+"PO-Revision-Date: 2015-10-24 19:48+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1049,6 +1049,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Attention&nbsp; :</strong> Ce module n'a pas été examiné par Mozilla"
+" et ne peut pas être installé sur les versions de Firefox 43 et supérieures."
+" Soyez prudent lors de l'installation de logiciels tiers qui pourraient "
+"nuire à votre ordinateur."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -5798,7 +5802,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/edit/technical.html:143
 #: apps/devhub/templates/devhub/addons/edit/technical.html:144
 msgid "Whiteboard"
-msgstr ""
+msgstr "Tableau blanc"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:146
 msgid ""
@@ -5807,6 +5811,11 @@ msgid ""
 "addon, and any additional information that may help. This whiteboard is also"
 " editable by editors."
 msgstr ""
+"Le tableau est un endroit qui vous permet de fournir des informations "
+"relatives à votre module, quelle que soit la version afin que l'éditeur "
+"puisse les consulter. Vous pouvez l'utiliser pour fournir des méthodes pour "
+"tester le module voire toute autre information qui pourrait être utile. Ce "
+"tableau peut également être édité par les éditeurs."
 
 #: apps/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
@@ -5831,6 +5840,10 @@ msgid ""
 "the following image types: .png, .jpg. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. "
+"L'icône est affiché à presque tous les endroit où apparaît votre module. Le "
+"type de l'image transférée doit être .png ou .jpg. L'envoi d'icône ne "
+"s'applique qu'aux modules listés."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5921,11 +5934,15 @@ msgstr "Tests de compatibilité"
 #: apps/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
 msgstr ""
+"Cacher les messages qui ne sont pas nécessaires pour la signature "
+"automatique"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
+"Cacher les messages qui étaient présents dans les versions précédentes et "
+"qui étaient ignorés"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -6207,40 +6224,51 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Avancez dans la file de revue&nbsp;!"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Devenez un relecteur AMO dès aujourd'hui et accélérez la revue des modules."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
 "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Votre module a été signé et peut être utilisé. Vous pouvez le télécharger "
+"ici&nbsp;:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Votre module a été envoyé dans la file de revue préliminaire pour les "
+"modules non-listés."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Votre module a été envoyé dans la file de revue complète pour les modules "
+"non-listés."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Vous recevrez un courrier électronique une fois qu'il aura été revu par un "
+"éditeur puis signé."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "Votre module ne sera pas disponible publiquement sur ce site web."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid ""
 "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's "
 "developer page</a>."
 msgstr ""
+"Vous pouvez envoyer de nouvelles versions de votre module dans la <a "
+"href=\"{0}\">page destinée aux développeurs de modules</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6318,7 +6346,7 @@ msgstr "Adapté pour des modules bien finis"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Obligatoire si le module est intégré dans un installateur"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6426,6 +6454,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:41
 msgid "Which platforms is this file compatible with?"
 msgstr ""
+"Quelles sont les plateformes avec lesquelles le fichier est "
+"compatible&nbsp;?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
@@ -6437,11 +6467,13 @@ msgstr "Dérogations administratives"
 msgid ""
 "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Il semblerait qu'une revue manuelle soit nécessaire avant que votre module "
+"puisse être signé."
 
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Accord de distribution des modules complémentaires Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
@@ -6462,18 +6494,26 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Pour effectuer des requêtes vers l'API, envoyez un <a "
+"href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> dans l'en-tête d'autorisation."
+" Vous devrez générer un jeton JWT pour chaque requête, comme illustré dans "
+"l'exemple suivant qui utilise la bibliothèque <a href=\"%(node_jwt_url)s"
+"\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 msgstr ""
+"Consultez la <a href=\"%(docs_url)s\">documentation</a> pour plus de "
+"détails."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
 msgstr ""
+"Vous n'avez pas encore d'informations pour vous authentifier avec l'API."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Générer de nouvelles informations d'authentification"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6545,7 +6585,7 @@ msgstr "Vulnérabilités de sécurité d'un module"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins à mozilla point org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6907,7 +6947,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Au moins 2000 personnes doivent utiliser le module."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid ""
@@ -15012,7 +15052,7 @@ msgstr ""
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Note&nbsp;:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
