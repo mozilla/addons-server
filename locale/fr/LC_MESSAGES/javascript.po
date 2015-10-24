@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-24 08:58+0000\n"
+"PO-Revision-Date: 2015-10-24 09:54+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -134,6 +134,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:478
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Ajouter des notes de version détaillées (cela peut être effectué lors de la "
+"prochaine étape)."
 
 #: static/js/common/upload-addon.js:479
 msgid ""
@@ -141,6 +143,10 @@ msgid ""
 " include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
+"S'il est nécessaire d'avoir un compte sur un site web pour que votre module "
+"soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de "
+"test dans les notes pour le réviseur (cela peut être effectué à la prochaine"
+" étape)."
 
 #: static/js/common/upload-addon.js:480
 msgid ""
@@ -150,13 +156,15 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:493
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Liste de points à vérifier pour l'envoi d'un module"
 
 #: static/js/common/upload-addon.js:494
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela "
+"réduira le délai ou les incompréhensions lors du processus de revue :"
 
 #: static/js/common/upload-addon.js:496
 msgid ""
@@ -169,12 +177,16 @@ msgstr ""
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Le processus de validation a détecté ces problèmes qui peuvent entraîner des"
+" rejets :"
 
 #: static/js/common/upload-addon.js:531
 msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it"
 " here."
 msgstr ""
+"Si vous ne connaissez pas le processus de revue des modules, vous pouvez en "
+"apprendre plus ici."
 
 #: static/js/common/upload-addon.js:567
 msgid "Some platforms are not available for this type of add-on."
@@ -858,7 +870,11 @@ msgstr[1] ""
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
+"Adresse électronique de l'auteur du module {2} dont la vérification a "
+"échoué."
 msgstr[1] ""
+"Adresses électroniques des auteurs des modules {2} dont la vérification a "
+"échoué."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
