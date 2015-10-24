@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-17 16:24+0000\n"
-"Last-Translator: maitre.negi <maitre.negi@gmail.com>\n"
+"PO-Revision-Date: 2015-10-24 08:58+0000\n"
+"Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -96,18 +96,20 @@ msgstr "Validation finie {0}"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"La validation de votre module n'a pu être effectuée à temps, il sera revu "
+"manuellement."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Votre module a été validé sans erreur et avec {0} avertissement."
+msgstr[1] "Votre module a été validé sans erreur et avec {0} avertissements."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Votre module a été validé sans erreur et avec {0} message."
+msgstr[1] "Votre module a été validé sans erreur et avec {0} messages."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
@@ -117,15 +119,17 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:444
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Votre envoi sera revu manuellement."
 
 #: static/js/common/upload-addon.js:448
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
+"Votre envoi a franchi l'étape de validation et sera signé automatiquement."
 
 #: static/js/common/upload-addon.js:450
 msgid "Your submission passed validation and will go through a manual review."
 msgstr ""
+"Votre envoi a franchi l'étape de validation et sera revu manuellement."
 
 #: static/js/common/upload-addon.js:478
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -1048,8 +1052,8 @@ msgstr[1] "{files} fichiers"
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} revue utilisateur"
+msgstr[1] "{reviews} revues utilisateur"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
