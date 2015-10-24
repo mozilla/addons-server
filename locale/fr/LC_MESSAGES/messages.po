@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-24 11:59+0000\n"
+"PO-Revision-Date: 2015-10-24 13:36+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -681,7 +681,7 @@ msgstr "Tous »"
 #: apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr "Les voir toutes »"
+msgstr "Tout voir »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -4697,16 +4697,21 @@ msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr ""
+"Cochez cette option si vous souhaitez distribuer votre module vous-même et "
+"qu'il doit uniquement être signé par Mozilla."
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Ce module sera intégré dans un installateur d'application."
 
 #: apps/devhub/forms.py:543
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Les modules qui sont intégrés dans des installateurs d'application verront "
+"leur code revu par Mozilla avant leur signature. Un niveau de qualité "
+"supérieur sera attendu pour ces modules."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -4729,6 +4734,8 @@ msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
 msgstr ""
+"Un fichier dont la version se termine par a|alpha|b|beta|pre|rc, "
+"éventuellement suivi par un nombre, est considéré comme beta."
 
 #: apps/devhub/forms.py:589
 msgid "Version %s already exists"
@@ -4738,12 +4745,16 @@ msgstr "Version %s déjà existante"
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Sélectionnez un choix valide. Ce choix ne fait pas partie des choix "
+"disponibles."
 
 #: apps/devhub/forms.py:607
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
 msgstr ""
+"Un fichier dont la version se termine par a|alpha|b|beta, éventuellement "
+"suivi par un nombre, est considéré comme beta."
 
 #: apps/devhub/forms.py:630
 msgid "You cannot upload any more files for this version."
@@ -4895,15 +4906,15 @@ msgstr "Le mot de passe était incorrect, le module n'a pas été supprimé."
 
 #: apps/devhub/views.py:447
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Un auteur a été ajouté à votre module complémentaire"
 
 #: apps/devhub/views.py:454
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Le rôle d'un auteur a été modifié sur votre module"
 
 #: apps/devhub/views.py:473
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Un auteur a été retiré de votre module"
 
 #: apps/devhub/views.py:516
 msgid "There were errors in your submission."
@@ -4978,6 +4989,10 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"Avant de commencer, veuillez lire et accepter l'accord de distribution pour "
+"les modules complémentaires Firefox. Celui-ci possède un lien vers notre "
+"politique de confidentialité qui explique comment nous gérons les "
+"informations vous concernant."
 
 #: apps/devhub/templates/devhub/agreement.html:13
 msgid "Printable Version"
@@ -5044,21 +5059,23 @@ msgstr "Envoyer un module"
 
 #: apps/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Relecteurs AMO"
 
 #: apps/devhub/templates/devhub/index.html:29
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
 "faster."
 msgstr ""
+"Allez-y&nbsp;! Devenez un relecteur AMO dès aujourd'hui et accélérez la "
+"revue des modules."
 
 #: apps/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Devenir un relecture AMO"
 
 #: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Tout savoir sur les modules complémentaires"
 
 #: apps/devhub/templates/devhub/index.html:41
 msgid ""
@@ -5069,12 +5086,21 @@ msgid ""
 "and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
 "already have all the necessary skills to make a great add-on."
 msgstr ""
+"Les modules complémentaires permettent aux millions d'utilisateurs de "
+"Firefox d'améliorer et de personnaliser leur façon de naviguer. Si vous êtes"
+" un développeur web et que vous connaissez <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> et"
+" <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, vous avez "
+"toutes les cartes en main pour construire un super module."
 
 #: apps/devhub/templates/devhub/index.html:51
 msgid ""
 "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
 "Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Dirigez-vous vers <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"Developer Network</a> pour apprendre tout ce qu'il faut pour démarrer."
 
 #: apps/devhub/templates/devhub/index.html:58
 msgid "Start Making Add-ons"
@@ -5090,7 +5116,7 @@ msgstr "Statut :"
 #: apps/devhub/templates/devhub/index.html:90
 #: apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilité&nbsp;:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -5119,13 +5145,15 @@ msgstr "Voir tous les modules ►"
 
 #: apps/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Publiez votre module&nbsp;!"
 
 #: apps/devhub/templates/devhub/index.html:136
 msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
 "href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Pour commencer, envoyez un <a href=\"%(addon_url)s\">module</a> ou un <a "
+"href=\"%(theme_url)s\">thème</a>&nbsp;!"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -5150,7 +5178,7 @@ msgstr "Développement d'extension"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Thèmes légers"
 
 #: apps/devhub/templates/devhub/nav.html:39
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:6
@@ -5180,7 +5208,7 @@ msgstr "Développement de modules"
 
 #: apps/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Communauté & Support"
 
 #: apps/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5222,7 +5250,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/validate_addon.html:45
 #: apps/devhub/templates/devhub/addons/submit/upload.html:26
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Souhaitez-vous que votre module soit distribué sur ce site&nbsp;?"
 
 #: apps/devhub/templates/devhub/validate_addon.html:52
 #: apps/devhub/templates/devhub/addons/submit/upload.html:33
@@ -5230,7 +5258,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:55
 #: apps/devhub/templates/devhub/versions/list.html:314
 msgid "Warning:"
-msgstr ""
+msgstr "Attention&nbsp;:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:53
 #: apps/devhub/templates/devhub/addons/submit/upload.html:34
@@ -5240,6 +5268,10 @@ msgid ""
 " href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"L'envoi de modules non-listés pour qu'ils soient signés est en beta ouverte."
+" Une revue menuelle peut toujours être nécessaire pour un grand nombre de "
+"modules. Merci de <a href=\"%(bugzilla_url)s\" target=\"_blank\">rapporter "
+"les bugs</a> que vous rencontrez."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -5497,6 +5529,10 @@ msgid ""
 "in search and browse listings, as well as at the top of your add-on's "
 "details page. It is only relevant for listed add-ons."
 msgstr ""
+"Une brève explication de la fonctionnalité offerte par votre module qui sera"
+" affiché dans les résultats de recherche, les écrans de navigation et en "
+"haut de la page consacrée à votre module. Celle-ci est uniquement pertinente"
+" pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5504,6 +5540,10 @@ msgid ""
 " fit your add-on's functionality for the most exposure. It is only relevant "
 "for listed add-ons."
 msgstr ""
+"Pour naviguer entre les modules, les utilisateurs utilisent principalement "
+"les catégories. Choisissez les catégories qui correspondent à la "
+"fonctionnalité de votre module. Ce champ est uniquement utile pour les "
+"modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -5526,6 +5566,9 @@ msgid ""
 "tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Les étiquettes aident les utilisateurs à trouver votre module. Ce sont des "
+"descripteurs courts comme twitter, onglets. Vous pouvez au maximum utiliser "
+"{0} étiquettes. Ce champ est uniquement utile pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129
 #: apps/devhub/templates/devhub/personas/edit.html:97
@@ -5561,6 +5604,9 @@ msgid ""
 "information. This field is only displayed on the add-on's details page. It "
 "is only relevant for listed add-ons."
 msgstr ""
+"Une explication plus détaillée des fonctionnalités et autres informations "
+"relatives à votre module. Ce champ est uniquement affiché sur la page dédiée"
+" à votre module. Ce champ est uniquement utile pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44
 #: apps/translations/templates/translations/trans-menu.html:13
@@ -5573,6 +5619,9 @@ msgid ""
 "override it with a locale-specific translation. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Des informations qui déterminent si votre module est affiché dans cette "
+"locale à moins que vous ne proposiez une traduction pour cette locale. Ce "
+"champ est uniquement utile pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
 #: apps/users/forms.py:282 apps/users/templates/users/edit.html:108
@@ -5587,6 +5636,10 @@ msgid ""
 " is localized into other languages multiple translations of this field can "
 "be added. It is only relevant for listed add-ons."
 msgstr ""
+"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si"
+" votre site web est localisé en plusieurs langues, les différentes "
+"traductions de ce champ peuvent être ajoutées. Ce champ est uniquement utile"
+" pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5608,6 +5661,10 @@ msgid ""
 "translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Si vous souhaitez afficher une adresse électronique pour les demandes de "
+"support, saisissez-là ici. Si vous avez différentes adresses pour chaque "
+"langue, vous pouvez ajouter les différentes traductions de ce champ. Ce "
+"champ est uniquement utile pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5615,6 +5672,10 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added. It is only relevant for listed add-ons."
 msgstr ""
+"Si vous disposez d'une site d'aide ou d'un forum consacré à votre module, "
+"saisissez l'adresse ici. Si votre site web est disponible en plusieurs "
+"langues, vous pouvez ajouter les différentes traductions de ce champ. Ce "
+"champ est uniquement utile pour les modules listés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -6384,15 +6445,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Informations d'authentification pour l'API"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "Émetteur du JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "Secret JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
@@ -13584,7 +13645,7 @@ msgstr[1] ""
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweeter sur Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -13594,15 +13655,15 @@ msgstr[1] "{0} tweets"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Partager sur Google+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Poster sur Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Poster sur Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
@@ -14126,6 +14187,9 @@ msgid ""
 "more. Please update your password by <a href=\"%s\">issuing a password "
 "reset</a>."
 msgstr ""
+"Dans le cadre de nos nouvelles mesures sur les mots de passe, votre mot de "
+"passe doit contenir au moins %s caractères. Veuillez mettre à jour votre mot"
+" de passe en <a href=\"%s\">réinitialisant votre mot de passe</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -14137,7 +14201,7 @@ msgstr "Mot de passe erroné !"
 
 #: apps/users/forms.py:243
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Les noms d'utilisateur ne peuvent pas contenir que des chiffres."
 
 #: apps/users/forms.py:246
 msgid ""
@@ -14187,7 +14251,7 @@ msgstr ""
 
 #: apps/users/forms.py:312
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Ce nom public ne peut pas être utilisé."
 
 #: apps/users/forms.py:326
 msgid "The passwords did not match."
@@ -14199,7 +14263,7 @@ msgstr "Photo de profil"
 
 #: apps/users/forms.py:352 apps/users/templates/users/edit.html:128
 msgid "Default locale"
-msgstr ""
+msgstr "Locale par défaut"
 
 #: apps/users/forms.py:489
 msgid ""
@@ -14211,7 +14275,7 @@ msgstr ""
 
 #: apps/users/forms.py:535
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Veuillez saisir au moins un nom à placer sur liste noire."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
@@ -14220,15 +14284,15 @@ msgstr "autres"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "algorithme"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr ""
+msgstr "sel"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr ""
+msgstr "empreinte"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
@@ -14405,6 +14469,8 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Nous sommes désolés mais vous n'avez, pour le moment, pas le droit de "
+"demander un t-shirt."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
@@ -14493,16 +14559,20 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"En cliquant sur «&nbsp;supprimer&nbsp;», votre compte sera <strong>supprimé "
+"de façon permanente</strong>. Cela signifie que&nbsp;:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Vous ne pourrez plus vous connecter sur %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Vos revues et vos notes ne seront pas supprimées mais vous n'y serez plus "
+"associé-e."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -14599,7 +14669,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:110
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Cette URL sera uniquement visible si vous êtes un développeur."
 
 #: apps/users/templates/users/edit.html:119
 msgid "Choose Photo&hellip;"
