@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-24 10:20+0000\n"
+"PO-Revision-Date: 2015-10-24 11:20+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -200,7 +200,7 @@ msgstr "Certaines plateformes ne sont pas disponibles pour ce type de module."
 
 #: static/js/common/upload-addon.js:569
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Désolé, aucune plateforme supportée n'a été trouvée."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
@@ -309,7 +309,7 @@ msgstr "Semaine de {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " téléchargements"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -422,19 +422,19 @@ msgstr "Gestionnaire des modules"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promu avec le gestionnaire de modules"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Mis en avant avec le gestionnaire de modules"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Affiché dans la section « En savoir plus » du gestionnaire de modules"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Suggestions de recherche"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -488,15 +488,15 @@ msgstr "Montée en gamme"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Rencontrer le développeur"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Profil utilisateur"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Historique de versions"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -1176,7 +1176,7 @@ msgstr "Ignorer ce message lors de futures mises à jour"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Degré d'acceptation pour la signature automatique :"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1258,7 +1258,7 @@ msgstr "Avertissement"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Suggestions pour obtenir la signature automatique :"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"

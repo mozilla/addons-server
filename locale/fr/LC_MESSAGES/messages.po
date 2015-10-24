@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-04-25 16:21+0000\n"
-"Last-Translator: goofyfr <goofyfr@gmail.com>\n"
+"PO-Revision-Date: 2015-10-24 11:59+0000\n"
+"Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -486,19 +486,19 @@ msgstr "Fonctionne avec"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilité"
 
 #: apps/addons/templates/addons/details_box.html:61
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "Caché"
 
 #: apps/addons/templates/addons/details_box.html:63
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "Hors de la liste"
 
 #: apps/addons/templates/addons/details_box.html:71
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
@@ -1245,7 +1245,7 @@ msgstr "Étiquettes"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Icône pour {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1257,7 +1257,7 @@ msgstr "par %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Télécharger quand même"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1366,7 +1366,7 @@ msgstr ""
 #. {0} is an index.
 #: apps/addons/templates/addons/impala/details.html:163
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Capture d'écran du module n°{0}"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Add-on home page"
@@ -1392,7 +1392,7 @@ msgstr "Info"
 #: apps/addons/templates/addons/impala/details.html:202
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
-msgstr ""
+msgstr "Dernière mise à jour&nbsp;:"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
@@ -1445,10 +1445,12 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Attention&nbsp;:</strong> Les versions de développement de ce module"
+" n'ont pas été revues par Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Voir l'intégralité de l'historique de développement"
 
 #: apps/addons/templates/addons/impala/details.html:313
 #: apps/addons/templates/addons/impala/details.html:322
@@ -1856,7 +1858,7 @@ msgstr "Pôle développeur"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gérer les clés d'API"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2128,11 +2130,11 @@ msgstr "{user} a approuvé {review} pour {addon}."
 
 #: apps/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Revue {review} pour {addon} supprimée."
 
 #: apps/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} a supprimé {review} pour {addon}."
 
 #: apps/amo/log.py:354
 msgid "Application max version for {version} updated."
@@ -2313,16 +2315,16 @@ msgstr "{addon} changement de classification du contenu."
 
 #: apps/amo/log.py:586
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} non listé."
 
 #: apps/amo/log.py:592 apps/amo/log.py:598
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} a été signé."
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Le module dont l'identifiant est {0} et le GUID {1} a été supprimé"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2478,6 +2480,11 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés"
+" par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à "
+"lire, vous pouvez <a href=\"#\" id=\"recaptcha_different\">essayer "
+"différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre"
+" type de challenge</a> à la place. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:12
@@ -2567,7 +2574,7 @@ msgstr "Précédent"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Aller à la dernière page"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -2783,7 +2790,7 @@ msgstr "Icône"
 
 #: apps/bandwagon/forms.py:149
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Ce nom ne peut être utilisé."
 
 #: apps/bandwagon/forms.py:157 apps/users/forms.py:433
 msgid "No links are allowed."
@@ -4211,7 +4218,7 @@ msgstr "Pack de langue (application)"
 
 #: apps/constants/base.py:168
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pack de langue (module)"
 
 #: apps/constants/base.py:169
 msgid "Plugin"
@@ -4237,7 +4244,7 @@ msgstr "Packs de langues (application)"
 
 #: apps/constants/base.py:181
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Packs de lange (module)"
 
 #: apps/constants/base.py:182
 msgid "Plugins"
@@ -4337,11 +4344,11 @@ msgstr "Mise à jour de la revue du pack de langue"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus pour les revues en retard"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Nombre de jours avant que les points bonus soient appliqués"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -4377,7 +4384,7 @@ msgstr "Commentaire du module modéré"
 
 #: apps/constants/base.py:491
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Revue du module annulée lors de la modération"
 
 #: apps/constants/base.py:538
 msgid "Level 1"
@@ -4405,27 +4412,27 @@ msgstr "Niveau 6"
 
 #: apps/constants/base.py:544
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: apps/constants/base.py:545
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: apps/constants/base.py:546
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: apps/constants/base.py:555
 msgid "Not signed"
-msgstr ""
+msgstr "Non signé"
 
 #: apps/constants/base.py:556
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Signé pour une revue complète"
 
 #: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Signé pour une revue préliminaire"
 
 #: apps/constants/editors.py:14
 #: apps/editors/templates/editors/themes/queue.html:76
@@ -4574,11 +4581,11 @@ msgstr "Mot de passe incorrect."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Objet JSON invalide"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Ce message ne peut être utilisé comme annotation"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:136
@@ -4654,10 +4661,12 @@ msgstr "Impossible de valider l'identifiant PayPal."
 #: apps/devhub/forms.py:388
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Ce type de fichier n'est pas supporté, veuillez transférer une archive "
+"{extensions}."
 
 #: apps/devhub/forms.py:407
 msgid "View current"
-msgstr ""
+msgstr "Voir la version actuelle"
 
 #: apps/devhub/forms.py:456
 msgid "Invalid version range."
@@ -4677,11 +4686,11 @@ msgstr "Passer outre la validation échouée"
 
 #: apps/devhub/forms.py:507
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Envoyer mon module pour une revue manuelle."
 
 #: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "Ne pas lister mon module sur ce site (beta)"
 
 #: apps/devhub/forms.py:535
 msgid ""
@@ -15249,7 +15258,7 @@ msgstr ""
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo de bas de page"
 
 #: templates/categories.html:2
 msgid "Choose a category"
