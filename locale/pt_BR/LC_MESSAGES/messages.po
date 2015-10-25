@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-17 01:09+0000\n"
+"PO-Revision-Date: 2015-10-25 19:30+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4763,6 +4763,9 @@ msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Os complementos que são incorporados com instaladores de aplicativos terão o"
+" código revisados pela Mozilla antes de serem assinados e são acompanhados "
+"de um padrão de qualidade superior."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -6537,11 +6540,11 @@ msgstr "Credenciais da API"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "Emissor JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "Segredo JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
@@ -6550,6 +6553,10 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Para fazer pedidos à API, envie um <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> como um cabeçalho de autorização. Precisa de gerar um JWT para "
+"cada pedido, como no exemplo seguinte usando a biblioteca <a "
+"href=\"%(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
@@ -9772,7 +9779,7 @@ msgstr "Limpar propriedade de administração"
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Limpar a marcação de mais informação solicitada"
 
 #: apps/editors/forms.py:281
 msgid "Choose a canned response..."
