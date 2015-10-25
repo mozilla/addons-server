@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-24 19:48+0000\n"
+"PO-Revision-Date: 2015-10-25 11:35+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -8044,13 +8044,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Vous avez désactivé ce module"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid ""
 "Your add-on's listing is disabled and is not showing anywhere in our gallery"
 " or update service."
 msgstr ""
+"L'affichage de votre module sur les listes est désactivé&nbsp;; il "
+"n'apparaît plus dans notre galerie ou dans notre service de mise à jour."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8059,6 +8061,7 @@ msgstr "Veuillez compléter votre module."
 #: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
 msgstr ""
+"Vous recevrez un courrier électronique lorsque la revue sera terminée."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34
 #: apps/devhub/templates/devhub/includes/addon_details.html:44
@@ -8077,6 +8080,8 @@ msgid ""
 "You will receive an email when the review is complete and your add-on is "
 "signed."
 msgstr ""
+"Vous recevrez un courrier électronique lorsque la revue sera terminée et que"
+" votre module sera signé."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
@@ -8091,12 +8096,17 @@ msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Votre module a été signé et peut être intégré dans un installateur "
+"d'application."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Votre module a été désactivé par un administrateur du site, il n'apparaît "
+"plus dans notre galerie. Si vous avez des questions, veuillez envoyer un "
+"courrier électronique à amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8109,7 +8119,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "Votre module a été signé."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:79
 msgid ""
@@ -8127,6 +8137,9 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"Vous recevrez un courrier électronique lorsque la revue complète aura été "
+"effectuée, cela vous permettra d'intégrer votre module dans un installateur "
+"d'application."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
