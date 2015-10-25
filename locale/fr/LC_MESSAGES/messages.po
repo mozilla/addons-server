@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-25 17:03+0000\n"
+"PO-Revision-Date: 2015-10-25 17:57+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -9226,7 +9226,7 @@ msgstr "Êtes-vous certain-e de vouloir masquer ce module&nbsp;?"
 #: apps/devhub/templates/devhub/versions/list.html:302
 #: apps/devhub/templates/devhub/versions/list.html:331
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Déférencer ce module"
 
 #: apps/devhub/templates/devhub/versions/list.html:305
 msgid ""
@@ -9237,6 +9237,12 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their install.rdf"
 " file for automatic updates."
 msgstr ""
+"Déférencer un module le rendra invisible (ainsi que les fichiers des "
+"différentes versions). Il ne sera pas affiché dans les recherches, n'aura "
+"pas de page publique et ne sera pas mis à jour automatiquement pour les "
+"utilisateurs actuels. Pour les modules déréférencés de fournir une <a "
+"href=\"%(update_url)s\" target=\"_blank\">URL de mise à jour</a> adaptée "
+"dans le fichier install.rdf pour gérer les mises à jour automatiques."
 
 #: apps/devhub/templates/devhub/versions/list.html:315
 msgid ""
@@ -9244,18 +9250,21 @@ msgid ""
 "href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Le déréférencement des modules est actuellement en beta ouverte. Merci de <a"
+" href=\"%(bugzilla_url)s\" target=\"_blank\">rapporter les bugs</a> que vous"
+" rencontrez."
 
 #: apps/devhub/templates/devhub/versions/list.html:321
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Le déréférencement d'un module est irréversible&nbsp;!"
 
 #: apps/devhub/templates/devhub/versions/list.html:321
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Un module déréférencé ne peut plus être répertorié."
 
 #: apps/devhub/templates/devhub/versions/list.html:323
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Voulez-vous vraiment déréférencer votre module&nbsp;?"
 
 #: apps/devhub/templates/devhub/versions/list.html:346
 msgid ""
@@ -9464,11 +9473,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Modules vainqueurs du concours Australis"
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Quels sont vos centres d'intérêt&nbsp;?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -9809,15 +9818,15 @@ msgstr "Mettre à jour les thèmes"
 
 #: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Mises à jour en attente pour les modules déréférencés"
 
 #: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Revues complètes pour les modules déréférencés"
 
 #: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Revues préliminaires pour les modules déréférencés"
 
 #: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
@@ -9852,20 +9861,20 @@ msgstr[1] "Revues modérées ({0})"
 #: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revue complète pour les modules déréférencés ({0})"
+msgstr[1] "Revues complètes pour les modules déréférencés ({0})"
 
 #: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mise à jour en attente pour les modules déréférencés ({0})"
+msgstr[1] "Mises à jour en attente pour les modules déréférencés ({0})"
 
 #: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revue préliminaire pour les modules déréférencés ({0})"
+msgstr[1] "Revues préliminaires pour les modules déréférencés ({0})"
 
 #: apps/editors/helpers.py:260
 msgid "Addon"
@@ -9935,7 +9944,7 @@ msgstr "Envoyer au public"
 
 #: apps/editors/helpers.py:485
 msgid "Grant full review"
-msgstr ""
+msgstr "Accorder une revue complète"
 
 #: apps/editors/helpers.py:500
 msgid "Request more information"
@@ -10076,7 +10085,7 @@ msgstr "Contient des commentaires de l'éditeur"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "Sources fournies"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
@@ -10149,7 +10158,7 @@ msgstr "besoin d'une super-revue"
 
 #: apps/editors/views.py:787
 msgid "commented"
-msgstr ""
+msgstr "a été commenté"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -10199,7 +10208,7 @@ msgstr "Files d'attente"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Files pour les modules déréférencés"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -10223,7 +10232,7 @@ msgstr "Journal de revue modéré"
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Journal pour les fichiers beta signés"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
@@ -10271,23 +10280,23 @@ msgstr "Enregistrer les détails"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Titre du module"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Titre de la revue"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Texte de la revue"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "La revue a été marquée avant sa suppression."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Annuler la suppression"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -10327,20 +10336,20 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revue complète pour les modules déréférencés ({num})"
+msgstr[1] "Revues complètes pour les modules déréférencés ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mise à jour en attente pour les modules déréférencés ({num})"
+msgstr[1] "Mises à jour en attente pour les modules déréférencés ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Revue préliminaire pour les modules déréférencés ({num})"
+msgstr[1] "Revues préliminaires pour les modules déréférencés ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
@@ -10432,7 +10441,7 @@ msgstr "Ce mois"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Cette année"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
@@ -10519,7 +10528,7 @@ msgstr "Revue {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Historique des modifications de l'utilisateur de module"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
@@ -10540,15 +10549,15 @@ msgstr "Compatibilité :"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Sources supplémentaires&nbsp;:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Télécharger les fichiers"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Le développeur a fourni le code source."
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
@@ -10588,10 +10597,13 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"Le tableau blanc est un endroit pour échanger des informations relatives au "
+"module (quelle que soit la version) entre le développeur et l'éditeur. Le "
+"tableau peut être vu et édité par les deux."
 
 #: apps/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Mettre à jour le tableau blanc"
 
 #: apps/editors/templates/editors/review.html:257
 #: apps/editors/templates/editors/review.html:258
@@ -10832,7 +10844,7 @@ msgstr "File d'attente de thème interactif"
 
 #: apps/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Guide de revue"
 
 #: apps/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -10942,19 +10954,19 @@ msgstr "Impossible de lire install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Impossible de trouver un identifiant de module."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Un identifiant de module doit mesurer moins de 64 caractères."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "L'identifiant ne correspond à aucun module."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Un identifiant identique a été trouvé."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -11337,7 +11349,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Faites passer le mot&nbsp;! Discutez des modules que vous utilisez."
 
 #: apps/pages/templates/pages/about.lhtml:59
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -11607,6 +11619,9 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>Comment construire un module complémentaire&nbsp;?</h3> <p> Mozilla "
+"fournit de la documentation sur <a href=\"%(url)s\">Mozilla Developer "
+"Network</a> qui explique comment construire un module. </p>"
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
@@ -11615,10 +11630,12 @@ msgstr "Les autres ressources incluent :"
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
 msgstr ""
+"Le billet «&nbsp;Comment développer une extension Firefox&nbsp;» sur le blog"
+" dédié aux modules"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blog sur les modules complémentaires Mozilla"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
@@ -11647,6 +11664,10 @@ msgid ""
 "://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
 "href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid ""
@@ -11654,6 +11675,9 @@ msgid ""
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
+"Vous pouvez également apprendre à mettre en place votre environnement de "
+"développement grâce à l'article de MDN <a href=\"%(url)s\">Mettre en place "
+"votre environnement de développement</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -11756,14 +11780,26 @@ msgid ""
 "on. Developers need to be very, very careful with using them. Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Oui, c'est possible mais certaines des fonctionnalités offertes par ces "
+"bibliothèques sont disponibles avec XPCOM, XUL et JavaScript. De plus, les "
+"auteurs devraient s'assurer que les bibliothèques utilisées ne modifient pas"
+" les prototypes des objets primitifs (String.prototype, Date.prototype, "
+"etc.) ou qu'elles ne définissent pas de fonctions globales (la fonction $ "
+"par exemple). De telles modifications peuvent entraîner des conflits avec "
+"d'autres modules qui utiliseraient d'autres versions de ces bibliothèques. "
+"Elles doivent donc être manipulées avec la plus grande précaution. Mozilla "
+"ne fournit pas de documentation pour construire des modules qui "
+"utiliseraient ces bibliothèques."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Comment déboguer mon module&nbsp;?"
 
 #: apps/pages/templates/pages/dev_faq.html:168
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
 msgstr ""
+"Vous pouvez utiliser <a href=\"%(url)s\">le débogueur de module "
+"complémentaire</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:173
 msgid ""
@@ -13146,6 +13182,8 @@ msgstr "À ne pas faire :"
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Soumettez des commentaires en très peu de mots comme « Super », « Génial » "
+"ou « Mauvais », « Code pourri »."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -13153,6 +13191,10 @@ msgid ""
 "available support options for each add-on, if available. You can find them "
 "in the side column next to the About this Add-on section."
 msgstr ""
+"Postez des questions techniques, des demandes d’'aide ou des suggestions de "
+"fonctionnalité. Utilisez les options d’aide disponibles pour chaque module, "
+"le cas échéant. Vous pouvez les trouver dans la colonne à côté de la section"
+" À propos du module."
 
 #: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
@@ -13171,6 +13213,8 @@ msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
+"Vous pouvez inclure du HTML, des liens, du code source ou des fragments de "
+"code. Les commentaires sont censés être uniquement du texte."
 
 #: apps/pages/templates/pages/review_guide.html:108
 msgid ""
@@ -13184,6 +13228,8 @@ msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
+"Indiquez votre propre adresse électronique ou celle de quelqu’un d'autre, un"
+" numéro de téléphone ou d’autres informations personnelles."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid ""
@@ -13199,6 +13245,10 @@ msgid ""
 "gathering, when that is the intended purpose of the add-on, or the add-on "
 "requires gathering data to function."
 msgstr ""
+"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, "
+"laissez une critique négative d'un module pour afficher des publicités ou "
+"nécessitant la collecte de données, lorsque c'est l'objectif visé par le "
+"module, ou si le module nécessite la collecte de données pour fonctionner."
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
@@ -13211,6 +13261,11 @@ msgid ""
 "moderation team will use the Review Guidelines to evaluate whether or not to"
 " delete the review or restore it back to the site."
 msgstr ""
+"Veuillez rapporter ou marquer tout commentaires douteux en cliquant sur « "
+"Signaler ce commentaire » et il sera présenté sur le site de la modération. "
+"Notre équipe de modération utilisera les directives pour les commentaires et"
+" évaluera s'il faut ou non supprimer le commentaire ou le rétablir sur le "
+"site."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -13791,8 +13846,8 @@ msgstr "Publier sur Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} J'aime"
+msgstr[1] "{0} J'aime"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
