@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-25 11:35+0000\n"
+"PO-Revision-Date: 2015-10-25 16:00+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5272,10 +5272,10 @@ msgid ""
 " href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
-"L'envoi de modules non-listés pour qu'ils soient signés est en beta ouverte."
-" Une revue menuelle peut toujours être nécessaire pour un grand nombre de "
-"modules. Merci de <a href=\"%(bugzilla_url)s\" target=\"_blank\">rapporter "
-"les bugs</a> que vous rencontrez."
+"L'envoi de modules non-répertoriés pour qu'ils soient signés est en beta "
+"ouverte. Une revue manuelle peut toujours être nécessaire pour un grand "
+"nombre de modules. Merci de <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">rapporter les bugs</a> que vous rencontrez."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -5536,7 +5536,7 @@ msgstr ""
 "Une brève explication de la fonctionnalité offerte par votre module qui sera"
 " affiché dans les résultats de recherche, les écrans de navigation et en "
 "haut de la page consacrée à votre module. Celle-ci est uniquement pertinente"
-" pour les modules listés."
+" pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5547,7 +5547,7 @@ msgstr ""
 "Pour naviguer entre les modules, les utilisateurs utilisent principalement "
 "les catégories. Choisissez les catégories qui correspondent à la "
 "fonctionnalité de votre module. Ce champ est uniquement utile pour les "
-"modules listés."
+"modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -5572,7 +5572,7 @@ msgid ""
 msgstr ""
 "Les étiquettes aident les utilisateurs à trouver votre module. Ce sont des "
 "descripteurs courts comme twitter, onglets. Vous pouvez au maximum utiliser "
-"{0} étiquettes. Ce champ est uniquement utile pour les modules listés."
+"{0} étiquettes. Ce champ est uniquement utile pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129
 #: apps/devhub/templates/devhub/personas/edit.html:97
@@ -5610,7 +5610,7 @@ msgid ""
 msgstr ""
 "Une explication plus détaillée des fonctionnalités et autres informations "
 "relatives à votre module. Ce champ est uniquement affiché sur la page dédiée"
-" à votre module. Ce champ est uniquement utile pour les modules listés."
+" à votre module. Ce champ est uniquement utile pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44
 #: apps/translations/templates/translations/trans-menu.html:13
@@ -5625,7 +5625,7 @@ msgid ""
 msgstr ""
 "Des informations qui déterminent si votre module est affiché dans cette "
 "locale à moins que vous ne proposiez une traduction pour cette locale. Ce "
-"champ est uniquement utile pour les modules listés."
+"champ est uniquement utile pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
 #: apps/users/forms.py:282 apps/users/templates/users/edit.html:108
@@ -5643,7 +5643,7 @@ msgstr ""
 "Si vous avez une autre page pour votre module, saisissez son adresse ici. Si"
 " votre site web est localisé en plusieurs langues, les différentes "
 "traductions de ce champ peuvent être ajoutées. Ce champ est uniquement utile"
-" pour les modules listés."
+" pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5668,7 +5668,7 @@ msgstr ""
 "Si vous souhaitez afficher une adresse électronique pour les demandes de "
 "support, saisissez-là ici. Si vous avez différentes adresses pour chaque "
 "langue, vous pouvez ajouter les différentes traductions de ce champ. Ce "
-"champ est uniquement utile pour les modules listés."
+"champ est uniquement utile pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5679,7 +5679,7 @@ msgstr ""
 "Si vous disposez d'une site d'aide ou d'un forum consacré à votre module, "
 "saisissez l'adresse ici. Si votre site web est disponible en plusieurs "
 "langues, vous pouvez ajouter les différentes traductions de ce champ. Ce "
-"champ est uniquement utile pour les modules listés."
+"champ est uniquement utile pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5701,6 +5701,11 @@ msgid ""
 "major bugs, information on how to report bugs, anticipated release date of a"
 " new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Un utilisateur final de ces informations devrait pouvoir savoir qu'elles ne "
+"s'appliquent pas forcément au résumé ou à la description du module. On "
+"fournit habituellement la liste des bogues connus, des informations sur la "
+"façon de faire remonter les problèmes, les prévisions de publication pour "
+"les futures versions etc. Ceci ne s'applique qu'aux modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5715,6 +5720,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only relevant for listed "
 "add-ons."
 msgstr ""
+"Ces indicateurs de catégories sont utilisés pour classer les modules. Ceci "
+"est uniquement pertinent pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5733,6 +5740,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our online viewer. It "
 "is only relevant for listed add-ons."
 msgstr ""
+"Si le code source de votre module peut être affiché dans notre visionneuse "
+"en ligne. Ceci est uniquement pertinent pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5751,6 +5760,9 @@ msgid ""
 "Whether the download and usage stats of your add-on can be displayed in our "
 "online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Si les statistiques de téléchargement et d'utilisation peuvent être "
+"affichées dans notre visionneuse en ligne. Ceci est uniquement pertinent "
+"pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5769,6 +5781,9 @@ msgid ""
 "If selected, we will try to automatically upgrade your add-on when a new "
 "version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Si vous sélectionnez cette option, nous allons essayer de mettre "
+"automatiquement à jour votre Add-on quand une nouvelle version du SDK sera "
+"disponible. Ceci est pertinent uniquement pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5843,7 +5858,7 @@ msgstr ""
 "Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. "
 "L'icône est affiché à presque tous les endroit où apparaît votre module. Le "
 "type de l'image transférée doit être .png ou .jpg. L'envoi d'icône ne "
-"s'applique qu'aux modules listés."
+"s'applique qu'aux modules répertoriés."
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -6243,13 +6258,13 @@ msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 "Votre module a été envoyé dans la file de revue préliminaire pour les "
-"modules non-listés."
+"modules non-répertoriés."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
 "Votre module a été envoyé dans la file de revue complète pour les modules "
-"non-listés."
+"non-répertoriés."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
@@ -6995,6 +7010,8 @@ msgstr "le nom du module, son URL et si vous êtes son développeur"
 msgid ""
 "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"une courte explication pour dire pourquoi l'extension a un fort potentiel et"
+" devrait être mis en vedette"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
@@ -7011,6 +7028,13 @@ msgid ""
 "quality or security issues, incompatibility, and similarity to another "
 "featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Les propositions de modules sont revues une fois par mois par le comité "
+"consultatif (une fois tous les 3 mois pour les propositions des thèmes "
+"complets). Les raisons provoquant généralement un rejet incluent un manque "
+"d'attrait envers les utilisateurs, une ergonomie approximative, des "
+"problèmes de qualité, de sécurité ou d'incompatibilité et une ressemblance "
+"trop forte avec un autre module mis en avant. Les modules qui sont refusés "
+"ne pourront être proposés pendant les 3 mois qui suivent."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -8147,10 +8171,13 @@ msgid ""
 "wish to continue hosting your add-on, please click to select a review "
 "process."
 msgstr ""
+"Tous les modules qui sont hébergés dans notre galerie doivent être revus par"
+" un éditeur. Si vous souhaitez continuer à héberger votre module, veuillez "
+"cliquer pour sélectionner un processus de revue."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
-msgstr ""
+msgstr "Version actuelle&nbsp;:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:115
 msgid ""
@@ -8158,6 +8185,9 @@ msgid ""
 "the Install button on addons.mozilla.org. It is only relevant for listed "
 "add-ons."
 msgstr ""
+"C'est la version de votre module qui sera installée lorsque quelqu'un clique"
+" sur le bouton Installer sur addons.mozilla.org. Ce champ est uniquement "
+"pertinent pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -11857,7 +11887,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:303
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Quels sont les « outils du développeur » listés sur AMO ?"
+msgstr "Quels sont les « outils de développement » listés sur AMO&nbsp;?"
 
 #: apps/pages/templates/pages/dev_faq.html:305
 msgid ""
