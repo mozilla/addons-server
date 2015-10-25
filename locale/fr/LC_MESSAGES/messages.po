@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-25 16:00+0000\n"
+"PO-Revision-Date: 2015-10-25 17:03+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -8191,27 +8191,29 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
-msgstr ""
+msgstr "Créé le&nbsp;:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:125
 #: apps/devhub/templates/devhub/includes/addon_details.html:131
 msgid "%b %e, %Y"
-msgstr ""
+msgstr "%b %e, %Y"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
-msgstr ""
+msgstr "Prochaine version&nbsp;:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:138
 msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
+"C'est la dernière version envoyée, cependant elle n'est pas encore publiée "
+"sur le site."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:144
 #: apps/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Les files ne sont pas revues dans un ordre strict"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -8266,7 +8268,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
-msgstr ""
+msgstr "Voir toutes les versions"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "View Statistics Dashboard"
@@ -8297,6 +8299,9 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
 msgstr ""
+"Veuillez choisir une licence appropriée pour les droits que vous souhaitez "
+"appliquer à votre code source. Ce champ est uniquement pertinent pour les "
+"modules répertoriés."
 
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
@@ -8327,6 +8332,12 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Les utilisateurs devront accepter l'accord de licence utilisateur final "
+"(EULA) avant de pouvoir installer le module. La présence d'un accord impacte"
+" le nombre de téléchargement de façon significative. Remarque&nbsp;: un "
+"accord de licence n'est pas la même chose qu'une licence de code comme la "
+"GPL ou la MPL. Ce champ est uniquement pertinent pour les modules "
+"répertoriés."
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
@@ -8334,16 +8345,23 @@ msgid ""
 " is required that explains what data is sent and how it is used. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Si vous module transmet des données depuis l'ordinateur de l'utilisateur, "
+"une politique de confidentialité est nécessaire pour expliquer les données "
+"qui sont envoyées et comment elles sont appelées. Ce champ est uniquement "
+"pertinent pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
 "If your add-on contains binary or obfuscated code other than known "
 "libraries, upload its sources for review."
 msgstr ""
+"Si votre module contient des fichiers binaires ou du code compressé qui "
+"n'est pas celui de bibliothèques connues, veuillez envoyer les fichiers "
+"sources afin qu'ils soient revus."
 
 #: apps/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "En savoir plus sur la politique de revue du code source."
 
 #: apps/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
@@ -8410,6 +8428,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
 msgstr ""
+"Les contributions sont uniquement disponibles pour les modules répertoriés."
 
 #: apps/devhub/templates/devhub/payments/payments.html:53
 msgid ""
@@ -8756,6 +8775,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"J'accepte <a href=\"%(agreement_url)s\" target=\"_blank\">l'accord de "
+"distribution des modules complémentaires Firefox</a> et j'accepte que les "
+"informations qui me concernent soient gérées comme décrit dans <a "
+"href=\"%(privacy_notice_url)s\" target=\"_blank\">la note de confidentialité"
+" relative aux sites web, aux communications et aux cookies</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8846,6 +8870,11 @@ msgid ""
 "ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
 "bugs</a> that you encounter."
 msgstr ""
+"L'envoi de mises à jour pour les modules non répertoriés afin qu'ils soient "
+"signés est actuellement en beta ouverte. Une revue manuelle pourra encore "
+"être nécessaire pour un grand nombre de modules. Merci de <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">rapporter les bugs</a> que vous "
+"rencontrez."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:37
 msgid "Select the target platform for this file."
@@ -8853,11 +8882,11 @@ msgstr "Sélectionnez la plateforme cible pour ce fichier"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:48
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Pour quel type de revue souhaitez-vous vous inscrire&nbsp;?"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Publier uniquement cette version sur le canal beta."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:56
 msgid ""
@@ -8867,6 +8896,11 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(bugzilla_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Le fonctionnement du canal beta a été modifié afin de respecter <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">la signature obligatoire "
+"des modules</a>. Le nouveau processus est actuellement en beta ouverte et "
+"pourra évoluer dans un proche avenir. Merci de <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">rapporter les bugs</a> que vous rencontrez."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8926,13 +8960,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Code source"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Si votre module contient du code binaire ou compacté, mettez ici les sources"
+" à disposition pour les relecteurs."
 
 #: apps/devhub/templates/devhub/versions/edit.html:145
 #: apps/devhub/templates/devhub/versions/edit.html:149
@@ -8987,7 +9023,7 @@ msgstr "0 fichier"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Position dans la file&nbsp;: %(pos)s sur %(total)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -9013,44 +9049,51 @@ msgstr "Annuler la demande de revue"
 
 #: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
-msgstr ""
+msgstr "Visibilité du module"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
-msgstr ""
+msgstr "Répertorié&nbsp;:"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid ""
 "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Visible sur {0} et inclus dans les résultats de recherche et les pages "
+"listant les modules"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
-msgstr ""
+msgstr "Masqué&nbsp;:"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
+"Hébergé sur {0} mais visible uniquement pour les auteurs. Utilisé pour que "
+"le module n'apparaisse plus sur les listes, temporairement ou "
+"définitivement."
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
-msgstr ""
+msgstr "Non répertorié&nbsp;:"
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Non distribué sur {0}. Les développeurs fourniront des nouvelles versions "
+"afin qu'elles soient signées et distribueront les modules eux-mêmes (beta)."
 
 #: apps/devhub/templates/devhub/versions/list.html:129
 msgid "Current versions"
-msgstr ""
+msgstr "Versions courantes"
 
 #: apps/devhub/templates/devhub/versions/list.html:135
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Actuellement sur AMO"
 
 #: apps/devhub/templates/devhub/versions/list.html:136
 #: apps/devhub/templates/devhub/versions/list.html:157
@@ -9078,11 +9121,11 @@ msgstr "Performance"
 
 #: apps/devhub/templates/devhub/versions/list.html:156
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Prochaine version pour ce module"
 
 #: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Older versions"
-msgstr ""
+msgstr "Versions antérieures"
 
 #: apps/devhub/templates/devhub/versions/list.html:186
 msgid "Upload a New Version"
@@ -9090,7 +9133,7 @@ msgstr "Envoyer une nouvelle version"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Une revue complète n'est peut-être pas nécessaire"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid ""
@@ -9098,10 +9141,14 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Une revue complète n'est pas nécessaire pour les modules non répertoriés à "
+"moins qu'ils soient distribués au sein d'un installateur d'application. "
+"Veuillez lire <a href=\"{link}\" target=\"_blank\">la documentation</a> pour"
+" plus d'informations."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Demander une revue complète"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -9113,6 +9160,10 @@ msgid ""
 "your add-on status to change, or your listing to lose public visibility, if "
 "this is the only public version of your add-on."
 msgstr ""
+"Vous êtes sur le point de supprimer la version actuelle de votre module. "
+"Cela peut modifier le statut de votre module et la visibilité de celui-ci "
+"peut décroître si cette version est la seule qui soit publique pour ce "
+"module."
 
 #: apps/devhub/templates/devhub/versions/list.html:235
 msgid "Deleting this version will permanently delete:"
@@ -9123,12 +9174,17 @@ msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
+"<strong>Important&nbsp;:</strong> Une fois qu'une version a été supprimée, "
+"vous ne pouvez plus envoyer une nouvelle version possédant le même numéro de"
+" version."
 
 #: apps/devhub/templates/devhub/versions/list.html:246
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
 msgstr ""
+"Supprimer une version qui a déjà été revue peut également entraîner un "
+"retard significatif pour la revue de la prochaine mise à jour."
 
 #: apps/devhub/templates/devhub/versions/list.html:249
 msgid "Are you sure you wish to delete this version?"
@@ -9140,7 +9196,7 @@ msgstr "Supprimer la version"
 
 #: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Disable Version"
-msgstr ""
+msgstr "Désactiver la version"
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Add a new Version"
@@ -9153,17 +9209,19 @@ msgstr "Ajouter une version"
 #: apps/devhub/templates/devhub/versions/list.html:272
 #: apps/devhub/templates/devhub/versions/list.html:290
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Masquer le module"
 
 #: apps/devhub/templates/devhub/versions/list.html:275
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
 msgstr ""
+"Masquer le module empêchera que celui apparaisse dans la galerie et que les "
+"utilisateurs reçoivent des mises à jour automatiques."
 
 #: apps/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Êtes-vous certain-e de vouloir masquer ce module&nbsp;?"
 
 #: apps/devhub/templates/devhub/versions/list.html:302
 #: apps/devhub/templates/devhub/versions/list.html:331
@@ -9585,15 +9643,15 @@ msgstr "Filtrer par type/action"
 
 #: apps/editors/forms.py:58
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Validation automatique réussie"
 
 #: apps/editors/forms.py:60
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Validation automatique refusée"
 
 #: apps/editors/forms.py:62
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrer par statut de validation automatique"
 
 #: apps/editors/forms.py:69
 msgid "containing"
@@ -9677,7 +9735,7 @@ msgstr "Enlever le drapeau de demande de revue administrateur"
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Supprimer l'indicateur de demande d'information"
 
 #: apps/editors/forms.py:281
 msgid "Choose a canned response..."
@@ -13164,6 +13222,10 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
+"Oui, les auteurs le module peuvent donner une réponse unique à une revue. "
+"Vous pouvez lancer un sujet de discussion dans notre <a "
+"href=\"%(forum_url)s\">forum</a> pour engager des discussions "
+"supplémentaires ou avoir du suivi."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -13179,6 +13241,12 @@ msgid ""
 "release of your add-on, we may consider deleting the review. Submit your "
 "detailed request to amo-editors@mozilla.org."
 msgstr ""
+"En général, non. Mais si la revue ne respectait pas les lignes directrices "
+"décrites ci-dessus, vous pouvez cliquez sur « Signaler cette revue » et "
+"demander qu’elle soit modérée. Si une revue comprenait une observation qui "
+"n'est plus valide en raison d'une nouvelle version de votre module, nous "
+"pouvons envisager la suppression de la revue. Soumettez votre demande "
+"détaillée à amo-editors@mozilla.org."
 
 #: apps/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -13445,7 +13513,7 @@ msgstr "Répondre à la vérification"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Modifier la réponse"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -13453,7 +13521,7 @@ msgstr "Modifier la revue"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Supprimer la réponse"
 
 #. {0} is an add-on name.
 #: apps/reviews/templates/reviews/review_list.html:5
@@ -14767,6 +14835,8 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Il s'agit de la locale (langue) par défaut utilisée pour afficher des "
+"informations sur vous (comme votre description)."
 
 #: apps/users/templates/users/edit.html:138
 msgid ""
@@ -14778,7 +14848,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:147
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "HTML autorisé&nbsp;: {0}. Les liens sont interdits."
 
 #: apps/users/templates/users/edit.html:154
 msgid "Miscellaneous"
@@ -15027,26 +15097,32 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"L'inscription sur AMO n’est <strong>pas obligatoire</strong> si vous "
+"souhaitez simplement télécharger et installer les modules publics."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Vous devez vous inscrire uniquement si&nbsp;:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Vous voulez donner votre avis pour des modules"
 
 #: apps/users/templates/users/register.html:20
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Vous voulez suivre vos collections favorites de modules ou bien en créer une"
+" vous-même"
 
 #: apps/users/templates/users/register.html:21
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Vous êtes un développeur de module et souhaitez envoyer votre module pour "
+"qu'il soit hébergé sur AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid ""
@@ -15054,6 +15130,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Lorsque votre inscription est réussie, vous recevez un courriel de "
+"confirmation à l'adresse fournie. Veuillez suivre les instructions pour "
+"confirmer votre compte."
 
 #: apps/users/templates/users/register.html:31
 msgid ""
@@ -15061,6 +15140,10 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"Si vous le souhaitez, vous pouvez lire nos <a href=\"%(legal)s\" "
+"title=\"Legal Notices\">Mentions légales</a> et notre <a "
+"href=\"%(privacy)s\" title=\"Privacy Policy\">Politique de "
+"confidentialité</a>."
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:96
@@ -15086,11 +15169,11 @@ msgstr "Signaler l'utilisateur {0}"
 
 #: apps/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Commande de t-shirt"
 
 #: apps/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "T-shirt édition spéciale pour les créateurs de modules"
 
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
@@ -15102,23 +15185,33 @@ msgid ""
 "You have already submitted a request for a t-shirt. You may re-submit this "
 "form to update your information, but you will only receive one shirt."
 msgstr ""
+"Vous avez déjà fait une demande pour un t-shirt. Vous pouvez soumettre à "
+"nouveau ce formulaire pour mettre à jour vos informations, mais vous ne "
+"recevrez qu'un t-shirt."
 
 #: apps/users/templates/users/t-shirt.html:26
 msgid ""
 "Thank you for helping to make Firefox the most extensible browser available!"
 msgstr ""
+"Merci de contribuer à faire de Firefox le navigateur le plus personnalisable"
+" qui existe&nbsp;!"
 
 #: apps/users/templates/users/t-shirt.html:33
 msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Pour vous remercier, nous aimerions vous envoyer un t-shirt en édition "
+"spéciale, destiné à la communauté. Pour recevoir votre t-shirt, veuillez "
+"remplir le formulaire ci-dessous."
 
 #: apps/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Vos coordonnées serviront seulement à Mozilla pour expédier ce t-shirt "
+"édition spéciale."
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -15179,6 +15272,10 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Nous sommes désolés, mais pour bénéficier de notre t-shirt édition spéciale,"
+" vous devez être un développeur de modules avec au moins un module "
+"répertorié mais signé, ou un nombre quelconque de thèmes avec un total de 10"
+" 000 utilisateurs quotidiens en moyenne."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
