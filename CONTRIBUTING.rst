@@ -5,7 +5,7 @@ Contributing
 ============
 
 The easiest way to let us know about your awesome work is to send a pull
-request on github or in IRC.
+request on GitHub or in IRC.
 
 Use **summary (bug #bugzilla bug ID#)** for the commit message. Eg::
 
@@ -42,7 +42,7 @@ This can also be done through the ``git config`` command (e.g.
 ``git config branch.master.remote origin``) but editing ``.git/config`` is
 often easier.
 
-After you've forked the repository on github, tell git about your new repo::
+After you've forked the repository on GitHub, tell git about your new repo::
 
     git remote add -f mine git@github.com:user/olympia.git
 
