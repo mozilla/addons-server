@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-15 00:50+0000\n"
+"PO-Revision-Date: 2015-08-31 16:37+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -10008,7 +10008,7 @@ msgstr "Loggar"
 #: apps/editors/templates/editors/base.html:78
 #: apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Granskningslogg för tillägg"
 
 #: apps/editors/templates/editors/base.html:80
 #: apps/editors/templates/editors/eventlog.html:4
