@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-25 17:57+0000\n"
+"PO-Revision-Date: 2015-10-25 18:34+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -11819,10 +11819,19 @@ msgid ""
 " that your add-on users are not negatively impacted upon final release of "
 "Mozilla software."
 msgstr ""
+"Afin d'assurer la compatibilité avec les derniers logiciels Mozilla, il est "
+"important de télécharger les mises à jour dès qu'elles sont disponibles et "
+"de tester votre module pour vous assurez qu'il continue de fonctionner "
+"correctement. Dans de nombreux cas, la version la plus récente est la "
+"version beta. Parfois des modifications importantes sont introduites et "
+"impactent les fonctionnalités de votre module, il est donc important de "
+"s'impliquer activement dans les tests des versions beta afin que les "
+"utilisateurs de votre module ne soient pas impactés de façon négative lors "
+"du lancement de la version finale du logiciel Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Comment améliorer les performances de mon module&nbsp;?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
@@ -11832,6 +11841,12 @@ msgid ""
 "you improve performance, whether you're developing core Mozilla code or an "
 "add-on."
 msgstr ""
+"Les extensions développées médiocrement peuvent avoir un grave impact sur "
+"l'expérience de navigation et notamment sur les performances générales de "
+"Firefox. La page suivante contient de nombreux <a "
+"href=\"%(url)s\">guides</a> de qualité pour vous aider à améliorer les "
+"performances, que vous développiez un module complémentaire ou un produit "
+"Mozilla."
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
@@ -11844,6 +11859,11 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Oui. Des informations sur la localisation des modules sont disponibles sur "
+"<a href=\"%(l10n_url)s\">la page dédiée à ce sujet sur MDN</a>. <a "
+"href=\"%(bz_url)s\">Le projet BabelZilla</a> est également une ressource "
+"très utile pour apprendre à localiser et contribuer à la traduction des "
+"modules."
 
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -11866,6 +11886,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (canal anglophone pour discuter sur le SDK des modules et sur "
+"cfx/jpm, anciennement connu sous le nom de Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
@@ -11884,7 +11906,7 @@ msgstr "Google Group"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Forum sur les modules complémentaires"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
@@ -11912,6 +11934,12 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Oui. Vous pouvez trouver des développeurs tiers sur <a "
+"href=\"%(forum_url)s\">le forum dédié aux modules</a>, <a "
+"href=\"%(list_url)s\">la liste de diffusion mozilla.jobs</a>, <a "
+"href=\"%(mz_url)s\">les forums mozillaZine</a> ou sur <a "
+"href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note&nbsp;: Mozilla ne recommande"
+" aucun développeur en particulier."
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
@@ -12136,6 +12164,13 @@ msgid ""
 "hard to ensure that your add-on is set up correctly and follows the "
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Les modules sont revus par les éditeurs AMO, un groupe de talentueux "
+"développeurs volontaires qui aident le projet Mozilla en vérifiant les "
+"modules complémentaires afin que les utilisateurs bénéficient de logiciels "
+"stables et sécurisés. Lorsque vous discutez avec les éditeurs, veillez à "
+"être poli, patient et respectueux. Les éditeurs travaillent dur pour "
+"s'assurer que votre module puisse être installé correctement et respecte les"
+" règles indiquées dans le <a href=\"%(url)s\">guide de revue</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:407
 msgid "What are the guidelines used to review my add-on?"
@@ -12150,6 +12185,11 @@ msgid ""
 " are addressed prior to submitting their add-on for review. This will "
 "greatly assist in expediting the review process."
 msgstr ""
+"Lorsqu'elle vérifie la conformité d'un module pour AMO, l'équipe éditoriale "
+"Mozilla suit le <a href=\"%(url)s\">guide de revue</a>. Il est important que"
+" les développeurs de modules lisent ce guide avant d'envoyer un module pour "
+"mieux résoudre les éventuels problèmes. Cela aidera à accélérer le processus"
+" de revue."
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
@@ -12477,13 +12517,15 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:652
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Une comparaison des licences <i>open source</i> sur Wikipédia."
 
 #: apps/pages/templates/pages/dev_faq.html:658
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"Un site objectif pour vous aider à choisir une licence pour votre projet "
+"<i>open source</i>."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
 #: apps/pages/templates/pages/faq.html:10
@@ -12809,6 +12851,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Des milliers de modules sont disponibles, il y en a pour tous les goûts. Si "
+"vous cherchez un module en particulier et que vous ne le trouvez pas, "
+"recherchez sur d'autres sites ou rédigez un message sur <a "
+"href=\"%(forum_url)s\">le forum dédié aux modules</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -13131,6 +13177,10 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
+"Les commentaires vous permettent de partager votre opinion sur les modules "
+"que vous avez installés et utilisés. Notre équipe de modération se réserve "
+"le droit de refuser ou de supprimer tout commentaire qui ne respecterait pas"
+" ces règles."
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
@@ -13174,6 +13224,8 @@ msgstr "Continuerez-vous d'utiliser ce module ?"
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Prenez quelques instants pour relire votre commentaire afin d'éviter de "
+"l'envoyer avec des fautes d'orthographe."
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
