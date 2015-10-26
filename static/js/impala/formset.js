@@ -170,6 +170,25 @@ $.zAutoFormset = function(o) {
         }
     }
 
+    function _renderItem(ul, item) {
+        if (!findItem(item).visible) {
+            var $a = $(format('<a><img src="{0}" alt="">{1}</a>',
+                              [item.icons['32'], item.name]));
+            return $('<li>').data('item.autocomplete', item)
+                            .append($a).appendTo(ul);
+        }
+    }
+
+    function _renderItemData(ul, item) {
+        var rendered = _renderItem( ul, item );
+
+        // We are overwriting `_renderItem` in some places and return
+        // nothing in case of duplicate filtering.
+        if (rendered) {
+            rendered.data("ui-autocomplete-item", item);
+        }
+    }
+
     if (autocomplete) {
         autocomplete();
     } else {
@@ -193,13 +212,12 @@ $.zAutoFormset = function(o) {
                     added();
                 }
             }
-        }).data('autocomplete')._renderItem = function(ul, item) {
-            if (!findItem(item).visible) {
-                var $a = $(format('<a><img src="{0}" alt="">{1}</a>',
-                                  [item.icons['32'], item.name]));
-                return $('<li>').data('item.autocomplete', item)
-                                .append($a).appendTo(ul);
-            }
+        }).data('uiAutocomplete')._renderMenu = function(ul, items) {
+            // Overwrite _renderMenu to patch in our custom `_renderItemData`
+            // and `_renderItem` to allow for our custom list-filter.
+            $.each(items, function(index, item) {
+                _renderItemData(ul, item);
+            });
         };
     }
 
