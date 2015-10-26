@@ -86,8 +86,7 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
-DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB',
-                                   'sql_mode': 'STRICT_ALL_TABLES'}
+DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
