@@ -137,6 +137,7 @@ class CollectionForm(ModelForm):
                            required=False)
 
     # This is just a honeypot field for bots to get caught
+    # L10n: bots is short for robots
     your_name = forms.CharField(
         label=_lazy(
             u"Please don't fill out this field, it's used to catch bots"),
@@ -154,6 +155,7 @@ class CollectionForm(ModelForm):
         # error message appears at the top of the form in the __all__ section
         if self.cleaned_data['your_name']:
             statsd.incr('collections.honeypotted')
+            log.info('Bot trapped in honeypot at collections.create')
             raise forms.ValidationError(
                 "You've been flagged as spam, sorry about that.")
         return super(CollectionForm, self).clean()
