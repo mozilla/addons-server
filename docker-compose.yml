@@ -41,7 +41,7 @@ memcached:
   image: memcached
 
 mysqld:
-  image: mysql
+  image: mysql:5.6
   environment:
     - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     - MYSQL_DATABASE='olympia'
