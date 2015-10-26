@@ -49,11 +49,11 @@ SYSLOG_CSP = "http_app_addons_stage_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
-DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['default']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB'}
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
-DATABASES['slave']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB'}
+DATABASES['slave']['OPTIONS'] = {'init_command': 'SET default_storage_engine=InnoDB'}
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
 DATABASE_POOL_ARGS = {
