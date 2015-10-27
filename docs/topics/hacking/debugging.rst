@@ -40,7 +40,7 @@ All being well it should look like this::
     Starting development server at http://0.0.0.0:8000/
     Quit the server with CONTROL-C.
     [21/Oct/2015 13:57:56] "GET /static/img/app-icons/16/sprite.png HTTP/1.1" 200 3810
-    13:58:01 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/task/sets.py:23: CDeprecationWarning: 
+    13:58:01 py.warnings:WARNING /opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/task/sets.py:23: CDeprecationWarning:
         celery.task.sets and TaskSet is deprecated and scheduled for removal in
         version 4.0. Please use "group" instead (see the Canvas section in the userguide)
 
@@ -59,6 +59,11 @@ All being well it should look like this::
 
     ipdb>
 
+Logging
+-------
+
+Logs for the celery and Django processes can be found on your machine in the
+`logs` directory.
 
 Using the Django Debug Toolbar
 ------------------------------
