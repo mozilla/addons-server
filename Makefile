@@ -2,6 +2,9 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
+COMPOSE_PROJECT_NAME?=olympia
+DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
+
 UNAME_S := $(shell uname -s)
 
 help:
@@ -81,7 +84,7 @@ update_assets:
 	python manage.py collectstatic --noinput
 
 update_docker:
-	docker exec -t -i olympia_web_1 make update_docker_inner
+	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
 
 update_docker_inner: update_db update_assets
 
@@ -96,20 +99,20 @@ flake8:
 	flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,.npm,build*.py .
 
 initialize_docker:
-	docker exec -t -i olympia_web_1 make initialize_docker_inner
+	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner
 
 initialize_docker_inner: initialize_db update_assets
 	$(MAKE) populate_data
 
 debug:
-	docker exec -t -i olympia_web_1 supervisorctl fg olympia
+	docker exec -t -i ${DOCKER_NAME} supervisorctl fg olympia
 
 shell:
-	docker exec -t -i olympia_web_1 bash
+	docker exec -t -i ${DOCKER_NAME} bash
 
 djshell:
-	docker exec -t -i olympia_web_1 ./manage.py shell
+	docker exec -t -i ${DOCKER_NAME} ./manage.py shell
 
 # Run a make command in docker.
 make:
-	docker exec -t -i olympia_web_1 make $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} make $(ARGS)
