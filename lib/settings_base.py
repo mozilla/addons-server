@@ -471,7 +471,6 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
-            'css/impala/collection-stats.less',
             'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
