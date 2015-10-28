@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-06-05 17:11+0000\n"
+"PO-Revision-Date: 2015-10-17 03:14+0000\n"
 "Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1433524264.0\n"
+"X-POOTLE-MTIME: 1445051647.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -90,12 +90,14 @@ msgstr "Se ha terminado de validar {0}"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"El tiempo de validación de tu complemento se ha agotado, será revisado "
+"manualmente."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu complemento fue validado sin errores y {0} advertencia."
+msgstr[1] "Tu complemento fue validado sin errores y {0} advertencias."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
@@ -271,7 +273,7 @@ msgstr "Semana de {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " descargas"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -380,19 +382,19 @@ msgstr "Administrador de complementos"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Contenido promocional del administrador de complementos"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Destacados del administrador de complementos"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Aprender más del administrador de complementos"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Sugerencias de búsqueda"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -444,15 +446,15 @@ msgstr "Promoción"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Conoce al desarrollador"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Perfil de usuario"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Historial de versiones"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -912,7 +914,7 @@ msgstr "Ver otras versiones"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Solo con Firefox - ¡Descárgalo ahora!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -1104,11 +1106,11 @@ msgstr "Error al cargar traducción"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "No haga caso de este mensaje en futuras actualizaciones"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Severidad de la firma automatizada"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1185,7 +1187,7 @@ msgstr "Advertencia"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Sugerencias para pasar la firma automatizada:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"

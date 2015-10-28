@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-09-07 17:41+0000\n"
-"Last-Translator: Antiparticule <antiparticule@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2015-10-17 03:37+0000\n"
+"Last-Translator: Daniel <danielscott171@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441647673.0\n"
+"X-POOTLE-MTIME: 1445053061.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -774,6 +774,9 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
+"<strong>Precaución:</strong> Este complemento no ha sido revisado por "
+"Mozilla y no puede ser instalado en versiones de Firefox 43 o superior. Ten "
+"cuidado cuando instales software de terceros que pueda dañar tu equipo."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -900,7 +903,7 @@ msgstr "Etiquetas"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7 apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Icono para {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34 apps/addons/templates/addons/impala/featured_grid.html:26 apps/addons/templates/addons/impala/theme_grid.html:22
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:31 apps/users/templates/users/helpers/addon_users_list.html:7
@@ -909,7 +912,7 @@ msgstr "por %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Descargar de todas maneras"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1064,6 +1067,8 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:279
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
+"<strong>Precaución:</strong> las versiones de desarrollo de este complemento "
+"no han sido revisadas por Mozilla."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
@@ -1389,7 +1394,7 @@ msgstr "Centro de Desarrolladores"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Administrar llaves API"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
@@ -1993,7 +1998,7 @@ msgstr "Anterior"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Saltar a la última página"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -3474,11 +3479,11 @@ msgstr "Valoración actualizada del paquete de idioma"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonificación por revisiones atrasadas"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Días antes de que se apliquen los puntos de bonificación"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -3815,10 +3820,14 @@ msgstr "Marca esta opción si quieres distribuir tu complemento por tu cuenta y 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
 msgstr ""
+"Este complemento será incluido junto con el instalador de una aplicación."
 
 #: apps/devhub/forms.py:543
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Mozilla revisará el código de los complementos incluidos en instaladores de "
+"aplicaciones antes de firmarlos, y se espera un estándar de calidad más "
+"alto."
 
 #: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -5104,7 +5113,7 @@ msgstr "Apropiado para complementos pulidos"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Requerido si el complemento está incluido en un instalador"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -5210,37 +5219,41 @@ msgstr "Parece que tu complemento requiere una revisión manual antes de ser fir
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acuerdo de distribución de complementos de Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Credenciales de API"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "Emisor JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "Secreto JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Para hacer solicitudes API, envía un <a href=\"%(jwt_url)s\">JWT (<i>JSON Web "
+"Token</i>)</a> como el encabezado de la autorización. Necesitarás generar un "
+"JWT para cada solicitud como en el siguiente ejemplo, usando la biblioteca "
+"<a href=\"%(node_jwt_url)s\">node-jsonwebtoken."
 
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "Consulta la <a href=\"%(docs_url)s\">documentación</a> para más detalles."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Todavía no tienes credenciales API."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Generar credenciales nuevas"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -5290,7 +5303,7 @@ msgstr "Vulnerabilidades de seguridad en complementos"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins arroba mozilla punto org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6225,10 +6238,15 @@ msgstr "Tu complemento se muestra en nuestra galería y los usuarios están reci
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be bundled with an application installer."
 msgstr ""
+"Tu complemento fue firmado y puede ser incluido en un instalador de "
+"aplicaciones."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Tu complemento fue deshabilitado por un administrador y ya no es mostrado en "
+"nuestra galería. Si tienes dudas, por favor escribe a amo-"
+"admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
@@ -6249,6 +6267,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
+"Recibirás un correo cuando la revisión sea completada, permitiendo que "
+"incluyas tu complemento junto con un instalador de aplicaciones."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -6998,15 +7018,18 @@ msgstr "Enviar una nueva versión"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "La revisión completa puede no ser requerida"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"Los complementos no listados no necesitan revisión completa a menos de que "
+"sean distribuidos como parte de un instalador de aplicaciones. Lee <a "
+"href=\"{link}\" target=\"_blank\">esta documentación</a> para más información."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Solicitar revisión completa"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -7503,7 +7526,7 @@ msgstr "Eliminar la marca de valoración del administrador"
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Borrar la señal de solicitud de más información"
 
 #: apps/editors/forms.py:281
 msgid "Choose a canned response..."
@@ -8601,19 +8624,19 @@ msgstr "No se ha podido interpretar install.rdf."
 
 #: apps/files/utils.py:462
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "No se pudo encontrar una identificación para el complemento."
 
 #: apps/files/utils.py:465
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "La identificación del complemento debe ser de 64 caracteres o menos."
 
 #: apps/files/utils.py:467
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "La identificación del complemento no concuerda con el complemento."
 
 #: apps/files/utils.py:471
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Se encontró una identificación de complemento duplicada."
 
 #: apps/files/utils.py:474
 msgid "Version numbers should have fewer than 32 characters."
@@ -12185,7 +12208,7 @@ msgstr "Para crear tu propia colección, debes tener una cuenta de Mozilla Add-o
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo de pie de página"
 
 #: templates/categories.html:2
 msgid "Choose a category"
