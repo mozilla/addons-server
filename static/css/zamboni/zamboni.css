@@ -3397,7 +3397,8 @@ td.input {
 }
 
 /* Hide this honeypot field for our users */
-.collection-create input[name="your_name"] {
+.collection-create input[name="your_name"],
+#details-edit input[name="your_name"] {
     display: none;
 }
 
