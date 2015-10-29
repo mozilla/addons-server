@@ -581,6 +581,10 @@ class FileUpload(amo.models.ModelBase):
         choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver')
+    # Not all FileUploads will have a version and addon but it will be set
+    # if the file was uploaded using the new API.
+    version = models.CharField(max_length=255, null=True)
+    addon = models.ForeignKey('addons.Addon', null=True)
 
     objects = amo.models.UncachedManagerBase()
 
