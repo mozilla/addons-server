@@ -2,6 +2,8 @@
 Celery
 ======
 
+.. note:: The following documentation is deprecated. The approved installation is :ref:`via Docker <install-with-docker>`.
+
 `Celery <http://celeryproject.org/>`_ is a task queue powered by RabbitMQ.  You
 can use it for anything that doesn't need to complete in the current
 request-response cycle.  Or use it `wherever Les tells you to use it

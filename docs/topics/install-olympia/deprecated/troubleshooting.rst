@@ -3,6 +3,8 @@
 Trouble-shooting the development installation
 =============================================
 
+.. note:: The following documentation is deprecated. The approved installation is :ref:`via Docker <install-with-docker>`.
+
 Image processing isn't working
 ------------------------------
 

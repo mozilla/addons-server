@@ -4,11 +4,7 @@
 Installing Olympia the long way
 ===============================
 
-.. note::
-
-    `Docker <http://docs.docker.com/>`_ is the recommended and supported
-    approach for running the amo development environment.
-    See the :ref:`Docker installation instructions <install-with-docker>`.
+.. note:: The following documentation is deprecated. The approved installation is :ref:`via Docker <install-with-docker>`.
 
 
 The following instructions walk you through installing and configuring all
@@ -282,23 +278,6 @@ If you want to grant yourself admin privileges, pass in the ``--set-admin``
 option::
 
     ./manage.py activate_user --set-admin <email of your user>
-
-
-Testing
--------
-
-The :ref:`testing` page has more info, but here's the quick way to run
-olympia's tests::
-
-    ./manage.py test
-
-There are a few useful makefile targets that you can use, the simplest one
-being::
-
-    make test
-
-Please check the :doc:`../hacking/testing` page for more information on
-the other available targets.
 
 .. _updating:
 

@@ -4,6 +4,8 @@
 Elasticsearch
 =============
 
+.. note:: The following documentation is deprecated. The approved installation is :ref:`via Docker <install-with-docker>`.
+
 Elasticsearch is a search server. Documents (key-values) get stored,
 configurable queries come in, Elasticsearch scores these documents, and returns
 the most relevant hits.
