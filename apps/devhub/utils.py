@@ -9,6 +9,7 @@ from celery import chain, group
 from tower import ugettext as _
 
 import amo
+import commonware.log
 from addons.models import Addon
 from amo.decorators import write
 from amo.urlresolvers import linkify_escape
@@ -17,6 +18,8 @@ from files.utils import parse_addon
 from validator.constants import SIGNING_SEVERITIES
 from validator.version import Version
 from . import tasks
+
+log = commonware.log.getLogger('z.devhub')
 
 
 def process_validation(validation, is_compatibility=False, file_hash=None):
@@ -143,7 +146,9 @@ class ValidationAnnotator(object):
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, check=False)
-            except ValidationError:
+            except ValidationError, form_error:
+                log.info('could not parse addon for upload {}: {}'
+                         .format(file_.pk, form_error))
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
