@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from tower import ugettext as _
 
+import amo
 from addons.models import Addon
 from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
@@ -13,24 +14,29 @@ from versions.models import Version
 from signing.serializers import FileUploadSerializer
 
 
-def with_addon(fn):
-    def inner(view, request, guid, version):
-        try:
-            addon = Addon.unfiltered.get(guid=guid)
-        except Addon.DoesNotExist:
-            return Response({'error': _('Could not find addon.')},
-                            status=status.HTTP_404_NOT_FOUND)
-        if not addon.has_author(request.user):
-            return Response(
-                {'error': _('You do not own this addon.')},
-                status=status.HTTP_403_FORBIDDEN)
-        return fn(view, request, addon, version)
-    return inner
+def with_addon(allow_missing=False):
+    def wrapper(fn):
+        def inner(view, request, guid, version):
+            try:
+                addon = Addon.unfiltered.get(guid=guid)
+            except Addon.DoesNotExist:
+                if allow_missing:
+                    addon = None
+                else:
+                    return Response({'error': _('Could not find addon.')},
+                                    status=status.HTTP_404_NOT_FOUND)
+            if addon is not None and not addon.has_author(request.user):
+                return Response(
+                    {'error': _('You do not own this addon.')},
+                    status=status.HTTP_403_FORBIDDEN)
+            return fn(view, request, addon, version)
+        return inner
+    return wrapper
 
 
 class VersionView(JWTProtectedView):
 
-    @with_addon
+    @with_addon(allow_missing=True)
     def put(self, request, addon, version):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
@@ -49,17 +55,26 @@ class VersionView(JWTProtectedView):
             return Response(
                 {'error': _('Version does not match install.rdf.')},
                 status=status.HTTP_400_BAD_REQUEST)
-        elif addon.versions.filter(version=version).exists():
+        elif (addon is not None and
+                addon.versions.filter(version=version).exists()):
             return Response({'error': _('Version already exists.')},
                             status=status.HTTP_409_CONFLICT)
+
+        if addon is None:
+            addon = Addon.create_addon_from_upload_data(
+                data=pkg, user=request.user, status=amo.STATUS_UNREVIEWED,
+                is_listed=False)
+            status_code = status.HTTP_201_CREATED
+        else:
+            status_code = status.HTTP_202_ACCEPTED
 
         file_upload = handle_upload(
             filedata=filedata, user=request.user, addon=addon, submit=True)
 
         return Response(FileUploadSerializer(file_upload).data,
-                        status=status.HTTP_202_ACCEPTED)
+                        status=status_code)
 
-    @with_addon
+    @with_addon()
     def get(self, request, addon, version):
         try:
             file_upload = FileUpload.objects.get(addon=addon, version=version)

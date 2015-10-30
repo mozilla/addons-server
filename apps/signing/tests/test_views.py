@@ -3,8 +3,10 @@ from datetime import datetime
 
 from django.core.urlresolvers import reverse
 
+import mock
 from rest_framework.test import APITestCase
 
+from addons.models import Addon
 from api.tests.test_jwt_auth import JWTAuthTester
 from signing.views import VersionView
 from users.models import UserProfile
@@ -31,13 +33,15 @@ class BaseUploadVersionCase(APITestCase, JWTAuthTester):
                                        self.api_key.secret)
         return 'JWT {}'.format(token)
 
-    def xpi_filepath(self, version):
+    def xpi_filepath(self, addon, version):
         return os.path.join(
             'apps', 'signing', 'fixtures',
-            '@upload-version-{version}.xpi'.format(version=version))
+            '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
-    def put(self, url, version='3.0'):
-        filename = self.xpi_filepath(version)
+    def put(self, url=None, version='3.0', addon='@upload-version'):
+        filename = self.xpi_filepath(addon, version)
+        if url is None:
+            url = self.url(addon, version)
         with open(filename) as upload:
             return self.client.put(url, {'upload': upload},
                                    HTTP_AUTHORIZATION=self.authorization())
@@ -53,10 +57,18 @@ class TestUploadVersion(BaseUploadVersionCase):
         response = self.client.put(self.url(self.guid, '12.5'))
         assert response.status_code == 401
 
-    def test_addon_does_not_exist(self):
-        response = self.put(self.url('foo', '12.5'))
-        assert response.status_code == 404
-        assert response.data['error'] == 'Could not find addon.'
+    @mock.patch('devhub.views.auto_sign_version')
+    def test_addon_does_not_exist(self, sign_version):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.put(addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert sign_version.called
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
@@ -76,7 +88,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
-    def test_version_added(self):
+    @mock.patch('devhub.views.auto_sign_version')
+    def test_version_added(self, sign_version):
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
         assert not qs.exists()
 
@@ -87,6 +100,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
+        assert sign_version.called
 
     def test_version_already_uploaded(self):
         response = self.put(self.url(self.guid, '3.0'))

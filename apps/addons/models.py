@@ -510,16 +510,11 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
-                    is_listed=True, data=None):
-        from files.utils import parse_addon
-
-        if not data:
-            data = parse_addon(upload)
-
+    def initialize_addon_from_upload(cls, data, is_listed=True,
+                                     status=amo.STATUS_NULL):
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
-        addon.status = amo.STATUS_NULL
+        addon.status = status
         addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
@@ -528,6 +523,28 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(translation.get_language())
+
+        return addon
+
+    @classmethod
+    def create_addon_from_upload_data(cls, data, is_listed=True, user=None,
+                                      status=amo.STATUS_NULL):
+        addon = cls.initialize_addon_from_upload(
+            data, is_listed=is_listed, status=status)
+        addon.save()
+        AddonUser(addon=addon, user=user).save()
+        return addon
+
+    @classmethod
+    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
+                    is_listed=True, data=None):
+        from files.utils import parse_addon
+
+        if not data:
+            data = parse_addon(upload)
+
+        addon = cls.initialize_addon_from_upload(
+            is_listed=is_listed, data=data)
         if upload.validation_timeout:
             addon.admin_review = True
         addon.save()
