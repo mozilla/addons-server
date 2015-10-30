@@ -17,11 +17,5 @@
         <a title="{{ _('Edit this Collection') }}"
            class="widget edit tooltip condensed" href="{{ c.edit_url() }}"></a>
       {% endif %}
-      {% if waffle.switch('collection-stats') and c.can_view_stats(request) %}
-        <a href="{{ c.stats_url() }}" title="{{ _('Statistics') }}"
-          class="widget stats{{ ' tooltip' if condensed }}">
-          {{ _('Statistics') if not condensed }}
-        </a>
-      {% endif %}
 {% endif %}
 </div>

@@ -7,13 +7,6 @@
         {{ _('Edit Listing') }}</a>
     </li>
   {% endif %}
-  {% if waffle.switch('theme-stats') %}
-    <li>
-      <a href="{{ addon.get_url_path() }}" class="tooltip"
-         title="{{ _("View this theme's public listing page.") }}">
-        {{ _('View Listing') }}</a>
-    </li>
-  {% endif %}
   <li>
     <a href="{{ url('devhub.feed', addon.slug) }}">
       {{ _('View Recent Changes') }}</a>
