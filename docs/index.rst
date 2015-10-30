@@ -56,6 +56,9 @@ on your host machine::
     docker-compose up -d
     make initialize_docker  # Answer yes, and create your superuser when asked.
 
+Accessing docker
+~~~~~~~~~~~~~~~~
+
 The last step is to grab the ip of the vm. If you're using docker-machine,
 you can get the ip like so::
 
@@ -77,6 +80,20 @@ Now you can connect to port 80 of that ip address. Here's an example
     so you might find this ip address changes over time. You can always find out
     what ip is being used with ``docker-machine ip [machine name]``
 
+You may need to use a reliable hostname to access your container server (e.g. for
+Firefox Accounts). You can set one by editing your ``/etc/hosts`` file on your
+native operating system. For example::
+
+    192.168.99.100  olympia.dev
+
+You can ensure your docker server is configured internally with this host by
+setting it in the environment and restarting the docker containers, like this::
+
+    export OLYMPIA_SITE_URL=http://olympia.dev
+    docker-compose up -d
+
+Running common commands
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Any other commands can now be run in a shell on the running container::
 
@@ -86,7 +103,10 @@ Then, to run the tests for example, just run this command in the shell::
 
     py.test
 
-Any time you update Olympia (e.g., running ``git pull``), you should make sure to
+Updating your containers
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Any time you update Olympia (e.g., by running ``git pull``), you should make sure to
 update your Docker image and database with any new requirements or migrations::
 
     docker-compose stop
@@ -94,13 +114,16 @@ update your Docker image and database with any new requirements or migrations::
     docker-compose up -d
     make update_docker  # Runs database migrations and rebuilds assets.
 
-Please note that any command that would result in files added or modified
-outside of the `olympia` folder (eg modifying pip or npm dependencies) won't be
-persisted, and so won't survive after the container is finished.
+Gotchas!
+~~~~~~~~
+
+Please note: any command that would result in files added or modified
+outside of the ``olympia`` folder (e.g. modifying pip or npm dependencies) won't be
+persisted, and thus won't survive after the running container exits.
 
 .. note::
     If you need to persist any changes to the image, they should be carried out
-    via the `Dockerfile`. Commits to master will result in the Dockerfile being
+    via the ``Dockerfile``. Commits to master will result in the Dockerfile being
     rebuilt on the docker hub.
 
 If you quit docker-machine, or restart your computer, docker-machine will need

@@ -17,6 +17,7 @@ worker: &worker
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE='olympia'
     - MYSQL_ROOT_PASSWORD='docker'
+    - OLYMPIA_SITE_URL
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - REDIS_LOCATION=redis:6379

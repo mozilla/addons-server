@@ -63,7 +63,7 @@ UGLIFY_BIN = os.getenv('UGLIFY_BIN',
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 
-SITE_URL = 'http://localhost:8000'
+SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
