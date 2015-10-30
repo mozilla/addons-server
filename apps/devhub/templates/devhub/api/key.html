@@ -16,6 +16,11 @@
         <legend>
           {{ _('API Credentials') }}
         </legend>
+        <p>
+          {% trans bug_link='https://github.com/mozilla/olympia/issues' %}
+            This feature is under active development. If you find a problem please <a target="_blank" href="{{ bug_link }}">report a bug</a>.
+          {% endtrans %}
+        </p>
         {% if credentials %}
           <ul class="api-credentials">
             <li class="row api-input key-input">
