@@ -6,7 +6,6 @@ import pytest
 from mock import Mock, patch
 from nose import SkipTest
 from nose.tools import eq_
-import waffle
 
 from django.conf import settings
 

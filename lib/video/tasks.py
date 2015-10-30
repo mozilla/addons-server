@@ -8,7 +8,6 @@ import amo
 from amo.celery import task
 from amo.decorators import set_modified_on
 from lib.video import library
-import waffle
 
 log = logging.getLogger('z.devhub.task')
 time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
