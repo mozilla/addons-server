@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-19 13:35+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2015-10-31 17:11+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -14983,7 +14983,7 @@ msgstr "Um pouco mais em detalhe..."
 
 #: apps/users/templates/users/profile.html:62
 msgid "Add-ons I've created"
-msgstr "Extras que ei criei"
+msgstr "Extras que eu criei"
 
 #: apps/users/templates/users/profile.html:75
 msgid "My Most Popular Themes"
