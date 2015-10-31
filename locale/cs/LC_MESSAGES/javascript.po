@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 20:50+0000\n"
+"PO-Revision-Date: 2015-10-31 19:44+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445028614.0\n"
+"X-POOTLE-MTIME: 1446320684.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -102,7 +102,6 @@ msgstr[1] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 
 #: static/js/common/upload-addon.js:421
-#, fuzzy
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
