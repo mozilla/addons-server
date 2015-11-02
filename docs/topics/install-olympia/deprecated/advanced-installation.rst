@@ -1,3 +1,9 @@
+==========================
+Manual installation
+==========================
+
+.. note:: The following documentation is deprecated. The approved installation is :ref:`via Docker <install-with-docker>`.
+
 .. _advanced-installation:
 
 =============
@@ -183,4 +189,3 @@ If you didn't run the ``make full_init`` command during the
 populated with generated add-ons.
 Otherwise, the existing categories will be filled with newly generated
 add-ons.
-
