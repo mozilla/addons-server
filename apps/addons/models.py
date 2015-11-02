@@ -510,11 +510,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, is_listed=True,
-                                     status=amo.STATUS_NULL):
+    def initialize_addon_from_upload(cls, data, is_listed=True):
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
-        addon.status = status
+        addon.status = amo.STATUS_NULL
         addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
@@ -527,10 +526,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return addon
 
     @classmethod
-    def create_addon_from_upload_data(cls, data, is_listed=True, user=None,
-                                      status=amo.STATUS_NULL):
-        addon = cls.initialize_addon_from_upload(
-            data, is_listed=is_listed, status=status)
+    def create_addon_from_upload_data(cls, data, user=None, **kwargs):
+        addon = cls.initialize_addon_from_upload(data, **kwargs)
         addon.save()
         AddonUser(addon=addon, user=user).save()
         return addon

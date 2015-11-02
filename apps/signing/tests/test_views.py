@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 import mock
 from rest_framework.test import APITestCase
 
+import amo
 from addons.models import Addon
 from api.tests.test_jwt_auth import JWTAuthTester
 from signing.views import VersionView
@@ -68,7 +69,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert sign_version.called
+        assert addon.status == amo.STATUS_LITE
+        sign_version.assert_called_with(addon.latest_version)
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
@@ -100,7 +102,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
-        assert sign_version.called
+        sign_version.assert_called_with(version)
 
     def test_version_already_uploaded(self):
         response = self.put(self.url(self.guid, '3.0'))
