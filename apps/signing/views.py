@@ -4,7 +4,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from tower import ugettext as _
 
-import amo
 from addons.models import Addon
 from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
