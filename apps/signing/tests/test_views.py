@@ -92,6 +92,7 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     @mock.patch('devhub.views.auto_sign_version')
     def test_version_added(self, sign_version):
+        assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
         assert not qs.exists()
 
@@ -102,6 +103,8 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
+        assert version.statuses[0][1] == amo.STATUS_PUBLIC
+        assert version.addon.status == amo.STATUS_PUBLIC
         sign_version.assert_called_with(version)
 
     def test_version_already_uploaded(self):
