@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-16 20:11+0000\n"
-"Last-Translator: kusavica <kusavica@gmail.com>\n"
+"PO-Revision-Date: 2015-11-03 22:32+0000\n"
+"Last-Translator: Branislav <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1445026310.0\n"
+"X-POOTLE-MTIME: 1446589954.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -2001,7 +2001,7 @@ msgstr "Predchádzajúce"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Skok na poslednú stranu"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -3489,11 +3489,11 @@ msgstr "Kontrola aktualizovaného jazykového balíka"
 
 #: apps/constants/base.py:481
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus za oneskorené kontroly"
 
 #: apps/constants/base.py:482
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dni pred uplatnením bonusových bodov"
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
@@ -3529,7 +3529,7 @@ msgstr "Moderovaná kontrola doplnkov"
 
 #: apps/constants/base.py:491
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Úprava recenzie doplnkov bola zrušená"
 
 #: apps/constants/base.py:538
 msgid "Level 1"
@@ -3569,15 +3569,15 @@ msgstr "Úroveň 9"
 
 #: apps/constants/base.py:555
 msgid "Not signed"
-msgstr ""
+msgstr "Neodoslané"
 
 #: apps/constants/base.py:556
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Odoslané na kompletnú kontrolu"
 
 #: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Odoslané na predbežnú kontrolu"
 
 #: apps/constants/editors.py:14 apps/editors/templates/editors/themes/queue.html:76 apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
@@ -3717,7 +3717,7 @@ msgstr "Heslo nie je správne."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Neplatný JSON objekt"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
@@ -6179,7 +6179,7 @@ msgstr "Váš doplněk je zobrazen v naší galerii jako experimentální a uži
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "Váš doplnok bol podpísaný."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:79
 #, fuzzy
@@ -6856,35 +6856,41 @@ msgstr "Zrušiť požiadavku o kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
-msgstr ""
+msgstr "Viditeľnosť doplnku"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
-msgstr ""
+msgstr "V zozname:"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
+"Viditeľný pre každého na {0} a zobrazovaný vo výsledkoch vyhľadávania a v "
+"zoznamoch na stránkach"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
-msgstr ""
+msgstr "Skrytý:"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
 msgstr ""
+"Umiestnený na {0}, ale skrytý pre všetkých okrem jeho autorov. Možno použiť "
+"pre dočasné odobranie zo zoznamu, alebo jeho úplne skrytie."
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Unlisted:"
-msgstr ""
+msgstr "Nezaradený:"
 
 #: apps/devhub/templates/devhub/versions/list.html:120
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 msgstr ""
+"Nie je distribuovaný na {0}. Vývojári budú nahrávať nové verzie na podpis a "
+"budú distribuovať doplnok sami. (beta)"
 
 #: apps/devhub/templates/devhub/versions/list.html:129
 msgid "Current versions"
-msgstr ""
+msgstr "Aktuálna verzia"
 
 #: apps/devhub/templates/devhub/versions/list.html:135
 msgid "Currently on AMO"
@@ -6920,15 +6926,18 @@ msgstr "Odoslať novú verziu"
 
 #: apps/devhub/templates/devhub/versions/list.html:216
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Kompletná kontrola nemusí byť nutná"
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
 msgstr ""
+"Nezverejnené doplnky nepotrebujú kompletnú kontrolu, ak nie sú distribuované "
+"ako súčasť inštalátora aplikácií. Pre viac informácií si prečítajte <a "
+"href=\"{link}\" target=\"_blank\">túto dokumentáciu</a>."
 
 #: apps/devhub/templates/devhub/versions/list.html:225
 msgid "Request full review"
-msgstr ""
+msgstr "Vyžiadať kompletnú kontrolu"
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Delete Version {version}"
@@ -6979,14 +6988,16 @@ msgstr "Skryť doplnok"
 #: apps/devhub/templates/devhub/versions/list.html:275
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
+"Skrytím svojho doplnku zabránite, aby sa zobrazoval kdekoľvek v našej "
+"galérii, a používateľom prestanú byť inštalované automatické aktualizácie."
 
 #: apps/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Naozaj chcete skryť svoj doplnok?"
 
 #: apps/devhub/templates/devhub/versions/list.html:302 apps/devhub/templates/devhub/versions/list.html:331
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Zrušiť zverejnenie doplnku"
 
 #: apps/devhub/templates/devhub/versions/list.html:305
 msgid ""
