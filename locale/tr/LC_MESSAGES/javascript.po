@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2014-06-29 11:19+0000\n"
-"Last-Translator: Selim <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-10-19 12:31+0000\n"
+"Last-Translator: Muhammed <mkykadir_96@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1404040746.0\n"
+"X-POOTLE-MTIME: 1445257916.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -96,11 +96,11 @@ msgstr[0] ""
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Eklentiniz hatasız olarak ve {0} mesajla doğrulanmıştır."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Eklentiniz hatasız ve uyarısız olarak doğrulanmıştır."
 
 #: static/js/common/upload-addon.js:444
 msgid "Your submission will go through a manual review."
@@ -128,7 +128,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:493
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Eklenti gönderimi kontrol listesi"
 
 #: static/js/common/upload-addon.js:494
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
@@ -143,6 +143,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar "
+"bulundu:"
 
 #: static/js/common/upload-addon.js:531
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
@@ -516,7 +518,7 @@ msgstr "Ortalama Katkı"
 
 #: static/js/impala/stats/csv_keys.js:115
 msgid "Usage"
-msgstr ""
+msgstr "Kullanım"
 
 #: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
@@ -544,7 +546,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
