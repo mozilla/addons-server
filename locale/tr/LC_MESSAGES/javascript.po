@@ -4,14 +4,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-03 12:50+0000\n"
+"PO-Revision-Date: 2015-11-03 11:55+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1445257916.0\n"
 
@@ -19,7 +19,6 @@ msgstr ""
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} yıldız"
-msgstr[1] "{0} yıldız"
 
 #: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
@@ -59,13 +58,11 @@ msgstr "{0} hatası"
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Eklentinizin doğrulanması {0} hata ile başarısız oldu."
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:198
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ve{0} tane daha"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:525
 msgid "See full validation report"
@@ -96,13 +93,11 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Eklentiniz hatasız olarak ve {0} mesajla doğrulanmıştır."
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
@@ -841,13 +836,11 @@ msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 "{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere "
 "e-posta gönder."
-msgstr[1] ""
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -1033,13 +1026,11 @@ msgstr "Dosyanız yüklenirken bir hata oluştu."
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} dosya"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
@@ -1150,7 +1141,6 @@ msgstr "Yükleniyor..."
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> karakter kaldı."
-msgstr[1] ""
 
 #: static/js/zamboni/init.js:28
 msgid ""
@@ -1172,7 +1162,6 @@ msgstr "Parola gücü:"
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "En az {0} karakter kaldı."
-msgstr[1] ""
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
 msgid "All"
@@ -1239,19 +1228,16 @@ msgstr "Eklenti, doğrulamadan geçti."
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} hata"
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} uyarı"
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
