@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-10-25 19:30+0000\n"
+"PO-Revision-Date: 2015-11-02 23:30+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1526,7 +1526,7 @@ msgstr "Esse complemento foi removido pelo autor."
 
 #: apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr "Esse complemento foi desativado por um administrador."
+msgstr "Este complemento foi desabilitado por um administrador."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -1965,11 +1965,11 @@ msgstr "Contribuições para {addon}."
 
 #: apps/amo/log.py:67 apps/amo/log.py:417
 msgid "{addon} disabled."
-msgstr "{addon} desativado."
+msgstr "{addon} desabilitado."
 
 #: apps/amo/log.py:73
 msgid "{addon} enabled."
-msgstr "{addon} ativado."
+msgstr "{addon} habilitado."
 
 #: apps/amo/log.py:80
 msgid "Stats set public for {addon}."
@@ -2229,7 +2229,7 @@ msgstr "Encaminhado para análise superior removido"
 
 #: apps/amo/log.py:418
 msgid "App disabled"
-msgstr "Aplicativo desativado"
+msgstr "Aplicativo desabilitado"
 
 #: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2493,18 +2493,17 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please use your browser's Back button and try again a little later."
 msgstr ""
-"Esse recurso está temporariamente indisponível enquanto realizamos a "
-"manutenção do site. Por favor, use o botão Voltar do seu navegador e tente "
-"novamente um pouco mais tarde."
+"Este recurso foi temporariamente desabilitado para realizamos a manutenção "
+"do site. Por favor, use o botão voltar do navegador e tente novamente mais "
+"tarde."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid ""
 "Some features on this page are temporarily disabled while we perform website"
 " maintenance. Please try again a little later."
 msgstr ""
-"Alguns recursos desta página estão temporariamente desativados enquanto "
-"realizamos a manutenção do site. Por favor, tente novamente um pouco mais "
-"tarde."
+"Alguns recursos desta página foram temporariamente desabilitados para "
+"realizamos a manutenção do site. Por favor, tente novamente mais tarde."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -3539,8 +3538,8 @@ msgid ""
 "Users are strongly encouraged to disable the problematic add-on or plugin, "
 "but may choose to continue using it if they accept the risks described."
 msgstr ""
-"Os usuários são fortemente encorajados a desativar complementos ou plugins "
-"problemáticos, mas podem continuar a usá-los, desde que aceitem os riscos "
+"Os usuários são fortemente encorajados a desabilitar complementos ou plugins"
+" problemáticos, mas podem continuar a usá-los, desde que aceitem os riscos "
 "descritos."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
@@ -3548,8 +3547,8 @@ msgid ""
 "The problematic add-on or plugin will be automatically disabled and no "
 "longer usable."
 msgstr ""
-"O complemento ou plugin problemático será desativado automaticamente e não "
-"serão mais utilizável."
+"O complemento ou plugin problemático será automaticamente desabilitado e não"
+" será mais usado."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
 msgid ""
@@ -4194,7 +4193,7 @@ msgstr "Completamente analisado"
 
 #: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Disabled by Mozilla"
-msgstr "Desativado pela Mozilla"
+msgstr "Desabilitado pela Mozilla"
 
 # 81%
 # 100%
@@ -4938,7 +4937,7 @@ msgstr "Por favor, verifique se ha erros no formulário."
 
 #: apps/devhub/views.py:342
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "O complemento não pode ser excluído, mas você pode desativá-lo."
+msgstr "O complemento não pode ser excluído. Desabilite-o, em vez disso."
 
 #: apps/devhub/views.py:352
 msgid "Theme deleted."
@@ -5012,7 +5011,7 @@ msgstr "Ocorreu um erro ao enviar sua imagem."
 
 #: apps/devhub/views.py:1188
 msgid "Version %s disabled."
-msgstr "Versão %s desativada."
+msgstr "Versão %s desabilitada."
 
 # %s is the version number, e.g. 3.2.
 #: apps/devhub/views.py:1192
@@ -6145,7 +6144,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
-msgstr "Desativado"
+msgstr "Desabilitado"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -6790,14 +6789,13 @@ msgid ""
 "demoted from fully-reviewed status, disabled, or permanently removed from "
 "the site."
 msgstr ""
-"Podem surgir situações em que a Mozilla pode pedir a um desenvolvedor de "
-"complementos para atualizar seu complemento dentro de um determinado período"
-" de tempo para resolver um grande problema de segurança ou uma violação de "
-"política. Nós trabalhamos com os desenvolvedores para definir os seus "
-"próprios horários, mas se o problema for de natureza suficientemente grave, "
-"os complementos que não lançarem uma atualização com a correção necessária "
-"podem perder o status de completamente analisados, ser desativados ou "
-"removidos permanentemente deste site."
+"Podem surgir situações em que a Mozilla pode pedir a um desenvolvedor para "
+"atualizar seu complemento dentro de um determinado período de tempo para "
+"resolver um grande problema de segurança ou uma violação de política. Nós "
+"trabalhamos com os desenvolvedores para definir os seus próprios horários, "
+"mas se o problema for grave, os complementos que não lançarem uma "
+"atualização com a correção necessária podem perder o status de completamente"
+" analisados, serem desabilitados ou removidos permanentemente deste site."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -7487,8 +7485,8 @@ msgid ""
 "In most cases, the developer can simply fix the problem and re-submit for "
 "full review."
 msgstr ""
-"Se uma versão não atender aos critérios da análise completa, ela poderá "
-"obter o status de análise preliminar ou ser desativada, caso haja "
+"Se uma versão não satisfaz os critérios da análise completa, ela poderá "
+"obter o status de análise preliminar ou ser desabilitada, caso haja "
 "preocupações com a segurança do usuário. O autor receberá uma mensagem "
 "explicando a ação tomada e como corrigi-la. Na maioria dos casos, o "
 "desenvolvedor pode simplesmente corrigir o problema e reenviar a versão para"
@@ -8112,8 +8110,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing anywhere in our gallery"
 " or update service."
 msgstr ""
-"A sua lista de complementos está desativada e não está em qualquer lugar em "
-"nossa galeria ou serviço de atualização."
+"A sua lista de complementos está desabilitada e não está a mostra em "
+"qualquer lugar em nossa galeria ou serviço de atualização."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8164,8 +8162,8 @@ msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
-"Seu complemento foi desativado por um administrador do site e não é mais "
-"exibido na nossa galeria. Se você tiver quaisquer dúvidas, por favor escreva"
+"Seu complemento foi desabilitado por um administrador do site e não será "
+"mais exibido na nossa galeria. Se tiver quaisquer dúvidas, por favor escreva"
 " para amo-admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
@@ -8420,7 +8418,7 @@ msgstr "Sua página de contribuições: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
-msgstr "Desativar contribuições"
+msgstr "Desabilitar as contribuições"
 
 #: apps/devhub/templates/devhub/payments/payments.html:37
 msgid "Voluntary Contributions"
@@ -9227,7 +9225,7 @@ msgstr "Excluir versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:256
 msgid "Disable Version"
-msgstr "Desativar versão"
+msgstr "Desabilitar a versão"
 
 #: apps/devhub/templates/devhub/versions/list.html:263
 msgid "Add a new Version"
@@ -10859,7 +10857,7 @@ msgstr "Avançar automaticamente após análise"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr "Ativar atalhos do teclado"
+msgstr "Habilita atalhos de teclado"
 
 #: apps/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
@@ -11792,12 +11790,13 @@ msgid ""
 "Manifest is RDF/XML."
 msgstr ""
 "Esse arquivo, conhecido como <a href=\"%(url)s\">Manifesto de "
-"Instalação</a>, é usado pelas aplicações com o Gerenciador de complementos "
-"ativado para obter informações do complemento enquanto ele é instalado. Ele "
-"contém metadados que identificam o complemento, fornecendo informações sobre"
-" quem o criou, onde mais informações podem ser encontradas, quais versões de"
-" quais aplicativos são compatíveis com o complemento, como ele deve ser "
-"atualizado, entre outros. O formato do manifesto de instalação é RDF/XML."
+"Instalação</a>, é usado por aplicativos XUL habilitados no Gerenciador de "
+"complementos para obter informações sobre como um complemento está sendo "
+"instalado. Ele contém metadados que identificam o complemento, fornecendo "
+"informações sobre quem o criou, onde mais informações podem ser encontradas,"
+" quais versões de quais aplicativos são compatíveis com o complemento, como "
+"ele deve ser atualizado, entre outros. O formato do manifesto de instalação "
+"é RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
@@ -12741,13 +12740,13 @@ msgid ""
 "href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
 "Na maioria dos casos, os complementos podem ser instalados com um clique no "
-"botão Instalar. Para gerenciar, desativar ou desinstalar um complemento, "
-"acesse o menu Gerenciador de Complementos do %(app_name)s. Para mais "
-"informações, leia <a href=\"%(extension_url)s\">este artigo sobre "
-"complementos</a> ou <a href=\"%(theme_url)s\">este sobre temas</a>. Se tiver"
-" dificuldades ao instalar complementos, leia o artigo <a "
-"href=\"%(troubleshooting_url)s\">Correção de problemas com Complementos e "
-"Temas</a>."
+"botão Instalar. Para gerenciar, desabilitar ou desinstalar um complemento, "
+"use o Gerenciador de complementos do %(app_name)s. Para mais informações, "
+"leia <a href=\"%(extension_url)s\">este artigo sobre complementos</a> ou <a "
+"href=\"%(theme_url)s\">este sobre temas</a>. Se tiver dificuldades ao "
+"instalar complementos, leia o artigo <a "
+"href=\"%(troubleshooting_url)s\">Solucionando problemas com extensões e "
+"temas</a>."
 
 #: apps/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -13437,7 +13436,7 @@ msgstr ""
 "O desenvolvimento do projeto Sunbird parou e sua versão final foi lançada em"
 " 30 de março de 2010. Nós temos o orgulho de hospedar complementos do "
 "Sunbird neste site, mas uma vez que o projeto deixou de ser mantido, nós "
-"desativamos nosso suporte para seus complementos."
+"desabilitamos nosso suporte para seus complementos."
 
 #: apps/pages/templates/pages/sunbird.html:38
 msgid ""
@@ -13492,8 +13491,8 @@ msgstr ""
 " muito lento para um rastreamento e tornar difícil a navegação em geral. Se "
 "você acredita que complementos possam ser a razão da lentidão do %(app)s, "
 "verifique a lista abaixo para alguns dos maiores problemas. E lembre-se, "
-"para obter um melhor desempenho, você deve desativar os complementos que "
-"você não usa com frequência."
+"para um melhor desempenho, desabilite os complementos que não usa "
+"regularmente."
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
@@ -15668,8 +15667,8 @@ msgid ""
 "Some features are temporarily disabled while we perform website maintenance."
 " We'll be back to full capacity shortly."
 msgstr ""
-"Alguns recursos estão desativados temporariamente enquanto realizamos a "
-"manutenção do site. Em breve estaremos de volta com todos os recursos."
+"Alguns recursos foram temporariamente desativados para realizamos a "
+"manutenção do site. Em breve estaremos de volta a plena capacidade."
 
 #: templates/base.html:81 templates/impala/base.html:71
 msgid "Find add-ons for other applications"
