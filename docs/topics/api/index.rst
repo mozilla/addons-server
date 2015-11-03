@@ -9,3 +9,4 @@ This is documentation for the API available at `/api/v3/`.
    :maxdepth: 2
 
    auth
+   signing
