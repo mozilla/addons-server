@@ -949,21 +949,38 @@ function initAuthorFields() {
             .attr("title", $(this).text());
     });
 
-    $("#author_list").delegate(".remove", "click", function (e) {
-        e.preventDefault();
+    $("#author_list")
+        .delegate(".email-autocomplete", "keypress", validateUser)
+        .delegate(".email-autocomplete", "keyup", validateUser)
+        .delegate(".remove", "click", function (e) {
+            e.preventDefault();
+            var tgt = $(this),
+                row = tgt.parents("li");
+            if (author_list.children(".author:visible").length > 1) {
+                if (row.hasClass("initial")) {
+                    row.find(".delete input").attr("checked", "checked");
+                    row.hide();
+                } else {
+                    row.remove();
+                    manager.val(author_list.children(".author").length);
+                }
+                renumberAuthors();
+            }
+        });
+
+
+    function validateUser(e) {
         var tgt = $(this),
             row = tgt.parents("li");
-        if (author_list.children(".author:visible").length > 1) {
-            if (row.hasClass("initial")) {
-                row.find(".delete input").attr("checked", "checked");
-                row.hide();
-            } else {
-                row.remove();
-                manager.val(author_list.children(".author").length);
-            }
-            renumberAuthors();
+        if (row.hasClass("blank")) {
+            tgt.removeClass("placeholder")
+               .attr("placeholder", undefined);
+            row.removeClass("blank")
+               .addClass("author");
+            addAuthorRow();
         }
-    });
+    }
+
     function renumberAuthors() {
         author_list.children(".author").each(function(i, el) {
             $(this).find(".position input").val(i);
