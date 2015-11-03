@@ -76,6 +76,13 @@ def submit_file(addon_pk, file_pk):
         log.info('Creating version for {file_id} that passed '
                  'validation'.format(file_id=file_pk))
         version = Version.from_upload(file_, addon, [amo.PLATFORM_ALL.id])
+        # The add-on'sstatus will be STATUS_NULL when its first version is
+        # created because the version has no files when it gets added and it
+        # gets flagged as invalid. We need to manually set the status.
+        # TODO: Handle sideload add-ons. This assumes the user wants a prelim
+        # review since listed and sideload aren't supported for creation yet.
+        if addon.status == amo.STATUS_NULL:
+            addon.update(status=amo.STATUS_LITE)
         auto_sign_version(version)
     else:
         log.info('Skipping version creation for {file_id} that failed '
