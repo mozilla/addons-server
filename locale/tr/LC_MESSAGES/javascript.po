@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-03 11:55+0000\n"
+"PO-Revision-Date: 2015-11-03 16:59+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -920,7 +920,7 @@ msgstr "{0} {1} için mevcut değil"
 
 #: static/js/zamboni/buttons.js:358
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "{app} {min} - {max} ile çalışır"
 
 #: static/js/zamboni/buttons.js:360
 msgid "View other versions"
@@ -928,7 +928,7 @@ msgstr "Diğer sürümleri görüntüle"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid ""
@@ -988,7 +988,7 @@ msgstr "Bir e-posta adresi gereklidir."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Kendinizi katkıda bulunan olarak ekleyemezsiniz."
 
 #: static/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -1030,7 +1030,7 @@ msgstr[0] "{files} dosya"
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} kullanıcı incelemesi"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
@@ -1177,7 +1177,7 @@ msgstr "İşaretlendi"
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Çift kopya"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
@@ -1237,7 +1237,7 @@ msgstr[0] "{0} uyarı"
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} bildirim"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
