@@ -79,8 +79,12 @@ class VersionView(JWTProtectedView):
     @with_addon()
     def get(self, request, addon, version_string):
         try:
-            file_upload = FileUpload.objects.get(addon=addon,
-                                                 version=version_string)
+            file_upload = (FileUpload
+                           .objects
+                           .order_by('-created')
+                           .filter(addon=addon, version=version_string)
+                           [:1]
+                           .get())
         except FileUpload.DoesNotExist:
             return Response(
                 {'error': _('No uploaded file for that addon and version.')},
