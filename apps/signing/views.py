@@ -9,6 +9,7 @@ from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
 from files.models import FileUpload
 from files.utils import parse_addon
+from versions import views as version_views
 from versions.models import Version
 from signing.serializers import FileUploadSerializer
 
@@ -97,3 +98,9 @@ class VersionView(JWTProtectedView):
 
         serializer = FileUploadSerializer(file_upload, version=version)
         return Response(serializer.data)
+
+
+class SignedFile(JWTProtectedView):
+
+    def get(self, request, file_id):
+        return version_views.download_file(request, file_id)

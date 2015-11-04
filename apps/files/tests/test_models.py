@@ -68,6 +68,18 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
 
+    def test_get_url_path(self):
+        file_ = File.objects.get(id=67442)
+        assert file_.get_url_path('src') == \
+            file_.get_absolute_url(src='src')
+
+    def test_get_signed_url(self):
+        file_ = File.objects.get(id=67442)
+        url = file_.get_signed_url('src')
+        expected = ('/api/v3/file/67442/'
+                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
+        assert url.endswith(expected), url
+
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
