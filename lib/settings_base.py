@@ -229,6 +229,11 @@ DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 # Tarballs in DUMPED_USERS_PATH deleted 30 days after they have been written.
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
+# path that isn't just one /, and doesn't require any locale or app.
+SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
+    'api/v3',
+)
+
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
