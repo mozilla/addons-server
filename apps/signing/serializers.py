@@ -16,6 +16,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     passed_review = serializers.SerializerMethodField('get_passed_review')
     processed = serializers.BooleanField(source='processed')
     reviewed = serializers.SerializerMethodField('get_reviewed')
+    valid = serializers.BooleanField(source='passed_all_validations')
     validation_results = serializers.SerializerMethodField(
         'get_validation_results')
     validation_url = serializers.SerializerMethodField('get_validation_url')
