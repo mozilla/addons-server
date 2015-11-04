@@ -60,7 +60,7 @@ class MiddlewareTest(BaseTestCase):
         assert response is None
 
     def test_api_no_redirect(self):
-        response = self.process('/api/v3/')
+        response = self.process('/api/v3/some/endpoint/')
         assert response is None
 
     def test_vary(self):

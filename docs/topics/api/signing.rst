@@ -17,13 +17,13 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /en-US/firefox/api/v3/addons/[string:add-on-guid]/versions/[string:version]/
+.. http:put:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/en-US/firefox/api/v3/addons/my-addon/versions/1.0/
+        curl https://addons.mozilla.org/api/v3/addons/my-addon/versions/1.0/
             -XPUT --form 'upload=@build/my-addon.xpi' -H 'Authorization: JWT <jwt-token>'
 
     :param addon-guid: the GUID for the add-on.
@@ -73,13 +73,13 @@ longer. Once review is complete then the ``reviewed`` property
 will be set and you can check the results with the ``passed_review``
 property.
 
-.. http:get:: /en-US/firefox/api/v3/addons/[string:add-on-guid]/versions/[string:version]/
+.. http:get:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/en-US/firefox/api/v3/addons/my-addon/versions/1.0/
+        curl https://addons.mozilla.org/api/v3/addons/my-addon/versions/1.0/
             -H 'Authorization: JWT <jwt-token>'
 
     :param addon-guid: the GUID for the add-on.
@@ -100,7 +100,7 @@ property.
                 "passed_review": true,
                 "processed": true,
                 "reviewed": true,
-                "url": "https://addons.mozilla.org/en-US/firefox/api/v3/addons/%40new-unlisted-api/versions/1.0/",
+                "url": "https://addons.mozilla.org/api/v3/addons/%40new-unlisted-api/versions/1.0/",
                 "valid": true,
                 "validation_results": {},
                 "validation_url": "https://addons.mozilla.org/en-US/developers/upload/f68abbb3b1624c098fe979a409fe3ce9",

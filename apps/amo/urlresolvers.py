@@ -163,7 +163,7 @@ class Prefixer(object):
         path = path.lstrip('/')
         url_parts = [self.request.META['SCRIPT_NAME']]
 
-        if path.startswith(settings.SUPPORTED_NONAPPS_NONLOCALES_DEEP):
+        if path.startswith(settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX):
             url_parts.append(path)
             return '/'.join(url_parts)
 
