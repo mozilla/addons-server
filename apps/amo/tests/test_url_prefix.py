@@ -59,6 +59,10 @@ class MiddlewareTest(BaseTestCase):
         response = self.process('/services')
         assert response is None
 
+    def test_api_no_redirect(self):
+        response = self.process('/api/v3/')
+        assert response is None
+
     def test_vary(self):
         response = self.process('/')
         eq_(response['Vary'], 'Accept-Language, User-Agent')
