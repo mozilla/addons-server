@@ -231,7 +231,7 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
 # path that isn't just one / deep, and doesn't require any locale or app.
 SUPPORTED_NONAPPS_NONLOCALES_DEEP = (
-    'api/v3'
+    'api/v3',
 )
 
 # paths that don't require an app prefix
