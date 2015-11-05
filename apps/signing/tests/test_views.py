@@ -9,6 +9,7 @@ from rest_framework.test import APITestCase
 import amo
 from addons.models import Addon
 from api.tests.test_jwt_auth import JWTAuthTester
+from files.models import FileUpload
 from signing.views import VersionView
 from users.models import UserProfile
 from versions.models import Version
@@ -144,6 +145,14 @@ class TestCheckVersion(BaseUploadVersionCase):
                 'No uploaded file for that addon and version.')
 
     def test_version_exists(self):
+        self.create_version('3.0')
+        response = self.get(self.url(self.guid, '3.0'))
+        assert response.status_code == 200
+        assert 'processed' in response.data
+
+    def test_has_failed_upload(self):
+        addon = Addon.objects.get(guid=self.guid)
+        FileUpload.objects.create(addon=addon, version='3.0')
         self.create_version('3.0')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
