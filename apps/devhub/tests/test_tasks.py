@@ -406,3 +406,33 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         use_blacklist=False,
         perm_setting='individual_contact',
         headers={'Reply-To': settings.EDITORS_EMAIL})
+
+
+class TestSubmitFile(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestSubmitFile, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+
+    def create_upload(self):
+        return FileUpload.objects.create(
+            addon=self.addon, version='1.0', validation='{"errors":0}',
+            automated_signing=self.addon.automated_signing)
+
+    @mock.patch('devhub.tasks.Version.from_upload')
+    def test_file_passed_all_validations(self, create_version):
+        upload = self.create_upload()
+        with mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations',
+                        True):
+            tasks.submit_file(self.addon.pk, upload.pk)
+        create_version.assert_called_with(upload, self.addon,
+                                          [amo.PLATFORM_ALL.id])
+
+    @mock.patch('devhub.tasks.Version.from_upload')
+    def test_file_not_passed_all_validations(self, create_version):
+        upload = self.create_upload()
+        with mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations',
+                        False):
+            tasks.submit_file(self.addon.pk, upload.pk)
+        assert not create_version.called
