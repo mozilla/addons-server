@@ -131,10 +131,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
     def get_url_path(self, src):
+        return self._make_download_url('downloads.file', src)
+
+    def get_signed_url(self, src):
+        return self._make_download_url('signing.file', src)
+
+    def _make_download_url(self, view_name, src):
         from amo.helpers import urlparams, absolutify
-        url = os.path.join(reverse('downloads.file', args=[self.id]),
+        url = os.path.join(reverse(view_name, args=[self.pk]),
                            self.filename)
-        # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
 
     @classmethod

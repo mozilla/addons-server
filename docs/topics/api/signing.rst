@@ -93,7 +93,7 @@ property.
                 "active": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/firefox/downloads/file/100/unlisted_wat-1.0-fx+an.xpi?src=api",
+                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/unlisted_wat-1.0-fx+an.xpi?src=api",
                         "signed": true
                     }
                 ],
@@ -108,7 +108,8 @@ property.
             }
 
     :>json active: version is active.
-    :>json files.download_url: URL to download the add-on file.
+    :>json files.download_url:
+        URL to :ref:`download the add-on file <download-signed-file>`.
     :>json files.signed: if the file is signed.
     :>json passed_review: if the version has passed review.
     :>json processed: if the version has been processed by the validator.
@@ -123,3 +124,44 @@ property.
     :statuscode 401: authentication failed.
     :statuscode 403: you do not own this add-on.
     :statuscode 404: add-on or version not found.
+
+.. _download-signed-file:
+
+------------------------
+Downloading signed files
+------------------------
+
+When checking on your :ref:`request to sign a version <version-status>`,
+a successful response will give you an API URL to download the signed files.
+This endpoint returns the actual file data for download.
+
+.. http:get:: /api/v3/file/[int:file_id]/[string:base_filename]
+
+    **Request:**
+
+    .. sourcecode:: bash
+
+        curl 'https://addons.mozilla.org/api/v3/file/123/some-addon.xpi?src=api'
+            -H 'Authorization: JWT <jwt-token>'
+
+    :param file_id: the primary key of the add-on file.
+    :param base_filename:
+        the base filename. This is just a convenience for
+        clients so that they write meaningful file names to disk.
+
+    **Response:**
+
+    There are two possible responses:
+
+    * Binary data containing the file
+    * A header that redirects you to a mirror URL for the file.
+      In this case, the initial response will include a
+      ``SHA-256`` hash of the file in the header ``X-Target-Digest``.
+      Clients should check that the final downloaded file matches
+      this hash.
+
+    :statuscode 200: request successful.
+    :statuscode 302: file resides at a mirror URL
+    :statuscode 401: authentication failed.
+    :statuscode 404: file does not exist or requester does not have
+                     access to it.
