@@ -425,6 +425,11 @@ class TestParseXpi(amo.tests.TestCase):
         eq_(e.exception.messages,
             ["<em:type> doesn't match add-on"])
 
+    def test_match_type_extension_for_experiments(self):
+        parsed = self.parse(filename='experiment.xpi')
+        # See bug 1220097: experiments (type 128) map to extensions.
+        assert parsed['type'] == amo.ADDON_EXTENSION
+
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:

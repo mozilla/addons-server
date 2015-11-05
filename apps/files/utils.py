@@ -179,7 +179,8 @@ class PackageJSONExtractor(JSONExtractor):
 class RDFExtractor(object):
     """Extract add-on info from an install.rdf."""
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT}
+             '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT,
+             '128': amo.ADDON_EXTENSION}
     manifest = u'urn:mozilla:install-manifest'
 
     def __init__(self, path):
