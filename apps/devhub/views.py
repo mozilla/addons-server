@@ -831,6 +831,9 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         try:
             pkg = parse_addon(upload, addon=addon)
+            if not acl.submission_allowed(request.user, pkg):
+                raise django_forms.ValidationError(
+                    _(u'You cannot submit this type of add-ons'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -1221,7 +1224,10 @@ def auto_sign_file(file_, is_beta=False):
     addon = file_.version.addon
     validation = file_.validation
 
-    if addon.automated_signing and validation.passed_auto_validation:
+    if file_.is_experiment:  # See bug 1220097.
+        amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
+        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+    elif addon.automated_signing and validation.passed_auto_validation:
         # Passed validation: sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
                               version=file_.version)

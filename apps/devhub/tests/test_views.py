@@ -2222,6 +2222,30 @@ class TestUploadDetail(BaseUploadTest):
              for m in data['validation']['messages']],
             [(u'Could not parse install.rdf.', True)])
 
+    @mock.patch('devhub.tasks.run_validator')
+    def test_experiment_xpi_allowed(self, mock_validator):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Experiments:submit')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_experiment_xpi_not_allowed(self, mock_validator):
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == [
+            {u'tier': 1, u'message': u'You cannot submit this type of add-ons',
+             u'fatal': True, u'type': u'error'}]
+
 
 def assert_json_error(request, field, msg):
     eq_(request.status_code, 400)
@@ -2838,11 +2862,12 @@ class TestAddVersion(AddVersionTest):
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # Make sure the file has validation warnings or errors.
         self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 1,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 0}')
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 1,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
         # The status stays unchanged: it needs a manual preliminary review.
@@ -2857,11 +2882,12 @@ class TestAddVersion(AddVersionTest):
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 0,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 1}))
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         self.post()
         file_ = File.objects.latest()
@@ -2869,6 +2895,30 @@ class TestAddVersion(AddVersionTest):
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
+
+    @mock.patch('devhub.views.sign_file')
+    def test_experiments_are_auto_signed(self, mock_sign_file):
+        """Experiment extensions (bug 1220097) are auto-signed."""
+        # We're going to sign even if it has signing related errors/warnings.
+        self.upload = self.get_upload(
+            'experiment.xpi',
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 1},
+                "passed_auto_validation": 0}))
+        self.addon.update(guid='experiment@xpi', is_listed=True,
+                          status=amo.STATUS_PUBLIC, trusted=False)
+        self.post()
+        # Make sure the file created and signed is for this addon.
+        assert mock_sign_file.call_count == 1
+        mock_sign_file_call = mock_sign_file.call_args[0]
+        signed_file = mock_sign_file_call[0]
+        assert signed_file.version.addon == self.addon
+        # There is a log for that beta file signature (with passed validation).
+        log = ActivityLog.objects.get()
+        assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
 
 class TestAddBetaVersion(AddVersionTest):

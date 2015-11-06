@@ -77,6 +77,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Is the file a multi-package?
     #     https://developer.mozilla.org/en-US/docs/Multiple_Item_Packaging
     is_multi_package = models.BooleanField(default=False)
+    # Is the file an experiment (see bug 1220097)?
+    is_experiment = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -164,6 +166,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         file_.strict_compatibility = parse_data.get('strict_compatibility',
                                                     False)
         file_.is_multi_package = parse_data.get('is_multi_package', False)
+        file_.is_experiment = parse_data.get('is_experiment', False)
 
         if is_beta and addon.status == amo.STATUS_PUBLIC:
             file_.status = amo.STATUS_BETA

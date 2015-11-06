@@ -34,6 +34,16 @@ def action_allowed_user(user, app, action):
     return allowed
 
 
+def submission_allowed(user, parsed_addon_data):
+    """Experiments can only be submitted by the people with the right group.
+
+    See bug 1220097.
+    """
+    return (
+        not parsed_addon_data.get('is_experiment', False) or
+        action_allowed_user(user, 'Experiments', 'submit'))
+
+
 def check_ownership(request, obj, require_owner=False, require_author=False,
                     ignore_disabled=False, admin=True):
     """

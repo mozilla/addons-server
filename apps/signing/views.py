@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from tower import ugettext as _
 
 import amo
+from access import acl
 from addons.models import Addon
 from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
@@ -57,6 +58,9 @@ class VersionView(JWTProtectedView):
         try:
             # Parse the file to get and validate package data with the addon.
             pkg = parse_addon(filedata, addon)
+            if not acl.submission_allowed(request.user, pkg):
+                raise forms.ValidationError(
+                    _(u'You cannot submit this type of add-ons'))
         except forms.ValidationError as e:
             return Response({'error': e.message},
                             status=status.HTTP_400_BAD_REQUEST)

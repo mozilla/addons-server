@@ -416,7 +416,9 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_guid_match(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
-        eq_(self.parse(addon)['guid'], 'guid@xpi')
+        parsed = self.parse(addon)
+        assert parsed['guid'] == 'guid@xpi'
+        assert not parsed['is_experiment']
 
     def test_guid_nomatch(self):
         addon = Addon.objects.create(guid='xxx', type=1)
@@ -441,6 +443,7 @@ class TestParseXpi(amo.tests.TestCase):
         parsed = self.parse(filename='experiment.xpi')
         # See bug 1220097: experiments (type 128) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_experiment']
 
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
@@ -1093,6 +1096,18 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         file_ = File.from_upload(upload, self.version, self.platform)
         assert not file_.is_multi_package
+
+    def test_experiment(self):
+        upload = self.upload('experiment')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_experiment': True})
+        assert file_.is_experiment
+
+    def test_not_experiment(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_experiment': False})
+        assert not file_.is_experiment
 
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
