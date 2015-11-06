@@ -1149,9 +1149,10 @@ CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
-# don't want to be crawled?  Default is false, disallow everything.
+# don't want to be crawled?  Default is true, allow everything, toggled to
+# False on -dev and stage.
 # Also see http://www.google.com/support/webmasters/bin/answer.py?answer=93710
-ENGAGE_ROBOTS = False
+ENGAGE_ROBOTS = True
 
 # Read-only mode setup.
 READ_ONLY = False
