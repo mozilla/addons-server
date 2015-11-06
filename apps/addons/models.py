@@ -1981,22 +1981,6 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')
 
 
-class Feature(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    locale = models.CharField(max_length=10, default='', blank=True, null=True)
-    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                              db_column='application_id')
-
-    class Meta:
-        db_table = 'features'
-
-    def __unicode__(self):
-        app = amo.APP_IDS[self.application.id].pretty
-        return '%s (%s: %s)' % (self.addon.name, app, self.locale)
-
-
 class Preview(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews')
     filetype = models.CharField(max_length=25)

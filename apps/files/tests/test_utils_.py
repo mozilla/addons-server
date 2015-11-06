@@ -150,7 +150,7 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
 
     def test_no_restart(self):
         """Package.json addons are always no-restart."""
-        assert self.parse({})['no_restart'] == True
+        assert self.parse({})['no_restart'] is True
 
     def test_name_from_title_with_name(self):
         """Use the title for the name."""

@@ -70,19 +70,6 @@
         }
     },
     {
-        "pk": 342,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2012-04-27 14:23:13",
-            "application": 1,
-            "locale": null,
-            "created": "2009-10-27 14:23:13",
-            "modified": "2009-10-27 14:23:13",
-            "start": "2009-10-27 14:23:13",
-            "addon": 15679
-        }
-    },
-    {
         "pk": 149351,
         "model": "translations.translation",
         "fields": {
@@ -295,58 +282,6 @@
             "site_specific": 0,
             "total_reviews": 224,
             "the_reason": null
-        }
-    },
-    {
-        "pk": 327,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2010-03-05 17:00:39",
-            "start": "2009-09-05 17:00:39",
-            "locale": null,
-            "created": "2009-09-05 17:00:39",
-            "modified": "2009-09-05 17:00:39",
-            "application": 1,
-            "addon": 6912
-        }
-    },
-    {
-        "pk": 326,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2020-03-05 17:00:23",
-            "start": "2009-09-05 17:00:23",
-            "locale": null,
-            "created": "2009-09-05 17:00:23",
-            "modified": "2009-09-05 17:00:23",
-            "application": 1,
-            "addon": 7661
-        }
-    },
-    {
-        "pk": 325,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2020-03-05 17:00:10",
-            "start": "2009-09-05 17:00:10",
-            "locale": null,
-            "created": "2009-09-05 17:00:10",
-            "modified": "2009-09-05 17:00:10",
-            "application": 1,
-            "addon": 2464
-        }
-    },
-    {
-        "pk": 302,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2009-12-10 08:39:55",
-            "start": "2009-06-10 08:39:55",
-            "locale": "en-US",
-            "created": "2009-06-10 08:39:55",
-            "modified": "2009-10-20 18:18:52",
-            "application": 1,
-            "addon": 3481
         }
     },
     {

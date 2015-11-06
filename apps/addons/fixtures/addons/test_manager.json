@@ -149,32 +149,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "addons.feature",
-        "fields": {
-            "application": 1,
-            "end": "2037-12-01 00:00:00",
-            "created": "2007-10-10 15:34:20",
-            "locale": "",
-            "modified": "2009-12-08 11:00:58",
-            "start": "2007-10-10 15:34:20",
-            "addon": 1
-        }
-    },
-    {
-        "pk": 2,
-        "model": "addons.feature",
-        "fields": {
-            "application": 18,
-            "end": "2037-12-01 00:00:00",
-            "created": "2007-10-10 15:34:20",
-            "locale": "",
-            "modified": "2009-12-08 11:00:58",
-            "start": "2007-10-10 15:34:20",
-            "addon": 2
-        }
-    },
-    {
         "pk": 296,
         "model": "applications.appversion",
         "fields": {
