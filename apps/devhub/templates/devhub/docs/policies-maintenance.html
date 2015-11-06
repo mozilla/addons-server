@@ -73,7 +73,7 @@
   </p>
 
   <p>
-  {% trans link_guidelines=remora_url('/pages/review_guide') %}
+  {% trans link_guidelines=url('pages.review_guide') %}
   Reviews must follow the <a href="{{ link_guidelines }}">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed unless they provide false information.
   {% endtrans %}
   </p>
@@ -108,4 +108,3 @@
 </div>
 {{ sidebar() }}
 {% endblock %}
-

@@ -8,7 +8,7 @@ from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import remora_url, reverse
+from amo.urlresolvers import reverse
 from access import acl
 from zadmin.models import get_config
 
@@ -82,7 +82,7 @@ def global_settings(request):
 
         account_links.append({
             'text': _('Log out'),
-            'href': remora_url('/users/logout?to=' + urlquote(request.path)),
+            'href': reverse('users.logout') + '?to=' + urlquote(request.path),
         })
 
         if request.amo_user.is_developer:

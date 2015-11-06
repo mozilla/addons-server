@@ -8,7 +8,7 @@ Disallow: /*{{ url('addons.contribute', 0, add_prefix=False)|replace('0', '*') }
 
 {# The downloads live at locale-agnostic URLs now. #}
 {% for a in apps -%}
-Disallow: /{{ a.short }}{{ remora_url('downloads', lang='', app='') }}/
+Disallow: /{{ a.short }}/downloads/
 {% endfor %}
 
 {# Spacing is a little weird because it makes the output prettier #}

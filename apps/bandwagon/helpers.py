@@ -6,7 +6,7 @@ from tower import ugettext as _
 
 from addons.helpers import new_context
 from amo.helpers import login_link
-from amo.urlresolvers import remora_url, reverse
+from amo.urlresolvers import reverse
 from amo.utils import chunked
 
 
@@ -33,29 +33,6 @@ def user_collection_list(collections=[], heading='', id='', link=None):
          'id': id}
     t = env.get_template('bandwagon/users/collection_list.html').render(c)
     return jinja2.Markup(t)
-
-
-@register.inclusion_tag('bandwagon/collection_favorite.html')
-@jinja2.contextfunction
-def collection_favorite(context, collection):
-    c = dict(context.items())
-    user = c['request'].amo_user
-    is_subscribed = collection.is_subscribed(user)
-
-    button_class = 'add-to-fav'
-
-    if is_subscribed:
-        button_class += ' fav'
-        text = _('Remove from Favorites')
-        action = remora_url('collections/unsubscribe')
-
-    else:
-        text = _('Add to Favorites')
-        action = remora_url('collections/subscribe')
-
-    c.update(locals())
-    c.update({'c': collection})
-    return c
 
 
 @register.inclusion_tag('bandwagon/barometer.html')
