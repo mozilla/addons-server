@@ -413,8 +413,7 @@ class TestAddon(BaseOAuth):
         self.client.login(username='editor@mozilla.com', password='password')
         res = self.client.get(reverse('devhub.submit.resume',
                                       args=['xpi-name']))
-        self.assertRedirects(res, reverse('devhub.submit.5',
-                                          args=['xpi-name']))
+        self.assert3xx(res, reverse('devhub.submit.5', args=['xpi-name']))
 
     def test_create_no_license_status(self):
         self.create_no_license()

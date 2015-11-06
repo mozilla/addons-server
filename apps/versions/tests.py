@@ -336,7 +336,7 @@ class TestVersion(amo.tests.TestCase):
                             follow=True)
         url = reverse('addons.versions.update_info',
                       args=(self.version.addon.slug, self.version.version))
-        self.assertRedirects(r, url, 301)
+        self.assert3xx(r, url, 301)
 
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
@@ -561,11 +561,11 @@ class TestViews(amo.tests.TestCase):
 
         version, url = urls[0]
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, base + '?page=1#version-%s' % version)
+        self.assert3xx(r, base + '?page=1#version-%s' % version)
 
         version, url = urls[1]
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, base + '?page=2#version-%s' % version)
+        self.assert3xx(r, base + '?page=2#version-%s' % version)
 
     def test_version_detail_404(self):
         r = self.client.get(reverse('addons.versions',

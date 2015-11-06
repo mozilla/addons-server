@@ -42,7 +42,7 @@ class TestDecorators(amo.tests.TestCase):
                          kwargs=dict(locale_code=to_locale))
         res = self.client.get(urlparams(from_url, userlang=to_locale),
                               follow=True)
-        self.assertRedirects(res, to_url, status_code=302)
+        self.assert3xx(res, to_url, status_code=302)
 
         # Test invalid locale, which doesn't redirect.
         to_locale = 'xx'
@@ -130,7 +130,7 @@ class TestCategory(amo.tests.TestCase):
             'form-1-name': u'Música',
         }
         res = self.client.post(url, data, follow=True)
-        self.assertRedirects(res, url, status_code=302)
+        self.assert3xx(res, url, status_code=302)
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Nada')
         eq_(doc('#id_form-1-name').val(), u'Música')
@@ -156,7 +156,7 @@ class TestCategory(amo.tests.TestCase):
             'form-1-name': u'',  # Did not enter translation.
         }
         res = self.client.post(url, data, follow=True)
-        self.assertRedirects(res, url, status_code=302)
+        self.assert3xx(res, url, status_code=302)
         doc = pq(res.content.decode('utf-8'))
         eq_(doc('#id_form-0-name').val(), u'Campañas')
         eq_(doc('#id_form-1-name').val(), None)

@@ -30,7 +30,7 @@ class TestRedirects(amo.tests.TestCase):
                 eq_(r['Location'], new)
             else:
                 r = self.client.get(old, follow=True)
-                self.assertRedirects(r, new, 301)
+                self.assert3xx(r, new, 301)
 
     def test_app_pages(self):
         self._check({

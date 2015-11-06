@@ -99,7 +99,7 @@ class TestViews(amo.tests.TestCase):
         if code == 404:
             eq_(response.status_code, 404)
         elif code in (301, 302):
-            self.assertRedirects(response, to, status_code=code)
+            self.assert3xx(response, to, status_code=code)
         else:  # pragma: no cover
             assert code in (301, 302, 404), code
 
@@ -309,7 +309,7 @@ class TestVotes(amo.tests.TestCase):
 
     def test_post_required(self):
         r = self.client.get(self.up, follow=True)
-        self.assertRedirects(r, self.c_url)
+        self.assert3xx(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
         c = Collection.objects.no_cache().get(slug='slug', author=9945)
@@ -344,7 +344,7 @@ class TestVotes(amo.tests.TestCase):
 
     def test_normal_response(self):
         r = self.client.post(self.up, follow=True)
-        self.assertRedirects(r, self.c_url)
+        self.assert3xx(r, self.c_url)
 
     def test_ajax_response(self):
         r = self.client.post_ajax(self.up, follow=True)
@@ -567,7 +567,7 @@ class TestCRUD(amo.tests.TestCase):
         self.data['description'] = 'abc'
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
-        self.assertRedirects(r, edit_url, 302)
+        self.assert3xx(r, edit_url, 302)
         eq_(unicode(Collection.objects.get(slug=self.slug).description),
             'abc')
 
@@ -579,7 +579,7 @@ class TestCRUD(amo.tests.TestCase):
         self.data['description'] = ''
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
-        self.assertRedirects(r, edit_url, 302)
+        self.assert3xx(r, edit_url, 302)
         eq_(unicode(Collection.objects.get(slug=self.slug).description),
             '')
 
@@ -928,8 +928,8 @@ class TestChangeAddon(amo.tests.TestCase):
     def test_no_ajax_response(self):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
                              follow=True)
-        self.assertRedirects(r, reverse('collections.detail',
-                                        args=['jbalogh', 'mobile']))
+        self.assert3xx(r, reverse('collections.detail',
+                                  args=['jbalogh', 'mobile']))
 
 
 class AjaxTest(amo.tests.TestCase):
@@ -1096,7 +1096,7 @@ class TestCollectionListing(amo.tests.TestCase):
     def test_users_redirect(self):
         """Test that 'users' sort redirects to 'followers' sort."""
         r = self.client.get(urlparams(self.url, sort='users'))
-        self.assertRedirects(r, urlparams(self.url, sort='followers'), 301)
+        self.assert3xx(r, urlparams(self.url, sort='followers'), 301)
 
     def test_mostsubscribers_sort(self):
         r = self.client.get(urlparams(self.url, sort='followers'))
