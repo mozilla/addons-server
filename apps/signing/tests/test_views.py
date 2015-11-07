@@ -4,22 +4,38 @@ from datetime import datetime
 from django.core.urlresolvers import reverse
 
 import mock
+from rest_framework.response import Response
 from rest_framework.test import APITestCase
 
 import amo
-from addons.models import Addon
+from addons.models import Addon, AddonUser
 from api.tests.test_jwt_auth import JWTAuthTester
+from files.models import File, FileUpload
 from signing.views import VersionView
 from users.models import UserProfile
 from versions.models import Version
 
 
-class BaseUploadVersionCase(APITestCase, JWTAuthTester):
+class SigningAPITestCase(APITestCase, JWTAuthTester):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.api_key = self.create_api_key(self.user, 'foo')
+
+    def authorization(self):
+        token = self.create_auth_token(self.api_key.user, self.api_key.key,
+                                       self.api_key.secret)
+        return 'JWT {}'.format(token)
+
+    def get(self, url):
+        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization())
+
+
+class BaseUploadVersionCase(SigningAPITestCase):
+
+    def setUp(self):
+        super(BaseUploadVersionCase, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
 
@@ -28,11 +44,6 @@ class BaseUploadVersionCase(APITestCase, JWTAuthTester):
 
     def create_version(self, version):
         self.put(self.url(self.guid, version), version)
-
-    def authorization(self):
-        token = self.create_auth_token(self.api_key.user, self.api_key.key,
-                                       self.api_key.secret)
-        return 'JWT {}'.format(token)
 
     def xpi_filepath(self, addon, version):
         return os.path.join(
@@ -46,9 +57,6 @@ class BaseUploadVersionCase(APITestCase, JWTAuthTester):
         with open(filename) as upload:
             return self.client.put(url, {'upload': upload},
                                    HTTP_AUTHORIZATION=self.authorization())
-
-    def get(self, url):
-        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization())
 
 
 class TestUploadVersion(BaseUploadVersionCase):
@@ -148,3 +156,57 @@ class TestCheckVersion(BaseUploadVersionCase):
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
         assert 'processed' in response.data
+
+    def test_version_download_url(self):
+        version_string = '3.0'
+        qs = File.objects.filter(version__addon__guid=self.guid,
+                                 version__version=version_string)
+        assert not qs.exists()
+        self.create_version(version_string)
+        response = self.get(self.url(self.guid, version_string))
+        assert response.status_code == 200
+        file_ = qs.get()
+        assert response.data['files'][0]['download_url'] == \
+            file_.get_signed_url('api')
+
+    def test_has_failed_upload(self):
+        addon = Addon.objects.get(guid=self.guid)
+        FileUpload.objects.create(addon=addon, version='3.0')
+        self.create_version('3.0')
+        response = self.get(self.url(self.guid, '3.0'))
+        assert response.status_code == 200
+        assert 'processed' in response.data
+
+
+class TestSignedFile(SigningAPITestCase):
+
+    def setUp(self):
+        super(TestSignedFile, self).setUp()
+        self.file_ = self.create_file()
+
+    def url(self):
+        return reverse('signing.file', args=[self.file_.pk])
+
+    def create_file(self):
+        addon = Addon.objects.create(name='thing', is_listed=False)
+        addon.save()
+        AddonUser.objects.create(user=self.user, addon=addon)
+        version = Version.objects.create(addon=addon)
+        return File.objects.create(version=version)
+
+    def test_can_download_once_authenticated(self):
+        response = self.get(self.url())
+        assert response.status_code == 302
+        assert response['X-Target-Digest'] == self.file_.hash
+
+    def test_cannot_download_without_authentication(self):
+        response = self.client.get(self.url())  # no auth
+        assert response.status_code == 401
+
+    def test_api_relies_on_version_downloader(self):
+        with mock.patch('versions.views.download_file') as df:
+            df.return_value = Response({})
+            self.get(self.url())
+        assert df.called is True
+        assert df.call_args[0][0].user == self.user
+        assert df.call_args[0][1] == str(self.file_.pk)

@@ -1,5 +1,8 @@
 .. image:: https://travis-ci.org/mozilla/olympia.svg?branch=master
     :target: https://travis-ci.org/mozilla/olympia
+    
+.. image:: https://requires.io/github/mozilla/olympia/requirements.svg?branch=master
+    :target: https://requires.io/github/mozilla/olympia/requirements/?branch=master
 
 Welcome to Olympia!  This is `addons.mozilla.org`_.
 

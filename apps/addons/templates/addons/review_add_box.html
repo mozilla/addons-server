@@ -1,4 +1,3 @@
-{# TODO(jbalogh): make this a global fix: bug 551748 #}
 {% set amo_user = user if user.is_authenticated() else None %}
 {% if not addon.has_author(amo_user) %}
   <h3>{{ _('What do you think?') }}</h3>

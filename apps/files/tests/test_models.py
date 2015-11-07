@@ -68,6 +68,18 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
 
+    def test_get_url_path(self):
+        file_ = File.objects.get(id=67442)
+        assert file_.get_url_path('src') == \
+            file_.get_absolute_url(src='src')
+
+    def test_get_signed_url(self):
+        file_ = File.objects.get(id=67442)
+        url = file_.get_signed_url('src')
+        expected = ('/api/v3/file/67442/'
+                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
+        assert url.endswith(expected), url
+
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
@@ -804,6 +816,46 @@ class TestFileUpload(UploadTest):
         assert len(validation['messages']) == 11
         assert 'truncated' in validation['messages'][0]['message']
         assert validation['messages'][0]['type'] == 'error'
+
+
+def test_file_upload_passed_auto_validation_passed():
+    upload = FileUpload(validation=json.dumps({
+        'passed_auto_validation': True,
+    }))
+    assert upload.passed_auto_validation
+
+
+def test_file_upload_passed_auto_validation_failed():
+    upload = FileUpload(validation=json.dumps({
+        'passed_auto_validation': False,
+    }))
+    assert not upload.passed_auto_validation
+
+
+@pytest.mark.parametrize(
+    'valid,auto_valid,automated_signing,expected',
+    # When automated_signing is True:
+    #   valid and auto_valid must be True to have passed_all_validations
+    [(True, True, True, True),
+     (True, False, True, False),
+     (False, True, True, False),
+     (False, False, True, False),
+
+     # When automated_signing is False:
+     #   valid must be True to have passed_all_validations
+     (True, True, False, True),
+     (True, False, False, True),
+     (False, True, False, False),
+     (False, False, False, False),
+     ])
+def test_file_upload_passed_all_validations(valid, auto_valid,
+                                            automated_signing, expected):
+    validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
+    validation['passed_auto_validation'] = auto_valid
+    upload = FileUpload(
+        valid=valid, automated_signing=automated_signing,
+        validation=json.dumps(validation))
+    assert upload.passed_all_validations is expected
 
 
 class TestFileFromUpload(UploadTest):

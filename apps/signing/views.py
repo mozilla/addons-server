@@ -9,6 +9,7 @@ from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
 from files.models import FileUpload
 from files.utils import parse_addon
+from versions import views as version_views
 from versions.models import Version
 from signing.serializers import FileUploadSerializer
 
@@ -79,8 +80,12 @@ class VersionView(JWTProtectedView):
     @with_addon()
     def get(self, request, addon, version_string):
         try:
-            file_upload = FileUpload.objects.get(addon=addon,
-                                                 version=version_string)
+            file_upload = (FileUpload
+                           .objects
+                           .order_by('-created')
+                           .filter(addon=addon, version=version_string)
+                           [:1]
+                           .get())
         except FileUpload.DoesNotExist:
             return Response(
                 {'error': _('No uploaded file for that addon and version.')},
@@ -93,3 +98,9 @@ class VersionView(JWTProtectedView):
 
         serializer = FileUploadSerializer(file_upload, version=version)
         return Response(serializer.data)
+
+
+class SignedFile(JWTProtectedView):
+
+    def get(self, request, file_id):
+        return version_views.download_file(request, file_id)

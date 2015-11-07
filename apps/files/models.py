@@ -131,10 +131,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
     def get_url_path(self, src):
+        return self._make_download_url('downloads.file', src)
+
+    def get_signed_url(self, src):
+        return self._make_download_url('signing.file', src)
+
+    def _make_download_url(self, view_name, src):
         from amo.helpers import urlparams, absolutify
-        url = os.path.join(reverse('downloads.file', args=[self.id]),
+        url = os.path.join(reverse(view_name, args=[self.pk]),
                            self.filename)
-        # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
 
     @classmethod
@@ -596,7 +601,7 @@ class FileUpload(amo.models.ModelBase):
 
     def save(self, *args, **kw):
         if self.validation:
-            if json.loads(self.validation)['errors'] == 0:
+            if self.load_validation()['errors'] == 0:
                 self.valid = True
         super(FileUpload, self).save()
 
@@ -632,7 +637,7 @@ class FileUpload(amo.models.ModelBase):
     @property
     def validation_timeout(self):
         if self.processed:
-            validation = json.loads(self.validation)
+            validation = self.load_validation()
             messages = validation['messages']
             timeout_id = ['validator',
                           'unexpected_exception',
@@ -648,10 +653,22 @@ class FileUpload(amo.models.ModelBase):
             # Import loop.
             from devhub.utils import process_validation
 
-            validation = json.loads(self.validation)
+            validation = self.load_validation()
             is_compatibility = self.compat_with_app is not None
 
             return process_validation(validation, is_compatibility, self.hash)
+
+    @property
+    def passed_all_validations(self):
+        return self.processed and self.valid and (
+            not self.automated_signing or self.passed_auto_validation)
+
+    @property
+    def passed_auto_validation(self):
+        return self.load_validation()['passed_auto_validation']
+
+    def load_validation(self):
+        return json.loads(self.validation)
 
 
 class FileValidation(amo.models.ModelBase):

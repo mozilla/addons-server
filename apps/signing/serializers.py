@@ -16,6 +16,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     passed_review = serializers.SerializerMethodField('get_passed_review')
     processed = serializers.BooleanField(source='processed')
     reviewed = serializers.SerializerMethodField('get_reviewed')
+    valid = serializers.BooleanField(source='passed_all_validations')
     validation_results = serializers.SerializerMethodField(
         'get_validation_results')
     validation_url = serializers.SerializerMethodField('get_validation_url')
@@ -49,7 +50,8 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     def get_files(self, instance):
         if self.version is not None:
-            return [{'download_url': f.get_url_path('api')}
+            return [{'download_url': f.get_signed_url('api'),
+                     'signed': f.is_signed}
                     for f in self.version.files.all()]
         else:
             return []
