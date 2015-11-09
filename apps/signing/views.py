@@ -1,3 +1,5 @@
+import logging
+
 from django import forms
 
 from rest_framework import status
@@ -13,6 +15,8 @@ from files.utils import parse_addon
 from versions import views as version_views
 from versions.models import Version
 from signing.serializers import FileUploadSerializer
+
+log = logging.getLogger('signing')
 
 
 def with_addon(allow_missing=False):
@@ -81,14 +85,22 @@ class VersionView(JWTProtectedView):
                         status=status_code)
 
     @with_addon()
-    def get(self, request, addon, version_string):
+    def get(self, request, addon, version_string, pk=None):
+        file_upload_qs = FileUpload.objects.filter(
+            addon=addon, version=version_string)
         try:
-            file_upload = (FileUpload
-                           .objects
-                           .order_by('-created')
-                           .filter(addon=addon, version=version_string)
-                           [:1]
-                           .get())
+            if pk is None:
+                file_upload = file_upload_qs.latest()
+                log.info('getting latest upload for {addon} {version}: '
+                         '{file_upload.pk}'.format(
+                             addon=addon, version=version_string,
+                             file_upload=file_upload))
+            else:
+                file_upload = file_upload_qs.get(pk=pk)
+                log.info('getting specific upload for {addon} {version} {pk}: '
+                         '{file_upload.pk}'.format(
+                             addon=addon, version=version_string, pk=pk,
+                             file_upload=file_upload))
         except FileUpload.DoesNotExist:
             return Response(
                 {'error': _('No uploaded file for that addon and version.')},

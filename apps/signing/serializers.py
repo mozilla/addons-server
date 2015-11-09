@@ -14,6 +14,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField('get_url')
     files = serializers.SerializerMethodField('get_files')
     passed_review = serializers.SerializerMethodField('get_passed_review')
+    pk = serializers.CharField()
     processed = serializers.BooleanField(source='processed')
     reviewed = serializers.SerializerMethodField('get_reviewed')
     valid = serializers.BooleanField(source='passed_all_validations')
@@ -28,6 +29,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
             'url',
             'files',
             'passed_review',
+            'pk',
             'processed',
             'reviewed',
             'valid',
@@ -42,7 +44,8 @@ class FileUploadSerializer(serializers.ModelSerializer):
 
     def get_url(self, instance):
         return absolutify(reverse('signing.version', args=[instance.addon.guid,
-                                                           instance.version]))
+                                                           instance.version,
+                                                           instance.pk]))
 
     def get_validation_url(self, instance):
         return absolutify(reverse('devhub.upload_detail',
