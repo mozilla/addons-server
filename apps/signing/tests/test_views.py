@@ -124,6 +124,17 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
+    def test_version_failed_review(self):
+        self.create_version('3.0')
+        version = Version.objects.get(addon__guid=self.guid, version='3.0')
+        version.update(reviewed=datetime.today())
+        version.files.get().update(reviewed=datetime.today(),
+                                   status=amo.STATUS_DISABLED)
+
+        response = self.put(self.url(self.guid, '3.0'))
+        assert response.status_code == 202
+        assert 'processed' in response.data
+
 
 class TestCheckVersion(BaseUploadVersionCase):
 
