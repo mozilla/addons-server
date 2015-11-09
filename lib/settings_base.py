@@ -374,6 +374,7 @@ INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
     'abuse',
     'access',
+    'accounts',
     'addons',
     'api',
     'applications',
@@ -759,6 +760,10 @@ MINIFY_BUNDLES = {
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
+        'fxa': [
+            'js/lib/fxa-relier-client.js',
+            'js/common/fxa-login.js',
+        ],
         'zamboni/discovery': (
             'js/lib/jquery-1.9.1.js',
             'js/lib/jquery-migrate-1.2.1.min.js',
