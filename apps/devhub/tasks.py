@@ -67,7 +67,9 @@ def validate_and_submit(addon, file_, listed=None):
 def submit_file(addon_pk, file_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
     file_ = FileUpload.objects.get(pk=file_pk)
-    if file_.passed_all_validations:
+    if (file_.passed_all_validations and
+            not addon.fileupload_set.filter(
+                created__gt=file_.created, version=file_.version).exists()):
         # Import loop.
         from devhub.views import auto_sign_version
 
