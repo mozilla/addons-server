@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from tower import ugettext as _
 
+import amo
 from addons.models import Addon
 from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
@@ -60,7 +61,9 @@ class VersionView(JWTProtectedView):
                 {'error': _('Version does not match install.rdf.')},
                 status=status.HTTP_400_BAD_REQUEST)
         elif (addon is not None and
-                addon.versions.filter(version=version_string).exists()):
+                addon.versions.filter(
+                    version=version_string,
+                    files__status__in=amo.REVIEWED_STATUSES).exists()):
             return Response({'error': _('Version already exists.')},
                             status=status.HTTP_409_CONFLICT)
 
