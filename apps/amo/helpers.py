@@ -16,6 +16,7 @@ from django.template import defaultfilters
 import caching.base as caching
 import jinja2
 import six
+import waffle
 from babel.support import Format
 from jingo import register, env
 # Needed to make sure our own |f filter overrides jingo's one.
@@ -39,6 +40,11 @@ register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
 register.function(utils.randslice)
+
+
+@register.function
+def switch_is_active(switch_name):
+    return waffle.switch_is_active(switch_name)
 
 
 @register.filter

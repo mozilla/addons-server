@@ -146,4 +146,5 @@ urlpatterns = patterns(
         views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
     url(r'^v3/', include('signing.urls')),
+    url(r'^v3/', include('accounts.urls')),
 )
