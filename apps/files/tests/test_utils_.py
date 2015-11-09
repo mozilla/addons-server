@@ -251,8 +251,8 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
         with NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
-            pje = PackageJSONExtractor(file_.name)
-            assert pje.data == data
+            mje = ManifestJSONExtractor(file_.name)
+            assert mje.data == data
 
     def test_guid(self):
         """Use applications>gecko>id for the guid."""
@@ -266,11 +266,11 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
         assert self.parse({'name': 'addon-name'})['guid'] == 'addon-name'
 
     def test_type(self):
-        """Package.json addons are always ADDON_EXTENSION."""
+        """manifest.json addons are always ADDON_EXTENSION."""
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
 
     def test_no_restart(self):
-        """Package.json addons are always no-restart."""
+        """manifest.json addons are always no-restart."""
         assert self.parse({})['no_restart'] == True
 
     def test_name(self):
