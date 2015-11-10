@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2014-09-29 07:32+0000\n"
-"Last-Translator: Selim <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-11-10 20:15+0000\n"
+"Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -125,16 +125,16 @@ msgstr "Bir lisans seçilmelidir."
 
 #: apps/addons/forms.py:553
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Temanıza Bir Adı Verin."
 
 #: apps/addons/forms.py:559
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Temanızı Tanımlayın."
 
 #: apps/addons/forms.py:700
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Yeni yazarın e-posta adresini girin"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -235,7 +235,7 @@ msgstr "Gizlilik politikasını göster"
 #: apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Son Kullanıcı İzin Anlaşmasına Bak"
 
 #: apps/addons/templates/addons/button.html:92
 #: apps/addons/templates/addons/impala/button.html:54
@@ -443,7 +443,7 @@ msgstr "Şimdilik kalsın"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Katkıda bulunuldu, teşekkürler."
 
 #: apps/addons/templates/addons/details_box.html:10
 #: apps/discovery/templates/discovery/addons/detail.html:25
@@ -481,19 +481,19 @@ msgstr "Uyumlu sürümler"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "Görünürlük"
 
 #: apps/addons/templates/addons/details_box.html:61
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "Gizli"
 
 #: apps/addons/templates/addons/details_box.html:63
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "Listelenmemiş"
 
 #: apps/addons/templates/addons/details_box.html:71
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
@@ -832,7 +832,7 @@ msgstr "Bu sanatçının diğer çalışmaları"
 #: apps/addons/templates/addons/persona_detail.html:54
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Bu Kişinin Tüm Temalarını Göster"
 
 #: apps/addons/templates/addons/persona_detail.html:73
 #: apps/addons/templates/addons/mobile/home.html:38
@@ -872,7 +872,7 @@ msgstr "Lisans"
 #: apps/addons/templates/addons/persona_preview.html:12
 #: apps/constants/base.py:48
 msgid "Awaiting Review"
-msgstr ""
+msgstr "İnceleme Bekliyor"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180
 #: apps/constants/base.py:42 apps/editors/helpers.py:61
@@ -963,12 +963,20 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Thunderbird'de Kurulum</strong> <ol> <li>Dosyayı sabit diskinize "
+"indirip kaydedin.</li> <li>Mozilla Thunderbird'de Araçlar menüsünü ve "
+"ardından Eklentiler'i açın.</li> <li>Eklenti arama sahasının yanındaki "
+"seçenek düğmesine basın, \"Dosyadan eklenti kur...\" seçeneğine tıklayın ve "
+"indirilen eklenti dosyasını seçin.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"Bu temayı kurmak için Mozilla Messaging tarafından geliştirilen ücretsiz ve "
+"açık kaynaklı e-posta istemcisi <b>Thunderbird'ü indirin</b> ve Personas "
+"Plus eklentisini kurun."
 
 #: apps/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -979,6 +987,8 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Bu temayı ve daha binlercesini kurmak için Mozilla tarafından geliştirilen "
+"ücretsiz ve açık tarayıcı <b>Firefox'u indirin</b>."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
@@ -1031,6 +1041,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Dikkat:</strong> Bu eklenti Mozilla tarafından henüz incelenmedi ve "
+"Firefox 43 ve üstündeki son kullanıcı sürümlerine kurulamaz. Bilgisayarınıza"
+" zararı dokunabilecek üçüncü taraf yazılımlarını kurarken dikkatli olun."
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1044,7 +1057,7 @@ msgstr ""
 msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
-msgstr ""
+msgstr "Bu eklenti %(app)s sürümünüzle bu nedenlerden ötürü uyumlu değil:"
 
 #: apps/addons/templates/addons/popups.html:142
 #: apps/addons/templates/addons/popups.html:152
@@ -1053,7 +1066,7 @@ msgstr "Diğer sürümleri görün"
 
 #: apps/addons/templates/addons/popups.html:149
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Bu eklenti %(app)s sürümünüzle uyumlu değil."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -1138,7 +1151,7 @@ msgstr "İncelemenizi göndermek için lütfen <a href=\"%(login)s\">oturum aç�
 #: apps/addons/templates/addons/impala/review_add_box.html:19
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "Başlık:"
 
 #: apps/addons/templates/addons/review_add_box.html:18
 #: apps/addons/templates/addons/impala/review_add_box.html:20
@@ -1220,7 +1233,7 @@ msgstr "Etiketler"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} Simgesi"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1232,7 +1245,7 @@ msgstr "%(users)s tarafından"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Yine De İndir"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1303,6 +1316,7 @@ msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] ""
+"<span itemprop=\"ratingCount\">%(num)s</span> kullanıcı değerlendirmesi"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1361,7 +1375,7 @@ msgstr "Bilgi"
 #: apps/addons/templates/addons/impala/details.html:202
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
-msgstr ""
+msgstr "Son Güncellenme:"
 
 #: apps/addons/templates/addons/impala/details.html:207
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
@@ -1414,10 +1428,12 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Dikkat:</strong> Bu eklentinin geliştirme sürümleri henüz Mozilla "
+"tarafından incelenmedi."
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Bütün gelişme kanalı geçmişini gör"
 
 #: apps/addons/templates/addons/impala/details.html:313
 #: apps/addons/templates/addons/impala/details.html:322
@@ -1558,20 +1574,20 @@ msgstr "Temayı düzenle"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Onayla / Reddet"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 #: apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "İnceleme Geçmişi"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Üzgünüm, bu tema onay bekliyor. Lütfen daha sonra tekrar gel."
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Bu tema onay bekliyor. Senin dışında hiçkimse göremez."
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
@@ -1618,7 +1634,7 @@ msgstr "Sürüm"
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Sürüm Notları)"
 
 #: apps/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
@@ -1767,7 +1783,7 @@ msgstr "Deneyin!"
 
 #: apps/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Tema Bilgisi &raquo;"
 
 #: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
@@ -1806,7 +1822,7 @@ msgstr "Çıkış yap"
 #: apps/amo/context_processors.py:89
 #: apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Başvurularımı Yönet"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27
 #: apps/devhub/templates/devhub/addons/dashboard.html:25
@@ -1819,7 +1835,7 @@ msgstr "Yeni Eklenti Gönder"
 #: apps/devhub/templates/devhub/index.html:24
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Yeni Tema Gönder"
 
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85
 #: apps/devhub/helpers.py:36 apps/devhub/helpers.py:68
@@ -1830,7 +1846,7 @@ msgstr "Geliştirici Merkezi"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1773
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API Anahtarlarını Yönet"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -1851,7 +1867,7 @@ msgstr "Geçerli bir hex renk kodu (örn. #000000) girmelisiniz."
 
 #: apps/amo/fields.py:98
 msgid "Enter at least one value."
-msgstr ""
+msgstr "En az bir değer girin."
 
 #: apps/amo/helpers.py:155 apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/add.html:9
@@ -2119,7 +2135,7 @@ msgstr "{version} uyumluluğu hakkında geliştiricilere e-posta gönderildi."
 
 #: apps/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Yazara eklenti uyumluluğu hakkında e-posta gönderildi."
 
 #: apps/amo/log.py:369
 msgid "Password changed."
@@ -2139,7 +2155,7 @@ msgstr ""
 
 #: apps/amo/log.py:386
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Onaylandı ancak bekliyor"
 
 #: apps/amo/log.py:394
 msgid "{addon} purchased."
@@ -2151,7 +2167,7 @@ msgstr ""
 
 #: apps/amo/log.py:404
 msgid "Account updated."
-msgstr ""
+msgstr "Hesap güncellendi."
 
 #: apps/amo/log.py:409
 msgid "Escalation cleared for {addon}."
@@ -2163,7 +2179,7 @@ msgstr ""
 
 #: apps/amo/log.py:418
 msgid "App disabled"
-msgstr ""
+msgstr "Uygulama devre dışı"
 
 #: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
@@ -5781,27 +5797,27 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
 #: apps/editors/templates/editors/review.html:253
 msgid "Actions"
-msgstr ""
+msgstr "Eylemler"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Bu eklenti başvuru sürecine kaldığı yerden devam et."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
-msgstr ""
+msgstr "Devam Et"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Bu eklentiyi sil."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Eklentinin listelenmesiyle ilgili ayrıntıları düzenle."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Bu eklentinin yeni bir sürümünü karşıya yükle."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "New Version"
@@ -5809,34 +5825,34 @@ msgstr "Yeni Sürüm"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:44
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "İndirme ve kullanıcılarla ilgili günlük istatistikler."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:54
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:5
 #: apps/devhub/templates/devhub/payments/payments.html:3
 #: apps/devhub/templates/devhub/payments/tier.html:4
 msgid "Manage Payments"
-msgstr ""
+msgstr "Ödemeleri Yönet"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:55
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:6
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Durumu ve Sürümleri Yönet"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Eklenti Listelemesine Bak"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:64
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:19
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37
 #: apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Son Değişikliklere Bak"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Temanın listelenmesiyle ilgili ayrıntıları düzenle."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:13
 msgid "View this theme's public listing page."
@@ -5844,25 +5860,27 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Bu temanın zaman içindeki popülerliğine bak."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:29
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Bu temanın sahibini değiştir."
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:30
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Sahiplik Aktarımı"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:35
 msgid "Delete this theme."
-msgstr ""
+msgstr "Bu temayı sil."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:10
 msgid ""
 "This add-on will be deleted automatically after a few days if the submission"
 " process is not completed."
 msgstr ""
+"Başvuru süreci tamamlanmazsa birkaç gün sonra bu eklenti kendiliğinden "
+"silinecek."
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 #, fuzzy
@@ -5871,17 +5889,17 @@ msgstr "Disabled"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Sıra:</b> %(pos)s / %(total)s"
 
 #. {0} is the number of active users.
 #: apps/devhub/templates/devhub/addons/listing/macros.html:23
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
 msgid "No test results."
-msgstr ""
+msgstr "Hiçbir test sonucu yok."
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12

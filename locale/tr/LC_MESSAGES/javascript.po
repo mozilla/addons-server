@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-03 16:59+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-11-10 19:51+0000\n"
+"Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -88,16 +88,17 @@ msgstr "{0} doğrulaması tamamlandı"
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Eklenti doğrulamanız zaman aşımına uğradı; eklenti özel olarak incelenecek."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Eklentiniz hata olmadan ve {0} uyarı ile doğrulandı."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Eklentiniz hatasız olarak ve {0} mesajla doğrulanmıştır."
+msgstr[0] "Eklentiniz hatasız olarak ve {0} mesajla doğrulandı."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors or warnings."
@@ -105,19 +106,19 @@ msgstr "Eklentiniz hatasız ve uyarısız olarak doğrulanmıştır."
 
 #: static/js/common/upload-addon.js:444
 msgid "Your submission will go through a manual review."
-msgstr ""
+msgstr "Gönderdiğiniz özel olarak incelenecek."
 
 #: static/js/common/upload-addon.js:448
 msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
+msgstr "Gönderdiğiniz doğrulamayı geçti ve kendiliğinden imzalanacak."
 
 #: static/js/common/upload-addon.js:450
 msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
+msgstr "Gönderdiğiniz doğrulamayı geçti ve özel olarak incelenecek."
 
 #: static/js/common/upload-addon.js:478
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
 #: static/js/common/upload-addon.js:479
 msgid ""
@@ -125,12 +126,17 @@ msgid ""
 " include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
+"Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması "
+"gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını "
+"yazın. (Bu, sonraki adımda da yapılabilir.)"
 
 #: static/js/common/upload-addon.js:480
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön "
+"İnceleme'yi seçin."
 
 #: static/js/common/upload-addon.js:493
 msgid "Add-on submission checklist"
@@ -141,6 +147,9 @@ msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece "
+"inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş "
+"olursunuz:"
 
 #: static/js/common/upload-addon.js:496
 msgid ""
@@ -149,6 +158,10 @@ msgid ""
 " Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen "
+"kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak "
+"bulunması gerekir. Başvurunuzun geri çevrilmesini önlemek adına, kaynak kodu"
+" gönderme sahasını kullandığınızdan emin olun."
 
 #: static/js/common/upload-addon.js:514
 msgid "The validation process found these issues that can lead to rejections:"
@@ -161,6 +174,8 @@ msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it"
 " here."
 msgstr ""
+"Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi "
+"alabilirsiniz."
 
 #: static/js/common/upload-addon.js:567
 msgid "Some platforms are not available for this type of add-on."
@@ -277,7 +292,7 @@ msgstr "{0} haftası"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " indirme"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -402,7 +417,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Arama Önerileri"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -456,15 +471,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Geliştiriciyle Buluş"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Kullanıcı Kimliği"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Sürüm Geçmişi"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -580,12 +595,12 @@ msgstr "{0} - {1} Arası İndirmeler ve Günlük Kullanıcılar"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Kurulum ve Günlük Kullanıcı, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:137
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Kurulum ve Günlük Kullanıcı, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
@@ -680,138 +695,138 @@ msgstr "{0} - {1} Arası Katkılar"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Site Ölçümleri, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:197
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Site Ölçümleri, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:201
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Kullanımdaki Eklentiler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:203
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Kullanımdaki Eklentiler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "İndirilen Eklentiler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "İndirilen Eklentiler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Oluşturulan Eklentiler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:215
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Oluşturulan Eklentiler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:219
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Güncellenen Eklentiler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:221
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Güncellenen Eklentiler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Yazılan İncelemeler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Yazılan İncelemeler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Yeni Kullanıcı Kayıtları, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:233
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Yeni Kullanıcı Kayıtları, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Oluşturulan Koleksiyonlar, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:239
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Oluşturulan Koleksiyonlar, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Aboneler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:245
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Aboneler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Değerlendirmeler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Değerlendirmeler, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Satışlar, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:257
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Satışlar, {0} - {1} arasında"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Kurulumlar, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Kurulumlar, {0} - {1} arasında"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "son {1} günde <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:271
 #: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "{1} - {2} arasında <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:275
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "son {1} günde ortalama <b>{0}</b>"
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
@@ -840,23 +855,23 @@ msgstr[0] ""
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "Doğrulamayı geçemeyen {2} eklentisinin yazarına e-posta gönder."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
-msgstr ""
+msgstr "Eklenti kurulumuna izin verilmez."
 
 #: static/js/zamboni/apps.js:57
 msgid "App manifest is malformed."
-msgstr ""
+msgstr "Uygulama bildirimi bozuk biçimde."
 
 #: static/js/zamboni/apps.js:60
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Eklenti ana sunucusuna ulaşılamıyor."
 
 #: static/js/zamboni/apps.js:63
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Uygulama bildirimi okunamıyor."
 
 #: static/js/zamboni/apps.js:66
 msgid "App manifest is invalid."
@@ -893,7 +908,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Firefox 10.0 ve üstü bir sürüm kullanmanız gerek."
 
 #: static/js/zamboni/buttons.js:145
 msgid ""
@@ -1122,15 +1137,15 @@ msgstr "Görüş Sayısı"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
-msgstr ""
+msgstr "Çeviri yüklemede hata"
 
 #: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Gelecekteki güncellemelerde bu iletiyi yok say"
 
 #: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Otomatik imzalamanın önem derecesi:"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1210,7 +1225,7 @@ msgstr "Uyarı"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Otomatik imzalamaya geçmek için öneriler:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
@@ -1274,11 +1289,11 @@ msgstr "Deneysel"
 
 #: static/js/zamboni/mobile/buttons.js:84
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Temalar Daha Yeni {0} Sürümü Gerektiriyor"
 
 #: static/js/zamboni/mobile/buttons.js:85
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Temalar {0} Gerektiriyor"
 
 #: static/js/zamboni/mobile/buttons.js:130
 msgid "Installing..."
