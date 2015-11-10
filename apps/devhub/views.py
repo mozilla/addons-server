@@ -1216,7 +1216,7 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False, admin_override=False):
+def auto_sign_file(file_, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
     validation = file_.validation
@@ -1287,9 +1287,8 @@ def version_add(request, addon_id, addon):
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
-    override = form.cleaned_data.get('admin_override_validation')
     # Sign all the files submitted, one for each platform.
-    auto_sign_version(version, is_beta=is_beta, admin_override=override)
+    auto_sign_version(version, is_beta=is_beta)
 
     return dict(url=url)
 
@@ -1316,8 +1315,7 @@ def version_add_file(request, addon_id, addon, version_id):
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
-    override = new_file_form.cleaned_data.get('admin_override_validation')
-    auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
+    auto_sign_file(new_file, is_beta=is_beta)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
