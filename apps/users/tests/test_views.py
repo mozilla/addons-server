@@ -956,14 +956,11 @@ class TestProfileLinks(UserViewBase):
         #eq_(links.eq(1).attr('href') + "/",
         #reverse('admin:users_userprofile_change', args=[self.user.id]))
 
-    def test_amouser(self):
-        # request.amo_user should be a special guy.
+    def test_user_properties(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         response = self.client.get(reverse('home'))
         request = response.context['request']
-        assert hasattr(request.amo_user, 'mobile_addons')
         assert hasattr(request.user, 'mobile_addons')
-        assert hasattr(request.amo_user, 'favorite_addons')
         assert hasattr(request.user, 'favorite_addons')
 
 

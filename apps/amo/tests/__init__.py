@@ -48,7 +48,7 @@ from files.models import File
 from lib.es.signals import process, reset
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
-from users.models import RequestUser, UserProfile
+from users.models import UserProfile
 
 from . import dynamic_urls
 
@@ -656,8 +656,7 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = RequestUser.objects.get(id=user.id)
-        req.user = user
+        req.user = UserProfile.objects.get(id=user.id)
         req.groups = user.groups.all()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)

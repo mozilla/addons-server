@@ -39,7 +39,7 @@ def install_button(context, addon, version=None, show_contrib=True,
                                     detailed, impala,
                                     latest_beta)
     installed = (request.user.is_authenticated() and
-                 addon.id in request.amo_user.mobile_addons)
+                 addon.id in request.user.mobile_addons)
     c = {'button': button, 'addon': addon, 'version': button.version,
          'installed': installed}
     if impala:

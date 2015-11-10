@@ -1,10 +1,10 @@
-{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
-{% if not amo_user %}
+{% set user = request.user if request.user.is_authenticated() else None %}
+{% if not user %}
   <h2 id="add-review">{{ _('Add a Review') }}</h2>
   <section class="copy">
     <a href="{{ url('addons.reviews.add', addon.slug) }}" class="login-button button">{{ _('Log in to add a review') }}</a>
   </section>
-{% elif addon.can_review(amo_user) %}
+{% elif addon.can_review(user) %}
   <h2 id="add-review">{{ _('Add a Review') }}</h2>
   <form method="post" class="form-mobile review-form" id="review-form"
         action="{{ url('addons.reviews.add', addon.slug) }}">

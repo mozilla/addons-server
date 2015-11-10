@@ -1,4 +1,4 @@
-{% set amo_user = request.amo_user if request and request.user.is_authenticated() else None %}
+{% set user = request.user if request and request.user.is_authenticated() else None %}
 {% if addon.total_reviews %}
   <a class="listview" href="{{ url('addons.reviews.list', addon.slug) }}">
     <div class="icon">
@@ -10,7 +10,7 @@
       See All {{ cnt }} Reviews
     {% endtrans %}
   </a>
-{% elif addon.can_review(amo_user) %}
+{% elif addon.can_review(user) %}
   <a class="listview" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">
     {{ _('Be the first to write a review.') }}</a>
 {% endif %}

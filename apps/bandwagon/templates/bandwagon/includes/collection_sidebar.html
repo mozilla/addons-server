@@ -14,9 +14,9 @@
         <a href="{{ url('collections.following') }}">
           {{ _("Collections I'm Following") }}</a></li>
       <li id="p-mine">
-        <a href="{{ url('collections.user', amo_user.username) }}">
+        <a href="{{ url('collections.user', user.username) }}">
           {{ _("Collections I've Made") }}</a></li>
-      <li><a href="{{ url('collections.detail', amo_user.username, 'favorites') }}">
+      <li><a href="{{ url('collections.detail', user.username, 'favorites') }}">
         {{ _("My Favorite Add-ons") }}</a></li>
     </ul>
   {% endif %}

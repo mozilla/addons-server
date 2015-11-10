@@ -1,4 +1,4 @@
-{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
+{% set user = request.user if request.user.is_authenticated() else None %}
 {% for addon in addons %}
   <li class="item">
     <div class="info">

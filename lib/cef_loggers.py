@@ -50,7 +50,7 @@ class CEFLogger:
                                            'CEF_DEVICE_VERSION',
                                            '0'),
              'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
-        user = getattr(environ, 'amo_user', None)
+        user = getattr(environ, 'user', None)
         # Sometimes app is a string, eg: "unknown". Boo!
         try:
             app_str = app.pk

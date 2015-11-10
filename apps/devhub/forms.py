@@ -84,7 +84,7 @@ class DeleteForm(happyforms.Form):
     reason = forms.CharField(required=False)
 
     def __init__(self, request):
-        self.user = request.amo_user
+        self.user = request.user
         super(DeleteForm, self).__init__(request.POST)
 
     def clean_password(self):

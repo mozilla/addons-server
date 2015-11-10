@@ -1,9 +1,9 @@
 {% set links = [
-    (_('My Profile'), amo_user.get_url_path()),
+    (_('My Profile'), user.get_url_path()),
     (_('Account Settings'), url('users.edit')),
     (_('My Collections'), url('collections.mine'))
 ] %}
-{% if amo_user.favorite_addons %}
+{% if user.favorite_addons %}
   {% do links.append((_('My Favorites'),
                       url('collections.mine', 'favorites'))) %}
 {% endif %}

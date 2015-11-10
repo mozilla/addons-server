@@ -231,8 +231,8 @@ class TestThemeForm(amo.tests.TestCase):
         self.populate()
         self.request = mock.Mock()
         self.request.groups = ()
-        self.request.amo_user = mock.Mock()
-        self.request.amo_user.is_authenticated.return_value = True
+        self.request.user = mock.Mock()
+        self.request.user.is_authenticated.return_value = True
 
     def populate(self):
         self.cat = Category.objects.create(application=amo.FIREFOX.id,
@@ -380,7 +380,7 @@ class TestThemeForm(amo.tests.TestCase):
             raise SkipTest
         make_checksum_mock.return_value = 'hashyourselfbeforeyoucrashyourself'
 
-        self.request.amo_user = UserProfile.objects.get(pk=2519)
+        self.request.user = UserProfile.objects.get(pk=2519)
 
         data = self.get_dict()
         header_url, footer_url = self.get_img_urls()
@@ -414,8 +414,8 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(persona.license, data['license'])
         eq_(persona.accentcolor, data['accentcolor'].lstrip('#'))
         eq_(persona.textcolor, data['textcolor'].lstrip('#'))
-        eq_(persona.author, self.request.amo_user.username)
-        eq_(persona.display_username, self.request.amo_user.name)
+        eq_(persona.author, self.request.user.username)
+        eq_(persona.display_username, self.request.user.name)
         assert not persona.dupe_persona
 
         v = addon.versions.all()
@@ -452,7 +452,7 @@ class TestThemeForm(amo.tests.TestCase):
         """
         make_checksum_mock.return_value = 'cornhash'
 
-        self.request.amo_user = UserProfile.objects.get(pk=2519)
+        self.request.user = UserProfile.objects.get(pk=2519)
 
         self.post()
         eq_(self.form.is_valid(), True, self.form.errors)
@@ -476,10 +476,10 @@ class TestEditThemeForm(amo.tests.TestCase):
         self.populate()
         self.request = mock.Mock()
         self.request.groups = ()
-        self.request.amo_user = mock.Mock()
-        self.request.amo_user.username = 'swagyismymiddlename'
-        self.request.amo_user.name = 'Sir Swag A Lot'
-        self.request.amo_user.is_authenticated.return_value = True
+        self.request.user = mock.Mock()
+        self.request.user.username = 'swagyismymiddlename'
+        self.request.user.name = 'Sir Swag A Lot'
+        self.request.user.is_authenticated.return_value = True
 
     def populate(self):
         self.instance = Addon.objects.create(

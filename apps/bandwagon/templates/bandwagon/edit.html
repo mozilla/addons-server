@@ -4,7 +4,7 @@
 {# L10n: {0} is the name of the collection. #}
 {{ page_title(_('Edit {0}')|f(collection.name)) }}
 {% endblock %}
-{% set owner = (collection.owned_by(amo_user) or is_admin) %}
+{% set owner = (collection.owned_by(user) or is_admin) %}
 
 {% block content %}
   <div class="secondary">

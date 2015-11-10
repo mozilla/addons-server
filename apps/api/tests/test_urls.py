@@ -33,8 +33,8 @@ class TestDRFSwitch(TestCase):
         eq_(piston_response, drf_response)
 
     def test_responses_with_handler(self):
-        view = SwitchToDRF('User', with_handler=True)
-        request = self.factory.get(reverse('api.language', args=['2']))
+        view = SwitchToDRF('Addons', with_handler=True, with_viewset=True)
+        request = self.factory.get(reverse('api.addons'))
 
         class App():
             id = 1
@@ -44,10 +44,9 @@ class TestDRFSwitch(TestCase):
 
         request.APP = App()
         request.user = AnonymousUser()
-        request.amo_user = self.user
-        eq_(view(request, api_version=2).__module__, 'django.http.response')
+        eq_(view(request).__module__, 'django.http.response')
         self.create_switch('drf', db=True)
-        eq_(view(request, api_version=2).__module__, 'rest_framework.response')
+        eq_(view(request).__module__, 'rest_framework.response')
 
     def test_wrong_format_exceptions(self):
         view = SwitchToDRF('Language')

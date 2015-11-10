@@ -99,7 +99,7 @@ def themes_list(request, flagged=False, rereview=False):
 
 def _themes_queue(request, flagged=False, rereview=False):
     """Themes queue in interactive format."""
-    themes = _get_themes(request, request.amo_user, flagged=flagged,
+    themes = _get_themes(request, request.user, flagged=flagged,
                          rereview=rereview)
 
     ThemeReviewFormset = formset_factory(forms.ThemeReviewForm)
@@ -324,7 +324,7 @@ def themes_commit(request):
         '{0} theme review successfully processed (+{1} points, {2} total).',
         '{0} theme reviews successfully processed (+{1} points, {2} total).',
         len(scores)).format(len(scores), points,
-                            ReviewerScore.get_total(request.amo_user))
+                            ReviewerScore.get_total(request.user))
     amo.messages.success(request, success)
 
     if 'theme_redirect_url' in request.session:
@@ -362,7 +362,7 @@ def themes_single(request, slug):
 
     if (not settings.ALLOW_SELF_REVIEWS and
             not acl.action_allowed(request, 'Admin', '%') and
-            theme.addon.has_author(request.amo_user)):
+            theme.addon.has_author(request.user)):
         reviewable = False
     else:
         # Don't review a locked theme (that's not locked to self).
@@ -477,7 +477,7 @@ def deleted_themes(request):
 @personas_reviewer_required
 def themes_history(request, username):
     if not username:
-        username = request.amo_user.username
+        username = request.user.username
 
     return render(request, 'editors/themes/history.html', context(
         **{'theme_reviews':

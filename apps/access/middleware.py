@@ -8,7 +8,6 @@ import commonware.log
 
 import amo
 from access import acl
-from users.models import RequestUser
 
 log = commonware.log.getLogger('z.access')
 
@@ -23,9 +22,6 @@ class ACLMiddleware(object):
         if request.user.is_authenticated():
             amo.set_user(request.user)
             request.groups = request.user.groups.all()
-            request.amo_user = RequestUser.objects.get(pk=request.user.pk)
-        else:
-            request.amo_user = None
 
     def process_response(self, request, response):
         amo.set_user(None)

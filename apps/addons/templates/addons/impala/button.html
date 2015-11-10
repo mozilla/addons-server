@@ -13,7 +13,7 @@
     {% if settings.ADD_TO_MOBILE %}
     {% if APP == amo.MOBILE %}
       {% if request.user.is_authenticated() %}
-        {% set action = url('collections.alter', request.amo_user.username, 'mobile', 'add') %}
+        {% set action = url('collections.alter', request.user.username, 'mobile', 'add') %}
       {% endif %}
       {% if installed %}
         {% set extra, text = 'status ok', _('Added to Mobile') %}

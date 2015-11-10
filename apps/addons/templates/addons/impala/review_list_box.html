@@ -45,7 +45,7 @@
     <div class="review no-reviews">
       <h3>
         {{ _('This add-on has not yet been reviewed.') }}
-        {% if addon.can_review(amo_user) %}
+        {% if addon.can_review(user) %}
           <a id="add-first-review" href="{{ url('addons.reviews.add', addon.slug) }}">
             {{ _('Be the first!') }}
           </a>

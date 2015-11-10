@@ -159,7 +159,7 @@ def delete(request, addon, review_id):
     review.delete()
 
     log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
-             (request.amo_user.name, review_id, review.user.name, review.title,
+             (request.user.name, review_id, review.user.name, review.title,
               review.body))
     return http.HttpResponse()
 
@@ -185,7 +185,7 @@ def reply(request, addon, review_id):
     form = forms.ReviewReplyForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         d = dict(reply_to=review, addon=addon,
-                 defaults=dict(user=request.amo_user))
+                 defaults=dict(user=request.user))
         reply, new = Review.objects.get_or_create(**d)
         for key, val in _review_details(request, addon, form).items():
             setattr(reply, key, val)
@@ -286,7 +286,7 @@ def spam(request):
         elif 'del_user' in request.POST:
             user = review.user
             log.info('SPAMMER: %s deleted %s' %
-                     (request.amo_user.username, user.username))
+                     (request.user.username, user.username))
             if not user.is_developer:
                 Review.objects.filter(user=user).delete()
                 user.anonymize()

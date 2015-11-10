@@ -194,11 +194,11 @@ class TestCollections(amo.tests.TestCase):
         fake_request.user.is_authenticated.return_value = True
 
         # Owner.
-        fake_request.amo_user = self.user
+        fake_request.user = self.user
         eq_(c.can_view_stats(fake_request), True)
 
         # Bad user.
-        fake_request.amo_user = UserProfile.objects.create(
+        fake_request.user = UserProfile.objects.create(
             username='scrub', email='ez@dee')
         eq_(c.can_view_stats(fake_request), False)
 
@@ -210,7 +210,7 @@ class TestCollections(amo.tests.TestCase):
         # Developer.
         CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.groups = ()
-        fake_request.amo_user = self.user
+        fake_request.user = self.user
         eq_(c.can_view_stats(fake_request), True)
 
 

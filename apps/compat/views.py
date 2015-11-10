@@ -147,7 +147,7 @@ def reporter(request):
             addon = Addon.with_unlisted.get(guid=guid)
             if addon.is_listed or owner_or_unlisted_reviewer(request, addon):
                 return redirect('compat.reporter_detail', guid)
-    addons = (Addon.with_unlisted.filter(authors=request.amo_user)
+    addons = (Addon.with_unlisted.filter(authors=request.user)
               if request.user.is_authenticated() else [])
     return render(request, 'compat/reporter.html',
                   dict(query=query, addons=addons))

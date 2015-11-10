@@ -66,10 +66,10 @@ def check_collection_ownership(request, collection, require_owner=False):
         return True
     elif action_allowed(request, 'Collections', 'Edit'):
         return True
-    elif request.amo_user.id == collection.author_id:
+    elif request.user.id == collection.author_id:
         return True
     elif not require_owner:
-        return collection.publishable_by(request.amo_user)
+        return collection.publishable_by(request.user)
     else:
         return False
 
@@ -77,7 +77,7 @@ def check_collection_ownership(request, collection, require_owner=False):
 def check_addon_ownership(request, addon, viewer=False, dev=False,
                           support=False, admin=True, ignore_disabled=False):
     """
-    Check request.amo_user's permissions for the addon.
+    Check request.user's permissions for the addon.
 
     If user is an admin they can do anything.
     If the add-on is disabled only admins have permission.

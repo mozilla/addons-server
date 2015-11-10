@@ -3,12 +3,12 @@
 {% if user.is_authenticated() %}
   <section id="my-account">
     {# L10n: {0} is the user's login name. #}
-    <p>{{ _('Hi, {0}')|f(request.amo_user.welcome_name) }}</p>
+    <p>{{ _('Hi, {0}')|f(request.user.welcome_name) }}</p>
     <ul>
-      <li><a href="{{ request.amo_user.get_url_path() }}">{{ _('My Profile') }}</a></li>
-      <li><a href="{{ url('collections.detail', request.amo_user.username,
+      <li><a href="{{ request.user.get_url_path() }}">{{ _('My Profile') }}</a></li>
+      <li><a href="{{ url('collections.detail', request.user.username,
                           'favorites') }}">{{ _('My Favorites') }}</a></li>
-      <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
+      <li><a href="{{ url('collections.user', request.user.username) }}">{{ _('My Collections') }}</a></li>
     </ul>
     <p id="logout"><a href="{{ url('users.logout') }}" target="_self">{{ _('Log out') }}</a></p>
   </section>

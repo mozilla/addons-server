@@ -11,7 +11,7 @@ import amo
 import amo.tests
 from users.helpers import (addon_users_list, emaillink, user_data, user_link,
                            users_list)
-from users.models import UserProfile, RequestUser
+from users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
@@ -121,5 +121,5 @@ class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
 
 
 def test_user_data():
-    u = user_data(RequestUser(username='foo', pk=1))
+    u = user_data(UserProfile(username='foo', pk=1))
     eq_(u['anonymous'], False)

@@ -38,7 +38,7 @@ class RestOAuthAuthentication(BaseAuthentication):
 
 
 class AMOOAuthAuthentication(OAuthAuthentication):
-    """^^^MOO!!!  Adds amo_user to the request object."""
+    """^^^MOO!!!  Adds user to the request object."""
 
     def is_authenticated(self, request):
         if request.user and request.user.is_authenticated():

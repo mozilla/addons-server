@@ -127,7 +127,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.amo_user, addon, review.id)
+                            self.request.user, addon, review.id)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
@@ -139,7 +139,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.amo_user, addon, review.id)
+                            self.request.user, addon, review.id)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):
