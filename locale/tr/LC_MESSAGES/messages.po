@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-11 09:06+0000\n"
+"PO-Revision-Date: 2015-11-11 11:22+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3777,19 +3777,19 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:40
 #: apps/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} Temaları"
 
 #: apps/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Kullanıcı Kimliğine Bak"
 
 #: apps/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Kendi Temanızı Oluşturun"
 
 #: apps/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Sizin tarayıcınız, sizin tarzınız! Kendi tasarımınızı ona uygulayın!"
 
 #: apps/browse/templates/browse/personas/base.html:51
 #, fuzzy
@@ -6436,6 +6436,9 @@ msgid ""
 "be marked as a beta version. Users of add-ons with these unique version "
 "numbers will automatically be served the newest beta updates."
 msgstr ""
+"Bu ölçütlere uyan bir dosya AMO'ya yüklendiğinde, dosya kendiliğinden beta "
+"sürüm olarak işaretlenecek. Bu benzersiz sürüm numarasına sahip olan "
+"kullanıcılar da kendiliğinden en yeni beta güncellemelerini alacaklar."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -6449,10 +6452,21 @@ msgid ""
 "and not version number, so users will always get the most recent channel "
 "update regardless of any kind of alphabetical sorting."
 msgstr ""
+"Her ne kadar adına \"beta sürümler\" desek de, siz dilerseniz bu kanalı "
+"gecelik sürümler, alfalar veya çıkış öncesi sürümler için de "
+"kullanabilirsiniz. Lütfen bu amaç için sadece bir kanal olduğunu unutmayın. "
+"Bu kanaldaki kullanıcılarınız eklentinin en son güncellenen sürümünü "
+"alacaklar. Örneğin <code>1.0beta1</code> sürümünü son sürüm kanalına yükler "
+"ve ardından <code>1.1alpha1</code> sürümünü yüklerseniz, "
+"<code>1.0beta1</code> kullanıcılarının tamamı <code>1.1alpha1</code> "
+"sürümüne yükseltme önerisi alacaklardır. Güncellemeler sürüm numarasına göre"
+" değil, gönderilme tarihine göre yayınlanır. Bu nedenle kullanıcılar, "
+"herhangi bir alfabetik sıralamaya bağlı olmaksızın, bulundukları kanalın her"
+" zaman en yeni güncellemeisini alırlar."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
-msgstr ""
+msgstr "Gerekli Güncellemeler"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid ""
@@ -6464,10 +6478,18 @@ msgid ""
 "demoted from fully-reviewed status, disabled, or permanently removed from "
 "the site."
 msgstr ""
+"Mozilla'nın büyük bir güvenlik sorununun veya kural ihlâlinin giderilmesi "
+"amacıyla eklenti geliştiricisinden eklentisini belli bir süre zarfından "
+"güncellemesini istediği zamanlarda bazı durumlar ortaya çıkabilir. "
+"Geliştiricilerin makûl bir çerçevede kendi takvimlerine göre çalışmaları "
+"için çaba sarf ederiz. Fakat mesele ciddi bir doğaya sahipse, istenen "
+"düzeltmenin yapılamadığı eklentiler tamamen incelenmişlik durumunu "
+"yitirebilir, devre dışı bırakılabilir veya siteden kalıcı olarak "
+"kaldırılabilir."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Sahipliğin Aktarımı"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid ""
@@ -6477,6 +6499,12 @@ msgid ""
 "provided. No interaction with Mozilla representatives is necessary for a "
 "transfer of ownership."
 msgstr ""
+"Eklentilerin güncelleme iznine sahip ve siteden sunulmasını yönetebileceği "
+"birden çok kullanıcısı olabilir. Eklenti yazarları onlara sunulan "
+"Geliştirici Araçları sayesinde eklenti sahipliğini başkasına aktarabilir ve "
+"eklentinin yayınlanmasını idare edebilecek yeni geliştiriciler atayabilir. "
+"Sahiplik aktarımı yapmak için Mozilla'yı temsil eden birileriyle etkileşim "
+"kurma gerekliliği yoktur."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid ""
@@ -6484,6 +6512,9 @@ msgid ""
 "listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's "
 "current owner."
 msgstr ""
+"Eklentinin mevcut yazarı tarafından <a href=\"%(link_contact)s\">iletişime "
+"geçilirse/a>, Mozilla eklentinin yayınlanmasıyla ilgili ek izinlerin "
+"tanınması konusunda yardımcı olabilir."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
@@ -6492,6 +6523,12 @@ msgid ""
 "stable and useful. It also provides valuable feedback to developers, "
 "allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla kullanıcılarının kullandıkları bir eklentiyle ilgili edindikleri "
+"tecrübeler hakkında geri bildirimde bulunmasını teşvik eder. Bu diğer "
+"kullanıcıların eklentinin istikrarlı ve faydalı olup olmadığına karar "
+"vermesine yardım eder. Ayrıca geliştiricilere değerli bir geri bildirim "
+"sağlayarak eklentilerini kullanıcıların ihtiyaçlarına yönelik sürekli "
+"geliştirmeleri için olanak sunar."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
