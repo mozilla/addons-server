@@ -35,7 +35,7 @@ DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 CRONJOB_LOCK_PREFIX = DOMAIN
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = SITE_URL
+SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
 MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
 CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
