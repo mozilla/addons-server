@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-11 12:23+0000\n"
+"PO-Revision-Date: 2015-11-11 13:19+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -9749,30 +9749,30 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:258
 msgid "Admin Page"
-msgstr ""
+msgstr "Yönetici Sayfası"
 
 #: apps/editors/templates/editors/review.html:263
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Bu Eklentiyi İncele"
 
 #: apps/editors/templates/editors/review.html:265
 msgid "More Information"
-msgstr ""
+msgstr "Daha Fazla Bilgi"
 
 #: apps/editors/templates/editors/review.html:267
 msgid "Resolution"
-msgstr ""
+msgstr "Çözünürlük"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/reviewlog.html:21
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Filter"
-msgstr ""
+msgstr "Süz"
 
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Eklenti İnceleme Kaydı"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 #, fuzzy
@@ -9787,7 +9787,7 @@ msgstr "Editor"
 
 #: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Eklenti silindi."
 
 #: apps/editors/templates/editors/reviewlog.html:59
 #: apps/editors/templates/editors/themes/logs.html:36
@@ -9809,39 +9809,39 @@ msgstr "No reviews found for this period."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Bu duyuruyu geç"
 
 #: apps/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
-msgstr ""
+msgstr "Bu sürümdeki dosyalar:"
 
 #: apps/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr ""
+msgstr "İçindekiler"
 
 #: apps/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
-msgstr ""
+msgstr "Karşılaştır"
 
 #: apps/editors/templates/editors/includes/history.html:6
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>%(user)s tarafından %(date)s tarihinde</div>"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "Daha Eski"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "Daha Yeni"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Yakın Zamandaki Puanlar"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Henüz hiç puan alınmadı."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -9892,42 +9892,42 @@ msgstr ""
 #: apps/editors/templates/editors/themes/history_table.html:9
 #: apps/editors/templates/editors/themes/logs.html:18
 msgid "Action"
-msgstr ""
+msgstr "Eylem"
 
 #: apps/editors/templates/editors/themes/history_table.html:10
 msgid "Reason"
-msgstr ""
+msgstr "Neden"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Şu an için hiçbir inceleme yok."
 
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
+msgstr[0] "Bekleyen {num} Tema İncelemesi"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "İşaretlenmiş {num} İnceleme"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
+msgstr[0] "{num} Güncelleme"
 
 #: apps/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Tema İnceleme Günlüğü"
 
 #: apps/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Tema İnceleme Sırası"
 
 #: apps/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "İnceleme Seçenekleri"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
@@ -9935,43 +9935,43 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Klavye kısayollarını devreye sok"
 
 #: apps/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Klavye Kısayolları"
 
 #: apps/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Sonraki Tema"
 
 #: apps/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Önceki Tema"
 
 #: apps/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "İnceleme Geçmişiniz"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "İncelemeyi Tamamla"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "İncelemeleri Tamamla"
 
 #: apps/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{1} incelemeden {0} tanesi tamamlandı"
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Şu an için incelenecek bir Tema yok."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Aramayı Temizle"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
@@ -9979,7 +9979,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Etkinleşimli Tema Sırası"
 
 #: apps/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
@@ -9991,28 +9991,28 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Olası Mükerrer Gönderim)"
 
 #: apps/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Eski İnceleme Notları"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: apps/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Daha Fazla Bilgi İstendi: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "İşaretlendi: {0}"
 
 #: apps/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
-msgstr ""
+msgstr "Temayı Onayla"
 
 #: apps/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
-msgstr ""
+msgstr "Gerekli saha"
 
 #: apps/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
@@ -10159,15 +10159,15 @@ msgstr ""
 
 #: apps/files/templates/files/viewer.html:57
 msgid "Deleted files:"
-msgstr ""
+msgstr "Silinen dosyalar:"
 
 #: apps/files/templates/files/viewer.html:66
 msgid "Hide known files"
-msgstr ""
+msgstr "Bilindik dosyaları gizle"
 
 #: apps/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Eklenti SDK Sürümü:"
 
 #: apps/files/templates/files/viewer.html:73
 msgid "Tab stops:"
@@ -10291,45 +10291,45 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
-msgstr ""
+msgstr "Büyük fotoğrafı görmek ister misin?"
 
 #: apps/localizers/templates/localizers/sidebar.html:15
 msgid "Visit localize.mozilla.org"
-msgstr ""
+msgstr "localize.mozilla.org adresini ziyaret et"
 
 #: apps/localizers/templates/localizers/sidebar.html:21
 msgid "Options"
-msgstr ""
+msgstr "Seçenekler"
 
 #: apps/localizers/templates/localizers/sidebar.html:31
 msgid "Need Help?"
-msgstr ""
+msgstr "Yardım mı Lazım?"
 
 #: apps/localizers/templates/localizers/sidebar.html:34
 msgid "Visit the Newsgroup"
-msgstr ""
+msgstr "Haber Grubunu Ziyaret Et"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
-msgstr ""
+msgstr "Takımınıza E-Posta Gönderin:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8
 #: apps/reviews/templates/reviews/reply.html:36
 #: apps/reviews/templates/reviews/report_review.html:12
 msgid "Submit"
-msgstr ""
+msgstr "Gönder"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:16
 msgid "(edit)"
-msgstr ""
+msgstr "(düzenle)"
 
 #: apps/localizers/templates/localizers/summary.html:9
 msgid "Mozilla Add-ons Localization"
-msgstr ""
+msgstr "Mozilla Eklenti Yerelleştirme"
 
 #: apps/localizers/templates/localizers/summary.html:16
 msgid "Want to help?"
-msgstr ""
+msgstr "Yardım etmeye var mısın?"
 
 #: apps/localizers/templates/localizers/summary.html:17
 msgid ""
@@ -10346,20 +10346,20 @@ msgstr ""
 
 #: apps/localizers/templates/localizers/summary.html:27
 msgid "Locale code"
-msgstr ""
+msgstr "Dil kodu"
 
 #: apps/localizers/templates/localizers/summary.html:28
 msgid "Locale name"
-msgstr ""
+msgstr "Dil adı"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla Eklentileri Hakkında"
 
 #: apps/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Bu site ne için var?"
 
 #: apps/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -10372,7 +10372,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Bu eklentileri kim yaratıyor?"
 
 #: apps/pages/templates/pages/about.lhtml:20
 msgid ""
