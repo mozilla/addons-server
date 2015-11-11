@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-11 11:22+0000\n"
+"PO-Revision-Date: 2015-11-11 12:13+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3817,10 +3817,13 @@ msgid ""
 "Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start"
 " exploring</a>"
 msgstr ""
+"Tarayıcınızı özelleştirmek için 300 binden fazla tasarım! Arkaplan "
+"Temaları'ndan denemek için fareyi üzerine getirin. <a href=\"%(url)s\" class"
+"=\"more-info\">Keşfe başlayın...</a>"
 
 #: apps/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Daha fazla özelleştirme mi istiyorsunuz?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3841,7 +3844,7 @@ msgstr "Tüm Yükselişte Olanları Göster"
 
 #: apps/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Tema bulunamadı"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
@@ -3849,15 +3852,15 @@ msgstr "Firefox için kullanımı kolay temalar"
 
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Daha Fazla Tema"
 
 #: apps/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Tüm Temalar"
 
 #: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
 msgid "All"
-msgstr ""
+msgstr "Tümü"
 
 #: apps/compat/forms.py:23 apps/search/views.py:521
 msgid "All Add-ons"
@@ -3865,11 +3868,11 @@ msgstr "Tüm Eklentiler"
 
 #: apps/compat/forms.py:24
 msgid "Binary"
-msgstr ""
+msgstr "İkili"
 
 #: apps/compat/forms.py:25
 msgid "Non-binary"
-msgstr ""
+msgstr "İkili olmayan"
 
 #. Review points sources other than add-ons and themes.
 #: apps/compat/views.py:85 apps/constants/base.py:424 apps/devhub/forms.py:162
@@ -3907,15 +3910,15 @@ msgstr "Önceki sürümle uyumlu eklentiler için ayrıntılar:"
 
 #: apps/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Tüm sürümleri göster"
 
 #: apps/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
-msgstr ""
+msgstr "Tüm sürümlerle uyumlu eklenti ayrıntıları:"
 
 #: apps/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr ""
+msgstr "Sadece önceki sürümleri göster"
 
 #: apps/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
@@ -3929,10 +3932,14 @@ msgid ""
 "reports help us determine which add-ons will need help supporting an "
 "upcoming Firefox version. </p>"
 msgstr ""
+"<p> <a href=\"%(url_)s\">Eklenti Uyumluluk Bildirici</a> aracılığıyla bize "
+"gönderilen raporlar geliştiricilerin değerlendirmesi için toplanır. Bu "
+"raporlar bize hangi eklentilerin gelecek Firefox sürümünü destekleyeceğine "
+"karar vermemize yardımcı olur. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Eklentilerinize Ait Raporlar"
 
 #: apps/compat/templates/compat/reporter.html:30
 #: apps/compat/templates/compat/reporter_detail.html:9
@@ -3941,7 +3948,7 @@ msgstr "Eklenti Uyumluluk Merkezi"
 
 #: apps/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Aşağıya bir eklentinin GUID'sini girerek aldığımız raporları görün."
 
 #: apps/compat/templates/compat/reporter_detail.html:3
 #: apps/compat/templates/compat/reporter_detail.html:10
@@ -3962,11 +3969,11 @@ msgstr[0] "{0} sorun raporu"
 #: apps/compat/templates/compat/reporter_detail.html:21
 #: apps/users/templates/users/profile.html:73
 msgid "View all"
-msgstr ""
+msgstr "Tümünü göster"
 
 #: apps/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Uygulamaya göre süz"
 
 #: apps/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
@@ -4031,7 +4038,7 @@ msgstr "Mobil"
 
 #: apps/constants/applications.py:103
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Android İçin Firefox"
 
 #: apps/constants/applications.py:138
 msgid "Mozilla"
@@ -4039,7 +4046,7 @@ msgstr "Mozilla"
 
 #: apps/constants/applications.py:148
 msgid "Unknown"
-msgstr ""
+msgstr "Bilinmeyen"
 
 #: apps/constants/applications.py:153 templates/mobile/header.html:5
 msgid "Desktop"
@@ -4047,11 +4054,11 @@ msgstr "Masaüstü"
 
 #: apps/constants/applications.py:160
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: apps/constants/applications.py:167
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: apps/constants/applications.py:174
 msgid "Firefox OS"
@@ -4096,7 +4103,7 @@ msgstr ""
 
 #: apps/constants/base.py:44
 msgid "Flagged for further review"
-msgstr ""
+msgstr "İleri inceleme için işaretlenmiş"
 
 #: apps/constants/base.py:51
 msgid "Beta"
@@ -4147,7 +4154,7 @@ msgstr "Dil Paketi (Uygulama)"
 
 #: apps/constants/base.py:168
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Dil Paketi (Eklenti)"
 
 #: apps/constants/base.py:169
 msgid "Plugin"
@@ -4173,7 +4180,7 @@ msgstr "Dil Paketleri (Uygulama)"
 
 #: apps/constants/base.py:181
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Dil Paketi (Eklenti)"
 
 # 85%
 # 100%
@@ -4191,39 +4198,39 @@ msgstr "Ücretli"
 
 #: apps/constants/base.py:249
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Uygulama içi ücretli"
 
 #: apps/constants/base.py:250
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Uygulama içi ücretsiz"
 
 #: apps/constants/base.py:251
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Uygulama içi ödemeler için kendi sistemimi kullanacağım"
 
 #: apps/constants/base.py:307
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Sadece bu eklentinin sayfasında ve geliştirici kimliğinde sor"
 
 #: apps/constants/base.py:308
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Kullanıcılar bu eklentiyi indirmeye başladıktan sonra sor"
 
 #: apps/constants/base.py:309
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Kullanıcılar bu eklentiyi indirmeden önce sor"
 
 #: apps/constants/base.py:425
 msgid "Exception"
-msgstr ""
+msgstr "İstisna"
 
 #: apps/constants/base.py:426
 msgid "Release"
-msgstr ""
+msgstr "Yayınla"
 
 #: apps/constants/base.py:427
 msgid "Change"
-msgstr ""
+msgstr "Değiştir"
 
 #: apps/constants/base.py:438
 msgid "Persona"
@@ -4279,11 +4286,11 @@ msgstr ""
 
 #: apps/constants/base.py:483
 msgid "Theme Review"
-msgstr ""
+msgstr "Tema İnceleme"
 
 #: apps/constants/base.py:484
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Tam Arama Sağlayıcı İnceleme"
 
 #: apps/constants/base.py:485
 msgid "Preliminary Search Provider Review"
@@ -4315,116 +4322,116 @@ msgstr ""
 
 #: apps/constants/base.py:538
 msgid "Level 1"
-msgstr ""
+msgstr "1. Düzey"
 
 #: apps/constants/base.py:539
 msgid "Level 2"
-msgstr ""
+msgstr "2. Düzey"
 
 #: apps/constants/base.py:540
 msgid "Level 3"
-msgstr ""
+msgstr "3. Düzey"
 
 #: apps/constants/base.py:541
 msgid "Level 4"
-msgstr ""
+msgstr "4. Düzey"
 
 #: apps/constants/base.py:542
 msgid "Level 5"
-msgstr ""
+msgstr "5. Düzey"
 
 #: apps/constants/base.py:543
 msgid "Level 6"
-msgstr ""
+msgstr "6. Düzey"
 
 #: apps/constants/base.py:544
 msgid "Level 7"
-msgstr ""
+msgstr "7. Düzey"
 
 #: apps/constants/base.py:545
 msgid "Level 8"
-msgstr ""
+msgstr "8. Düzey"
 
 #: apps/constants/base.py:546
 msgid "Level 9"
-msgstr ""
+msgstr "9. Düzey"
 
 #: apps/constants/base.py:555
 msgid "Not signed"
-msgstr ""
+msgstr "İmzalanmamış"
 
 #: apps/constants/base.py:556
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Tam inceleme için imzalanmış"
 
 #: apps/constants/base.py:557
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Ön inceleme için imzalanmış"
 
 #: apps/constants/editors.py:14
 #: apps/editors/templates/editors/themes/queue.html:76
 #: apps/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr ""
+msgstr "Daha Fazla Bilgi İste"
 
 #: apps/constants/editors.py:15
 #: apps/editors/templates/editors/themes/queue.html:74
 #: apps/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr ""
+msgstr "İşaretle"
 
 #: apps/constants/editors.py:16
 #: apps/editors/templates/editors/themes/queue.html:72
 #: apps/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Kopyala"
 
 #: apps/constants/editors.py:17 apps/editors/helpers.py:497
 #: apps/editors/templates/editors/themes/queue.html:71
 #: apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
-msgstr ""
+msgstr "Geri Çevir"
 
 #: apps/constants/editors.py:18
 #: apps/editors/templates/editors/themes/queue.html:70
 msgid "Approve"
-msgstr ""
+msgstr "Onayla"
 
 #: apps/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Cinsel veya pornografik içerik"
 
 #: apps/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Uygunsuz veya saldırganca içerik"
 
 #: apps/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Şiddet, savaş veya silah görüntüleri"
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazicilik veya nefrete dair diğer içerik"
 
 #: apps/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "İftira içeriği"
 
 #: apps/constants/editors.py:28
 msgid "Online gambling"
-msgstr ""
+msgstr "Çevrimiçi kumar"
 
 #: apps/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Spam içeriği"
 
 #: apps/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Düşük kaliteli, esnetilmiş veya boş resim"
 
 #: apps/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Tepe resmi hizalama sorunu"
 
 #: apps/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -4484,23 +4491,23 @@ msgstr "Android"
 
 #: apps/devhub/feeds.py:36
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Yakın Zamandaki %s Değişiklikleri"
 
 #: apps/devhub/feeds.py:38
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Eklentilerimdeki Yakın Zamandaki Değişiklikler"
 
 #: apps/devhub/forms.py:68
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "En az bir sahibi olmalı."
 
 #: apps/devhub/forms.py:71
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "En az bir yazar listelenmeli."
 
 #: apps/devhub/forms.py:75
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Bir yazar sadece bir kez listelenebilir."
 
 #: apps/devhub/forms.py:93
 msgid "Password incorrect."
@@ -4508,7 +4515,7 @@ msgstr "Parola hatalı."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Geçersiz JSON nesnesi"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
@@ -4529,31 +4536,31 @@ msgstr ""
 
 #: apps/devhub/forms.py:181
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Diğer seçeneği seçildiğinde sözleşme metni girilmesi gerekir."
 
 #: apps/devhub/forms.py:231
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Bu sözleşmenin bir Son Kullanıcı İzin Sözleşmesi var"
 
 #: apps/devhub/forms.py:234
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Eklentinizin Son Kullanıcı İzin Sözleşmesi'ni belirtin:"
 
 #: apps/devhub/forms.py:237
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Bu eklentinin Gizlilik Kuralları var"
 
 #: apps/devhub/forms.py:240
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Eklentinizin Gizlilik Kuralları'nı belirtin:"
 
 #: apps/devhub/forms.py:278
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Bu eklentiyi neden yazdınız?"
 
 #: apps/devhub/forms.py:279
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Bu eklentinin gelişiminde bir sonraki basamak ne?"
 
 #: apps/devhub/forms.py:316
 msgid "The developers of this add-on"
@@ -4569,11 +4576,11 @@ msgstr "Seçtiğim bir kuruluş"
 
 #: apps/devhub/forms.py:361
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Lütfen tavsiye edilen meblağı 0'dan büyük olmak üzere giriniz."
 
 #: apps/devhub/forms.py:364
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Lütfen tavsiye edilen meblağı {0}$'dan az olmak üzere giriniz."
 
 #: apps/devhub/forms.py:373
 msgid "PayPal ID required to accept contributions."
@@ -4586,6 +4593,7 @@ msgstr "PayPal kimliği doğrulanamadı."
 #: apps/devhub/forms.py:388
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Desteklenmeyen dosya türü. Lütfen bir {extensions} arşiv dosyası yükleyin."
 
 #: apps/devhub/forms.py:407
 msgid "View current"
