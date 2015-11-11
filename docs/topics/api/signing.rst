@@ -50,7 +50,7 @@ If this is the first time that your add-on's UUID has been seen then
 the add-on will be created as an unlisted add-on when the version is
 uploaded.
 
-.. _version-status:
+.. _`version-status`:
 
 -----------------------------------
 Checking the status of your upload
