@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:45-0700\n"
-"PO-Revision-Date: 2015-11-10 20:15+0000\n"
+"PO-Revision-Date: 2015-11-11 09:06+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -6160,7 +6160,7 @@ msgstr "Başlarken"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Eklentini karşıya yükle"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Describe your add-on"
@@ -6168,38 +6168,38 @@ msgstr "Eklentinizi tanımlayın"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:10
 msgid "Add images"
-msgstr ""
+msgstr "Resim ekle"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
-msgstr ""
+msgstr "İzin türü seç"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
-msgstr ""
+msgstr "İnceleme türü seç"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:18
 #: apps/devhub/templates/devhub/docs/policies-submission.html:3
 #: apps/devhub/templates/devhub/docs/policies-submission.html:7
 #: apps/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr ""
+msgstr "Başvuru Süreci"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:4
 msgid "Step 1"
-msgstr ""
+msgstr "1. Adım"
 
 #: apps/devhub/templates/devhub/addons/submit/start.html:7
 msgid "Step 1. Getting Started"
-msgstr ""
+msgstr "1. Adım: Başlangıç"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "2. Adım"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:11
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "2. Adım: Eklentinizi Karşıya Yükleyin"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:13
 msgid ""
@@ -6207,39 +6207,44 @@ msgid ""
 "restrictions. After upload, a series of automated validation tests will be "
 "run on your file."
 msgstr ""
+"Aşağıdaki sahaları kullanarak eklenti paketinizi karşıya yükleyin ve varsa "
+"platform kısıtlamalarını seçin. Karşıya yüklemeden sonra, dosya üzerinde bir"
+" dizi doğrulama testi uygulanacak."
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:66
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:41
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Bu dosya hangi platformlarla uyumlu?"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:74
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:67
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Yönetsel kural istisnaları"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:84
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:79
 msgid ""
 "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
+"Eklentinizin imzalanmadan önce özel olarak incelenmeye ihtiyacı var gibi "
+"gözüküyor."
 
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "API Kimlik Bilgileri"
 
 #: apps/devhub/templates/devhub/api/key.html:22
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT düzenleyen"
 
 #: apps/devhub/templates/devhub/api/key.html:26
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT sırrı"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid ""
@@ -6252,14 +6257,16 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/key.html:51
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 msgstr ""
+"Daha fazla ayrıntı için <a href=\"%(docs_url)s\">belgelerden</a> yardım "
+"alın."
 
 #: apps/devhub/templates/devhub/api/key.html:57
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Henüz herhangi bir API kimlik bilginiz yok."
 
 #: apps/devhub/templates/devhub/api/key.html:64
 msgid "Generate New Credentials"
-msgstr ""
+msgstr "Yeni Kimlik Bilgisi Üret"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6267,7 +6274,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:24
 #: apps/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Geliştirici Sözleşmesi"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3
 #: apps/devhub/templates/devhub/docs/policies-contact.html:7
@@ -6275,17 +6282,20 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:27
 #: apps/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Bize Ulaşın"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:12
 msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Mozilla Eklenti takımıyla iletişim kurmaya gösterdiğiniz ilgiden dolayı "
+"teşekkürler. Talebinizin doğru yere ulaşmasını sağlamak için lütfen bu "
+"sayfayı dikkalice okuyun."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Eklenti Desteği"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
@@ -6294,6 +6304,10 @@ msgid ""
 "that add-on's author through the support channels listed on the add-on's "
 "listing page."
 msgstr ""
+"Belli bir eklentiyle ilgili desteğe ihtiyacınız varsa, \"Bu eklentiyi nasıl "
+"kullanırım?\" veya \"Bu neden düzgün çalışmıyor?\" gibi sorularınız varsa, "
+"eklenti sayfasındaki destek kanallarını kullanarak lütfen o eklentinin "
+"yazarıyla iletişim kurun."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
@@ -6301,7 +6315,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors @ mozilla nokta org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
@@ -6314,11 +6328,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Eklenti Güvenlik Zaafları"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins @ mozilla nokta org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6330,10 +6344,17 @@ msgid ""
 "policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Eklenti burada barındırılıyor olsun veya olmasın, bir eklentide "
+"keşfettiğiniz bir güvenlik zaafı varsa, Mozilla bunla yakından ilgilenecek "
+"ve en kısa zamanda sorunu düzeltmek için eklenti yazarıyla çalışacaktır. "
+"Eklenti güvenlik sorunları <a href=\"%(link_bugzilla)s\">Bugzilla</a> "
+"aracılığıyla <a href=\"http://www.mozilla.org/projects/security/security-"
+"bugs-policy.html\">gizli olarak</a> veya %(mail_admins)s adresine e-posta "
+"yazarak bildirilebilir."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Site İşlevselliği ve Geliştirme"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
@@ -6342,16 +6363,20 @@ msgid ""
 " a bug report</a> in Bugzilla, including the location of the problem and how"
 " you encountered it."
 msgstr ""
+"Sitede bir sorun bulduysanız bunu seve seve çözmek isteriz. Lütfen sorunu "
+"yaşadığınız konumu da belirterek Bugzilla'da bir <a "
+"href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">arıza"
+" kaydı</a> oluşturun."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Eklentilerinizin Sürekliliği"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Eklentinizin Yeni Sürümlerini Gönderme"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
@@ -6363,6 +6388,14 @@ msgid ""
 "provided. There is no limit to the number of versions that can be submitted,"
 " but please remember that versions must be reviewed by an editor."
 msgstr ""
+"Geliştiricilerin eklentilerindeki sorunları gidermesi, yeni özellikler "
+"eklemesi veya ürünlerini geliştirmesi amacıyla güncellemeler yapması teşvik "
+"edilir. Bir eklentinin yeni sürümü mutlaka <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">daha yüksek"
+" bir sürüm numarasına</a> sahip olmalıdır ve sunulan Geliştirici Araçları "
+"vasıtasıyla gönderilebilir. Gönderilebilecek yeni sürüm sayısıyla ilgili bir"
+" kısıtlama yoktur, ancak yeni sürümler bir editör tarafından gözden "
+"geçirilmelidir."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid ""
@@ -6370,14 +6403,17 @@ msgid ""
 "versions submitted before the review is completed will move that version to "
 "the end of the queue."
 msgstr ""
+"Yeni sürümler inceleme bekleme sırasına alınır ve inceleme gerçekleşmeden "
+"önce gönderilen daha yeni bir güncelleme o sürümü son sıraya taşır."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Nasıl Beta eklenti gönderebilirim?"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
 msgstr ""
+"Beta kanalı sadece tamamen incelenmiş eklentiler için sunulan bir hizmettir."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6387,6 +6423,12 @@ msgid ""
 "version string. If you understand regex format, here's what we look for in "
 "the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
+"Beta kanalı oluşturmak için şu ifadeleri içeren benzersiz bir sürüm "
+"ifadesine sahip bir dosyayı karşıya yükleyin: "
+"<code>a,b,alpha,beta,pre,rc</code> (Sonuna isteğe bağlı bir numara da "
+"koyabilirsiniz.) Bu metin sürüm ifadesinin sonuna gelmeli. Düzenli ifadeleri"
+" (regex) anlıyorsanız, bir sürüm numarasında ne aradığımızı burada "
+"görebilirsiniz: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
