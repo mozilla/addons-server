@@ -2,10 +2,10 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import jingo
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
 
 from olympia import amo
 from olympia.amo.helpers import urlparams

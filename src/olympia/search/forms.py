@@ -1,8 +1,8 @@
 from django import forms
 from django.forms.util import ErrorDict
+from django.utils.translation import ugettext_lazy as _lazy
 
 import happyforms
-from tower import ugettext_lazy as _lazy
 
 from olympia import amo
 from olympia.search.utils import floor_version

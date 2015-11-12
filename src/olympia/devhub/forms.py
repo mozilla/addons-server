@@ -9,10 +9,10 @@ from django.db.models import Q
 from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
 from django.utils.encoding import force_unicode
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl

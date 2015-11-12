@@ -1,7 +1,7 @@
 import caching.base as caching
 import jingo
 import jinja2
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
 from olympia.addons.models import Addon

@@ -7,13 +7,13 @@ from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils import http as urllib
+from django.utils.translation import trim_whitespace
 
 import pytest
 from jingo.helpers import datetime as datetime_filter
 import mock
 from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 
 from olympia import amo
 from olympia.amo.tests import TestCase, ESTestCaseWithAddons
@@ -239,7 +239,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
             eq_(item('.updated').text(),
-                u'Added %s' % strip_whitespace(datetime_filter(ts)))
+                u'Added %s' % trim_whitespace(datetime_filter(ts)))
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -248,7 +248,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
             eq_(item('.updated').text(),
-                u'Updated %s' % strip_whitespace(datetime_filter(ts)))
+                u'Updated %s' % trim_whitespace(datetime_filter(ts)))
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)

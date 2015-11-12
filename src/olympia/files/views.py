@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
+from django.utils.translation import ugettext as _
 
 import commonware.log
 import waffle
@@ -19,7 +20,6 @@ from olympia.files.decorators import (
 from olympia.files.tasks import extract_file
 
 from . import forms
-
 
 log = commonware.log.getLogger('z.addons')
 

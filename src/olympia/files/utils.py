@@ -22,11 +22,11 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.utils.translation import ugettext as _
 
 import rdflib
 import waffle
 from lxml import etree
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir

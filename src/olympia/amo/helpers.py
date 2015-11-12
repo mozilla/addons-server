@@ -10,7 +10,8 @@ from urlparse import urljoin
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
-from django.utils import translation
+from django.utils.translation import (
+    ugettext as _, trim_whitespace, to_locale, get_language)
 from django.utils.encoding import smart_unicode
 from django.utils.html import format_html
 from django.template import defaultfilters
@@ -25,7 +26,6 @@ from jingo import register, get_env
 from jingo import helpers  # noqa
 from jingo_minify.helpers import (_build_html, _get_compiled_css_url, get_path,
                                   is_external)
-from tower import ugettext as _, strip_whitespace
 
 from olympia import amo
 from olympia.amo import utils, urlresolvers
@@ -214,7 +214,7 @@ class Paginator(object):
 
 
 def _get_format():
-    lang = translation.get_language()
+    lang = get_language()
     return Format(utils.get_locale_from_lang(lang))
 
 
@@ -554,12 +554,28 @@ def _site_nav(context):
 @register.function
 def loc(s):
     """A noop function for strings that are not ready to be localized."""
-    return strip_whitespace(s)
+    return trim_whitespace(s)
 
 
 @register.function
 def site_event_type(type):
     return amo.SITE_EVENT_CHOICES[type]
+
+
+@register.function
+@jinja2.contextfunction
+def remora_url(context, url, lang=None, app=None, prefix=''):
+    """Wrapper for urlresolvers.remora_url"""
+    if lang is None:
+        _lang = context['LANG']
+        if _lang:
+            lang = to_locale(_lang).replace('_', '-')
+    if app is None:
+        try:
+            app = context['APP'].short
+        except (AttributeError, KeyError):
+            pass
+    return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
 
 
 @register.function

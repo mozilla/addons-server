@@ -1,11 +1,11 @@
 from django.core.cache import cache
 from django.test.utils import override_settings
+from django.utils.translation import trim_whitespace
 
 import mock
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -315,7 +315,7 @@ class TestPersonaDetails(TestCase):
             if detail.find('h3').text_content() == 'Created':
                 created = detail.find('p').text_content()
                 eq_(created,
-                    strip_whitespace(datetime_filter(self.addon.created)))
+                    trim_whitespace(datetime_filter(self.addon.created)))
                 break  # Needed, or we go in the "else" clause.
         else:
             assert False, 'No "Created" entry found.'

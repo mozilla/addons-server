@@ -5,11 +5,11 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.utils import translation
 from django.utils.encoding import smart_str
+from django.utils.translation import ugettext as _
 from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
 from mobility.decorators import mobile_template
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.bandwagon.views import get_filter as get_filter_view

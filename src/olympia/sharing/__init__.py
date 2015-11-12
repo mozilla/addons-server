@@ -1,7 +1,7 @@
 """
 Email sharing of add-ons and collections with various services.
 """
-from tower import ugettext_lazy as _, ungettext as ngettext
+from django.utils.translation import ugettext_lazy as _, ungettext as ngettext
 
 
 # string replacements in URLs are: url, title, description

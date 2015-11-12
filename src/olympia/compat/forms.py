@@ -1,7 +1,6 @@
 from django import forms
 from django.forms.widgets import RadioSelect
-
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
 

@@ -2,7 +2,7 @@ import math
 
 import jinja2
 from jingo import register, env
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.addons.helpers import new_context
 from olympia.amo.helpers import login_link

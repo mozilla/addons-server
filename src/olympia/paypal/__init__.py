@@ -4,11 +4,11 @@ import urlparse
 
 from django.conf import settings
 from django.utils.http import urlquote
+from django.utils.translation import ugettext as _
 
 import commonware.log
 from django_statsd.clients import statsd
 import requests
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.helpers import absolutify

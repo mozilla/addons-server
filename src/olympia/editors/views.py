@@ -11,8 +11,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks

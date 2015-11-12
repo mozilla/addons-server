@@ -5,7 +5,7 @@ import tempfile
 from django.conf import settings
 
 from django_statsd.clients import statsd
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from .utils import check_output, subprocess, VideoBase
 

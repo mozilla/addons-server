@@ -6,8 +6,7 @@ from django.db.models import Count
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia import amo
 from olympia.amo import utils as amo_utils

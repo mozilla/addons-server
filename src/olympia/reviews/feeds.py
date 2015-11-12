@@ -1,8 +1,7 @@
 import urllib
 
 from django.shortcuts import get_object_or_404
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.amo import helpers
 from olympia.amo.feeds import NonAtomicFeed

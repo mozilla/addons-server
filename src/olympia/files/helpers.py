@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
-from django.utils.translation import get_language
+from django.utils.translation import get_language, ugettext as _
 from django.template.defaultfilters import filesizeformat
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
@@ -16,7 +16,6 @@ import jinja2
 import commonware.log
 from cache_nuggets.lib import memoize, Message
 from jingo import register, env
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir

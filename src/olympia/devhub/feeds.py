@@ -1,8 +1,7 @@
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia import amo
 from olympia.addons.models import Addon

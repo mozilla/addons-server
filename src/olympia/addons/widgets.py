@@ -3,8 +3,7 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.addons.models import Category
 

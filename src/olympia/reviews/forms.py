@@ -3,9 +3,9 @@ from urllib2 import unquote
 
 from django import forms
 from django.forms.models import modelformset_factory
+from django.utils.translation import ugettext_lazy as _lazy
 
 import happyforms
-from tower import ugettext_lazy as _lazy
 
 from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet

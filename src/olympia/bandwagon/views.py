@@ -10,10 +10,10 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
+from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
 import commonware.log
-from tower import ugettext_lazy as _lazy, ugettext as _
 from django_statsd.clients import statsd
 
 from olympia import amo

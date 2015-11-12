@@ -2,14 +2,12 @@ import datetime
 
 from django.conf import settings
 from django.db import models
-from django.utils import translation
+from django.utils.translation import activate, ugettext as _
 
 import bleach
 import caching.base
-import tower
 from babel import Locale, numbers
 from jinja2.filters import do_dictsort
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.models import SearchMixin
@@ -200,7 +198,7 @@ class Contribution(amo.models.ModelBase):
             lang = self.source_locale
         else:
             lang = self.addon.default_locale
-        tower.activate(lang)
+        activate(lang)
         return Locale(translation.to_locale(lang))
 
     def mail_thankyou(self, request=None):

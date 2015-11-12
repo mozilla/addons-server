@@ -2,10 +2,10 @@ from django.conf import settings
 from django.utils import translation, encoding
 
 import pytest
-import tower
 from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
+from django.utils.translation import activate
 
 from olympia import amo, sharing
 from olympia.sharing.views import share as share_view
@@ -100,7 +100,7 @@ def test_get_services_in_ja_locale():
     with patch.object(sharing, 'LOCALSERVICE1', testo):
         old_locale = translation.get_language()
         try:
-            tower.activate('ja')
+            activate('ja')
             assert expected == [s.shortname for s in sharing.get_services()]
         finally:
-            tower.activate(old_locale)
+            activate(old_locale)

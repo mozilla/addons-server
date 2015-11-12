@@ -15,7 +15,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from django.db import models, transaction
 from django.template import Context, loader
-from django.utils import translation
+from django.utils.translation import ugettext as _, get_language, activate
 from django.utils.crypto import constant_time_compare
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_str, smart_unicode
@@ -23,8 +23,6 @@ from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
-import tower
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
@@ -529,10 +527,10 @@ class UserProfile(OnChangeMixin, ModelBase,
         default which is en-US.
         """
         lang = self.lang if self.lang else settings.LANGUAGE_CODE
-        old = translation.get_language()
-        tower.activate(lang)
+        old = get_language()
+        activate(lang)
         yield
-        tower.activate(old)
+        activate(old)
 
     def remove_locale(self, locale):
         """Remove the given locale for the user."""

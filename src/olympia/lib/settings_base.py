@@ -162,13 +162,6 @@ LOCALE_PATHS = (
     path('locale'),
 )
 
-# Tower / L10n
-STANDALONE_DOMAINS = ['messages', 'javascript']
-TOWER_KEYWORDS = {
-    '_lazy': None,
-}
-TOWER_ADD_HEADERS = True
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -296,10 +289,18 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from django.core.cache import cache
-    config = {'extensions': ['tower.template.i18n', 'olympia.amo.ext.cache',
-                             'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
-              'finalize': lambda x: x if x is not None else ''}
+    config = {
+        'extensions': [
+            'olympia.amo.ext.cache',
+            'jinja2.ext.i18n',
+            'puente.ext.i18n',
+            'jinja2.ext.do',
+            'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols'
+        ],
+        'finalize': lambda x: x if x is not None else ''
+    }
+
     if False and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
         # Django can't store binary directly; it enforces unicode on it.
@@ -429,28 +430,29 @@ TEST_INSTALLED_APPS = (
 )
 
 # Tells the extract script what files to look for l10n in and what function
-# handles the extraction.  The Tower library expects this.
-DOMAIN_METHODS = {
-    'messages': [
-        ('src/olympia/**.py',
-            'tower.management.commands.extract.extract_tower_python'),
-        ('src/olympia/**/templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('src/olympia/templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('**/templates/**.lhtml',
-            'tower.management.commands.extract.extract_tower_template'),
-    ],
-    'javascript': [
-        # We can't say **.js because that would dive into mochikit and timeplot
-        # and all the other baggage we're carrying.  Timeplot, in particular,
-        # crashes the extractor with bad unicode data.
-        ('static/js/*.js', 'javascript'),
-        ('static/js/amo2009/**.js', 'javascript'),
-        ('static/js/common/**.js', 'javascript'),
-        ('static/js/impala/**.js', 'javascript'),
-        ('static/js/zamboni/**.js', 'javascript'),
-    ],
+# handles the extraction. The puente library expects this.
+PUENTE = {
+    'BASE_DIR': ROOT,
+    # Tells the extract script what files to look for l10n in and what function
+    # handles the extraction.
+    'DOMAIN_METHODS': {
+        'django': [
+            ('src/olympia/**.py', 'python'),
+            ('src/olympia/**/templates/**.html', 'jinja2'),
+            ('templates/**.html', 'jinja2'),
+            ('**/templates/**.lhtml', 'jinja2'),
+        ],
+        'javascript': [
+            # We can't say **.js because that would dive into mochikit and timeplot
+            # and all the other baggage we're carrying.  Timeplot, in particular,
+            # crashes the extractor with bad unicode data.
+            ('static/js/*.js', 'javascript'),
+            ('static/js/amo2009/**.js', 'javascript'),
+            ('static/js/common/**.js', 'javascript'),
+            ('static/js/impala/**.js', 'javascript'),
+            ('static/js/zamboni/**.js', 'javascript'),
+        ],
+    },
 }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
@@ -1390,6 +1392,11 @@ ASYNC_SIGNALS = True
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
+
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
+REDIS_BACKENDS = {
+    'master': 'redis://{location}?socket_timeout=0.5'.format(
+        location=REDIS_LOCATION)}
 
 REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost')
 REDIS_PORT = os.environ.get('REDIS_PORT', '6379')

@@ -1,10 +1,9 @@
 import os
 
 from django.conf import settings
-from django.utils.translation import override
+from django.utils.translation import override, ugettext as _
 
 import commonware.log
-from tower import ugettext as _
 
 from olympia.constants import editors as rvw
 from olympia.addons.tasks import create_persona_preview_images

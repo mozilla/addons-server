@@ -1,8 +1,8 @@
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
+from django.utils.translation import ugettext as _
 
 import caching.base as caching
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.helpers import url, absolutify

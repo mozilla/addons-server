@@ -6,7 +6,6 @@ from django.conf import settings
 
 from rest_framework import status
 from rest_framework.response import Response
-from tower import ugettext as _
 
 from olympia.access import acl
 from olympia.addons.models import Addon

@@ -1,7 +1,7 @@
 import jinja2
 
 import jingo
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.access import acl
 from olympia.reviews.models import ReviewFlag

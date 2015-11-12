@@ -9,9 +9,9 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import urlquote
+from django.utils.translation import ugettext as _
 
 import commonware.log
-from tower import ugettext as _
 from mobility.decorators import mobile_template
 from waffle.decorators import waffle_switch
 

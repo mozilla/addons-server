@@ -5,11 +5,11 @@ from datetime import timedelta
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
-from django.utils.translation import get_language
+from django.utils.translation import (
+    ugettext as _, ugettext_lazy as _lazy, get_language)
 
 import happyforms
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
 
 from olympia import amo
 from olympia.constants import editors as rvw

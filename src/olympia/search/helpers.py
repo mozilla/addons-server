@@ -1,8 +1,8 @@
 from django.utils.html import escape
+from django.utils.translation import ugettext_lazy as _
 
 import jingo
 import jinja2
-from tower import ugettext_lazy as _
 
 from . import forms
 

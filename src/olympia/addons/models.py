@@ -14,14 +14,13 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real
+from django.utils.translation import trans_real as translation, ugettext_lazy as _
 
 import caching.base as caching
 import commonware.log
 import json_field
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
-from tower import ugettext_lazy as _
 
 from olympia import amo
 from olympia.amo.models import (

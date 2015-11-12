@@ -2,11 +2,11 @@ from collections import defaultdict
 
 from django import forms
 from django.forms import widgets
+from django.utils.translation import ugettext as _
 
 import commonware.log
 import happyforms
 import jinja2
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.files.models import File

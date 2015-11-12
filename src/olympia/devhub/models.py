@@ -6,10 +6,10 @@ import string
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext as _
 
 import commonware.log
 import jinja2
-from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from olympia import amo
