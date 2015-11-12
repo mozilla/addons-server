@@ -85,7 +85,7 @@ SQLAlchemy==0.7.5
 statsd==2.0.3
 suds==0.4
 thrift==0.9.1
-tower==0.4.1
+puente==0.3
 urllib3==1.9
 django-cache-machine==0.9.1
 

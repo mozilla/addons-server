@@ -15,8 +15,8 @@ if [[ ($# -ne 1) || (! -d "$1") ]]; then usage; fi
 
 hash dennis-cmd 2>/dev/null || source $VENV/bin/activate
 
-echo "compiling messages.po..."
-for pofile in `find $1 -type f -name "messages.po"`; do
+echo "compiling django.po..."
+for pofile in `find $1 -type f -name "django.po"`; do
     dir=`dirname $pofile`
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`
@@ -35,8 +35,8 @@ for pofile in `find $1 -type f -name "messages.po"`; do
 done
 
 echo
-echo "compiling javascript.po..."
-for pofile in `find $1 -type f -name "javascript.po"`; do
+echo "compiling djangojs.po..."
+for pofile in `find $1 -type f -name "djangojs.po"`; do
     dir=`dirname $pofile`
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`

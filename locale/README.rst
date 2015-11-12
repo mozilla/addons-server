@@ -9,8 +9,8 @@ To Localizers:
 
 The two files in your locale directories that are important are::
 
-    messages.po
-    javascript.po
+    django.po
+    djangojs.po
 
 Generally, legal documents are localized by lawyers and aren't in our gettext
 process.  However, if you need to work with them, visit::

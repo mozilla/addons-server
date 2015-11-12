@@ -72,35 +72,35 @@ if confirm "Merge new strings to .po files?"; then
     pushd locale > /dev/null
 
     echo "Merging any new keys..."
-    for i in `find . -name "messages.po" | grep -v "en_US"`; do
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/messages.pot"
+    for i in `find . -name "django.po" | grep -v "en_US"`; do
+        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/django.pot"
     done
-    msgen templates/LC_MESSAGES/messages.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/messages.po -
+    msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
 
     echo "Merging any new javascript keys..."
-    for i in `find . -name "javascript.po" | grep -v "en_US"`; do
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/javascript.pot"
+    for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
+        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
     done
-    msgen templates/LC_MESSAGES/javascript.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/javascript.po -
+    msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
 
     echo "Cleaning out obsolete messages.  See bug 623634 for details."
-    for i in `find . -name "messages.po"`; do
+    for i in `find . -name "django.po"`; do
         msgattrib $CLEAN_FLAGS --output-file=$i $i
     done
-    for i in `find . -name "javascript.po"`; do
+    for i in `find . -name "djangojs.po"`; do
         msgattrib $CLEAN_FLAGS --output-file=$i $i
     done
     popd > /dev/null
 fi
 
 if confirm "Process your debug language?"; then
-    podebug --rewrite=unicode locale/templates/LC_MESSAGES/messages.pot locale/dbg/LC_MESSAGES/messages.po
-    podebug --rewrite=unicode locale/templates/LC_MESSAGES/javascript.pot locale/dbg/LC_MESSAGES/javascript.po
+    podebug --rewrite=unicode locale/templates/LC_MESSAGES/django.pot locale/dbg/LC_MESSAGES/django.po
+    podebug --rewrite=unicode locale/templates/LC_MESSAGES/djangojs.pot locale/dbg/LC_MESSAGES/djangojs.po
 fi
 
 if confirm "Convert Cyrillic Serbian to Latin?"; then
     pushd locale > /dev/null
-    msgfilter -i sr/LC_MESSAGES/messages.po -o sr_Latn/LC_MESSAGES/messages.po recode-sr-latin
+    msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
     popd > /dev/null
 fi
 
