@@ -73,7 +73,7 @@ longer. Once review is complete then the ``reviewed`` property
 will be set and you can check the results with the ``passed_review``
 property.
 
-.. http:get:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/
+.. http:get:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/(uploads/[string:upload-pk]/)
 
     **Request:**
 
@@ -84,6 +84,7 @@ property.
 
     :param addon-guid: the GUID for the add-on.
     :param version: the version of the add-on.
+    :param upload-pk: (optional) the pk for a specific upload.
 
     **Response:**
 
@@ -93,14 +94,15 @@ property.
                 "active": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/unlisted_wat-1.0-fx+an.xpi?src=api",
+                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-guid-1.0-fx+an.xpi?src=api",
                         "signed": true
                     }
                 ],
                 "passed_review": true,
+                "pk": "f68abbb3b1624c098fe979a409fe3ce9",
                 "processed": true,
                 "reviewed": true,
-                "url": "https://addons.mozilla.org/api/v3/addons/%40new-unlisted-api/versions/1.0/",
+                "url": "https://addons.mozilla.org/api/v3/addons/%40example-guid/versions/1.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
                 "valid": true,
                 "validation_results": {},
                 "validation_url": "https://addons.mozilla.org/en-US/developers/upload/f68abbb3b1624c098fe979a409fe3ce9",
@@ -112,9 +114,10 @@ property.
         URL to :ref:`download the add-on file <download-signed-file>`.
     :>json files.signed: if the file is signed.
     :>json passed_review: if the version has passed review.
+    :>json pk: the pk for this upload.
     :>json processed: if the version has been processed by the validator.
     :>json reviewed: if the version has been reviewed.
-    :>json url: URL to this end point.
+    :>json url: URL to check the status of this upload.
     :>json valid: if the version passed validation.
     :>json validation_results: the validation results (removed from the example for brevity).
     :>json validation_url: a URL to the validation results in HTML format.

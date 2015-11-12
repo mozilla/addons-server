@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 
@@ -39,11 +39,15 @@ class BaseUploadVersionCase(SigningAPITestCase):
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
 
-    def url(self, guid, version):
-        return reverse('signing.version', args=[guid, version])
+    def url(self, guid, version, pk=None):
+        args = [guid, version]
+        if pk is not None:
+            args.append(pk)
+        return reverse('signing.version', args=args)
 
     def create_version(self, version):
-        self.put(self.url(self.guid, version), version)
+        response = self.put(self.url(self.guid, version), version)
+        assert response.status_code in [201, 202]
 
     def xpi_filepath(self, addon, version):
         return os.path.join(
@@ -167,6 +171,51 @@ class TestCheckVersion(BaseUploadVersionCase):
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
         assert 'processed' in response.data
+
+    def test_version_exists_with_pk(self):
+        # Mock Version.from_upload so the Version won't be created.
+        with mock.patch('devhub.tasks.Version.from_upload'):
+            self.create_version('3.0')
+        upload = FileUpload.objects.latest()
+        upload.update(created=datetime.today() - timedelta(hours=1))
+
+        self.create_version('3.0')
+        newer_upload = FileUpload.objects.latest()
+        assert newer_upload != upload
+
+        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        assert response.status_code == 200
+        assert response.data['pk'] == upload.pk
+        assert 'processed' in response.data
+
+    @mock.patch('devhub.tasks.submit_file')
+    def test_version_exists_with_pk_not_owner(self, submit_file):
+        orig_user, orig_api_key = self.user, self.api_key
+
+        # This will create a version for the add-on with guid @create-version
+        # using a new user.
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        response = self.put(addon='@create-version', version='1.0')
+        assert response.status_code == 201
+        upload = FileUpload.objects.latest()
+
+        # Check that the user that created the upload can access it properly.
+        response = self.get(self.url('@create-version', '1.0', upload.pk))
+        assert response.status_code == 200
+        assert 'processed' in response.data
+
+        # This will create a version for the add-on from the fixture with the
+        # regular fixture user.
+        self.user, self.api_key = orig_user, orig_api_key
+        self.create_version('3.0')
+
+        # Check that we can't access the FileUpload by pk even if we pass in
+        # an add-on and version that we own if we don't own the FileUpload.
+        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        assert response.status_code == 404
+        assert 'error' in response.data
 
     def test_version_download_url(self):
         version_string = '3.0'
