@@ -47,3 +47,5 @@ if newrelic_ini:
         newrelic.agent.initialize(newrelic_ini)
     except Exception:
         log.exception('Failed to load new relic config.')
+
+    application = newrelic.agent.wsgi_application()(application)
