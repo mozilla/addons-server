@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:45-0700\n"
+"POT-Creation-Date: 2015-11-12 10:28-0700\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr[0] "&hellip;i još {0}"
 msgstr[1] "&hellip;i još {0}"
 msgstr[2] "&hellip;i još {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:525
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
 msgid "See full validation report"
 msgstr "Pogledajte potpuni izveštaj pregleda"
 
@@ -82,70 +82,66 @@ msgstr "Proveravam {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
-#: static/js/common/upload-addon.js:368
+#: static/js/common/upload-addon.js:365
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška na serveru tokom provere."
 
-#: static/js/common/upload-addon.js:407
+#: static/js/common/upload-addon.js:404
 msgid "Finished validating {0}"
 msgstr "Završena provera {0}"
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:410
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:413
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:423
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:444
+#: static/js/common/upload-addon.js:439
 msgid "Your submission will go through a manual review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:448
+#: static/js/common/upload-addon.js:442
 msgid "Your submission passed validation and will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:450
-msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
-
-#: static/js/common/upload-addon.js:478
+#: static/js/common/upload-addon.js:468
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Uključite detaljne beleške verzije (ovo može biti urađeno u sledećem koraku)."
 
-#: static/js/common/upload-addon.js:479
+#: static/js/common/upload-addon.js:469
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Ako je Vašem dodatku potrebna lozinka do veb stranice kako bi bila potpuno testirana, uključite i korisničko ime i lozinku za test u Beleške recezenta (ovo može biti učinjeno u sledećem koraku)."
 
-#: static/js/common/upload-addon.js:480
+#: static/js/common/upload-addon.js:470
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:493
+#: static/js/common/upload-addon.js:483
 msgid "Add-on submission checklist"
 msgstr "Spisak podnesenih dodataka"
 
-#: static/js/common/upload-addon.js:494
+#: static/js/common/upload-addon.js:484
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Molimo Vas da verifikujete naredne takče pre završetka podnošenja. Ovo će minimizovati odlaganja i nerazumevanja tokom procesa recenzije:"
 
-#: static/js/common/upload-addon.js:496
+#: static/js/common/upload-addon.js:486
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -153,19 +149,19 @@ msgstr ""
 "Kompajlirane binarne datoteke, kao i umanjene skripte (ne računajući poznate biblioteke) treba odvojeno podneti na recenziju. Koristite polje za otpremanje izvornog koda da biste izbegli odbijanje "
 "otpremljenog koda."
 
-#: static/js/common/upload-addon.js:514
+#: static/js/common/upload-addon.js:504
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces validacije je našao probleme koje mogu dovesti do:"
 
-#: static/js/common/upload-addon.js:531
+#: static/js/common/upload-addon.js:521
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ako Vam nije poznat proces recenzije dodataka, možete pročitati o tome ovde."
 
-#: static/js/common/upload-addon.js:567
+#: static/js/common/upload-addon.js:557
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Neke platforme nisu dostupne za ovaj tip dodatka."
 
-#: static/js/common/upload-addon.js:569
+#: static/js/common/upload-addon.js:559
 msgid "Sorry, no supported platform has been found."
 msgstr "Nažalost nije nađena ni jedna podržana platforma."
 
@@ -202,35 +198,35 @@ msgstr "Praćenje"
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
 
-#: static/js/impala/persona_creation.js:102
+#: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
 msgstr "Sva prava su zadržana"
 
-#: static/js/impala/persona_creation.js:106
+#: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js:111
+#: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js:116
+#: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js:121
+#: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js:126
+#: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js:131
+#: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:338
+#: static/js/impala/persona_creation.js:296
 msgid "Your Theme's Name"
 msgstr "Naziv Vaše teme"
 
@@ -816,7 +812,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostali"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1275 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Prvo izaberite aplikaciju"
 
@@ -1031,23 +1027,23 @@ msgstr "Saznajte više"
 msgid "Example"
 msgstr "Primer"
 
-#: static/js/zamboni/devhub.js:1176
+#: static/js/zamboni/devhub.js:1151
 msgid "Image changes being processed"
 msgstr "Izmene na slici se obrađuju"
 
-#: static/js/zamboni/devhub.js:1303
+#: static/js/zamboni/devhub.js:1278
 msgid "Starting tests..."
 msgstr "Pokrećem testova..."
 
-#: static/js/zamboni/devhub.js:1310
+#: static/js/zamboni/devhub.js:1285
 msgid "Waiting for test results..."
 msgstr "Čekam rezultate testova..."
 
-#: static/js/zamboni/devhub.js:1312 static/js/zamboni/devhub.js:1317
+#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
 msgid "Internal Server Error"
 msgstr "Serverska greška"
 
-#: static/js/zamboni/devhub.js:1352
+#: static/js/zamboni/devhub.js:1327
 msgid "Must be a valid e-mail address."
 msgstr "Adresa e-pošte mora biti ispravna."
 
@@ -1111,11 +1107,11 @@ msgstr "Broj recenzija"
 msgid "Error loading translation"
 msgstr "Greška pri učitavanju prevoda"
 
-#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
-#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 

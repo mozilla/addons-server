@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:45-0700\n"
+"POT-Creation-Date: 2015-11-12 10:28-0700\n"
 "PO-Revision-Date: 2015-11-07 14:03+0000\n"
 "Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -10,8 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1446905017.0\n"
 
@@ -70,7 +69,7 @@ msgstr[0] "&hellip;и ещё {0}"
 msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:525
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
@@ -83,69 +82,65 @@ msgstr "Валидация {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
-#: static/js/common/upload-addon.js:368
+#: static/js/common/upload-addon.js:365
 msgid "Unexpected server error while validating."
 msgstr "При валидации произошла неожиданная ошибка сервера."
 
-#: static/js/common/upload-addon.js:407
+#: static/js/common/upload-addon.js:404
 msgid "Finished validating {0}"
 msgstr "Закончена валидация {0}"
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:410
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Время ожидания валидации вашего дополнения истекло, оно будет проверено вручную."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:413
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:423
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
 
-#: static/js/common/upload-addon.js:444
+#: static/js/common/upload-addon.js:439
 msgid "Your submission will go through a manual review."
 msgstr "Ваше представление будет проведено через ручную проверку."
 
-#: static/js/common/upload-addon.js:448
+#: static/js/common/upload-addon.js:442
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Ваше представление прошло валидацию и будет автоматически подписано."
 
-#: static/js/common/upload-addon.js:450
-msgid "Your submission passed validation and will go through a manual review."
-msgstr "Ваше представление прошло валидацию и будет проведено через ручную проверку."
-
-#: static/js/common/upload-addon.js:478
+#: static/js/common/upload-addon.js:468
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включить подробные примечания к версии (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:479
+#: static/js/common/upload-addon.js:469
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Если для полного тестирования дополнения неоходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:480
+#: static/js/common/upload-addon.js:470
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Если ваше дополнение предназначено для ограниченной аудитории, вам следует выбрать Предварительную проверку вместо Полной проверки."
 
-#: static/js/common/upload-addon.js:493
+#: static/js/common/upload-addon.js:483
 msgid "Add-on submission checklist"
 msgstr "Контрольный перечень при представлении дополнения"
 
-#: static/js/common/upload-addon.js:494
+#: static/js/common/upload-addon.js:484
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Пожалуйста, проверьте выполнение следующих пунктов перед завершением вашего представления. Это позволит свести к минимуму задержки или недоразумения в процессе его проверки:"
 
-#: static/js/common/upload-addon.js:496
+#: static/js/common/upload-addon.js:486
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -153,19 +148,19 @@ msgstr ""
 "Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
 "вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
-#: static/js/common/upload-addon.js:514
+#: static/js/common/upload-addon.js:504
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
 
-#: static/js/common/upload-addon.js:531
+#: static/js/common/upload-addon.js:521
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Если вы не знакомы с процессом проверки дополнения, вы можете прочитать об этом здесь."
 
-#: static/js/common/upload-addon.js:567
+#: static/js/common/upload-addon.js:557
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Для этого типа дополнения некоторые платформы недоступны."
 
-#: static/js/common/upload-addon.js:569
+#: static/js/common/upload-addon.js:559
 msgid "Sorry, no supported platform has been found."
 msgstr "К сожалению поддерживаемых платформ не найдено."
 
@@ -202,35 +197,35 @@ msgstr "Следовать"
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Эта тема несовместима с вашей версией {0}"
 
-#: static/js/impala/persona_creation.js:102
+#: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
 msgstr "Все права защищены"
 
-#: static/js/impala/persona_creation.js:106
+#: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Атрибуция 3.0"
 
-#: static/js/impala/persona_creation.js:111
+#: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Атрибуция — Некоммерческое использование 3.0"
 
-#: static/js/impala/persona_creation.js:116
+#: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Атрибуция — Некоммерческое использование — Без производных произведений 3.0"
 
-#: static/js/impala/persona_creation.js:121
+#: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
 
-#: static/js/impala/persona_creation.js:126
+#: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Атрибуция — Без производных произведений 3.0"
 
-#: static/js/impala/persona_creation.js:131
+#: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
 
-#: static/js/impala/persona_creation.js:338
+#: static/js/impala/persona_creation.js:296
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
 
@@ -816,7 +811,7 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Другое"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1275 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
@@ -1031,23 +1026,23 @@ msgstr "Подробнее"
 msgid "Example"
 msgstr "Пример"
 
-#: static/js/zamboni/devhub.js:1176
+#: static/js/zamboni/devhub.js:1151
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
-#: static/js/zamboni/devhub.js:1303
+#: static/js/zamboni/devhub.js:1278
 msgid "Starting tests..."
 msgstr "Начинаю тесты..."
 
-#: static/js/zamboni/devhub.js:1310
+#: static/js/zamboni/devhub.js:1285
 msgid "Waiting for test results..."
 msgstr "Жду результаты теста..."
 
-#: static/js/zamboni/devhub.js:1312 static/js/zamboni/devhub.js:1317
+#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
 msgid "Internal Server Error"
 msgstr "Внутренняя ошибка сервера"
 
-#: static/js/zamboni/devhub.js:1352
+#: static/js/zamboni/devhub.js:1327
 msgid "Must be a valid e-mail address."
 msgstr "Должен быть корректным адресом эл. почты."
 
@@ -1111,11 +1106,11 @@ msgstr "Число отзывов"
 msgid "Error loading translation"
 msgstr "Ошибка при загрузке перевода"
 
-#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Игнорировать это сообщение в будущих обновлениях"
 
-#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Критичность для автоматического подписания:"
 

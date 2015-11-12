@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:45-0700\n"
+"POT-Creation-Date: 2015-11-12 10:28-0700\n"
 "PO-Revision-Date: 2015-11-10 19:51+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ve{0} tane daha"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:525
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
 msgid "See full validation report"
 msgstr "Tam doğrulama raporuna bak"
 
@@ -77,111 +77,81 @@ msgstr "{0} doğrulanıyor"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Sunucudan boş yanıt alındı. Durum: {0}"
 
-#: static/js/common/upload-addon.js:368
+#: static/js/common/upload-addon.js:365
 msgid "Unexpected server error while validating."
 msgstr "Doğrulama sırasında beklenmeyen sunucu hatası."
 
-#: static/js/common/upload-addon.js:407
+#: static/js/common/upload-addon.js:404
 msgid "Finished validating {0}"
 msgstr "{0} doğrulaması tamamlandı"
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:410
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
-"Eklenti doğrulamanız zaman aşımına uğradı; eklenti özel olarak incelenecek."
+msgstr "Eklenti doğrulamanız zaman aşımına uğradı; eklenti özel olarak incelenecek."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:413
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Eklentiniz hata olmadan ve {0} uyarı ile doğrulandı."
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Eklentiniz hatasız olarak ve {0} mesajla doğrulandı."
 
-#: static/js/common/upload-addon.js:426
+#: static/js/common/upload-addon.js:423
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Eklentiniz hatasız ve uyarısız olarak doğrulanmıştır."
 
-#: static/js/common/upload-addon.js:444
+#: static/js/common/upload-addon.js:439
 msgid "Your submission will go through a manual review."
 msgstr "Gönderdiğiniz özel olarak incelenecek."
 
-#: static/js/common/upload-addon.js:448
+#: static/js/common/upload-addon.js:442
 msgid "Your submission passed validation and will be automatically signed."
 msgstr "Gönderdiğiniz doğrulamayı geçti ve kendiliğinden imzalanacak."
 
-#: static/js/common/upload-addon.js:450
-msgid "Your submission passed validation and will go through a manual review."
-msgstr "Gönderdiğiniz doğrulamayı geçti ve özel olarak incelenecek."
-
-#: static/js/common/upload-addon.js:478
+#: static/js/common/upload-addon.js:468
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
-#: static/js/common/upload-addon.js:479
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması "
-"gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını "
-"yazın. (Bu, sonraki adımda da yapılabilir.)"
+#: static/js/common/upload-addon.js:469
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
-#: static/js/common/upload-addon.js:480
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön "
-"İnceleme'yi seçin."
+#: static/js/common/upload-addon.js:470
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön İnceleme'yi seçin."
 
-#: static/js/common/upload-addon.js:493
+#: static/js/common/upload-addon.js:483
 msgid "Add-on submission checklist"
 msgstr "Eklenti gönderimi kontrol listesi"
 
-#: static/js/common/upload-addon.js:494
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece "
-"inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş "
-"olursunuz:"
+#: static/js/common/upload-addon.js:484
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş olursunuz:"
 
-#: static/js/common/upload-addon.js:496
+#: static/js/common/upload-addon.js:486
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen "
-"kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak "
-"bulunması gerekir. Başvurunuzun geri çevrilmesini önlemek adına, kaynak kodu"
-" gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
+"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
-#: static/js/common/upload-addon.js:514
+#: static/js/common/upload-addon.js:504
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar "
-"bulundu:"
+msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
 
-#: static/js/common/upload-addon.js:531
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi "
-"alabilirsiniz."
+#: static/js/common/upload-addon.js:521
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi alabilirsiniz."
 
-#: static/js/common/upload-addon.js:567
+#: static/js/common/upload-addon.js:557
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Bu eklenti türü bazı platformlarda kullanılamaz."
 
-#: static/js/common/upload-addon.js:569
+#: static/js/common/upload-addon.js:559
 msgid "Sorry, no supported platform has been found."
 msgstr "Üzgünüz, desteklenen platform bulunamadı."
 
@@ -218,35 +188,35 @@ msgstr "Takip ediliyor"
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
 
-#: static/js/impala/persona_creation.js:102
+#: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
 msgstr "Tüm hakları saklıdır"
 
-#: static/js/impala/persona_creation.js:106
+#: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js:111
+#: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js:116
+#: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js:121
+#: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js:126
+#: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js:131
+#: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:338
+#: static/js/impala/persona_creation.js:296
 msgid "Your Theme's Name"
 msgstr "Temanızın Adı"
 
@@ -322,13 +292,11 @@ msgstr "{0} iade"
 msgid "{0} installs"
 msgstr "{0} kurulum"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "İndirme"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Günlük kullanıcı"
 
@@ -385,13 +353,11 @@ msgstr "Abone"
 msgid "Ratings"
 msgstr "Puanlama"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Satış"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Kurulum"
 
@@ -423,8 +389,7 @@ msgstr "Arama Önerileri"
 msgid "Search Results"
 msgstr "Arama Sonuçları"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Ana sayfa tanıtımı"
 
@@ -452,8 +417,7 @@ msgstr "Ayrıntı sayfası (alt)"
 msgid "Detail Page (Development Channel)"
 msgstr "Ayrıntı sayfası (geliştirme kanalı)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Sıklıkla birlikte kullanılanlar"
 
@@ -537,8 +501,7 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -818,8 +781,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "son {1} günde <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} - {2} arasında <b>{0}</b>"
 
@@ -840,17 +802,14 @@ msgstr "Tarih"
 msgid "Other"
 msgstr "Diğer"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1275
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Önce bir uygulama seçin"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere "
-"e-posta gönder."
+msgstr[0] "{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere e-posta gönder."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -911,8 +870,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 ve üstü bir sürüm kullanmanız gerek."
 
 #: static/js/zamboni/buttons.js:145
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla bu sürümü Firefox sürümünüz ile uyumsuz olarak işaretledi."
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -946,12 +904,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox)"
-" bir tarayıcıya ihtiyacınız var."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1055,23 +1009,23 @@ msgstr "Daha fazla bilgi"
 msgid "Example"
 msgstr "Örnek"
 
-#: static/js/zamboni/devhub.js:1176
+#: static/js/zamboni/devhub.js:1151
 msgid "Image changes being processed"
 msgstr "Resim değişiklikleri işleniyor"
 
-#: static/js/zamboni/devhub.js:1303
+#: static/js/zamboni/devhub.js:1278
 msgid "Starting tests..."
 msgstr "Testler başlatılıyor..."
 
-#: static/js/zamboni/devhub.js:1310
+#: static/js/zamboni/devhub.js:1285
 msgid "Waiting for test results..."
 msgstr "Test sonuçları bekleniyor..."
 
-#: static/js/zamboni/devhub.js:1312 static/js/zamboni/devhub.js:1317
+#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
 msgid "Internal Server Error"
 msgstr "İç sunucu hatası"
 
-#: static/js/zamboni/devhub.js:1352
+#: static/js/zamboni/devhub.js:1327
 msgid "Must be a valid e-mail address."
 msgstr "Geçerli bir e-posta adresi olmalı."
 
@@ -1080,12 +1034,8 @@ msgid "No results found."
 msgstr "Sonuç bulunamadı."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Üzgünüz, sizin için hiç tavsiye bulamadık.<br>Size uygun eklentileri "
-"keşfetmek için lütfen <a href=\"{0}\">eklenti sitemizi</a> ziyaret edin."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Üzgünüz, sizin için hiç tavsiye bulamadık.<br>Size uygun eklentileri keşfetmek için lütfen <a href=\"{0}\">eklenti sitemizi</a> ziyaret edin."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1139,11 +1089,11 @@ msgstr "Görüş Sayısı"
 msgid "Error loading translation"
 msgstr "Çeviri yüklemede hata"
 
-#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Gelecekteki güncellemelerde bu iletiyi yok say"
 
-#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Otomatik imzalamanın önem derecesi:"
 
@@ -1158,12 +1108,8 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> karakter kaldı."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar "
-"deneyin."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar deneyin."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1214,8 +1160,7 @@ msgstr "Bu testler çalıştırılmadı."
 msgid "Tests"
 msgstr "Testler"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Hata"
 
@@ -1278,8 +1223,7 @@ msgstr "İncelenmemiş"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Deneysel <span>(Daha fazla bilgi)</ span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "{0} için mevcut değil"
 
