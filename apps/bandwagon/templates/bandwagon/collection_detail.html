@@ -48,14 +48,6 @@
           </li>
         {% endif %}
         <li>{{ _('Updated {0}')|f(c.modified|datetime) }}</li>
-        {% if user_perms.view_stats %}
-        {# TODO(cvan): Uncomment when bug 719512 gets fixed.
-        <li class="view-stats">
-          <a href="{{ remora_url('/statistics/collection/' + c.uuid) }}">
-            {{ _('View Statistics') }}</a>
-        </li>
-        #}
-        {% endif %}
       </ul>
     </div>
     <div class='object-details'>

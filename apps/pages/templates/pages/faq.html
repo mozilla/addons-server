@@ -314,8 +314,7 @@
 </dl>
 
 <h3 id="developers">{{ _('Developer Topics') }}</h3>
-<p>{% trans faq_url=remora_url('pages/developer_faq'),
-      hub_url=remora_url('developers') %}
+<p>{% trans faq_url=url('pages.dev_faq'), hub_url=url('devhub.index') %}
     Please see our <a href="{{ faq_url }}">Developer FAQ</a> and
     <a href="{{ hub_url }}">Developer Hub</a> for answers to add-on
     developer-related questions.{% endtrans %}</p>

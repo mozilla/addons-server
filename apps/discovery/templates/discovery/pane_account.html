@@ -10,7 +10,7 @@
                           'favorites') }}">{{ _('My Favorites') }}</a></li>
       <li><a href="{{ url('collections.user', request.amo_user.username) }}">{{ _('My Collections') }}</a></li>
     </ul>
-    <p id="logout"><a href="{{ remora_url('/users/logout') }}" target="_self">{{ _('Log out') }}</a></p>
+    <p id="logout"><a href="{{ url('users.logout') }}" target="_self">{{ _('Log out') }}</a></p>
   </section>
 {% else %}
   <section id="mission">

@@ -1,5 +1,5 @@
 {% set search_form = SimpleSearchForm(request, None) %}
-<form action="{{ remora_url('/developers/search') }}" method="get">
+<form action="{{ url('devhub.search') }}" method="get">
   <span class="wrap">
     <input type="text" name="q"
            class="text {% if not search_form.q.data %}placeholder{% endif %}"
