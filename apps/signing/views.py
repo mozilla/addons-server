@@ -9,6 +9,7 @@ from tower import ugettext as _
 import amo
 from access import acl
 from addons.models import Addon
+from amo.decorators import use_master
 from api.jwt_auth.views import JWTProtectedView
 from devhub.views import handle_upload
 from files.models import FileUpload
@@ -88,6 +89,7 @@ class VersionView(JWTProtectedView):
         return Response(FileUploadSerializer(file_upload).data,
                         status=status_code)
 
+    @use_master
     @with_addon()
     def get(self, request, addon, version_string, pk=None):
         file_upload_qs = FileUpload.objects.filter(
@@ -121,5 +123,6 @@ class VersionView(JWTProtectedView):
 
 class SignedFile(JWTProtectedView):
 
+    @use_master
     def get(self, request, file_id):
         return version_views.download_file(request, file_id)
