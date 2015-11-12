@@ -925,7 +925,7 @@ class TestQueueBasics(QueueTest):
         self.client.logout()
         self.login(users[0])
         res = self.client.get(reverse('editors.home'))
-        self.assertRedirects(res, reverse('editors.themes.home'))
+        self.assert3xx(res, reverse('editors.themes.home'))
 
         self.grant_permission(users[1], 'Addons:Review')
         self.client.logout()
@@ -1152,7 +1152,7 @@ class TestModeratedQueue(QueueTest):
         data_formset['form-0-action'] = action
 
         r = self.client.post(self.url, data_formset)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
 
     def test_skip(self):
         self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
@@ -1870,7 +1870,7 @@ class TestReview(ReviewBase):
     def test_not_anonymous(self):
         self.client.logout()
         r = self.client.head(self.url)
-        self.assertRedirects(
+        self.assert3xx(
             r, '%s?to=%s' % (reverse('users.login'), self.url))
 
     @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
@@ -2231,8 +2231,8 @@ class TestReview(ReviewBase):
                                                'adminflag': True})
         eq_(response.status_code, 302,
             "Review should be processed as normal and redirect")
-        self.assertRedirects(response, reverse('editors.queue_pending'),
-                             status_code=302)
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
         eq_(Addon.objects.get(pk=self.addon.pk).admin_review, False,
             "Admin flag should still be removed if admin")
 
@@ -2245,8 +2245,8 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 302,
             "Review should be processed as normal and redirect")
         # Should silently fail to set adminflag but work otherwise.
-        self.assertRedirects(response, reverse('editors.queue_pending'),
-                             status_code=302)
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
         eq_(Addon.objects.get(pk=self.addon.pk).admin_review, True,
             "Admin flag should still be in place if editor")
 
@@ -2629,7 +2629,7 @@ class TestReviewPending(ReviewBase):
 
         response = self.client.post(self.url, self.pending_dict())
         assert self.get_addon().status == amo.STATUS_PUBLIC
-        self.assertRedirects(response, reverse('editors.queue_pending'))
+        self.assert3xx(response, reverse('editors.queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2647,8 +2647,7 @@ class TestReviewPending(ReviewBase):
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
         assert self.addon.reload().status == amo.STATUS_PUBLIC
-        self.assertRedirects(response,
-                             reverse('editors.unlisted_queue_pending'))
+        self.assert3xx(response, reverse('editors.unlisted_queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2687,8 +2686,7 @@ class TestReviewPending(ReviewBase):
                                          status=amo.STATUS_UNREVIEWED)
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
-        self.assertRedirects(response,
-                             reverse('editors.queue_pending'))
+        self.assert3xx(response, reverse('editors.queue_pending'))
 
         assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert reviewed.reload().status == amo.STATUS_PUBLIC
@@ -2709,14 +2707,14 @@ class TestEditorMOTD(EditorTest):
         motd = "Let's get crazy"
         r = self.client.post(self.get_url(save=True), {'motd': motd})
         url = self.get_url()
-        self.assertRedirects(r, url)
+        self.assert3xx(r, url)
         r = self.client.get(url)
         eq_(pq(r.content)('.daily-message p').text(), motd)
 
     def test_require_editor_to_view(self):
         url = self.get_url()
         r = self.client.head(url)
-        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
+        self.assert3xx(r, '%s?to=%s' % (reverse('users.login'), url))
 
     def test_require_admin_to_change_motd(self):
         self.login_as_editor()

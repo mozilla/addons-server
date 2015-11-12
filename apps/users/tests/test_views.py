@@ -199,7 +199,7 @@ class TestEdit(UserViewBase):
                 'lang': 'en-US'}
 
         r = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
         self.assertContains(r, 'An email has been sent to %s' % data['email'])
 
         # The email shouldn't change until they confirm, but the name should
@@ -231,13 +231,13 @@ class TestEdit(UserViewBase):
                 'lang': 'en-US'}
 
         r = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
         self.assertContains(r, data['bio'])
         eq_(unicode(self.get_profile().bio), data['bio'])
 
         data['bio'] = 'yyy unst unst'
         r = self.client.post(self.url, data, follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
         self.assertContains(r, data['bio'])
         eq_(unicode(self.get_profile().bio), data['bio'])
 
@@ -260,7 +260,7 @@ class TestEdit(UserViewBase):
 
         self.data['notifications'] = []
         r = self.client.post(self.url, self.data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
 
         eq_(UserNotification.objects.count(), len(email.NOTIFICATIONS))
         eq_(UserNotification.objects.filter(enabled=True).count(),
@@ -278,7 +278,7 @@ class TestEdit(UserViewBase):
 
         self.data['notifications'] = [2, 4, 6]
         r = self.client.post(self.url, self.data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
 
         mandatory = [n.id for n in email.NOTIFICATIONS if n.mandatory]
         total = len(self.data['notifications'] + mandatory)
@@ -503,30 +503,30 @@ class TestLogin(UserViewBase):
 
     def test_double_login(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
         # If you go to the login page when you're already logged in we bounce
         # you.
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
     def test_ok_redirects(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
         r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
-        self.assertRedirects(r, '/de/firefox/')
+        self.assert3xx(r, '/de/firefox/')
 
     def test_bad_redirects(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
         for redirect in ['http://xx.com',
                          'data:text/html,<script>window.alert("xss")</script>',
                          'mailto:test@example.com',
                          'file:///etc/passwd',
                          'javascript:window.alert("xss");']:
-            self.assertRedirects(r, '/en-US/firefox/')
+            self.assert3xx(r, '/en-US/firefox/')
 
     def test_login_link(self):
         r = self.client.get(self.url)
@@ -829,10 +829,8 @@ class TestLogout(UserViewBase):
         url = '/en-US/about'
         r = self.client.get(urlparams(reverse('users.logout'), to=url),
                             follow=True)
-        self.assertRedirects(r, url, status_code=302)
+        self.assert3xx(r, url, status_code=302)
 
-        # Test a valid domain.  Note that assertRedirects doesn't work on
-        # external domains
         url = urlparams(reverse('users.logout'), to='/addon/new',
                         domain='builder')
         r = self.client.get(url, follow=True)
@@ -844,7 +842,7 @@ class TestLogout(UserViewBase):
         url = urlparams(reverse('users.logout'), to='/en-US/about',
                         domain='http://evil.com')
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, '/en-US/about', status_code=302)
+        self.assert3xx(r, '/en-US/about', status_code=302)
 
     def test_session_cookie_should_be_http_only(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')

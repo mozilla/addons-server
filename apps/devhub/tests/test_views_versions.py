@@ -229,7 +229,7 @@ class TestVersion(amo.tests.TestCase):
     def test_user_can_enable_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         res = self.client.post(self.enable_url)
-        self.assertRedirects(res, self.url, 302)
+        self.assert3xx(res, self.url, 302)
         addon = self.get_addon()
         eq_(addon.disabled_by_user, False)
         eq_(addon.status, amo.STATUS_PUBLIC)
@@ -493,7 +493,7 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
 
     def test_supported_platforms(self):
         res = self.client.get(self.url)

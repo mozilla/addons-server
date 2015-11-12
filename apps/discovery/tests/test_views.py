@@ -231,19 +231,19 @@ class TestUrls(amo.tests.TestCase):
     def test_resolve_addon_view(self):
         r = self.client.get('/en-US/firefox/discovery/addon/3615', follow=True)
         url = reverse('discovery.addons.detail', args=['a3615'])
-        self.assertRedirects(r, url, 301)
+        self.assert3xx(r, url, 301)
 
     def test_resolve_disco_pane(self):
         # Redirect to default 'strict' if version < 10.
         r = self.client.get('/en-US/firefox/discovery/4.0/Darwin', follow=True)
         url = reverse('discovery.pane', args=['4.0', 'Darwin', 'strict'])
-        self.assertRedirects(r, url, 302)
+        self.assert3xx(r, url, 302)
 
         # Redirect to default 'ignore' if version >= 10.
         r = self.client.get('/en-US/firefox/discovery/10.0/Darwin',
                             follow=True)
         url = reverse('discovery.pane', args=['10.0', 'Darwin', 'ignore'])
-        self.assertRedirects(r, url, 302)
+        self.assert3xx(r, url, 302)
 
     def test_no_compat_mode(self):
         r = self.client.head('/en-US/firefox/discovery/pane/10.0/WINNT')
@@ -425,7 +425,7 @@ class TestDetails(amo.tests.TestCase):
         doc = pq(self.client.get(self.detail_url).content)
         eq_(doc('#install .install-button').text(), 'Download Now')
         r = self.client.get(self.eula_url)
-        self.assertRedirects(r, self.detail_url, 302)
+        self.assert3xx(r, self.detail_url, 302)
 
     def test_perf_warning(self):
         eq_(self.addon.ts_slowness, None)

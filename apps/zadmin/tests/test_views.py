@@ -125,7 +125,7 @@ class TestFlagged(amo.tests.TestCase):
     def test_post(self):
         response = self.client.post(self.url, {'addon_id': ['1', '2']},
                                     follow=True)
-        self.assertRedirects(response, self.url)
+        self.assert3xx(response, self.url)
 
         assert not Addon.objects.no_cache().get(id=1).admin_review
         assert not Addon.objects.no_cache().get(id=2).admin_review
@@ -226,7 +226,7 @@ class TestBulkValidation(BulkValidationTest):
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         self.assertNoFormErrors(r)
-        self.assertRedirects(r, reverse('zadmin.validation'))
+        self.assert3xx(r, reverse('zadmin.validation'))
         job = ValidationJob.objects.get()
         eq_(job.application, amo.FIREFOX.id)
         eq_(job.curr_max_version.version, self.curr_max.version)
@@ -247,7 +247,7 @@ class TestBulkValidation(BulkValidationTest):
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         self.assertNoFormErrors(r)
-        self.assertRedirects(r, reverse('zadmin.validation'))
+        self.assert3xx(r, reverse('zadmin.validation'))
         assert not bulk_validate_file.delay.called
 
     @mock.patch('zadmin.tasks.bulk_validate_file')
@@ -263,7 +263,7 @@ class TestBulkValidation(BulkValidationTest):
                                   'finish_email': 'fliggy@mozilla.com'},
                                  follow=True)
             self.assertNoFormErrors(r)
-            self.assertRedirects(r, reverse('zadmin.validation'))
+            self.assert3xx(r, reverse('zadmin.validation'))
             assert not bulk_validate_file.delay.called, (
                 'Addon with status %s should be ignored' % status)
 
@@ -278,7 +278,7 @@ class TestBulkValidation(BulkValidationTest):
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         self.assertNoFormErrors(r)
-        self.assertRedirects(r, reverse('zadmin.validation'))
+        self.assert3xx(r, reverse('zadmin.validation'))
         assert not bulk_validate_file.delay.called, (
             'Lang pack addons should be ignored')
 
@@ -306,7 +306,7 @@ class TestBulkValidation(BulkValidationTest):
                               'finish_email': 'fliggy@mozilla.com'},
                              follow=True)
         self.assertNoFormErrors(r)
-        self.assertRedirects(r, reverse('zadmin.validation'))
+        self.assert3xx(r, reverse('zadmin.validation'))
         assert bulk_validate_file.delay.called, (
             'Addon with status %s should be validated' % self.addon.status)
 
@@ -1700,7 +1700,7 @@ class TestElastic(amo.tests.ESTestCase):
 
     def test_login(self):
         self.client.logout()
-        self.assertRedirects(
+        self.assert3xx(
             self.client.get(self.url),
             reverse('users.login') + '?to=/en-US/admin/elastic')
 
@@ -1732,7 +1732,7 @@ class TestEmailDevs(amo.tests.TestCase):
         message = 'message about eulas'
         res = self.post(subject=subject, message=message)
         self.assertNoFormErrors(res)
-        self.assertRedirects(res, reverse('zadmin.email_devs'))
+        self.assert3xx(res, reverse('zadmin.email_devs'))
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, subject)
         eq_(mail.outbox[0].body, message)
@@ -1898,5 +1898,5 @@ class TestPerms(amo.tests.TestCase):
         self.assert_status('zadmin.oauth-consumer-create', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
-        self.assertRedirects(self.client.get(reverse('zadmin.index')),
-                             reverse('users.login') + '?to=/en-US/admin/')
+        self.assert3xx(self.client.get(reverse('zadmin.index')),
+                       reverse('users.login') + '?to=/en-US/admin/')

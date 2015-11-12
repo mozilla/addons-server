@@ -332,7 +332,7 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
 
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
-        # is good, but bad for assertRedirects which will fail.
+        # is good, but bad for assert3xx which will fail.
         self.assert3xx(
             response, '%s?to=%s' % (reverse('users.login'), to), status_code)
 

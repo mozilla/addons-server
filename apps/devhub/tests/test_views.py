@@ -365,13 +365,13 @@ class TestDevRequired(amo.tests.TestCase):
         self.client.logout()
         r = self.client.get(self.get_url, follow=True)
         login = reverse('users.login')
-        self.assertRedirects(r, '%s?to=%s' % (login, self.get_url))
+        self.assert3xx(r, '%s?to=%s' % (login, self.get_url))
 
     def test_dev_get(self):
         eq_(self.client.get(self.get_url).status_code, 200)
 
     def test_dev_post(self):
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
     def test_viewer_get(self):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
@@ -391,7 +391,7 @@ class TestDevRequired(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
 class TestVersionStats(amo.tests.TestCase):
@@ -1146,7 +1146,7 @@ class TestAPIAgreement(TestSubmitBase):
         response = self.client.post(reverse('devhub.api_key_agreement'),
                                     follow=True)
 
-        self.assertRedirects(response, reverse('devhub.api_key'))
+        self.assert3xx(response, reverse('devhub.api_key'))
 
 
 class TestAPIKeyPage(amo.tests.TestCase):
@@ -1162,7 +1162,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.api_key'))
-        self.assertRedirects(response, reverse('devhub.api_key_agreement'))
+        self.assert3xx(response, reverse('devhub.api_key_agreement'))
 
     def test_view_without_credentials(self):
         response = self.client.get(self.url)
@@ -1197,7 +1197,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
         assert email.to == [self.user.email]
         assert reverse('devhub.api_key') in email.body
 
-        self.assertRedirects(response, self.url)
+        self.assert3xx(response, self.url)
 
     def test_delete_and_recreate_credentials(self):
         old_key = APIKey.objects.create(user=self.user,
@@ -1205,7 +1205,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
                                         key='some-jwt-key',
                                         secret='some-jwt-secret')
         response = self.client.post(self.url)
-        self.assertRedirects(response, self.url)
+        self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
         assert not old_key.is_active
@@ -1241,7 +1241,7 @@ class TestSubmitStep1(TestSubmitBase):
     def test_read_dev_agreement_skip(self):
         # The current user fixture has already read the agreement so we skip
         response = self.client.get(reverse('devhub.submit.1'))
-        self.assertRedirects(response, reverse('devhub.submit.2'))
+        self.assert3xx(response, reverse('devhub.submit.2'))
 
 
 class TestSubmitStep2(amo.tests.TestCase):
@@ -1255,7 +1255,7 @@ class TestSubmitStep2(amo.tests.TestCase):
 
     def test_step_2_seen(self):
         r = self.client.post(reverse('devhub.submit.1'))
-        self.assertRedirects(r, reverse('devhub.submit.2'))
+        self.assert3xx(r, reverse('devhub.submit.2'))
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
@@ -1264,7 +1264,7 @@ class TestSubmitStep2(amo.tests.TestCase):
         self.user.update(read_dev_agreement=None)
 
         r = self.client.get(reverse('devhub.submit.2'), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.1'))
+        self.assert3xx(r, reverse('devhub.submit.1'))
 
     def test_step_2_listed_checkbox(self):
         # There is a checkbox for the "is_listed" addon field.
@@ -1658,7 +1658,7 @@ class TestSubmitStep5(Step5TestBase):
 
     def test_set_license(self):
         r = self.client.post(self.url, {'builtin': 3})
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(self.get_addon().current_version.license.builtin, 3)
         eq_(self.get_step().step, 6)
         log_items = ActivityLog.objects.for_addons(self.get_addon())
@@ -1677,7 +1677,7 @@ class TestSubmitStep5(Step5TestBase):
         self.get_addon().update(eula=None, privacy_policy=None)
         r = self.client.post(self.url, dict(builtin=3, has_eula=True,
                                             eula='xxx'))
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(unicode(self.get_addon().eula), 'xxx')
         eq_(self.get_step().step, 6)
 
@@ -1689,7 +1689,7 @@ class TestSubmitStep5(Step5TestBase):
         """
         self.get_addon().update(eula=None, privacy_policy=None)
         r = self.client.post(self.url, dict(builtin=3, has_eula=True))
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(self.get_step().step, 6)
 
 
@@ -1873,7 +1873,7 @@ class TestSubmitStep7(TestSubmitBase):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
+        self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
     @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_link_to_activityfeed(self):
@@ -1903,21 +1903,21 @@ class TestResumeStep(TestSubmitBase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
+        self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
     def test_step_redirects(self):
         SubmitStep.objects.create(addon_id=3615, step=1)
         for i in xrange(3, 7):
             SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
             r = self.client.get(self.url, follow=True)
-            self.assertRedirects(r, reverse('devhub.submit.%s' % i,
-                                            args=['a3615']))
+            self.assert3xx(r, reverse('devhub.submit.%s' % i,
+                                      args=['a3615']))
 
     def test_redirect_from_other_pages(self):
         SubmitStep.objects.create(addon_id=3615, step=4)
         r = self.client.get(reverse('devhub.addons.edit', args=['a3615']),
                             follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
 
 
 class TestSubmitBump(TestSubmitBase):
@@ -1934,7 +1934,7 @@ class TestSubmitBump(TestSubmitBase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         r = self.client.post(self.url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
         eq_(self.get_step().step, 4)
 
 
@@ -1980,13 +1980,13 @@ class TestSubmitSteps(amo.tests.TestCase):
         SubmitStep.objects.create(addon_id=3615, step=3)
         r = self.client.get(reverse('devhub.submit.6',
                                     args=['a3615']), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.3', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.3', args=['a3615']))
 
     def test_all_done(self):
         # There's no SubmitStep, so we must be done.
         r = self.client.get(reverse('devhub.submit.6',
                                     args=['a3615']), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.7', args=['a3615']))
 
     def test_menu_step_1(self):
         self.user.update(read_dev_agreement=None)
@@ -2098,7 +2098,7 @@ class TestUpload(BaseUploadTest):
         r = self.post()
         upload = FileUpload.objects.get()
         url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
-        self.assertRedirects(r, url)
+        self.assert3xx(r, url)
 
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
@@ -3093,7 +3093,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         r = self.post()
         addon = Addon.objects.get()
         assert addon.is_listed
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
@@ -3160,8 +3160,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
@@ -3173,8 +3172,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
                                            amo.PLATFORM_LINUX],
                       is_listed=False)
         addon = Addon.unfiltered.get()
-        self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
         mock_auto_sign_file.assert_has_calls(
@@ -3188,7 +3186,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         eq_(Addon.objects.count(), 0)
         r = self.post(source=source)
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         assert addon.current_version.source
         assert Addon.objects.get(pk=addon.pk).admin_review
 
@@ -3204,14 +3202,14 @@ class TestDeleteAddon(amo.tests.TestCase):
 
     def test_bad_password(self):
         r = self.client.post(self.url, dict(password='turd'))
-        self.assertRedirects(r, self.addon.get_dev_url('versions'))
+        self.assert3xx(r, self.addon.get_dev_url('versions'))
         eq_(r.context['title'],
             'Password was incorrect. Add-on was not deleted.')
         eq_(Addon.objects.count(), 1)
 
     def test_success(self):
         r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, reverse('devhub.addons'))
+        self.assert3xx(r, reverse('devhub.addons'))
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)
 
@@ -3242,7 +3240,7 @@ class TestRequestReview(amo.tests.TestCase):
     def check(self, old_status, url, new_status):
         self.addon.update(status=old_status)
         r = self.client.post(url)
-        self.assertRedirects(r, self.redirect_url)
+        self.assert3xx(r, self.redirect_url)
         eq_(self.get_addon().status, new_status)
 
     def check_400(self, url):
@@ -3332,25 +3330,23 @@ class TestRedirects(amo.tests.TestCase):
     def test_edit(self):
         url = self.base + 'addon/edit/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
-                             301)
+        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
 
         url = self.base + 'addon/edit/3615/'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
-                             301)
+        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
 
     def test_status(self):
         url = self.base + 'addon/status/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.versions',
-                                        args=['a3615']), 301)
+        self.assert3xx(r, reverse('devhub.addons.versions',
+                                  args=['a3615']), 301)
 
     def test_versions(self):
         url = self.base + 'versions/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.versions',
-                                        args=['a3615']), 301)
+        self.assert3xx(r, reverse('devhub.addons.versions',
+                                  args=['a3615']), 301)
 
 
 class TestDocs(amo.tests.TestCase):
@@ -3375,7 +3371,7 @@ class TestDocs(amo.tests.TestCase):
             eq_(r.status_code, url[1])
 
             if url[1] == 302:  # Redirect to the index page
-                self.assertRedirects(r, index)
+                self.assert3xx(r, index)
 
 
 class TestRemoveLocale(amo.tests.TestCase):

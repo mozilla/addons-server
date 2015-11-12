@@ -127,13 +127,13 @@ class TestReporter(amo.tests.TestCase):
                                     app_guid=amo.FIREFOX.guid)
         expected = reverse('compat.reporter_detail', args=[self.addon.guid])
 
-        self.assertRedirects(
+        self.assert3xx(
             self.client.get(self.url.format(self.addon.id)), expected)
-        self.assertRedirects(
+        self.assert3xx(
             self.client.get(self.url.format(self.addon.slug)), expected)
-        self.assertRedirects(
+        self.assert3xx(
             self.client.get(self.url.format(self.addon.guid)), expected)
-        self.assertRedirects(
+        self.assert3xx(
             self.client.get(self.url.format(self.addon.guid[:5])), expected)
 
     @mock.patch('compat.views.owner_or_unlisted_reviewer', lambda r, a: True)

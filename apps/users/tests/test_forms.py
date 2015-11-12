@@ -95,7 +95,7 @@ class TestPasswordResetForm(UserFormBase):
         )
 
         eq_(len(mail.outbox), 0)
-        self.assertRedirects(r, reverse('password_reset_done'))
+        self.assert3xx(r, reverse('password_reset_done'))
 
     def test_request_success(self):
         self.client.post(
@@ -349,10 +349,8 @@ class TestUserLoginForm(UserFormBase):
         url = urlparams(self._get_login_url(), to="/en-US/firefox/about")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'password'}, follow=True)
-        self.assertRedirects(r, '/en-US/about')
+        self.assert3xx(r, '/en-US/about')
 
-        # Test a valid domain.  Note that assertRedirects doesn't work on
-        # external domains
         url = urlparams(self._get_login_url(), to="/addon/new",
                         domain="builder")
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
@@ -365,14 +363,14 @@ class TestUserLoginForm(UserFormBase):
         url = urlparams(self._get_login_url(), to='http://foo.com')
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'password'}, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
     def test_redirect_after_login_domain(self):
         url = urlparams(self._get_login_url(), to='/en-US/firefox',
                         domain='http://evil.com')
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'password'}, follow=True)
-        self.assertRedirects(r, '/en-US/firefox/')
+        self.assert3xx(r, '/en-US/firefox/')
 
     def test_unconfirmed_account(self):
         url = self._get_login_url()
