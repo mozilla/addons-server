@@ -36,6 +36,7 @@ djangorestframework-jwt==1.7.2
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8
 django-waffle==0.11
+django-babel==0.4.0
 easy-thumbnails==1.4
 elasticsearch==1.1.1
 fastchardet==0.2.0
