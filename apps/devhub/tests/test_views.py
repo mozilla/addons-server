@@ -2786,8 +2786,7 @@ class TestAddVersion(AddVersionTest):
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
         mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False, admin_override=False)
-             for f in version.all_files])
+            [mock.call(f, is_beta=False) for f in version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()
