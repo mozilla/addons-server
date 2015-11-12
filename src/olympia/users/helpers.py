@@ -2,7 +2,7 @@ import random
 
 from django.conf import settings
 from django.utils.encoding import smart_unicode
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 
 import jinja2
 from jingo import register, get_env
@@ -50,7 +50,7 @@ def users_list(users, size=None, max_text_length=None):
     tail = []
     if size and size < len(users):
         users = users[:size]
-        tail = [_('others', 'user_list_others')]
+        tail = [pgettext('user_list_others', 'others')]
 
     if max_text_length:
         user_list = [_user_link(user, max_text_length) for user in users]
