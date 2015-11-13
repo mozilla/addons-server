@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-13 17:27+0000\n"
+"PO-Revision-Date: 2015-11-13 17:30+0000\n"
 "Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6494,6 +6494,8 @@ msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Esta característica está actualmente en desarrollo. Si encuentras un "
+"problema, <a target=\"_blank\" href=\"%(bug_link)s\">abre un bug</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
@@ -6525,11 +6527,11 @@ msgstr "Todavía no tienes credenciales API."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Revocar y generar credenciales"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generar nuevas credenciales"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -14025,11 +14027,11 @@ msgstr "Compartir esta colección"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr ""
+msgstr "No pudimos encontrar el complemento."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Este complemento no te pertenece."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
@@ -14037,7 +14039,7 @@ msgstr ""
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "La versión no coincide con install.rdf."
 
 #: apps/signing/views.py:71
 msgid "Version already exists."
@@ -14045,7 +14047,7 @@ msgstr "Esta versión ya existe."
 
 #: apps/signing/views.py:106
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Ningún archivo subido para ese complemento o esa versión."
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
