@@ -193,7 +193,6 @@
             "bio": 1325270,
             "failed_login_attempts": 0,
             "deleted": false,
-            "emailhidden": false,
             "last_login_attempt_ip": "",
             "last_login_attempt": null,
             "password": "nope",
