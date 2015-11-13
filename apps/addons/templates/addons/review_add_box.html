@@ -1,5 +1,5 @@
-{% set amo_user = user if user.is_authenticated() else None %}
-{% if not addon.has_author(amo_user) %}
+{% set user = user if user.is_authenticated() else None %}
+{% if not addon.has_author(user) %}
   <h3>{{ _('What do you think?') }}</h3>
   <div id="review-box" class="highlight">
     {% if not user.is_authenticated() %}

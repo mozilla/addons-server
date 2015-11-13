@@ -59,7 +59,7 @@
       {% elif c.type == amo.COLLECTION_MOBILE %}
         <p>{{ _('Add-ons synced to my Mobile Firefox') }}</p>
       {% endif %}
-      {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(amo_user) %}
+      {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(user) %}
         <ul id="collection-favorites-opts">
           <li>
             <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
@@ -183,7 +183,7 @@
 {% endblock %}
 
 {% macro favorites_description() %}
-  {% if c.owned_by(amo_user) %}
+  {% if c.owned_by(user) %}
     {% if c.listed %}
       <p>{% trans %}
         Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear

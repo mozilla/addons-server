@@ -1,4 +1,4 @@
-from .models import UserProfile, RequestUser
+from .models import UserProfile
 
 
 class AmoUserBackend(object):
@@ -16,8 +16,8 @@ class AmoUserBackend(object):
 
     def get_user(self, user_id):
         try:
-            return RequestUser.objects.get(pk=user_id)
-        except RequestUser.DoesNotExist:
+            return UserProfile.objects.get(pk=user_id)
+        except UserProfile.DoesNotExist:
             return None
 
 

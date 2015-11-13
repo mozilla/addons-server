@@ -38,8 +38,8 @@ log = commonware.log.getLogger('z.collections')
 
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
-            and request.amo_user.username == username):
-        return getattr(request.amo_user, slug + '_collection')()
+            and request.user.username == username):
+        return getattr(request.user, slug + '_collection')()
     else:
         return get_object_or_404(Collection.objects,
                                  author__username=username, slug=slug)
@@ -78,7 +78,7 @@ def legacy_directory_redirects(request, page):
         loc = urlparams(base, sort=sorts[page])
     elif request.user.is_authenticated():
         if page == 'mine':
-            loc = reverse('collections.user', args=[request.amo_user.username])
+            loc = reverse('collections.user', args=[request.user.username])
         elif page == 'favorites':
             loc = reverse('collections.following')
     return http.HttpResponseRedirect(loc)
@@ -151,7 +151,7 @@ def get_votes(request, collections):
     if not request.user.is_authenticated():
         return {}
     q = CollectionVote.objects.filter(
-        user=request.amo_user, collection__in=[c.id for c in collections])
+        user=request.user, collection__in=[c.id for c in collections])
     return dict((v.collection_id, v) for v in q)
 
 
@@ -161,7 +161,7 @@ def user_listing(request, username):
     qs = (Collection.objects.filter(author__username=username)
           .order_by('-created'))
     mine = (request.user.is_authenticated() and
-            request.amo_user.username == username)
+            request.user.username == username)
     if mine:
         page = 'mine'
     else:
@@ -275,7 +275,7 @@ def collection_vote(request, username, slug, direction):
 
     vote = {'up': 1, 'down': -1}[direction]
     qs = (CollectionVote.objects.using('default')
-          .filter(collection=c, user=request.amo_user))
+          .filter(collection=c, user=request.user))
 
     if qs:
         cv = qs[0]
@@ -285,7 +285,7 @@ def collection_vote(request, username, slug, direction):
             cv.vote = vote
             cv.save(force_update=True)
     else:
-        CollectionVote.objects.create(collection=c, user=request.amo_user,
+        CollectionVote.objects.create(collection=c, user=request.user,
                                       vote=vote)
 
     if request.is_ajax():
@@ -295,7 +295,7 @@ def collection_vote(request, username, slug, direction):
 
 
 def initial_data_from_request(request):
-    return dict(author=request.amo_user, application=request.APP.id)
+    return dict(author=request.user, application=request.APP.id)
 
 
 def collection_message(request, collection, option):
@@ -349,8 +349,7 @@ def add(request):
 def ajax_new(request):
     form = forms.CollectionForm(
         request.POST or None,
-        initial={'author': request.amo_user,
-                 'application': request.APP.id},
+        initial={'author': request.user, 'application': request.APP.id},
     )
 
     if request.method == 'POST' and form.is_valid():
@@ -373,7 +372,7 @@ def ajax_list(request):
 
     collections = (
         Collection.objects
-        .publishable_by(request.amo_user)
+        .publishable_by(request.user)
         .with_has_addon(addon_id))
 
     return render(request, 'bandwagon/ajax_list.html',
@@ -399,7 +398,7 @@ def change_addon(request, collection, action):
 
     getattr(collection, action + '_addon')(addon)
     log.info(u'%s: %s %s to collection %s' %
-             (request.amo_user, action, addon.id, collection.id))
+             (request.user, action, addon.id, collection.id))
 
     if request.is_ajax():
         url = '%s?addon_id=%s' % (reverse('collections.ajax_list'), addon.id)
@@ -436,7 +435,7 @@ def edit(request, collection, username, slug):
             collection = form.save()
             collection_message(request, collection, 'update')
             log.info(u'%s edited collection %s' %
-                     (request.amo_user, collection.id))
+                     (request.user, collection.id))
             return http.HttpResponseRedirect(collection.edit_url())
     else:
         form = forms.CollectionForm(instance=collection)
@@ -478,7 +477,7 @@ def edit_addons(request, collection, username, slug):
             form.save(collection)
             collection_message(request, collection, 'update')
             log.info(u'%s added add-ons to %s' %
-                     (request.amo_user, collection.id))
+                     (request.user, collection.id))
 
     return http.HttpResponseRedirect(collection.edit_url() + '#addons-edit')
 
@@ -514,7 +513,7 @@ def edit_privacy(request, collection, username, slug):
     collection.listed = not collection.listed
     collection.save()
     log.info(u'%s changed privacy on collection %s' %
-             (request.amo_user, collection.id))
+             (request.user, collection.id))
     return http.HttpResponseRedirect(collection.get_url_path())
 
 
@@ -526,7 +525,7 @@ def delete(request, username, slug):
 
     if not acl.check_collection_ownership(request, collection, True):
         log.info(u'%s is trying to delete collection %s'
-                 % (request.amo_user, collection.id))
+                 % (request.user, collection.id))
         raise PermissionDenied
 
     data = dict(collection=collection, username=username, slug=slug)
@@ -535,7 +534,7 @@ def delete(request, username, slug):
         if request.POST['sure'] == '1':
             collection.delete()
             log.info(u'%s deleted collection %s' %
-                     (request.amo_user, collection.id))
+                     (request.user, collection.id))
             url = reverse('collections.user', args=[username])
             return http.HttpResponseRedirect(url)
         else:
@@ -576,7 +575,7 @@ def watch(request, username, slug):
     Otherwise, redirect to the collection page.
     """
     collection = get_collection(request, username, slug)
-    d = dict(user=request.amo_user, collection=collection)
+    d = dict(user=request.user, collection=collection)
     qs = CollectionWatcher.objects.no_cache().using('default').filter(**d)
     watching = not qs  # Flip the bool since we're about to change it.
     if qs:
@@ -599,7 +598,7 @@ def share(request, username, slug):
 
 @login_required
 def following(request):
-    qs = (Collection.objects.filter(following__user=request.amo_user)
+    qs = (Collection.objects.filter(following__user=request.user)
           .order_by('-following__created'))
     collections = paginate(request, qs)
     votes = get_votes(request, collections.object_list)

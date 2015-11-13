@@ -78,7 +78,7 @@ class TestCommon(amo.tests.TestCase):
     def test_tools_regular_user(self):
         self.login('regular')
         r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, False)
+        eq_(r.context['request'].user.is_developer, False)
 
         expected = [
             ('Tools', '#'),
@@ -98,7 +98,7 @@ class TestCommon(amo.tests.TestCase):
         GroupUser.objects.create(group=group, user=user)
 
         r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, True)
+        eq_(r.context['request'].user.is_developer, True)
 
         expected = [
             ('Tools', '#'),
@@ -114,7 +114,7 @@ class TestCommon(amo.tests.TestCase):
         self.login('editor')
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
+        eq_(request.user.is_developer, False)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
@@ -134,7 +134,7 @@ class TestCommon(amo.tests.TestCase):
 
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
+        eq_(request.user.is_developer, True)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
@@ -152,7 +152,7 @@ class TestCommon(amo.tests.TestCase):
         self.login('admin')
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
+        eq_(request.user.is_developer, False)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)
@@ -176,7 +176,7 @@ class TestCommon(amo.tests.TestCase):
 
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
+        eq_(request.user.is_developer, True)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)

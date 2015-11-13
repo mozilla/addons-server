@@ -219,7 +219,7 @@ def _editor_progress(unlisted=False):
 
 @addons_reviewer_required
 def performance(request, user_id=False):
-    user = request.amo_user
+    user = request.user
     editors = _recent_editors()
 
     is_admin = (acl.action_allowed(request, 'Admin', '%') or
@@ -229,7 +229,7 @@ def performance(request, user_id=False):
         try:
             user = UserProfile.objects.get(pk=user_id)
         except UserProfile.DoesNotExist:
-            pass  # Use request.amo_user from above.
+            pass  # Use request.user from above.
 
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
@@ -280,7 +280,7 @@ def performance(request, user_id=False):
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
                    editors=editors, current_user=user, is_admin=is_admin,
-                   is_user=(request.amo_user.id == user.id),
+                   is_user=(request.user.id == user.id),
                    motd_editable=motd_editable)
 
     return render(request, 'editors/performance.html', data)
@@ -563,7 +563,7 @@ def review(request, addon):
 
     version = addon.latest_version
 
-    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
+    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
@@ -582,7 +582,7 @@ def review(request, addon):
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
         if form.cleaned_data.get('notify'):
-            EditorSubscription.objects.get_or_create(user=request.amo_user,
+            EditorSubscription.objects.get_or_create(user=request.user,
                                                      addon=addon)
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
@@ -696,7 +696,7 @@ def review_viewing(request):
         return {}
 
     addon_id = request.POST['addon_id']
-    user_id = request.amo_user.id
+    user_id = request.user.id
     current_name = ''
     is_user = 0
     key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
@@ -711,7 +711,7 @@ def review_viewing(request):
         # just to account for latency and the like.
         cache.set(key, user_id, interval * 2)
         currently_viewing = user_id
-        current_name = request.amo_user.name
+        current_name = request.user.name
         is_user = 1
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -728,7 +728,7 @@ def queue_viewing(request):
         return {}
 
     viewing = {}
-    user_id = request.amo_user.id
+    user_id = request.user.id
 
     for addon_id in request.POST['addon_ids'].split(','):
         addon_id = addon_id.strip()

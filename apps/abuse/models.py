@@ -78,7 +78,7 @@ def send_abuse_report(request, obj, message):
     report = AbuseReport(ip_address=request.META.get('REMOTE_ADDR'),
                          message=message)
     if request.user.is_authenticated():
-        report.reporter = request.amo_user
+        report.reporter = request.user
     if isinstance(obj, Addon):
         report.addon = obj
     elif isinstance(obj, UserProfile):

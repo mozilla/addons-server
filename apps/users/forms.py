@@ -517,7 +517,7 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
                         username=self.instance.username,
                         signature='PASSWORDRESET',
                         msg='Admin requested password reset',
-                        cs1=self.request.amo_user.username,
+                        cs1=self.request.user.username,
                         cs1Label='AdminName')
         return profile
 

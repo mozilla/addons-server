@@ -1,6 +1,6 @@
 <ul id="auth-nav">
   {% if user.is_authenticated() %}
-    <li class="user">{{ (request.amo_user.welcome_name) }}</li>
+    <li class="user">{{ (request.user.welcome_name) }}</li>
     <li class="logout"><a href="{{ url('users.logout') }}">
       {{ _('Log out') }}</a></li>
   {% else %}

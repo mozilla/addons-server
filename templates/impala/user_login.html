@@ -1,7 +1,7 @@
 {% if user.is_authenticated() %}
   <li class="account">
-    <a href="{{ amo_user.get_url_path() }}" class="user" title="{{ amo_user.email }}">
-      {{ amo_user.welcome_name }}</a>
+    <a href="{{ user.get_url_path() }}" class="user" title="{{ user.email }}">
+      {{ user.welcome_name }}</a>
     <ul>
       {% if account_links %}
         {% for link in account_links %}

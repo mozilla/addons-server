@@ -1,5 +1,5 @@
 {% extends "impala/base_shared.html" %}
-{% set amo_user = request.amo_user if request.user.is_authenticated() else None %}
+{% set user = request.user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title(_('{0} :: Reviews')|fe(addon.name)) }}{% endblock %}
@@ -67,7 +67,7 @@
       {% include "reviews/grouped_ratings.html" %}
     </section>
     <section>
-      {% if amo_user and addon.can_review(amo_user) %}
+      {% if user and addon.can_review(user) %}
         <a class="button" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
@@ -76,7 +76,7 @@
   <div class="primary island hero c" id="reviews" role="main">
     {% block review_list %}
     {% if not reviews.object_list %}
-      {% if addon.can_review(amo_user) %}
+      {% if addon.can_review(user) %}
         <p id="add-first-review"><a href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Be the first to write a review.') }}</a><p>
       {% else %}

@@ -213,7 +213,7 @@ def queue_tabnav(context):
 @register.inclusion_tag('editors/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
 def reviewers_score_bar(context, types=None, addon_type=None):
-    user = context.get('amo_user')
+    user = context.get('user')
 
     return new_context(dict(
         request=context.get('request'),
@@ -720,8 +720,7 @@ class ReviewAddon(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
@@ -752,8 +751,7 @@ class ReviewAddon(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_preliminary(self, auto_validation=False):
         """Set an addon to preliminary."""
@@ -791,8 +789,7 @@ class ReviewAddon(ReviewBase):
 
         if self.request and not auto_validation:
             # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review."""
@@ -837,8 +834,7 @@ class ReviewFiles(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addons files to sandbox."""
@@ -863,8 +859,7 @@ class ReviewFiles(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_preliminary(self, auto_validation=False):
         """Set an addons files to preliminary."""
@@ -893,8 +888,7 @@ class ReviewFiles(ReviewBase):
 
         if self.request and not auto_validation:
             # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""

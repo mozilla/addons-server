@@ -88,9 +88,9 @@ class ThemeFilter(BaseFilter):
 def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
+        qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
     else:
-        qs = Addon.with_unlisted.filter(authors=request.amo_user).exclude(
+        qs = Addon.with_unlisted.filter(authors=request.user).exclude(
             type=amo.ADDON_PERSONA)
     filter_cls = ThemeFilter if theme else AddonFilter
     filter_ = filter_cls(request, qs, 'sort', default)
@@ -100,8 +100,8 @@ def addon_listing(request, default='name', theme=False):
 def index(request):
 
     ctx = {'blog_posts': _get_posts()}
-    if request.amo_user:
-        user_addons = Addon.with_unlisted.filter(authors=request.amo_user)
+    if request.user.is_authenticated():
+        user_addons = Addon.with_unlisted.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
@@ -114,7 +114,7 @@ def index(request):
 @login_required
 def dashboard(request, theme=False):
     addon_items = _get_items(
-        None, Addon.with_unlisted.filter(authors=request.amo_user))[:4]
+        None, Addon.with_unlisted.filter(authors=request.user))[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
@@ -238,7 +238,7 @@ def _get_items(action, addons):
 
 
 def _get_rss_feed(request):
-    key, __ = RssKey.objects.get_or_create(user=request.amo_user)
+    key, __ = RssKey.objects.get_or_create(user=request.user)
     return urlparams(reverse('devhub.feed_all'), privaterss=key.key)
 
 
@@ -253,7 +253,7 @@ def feed(request, addon_id=None):
         p = urlquote(request.get_full_path())
         return http.HttpResponseRedirect('%s?to=%s' % (url, p))
     else:
-        addons_all = Addon.with_unlisted.filter(authors=request.amo_user)
+        addons_all = Addon.with_unlisted.filter(authors=request.user)
 
         if addon_id:
             addon = get_object_or_404(Addon.with_unlisted.id_or_slug(addon_id))
@@ -1430,7 +1430,7 @@ def submit_addon(request, step):
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'],
                                       is_listed=is_listed)
-            AddonUser(addon=addon, user=request.amo_user).save()
+            AddonUser(addon=addon, user=request.user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
             if not addon.is_listed:  # Not listed? Automatically choose queue.

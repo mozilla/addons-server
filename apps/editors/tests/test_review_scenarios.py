@@ -16,7 +16,7 @@ from versions.models import Version
 @pytest.fixture
 def mock_request(rf, db):  # rf is a RequestFactory provided by pytest-django.
     request = rf.get('/')
-    request.user = request.amo_user = amo.tests.user_factory()
+    request.user = amo.tests.user_factory()
     return request
 
 

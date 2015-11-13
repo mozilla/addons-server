@@ -62,9 +62,9 @@ def user_view(f):
         else:
             key = 'username'
             # If the username is `me` then show the current user's profile.
-            if (user_id == 'me' and request.amo_user and
-                    request.amo_user.username):
-                user_id = request.amo_user.username
+            if (user_id == 'me' and request.user and
+                    request.user.username):
+                user_id = request.user.username
         user = get_object_or_404(UserProfile, **{key: user_id})
         return f(request, user, *args, **kw)
     return wrapper
@@ -137,7 +137,7 @@ def confirm_resend(request, user):
 
 @login_required
 def delete(request):
-    amouser = request.amo_user
+    amouser = request.user
     if request.method == 'POST':
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
@@ -155,7 +155,7 @@ def delete(request):
 
 @login_required
 def delete_photo(request):
-    u = request.amo_user
+    u = request.user
 
     if request.method == 'POST':
         u.picture_type = ''
@@ -172,7 +172,7 @@ def delete_photo(request):
 @write
 @login_required
 def edit(request):
-    # Don't use request.amo_user since it has too much caching.
+    # Don't use request.user since it has too much caching.
     amouser = UserProfile.objects.get(pk=request.user.id)
     if request.method == 'POST':
         # ModelForm alters the instance you pass in.  We need to keep a copy
@@ -448,7 +448,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
         login_status = True
 
         if dont_redirect:
-            # We're recalling the middleware to re-initialize amo_user
+            # We're recalling the middleware to re-initialize user
             ACLMiddleware().process_request(request)
             r = render(request, template, data)
 
@@ -498,7 +498,7 @@ def profile(request, user):
 
     edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
     own_profile = (request.user.is_authenticated() and
-                   request.amo_user.id == user.id)
+                   request.user.id == user.id)
 
     addons = []
     personas = []

@@ -365,8 +365,8 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return (user.id == self.author_id)
 
     def can_view_stats(self, request):
-        if request and request.amo_user:
-            return (self.publishable_by(request.amo_user) or
+        if request and request.user:
+            return (self.publishable_by(request.user) or
                     acl.action_allowed(request, 'CollectionStats', 'View'))
         return False
 

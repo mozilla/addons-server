@@ -233,8 +233,8 @@ def allow_mine(f):
         (or something).
         """
         if username == 'mine':
-            if not request.amo_user:
+            if not request.user.is_authenticated():
                 return redirect_for_login(request)
-            username = request.amo_user.username
+            username = request.user.username
         return f(request, username, *args, **kw)
     return wrapper

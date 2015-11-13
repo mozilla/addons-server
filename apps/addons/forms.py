@@ -528,7 +528,7 @@ class ThemeForm(ThemeFormBase):
             p.textcolor = data['textcolor'].lstrip('#')
         p.license = data['license']
         p.submit = datetime.now()
-        user = self.request.amo_user
+        user = self.request.user
         p.author = user.username
         p.display_username = user.name
         p.save()
@@ -637,8 +637,8 @@ class EditThemeForm(AddonFormBase):
             'license': int(data['license']),
             'accentcolor': data['accentcolor'].lstrip('#'),
             'textcolor': data['textcolor'].lstrip('#'),
-            'author': self.request.amo_user.username,
-            'display_username': self.request.amo_user.name
+            'author': self.request.user.username,
+            'display_username': self.request.user.name
         }
         changed = False
         for k, v in persona_data.iteritems():

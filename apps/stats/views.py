@@ -320,13 +320,13 @@ def check_stats_permission(request, addon, for_contributions=False):
 
     if not for_contributions:
         # Only authors and Stats Viewers allowed.
-        if (addon.has_author(request.amo_user) or
+        if (addon.has_author(request.user) or
                 acl.action_allowed(request, 'Stats', 'View')):
             return
 
     else:  # For contribution stats.
         # Only authors and Contribution Stats Viewers.
-        if (addon.has_author(request.amo_user) or
+        if (addon.has_author(request.user) or
                 acl.action_allowed(request, 'RevenueStats', 'View')):
             return
 

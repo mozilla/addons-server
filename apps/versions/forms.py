@@ -57,7 +57,7 @@ class XPIForm(happyforms.Form):
                   homepage=data['homepage'],
                   summary=data['summary'])
         a.save()
-        AddonUser(addon=a, user=self.request.amo_user).save()
+        AddonUser(addon=a, user=self.request.user).save()
 
         self.addon = a
         # Save Version, attach License

@@ -290,9 +290,9 @@
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
               <span class="author">
-                {% set amo_user = request.amo_user %}
-                {% trans user=amo_user.username,
-                         profile_url=url('users.profile', amo_user.id) %}
+                {% set user = request.user %}
+                {% trans user=user.username,
+                         profile_url=url('users.profile', user.id) %}
                   by <a href="{{ profile_url }}" target="_blank">{{ user }}</a>
                 {% endtrans %}
               </span>

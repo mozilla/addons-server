@@ -94,7 +94,7 @@ class TestHelpers(amo.tests.TestCase):
         request.APP = amo.FIREFOX
         request.GET = {}
         request.user.is_authenticated.return_value = False
-        request.amo_user.mobile_addons = []
+        request.user.mobile_addons = []
         return {'APP': amo.FIREFOX, 'LANG': 'en-US', 'request': request}
 
     def test_mobile_persona_confirm_large(self):

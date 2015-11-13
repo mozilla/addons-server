@@ -55,7 +55,7 @@ def barometer(context, collection):
         if 'collection_votes' in context:
             user_vote = context['collection_votes'].get(collection.id)
         else:
-            votes = request.amo_user.votes.filter(collection=collection)
+            votes = request.user.votes.filter(collection=collection)
             if votes:
                 user_vote = votes[0]
 
@@ -117,16 +117,16 @@ def favorites_widget(context, addon, condensed=False):
     c = dict(context.items())
     request = c['request']
     if request.user.is_authenticated():
-        is_favorite = addon.id in request.amo_user.favorite_addons
+        is_favorite = addon.id in request.user.favorite_addons
         faved_class = 'faved' if is_favorite else ''
 
         unfaved_text = '' if condensed else _('Add to favorites')
         faved_text = _('Favorite') if condensed else _('Remove from favorites')
 
         add_url = reverse('collections.alter',
-                          args=[request.amo_user.username, 'favorites', 'add'])
+                          args=[request.user.username, 'favorites', 'add'])
         remove_url = reverse('collections.alter',
-                             args=[request.amo_user.username,
+                             args=[request.user.username,
                                    'favorites', 'remove'])
 
         c.update(locals())
