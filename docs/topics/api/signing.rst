@@ -4,6 +4,21 @@ Signing
 
 .. note:: This API requires :doc:`authentication <auth>`.
 
+The following API endpoints help you get your add-on signed by Mozilla
+so it can be installed into Firefox without error. See
+`extension signing <https://wiki.mozilla.org/Addons/Extension_Signing>`_
+for more details about Firefox's signing policy.
+
+----------------
+Client Libraries
+----------------
+
+If you are developing an add-on using the
+`Add-on SDK <https://developer.mozilla.org/en-US/Add-ons/SDK>`_,
+you may wish to use the
+`jpm sign <https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm#jpm_sign>`_
+command to interact with the signing API.
+
 -------------------
 Uploading a version
 -------------------
