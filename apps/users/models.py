@@ -167,7 +167,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
-    emailhidden = models.BooleanField(default=True)
     homepage = models.URLField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)

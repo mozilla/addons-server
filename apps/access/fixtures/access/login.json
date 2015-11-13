@@ -5,7 +5,6 @@
     "fields": {
         "username": "fligtard",
         "email": "scott@bakula.com",
-        "emailhidden": 1,
         "display_collections": 1,
         "display_collections_fav": 1,
         "notifycompat": 1,
@@ -21,7 +20,6 @@
     "fields": {
         "username": "milos",
         "email": "milos@dinic.com",
-        "emailhidden": 1,
         "display_collections": 1,
         "display_collections_fav": 1,
         "notifycompat": 1,
