@@ -29,7 +29,7 @@ needs to look like before it's signed:
 .. code-block:: json
 
     {
-        "iss": "user:543210:23",
+        "iss": "your-api-key",
         "jti": "0.47362944623455405",
         "iat": 1447273096,
         "exp": 1447273156
@@ -78,7 +78,7 @@ library:
 
     var issuedAt = Math.floor(Date.now() / 1000);
     var payload = {
-      iss: 'user:543210:23',
+      iss: 'your-api-key',
       jti: Math.random().toString(),
       iat: issuedAt,
       exp: issuedAt + 60,
