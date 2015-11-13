@@ -54,8 +54,10 @@ class BaseUploadVersionCase(SigningAPITestCase):
             'apps', 'signing', 'fixtures',
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
-    def put(self, url=None, version='3.0', addon='@upload-version'):
-        filename = self.xpi_filepath(addon, version)
+    def put(self, url=None, version='3.0', addon='@upload-version',
+            filename=None):
+        if filename is None:
+            filename = self.xpi_filepath(addon, version)
         if url is None:
             url = self.url(addon, version)
         with open(filename) as upload:
@@ -138,6 +140,35 @@ class TestUploadVersion(BaseUploadVersionCase):
         response = self.put(self.url(self.guid, '3.0'))
         assert response.status_code == 202
         assert 'processed' in response.data
+
+    @mock.patch('devhub.views.auto_sign_version')
+    def test_version_added_is_experiment(self, sign_version):
+        self.grant_permission(self.user, 'Experiments:submit')
+        guid = 'experiment@xpi'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.put(
+            addon=guid, version='0.1',
+            filename='apps/files/fixtures/files/experiment.xpi')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_LITE
+        sign_version.assert_called_with(addon.latest_version)
+
+    @mock.patch('devhub.views.auto_sign_version')
+    def test_version_added_is_experiment_reject_no_perm(self, sign_version):
+        guid = 'experiment@xpi'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.put(
+            addon=guid, version='0.1',
+            filename='apps/files/fixtures/files/experiment.xpi')
+        assert response.status_code == 400
+        assert response.data['error'] == (
+            'You cannot submit this type of add-ons')
 
 
 class TestCheckVersion(BaseUploadVersionCase):

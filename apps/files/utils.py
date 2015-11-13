@@ -178,10 +178,12 @@ class PackageJSONExtractor(JSONExtractor):
 
 class RDFExtractor(object):
     """Extract add-on info from an install.rdf."""
+    EXPERIMENT_TYPE = '128'  # Experiment extensions: bug 1220097.
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
              '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT,
-             '128': amo.ADDON_EXTENSION}
+             EXPERIMENT_TYPE: amo.ADDON_EXTENSION}
     manifest = u'urn:mozilla:install-manifest'
+    is_experiment = False  # Experiment extensions: bug 1220097.
 
     def __init__(self, path):
         self.path = path
@@ -202,6 +204,8 @@ class RDFExtractor(object):
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',
         }
+        # `experiment` is detected in in `find_type`.
+        self.data['is_experiment'] = self.is_experiment
 
     def find_type(self):
         # If the extension declares a type that we know about, use
@@ -209,6 +213,8 @@ class RDFExtractor(object):
         # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
         self.package_type = self.find('type')
         if self.package_type and self.package_type in self.TYPES:
+            # If it's an experiment, we need to store that for later.
+            self.is_experiment = self.package_type == self.EXPERIMENT_TYPE
             return self.TYPES[self.package_type]
 
         # Look for Complete Themes.
