@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-04-08 03:25+0000\n"
-"Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2015-11-14 04:16+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -456,19 +456,19 @@ msgstr "動作環境:"
 
 #: apps/addons/templates/addons/details_box.html:56
 msgid "Visibility"
-msgstr ""
+msgstr "公開状態"
 
 #: apps/addons/templates/addons/details_box.html:61
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "非掲載"
 
 #: apps/addons/templates/addons/details_box.html:63
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "リスト掲載中止"
 
 #: apps/addons/templates/addons/details_box.html:71
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
@@ -996,6 +996,8 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>警告:</strong> このアドオンは Mozilla によるレビューを受けておらず、Firefox 43 "
+"以上のリリース版にはインストールできません。サードパーティ製ソフトウェアはコンピュータに悪影響を及ぼす可能性があり、インストールには注意が必要です。"
 
 #: apps/addons/templates/addons/popups.html:121
 msgid ""
@@ -1178,7 +1180,7 @@ msgstr "タグ"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} のアイコン"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1190,7 +1192,7 @@ msgstr "作者: %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "強制ダウンロード"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1365,11 +1367,11 @@ msgstr ""
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>警告:</strong> このアドオンの開発版は Mozilla による審査を受けていません。"
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr ""
+msgstr "開発チャンネルの完全な履歴を見る"
 
 #: apps/addons/templates/addons/impala/details.html:313
 #: apps/addons/templates/addons/impala/details.html:322
@@ -1603,7 +1605,7 @@ msgstr "同意する"
 #: apps/addons/templates/addons/mobile/home.html:10
 #: templates/mobile/base_addons.html:49
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "アドオンは今のところ iOS 版 Firefox では利用できません。"
 
 #: apps/addons/templates/addons/mobile/home.html:12
 #: templates/mobile/base_addons.html:51
@@ -1772,7 +1774,7 @@ msgstr "開発者センター"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1793
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API キーを管理"
 
 #: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2225,16 +2227,16 @@ msgstr "{addon} のコンテンツレーティングが変更されました。"
 
 #: apps/amo/log.py:586
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} のリスト掲載が中止されました。"
 
 #: apps/amo/log.py:592 apps/amo/log.py:598
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} が署名されました。"
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "GUID {1} を持つアドオン ID {0} が削除されました"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2465,7 +2467,7 @@ msgstr "前へ"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "最後のページへ移動"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -2673,7 +2675,7 @@ msgstr "アイコン"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "この欄はボット対策のためにあるので、何も入力しないでください"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -4166,11 +4168,11 @@ msgstr "言語パックの更新審査"
 
 #: apps/constants/base.py:490
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "期限切れ審査のためのボーナス"
 
 #: apps/constants/base.py:491
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "ボーナスポイント適用までの日数"
 
 #: apps/constants/base.py:492
 msgid "Theme Review"
@@ -4234,15 +4236,15 @@ msgstr "レベル 6"
 
 #: apps/constants/base.py:553
 msgid "Level 7"
-msgstr ""
+msgstr "レベル 7"
 
 #: apps/constants/base.py:554
 msgid "Level 8"
-msgstr ""
+msgstr "レベル 8"
 
 #: apps/constants/base.py:555
 msgid "Level 9"
-msgstr ""
+msgstr "レベル 9"
 
 #: apps/constants/base.py:564
 msgid "Not signed"
@@ -4403,11 +4405,11 @@ msgstr "パスワードが間違っています。"
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "不正な JSON オブジェクト"
 
 #: apps/devhub/forms.py:110
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "メッセージが注釈に適していません"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
 #: apps/users/templates/users/edit.html:129
@@ -4504,27 +4506,28 @@ msgstr "失敗した検証を上書き"
 
 #: apps/devhub/forms.py:507
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "このアドオンの手作業による審査を申請します。"
 
 #: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
-msgstr ""
+msgstr "このアドオンをサイト上に掲載しない (ベータ)"
 
 #: apps/devhub/forms.py:535
 msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
-msgstr ""
+msgstr "アドオンを自分自身で配布するつもりで、Mozilla による署名を受ける必要があるだけの場合は、このオプションにチェックを入れてください。"
 
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "このアドオンはアプリケーションインストーラに同梱されます。"
 
 #: apps/devhub/forms.py:543
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"アプリケーションインストーラに同梱されるアドオンは、署名前に Mozilla によるコード審査を受ける必要があり、同時により高い品質が求められます。"
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -4546,7 +4549,7 @@ msgstr "審査方法を選択してください"
 msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
-msgstr ""
+msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
 
 #: apps/devhub/forms.py:589
 msgid "Version %s already exists"
@@ -4706,7 +4709,7 @@ msgstr "パスワードが間違っています。アドオンは削除されま
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "このアドオンの作者が追加されました"
 
 #: apps/devhub/views.py:452
 msgid "An author has a role changed on your add-on"
