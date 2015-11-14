@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-14 04:36+0000\n"
+"PO-Revision-Date: 2015-11-14 11:17+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5311,6 +5311,7 @@ msgid ""
 "in search and browse listings, as well as at the top of your add-on's "
 "details page. It is only relevant for listed add-ons."
 msgstr ""
+"検索結果やカテゴリなどのリスト、そしてアドオンの詳細ページ最上部に表示される、このアドオンの基本機能についての短い説明文。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5318,6 +5319,7 @@ msgid ""
 " fit your add-on's functionality for the most exposure. It is only relevant "
 "for listed add-ons."
 msgstr ""
+"カテゴリはユーザがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリをすべて選んでください。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:90
 msgid ""
@@ -5338,6 +5340,8 @@ msgid ""
 "tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"タグはユーザがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0} "
+"個のタグを指定できます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/basic.html:129
 #: apps/devhub/templates/devhub/personas/edit.html:97
@@ -5370,7 +5374,7 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant "
 "information. This field is only displayed on the add-on's details page. It "
 "is only relevant for listed add-ons."
-msgstr ""
+msgstr "機能、特徴、その他関連情報などの長い説明文。この項目はアドオンの詳細ページにのみ表示されます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:44
 #: apps/translations/templates/translations/trans-menu.html:13
@@ -5382,7 +5386,7 @@ msgid ""
 "Information about your add-on is displayed in this locale unless you "
 "override it with a locale-specific translation. It is only relevant for "
 "listed add-ons."
-msgstr ""
+msgstr "このアドオンに関する情報は、ロケール固有の翻訳で上書きしない限り、このロケールで表示されます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
 #: apps/users/forms.py:282 apps/users/templates/users/edit.html:101
@@ -5397,6 +5401,7 @@ msgid ""
 " is localized into other languages multiple translations of this field can "
 "be added. It is only relevant for listed add-ons."
 msgstr ""
+"このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5418,6 +5423,7 @@ msgid ""
 "translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"サポートに関する問い合わせのためのメールアドレスを表示したい場合は、そのアドレスを入力してください。言語ごとに異なるアドレスがある場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5425,6 +5431,7 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added. It is only relevant for listed add-ons."
 msgstr ""
+"このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5446,6 +5453,7 @@ msgid ""
 "major bugs, information on how to report bugs, anticipated release date of a"
 " new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5459,7 +5467,7 @@ msgstr "アドオンのフラグ"
 msgid ""
 "These flags are used to classify add-ons. It is only relevant for listed "
 "add-ons."
-msgstr ""
+msgstr "これらのフラグはアドオンを分類するために使われます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5477,7 +5485,7 @@ msgstr "ソースコードを表示"
 msgid ""
 "Whether the source of your add-on can be displayed in our online viewer. It "
 "is only relevant for listed add-ons."
-msgstr ""
+msgstr "このアドオンのソースコードを当サイトのオンラインビューアで表示しても良いかどうか。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5495,7 +5503,7 @@ msgstr "統計情報を公開しますか？"
 msgid ""
 "Whether the download and usage stats of your add-on can be displayed in our "
 "online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "このアドオンのダウンロード数やユーザ数に関する統計を当サイトのオンラインビューアに表示しても良いかどうか。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5514,6 +5522,8 @@ msgid ""
 "If selected, we will try to automatically upgrade your add-on when a new "
 "version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"これが選択された場合、SDK "
+"の新バージョンが公開された際に、私たちの方でこのアドオンを自動的にアップグレードしようと試みます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5578,6 +5588,8 @@ msgid ""
 "the following image types: .png, .jpg. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"このアドオンのアイコンをアップロードするか、用意されたものの中からひとつ選んでください。アイコンはアドオンが掲載されるほぼすべての場所に表示されます。アップロードする画像は"
+" PNG もしくは JPEG 形式でなければなりません。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5661,12 +5673,12 @@ msgstr "互換性テスト"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: apps/files/templates/files/viewer.html:168
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "自動署名に必要のないメッセージを表示しない"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: apps/files/templates/files/viewer.html:176
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "旧バージョンに存在し無視されたメッセージを表示しない"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:64
