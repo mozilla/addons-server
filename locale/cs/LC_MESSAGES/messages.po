@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-10-16 21:29+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-11-14 21:44+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445030984.0\n"
+"X-POOTLE-MTIME: 1447537442.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -2177,7 +2177,7 @@ msgstr "Ikona"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Nevyplňujte prosím toto pole, slouží pouze k odchytávání robotů"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -4073,10 +4073,12 @@ msgstr "Vyžádána plná kontrola."
 #: apps/devhub/views.py:1780
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
+"Vaše stará pověření byla revokována a již nejsou nadále platné. Aktualizujte "
+"prosím všechny API klienty novými pověřeními."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr ""
+msgstr "Nový API klíč byl vytvořen"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -5270,7 +5272,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generovat nová pověření"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -10800,7 +10802,7 @@ msgstr "Sdílet sbírku"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr ""
+msgstr "Doplněk nebyl nalezen."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
@@ -10812,15 +10814,15 @@ msgstr ""
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "Tato veze nesouhlasí s install.rdf."
 
 #: apps/signing/views.py:71
 msgid "Version already exists."
-msgstr ""
+msgstr "Tato verze již existuje."
 
 #: apps/signing/views.py:106
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
