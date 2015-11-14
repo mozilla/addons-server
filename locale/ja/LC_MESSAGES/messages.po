@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-14 04:16+0000\n"
+"PO-Revision-Date: 2015-11-14 04:36+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4713,11 +4713,11 @@ msgstr "このアドオンの作者が追加されました"
 
 #: apps/devhub/views.py:452
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "このアドオンの作者の役割が変更されました"
 
 #: apps/devhub/views.py:471
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "このアドオンの作者が削除されました"
 
 #: apps/devhub/views.py:514
 msgid "There were errors in your submission."
@@ -4786,11 +4786,11 @@ msgstr "本審査が申請されました。"
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
-msgstr ""
+msgstr "あなたの古い認証情報は無効化されたため、使用できなくなりました。新しい認証情報ですべての API クライアントを更新してください。"
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr ""
+msgstr "新しい API キーが作成されました"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -4798,6 +4798,8 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"始める前に、Firefox "
+"アドオン配布規約を読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も規約からリンクされています。"
 
 #: apps/devhub/templates/devhub/agreement.html:13
 msgid "Printable Version"
@@ -4918,7 +4920,7 @@ msgstr "状態:"
 #: apps/devhub/templates/devhub/index.html:90
 #: apps/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Visibility:"
-msgstr ""
+msgstr "公開状態:"
 
 #: apps/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
@@ -4954,6 +4956,8 @@ msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
 "href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"<a href=\"%(addon_url)s\">アドオン</a> か <a href=\"%(theme_url)s\">テーマ</a> "
+"をアップロードすることから始めましょう！"
 
 #: apps/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
@@ -5045,7 +5049,7 @@ msgstr "アップロード完了後、アドオンに含まれるファイルに
 #: apps/devhub/templates/devhub/validate_addon.html:42
 #: apps/devhub/templates/devhub/addons/submit/upload.html:23
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "このアドオンを当サイトで配布しますか？"
 
 #: apps/devhub/templates/devhub/validate_addon.html:49
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30
@@ -5053,7 +5057,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 #: apps/devhub/templates/devhub/versions/list.html:312
 msgid "Warning:"
-msgstr ""
+msgstr "警告:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:50
 #: apps/devhub/templates/devhub/addons/submit/upload.html:31
@@ -5063,6 +5067,8 @@ msgid ""
 " href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"非掲載アドオンの署名用提出は現在のところオープンベータ版となっています。多くのアドオンはまだ手作業による審査を受ける必要があります。何かバグに遭遇した場合は"
+" <a href=\"%(bugzilla_url)s\" target=\"_blank\">報告</a> してください。"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -8908,7 +8914,7 @@ msgstr "公開"
 
 #: apps/editors/helpers.py:485
 msgid "Grant full review"
-msgstr ""
+msgstr "本審査を承認"
 
 #: apps/editors/helpers.py:500
 msgid "Request more information"
@@ -9026,7 +9032,7 @@ msgstr "エディタのコメントがあります"
 
 #: apps/editors/models.py:189
 msgid "Sources provided"
-msgstr ""
+msgstr "ソース提供あり"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
@@ -9099,7 +9105,7 @@ msgstr "は上級審査が必要です"
 
 #: apps/editors/views.py:794
 msgid "commented"
-msgstr ""
+msgstr "コメント付き"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -9216,23 +9222,23 @@ msgstr "履歴の詳細"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "アドオンのタイトル"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "レビューのタイトル"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "レビューの本文"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "レビューは削除前にフラグが立てられました。"
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "削除を取り消し"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9454,7 +9460,7 @@ msgstr "{0} を審査"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "アドオンユーザ変更履歴"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
@@ -9477,11 +9483,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "ファイルをダウンロード"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "開発者がソースコードを提供しています。"
 
 #: apps/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
@@ -9633,7 +9639,7 @@ msgstr "全期間"
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
 
 #: apps/editors/templates/editors/includes/search_results_themes.html:6
 #: apps/editors/templates/editors/themes/history_table.html:7
@@ -9866,19 +9872,19 @@ msgstr "install.rdf を解析できませんでした。"
 
 #: apps/files/utils.py:532
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "アドオンの ID を見つけられませんでした。"
 
 #: apps/files/utils.py:535
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "アドオンの ID は 64 文字以下でなければなりません。"
 
 #: apps/files/utils.py:537
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "アドオンの ID がアドオンに一致しません。"
 
 #: apps/files/utils.py:541
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "重複したアドオンの ID が見つかりました。"
 
 #: apps/files/utils.py:544
 msgid "Version numbers should have fewer than 32 characters."
@@ -10656,7 +10662,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
@@ -11951,7 +11957,7 @@ msgstr "レビューに返信"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "返信を編集"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -11959,7 +11965,7 @@ msgstr "レビューを編集"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "返信を削除"
 
 #. {0} is an add-on name.
 # ページタイトル
@@ -12219,11 +12225,11 @@ msgstr "Facebook へ投稿"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
+msgstr[0] "{0} 件のいいね"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Twitter 上のツイート"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -12232,15 +12238,15 @@ msgstr[0] "{0} 件のツイート"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "g+ で共有"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Reddit へ投稿"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Tumblr へ投稿"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
@@ -13816,7 +13822,7 @@ msgstr "自分のコレクションを作成するには Mozilla Add-ons のア�
 
 #: templates/base.html:158 templates/impala/base.html:194
 msgid "Footer logo"
-msgstr ""
+msgstr "フッターロゴ"
 
 #: templates/categories.html:2
 msgid "Choose a category"
