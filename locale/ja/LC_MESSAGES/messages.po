@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-15 05:08+0000\n"
+"PO-Revision-Date: 2015-11-15 06:10+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6438,6 +6438,8 @@ msgid ""
 "stable and useful. It also provides valuable feedback to developers, "
 "allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla "
+"は各アドオンのユーザに対して、その使用体験に関するフィードバックを送るよう推奨しています。これは、そのアドオンが安定していて便利かどうか、他のユーザが判断できるようにするためです。作者にも有益なフィードバックがもたらされるので、ユーザのニーズに合わせてアドオンを継続的に改善していくことが可能です。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
@@ -6446,6 +6448,8 @@ msgid ""
 " moderation, but negative reviews will not be removed unless they provide "
 "false information."
 msgstr ""
+"すべてのレビューは <a href=\"%(link_guidelines)s\">レビューガイドライン</a> "
+"に従う必要があります。このガイドラインに沿わないレビューは管理者による確認を受ける場合もありますが、ネガティブなレビューは事実に反する情報が含まれていない限り削除されません。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
@@ -6453,6 +6457,7 @@ msgid ""
 "group, or email address. It is recommended that support questions be posted "
 "via those mediums instead of in an add-on's review section."
 msgstr ""
+"多くの作者は、フォーラム、ディスカッショングループ、メールアドレスなど、何らかのサポート手段を提供しています。サポートに関する質問はアドオンのレビュー欄ではなくそれらのメディアを通じて投稿するよう推奨します。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6465,6 +6470,7 @@ msgid ""
 " The original author of an add-on retains copyright of their work unless "
 "otherwise noted in the add-on's license."
 msgstr ""
+"多くのアドオンはソースコードの公開を許可しています。これは必ずしも、そのソースコードがオープンソースであり、他のアドオンでも使用できるということではありません。アドオンのライセンスで明記されていない限り、その原作者がコードの著作権を保有しています。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
@@ -6475,6 +6481,8 @@ msgid ""
 "submissions (including updates) containing infringing code will be denied "
 "approval for public status."
 msgstr ""
+"著作権侵害やライセンス違反の報告を受けた場合、私たちはその状況を確認する手続きを取り、実際に違反が起きているかどうかを判断します。違反があると判断された場合、その問題あるアドオンを削除して作者に連絡を取ります。違反コードが含まれた新規登録アドオン"
+" (更新を含む) には公開ステータスは与えられません。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid ""
@@ -6482,6 +6490,7 @@ msgid ""
 "code, you must contact the original author and receive explicit permission "
 "before using the source code."
 msgstr ""
+"あるアドオンのソースコードについて現在の著作権状況が不明な場合は、そのソースコードを使う前に原作者に連絡を取り、明示的な許可を得るべきです。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:107
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:306
@@ -6496,6 +6505,9 @@ msgid ""
 "other Mozilla websites. These add-ons showcase the power of Firefox "
 "customization and are useful to a wide audience."
 msgstr ""
+"おすすめのアドオンは、<a href=\"%(link_gallery)s\">AMO</a>、Firefox のアドオンマネージャ、その他 "
+"Mozilla のサイトで紹介される、高品質な拡張機能とテーマです。これらのアドオンは Firefox "
+"の高いカスタマイズ性を示し、幅広いユーザに役立つものです。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -6503,6 +6515,9 @@ msgid ""
 "group of add-on developers and fans from the Mozilla community who have "
 "volunteered to review and vote on nominations."
 msgstr ""
+"おすすめのアドオンは Featured Add-ons Advisory Board "
+"によって選ばれます。これは、推薦されたアドオンの審査や投票にボランティアとして参加しているアドオン作者や Mozilla "
+"コミュニティのファンによって構成される、小規模なグループです。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid ""
@@ -6510,6 +6525,8 @@ msgid ""
 "month, and <a href=\"%(link_themes)s\">featured complete themes</a> are "
 "chosen every quarter."
 msgstr ""
+"<a href=\"%(link_featured)s\">おすすめの拡張機能</a> は毎月、<a "
+"href=\"%(link_themes)s\">おすすめの完全テーマ</a> は 3 か月に一度選ばれます。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -6555,11 +6572,11 @@ msgstr "AMO のエディタによる本審査を受けていること (事前審
 msgid ""
 "The add-on must have excellent user reviews and any problems or support "
 "requests must be promptly addressed by the developer."
-msgstr ""
+msgstr "アドオンは、ユーザから優れたレビューが寄せられていて、あらゆる問題やサポートの要求は作者によって迅速に解決されなければなりません。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "アドオンは 2,000 人以上のユーザが付いていなければなりません。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid ""
@@ -6574,6 +6591,8 @@ msgid ""
 " performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
+"<strong>最も重要なことは</strong>、アドオンはあらゆる Firefox "
+"ユーザにとって魅力的でなければならず、また、ユーザ体験、パフォーマンス、セキュリティ、利便性あるいは娯楽性といった価値も含め、ほぼあらゆる点で傑出していなければなりません。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6588,20 +6607,22 @@ msgid ""
 "If you wish to nominate an add-on to be featured and it meets the criteria "
 "above, send an email to %(mail_featured)s with:"
 msgstr ""
+"あるアドオンをおすすめとして推薦したいと思い、それが上記の要件を満たしている場合は、以下の内容を %(mail_featured)s "
+"までメールしてください。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "アドオンの名前、URL、あなたがその作者本人であるかどうか"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid ""
 "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
+msgstr "そのアドオンがなぜ幅広い層にとって魅力的でおすすめされるべきかについての短い説明"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
 "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr ""
+msgstr "もしあれば、そのアドオンについて言及した外部サイトのレビューや記事へのリンク"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -6611,10 +6632,13 @@ msgid ""
 "quality or security issues, incompatibility, and similarity to another "
 "featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"アドオンの推薦は Advisory Board によって月 1 回 (完全テーマの推薦は 3 か月に 1 回) "
+"審査されます。推薦が却下される場合のよくある理由としては、幅広い層にとって魅力さを欠く、ユーザ体験がいまいちである、品質やセキュリティに問題がある、互換性が十分でない、他のおすすめアドオンと似通っているといった点が挙げられます。却下されたアドオンを"
+" 3 か月以内に再度推薦することはできません。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "おすすめアドオンの交代"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid ""
@@ -8151,11 +8175,11 @@ msgstr "審査申請をキャンセル"
 
 #: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
-msgstr ""
+msgstr "アドオンの公開状態"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
-msgstr ""
+msgstr "掲載済み:"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid ""
@@ -8164,7 +8188,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid "Hidden:"
-msgstr ""
+msgstr "非表示:"
 
 #: apps/devhub/templates/devhub/versions/list.html:113
 msgid ""
@@ -8174,7 +8198,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:119
 msgid "Unlisted:"
-msgstr ""
+msgstr "非掲載:"
 
 #: apps/devhub/templates/devhub/versions/list.html:119
 msgid ""
@@ -8184,7 +8208,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Current versions"
-msgstr ""
+msgstr "現在のバージョン"
 
 #: apps/devhub/templates/devhub/versions/list.html:133
 msgid "Currently on AMO"
@@ -8216,11 +8240,11 @@ msgstr "パフォーマンス"
 
 #: apps/devhub/templates/devhub/versions/list.html:154
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "このアドオンの次期バージョン"
 
 #: apps/devhub/templates/devhub/versions/list.html:168
 msgid "Older versions"
-msgstr ""
+msgstr "旧バージョン"
 
 #: apps/devhub/templates/devhub/versions/list.html:184
 msgid "Upload a New Version"
@@ -8228,7 +8252,7 @@ msgstr "新バージョンをアップロード"
 
 #: apps/devhub/templates/devhub/versions/list.html:214
 msgid "Full review may not be required"
-msgstr ""
+msgstr "本審査は必要ありません"
 
 #: apps/devhub/templates/devhub/versions/list.html:215
 msgid ""
@@ -8239,7 +8263,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:223
 msgid "Request full review"
-msgstr ""
+msgstr "本審査を申請"
 
 #: apps/devhub/templates/devhub/versions/list.html:231
 msgid "Delete Version {version}"
@@ -8278,7 +8302,7 @@ msgstr "バージョンを削除"
 
 #: apps/devhub/templates/devhub/versions/list.html:254
 msgid "Disable Version"
-msgstr ""
+msgstr "バージョンを削除"
 
 #: apps/devhub/templates/devhub/versions/list.html:261
 msgid "Add a new Version"
@@ -8291,7 +8315,7 @@ msgstr "バージョンを追加"
 #: apps/devhub/templates/devhub/versions/list.html:270
 #: apps/devhub/templates/devhub/versions/list.html:288
 msgid "Hide Add-on"
-msgstr ""
+msgstr "アドオンを非公開にする"
 
 #: apps/devhub/templates/devhub/versions/list.html:273
 msgid ""
