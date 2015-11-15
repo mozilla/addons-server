@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-15 06:10+0000\n"
+"PO-Revision-Date: 2015-11-15 06:35+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -7336,13 +7336,13 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "あなたはこのアドオンを無効化しています"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid ""
 "Your add-on's listing is disabled and is not showing anywhere in our gallery"
 " or update service."
-msgstr ""
+msgstr "このアドオンの掲載は無効化されており、当サイトのギャラリーや更新サービスなどには一切表示されません。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -7350,7 +7350,7 @@ msgstr "このアドオンを完成させてください。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "審査が完了したらメールでお知らせします。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:34
 #: apps/devhub/templates/devhub/includes/addon_details.html:44
@@ -7359,41 +7359,45 @@ msgid ""
 "on is not listed in our gallery but can be accessed directly from its "
 "details page."
 msgstr ""
+"審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーには掲載されませんが、詳細ページから直接アクセスすることは可能です。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38
 #: apps/devhub/templates/devhub/includes/addon_details.html:48
 msgid ""
 "You will receive an email when the review is complete and your add-on is "
 "signed."
-msgstr ""
+msgstr "審査が完了し、アドオンが署名されたらメールでお知らせします。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are receiving automatic "
 "updates."
-msgstr ""
+msgstr "このアドオンは当サイトのギャラリーに表示されており、ユーザには自動更新が配信されています。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
-msgstr ""
+msgstr "このアドオンは署名されており、アプリケーションインストーラに同梱できます。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-"
+"admins@mozilla.org までメールを送ってください。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
 "Your add-on is displayed in our gallery as experimental and users are "
 "receiving automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"このアドオンは「実験的アドオン」として当サイトのギャラリーに表示されており、ユーザには自動更新が配信されています。なお、一部の機能は利用できません。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "このアドオンは署名されています。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:79
 msgid ""
@@ -7401,12 +7405,13 @@ msgid ""
 " add-on is displayed in our gallery as experimental and users are receiving "
 "automatic updates. Some features are unavailable to your add-on."
 msgstr ""
+"本審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーに「実験的アドオン」として表示され、ユーザには自動更新が配信されます。なお、一部の機能は利用できません。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
-msgstr ""
+msgstr "本審査が完了したらメールでお知らせします。それにより、アプリケーションインストーラにこのアドオンを同梱できるようになります。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -7414,6 +7419,7 @@ msgid ""
 "wish to continue hosting your add-on, please click to select a review "
 "process."
 msgstr ""
+"当サイトのギャラリーに掲載されるアドオンはすべてエディタによる審査を受ける必要があります。今後もこのアドオンの掲載を継続したい場合は、クリックして審査方法を選択してください。"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8697,7 +8703,7 @@ msgstr "削除されたレビュー"
 
 #: apps/editors/forms.py:37 apps/editors/forms.py:67
 msgid "View entries between"
-msgstr ""
+msgstr "この期間のエントリーを表示"
 
 #: apps/editors/forms.py:39 apps/editors/forms.py:68
 msgid "and"
@@ -8873,15 +8879,15 @@ msgstr "テーマを更新"
 
 #: apps/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "非掲載アドオンの保留更新"
 
 #: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "非掲載アドオンの本審査"
 
 #: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "非掲載アドオンの事前審査"
 
 #: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
@@ -8911,17 +8917,17 @@ msgstr[0] "管理者審査 ({0})"
 #: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "非掲載アドオンの本審査 ({0})"
 
 #: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
+msgstr[0] "非掲載アドオンの保留更新 ({0})"
 
 #: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
+msgstr[0] "非掲載アドオンの事前審査 ({0})"
 
 #: apps/editors/helpers.py:260
 msgid "Addon"
@@ -9600,7 +9606,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "ホワイトボードを更新"
 
 #: apps/editors/templates/editors/review.html:257
 #: apps/editors/templates/editors/review.html:258
@@ -9684,11 +9690,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "前へ"
 
 #: apps/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "次へ"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
@@ -9700,11 +9706,11 @@ msgstr "まだポイントは与えられていません。"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "上位の審査担当者 (過去 7 日間)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "まだ上位の審査担当者はいません。"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -10033,12 +10039,12 @@ msgstr "タブストップ:"
 #: apps/files/templates/files/viewer.html:105
 #: apps/files/templates/files/viewer.html:106
 msgid "Up file"
-msgstr ""
+msgstr "ファイルを上へ移動"
 
 #: apps/files/templates/files/viewer.html:110
 #: apps/files/templates/files/viewer.html:111
 msgid "Down file"
-msgstr ""
+msgstr "ファイルを下へ移動"
 
 #: apps/files/templates/files/viewer.html:116
 #: apps/files/templates/files/viewer.html:117
@@ -10141,7 +10147,7 @@ msgstr "ロケールを変更:"
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
 msgid "Good to know"
-msgstr ""
+msgstr "参考情報"
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
@@ -10732,7 +10738,7 @@ msgstr "Google グループ"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "アドオンフォーラム"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
@@ -11408,7 +11414,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "アドオンギャラリー"
 
 #: apps/pages/templates/pages/faq.html:172
 msgid "How do I choose between add-ons that seem to do the same thing?"
@@ -12395,27 +12401,27 @@ msgstr "このコレクションを共有"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr ""
+msgstr "アドオンが見つかりません。"
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
-msgstr ""
+msgstr "このアドオンの所有者ではありません。"
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "マルチパートファイルデータに「upload」キーが含まれていません。"
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "バージョンが install.rdf と一致しません。"
 
 #: apps/signing/views.py:71
 msgid "Version already exists."
-msgstr ""
+msgstr "バージョンは既に存在します。"
 
 #: apps/signing/views.py:106
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "このアドオンとバージョンのファイルはまだアップロードされていません。"
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
@@ -13595,7 +13601,7 @@ msgstr ""
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "注:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
@@ -13622,55 +13628,55 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "郵送先住所"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "フルネーム"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "住所 1"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "住所 2"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "市/町"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "州/県 (該当する場合)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "郵便番号 (該当する場合)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "国"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "電話番号"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "T シャツの情報"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "シャツのサイズ"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "送信時に Google Forms へリダイレクトされます。"
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "T シャツをリクエスト"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
