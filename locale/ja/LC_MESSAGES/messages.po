@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-14 11:17+0000\n"
+"PO-Revision-Date: 2015-11-15 04:16+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5955,31 +5955,31 @@ msgstr "AMO の審査担当者になって、あなたのアドオンの審査�
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
 "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
+msgstr "あなたのアドオンは署名され、使えるようになりました。ここからダウンロードできます:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:64
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr ""
+msgstr "あなたのアドオンは非掲載事前審査に提出されました。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+msgstr "あなたのアドオンは非掲載本審査に提出されました。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr ""
+msgstr "エディタによる審査と署名が終わり次第、メールでお知らせします。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "このアドオンは当サイト上では公開されません。"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid ""
 "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's "
 "developer page</a>."
-msgstr ""
+msgstr "このアドオンの新バージョンは <a href=\"{0}\">アドオン開発者ページ</a> でアップロードできます。"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
@@ -6047,7 +6047,7 @@ msgstr "洗練されたアドオン向けです"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "アドオンがインストーラに同梱される場合は必須"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
@@ -6151,7 +6151,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/upload.html:60
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "このファイルの対応プラットフォーム"
 
 #: apps/devhub/templates/devhub/addons/submit/upload.html:68
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:65
@@ -6162,30 +6162,32 @@ msgstr "管理者による上書き"
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:77
 msgid ""
 "Looks like your add-on requires a manual review before it can be signed."
-msgstr ""
+msgstr "このアドオンは署名前に手作業による審査が必要なようです。"
 
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox アドオン配布規約"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "API 認証情報"
 
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"この機能は鋭意開発中です。何か問題を発見した場合は <a target=\"_blank\" "
+"href=\"%(bug_link)s\">バグを報告</a> してください。"
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT 発行者"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT 秘密鍵"
 
 #: apps/devhub/templates/devhub/api/key.html:36
 msgid ""
@@ -6194,22 +6196,25 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"API リクエストを行うには、<a href=\"%(jwt_url)s\">JWT (JSON Web トークン)</a> "
+"を認証ヘッダとして送信してください。以下の <a href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> "
+"ライブラリを使った例のように、リクエストごとに JWT を生成する必要があります。"
 
 #: apps/devhub/templates/devhub/api/key.html:56
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
+msgstr "詳細は <a href=\"%(docs_url)s\">ドキュメント</a> を参照してください。"
 
 #: apps/devhub/templates/devhub/api/key.html:62
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "あなたはまだ API 認証情報を持っていません。"
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "認証情報を無効化して再生成"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "新しい認証情報を生成"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6232,6 +6237,8 @@ msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Mozilla Add-ons "
+"チームへの問い合わせに関心を持っていただき、ありがとうございます。あなたのリクエストが適切な担当者に届くよう、このページを注意深く読んでください。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
@@ -6244,10 +6251,11 @@ msgid ""
 "that add-on's author through the support channels listed on the add-on's "
 "listing page."
 msgstr ""
+"特定のアドオンについて「どうやってこのアドオンを使ったら良いか」「この機能が正しく動作しないのはなぜか」といったサポート関連の質問がある場合は、そのアドオンの紹介ページに記載されているサポートチャンネルを通じてアドオンの作者に問い合わせてください。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "アドオンの審査に関する質問"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
@@ -6261,6 +6269,8 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
+"エディタによるアドオンの審査について質問がある場合や、ポリシー違反について報告したい場合は、%(mail_editors)s "
+"までメールを送ってください。<strong>アドオンの報告はほぼすべてこのカテゴリに当てはまります</strong>。なお、メール本文には、当該アドオンへのリンクとあなたの質問や意見に関する詳細を必ず含めてください。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6268,7 +6278,7 @@ msgstr "アドオンのセキュリティ脆弱性"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6280,6 +6290,11 @@ msgid ""
 "policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"アドオンにセキュリティ脆弱性を見つけた場合、それが当サイトに掲載されているかどうかに関わらず、Mozilla "
+"はあなたの発見に非常に関心があり、アドオン作者と協力してできるだけ早くその問題を修正します。アドオンのセキュリティ問題は <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> もしくはメール %(mail_admins)s を通じて <a "
+"href=\"http://www.mozilla.org/projects/security/security-bugs-"
+"policy.html\">内密に</a> 報告できます。"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
