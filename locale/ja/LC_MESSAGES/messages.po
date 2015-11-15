@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-15 04:16+0000\n"
+"PO-Revision-Date: 2015-11-15 05:08+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6307,6 +6307,9 @@ msgid ""
 " a bug report</a> in Bugzilla, including the location of the problem and how"
 " you encountered it."
 msgstr ""
+"当サイトに関して問題を見つけた場合、ぜひ私たちの方で修正したいと思います。Bugzilla に<a "
+"href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">バグを報告</a>"
+" して、問題が起きている箇所とその再現方法をお知らせください。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -6328,13 +6331,17 @@ msgid ""
 "provided. There is no limit to the number of versions that can be submitted,"
 " but please remember that versions must be reviewed by an editor."
 msgstr ""
+"開発者には、バグの修正、機能の追加、その他一般的な改善のためにアドオンの更新を提供するよう推奨します。アドオンの新バージョンには <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">より大きいバージョン番号</a>"
+" "
+"を付けなければならず、当サイト上で提供されている開発者ツールを通じて登録できます。登録可能なバージョンの数に制限はありませんが、各バージョンはエディタによる審査を受ける必要があることを念頭に置いてください。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid ""
 "New versions will be added to a pending review queue, and any additional "
 "versions submitted before the review is completed will move that version to "
 "the end of the queue."
-msgstr ""
+msgstr "新バージョンは審査待ちリストに追加され、審査完了前に新たなバージョンが登録された場合、そのバージョンは審査待ちの最後尾に回されます。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
@@ -6352,6 +6359,9 @@ msgid ""
 "version string. If you understand regex format, here's what we look for in "
 "the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
+"ベータチャンネルを作成するには、<code>a,b,alpha,beta,pre,rc</code> "
+"のいずれかの文字列を含めた固有のバージョンを付けたファイルをアップロードしてください。末尾には任意で番号も付けられますが、これらの文字列はバージョン文字列の後に足さなければなりません。正規表現で表した場合、バージョン番号は"
+" <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code> のようになります。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
@@ -6359,6 +6369,8 @@ msgid ""
 "be marked as a beta version. Users of add-ons with these unique version "
 "numbers will automatically be served the newest beta updates."
 msgstr ""
+"この要件を満たしたファイルが AMO "
+"にアップロードされると、自動的にベータ版と判定されます。そうした固有のバージョン番号を持ったアドオンのユーザには、最新のベータ版が自動的に配信されます。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -6372,6 +6384,11 @@ msgid ""
 "and not version number, so users will always get the most recent channel "
 "update regardless of any kind of alphabetical sorting."
 msgstr ""
+"私たちはそれらを「ベータ版」と呼んでいますが、あなたは必要に応じてこのチャンネルをナイトリー、アルファ、あるいはプレリリース版として使うこともできます。なお、そうした目的のためのチャンネルは"
+" 1 つだけしかなく、登録された最新のアドオンがこのチャンネル上のユーザ全員に配信されます。リリースチャンネルに "
+"<code>1.0beta1</code> をアップロードし、その後で <code>1.1alpha1</code> "
+"をアップロードした場合、<code>1.0beta1</code> のユーザ全員に <code>1.1alpha1</code> "
+"への更新が提供されます。更新はバージョン番号ではなく登録日に応じて配信されるため、バージョン文字列のアルファベット順に関わらず、ユーザは常に最新の更新を受け取ることになります。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -6387,6 +6404,8 @@ msgid ""
 "demoted from fully-reviewed status, disabled, or permanently removed from "
 "the site."
 msgstr ""
+"重要なセキュリティ問題やポリシー違反を解決するため、一定期間内にアドオンを更新するよう Mozilla "
+"から作者に依頼するといった状況がごくまれに発生します。私たちは作者と協力してある程度スケジュールに配慮しますが、その問題が相当深刻であった場合、要請された修正を行った更新を提供できないアドオンは、本審査のステータスを取り消されたり、無効化されたり、当サイトから完全に削除されたりする可能性もあります。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -6400,6 +6419,8 @@ msgid ""
 "provided. No interaction with Mozilla representatives is necessary for a "
 "transfer of ownership."
 msgstr ""
+"アドオンには、更新や紹介ページの管理を行う権限を持ったユーザを複数指定できます。アドオンの既存の作者は、当サイト上の開発者ツールを通じて、アドオンの所有権を委譲したり別の開発者を紹介ページに追加したりすることが可能です。所有権の委譲に関して"
+" Mozilla の担当者と相談する必要はありません。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
 msgid ""
@@ -6407,6 +6428,8 @@ msgid ""
 "listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's "
 "current owner."
 msgstr ""
+"アドオンの現在の所有者から <a href=\"%(link_contact)s\">連絡</a> があった場合、Mozilla "
+"はそのアドオンの権限付与に関するサポートを提供します。"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
