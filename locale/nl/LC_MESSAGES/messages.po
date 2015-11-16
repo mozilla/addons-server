@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-10-27 20:40+0000\n"
+"PO-Revision-Date: 2015-11-16 08:07+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445978410.0\n"
+"X-POOTLE-MTIME: 1447661250.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1264,7 +1264,7 @@ msgstr "Accepteren"
 
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:49
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Add-ons zijn momenteel niet beschikbaar in Firefox voor iOS."
 
 #: apps/addons/templates/addons/mobile/home.html:12 templates/mobile/base_addons.html:51
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -2161,7 +2161,7 @@ msgstr "Pictogram"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Vul dit veld niet in, het wordt gebruikt om bots te vangen"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -4050,10 +4050,12 @@ msgstr "Volledige beoordeling aangevraagd."
 #: apps/devhub/views.py:1780
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
+"Uw oude referenties zijn ingetrokken en niet meer geldig. Zorg ervoor dat u "
+"alle API-clients bijwerkt met de nieuwe referenties."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr ""
+msgstr "Nieuwe API-sleutel gemaakt"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -5218,6 +5220,8 @@ msgstr "API-referenties"
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Deze functie is in actieve ontwikkeling. Als u een probleem vindt, <a "
+"target=\"_blank\" href=\"%(bug_link)s\">meld dan een bug</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
@@ -5245,11 +5249,11 @@ msgstr "U hebt nog geen API-referenties."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Referenties intrekken en opnieuw genereren"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Nieuwe referenties genereren"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -10794,27 +10798,27 @@ msgstr "Deze collectie delen"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr ""
+msgstr "Kon add-on niet vinden."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Deze add-on is niet van u."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "‘upload’-sleutel in multipart-bestandsgegevens ontbreekt."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "Versie komt niet overeen met install.rdf."
 
 #: apps/signing/views.py:71
 msgid "Version already exists."
-msgstr ""
+msgstr "Versie bestaat al."
 
 #: apps/signing/views.py:106
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Geen geüpload bestand voor die add-on en versie."
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
