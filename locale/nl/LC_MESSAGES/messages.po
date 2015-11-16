@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-16 20:31+0000\n"
+"PO-Revision-Date: 2015-11-16 20:32+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1447705895.0\n"
+"X-POOTLE-MTIME: 1447705926.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -15757,7 +15757,7 @@ msgstr "Juridische kennisgevingen"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr "commit fail"
+msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:4
 msgid "Features"
