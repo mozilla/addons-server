@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real as translation
+from django.utils.translation import override, trans_real
 
 import caching.base as caching
 import commonware.log
@@ -496,7 +496,9 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                         _current_version=None, guid=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
-            send_mail(subject, email_msg, recipient_list=to)
+            # Don't localize email to admins, use 'en-US' always.
+            with override('en-US'):
+                send_mail(subject, email_msg, recipient_list=to)
         else:
             # Real deletion path.
             super(Addon, self).delete()
@@ -521,7 +523,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                              settings.HIDDEN_LANGUAGES) and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
-            addon.default_locale = to_language(translation.get_language())
+            addon.default_locale = to_language(trans_real.get_language())
 
         return addon
 
@@ -648,7 +650,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return categories[0] if categories else None
 
     def language_ascii(self):
-        lang = translation.to_language(self.default_locale)
+        lang = trans_real.to_language(self.default_locale)
         return settings.LANGUAGES.get(lang)
 
     @property
@@ -1784,7 +1786,7 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def update_url(self):
-        locale = settings.LANGUAGE_URL_MAP.get(translation.get_language())
+        locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
         return settings.NEW_PERSONAS_UPDATE_URL % {
             'locale': locale or settings.LANGUAGE_CODE,
             'id': self.addon.id
