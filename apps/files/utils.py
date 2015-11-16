@@ -97,7 +97,10 @@ class Extractor(object):
         elif os.path.exists(package_json):
             return PackageJSONExtractor(package_json).parse()
         elif os.path.exists(manifest_json):
-            return ManifestJSONExtractor(manifest_json).parse()
+            if waffle.switch_is_active('webextensions'):
+                return ManifestJSONExtractor(manifest_json).parse()
+            else:
+                raise forms.ValidationError("WebExtensions aren't allowed yet")
         else:
             raise forms.ValidationError(
                 "No install.rdf or package.json or manifest.json found")
