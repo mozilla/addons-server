@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-13 17:30+0000\n"
+"PO-Revision-Date: 2015-11-16 18:17+0000\n"
 "Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -208,7 +208,7 @@ msgstr "Colaboración para {0}"
 
 #: apps/addons/views.py:594
 msgid "Abuse reported."
-msgstr "Informe de abuso enviado."
+msgstr "Informe de uso indebido enviado."
 
 #: apps/addons/widgets.py:50
 msgid "My add-on doesn't fit into any of the categories"
@@ -531,7 +531,7 @@ msgstr "Promedio de usuarios diarios"
 
 #: apps/addons/templates/addons/details_box.html:113
 msgid "Abuse Reports"
-msgstr "Informes de abuso"
+msgstr "Informes de uso indebido"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:125
@@ -1106,7 +1106,7 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details-more.html:23
 #: apps/addons/templates/addons/impala/details.html:335
 msgid "Report Abuse"
-msgstr "Informar de abuso"
+msgstr "Informar de uso indebido"
 
 #: apps/addons/templates/addons/report_abuse.html:10
 msgid ""
@@ -2212,11 +2212,11 @@ msgstr "Aplicación deshabilitada"
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
 "{addon} se ha remitido a un superior debido al gran número de informes de "
-"abuso."
+"uso indebido."
 
 #: apps/amo/log.py:426
 msgid "High Abuse Reports"
-msgstr "Elevado número de informes de abusos"
+msgstr "Elevado número de informes de uso indebido"
 
 #: apps/amo/log.py:433
 msgid "{addon} escalated by reviewer."
@@ -10202,11 +10202,11 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Informes de abuso"
+msgstr "{addon} :: Informes de uso indebido"
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr "Informes de abuso sobre {addon} ({num})"
+msgstr "Informes de uso indebido sobre {addon} ({num})"
 
 #: apps/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -14035,7 +14035,7 @@ msgstr "Este complemento no te pertenece."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Falta la clave \"upload\" en los datos del fichero multipart."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
