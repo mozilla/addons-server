@@ -17,12 +17,12 @@ def update_system_path():
 
     ROOT = os.path.dirname(os.path.abspath(__file__))
 
-    prev_sys_path = list(sys.path)
+    prev_sys_path = set(sys.path)
 
     site.addsitedir(os.path.join(ROOT, 'apps'))
 
     # Move the new items to the front of sys.path.
-    sys.path.sort(key=lambda name: name in prev_sys_path)
+    sys.path.sort(key=prev_sys_path.__contains__)
 
 
 def filter_warnings():
