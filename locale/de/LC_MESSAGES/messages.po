@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-12 21:26+0000\n"
+"PO-Revision-Date: 2015-11-16 19:42+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4697,7 +4697,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:503
 msgid "Override failed validation"
-msgstr "Validierung des Überschreibens fehlgeschlagen"
+msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
 #: apps/devhub/forms.py:507
 msgid "Submit my add-on for manual review."
