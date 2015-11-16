@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real as translation
+from django.utils.translation import trans_real
 
 import caching.base as caching
 import commonware.log
@@ -32,8 +32,8 @@ from amo import helpers
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
-                       JSONEncoder, send_mail, slugify, sorted_groupby, timer,
-                       to_language, urlparams)
+                       JSONEncoder, no_translation, send_mail, slugify,
+                       sorted_groupby, timer, to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from reviews.models import Review
@@ -454,8 +454,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             to = [settings.FLIGTAR]
             user = amo.get_user()
 
+            # Don't localize email to admins, use 'en-US' always.
+            with no_translation():
+                # The types are lazy translated in apps/constants/base.py.
+                atype = amo.ADDON_TYPE.get(self.type).upper()
             context = {
-                'atype': amo.ADDON_TYPE.get(self.type).upper(),
+                'atype': atype,
                 'authors': [u.email for u in self.authors.all()],
                 'adu': self.average_daily_users,
                 'guid': self.guid,
@@ -521,7 +525,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                              settings.HIDDEN_LANGUAGES) and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
-            addon.default_locale = to_language(translation.get_language())
+            addon.default_locale = to_language(trans_real.get_language())
 
         return addon
 
@@ -648,7 +652,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return categories[0] if categories else None
 
     def language_ascii(self):
-        lang = translation.to_language(self.default_locale)
+        lang = trans_real.to_language(self.default_locale)
         return settings.LANGUAGES.get(lang)
 
     @property
@@ -1784,7 +1788,7 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def update_url(self):
-        locale = settings.LANGUAGE_URL_MAP.get(translation.get_language())
+        locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
         return settings.NEW_PERSONAS_UPDATE_URL % {
             'locale': locale or settings.LANGUAGE_CODE,
             'id': self.addon.id
