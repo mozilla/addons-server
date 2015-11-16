@@ -809,6 +809,12 @@ class TestReset(UserViewBase):
                                      'new_password2': 'password1'})
         eq_(res.status_code, 302)
 
+    def test_reset_incorrect_padding(self):
+        """Fixes #929. Even if the b64 padding is incorrect, don't 500."""
+        token = ["1kql8", "2xg-9f90e30ba5bda600910d"]
+        res = self.client.get(reverse('users.pwreset_confirm', args=token))
+        assert not res.context['validlink']
+
 
 class TestLogout(UserViewBase):
 
