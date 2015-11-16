@@ -3,7 +3,6 @@ required for Olympia to start up correctly."""
 
 import logging
 import os
-import site
 import sys
 import warnings
 
@@ -16,13 +15,8 @@ def update_system_path():
     are importable without the `apps.` prefix."""
 
     ROOT = os.path.dirname(os.path.abspath(__file__))
-
-    prev_sys_path = set(sys.path)
-
-    site.addsitedir(os.path.join(ROOT, 'apps'))
-
-    # Move the new items to the front of sys.path.
-    sys.path.sort(key=prev_sys_path.__contains__)
+    # Insert the 'apps' folder to the front of sys.path so it takes precedence.
+    sys.path.insert(0, os.path.join(ROOT, 'apps'))
 
 
 def filter_warnings():
