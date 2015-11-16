@@ -599,7 +599,9 @@ function bind_viewer(nodes) {
                     var $self = $(this);
                     var $ul = $self.parent().next();
 
-                    $.each(['warning', 'error', 'notice'], function(i, type) {
+                    $.each(['warning', 'warning-signing',
+                            'error', 'error-signing',
+                            'notice', 'notice-signing'], function(i, type) {
                         if ($ul.find('.' + type + ':eq(0)').length) {
                             $self.addClass(type);
                         }
