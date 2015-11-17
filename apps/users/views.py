@@ -668,7 +668,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
     try:
         uid_int = urlsafe_base64_decode(uidb64)
         user = UserProfile.objects.get(id=uid_int)
-    except (ValueError, UserProfile.DoesNotExist):
+    except (ValueError, UserProfile.DoesNotExist, TypeError):
         pass
 
     if user is not None and default_token_generator.check_token(user, token):
