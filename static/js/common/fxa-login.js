@@ -1,8 +1,8 @@
 (function() {
     function getClient() {
         return new FxaRelierClient(config.clientId, {
-        contentHost: config.contentHost,
-        oauthHost: config.oauthHost,
+            contentHost: config.contentHost,
+            oauthHost: config.oauthHost,
         });
     }
 
