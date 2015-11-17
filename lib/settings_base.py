@@ -762,7 +762,6 @@ MINIFY_BUNDLES = {
         ),
         'fxa': [
             'js/lib/fxa-relier-client.js',
-            'js/lib/fetch.js',
             'js/common/fxa-login.js',
         ],
         'zamboni/discovery': (

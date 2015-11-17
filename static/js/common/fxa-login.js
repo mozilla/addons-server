@@ -46,19 +46,11 @@
         fxaLogin().then(function(response) {
             console.log('[FxA] Login success', response);
             var headers = new Headers();
-            fetch(config.loginUri, {
-                body: JSON.stringify({
-                    action: response.action,
-                    code: response.code,
-                    state: response.state,
-                    client_id: config.clientId,
-                }),
-                credentials: 'same-origin',
-                headers: new Headers({
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                }),
-                method: 'POST',
+            $.post(config.loginUri, {
+                action: response.action,
+                code: response.code,
+                state: response.state,
+                client_id: config.clientId,
             }).then(function(response) {
                 console.log('[FxA] Server login response', response);
                 window.location.reload();
