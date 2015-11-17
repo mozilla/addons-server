@@ -146,7 +146,7 @@ class ValidationAnnotator(object):
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, check=False)
-            except ValidationError, form_error:
+            except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))
                 addon_data = None

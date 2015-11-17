@@ -1,16 +1,19 @@
 import json
 from tempfile import NamedTemporaryFile
 
+import mock
 import pytest
 from nose.tools import eq_
+
+from django import forms
 
 import amo
 import amo.tests
 from addons.models import Addon
 from applications.models import AppVersion
 from files.models import File
-from files.utils import (find_jetpacks, is_beta, ManifestJSONExtractor,
-                         PackageJSONExtractor)
+from files.utils import (find_jetpacks, is_beta, Extractor,
+                         ManifestJSONExtractor, PackageJSONExtractor)
 from versions.models import Version
 
 
@@ -117,6 +120,79 @@ class TestFindJetpacks(amo.tests.TestCase):
         assert all(f.needs_upgrade for f in files[1:])
 
 
+class TestExtractor(amo.tests.TestCase):
+
+    def os_path_exists_for(self, path_to_accept):
+        """Helper function that returns a function for a mock.
+
+        The returned function will return True if the path passed as parameter
+        endswith the "path_to_accept".
+        """
+        return lambda path: path.endswith(path_to_accept)
+
+    def test_no_manifest(self):
+        with self.assertRaises(forms.ValidationError) as exc:
+            Extractor.parse('foobar')
+        assert exc.exception.message == (
+            "No install.rdf or package.json or manifest.json found")
+
+    @mock.patch('files.utils.ManifestJSONExtractor')
+    @mock.patch('files.utils.PackageJSONExtractor')
+    @mock.patch('files.utils.RDFExtractor')
+    @mock.patch('files.utils.os.path.exists')
+    def test_parse_install_rdf(self, exists_mock, rdf_extractor,
+                               package_json_extractor,
+                               manifest_json_extractor):
+        exists_mock.side_effect = self.os_path_exists_for('install.rdf')
+        Extractor.parse('foobar')
+        assert rdf_extractor.called
+        assert not package_json_extractor.called
+        assert not manifest_json_extractor.called
+
+    @mock.patch('files.utils.ManifestJSONExtractor')
+    @mock.patch('files.utils.PackageJSONExtractor')
+    @mock.patch('files.utils.RDFExtractor')
+    @mock.patch('files.utils.os.path.exists')
+    def test_parse_package_json(self, exists_mock, rdf_extractor,
+                                package_json_extractor,
+                                manifest_json_extractor):
+        exists_mock.side_effect = self.os_path_exists_for('package.json')
+        Extractor.parse('foobar')
+        assert not rdf_extractor.called
+        assert package_json_extractor.called
+        assert not manifest_json_extractor.called
+
+    @mock.patch('files.utils.ManifestJSONExtractor')
+    @mock.patch('files.utils.PackageJSONExtractor')
+    @mock.patch('files.utils.RDFExtractor')
+    @mock.patch('files.utils.os.path.exists')
+    def test_parse_manifest_json(self, exists_mock, rdf_extractor,
+                                 package_json_extractor,
+                                 manifest_json_extractor):
+        self.create_switch('webextensions')
+        exists_mock.side_effect = self.os_path_exists_for('manifest.json')
+        Extractor.parse('foobar')
+        assert not rdf_extractor.called
+        assert not package_json_extractor.called
+        assert manifest_json_extractor.called
+
+    @mock.patch('files.utils.ManifestJSONExtractor')
+    @mock.patch('files.utils.PackageJSONExtractor')
+    @mock.patch('files.utils.RDFExtractor')
+    @mock.patch('files.utils.os.path.exists')
+    def test_parse_manifest_json_no_waffle(self, exists_mock, rdf_extractor,
+                                           package_json_extractor,
+                                           manifest_json_extractor):
+        # Here we don't create the waffle switch to enable it.
+        exists_mock.side_effect = self.os_path_exists_for('manifest.json')
+        with self.assertRaises(forms.ValidationError) as exc:
+            Extractor.parse('foobar')
+        assert exc.exception.message == "WebExtensions aren't allowed yet"
+        assert not rdf_extractor.called
+        assert not package_json_extractor.called
+        assert not manifest_json_extractor.called
+
+
 class TestPackageJSONExtractor(amo.tests.TestCase):
 
     def parse(self, base_data):
@@ -133,8 +209,8 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         with NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
-            mje = ManifestJSONExtractor(file_.name)
-            assert mje.data == data
+            pje = PackageJSONExtractor(file_.name)
+            assert pje.data == data
 
     def test_guid(self):
         """Use id for the guid."""
