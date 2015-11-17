@@ -13,7 +13,7 @@ import pytest
 
 import amo
 import amo.tests
-from files.utils import extract_xpi, parse_xpi
+from files.utils import extract_xpi
 from lib.crypto import packaged, tasks
 from versions.compare import version_int
 
@@ -575,25 +575,3 @@ class TestTasks(amo.tests.TestCase):
             assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
-
-    def test_bump_version_in_install_rdf(self):
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '1.3.1-signed'
-
-    def test_bump_version_in_alt_install_rdf(self):
-        with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
-                                 self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '2.1.106.1-signed'
-
-    def test_bump_version_in_package_json(self):
-        with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-format-0.0.1.xpi',
-                self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '0.0.1.1-signed'

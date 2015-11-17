@@ -8,6 +8,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial, wraps
+from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
@@ -841,6 +842,19 @@ def copy_file(source, dest, overwrite=False):
         os.unlink(dest)
 
 
+@contextmanager
+def copy_file_to_temp(source):
+    """Context manager that copies the source file to a temporary destination.
+
+    The files are relative to the root folder (containing the settings file).
+    The temporary file is yielded by the context manager.
+
+    The copied file is removed on exit."""
+    temp_filename = get_temp_filename()
+    with copy_file(source, temp_filename):
+        yield temp_filename
+
+
 # This sets up a module that we can patch dynamically with URLs.
 @override_settings(ROOT_URLCONF='amo.tests.dynamic_urls')
 class WithDynamicEndpoints(TestCase):
@@ -868,3 +882,9 @@ class WithDynamicEndpoints(TestCase):
 
     def _clean_up_dynamic_urls(self):
         dynamic_urls.urlpatterns = None
+
+
+def get_temp_filename():
+    """Get a unique, non existing, temporary filename."""
+    with NamedTemporaryFile() as tempfile:
+        return tempfile.name
