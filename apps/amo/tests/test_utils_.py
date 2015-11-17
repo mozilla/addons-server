@@ -6,6 +6,7 @@ from nose.tools import eq_, ok_
 
 
 import amo
+import amo.tests
 from amo.utils import attach_trans_dict, translations_for_field, walkfiles
 from addons.models import Addon
 from versions.models import Version

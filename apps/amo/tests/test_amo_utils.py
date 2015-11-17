@@ -76,6 +76,25 @@ def test_resize_transparency():
             os.remove(dest)
 
 
+def test_resize_transparency_for_P_mode_bug_1181221():
+    # We had a monkeypatch that was added in
+    # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5  # noqa
+    # which caused the issue in bug 1181221. Since then we upgraded Pillow, and
+    # we don't need it anymore. We thus don't have this issue anymore.
+    src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
+                       'images', 'icon64.png')
+    dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
+    expected = src.replace('.png', '-expected.png')
+    try:
+        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
+        with open(dest) as dfh:
+            with open(expected) as efh:
+                assert dfh.read() == efh.read()
+    finally:
+        if os.path.exists(dest):
+            os.remove(dest)
+
+
 def test_to_language():
     tests = (('en-us', 'en-US'),
              ('en_US', 'en-US'),
