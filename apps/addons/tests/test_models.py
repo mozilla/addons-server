@@ -1326,6 +1326,16 @@ class TestAddonModels(amo.tests.TestCase):
         self.delete()
         assert 'DELETED BY: Unknown' in mail.outbox[0].body
 
+    def test_delete_mail_not_localized(self):
+        """Don't localize the email sent to the admins using the user's
+        locale."""
+        with self.activate('pl'):
+            self.delete()
+        admin_mail = mail.outbox[0]
+        # Make sure the type (EXTENSION) isn't localized.
+        assert 'Deleting EXTENSION a3615 (3615)' in admin_mail.subject
+        assert 'The following EXTENSION was deleted' in admin_mail.body
+
     def test_view_source(self):
         # view_source should default to True.
         a = Addon.objects.create(type=1)

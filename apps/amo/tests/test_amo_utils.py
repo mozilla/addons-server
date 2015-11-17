@@ -121,15 +121,18 @@ def test_no_translation():
     `no_translation` provides a context where only the default
     language is active.
     """
-    lang = translation.get_language()
-    translation.activate('pt-br')
-    with no_translation():
-        eq_(translation.get_language(), settings.LANGUAGE_CODE)
-    eq_(translation.get_language(), 'pt-br')
-    with no_translation('es'):
-        eq_(translation.get_language(), 'es')
-    eq_(translation.get_language(), 'pt-br')
-    translation.activate(lang)
+    old_lang = translation.get_language()
+    try:
+        translation.activate('pt-br')
+        with no_translation():
+            assert (translation.get_language().lower() ==
+                    settings.LANGUAGE_CODE.lower())
+        assert translation.get_language() == 'pt-br'
+        with no_translation('es'):
+            assert translation.get_language() == 'es'
+        assert translation.get_language() == 'pt-br'
+    finally:
+        translation.activate(old_lang)
 
 
 class TestLocalFileStorage(BaseTestCase):
