@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-09-27 18:00+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2015-11-18 09:24+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -14238,24 +14238,28 @@ msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Надайте нам трохи більше інформації про себе. Всі ці поля є необов'язковими,"
+" але вони допоможуть іншим користувачам дізнатись про вас."
 
 #: apps/users/templates/users/edit.html:103
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Ця URL-адреса буде видима лише в тому випадку, якщо ви є розробником."
 
 #: apps/users/templates/users/edit.html:112
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Оберіть світлину&hellip;"
 
 #: apps/users/templates/users/edit.html:116
 msgid "Delete current photo"
-msgstr ""
+msgstr "Видалити поточну світлину"
 
 #: apps/users/templates/users/edit.html:123
 msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Це типова локаль, яка використовується для відображення інформації про вас "
+"(на зразок вашого опису)."
 
 #: apps/users/templates/users/edit.html:131
 msgid ""
@@ -14267,11 +14271,11 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:140
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Дозволено HTML: {0}. Посилання заборонені."
 
 #: apps/users/templates/users/edit.html:147
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Різне"
 
 #: apps/users/templates/users/edit.html:149
 msgid "Decide what collections should be shown in your profile."
@@ -14294,6 +14298,9 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
+"Час від часу Mozilla може надсилати вам електронні листи про випуски, що "
+"наближаються, та про події додатків. Будь ласка, оберіть теми, які вас "
+"цікавлять."
 
 #: apps/users/templates/users/edit.html:184
 msgid ""
@@ -14341,14 +14348,14 @@ msgstr "Адреса ел.пошти"
 #: apps/users/templates/users/login_form.html:29
 #: apps/users/templates/users/mobile/login.html:44
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Запам'ятати мене на цьому пристрої"
 
 #: apps/users/templates/users/login_form.html:39
 #: apps/users/templates/users/pwreset_complete.html:15
 #: apps/users/templates/users/mobile/login.html:55
 #: templates/mobile/header_auth.html:8
 msgid "Log in"
-msgstr ""
+msgstr "Вхід"
 
 #: apps/users/templates/users/login_help.html:3
 #: apps/users/templates/users/mobile/login.html:61
@@ -14367,7 +14374,7 @@ msgstr "Я забув(ла) свій пароль."
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Вхід виконано <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3
 #: apps/users/templates/users/newpw_sent.html:8
@@ -14387,7 +14394,7 @@ msgstr "Інформація про користувача {0}"
 
 #: apps/users/templates/users/profile.html:12
 msgid "Edit profile"
-msgstr ""
+msgstr "Змінити профіль"
 
 #: apps/users/templates/users/profile.html:17
 msgid "Manage user"
@@ -14468,12 +14475,16 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Посилання для скидання паролю недійсне, можливо тому, що ним вже "
+"скористались. Створіть новий запит на скидання паролю."
 
 #: apps/users/templates/users/pwreset_request.html:15
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Забули пароль? Введіть свою адресу електронної пошти внизу і ми надішлемо "
+"інструкції для встановлення нового."
 
 #: apps/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
@@ -14485,6 +14496,10 @@ msgid ""
 " you do not receive an email then please confirm you have entered the same "
 "email address used during account registration."
 msgstr ""
+"Лист було надіслано на відповідний обліковий запис з інформацією про "
+"подальші дії. Якщо ви не отримали лист, тоді переконайтеся в тому, що ви "
+"ввели таку саму адресу електронної пошти, яка була використана для "
+"реєстрації облікового запису."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -14499,26 +14514,32 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"Реєстрація на AMO є <strong>необов'язковою</strong>, якщо ви хочете просто "
+"завантажити та встановити загальнодоступні додатки."
 
 #: apps/users/templates/users/register.html:17
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Вам необхідно зареєструватися лише якщо:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Ви хочете залишати відгуки для додатків"
 
 #: apps/users/templates/users/register.html:20
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Ви хочете стежити за своїми улюбленими збірками додатків або створити власну"
+" збірку"
 
 #: apps/users/templates/users/register.html:21
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Ви є розробником додатку і хочете вивантажити свій додаток для хостингу на "
+"AMO"
 
 #: apps/users/templates/users/register.html:24
 msgid ""
@@ -14526,6 +14547,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Одразу після успішної реєстрації ви отримаєте електронний лист для "
+"підтвердження на надану вами адресу. Для підтвердження свого облікового "
+"запису, дотримуйтесь зазначених в ньому інструкцій."
 
 #: apps/users/templates/users/register.html:31
 msgid ""
@@ -14533,6 +14557,9 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"При бажанні, ви можете ознайомитися з нашими <a href=\"%(legal)s\" "
+"title=\"Legal Notices\">Юридичними відомостями</a> та <a "
+"href=\"%(privacy)s\" title=\"Privacy Policy\">Політикою приватності</a>."
 
 #: apps/users/templates/users/register.html:42
 #: apps/users/templates/users/register.html:89
@@ -14620,11 +14647,11 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Країна"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Телефон"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
@@ -14658,21 +14685,23 @@ msgstr ""
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Відписатися"
 
 #: apps/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Ви успішно відписалися!"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid ""
 "The email address <strong>%(email)s</strong> will no longer get messages "
 "when:"
 msgstr ""
+"На адресу електронної пошти <strong>%(email)s</strong> надалі не будуть "
+"приходити повідомлення, коли:"
 
 #: apps/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr ""
+msgstr "Додаткові дії:"
 
 #: apps/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
