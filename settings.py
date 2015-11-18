@@ -108,6 +108,7 @@ AES_KEYS = {
                                    'test-api-key.txt'),
 }
 
+# FxA config for local development only.
 FXA_ALL_CONFIG = {
     'cd5a21fafacc4744': {
         'client_id': 'cd5a21fafacc4744',

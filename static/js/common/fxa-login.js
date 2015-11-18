@@ -10,7 +10,7 @@
         "http://olympia.dev": {
             "clientId": "cd5a21fafacc4744",
             "contentHost": "https://stable.dev.lcip.org",
-            "loginUri": "http://olympia.dev/api/v3/login/",
+            "loginUri": "http://olympia.dev/api/v3/accounts/login/",
             "oauthHost": "https://oauth-stable.dev.lcip.org/v1",
             "redirectUri": "http://olympia.dev/fxa-authorize",
             "scope": "profile",
@@ -18,7 +18,7 @@
         "http://localhost:8000": {
             "clientId": "a1dc6167e57ad856",
             "contentHost": "https://stable.dev.lcip.org",
-            "loginUri": "http://olympia.dev/api/v3/login/",
+            "loginUri": "http://olympia.dev/api/v3/accounts/login/",
             "oauthHost": "https://oauth-stable.dev.lcip.org/v1",
             "redirectUri": "http://localhost:8000/fxa-authorize",
             "scope": "profile",
@@ -30,7 +30,7 @@
     }
     var fxaClient = getClient();
 
-    window.fxaLogin = function() {
+    function fxaLogin() {
         console.log('[FxA] Starting sign in');
         return fxaClient.auth.signIn({
             ui: 'lightbox',
@@ -38,7 +38,7 @@
             redirectUri: config.redirectUri,
             scope: config.scope,
         });
-    };
+    }
 
     $('body').on('click', '.fxa-login', function(e) {
         e.preventDefault();

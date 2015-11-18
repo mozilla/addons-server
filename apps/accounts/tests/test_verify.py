@@ -17,10 +17,10 @@ class TestProfile(TestCase):
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
         profile = verify.get_fxa_profile('profile-plz', {
-            'profile_uri': 'https://fxa.com/v1',
+            'profile_uri': 'https://app.fxa/v1',
         })
         assert profile == profile_data
-        self.get.assert_called_with('https://fxa.com/v1/profile', headers={
+        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
             'Authorization': 'Bearer profile-plz',
         })
 
@@ -29,10 +29,10 @@ class TestProfile(TestCase):
         self.get.return_value.status_code = 400
         self.get.json.return_value = profile_data
         profile = verify.get_fxa_profile('profile-plz', {
-            'profile_uri': 'https://fxa.com/v1',
+            'profile_uri': 'https://app.fxa/v1',
         })
         assert profile == {}
-        self.get.assert_called_with('https://fxa.com/v1/profile', headers={
+        self.get.assert_called_with('https://app.fxa/v1/profile', headers={
             'Authorization': 'Bearer profile-plz',
         })
 
@@ -51,10 +51,10 @@ class TestToken(TestCase):
         token = verify.get_fxa_token('token-plz', {
             'client_id': 'test-client-id',
             'client_secret': "don't look",
-            'oauth_uri': 'https://fxa.com/oauth/v1',
+            'oauth_uri': 'https://app.fxa/oauth/v1',
         })
         assert token == token_data
-        self.post.assert_called_with('https://fxa.com/oauth/v1/token', data={
+        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
             'code': 'token-plz',
             'client_id': 'test-client-id',
             'client_secret': "don't look",
@@ -67,10 +67,10 @@ class TestToken(TestCase):
         token = verify.get_fxa_token('token-plz', {
             'client_id': 'test-client-id',
             'client_secret': "don't look",
-            'oauth_uri': 'https://fxa.com/oauth/v1',
+            'oauth_uri': 'https://app.fxa/oauth/v1',
         })
         assert token == {}
-        self.post.assert_called_with('https://fxa.com/oauth/v1/token', data={
+        self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
             'code': 'token-plz',
             'client_id': 'test-client-id',
             'client_secret': "don't look",

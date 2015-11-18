@@ -1,10 +1,8 @@
-# Don't import any django stuff here.
-
 import requests
 
 
 def fxa_identify(code, config=None):
-    """Get an FxA profile for an access token. If idenficiation fails return
+    """Get an FxA profile for an access token. If identification fails return
     an empty dict."""
     token = get_fxa_token(code, config).get('access_token')
     if token:
