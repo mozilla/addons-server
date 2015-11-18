@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-13 11:41+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-11-18 14:07+0000\n"
+"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2811,7 +2811,8 @@ msgstr "Icona"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Non compilare questo campo, è utilizzato per individuare i bot"
+msgstr ""
+"Non completare questo campo, serve a identificare i visitatori non umani."
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -5018,12 +5019,12 @@ msgid ""
 " all API clients with the new credentials."
 msgstr ""
 "Le tue vecchie credenziali sono state revocate e non sono più valide. "
-"Ricorda di aggiornare le nuove credenziali in tutti i client API che "
-"utilizzi."
+"Ricorda di aggiornare tutti i client API che utilizzi con le nuove "
+"credenziali."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr "Creata nuova chiave API"
+msgstr "La nuova chiave API è stata creata"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -6563,7 +6564,7 @@ msgid ""
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
 "Questa funzione è ancora in fase di sviluppo. Se riscontri un problema <a "
-"target=\"_blank\" href=\"%(bug_link)s\">segnalalo in un bug</a>."
+"target=\"_blank\" href=\"%(bug_link)s\">segnalalo su bugzilla</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
@@ -14161,7 +14162,7 @@ msgstr "Condividi questa raccolta"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr "Componente aggiuntivo non trovato."
+msgstr "Impossibile trovare questo componente aggiuntivo."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
@@ -14169,7 +14170,8 @@ msgstr "Non sei il proprietario di questo componente aggiuntivo."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr "Impossibile trovare la chiave “upload” nei dati del file multiparte."
+msgstr ""
+"Impossibile trovare la chiave di “upload” tra i dati multipart del file."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
