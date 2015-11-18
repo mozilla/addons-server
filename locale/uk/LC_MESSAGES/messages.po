@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-18 09:24+0000\n"
+"PO-Revision-Date: 2015-11-18 14:57+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1806,7 +1806,7 @@ msgstr "Мій профіль"
 #: apps/amo/context_processors.py:71 apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
-msgstr "Налаштування рахунку"
+msgstr "Налаштування облікового запису"
 
 #: apps/amo/context_processors.py:74
 #: apps/discovery/templates/discovery/pane_account.html:11
@@ -2847,7 +2847,7 @@ msgstr "Вилучити з вподобань"
 #: apps/search/forms.py:17 apps/search/forms.py:89
 #: apps/users/templates/users/vcard.html:5
 msgid "Name"
-msgstr "Назва"
+msgstr "Ім'я"
 
 #: apps/bandwagon/views.py:93
 msgid "Recently Popular"
@@ -12902,7 +12902,7 @@ msgstr ""
 
 #: apps/reviews/forms.py:151 apps/reviews/templates/reviews/review.html:107
 msgid "Delete review"
-msgstr "Вилучити відгук"
+msgstr "Видалити відгук"
 
 #: apps/reviews/models.py:162
 msgid "Other (please specify)"
@@ -13000,7 +13000,7 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
-msgstr ""
+msgstr "Змінити відгук"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
@@ -14415,7 +14415,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:42
 msgid "About me"
-msgstr ""
+msgstr "Про мене"
 
 #: apps/users/templates/users/profile.html:48
 msgid "In a little more detail..."
@@ -14721,6 +14721,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"На жаль, нам не вдалося відписати вас. Посилання, за яким ви перейшли, "
+"недійсне. Однак, ви все ж можете відписатися на своїй <a "
+"href=\"%(edit_url)s\">сторінці зміни профілю</a>."
 
 #: apps/users/templates/users/vcard.html:2
 msgid "Developer Information"
