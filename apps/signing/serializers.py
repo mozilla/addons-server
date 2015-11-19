@@ -54,6 +54,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     def get_files(self, instance):
         if self.version is not None:
             return [{'download_url': f.get_signed_url('api'),
+                     'hash': f.hash,
                      'signed': f.is_signed}
                     for f in self.version.files.all()]
         else:
