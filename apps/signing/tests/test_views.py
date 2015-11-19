@@ -260,6 +260,20 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert response.data['files'][0]['download_url'] == \
             file_.get_signed_url('api')
 
+    def test_file_hash(self):
+        version_string = '3.0'
+        qs = File.objects.filter(version__addon__guid=self.guid,
+                                 version__version=version_string)
+        assert not qs.exists()
+        self.create_version(version_string)
+        response = self.get(self.url(self.guid, version_string))
+        assert response.status_code == 200
+        file_ = qs.get()
+
+        filename = self.xpi_filepath('@upload-version', version_string)
+        assert response.data['files'][0]['hash'] == \
+            file_.generate_hash(filename=filename)
+
     def test_has_failed_upload(self):
         addon = Addon.objects.get(guid=self.guid)
         FileUpload.objects.create(addon=addon, version='3.0')

@@ -110,6 +110,7 @@ property.
                 "files": [
                     {
                         "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-guid-1.0-fx+an.xpi?src=api",
+                        "hash": "sha256:1bb945266bf370170a656350d9b640cbcaf70e671cf753c410e604219cdd9267",
                         "signed": true
                     }
                 ],
@@ -125,9 +126,14 @@ property.
             }
 
     :>json active: version is active.
-    :>json files.download_url:
+    :>json files[].download_url:
         URL to :ref:`download the add-on file <download-signed-file>`.
-    :>json files.signed: if the file is signed.
+    :>json files[].hash:
+        Hash of the file contents, prefixed by the hashing algorithm used.
+        Example: ``sha256:1bb945266bf3701...`` . In the case of signed files,
+        the hash will be that of the final signed file, not the original
+        unsigned file.
+    :>json files[].signed: if the file is signed.
     :>json passed_review: if the version has passed review.
     :>json pk: the pk for this upload.
     :>json processed: if the version has been processed by the validator.
