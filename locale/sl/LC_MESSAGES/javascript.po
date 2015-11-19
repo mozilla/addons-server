@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-19 15:28+0000\n"
+"PO-Revision-Date: 2015-11-19 15:34+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -426,11 +426,11 @@ msgstr "Oglas Upravitelja dodatkov"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Predstavljeni Upravitelja dodatkov"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Več o Upravitelju dodatkov"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"

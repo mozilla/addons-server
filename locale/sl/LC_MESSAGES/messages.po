@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-10-16 10:44+0000\n"
-"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
+"PO-Revision-Date: 2015-11-19 15:52+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1706,7 +1706,7 @@ msgstr "Sprejmi"
 #: apps/addons/templates/addons/mobile/home.html:10
 #: templates/mobile/base_addons.html:49
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "V Firefoxu za iOS dodatki trenutno niso na voljo."
 
 #: apps/addons/templates/addons/mobile/home.html:12
 #: templates/mobile/base_addons.html:51
@@ -2808,7 +2808,7 @@ msgstr "Sličica"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Ne izpolnite tega polja, uporablja se za lovljenje robotov"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -5008,10 +5008,12 @@ msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
+"Vaša stara poverila so bila preklicana in niso več veljavna. Prepričajte se,"
+" da posodobite vse odjemalce API z novimi poverili."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr ""
+msgstr "Nov ključ API ustvarjen"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -6489,25 +6491,27 @@ msgstr ""
 #: apps/devhub/templates/devhub/api/agreement.html:3
 #: apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Sporazum o razširjanju dodatkov za Firefox"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Poverila API"
 
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Ta značilnost je v dejavnem razvoju. Če najdete težavo, <a target=\"_blank\""
+" href=\"%(bug_link)s\">prijavite hrošča</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
-msgstr ""
+msgstr "Izdajatelj JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid "JWT secret"
-msgstr ""
+msgstr "Skrivnost JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:36
 msgid ""
@@ -6516,6 +6520,10 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Za opravljanje zahtev API kot glavo pooblastitve pošljite <a "
+"href=\"%(jwt_url)s\">JWT (spletni žeton JSON - angl. JSON Web Token)</a>. Za"
+" vsako zahtevo boste morali ustvariti JWT, kot v naslednjem primeru z "
+"uporabo knjižnice <a href=\"%(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:56
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
@@ -6528,11 +6536,11 @@ msgstr "Nimate še poverilnice API."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Prekliči in ponovno ustvari poverila"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Ustvari nova poverila"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -13941,27 +13949,27 @@ msgstr "Deli to zbirko z drugimi"
 
 #: apps/signing/views.py:35
 msgid "Could not find addon."
-msgstr ""
+msgstr "Dodatka ni bilo mogoče najti."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Niste lastnik tega dodatka."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Manjkajoč ključ \"pošlji\" v večdelnih podatkih datoteke."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "Različica se ne ujema z install.rdf."
 
 #: apps/signing/views.py:71
 msgid "Version already exists."
-msgstr ""
+msgstr "Različica že obstaja."
 
 #: apps/signing/views.py:106
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Ni poslane datoteke za ta dodatek in različico."
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
