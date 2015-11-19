@@ -54,6 +54,9 @@
             }).then(function(response) {
                 console.log('[FxA] Server login response', response);
                 window.location.reload();
+            }, function(error) {
+                console.log('[FxA] Server login error', error);
+                alert('There was an error logging you in');
             });
         }, function() {
             console.log('[FxA] Login failed', arguments);
