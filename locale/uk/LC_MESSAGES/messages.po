@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-18 14:57+0000\n"
+"PO-Revision-Date: 2015-11-19 08:08+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1685,7 +1685,7 @@ msgstr "Погодитись"
 #: apps/addons/templates/addons/mobile/home.html:10
 #: templates/mobile/base_addons.html:49
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "В даний момент додатки недоступні на Firefox для iOS."
 
 #: apps/addons/templates/addons/mobile/home.html:12
 #: templates/mobile/base_addons.html:51
@@ -2778,6 +2778,7 @@ msgstr "Іконка"
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
+"Будь ласка, не заповнюйте це поле, воно використовується щоб зловити ботів"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -4685,6 +4686,8 @@ msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Код додатків, прив'язаних до інсталлятора, буде перевірено Mozilla перед їх "
+"підписом, та відповідатиме найвищим критеріям якості."
 
 #: apps/devhub/forms.py:562
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
@@ -4957,10 +4960,12 @@ msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
+"Ваші старі облікові дані були відкликані й більше недійсні. Переконайтеся, "
+"що всі клієнти API мають нові облікові дані."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
-msgstr ""
+msgstr "Новий ключ API створено"
 
 #: apps/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -6451,17 +6456,20 @@ msgstr "Угода Firefox про розповсюдження додатків"
 
 #: apps/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Облікові дані API"
 
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Ця функція знаходиться на стадії активної розробки. Якщо ви знайшли "
+"проблему, будь ласка <a target=\"_blank\" href=\"%(bug_link)s\">повідомте "
+"про неї</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
-msgstr ""
+msgstr "Видавець JWT"
 
 #: apps/devhub/templates/devhub/api/key.html:31
 msgid "JWT secret"
@@ -6474,6 +6482,10 @@ msgid ""
 "every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Для здійснення запитів API, надішліть <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> в якості заголовку авторизації. Вам потрібно згенерувати JWT для "
+"кожного запиту, як в наступному зразку, використовуючи бібліотеку <a "
+"href=\"%(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:56
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
@@ -6481,15 +6493,15 @@ msgstr "Зверніться до <a href=\"%(docs_url)s\">документац�
 
 #: apps/devhub/templates/devhub/api/key.html:62
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "У вас поки що немає жодних облікових даних API."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Відкликати й генерувати облікові дані"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Генерувати нові облікові дані"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6560,7 +6572,7 @@ msgstr "Вразливості безпеки додатку"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dot org"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -8037,12 +8049,16 @@ msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Ваш додаток був підписаний і може бути об'єднаний з інсталятором програми."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
+"Ваш додаток був виключений адміністратором сайту і більше не показується в "
+"нашій галереї. Якщо у вас є запитання, будь ласка, напишіть на amo-"
+"admins@mozilla.org."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8073,6 +8089,8 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"Ви отримаєте електронний лист після завершення повного розгляду, даючи вам "
+"можливість об'єднати свій додаток з інсталятором програми."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -8664,6 +8682,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Я погоджуюсь з умовами <a href=\"%(agreement_url)s\" target=\"_blank\">Угоди"
+" про розповсюдження додатків Firefox</a> і з тим, що моя інформація "
+"обробляється, як описано в <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">Повідомленні про приватність веб-сайтів, зв'язку та "
+"куків</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8754,6 +8777,11 @@ msgid ""
 "ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any "
 "bugs</a> that you encounter."
 msgstr ""
+"Подання оновлень для неопублікованих додатків для підпису зараз є відкритою "
+"бетою. Ручний перегляд може все ще вимагатися для великої кількості "
+"додатків. Будь ласка, <a href=\"%(bugzilla_url)s\" "
+"target=\"_blank\">повідомте про будь-які проблеми</a>, з якими ви "
+"стикаєтесь."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8775,6 +8803,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(bugzilla_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Поведінка бета каналу змінилася, щоб пристосуватися до <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">обов'язкового підписання "
+"додатків</a>. Новий процес в даний момент під відкритою бетою і може значно "
+"змінитися в найближчому майбутньому. Будь ласка, <a "
+"href=\"%(bugzilla_url)s\" target=\"_blank\">повідомляйте про будь-які "
+"проблеми</a>, з якими ви стикаєтесь."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8958,6 +8992,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Не розповсюджується на {0}. Розробники будуть вивантажувати нові версії для "
+"підписання і розповсюджувати додатки власноруч. (бета)"
 
 #: apps/devhub/templates/devhub/versions/list.html:127
 msgid "Current versions"
@@ -9012,6 +9048,10 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Неопубліковані додатки не потребують повного розгляду, поки вони "
+"розповсюджуються як частина інсталятора програми. Ознайомтеся з <a "
+"href=\"{link}\" target=\"_blank\">цією документацією</a> для докладної "
+"інформації."
 
 #: apps/devhub/templates/devhub/versions/list.html:223
 msgid "Request full review"
@@ -9122,11 +9162,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Прибирання додатку зі списку є незворотнім!"
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Додатки, прибрані зі списку, не можуть бути знову опубліковані."
 
 #: apps/devhub/templates/devhub/versions/list.html:321
 msgid "Are you sure you wish to unlist your add-on?"
@@ -12267,7 +12307,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Як мені встановити, керувати, або вилучити додаток?"
 
 #: apps/pages/templates/pages/faq.html:86
 msgid ""
@@ -14199,7 +14239,7 @@ msgstr ""
 #: apps/users/templates/users/edit.html:32
 #: apps/users/templates/users/register.html:48
 msgid "Username"
-msgstr ""
+msgstr "Ім'я користувача"
 
 #: apps/users/templates/users/edit.html:37
 #: apps/users/templates/users/pwreset_request.html:21
@@ -14209,13 +14249,15 @@ msgstr "Адреса ел.пошти"
 
 #: apps/users/templates/users/edit.html:43
 msgid "Change Password"
-msgstr ""
+msgstr "Змінити пароль"
 
 #: apps/users/templates/users/edit.html:51
 msgid ""
 "Change your password. If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Змінити свій пароль. Якщо ви забули пароль, ви можете <a "
+"href=\"%(reset_url)s\">скористатися формою для відновлення</a>."
 
 #: apps/users/templates/users/edit.html:57
 msgid "Old Password"
@@ -14227,11 +14269,11 @@ msgstr "Новий пароль"
 
 #: apps/users/templates/users/edit.html:70
 msgid "Confirm Password"
-msgstr ""
+msgstr "Підтвердити пароль"
 
 #: apps/users/templates/users/edit.html:77
 msgid "Profile"
-msgstr ""
+msgstr "Профіль"
 
 #: apps/users/templates/users/edit.html:79
 msgid ""
@@ -14279,7 +14321,7 @@ msgstr "Різне"
 
 #: apps/users/templates/users/edit.html:149
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Вирішіть, які збірки повинні бути показані у вашому профілі."
 
 #: apps/users/templates/users/edit.html:157
 msgid "Display the collections I have created"
@@ -14287,7 +14329,7 @@ msgstr "Показувати створені мною збірки"
 
 #: apps/users/templates/users/edit.html:164
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Показувати збірки, за якими я стежу"
 
 #: apps/users/templates/users/edit.html:172
 msgid "Notifications"
@@ -14312,23 +14354,23 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:194
 msgid "Admin"
-msgstr ""
+msgstr "Адмін"
 
 #: apps/users/templates/users/edit.html:226
 msgid "Delete Account"
-msgstr "Видалити рахунок"
+msgstr "Видалити обліковий запис"
 
 #: apps/users/templates/users/edit.html:228
 msgid "Update Account"
-msgstr ""
+msgstr "Оновити обліковий запис"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "нічого"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "все"
 
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
@@ -14619,31 +14661,31 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Поштова адреса"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Повне ім'я"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Адреса 1"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Адреса 2"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Місто/Селище"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Штат/Область (за потреби)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Поштовий індекс (за потреби)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
@@ -14655,19 +14697,19 @@ msgstr "Телефон"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Інформація про футболку"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Розмір футболки"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Ви будете перенаправлені до Форм Google відразу ж після подання."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Запит футболки"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
@@ -14676,12 +14718,18 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Шкода, але у відповідності з правом на нашу спеціальну футболку, ви повинні "
+"бути розробником принаймні одного додатку зі списку, одного додатку не зі "
+"списку але підписаного, або будь-якої кількості тем із загальною середньою "
+"кількістю щоденних користувачів 10,000."
 
 #: apps/users/templates/users/tougher_password.html:2
 msgid ""
 "For your account a password must contain at least 8 characters including "
 "letters and numbers."
 msgstr ""
+"Для вашого облікового запису пароль повинен містити щонайменше 8 символів, "
+"включаючи літери й цифри."
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -14705,15 +14753,15 @@ msgstr "Додаткові дії:"
 
 #: apps/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
-msgstr ""
+msgstr "змінити свої налаштування сповіщення"
 
 #: apps/users/templates/users/unsubscribe.html:24
 msgid "edit your profile"
-msgstr ""
+msgstr "змінити свій профіль"
 
 #: apps/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Нам не вдалося відписати вас"
 
 #: apps/users/templates/users/unsubscribe.html:30
 msgid ""
@@ -14865,11 +14913,11 @@ msgstr "Цільова версія"
 
 #: apps/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr ""
+msgstr "Надіслати електронний лист після завершення"
 
 #: apps/zadmin/forms.py:105
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Журнал електронних листів замість надсилання"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
@@ -14921,7 +14969,7 @@ msgstr "Переглянути сайт для мобільного"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "дізнайтеся про <b>додатки</b>"
 
 #: templates/footer.html:4 templates/menu_links.html:20
 msgid "About"
