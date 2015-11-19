@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-11 11:50+0000\n"
-"Last-Translator: asteko <aserkant@protonmail.ch>\n"
+"PO-Revision-Date: 2015-11-19 11:16+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
-msgstr "Şimdi İndir"
+msgstr "Şimdi indir"
 
 # 88%
 # 100%
@@ -2208,7 +2208,7 @@ msgstr ""
 
 #: apps/amo/log.py:444
 msgid "Video removed"
-msgstr ""
+msgstr "Video silindi"
 
 #: apps/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
@@ -2216,7 +2216,7 @@ msgstr ""
 
 #: apps/amo/log.py:450
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Cihaz(lar) eklendi"
 
 #: apps/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
@@ -2284,7 +2284,7 @@ msgstr ""
 
 #: apps/amo/log.py:554
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Gereksinimler değiştirildi"
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:562
@@ -2319,7 +2319,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "İzin verilmiyor"
 
 #: apps/amo/templates/amo/403.html:7
 msgid ""
@@ -2552,7 +2552,7 @@ msgstr "Önceki"
 
 #: apps/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Son sayfaya atla"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #.                third argument is the number of total results (e.g., 1,000).
@@ -2588,7 +2588,7 @@ msgstr ""
 
 #: apps/amo/tests/test_messages.py:59
 msgid "Another Title"
-msgstr ""
+msgstr "Başka Başlık"
 
 #: apps/amo/tests/test_messages.py:59
 msgid "Another Body"
@@ -2764,7 +2764,7 @@ msgstr ""
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Bu isim kullanılamaz."
 
 #: apps/bandwagon/forms.py:174 apps/users/forms.py:432
 msgid "No links are allowed."
@@ -3792,7 +3792,7 @@ msgstr "Sizin tarayıcınız, sizin tarzınız! Kendi tasarımınızı ona uygul
 
 #: apps/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
-msgstr ""
+msgstr "Daha fazla bilgi edin"
 
 #: apps/browse/templates/browse/personas/category_landing.html:6
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:5
@@ -3994,7 +3994,7 @@ msgstr "Uygulama Yapısı"
 # 100%
 #: apps/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
-msgstr ""
+msgstr "Platform"
 
 #: apps/compat/templates/compat/reporter_detail.html:50
 #: apps/editors/templates/editors/themes/themes.html:40
@@ -4092,11 +4092,11 @@ msgstr ""
 #: apps/constants/base.py:33 apps/editors/helpers.py:921
 #: apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "Silindi"
 
 #: apps/constants/base.py:38
 msgid "Pending approval"
-msgstr ""
+msgstr "Onay bekliyor"
 
 #: apps/constants/base.py:44
 msgid "Flagged for further review"
@@ -4138,7 +4138,7 @@ msgstr "Uzantı"
 
 #: apps/constants/base.py:164
 msgid "Complete Theme"
-msgstr ""
+msgstr "Bütün Tema"
 
 #: apps/constants/base.py:166
 msgid "Search Engine"
