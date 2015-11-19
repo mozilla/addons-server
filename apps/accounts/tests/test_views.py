@@ -5,6 +5,7 @@ import mock
 
 from rest_framework.test import APITestCase
 
+from accounts import verify
 from amo.tests import create_switch
 from users.models import UserProfile
 
@@ -42,12 +43,12 @@ class TestLoginView(APITestCase):
         assert response.status_code == 400
         assert response.data['error'] == 'No code provided.'
 
-    def test_no_email_returned(self):
-        self.fxa_identify.return_value = {}
-        response = self.client.post(self.url, {'code': 'foo'})
+    def test_identify_no_profile(self):
+        self.fxa_identify.side_effect = verify.ProfileNotFound
+        response = self.client.post(self.url, {'code': 'codes!!'})
         assert response.status_code == 401
-        assert response.data['error'] == 'Could not log you in.'
-        self.fxa_identify.assert_called_with('foo', config=FXA_CONFIG)
+        assert response.data['error'] == 'Profile not found.'
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
 
     def test_identify_success_no_account(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com'}

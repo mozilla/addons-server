@@ -16,16 +16,15 @@ class LoginView(APIView):
         if 'code' not in request.DATA:
             return Response({'error': 'No code provided.'}, status=400)
 
-        identity = verify.fxa_identify(request.DATA['code'],
-                                       config=settings.FXA_CONFIG)
-        email = identity.get('email')
-        if email:
-            try:
-                user = UserProfile.objects.get(email=email)
-            except UserProfile.DoesNotExist:
-                return Response({'error': 'User does not exist.'}, status=400)
-            else:
-                login(request._request, user)
-                return Response({'email': email})
+        try:
+            identity = verify.fxa_identify(request.DATA['code'],
+                                           config=settings.FXA_CONFIG)
+        except verify.ProfileNotFound:
+            return Response({'error': 'Profile not found.'}, status=401)
+        try:
+            user = UserProfile.objects.get(email=identity['email'])
+        except UserProfile.DoesNotExist:
+            return Response({'error': 'User does not exist.'}, status=400)
         else:
-            return Response({'error': 'Could not log you in.'}, status=401)
+            login(request._request, user)
+            return Response({'email': identity['email']})
