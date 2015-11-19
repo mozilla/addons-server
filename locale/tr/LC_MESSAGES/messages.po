@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-19 11:16+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-11-19 14:57+0000\n"
+"Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,9 @@ msgstr ""
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
-msgstr "Şimdi indir"
+msgstr ""
+"Sürüm: %(version)s &bull; Boyut: %(size)s &bull; MD5 özeti: %(md5)s &bull; "
+"MIME türü: %(mimetype)s"
 
 # 88%
 # 100%
@@ -7093,6 +7095,9 @@ msgid ""
 "href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a "
 "href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Tanınan <a href=\"http://en.wikipedia.org/wiki/Spyware\">casus yazılım</a> "
+"veya <a href=\"http://en.wikipedia.org/wiki/Malware\">kötücül yazılım</a> "
+"gömülü olan eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -7101,41 +7106,55 @@ msgid ""
 "generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> "
 "download and directory assistants, child pornography finders, etc."
 msgstr ""
+"<a href=\"http://en.wikipedia.org/wiki/Click_fraud\">Tıklamayla "
+"dolandırıcılık</a>, <a href=\"http://en.wikipedia.org/wiki/Warez\">yazılım "
+"şifresi kırma</a> amaçlı yazılım indirme ve dizin tarama yardımcıları veya "
+"çocuk pornosu bulma gibi yasadışı ve suç unsuru barındıran eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid ""
 "Add-ons whose main purpose is to facilitate access to pornographic material,"
 " or include references to this material in their descriptions"
 msgstr ""
+"Asıl amacı pornografik içeriğe erişim sağlamak olan veya tanımında bu "
+"malzemelere ulaşılmasını sağlayan eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid ""
 "Add-ons that, upon installation, auto-install or launch installers of non-"
 "Firefox software"
 msgstr ""
+"Kurulumdan sonra Firefox ile ilgili olmayan yazılımları kendiliğinden kuran "
+"veya kurulum dosyalarını çalıştıran eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid ""
 "Add-ons that provide their own update mechanism for code or search engines"
 msgstr ""
+"Kodlar veya arama motorlarına kendi güncelleme mekanizmasını sunan "
+"eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid ""
 "Add-ons that make changes to web content in ways that are non-obvious or "
 "difficult to trace by their users"
 msgstr ""
+"Sayfa içeriğinde kullanıcı tarafından görülemeyen veya takibi zor "
+"değişiklikler yapan eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
 msgstr ""
+"Diğer kullanıcıların ağ trafiğine burnunu sokan veya bağlantılarını kesen "
+"eklentiler"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr ""
+msgstr "Önceden açıkça izin almayan Conduit esaslı araç çubukları"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Varsayılan Ayarları ve Beklenmedik Özellikleri Değiştirme"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -7146,6 +7165,12 @@ msgid ""
 "the functionality of an add-on is and not be presented with unexpected "
 "experiences post-install."
 msgstr ""
+"Sürprizler çoğu zaman hoş karşılanabilir; ancak kullanıcının güvenliği, "
+"mahremiyeti ve kontrolü tehlike altındaysa bu söz konusu değildir. Bu "
+"siteden yayınlanmak üzere bir eklenti başvurusu yaparken mümkün olduğunca "
+"şeffaf olmak son derece önemlidir. Bir Mozilla kullanıcısı eklenti "
+"kurulduktan sonra eklentinin ne işlevler sağlayacağını ve beklenmedik "
+"tecrübelerin ne olduğunu kolaylıkla ayırt edebilmelidir."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -7162,6 +7187,21 @@ msgid ""
 "settings if they were changed.</li> </ul> <p>*Unexpected features are those "
 "that are unrelated to the add-on's primary function.</p>"
 msgstr ""
+"<p> Bir eklenti aşağıdaki herhangi bir beklenmedik* özelliğe sahipse: </p> "
+"<ul> <li>Kullanıcı mahremiyetini ve güvenliğini tehlikeye atmak (ör. üçüncü "
+"şahıslara veri göndermek),</li> <li>Açılış sayfası veya arama motoru "
+"varsayılan ayarlarını değiştirmek,</li> <li>Diğer eklentilerin ayarlarını ve"
+" değiştirmek veya eklentileri tamamen devre dışı bırakmak.</li> </ul> <p>Bu "
+"durumda bu özellikler aşağıdaki gerekliliklere uymak zorundadır:</p> <ul> "
+"<li>Eklenti açıklaması eklentinin ne değişiklikler yaptığını açık bir "
+"biçimde belirtmelidir.</li> <li>Tüm değişiklikler isteğe bağlı olmalıdır. "
+"Bu, kullanıcının değişikliğin gerçekleşmesini sağlamak amacıyla eklentiye "
+"komut vermesi anlamına gelir.</li> <li>İsteğe bağlı özellik için onay "
+"istenen pencerede izin isteyen eklentinin adı açıkça belirtilmelidir.</li> "
+"<li>Eklenti kaldırıldığında, eğer kaldırılmadan önce bir değişiklik "
+"yapıldıysa, kullanıcının bu özgün ayarları geri getirilmelidir.</li> </ul> "
+"<p>*Beklenmedik özellikler, eklentinin asıl amacıyla alakası olmayan "
+"özellikleri ifade eder.</p>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:268
 msgid ""
@@ -9368,7 +9408,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Editör Araçları giriş sayfasına dön"
 
 #: apps/editors/templates/editors/base.html:43
 #: apps/editors/templates/editors/themes/base.html:14
@@ -10110,59 +10150,63 @@ msgstr ""
 
 #: apps/files/utils.py:532
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Eklenti kimliği bulunamadı."
 
 #: apps/files/utils.py:535
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Eklenti kimliği 64 veya daha az karakterli olmalı."
 
 #: apps/files/utils.py:537
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "Eklenti kimliği eklenti ile eşleşmiyor."
 
 #: apps/files/utils.py:541
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Mükerrer eklenti kimliği tespit edildi."
 
 #: apps/files/utils.py:544
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Sürüm numaraları 32'den az karakterli olmalı."
 
 #: apps/files/utils.py:547
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
+"Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaretleri "
+"olmalı: +*.-_."
 
 #: apps/files/utils.py:564
 msgid "<em:type> doesn't match add-on"
-msgstr ""
+msgstr "<em:type> eklentiyle uyuşmuyor"
 
 #: apps/files/views.py:53
 msgid "Back to review"
-msgstr ""
+msgstr "İncelemeye dön"
 
 #: apps/files/views.py:57
 msgid "Back to addon"
-msgstr ""
+msgstr "Eklentiye dön"
 
 #: apps/files/templates/files/file.html:2
 msgid "Download {0}"
-msgstr ""
+msgstr "İndir: {0}"
 
 #: apps/files/templates/files/file.html:4
 msgid ""
 "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
 "Mimetype: %(mimetype)s"
 msgstr ""
+"Sürüm: %(version)s &bull; Boyut: %(size)s &bull; MD5 özeti: %(md5)s &bull; "
+"MIME türü: %(mimetype)s"
 
 #: apps/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Dosya Karşılaştırma :: Editör araçları"
 
 #: apps/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Dosya Görüntüleyici :: Editör araçları"
 
 #: apps/files/templates/files/viewer.html:19
 msgid "Validation failed:"
