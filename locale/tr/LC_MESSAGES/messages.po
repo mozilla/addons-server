@@ -5098,9 +5098,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:38
 #: apps/devhub/templates/devhub/docs/policies.html:39
-#, fuzzy
 msgid "Add-on Policies"
-msgstr "Add-on Policy"
+msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:46
 msgid "Add-on Validator"
@@ -5321,9 +5320,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/owner.html:29
 #: apps/editors/templates/editors/review.html:270
-#, fuzzy
 msgid "Authors"
-msgstr "Authors"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
