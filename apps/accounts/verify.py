@@ -51,7 +51,7 @@ def get_fxa_profile(token, config):
         else:
             log.info('Incomplete profile {profile} [{token}]'.format(
                 profile=profile, token=token))
-            raise IdentificationError('Profile incomplete for {token}'.forat(
+            raise IdentificationError('Profile incomplete for {token}'.format(
                 token=token))
     else:
         log.info('Profile returned non-200 status {status} [{token}]'.format(
