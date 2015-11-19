@@ -7,8 +7,8 @@ IdentificationError = LookupError
 
 
 def fxa_identify(code, config=None):
-    """Get an FxA profile for an access token. If identification fails a
-    IdentificationError error is raised."""
+    """Get an FxA profile for an access token. If identification fails an
+    IdentificationError is raised."""
     token = get_fxa_token(code, config)['access_token']
     return get_fxa_profile(token, config)
 
