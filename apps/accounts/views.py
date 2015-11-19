@@ -19,7 +19,7 @@ class LoginView(APIView):
         try:
             identity = verify.fxa_identify(request.DATA['code'],
                                            config=settings.FXA_CONFIG)
-        except verify.ProfileNotFound:
+        except verify.IdentificationError:
             return Response({'error': 'Profile not found.'}, status=401)
         try:
             user = UserProfile.objects.get(email=identity['email'])

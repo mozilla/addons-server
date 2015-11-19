@@ -44,7 +44,7 @@ class TestLoginView(APITestCase):
         assert response.data['error'] == 'No code provided.'
 
     def test_identify_no_profile(self):
-        self.fxa_identify.side_effect = verify.ProfileNotFound
+        self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.post(self.url, {'code': 'codes!!'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'

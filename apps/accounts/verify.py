@@ -3,12 +3,12 @@ import logging
 import requests
 
 log = logging.getLogger('accounts.verify')
-ProfileNotFound = LookupError
+IdentificationError = LookupError
 
 
 def fxa_identify(code, config=None):
     """Get an FxA profile for an access token. If identification fails a
-    ProfileNotFound error is raised."""
+    IdentificationError error is raised."""
     token = get_fxa_token(code, config)['access_token']
     return get_fxa_profile(token, config)
 
@@ -28,13 +28,13 @@ def get_fxa_token(code, config):
         else:
             log.info('No token returned {data} [{code}]'.format(data=data,
                                                                 code=code))
-            raise ProfileNotFound('No access token returned for {code}'.format(
-                code=code))
+            raise IdentificationError(
+                'No access token returned for {code}'.format(code=code))
     else:
         log.info('Token returned non-200 status {status} [{code}]'.format(
             code=code, status=response.status_code))
-        raise ProfileNotFound('Could not get access token for {code}'.format(
-            code=code))
+        raise IdentificationError(
+            'Could not get access token for {code}'.format(code=code))
 
 
 def get_fxa_profile(token, config):
@@ -51,10 +51,10 @@ def get_fxa_profile(token, config):
         else:
             log.info('Incomplete profile {profile} [{token}]'.format(
                 profile=profile, token=token))
-            raise ProfileNotFound('Profile incomplete for {token}'.forat(
+            raise IdentificationError('Profile incomplete for {token}'.forat(
                 token=token))
     else:
         log.info('Profile returned non-200 status {status} [{token}]'.format(
             token=token, status=response.status_code))
-        raise ProfileNotFound('Could not find profile for {token}'.format(
+        raise IdentificationError('Could not find profile for {token}'.format(
             token=token))

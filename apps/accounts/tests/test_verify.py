@@ -29,7 +29,7 @@ class TestProfile(TestCase):
         profile_data = {'email': ''}
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
-        with pytest.raises(verify.ProfileNotFound):
+        with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {
                 'profile_uri': 'https://app.fxa/v1',
             })
@@ -41,7 +41,7 @@ class TestProfile(TestCase):
         profile_data = {'error': 'some error'}
         self.get.return_value.status_code = 400
         self.get.json.return_value = profile_data
-        with pytest.raises(verify.ProfileNotFound):
+        with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {
                 'profile_uri': 'https://app.fxa/v1',
             })
@@ -77,7 +77,7 @@ class TestToken(TestCase):
         token_data = {'access_token': ''}
         self.post.return_value.status_code = 200
         self.post.return_value.json.return_value = token_data
-        with pytest.raises(verify.ProfileNotFound):
+        with pytest.raises(verify.IdentificationError):
             verify.get_fxa_token('token-plz', {
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
@@ -93,7 +93,7 @@ class TestToken(TestCase):
         token_data = {'error': 'some error'}
         self.post.return_value.status_code = 400
         self.post.json.return_value = token_data
-        with pytest.raises(verify.ProfileNotFound):
+        with pytest.raises(verify.IdentificationError):
             verify.get_fxa_token('token-plz', {
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
@@ -119,16 +119,16 @@ class TestIdentify(TestCase):
         self.addCleanup(patcher.stop)
 
     def test_token_raises(self):
-        self.get_token.side_effect = verify.ProfileNotFound
-        with pytest.raises(verify.ProfileNotFound):
+        self.get_token.side_effect = verify.IdentificationError
+        with pytest.raises(verify.IdentificationError):
             verify.fxa_identify('heya', self.CONFIG)
         self.get_token.assert_called_with('heya', self.CONFIG)
         assert not self.get_profile.called
 
     def test_profile_raises(self):
         self.get_token.return_value = {'access_token': 'bee5'}
-        self.get_profile.side_effect = verify.ProfileNotFound
-        with pytest.raises(verify.ProfileNotFound):
+        self.get_profile.side_effect = verify.IdentificationError
+        with pytest.raises(verify.IdentificationError):
             verify.fxa_identify('heya', self.CONFIG)
         self.get_token.assert_called_with('heya', self.CONFIG)
         self.get_profile.assert_called_with('bee5', self.CONFIG)
