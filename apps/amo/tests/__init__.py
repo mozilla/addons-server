@@ -156,6 +156,31 @@ def assert_url_equal(url, other, compare_host=False):
         eq_(parsed.netloc, parsed_other.netloc)
 
 
+def create_sample(name=None, db=False, **kw):
+    if name is not None:
+        kw['name'] = name
+    kw.setdefault('percent', 100)
+    sample = Sample(**kw)
+    sample.save() if db else cache_sample(instance=sample)
+    return sample
+
+
+def create_switch(name=None, db=False, **kw):
+    kw.setdefault('active', True)
+    if name is not None:
+        kw['name'] = name
+    switch = Switch(**kw)
+    switch.save() if db else cache_switch(instance=switch)
+    return switch
+
+
+def create_flag(name=None, **kw):
+    if name is not None:
+        kw['name'] = name
+    kw.setdefault('everyone', True)
+    return Flag.objects.create(**kw)
+
+
 class RedisTest(object):
     """Mixin for when you need to mock redis for testing."""
 
@@ -461,27 +486,14 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
         cookie[settings.SESSION_COOKIE_NAME] = session._get_session_key()
         self.client.cookies.update(cookie)
 
-    def create_sample(self, name=None, db=False, **kw):
-        if name is not None:
-            kw['name'] = name
-        kw.setdefault('percent', 100)
-        sample = Sample(**kw)
-        sample.save() if db else cache_sample(instance=sample)
-        return sample
+    def create_sample(self, *args, **kwargs):
+        return create_sample(*args, **kwargs)
 
-    def create_switch(self, name=None, db=False, **kw):
-        kw.setdefault('active', True)
-        if name is not None:
-            kw['name'] = name
-        switch = Switch(**kw)
-        switch.save() if db else cache_switch(instance=switch)
-        return switch
+    def create_switch(self, *args, **kwargs):
+        return create_switch(*args, **kwargs)
 
-    def create_flag(self, name=None, **kw):
-        if name is not None:
-            kw['name'] = name
-        kw.setdefault('everyone', True)
-        return Flag.objects.create(**kw)
+    def create_flah(self, *args, **kwargs):
+        return create_flag(*args, **kwargs)
 
     def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""
