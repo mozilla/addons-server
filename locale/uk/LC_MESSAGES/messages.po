@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-20 11:17+0000\n"
+"PO-Revision-Date: 2015-11-20 11:36+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10397,28 +10397,28 @@ msgstr ""
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Всі відгуки були промодеровані. Гарна робота!"
 
 #: apps/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Примітки до версії / Примітки для рецензента"
 
 #: apps/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "В даний момент немає додатків цього типу для перегляду."
 
 #: apps/editors/templates/editors/queue.html:181
 #: apps/editors/templates/editors/themes/queue_list.html:85
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Корисні посилання:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Політика додатку"
 
 #: apps/editors/templates/editors/queue.html:184
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Інструкції редактора"
 
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
@@ -12428,11 +12428,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:170
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Галерея додатків"
 
 #: apps/pages/templates/pages/faq.html:172
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Як мені обрати серед додатків, які мають однакові функції?"
 
 #: apps/pages/templates/pages/faq.html:174
 msgid ""
@@ -12443,10 +12443,16 @@ msgid ""
 "by other users. Remember that you can also just try out both and see which "
 "you like better."
 msgstr ""
+"Часто є кілька додатків з подібними функціями. Щоб визначити, який для вас є"
+" кращим, ознайомтеся з повним описом додатку та його знімками екрану. Якщо "
+"це вам не допоможе, ознайомтеся з рейтингами додатків, відгуками "
+"користувачів та статистикою, щоб дізнатися який з них найбільше подобається "
+"іншим користувачам. Пам'ятайте, ви можете також просто спробувати обидва і "
+"побачити, який вам більше до вподоби."
 
 #: apps/pages/templates/pages/faq.html:181
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Що, як мені не вдається знайти додаток, який я шукаю?"
 
 #: apps/pages/templates/pages/faq.html:182
 msgid ""
@@ -12455,6 +12461,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"З поміж тисяч доступних додатків, знайдеться щось для кожного. Але якщо ви "
+"шукаєте конкретний додаток і не можете його знайти, можете спробувати "
+"пошукати на інших сайтах, або написати про нього на нашому <a "
+"href=\"%(forum_url)s\">форумі додатків</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -12701,6 +12711,9 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
+"Відгуки є способом поділитися своїми враженнями про використання додатку. "
+"Наша команда модераторів залишає за собою право відхиляти або видаляти будь-"
+"який відгук, який не відповідає цим критеріям."
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
