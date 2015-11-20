@@ -113,7 +113,7 @@ class VersionView(JWTProtectedView):
                 status=status.HTTP_404_NOT_FOUND)
 
         try:
-            version = addon.versions.get(version=version_string)
+            version = addon.versions.filter(version=version_string).latest()
         except Version.DoesNotExist:
             version = None
 

@@ -104,6 +104,16 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
+    @mock.patch('devhub.views.Version.from_upload')
+    def test_no_version_yet(self, from_upload):
+        response = self.put(self.url(self.guid, '3.0'))
+        assert response.status_code == 202
+        assert 'processed' in response.data
+
+        response = self.get(self.url(self.guid, '3.0'))
+        assert response.status_code == 200
+        assert 'processed' in response.data
+
     @mock.patch('devhub.views.auto_sign_version')
     def test_version_added(self, sign_version):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
@@ -139,6 +149,10 @@ class TestUploadVersion(BaseUploadVersionCase):
 
         response = self.put(self.url(self.guid, '3.0'))
         assert response.status_code == 202
+        assert 'processed' in response.data
+
+        response = self.get(self.url(self.guid, '3.0'))
+        assert response.status_code == 200
         assert 'processed' in response.data
 
     @mock.patch('devhub.views.auto_sign_version')
