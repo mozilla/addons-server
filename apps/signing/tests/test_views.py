@@ -151,6 +151,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 202
         assert 'processed' in response.data
 
+        # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
         assert 'processed' in response.data
