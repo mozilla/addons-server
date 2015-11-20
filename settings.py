@@ -118,6 +118,7 @@ FXA_CONFIG = {
     'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
     'profile_host': 'https://stable.dev.lcip.org/profile/v1',
     'redirect_url': 'http://olympia.dev/fxa-authorize',
+    'register_url': 'http://olympia.dev/api/v3/accounts/register/',
     'scope': 'profile',
 }
 

@@ -130,9 +130,19 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, amo.models.ManagerBase):
 
-    def create_user(self, username, email, password=None):
-        user = self.model(username=username, email=email)
-        user.set_password(password)
+    def create_user(self, username, email, password=None, fxa_id=None):
+        # We'll send username=None when registering through FxA to try and
+        # generate a username from the email.
+        if username is None:
+            username = self._generate_username(email)
+        user = self.model(username=username, email=email, fxa_id=fxa_id)
+        # FxA won't set a password so don't let a user log in with one.
+        if password is None:
+            user.set_unusable_password()
+        else:
+            user.set_password(password)
+        log.debug('Creating user with email {} and username {}'.format(
+            email, username))
         user.save(using=self._db)
         return user
 
@@ -144,6 +154,25 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
+
+    def _generate_username(self, seed):
+        """Generate a username from a seed which is intended to be an email
+        address. If the username is taken a single attempt will be made to
+        append a random number to it and get a unique username.
+        """
+        log.info('Generating username for {}'.format(seed))
+        if self.model.objects.filter(username=seed).exists():
+            # Only make one attempt at generating a new username. This isn't
+            # meant to be exhaustive but to make it difficult to maliciously
+            # prevent someone from signing up. See #967 for more discussion.
+            username = '{seed}-{num}'.format(
+                seed=seed, num=random.randint(1000, 9999))
+            log.warning('Username taken for {} trying {}'.format(
+                seed, username))
+            return username
+        else:
+            log.info('Using seeded username for {}'.format(seed))
+            return seed
 
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
@@ -192,6 +221,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     t_shirt_requested = models.DateTimeField(blank=True, null=True,
                                              default=None, editable=False)
+    fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
     class Meta:
         db_table = 'users'
@@ -338,6 +368,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.password = "sha512$Anonymous$Password"
+        self.fxa_id = None
         self.username = "Anonymous-%s" % self.id  # Can't be null
         self.display_name = None
         self.homepage = ""
@@ -372,6 +403,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                                                           string.digits, 60))
         return self.confirmationcode
 
+    def set_unusable_password(self):
+        self.password = ''
+
     def has_usable_password(self):
         """Override AbstractBaseUser.has_usable_password."""
         # We also override the check_password method, and don't rely on
@@ -381,6 +415,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         return bool(self.password)  # Not None and not empty.
 
     def check_password(self, raw_password):
+        if not self.has_usable_password():
+            return False
+
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)
             if valid:

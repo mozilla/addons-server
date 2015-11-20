@@ -355,8 +355,12 @@ class TestPasswords(amo.tests.TestCase):
     def test_empty_password(self):
         profile = UserProfile(password=None)
         assert profile.has_usable_password() is False
+        assert not check_password(None, profile.password)
+        assert not profile.check_password(None)
         profile = UserProfile(password='')
         assert profile.has_usable_password() is False
+        assert not check_password('', profile.password)
+        assert not profile.check_password('')
 
 
 class TestBlacklistedName(amo.tests.TestCase):
