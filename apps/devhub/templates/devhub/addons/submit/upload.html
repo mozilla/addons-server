@@ -28,11 +28,11 @@
         <span class="tip tooltip"
               title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
         <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
-          {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org&component=Developer%20Pages' %}
+          {% trans url='https://github.com/mozilla/olympia' %}
             Submission of unlisted add-ons for signing is currently in an
             open beta. Manual review may still be required for a large
             number of add-ons. Please
-            <a href="{{ bugzilla_url }}" target="_blank">report any bugs</a>
+            <a href="{{ url }}" target="_blank">report any bugs</a>
             that you encounter.
           {% endtrans %}
         </span>

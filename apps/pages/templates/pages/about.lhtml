@@ -46,10 +46,10 @@ should only be installed with caution.{% endtrans %}</p>
   add-on development experience, <a href="{{ url }}"> become an editor</a>! Our
   editors are add-on fans with a technical background who review add-ons for
   code quality and stability.{% endtrans %}</li>
-  <li>{% trans url='https://bugzilla.mozilla.org/buglist.cgi?product=addons.mozilla.org&amp;resolution=---' %}
+  <li>{% trans url='https://github.com/mozilla/olympia/issues' %}
   Help improve this website. It's open source, and you can file bugs and
-  submit patches. <a href="{{ url }}"> Bugzilla</a> contains all of our current
-  bugs.{% endtrans %}</li>
+  submit patches. <a href="{{ url }}"> GitHub</a> contains all of our current
+  bugs, legacy bugs can still be found in Bugzilla.{% endtrans %}</li>
 </ul>
 
 <p>{% trans %}If you're interested in add-ons but not quite as technical, there
