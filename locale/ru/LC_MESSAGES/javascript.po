@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-07 14:03+0000\n"
-"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-11-21 20:46+0300\n"
+"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-POOTLE-MTIME: 1446905017.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -97,9 +97,9 @@ msgstr "Время ожидания валидации вашего дополн
 #: static/js/common/upload-addon.js:413
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждением."
+msgstr[1] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
+msgstr[2] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on was validated with no errors and {0} message."
@@ -271,7 +271,7 @@ msgstr "{0} неделя"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr "загрузки"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -380,19 +380,19 @@ msgstr "Управление дополнениями"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Промо Менеджера дополнений"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Избранное Менеджера дополнений"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Подробнее Менеджера дополнений"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Поисковые предложения"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -444,15 +444,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Познакомьтесь с разработчиком"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Профиль пользователя"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "История версий"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -914,7 +914,7 @@ msgstr "Просмотреть другие версии"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Только с Firefox — Получите Firefox!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
