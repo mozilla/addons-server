@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-19 14:57+0000\n"
+"PO-Revision-Date: 2015-11-03 11:55+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -9460,9 +9460,8 @@ msgstr ""
 #: apps/editors/templates/editors/beta_signed_log.html:23
 #: apps/editors/templates/editors/eventlog.html:30
 #: apps/editors/templates/editors/themes/logs.html:16
-#, fuzzy
 msgid "Date"
-msgstr "Date"
+msgstr ""
 
 #: apps/editors/templates/editors/beta_signed_log.html:24
 #: apps/editors/templates/editors/eventlog.html:31
