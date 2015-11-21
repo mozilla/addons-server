@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-21 22:08+0000\n"
+"PO-Revision-Date: 2015-11-21 22:10+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1448143695.0\n"
+"X-POOTLE-MTIME: 1448143857.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -693,7 +693,7 @@ msgstr "Upravit"
 #. For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: apps/addons/templates/addons/persona_preview.html:66
 msgid "%Y-%m-%d"
-msgstr "%d. %m %Y"
+msgstr "%d. %m. %Y"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
