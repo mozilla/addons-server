@@ -1,4 +1,6 @@
-from django.core.urlresolvers import reverse
+import json
+
+from django.core.urlresolvers import resolve, reverse
 from django.test.utils import override_settings
 
 import mock
@@ -7,6 +9,7 @@ from rest_framework.test import APITestCase
 
 from accounts import verify
 from amo.tests import create_switch
+from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
@@ -64,3 +67,23 @@ class TestLoginView(APITestCase):
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
         self.fxa_identify.assert_called_with('code', config=FXA_CONFIG)
+
+
+class TestProfileView(APIAuthTestCase):
+
+    def setUp(self):
+        self.create_api_user()
+        self.url = reverse('accounts.profile')
+        self.cls = resolve(self.url).func.cls
+        super(TestProfileView, self).setUp()
+
+    def test_good(self):
+        res = self.get(self.url)
+        assert res.status_code == 200
+        assert json.loads(res.content)['email'] == 'a@m.o'
+
+    def test_auth_required(self):
+        self.auth_required(self.cls)
+
+    def test_verbs_allowed(self):
+        self.verbs_allowed(self.cls, ['get'])

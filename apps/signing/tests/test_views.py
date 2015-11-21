@@ -5,31 +5,22 @@ from django.core.urlresolvers import reverse
 
 import mock
 from rest_framework.response import Response
-from rest_framework.test import APITestCase
 
 import amo
 from addons.models import Addon, AddonUser
-from api.tests.test_jwt_auth import JWTAuthTester
+from api.tests.utils import APIAuthTestCase
 from files.models import File, FileUpload
 from signing.views import VersionView
 from users.models import UserProfile
 from versions.models import Version
 
 
-class SigningAPITestCase(APITestCase, JWTAuthTester):
+class SigningAPITestCase(APIAuthTestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.api_key = self.create_api_key(self.user, 'foo')
-
-    def authorization(self):
-        token = self.create_auth_token(self.api_key.user, self.api_key.key,
-                                       self.api_key.secret)
-        return 'JWT {}'.format(token)
-
-    def get(self, url):
-        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization())
+        self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 
 
 class BaseUploadVersionCase(SigningAPITestCase):
