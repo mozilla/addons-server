@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-17 22:39+0000\n"
+"PO-Revision-Date: 2015-11-21 22:08+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1447799946.0\n"
+"X-POOTLE-MTIME: 1448143695.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -10811,8 +10811,9 @@ msgid "You do not own this addon."
 msgstr "Tento doplněk nevlastníte."
 
 #: apps/signing/views.py:54
+#, fuzzy
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Chybí klíč \"upload\" v multipart části dat."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
