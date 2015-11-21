@@ -492,7 +492,7 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
     def create_switch(self, *args, **kwargs):
         return create_switch(*args, **kwargs)
 
-    def create_flah(self, *args, **kwargs):
+    def create_flag(self, *args, **kwargs):
         return create_flag(*args, **kwargs)
 
     def grant_permission(self, user_obj, rules, name='Test Group'):
