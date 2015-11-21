@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-14 21:44+0000\n"
+"PO-Revision-Date: 2015-11-17 22:39+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1447537442.0\n"
+"X-POOTLE-MTIME: 1447799946.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -1285,7 +1285,7 @@ msgstr "Souhlasím"
 
 #: apps/addons/templates/addons/mobile/home.html:10 templates/mobile/base_addons.html:49
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Doplňky momentálně nejsou na platformě Firefox pro iOS dostupné."
 
 #: apps/addons/templates/addons/mobile/home.html:12 templates/mobile/base_addons.html:51
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -5241,6 +5241,8 @@ msgstr "Přihlašovací údaje k API"
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Tato funkce se stále aktivně vyvíjí. Pokud narazíte na problém, <a "
+"target=\"_blank\" href=\"%(bug_link)s\">nahlaste jej zde</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
@@ -5268,7 +5270,7 @@ msgstr "Zatím nemáte žádné přihlašovací údaje k API."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Revokovat a regenerovat pověření"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
@@ -10806,7 +10808,7 @@ msgstr "Doplněk nebyl nalezen."
 
 #: apps/signing/views.py:39
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Tento doplněk nevlastníte."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
