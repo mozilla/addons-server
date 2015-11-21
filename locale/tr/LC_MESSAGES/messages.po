@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-03 11:55+0000\n"
-"Last-Translator: asteko <aserkant@protonmail.ch>\n"
+"PO-Revision-Date: 2015-11-21 11:55+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -20,9 +20,7 @@ msgstr ""
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
-msgstr ""
-"Sürüm: %(version)s &bull; Boyut: %(size)s &bull; MD5 özeti: %(md5)s &bull; "
-"MIME türü: %(mimetype)s"
+msgstr "Şimdi indir"
 
 # 88%
 # 100%
@@ -3705,7 +3703,7 @@ msgstr "En Yeni Uzantılar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "İsme göre uzantılar"
 
 #: apps/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
@@ -4123,7 +4121,7 @@ msgstr "Geliştirici"
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:139
 msgid "Viewer"
-msgstr ""
+msgstr "İzleyici"
 
 #: apps/constants/base.py:140 templates/mobile/header.html:7
 msgid "Support"
@@ -4224,7 +4222,7 @@ msgstr "İstisna"
 
 #: apps/constants/base.py:435
 msgid "Release"
-msgstr "Yayınla"
+msgstr "Yayımla"
 
 #: apps/constants/base.py:436
 msgid "Change"
@@ -4409,7 +4407,7 @@ msgstr "Şiddet, savaş veya silah görüntüleri"
 
 #: apps/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr "Nazicilik veya nefrete dair diğer içerik"
+msgstr "Irkçı veya nefrete dair diğer içerik"
 
 #: apps/constants/editors.py:27
 msgid "Defamatory content"
@@ -5079,7 +5077,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/nav.html:35
 msgid "Extension Development"
-msgstr ""
+msgstr "Uzantı geliştirme"
 
 #: apps/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
@@ -5193,7 +5191,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/activity.html:4
 #: apps/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Eklentilerim için son etkinlilk"
 
 #: apps/devhub/templates/devhub/addons/activity.html:14
 #: apps/devhub/templates/devhub/addons/activity.html:19
@@ -5216,7 +5214,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/activity.html:72
 msgid "Activity"
-msgstr ""
+msgstr "Etkinlik"
 
 #: apps/devhub/templates/devhub/addons/activity.html:83
 #: apps/devhub/templates/devhub/addons/dashboard.html:34
@@ -5321,7 +5319,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/owner.html:29
 #: apps/editors/templates/editors/review.html:270
 msgid "Authors"
-msgstr ""
+msgstr "Yazarlar"
 
 #: apps/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
@@ -5603,7 +5601,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "SDK yükseltilsin mi?"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:116
 msgid ""
@@ -5665,7 +5663,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr ""
+msgstr "Eklenti simgesi"
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid ""
@@ -5963,7 +5961,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "Provide a more detailed description:"
-msgstr ""
+msgstr "Daha fazla ayrıntı tanımı sunun"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "The description will appear on the detail page."
@@ -9461,7 +9459,7 @@ msgstr ""
 #: apps/editors/templates/editors/eventlog.html:30
 #: apps/editors/templates/editors/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #: apps/editors/templates/editors/beta_signed_log.html:24
 #: apps/editors/templates/editors/eventlog.html:31
@@ -9682,7 +9680,7 @@ msgstr ""
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr "Process Reviews"
+msgstr "Denetim işlemi"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
