@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-20 11:36+0000\n"
+"PO-Revision-Date: 2015-11-21 21:19+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -13705,7 +13705,7 @@ msgstr ""
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
@@ -13940,7 +13940,7 @@ msgstr "Паролі не співпали."
 
 #: apps/users/forms.py:343 apps/users/templates/users/edit.html:107
 msgid "Profile Photo"
-msgstr ""
+msgstr "Світлина профілю"
 
 #: apps/users/forms.py:351 apps/users/templates/users/edit.html:121
 msgid "Default locale"
@@ -14060,15 +14060,15 @@ msgstr ""
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Сповіщення користувача"
 
 #: apps/users/views.py:86
 msgid "An email address is required."
-msgstr ""
+msgstr "Адреса електронної пошти обов'язкова."
 
 #: apps/users/views.py:91
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Користувача з такою адресою електронної пошти не існує."
 
 #: apps/users/views.py:108
 msgid "Invalid confirmation code!"
@@ -14090,7 +14090,7 @@ msgstr ""
 
 #: apps/users/views.py:133 apps/users/views.py:605
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "Лист для підтвердження надіслано"
 
 #: apps/users/views.py:144
 msgid "Profile Deleted"
@@ -14098,7 +14098,7 @@ msgstr "Профіль видалено"
 
 #: apps/users/views.py:165
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Світлина вилучена"
 
 #: apps/users/views.py:184 apps/users/views.py:291
 msgid "Profile Updated"
@@ -14106,7 +14106,7 @@ msgstr "Профіль оновлено"
 
 #: apps/users/views.py:193
 msgid "Email Confirmation Sent"
-msgstr ""
+msgstr "Лист з підтвердженням надіслано"
 
 #: apps/users/views.py:194
 msgid ""
@@ -14114,14 +14114,17 @@ msgid ""
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
+"Лист був надісланий на {0} для підтвердження нової адреси електронної пошти."
+" Щоб зміни набули чинності, вам потрібно перейти за посиланням в цьому "
+"листі. А поки що, ви можете продовжувати вхід зі своєю поточною адресою."
 
 #: apps/users/views.py:207
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Будь ласка, підтвердіть зміну своєї адреси електронної пошти на %s"
 
 #: apps/users/views.py:221
 msgid "Errors Found"
-msgstr ""
+msgstr "Знайдено помилки"
 
 #: apps/users/views.py:222
 msgid ""
@@ -14134,14 +14137,15 @@ msgstr ""
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
+"Нам шкода, але в даний момент ви не маєте права давати запит на футболку."
 
 #: apps/users/views.py:326
 msgid "Your email address was changed successfully"
-msgstr ""
+msgstr "Ваша адреса електронної пошти успішно змінена"
 
 #: apps/users/views.py:327
 msgid "From now on, please use {0} to log in."
-msgstr ""
+msgstr "Відтепер використовуйте для входу {0}."
 
 #: apps/users/views.py:412
 msgid "Wrong email address or password!"
@@ -14212,22 +14216,31 @@ msgid ""
 "person in your development group delete you from the list of authors for "
 "your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Ви не можете видалити свій обліковий запис, якщо ви є <a href=\"%(link)s\"> "
+"автором будь-яких додатків</a>. Для видалення свого облікового запису, "
+"попросіть іншу особу зі своєї групи розробників видалити вас зі списку "
+"авторів ваших додатків. Після цього ви зможете видалити свій обліковий запис"
+" тут."
 
 #: apps/users/templates/users/delete.html:29
 msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"Натиснувши \"видалити\", ваш обліковий запис буде <strong>остаточно "
+"видалено</strong>. Це означає що:"
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Ви більше не зможете увійти на %(site)s."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Ваші відгуки й оцінки не будуть видалені, але вони більше не будуть "
+"пов'язані з вами."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -14252,11 +14265,11 @@ msgstr "Вилучити мій рахунок користувача зараз
 #: apps/users/templates/users/delete_photo.html:3
 #: apps/users/templates/users/delete_photo.html:9
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Видалити світлину користувача"
 
 #: apps/users/templates/users/delete_photo.html:14
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Видалити моє зображення користувача"
 
 #: apps/users/templates/users/edit.html:24
 #: apps/users/templates/users/includes/navigation.html:12
@@ -14267,6 +14280,8 @@ msgstr "Мій профіль"
 #: apps/users/templates/users/edit.html:26
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Керувати основною інформацією облікового запису, такою як ім'я користувача і"
+" адреса електронної пошти."
 
 #: apps/users/templates/users/edit.html:32
 #: apps/users/templates/users/register.html:48
