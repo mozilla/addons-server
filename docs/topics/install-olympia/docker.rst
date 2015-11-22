@@ -42,7 +42,8 @@ on your host machine::
 
     git clone git://github.com/mozilla/olympia.git
     cd olympia
-    pip install docker-compose
+    pip install docker-compose==1.4  # versions > 1.4 cause validation error https://github.com/eBayClassifiedsGroup/PanteraS/issues/129
+    
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     docker-compose up -d
     make initialize_docker  # Answer yes, and create your superuser when asked.
