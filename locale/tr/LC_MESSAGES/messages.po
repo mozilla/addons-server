@@ -7785,9 +7785,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:2
 #: apps/stats/templates/stats/addon_report_menu.html:39
-#, fuzzy
 msgid "Contributions"
-msgstr "Contributions"
+msgstr ""
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid ""
