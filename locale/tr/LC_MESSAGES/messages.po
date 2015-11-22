@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-19 11:05+0000\n"
+"PO-Revision-Date: 2015-11-03 11:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -8382,9 +8382,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:156
 #: apps/devhub/templates/devhub/versions/list.html:176
 #: apps/editors/templates/editors/includes/files_view.html:11
-#, fuzzy
 msgid "Validation"
-msgstr "Validation"
+msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:137
 #: apps/devhub/templates/devhub/versions/list.html:158
@@ -12648,9 +12647,8 @@ msgstr ""
 # 78%
 # 100%
 #: apps/stats/templates/stats/addon_report_menu.html:25
-#, fuzzy
 msgid "by Application"
-msgstr "Applications:"
+msgstr ""
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
