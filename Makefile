@@ -74,7 +74,7 @@ update_code:
 	git checkout master && git pull
 
 update_deps:
-	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/wheelhouse/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
+	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/olympia/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
 
 update_db:
 	schematic migrations
