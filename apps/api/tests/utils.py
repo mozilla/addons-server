@@ -39,6 +39,6 @@ class APIAuthTestCase(APITestCase, JWTAuthTester):
         Tests that the verbs you expect on the class are present and no more.
         Options is added if you don't pass it.
         """
-        verbs = set([v.upper() for v in verbs])
+        verbs = set(v.upper() for v in verbs)
         verbs.add('OPTIONS')
         assert not set(cls._allowed_methods(cls())).difference(verbs)

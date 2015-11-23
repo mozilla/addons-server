@@ -37,6 +37,4 @@ class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
     serializer_class = UserProfileSerializer
 
     def retrieve(self, request, *args, **kw):
-        instance = request.user
-        serializer = self.get_serializer(instance)
-        return Response(serializer.data)
+        return Response(self.get_serializer(request.user).data)

@@ -1,5 +1,3 @@
-import json
-
 from django.core.urlresolvers import resolve, reverse
 from django.test.utils import override_settings
 
@@ -80,7 +78,7 @@ class TestProfileView(APIAuthTestCase):
     def test_good(self):
         res = self.get(self.url)
         assert res.status_code == 200
-        assert json.loads(res.content)['email'] == 'a@m.o'
+        assert res.data['email'] == 'a@m.o'
 
     def test_auth_required(self):
         self.auth_required(self.cls)

@@ -38,19 +38,13 @@ Returns information about your profile.
             "homepage": "https://a.m.o",
             "location": "Vancouver",
             "notes": null,
-            "notifycompat": true,
-            "notifyevents": true,
             "occupation": "",
             "picture_type": "",
+            "picture_url": "/static/img/anon_user.png",
             "read_dev_agreement": "2015-11-20T18:36:12",
-            "last_login_ip": "",
-            "last_login_attempt": null,
-            "last_login_attempt_ip": "",
-            "failed_login_attempts": 0,
             "is_verified": true,
             "region": null,
-            "lang": "en-US",
-            "t_shirt_requested": null
+            "lang": "en-US"
         }
 
     :statuscode 200: profile found.
