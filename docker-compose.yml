@@ -56,7 +56,6 @@ redis:
 rabbitmq:
   image: rabbitmq
   hostname: olympia
-  name: olympia
   expose:
     - "5672:5672"
   environment:
