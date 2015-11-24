@@ -19,6 +19,10 @@ you may wish to use the
 `jpm sign <https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm#jpm_sign>`_
 command to interact with the signing API.
 
+If you are using ``curl`` to interact with the API you should be sure to pass
+the ``-g`` flag to skip "URL globbing" which won't interact well with add-on
+Ids that have {} characters in them.
+
 -------------------
 Uploading a version
 -------------------
@@ -32,16 +36,17 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/
+.. http:put:: /api/v3/addons/[string:add-on-id]/versions/[string:version]/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/addons/my-addon/versions/1.0/
-            -XPUT --form 'upload=@build/my-addon.xpi' -H 'Authorization: JWT <jwt-token>'
+        curl https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/
+            -g -XPUT --form 'upload=@build/my-addon.xpi'
+            -H 'Authorization: JWT <jwt-token>'
 
-    :param addon-guid: the GUID for the add-on.
+    :param addon-id the id for the add-on.
     :param version: the version of the add-on.
     :form upload: the add-on being uploaded.
     :reqheader Content-Type: multipart/form-data
@@ -88,16 +93,16 @@ longer. Once review is complete then the ``reviewed`` property
 will be set and you can check the results with the ``passed_review``
 property.
 
-.. http:get:: /api/v3/addons/[string:add-on-guid]/versions/[string:version]/(uploads/[string:upload-pk]/)
+.. http:get:: /api/v3/addons/[string:add-on-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/addons/my-addon/versions/1.0/
-            -H 'Authorization: JWT <jwt-token>'
+        curl https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/
+            -g -H 'Authorization: JWT <jwt-token>'
 
-    :param addon-guid: the GUID for the add-on.
+    :param addon-id the id for the add-on.
     :param version: the version of the add-on.
     :param upload-pk: (optional) the pk for a specific upload.
 
@@ -109,7 +114,7 @@ property.
                 "active": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-guid-1.0-fx+an.xpi?src=api",
+                        "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-id.0-fx+an.xpi?src=api",
                         "hash": "sha256:1bb945266bf370170a656350d9b640cbcaf70e671cf753c410e604219cdd9267",
                         "signed": true
                     }
@@ -118,7 +123,7 @@ property.
                 "pk": "f68abbb3b1624c098fe979a409fe3ce9",
                 "processed": true,
                 "reviewed": true,
-                "url": "https://addons.mozilla.org/api/v3/addons/%40example-guid/versions/1.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
+                "url": "https://addons.mozilla.org/api/v3/addons/@example-id.0/uploads/f68abbb3b1624c098fe979a409fe3ce9/",
                 "valid": true,
                 "validation_results": {},
                 "validation_url": "https://addons.mozilla.org/en-US/developers/upload/f68abbb3b1624c098fe979a409fe3ce9",
@@ -166,7 +171,7 @@ This endpoint returns the actual file data for download.
     .. sourcecode:: bash
 
         curl 'https://addons.mozilla.org/api/v3/file/123/some-addon.xpi?src=api'
-            -H 'Authorization: JWT <jwt-token>'
+            -g -H 'Authorization: JWT <jwt-token>'
 
     :param file_id: the primary key of the add-on file.
     :param base_filename:

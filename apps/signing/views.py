@@ -34,7 +34,8 @@ def with_addon(allow_missing=False):
                 if allow_missing:
                     addon = None
                 else:
-                    return Response({'error': _('Could not find addon.')},
+                    return Response({'error': _('Could not find add-on with '
+                                                'id "{}".'.format(guid))},
                                     status=status.HTTP_404_NOT_FOUND)
             if addon is not None and not addon.has_author(request.user):
                 return Response(
