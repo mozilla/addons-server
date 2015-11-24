@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-24 08:10+0000\n"
+"PO-Revision-Date: 2015-11-24 08:32+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6674,6 +6674,9 @@ msgid ""
 "not yet compatible with a Beta version of Firefox four weeks before its "
 "expected release will lose their featured status."
 msgstr ""
+"Firefox 次期バージョンとの非互換 &mdash; おすすめのアドオンは Firefox "
+"の安定版とベータ版に対応していることが期待されています。リリース予定日の 4 "
+"週間前になってもベータ版と互換性のないアドオンは、おすすめのリストから除かれます。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -6683,25 +6686,25 @@ msgstr "おすすめアドオン審議会に参加"
 msgid ""
 "Every six months a new Advisory Board is chosen based on applications from "
 "the add-ons community. Members must:"
-msgstr ""
+msgstr "6 か月ごとに、アドオンコミュニティからの応募に基づき、新しい Advisory Board が選ばれます。メンバー要件は以下の通りです。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid ""
 "be active members of the add-ons community, whether as a developer, "
 "evangelist, or fan"
-msgstr ""
+msgstr "開発者、エバンジェリスト、あるいはファンとして、アドオンコミュニティの活発なメンバーであること"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid ""
 "commit to trying all the nominations submitted, giving their feedback, and "
 "casting their votes every month"
-msgstr ""
+msgstr "推薦されたすべてのアドオンを試し、それらのフィードバックを提供し、毎月の投票に参加できること"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid ""
 "abstain from voting on add-ons that they have any business or personal "
 "affiliations with, as well as direct competitors of any such add-ons"
-msgstr ""
+msgstr "ビジネス上あるいは個人的に何らかの関係のあるアドオンや、そうしたアドオンと直接的に競合するものへの投票を控えること"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -6709,6 +6712,9 @@ msgid ""
 "of security, privacy, compatibility, or any other reason, but in general it "
 "is up to the Board to select add-ons to feature."
 msgstr ""
+"Mozilla Add-ons "
+"チームのメンバーが、セキュリティ、プライバシー、互換性、その他の理由でアドオンの選択を却下する可能性もありますが、通常おすすめアドオンの選択は "
+"Advisory Board に一任されます。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -6719,6 +6725,10 @@ msgid ""
 " defaults, so if a locale has opted to select its own features, some or all "
 "of the global features may not appear in that locale."
 msgstr ""
+"このおすすめポリシーは、addons.mozilla.org "
+"上の全世界向けおすすめアドオンリストにのみ適用されます。他の場所で紹介されるアドオンはこのリストから選ばれることもありますが、Mozilla は "
+"Advisory Board "
+"の同意なしに他の場所で別のアドオンを紹介することもあります。また、ロケール固有のおすすめアドオンは全世界向けおすすめアドオンより優先されるため、あるロケールで独自のおすすめアドオンが選ばれた場合、一部あるいはすべての全世界向けおすすめアドオンはそのロケールでは表示されません。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:126
 msgid ""
@@ -6726,6 +6736,8 @@ msgid ""
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
+"次回の応募期間について知るには、<a href=\"%(link_blog)s\">Add-ons Blog</a> もしくは Twitter の <a"
+" href=\"%(link_twitter)s\">@mozamo</a> をフォローしてください。"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
