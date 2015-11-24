@@ -76,7 +76,7 @@
 
                      _.each(fields, function(f) {
                          var id = f.split('|').pop(),
-                             prettyName = z.StatsManager.getPrettyName(metric, id);
+                             prettyName = _.escape(z.StatsManager.getPrettyName(metric, id));
                          newHead += format('<th title="{0}">', prettyName);
                          newHead += prettyName;
                          newHead += '</th>';
