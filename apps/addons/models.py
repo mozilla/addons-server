@@ -2161,15 +2161,6 @@ def freezer(sender, instance, **kw):
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
 
 
-class AddonUpsell(amo.models.ModelBase):
-    free = models.ForeignKey(Addon, related_name='_upsell_from')
-    premium = models.ForeignKey(Addon, related_name='_upsell_to')
-
-    class Meta:
-        db_table = 'addon_upsell'
-        unique_together = ('free', 'premium')
-
-
 class CompatOverride(amo.models.ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
     name = models.CharField(max_length=255, blank=True, null=True)
