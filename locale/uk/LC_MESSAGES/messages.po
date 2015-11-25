@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-22 21:05+0000\n"
+"PO-Revision-Date: 2015-11-25 14:54+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10723,7 +10723,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "В даний момент немає тем для перегляду."
 
 #: apps/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
@@ -10735,7 +10735,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Інтерактивна черга тем"
 
 #: apps/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
@@ -10848,19 +10848,19 @@ msgstr "Не вдалося розібрати install.rdf."
 
 #: apps/files/utils.py:532
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Не вдалося знайти ID додатку."
 
 #: apps/files/utils.py:535
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID додатку повинен містити не більше 64 символів."
 
 #: apps/files/utils.py:537
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "ID не відповідає додатку."
 
 #: apps/files/utils.py:541
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Знайдено дублікат ID додатку."
 
 #: apps/files/utils.py:544
 msgid "Version numbers should have fewer than 32 characters."
@@ -10875,7 +10875,7 @@ msgstr ""
 
 #: apps/files/utils.py:564
 msgid "<em:type> doesn't match add-on"
-msgstr ""
+msgstr "<em:type> не відповідає додатку"
 
 #: apps/files/views.py:53
 msgid "Back to review"
@@ -10883,7 +10883,7 @@ msgstr "Назад до огляду"
 
 #: apps/files/views.py:57
 msgid "Back to addon"
-msgstr ""
+msgstr "Назад до додатку"
 
 #: apps/files/templates/files/file.html:2
 msgid "Download {0}"
@@ -10894,26 +10894,28 @@ msgid ""
 "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
 "Mimetype: %(mimetype)s"
 msgstr ""
+"Версія: %(version)s &bull; Розмір: %(size)s &bull; MD5 хеш: %(md5)s &bull; "
+"Тип MIME: %(mimetype)s"
 
 #: apps/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Порівняння файлів :: Інструменти рецензента"
 
 #: apps/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Переглядач файлів :: Інструменти рецензента"
 
 #: apps/files/templates/files/viewer.html:19
 msgid "Validation failed:"
-msgstr ""
+msgstr "Перевірку не виконано:"
 
 #: apps/files/templates/files/viewer.html:68
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Триває обробка файлу додатку, зачекайте будь ласка."
 
 #: apps/files/templates/files/viewer.html:72
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Отримання результатів перевірки..."
 
 #: apps/files/templates/files/viewer.html:83
 msgid "Deleted files:"
@@ -10921,7 +10923,7 @@ msgstr "Видалені файли:"
 
 #: apps/files/templates/files/viewer.html:92
 msgid "Hide known files"
-msgstr ""
+msgstr "Приховати відомі файли"
 
 #: apps/files/templates/files/viewer.html:95
 msgid "Add-on SDK Version:"
@@ -11326,6 +11328,11 @@ msgid ""
 "us tell the add-on developer whether their add-on is working properly in "
 "this version or might need some fixes."
 msgstr ""
+"Як тільки ви дізналися, чи конкретний додаток працює належним чином або має "
+"проблеми, відкрийте менеджер додатків і натисніть на Сумісність поруч з "
+"додатком, щоб повідомити Mozilla про те, що ви знайшли під час свого "
+"тестування. Надсилання звіту допоможе нам повідомити розробника додатку про "
+"те, чи він працює належним чином в цій версії чи потребує певних виправлень."
 
 #: apps/pages/templates/pages/acr_firstrun.html:61
 msgid ""
@@ -11334,6 +11341,10 @@ msgid ""
 "version. If you have any questions, please ask in <a href=\"%(url)s\">our "
 "forums</a>."
 msgstr ""
+"Якщо ви оновлюєте Firefox чи свої додатки до нової версії, ваші звіти для "
+"старих версій будуть приховані для можливості тестування вами нових версій. "
+"При виникненні будь-яких питань, будь ласка, задавайте їх на <a "
+"href=\"%(url)s\">наших форумах</a>."
 
 #: apps/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -11341,6 +11352,10 @@ msgid ""
 "assistance with compatibility testing helps us make sure these add-ons stay "
 "useful as we strive to provide a great user experience."
 msgstr ""
+"Щорічно нашою спільнотою створюються тисячі додатків, і ваше сприяння в "
+"тестуванні сумісності допомагає нам переконатися в тому, що ці додатки "
+"залишаються корисними, так само, як і наші старання забезпечувати "
+"користувачів відмінною якістю їх роботи."
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
