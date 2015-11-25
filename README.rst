@@ -21,6 +21,6 @@ You can access the AMO dev enviroment at https://addons-dev.allizom.org/
 You can access the AMO stage enviroment at https://addons.allizom.org/
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
-.. _`install docs`: http://olympia.readthedocs.org/en/latest/index.html#quickstart
+.. _`install docs`: http://olympia.readthedocs.org/en/latest/topics/install-olympia/docker.html
 .. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo
 .. _`Sugardough`: https://github.com/mozilla/sugardough
