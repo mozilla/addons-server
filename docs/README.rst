@@ -14,7 +14,7 @@ To build the documentation, you first need the dependencies from
 
 If you're unsure, activate your virtualenv and run::
 
-    pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/docs.txt --find-links https://pyrepo.addons.mozilla.org/
+    pip install --no-deps --exists-action=w --download-cache=/tmp/pip-cache -r requirements/docs.txt --find-links https://pyrepo.stage.mozaws.net/
 
 Or simply::
 
