@@ -33,7 +33,7 @@ RUN pip install -U pip wheel
 COPY requirements /pip/requirements/
 RUN cd /pip && \
     pip install --build ./build --cache-dir ./cache \
-        --find-links https://pyrepo.addons.mozilla.org/ \
+        --find-links https://pyrepo.stage.mozaws.net/ \
         --no-index --no-deps \
         -r requirements/docker.txt && \
     rm -r build cache
