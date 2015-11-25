@@ -27,4 +27,5 @@ get started using the API.
    :maxdepth: 2
 
    auth
+   accounts
    signing

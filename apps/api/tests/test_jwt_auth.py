@@ -28,7 +28,6 @@ class ProtectedView(JWTProtectedView):
 
 
 class JWTAuthTester(TestCase):
-    fixtures = ['base/addon_3615']
 
     def create_api_key(self, user, key='some-user-key', is_active=True,
                        secret='some-shared-secret', **kw):
@@ -50,6 +49,7 @@ class JWTAuthTester(TestCase):
 
 
 class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestJWTProtectedView, self).setUp()
@@ -93,6 +93,7 @@ class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
 
 
 class TestJWTAuthHandlers(JWTAuthTester):
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestJWTAuthHandlers, self).setUp()
@@ -187,6 +188,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
 
 
 class TestJWTKeyAuthentication(JWTAuthTester):
+    fixtures = ['base/addon_3615']
 
     def setUp(self):
         super(TestJWTKeyAuthentication, self).setUp()

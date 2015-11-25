@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.contrib.auth import login
 
+from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from waffle.decorators import waffle_switch
 
 from . import verify
+from api.jwt_auth.views import JWTProtectedView
 from users.models import UserProfile
+from accounts.serializers import UserProfileSerializer
 
 
 class LoginView(APIView):
@@ -28,3 +31,10 @@ class LoginView(APIView):
         else:
             login(request._request, user)
             return Response({'email': identity['email']})
+
+
+class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
+    serializer_class = UserProfileSerializer
+
+    def retrieve(self, request, *args, **kw):
+        return Response(self.get_serializer(request.user).data)
