@@ -18,7 +18,7 @@ class TestProfile(TestCase):
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
         profile = verify.get_fxa_profile('profile-plz', {
-            'profile_uri': 'https://app.fxa/v1',
+            'profile_host': 'https://app.fxa/v1',
         })
         assert profile == profile_data
         self.get.assert_called_with('https://app.fxa/v1/profile', headers={
@@ -31,7 +31,7 @@ class TestProfile(TestCase):
         self.get.return_value.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {
-                'profile_uri': 'https://app.fxa/v1',
+                'profile_host': 'https://app.fxa/v1',
             })
         self.get.assert_called_with('https://app.fxa/v1/profile', headers={
             'Authorization': 'Bearer profile-plz',
@@ -43,7 +43,7 @@ class TestProfile(TestCase):
         self.get.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
             verify.get_fxa_profile('profile-plz', {
-                'profile_uri': 'https://app.fxa/v1',
+                'profile_host': 'https://app.fxa/v1',
             })
         self.get.assert_called_with('https://app.fxa/v1/profile', headers={
             'Authorization': 'Bearer profile-plz',
@@ -64,7 +64,7 @@ class TestToken(TestCase):
         token = verify.get_fxa_token('token-plz', {
             'client_id': 'test-client-id',
             'client_secret': "don't look",
-            'oauth_uri': 'https://app.fxa/oauth/v1',
+            'oauth_host': 'https://app.fxa/oauth/v1',
         })
         assert token == token_data
         self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
@@ -81,7 +81,7 @@ class TestToken(TestCase):
             verify.get_fxa_token('token-plz', {
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-                'oauth_uri': 'https://app.fxa/oauth/v1',
+                'oauth_host': 'https://app.fxa/oauth/v1',
             })
         self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
             'code': 'token-plz',
@@ -97,7 +97,7 @@ class TestToken(TestCase):
             verify.get_fxa_token('token-plz', {
                 'client_id': 'test-client-id',
                 'client_secret': "don't look",
-                'oauth_uri': 'https://app.fxa/oauth/v1',
+                'oauth_host': 'https://app.fxa/oauth/v1',
             })
         self.post.assert_called_with('https://app.fxa/oauth/v1/token', data={
             'code': 'token-plz',
