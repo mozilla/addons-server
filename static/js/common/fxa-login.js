@@ -17,43 +17,24 @@
 
         opts = opts || {};
         var authConfig = {
-            ui: 'lightbox',
             state: 'foo',
             redirectUri: config.redirectUrl,
             scope: config.scope,
         };
         if (opts.signUp) {
             console.log('[FxA] Starting register');
-            return fxaClient.auth.signUp(authConfig).then(function(response) {
-                console.log('[FxA] Register success', response);
-                return $.post(config.registerUrl, postConfig(response));
-            });
+            return fxaClient.auth.signUp(authConfig);
         } else {
             console.log('[FxA] Starting login');
-            return fxaClient.auth.signIn(authConfig).then(function(response) {
-                console.log('[FxA] Login success', response);
-                return $.post(config.loginUrl, postConfig(response));
-            });
+            return fxaClient.auth.signIn(authConfig);
         }
     }
 
     $('body').on('click', '.fxa-login', function(e) {
         e.preventDefault();
-
-        fxaLogin().then(function(response) {
-            console.log('[FxA] Server login response', response);
-            window.location.reload();
-        }, function(error) {
-            console.log('[FxA] Login failed', error);
-        });
+        fxaLogin();
     }).on('click', '.fxa-register', function(e) {
         e.preventDefault();
-
-        fxaLogin({signUp: true}).then(function(response) {
-            console.log('[FxA] Server register response', response);
-            window.location.reload();
-        }, function(error) {
-            console.log('[FxA] Register failed', error);
-        });
+        fxaLogin({signUp: true});
     });
 })();
