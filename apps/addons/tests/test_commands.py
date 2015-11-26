@@ -1,7 +1,9 @@
+import mock
 import pytest
 
 from django.conf import settings
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 import amo
 import amo.tests
@@ -211,3 +213,21 @@ def test_approve_addons_get_review_type(use_case):
     """
     addon, file1, _, review_type = use_case
     assert approve_addons.get_review_type(file1) == review_type
+
+
+# fix_let_scope_bustage.
+
+
+def test_fix_let_scope_bustage_no_addon_id():
+    """If no add-on id is provided, raise."""
+    with pytest.raises(CommandError) as exc_info:
+        call_command('fix_let_scope_bustage')
+    assert 'Please provide at least one add-on id to fix.' in exc_info.value
+
+
+@mock.patch('addons.management.commands.fix_let_scope_bustage.'
+            'fix_let_scope_bustage_in_addons')
+def test_fix_let_scope_bustage(mock_fixer):
+    """The command should call the task with the list of add-on id provided."""
+    call_command('fix_let_scope_bustage', 1, 2, 3)
+    mock_fixer.assert_called_once_with([1, 2, 3])

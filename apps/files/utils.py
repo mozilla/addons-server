@@ -1,4 +1,5 @@
 import collections
+import contextlib
 import glob
 import hashlib
 import json
@@ -24,6 +25,7 @@ from django.core.files.storage import default_storage as storage
 
 import rdflib
 import waffle
+from lxml import etree
 from tower import ugettext as _
 
 import amo
@@ -349,7 +351,7 @@ def parse_search(fileorpath, addon=None):
 class SafeUnzip(object):
     def __init__(self, source, mode='r'):
         self.source = source
-        self.info = None
+        self.info_list = None
         self.mode = mode
 
     def is_valid(self, fatal=True):
@@ -359,16 +361,16 @@ class SafeUnzip(object):
                an error, otherwise it will return False.
         """
         try:
-            zip = zipfile.ZipFile(self.source, self.mode)
+            zip_file = zipfile.ZipFile(self.source, self.mode)
         except (BadZipfile, IOError):
+            log.info('Error extracting %s', self.source, exc_info=True)
             if fatal:
-                log.info('Error extracting', exc_info=True)
                 raise
             return False
 
-        _info = zip.infolist()
+        info_list = zip_file.infolist()
 
-        for info in _info:
+        for info in info_list:
             if '..' in info.filename or info.filename.startswith('/'):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
@@ -385,14 +387,14 @@ class SafeUnzip(object):
                     _('File exceeding size limit in archive: {0}').format(
                         info.filename))
 
-        self.info = _info
-        self.zip = zip
+        self.info_list = info_list
+        self.zip_file = zip_file
         return True
 
     def is_signed(self):
         """Tells us if an addon is signed."""
         finds = []
-        for info in self.info:
+        for info in self.info_list:
             match = SIGNED_RE.match(info.filename)
             if match:
                 name, ext = match.groups()
@@ -413,18 +415,19 @@ class SafeUnzip(object):
         if type == 'jar':
             parts = path.split('!')
             for part in parts[:-1]:
-                jar = self.__class__(StringIO.StringIO(jar.zip.read(part)))
+                jar = self.__class__(
+                    StringIO.StringIO(jar.zip_file.read(part)))
                 jar.is_valid(fatal=True)
             path = parts[-1]
         return jar.extract_path(path[1:] if path.startswith('/') else path)
 
     def extract_path(self, path):
         """Given a path, extracts the content at path."""
-        return self.zip.read(path)
+        return self.zip_file.read(path)
 
     def extract_info_to_dest(self, info, dest):
         """Extracts the given info to a directory and checks the file size."""
-        self.zip.extract(info, dest)
+        self.zip_file.extract(info, dest)
         dest = os.path.join(dest, info.filename)
         if not os.path.isdir(dest):
             # Directories consistently report their size incorrectly.
@@ -436,21 +439,21 @@ class SafeUnzip(object):
 
     def extract_to_dest(self, dest):
         """Extracts the zip file to a directory."""
-        for info in self.info:
+        for info in self.info_list:
             self.extract_info_to_dest(info, dest)
 
     def close(self):
-        self.zip.close()
+        self.zip_file.close()
 
 
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""
     tempdir = tempfile.mkdtemp()
 
-    zip = SafeUnzip(source)
+    zip_file = SafeUnzip(source)
     try:
-        if zip.is_valid(fatal):
-            zip.extract_to_dest(tempdir)
+        if zip_file.is_valid(fatal):
+            zip_file.extract_to_dest(tempdir)
     except:
         rm_local_tmp_dir(tempdir)
         raise
@@ -682,3 +685,93 @@ class JetpackUpgrader(object):
         cache.set(self.file_key, newfiles)
         if not newfiles:
             cache.delete(self.version_key)
+
+
+def zip_folder_content(folder, filename):
+    """Compress the _content_ of a folder."""
+    with zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED) as dest:
+        # Add each file/folder from the folder to the zip file.
+        for root, dirs, files in os.walk(folder):
+            relative_dir = os.path.relpath(root, folder)
+            for file_ in files:
+                dest.write(os.path.join(root, file_),
+                           # We want the relative paths for the files.
+                           arcname=os.path.join(relative_dir, file_))
+
+
+@contextlib.contextmanager
+def repack(xpi_path, raise_on_failure=True):
+    """Unpack the XPI, yield the temp folder, and repack on exit.
+
+    Usage:
+        with repack('foo.xpi') as temp_folder:
+            # 'foo.xpi' files are extracted to the temp_folder.
+            modify_files(temp_folder)  # Modify the files in the temp_folder.
+        # The 'foo.xpi' extension is now repacked, with the file changes.
+    """
+    # Unpack.
+    tempdir = extract_zip(xpi_path, remove=False, fatal=raise_on_failure)
+    yield tempdir
+    try:
+        # Repack.
+        repacked = u'{0}.repacked'.format(xpi_path)  # Temporary file.
+        zip_folder_content(tempdir, repacked)
+        # Overwrite the initial file with the repacked one.
+        shutil.move(repacked, xpi_path)
+    finally:
+        rm_local_tmp_dir(tempdir)
+
+
+def update_version_number(file_obj, new_version_number):
+    """Update the manifest to have the new version number."""
+    # Create a new xpi with the updated version.
+    updated = u'{0}.updated_version_number'.format(file_obj.file_path)
+    # Copy the original XPI, with the updated install.rdf or package.json.
+    with zipfile.ZipFile(file_obj.file_path, 'r') as source:
+        file_list = source.infolist()
+        with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:
+            for file_ in file_list:
+                content = source.read(file_.filename)
+                if file_.filename == 'install.rdf':
+                    content = _update_version_in_install_rdf(
+                        content, new_version_number)
+                if file_.filename == 'package.json':
+                    content = _update_version_in_package_json(
+                        content, new_version_number)
+                dest.writestr(file_, content)
+    # Move the updated file to the original file.
+    shutil.move(updated, file_obj.file_path)
+
+
+def _update_version_in_install_rdf(content, new_version_number):
+    """Change the version number in the install.rdf provided."""
+    # We need to use an XML parser, and not a RDF parser, because our
+    # install.rdf files aren't really standard (they use default namespaces,
+    # don't namespace the "about" attribute... rdflib can parse them, and can
+    # now even serialize them, but the end result could be very different from
+    # the format we need.
+    tree = etree.fromstring(content)
+    # There's two different formats for the install.rdf: the "standard" one
+    # uses nodes for each item (like <em:version>1.2</em:version>), the other
+    # alternate one sets attributes on the <RDF:Description
+    # RDF:about="urn:mozilla:install-manifest"> element.
+
+    # Get the version node, if it's the common format, or the Description node
+    # that has the "em:version" attribute if it's the alternate format.
+    namespace = 'http://www.mozilla.org/2004/em-rdf#'
+    version_uri = '{{{0}}}version'.format(namespace)
+    for node in tree.xpath('//em:version | //*[@em:version]',
+                           namespaces={'em': namespace}):
+        if node.tag == version_uri:  # Common format, version is a node.
+            node.text = new_version_number
+        else:  # Alternate format, version is an attribute.
+            node.set(version_uri, new_version_number)
+    return etree.tostring(tree, xml_declaration=True, encoding='utf-8')
+
+
+def _update_version_in_package_json(content, new_version_number):
+    """Change the version number in the package.json provided."""
+    updated = json.loads(content)
+    if 'version' in updated:
+        updated['version'] = new_version_number
+    return json.dumps(updated)

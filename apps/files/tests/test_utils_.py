@@ -1,4 +1,6 @@
 import json
+import os
+import zipfile
 from tempfile import NamedTemporaryFile
 
 import mock
@@ -11,9 +13,8 @@ import amo
 import amo.tests
 from addons.models import Addon
 from applications.models import AppVersion
+from files import utils
 from files.models import File
-from files.utils import (find_jetpacks, is_beta, Extractor,
-                         ManifestJSONExtractor, PackageJSONExtractor)
 from versions.models import Version
 
 
@@ -21,56 +22,56 @@ pytestmark = pytest.mark.django_db
 
 
 def test_is_beta():
-    assert not is_beta('1.2')
+    assert not utils.is_beta('1.2')
 
-    assert is_beta('1.2a')
-    assert is_beta('1.2a1')
-    assert is_beta('1.2a123')
-    assert is_beta('1.2a.1')
-    assert is_beta('1.2a.123')
-    assert is_beta('1.2a-1')
-    assert is_beta('1.2a-123')
+    assert utils.is_beta('1.2a')
+    assert utils.is_beta('1.2a1')
+    assert utils.is_beta('1.2a123')
+    assert utils.is_beta('1.2a.1')
+    assert utils.is_beta('1.2a.123')
+    assert utils.is_beta('1.2a-1')
+    assert utils.is_beta('1.2a-123')
 
-    assert is_beta('1.2alpha')
-    assert is_beta('1.2alpha')
-    assert is_beta('1.2alpha1')
-    assert is_beta('1.2alpha123')
-    assert is_beta('1.2alpha.1')
-    assert is_beta('1.2alpha.123')
-    assert is_beta('1.2alpha-1')
-    assert is_beta('1.2alpha-123')
+    assert utils.is_beta('1.2alpha')
+    assert utils.is_beta('1.2alpha')
+    assert utils.is_beta('1.2alpha1')
+    assert utils.is_beta('1.2alpha123')
+    assert utils.is_beta('1.2alpha.1')
+    assert utils.is_beta('1.2alpha.123')
+    assert utils.is_beta('1.2alpha-1')
+    assert utils.is_beta('1.2alpha-123')
 
-    assert is_beta('1.2b')
-    assert is_beta('1.2b1')
-    assert is_beta('1.2b123')
-    assert is_beta('1.2b.1')
-    assert is_beta('1.2b.123')
-    assert is_beta('1.2b-1')
-    assert is_beta('1.2b-123')
+    assert utils.is_beta('1.2b')
+    assert utils.is_beta('1.2b1')
+    assert utils.is_beta('1.2b123')
+    assert utils.is_beta('1.2b.1')
+    assert utils.is_beta('1.2b.123')
+    assert utils.is_beta('1.2b-1')
+    assert utils.is_beta('1.2b-123')
 
-    assert is_beta('1.2beta')
-    assert is_beta('1.2beta1')
-    assert is_beta('1.2beta123')
-    assert is_beta('1.2beta.1')
-    assert is_beta('1.2beta.123')
-    assert is_beta('1.2beta-1')
-    assert is_beta('1.2beta-123')
+    assert utils.is_beta('1.2beta')
+    assert utils.is_beta('1.2beta1')
+    assert utils.is_beta('1.2beta123')
+    assert utils.is_beta('1.2beta.1')
+    assert utils.is_beta('1.2beta.123')
+    assert utils.is_beta('1.2beta-1')
+    assert utils.is_beta('1.2beta-123')
 
-    assert is_beta('1.2pre')
-    assert is_beta('1.2pre1')
-    assert is_beta('1.2pre123')
-    assert is_beta('1.2pre.1')
-    assert is_beta('1.2pre.123')
-    assert is_beta('1.2pre-1')
-    assert is_beta('1.2pre-123')
+    assert utils.is_beta('1.2pre')
+    assert utils.is_beta('1.2pre1')
+    assert utils.is_beta('1.2pre123')
+    assert utils.is_beta('1.2pre.1')
+    assert utils.is_beta('1.2pre.123')
+    assert utils.is_beta('1.2pre-1')
+    assert utils.is_beta('1.2pre-123')
 
-    assert is_beta('1.2rc')
-    assert is_beta('1.2rc1')
-    assert is_beta('1.2rc123')
-    assert is_beta('1.2rc.1')
-    assert is_beta('1.2rc.123')
-    assert is_beta('1.2rc-1')
-    assert is_beta('1.2rc-123')
+    assert utils.is_beta('1.2rc')
+    assert utils.is_beta('1.2rc1')
+    assert utils.is_beta('1.2rc123')
+    assert utils.is_beta('1.2rc.1')
+    assert utils.is_beta('1.2rc.123')
+    assert utils.is_beta('1.2rc-1')
+    assert utils.is_beta('1.2rc-123')
 
 
 class TestFindJetpacks(amo.tests.TestCase):
@@ -82,20 +83,20 @@ class TestFindJetpacks(amo.tests.TestCase):
         self.file = File.objects.filter(version__addon=3615).get()
 
     def test_success(self):
-        files = find_jetpacks('1.0', '1.1')
+        files = utils.find_jetpacks('1.0', '1.1')
         eq_(files, [self.file])
 
     def test_skip_autorepackage(self):
         Addon.objects.update(auto_repackage=False)
-        eq_(find_jetpacks('1.0', '1.1'), [])
+        eq_(utils.find_jetpacks('1.0', '1.1'), [])
 
     def test_minver(self):
-        files = find_jetpacks('1.1', '1.2')
+        files = utils.find_jetpacks('1.1', '1.2')
         eq_(files, [self.file])
         eq_(files[0].needs_upgrade, False)
 
     def test_maxver(self):
-        files = find_jetpacks('.1', '1.0')
+        files = utils.find_jetpacks('.1', '1.0')
         eq_(files, [self.file])
         eq_(files[0].needs_upgrade, False)
 
@@ -108,13 +109,13 @@ class TestFindJetpacks(amo.tests.TestCase):
         eq_(new_file.status, amo.STATUS_UNREVIEWED)
         eq_(new_file2.status, amo.STATUS_UNREVIEWED)
 
-        files = find_jetpacks('1.0', '1.1')
+        files = utils.find_jetpacks('1.0', '1.1')
         eq_(files, [self.file, new_file, new_file2])
         assert all(f.needs_upgrade for f in files)
 
         # Now self.file will not need an upgrade since we skip old versions.
         new_file.update(status=amo.STATUS_PUBLIC)
-        files = find_jetpacks('1.0', '1.1')
+        files = utils.find_jetpacks('1.0', '1.1')
         eq_(files, [self.file, new_file, new_file2])
         eq_(files[0].needs_upgrade, False)
         assert all(f.needs_upgrade for f in files[1:])
@@ -132,7 +133,7 @@ class TestExtractor(amo.tests.TestCase):
 
     def test_no_manifest(self):
         with self.assertRaises(forms.ValidationError) as exc:
-            Extractor.parse('foobar')
+            utils.Extractor.parse('foobar')
         assert exc.exception.message == (
             "No install.rdf or package.json or manifest.json found")
 
@@ -144,7 +145,7 @@ class TestExtractor(amo.tests.TestCase):
                                package_json_extractor,
                                manifest_json_extractor):
         exists_mock.side_effect = self.os_path_exists_for('install.rdf')
-        Extractor.parse('foobar')
+        utils.Extractor.parse('foobar')
         assert rdf_extractor.called
         assert not package_json_extractor.called
         assert not manifest_json_extractor.called
@@ -157,7 +158,7 @@ class TestExtractor(amo.tests.TestCase):
                                 package_json_extractor,
                                 manifest_json_extractor):
         exists_mock.side_effect = self.os_path_exists_for('package.json')
-        Extractor.parse('foobar')
+        utils.Extractor.parse('foobar')
         assert not rdf_extractor.called
         assert package_json_extractor.called
         assert not manifest_json_extractor.called
@@ -171,7 +172,7 @@ class TestExtractor(amo.tests.TestCase):
                                  manifest_json_extractor):
         self.create_switch('webextensions')
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
-        Extractor.parse('foobar')
+        utils.Extractor.parse('foobar')
         assert not rdf_extractor.called
         assert not package_json_extractor.called
         assert manifest_json_extractor.called
@@ -186,7 +187,7 @@ class TestExtractor(amo.tests.TestCase):
         # Here we don't create the waffle switch to enable it.
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
         with self.assertRaises(forms.ValidationError) as exc:
-            Extractor.parse('foobar')
+            utils.Extractor.parse('foobar')
         assert exc.exception.message == "WebExtensions aren't allowed yet"
         assert not rdf_extractor.called
         assert not package_json_extractor.called
@@ -196,8 +197,8 @@ class TestExtractor(amo.tests.TestCase):
 class TestPackageJSONExtractor(amo.tests.TestCase):
 
     def parse(self, base_data):
-        return PackageJSONExtractor('/fake_path',
-                                    json.dumps(base_data)).parse()
+        return utils.PackageJSONExtractor('/fake_path',
+                                          json.dumps(base_data)).parse()
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(application=amo.APPS[name].id,
@@ -209,7 +210,7 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         with NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
-            pje = PackageJSONExtractor(file_.name)
+            pje = utils.PackageJSONExtractor(file_.name)
             assert pje.data == data
 
     def test_guid(self):
@@ -314,8 +315,8 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
 class TestManifestJSONExtractor(amo.tests.TestCase):
 
     def parse(self, base_data):
-        return ManifestJSONExtractor('/fake_path',
-                                     json.dumps(base_data)).parse()
+        return utils.ManifestJSONExtractor('/fake_path',
+                                           json.dumps(base_data)).parse()
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(application=amo.APPS[name].id,
@@ -327,7 +328,7 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
         with NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
-            mje = ManifestJSONExtractor(file_.name)
+            mje = utils.ManifestJSONExtractor(file_.name)
             assert mje.data == data
 
     def test_guid(self):
@@ -408,3 +409,77 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
                     'strict_min_version': '>=30.0',
                     'strict_max_version': '=30.*'}}}
         assert not self.parse(data)['apps']
+
+
+def test_zip_folder_content():
+    extension_file = 'apps/files/fixtures/files/extension.xpi'
+    try:
+        temp_folder = utils.extract_zip(extension_file)
+        assert os.listdir(temp_folder) == [
+            'install.rdf', 'chrome.manifest', 'chrome']
+        temp_filename = amo.tests.get_temp_filename()
+        utils.zip_folder_content(temp_folder, temp_filename)
+        # Make sure the zipped files contain the same files.
+        with zipfile.ZipFile(temp_filename, mode='r') as new:
+            with zipfile.ZipFile(extension_file, mode='r') as orig:
+                assert new.namelist() == orig.namelist()
+    finally:
+        if os.path.exists(temp_folder):
+            amo.utils.rm_local_tmp_dir(temp_folder)
+        if os.path.exists(temp_filename):
+            os.unlink(temp_filename)
+
+
+def test_repack():
+    # Warning: context managers all the way down. Because they're awesome.
+    extension_file = 'apps/files/fixtures/files/extension.xpi'
+    # We don't want to overwrite our fixture, so use a copy.
+    with amo.tests.copy_file_to_temp(extension_file) as temp_filename:
+        # This is where we're really testing the repack helper.
+        with utils.repack(temp_filename) as folder_path:
+            # Temporary folder contains the unzipped XPI.
+            assert os.listdir(folder_path) == [
+                'install.rdf', 'chrome.manifest', 'chrome']
+            # Add a file, which should end up in the repacked file.
+            with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
+                file_.write('foobar')
+        # Once we're done with the repack, the temporary folder is removed.
+        assert not os.path.exists(folder_path)
+        # And the repacked file has the added file.
+        assert os.path.exists(temp_filename)
+        with zipfile.ZipFile(temp_filename, mode='r') as zf:
+            assert 'foo.bar' in zf.namelist()
+            assert zf.read('foo.bar') == 'foobar'
+
+
+@pytest.fixture
+def file_obj():
+    addon = amo.tests.addon_factory()
+    addon.update(guid='xxxxx')
+    version = addon.current_version
+    return version.all_files[0]
+
+
+def test_bump_version_in_install_rdf(file_obj):
+    with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                             file_obj.file_path):
+        utils.update_version_number(file_obj, '1.3.1-signed')
+        parsed = utils.parse_xpi(file_obj.file_path)
+        assert parsed['version'] == '1.3.1-signed'
+
+
+def test_bump_version_in_alt_install_rdf(file_obj):
+    with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
+                             file_obj.file_path):
+        utils.update_version_number(file_obj, '2.1.106.1-signed')
+        parsed = utils.parse_xpi(file_obj.file_path)
+        assert parsed['version'] == '2.1.106.1-signed'
+
+
+def test_bump_version_in_package_json(file_obj):
+    with amo.tests.copy_file(
+            'apps/files/fixtures/files/new-format-0.0.1.xpi',
+            file_obj.file_path):
+        utils.update_version_number(file_obj, '0.0.1.1-signed')
+        parsed = utils.parse_xpi(file_obj.file_path)
+        assert parsed['version'] == '0.0.1.1-signed'
