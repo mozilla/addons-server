@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-26 08:49+0000\n"
+"PO-Revision-Date: 2015-11-26 12:43+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -13868,7 +13868,7 @@ msgstr "{0} найпопулярніших міток"
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Локалізація для: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16
 #: apps/translations/templates/translations/trans-menu.html:29
@@ -13952,7 +13952,7 @@ msgstr ""
 
 #: apps/users/forms.py:267 apps/users/templates/users/edit.html:86
 msgid "Display Name"
-msgstr ""
+msgstr "Ім'я для показу"
 
 #: apps/users/forms.py:269 apps/users/templates/users/edit.html:91
 #: apps/users/templates/users/vcard.html:10
@@ -13980,7 +13980,7 @@ msgstr ""
 
 #: apps/users/forms.py:311
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Це ім'я для показу не можна використати."
 
 #: apps/users/forms.py:325
 msgid "The passwords did not match."
@@ -13992,7 +13992,7 @@ msgstr "Світлина профілю"
 
 #: apps/users/forms.py:351 apps/users/templates/users/edit.html:121
 msgid "Default locale"
-msgstr ""
+msgstr "Типова локаль"
 
 #: apps/users/forms.py:488
 msgid ""
@@ -14340,7 +14340,7 @@ msgstr "Ім'я користувача"
 #: apps/users/templates/users/pwreset_request.html:21
 #: apps/users/templates/users/register.html:63
 msgid "Email Address"
-msgstr "Адреса ел.пошти"
+msgstr "Адреса електронної пошти"
 
 #: apps/users/templates/users/edit.html:43
 msgid "Change Password"
@@ -14480,7 +14480,7 @@ msgstr "Увійти"
 #: apps/users/templates/users/login_form.html:16
 #: apps/users/templates/users/mobile/login.html:32
 msgid "Email address"
-msgstr "Адреса ел.пошти"
+msgstr "Адреса електронної пошти"
 
 #: apps/users/templates/users/login_form.html:29
 #: apps/users/templates/users/mobile/login.html:44
@@ -14706,7 +14706,7 @@ msgstr "Зареєструватися"
 
 #: apps/users/templates/users/register.html:53
 msgid "Display name"
-msgstr ""
+msgstr "Ім'я для показу"
 
 #: apps/users/templates/users/report_abuse.html:7
 msgid ""
