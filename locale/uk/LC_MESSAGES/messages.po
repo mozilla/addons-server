@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-25 14:54+0000\n"
+"PO-Revision-Date: 2015-11-26 08:09+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10074,7 +10074,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Скарги про зловживання"
 
 #: apps/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
@@ -10090,7 +10090,7 @@ msgstr "<i>anonymous</i> в %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Повернутися до домівки інструментів редактора"
 
 #: apps/editors/templates/editors/base.html:43
 #: apps/editors/templates/editors/themes/base.html:14
@@ -10101,7 +10101,7 @@ msgstr "Черги"
 
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Черги невідображених"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -10112,25 +10112,25 @@ msgstr "Логи"
 #: apps/editors/templates/editors/base.html:78
 #: apps/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Журнал перевірок додатків"
 
 #: apps/editors/templates/editors/base.html:80
 #: apps/editors/templates/editors/eventlog.html:4
 #: apps/editors/templates/editors/eventlog.html:8
 #: apps/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Журнал модерованих перевірок"
 
 #: apps/editors/templates/editors/base.html:82
 #: apps/editors/templates/editors/beta_signed_log.html:4
 #: apps/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Журнал підписаних файлів бети"
 
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
-msgstr ""
+msgstr "Оголошення"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/beta_signed_log.html:17
@@ -10161,15 +10161,15 @@ msgstr "Детальніше."
 #: apps/editors/templates/editors/beta_signed_log.html:46
 #: apps/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
-msgstr ""
+msgstr "Для цього періоду подій не знайдено."
 
 #: apps/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
-msgstr ""
+msgstr "Подробиці журналу"
 
 #: apps/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr ""
+msgstr "Подробиці журналу"
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
@@ -10177,15 +10177,15 @@ msgstr "Назва додатку"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Заголовок відгуку"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Текст відгуку"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Відгук було позначено для видалення."
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
@@ -10233,9 +10233,9 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Повна перевірка невідображених ({num})"
+msgstr[1] "Повні перевірки невідображених ({num})"
+msgstr[2] "Повні перевірки невідображених ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
