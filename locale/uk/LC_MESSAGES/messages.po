@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-26 08:09+0000\n"
+"PO-Revision-Date: 2015-11-26 08:49+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10240,16 +10240,16 @@ msgstr[2] "Повні перевірки невідображених ({num})"
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Очікуване оновлення невідображених ({num})"
+msgstr[1] "Очікувані оновлення невідображених ({num})"
+msgstr[2] "Очікувані оновлення невідображених ({num})"
 
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Попередня перевірка невідображених ({num})"
+msgstr[1] "Попередні перевірки невідображених ({num})"
+msgstr[2] "Попередні перевірки невідображених ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
@@ -10264,30 +10264,30 @@ msgstr "Розгляди цього місяця"
 
 #: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
-msgstr ""
+msgstr "Нові редактори"
 
 #: apps/editors/templates/editors/home.html:126
 #: apps/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Ви #{0} з {1} перевірками"
 
 #. num = number of reviews in the queue
 #: apps/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Модерована перевірка ({num})"
+msgstr[1] "Модеровані перевірки ({num})"
+msgstr[2] "Модеровані перевірки ({num})"
 
 #: apps/editors/templates/editors/leaderboard.html:3
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Панель лідерів редакторів"
 
 #: apps/editors/templates/editors/leaderboard.html:18
 #: apps/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Бали за перевірку поки що не нараховано."
 
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
@@ -10304,7 +10304,7 @@ msgstr "Повідомлення дня"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Оновити повідомлення дня"
 
 #: apps/editors/templates/editors/motd.html:15
 #: apps/editors/templates/editors/review.html:224
@@ -10314,7 +10314,7 @@ msgstr "Зберегти"
 #: apps/editors/templates/editors/performance.html:10
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Продуктивність редактора додатків"
 
 #: apps/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10334,23 +10334,23 @@ msgstr "Від {user_name}"
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr ""
+msgstr "Активні учасники"
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "Цього місяця"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Цього року"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Місячна продуктивність"
 
 #: apps/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Розбиття за весь час за типом"
 
 #: apps/editors/templates/editors/performance.html:76
 msgid "Total"
@@ -10379,21 +10379,23 @@ msgstr "очистити пошук"
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr ""
+msgstr "Обробити відгуки"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Дії для модерації:"
 
 #: apps/editors/templates/editors/queue.html:90
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "від %(user)s %(date)s %(stars)s (%(locale)s)"
 
 #: apps/editors/templates/editors/queue.html:106
 msgid ""
 "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
 "%(date)s</span>"
 msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Позначено %(user)s "
+"%(date)s</span>"
 
 #: apps/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
@@ -10423,22 +10425,24 @@ msgstr "Інструкції редактора"
 #. "Review [add-on name]"
 #: apps/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr ""
+msgstr "Перевірити {0}"
 
 #: apps/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Історія змін користувачів додатку"
 
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
 msgid "Add-on History"
-msgstr ""
+msgstr "Історія додатку"
 
 #: apps/editors/templates/editors/review.html:64
 msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
+"Версія %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
@@ -10470,7 +10474,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Вставити стандартну відповідь..."
 
 #: apps/editors/templates/editors/review.html:167
 #: apps/files/templates/files/viewer.html:80
@@ -10485,6 +10489,7 @@ msgstr "Перевірено на:"
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Увага!</strong> Інший користувач переглядав цю сторінку перед вами."
 
 #: apps/editors/templates/editors/review.html:237
 msgid ""
@@ -10492,10 +10497,13 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"Ця дошка є місцем для обміну інформацією, яка відноситься до цього додатку "
+"(незалежно від версії), між розробником і редактором. Вона видима і доступна"
+" для редагування обом."
 
 #: apps/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Оновити дошку"
 
 #: apps/editors/templates/editors/review.html:257
 #: apps/editors/templates/editors/review.html:258
@@ -10508,7 +10516,7 @@ msgstr "Сторінка адміністратора"
 
 #: apps/editors/templates/editors/review.html:263
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Перевірити цей додаток"
 
 #: apps/editors/templates/editors/review.html:265
 msgid "More Information"
@@ -10516,7 +10524,7 @@ msgstr "Більше інформації"
 
 #: apps/editors/templates/editors/review.html:267
 msgid "Resolution"
-msgstr ""
+msgstr "Рішення"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/reviewlog.html:21
@@ -10527,7 +10535,7 @@ msgstr "Фільтр"
 #: apps/editors/templates/editors/reviewlog.html:27
 msgctxt "editorcp_reviewlog_page_heading"
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Журнал перевірки додатку"
 
 #: apps/editors/templates/editors/reviewlog.html:34
 msgctxt "editorcp_reviewlog_column_date"
@@ -10540,7 +10548,7 @@ msgstr "Редактор"
 
 #: apps/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Додаток був видалений."
 
 #: apps/editors/templates/editors/reviewlog.html:59
 #: apps/editors/templates/editors/themes/logs.html:36
@@ -10555,15 +10563,15 @@ msgstr "Приховати коментарі"
 #: apps/editors/templates/editors/reviewlog.html:72
 #: apps/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Не знайдено відгуків для цього періоду."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Ігнорувати це оголошення"
 
 #: apps/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
-msgstr ""
+msgstr "Файли в цій версії:"
 
 #: apps/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
