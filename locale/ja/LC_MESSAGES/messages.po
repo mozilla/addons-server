@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-24 08:32+0000\n"
+"PO-Revision-Date: 2015-11-26 06:02+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6758,6 +6758,8 @@ msgid ""
 "We offer two types of review and developers are free to choose the best fit "
 "for their add-on."
 msgstr ""
+"当サイトのギャラリーに掲載されるすべてのアドオンがインストールしても安全であることを保証するため、Mozilla "
+"は今後すべての掲載アドオンに審査を義務付けます。審査には 2 種類あり、開発者はアドオンに最適な方を選択することができます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
@@ -6766,6 +6768,8 @@ msgid ""
 "distribution to the masses. All site features are available to these add-"
 "ons."
 msgstr ""
+"<strong><a href=\"#full\">完全審査</a></strong> &mdash; "
+"これはアドオンの徹底的な機能とコードの審査で、広く一般に配布したいアドオンに適しています。これらのアドオンは同サイトの全機能を使用できます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
@@ -6774,6 +6778,8 @@ msgid ""
 "check for functionality or full policy compliance, but the reviewed add-ons "
 "have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">事前審査</a></strong> &mdash; "
+"実験的なアドオン向けのより素早い審査。事前審査では各機能の動作やポリシーへの完全準拠は確認されませんが、審査済みのアドオンには注意書きの付いたインストールボタンが与えられ、一部機能制限もあります。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -6785,6 +6791,10 @@ msgid ""
 "for users. Developers will receive an email with any updates throughout the "
 "review process."
 msgstr ""
+"各選択肢の詳しい説明は以下の通りです。提出時に審査の種類を選択すると、アドオンは審査待ちとなります。アドオンは、ユーザにとっての安定性や安全性を確保するためにアドオンを審査することで"
+" Mozilla にボランティアとして協力してくれている経験豊富な開発者のグループである <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO エディタ</a> "
+"によって審査されます。審査の過程でアドオン作者に最新の情報がメールで送られます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -6793,6 +6803,7 @@ msgid ""
 "allows the author to blog or share the link with friends, inviting them to "
 "try it out, even when not yet reviewed."
 msgstr ""
+"審査を待っている間、アドオンはギャラリーのどこにも掲載されませんが、アドオンの詳細ページへの直リンクは有効となります。これにより、審査完了前でも、作者はブログでそのアドオンを紹介したり友人とリンクを共有したりして、そのアドオンを試してもらうことができます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
@@ -6801,12 +6812,13 @@ msgid ""
 " meets that criteria, please consider working out the kinks while in "
 "preliminary review and accumulating user feedback first."
 msgstr ""
+"完全審査は、よくテストされ、安定し、高速で、ユーザに広く受け入れられるアドオンに適しています。あなたのアドオンがこの条件を満たしているかどうか自信がない場合は、事前審査を申請しつつ問題点を解消し、まずはユーザからのフィードバックを蓄積することを検討してください。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid ""
 "We aim to perform full reviews in under 10 days, though most add-ons are "
 "reviewed in much less time."
-msgstr ""
+msgstr "私たちは完全審査を 10 日以内に完了することを目指しており、実際のところ多くのアドオンはそれよりずっと短時間で審査されています。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -6814,29 +6826,29 @@ msgstr "テスト方法と一般的な問題"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "完全審査を行うに当たって、エディタは以下の手順に従います。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid ""
 "install the add-on, making sure it functions as described and is free of "
 "major defects"
-msgstr ""
+msgstr "アドオンをインストールして、それが説明通りに動作し重大な欠陥がないことを確認します"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid ""
 "perform a source code review, looking for performance and security best "
 "practices"
-msgstr ""
+msgstr "ソースコードの審査を行い、パフォーマンスとセキュリティが十分かどうか確認します"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr ""
+msgstr "アドオンのプライバシーポリシーがその機能と合致しているかどうか確認します"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid ""
 "look for compliance with all of Mozilla's policies, detailed in these "
 "documents"
-msgstr ""
+msgstr "これらのドキュメントに詳しく書かれている Mozilla のポリシーすべてに準拠していることを確認します"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid ""
