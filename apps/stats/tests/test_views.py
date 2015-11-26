@@ -3,6 +3,9 @@ import csv
 import datetime
 import json
 
+from django.http import Http404
+from django.test.client import RequestFactory
+
 import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -859,8 +862,19 @@ class TestCollections(amo.tests.ESTestCase):
         eq_(content[1]['date'], day_before.strftime('%Y-%m-%d'))
 
 
-class TestXssOnAddonName(amo.tests.TestXss):
+class TestXss(amo.tests.TestXss):
 
     def test_stats_page(self):
         url = reverse('stats.overview', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+    def test_date_range_or_404_xss(self):
+        with self.assertRaises(Http404):
+            views.get_daterange_or_404(start='<alert>', end='20010101')
+
+    def test_report_view_xss(self):
+        req = RequestFactory().get('/', start='<alert>', end='20010101')
+        assert views.get_report_view(req) == {}
+
+        req = RequestFactory().get('/', last='<alert>')
+        assert views.get_report_view(req) == {}

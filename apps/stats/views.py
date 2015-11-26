@@ -29,6 +29,7 @@ from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
 from bandwagon.models import Collection
 from bandwagon.views import get_collection
+from stats.forms import DateForm
 from zadmin.models import SiteEvent
 
 from .models import (CollectionCount, Contribution, DownloadCount,
@@ -354,56 +355,39 @@ def site_stats_report(request, report):
 
 def get_report_view(request):
     """Parse and validate a pair of YYYMMDD date strings."""
-    if 'start' in request.GET and 'end' in request.GET:
-        try:
-            start = request.GET.get('start')
-            end = request.GET.get('end')
-
-            assert len(start) == 8
-            assert len(end) == 8
-
-            s_year = int(start[0:4])
-            s_month = int(start[4:6])
-            s_day = int(start[6:8])
-            e_year = int(end[0:4])
-            e_month = int(end[4:6])
-            e_day = int(end[6:8])
-
-            date(s_year, s_month, s_day)
-            date(e_year, e_month, e_day)
-
-            return {'range': 'custom',
-                    'start': start,
-                    'end': end}
-        except (KeyError, AssertionError, ValueError):
-            pass
-
-    if 'last' in request.GET:
-        daterange = request.GET.get('last')
-
-        return {'range': daterange, 'last': daterange + ' days'}
-    else:
+    dates = DateForm(data=request.GET)
+    if not dates.is_valid():
+        logger.info('Dates parsed were not valid.')
         return {}
+
+    if dates.cleaned_data.get('start') and dates.cleaned_data.get('end'):
+        return {
+            'range': 'custom',
+            'start': dates.cleaned_data['start'].strftime('%Y%m%d'),
+            'end': dates.cleaned_data['end'].strftime('%Y%m%d'),
+        }
+
+    elif dates.cleaned_data.get('last'):
+        return {
+            'range': dates.cleaned_data['last'],
+            'last': dates.cleaned_data['last'] + ' days'
+        }
+
+    logger.info('Missing "start and end" or "last"')
+    return {}
 
 
 def get_daterange_or_404(start, end):
     """Parse and validate a pair of YYYYMMDD date strings."""
-    try:
-        assert len(start) == 8
-        assert len(end) == 8
-
-        s_year = int(start[0:4])
-        s_month = int(start[4:6])
-        s_day = int(start[6:8])
-        e_year = int(end[0:4])
-        e_month = int(end[4:6])
-        e_day = int(end[6:8])
-
-        start_date = date(s_year, s_month, s_day)
-        end_date = date(e_year, e_month, e_day)
-    except (AssertionError, ValueError):
+    dates = DateForm(data={'start': start, 'end': end})
+    if not dates.is_valid():
+        logger.info('Dates parsed were not valid.')
         raise http.Http404
-    return (start_date, end_date)
+
+    return (
+        dates.cleaned_data['start'],
+        dates.cleaned_data['end']
+    )
 
 
 @json_view
