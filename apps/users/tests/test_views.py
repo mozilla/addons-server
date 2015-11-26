@@ -336,6 +336,7 @@ class TestEditAdmin(UserViewBase):
         data = model_to_dict(self.regular)
         data['admin_log'] = 'test'
         del data['password']
+        del data['fxa_id']
         return data
 
     def get_user(self):
