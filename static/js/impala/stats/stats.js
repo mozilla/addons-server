@@ -41,8 +41,8 @@
         // Restore any session view information from sessionStorage.
         if (z.capabilities.localStorage && sessionStorage.getItem('stats_view')) {
             var ssView = JSON.parse(sessionStorage.getItem('stats_view'));
-            initView.range = ssView.range || initView.range;
-            initView.group = ssView.group || initView.group;
+            initView.range = _.escape(ssView.range || initView.range);
+            initView.group = _.escape(ssView.group || initView.group);
         }
 
         // Update sessionStorage with our current view state.

@@ -370,7 +370,7 @@ def get_report_view(request):
     elif dates.cleaned_data.get('last'):
         return {
             'range': dates.cleaned_data['last'],
-            'last': dates.cleaned_data['last'] + ' days'
+            'last': str(dates.cleaned_data['last']) + ' days'
         }
 
     logger.info('Missing "start and end" or "last"')
