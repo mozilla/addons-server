@@ -7,7 +7,7 @@ import mock
 from rest_framework.test import APITestCase
 
 from accounts import verify, views
-from amo.tests import create_switch
+from amo.tests import create_switch, InitializeSessionMixin
 from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
 
@@ -109,6 +109,7 @@ class TestWithUser(TestCase):
         self.user = mock.MagicMock(fxa_id=None)
         self.user.is_authenticated.return_value = True
         self.request.user = self.user
+        self.request.session = {'fxa_state': 'some-blob'}
 
     @views.with_user
     def fn(*args, **kwargs):
@@ -119,7 +120,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated.return_value = False
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {'user': self.user, 'identity': identity}
@@ -128,7 +129,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         self.user.is_authenticated.return_value = False
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -137,7 +138,7 @@ class TestWithUser(TestCase):
     @mock.patch('accounts.views.Response')
     def test_profile_does_not_exist(self, Response):
         self.fxa_identify.side_effect = verify.IdentificationError
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'Profile not found.'}, status=401)
@@ -145,7 +146,7 @@ class TestWithUser(TestCase):
 
     @mock.patch('accounts.views.Response')
     def test_code_not_provided(self, Response):
-        self.request.DATA = {'hey': 'hi'}
+        self.request.DATA = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'No code provided.'}, status=422)
@@ -157,7 +158,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {'user': self.user, 'identity': identity}
@@ -167,7 +168,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {'user': self.user, 'identity': identity}
@@ -179,7 +180,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = None
         self.user.pk = 100
         self.user.fxa_id = '4321'
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'User already migrated.'}, status=422)
@@ -190,9 +191,19 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = mock.MagicMock(pk=222)
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with({'error': 'User mismatch.'}, status=422)
+
+    @mock.patch('accounts.views.Response')
+    def test_state_does_not_match(self, Response):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {'code': 'foo', 'state': 'other-blob'}
+        self.fn(self.request)
+        Response.assert_called_with({'error': 'State mismatch.'}, status=400)
 
 
 class TestRegisterUser(TestCase):
@@ -230,7 +241,7 @@ class TestRegisterUser(TestCase):
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
-class BaseAuthenticationView(APITestCase):
+class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
 
     def setUp(self):
         self.url = reverse(self.view_name)
@@ -248,6 +259,7 @@ class TestLoginView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestLoginView, self).setUp()
+        self.initialize_session({'fxa_state': 'some-blob'})
         self.login_user = self.patch('accounts.views.login_user')
 
     def test_no_code_provided(self):
@@ -256,9 +268,17 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['error'] == 'No code provided.'
         assert not self.login_user.called
 
+    def test_wrong_state(self):
+        response = self.client.post(
+            self.url, {'code': 'foo', 'state': 'a-different-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.login_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -266,7 +286,8 @@ class TestLoginView(BaseAuthenticationView):
 
     def test_identify_success_no_account(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 422
         assert response.data['error'] == 'User does not exist.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -276,7 +297,8 @@ class TestLoginView(BaseAuthenticationView):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.post(self.url, {'code': 'code'})
+        response = self.client.post(
+            self.url, {'code': 'code', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
         self.login_user.assert_called_with(mock.ANY, user, identity)
@@ -288,7 +310,8 @@ class TestLoginView(BaseAuthenticationView):
         self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
                                           'uid': '9005'}
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            self.client.post(self.url, {'code': 'code'})
+            self.client.post(
+                self.url, {'code': 'code', 'state': 'some-blob'})
         assert not self.login_user.called
 
 
@@ -297,6 +320,7 @@ class TestRegisterView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestRegisterView, self).setUp()
+        self.initialize_session({'fxa_state': 'some-blob'})
         self.register_user = self.patch('accounts.views.register_user')
 
     def test_no_code_provided(self):
@@ -305,9 +329,17 @@ class TestRegisterView(BaseAuthenticationView):
         assert response.data['error'] == 'No code provided.'
         assert not self.register_user.called
 
+    def test_wrong_state(self):
+        response = self.client.post(
+            self.url, {'code': 'foo', 'state': 'wrong-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.register_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -317,7 +349,8 @@ class TestRegisterView(BaseAuthenticationView):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.register_user.return_value = UserProfile(email=identity['email'])
         self.fxa_identify.return_value = identity
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'me@yeahoo.com'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -329,6 +362,7 @@ class TestAuthorizeView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestAuthorizeView, self).setUp()
+        self.initialize_session({'fxa_state': 'the-right-blob'})
         self.login_user = self.patch('accounts.views.login_user')
         self.register_user = self.patch('accounts.views.register_user')
 
@@ -339,9 +373,18 @@ class TestAuthorizeView(BaseAuthenticationView):
         assert not self.login_user.called
         assert not self.register_user.called
 
+    def test_wrong_state(self):
+        response = self.client.get(
+            self.url, {'code': 'foo', 'state': 'the-wrong-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.login_user.called
+        assert not self.register_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.get(self.url, {'code': 'codes!!'})
+        response = self.client.get(
+            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -353,7 +396,8 @@ class TestAuthorizeView(BaseAuthenticationView):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {'code': 'codes!!'})
+        response = self.client.get(
+            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 302
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
@@ -363,7 +407,8 @@ class TestAuthorizeView(BaseAuthenticationView):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {'code': 'code'})
+        response = self.client.get(
+            self.url, {'code': 'code', 'state': 'the-right-blob'})
         assert response.status_code == 302
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
