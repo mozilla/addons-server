@@ -59,7 +59,7 @@ $(document).ready(function(){
                 $td.find('.current-collection').show().html(current({
                     url: item.url,
                     is_personas: item.all_personas ? 'personas-collection' : '',
-                    name: item.name
+                    name: _.escape(item.name)
                 }));
                 $td.find('input[type=hidden]').val(item.id);
                 $td.attr('data-collection', item.id);
@@ -84,8 +84,8 @@ $(document).ready(function(){
                 selectCollection();
                 return false;
             }
-        }).data('autocomplete')._renderItem = function(ul, item) {
-            var html = format('<a>{0}<b>ID: {1}</b></a>', [item.name, item.id]);
+        }).data('ui-autocomplete')._renderItem = function(ul, item) {
+            var html = format('<a>{0}<b>ID: {1}</b></a>', [_.escape(item.name), item.id]);
             return $('<li>').data('item.autocomplete', item).append(html).appendTo(ul);
         };
     });

@@ -12,8 +12,7 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
   {% set app_id = form.application.value()|int %}
   {% set app = amo.APPS_ALL.get(app_id, '') %}
   {% set collection_id = form.collection.value() %}
-  {% set collection_disabled = 'disabled' if not (app_id or collection_id) and
-                                             not form.collection.errors else '' %}
+
   <tr data-app="{{ app.id }}">
     <td class="app {{ app.short }}">
       {{ form.id }}
@@ -28,7 +27,7 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
         data-collection="{{ collection_id }}">
       <div class="current-collection js-hidden"></div>
       <input type="text" class="placeholder collection-ac{% if collection_id %} js-hidden{% endif %}"
-             {{ collection_disabled }} placeholder="Enter collection ID or name">
+             placeholder="Enter collection ID or name">
       {{ form.collection }}
       {{ form.collection.errors }}
     </td>
