@@ -174,7 +174,7 @@ class TestUploadVersion(BaseUploadVersionCase):
             filename='apps/files/fixtures/files/experiment.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
-            'You cannot submit this type of add-ons')
+            'You cannot submit this type of add-on')
 
 
 class TestCheckVersion(BaseUploadVersionCase):

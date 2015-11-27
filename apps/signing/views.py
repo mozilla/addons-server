@@ -62,7 +62,7 @@ class VersionView(JWTProtectedView):
             pkg = parse_addon(filedata, addon)
             if not acl.submission_allowed(request.user, pkg):
                 raise forms.ValidationError(
-                    _(u'You cannot submit this type of add-ons'))
+                    _(u'You cannot submit this type of add-on'))
         except forms.ValidationError as e:
             return Response({'error': e.message},
                             status=status.HTTP_400_BAD_REQUEST)

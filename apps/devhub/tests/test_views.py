@@ -2243,7 +2243,7 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'] == [
-            {u'tier': 1, u'message': u'You cannot submit this type of add-ons',
+            {u'tier': 1, u'message': u'You cannot submit this type of add-on',
              u'fatal': True, u'type': u'error'}]
 
 
