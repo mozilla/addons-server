@@ -833,7 +833,7 @@ def json_upload_detail(request, upload, addon_slug=None):
             pkg = parse_addon(upload, addon=addon)
             if not acl.submission_allowed(request.user, pkg):
                 raise django_forms.ValidationError(
-                    _(u'You cannot submit this type of add-ons'))
+                    _(u'You cannot submit this type of add-on'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
