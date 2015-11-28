@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-26 06:02+0000\n"
+"PO-Revision-Date: 2015-11-28 08:02+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6853,7 +6853,7 @@ msgstr "これらのドキュメントに詳しく書かれている Mozilla の
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid ""
 "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
+msgstr "これらの審査中に見られる最も一般的な問題を以下に挙げます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
@@ -6862,12 +6862,14 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap"
 " your loose variables</a>"
 msgstr ""
+"<strong>JavaScript 名前空間汚染</strong> &mdash; 最も良くある違反行為です。<a "
+"href=\"https://developer.mozilla.org/ja/docs/XUL/School_tutorial/JavaScript_Object_Management\">変数は独自の名前空間にまとめるようにしましょう</a>"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid ""
 "proper preference naming - all preference names should begin with "
 "\"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr ""
+msgstr "不適切な設定名 &mdash; すべての設定名は「extensions.」で始め、その後にアドオン名など独自の識別子を付ける必要があります"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
@@ -6907,7 +6909,7 @@ msgstr "他のアドオンとのコンフリクトの可能性"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "アプリケーション起動速度やページ読み込み速度への影響"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid ""
@@ -6916,6 +6918,8 @@ msgid ""
 " binary or obfuscated code, are allowed under certain conditions outlined "
 "below."
 msgstr ""
+"これらの問題を防ぐ方法については <a href=\"%(link_howto)s\">ハウツーライブラリ</a> "
+"を参照してください。バイナリや難読化コードといった一部の手法は、以下で説明する特定の状況下では認められます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:123
 msgid ""
@@ -6924,6 +6928,8 @@ msgid ""
 "more about this scanner in the <a href=\"%(link_validation)s\">Validation "
 "Help</a> document."
 msgstr ""
+"上記制限の多くは、拡張機能スキャナによって自動的にテストされ、不審なアドオンはエディタによる審査に回されます。このスキャナに関する詳細は <a "
+"href=\"%(link_validation)s\">バリデーターのヘルプ</a> 記事を参照してください。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
@@ -6934,6 +6940,7 @@ msgid ""
 "placed in the Notes to Reviewer field when editing a version in the "
 "Developer Hub."
 msgstr ""
+"あなたのアドオンがサイト固有のものである場合、審査プロセス中に使用できるテスト用アカウントを提供することを推奨します。また、詳細なテスト手順も説明されていれば、アドオンがどのように機能するのかエディタが理解しやすくなり、テスト作業の迅速化につながります。こうした情報は、開発者センター内でバージョンを編集する際「審査担当者へのメモ」欄に入力できます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -6947,6 +6954,7 @@ msgid ""
 "install button. All features, including voluntary contributions and beta "
 "channels will be available."
 msgstr ""
+"アドオンが本審査をパスすると、当サイトのギャラリーで即時公開され、各カテゴリや検索結果に警告なしのインストールボタンと共に表示されるようになります。任意の寄付受付やベータチャンネルといったすべての機能が利用可能となります。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
@@ -6956,6 +6964,7 @@ msgid ""
 "version will be updated across the site and deployed through the automatic "
 "update service."
 msgstr ""
+"アドオンの後継バージョンは自動的に本審査待ちリストへ追加されます。審査が完了するまで、その新バージョンはアドオンのバージョン履歴ページにのみ掲載されます。審査が完了したら、サイト全体で新バージョンが表示されるようになり、自動更新サービスを通じた提供も開始されます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
@@ -6965,6 +6974,7 @@ msgid ""
 "In most cases, the developer can simply fix the problem and re-submit for "
 "full review."
 msgstr ""
+"バージョンが本審査の要件を満たしていない場合、事前審査を承認されるか、セキュリティに関する懸念があれば無効化されます。審査結果と問題の修正方法が作者にメールで送られます。たいていの場合、作者は単に指摘された問題を修正し、再度本審査を依頼することができます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
@@ -6972,6 +6982,8 @@ msgid ""
 "way to get user testing and feedback without going through the longer, more "
 "thorough review process. We aim to complete these reviews in under 3 days."
 msgstr ""
+"事前審査は実験的なアドオンに適しており、より時間が掛かり細部にわたる審査プロセスを経ることなく、ユーザにテストへの参加やフィードバックの提供を呼びかけるための方法を提供します。事前審査は"
+" 3 日以内に完了することを目指しています。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -6985,6 +6997,7 @@ msgid ""
 "granted unless a security vulnerability or major policy violation is "
 "discovered."
 msgstr ""
+"事前審査を行う際、エディタはセキュリティ問題や重大なポリシー違反がないかどうかソースコードに目を通しますが、アドオンをインストールして動作確認を行うことはほとんどありません。事前審査は、セキュリティ脆弱性や重大なポリシー違反が見つからない限り承認されます。"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid ""
