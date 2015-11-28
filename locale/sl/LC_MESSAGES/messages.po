@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-28 16:47+0000\n"
+"PO-Revision-Date: 2015-11-28 17:39+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -15044,7 +15044,7 @@ msgstr "Ponastavitev gesla"
 
 #: apps/users/templates/users/profile.html:3
 msgid "User Info for {0}"
-msgstr "Podatki uporabnika za {0}"
+msgstr "Podatki uporabnika {0}"
 
 #: apps/users/templates/users/profile.html:12
 msgid "Edit profile"
