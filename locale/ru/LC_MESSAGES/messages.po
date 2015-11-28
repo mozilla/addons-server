@@ -10,16 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-21 20:53+0300\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-11-28 16:02+0000\n"
+"Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.6\n"
-"X-POOTLE-MTIME: 1444551509.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1448726563.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -3840,6 +3841,9 @@ msgstr "Это дополнение будет встроено в инстал�
 #: apps/devhub/forms.py:543
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Дополнения, упакованные с установщиком приложений, будут проверены Mozilla "
+"до того, как будут подписаны, и должны соответствовать лучшим стандартам "
+"качества."
 
 #: apps/devhub/forms.py:562 apps/devhub/templates/devhub/addons/submit/select-review.html:24 apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
@@ -4079,6 +4083,8 @@ msgstr "Запрошена полная проверка."
 #: apps/devhub/views.py:1780
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
+"Ваши старые полномочия были отозваны и больше не действуют. Убедитесь, что "
+"обновили все API клиентов на новые полномочия."
 
 #: apps/devhub/views.py:1798
 msgid "New API key created"
@@ -5256,6 +5262,8 @@ msgstr "API Credentials"
 #: apps/devhub/templates/devhub/api/key.html:20
 msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Эта функция находится в активной разработке. Если вы нашли проблему, "
+"пожалуйста, <a target=\"_blank\" href=\"%(bug_link)s\">сообщите об ошибке</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:27
 msgid "JWT issuer"
@@ -5270,22 +5278,28 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
 "href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
 msgstr ""
+"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT "
+"для каждого запроса, как в следующем примере, используя библиотеку <a href=\""
+"%(node_jwt_url)s\">node-jsonwebtoken</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:56
 msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
 msgstr ""
+"Изучите <a href=\"%(docs_url)s\">документацию</a> для более подробной "
+"информации."
 
 #: apps/devhub/templates/devhub/api/key.html:62
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "У вас ещё нет никаких полномочий API."
 
 #: apps/devhub/templates/devhub/api/key.html:71
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Отозвать и заново создать полномочия"
 
 #: apps/devhub/templates/devhub/api/key.html:73
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Создать новые полномочия"
 
 #: apps/devhub/templates/devhub/docs/policies-agreement.html:3 apps/devhub/templates/devhub/docs/policies-agreement.html:7 apps/devhub/templates/devhub/docs/policies-agreement.html:9
 #: apps/devhub/templates/devhub/docs/policies.html:24 apps/devhub/templates/devhub/docs/policies.html:103
@@ -6261,6 +6275,7 @@ msgstr "Ваши дополнение отображается в нашей г�
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Your add-on has been signed and can be bundled with an application installer."
 msgstr ""
+"Ваше дополнение подписано и может быть упаковано с установщиком приложения."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:63
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
@@ -6285,6 +6300,8 @@ msgstr ""
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
+"Вы получите письмо, когда полная проверка будет завершена, сделав возможным "
+"упаковку дополнения с установщиком приложения."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:91
 msgid "All add-ons hosted in our gallery must now be reviewed by an editor. If you wish to continue hosting your add-on, please click to select a review process."
@@ -10886,7 +10903,7 @@ msgstr "Вы не владете этим дополнением."
 
 #: apps/signing/views.py:54
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Отстуствует ключ \"upload\" при отправке файла."
 
 #: apps/signing/views.py:65
 msgid "Version does not match install.rdf."
