@@ -4,6 +4,7 @@ import logging
 from django.conf import settings
 from django.contrib.auth import login
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -37,14 +38,36 @@ def find_user(identity):
         raise
 
 
+def register_user(request, identity):
+    user = UserProfile.objects.create_user(
+        email=identity['email'], username=None, fxa_id=identity['uid'])
+    log.info('Created user {} from FxA'.format(user))
+    login(request, user)
+    return user
+
+
+def login_user(request, user, identity):
+    if (user.fxa_id != identity['uid'] or
+            user.email != identity['email']):
+        log.info(
+            'Updating user info from FxA. Old {old_email} {old_uid} '
+            'New {new_email} {new_uid}'.format(
+                old_email=user.email, old_uid=user.fxa_id,
+                new_email=identity['email'], new_uid=identity['uid']))
+        user.update(fxa_id=identity['uid'], email=identity['email'])
+    log.info('Logging in user {} from FxA'.format(user))
+    login(request, user)
+
+
 def with_user(fn):
     @functools.wraps(fn)
     def inner(self, request):
-        if 'code' not in request.DATA:
+        data = request.GET if request.method == 'GET' else request.DATA
+        if 'code' not in data:
             return Response({'error': 'No code provided.'}, status=422)
 
         try:
-            identity = verify.fxa_identify(request.DATA['code'],
+            identity = verify.fxa_identify(data['code'],
                                            config=settings.FXA_CONFIG)
         except verify.IdentificationError:
             return Response({'error': 'Profile not found.'}, status=401)
@@ -60,24 +83,8 @@ class LoginView(APIView):
         if user is None:
             return Response({'error': 'User does not exist.'}, status=422)
         else:
-            if (user.fxa_id != identity['uid'] or
-                    user.email != identity['email']):
-                log.info(
-                    'Updating user info from FxA. Old {old_email} {old_uid} '
-                    'New {new_email} {new_uid}'.format(
-                        old_email=user.email, old_uid=user.fxa_id,
-                        new_email=identity['email'], new_uid=identity['uid']))
-                user.update(fxa_id=identity['uid'], email=identity['email'])
-            log.info('Logging in user {} from FxA'.format(user))
-            login(request, user)
+            login_user(request, user, identity)
             return Response({'email': identity['email']})
-
-
-class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
-    serializer_class = UserProfileSerializer
-
-    def retrieve(self, request, *args, **kw):
-        return Response(self.get_serializer(request.user).data)
 
 
 class RegisterView(APIView):
@@ -89,8 +96,24 @@ class RegisterView(APIView):
             return Response({'error': 'That account already exists.'},
                             status=422)
         else:
-            user = UserProfile.objects.create_user(
-                email=identity['email'], username=None, fxa_id=identity['uid'])
-            log.info('Created user {} from FxA'.format(user))
-            login(request, user)
+            user = register_user(request, identity)
             return Response({'email': user.email})
+
+
+class AuthorizeView(APIView):
+
+    @waffle_switch('fxa-auth')
+    @with_user
+    def get(self, request, user, identity):
+        if user is None:
+            register_user(request, identity)
+        else:
+            login_user(request, user, identity)
+        return HttpResponseRedirect('/')
+
+
+class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
+    serializer_class = UserProfileSerializer
+
+    def retrieve(self, request, *args, **kw):
+        return Response(self.get_serializer(request.user).data)
