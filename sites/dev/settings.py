@@ -219,3 +219,14 @@ NEWRELIC_ENABLE = False
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
+
+FXA_CONFIG = {
+    'client_id': '1e5a77cf09e5b4b5',
+    'client_secret': env('FXA_CLIENT_SECRET'),
+    'content_host': 'https://stable.dev.lcip.org',
+    'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+    'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+    'redirect_url':
+        'https://addons-dev.allizom.org/api/v3/accounts/authorize/',
+    'scope': 'profile',
+}
