@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-23 11:57+0000\n"
-"Last-Translator: asteko <aserkant@protonmail.ch>\n"
+"PO-Revision-Date: 2015-12-01 09:13+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -5721,36 +5721,36 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr ""
+msgstr "Testler"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
-msgstr ""
+msgstr "Genel testler"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
-msgstr ""
+msgstr "Güvenlik testleri"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
-msgstr ""
+msgstr "Uzantı testleri"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
-msgstr ""
+msgstr "Yerelleştirme testleri"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:21
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Uyumluluk testleri"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: apps/files/templates/files/viewer.html:168
@@ -5773,12 +5773,12 @@ msgstr "Top"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr ""
+msgstr "Temayı sil"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Eklentiyi sil"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
@@ -5919,7 +5919,7 @@ msgstr "Hiçbir test sonucu yok."
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "Start performance tests"
-msgstr ""
+msgstr "Performans testlerini başlat"
 
 #: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
 msgid "This file is not eligible for performance testing."
@@ -5931,7 +5931,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
-msgstr ""
+msgstr "Adım 3"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
@@ -5939,7 +5939,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
-msgstr ""
+msgstr "Ad ve sürüm:"
 
 #: apps/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
@@ -6065,11 +6065,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
-msgstr ""
+msgstr "Adım 5"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
-msgstr ""
+msgstr "Adım 5. Lisans seçin"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid ""
@@ -7466,7 +7466,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Bu eklentiyi devre dışı bıraktınız"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:20
 msgid ""
@@ -7476,7 +7476,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Lütfen eklentinizi tamamlayın."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
@@ -7547,7 +7547,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
-msgstr ""
+msgstr "Mevcut sürüm:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:115
 msgid ""
@@ -7558,7 +7558,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
-msgstr ""
+msgstr "Oluşturulma:"
 
 #. {0} is a date. dennis-ignore: E201
 #: apps/devhub/templates/devhub/includes/addon_details.html:125
@@ -7568,7 +7568,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
-msgstr ""
+msgstr "Sonraki sürüm:"
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:138
 msgid ""
@@ -7608,7 +7608,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Profilinizin güncel olduğundan emin olun."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:34
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
@@ -7628,27 +7628,27 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
-msgstr ""
+msgstr "Tümünü göster"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "İstatistik panosunu göster"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Uyumluluk raporları"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:45
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} hata raporları"
 
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} başarı raporları"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
-msgstr ""
+msgstr "Geliştirici haberleri"
 
 #: apps/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
@@ -7663,15 +7663,15 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: apps/devhub/templates/devhub/includes/macros.html:7
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "İzin verilen HTML: {0}"
 
 #: apps/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Bazı HTML kodları desteklenir."
 
 #: apps/devhub/templates/devhub/includes/macros.html:59
 msgid "Remove this application"
-msgstr ""
+msgstr "Bu uygulamayı kaldır"
 
 #. {0} is the maximum number of add-on categories allowed.
 #.                {1} is the application name.
@@ -7718,7 +7718,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/version_file.html:39
 msgid "Undo"
-msgstr ""
+msgstr "Geri al"
 
 #: apps/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -7786,7 +7786,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/payments/voluntary.html:2
 #: apps/stats/templates/stats/addon_report_menu.html:39
 msgid "Contributions"
-msgstr ""
+msgstr "katılımlar"
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:3
 msgid ""
@@ -7857,12 +7857,12 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Sahipliği aktar"
 
 #: apps/devhub/templates/devhub/personas/edit.html:77
 #: apps/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
-msgstr ""
+msgstr "Tema ayrıntıları"
 
 #: apps/devhub/templates/devhub/personas/edit.html:87
 #: apps/devhub/templates/devhub/personas/submit.html:36
@@ -7984,12 +7984,12 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/edit.html:217
 #: apps/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Tema tasarımı"
 
 #: apps/devhub/templates/devhub/personas/edit.html:221
 #: apps/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Yeni tasarım yükle"
 
 #: apps/devhub/templates/devhub/personas/edit.html:226
 msgid ""
@@ -8015,11 +8015,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
-msgstr ""
+msgstr "Üstbilgi"
 
 #: apps/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
-msgstr ""
+msgstr "Altbilgi"
 
 #: apps/devhub/templates/devhub/personas/edit.html:274
 #: apps/devhub/templates/devhub/personas/submit.html:167
@@ -8189,12 +8189,12 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "{0} sürümünü yönet"
 
 #: apps/devhub/templates/devhub/versions/edit.html:12
 #: apps/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
-msgstr ""
+msgstr "Durum ve sürümler"
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
@@ -8212,7 +8212,7 @@ msgstr "Files:"
 
 #: apps/devhub/templates/devhub/versions/edit.html:38
 msgid "Upload Another File"
-msgstr ""
+msgstr "Başka bir dosya yükle"
 
 #: apps/devhub/templates/devhub/versions/edit.html:73
 #: apps/editors/templates/editors/review.html:98
@@ -8228,7 +8228,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
-msgstr ""
+msgstr "Onay durumu"
 
 #: apps/devhub/templates/devhub/versions/edit.html:113
 #: apps/editors/templates/editors/review.html:108
@@ -8243,7 +8243,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "Kaynak kodu"
 
 #: apps/devhub/templates/devhub/versions/edit.html:128
 msgid ""
@@ -8254,7 +8254,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/edit.html:145
 #: apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
-msgstr ""
+msgstr "Yeni bir dosya yükle"
 
 #: apps/devhub/templates/devhub/versions/edit.html:147
 msgid "Add File"
@@ -8307,11 +8307,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr ""
+msgstr "Doğrulanmadı."
 
 #: apps/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
-msgstr ""
+msgstr "Şimdi doğrulayın."
 
 #: apps/devhub/templates/devhub/versions/list.html:72
 msgid "Request Full Review"
@@ -8329,7 +8329,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:98
 msgid "Addon visibility"
-msgstr ""
+msgstr "Eklenti görünürlüğü"
 
 #: apps/devhub/templates/devhub/versions/list.html:107
 msgid "Listed:"
@@ -8366,7 +8366,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:133
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Şu anda AMO'da"
 
 #: apps/devhub/templates/devhub/versions/list.html:134
 #: apps/devhub/templates/devhub/versions/list.html:155
@@ -8374,7 +8374,7 @@ msgstr ""
 #: apps/editors/templates/editors/includes/search_results_themes.html:7
 #: apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 # Header for a column in a table
 #: apps/devhub/templates/devhub/versions/list.html:135
@@ -8382,7 +8382,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/list.html:176
 #: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
-msgstr ""
+msgstr "Doğruluma"
 
 #: apps/devhub/templates/devhub/versions/list.html:137
 #: apps/devhub/templates/devhub/versions/list.html:158
@@ -8395,11 +8395,11 @@ msgstr "Performance"
 
 #: apps/devhub/templates/devhub/versions/list.html:154
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Bu eklentinin bir sonraki sürümü"
 
 #: apps/devhub/templates/devhub/versions/list.html:168
 msgid "Older versions"
-msgstr ""
+msgstr "Eski sürümler"
 
 #: apps/devhub/templates/devhub/versions/list.html:184
 msgid "Upload a New Version"
@@ -8422,7 +8422,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:231
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "{version} sürümünü sil"
 
 #: apps/devhub/templates/devhub/versions/list.html:232
 msgid ""
@@ -8453,15 +8453,15 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:252
 msgid "Delete Version"
-msgstr ""
+msgstr "Sürümü sil"
 
 #: apps/devhub/templates/devhub/versions/list.html:254
 msgid "Disable Version"
-msgstr ""
+msgstr "Sürümü devre dışı bırak"
 
 #: apps/devhub/templates/devhub/versions/list.html:261
 msgid "Add a new Version"
-msgstr ""
+msgstr "Yeni sürüm ekle"
 
 # 75%
 # 100%
@@ -8473,7 +8473,7 @@ msgstr "All Versions"
 #: apps/devhub/templates/devhub/versions/list.html:270
 #: apps/devhub/templates/devhub/versions/list.html:288
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Eklentiyi gizle"
 
 #: apps/devhub/templates/devhub/versions/list.html:273
 msgid ""
@@ -8538,7 +8538,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:140
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Kolay alışveriş"
 
 #: apps/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
@@ -8546,11 +8546,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:149
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Mükemmel bir site tasarlayın"
 
 #: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
-msgstr ""
+msgstr "Bu araçlarla Firefox'un test etmemize yardımcı olun"
 
 #: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
@@ -8609,11 +8609,11 @@ msgstr "Thunderbird için harika eklentilerle karşınızdayız."
 
 #: apps/discovery/modules.py:221
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Arkanıza yaslanıp rahatlayın"
 
 #: apps/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Seyahatlerinizde size yardımcı olacak eklentiler!"
 
 #: apps/discovery/modules.py:226
 msgid ""
@@ -8657,7 +8657,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:272
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Havada aşk kokusu var"
 
 #: apps/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
@@ -8709,7 +8709,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "İlgi alanlarınız neler?"
 
 #: apps/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -8738,7 +8738,7 @@ msgstr "Bu nedir?"
 
 #: apps/discovery/templates/discovery/pane.html:85
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Eklentiler hakkında daha fazla bilgi alın"
 
 #: apps/discovery/templates/discovery/pane.html:89
 #: apps/discovery/templates/discovery/pane.html:96
@@ -8759,7 +8759,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:114
 msgid "Close Video"
-msgstr ""
+msgstr "Videoyu kapat"
 
 #: apps/discovery/templates/discovery/pane.html:117
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -8867,7 +8867,7 @@ msgstr ""
 
 #: apps/editors/forms.py:39 apps/editors/forms.py:68
 msgid "and"
-msgstr ""
+msgstr "ve"
 
 #: apps/editors/forms.py:41
 #, fuzzy
@@ -8982,7 +8982,7 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: apps/editors/forms.py:324
 msgid "theme name"
-msgstr ""
+msgstr "tema adı"
 
 #: apps/editors/forms.py:350
 msgid "Someone else is reviewing this theme."
@@ -9099,7 +9099,7 @@ msgstr[0] ""
 
 #: apps/editors/helpers.py:260
 msgid "Addon"
-msgstr ""
+msgstr "Eklenti"
 
 #: apps/editors/helpers.py:261
 #: apps/localizers/templates/localizers/categories.html:35
@@ -9264,7 +9264,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:632
 msgid "add-on"
-msgstr ""
+msgstr "eklenti"
 
 #: apps/editors/helpers.py:937 apps/editors/helpers.py:957
 msgid "Flagged"
@@ -9272,7 +9272,7 @@ msgstr ""
 
 #: apps/editors/helpers.py:941 apps/editors/helpers.py:960
 msgid "Updates"
-msgstr ""
+msgstr "Güncellemeler"
 
 #: apps/editors/models.py:182
 msgid "Admin Review"
@@ -9352,7 +9352,7 @@ msgstr ""
 
 #: apps/editors/views.py:789
 msgid "rejected"
-msgstr ""
+msgstr "reddedildi"
 
 #: apps/editors/views.py:790
 msgctxt "editors_review_history_nominated_adminreview"
@@ -9369,7 +9369,7 @@ msgstr ""
 
 #: apps/editors/views.py:794
 msgid "commented"
-msgstr ""
+msgstr "yorumlandı"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -9442,7 +9442,7 @@ msgstr ""
 #: apps/editors/templates/editors/base.html:87
 #: apps/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
-msgstr ""
+msgstr "Duyuru"
 
 #. "Filter" is a button label (verb)
 #: apps/editors/templates/editors/beta_signed_log.html:17
@@ -9502,7 +9502,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Silmeyi geri al"
 
 #: apps/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9591,11 +9591,11 @@ msgstr ""
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
 msgid "Rank"
-msgstr ""
+msgstr "Sıra"
 
 #: apps/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Puan"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
@@ -9637,15 +9637,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "Bu ay"
 
 #: apps/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Bu yıl"
 
 #: apps/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Aylık performans"
 
 #: apps/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
@@ -9653,27 +9653,27 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:76
 msgid "Total"
-msgstr ""
+msgstr "Toplam"
 
 #: apps/editors/templates/editors/performance.html:81
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #: apps/editors/templates/editors/performance.html:88
 msgid "Year"
-msgstr ""
+msgstr "Yıl"
 
 #: apps/editors/templates/editors/performance.html:95
 msgid "All-Time"
-msgstr ""
+msgstr "Tüm zamanlar"
 
 #: apps/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
-msgstr ""
+msgstr "Gelişmiş arama"
 
 #: apps/editors/templates/editors/queue.html:30
 msgid "clear search"
-msgstr ""
+msgstr "aramayı temizle"
 
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
@@ -9741,15 +9741,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
-msgstr ""
+msgstr "Uyumluluk:"
 
 #: apps/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Ek kaynaklar:"
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Dosyaları indir"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
@@ -9905,7 +9905,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Tüm zamanlar"
 
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
@@ -10262,7 +10262,7 @@ msgstr ""
 #: apps/files/templates/files/viewer.html:135
 #: apps/files/templates/files/viewer.html:136
 msgid "Expand all"
-msgstr ""
+msgstr "Tümünü genişlet"
 
 #: apps/files/templates/files/viewer.html:140
 #: apps/files/templates/files/viewer.html:141
@@ -10288,7 +10288,7 @@ msgstr ""
 
 #: apps/localizers/views.py:42
 msgid "Access Denied"
-msgstr ""
+msgstr "Erişim engellendi"
 
 #: apps/localizers/templates/localizers/base.html:3
 #: apps/localizers/templates/localizers/summary.html:3
@@ -10518,7 +10518,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "Bir sorum var"
 
 #: apps/pages/templates/pages/about.lhtml:67
 msgid ""
@@ -10770,7 +10770,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "\".xpi\" dosyası nedir?"
 
 #: apps/pages/templates/pages/dev_faq.html:103
 msgid ""
@@ -10780,7 +10780,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
-msgstr ""
+msgstr "XUL nedir?"
 
 #: apps/pages/templates/pages/dev_faq.html:111
 msgid ""
@@ -10946,7 +10946,7 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:245
 #: apps/pages/templates/pages/dev_faq.html:528
 msgid "No."
-msgstr ""
+msgstr "Hayır."
 
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -10988,7 +10988,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:285
 msgid "What is AMO?"
-msgstr ""
+msgstr "AMO nedir?"
 
 #: apps/pages/templates/pages/dev_faq.html:287
 msgid ""
@@ -11891,15 +11891,15 @@ msgstr ""
 
 #: apps/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
-msgstr ""
+msgstr "Kullanışlı mıydı?"
 
 #: apps/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Kullanımı kolay mıydı?"
 
 #: apps/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Bu eklentiyi kullanmaya devam edecek misiniz?"
 
 #: apps/pages/templates/pages/review_guide.html:73
 msgid ""
@@ -12224,7 +12224,7 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Yanıtı düzenle"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -12744,15 +12744,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:42
 msgid "day"
-msgstr ""
+msgstr "gün"
 
 #: apps/stats/templates/stats/stats.html:45
 msgid "week"
-msgstr ""
+msgstr "hafta"
 
 #: apps/stats/templates/stats/stats.html:48
 msgid "month"
-msgstr ""
+msgstr "ay"
 
 #: apps/stats/templates/stats/stats.html:54
 msgid "For last:"
@@ -13132,7 +13132,7 @@ msgstr "diğerleri"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "algoritma"
 
 #: apps/users/models.py:64
 msgid "salt"
