@@ -72,15 +72,6 @@
       </div>
       {% endif %}
     </div>
-    {% if not addon.is_listed %}
-      <div id="manual-review" class="hidden">
-        <p class="error">{{ _("Looks like your add-on requires a manual review before it can be signed.") }}</p>
-        <label for="{{ new_file_form.is_manual_review.auto_id }}">
-          {{ new_file_form.is_manual_review }}
-          {{ new_file_form.is_manual_review.label }}
-        </label>
-      </div>
-    {% endif %}
 
     <div class="upload-status-button-add">
       <button class="addon-upload-dependant button" id="upload-file-finish" disabled>{{ action_label }}</button>
