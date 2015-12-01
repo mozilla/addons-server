@@ -114,11 +114,9 @@ FXA_CONFIG = {
     'client_secret':
         '4db6f78940c6653d5b0d2adced8caf6c6fd8fd4f2a3a448da927a54daba7d401',
     'content_host': 'https://stable.dev.lcip.org',
-    'login_url': 'http://olympia.dev/api/v3/accounts/login/',
     'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
     'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-    'redirect_url': 'http://olympia.dev/fxa-authorize',
-    'register_url': 'http://olympia.dev/api/v3/accounts/register/',
+    'redirect_url': 'http://olympia.dev/api/v3/accounts/authorize/',
     'scope': 'profile',
 }
 

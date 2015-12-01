@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-11-21 11:44+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-11-20 20:35+0000\n"
+"Last-Translator: aykanberkayvazoglu <aykanberkayvazoglu@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1097,11 +1097,11 @@ msgstr "{name} bu sayfayı ilk olarak inceliyordu."
 
 #: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Alındı bilgisi uygulama tarafından denetlendi."
 
 #: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Alındı bilgisi uygulama tarafından denetlenmedi."
 
 #: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
