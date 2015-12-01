@@ -1243,11 +1243,20 @@ def auto_sign_file(file_, is_beta=False):
         # Provide the file to review/sign to the helper.
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
-        helper.handler.process_preliminary(auto_validation=True)
-        if validation.passed_auto_validation:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
+        if addon.is_sideload:
+            helper.handler.process_public(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED,
+                        file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED,
+                        file_)
         else:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
+            helper.handler.process_preliminary(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
 
 
 def auto_sign_version(version, **kwargs):
@@ -1442,8 +1451,8 @@ def submit_addon(request, step):
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
                     addon.update(status=amo.STATUS_UNREVIEWED)
-                    # Sign all the files submitted, one for each platform.
-                    auto_sign_version(addon.versions.get())
+                # Sign all the files submitted, one for each platform.
+                auto_sign_version(addon.versions.get())
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')

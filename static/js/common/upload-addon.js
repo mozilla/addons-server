@@ -324,7 +324,7 @@
                 $isSideloadCheckbox.attr('checked', false);
                 $submitAddonProgress.removeClass('unlisted');
               } else {  // It's an unlisted add-on.
-                if (isSideload()) {  // It's a sideload add-on, not eligible for automated signing.
+                if (isSideload()) {  // It's a sideload add-on.
                   $upload_field.attr('data-upload-url', $upload_field.data('upload-url-sideload'));
                 } else {
                   $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
@@ -433,11 +433,7 @@
                     // Specific messages for unlisted addons.
                     var isSideload = $('#id_is_sideload').is(':checked') || $newForm.data('addon-is-sideload');
                     if (isUnlisted()) {
-                      if (isSideload) {
-                        $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
-                      } else {
-                        $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
-                      }
+                      $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     } else {  // This is a listed add-on.
                       if (results.beta) {
                         function updateBetaStatus() {

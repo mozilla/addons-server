@@ -2566,16 +2566,52 @@ class TestVersionAddFile(UploadTest):
         assert 'source' in json.loads(response.content)
 
     @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_sideload(self, mock_sign_file):
-        """Sideloadable addons need manual full review."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         self.post()
         file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual full review.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
+
+    @mock.patch('editors.helpers.sign_file')
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has no validation signing related messages.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
 
     @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
@@ -2851,16 +2887,54 @@ class TestAddVersion(AddVersionTest):
         assert f.status != amo.STATUS_BETA
 
     @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_sideload(self, mock_sign_file):
-        """Sideloadable addons need manual full review."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 1,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual full review.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
+
+    @mock.patch('editors.helpers.sign_file')
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 1}))
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
 
     @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
@@ -3155,7 +3229,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert get_addon_count('xpi name') == 2
 
     def test_success_listed(self):
-        eq_(Addon.objects.count(), 0)
+        assert Addon.objects.count() == 0
         r = self.post()
         addon = Addon.objects.get()
         assert addon.is_listed
@@ -3204,13 +3278,13 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
-        eq_(Addon.with_unlisted.count(), 0)
+        assert Addon.with_unlisted.count() == 0
         self.post(is_listed=False, is_sideload=True)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         # Full review for sideload addons.
-        assert addon.status == amo.STATUS_NOMINATED
-        assert not mock_sign_file.called
+        assert addon.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
 
     def test_missing_platforms(self):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
