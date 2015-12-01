@@ -1,14 +1,12 @@
 import logging
-import os
 import socket
-import subprocess
-import sys
-import tempfile
 import time
 
+from django.conf import settings
+from django.core.cache import parse_backend_uri
 from django.core.management.base import BaseCommand
 
-import redisutils
+# import redisutils
 import redis as redislib
 
 log = logging.getLogger('z.redis')
@@ -25,11 +23,13 @@ EXPIRE = 60 * 5
 RedisError = redislib.RedisError, socket.error
 
 
-def vacuum(master, slave):
+def cleanup(master, slave):
+    total = [1, 0]
 
     def keys():
         ks = slave.keys()
-        log.info('There are %s keys to clean up.' % len(ks))
+        total[0] = len(ks)
+        log.info('There are %s keys to clean up.' % total[0])
         ks = iter(ks)
         while 1:
             buffer = []
@@ -41,38 +41,8 @@ def vacuum(master, slave):
                     return
             yield buffer
 
-    tmp = tempfile.NamedTemporaryFile(delete=False)
-    for ks in keys():
-        tmp.write('\n'.join(ks))
-    tmp.close()
-
-    # It's hard to get Python to clean up the memory from slave.keys(), so
-    # we'll let the OS do it. You have to pass sys.executable both as the
-    # thing to run and so argv[0] is set properly.
-    os.execl(sys.executable, sys.executable, sys.argv[0],
-             sys.argv[1], tmp.name)
-
-
-def cleanup(master, slave, filename):
-    tmp = open(filename)
-    total = [1, 0]
-    p = subprocess.Popen(['wc', '-l', filename], stdout=subprocess.PIPE)
-    total[0] = int(p.communicate()[0].strip().split()[0])
-
-    def file_keys():
-        while 1:
-            buffer = []
-            for _ in xrange(CHUNK):
-                line = tmp.readline()
-                if line:
-                    buffer.append(line.strip())
-                else:
-                    yield buffer
-                    return
-            yield buffer
-
     num = 0
-    for ks in file_keys():
+    for ks in keys():
         pipe = slave.pipeline()
         for k in ks:
             pipe.scard(k)
@@ -99,21 +69,47 @@ def cleanup(master, slave, filename):
             total[1], round(float(total[1]) / total[0] * 100, 1)))
 
 
+def get_redis_backend(backend_uri):
+    # From django-redis-cache
+    # This is temporary https://github.com/washort/nuggets/pull/1
+    _, server, params = parse_backend_uri(backend_uri)
+    db = params.pop('db', 1)
+    try:
+        db = int(db)
+    except (ValueError, TypeError):
+        db = 0
+    try:
+        socket_timeout = float(params.pop('socket_timeout'))
+    except (KeyError, ValueError):
+        socket_timeout = None
+    password = params.pop('password', None)
+    if ':' in server:
+        host, port = server.split(':')
+        try:
+            port = int(port)
+        except (ValueError, TypeError):
+            port = 6379
+    else:
+        host = 'localhost'
+        port = 6379
+    return redislib.Redis(host=host, port=port, db=db, password=password,
+                          socket_timeout=socket_timeout)
+
+
 class Command(BaseCommand):
     help = "Clean up the redis used by cache machine."
 
     def handle(self, *args, **kw):
         try:
-            master = redisutils.connections['cache']
-            slave = redisutils.connections['cache_slave']
+            master = get_redis_backend(settings.REDIS_BACKENDS['cache'])
+            slave = get_redis_backend(settings.REDIS_BACKENDS['cache_slave'])
+            # master = redisutils.connections['cache']
+            # slave = redisutils.connections['cache_slave']
         except Exception:
             log.error('Could not connect to redis.', exc_info=True)
             return
-        if args:
-            filename = args[0]
-            try:
-                cleanup(master, slave, filename)
-            finally:
-                os.unlink(filename)
-        else:
-            vacuum(master, slave)
+
+        try:
+            cleanup(master, slave)
+        except Exception:
+            log.error('Cleanup failed.', exc_info=True)
