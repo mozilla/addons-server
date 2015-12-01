@@ -26,7 +26,7 @@ class CoreConfig(AppConfig):
             warnings.simplefilter('ignore')
 
         jingo.monkey.patch()
-        jingo.env.install_gettext_translations(translation, newstyle=True)
+        jingo.get_env().install_gettext_translations(translation, newstyle=True)
         session_csrf.monkeypatch()
 
         self.configure_logging()

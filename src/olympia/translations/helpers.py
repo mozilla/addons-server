@@ -71,7 +71,7 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
                                            localized_string__isnull=False)
     ctx = dict(addon=addon, field=field, field_name=field_name,
                translations=trans, nl2br=nl2br, prettify_empty=prettify_empty)
-    t = jingo.env.get_template('translations/all-locales.html')
+    t = jingo.get_env().get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))
 
 

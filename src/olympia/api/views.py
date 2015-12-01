@@ -41,7 +41,7 @@ OUT_OF_DATE = ugettext_lazy(
 SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
                        amo.STATUS_LITE_AND_NOMINATED)
 
-xml_env = jingo.env.overlay()
+xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
 xml_env.finalize = lambda x: amo.helpers.strip_controls(old_finalize(x))
 

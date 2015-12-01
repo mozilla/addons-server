@@ -1,4 +1,4 @@
-from jingo import register, env
+from jingo import register, get_env
 import jinja2
 
 
@@ -28,6 +28,6 @@ def tag_link(tag, min_count, max_count, min_level=1):
     """create the tag cloud link with the poper tagLevel class"""
     factor = max(range_convert(tag.num_addons, 0, max_count, 1, 10),
                  min_level)
-    t = env.get_template('tags/tag_link.html').render({'factor': factor,
+    t = get_env().get_template('tags/tag_link.html').render({'factor': factor,
                                                        'tag': tag})
     return jinja2.Markup(t)

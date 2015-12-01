@@ -27,7 +27,7 @@ pytestmark = pytest.mark.django_db
 
 
 def render(s, context={}):
-    t = jingo.env.from_string(s)
+    t = jingo.get_env().from_string(s)
     return t.render(context)
 
 
@@ -472,7 +472,7 @@ def test_f():
 
 def test_inline_css(monkeypatch):
     jingo.load_helpers()
-    env = jingo.env
+    env = jingo.get_env()
     t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
 
     # Monkeypatch settings.LESS_BIN to not call the less compiler. We don't

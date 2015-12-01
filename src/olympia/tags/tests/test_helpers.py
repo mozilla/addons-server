@@ -1,4 +1,4 @@
-from jingo import env
+from jingo import get_env
 from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -14,7 +14,7 @@ xss = "<script>alert('xss')</script>"
 
 def render(s, context={}):
     """Taken from jingo.tests.utils, previously jingo.tests.test_helpers."""
-    t = env.from_string(s)
+    t = get_env().from_string(s)
     return t.render(context)
 
 
