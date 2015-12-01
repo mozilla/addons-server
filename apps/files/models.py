@@ -663,8 +663,7 @@ class FileUpload(amo.models.ModelBase):
 
     @property
     def passed_all_validations(self):
-        return self.processed and self.valid and (
-            not self.automated_signing or self.passed_auto_validation)
+        return self.processed and self.valid
 
     @property
     def passed_auto_validation(self):
