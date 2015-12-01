@@ -40,7 +40,6 @@ import bleach
 import html5lib
 import jinja2
 import pytz
-import tower
 from babel import Locale
 from cef import log_cef as _log_cef
 from django_statsd.clients import statsd
@@ -749,11 +748,11 @@ def no_translation(lang=None):
     """
     old_lang = translation.trans_real.get_language()
     if lang:
-        tower.activate(lang)
+        translation.activate(lang)
     else:
-        tower.activate(settings.LANGUAGE_CODE)
+        translation.activate(settings.LANGUAGE_CODE)
     yield
-    tower.activate(old_lang)
+    translation.activate(old_lang)
 
 
 def escape_all(v, linkify_only_full=False):
