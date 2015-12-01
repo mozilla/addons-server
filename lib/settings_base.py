@@ -250,7 +250,7 @@ SUPPORTED_NONLOCALES = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
+SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # Templates
 
