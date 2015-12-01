@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real as translation, ugettext_lazy as _
+from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
 import commonware.log
