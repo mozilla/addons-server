@@ -310,7 +310,6 @@
             // parameter.
             var $betaWarningLabel = $('span.beta-warning');
             var $isSideloadLabel = $('label[for=id_is_sideload]');
-            var $isManualReview = $('#manual-review');
             var $submitAddonProgress = $('.submit-addon-progress');
             function updateListedStatus() {
               if (!isUnlisted()) {  // It's a listed add-on.
@@ -325,7 +324,7 @@
                 $isSideloadCheckbox.attr('checked', false);
                 $submitAddonProgress.removeClass('unlisted');
               } else {  // It's an unlisted add-on.
-                if (isSideload()) {  // It's a sideload add-on, not eligible for automated signing.
+                if (isSideload()) {  // It's a sideload add-on.
                   $upload_field.attr('data-upload-url', $upload_field.data('upload-url-sideload'));
                 } else {
                   $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
@@ -339,7 +338,6 @@
               $('.addon-upload-failure-dependant').attr({'disabled': true,
                                                          'checked': false});
               $('.upload-status').remove();
-              $isManualReview.hide();
             }
             $isUnlistedCheckbox.bind('change', updateListedStatus);
             $isSideloadCheckbox.bind('change', updateListedStatus);
@@ -435,18 +433,7 @@
                     // Specific messages for unlisted addons.
                     var isSideload = $('#id_is_sideload').is(':checked') || $newForm.data('addon-is-sideload');
                     if (isUnlisted()) {
-                      if (isSideload) {
-                        $("<p>").text(gettext("Your submission will go through a manual review.")).appendTo(upload_results);
-                      } else {
-                        if (v.passed_auto_validation) {
-                          $("<p>").text(gettext("Your submission passed validation and will be automatically signed.")).appendTo(upload_results);
-                          $('#manual-review').hide().addClass('hidden');
-                        } else {
-                          // If unlisted and not sideload and failed validation, disable submit until checkbox checked.
-                          $('.addon-upload-dependant').attr('disabled', true);
-                          $('#manual-review').show().removeClass('hidden');
-                        }
-                      }
+                      $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     } else {  // This is a listed add-on.
                       if (results.beta) {
                         function updateBetaStatus() {

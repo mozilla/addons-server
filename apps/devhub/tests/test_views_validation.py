@@ -451,7 +451,7 @@ class TestUploadURLs(amo.tests.TestCase):
         self.expect_validation(listed=False, automated_signing=True)
 
         self.upload_addon(listed=False, status=amo.STATUS_PUBLIC)
-        self.expect_validation(listed=False, automated_signing=False)
+        self.expect_validation(listed=False, automated_signing=True)
 
 
 class TestValidateFile(BaseUploadTest):

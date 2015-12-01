@@ -689,7 +689,7 @@ class ReviewAddon(ReviewBase):
     def set_data(self, data):
         self.data = data
 
-    def process_public(self):
+    def process_public(self, auto_validation=False):
         """Set an addon to public."""
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
@@ -712,6 +712,8 @@ class ReviewAddon(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
@@ -719,7 +721,7 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.request and not auto_validation:
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
@@ -806,7 +808,7 @@ class ReviewFiles(ReviewBase):
         if 'addon_files' in data:
             self.files = data['addon_files']
 
-    def process_public(self):
+    def process_public(self, auto_validation=False):
         """Set an addons files to public."""
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
@@ -825,6 +827,8 @@ class ReviewFiles(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
@@ -833,7 +837,7 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
+        if self.request and not auto_validation:
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
