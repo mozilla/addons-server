@@ -3,10 +3,6 @@
 MAILTO=amo-developers@mozilla.org
 DJANGO_SETTINGS_MODULE='settings_local'
 
-# Enable python27
-LD_LIBRARY_PATH=/opt/rh/python27/root/usr/lib64
-PATH=/opt/rh/python27/root/usr/bin
-
 HOME=/tmp
 
 # Every minute!
