@@ -70,6 +70,131 @@ class TestLoginUser(TestCase):
         assert user.email == 'real@yeahoo.com'
 
 
+class TestFindUser(TestCase):
+
+    def test_user_exists_with_uid(self):
+        user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
+        found_user = views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+        assert user == found_user
+
+    def test_user_exists_with_email(self):
+        user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
+        found_user = views.find_user({'uid': '8888', 'email': 'me@amo.ca'})
+        assert user == found_user
+
+    def test_user_exists_with_both(self):
+        user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
+        found_user = views.find_user({'uid': '9999', 'email': 'me@amo.ca'})
+        assert user == found_user
+
+    def test_two_users_exist(self):
+        UserProfile.objects.create(
+            fxa_id='9999', email='me@amo.ca', username='me')
+        UserProfile.objects.create(
+            fxa_id='8888', email='you@amo.ca', username='you')
+        with self.assertRaises(UserProfile.MultipleObjectsReturned):
+            views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+
+
+class TestWithUser(TestCase):
+
+    def setUp(self):
+        patcher = mock.patch('accounts.views.verify.fxa_identify')
+        self.fxa_identify = patcher.start()
+        self.addCleanup(patcher.stop)
+        patcher = mock.patch('accounts.views.find_user')
+        self.find_user = patcher.start()
+        self.addCleanup(patcher.stop)
+        self.request = mock.MagicMock()
+        self.user = mock.MagicMock(fxa_id=None)
+        self.user.is_authenticated.return_value = True
+        self.request.user = self.user
+
+    @views.with_user
+    def fn(*args, **kwargs):
+        return args, kwargs
+
+    def test_profile_exists_with_user(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {'code': 'foo'}
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {'user': self.user, 'identity': identity}
+
+    def test_profile_exists_no_user(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = None
+        self.request.DATA = {'code': 'foo'}
+        self.user.is_authenticated.return_value = False
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {'user': None, 'identity': identity}
+
+    @mock.patch('accounts.views.Response')
+    def test_profile_does_not_exist(self, Response):
+        self.fxa_identify.side_effect = verify.IdentificationError
+        self.request.DATA = {'code': 'foo'}
+        self.fn(self.request)
+        Response.assert_called_with(
+            {'error': 'Profile not found.'}, status=401)
+        assert not self.find_user.called
+
+    @mock.patch('accounts.views.Response')
+    def test_code_not_provided(self, Response):
+        self.request.DATA = {'hey': 'hi'}
+        self.fn(self.request)
+        Response.assert_called_with(
+            {'error': 'No code provided.'}, status=422)
+        assert not self.find_user.called
+        assert not self.fxa_identify.called
+
+    def test_logged_in_matches_identity(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.pk = 100
+        self.request.DATA = {'code': 'woah'}
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {'user': self.user, 'identity': identity}
+
+    def test_logged_in_does_not_match_identity_no_account(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = None
+        self.user.pk = 100
+        self.request.DATA = {'code': 'woah'}
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {'user': self.user, 'identity': identity}
+
+    @mock.patch('accounts.views.Response')
+    def test_logged_in_does_not_match_identity_migrated(self, Response):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = None
+        self.user.pk = 100
+        self.user.fxa_id = '4321'
+        self.request.DATA = {'code': 'woah'}
+        self.fn(self.request)
+        Response.assert_called_with(
+            {'error': 'User already migrated.'}, status=422)
+
+    @mock.patch('accounts.views.Response')
+    def test_logged_in_does_not_match_conflict(self, Response):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = mock.MagicMock(pk=222)
+        self.user.pk = 100
+        self.request.DATA = {'code': 'woah'}
+        self.fn(self.request)
+        Response.assert_called_with({'error': 'User mismatch.'}, status=422)
+
+
 class TestRegisterUser(TestCase):
 
     def setUp(self):
