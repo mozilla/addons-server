@@ -1,6 +1,7 @@
 import os
 from datetime import datetime, timedelta
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 
 import mock
@@ -13,6 +14,10 @@ from files.models import File, FileUpload
 from signing.views import VersionView
 from users.models import UserProfile
 from versions.models import Version
+
+
+class MockSideEffectException(Exception):
+    """Raised by mocks."""
 
 
 class SigningAPITestCase(APIAuthTestCase):
@@ -289,21 +294,37 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert 'processed' in response.data
 
 
-class TestSignedFile(SigningAPITestCase):
+class TestSignedFile(BaseUploadVersionCase):
 
     def setUp(self):
         super(TestSignedFile, self).setUp()
         self.file_ = self.create_file()
+        self.filename = self.xpi_filepath(addon='@upload-version',
+                                          version='3.0')
+        self.now = datetime.now()
+        self.now_str = self.now.strftime('%Y%m%d%H%M%S')
 
     def url(self):
         return reverse('signing.file', args=[self.file_.pk])
 
     def create_file(self):
-        addon = Addon.objects.create(name='thing', is_listed=False)
-        addon.save()
-        AddonUser.objects.create(user=self.user, addon=addon)
-        version = Version.objects.create(addon=addon)
-        return File.objects.create(version=version)
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon.update(is_listed=False)
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.version = Version.objects.create(addon=self.addon)
+        return File.objects.create(version=self.version,
+                                   filename='extension.xpi')
+
+    def post(self, data=None):
+        data = data or {}
+        with open(self.filename) as upload:
+            data.update({'upload': upload})
+            return self.client.post(self.url(), data,
+                                    HTTP_AUTHORIZATION=self.authorization())
+
+    def allow_user_repack_api(self):
+        """Give self.user permission to use the repack API."""
+        self.grant_permission(self.user, 'Addons:Edit')
 
     def test_can_download_once_authenticated(self):
         response = self.get(self.url())
@@ -321,3 +342,88 @@ class TestSignedFile(SigningAPITestCase):
         assert df.called is True
         assert df.call_args[0][0].user == self.user
         assert df.call_args[0][1] == str(self.file_.pk)
+
+    def test_post_needs_admin(self):
+        response = self.post()
+        assert response.status_code == 403
+
+        self.allow_user_repack_api()
+        response = self.post()
+        assert response.status_code == 400  # No "repack_reason" provided.
+
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_needs_repack_reason(self, shutil_copy_mock):
+        shutil_copy_mock.side_effect = MockSideEffectException
+        self.allow_user_repack_api()
+        response = self.post()
+        assert response.status_code == 400  # No "repack_reason" provided.
+
+        with self.assertRaises(MockSideEffectException):
+            response = self.post(data={'repack_reason': 'foobar'})
+
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_checks_addon_id(self, shutil_copy_mock):
+        shutil_copy_mock.side_effect = MockSideEffectException
+        self.allow_user_repack_api()
+        with self.assertRaises(MockSideEffectException):
+            response = self.post(data={'repack_reason': 'foobar'})
+
+        self.addon.update(guid='@foo-bar')
+        response = self.post(data={'repack_reason': 'foobar'})
+        assert response.status_code == 403  # Add-on id doesn't match.
+
+    @mock.patch('signing.views.datetime')
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_backups_file(self, shutil_copy_mock, datetime_mock):
+        shutil_copy_mock.side_effect = MockSideEffectException
+        datetime_mock.now.return_value = self.now
+        self.allow_user_repack_api()
+        with self.assertRaises(MockSideEffectException):
+            self.post(data={'repack_reason': 'foobar'})
+        shutil_copy_mock.assert_called_once_with(
+            self.file_.file_path,
+            '{}.repack-{}'.format(self.file_.file_path, self.now_str))
+
+    @mock.patch('signing.views.datetime')
+    @mock.patch('signing.views.update_version_number')
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_updates_version_number(self, shutil_copy_mock,
+                                         update_version_number_mock,
+                                         datetime_mock):
+        datetime_mock.now.return_value = self.now
+        self.allow_user_repack_api()
+        self.post(data={'repack_reason': 'foobar'})
+        update_version_number_mock.assert_called_once_with(
+            self.file_, '3.0.1-repack-{}'.format(self.now_str))
+
+    @mock.patch('signing.views.sign_file')
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_sign_file_if_signed(self, shutil_copy_mock, sign_file_mock):
+        self.allow_user_repack_api()
+        self.post(data={'repack_reason': 'foobar'})
+        assert not sign_file_mock.called
+
+        self.file_.update(is_signed=True)
+        self.post(data={'repack_reason': 'foobar'})
+        sign_file_mock.assert_called_once_with(self.file_, mock.ANY)
+
+    @mock.patch('signing.views.datetime')
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_bump_version_version(self, shutil_copy_mock, datetime_mock):
+        datetime_mock.now.return_value = self.now
+        self.allow_user_repack_api()
+        assert self.version.version == '0.1'
+        self.post(data={'repack_reason': 'foobar'})
+        assert self.version.reload().version == '3.0.1-repack-{}'.format(
+            self.now_str)
+
+    @mock.patch('signing.views.shutil.copy')
+    def test_post_sends_email(self, shutil_copy_mock):
+        self.allow_user_repack_api()
+        self.post(data={'repack_reason': 'foobar'})
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.subject == (
+            'Mozilla Add-ons: Delicious Bookmarks has been repacked on AMO')
+        assert 'foobar' in email.body
+        assert email.to == [self.user.email, self.user.email]

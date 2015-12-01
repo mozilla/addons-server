@@ -735,8 +735,8 @@ def update_version_number(file_obj, new_version_number):
                 if file_.filename == 'install.rdf':
                     content = _update_version_in_install_rdf(
                         content, new_version_number)
-                if file_.filename == 'package.json':
-                    content = _update_version_in_package_json(
+                if file_.filename in ['package.json', 'manifest.json']:
+                    content = _update_version_in_json(
                         content, new_version_number)
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
@@ -769,8 +769,8 @@ def _update_version_in_install_rdf(content, new_version_number):
     return etree.tostring(tree, xml_declaration=True, encoding='utf-8')
 
 
-def _update_version_in_package_json(content, new_version_number):
-    """Change the version number in the package.json provided."""
+def _update_version_in_json(content, new_version_number):
+    """Change the version number in the json manifest provided."""
     updated = json.loads(content)
     if 'version' in updated:
         updated['version'] = new_version_number

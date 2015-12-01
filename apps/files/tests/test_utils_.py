@@ -478,7 +478,17 @@ def test_bump_version_in_alt_install_rdf(file_obj):
 
 def test_bump_version_in_package_json(file_obj):
     with amo.tests.copy_file(
-            'apps/files/fixtures/files/new-format-0.0.1.xpi',
+            'apps/files/fixtures/files/package_json-0.0.1.xpi',
+            file_obj.file_path):
+        utils.update_version_number(file_obj, '0.0.1.1-signed')
+        parsed = utils.parse_xpi(file_obj.file_path)
+        assert parsed['version'] == '0.0.1.1-signed'
+
+
+def test_bump_version_in_manifest_json(file_obj):
+    amo.tests.create_switch('webextensions')
+    with amo.tests.copy_file(
+        'apps/files/fixtures/files/manifest_json-0.0.1.xpi',
             file_obj.file_path):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
