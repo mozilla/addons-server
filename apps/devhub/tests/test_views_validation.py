@@ -107,6 +107,18 @@ class TestUploadErrors(BaseUploadTest):
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
         assert xpi_info['guid'] == long_guid
 
+    def test_too_short_uuid(self):
+        """An add-on uuid needs to be 4 chars or more, see issue #1007."""
+        with self.assertRaises(forms.ValidationError) as exc:
+            check_xpi_info({'guid': u'@fo'})
+        expected = 'Add-on ID must be 4 characters or more.'
+        assert exc.exception.message == expected
+
+    def test_short_uuid(self):
+        """An add-on uuid may be 4 chars or more, see issue #1007."""
+        xpi_info = check_xpi_info({'guid': '@foo', 'version': '1.0'})
+        assert xpi_info['guid'] == '@foo'
+
 
 class TestFileValidation(amo.tests.TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
