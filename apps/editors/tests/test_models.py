@@ -202,6 +202,12 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         eq_(q.flags, [('sources-provided', 'Sources provided')])
 
+    def test_flags_webextension(self):
+        self.new_file(version=u'0.1', file_kw={'is_webextension': True})
+
+        queue = self.Queue.objects.get()
+        assert queue.flags == [('webextension', 'WebExtension')]
+
     def test_no_flags(self):
         self.new_file(version=u'0.1')
 
