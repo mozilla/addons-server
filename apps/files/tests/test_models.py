@@ -846,30 +846,21 @@ def test_file_upload_passed_auto_validation_failed():
     assert not upload.passed_auto_validation
 
 
-@pytest.mark.parametrize(
-    'valid,auto_valid,automated_signing,expected',
-    # When automated_signing is True:
-    #   valid and auto_valid must be True to have passed_all_validations
-    [(True, True, True, True),
-     (True, False, True, False),
-     (False, True, True, False),
-     (False, False, True, False),
+def test_file_upload_passed_all_validations_processing():
+    upload = FileUpload(valid=False, validation='')
+    assert not upload.passed_all_validations
 
-     # When automated_signing is False:
-     #   valid must be True to have passed_all_validations
-     (True, True, False, True),
-     (True, False, False, True),
-     (False, True, False, False),
-     (False, False, False, False),
-     ])
-def test_file_upload_passed_all_validations(valid, auto_valid,
-                                            automated_signing, expected):
-    validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-    validation['passed_auto_validation'] = auto_valid
+
+def test_file_upload_passed_all_validations_valid():
     upload = FileUpload(
-        valid=valid, automated_signing=automated_signing,
-        validation=json.dumps(validation))
-    assert upload.passed_all_validations is expected
+        valid=True, validation=json.dumps(amo.VALIDATOR_SKELETON_RESULTS))
+    assert upload.passed_all_validations
+
+
+def test_file_upload_passed_all_validations_invalid():
+    upload = FileUpload(
+        valid=False, validation=json.dumps(amo.VALIDATOR_SKELETON_RESULTS))
+    assert not upload.passed_all_validations
 
 
 class TestFileFromUpload(UploadTest):
