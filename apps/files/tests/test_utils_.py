@@ -311,6 +311,10 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         assert apps[0].min == android_version
         assert apps[0].max == android_version
 
+    def test_is_webextension(self):
+        """An add-on with a package.json file can't be a webextension."""
+        assert 'is_webextension' not in self.parse({})
+
 
 class TestManifestJSONExtractor(amo.tests.TestCase):
 
@@ -409,6 +413,9 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
                     'strict_min_version': '>=30.0',
                     'strict_max_version': '=30.*'}}}
         assert not self.parse(data)['apps']
+
+    def test_is_webextension(self):
+        assert self.parse({})['is_webextension']
 
 
 def test_zip_folder_content():
