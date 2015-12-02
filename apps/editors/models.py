@@ -100,6 +100,7 @@ class ViewQueue(RawSQLModel):
     is_restartless = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
+    is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
     _file_platform_ids = models.CharField(max_length=255)
     has_info_request = models.BooleanField()
@@ -132,6 +133,7 @@ class ViewQueue(RawSQLModel):
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restartless', 'MAX(files.no_restart)'),
                 ('source', 'versions.source'),
+                ('is_webextension', 'MAX(files.is_webextension)'),
                 ('_application_ids', """GROUP_CONCAT(DISTINCT
                                         apps.application_id)"""),
                 ('waiting_time_days',
@@ -187,6 +189,7 @@ class ViewQueue(RawSQLModel):
             ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
             ('sources_provided', 'sources-provided',
              _lazy('Sources provided')),
+            ('is_webextension', 'webextension', _lazy('WebExtension')),
         )
 
         return [(cls, title) for (prop, cls, title) in props
