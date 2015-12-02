@@ -139,8 +139,8 @@ class TestUploadVersion(BaseUploadVersionCase):
                                    status=amo.STATUS_DISABLED)
 
         response = self.put(self.url(self.guid, '3.0'))
-        assert response.status_code == 202
-        assert 'processed' in response.data
+        assert response.status_code == 409
+        assert response.data['error'] == 'Version already exists.'
 
         # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
