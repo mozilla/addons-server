@@ -15,21 +15,19 @@ from nose.tools import eq_
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers  # NOQA
 
-import amo
-import amo.tests
-from abuse.models import AbuseReport
-from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser, Category
-from amo.helpers import urlparams
-from amo.pyquery_wrapper import PyQuery as pq
-from amo.urlresolvers import reverse
-from bandwagon.models import Collection, CollectionWatcher
-from devhub.models import ActivityLog
-from reviews.models import Review
-from users.models import BlacklistedPassword, UserProfile, UserNotification
-import users.notifications as email
-from users.utils import EmailResetCode, UnsubscribeCode
-from users.views import tshirt_eligible
+from olympia import amo, amo.tests, users.notifications as email
+from olympia.abuse.models import AbuseReport
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon, AddonUser, Category
+from olympia.amo.helpers import urlparams
+from olympia.amo.pyquery_wrapper import PyQuery as pq
+from olympia.amo.urlresolvers import reverse
+from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.devhub.models import ActivityLog
+from olympia.reviews.models import Review
+from olympia.users.models import BlacklistedPassword, UserProfile, UserNotification
+from olympia.users.utils import EmailResetCode, UnsubscribeCode
+from olympia.users.views import tshirt_eligible
 
 
 def fake_request():

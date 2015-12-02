@@ -2,8 +2,8 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 
-from apps.access.models import Group, GroupUser
-from apps.users.models import UserProfile
+from olympia.access.models import Group, GroupUser
+from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):

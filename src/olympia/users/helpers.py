@@ -6,7 +6,7 @@ import jinja2
 from jingo import register, env
 from tower import ugettext as _
 
-import amo
+from olympia import amo
 
 
 @register.function

@@ -1,8 +1,8 @@
 from jingo import register
 import jinja2
-
-import sharing
 from django.utils import encoding
+
+from olympia import sharing
 
 
 @register.inclusion_tag('sharing/sharing_widget.html')

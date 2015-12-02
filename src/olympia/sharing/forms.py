@@ -1,7 +1,7 @@
 from django import forms
 
-from amo.helpers import absolutify
-from translations.helpers import truncate
+from olympia.amo.helpers import absolutify
+from olympia.translations.helpers import truncate
 
 
 class ShareForm(forms.Form):

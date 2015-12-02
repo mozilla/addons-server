@@ -7,10 +7,10 @@ import caching
 import pytest
 from multidb import pinning
 
-import amo
-from access.models import Group, GroupUser
-from translations.hold import clean_translations
-from users.models import UserProfile
+from olympia import amo
+from olympia.access.models import Group, GroupUser
+from olympia.translations.hold import clean_translations
+from olympia.users.models import UserProfile
 
 
 @pytest.fixture(autouse=True)

@@ -21,26 +21,24 @@ from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
 
-import amo
-import users.notifications as notifications
-from abuse.models import send_abuse_report
-from access import acl
-from access.middleware import ACLMiddleware
-from addons.decorators import addon_view_factory
-from addons.models import Addon, AddonUser, Category
-from amo import messages
-from amo.decorators import (json_view, login_required, permission_required,
+from olympia import amo, users.notifications as notifications
+from olympia.abuse.models import send_abuse_report
+from olympia.access import acl
+from olympia.access.middleware import ACLMiddleware
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon, AddonUser, Category
+from olympia.amo import messages
+from olympia.amo.decorators import (json_view, login_required, permission_required,
                             post_required, write)
-from amo.forms import AbuseForm
-from amo.urlresolvers import get_url_prefix, reverse
-from amo.utils import escape_all, log_cef, send_mail
-from bandwagon.models import Collection
-from browse.views import PersonasFilter
-from translations.query import order_by_translation
-from users.models import UserNotification
+from olympia.amo.forms import AbuseForm
+from olympia.amo.urlresolvers import get_url_prefix, reverse
+from olympia.amo.utils import escape_all, log_cef, send_mail
+from olympia.bandwagon.models import Collection
+from olympia.browse.views import PersonasFilter
+from olympia.translations.query import order_by_translation
+from olympia.users.models import UserNotification
 
-import tasks
-from . import forms
+from . import forms, tasks
 from .models import UserProfile
 from .signals import logged_out
 from .utils import EmailResetCode, UnsubscribeCode

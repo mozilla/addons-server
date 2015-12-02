@@ -5,13 +5,12 @@ import pytest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from addons.models import Addon
-from addons.tests.test_views import TestPersonas
-import amo
-import amo.tests
-from users.helpers import (addon_users_list, emaillink, user_data, user_link,
+from olympia import amo, amo.tests
+from olympia.addons.models import Addon
+from olympia.addons.tests.test_views import TestPersonas
+from olympia.users.helpers import (addon_users_list, emaillink, user_data, user_link,
                            users_list)
-from users.models import UserProfile
+from olympia.users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db

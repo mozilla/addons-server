@@ -10,7 +10,7 @@ from django.db.models import Q
 
 import commonware.log
 
-from users.models import UserProfile, BlacklistedName
+from olympia.users.models import UserProfile, BlacklistedName
 
 log = commonware.log.getLogger('z.users')
 

@@ -1,7 +1,7 @@
 from django import http
 from django.utils.encoding import smart_unicode as u
 
-from amo.helpers import page_title
+from olympia.amo.helpers import page_title
 
 from . import get_service
 from .forms import ShareForm

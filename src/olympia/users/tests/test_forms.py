@@ -10,13 +10,12 @@ from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.helpers import urlparams
-from amo.urlresolvers import reverse
-from amo.tests.test_helpers import get_uploaded_file
-from users.models import BlacklistedPassword, UserProfile
-from users.forms import AuthenticationForm, UserEditForm
+from olympia import amo, amo.tests
+from olympia.amo.helpers import urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.users.models import BlacklistedPassword, UserProfile
+from olympia.users.forms import AuthenticationForm, UserEditForm
 
 
 class UserFormBase(amo.tests.TestCase):

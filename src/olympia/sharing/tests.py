@@ -7,16 +7,13 @@ from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from addons.models import Addon
-import amo
-import sharing
-import sharing.views
-from amo.tests import BaseTestCase
-from sharing.forms import ShareForm
-from sharing.helpers import sharing_box
-from sharing import TWITTER, FACEBOOK
-
-from users.models import UserProfile
+from olympia.addons.models import Addon
+from olympia import amo, sharing, sharing.views
+from olympia.amo.tests import BaseTestCase
+from olympia.sharing.forms import ShareForm
+from olympia.sharing.helpers import sharing_box
+from olympia.sharing import TWITTER, FACEBOOK
+from olympia.users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
