@@ -12,7 +12,7 @@
     <a id="edit-profile" class="button" href="{{ url('users.edit') }}">{{ _('Edit profile') }}</a>
   {% endif %}
   {% if edit_any_user %}
-    <a id="manage-user" class="button" href="{{ url('users.admin_edit', user_id=1) }}">{{ _('Manage user') }}</a>
+    <a id="manage-user" class="button" href="{{ url('users.admin_edit', user_id=profile.id) }}">{{ _('Manage user') }}</a>
   {% endif %}
   {% if abuse_form %}
     <a id="report-user-abuse" class="button" href="{{ url('users.abuse', profile.id) }}">
