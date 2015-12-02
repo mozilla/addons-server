@@ -95,7 +95,7 @@ def get_redis_backend(backend_uri):
         except (ValueError, TypeError):
             port = 6379
     else:
-        host = 'localhost'
+        host = server
         port = 6379
     return redislib.Redis(host=host, port=port, db=db, password=password,
                           socket_timeout=socket_timeout)
