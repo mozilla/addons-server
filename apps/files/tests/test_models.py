@@ -445,6 +445,12 @@ class TestParseXpi(amo.tests.TestCase):
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
 
+    def test_match_type_extension_for_webextensions(self):
+        self.create_switch('webextensions')
+        parsed = self.parse(filename='webextension.xpi')
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
+
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:
@@ -1107,6 +1113,19 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_experiment': False})
+        assert not file_.is_experiment
+
+    def test_webextension(self):
+        self.create_switch('webextensions')
+        upload = self.upload('webextension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.is_webextension
+
+    def test_not_webextension(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={})
         assert not file_.is_experiment
 
 

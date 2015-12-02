@@ -316,6 +316,7 @@ class ManifestJSONExtractor(JSONExtractor):
             'summary': self.get('description'),
             'no_restart': True,
             'apps': [self.app] if self.app else [],
+            'is_webextension': True,
         }
 
 

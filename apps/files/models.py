@@ -79,6 +79,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     is_multi_package = models.BooleanField(default=False)
     # Is the file an experiment (see bug 1220097)?
     is_experiment = models.BooleanField(default=False)
+    # Is the file a WebExtension?
+    is_webextension = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -167,6 +169,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
                                                     False)
         file_.is_multi_package = parse_data.get('is_multi_package', False)
         file_.is_experiment = parse_data.get('is_experiment', False)
+        file_.is_webextension = parse_data.get('is_webextension', False)
 
         if is_beta and addon.status == amo.STATUS_PUBLIC:
             file_.status = amo.STATUS_BETA
