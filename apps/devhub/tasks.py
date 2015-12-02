@@ -12,6 +12,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
+from django.db import transaction
 
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
@@ -21,7 +22,7 @@ from tower import ugettext as _
 import amo
 import validator
 from amo.celery import task
-from amo.decorators import write, set_modified_on
+from amo.decorators import write, set_modified_on, skip_cache
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
@@ -64,19 +65,34 @@ def validate_and_submit(addon, file_, listed=None):
 
 
 @task
+@skip_cache
 def submit_file(addon_pk, file_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
     file_ = FileUpload.objects.get(pk=file_pk)
-    if (file_.passed_all_validations and
-            not addon.fileupload_set.filter(
-                created__gt=file_.created, version=file_.version).exists()):
+    if file_.passed_all_validations:
+        create_version_for_upload(addon, file_)
+    else:
+        log.info('Skipping version creation for {file_id} that failed '
+                 'validation'.format(file_id=file_pk))
+
+
+@write
+@transaction.atomic
+@skip_cache
+def create_version_for_upload(addon, file_):
+    if (addon.fileupload_set.filter(created__gt=file_.created,
+                                    version=file_.version).exists()
+            or addon.versions.filter(version=file_.version).exists()):
+        log.info('Skipping Version creation for {file_id} that would cause '
+                 'duplicate version'.format(file_id=file_.pk))
+    else:
         # Import loop.
         from devhub.views import auto_sign_version
 
         log.info('Creating version for {file_id} that passed '
-                 'validation'.format(file_id=file_pk))
+                 'validation'.format(file_id=file_.pk))
         version = Version.from_upload(file_, addon, [amo.PLATFORM_ALL.id])
-        # The add-on'sstatus will be STATUS_NULL when its first version is
+        # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
         # TODO: Handle sideload add-ons. This assumes the user wants a prelim
@@ -84,9 +100,6 @@ def submit_file(addon_pk, file_pk):
         if addon.status == amo.STATUS_NULL:
             addon.update(status=amo.STATUS_LITE)
         auto_sign_version(version)
-    else:
-        log.info('Skipping version creation for {file_id} that failed '
-                 'validation'.format(file_id=file_pk))
 
 
 # Override the validator's stock timeout exception so that it can
