@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core.cache import parse_backend_uri
 from django.core.management.base import BaseCommand
 
-# import redisutils
 import redis as redislib
 
 log = logging.getLogger('z.redis')
@@ -27,7 +26,11 @@ def cleanup(master, slave):
     total = [1, 0]
 
     def keys():
-        ks = slave.keys()
+        try:
+            ks = slave.keys()
+        except RedisError:
+            log.error('Cannot fetch keys.')
+            raise
         total[0] = len(ks)
         log.info('There are %s keys to clean up.' % total[0])
         ks = iter(ks)
@@ -49,7 +52,8 @@ def cleanup(master, slave):
         try:
             drop = [k for k, size in zip(ks, pipe.execute())
                     if 0 < size < MIN or size > MAX]
-        except RedisError:
+        except RedisError, err:
+            log.warn('ignoring pipe.execute() error: {}'.format(err))
             continue
         num += len(ks)
         percent = round(float(num) / total[0] * 100, 1) if total[0] else 0
@@ -60,7 +64,8 @@ def cleanup(master, slave):
             pipe.expire(k, EXPIRE)
         try:
             pipe.execute()
-        except RedisError:
+        except RedisError, err:
+            log.warn('ignoring pipe.execute() error: {}'.format(err))
             continue
         time.sleep(1)  # Poor man's rate limiting.
 
@@ -103,13 +108,12 @@ class Command(BaseCommand):
         try:
             master = get_redis_backend(settings.REDIS_BACKENDS['cache'])
             slave = get_redis_backend(settings.REDIS_BACKENDS['cache_slave'])
-            # master = redisutils.connections['cache']
-            # slave = redisutils.connections['cache_slave']
         except Exception:
-            log.error('Could not connect to redis.', exc_info=True)
-            return
+            log.error('Could not connect to redis.')
+            raise
 
         try:
             cleanup(master, slave)
         except Exception:
-            log.error('Cleanup failed.', exc_info=True)
+            log.error('Cleanup failed.')
+            raise
