@@ -11,6 +11,7 @@
     "clean-css": "2.0.x",
     "less": "1.3.x",
     "stylus": "0.32.x",
-    "uglify-js": "2.4.x"
+    "uglify-js": "2.4.x",
+    "addons-validator": "0.0.8"
   }
 }

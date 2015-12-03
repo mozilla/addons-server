@@ -83,3 +83,4 @@ ENV CLEANCSS_BIN /srv/olympia-node/node_modules/clean-css/bin/cleancss
 ENV LESS_BIN /srv/olympia-node/node_modules/less/bin/lessc
 ENV STYLUS_BIN /srv/olympia-node/node_modules/stylus/bin/stylus
 ENV UGLIFY_BIN /srv/olympia-node/node_modules/uglify-js/bin/uglifyjs
+ENV VALIDATOR_BIN /srv/olympia-node/node_modules/addons-validator/bin/addons-validator
