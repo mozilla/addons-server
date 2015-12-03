@@ -20,6 +20,7 @@ from amo.helpers import user_media_path
 from amo.tests.test_helpers import get_image_path
 from devhub import tasks
 from files.models import FileUpload
+from versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -451,6 +452,16 @@ class TestSubmitFile(amo.tests.TestCase):
         tasks.submit_file(self.addon.pk, newer_upload.pk)
         create_version.assert_called_with(
             newer_upload, self.addon, [amo.PLATFORM_ALL.id])
+
+    @mock.patch('devhub.tasks.Version.from_upload')
+    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
+    def test_file_passed_all_validations_version_exists(self, create_version):
+        upload = self.create_upload()
+        Version.objects.create(addon=upload.addon, version=upload.version)
+
+        # Check that the older file won't turn into a Version.
+        tasks.submit_file(self.addon.pk, upload.pk)
+        assert not create_version.called
 
     @mock.patch('devhub.tasks.Version.from_upload')
     @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
