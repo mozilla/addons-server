@@ -39,7 +39,7 @@ nginx:
     - web:web
 
 memcached:
-  image: memcached:1.4.24
+  image: memcached:1.4
 
 mysqld:
   image: mysql:5.6
