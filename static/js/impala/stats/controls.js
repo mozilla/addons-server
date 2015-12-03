@@ -67,7 +67,7 @@
         if (newState.range) {
             if (!newState.range.custom) {
                 var newRange = newState.range,
-                    $rangeEl = $('li[data-range="' + newRange + '"]');
+                    $rangeEl = $('li[data-range="' + _.escape(newRange) + '"]');
                 if ($rangeEl.length) {
                     $rangeSelector.children("li.selected")
                                   .removeClass("selected");

@@ -173,7 +173,7 @@ $.zAutoFormset = function(o) {
     function _renderItem(ul, item) {
         if (!findItem(item).visible) {
             var $a = $(format('<a><img src="{0}" alt="">{1}</a>',
-                              [item.icons['32'], item.name]));
+                              [item.icons['32'], _.escape(item.name)]));
             return $('<li>').data('item.autocomplete', item)
                             .append($a).appendTo(ul);
         }
@@ -212,7 +212,7 @@ $.zAutoFormset = function(o) {
                     added();
                 }
             }
-        }).data('uiAutocomplete')._renderMenu = function(ul, items) {
+        }).data('ui-autocomplete')._renderMenu = function(ul, items) {
             // Overwrite _renderMenu to patch in our custom `_renderItemData`
             // and `_renderItem` to allow for our custom list-filter.
             $.each(items, function(index, item) {

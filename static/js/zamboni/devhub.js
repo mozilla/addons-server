@@ -453,7 +453,7 @@ function initRequiredAddons() {
         addedCB: function(emptyForm, item) {
             var f = template(emptyForm)({
                 icon: item.icons['32'],
-                name: item.name || ''
+                name: _.escape(item.name) || ''
             });
             // Firefox automatically escapes the contents of `href`, borking
             // the curly braces in the {url} placeholder, so let's do this.
