@@ -9,6 +9,7 @@ from rest_framework.response import Response
 import amo
 from addons.models import Addon, AddonUser
 from api.tests.utils import APIAuthTestCase
+from devhub import tasks
 from files.models import File, FileUpload
 from signing.views import VersionView
 from users.models import UserProfile
@@ -29,6 +30,10 @@ class BaseUploadVersionCase(SigningAPITestCase):
         super(BaseUploadVersionCase, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
+        patcher = mock.patch('devhub.tasks.create_version_for_upload',
+                             tasks.create_version_for_upload.non_atomic)
+        self.create_version_for_upload = patcher.start()
+        self.addCleanup(patcher.stop)
 
     def url(self, guid, version, pk=None):
         args = [guid, version]

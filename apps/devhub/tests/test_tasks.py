@@ -416,75 +416,84 @@ class TestSubmitFile(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitFile, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
+        patcher = mock.patch('devhub.tasks.create_version_for_upload')
+        self.create_version_for_upload = patcher.start()
+        self.addCleanup(patcher.stop)
 
     def create_upload(self, version='1.0'):
         return FileUpload.objects.create(
             addon=self.addon, version=version, validation='{"errors":0}',
             automated_signing=self.addon.automated_signing)
 
-    @mock.patch('devhub.tasks.Version.from_upload')
     @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
-    def test_file_passed_all_validations(self, create_version):
+    def test_file_passed_all_validations(self):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk)
-        create_version.assert_called_with(upload, self.addon,
-                                          [amo.PLATFORM_ALL.id])
+        self.create_version_for_upload.assert_called_with(self.addon, upload)
 
-    @mock.patch('devhub.tasks.Version.from_upload')
     @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', False)
-    def test_file_not_passed_all_validations(self, create_version):
+    def test_file_not_passed_all_validations(self):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk)
-        assert not create_version.called
+        assert not self.create_version_for_upload.called
 
-    @mock.patch('devhub.tasks.Version.from_upload')
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
-    def test_file_passed_all_validations_not_most_recent(self, create_version):
+
+class TestCreateVersionForUpload(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestCreateVersionForUpload, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        self.create_version_for_upload = (
+            tasks.create_version_for_upload.non_atomic)
+        patcher = mock.patch('devhub.tasks.Version.from_upload')
+        self.version__from_upload = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def create_upload(self, version='1.0'):
+        return FileUpload.objects.create(
+            addon=self.addon, version=version, validation='{"errors":0}',
+            automated_signing=self.addon.automated_signing)
+
+    def test_file_passed_all_validations_not_most_recent(self):
         upload = self.create_upload()
         newer_upload = self.create_upload()
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # Check that the older file won't turn into a Version.
-        tasks.submit_file(self.addon.pk, upload.pk)
-        assert not create_version.called
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
 
         # But the newer one will.
-        tasks.submit_file(self.addon.pk, newer_upload.pk)
-        create_version.assert_called_with(
+        self.create_version_for_upload(self.addon, newer_upload)
+        self.version__from_upload.assert_called_with(
             newer_upload, self.addon, [amo.PLATFORM_ALL.id])
 
-    @mock.patch('devhub.tasks.Version.from_upload')
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
-    def test_file_passed_all_validations_version_exists(self, create_version):
+    def test_file_passed_all_validations_version_exists(self):
         upload = self.create_upload()
         Version.objects.create(addon=upload.addon, version=upload.version)
 
         # Check that the older file won't turn into a Version.
-        tasks.submit_file(self.addon.pk, upload.pk)
-        assert not create_version.called
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
 
-    @mock.patch('devhub.tasks.Version.from_upload')
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
-    def test_file_passed_all_validations_most_recent_failed(self,
-                                                            create_version):
+    def test_file_passed_all_validations_most_recent_failed(self):
         upload = self.create_upload()
         newer_upload = self.create_upload()
         newer_upload.update(created=datetime.today() + timedelta(hours=1),
                             valid=False,
                             validation=json.dumps({"errors": 5}))
 
-        tasks.submit_file(self.addon.pk, upload.pk)
-        assert not create_version.called
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
 
-    @mock.patch('devhub.tasks.Version.from_upload')
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
-    def test_file_passed_all_validations_most_recent(self, create_version):
+    def test_file_passed_all_validations_most_recent(self):
         upload = self.create_upload(version='1.0')
         newer_upload = self.create_upload(version='0.5')
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # The Version is created because the newer upload is for a different
         # version_string.
-        tasks.submit_file(self.addon.pk, upload.pk)
-        create_version.assert_called_with(
+        self.create_version_for_upload(self.addon, upload)
+        self.version__from_upload.assert_called_with(
             upload, self.addon, [amo.PLATFORM_ALL.id])
