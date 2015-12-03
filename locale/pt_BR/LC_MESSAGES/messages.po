@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-03 18:20+0000\n"
+"PO-Revision-Date: 2015-12-03 20:09+0000\n"
 "Last-Translator: Rodrigo Padula <rodrigopadula@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5327,6 +5327,9 @@ msgid ""
 "Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"A submissão de complementos não listados para assinatura está atualmente em "
+"beta.Por favor <a href=\"%(url)s\" target=\"_blank\">reporte quaisquer "
+"bugs</a> que você encontrar."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 # {0} is a filename. example: windows.exe
@@ -6560,6 +6563,10 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Para fazer requisições via API, envie o<a href=\"%(jwt_url)s\"> JSON Web "
+"Token (JWT)</a> como cabeçalho de autorização. Você precisará gerar um JWT "
+"para cada requisição como explicado na <a href=\"%(docs_url)s\">documentação"
+" da API</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -6682,6 +6689,10 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Se você encontrou algum problema neste site, nós adoraríamos corrigi-lo. Por"
+" favor <a href=\"https://github.com/mozilla/olympia/issues\"> registre um "
+"relatório de bug</a> no GitHub, incluindo a localização do problema e como "
+"você o encontrou."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8904,6 +8915,10 @@ msgid ""
 "ons. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that "
 "you encounter."
 msgstr ""
+"A submissão de atualizações de complementos não listados para assinatura "
+"está atualmente em beta. A revisão manual ainda pode ser requerida para um "
+"grande número de complementos.Por favor <a href=\"%(url)s\" "
+"target=\"_blank\"> reporte qualquer bug</a> que você encontre."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8925,6 +8940,11 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(issues_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"O comportamento com o canal beta foi alterado para acomodar <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\"> a assinatura mandatória de"
+" complementos</a>. O novo processo está atualmente em beta e pode mudar "
+"significativamente no futuro próximo. Por favor <a href=\"%(issues_url)s\" "
+"target=\"_blank\">reporte qualquer bug</a> que você encontre."
 
 # %s is the version number.
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -9276,6 +9296,9 @@ msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Mudar complementos para não listado está atualmente em uma versão beta.Por "
+"favor <a href=\"%(url)s\" target=\"_blank\">reporte quaisquer bugs</a> que "
+"você encontrar."
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "Unlisting an add-on is irreversible!"
@@ -11396,6 +11419,9 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Ajude a melhorar este website. Ele é de código aberto e você pode registrar "
+"bugs e submeter correções.<a href=\"%(url)s\">GitHub</a> contém todos os "
+"nossos bugs atuais, bugs legados ainda podem ser encontrados no Bugzilla."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -15867,6 +15893,8 @@ msgid ""
 "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a "
 "href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
+"<a href=\"%(reg)s\" class=\"fxa-register\">Cadastre-se</a> ou <a "
+"href=\"%(login)s\" class=\"fxa-login\"> Entre</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
