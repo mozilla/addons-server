@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-11-19 15:34+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
@@ -73,7 +73,7 @@ msgstr[1] "&hellip; in še {0}"
 msgstr[2] "&hellip; in še {0}"
 msgstr[3] "&hellip; in še {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Oglejte si popolno poročilo o preverjanju veljavnosti"
 
@@ -86,20 +86,19 @@ msgstr "Preverjanje veljavnosti {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Nepričakovana napaka strežnika med preverjanjem veljavnosti."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Preverjanje veljavnosti {0} končano"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
-"Preverjanje veljavnosti vašega dodatka je poteklo, pregledan bo ročno."
+msgstr "Preverjanje veljavnosti vašega dodatka je poteklo, pregledan bo ročno."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorilom."
@@ -107,98 +106,63 @@ msgstr[1] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozoriloma."
 msgstr[2] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 msgstr[3] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-"Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočilom."
-msgstr[1] ""
-"Veljavnost vašega dodatka je bila preverjena brez napak in z {0} "
-"sporočiloma."
-msgstr[2] ""
-"Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
-msgstr[3] ""
-"Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
+msgstr[0] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočilom."
+msgstr[1] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočiloma."
+msgstr[2] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
+msgstr[3] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Vaša oddaja bo morala biti ročno pregledana."
-
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
 msgstr ""
-"Vaša oddaja je opravila preverjanje veljavnosti in bo samodejno podpisana."
 
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Vključite podrobne opombe o različici (to lahko storite v naslednjem "
-"koraku)."
+msgstr "Vključite podrobne opombe o različici (to lahko storite v naslednjem koraku)."
 
-#: static/js/common/upload-addon.js:469
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe za "
-"recenzenta (to lahko storite v naslednjem koraku)."
+#: static/js/common/upload-addon.js:456
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe za recenzenta (to lahko storite v naslednjem koraku)."
+
+#: static/js/common/upload-addon.js:457
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "V primeru, da je vaš dodatek mišljen za omejeno število uporabnikov, namesto polnega pregleda izberite predhodni pregled."
 
 #: static/js/common/upload-addon.js:470
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"V primeru, da je vaš dodatek mišljen za omejeno število uporabnikov, namesto"
-" polnega pregleda izberite predhodni pregled."
-
-#: static/js/common/upload-addon.js:483
 msgid "Add-on submission checklist"
 msgstr "Nadzorni seznam oddaje dodatka"
 
-#: static/js/common/upload-addon.js:484
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Pred dokončanjem svoje oddaje preverite naslednje točke. To bo zmanjšalo "
-"zakasnitve ali napačne razlage med postopkom pregleda:"
+#: static/js/common/upload-addon.js:471
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Pred dokončanjem svoje oddaje preverite naslednje točke. To bo zmanjšalo zakasnitve ali napačne razlage med postopkom pregleda:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali "
-"zamaskiranih skriptov (razen znanih dvojiških datotek), mora biti za pregled"
-" poslana ločeno. Prepričajte se, da uporabite polje za prenos izvorne kode, "
-"da se izognete zavrnitvi svoje oddaje."
+"Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali zamaskiranih skriptov (razen znanih dvojiških datotek), mora biti za pregled poslana ločeno. Prepričajte se, da uporabite "
+"polje za prenos izvorne kode, da se izognete zavrnitvi svoje oddaje."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do "
-"zavrnitev:"
+msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
 
-#: static/js/common/upload-addon.js:521
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Če se ne spoznate na postopek pregleda dodatkov, si lahko o njem preberete "
-"tukaj."
+#: static/js/common/upload-addon.js:508
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Če se ne spoznate na postopek pregleda dodatkov, si lahko o njem preberete tukaj."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Nekatera okolja niso na voljo za to vrsto dodatka."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Podprtega okolja ni bilo mogoče najti."
 
@@ -339,13 +303,11 @@ msgstr "{0} vračil denarja"
 msgid "{0} installs"
 msgstr "{0} namestitev"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Prenosi"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Dnevni uporabniki"
 
@@ -402,13 +364,11 @@ msgstr "Naročniki"
 msgid "Ratings"
 msgstr "Ocene"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Prodaje"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Namestitve"
 
@@ -440,8 +400,7 @@ msgstr "Predlogi iskanja"
 msgid "Search Results"
 msgstr "Rezultati iskanja"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Oglas domače strani"
 
@@ -469,8 +428,7 @@ msgstr "Stran s podrobnostmi (spodaj)"
 msgid "Detail Page (Development Channel)"
 msgstr "Stran s podrobnostmi (Razvojni kanal)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Se pogosto uporablja z"
 
@@ -554,8 +512,7 @@ msgstr "Brsk. sez. - razv. po Najbolj priljubljeni"
 msgid "Browse Listing Updated Sort"
 msgstr "Brsk. sez. - razv. po Pred kratkim posod."
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Brsk. sez. - razv. po Kmalu"
 
@@ -835,8 +792,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> v zadnjih {1} dneh"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> od {1} do {2}"
 
@@ -857,8 +813,7 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostalo"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Najprej izberite program"
 
@@ -873,18 +828,10 @@ msgstr[3] "Nastavi {0} dodatkov na največjo različico {1} in obvesti avtorja."
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-"Obvesti avtorja o {2} dodatku, katerega preverjanje veljavnosti je "
-"spodletelo."
-msgstr[1] ""
-"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
-"spodletelo."
-msgstr[2] ""
-"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
-"spodletelo."
-msgstr[3] ""
-"Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je "
-"spodletelo."
+msgstr[0] "Obvesti avtorja o {2} dodatku, katerega preverjanje veljavnosti je spodletelo."
+msgstr[1] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
+msgstr[2] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
+msgstr[3] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
 
 #: static/js/zamboni/apps.js:54
 msgid "App installation not allowed."
@@ -940,10 +887,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Uporabljati morate Firefox 10.0 ali novejšega."
 
 #: static/js/zamboni/buttons.js:145
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Mozilla je označila to različico kot nezdružljivo z vašo različico Firefoxa."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla je označila to različico kot nezdružljivo z vašo različico Firefoxa."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
@@ -976,12 +921,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Samo pri Firefoxu – namestite ga!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi"
-" Mozille (kot je Firefox)."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi Mozille (kot je Firefox)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1116,12 +1057,8 @@ msgid "No results found."
 msgstr "Ni najdenih rezultatov."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Oprostite, ne moremo najti nobene priporočitve za vas.<br>Obiščite <a "
-"href=\"{0}\">stran z dodatki</a>, da poiščete dodatek, ki je pravi za vas."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Oprostite, ne moremo najti nobene priporočitve za vas.<br>Obiščite <a href=\"{0}\">stran z dodatki</a>, da poiščete dodatek, ki je pravi za vas."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1197,12 +1134,8 @@ msgstr[2] "<b>{0}</b> znaki preostanejo."
 msgstr[3] "<b>{0}</b> znakov preostane."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Ta funkcija je začasno onemogočena, medtem ko na strani izvajamo vzdrževalna"
-" dela. Prosimo, poskusite znova malo kasneje."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ta funkcija je začasno onemogočena, medtem ko na strani izvajamo vzdrževalna dela. Prosimo, poskusite znova malo kasneje."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1256,8 +1189,7 @@ msgstr "Ti preskusi niso bili zagnani."
 msgid "Tests"
 msgstr "Preskusi"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Napaka"
 
@@ -1307,9 +1239,7 @@ msgstr[3] "{0} obvestil"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
-"Opravilo preverjanja veljavnosti se ni moglo dokončati ali se je končalo z "
-"napakami"
+msgstr "Opravilo preverjanja veljavnosti se ni moglo dokončati ali se je končalo z napakami"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
@@ -1331,8 +1261,7 @@ msgstr "Nepregledano"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperimentalno <span>(Več o tem)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "Ni na voljo za {0}"
 

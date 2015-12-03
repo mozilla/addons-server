@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2014-11-04 11:24+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,7 +140,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
 
 # Column name in a table.
-#: apps/addons/models.py:1895 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
+#: apps/addons/models.py:1902 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "فهرست شده"
 
@@ -228,7 +228,7 @@ msgstr "مشارکت"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:87 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:256
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:78 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:256
 #: apps/devhub/templates/devhub/versions/list.html:290 apps/devhub/templates/devhub/versions/list.html:331 apps/devhub/templates/devhub/versions/list.html:365
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -473,7 +473,7 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:228
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:234
 msgid "Add-ons for {0}"
 msgstr "افزودنی‌های {0}"
 
@@ -513,7 +513,7 @@ msgid "Featured Collections"
 msgstr "مجموعه‌های ویژه"
 
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:126
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:118
 msgid "Sort by:"
 msgstr "مرتب‌سازی بر حسب:"
 
@@ -718,7 +718,7 @@ msgstr "برای نصب این مضمون و صدها مورد دیگر، <b>ف�
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
 msgstr ""
 
@@ -735,7 +735,7 @@ msgid "This add-on requires %(app)s {new_version}. You are currently using %(app
 msgstr ""
 
 #. {0} is an app name, like Firefox.
-#: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
+#: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:101
 msgid "Upgrade {0}"
 msgstr ""
 
@@ -743,29 +743,29 @@ msgstr ""
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:97
+#: apps/addons/templates/addons/popups.html:96
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:109
+#: apps/addons/templates/addons/popups.html:108
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:121
+#: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
+#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
 msgstr "نمایش سایر نسخه‌ها"
 
-#: apps/addons/templates/addons/popups.html:149
+#: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr ""
 
@@ -801,7 +801,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:88 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:79 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:222 apps/devhub/templates/devhub/versions/list.html:256 apps/devhub/templates/devhub/versions/list.html:290
 #: apps/devhub/templates/devhub/versions/list.html:331 apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -848,7 +848,7 @@ msgstr ""
 msgid "Review Guidelines"
 msgstr "رهنمون‌های بررسی"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:918 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:916 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "بررسی‌ها"
@@ -1000,7 +1000,7 @@ msgstr "آخرین به‌هنگام‌سازی"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "منتشر شده تحت <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:383 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "مجوز خاص"
@@ -1041,7 +1041,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:313 apps/addons/templates/addons/impala/details.html:322 apps/addons/templates/addons/impala/details.html:334
 #: apps/addons/templates/addons/impala/review_add_box.html:4 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
-#: apps/users/templates/users/profile.html:122
+#: apps/users/templates/users/profile.html:120
 msgid "close"
 msgstr ""
 
@@ -1074,7 +1074,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "درباره‌ی توسعه دهنده"
 
-#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:109 apps/users/templates/users/profile.html:29
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:109 apps/users/templates/users/profile.html:27
 msgid "No Photo"
 msgstr ""
 
@@ -1252,9 +1252,9 @@ msgstr ""
 msgid "Return to the {0} Add-ons homepage"
 msgstr "بازگشت به صفحه‌ی آغازه‌ی افزودنی‌های {0}"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:230 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
-#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
-#: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:236 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9 templates/impala/header_title.html:11
+#: templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
 msgid "Add-ons"
 msgstr ""
 
@@ -1326,7 +1326,7 @@ msgstr ""
 msgid "Account Settings"
 msgstr ""
 
-#: apps/amo/context_processors.py:74 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
+#: apps/amo/context_processors.py:74 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:84 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "مجوعه‌های من"
 
@@ -1355,7 +1355,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr "قطب توسعه دهنده"
 
-#: apps/amo/context_processors.py:100 apps/devhub/views.py:1793
+#: apps/amo/context_processors.py:100 apps/devhub/views.py:1812
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1379,7 +1379,7 @@ msgstr ""
 msgid "Enter at least one value."
 msgstr ""
 
-#: apps/amo/helpers.py:155 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:161 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
@@ -1388,12 +1388,12 @@ msgstr ""
 msgid "Collections"
 msgstr "مجموعه‌ها"
 
-#: apps/amo/helpers.py:164 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:170 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "واژه‌نامه‌ها و بسته‌های زبان"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:407
+#: apps/amo/helpers.py:413
 msgid "{0} ago"
 msgstr ""
 
@@ -1804,7 +1804,7 @@ msgstr ""
 msgid "{addon} unlisted."
 msgstr ""
 
-#: apps/amo/log.py:592 apps/amo/log.py:598
+#: apps/amo/log.py:592 apps/amo/log.py:598 apps/amo/log.py:612 apps/amo/log.py:618 apps/amo/log.py:624 apps/amo/log.py:630 apps/amo/log.py:636
 msgid "{file} was signed."
 msgstr ""
 
@@ -1931,7 +1931,7 @@ msgid "Collections I'm Following"
 msgstr "مجموعه‌هایی که من دنبال می‌کنم"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:456
+#: apps/users/models.py:492
 msgid "My Favorite Add-ons"
 msgstr "افزودنی‌های مورد علاقه من"
 
@@ -2090,7 +2090,7 @@ msgstr ""
 msgid "Collections :: %s"
 msgstr "مجموعه‌ها :: %s"
 
-#: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
+#: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:137
 msgid "Collections are groups of related add-ons that anyone can create and share."
 msgstr "مجموعه‌ها گروه‌هایی از افزودنی‌های مرتبط هستند که هرکس میتواند ایجاد کند و به اشتراک بگذارد."
 
@@ -2143,48 +2143,40 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1063
+#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1066
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1081 apps/users/forms.py:423
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1084 apps/users/forms.py:423
 msgid "Please use images smaller than %dMB."
 msgstr ""
 
-#: apps/bandwagon/helpers.py:49
-msgid "Remove from Favorites"
-msgstr "حذف از افزودنی‌های محبوب"
-
-#: apps/bandwagon/helpers.py:53
-msgid "Add to Favorites"
-msgstr "افزودن به افزودنی‌های محبوب"
-
-#: apps/bandwagon/helpers.py:74
+#: apps/bandwagon/helpers.py:51
 msgid "Add a positive vote for this collection"
 msgstr ""
 
-#: apps/bandwagon/helpers.py:75
+#: apps/bandwagon/helpers.py:52
 msgid "Add a negative vote for this collection"
 msgstr ""
 
-#: apps/bandwagon/helpers.py:76
+#: apps/bandwagon/helpers.py:53
 msgid "Remove my vote for this collection"
 msgstr ""
 
-#: apps/bandwagon/helpers.py:87
+#: apps/bandwagon/helpers.py:64
 msgid "Log in to vote for this collection"
 msgstr ""
 
-#: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#: apps/bandwagon/helpers.py:123 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 #, fuzzy
 msgid "Add to favorites"
 msgstr "افزودن به افزودنی‌های محبوب"
 
-#: apps/bandwagon/helpers.py:147
+#: apps/bandwagon/helpers.py:124
 msgid "Favorite"
 msgstr ""
 
-#: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#: apps/bandwagon/helpers.py:124 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 #, fuzzy
 msgid "Remove from favorites"
 msgstr "حذف از افزودنی‌های محبوب"
@@ -2224,7 +2216,7 @@ msgstr ""
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
 
-#: apps/bandwagon/views.py:564
+#: apps/bandwagon/views.py:563
 msgid "Icon Deleted"
 msgstr ""
 
@@ -2271,11 +2263,11 @@ msgstr ""
 msgid "To rate collections, you must have an add-ons account."
 msgstr "برای امتیاز دادن به مجموعه‌ها، شما باید یک حساب کابری افزودنی‌ها داشته باشید."
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:177
+#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:180
 msgid "Create an Add-ons Account"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:180
+#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:183
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr ""
 
@@ -2292,94 +2284,94 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:62
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:68
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr "افزودنی‌های همگام شده با فایرفاکس تلفن همراه من"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:77
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:79
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:71
 msgid "Make this Collection Public"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:86
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:78
 msgid "Learn about collections"
 msgstr "درباره‌ی مجموعه‌ها بیشتر بدانید"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:93
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:85
 msgid "More Options:"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:94
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 #, fuzzy
 msgid "Edit Collection"
 msgstr "افزودن به مجموعه"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:88 apps/bandwagon/templates/bandwagon/includes/delete.html:3
 #, fuzzy
 msgid "Delete Collection"
 msgstr "ایجاد مجموعه"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:108
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:100
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "%(num)s مضمون در این مجموعه"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:119
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:111
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] ""
 
 # 100%
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:125 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:55 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "برو"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:144
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:136
 msgid "What are Collections?"
 msgstr "مجموعه‌ها چیستند؟"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:149
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:141
 msgid "Explore Collections"
 msgstr "مرور مجموعه‌ها"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:154
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:146
 msgid "Common Tags"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:168
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:160
 msgid "More by this User"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:176
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "See all collections by this user"
 msgstr "مشاهده‌ی همه‌ی مجموعه‌های این کاربر"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:203
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:213
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
 #, fuzzy
 msgid "My favorite add-ons"
 msgstr "افزودنی‌های مورد علاقه من"
@@ -2545,7 +2537,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr ""
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:86 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2644,7 +2636,7 @@ msgstr ""
 msgid "Add to Collection"
 msgstr "افزودن به مجموعه"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:933 apps/editors/helpers.py:953
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:931 apps/editors/helpers.py:951
 msgid "Pending"
 msgstr ""
 
@@ -2766,8 +2758,8 @@ msgid "Downloads"
 msgstr "بارگیری‌ها"
 
 # 100%
-#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/forms.py:62
-#: apps/reviews/templates/reviews/add.html:57 apps/reviews/templates/reviews/mobile/review_list.html:18
+#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
+#: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "رتبه"
 
@@ -3128,7 +3120,7 @@ msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] ""
 
-#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
+#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:71
 msgid "View all"
 msgstr ""
 
@@ -3246,7 +3238,7 @@ msgstr ""
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr ""
 
-#: apps/constants/base.py:33 apps/editors/helpers.py:921 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:33 apps/editors/helpers.py:919 apps/editors/templates/editors/themes/history_table.html:34
 #, fuzzy
 msgid "Deleted"
 msgstr "حذف"
@@ -3863,15 +3855,15 @@ msgstr[0] "{0} هشدار"
 msgid "Review"
 msgstr "بررسی"
 
-#: apps/devhub/tasks.py:494
+#: apps/devhub/tasks.py:506
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: apps/devhub/tasks.py:498
+#: apps/devhub/tasks.py:510
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: apps/devhub/tasks.py:500
+#: apps/devhub/tasks.py:512
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
@@ -3904,11 +3896,11 @@ msgstr "مجوعه‌های من"
 msgid "User Reviews"
 msgstr ""
 
-#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479 apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1160
+#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479 apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1163
 msgid "Changes successfully saved."
 msgstr ""
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1625
+#: apps/devhub/views.py:330 apps/devhub/views.py:1644
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -3960,56 +3952,60 @@ msgstr ""
 msgid "There was an error with the submission."
 msgstr ""
 
-#: apps/devhub/views.py:1065 apps/users/forms.py:418
+#: apps/devhub/views.py:836 apps/signing/views.py:64
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#: apps/devhub/views.py:1068 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: apps/devhub/views.py:1069
+#: apps/devhub/views.py:1072
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: apps/devhub/views.py:1071
+#: apps/devhub/views.py:1074
 msgid "Images cannot be animated."
 msgstr ""
 
-#: apps/devhub/views.py:1084
+#: apps/devhub/views.py:1087
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1097
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: apps/devhub/views.py:1101
+#: apps/devhub/views.py:1104
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: apps/devhub/views.py:1199
+#: apps/devhub/views.py:1202
 msgid "Version %s disabled."
 msgstr ""
 
-#: apps/devhub/views.py:1203
+#: apps/devhub/views.py:1206
 msgid "Version %s deleted."
 msgstr ""
 
-#: apps/devhub/views.py:1213
+#: apps/devhub/views.py:1216
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1671
+#: apps/devhub/views.py:1690
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1672
+#: apps/devhub/views.py:1691
 msgid "Full Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1780
+#: apps/devhub/views.py:1799
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
 
-#: apps/devhub/views.py:1798
+#: apps/devhub/views.py:1817
 msgid "New API key created"
 msgstr ""
 
@@ -4220,9 +4216,7 @@ msgid "Warning:"
 msgstr ""
 
 #: apps/devhub/templates/devhub/validate_addon.html:50 apps/devhub/templates/devhub/addons/submit/upload.html:31
-msgid ""
-"Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
-"\">report any bugs</a> that you encounter."
+msgid "Submission of unlisted add-ons for signing is currently in an open beta. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
@@ -4309,7 +4303,7 @@ msgid "Add Another Application&hellip;"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:365 apps/devhub/templates/devhub/versions/list.html:367 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
+#: apps/devhub/templates/devhub/versions/list.html:365 apps/devhub/templates/devhub/versions/list.html:367 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr ""
 
@@ -4799,8 +4793,8 @@ msgstr ""
 msgid "View Add-on Listing"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:64 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/personas/edit.html:58
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:64 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:12 apps/devhub/templates/devhub/includes/addons_edit_nav.html:37
+#: apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr ""
 
@@ -5115,16 +5109,12 @@ msgstr ""
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:68 apps/devhub/templates/devhub/versions/add_file_modal.html:65
+#: apps/devhub/templates/devhub/addons/submit/upload.html:67 apps/devhub/templates/devhub/versions/add_file_modal.html:65
 msgid "Administrative overrides"
-msgstr ""
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/versions/add_file_modal.html:77
-msgid "Looks like your add-on requires a manual review before it can be signed."
 msgstr ""
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
@@ -5136,36 +5126,36 @@ msgid "API Credentials"
 msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:20
-msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
+msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:27
+#: apps/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:31
+#: apps/devhub/templates/devhub/api/key.html:32
 msgid "JWT secret"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:36
+#: apps/devhub/templates/devhub/api/key.html:37
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
-"href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:56
-msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
-
-#: apps/devhub/templates/devhub/api/key.html:62
+#: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:71
+#: apps/devhub/templates/devhub/api/key.html:53
+msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
+msgstr ""
+
+#: apps/devhub/templates/devhub/api/key.html:61
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:73
+#: apps/devhub/templates/devhub/api/key.html:63
 msgid "Generate new credentials"
 msgstr ""
 
@@ -5228,8 +5218,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
-"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including "
-"the location of the problem and how you encountered it."
+"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in GitHub, including the location of the problem and "
+"how you encountered it."
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3 apps/devhub/templates/devhub/docs/policies-maintenance.html:7 apps/devhub/templates/devhub/docs/policies-maintenance.html:8
@@ -6508,8 +6498,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:15
 msgid ""
-"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
-"\"_blank\">report any bugs</a> that you encounter."
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(url)s\" target=\"_blank"
+"\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
@@ -6527,7 +6517,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:54
 msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
-"change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+"change significantly in the near future. Please <a href=\"%(issues_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -6792,7 +6782,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:313
-msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:319
@@ -7475,37 +7465,41 @@ msgstr ""
 msgid "add-on"
 msgstr ""
 
-#: apps/editors/helpers.py:937 apps/editors/helpers.py:957
+#: apps/editors/helpers.py:935 apps/editors/helpers.py:955
 msgid "Flagged"
 msgstr ""
 
-#: apps/editors/helpers.py:941 apps/editors/helpers.py:960
+#: apps/editors/helpers.py:939 apps/editors/helpers.py:958
 #, fuzzy
 msgid "Updates"
 msgstr "به‌هنگام شده"
 
-#: apps/editors/models.py:182
+#: apps/editors/models.py:184
 msgid "Admin Review"
 msgstr ""
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:185
 msgid "Jetpack Add-on"
 msgstr ""
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:187
 msgid "Restartless Add-on"
 msgstr ""
 
-#: apps/editors/models.py:186
+#: apps/editors/models.py:188
 msgid "More Information Requested"
 msgstr ""
 
-#: apps/editors/models.py:187
+#: apps/editors/models.py:189
 msgid "Contains Editor Comment"
 msgstr ""
 
-#: apps/editors/models.py:189
+#: apps/editors/models.py:191
 msgid "Sources provided"
+msgstr ""
+
+#: apps/editors/models.py:192
+msgid "WebExtension"
 msgstr ""
 
 #: apps/editors/tasks.py:70
@@ -7610,8 +7604,7 @@ msgstr ""
 msgid "Return to the Editor Tools homepage"
 msgstr ""
 
-#: apps/editors/templates/editors/base.html:43 apps/editors/templates/editors/themes/base.html:14 apps/editors/templates/editors/themes/base.html:28
-#: apps/editors/templates/editors/themes/queue.html:25
+#: apps/editors/templates/editors/base.html:43 apps/editors/templates/editors/themes/base.html:14 apps/editors/templates/editors/themes/base.html:28 apps/editors/templates/editors/themes/queue.html:25
 msgid "Queues"
 msgstr ""
 
@@ -8257,59 +8250,59 @@ msgstr ""
 msgid "This file is a directory."
 msgstr ""
 
-#: apps/files/tasks.py:30
+#: apps/files/tasks.py:37
 msgid "There was an error accessing file %s. %s."
 msgstr ""
 
-#: apps/files/tasks.py:33
+#: apps/files/tasks.py:40
 msgid "There was an error accessing file %s."
 msgstr ""
 
-#: apps/files/utils.py:330
+#: apps/files/utils.py:343
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: apps/files/utils.py:367
+#: apps/files/utils.py:380
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:375
+#: apps/files/utils.py:388
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:425
+#: apps/files/utils.py:439
 msgid "Invalid archive."
 msgstr ""
 
-#: apps/files/utils.py:515 apps/files/utils.py:518
+#: apps/files/utils.py:529 apps/files/utils.py:532
 msgid "Could not parse install.rdf."
 msgstr ""
 
-#: apps/files/utils.py:532
+#: apps/files/utils.py:546
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: apps/files/utils.py:535
+#: apps/files/utils.py:549
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: apps/files/utils.py:537
+#: apps/files/utils.py:551
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: apps/files/utils.py:541
+#: apps/files/utils.py:555
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: apps/files/utils.py:544
+#: apps/files/utils.py:558
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: apps/files/utils.py:547
+#: apps/files/utils.py:561
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-#: apps/files/utils.py:564
+#: apps/files/utils.py:578
 msgid "<em:type> doesn't match add-on"
 msgstr ""
 
@@ -8585,7 +8578,8 @@ msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:49
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:55
@@ -9635,11 +9629,11 @@ msgstr "انجمن‌های توسعه دهنده"
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:323
+#: apps/pages/templates/pages/faq.html:322
 msgid "Still have questions?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:324
+#: apps/pages/templates/pages/faq.html:323
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
 
@@ -10312,27 +10306,27 @@ msgstr "به اشتراک گذاشتن این افزودنی"
 msgid "Share this Collection"
 msgstr ""
 
-#: apps/signing/views.py:35
-msgid "Could not find addon."
+#: apps/signing/views.py:37
+msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
-#: apps/signing/views.py:39
+#: apps/signing/views.py:41
 msgid "You do not own this addon."
 msgstr ""
 
-#: apps/signing/views.py:54
+#: apps/signing/views.py:56
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: apps/signing/views.py:65
+#: apps/signing/views.py:70
 msgid "Version does not match install.rdf."
 msgstr ""
 
-#: apps/signing/views.py:71
+#: apps/signing/views.py:74
 msgid "Version already exists."
 msgstr ""
 
-#: apps/signing/views.py:106
+#: apps/signing/views.py:110
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
@@ -10501,8 +10495,7 @@ msgstr ""
 msgid "Loading the latest data&hellip;"
 msgstr ""
 
-#: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
-#: apps/stats/templates/stats/reports/overview.html:49
+#: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37 apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
 msgstr ""
 
@@ -10820,15 +10813,15 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: apps/users/models.py:360
+#: apps/users/models.py:390
 msgid "Your account has been restricted"
 msgstr ""
 
-#: apps/users/models.py:424
+#: apps/users/models.py:460
 msgid "Please confirm your email address"
 msgstr ""
 
-#: apps/users/models.py:450
+#: apps/users/models.py:486
 #, fuzzy
 msgid "My Mobile Add-ons"
 msgstr "افزودنی‌های بیشتر"
@@ -11237,60 +11230,60 @@ msgstr "اطلاعات کاربری {0}"
 msgid "Edit profile"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:17
+#: apps/users/templates/users/profile.html:15
 msgid "Manage user"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:21 apps/users/templates/users/report_abuse_full.html:10
+#: apps/users/templates/users/profile.html:19 apps/users/templates/users/report_abuse_full.html:10
 #, fuzzy
 msgid "Report user"
 msgstr "گزارش سوء استفاده"
 
-#: apps/users/templates/users/profile.html:32
+#: apps/users/templates/users/profile.html:30
 msgid "Add-ons Developer"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:37
+#: apps/users/templates/users/profile.html:35
 msgid "Themes Artist"
 msgstr "هنرمند مضمون‌ها"
 
-#: apps/users/templates/users/profile.html:42
+#: apps/users/templates/users/profile.html:40
 msgid "About me"
 msgstr "درباره من"
 
-#: apps/users/templates/users/profile.html:48
+#: apps/users/templates/users/profile.html:46
 msgid "In a little more detail..."
 msgstr ""
 
-#: apps/users/templates/users/profile.html:62
+#: apps/users/templates/users/profile.html:60
 msgid "Add-ons I've created"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:75
+#: apps/users/templates/users/profile.html:73
 msgid "My Most Popular Themes"
 msgstr "محبوب‌ترین مضمون‌های من"
 
-#: apps/users/templates/users/profile.html:77
+#: apps/users/templates/users/profile.html:75
 msgid "Themes I've created"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:87
+#: apps/users/templates/users/profile.html:85
 msgid "Followed by Me"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:89
+#: apps/users/templates/users/profile.html:87
 msgid "Created by Me"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:97
+#: apps/users/templates/users/profile.html:95
 msgid "My Reviews"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:110
+#: apps/users/templates/users/profile.html:108
 msgid "No add-on reviews yet."
 msgstr ""
 
-#: apps/users/templates/users/profile.html:123
+#: apps/users/templates/users/profile.html:121
 #, fuzzy
 msgid "Report User"
 msgstr "گزارش سوء استفاده"
@@ -11647,23 +11640,23 @@ msgstr ""
 msgid "Mozilla Add-ons"
 msgstr "افزودنی‌های بیشتر"
 
-#: templates/base.html:65 templates/impala/base.html:105
+#: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
-#: templates/base.html:81 templates/impala/base.html:71
+#: templates/base.html:81 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
 msgstr "پیدا کردن افزودنی‌های برنامه‌های دیگر"
 
-#: templates/base.html:82 templates/impala/base.html:71
+#: templates/base.html:82 templates/impala/base.html:74
 msgid "Other Applications"
 msgstr "برنامه‌های دیگر"
 
-#: templates/base.html:131 templates/impala/base.html:173
+#: templates/base.html:131 templates/impala/base.html:176
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 
-#: templates/base.html:158 templates/impala/base.html:194
+#: templates/base.html:158 templates/impala/base.html:197
 msgid "Footer logo"
 msgstr ""
 
@@ -11677,6 +11670,10 @@ msgstr ""
 
 #: templates/copyright.html:5
 msgid "View Mobile Site"
+msgstr ""
+
+#: templates/copyright.html:7
+msgid "Site Status"
 msgstr ""
 
 #: templates/footer.html:3
@@ -11769,37 +11766,41 @@ msgstr "تماس با ما"
 msgid "Welcome, {0}"
 msgstr ""
 
-#: templates/user_login.html:41 templates/impala/user_login.html:20
+#: templates/user_login.html:41
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ثبت نام</a>یا <a href=\"%(login)s\">ورود</a>"
 
-#: templates/impala/base.html:116
+#: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "برای امتحان کردن صدها افزودنی موجود در اینجا، <a href=\"%(url)s\">موزیلا فایرفاکس</a>، یک راه سریع، رایگان برای مرور وب را بارگیری کنید!"
 
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:127
+#: templates/impala/base.html:130
 msgid "Welcome to {0} Add-ons."
 msgstr ""
 
-#: templates/impala/base.html:130
+#: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
 
-#: templates/impala/base.html:135
+#: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
 
-#: templates/impala/base.html:143
+#: templates/impala/base.html:146
 msgid "On the go?"
 msgstr ""
 
-#: templates/impala/base.html:145
+#: templates/impala/base.html:148
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
+msgstr ""
+
+#: templates/impala/user_login.html:20
+msgid "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6

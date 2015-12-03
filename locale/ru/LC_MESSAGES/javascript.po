@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-11-21 20:46+0300\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -69,7 +69,7 @@ msgstr[0] "&hellip;и ещё {0}"
 msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
@@ -82,65 +82,61 @@ msgstr "Валидация {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "При валидации произошла неожиданная ошибка сервера."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Закончена валидация {0}"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Время ожидания валидации вашего дополнения истекло, оно будет проверено вручную."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Ваше представление будет проведено через ручную проверку."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "Ваше представление прошло валидацию и будет автоматически подписано."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включить подробные примечания к версии (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Если для полного тестирования дополнения неоходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Если ваше дополнение предназначено для ограниченной аудитории, вам следует выбрать Предварительную проверку вместо Полной проверки."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Контрольный перечень при представлении дополнения"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Пожалуйста, проверьте выполнение следующих пунктов перед завершением вашего представления. Это позволит свести к минимуму задержки или недоразумения в процессе его проверки:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -148,19 +144,19 @@ msgstr ""
 "Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
 "вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Если вы не знакомы с процессом проверки дополнения, вы можете прочитать об этом здесь."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Для этого типа дополнения некоторые платформы недоступны."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "К сожалению поддерживаемых платформ не найдено."
 

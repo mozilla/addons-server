@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-10-27 10:44+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -153,7 +153,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "A Kiegészítőkezelőben a felhasználókat mindig megkérdezzük (a Firefox 4 verziótól kezdődően)"
 
 # Column name in a table.
-#: apps/addons/models.py:1895 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
+#: apps/addons/models.py:1902 apps/addons/templates/addons/details_box.html:59 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "Felsorolva"
 
@@ -240,7 +240,7 @@ msgstr "Adományozás"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/versions/add_file_modal.html:87 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:256
+#: apps/devhub/templates/devhub/versions/add_file_modal.html:78 apps/devhub/templates/devhub/versions/edit.html:139 apps/devhub/templates/devhub/versions/list.html:256
 #: apps/devhub/templates/devhub/versions/list.html:290 apps/devhub/templates/devhub/versions/list.html:331 apps/devhub/templates/devhub/versions/list.html:365
 #: apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -490,7 +490,7 @@ msgstr "Vissza ehhez: {0}…"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:228
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:234
 msgid "Add-ons for {0}"
 msgstr "{0}-kiegészítők"
 
@@ -529,7 +529,7 @@ msgid "Featured Collections"
 msgstr "Kiemelt gyűjtemények"
 
 #: apps/addons/templates/addons/listing_header.html:3 apps/addons/templates/addons/impala/listing/sorter.html:2 apps/amo/templates/amo/mobile/sort_by.html:2
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:126
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:118
 msgid "Sort by:"
 msgstr "Rendezés:"
 
@@ -741,7 +741,7 @@ msgstr "A téma telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilal in
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr "A kiegészítő nem lett frissítve, hogy ezzel a %(app)s verzióval használni lehessen."
 
-#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
+#: apps/addons/templates/addons/popups.html:63 apps/addons/templates/addons/popups.html:140 apps/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
 msgstr "Telepítés mindenképpen"
 
@@ -758,7 +758,7 @@ msgid "This add-on requires %(app)s {new_version}. You are currently using %(app
 msgstr "A kiegészítő számára a %(app)s {new_version} verzióra van szükség. Jelenleg a %(app)s {old_version} verzióját használja."
 
 #. {0} is an app name, like Firefox.
-#: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:102
+#: apps/addons/templates/addons/popups.html:82 apps/addons/templates/addons/popups.html:101
 msgid "Upgrade {0}"
 msgstr "{0} frissítése"
 
@@ -766,29 +766,29 @@ msgstr "{0} frissítése"
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
 msgstr "vagy nézze meg a <a href=\"%(href)s\">kiegészítő régebbi verzióit</a>."
 
-#: apps/addons/templates/addons/popups.html:97
+#: apps/addons/templates/addons/popups.html:96
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
 msgstr "A persona számára a %(app)s %(new_version)s verzióra van szükség. Jelenleg a %(app)s  {old_version} verzióját használja."
 
-#: apps/addons/templates/addons/popups.html:109
+#: apps/addons/templates/addons/popups.html:108
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
 "harm your computer."
 msgstr ""
 
-#: apps/addons/templates/addons/popups.html:121
+#: apps/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
 msgstr "<strong>Megjegyzés:</strong> Ez a kiegészítő nem kompatibilis az operációs rendszerével."
 
-#: apps/addons/templates/addons/popups.html:137 apps/addons/templates/addons/impala/button.html:70
+#: apps/addons/templates/addons/popups.html:136 apps/addons/templates/addons/impala/button.html:70
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
 msgstr "Ez a kiegészítő az alábbi okok miatt nem kompatibilis ezzel a %(app)s verzióval:"
 
-#: apps/addons/templates/addons/popups.html:142 apps/addons/templates/addons/popups.html:152
+#: apps/addons/templates/addons/popups.html:141 apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
 msgstr "Egyéb verziók megtekintése"
 
-#: apps/addons/templates/addons/popups.html:149
+#: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
 msgstr "Ez a kiegészítő nem kompatibilis ezzel a %(app)s verzióval."
 
@@ -828,7 +828,7 @@ msgstr "Jelentés küldése"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
-#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:88 apps/devhub/templates/devhub/versions/edit.html:140
+#: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:79 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:222 apps/devhub/templates/devhub/versions/list.html:256 apps/devhub/templates/devhub/versions/list.html:290
 #: apps/devhub/templates/devhub/versions/list.html:331 apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
@@ -873,7 +873,7 @@ msgstr "Nézze meg a <a href=\"%(support)s\">támogatói részt</a>, hogy megtud
 msgid "Review Guidelines"
 msgstr "Értékelési útmutató"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:918 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:916 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "Értékelések"
@@ -1028,7 +1028,7 @@ msgstr "Utolsó frissítés:"
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> alatt jelenik meg"
 
-#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:377 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:208 apps/addons/templates/addons/impala/details.html:213 apps/amo/helpers.py:383 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Egyéni licenc"
@@ -1071,7 +1071,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:313 apps/addons/templates/addons/impala/details.html:322 apps/addons/templates/addons/impala/details.html:334
 #: apps/addons/templates/addons/impala/review_add_box.html:4 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:194
-#: apps/users/templates/users/profile.html:122
+#: apps/users/templates/users/profile.html:120
 msgid "close"
 msgstr "bezárás"
 
@@ -1105,7 +1105,7 @@ msgid_plural "About the Developers"
 msgstr[0] "A fejlesztőről"
 msgstr[1] "A fejlesztőkről"
 
-#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:109 apps/users/templates/users/profile.html:29
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:109 apps/users/templates/users/profile.html:27
 msgid "No Photo"
 msgstr "Nincs fénykép"
 
@@ -1284,9 +1284,9 @@ msgstr "A kiegészítők telepítéséhez szüksége van egy Firefox böngésző
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Visszatérés a {0}-kiegészítők honlapjára"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:230 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
-#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9
-#: templates/impala/header_title.html:11 templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:236 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:115
+#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9 templates/impala/header_title.html:11
+#: templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
 msgid "Add-ons"
 msgstr "Kiegészítők"
 
@@ -1359,7 +1359,7 @@ msgstr "Saját profil"
 msgid "Account Settings"
 msgstr "Beállítások"
 
-#: apps/amo/context_processors.py:74 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:86 apps/users/templates/users/includes/navigation.html:4
+#: apps/amo/context_processors.py:74 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:84 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "Saját gyűjtemények"
 
@@ -1388,7 +1388,7 @@ msgstr "Új téma beküldése"
 msgid "Developer Hub"
 msgstr "Fejlesztőközpont"
 
-#: apps/amo/context_processors.py:100 apps/devhub/views.py:1793
+#: apps/amo/context_processors.py:100 apps/devhub/views.py:1812
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1412,7 +1412,7 @@ msgstr "Ennek érvényes hexakódnak kell lennie, mint például: #000000."
 msgid "Enter at least one value."
 msgstr "Legalább egy értéket meg kell adni."
 
-#: apps/amo/helpers.py:155 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:161 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
@@ -1421,12 +1421,12 @@ msgstr "Legalább egy értéket meg kell adni."
 msgid "Collections"
 msgstr "Gyűjtemények"
 
-#: apps/amo/helpers.py:164 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:170 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Szótárak és nyelvi csomagok"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:407
+#: apps/amo/helpers.py:413
 msgid "{0} ago"
 msgstr "{0} elteltével"
 
@@ -1832,7 +1832,7 @@ msgstr "{addon} tartalom besorolása módosítva."
 msgid "{addon} unlisted."
 msgstr "{addon} titkos."
 
-#: apps/amo/log.py:592 apps/amo/log.py:598
+#: apps/amo/log.py:592 apps/amo/log.py:598 apps/amo/log.py:612 apps/amo/log.py:618 apps/amo/log.py:624 apps/amo/log.py:630 apps/amo/log.py:636
 msgid "{file} was signed."
 msgstr ""
 
@@ -1965,7 +1965,7 @@ msgid "Collections I'm Following"
 msgstr "Általam követett gyűjtemények"
 
 #: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:456
+#: apps/users/models.py:492
 msgid "My Favorite Add-ons"
 msgstr "Kedvenc kiegészítőim"
 
@@ -2127,7 +2127,7 @@ msgstr "Ha a támogatott alkalmazás nem igényli az install.rdf fájlt, akkor i
 msgid "Collections :: %s"
 msgstr "Gyűjtemények :: %s"
 
-#: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:145
+#: apps/bandwagon/feeds.py:50 apps/bandwagon/templates/bandwagon/collection_detail.html:137
 msgid "Collections are groups of related add-ons that anyone can create and share."
 msgstr "A gyűjtemények bárki által létrehozott és megosztott kiegészítők egy csoportja."
 
@@ -2180,47 +2180,39 @@ msgstr "Hivatkozások nem engedélyezettek."
 msgid "This url is already in use by another collection"
 msgstr "Ezt az URL-t egy másik gyűjtemény használja"
 
-#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1063
+#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1066
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1081 apps/users/forms.py:423
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1084 apps/users/forms.py:423
 msgid "Please use images smaller than %dMB."
 msgstr "Használjon %dMB méretnél kisebb képeket."
 
-#: apps/bandwagon/helpers.py:49
-msgid "Remove from Favorites"
-msgstr "Eltávolítás a kedvencek közül"
-
-#: apps/bandwagon/helpers.py:53
-msgid "Add to Favorites"
-msgstr "Hozzáadás a kedvencekhez"
-
-#: apps/bandwagon/helpers.py:74
+#: apps/bandwagon/helpers.py:51
 msgid "Add a positive vote for this collection"
 msgstr "Pozitív szavazat erre a gyűjteményre"
 
-#: apps/bandwagon/helpers.py:75
+#: apps/bandwagon/helpers.py:52
 msgid "Add a negative vote for this collection"
 msgstr "Negatív szavazat erre a gyűjteményre"
 
-#: apps/bandwagon/helpers.py:76
+#: apps/bandwagon/helpers.py:53
 msgid "Remove my vote for this collection"
 msgstr "Szavazatom törlése erről a gyűjteményről"
 
-#: apps/bandwagon/helpers.py:87
+#: apps/bandwagon/helpers.py:64
 msgid "Log in to vote for this collection"
 msgstr "Jelentkezzen be, hogy szavazhasson"
 
-#: apps/bandwagon/helpers.py:146 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#: apps/bandwagon/helpers.py:123 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
 msgstr "Hozzáadás a kedvencekhez"
 
-#: apps/bandwagon/helpers.py:147
+#: apps/bandwagon/helpers.py:124
 msgid "Favorite"
 msgstr "Kedvenc"
 
-#: apps/bandwagon/helpers.py:147 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
+#: apps/bandwagon/helpers.py:124 apps/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
 msgstr "Eltávolítás a kedvencek közül"
 
@@ -2258,7 +2250,7 @@ msgstr "A gyűjtemény frissítése megtörtént!"
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Nézze meg gyűjteményét</a> a változások megjelenítéséhez."
 
-#: apps/bandwagon/views.py:564
+#: apps/bandwagon/views.py:563
 msgid "Icon Deleted"
 msgstr "Az ikon törölve"
 
@@ -2303,11 +2295,11 @@ msgstr "vagy <a id=\"collections-new-cancel\" href=\"#\">Mégsem</a>"
 msgid "To rate collections, you must have an add-ons account."
 msgstr "A gyűjtemények értékeléséhez felhasználói fiókra van szükség."
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:177
+#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:135 templates/impala/base.html:180
 msgid "Create an Add-ons Account"
 msgstr "Felhasználói fiók létrehozása"
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:180
+#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:138 templates/impala/base.html:183
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "vagy <a href=\"%(login)s\">bejelentkezés meglévő felhasználóval</a>"
 
@@ -2325,81 +2317,81 @@ msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> követő"
 msgstr[1] "<span>%(num)s</span> követő"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:62
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
 msgstr "Erről a gyűjteményről"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:68
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr "Mobil Firefoxra szinkronizált kiegészítők"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:77
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
 msgstr "Legyen ez egy magán gyűjtemény"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:79
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:71
 msgid "Make this Collection Public"
 msgstr "Legyen ez egy nyilvános gyűjtemény"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:86
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:78
 msgid "Learn about collections"
 msgstr "Ismerje meg a gyűjteményeket"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:93
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:85
 msgid "More Options:"
 msgstr "További opciók:"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:94
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Edit Collection"
 msgstr "Gyűjtemény szerkesztése"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:96 apps/bandwagon/templates/bandwagon/includes/delete.html:3
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:88 apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
 msgstr "Gyűjtemény törlése"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:108
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:100
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "%(num)s téma ebben a gyűjteményben"
 msgstr[1] "%(num)s téma ebben a gyűjteményben"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:119
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:111
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "%(num)s Kiegészítő van a Gyűjteményben"
 msgstr[1] "%(num)s Kiegészítő van a Gyűjteményben"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:133 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:125 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
 #: apps/files/templates/files/viewer.html:55 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "Ugrás"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:144
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:136
 msgid "What are Collections?"
 msgstr "Mik azok a gyűjtemények?"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:149
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:141
 msgid "Explore Collections"
 msgstr "Gyűjtemények felfedezése"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:154
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:146
 msgid "Common Tags"
 msgstr "Általános címkék"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:168
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:160
 msgid "More by this User"
 msgstr "További gyűjtemények ettől az alkotótól"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:176
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:168
 msgid "See all collections by this user"
 msgstr "Összes gyűjtemény ettől a felhasználótól"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:182 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
 msgid "Recently Viewed"
 msgstr "Nemrég nézett"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -2407,7 +2399,7 @@ msgstr ""
 "Azok a kiegészítők, amelyek a kedvencek közé kerültek a <b>Hozzáadás a kedvencekhez</b> funkció használatával, azok alul jelennek meg. Ez a gyűjtemény jelenleg <b>nyilvános</b>, ami azt jelenti, "
 "hogy mindenki láthatja. Amennyiben el akarja rejteni a nyilvánosság elől, akkor az alábbi gomb megnyomásával priváttá teheti."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:203
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
@@ -2415,7 +2407,7 @@ msgstr ""
 "Azok a kiegészítők, amelyek a kedvencek közé kerültek a <b>Hozzáadás a kedvencekhez</b> funkció használatával, azok alul jelennek meg. Ez a gyűjtemény jelenleg <b>privát</b>, ami azt jelenti, hogy "
 "más nem láthatja. Amennyiben mindenki számára láthatóvá kívánja tenni, akkor az alábbi gomb megnyomásával teheti nyilvánossá."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:213
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
 msgid "My favorite add-ons"
 msgstr "Kedvenc kiegészítőim"
 
@@ -2586,7 +2578,7 @@ msgid "<b>Warning:</b> By changing the owner of this collection, you will no lon
 msgstr "<b>Figyelem!</b> A gyűjtemény tulajdonosának megváltoztatásakor, többet nem jogosult a gyűjtemény szerkesztéséhez. Ettől kezdve csak kiegészítőket tud majd eltávolítani és hozzáadni."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
-#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:86 apps/devhub/templates/devhub/payments/tier.html:17
+#: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
 msgid "Continue"
@@ -2687,7 +2679,7 @@ msgstr "Adja meg a hozzáadni kívánt kiegészítő nevét"
 msgid "Add to Collection"
 msgstr "Hozzáadás gyűjteményhez"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:933 apps/editors/helpers.py:953
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:931 apps/editors/helpers.py:951
 msgid "Pending"
 msgstr "Függő"
 
@@ -2809,8 +2801,8 @@ msgstr "Létrehozva"
 msgid "Downloads"
 msgstr "Letöltések"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/forms.py:62
-#: apps/reviews/templates/reviews/add.html:57 apps/reviews/templates/reviews/mobile/review_list.html:18
+#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:67 apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
+#: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "Osztályzat"
 
@@ -3175,7 +3167,7 @@ msgid_plural "{0} problem reports"
 msgstr[0] "{0} hibajelentés"
 msgstr[1] "{0} hibajelentés"
 
-#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:73
+#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:71
 msgid "View all"
 msgstr "Összes megjelenítése"
 
@@ -3291,7 +3283,7 @@ msgstr "Előzetes vizsgálatra vár"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "Előzetesen átvizsgált és teljes átvizsgálásra vár"
 
-#: apps/constants/base.py:33 apps/editors/helpers.py:921 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:33 apps/editors/helpers.py:919 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "Törölt"
 
@@ -3905,15 +3897,15 @@ msgstr[1] "{0} figyelmeztetés"
 msgid "Review"
 msgstr "Értékelés"
 
-#: apps/devhub/tasks.py:494
+#: apps/devhub/tasks.py:506
 msgid "%s responded with %s (%s)."
 msgstr "%s így válaszolt: %s (%s)."
 
-#: apps/devhub/tasks.py:498
+#: apps/devhub/tasks.py:510
 msgid "Connection to \"%s\" timed out."
 msgstr "Időtúllépés miatt a kapcsolat megszakadt ezzel: „%s”."
 
-#: apps/devhub/tasks.py:500
+#: apps/devhub/tasks.py:512
 msgid "Could not contact host at \"%s\"."
 msgstr "Nem lehet csatlakozni ehhez a kiszolgálóhoz: \"%s\"."
 
@@ -3945,11 +3937,11 @@ msgstr "Felhasználó gyűjteményei"
 msgid "User Reviews"
 msgstr "Felhasználói értékelések"
 
-#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479 apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1160
+#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479 apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1163
 msgid "Changes successfully saved."
 msgstr "A változások sikeresen elmentve."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1625
+#: apps/devhub/views.py:330 apps/devhub/views.py:1644
 msgid "Please check the form for errors."
 msgstr "Ellenőrizze az űrlap hibáit."
 
@@ -4001,56 +3993,60 @@ msgstr "Kiegészítő kompatibilitásának ellenőrzése"
 msgid "There was an error with the submission."
 msgstr "Hiba történt a benyújtási folyamatban."
 
-#: apps/devhub/views.py:1065 apps/users/forms.py:418
+#: apps/devhub/views.py:836 apps/signing/views.py:64
+msgid "You cannot submit this type of add-on"
+msgstr ""
+
+#: apps/devhub/views.py:1068 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: apps/devhub/views.py:1069
+#: apps/devhub/views.py:1072
 msgid "Icons cannot be animated."
 msgstr "Az ikon nem lehet animált."
 
-#: apps/devhub/views.py:1071
+#: apps/devhub/views.py:1074
 msgid "Images cannot be animated."
 msgstr "A kép nem lehet animált."
 
-#: apps/devhub/views.py:1084
+#: apps/devhub/views.py:1087
 msgid "Images cannot be larger than %dKB."
 msgstr "A kép nem lehet nagyobb, mint %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1094
+#: apps/devhub/views.py:1097
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A képnek pontosan {0} képpont szélesnek és {1} képpont magasnak kell lennie."
 
-#: apps/devhub/views.py:1101
+#: apps/devhub/views.py:1104
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
 
-#: apps/devhub/views.py:1199
+#: apps/devhub/views.py:1202
 msgid "Version %s disabled."
 msgstr "%s verzió letiltva."
 
-#: apps/devhub/views.py:1203
+#: apps/devhub/views.py:1206
 msgid "Version %s deleted."
 msgstr "%s verzió törölve."
 
-#: apps/devhub/views.py:1213
+#: apps/devhub/views.py:1216
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ezen feltöltés ellenőrzése sikertelen lett, és hiányozhatnak az ellenőrzés teljes eredményei. A vizsgálat során legyen különösen figyelmes."
 
-#: apps/devhub/views.py:1671
+#: apps/devhub/views.py:1690
 msgid "Preliminary Review Requested."
 msgstr "Előzetes vizsgálat igényelve."
 
-#: apps/devhub/views.py:1672
+#: apps/devhub/views.py:1691
 msgid "Full Review Requested."
 msgstr "Teljes átvizsgálást kér."
 
-#: apps/devhub/views.py:1780
+#: apps/devhub/views.py:1799
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
 
-#: apps/devhub/views.py:1798
+#: apps/devhub/views.py:1817
 msgid "New API key created"
 msgstr ""
 
@@ -4261,9 +4257,7 @@ msgid "Warning:"
 msgstr ""
 
 #: apps/devhub/templates/devhub/validate_addon.html:50 apps/devhub/templates/devhub/addons/submit/upload.html:31
-msgid ""
-"Submission of unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target=\"_blank"
-"\">report any bugs</a> that you encounter."
+msgid "Submission of unlisted add-ons for signing is currently in an open beta. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
@@ -4356,7 +4350,7 @@ msgid "Add Another Application&hellip;"
 msgstr "Másik alkalmazás hozzáadása&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:365 apps/devhub/templates/devhub/versions/list.html:367 templates/impala/base.html:122 templates/impala/base.html:140 templates/impala/base.html:150
+#: apps/devhub/templates/devhub/versions/list.html:365 apps/devhub/templates/devhub/versions/list.html:367 templates/impala/base.html:125 templates/impala/base.html:143 templates/impala/base.html:153
 msgid "Close"
 msgstr "Bezárás"
 
@@ -4852,8 +4846,8 @@ msgstr "Státusz és verziók kezelése"
 msgid "View Add-on Listing"
 msgstr "Kiegészítő megjelenésének megtekintése"
 
-#: apps/devhub/templates/devhub/addons/listing/item_actions.html:64 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
-#: apps/devhub/templates/devhub/includes/addons_edit_nav.html:37 apps/devhub/templates/devhub/personas/edit.html:58
+#: apps/devhub/templates/devhub/addons/listing/item_actions.html:64 apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:12 apps/devhub/templates/devhub/includes/addons_edit_nav.html:37
+#: apps/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr "Legutóbbi változtatások megtekintése"
 
@@ -5173,17 +5167,13 @@ msgstr "2. lépés: kiegészítő feltöltése"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Használja az alábbi mezőket a kiegészítő feltöltéséhez és állítsa be a platformkorlátozást. A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el és vizsgálja meg a fájlt."
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:60 apps/devhub/templates/devhub/versions/add_file_modal.html:39
+#: apps/devhub/templates/devhub/addons/submit/upload.html:59 apps/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/submit/upload.html:68 apps/devhub/templates/devhub/versions/add_file_modal.html:65
+#: apps/devhub/templates/devhub/addons/submit/upload.html:67 apps/devhub/templates/devhub/versions/add_file_modal.html:65
 msgid "Administrative overrides"
 msgstr "Adminisztrációs felülbírálások"
-
-#: apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/versions/add_file_modal.html:77
-msgid "Looks like your add-on requires a manual review before it can be signed."
-msgstr ""
 
 #: apps/devhub/templates/devhub/api/agreement.html:3 apps/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
@@ -5194,36 +5184,36 @@ msgid "API Credentials"
 msgstr ""
 
 #: apps/devhub/templates/devhub/api/key.html:20
-msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
+msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:27
+#: apps/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:31
+#: apps/devhub/templates/devhub/api/key.html:32
 msgid "JWT secret"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:36
+#: apps/devhub/templates/devhub/api/key.html:37
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> as the authorization header. You'll need to generate a JWT for every request like in the following example using the <a "
-"href=\"%(node_jwt_url)s\">node-jsonwebtoken</a> library."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:56
-msgid "Consult the <a href=\"%(docs_url)s\">documentation</a> for more details."
-msgstr ""
-
-#: apps/devhub/templates/devhub/api/key.html:62
+#: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:71
+#: apps/devhub/templates/devhub/api/key.html:53
+msgid "This feature is under active development. If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
+msgstr ""
+
+#: apps/devhub/templates/devhub/api/key.html:61
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: apps/devhub/templates/devhub/api/key.html:73
+#: apps/devhub/templates/devhub/api/key.html:63
 msgid "Generate new credentials"
 msgstr ""
 
@@ -5286,8 +5276,8 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
-"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org\">file a bug report</a> in Bugzilla, including "
-"the location of the problem and how you encountered it."
+"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in GitHub, including the location of the problem and "
+"how you encountered it."
 msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3 apps/devhub/templates/devhub/docs/policies-maintenance.html:7 apps/devhub/templates/devhub/docs/policies-maintenance.html:8
@@ -6609,8 +6599,8 @@ msgstr "Az ellenőrzött verziókhoz hozzáadott fájlokat ellenőrizni kell, mi
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:15
 msgid ""
-"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(bugzilla_url)s\" target="
-"\"_blank\">report any bugs</a> that you encounter."
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(url)s\" target=\"_blank"
+"\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
@@ -6628,7 +6618,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:54
 msgid ""
 "The behavior of the beta channel has changed to accommodate <a href=\"%(addon_signing_url)s\" target=\"_blank\">mandatory add-on signing</a>. The new process is currently in an open beta, and may "
-"change significantly in the near future. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+"change significantly in the near future. Please <a href=\"%(issues_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
@@ -6897,7 +6887,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:313
-msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(bugzilla_url)s\" target=\"_blank\">report any bugs</a> that you encounter."
+msgid "Switching add-ons to unlisted is currently in an open beta. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:319
@@ -7596,40 +7586,44 @@ msgstr "Ez a kiegészítőt és annak legfrissebb változatát publikusnak tekin
 msgid "add-on"
 msgstr "Kiegészítő"
 
-#: apps/editors/helpers.py:937 apps/editors/helpers.py:957
+#: apps/editors/helpers.py:935 apps/editors/helpers.py:955
 #, fuzzy
 msgid "Flagged"
 msgstr "Megjelölve"
 
-#: apps/editors/helpers.py:941 apps/editors/helpers.py:960
+#: apps/editors/helpers.py:939 apps/editors/helpers.py:958
 #, fuzzy
 msgid "Updates"
 msgstr "Frissítések"
 
-#: apps/editors/models.py:182
+#: apps/editors/models.py:184
 msgid "Admin Review"
 msgstr "Adminisztrátori értékelés"
 
-#: apps/editors/models.py:183
+#: apps/editors/models.py:185
 msgid "Jetpack Add-on"
 msgstr ""
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:187
 msgid "Restartless Add-on"
 msgstr ""
 
-#: apps/editors/models.py:186
+#: apps/editors/models.py:188
 #, fuzzy
 msgid "More Information Requested"
 msgstr "További információt kér"
 
-#: apps/editors/models.py:187
+#: apps/editors/models.py:189
 #, fuzzy
 msgid "Contains Editor Comment"
 msgstr "Szerkesztői hozzászólást tartalmaz"
 
-#: apps/editors/models.py:189
+#: apps/editors/models.py:191
 msgid "Sources provided"
+msgstr ""
+
+#: apps/editors/models.py:192
+msgid "WebExtension"
 msgstr ""
 
 #: apps/editors/tasks.py:70
@@ -7736,8 +7730,7 @@ msgstr ""
 msgid "Return to the Editor Tools homepage"
 msgstr "Visszatérés a Szerkesztői eszközök oldalra"
 
-#: apps/editors/templates/editors/base.html:43 apps/editors/templates/editors/themes/base.html:14 apps/editors/templates/editors/themes/base.html:28
-#: apps/editors/templates/editors/themes/queue.html:25
+#: apps/editors/templates/editors/base.html:43 apps/editors/templates/editors/themes/base.html:14 apps/editors/templates/editors/themes/base.html:28 apps/editors/templates/editors/themes/queue.html:25
 msgid "Queues"
 msgstr "Várakozási sorok"
 
@@ -8421,59 +8414,59 @@ msgstr "Ez a fájl nem érhető el online. Töltse le a fájlt, ha meg kívánja
 msgid "This file is a directory."
 msgstr "Ez a fájl egy könyvtár."
 
-#: apps/files/tasks.py:30
+#: apps/files/tasks.py:37
 msgid "There was an error accessing file %s. %s."
 msgstr "Hiba történt a(z) %s fájl elérésekor. %s."
 
-#: apps/files/tasks.py:33
+#: apps/files/tasks.py:40
 msgid "There was an error accessing file %s."
 msgstr "Hiba történt a(z) %s fájl elérésekor."
 
-#: apps/files/utils.py:330
+#: apps/files/utils.py:343
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: apps/files/utils.py:367
+#: apps/files/utils.py:380
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:375
+#: apps/files/utils.py:388
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: apps/files/utils.py:425
+#: apps/files/utils.py:439
 msgid "Invalid archive."
 msgstr "Érvénytelen archív."
 
-#: apps/files/utils.py:515 apps/files/utils.py:518
+#: apps/files/utils.py:529 apps/files/utils.py:532
 msgid "Could not parse install.rdf."
 msgstr "Az install.rdf nem dolgozható fel."
 
-#: apps/files/utils.py:532
+#: apps/files/utils.py:546
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: apps/files/utils.py:535
+#: apps/files/utils.py:549
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: apps/files/utils.py:537
+#: apps/files/utils.py:551
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: apps/files/utils.py:541
+#: apps/files/utils.py:555
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: apps/files/utils.py:544
+#: apps/files/utils.py:558
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "A verziószámnak 32 karakternél rövidebbnek kell lennie."
 
-#: apps/files/utils.py:547
+#: apps/files/utils.py:561
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "A verziószámok kizárólag betűket, számokat és a következő karaktereket tartalmazhatja: +*.-_."
 
-#: apps/files/utils.py:564
+#: apps/files/utils.py:578
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> nem illeszkedik kiegészítőre"
 
@@ -8757,7 +8750,8 @@ msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:49
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> Bugzilla</a> contains all of our current bugs."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:55
@@ -9861,11 +9855,11 @@ msgstr "Fejlesztői témák"
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
 msgstr "A kiegészítők fejlesztésével kapcsolatos kérdések a <a href=\"%(faq_url)s\">Fejlesztői GYIK oldalon</a> és <a href=\"%(hub_url)s\">Fejlesztőközpontban</a> található."
 
-#: apps/pages/templates/pages/faq.html:323
+#: apps/pages/templates/pages/faq.html:322
 msgid "Still have questions?"
 msgstr "További kérdése van?"
 
-#: apps/pages/templates/pages/faq.html:324
+#: apps/pages/templates/pages/faq.html:323
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
 "Az általános Firefox támogatásért látogassa meg a <a href=\"%(sumo_url)s\">támogatói weboldalt</a>. A kiegészítőkkel és weboldalakkal kapcsolatos általános kérdésekkel látogasson el a <a href="
@@ -10565,27 +10559,27 @@ msgstr "Kiegészítő megosztása"
 msgid "Share this Collection"
 msgstr "A gyűjtemény megosztása"
 
-#: apps/signing/views.py:35
-msgid "Could not find addon."
+#: apps/signing/views.py:37
+msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
-#: apps/signing/views.py:39
+#: apps/signing/views.py:41
 msgid "You do not own this addon."
 msgstr ""
 
-#: apps/signing/views.py:54
+#: apps/signing/views.py:56
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
-#: apps/signing/views.py:65
+#: apps/signing/views.py:70
 msgid "Version does not match install.rdf."
 msgstr ""
 
-#: apps/signing/views.py:71
+#: apps/signing/views.py:74
 msgid "Version already exists."
 msgstr ""
 
-#: apps/signing/views.py:106
+#: apps/signing/views.py:110
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
@@ -10768,8 +10762,7 @@ msgstr "Statisztikai vezérlőpult"
 msgid "Loading the latest data&hellip;"
 msgstr "Legfrissebb adatok betöltése&hellip;"
 
-#: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37
-#: apps/stats/templates/stats/reports/overview.html:49
+#: apps/stats/templates/stats/stats.html:134 apps/stats/templates/stats/reports/overview.html:25 apps/stats/templates/stats/reports/overview.html:37 apps/stats/templates/stats/reports/overview.html:49
 #, fuzzy
 msgid "No data available."
 msgstr "Nincs dátum."
@@ -11092,15 +11085,15 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Nincs ilyen felhasználó ilyen e-mail címmel."
 
-#: apps/users/models.py:360
+#: apps/users/models.py:390
 msgid "Your account has been restricted"
 msgstr ""
 
-#: apps/users/models.py:424
+#: apps/users/models.py:460
 msgid "Please confirm your email address"
 msgstr "Ellenőrizze az e-mail címét"
 
-#: apps/users/models.py:450
+#: apps/users/models.py:486
 msgid "My Mobile Add-ons"
 msgstr "Saját Mobile kiegészítők"
 
@@ -11516,63 +11509,63 @@ msgstr "{0} felhasználói adatai"
 msgid "Edit profile"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:17
+#: apps/users/templates/users/profile.html:15
 msgid "Manage user"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:21 apps/users/templates/users/report_abuse_full.html:10
+#: apps/users/templates/users/profile.html:19 apps/users/templates/users/report_abuse_full.html:10
 msgid "Report user"
 msgstr "Felhasználó bejelentése"
 
 # The title for a user if they are a developer
-#: apps/users/templates/users/profile.html:32
+#: apps/users/templates/users/profile.html:30
 msgid "Add-ons Developer"
 msgstr "Kiegészítőfejlesztő"
 
-#: apps/users/templates/users/profile.html:37
+#: apps/users/templates/users/profile.html:35
 msgid "Themes Artist"
 msgstr "Témaalkotó"
 
-#: apps/users/templates/users/profile.html:42
+#: apps/users/templates/users/profile.html:40
 #, fuzzy
 msgid "About me"
 msgstr "Bemutatkozás"
 
-#: apps/users/templates/users/profile.html:48
+#: apps/users/templates/users/profile.html:46
 msgid "In a little more detail..."
 msgstr "Kicsit részletesebben…"
 
-#: apps/users/templates/users/profile.html:62
+#: apps/users/templates/users/profile.html:60
 msgid "Add-ons I've created"
 msgstr "Saját kiegészítéseim"
 
-#: apps/users/templates/users/profile.html:75
+#: apps/users/templates/users/profile.html:73
 msgid "My Most Popular Themes"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:77
+#: apps/users/templates/users/profile.html:75
 msgid "Themes I've created"
 msgstr ""
 
-#: apps/users/templates/users/profile.html:87
+#: apps/users/templates/users/profile.html:85
 msgid "Followed by Me"
 msgstr "Engem követnek"
 
 # "Me" in this context is the user shown on the User Info page
-#: apps/users/templates/users/profile.html:89
+#: apps/users/templates/users/profile.html:87
 msgid "Created by Me"
 msgstr "Általam készített"
 
 # "My" in this context is the logged in user who is reading the page
-#: apps/users/templates/users/profile.html:97
+#: apps/users/templates/users/profile.html:95
 msgid "My Reviews"
 msgstr "Saját értékelések"
 
-#: apps/users/templates/users/profile.html:110
+#: apps/users/templates/users/profile.html:108
 msgid "No add-on reviews yet."
 msgstr "Nincs még értékelve kiegészítő."
 
-#: apps/users/templates/users/profile.html:123
+#: apps/users/templates/users/profile.html:121
 #, fuzzy
 msgid "Report User"
 msgstr "Felhasználó bejelentése"
@@ -11933,23 +11926,23 @@ msgstr "Más nyelvek"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla kiegészítők"
 
-#: templates/base.html:65 templates/impala/base.html:105
+#: templates/base.html:65 templates/impala/base.html:108
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Hamarosan újra teljes kapacitással fog működni az oldal."
 
-#: templates/base.html:81 templates/impala/base.html:71
+#: templates/base.html:81 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
 msgstr "Kiegészítők keresése más alkalmazásokhoz"
 
-#: templates/base.html:82 templates/impala/base.html:71
+#: templates/base.html:82 templates/impala/base.html:74
 msgid "Other Applications"
 msgstr "Más alkalmazások"
 
-#: templates/base.html:131 templates/impala/base.html:173
+#: templates/base.html:131 templates/impala/base.html:176
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Saját gyűjteményt szeretne készítéséhez Mozilla Add-ons felhasználói fiókkal kell rendelkeznie."
 
-#: templates/base.html:158 templates/impala/base.html:194
+#: templates/base.html:158 templates/impala/base.html:197
 msgid "Footer logo"
 msgstr ""
 
@@ -11964,6 +11957,10 @@ msgstr "Mobile kategóriák"
 #: templates/copyright.html:5
 msgid "View Mobile Site"
 msgstr "Mobile weboldal"
+
+#: templates/copyright.html:7
+msgid "Site Status"
+msgstr ""
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -12055,38 +12052,42 @@ msgstr "Kapcsolat"
 msgid "Welcome, {0}"
 msgstr "Üdvözöljük, {0}"
 
-#: templates/user_login.html:41 templates/impala/user_login.html:20
+#: templates/user_login.html:41
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Regisztráció</a> vagy <a href=\"%(login)s\">Bejelentkezés</a>"
 
-#: templates/impala/base.html:116
+#: templates/impala/base.html:119
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "A több ezer elérhető kiegészítő kipróbálásához töltse le a <a href=\"%(url)s\">Mozilla Firefox</a> böngészőt, amelynek segítségével gyorsan és ingyenesen internetezhet!"
 
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:127
+#: templates/impala/base.html:130
 msgid "Welcome to {0} Add-ons."
 msgstr "Üdvözöljük a {0} kiegészítők oldalon."
 
-#: templates/impala/base.html:130
+#: templates/impala/base.html:133
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "Válasszon több ezer extra funkció és stílus közül, hogy Firefoxát teljesen magáénak érezhesse."
 
-#: templates/impala/base.html:135
+#: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "Bővítse extra funkciókkal és stílusokkal, hogy a %(app)s csak az Öné lehessen."
 
-#: templates/impala/base.html:143
+#: templates/impala/base.html:146
 msgid "On the go?"
 msgstr "Úton van?"
 
-#: templates/impala/base.html:145
+#: templates/impala/base.html:148
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "Nézze meg a <a class=\"mobile-link\" href=\"#\">Mobile Add-ons weboldalt</a>."
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
 msgstr "Android kiegészítők"
+
+#: templates/impala/user_login.html:20
+msgid "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
+msgstr ""
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"

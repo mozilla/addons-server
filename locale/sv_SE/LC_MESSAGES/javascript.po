@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-10-15 00:36+0000\n"
 "Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -67,7 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;och {0} mer"
 msgstr[1] "&hellip;och {0} fler"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Se fullständig valideringsrapport"
 
@@ -80,63 +80,59 @@ msgstr "Validerar {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fick ett tomt svar från servern; status: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Oväntat serverfel under validering."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Validering klar för {0}"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Ditt tilläggs validering gjorde timeout, det kommer att granskas manuellt."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ditt tillägg validerades utan fel och {0} varning."
 msgstr[1] "Ditt tillägg validerades utan fel och {0} varningar."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ditt tillägg validerades utan fel och {0} meddelande."
 msgstr[1] "Ditt tillägg validerades utan fel och {0} meddelanden."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ditt tillägg validerades utan fel eller varningar."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Ditt bidrag kommer att gå igenom en manuell granskning."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "Ditt bidrag klarade validering och kommer att automatiskt signeras."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkludera detaljerade versionsanteckningar (detta kan göras i nästa steg)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt testat, inkludera ett test användarnamn och lösenord i meddelande till granskaren (detta kan göras i nästa steg)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Om ditt tillägg är avsedd för en begränsad publik bör du välja preliminär granskning istället för fullständig granskning."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Checklista för att skicka in tillägg"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta kommer att minimera förseningar eller missförstånd under granskningsprocessen:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -144,19 +140,19 @@ msgstr ""
 "Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
 "källkoden för att undvika att ditt bidrag avvisas."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Vissa plattformar är inte tillgängliga för den här typen av tillägg."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Tyvärr har ingen plattform som stöds hittats."
 

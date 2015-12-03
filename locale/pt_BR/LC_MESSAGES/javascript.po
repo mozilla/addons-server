@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-11-02 23:09+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Ver o relatório de validação completo"
 
@@ -80,64 +80,60 @@ msgstr "Validando {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Uma resposta vazia foi recebida do servidor: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Erro inesperado do servidor durante a validação."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Validação de {0} concluída"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "O tempo para validação do complemento esgotou, ele será avaliado manualmente."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Seu complemento foi validado sem nenhum erro e {0} avisos."
 msgstr[1] "Seu complemento passou na validação sem erros e {0} alertas."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Seu complemento foi validado sem erros e {0} mensagem."
 msgstr[1] "O seu complemento foi validado sem erros e {0} mensagens."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Seu complemento foi validado sem erros ou avisos."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "A sua submissão irá passar por um processo de avaliação manual."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "A sua submissão passou na validação e será automaticamente assinada."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluir notas detalhadas da versão (isto pode ser feito no próximo passo)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Se o seu complemento necessita de uma conta num site web para ser completamente testado, inclua um nome de usuário e senha de teste nas Notas para o Revisor (isto pode ser feito no próximo passo)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Se um complemento é direcionado a uma audiência limitada deve escolher a avaliação preliminar em vez de uma avaliação completa."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Lista de verificação da submissão do complemento"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Por favor confirme os pontos seguintes antes de finalizar a sua submissão. Isto irá minimizar atrasos ou confusões durante o processo de avaliação:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -145,19 +141,19 @@ msgstr ""
 "Binários compilados, bem como scripts minificados ou ofuscados (excluindo bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para avaliação. Tenha a certeza que utiliza o "
 "campo de envio de código fonte para evitar que as sua submissão seja rejeitada."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Se não está familiarizado com o processo de avaliação de complementos, pode ler mais sobre o mesmo aqui."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Algumas plataformas não estão disponíveis para esse tipo de complemento."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Desculpe, nenhuma plataforma suportada foi encontrada."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
 
@@ -79,63 +79,59 @@ msgstr "{0} ਵੈਧਤਾ"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤੀ।"
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹੇ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
 msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹਿਆਂ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਇੱਕ ਦਸਤੀ ਸਮੀਖਿਆ ਵਿੱਚੋਂ ਲੰਘੇਗੀ।"
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "ਤੁਹਾਡੀ ਬੇਨਤੀ ਨੇ ਵੈਧਤਾ ਪਾਸ ਕੀਤੀ ਅਤੇ ਆਪਣੇ ਆਪ ਹੀ ਹਸਤਾਖਰਿਤ ਹੋ ਜਾਵੇਗੀ।"
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਪੂਰੀ ਪਰਖ ਲਈ ਇੱਕ ਵੈੱਬਸਾਈਟ ਤੇ ਇੱਕ ਖਾਤੇ ਦੀ ਲੋੜ ਹੈ, ਸਮੀਖਿਅਕ ਲਈ ਨੋਟਾਂ ਵਿੱਚ ਇੱਕ ਟੈਸਟ ਵਰਤੋਂਕਾਰ ਅਤੇ ਪਾਸਵਰਡ ਸ਼ਾਮਲ ਕਰੋ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੱਕ ਸੀਮਿਤ ਜਨਤਾ ਲਈ ਨਿਯਤ ਹੈ ਤੁਹਾਨੂੰ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਦੀ ਥਾਂ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਨੂੰ ਚੁਣਨਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਾਰਜ ਚੈੱਕਲਿਸਟ"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਮੁਕੰਮਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਅੱਗੇ ਦਿੱਤੇ ਅੰਕਾਂ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ। ਇਸ ਨਾਲ ਸਮੀਖਿਆ ਕਾਰਜ ਦੌਰਾਨ ਦੇਰੀ ਅਤੇ ਗਲਤਫ਼ਹਿਮੀ ਘੱਟ ਹੋਵੇਗੀ:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -143,19 +139,19 @@ msgstr ""
 "ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
 "ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "ਮੁਆਫ਼ੀ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 

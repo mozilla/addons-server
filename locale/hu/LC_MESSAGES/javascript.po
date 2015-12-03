@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-07-28 21:56+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -68,7 +68,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; és további {0}"
 msgstr[1] "&hellip; és további {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Teljes ellenőrzési jelentés megjelenítése"
 
@@ -81,65 +81,61 @@ msgstr "{0} ellenőrzése"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Az ellenőrzés közben váratlan hiba történt."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "{0} ellenőrzése befejeződött"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Beküldése kézi értékelésen fog átmenni."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "Beküldése átment az ellenőrzésen, automatikusan alá lesz írva."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
 "a következő lépésben is megteheti)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Ha a kiegészítő korlátozott közönség számára készült, válassza az Előzetes vizsgálatot a Teljes vizsgálat helyett."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -147,19 +143,19 @@ msgstr ""
 "A lefordított binárisoknak, mint ahogyan a minimalizált vagy olvashatatlanná tett parancsfájloknak is (kivéve az ismert könyvtárakat) külön kell beküldeni a forrását ellenőrzésre. Használja a "
 "forráskódfeltöltés mezőt, hogy elkerülje a beküldés visszautasítását."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ha nem ismeri a bővítmény-ellenőrzési folyamatot, itt olvashat róla."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Néhány platformra nem érhető el ez a típusú kiegészítő."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Elnézést, nem található támogatott platform."
 

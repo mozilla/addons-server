@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-10-24 11:20+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
@@ -70,7 +70,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; et {0} plus"
 msgstr[1] "&hellip; et {0} plus"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
 
@@ -83,65 +83,61 @@ msgstr "Validation {0}"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Réception d'une réponse vide depuis le serveur ; statut : {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue pendant la validation."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Validation finie {0}"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "La validation de votre module n'a pu être effectuée à temps, il sera revu manuellement."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Votre module a été validé sans erreur et avec {0} avertissement."
 msgstr[1] "Votre module a été validé sans erreur et avec {0} avertissements."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Votre module a été validé sans erreur et avec {0} message."
 msgstr[1] "Votre module a été validé sans erreur et avec {0} messages."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "La validation de votre extension s'est déroulée sans erreur ni avertissement."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Votre envoi sera revu manuellement."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr ""
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr "Votre envoi a franchi l'étape de validation et sera signé automatiquement."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ajouter des notes de version détaillées (cela peut être effectué lors de la prochaine étape)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela "
 "peut être effectué à la prochaine étape)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Si votre module est destiné à un public restreint, ,vous devriez sélectionner une revue préliminaire plutôt qu'une revue complète."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l'envoi d'un module"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela réduira le délai ou les incompréhensions lors du processus de revue :"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -149,19 +145,19 @@ msgstr ""
 "Les fichiers sources des fichiers binaires compilés, des scripts minifiés ou obfusqués (à l'exception des bibliothèques connues) doivent être envoyés pour être revus séparément. Assurez-vous "
 "d'utiliser le champ permettant d'envoyer le code source pour éviter que votre envoi soit rejeté."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Si vous ne connaissez pas le processus de revue des modules, vous pouvez en apprendre plus ici."
 
-#: static/js/common/upload-addon.js:557
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Certaines plateformes ne sont pas disponibles pour ce type de module."
 
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Désolé, aucune plateforme supportée n'a été trouvée."
 
