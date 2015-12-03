@@ -22,7 +22,7 @@ from tower import ugettext as _
 import amo
 import validator
 from amo.celery import task
-from amo.decorators import write, set_modified_on, skip_cache
+from amo.decorators import write, set_modified_on
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
@@ -65,7 +65,7 @@ def validate_and_submit(addon, file_, listed=None):
 
 
 @task
-@skip_cache
+@write
 def submit_file(addon_pk, file_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
     file_ = FileUpload.objects.get(pk=file_pk)
@@ -78,7 +78,6 @@ def submit_file(addon_pk, file_pk):
 
 @write
 @transaction.atomic
-@skip_cache
 def create_version_for_upload(addon, file_):
     if (addon.fileupload_set.filter(created__gt=file_.created,
                                     version=file_.version).exists()
