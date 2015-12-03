@@ -12,7 +12,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
-from django.db import transaction
 
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
@@ -22,7 +21,7 @@ from tower import ugettext as _
 import amo
 import validator
 from amo.celery import task
-from amo.decorators import write, set_modified_on
+from amo.decorators import atomic, set_modified_on, write
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
@@ -76,8 +75,7 @@ def submit_file(addon_pk, file_pk):
                  'validation'.format(file_id=file_pk))
 
 
-@write
-@transaction.atomic
+@atomic
 def create_version_for_upload(addon, file_):
     if (addon.fileupload_set.filter(created__gt=file_.created,
                                     version=file_.version).exists()
