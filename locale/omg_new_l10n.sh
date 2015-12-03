@@ -134,7 +134,7 @@ updated.  Unless something unusual is happening, we do weekly pushes on
 Tuesdays so any strings committed by then will go live.  To give you an idea of
 the number of new strings I will calculate untranslated strings below.
 
-`./stats-po.sh`
+`./stats-po.sh .`
 
 Source files: $EMAIL_SOURCE
 
