@@ -151,21 +151,7 @@ var purchases = {
         if ($('.trigger_download', modal).exists()) {
             z.installAddon($('.addon-title', modal).text(),
                            $('.trigger_download', modal).attr('href'));
-        } else if ($('.trigger_app_install', modal).exists()) {
-            var dest = $('.trigger_app_install', modal).attr('data-manifest-url'),
-                receipt = $('.trigger_app_install', modal).attr('data-receipt');
-            purchases.install_app(dest, receipt);
-            $('.trigger_app_install', modal).click(_pd(function() {
-                purchases.install_app(dest, $(this).attr('data-receipt'));
-            }));
         }
-    },
-    install_app: function(url, receipt) {
-        var data = {};
-        if(receipt) {
-            data.receipt = receipt;
-        }
-        apps.install(url, {data: data});
     }
 };
 
