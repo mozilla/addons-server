@@ -50,9 +50,9 @@ def login_user(request, user, identity):
     if (user.fxa_id != identity['uid'] or
             user.email != identity['email']):
         log.info(
-            'Updating user info from FxA. Old {old_email} {old_uid} '
+            'Updating user info from FxA for {pk}. Old {old_email} {old_uid} '
             'New {new_email} {new_uid}'.format(
-                old_email=user.email, old_uid=user.fxa_id,
+                pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
         user.update(fxa_id=identity['uid'], email=identity['email'])
     log.info('Logging in user {} from FxA'.format(user))
@@ -71,7 +71,22 @@ def with_user(fn):
                                            config=settings.FXA_CONFIG)
         except verify.IdentificationError:
             return Response({'error': 'Profile not found.'}, status=401)
-        return fn(self, request, user=find_user(identity), identity=identity)
+        else:
+            identity_user = find_user(identity)
+            if request.user.is_authenticated():
+                if identity_user is not None and identity_user != request.user:
+                    log.info('Conflict finding user during FxA login. '
+                             'request.user: {}, identity_user: {}'.format(
+                                 request.user.pk, identity_user.pk))
+                    return Response({'error': 'User mismatch.'}, status=422)
+                elif request.user.fxa_id is not None:
+                    return Response(
+                        {'error': 'User already migrated.'}, status=422)
+                else:
+                    user = request.user
+            else:
+                user = identity_user
+            return fn(self, request, user=user, identity=identity)
     return inner
 
 
