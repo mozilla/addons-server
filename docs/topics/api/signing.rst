@@ -86,12 +86,12 @@ passed using the ``valid`` property and check the results with
 ``validation_results``.
 
 If validation passed then your add-on will be submitted for review.
-In the case of unlisted add-ons this will happen automatically if
-the add-on passes a strict set of tests. If your add-on is listed
-then it will be reviewed by a human and that will take a bit
-longer. Once review is complete then the ``reviewed`` property
-will be set and you can check the results with the ``passed_review``
-property.
+In the case of unlisted add-ons this will happen automatically.  If your add-on
+is listed then it will be reviewed by a human and that will take a bit longer.
+You can check the ``automated_signing`` property to see if signing will happen
+automatically or after a manual review. Once review is complete then the
+``reviewed`` property will be set and you can check the results with the
+``passed_review`` property.
 
 .. http:get:: /api/v3/addons/[string:add-on-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
 
@@ -112,6 +112,7 @@ property.
 
             {
                 "active": true,
+                "automated_signing": true,
                 "files": [
                     {
                         "download_url": "https://addons.mozilla.org/api/v3/downloads/file/100/example-id.0-fx+an.xpi?src=api",
@@ -131,6 +132,9 @@ property.
             }
 
     :>json active: version is active.
+    :>json automated_signing:
+        If true, the version will be signed automatically. If false it will end
+        up in the manual review queue when valid.
     :>json files[].download_url:
         URL to :ref:`download the add-on file <download-signed-file>`.
     :>json files[].hash:

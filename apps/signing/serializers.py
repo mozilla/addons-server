@@ -26,6 +26,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
         model = FileUpload
         fields = [
             'active',
+            'automated_signing',
             'url',
             'files',
             'passed_review',
