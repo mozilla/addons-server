@@ -622,3 +622,13 @@ def fetch_langpack(url, xpi, **kw):
             sign_file(file_, settings.SIGNING_SERVER)
 
         addon.update_version()
+
+
+@task
+def celery_error(**kw):
+    """
+    This task raises an exception from celery to test error logging and
+    Sentry hookup.
+    """
+    log.info('about to raise an exception from celery')
+    raise RuntimeError('this is an exception from celery')
