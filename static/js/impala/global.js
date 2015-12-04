@@ -30,6 +30,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
 });
 
 z.visitor = z.Storage('visitor');
+z.currentVisit = z.SessionStorage('current-visit');
 (function() {
     // Show the bad-browser message if it has not been dismissed
     if (!z.visitor.get('seen_badbrowser_warning') && $('body').hasClass('badbrowser')) {
@@ -151,6 +152,10 @@ function initBanners(delegate) {
         $('body').addClass('firstvisit');
         z.visitor.set('seen_impala_first_visit', 1);
     }
+    // Show the FxA migration banner (potentially).
+    if (!z.currentVisit.get('seen_fxa_migration_banner')) {
+        $('body').addClass('show-fxa-migration-banner');
+    }
 
     // Show the ACR pitch if it has not been dismissed.
     if (!z.visitor.get('seen_acr_pitch') && $('body').hasClass('acr-pitch')) {
@@ -167,6 +172,8 @@ function initBanners(delegate) {
             z.visitor.set('seen_acr_pitch', 1);
         } else if ($parent.is('#appruntime-pitch')) {
             z.visitor.set('seen_appruntime_pitch', 1);
+        } else if ($parent.is('#fxa-migration-banner')) {
+            z.currentVisit.set('seen_fxa_migration_banner', 1);
         }
     }));
 }

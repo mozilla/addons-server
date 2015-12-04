@@ -351,6 +351,13 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                 acl.action_allowed_user(user, 'Users', 'Edit'))
 
     @property
+    def source(self):
+        if self.fxa_id:
+            return 'fxa'
+        else:
+            return 'amo'
+
+    @property
     def name(self):
         return smart_unicode(self.display_name or self.username)
 

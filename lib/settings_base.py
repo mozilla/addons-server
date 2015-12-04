@@ -524,6 +524,7 @@ MINIFY_BUNDLES = {
             'css/impala/tables.less',
             'css/impala/compat.less',
             'css/impala/localizers.less',
+            'css/impala/fxa-migration.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
