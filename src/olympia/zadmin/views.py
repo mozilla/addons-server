@@ -3,13 +3,13 @@ import json
 from decimal import Decimal
 from urlparse import urlparse
 
+from django.apps import apps
 from django import http
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
-from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
 from django.views import debug
@@ -564,7 +564,7 @@ def general_search(request, app_id, model_id):
     if not admin.site.has_permission(request):
         raise PermissionDenied
 
-    model = app_cache.get_model(app_id, model_id)
+    model = apps.get_model(app_id, model_id)
     if not model:
         raise http.Http404
 

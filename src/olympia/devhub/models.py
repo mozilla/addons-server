@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import string
 
+from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -296,7 +297,7 @@ class ActivityLog(ModelBase):
                 objs.append(pk)
             else:
                 (app_label, model_name) = model_name.split('.')
-                model = models.loading.get_model(app_label, model_name)
+                model = apps.get_model(app_label, model_name)
                 # Cope with soft deleted models and unlisted addons.
                 objs.extend(model.get_unfiltered_manager().filter(pk=pk))
 
