@@ -125,7 +125,7 @@
                   <a href="#" class="close">{{ _('Close') }}</a>
                 </div>
               {% endif %}
-              {% if switch_is_active('fxa-auth') and user.is_authenticated() and user.source != 'fxa' %}
+              {% if switch_is_active('fxa-auth') and request.user.is_authenticated() and request.user.source != 'fxa' %}
                 <div class="site-balloon" id="fxa-migration-banner">
                   <p>
                     {% trans url=url('users.login') %}
