@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-11-14 02:19+0000\n"
-"Last-Translator: az@kth.se <az@kth.se>\n"
+"PO-Revision-Date: 2015-12-04 16:58+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4855,7 +4855,7 @@ msgstr "Det uppstod ett fel när bidraget skickades in."
 
 #: apps/devhub/views.py:836 apps/signing/views.py:64
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Du kan inte skicka in denna typ av tillägg"
 
 #: apps/devhub/views.py:1068 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
@@ -5198,6 +5198,9 @@ msgid ""
 "Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Att skicka in olistade tillägg för signering befinner sig i en öppen beta. "
+"<a href=\"%(url)s\" target=\"_blank\">Rapportera eventuella buggar</a> som "
+"du stöter på."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -6381,6 +6384,8 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Detaljerade instruktioner finns i <a href=\"%(docs_url)s\">API-"
+"dokumentationen</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
@@ -6397,6 +6402,10 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web "
+"Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje "
+"begäran enligt beskrivningen i <a href=\"%(docs_url)s\">API-"
+"dokumentationen</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -6516,6 +6525,9 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Om du har hittat ett problem med webbplatsen, vill vi gärna åtgärda det. <a "
+"href=\"https://github.com/mozilla/olympia/issues\">Skriv en felrapport</a> i"
+" GitHub, inklusive platsen för problemet och hur du stött på det."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8683,6 +8695,10 @@ msgid ""
 "ons. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that "
 "you encounter."
 msgstr ""
+"Att skicka in uppdateringar till olistade tillägg för signering befinner sig"
+" i en öppen beta. Manuell granskning kan fortfarande krävas för ett stort "
+"antal tillägg. <a href=\"%(url)s\" target=\"_blank\">Rapportera eventuella "
+"buggar</a> som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8704,6 +8720,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(issues_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Beteendet hos betakanalen har ändrats för att passa <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">obligatorisk "
+"tilläggssignering</a>. Den nya processen är för närvarande i en öppen beta "
+"och kan komma att ändras avsevärt inom en snar framtid. <a "
+"href=\"%(issues_url)s\" target=\"_blank\">Rapportera eventuella buggar</a> "
+"som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9044,6 +9066,8 @@ msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Ändra tillägg till olistad befinner sig i en öppen beta. <a href=\"%(url)s\""
+" target=\"_blank\">Rapportera eventuella buggar</a> som du stöter på."
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "Unlisting an add-on is irreversible!"
@@ -9871,7 +9895,7 @@ msgstr "Källor tillgänglig"
 
 #: apps/editors/models.py:192
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: apps/editors/tasks.py:70
 msgid "Duplicate Submission"
@@ -11111,6 +11135,10 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Hjälp till att förbättra webbplatsen. Den har öppen källkod och du kan "
+"skicka in buggar och korrigeringar. <a href=\"%(url)s\"> GitHub </a> "
+"innehåller alla våra nuvarande buggar, äldre buggar kan fortfarande hittas i"
+" Bugzilla."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -13694,7 +13722,7 @@ msgstr "Dela denna samling"
 
 #: apps/signing/views.py:37
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Kunde inte hitta tillägg med id \"{}\"."
 
 #: apps/signing/views.py:41
 msgid "You do not own this addon."
@@ -15308,7 +15336,7 @@ msgstr "Visa mobil webbplats"
 
 #: templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "Webbplatsstatus"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15444,6 +15472,8 @@ msgid ""
 "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a "
 "href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
+"<a href=\"%(reg)s\" class=\"fxa-register\">Registrera</a> eller <a "
+"href=\"%(login)s\" class=\"fxa-login\">logga in</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
