@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.test.utils import override_settings
 
+from amo.utils import chunked
 from lib.crypto.tasks import resign_files
 
 
@@ -32,4 +33,5 @@ class Command(BaseCommand):
         with override_settings(
                 SIGNING_SERVER=full_server,
                 PRELIMINARY_SIGNING_SERVER=prelim_server):
-            resign_files(file_ids)
+            for chunk in chunked(file_ids, 100):
+                resign_files.delay(chunk)

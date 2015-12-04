@@ -226,7 +226,7 @@ def test_fix_let_scope_bustage_no_addon_id():
 
 
 @mock.patch('addons.management.commands.fix_let_scope_bustage.'
-            'fix_let_scope_bustage_in_addons')
+            'fix_let_scope_bustage_in_addons.delay')
 def test_fix_let_scope_bustage(mock_fixer):
     """The command should call the task with the list of add-on id provided."""
     call_command('fix_let_scope_bustage', 1, 2, 3)
