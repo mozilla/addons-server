@@ -463,6 +463,7 @@ def ownership(request, addon_id, addon):
                         author.get_role_display(), addon)
 
         for author in user_form.deleted_objects:
+            author.delete()
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
             authors_emails.add(author.user.email)
