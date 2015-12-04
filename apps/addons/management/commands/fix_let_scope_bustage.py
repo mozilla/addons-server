@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
+from amo.utils import chunked
 from files.tasks import fix_let_scope_bustage_in_addons
 
 
@@ -13,4 +14,5 @@ Only the last version of each add-on will be fixed, and its version bumped."""
             raise CommandError('Please provide at least one add-on id to fix.')
 
         addon_ids = [int(addon_id) for addon_id in args]
-        fix_let_scope_bustage_in_addons(addon_ids)
+        for chunk in chunked(addon_ids, 100):
+            fix_let_scope_bustage_in_addons.delay(chunk)
