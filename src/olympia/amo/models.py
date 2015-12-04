@@ -119,7 +119,7 @@ CachingQuerySet.__bases__ = (TransformQuerySet,) + CachingQuerySet.__bases__
 
 class UncachedManagerBase(models.Manager):
 
-    def get_query_set(self):
+    def get_queryset(self):
         qs = self._with_translations(TransformQuerySet(self.model))
         return qs
 

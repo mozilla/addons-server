@@ -46,8 +46,8 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
 
 
 class AddonCannedResponseManager(ManagerBase):
-    def get_query_set(self):
-        qs = super(AddonCannedResponseManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(AddonCannedResponseManager, self).get_queryset()
         return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
 
 
@@ -677,8 +677,8 @@ class RereviewQueueThemeManager(ManagerBase):
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
-    def get_query_set(self):
-        qs = super(RereviewQueueThemeManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(RereviewQueueThemeManager, self).get_queryset()
         if self.include_deleted:
             return qs
         else:

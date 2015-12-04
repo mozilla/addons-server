@@ -576,7 +576,7 @@ def general_search(request, app_id, model_id):
     # too much sleep about it.
     cl = ChangeList(request, obj.model, [], [], [], [], obj.search_fields, [],
                     obj.list_max_show_all, limit, [], obj)
-    qs = cl.get_query_set(request)
+    qs = cl.get_queryset(request)
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
     lookup = getattr(obj, 'search_fields_response', None)

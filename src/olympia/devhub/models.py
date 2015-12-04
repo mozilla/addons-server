@@ -241,7 +241,7 @@ class ActivityLogManager(ManagerBase):
         return self.user_position(self.monthly_reviews(theme), user)
 
     def _by_type(self):
-        qs = super(ActivityLogManager, self).get_query_set()
+        qs = super(ActivityLogManager, self).get_queryset()
         table = 'log_activity_addon'
         return qs.extra(
             tables=[table],

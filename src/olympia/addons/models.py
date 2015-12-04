@@ -135,8 +135,8 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
         self.include_unlisted = include_unlisted
 
-    def get_query_set(self):
-        qs = super(AddonManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(AddonManager, self).get_queryset()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
