@@ -14,13 +14,13 @@ Profile
 
 Returns information about your profile.
 
-.. http:get:: /api/v3/account/profile/
+.. http:get:: /api/v3/accounts/profile/
 
     **Request:**
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/account/profile/
+        curl https://addons.mozilla.org/api/v3/accounts/profile/
             -H 'Authorization: JWT <jwt-token>'
 
     **Response:**
