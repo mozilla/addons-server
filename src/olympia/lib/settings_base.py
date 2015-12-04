@@ -412,14 +412,6 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
-### Here be dragons.
-# Django decided to require that ForeignKeys be unique. That's generally
-# reasonable, but Translations break that in their quest for all things unholy.
-# This is why we disable related system checks.
-# TODO: Errors (such as fields.E311) will still be printed
-# -> figure out a way to filter them too. (cgrebs)
-SILENCED_SYSTEM_CHECKS = ['fields.E311']
-
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the amo.runner.TestRunner test runner.
 TEST_INSTALLED_APPS = (
