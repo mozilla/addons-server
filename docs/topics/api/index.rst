@@ -26,6 +26,7 @@ get started using the API.
 .. toctree::
    :maxdepth: 2
 
+   common-responses
    auth
    accounts
    signing
