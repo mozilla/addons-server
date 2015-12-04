@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 import mock
 from rest_framework.response import Response
@@ -62,6 +63,12 @@ class TestUploadVersion(BaseUploadVersionCase):
         # Use self.client.put so that we don't add the authorization header.
         response = self.client.put(self.url(self.guid, '12.5'))
         assert response.status_code == 401
+
+    @override_settings(READ_ONLY=True)
+    def test_read_only_mode(self):
+        response = self.put(self.url(self.guid, '12.5'))
+        assert response.status_code == 503
+        assert 'website maintenance' in response.data['error']
 
     @mock.patch('devhub.views.auto_sign_version')
     def test_addon_does_not_exist(self, sign_version):

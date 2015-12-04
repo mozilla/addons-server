@@ -1,6 +1,8 @@
+import functools
 import logging
 
 from django import forms
+from django.conf import settings
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -20,12 +22,27 @@ from signing.serializers import FileUploadSerializer
 log = logging.getLogger('signing')
 
 
+def handle_read_only_mode(fn):
+    @functools.wraps(fn)
+    def inner(*args, **kwargs):
+        if settings.READ_ONLY:
+            return Response(
+                {'error': _("Some features are temporarily disabled while we "
+                            "perform website maintenance. We'll be back to "
+                            "full capacity shortly.")},
+                status=503)
+        else:
+            return fn(*args, **kwargs)
+    return inner
+
+
 def with_addon(allow_missing=False):
     """Call the view function with an addon instead of a guid. This will try
     find an addon with the guid and verify the user's permissions. If the
     add-on is not found it will 404 when allow_missing is False otherwise it
     will call the view with addon set to None."""
     def wrapper(fn):
+        @functools.wraps(fn)
         def inner(view, request, guid=None, **kwargs):
             try:
                 addon = Addon.unfiltered.get(guid=guid)
@@ -34,7 +51,7 @@ def with_addon(allow_missing=False):
                     addon = None
                 else:
                     return Response({'error': _('Could not find add-on with '
-                                                'id "{}".'.format(guid))},
+                                                'id "{}".').format(guid)},
                                     status=status.HTTP_404_NOT_FOUND)
             if addon is not None and not addon.has_author(request.user):
                 return Response(
@@ -47,6 +64,7 @@ def with_addon(allow_missing=False):
 
 class VersionView(JWTProtectedView):
 
+    @handle_read_only_mode
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string):
         if 'upload' in request.FILES:
