@@ -17,9 +17,6 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
-LOG_TABLE_SUFFIX = ''
-EVENT_TABLE_SUFFIX = ''
-
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
@@ -49,13 +46,6 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
-
-# need to view JS errors on a remote device? (requires node)
-# > npm install now
-# > node media/js/debug/remote_debug_server.node.js
-# REMOTE_JS_DEBUG = 'localhost:37767'
-# then connect to http://localhost:37767/ to view
-REMOTE_JS_DEBUG = False
 
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?

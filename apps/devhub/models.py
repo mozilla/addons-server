@@ -28,10 +28,6 @@ from versions.models import Version
 log = commonware.log.getLogger('devhub')
 
 
-def table_name(n):
-    return n + settings.LOG_TABLE_SUFFIX
-
-
 class RssKey(models.Model):
     key = UUIDField(db_column='rsskey', auto=True, unique=True)
     addon = models.ForeignKey(Addon, null=True, unique=True)
@@ -100,7 +96,7 @@ class AddonLog(amo.models.ModelBase):
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
-        db_table = table_name('log_activity_addon')
+        db_table = 'log_activity_addon'
         ordering = ('-created',)
 
 
@@ -112,7 +108,7 @@ class CommentLog(amo.models.ModelBase):
     comments = models.CharField(max_length=255)
 
     class Meta:
-        db_table = table_name('log_activity_comment')
+        db_table = 'log_activity_comment'
         ordering = ('-created',)
 
 
@@ -124,7 +120,7 @@ class VersionLog(amo.models.ModelBase):
     version = models.ForeignKey(Version)
 
     class Meta:
-        db_table = table_name('log_activity_version')
+        db_table = 'log_activity_version'
         ordering = ('-created',)
 
 
@@ -137,7 +133,7 @@ class UserLog(amo.models.ModelBase):
     user = models.ForeignKey(UserProfile)
 
     class Meta:
-        db_table = table_name('log_activity_user')
+        db_table = 'log_activity_user'
         ordering = ('-created',)
 
 
@@ -149,7 +145,7 @@ class GroupLog(amo.models.ModelBase):
     group = models.ForeignKey(Group)
 
     class Meta:
-        db_table = table_name('log_activity_group')
+        db_table = 'log_activity_group'
         ordering = ('-created',)
 
 
@@ -246,11 +242,11 @@ class ActivityLogManager(amo.models.ManagerBase):
 
     def _by_type(self):
         qs = super(ActivityLogManager, self).get_query_set()
-        table = table_name('log_activity_addon')
+        table = 'log_activity_addon'
         return qs.extra(
             tables=[table],
             where=['%s.activity_log_id=%s.id'
-                   % (table, table_name('log_activity'))])
+                   % (table, 'log_activity')])
 
 
 class SafeFormatter(string.Formatter):
@@ -273,7 +269,7 @@ class ActivityLog(amo.models.ModelBase):
     formatter = SafeFormatter()
 
     class Meta:
-        db_table = table_name('log_activity')
+        db_table = 'log_activity'
         ordering = ('-created',)
 
     def f(self, *args, **kw):
