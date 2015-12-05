@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-11-19 15:34+0000\n"
-"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2015-12-05 13:57+0000\n"
+"Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -140,8 +140,9 @@ msgid ""
 " include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
-"Če za popoln pregled dodatek zahteva račun na spletnem mestu, v Opombe za "
-"recenzenta (to lahko storite v naslednjem koraku)."
+"Če je za popoln pregled dodatka potreben račun na spletnem mestu, v opombe "
+"za recenzenta vključite uporabniško ime in geslo testnega računa (to lahko "
+"storite v naslednjem koraku)."
 
 #: static/js/common/upload-addon.js:457
 msgid ""
@@ -383,7 +384,7 @@ msgstr "Posodobljeni dodatki"
 
 #: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr "Napisane recenzije"
+msgstr "Napisane ocene"
 
 #: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
@@ -757,12 +758,12 @@ msgstr "Posodobljeni dodatki od {0} do {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
 msgid "Reviews Written, last {0} days"
-msgstr "Napisane recenzije zadnjih {0} dni"
+msgstr "Napisane ocene zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr "Napisane recenzije od {0} do {1}"
+msgstr "Napisane ocene od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
@@ -1073,10 +1074,10 @@ msgstr[3] "{files} datotek"
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} uporabniška recenzija"
-msgstr[1] "{reviews} uporabniški recenziji"
-msgstr[2] "{reviews} uporabniške recenzije"
-msgstr[3] "{reviews} uporabniških recenzij"
+msgstr[0] "{reviews} uporabniška ocena"
+msgstr[1] "{reviews} uporabniški oceni"
+msgstr[2] "{reviews} uporabniške ocene"
+msgstr[3] "{reviews} uporabniških ocen"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
@@ -1160,11 +1161,11 @@ msgstr "Opomb ob različici ni bilo mogoče najti"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr "Povprečne recenzije"
+msgstr "Povprečno število ocen"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr "Število recenzij"
+msgstr "Število ocen"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"

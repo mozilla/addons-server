@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-05 12:32+0000\n"
+"PO-Revision-Date: 2015-12-05 15:04+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1158,7 +1158,7 @@ msgstr "Kaj mislite?"
 #: apps/addons/templates/addons/review_add_box.html:7
 #: apps/addons/templates/addons/impala/review_add_box.html:9
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "<a href=\"%(login)s\">Prijavite se</a>, da pošljete recenzijo"
+msgstr "<a href=\"%(login)s\">Prijavite se</a>, da ocenite dodatek"
 
 #: apps/addons/templates/addons/review_add_box.html:16
 #: apps/addons/templates/addons/impala/review_add_box.html:18
@@ -1170,7 +1170,7 @@ msgstr "Naslov:"
 #: apps/addons/templates/addons/impala/review_add_box.html:19
 #: apps/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr "Recenzija:"
+msgstr "Ocena:"
 
 #: apps/addons/templates/addons/review_add_box.html:18
 #: apps/addons/templates/addons/impala/review_add_box.html:20
@@ -1184,7 +1184,7 @@ msgstr "Ocena:"
 #: apps/reviews/templates/reviews/edit_review.html:15
 #: apps/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr "Pošlji recenzijo"
+msgstr "Objavi oceno"
 
 #: apps/addons/templates/addons/review_add_box.html:24
 #: apps/addons/templates/addons/impala/review_add_box.html:26
@@ -1193,9 +1193,9 @@ msgid ""
 " available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
-"V recenzijah prosim ne navajajte napak. Vašega e-poštnega naslova "
-"razvijalcem ne dajemo dalje, potrebovali bi ga pa, da bi od vas zvedeli več "
-"o težavi."
+"V ocenah ne objavljajte poročil o težavah. Vašega e-poštnega naslova "
+"razvijalcem ne dajemo, potrebovali pa bi ga, da bi od vas zvedeli več o "
+"težavi."
 
 #: apps/addons/templates/addons/review_add_box.html:32
 #: apps/addons/templates/addons/impala/review_add_box.html:35
@@ -1211,7 +1211,7 @@ msgstr ""
 #: apps/pages/templates/pages/review_guide.html:3
 #: apps/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
-msgstr "Smernice za recenzije"
+msgstr "Smernice za ocene"
 
 #: apps/addons/templates/addons/review_list_box.html:5
 #: apps/addons/templates/addons/impala/details-more.html:27
@@ -1220,7 +1220,7 @@ msgstr "Smernice za recenzije"
 #: apps/reviews/templates/reviews/review_list.html:19
 #: apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr "Recenzije"
+msgstr "Ocene"
 
 #: apps/addons/templates/addons/review_list_box.html:14
 #: apps/addons/templates/addons/impala/review_list_box.html:14
@@ -1231,7 +1231,7 @@ msgstr "od %(user)s dne %(date)s"
 #: apps/addons/templates/addons/review_list_box.html:19
 #: apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr "Pokaži odgovor razvijalca na to recenzijo"
+msgstr "Pokaži odgovor razvijalca na to oceno"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
@@ -1309,7 +1309,7 @@ msgstr "Povprečje"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr "Napišite recenzijo"
+msgstr "Napišite oceno"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
@@ -1334,10 +1334,10 @@ msgstr[3] "Drugi dodatki teh avtorjev"
 #: apps/addons/templates/addons/impala/details.html:44
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzija uporabnika"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenziji uporabnikov"
-msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> recenzije uporabnikov"
-msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> recenzij uporabnikov"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ocena uporabnika"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> oceni uporabnikov"
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> ocene uporabnikov"
+msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> ocen uporabnikov"
 
 #: apps/addons/templates/addons/impala/details.html:72
 msgid "View statistics"
@@ -1559,10 +1559,10 @@ msgstr "prevedi"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Oglejte si vse recenzije uporabnikov"
-msgstr[1] "Oglejte si obe %(cnt)s recenziji uporabnikov"
-msgstr[2] "Oglejte si vse %(cnt)s recenzije uporabnikov"
-msgstr[3] "Oglejte si vseh %(cnt)s recenzij uporabnikov"
+msgstr[0] "Oglejte si vse ocene uporabnikov"
+msgstr[1] "Oglejte si obe %(cnt)s oceni uporabnikov"
+msgstr[2] "Oglejte si vse %(cnt)s ocene uporabnikov"
+msgstr[3] "Oglejte si vseh %(cnt)s ocen uporabnikov"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
@@ -2152,7 +2152,7 @@ msgstr "{user} odobril {review} za {addon}."
 
 #: apps/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
-msgstr "Recenzija {review} za {addon} izbrisana."
+msgstr "Ocena {review} za {addon} izbrisana."
 
 #: apps/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
@@ -4326,39 +4326,39 @@ msgstr "Točke ročnega recenzenta"
 
 #: apps/constants/base.py:481
 msgid "Full Add-on Review"
-msgstr "Polna recenzija dodatka"
+msgstr "Popoln pregled dodatka"
 
 #: apps/constants/base.py:482
 msgid "Preliminary Add-on Review"
-msgstr "Predhodna recenzija dodatka"
+msgstr "Predhodni pregled dodatka"
 
 #: apps/constants/base.py:483
 msgid "Updated Add-on Review"
-msgstr "Posodobljena recenzija dodatka"
+msgstr "Posodobljen pregled dodatka"
 
 #: apps/constants/base.py:484
 msgid "Full Dictionary Review"
-msgstr "Polna recenzija geslovnika"
+msgstr "Popoln pregled slovarja"
 
 #: apps/constants/base.py:485
 msgid "Preliminary Dictionary Review"
-msgstr "Predhodna recenzija geslovnika"
+msgstr "Predhodni pregled slovarja"
 
 #: apps/constants/base.py:486
 msgid "Updated Dictionary Review"
-msgstr "Posodobljena recenzija geslovnika"
+msgstr "Posodobljen pregled geslovnika"
 
 #: apps/constants/base.py:487
 msgid "Full Language Pack Review"
-msgstr "Popolna recenzija jezikovnega paketa"
+msgstr "Popoln pregled jezikovnega paketa"
 
 #: apps/constants/base.py:488
 msgid "Preliminary Language Pack Review"
-msgstr "Predhodna recenzija jezikovnega paketa"
+msgstr "Predhoden pregled jezikovnega paketa"
 
 #: apps/constants/base.py:489
 msgid "Updated Language Pack Review"
-msgstr "Posodbljena recenzija jezikovnega paketa"
+msgstr "Posodobljen pregled jezikovnega paketa"
 
 #: apps/constants/base.py:490
 msgid "Bonus for overdue reviews"
@@ -4374,15 +4374,15 @@ msgstr "Pregled teme"
 
 #: apps/constants/base.py:493
 msgid "Full Search Provider Review"
-msgstr "Popolna recenzija ponudnika za iskanje"
+msgstr "Popoln pregled ponudnika za iskanje"
 
 #: apps/constants/base.py:494
 msgid "Preliminary Search Provider Review"
-msgstr "Predhodna recenzija ponudnika za iskanje"
+msgstr "Predhoden pregled ponudnika za iskanje"
 
 #: apps/constants/base.py:495
 msgid "Updated Search Provider Review"
-msgstr "Posodobljena recenzija ponudnika za iskanje"
+msgstr "Posodobljen pregled ponudnika za iskanje"
 
 #: apps/constants/base.py:496
 msgid "Complete Theme Review"
@@ -4390,11 +4390,11 @@ msgstr "Pregled celotne teme"
 
 #: apps/constants/base.py:497
 msgid "Preliminary Complete Theme Review"
-msgstr "Predhodna recenzija celotne teme"
+msgstr "Predhoden pregled celotne teme"
 
 #: apps/constants/base.py:498
 msgid "Updated Complete Theme Review"
-msgstr "Posodobljena recenzija celotne teme"
+msgstr "Posodobljen pregled celotne teme"
 
 #: apps/constants/base.py:499
 msgid "Moderated Addon Review"
@@ -4402,7 +4402,7 @@ msgstr "Moderiran pregled dodatka"
 
 #: apps/constants/base.py:500
 msgid "Addon Review Moderation Reverted"
-msgstr "Moderacija recenzije dodatka je bila obrnjena"
+msgstr "Moderacija pregleda dodatka je bila obrnjena"
 
 #: apps/constants/base.py:547
 msgid "Level 1"
@@ -4840,7 +4840,7 @@ msgstr[3] "{0} opozoril"
 
 #: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58
 msgid "Review"
-msgstr "Recenzija"
+msgstr "Pregled"
 
 #: apps/devhub/tasks.py:506
 msgid "%s responded with %s (%s)."
@@ -6666,7 +6666,7 @@ msgstr "Kako pošljem dodatek Beta?"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr "Beta kanali so na voljo le v celoti recenziranim dodatkom."
+msgstr "Beta kanali so na voljo le v celoti pregledanim dodatkom."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6869,7 +6869,7 @@ msgid ""
 msgstr ""
 "Izbrane dodatke določa Odbor svetovalcev za dodatke, to je majhna skupina "
 "razvijalcev in ljubiteljev dodatkov, ki prostovoljno sodelujejo pri "
-"recenzijah in izbiri kandidatov za objavo."
+"pregledih in izbiri kandidatov za objavo."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:25
 msgid ""
@@ -7040,8 +7040,8 @@ msgid ""
 "Negative reviews &mdash; Featured add-ons should have a great experience and"
 " very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
-"Negativne ocene - izbrani dodatki bi morali delati dober vtis in imeti zelo "
-"malo napak, tako da je za dodatke s številnimi negativnimi recenzijami "
+"Negativne ocene &mdash; izbrani dodatki bi morali delati dober vtis in imeti"
+" zelo malo napak, tako da je za dodatke s številnimi negativnimi ocenami "
 "odločitev o izboru treba ponovno premisliti."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:93
@@ -7140,7 +7140,7 @@ msgstr "Nazadnje posodobljeno: 31. januarja 2013"
 #: apps/devhub/templates/devhub/docs/policies.html:15
 #: apps/devhub/templates/devhub/docs/policies.html:64
 msgid "Review Process"
-msgstr "Postopek za recenzije"
+msgstr "Postopek pregleda"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid ""
@@ -7228,8 +7228,8 @@ msgid ""
 "We aim to perform full reviews in under 10 days, though most add-ons are "
 "reviewed in much less time."
 msgstr ""
-"Naš cilj je opraviti polno recenzijo v roku največ 10 dni, čeprav se večino "
-"dodatkov pregleda v veliko manj časa."
+"Naš cilj je opraviti popoln pregled v roku največ 10 dni, čeprav se večino "
+"dodatkov pregleda veliko hitreje."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -7273,7 +7273,7 @@ msgstr ""
 msgid ""
 "Some of the most common issues we see when performing these reviews are:"
 msgstr ""
-"Med najpogostejše probleme, na katere smo pri recenzijah naleteli, spadajo "
+"Med najpogostejše probleme, na katere smo naleteli pri pregledih, spadajo "
 "med drugim:"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:93
@@ -7369,12 +7369,12 @@ msgid ""
 "placed in the Notes to Reviewer field when editing a version in the "
 "Developer Hub."
 msgstr ""
-"Če je dodatek vezan na določeno spletno stran, je priporočljivo, da uredniku"
-" ponudite testni račun, ki ga bo lahko uporabil med postopkom pregleda. "
-"Dalje bodo podrobna navodila za testiranje omogočila uredniku bolje "
-"razumeti, kako dodatek deluje, in tako pospešila proces testiranja. Te "
-"podatke lahko vnesete v opombe na področju za recenzente, ko v Razvojnem "
-"centru urejate različico."
+"Če je dodatek vezan na določeno spletno stran, je priporočljivo, da "
+"recenzentu ponudite testni račun, ki ga bo lahko uporabil med postopkom "
+"pregleda. Dobro je tudi, da mu napišete podrobna navodila za testiranje, ki "
+"bodo omogočila recenzentu bolje razumeti, kako dodatek deluje, in tako "
+"pospešila postopek testiranja. Te podatke lahko vnesete v polje Opombe za "
+"recenzenta, ko v razvojnem centru urejate različico."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -9537,11 +9537,11 @@ msgstr "Pokažite svojo podporo"
 
 #: apps/editors/forms.py:28
 msgid "Approved reviews"
-msgstr "Odobrene recenzije"
+msgstr "Odobrene ocene"
 
 #: apps/editors/forms.py:29
 msgid "Deleted reviews"
-msgstr "Izbrisane recenzije"
+msgstr "Izbrisane ocene"
 
 #: apps/editors/forms.py:37 apps/editors/forms.py:67
 msgid "View entries between"
@@ -9645,7 +9645,7 @@ msgstr ""
 
 #: apps/editors/forms.py:265
 msgid "Clear Admin Review Flag"
-msgstr "Zbriši zastavico za admin recenzijo"
+msgstr "Zbriši zastavico za skrbnikov pregled"
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
@@ -9727,11 +9727,11 @@ msgstr "Posodobitve na čakanju za nenavedene"
 
 #: apps/editors/helpers.py:137
 msgid "Unlisted Full Reviews"
-msgstr "Polne recenzije za nenavedene"
+msgstr "Popolni pregledi za nenavedene"
 
 #: apps/editors/helpers.py:138
 msgid "Unlisted Preliminary Reviews"
-msgstr "Predhodne recenzije za nenavedene"
+msgstr "Predhodni pregledi za nenavedene"
 
 #: apps/editors/helpers.py:169
 msgid "Fast Track ({0})"
@@ -9760,10 +9760,10 @@ msgstr[3] "Posodobitve na čakanju ({0})"
 #: apps/editors/helpers.py:184
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Predhodna recenzija ({0})"
-msgstr[1] "Predhodni recenziji ({0})"
-msgstr[2] "Predhodne recenzije ({0})"
-msgstr[3] "Predhodne recenzije ({0})"
+msgstr[0] "Predhoden pregled ({0})"
+msgstr[1] "Predhodna pregleda ({0})"
+msgstr[2] "Predhodni pregledi ({0})"
+msgstr[3] "Predhodni pregledi ({0})"
 
 #: apps/editors/helpers.py:189
 msgid "Moderated Review ({0})"
@@ -11465,7 +11465,7 @@ msgstr "Recenzenti"
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr "Več kot {0} recenzij dodatkov"
+msgstr "Več kot {0} ocen dodatkov"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
@@ -11991,7 +11991,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "How do I submit my add-on for review?"
-msgstr "Kako pošljem svoj dodatek v recenzijo?"
+msgstr "Kako pošljem svoj dodatek v pregled?"
 
 #: apps/pages/templates/pages/dev_faq.html:327
 msgid ""
@@ -12115,7 +12115,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:407
 msgid "What are the guidelines used to review my add-on?"
-msgstr "Kakšne smernice se uporablja pri recenziji mojega dodatka?"
+msgstr "Kakšne smernice se uporablja pri pregledu mojega dodatka?"
 
 #: apps/pages/templates/pages/dev_faq.html:409
 msgid ""
@@ -12315,8 +12315,8 @@ msgid ""
 "A developer may reply to any review posted to their add-on as long as they "
 "are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
-"Razvijalec lahko odgovori na katerokoli recenzijo njihovega dodatka, dokler "
-"so prijavljeni v AMO.  Uporabnik lahko tudi označi recenzijo kot:"
+"Razvijalec lahko odgovori na katerokoli oceno njegovega dodatka, dokler so "
+"prijavljeni v AMO. Katerikoli uporabnik lahko tudi označi oceno kot:"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
@@ -12349,7 +12349,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:564
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Ali lahko zahtevam, da se recenzijo odstrani, če je negativna?"
+msgstr "Ali lahko zahtevam, da se oceno odstrani, če je negativna?"
 
 #: apps/pages/templates/pages/dev_faq.html:566
 msgid ""
@@ -12361,7 +12361,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:572
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr "Ali lahko zahtevam, da se recenzijo odstrani, če je netočna?"
+msgstr "Ali lahko zahtevam, da se oceno odstrani, če je netočna?"
 
 #: apps/pages/templates/pages/dev_faq.html:574
 msgid ""
@@ -12369,9 +12369,9 @@ msgid ""
 "inaccurate information to be removed, we will review the post and consider "
 "removing it."
 msgstr ""
-"Če se avtor obrne na nas in prosi, da se recenzijo, ki vsebuje lažne ali "
-"netočne podatke, odstrani, si bomo objavo ogledali, da vidimo, ali jo je "
-"treba odstraniti."
+"Če se avtor obrne na nas in prosi, da se oceno, ki vsebuje lažne ali netočne"
+" podatke, odstrani, si bomo objavo ogledali, da vidimo, ali jo je treba "
+"odstraniti."
 
 #: apps/pages/templates/pages/dev_faq.html:583
 msgid ""
@@ -13070,12 +13070,12 @@ msgstr ""
 #: apps/pages/templates/pages/review_guide.html:36
 #: apps/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
-msgstr "Nekaj ​​nasvetov, kako napisati dobro recenzijo"
+msgstr "Nekaj ​​nasvetov, kako napisati dobro oceno"
 
 #: apps/pages/templates/pages/review_guide.html:39
 #: apps/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
-msgstr "Pogosta vprašanja o recenzijah"
+msgstr "Pogosta vprašanja o ocenah"
 
 #: apps/pages/templates/pages/review_guide.html:46
 msgid ""
@@ -13083,10 +13083,9 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
-"Z recenzijami dodatkov lahko delite svoja mnenja o nameščenih in "
-"uporabljenih dodatkih. Naša ekipa za moderacijo recenzij si pridržuje "
-"pravice za zavrnitev in odstranitev recenzij, ki niso v skladu s temi "
-"smernicami."
+"V ocenah dodatkov lahko delite svoja mnenja o dodatkih, ki ste jih namestili"
+" in uporabljali. Naša ekipa za moderacijo ocen si pridržuje pravice za "
+"zavrnitev in odstranitev ocen, ki niso v skladu s temi smernicami."
 
 #: apps/pages/templates/pages/review_guide.html:53
 msgid "Do:"
@@ -13131,8 +13130,8 @@ msgstr "Ali boste ta dodatek še naprej uporabljali?"
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
-"Vzemite si trenutek, da preberete svojo recenzijo, preden jo pošljete, da "
-"zmanjšate napake."
+"Vzemite si trenutek, da preberete svojo oceno, preden jo pošljete, da "
+"zmanjšate število tipkarskih napak."
 
 #: apps/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
@@ -13140,7 +13139,7 @@ msgstr "Kako je narobe:"
 
 #: apps/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Pošljite recenzije z eno besedo, kot so \"Super!\", \"Izvrstno\" ali \"Slabo\"."
+msgstr "Ne pišite ocen z eno besedo, kot so \"Super!\", \"Izvrstno\" ali \"Zanič\"."
 
 #: apps/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -13148,13 +13147,13 @@ msgid ""
 "available support options for each add-on, if available. You can find them "
 "in the side column next to the About this Add-on section."
 msgstr ""
-"Objavite tehnične težave, zahteve za podporo ali predloge za značilnosti. "
-"Uporabite razpoložljive možnosti podpore za vsak dodatek, če so na voljo. "
-"Najdete jih v stranskem stolpcu poleg odseka 'O tem dodatku'."
+"Ne objavljajte tehničnih težav, zahtev za podporo ali predlogov za nove "
+"funkcije. Uporabite razpoložljive možnosti podpore za vsak dodatek, če so na"
+" voljo. Najdete jih v stranskem stolpcu poleg odseka \"O tem dodatku\"."
 
 #: apps/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Ne pišite recenzij za dodatke, ki jih sami niste uporabljali."
+msgstr "Ne pišite ocen za dodatke, ki jih sami niste uporabljali."
 
 #: apps/pages/templates/pages/review_guide.html:97
 msgid ""
@@ -13168,7 +13167,7 @@ msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
-"Vključite HTML, povezave, izvorno kodo ali izrezke kode. Za recenzije "
+"Ne vključujte HTML, povezav, izvorne kode ali izrezkov kode. V ocenah "
 "uporabite samo besedilo."
 
 #: apps/pages/templates/pages/review_guide.html:108
@@ -13183,15 +13182,15 @@ msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
-"Vključite svojo e-pošto, telefonsko številko in druge osebne podatke ali "
-"podatke drugih oseb."
+"Ne vključujte svoje e-pošte, telefonske številke in drugih osebnih podatkov "
+"ali podatkov drugih oseb."
 
 #: apps/pages/templates/pages/review_guide.html:119
 msgid ""
 "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
-"Objavite recenzije za dodatek, ki ste ga vi sami ali vaša organizacija "
-"izdelali ali ki ga zastopate."
+"Ne objavljajte ocen za dodatek, ki ste ga razvili vi sami ali vaša "
+"organizacija ali ki ga zastopate."
 
 #: apps/pages/templates/pages/review_guide.html:125
 msgid ""
@@ -13200,13 +13199,13 @@ msgid ""
 "gathering, when that is the intended purpose of the add-on, or the add-on "
 "requires gathering data to function."
 msgstr ""
-"Kritizirajte dodatek po tem, za kar je narejen. Na primer, oddajte negativno"
-" recenzijo za dodatek, če prikazuje oglase ali zahteva osebne podatke, kadar"
-" je to njegov namen ali pogoj za njegovo delovanje."
+"Ne kritizirajte dodatka zaradi tega, za kar je narejen. Na primer, ne "
+"napišite negativne recenzije za dodatek, če prikazuje oglase ali zahteva "
+"osebne podatke, kadar je to njegov namen ali pogoj za njegovo delovanje."
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr "Kako lahko prijavim vprašljivo recenzijo?"
+msgstr "Kako lahko prijavim vprašljivo oceno?"
 
 #: apps/pages/templates/pages/review_guide.html:135
 msgid ""
@@ -13215,14 +13214,14 @@ msgid ""
 "moderation team will use the Review Guidelines to evaluate whether or not to"
 " delete the review or restore it back to the site."
 msgstr ""
-"Prijavite ali označite vse vprašljive recenzije s klikom na \"Sporoči to "
+"Prijavite ali označite vse vprašljive ocene s klikom na \"Prijavi to "
 "recenzijo\", s čimer jo boste poslali na stran za moderacijo. Naša ekipa za "
-"moderacijo bo uporabila smernice za recenzije za ocenjevanje, ali to "
-"recenzijo izbrisati ali ne, ali jo obnoviti nazaj na stran."
+"moderacijo bo glede na smernice za ocene presodila, ali to oceno izbrisati "
+"ali ne, ali jo obnoviti nazaj na stran."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Sem avtor dodatka, ali lahko odgovorim na recenzijo?"
+msgstr "Sem avtor dodatka, ali lahko odgovorim na oceno?"
 
 #: apps/pages/templates/pages/review_guide.html:142
 msgid ""
@@ -13230,13 +13229,13 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
-"Da, avtorji dodatkov lahko objavijo en odgovor na recenzijo. Temo o razpravi"
-" lahko objavite na našem <a href=\"%(forum_url)s\">forumu</a>, da se "
+"Da, avtorji dodatkov lahko na oceno objavijo en odgovor. Temo za razpravo "
+"lahko objavite na našem <a href=\"%(forum_url)s\">forumu</a>, da se "
 "poglobite v dodatno ali nadaljnjo razpravo."
 
 #: apps/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Sem avtor dodatka, ali lahko izbrišem neugodne recenzije ali ocene?"
+msgstr "Sem avtor dodatka, ali lahko izbrišem neugodne ocene?"
 
 #: apps/pages/templates/pages/review_guide.html:151
 msgid ""
@@ -13247,7 +13246,7 @@ msgid ""
 "detailed request to amo-editors@mozilla.org."
 msgstr ""
 "V splošnem ne. Toda če recenzija ne ustreza zgornjim smernicam, lahko "
-"kliknete \"Sporoči to recenzijo\" in jo oddate za moderacijo. Če recenzija "
+"kliknete \"Prijavi to recenzijo\" in jo predložite za moderacijo. Če ocena "
 "vključuje pritožbo, ki ni več veljavna zaradi nove izdaje vašega dodatka, "
 "bomo premislili o njenem izbrisu. Svojo podrobno zahtevo pošljite na amo-"
 "editors@mozilla.org."
@@ -13378,7 +13377,7 @@ msgstr "Preberite več o tem"
 
 #: apps/reviews/feeds.py:25
 msgid "Reviews for %s"
-msgstr "Recenzije o %s"
+msgstr "Ocene za %s"
 
 #: apps/reviews/feeds.py:33
 msgid "Review History for this Addon"
@@ -13484,24 +13483,24 @@ msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
 msgstr[0] ""
-"Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo recenzijo</a> za "
-"ta dodatek."
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">prejšnjo oceno</a> za ta "
+"dodatek."
 msgstr[1] ""
-"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnji "
-"recenziji</a> za ta dodatek."
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnji oceni</a> "
+"za ta dodatek."
 msgstr[2] ""
-"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnje "
-"recenzije</a> za ta dodatek."
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnje ocene</a> "
+"za ta dodatek."
 msgstr[3] ""
-"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnjih "
-"recenzij</a> za ta dodatek."
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">%(cnt)s prejšnjih ocen</a> "
+"za ta dodatek."
 
 #: apps/reviews/templates/reviews/review.html:62
 msgid ""
 "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-"
 "on."
 msgstr ""
-"Ta uporabnik ima <a href=\"%(user_review_url)s\">druge recenzije</a> za ta "
+"Ta uporabnik ima <a href=\"%(user_review_url)s\">druge ocene</a> za ta "
 "dodatek."
 
 #: apps/reviews/templates/reviews/review.html:72
@@ -13510,11 +13509,11 @@ msgstr "Označeno za pregled"
 
 #: apps/reviews/templates/reviews/review.html:76
 msgid "Report this review"
-msgstr "Prijavi to recenzijo"
+msgstr "Prijavi to oceno"
 
 #: apps/reviews/templates/reviews/review.html:82
 msgid "Reply to review"
-msgstr "Odgovori na recenzijo"
+msgstr "Odgovori na oceno"
 
 #: apps/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
@@ -13522,7 +13521,7 @@ msgstr "Uredi odgovor"
 
 #: apps/reviews/templates/reviews/review.html:94
 msgid "Edit review"
-msgstr "Uredi recenzijo"
+msgstr "Uredi oceno"
 
 #: apps/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
@@ -13538,16 +13537,16 @@ msgstr "{0} :: pregledi"
 #: apps/reviews/templates/reviews/mobile/add.html:4
 #: apps/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr "Recenzije za {0}"
+msgstr "Ocene za {0}"
 
 #. {0} is a number.
 #: apps/reviews/templates/reviews/review_list.html:27
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> recenzija za ta dodatek"
-msgstr[1] "<b>{0}</b> recenziji za ta dodatek"
-msgstr[2] "<b>{0}</b> recenzije za ta dodatek"
-msgstr[3] "<b>{0}</b> recenzij za ta dodatek"
+msgstr[0] "<b>{0}</b> ocena za ta dodatek"
+msgstr[1] "<b>{0}</b> oceni za ta dodatek"
+msgstr[2] "<b>{0}</b> ocene za ta dodatek"
+msgstr[3] "<b>{0}</b> ocen za ta dodatek"
 
 #. {0} is a developer's name.
 #: apps/reviews/templates/reviews/review_list.html:33
@@ -13572,20 +13571,20 @@ msgstr "<strong>Povprečje</strong> (%(total)s)"
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
-msgstr "Napišite novo recenzijo"
+msgstr "Napišite novo oceno"
 
 #: apps/reviews/templates/reviews/review_list.html:81
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:15
 msgid "Be the first to write a review."
-msgstr "Bodi prvi, ki bo napisal recenzijo."
+msgstr "Bodite prvi, ki bo napisal oceno."
 
 #: apps/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} recenzija"
-msgstr[1] "{num} recenziji"
-msgstr[2] "{num} recenzije"
-msgstr[3] "{num} recenzij"
+msgstr[0] "{num} ocena"
+msgstr[1] "{num} oceni"
+msgstr[2] "{num} ocene"
+msgstr[3] "{num} ocen"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -13627,10 +13626,10 @@ msgstr "Berite daljee&nbsp;&raquo;"
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Glej vse recenzije"
-msgstr[1] "Glej obe %(cnt)s recenziji"
-msgstr[2] "Glej vse %(cnt)s recenzije"
-msgstr[3] "Glej vseh %(cnt)s recenzij"
+msgstr[0] "Oglej si vse ocene"
+msgstr[1] "Oglej si obe %(cnt)s oceni"
+msgstr[2] "Oglej si vse %(cnt)s ocene"
+msgstr[3] "Oglej si vseh %(cnt)s ocen"
 
 #: apps/search/forms.py:11
 msgid "Most popular this week"
@@ -14524,12 +14523,12 @@ msgstr "razvijalec dodatka se mi zahvaljuje za prispevek"
 
 #: apps/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr "razvijalec dodatka odgovarja na mojo recenzijo"
+msgstr "razvijalec dodatka odgovori na mojo oceno"
 
 # 87%
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "razvijalec aplikacije odgovarja na mojo recenzijo"
+msgstr "razvijalec aplikacije odgovori na mojo oceno"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -14545,12 +14544,12 @@ msgstr "moj na osnovi sdk zgrajen dodatek je uspešno nadgrajen"
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr "nekdo napiše recenzijo mojega dodatka"
+msgstr "nekdo oceni moj dodatek"
 
 # 86%
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "nekdo napiše recenzijo moje aplikacije"
+msgstr "nekdo oceni mojo aplikacijo"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -14771,9 +14770,7 @@ msgstr "Ne boste se več mogli prijaviti na %(site)s."
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
-msgstr ""
-"Vaše recenzije in ocene ne bodo izbrisane, vendar ne bodo več povezane z "
-"vami."
+msgstr "Vaše ocene ne bodo izbrisane, vendar ne bodo več povezane z vami."
 
 #: apps/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -15147,7 +15144,7 @@ msgstr "Registrirati se morate le, če:"
 
 #: apps/users/templates/users/register.html:19
 msgid "You want to submit reviews for add-ons"
-msgstr "Želite prispevati recenzije za dodatke"
+msgstr "Želite ocenjevati dodatke"
 
 #: apps/users/templates/users/register.html:20
 msgid ""
