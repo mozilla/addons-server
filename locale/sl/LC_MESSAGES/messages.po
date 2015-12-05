@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-03 19:54+0000\n"
+"PO-Revision-Date: 2015-12-05 12:32+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1396,7 +1396,7 @@ msgstr "Različica {0}"
 
 #: apps/addons/templates/addons/impala/details.html:201
 msgid "Info"
-msgstr "Informacija"
+msgstr "Informacije"
 
 #: apps/addons/templates/addons/impala/details.html:202
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
