@@ -230,3 +230,5 @@ FXA_CONFIG = {
         'https://addons-dev.allizom.org/api/v3/accounts/authorize/',
     'scope': 'profile',
 }
+
+READ_ONLY = env.bool('READ_ONLY', default=False)

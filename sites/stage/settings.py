@@ -214,3 +214,5 @@ NEWRELIC_ENABLE = False
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
+
+READ_ONLY = env.bool('READ_ONLY', default=False)
