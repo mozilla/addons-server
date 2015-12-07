@@ -1477,3 +1477,12 @@ JWT_AUTH = {
     # clocks are off.
     'JWT_LEEWAY': 5,
 }
+
+REST_FRAMEWORK = {
+    # Set this because the default is to also include:
+    #   'rest_framework.renderers.BrowsableAPIRenderer'
+    # Which it will try to use if the client accepts text/html.
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}
