@@ -202,3 +202,5 @@ MIDDLEWARE_CLASSES = tuple(m for m in MIDDLEWARE_CLASSES if m not in (csp,))
 VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10
+
+READ_ONLY = env.bool('READ_ONLY', default=False)
