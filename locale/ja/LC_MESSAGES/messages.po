@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-03 18:58+0000\n"
+"PO-Revision-Date: 2015-12-07 22:48+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -13960,7 +13960,7 @@ msgstr "モバイル用サイトを表示"
 
 #: templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "サイト状況"
 
 # フッタ左端
 #: templates/footer.html:3
@@ -14096,6 +14096,8 @@ msgid ""
 "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a "
 "href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
+"<a href=\"%(reg)s\" class=\"fxa-register\">ユーザ登録</a> または <a "
+"href=\"%(login)s\" class=\"fxa-login\">ログイン</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
