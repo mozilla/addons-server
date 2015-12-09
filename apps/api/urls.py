@@ -148,8 +148,3 @@ urlpatterns = patterns(
     url(r'^v3/accounts/', include('accounts.urls')),
     url(r'^v3/', include('signing.urls')),
 )
-
-if waffle.switch_is_active('frontend-prototype'):
-    urlpatterns += (
-        url(r'^v3/addons/', include('addons.api.urls')),
-    )
