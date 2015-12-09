@@ -3,21 +3,40 @@ from rest_framework.response import Response
 
 from waffle.decorators import waffle_switch
 
+import amo
 from addons.models import Addon
 
 
 class AddonSerializer(serializers.ModelSerializer):
+    addon_type = serializers.SerializerMethodField('get_addon_type')
+    description = serializers.CharField()
+    icons = serializers.SerializerMethodField('get_icons')
     name = serializers.CharField()
-    icon_url = serializers.CharField()
+    rating = serializers.FloatField(source='average_rating')
+    summary = serializers.CharField()
 
     class Meta:
         model = Addon
         fields = [
-            'name',
-            'slug',
-            'icon_url',
+            'addon_type',
+            'description',
+            'icons',
             'id',
+            'guid',
+            'name',
+            'rating',
+            'slug',
+            'summary',
         ]
+
+    def get_addon_type(self, instance):
+        return unicode(amo.ADDON_TYPE[instance.type])
+
+    def get_icons(self, instance):
+        return {
+            '32': instance.get_icon_url(32),
+            '64': instance.get_icon_url(64),
+        }
 
 
 class SearchView(generics.RetrieveAPIView):
@@ -25,8 +44,8 @@ class SearchView(generics.RetrieveAPIView):
 
     @waffle_switch('frontend-prototype')
     def retrieve(self, request, *args, **kwargs):
-        queryset = Addon.objects.all()
+        queryset = Addon.objects.filter(type__in=amo.GROUP_TYPE_ADDON)
         if 'q' in request.GET:
             queryset = queryset.filter(slug__contains=request.GET['q'])
-        serializer = self.get_serializer(queryset, many=True)
+        serializer = self.get_serializer(queryset[:20], many=True)
         return Response(serializer.data)
