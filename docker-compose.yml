@@ -57,7 +57,7 @@ rabbitmq:
   image: rabbitmq:3.5
   hostname: olympia
   expose:
-    - "5672:5672"
+    - "5672"
   environment:
     - RABBITMQ_DEFAULT_USER=olympia
     - RABBITMQ_DEFAULT_PASS=olympia
