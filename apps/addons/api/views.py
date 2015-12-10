@@ -10,6 +10,7 @@ from addons.models import Addon
 class AddonSerializer(serializers.ModelSerializer):
     addon_type = serializers.SerializerMethodField('get_addon_type')
     description = serializers.CharField()
+    download_url = serializers.SerializerMethodField('get_download_url')
     icons = serializers.SerializerMethodField('get_icons')
     name = serializers.CharField()
     rating = serializers.FloatField(source='average_rating')
@@ -20,6 +21,7 @@ class AddonSerializer(serializers.ModelSerializer):
         fields = [
             'addon_type',
             'description',
+            'download_url',
             'icons',
             'id',
             'guid',
@@ -37,6 +39,9 @@ class AddonSerializer(serializers.ModelSerializer):
             '32': instance.get_icon_url(32),
             '64': instance.get_icon_url(64),
         }
+
+    def get_download_url(self, instance):
+        return instance.current_version.all_files[0].get_url_path('mozlando')
 
 
 class SearchView(generics.RetrieveAPIView):
