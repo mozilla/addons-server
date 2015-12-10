@@ -305,7 +305,7 @@ class TestVotes(amo.tests.TestCase):
         r = self.client.post(self.up, follow=True)
         url, _ = r.redirect_chain[-1]
         eq_(r.status_code, 200)
-        self.assert_(reverse('users.login') in url)
+        assert reverse('users.login') in url
 
     def test_post_required(self):
         r = self.client.get(self.up, follow=True)
@@ -856,7 +856,7 @@ class TestChangeAddon(amo.tests.TestCase):
         self.client.logout()
         r = self.client.post(self.add)
         eq_(r.status_code, 302)
-        self.assert_(reverse('users.login') in r['Location'], r['Location'])
+        assert reverse('users.login') in r['Location'], r['Location']
 
     def test_post_required(self):
         r = self.client.get(self.add)
@@ -879,7 +879,7 @@ class TestChangeAddon(amo.tests.TestCase):
         r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        self.assert_(self.addon in c.addons.all())
+        assert self.addon in c.addons.all()
         eq_(c.addons.count(), 1)
 
     def test_add_secretly(self):
@@ -896,7 +896,7 @@ class TestChangeAddon(amo.tests.TestCase):
         r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        self.assert_(self.addon in c.addons.all())
+        assert self.addon in c.addons.all()
         eq_(c.addons.count(), 1)
 
     def test_remove_secretly(self):
@@ -1250,15 +1250,13 @@ class TestCollectionForm(amo.tests.TestCase):
     def test_blacklisted_name(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6Fan'}
-        with self.assertRaisesRegexp(ValidationError,
-                                     'This name cannot be used.'):
+        with pytest.raises(ValidationError):
             form.clean_name()
 
     def test_blacklisted_name_contains(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6fanBoy'}
-        with self.assertRaisesRegexp(ValidationError,
-                                     'This name cannot be used.'):
+        with pytest.raises(ValidationError):
             form.clean_name()
 
     def test_clean_description(self):
@@ -1269,13 +1267,13 @@ class TestCollectionForm(amo.tests.TestCase):
 
         # No links allowed: raise on text links.
         form.cleaned_data = {'description': 'http://example.com'}
-        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+        with pytest.raises(ValidationError):
             form.clean_description()
 
         # No links allowed: raise on URLs.
         form.cleaned_data = {
             'description': '<a href="http://example.com">example.com</a>'}
-        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+        with pytest.raises(ValidationError):
             form.clean_description()
 
     def test_honeypot_not_required(self):

@@ -17,6 +17,7 @@ from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
 from files.utils import SafeUnzip
+import pytest
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 
@@ -198,7 +199,8 @@ class TestFileHelper(amo.tests.TestCase):
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
-        self.assertRaises(forms.ValidationError, self.viewer.extract)
+        with pytest.raises(forms.ValidationError):
+            self.viewer.extract()
 
     def test_default(self):
         eq_(self.viewer.get_default(None), 'install.rdf')
@@ -312,7 +314,8 @@ class TestDiffHelper(amo.tests.TestCase):
 
     def test_diffable_allow_empty(self):
         self.helper.extract()
-        self.assertRaises(AssertionError, self.helper.right.read_file)
+        with pytest.raises(AssertionError):
+            self.helper.right.read_file()
         eq_(self.helper.right.read_file(allow_empty=True), '')
 
     def test_diffable_both_missing(self):
@@ -379,11 +382,13 @@ class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
         zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
-        self.assertRaises(forms.ValidationError, zip_file.is_valid)
+        with pytest.raises(forms.ValidationError):
+            zip_file.is_valid()
 
     def test_unzip_fatal(self):
         zip_file = SafeUnzip(self.xpi_path('search.xml'))
-        self.assertRaises(zipfile.BadZipfile, zip_file.is_valid)
+        with pytest.raises(zipfile.BadZipfile):
+            zip_file.is_valid()
 
     def test_unzip_not_fatal(self):
         zip_file = SafeUnzip(self.xpi_path('search.xml'))

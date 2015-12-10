@@ -204,8 +204,8 @@ class TestEdit(UserViewBase):
 
         # The email shouldn't change until they confirm, but the name should
         u = UserProfile.objects.get(id='4043307')
-        self.assertEquals(u.name, 'DJ SurfNTurf')
-        self.assertEquals(u.email, 'jbalogh@mozilla.com')
+        assert u.name == 'DJ SurfNTurf'
+        assert u.email == 'jbalogh@mozilla.com'
 
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject.find('Please confirm your email'), 0)
@@ -470,13 +470,13 @@ class TestEmailChange(UserViewBase):
         eq_(r.status_code, 400)
 
     def test_success(self):
-        self.assertEqual(self.user.email, 'jbalogh@mozilla.com')
+        assert self.user.email == 'jbalogh@mozilla.com'
         url = reverse('users.emailchange', args=[self.user.id, self.token,
                                                  self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
         u = UserProfile.objects.get(id=self.user.id)
-        self.assertEqual(u.email, 'nobody@mozilla.org')
+        assert u.email == 'nobody@mozilla.org'
 
     def test_email_change_to_an_existing_user_email(self):
         token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
@@ -842,8 +842,8 @@ class TestLogout(UserViewBase):
                         domain='builder')
         r = self.client.get(url, follow=True)
         to, code = r.redirect_chain[0]
-        self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
-        self.assertEqual(code, 302)
+        assert to == 'https://builder.addons.mozilla.org/addon/new'
+        assert code == 302
 
         # Test an invalid domain
         url = urlparams(reverse('users.logout'), to='/en-US/about',
@@ -854,7 +854,7 @@ class TestLogout(UserViewBase):
     def test_session_cookie_should_be_http_only(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get(reverse('users.logout'))
-        self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
+        assert 'httponly' in str(r.cookies[settings.SESSION_COOKIE_NAME])
 
 
 class TestRegistration(UserViewBase):
@@ -1085,7 +1085,7 @@ class TestProfileSections(amo.tests.TestCase):
         r = Review.objects.filter(reply_to=None)[0]
         r.update(user=self.user)
         cache.clear()
-        self.assertSetEqual(self.user.reviews, [r])
+        assert list(self.user.reviews) == [r]
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#reviews')
@@ -1168,11 +1168,11 @@ class TestProfileSections(amo.tests.TestCase):
 
     def test_my_collections_created(self):
         coll = Collection.objects.listed().filter(author=self.user)
-        eq_(len(coll), 1)
+        assert coll.count() == 1
 
         r = self.client.get(self.url)
         self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        self.assertSetEqual(r.context['own_coll'], coll)
+        assert r.context['own_coll'] == list(coll)
 
         doc = pq(r.content)
         eq_(doc('#reviews.full').length, 0)
@@ -1232,7 +1232,7 @@ class TestThemesProfile(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
         ids = res.context['addons'].object_list.values_list('id', flat=True)
-        self.assertSetEqual(ids, [self.theme.id])
+        assert list(ids) == [self.theme.id]
 
         doc = pq(res.content)
         eq_(doc('.no-results').length, 0)

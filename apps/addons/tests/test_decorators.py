@@ -6,6 +6,7 @@ from nose.tools import eq_
 import amo.tests
 from addons import decorators as dec
 from addons.models import Addon
+import pytest
 
 
 class TestAddonView(amo.tests.TestCase):
@@ -44,11 +45,11 @@ class TestAddonView(amo.tests.TestCase):
         eq_(res, mock.sentinel.OK)
 
     def test_404_by_id(self):
-        with self.assertRaises(http.Http404):
+        with pytest.raises(http.Http404):
             self.view(self.request, str(self.addon.id * 2))
 
     def test_404_by_slug(self):
-        with self.assertRaises(http.Http404):
+        with pytest.raises(http.Http404):
             self.view(self.request, self.addon.slug + 'xx')
 
     def test_alternate_qs_301_by_id(self):
@@ -72,7 +73,7 @@ class TestAddonView(amo.tests.TestCase):
             return Addon.objects.filter(type=2)
 
         view = dec.addon_view_factory(qs=qs)(self.func)
-        with self.assertRaises(http.Http404):
+        with pytest.raises(http.Http404):
             view(self.request, str(self.addon.id))
 
     def test_alternate_qs_404_by_slug(self):
@@ -80,7 +81,7 @@ class TestAddonView(amo.tests.TestCase):
             return Addon.objects.filter(type=2)
 
         view = dec.addon_view_factory(qs=qs)(self.func)
-        with self.assertRaises(http.Http404):
+        with pytest.raises(http.Http404):
             view(self.request, self.addon.slug)
 
     def test_addon_no_slug(self):
@@ -110,7 +111,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
     def test_unlisted_addon(self):
         """Return a 404 for non authorized access."""
         self.addon.update(is_listed=False)
-        with self.assertRaises(http.Http404):
+        with pytest.raises(http.Http404):
             self.view(self.request, self.addon.slug)
 
     @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: False)

@@ -7,6 +7,7 @@ from django.conf import settings
 import amo.tests
 from users.models import BlacklistedName
 from users.utils import EmailResetCode, autocreate_username
+import pytest
 
 
 class TestEmailResetCode(amo.tests.TestCase):
@@ -21,8 +22,10 @@ class TestEmailResetCode(amo.tests.TestCase):
         eq_(mail, r_mail)
 
         # A bad token or hash raises ValueError
-        self.assertRaises(ValueError, EmailResetCode.parse, token, hash[:-5])
-        self.assertRaises(ValueError, EmailResetCode.parse, token[5:], hash)
+        with pytest.raises(ValueError):
+            EmailResetCode.parse(token, hash[:-5])
+        with pytest.raises(ValueError):
+            EmailResetCode.parse(token[5:], hash)
 
 
 class TestAutoCreateUsername(amo.tests.TestCase):

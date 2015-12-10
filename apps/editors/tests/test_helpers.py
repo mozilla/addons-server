@@ -240,7 +240,8 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
-        self.assertRaises(self.helper.process)
+        with pytest.raises(Exception):
+            self.helper.process()
 
     def test_process_action_good(self):
         self.helper.set_data({'action': 'info', 'comments': 'foo'})
@@ -476,7 +477,7 @@ class TestReviewHelper(amo.tests.TestCase):
             sign_mock.reset()
             self.setup_data(status)
             with self.settings(SIGNING_SERVER='full'):
-                with self.assertRaises(Exception):
+                with pytest.raises(Exception):
                     self.helper.handler.process_public()
 
             # Status unchanged.
@@ -570,7 +571,7 @@ class TestReviewHelper(amo.tests.TestCase):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
             self.setup_data(status)
-            with self.assertRaises(Exception):
+            with pytest.raises(Exception):
                 self.helper.handler.process_preliminary()
 
             # Status unchanged.
@@ -649,13 +650,13 @@ class TestReviewHelper(amo.tests.TestCase):
 
     def test_unreviewed_to_public(self):
         self.setup_data(amo.STATUS_UNREVIEWED)
-        self.assertRaises(AssertionError,
-                          self.helper.handler.process_public)
+        with pytest.raises(AssertionError):
+            self.helper.handler.process_public()
 
     def test_lite_to_public(self):
         self.setup_data(amo.STATUS_LITE)
-        self.assertRaises(AssertionError,
-                          self.helper.handler.process_public)
+        with pytest.raises(AssertionError):
+            self.helper.handler.process_public()
 
     @patch('editors.helpers.sign_file')
     def test_preliminary_to_preliminary(self, sign_mock):

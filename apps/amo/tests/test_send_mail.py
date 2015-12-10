@@ -17,6 +17,7 @@ from amo.utils import send_mail, send_html_mail_jinja
 from devhub.tests.test_models import ATTACHMENTS_DIR
 from users.models import UserProfile, UserNotification
 import users.notifications
+import pytest
 
 
 class TestSendMail(BaseTestCase):
@@ -33,7 +34,7 @@ class TestSendMail(BaseTestCase):
 
     def test_send_string(self):
         to = 'f@f.com'
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             send_mail('subj', 'body', recipient_list=to)
 
     def test_blacklist(self):
@@ -264,7 +265,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch('amo.tasks.EmailMessage')
     def test_async_will_retry(self, backend):
         backend.side_effect = self.make_backend_class([True, True, False])
-        with self.assertRaises(RuntimeError):
+        with pytest.raises(RuntimeError):
             send_mail('test subject',
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
@@ -276,7 +277,7 @@ class TestSendMail(BaseTestCase):
     @mock.patch('amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):
         backend.side_effect = self.make_backend_class([True, True])
-        with self.assertRaises(RuntimeError):
+        with pytest.raises(RuntimeError):
             send_mail('test subject',
                       'test body',
                       async=True,

@@ -106,8 +106,10 @@ class TestNoAddonsMiddleware(amo.tests.TestCase):
     @patch.object(settings, 'NO_ADDONS_MODULES',
                   ('some.addons',))
     def test_middleware(self):
-        self.assertRaises(http.Http404, self.process, 'some.addons')
-        self.assertRaises(http.Http404, self.process, 'some.addons.thingy')
+        with pytest.raises(http.Http404):
+            self.process('some.addons')
+        with pytest.raises(http.Http404):
+            self.process('some.addons.thingy')
         assert not self.process('something.else')
 
 

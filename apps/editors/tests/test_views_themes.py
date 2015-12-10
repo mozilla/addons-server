@@ -91,7 +91,7 @@ class ThemeReviewTestMixin(object):
 
         for expected in expected_themes:
             reviewer = self.create_and_become_reviewer()
-            self.assertSetEqual(self.get_themes(reviewer), expected)
+            assert list(self.get_themes(reviewer)) == expected
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
 

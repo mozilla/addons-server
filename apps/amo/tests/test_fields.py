@@ -8,6 +8,7 @@ from nose.tools import eq_
 
 import amo
 from amo.fields import DecimalCharField, SeparatedValuesField
+import pytest
 
 
 class DecimalCharFieldModel(models.Model):
@@ -58,9 +59,9 @@ class SeparatedValuesFieldTestCase(amo.tests.TestCase):
         eq_(self.field.clean(u'a@b.com,,   \n,c@d.com'), u'a@b.com, c@d.com')
 
     def test_email_validation_error(self):
-        with self.assertRaises(exceptions.ValidationError):
+        with pytest.raises(exceptions.ValidationError):
             self.field.clean(u'e')
-        with self.assertRaises(exceptions.ValidationError):
+        with pytest.raises(exceptions.ValidationError):
             self.field.clean(u'a@b.com, c@d.com, e')
 
     def test_url_field(self):

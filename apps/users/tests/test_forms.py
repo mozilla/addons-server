@@ -356,8 +356,8 @@ class TestUserLoginForm(UserFormBase):
         r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                    'password': 'password'}, follow=True)
         to, code = r.redirect_chain[0]
-        self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
-        self.assertEqual(code, 302)
+        assert to == 'https://builder.addons.mozilla.org/addon/new'
+        assert code == 302
 
     def test_redirect_after_login_evil(self):
         url = urlparams(self._get_login_url(), to='http://foo.com')

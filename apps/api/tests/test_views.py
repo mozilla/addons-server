@@ -66,7 +66,7 @@ class DRFMixin(object):
         This test makes sure that is it DRF that is running in this test suite.
         """
         response = self.client.get(self.test_module_url, follow=True)
-        self.assertTrue('rest_framework' in response.__module__, response)
+        assert 'rest_framework' in response.__module__, response
 
 
 class UtilsTest(TestCase):

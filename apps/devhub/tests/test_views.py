@@ -415,7 +415,7 @@ class TestVersionStats(amo.tests.TestCase):
         exp = {str(version.id):
                {'reviews': 10, 'files': 1, 'version': version.version,
                 'id': version.id}}
-        self.assertDictEqual(r, exp)
+        assert r == exp
 
 
 class TestEditPayments(amo.tests.TestCase):

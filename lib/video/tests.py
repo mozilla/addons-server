@@ -123,12 +123,12 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
         assert not self.video.is_valid()
 
     def test_screenshot(self):
-        self.assertRaises(AssertionError, self.video.get_screenshot,
-                          amo.ADDON_PREVIEW_SIZES[0])
+        with pytest.raises(AssertionError):
+            self.video.get_screenshot(amo.ADDON_PREVIEW_SIZES[0])
 
     def test_encoded(self):
-        self.assertRaises(AssertionError, self.video.get_encoded,
-                          amo.ADDON_PREVIEW_SIZES[0])
+        with pytest.raises(AssertionError):
+            self.video.get_encoded(amo.ADDON_PREVIEW_SIZES[0])
 
 
 class TestTotemVideo(amo.tests.TestCase):
@@ -205,7 +205,7 @@ class TestTask(amo.tests.TestCase):
     def test_resize_error(self, _resize_video):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.side_effect = ValueError
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             resize_video(files['good'], self.mock, user=user)
         assert self.mock.delete.called
         assert UserLog.objects.filter(

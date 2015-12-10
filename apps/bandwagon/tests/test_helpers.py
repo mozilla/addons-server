@@ -53,4 +53,4 @@ class TestHelpers(BaseTestCase):
 
         # empty collection, empty response
         response = unicode(user_collection_list([], heading))
-        self.assertFalse(response, 'empty collection should not create a list')
+        assert not response, 'empty collection should not create a list'

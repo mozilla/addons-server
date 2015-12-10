@@ -74,7 +74,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
         msg = 'an error'
         self.heka.error(msg)
         logrecord = self.handler.buffer[-1]
-        self.assertEqual(logrecord.msg, "oldstyle: %s" % msg)
+        assert logrecord.msg == "oldstyle: %s" % msg
 
         eq_(logrecord.levelno, logging.ERROR)
 
@@ -82,8 +82,8 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
         self.heka.info(msg)
         logrecord = self.handler.buffer[-1]
 
-        self.assertEqual(logrecord.msg, "oldstyle: %s" % msg)
-        self.assertEqual(logrecord.levelname, 'INFO')
+        assert logrecord.msg == "oldstyle: %s" % msg
+        assert logrecord.levelname == 'INFO'
 
         msg = 'warn'
         self.heka.warn(msg)

@@ -14,6 +14,7 @@ from files.models import File
 from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from stats.models import UpdateCount
 from versions.models import Version
+import pytest
 
 
 class CurrentVersionTestCase(amo.tests.TestCase):
@@ -211,7 +212,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
 
     def test_adu_is_adjusted_in_cron(self):
         addon = Addon.objects.get(pk=3615)
-        self.assertTrue(
+        assert (
             addon.average_daily_users > addon.total_downloads + 10000,
             'Unexpected ADU count. ADU of %d not greater than %d' % (
                 addon.average_daily_users, addon.total_downloads + 10000))
@@ -227,7 +228,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
                                              count=1234)
         counter.save()
 
-        self.assertTrue(
+        assert (
             addon.average_daily_users > addon.total_downloads + 10000,
             'Unexpected ADU count. ADU of %d not greater than %d' % (
                 addon.average_daily_users, addon.total_downloads + 10000))
@@ -236,7 +237,8 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
         flag_reindexing_amo('new', 'old', 'alias')
         try:
             # Should fail.
-            self.assertRaises(CommandError, adu)
+            with pytest.raises(CommandError):
+                adu()
 
             # Should work with the environ flag.
             os.environ['FORCE_INDEXING'] = '1'

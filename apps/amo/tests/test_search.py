@@ -7,6 +7,7 @@ import amo
 import amo.search
 import amo.tests
 from addons.models import Addon
+import pytest
 
 
 class TestESIndexing(amo.tests.ESTestCaseWithAddons):
@@ -310,7 +311,7 @@ class TestES(amo.tests.ESTestCaseWithAddons):
         eq_(addon, qs[0])
 
     def test_extra_bad_key(self):
-        with self.assertRaises(AssertionError):
+        with pytest.raises(AssertionError):
             Addon.search().extra(x=1)
 
     def test_extra_values(self):
@@ -412,7 +413,7 @@ class TestPaginator(amo.tests.ESTestCaseWithAddons):
     def test_validate_number(self):
         p = amo.utils.ESPaginator(Addon.search(), 20)
         # A bad number raises an exception.
-        with self.assertRaises(paginator.PageNotAnInteger):
+        with pytest.raises(paginator.PageNotAnInteger):
             p.page('a')
 
         # A large number is ignored.

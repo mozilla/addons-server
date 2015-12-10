@@ -10,6 +10,7 @@ from accounts import verify, views
 from amo.tests import create_switch
 from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
+import pytest
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
 
@@ -92,7 +93,7 @@ class TestFindUser(TestCase):
             fxa_id='9999', email='me@amo.ca', username='me')
         UserProfile.objects.create(
             fxa_id='8888', email='you@amo.ca', username='you')
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
+        with pytest.raises(UserProfile.MultipleObjectsReturned):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
 
 
@@ -287,7 +288,7 @@ class TestLoginView(BaseAuthenticationView):
             email='different@yeahoo.com', fxa_id='9005', username='bar')
         self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
                                           'uid': '9005'}
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
+        with pytest.raises(UserProfile.MultipleObjectsReturned):
             self.client.post(self.url, {'code': 'code'})
         assert not self.login_user.called
 

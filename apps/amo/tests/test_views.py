@@ -346,15 +346,17 @@ class TestOtherStuff(amo.tests.TestCase):
                               'appVersion=20120215223356&'
                               'clientOS=Windows%20NT%205.1&'
                               'chromeLocale=en-US&appRelease=10.0.2')
-        self.assertEquals(r.status_code, 302)
-        self.assertEquals(
-            r['Location'],
-            ('https://pfs.mozilla.org/pfs.py?'
-             'mimetype=application%2Fx-shockwave-flash&'
-             'appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&'
-             'appVersion=20120215223356&'
-             'clientOS=Windows%20NT%205.1&'
-             'chromeLocale=en-US&appRelease=10.0.2'))
+        assert r.status_code == 302
+
+        expected = (
+            'https://pfs.mozilla.org/pfs.py?'
+            'mimetype=application%2Fx-shockwave-flash&'
+            'appID=%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D&'
+            'appVersion=20120215223356&'
+            'clientOS=Windows%20NT%205.1&'
+            'chromeLocale=en-US&appRelease=10.0.2')
+
+        assert r['Location'] == expected
 
 
 @mock.patch('amo.views.log_cef')

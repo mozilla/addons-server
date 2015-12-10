@@ -132,9 +132,9 @@ class TestExtractor(amo.tests.TestCase):
         return lambda path: path.endswith(path_to_accept)
 
     def test_no_manifest(self):
-        with self.assertRaises(forms.ValidationError) as exc:
+        with pytest.raises(forms.ValidationError) as exc:
             utils.Extractor.parse('foobar')
-        assert exc.exception.message == (
+        assert exc.value.message == (
             "No install.rdf or package.json or manifest.json found")
 
     @mock.patch('files.utils.ManifestJSONExtractor')
@@ -186,9 +186,9 @@ class TestExtractor(amo.tests.TestCase):
                                            manifest_json_extractor):
         # Here we don't create the waffle switch to enable it.
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
-        with self.assertRaises(forms.ValidationError) as exc:
+        with pytest.raises(forms.ValidationError) as exc:
             utils.Extractor.parse('foobar')
-        assert exc.exception.message == "WebExtensions aren't allowed yet"
+        assert exc.value.message == "WebExtensions aren't allowed yet"
         assert not rdf_extractor.called
         assert not package_json_extractor.called
         assert not manifest_json_extractor.called
@@ -445,8 +445,8 @@ def test_repack():
         # This is where we're really testing the repack helper.
         with utils.repack(temp_filename) as folder_path:
             # Temporary folder contains the unzipped XPI.
-            assert os.listdir(folder_path) == [
-                'install.rdf', 'chrome.manifest', 'chrome']
+            assert sorted(os.listdir(folder_path)) == [
+                'chrome.manifest', 'chrome', 'install.rdf']
             # Add a file, which should end up in the repacked file.
             with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
                 file_.write('foobar')

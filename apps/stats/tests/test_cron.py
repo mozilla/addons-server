@@ -12,6 +12,7 @@ from bandwagon.models import Collection, CollectionAddon
 from stats import cron, tasks
 from stats.models import (AddonCollectionCount, Contribution, DownloadCount,
                           GlobalStat, ThemeUserCount, UpdateCount)
+import pytest
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -32,7 +33,7 @@ class TestGlobalStats(amo.tests.TestCase):
         for x in ['2009-1-1',
                   datetime.datetime(2009, 1, 1),
                   datetime.datetime(2009, 1, 1, 11, 0)]:
-            with self.assertRaises((TypeError, ValueError)):
+            with pytest.raises((TypeError, ValueError)):
                 tasks._get_daily_jobs(x)
 
 

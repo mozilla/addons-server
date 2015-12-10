@@ -59,6 +59,5 @@ class TestDRFSwitch(TestCase):
         eq_(response.status_code, 200)
         self.create_switch('drf', db=True)
         response = view(request, api_version=1.5)
-        self.assertTrue('<error>Not found</error>'
-                        in response.render().content)
+        assert '<error>Not found</error>' in response.render().content
         eq_(response.status_code, 404)

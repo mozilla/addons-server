@@ -9,6 +9,7 @@ import amo
 import amo.tests
 from amo.helpers import url
 from applications.models import AppVersion
+import pytest
 
 
 class TestAppVersion(amo.tests.TestCase):
@@ -41,7 +42,7 @@ class TestAppVersion(amo.tests.TestCase):
         """Check that one can't add duplicate application-version pairs."""
         AppVersion.objects.create(application=1, version='123')
 
-        with self.assertRaises(IntegrityError):
+        with pytest.raises(IntegrityError):
             AppVersion.objects.create(application=1, version='123')
 
 

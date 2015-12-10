@@ -14,6 +14,7 @@ from amo.urlresolvers import reverse
 from blocklist.models import (BlocklistApp, BlocklistCA, BlocklistDetail,
                               BlocklistGfx, BlocklistItem, BlocklistIssuerCert,
                               BlocklistPlugin, BlocklistPref)
+import pytest
 
 base_xml = """
 <?xml version="1.0"?>
@@ -505,7 +506,8 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         # The app version is not in range.
         self.app.update(min='3.0', max='4.0')
-        self.assertRaises(IndexError, self.dom, self.fx2_url)
+        with pytest.raises(IndexError):
+            self.dom(self.fx2_url)
 
         # The app is back in range.
         self.app.update(min='1.1')

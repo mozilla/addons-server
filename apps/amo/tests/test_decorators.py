@@ -168,7 +168,7 @@ class TestPermissionRequired(amo.tests.TestCase):
     def test_permission_not_allowed(self, action_allowed):
         action_allowed.return_value = False
         func = decorators.permission_required('', '')(self.f)
-        with self.assertRaises(PermissionDenied):
+        with pytest.raises(PermissionDenied):
             func(self.request)
 
     @mock.patch('access.acl.action_allowed')

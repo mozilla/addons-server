@@ -4,6 +4,7 @@ from amo.tests import TestCase
 from users.models import UserProfile
 
 from ..models import APIKey, SYMMETRIC_JWT_TYPE
+import pytest
 
 
 class TestAPIKey(TestCase):
@@ -44,7 +45,7 @@ class TestAPIKey(TestCase):
         self.addCleanup(patch.stop)
         mock_filter.return_value.exists.return_value = True
 
-        with self.assertRaises(RuntimeError):
+        with pytest.raises(RuntimeError):
             for counter in range(max + 1):
                 APIKey.get_unique_key('key-prefix-', max_tries=max)
 
@@ -52,7 +53,7 @@ class TestAPIKey(TestCase):
         assert APIKey.generate_secret(32)  # check for exceptions
 
     def test_generated_secret_must_be_long_enough(self):
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             APIKey.generate_secret(31)
 
     def test_hide_inactive_jwt_keys(self):

@@ -54,12 +54,14 @@ class TestPayKey(amo.tests.TestCase):
     def test_data_fails(self):
         data = self.data.copy()
         data['amount'] = 'some random text'
-        self.assertRaises(paypal.PaypalError, paypal.get_paykey, data)
+        with pytest.raises(paypal.PaypalError):
+            paypal.get_paykey(data)
 
     @mock.patch('paypal.requests.post')
     def test_auth_fails(self, opener):
         opener.return_value.text = auth_error
-        self.assertRaises(paypal.AuthError, paypal.get_paykey, self.data)
+        with pytest.raises(paypal.AuthError):
+            paypal.get_paykey(self.data)
 
     @mock.patch('paypal.requests.post')
     def test_get_key(self, opener):
@@ -69,7 +71,8 @@ class TestPayKey(amo.tests.TestCase):
     @mock.patch('paypal.requests.post')
     def test_error_is_paypal(self, opener):
         opener.side_effect = ZeroDivisionError
-        self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
+        with pytest.raises(paypal.PaypalError):
+            paypal.get_paykey(self.data)
 
     @mock.patch('paypal.requests.post')
     def test_error_raised(self, opener):
@@ -109,7 +112,8 @@ class TestPayKey(amo.tests.TestCase):
     @mock.patch('paypal.requests.post')
     def test_other_fails(self, opener):
         opener.return_value.text = other_error
-        self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
+        with pytest.raises(paypal.PaypalError):
+            paypal.get_paykey(self.data)
 
     @mock.patch('paypal._call')
     def test_qs_passed(self, _call):
@@ -151,7 +155,8 @@ class TestPayKey(amo.tests.TestCase):
         _call.side_effect = paypal.CurrencyError()
         data = self.data.copy()
         data['currency'] = 'xxx'
-        self.assertRaises(paypal.CurrencyError, paypal.get_paykey, data)
+        with pytest.raises(paypal.CurrencyError):
+            paypal.get_paykey(data)
 
 
 class TestPurchase(amo.tests.TestCase):

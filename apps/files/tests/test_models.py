@@ -422,21 +422,21 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_guid_nomatch(self):
         addon = Addon.objects.create(guid='xxx', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon)
-        eq_(e.exception.messages, ["Add-on ID doesn't match add-on."])
+        eq_(exc.value.messages, ["Add-on ID doesn't match add-on."])
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='guid@xpi', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        eq_(e.exception.messages, ['Duplicate add-on ID found.'])
+        eq_(exc.value.messages, ['Duplicate add-on ID found.'])
 
     def test_match_type(self):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon)
-        eq_(e.exception.messages,
+        eq_(exc.value.messages,
             ["<em:type> doesn't match add-on"])
 
     def test_match_type_extension_for_experiments(self):
@@ -453,18 +453,18 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon, filename='search.xml')
-        eq_(e.exception.messages, ["<em:type> doesn't match add-on"])
+        eq_(exc.value.messages, ["<em:type> doesn't match add-on"])
 
     def test_unknown_app(self):
         data = self.parse(filename='theme-invalid-app.jar')
         eq_(data['apps'], [])
 
     def test_bad_zipfile(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             parse_addon('baxmldzip.xpi', None)
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        eq_(exc.value.messages, ['Could not parse install.rdf.'])
 
     def test_parse_dictionary(self):
         result = self.parse(filename='dictionary-test.xpi')
@@ -507,15 +507,15 @@ class TestParseXpi(amo.tests.TestCase):
         check_xpi_info({'guid': 'guid', 'version': '1' * 32})
 
     def test_bad_version_number(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             check_xpi_info({'guid': 'guid', 'version': 'bad #version'})
-        msg = e.exception.messages[0]
+        msg = exc.value.messages[0]
         assert msg.startswith('Version numbers should only contain'), msg
 
     def test_long_version_number(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             check_xpi_info({'guid': 'guid', 'version': '1' * 33})
-        msg = e.exception.messages[0]
+        msg = exc.value.messages[0]
         eq_(msg, 'Version numbers should have fewer than 32 characters.')
 
     def test_strict_compat_undefined(self):
@@ -565,9 +565,9 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
         graph_mock.return_value.parse.return_value = rdf_mock
         rdf_mock.triples.return_value = iter([])
         rdf_mock.subjects.return_value = iter([])
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        eq_(exc.value.messages, ['Could not parse install.rdf.'])
 
 
 class TestFileUpload(UploadTest):
@@ -606,7 +606,7 @@ class TestFileUpload(UploadTest):
         f = FileUpload.objects.create(validation='{"errors": 1}')
         assert not f.valid
 
-        with self.assertRaises(ValueError):
+        with pytest.raises(ValueError):
             f = FileUpload.objects.create(validation='wtf')
 
     def test_update_with_validation(self):
@@ -1164,9 +1164,9 @@ class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
     @mock.patch('files.utils.extract_search')
     def test_extract_search_error(self, extract_mock):
         extract_mock.side_effect = Exception
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        assert e.exception.messages[0].startswith('Could not parse ')
+        assert exc.value.messages[0].startswith('Could not parse ')
 
 
 @mock.patch('files.utils.parse_xpi')

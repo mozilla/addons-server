@@ -42,6 +42,7 @@ from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
+import pytest
 
 
 class TestCleanSlug(amo.tests.TestCase):
@@ -179,7 +180,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # part of the "for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Addon.objects.create(slug=long_slug)
-        with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
+        with pytest.raises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
 
     def test_clean_slug_ends_with_dash(self):
@@ -1068,7 +1069,7 @@ class TestAddonModels(amo.tests.TestCase):
     def test_app_numeric_slug(self):
         cat = Category.objects.get(id=22)
         cat.slug = 123
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             cat.full_clean()
 
     def test_app_categories(self):
@@ -1957,7 +1958,7 @@ class TestAddonDependencies(amo.tests.TestCase):
         b = Addon.objects.get(id=3615)
         AddonDependency.objects.create(addon=a, dependent_addon=b)
         eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
-        with self.assertRaises(IntegrityError):
+        with pytest.raises(IntegrityError):
             AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
@@ -2034,10 +2035,10 @@ class TestAddonFromUpload(UploadTest):
 
     def test_blacklisted_guid(self):
         BlacklistedGuid.objects.create(guid='guid@xpi')
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             Addon.from_upload(self.get_upload('extension.xpi'),
                               [self.platform])
-        eq_(e.exception.messages, ['Duplicate add-on ID found.'])
+        eq_(exc.value.messages, ['Duplicate add-on ID found.'])
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),

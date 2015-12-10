@@ -49,6 +49,7 @@ from perf.models import (Performance, PerformanceAppVersions,
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import AppVersion, Version
+import pytest
 
 
 def _get_args(consumer, token=None, callback=False, verifier=None):
@@ -203,8 +204,8 @@ class BaseOAuth(TestCase):
 class TestBaseOAuth(BaseOAuth):
 
     def test_accepted(self):
-        self.assertRaises(AssertionError, get_request_token,
-                          self.accepted_consumer)
+        with pytest.raises(AssertionError):
+            get_request_token(self.accepted_consumer)
 
     def test_accepted_callback(self):
         get_request_token(self.accepted_consumer, callback=True)

@@ -406,10 +406,10 @@ class TestThemeForm(amo.tests.TestCase):
         # Test for correct Addon and Persona values.
         eq_(unicode(addon.name), data['name'])
         eq_(addon.slug, data['slug'])
-        self.assertSetEqual(addon.categories.values_list('id', flat=True),
-                            [self.cat.id])
-        self.assertSetEqual(addon.tags.values_list('tag_text', flat=True),
-                            data['tags'].split(', '))
+        assert list(addon.categories.values_list('id', flat=True)) == [self.cat.id]
+        assert (
+            list(addon.tags.values_list('tag_text', flat=True))
+            == data['tags'].split(', '))
         eq_(persona.persona_id, 0)
         eq_(persona.license, data['license'])
         eq_(persona.accentcolor, data['accentcolor'].lstrip('#'))
@@ -556,9 +556,9 @@ class TestEditThemeForm(amo.tests.TestCase):
         eq_(self.instance.persona.license, self.data['license'])
         eq_(unicode(self.instance.name), self.data['name_en-us'])
         eq_(unicode(self.instance.description), self.data['description_en-us'])
-        self.assertSetEqual(
-            self.instance.tags.values_list('tag_text', flat=True),
-            [self.data['tags']])
+        assert (
+            list(self.instance.tags.values_list('tag_text', flat=True))
+            == [self.data['tags']])
         eq_(unicode(self.instance.persona.textcolor),
             self.data['textcolor'].lstrip('#'))
 
