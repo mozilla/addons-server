@@ -48,4 +48,6 @@ class SearchView(generics.RetrieveAPIView):
         if 'q' in request.GET:
             queryset = queryset.filter(slug__contains=request.GET['q'])
         serializer = self.get_serializer(queryset[:20], many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, headers={
+            'Access-Control-Allow-Origin': '*',
+        })
