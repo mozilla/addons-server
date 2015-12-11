@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-04 08:47+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"PO-Revision-Date: 2015-12-11 08:15+0000\n"
+"Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -9453,15 +9453,15 @@ msgstr ""
 
 #: apps/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Eklenti Başlığı"
 
 #: apps/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "İnceleme Başlığı"
 
 #: apps/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "İnceleme Metni"
 
 #: apps/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
@@ -9565,11 +9565,11 @@ msgstr "Puan"
 
 #: apps/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Günün İletisi"
 
 #: apps/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Günün iletisini güncelle"
 
 #: apps/editors/templates/editors/motd.html:15
 #: apps/editors/templates/editors/review.html:224
@@ -9587,7 +9587,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Aralık"
 
 #: apps/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
@@ -9599,7 +9599,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr ""
+msgstr "Etkin Katkıda Bulunanlar"
 
 #: apps/editors/templates/editors/performance.html:42
 msgid "This Month"
@@ -9704,6 +9704,8 @@ msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
+"Sürüm %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
 
 #: apps/editors/templates/editors/review.html:73
 msgid "Compatibility:"
@@ -9889,7 +9891,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Tarih Silindi"
 
 #: apps/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
@@ -10229,7 +10231,7 @@ msgstr "Tümünü genişlet"
 #: apps/files/templates/files/viewer.html:140
 #: apps/files/templates/files/viewer.html:141
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Ağacı gizle veya göster"
 
 #: apps/files/templates/files/viewer.html:145
 #: apps/files/templates/files/viewer.html:146
@@ -10305,7 +10307,7 @@ msgstr ""
 #. Header to an info box in the sidebar
 #: apps/localizers/templates/localizers/sidebar.html:4
 msgid "Good to know"
-msgstr ""
+msgstr "İyiymiş..."
 
 #: apps/localizers/templates/localizers/sidebar.html:13
 msgid "Want the bigger picture?"
@@ -10497,7 +10499,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Bu sitede kim çalışıyor?"
 
 #: apps/pages/templates/pages/about.lhtml:77
 msgid ""
@@ -10509,7 +10511,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Eklenti Uyumluluk Bildirici"
 
 #: apps/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
@@ -10559,11 +10561,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
-msgstr ""
+msgstr "Teşekkür ederim!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Sitede Emeği Geçenler"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid ""
@@ -10577,28 +10579,28 @@ msgstr ""
 
 #: apps/pages/templates/pages/credits.html:21
 msgid "Localizers"
-msgstr ""
+msgstr "Yerelleştiriciler"
 
 #: apps/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr ""
+msgstr "İnceleyiciler"
 
 #. {0} is a number (e.g. 1000).
 #: apps/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "{0} üzerinde eklenti incelemesi"
 
 #: apps/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Diğer Katkıda Bulunanlar"
 
 #: apps/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Eski Geliştiriciler &amp; Yöneticiler"
 
 #: apps/pages/templates/pages/credits.html:57
 msgid "Software and Images"
-msgstr ""
+msgstr "Yazılım ve Resimler"
 
 #: apps/pages/templates/pages/credits.html:59
 msgid ""
@@ -10638,47 +10640,47 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:31
 #: apps/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Kısımlar"
 
 #: apps/pages/templates/pages/dev_faq.html:33
 #: apps/pages/templates/pages/dev_faq.html:46
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Eklenti Geliştirme"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34
 #: apps/pages/templates/pages/dev_faq.html:209
 msgid "Support Resources"
-msgstr ""
+msgstr "Destek Kaynakları"
 
 #: apps/pages/templates/pages/dev_faq.html:35
 #: apps/pages/templates/pages/dev_faq.html:262
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Eklentinize Katkıda Bulunma"
 
 #: apps/pages/templates/pages/dev_faq.html:36
 #: apps/pages/templates/pages/dev_faq.html:382
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Eklenti İnceleme Süreci"
 
 #: apps/pages/templates/pages/dev_faq.html:37
 #: apps/pages/templates/pages/dev_faq.html:445
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Eklentinizi Yönetme"
 
 #: apps/pages/templates/pages/dev_faq.html:38
 #: apps/pages/templates/pages/dev_faq.html:485
 msgid "Recommended Status"
-msgstr ""
+msgstr "Önerilme Durumu"
 
 #: apps/pages/templates/pages/dev_faq.html:40
 #: apps/pages/templates/pages/dev_faq.html:581
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Açık Kaynak İzin Kaynakları"
 
 #: apps/pages/templates/pages/dev_faq.html:44
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Eklenti Geliştirici SSS'si"
 
 #: apps/pages/templates/pages/dev_faq.html:48
 msgid ""
@@ -10689,19 +10691,19 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:56
 msgid "Other resources include:"
-msgstr ""
+msgstr "Diğer kaynaklar:"
 
 #: apps/pages/templates/pages/dev_faq.html:60
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Eklenti günlüğündeki \"Firefox eklentisi geliştirme\" yazısı"
 
 #: apps/pages/templates/pages/dev_faq.html:63
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Mozilla Eklenti Günlüğü"
 
 #: apps/pages/templates/pages/dev_faq.html:67
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Bir eklenti geliştirebilmek için hangi araçlara ihtiyacım var?"
 
 #: apps/pages/templates/pages/dev_faq.html:69
 msgid ""
@@ -10712,7 +10714,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:83
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Gözde kod düzenleyiciler:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:86
@@ -10754,7 +10756,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "\"install.rdf\" dosyası ne için kullanılır?"
 
 #: apps/pages/templates/pages/dev_faq.html:122
 msgid ""
@@ -10769,7 +10771,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "\"maxVersion\" ne anlama gelir?"
 
 #: apps/pages/templates/pages/dev_faq.html:135
 msgid ""
@@ -10881,21 +10883,21 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: apps/pages/templates/pages/dev_faq.html:226
 msgid "Mailing List"
-msgstr ""
+msgstr "E-Posta Listesi"
 
 #. Label for a link to the extension developers newsgroup
 #: apps/pages/templates/pages/dev_faq.html:230
 msgid "Newsgroup"
-msgstr ""
+msgstr "Haber Grubu"
 
 #. Label for a link to the extension developers Google Group
 #: apps/pages/templates/pages/dev_faq.html:234
 msgid "Google Group"
-msgstr ""
+msgstr "Google Grubu"
 
 #: apps/pages/templates/pages/dev_faq.html:237
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Eklenti forumu"
 
 #: apps/pages/templates/pages/dev_faq.html:240
 msgid "Stack Overflow"
@@ -10903,7 +10905,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:244
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Mozilla geliştrime hizmetleri sunuyor mu?"
 
 #: apps/pages/templates/pages/dev_faq.html:245
 #: apps/pages/templates/pages/dev_faq.html:528
@@ -10913,6 +10915,7 @@ msgstr "Hayır."
 #: apps/pages/templates/pages/dev_faq.html:247
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Eklentimi geliştirmek için tutabileceğim 3. şahıs geliştiriciler var mı?"
 
 #: apps/pages/templates/pages/dev_faq.html:249
 msgid ""
@@ -10925,7 +10928,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:264
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Kendi eklentimi barındırabilir miyim?"
 
 #: apps/pages/templates/pages/dev_faq.html:266
 msgid ""
@@ -10940,7 +10943,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:278
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Moziilla eklentimi barındırabilir mi?"
 
 #: apps/pages/templates/pages/dev_faq.html:280
 msgid ""
@@ -10964,7 +10967,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:296
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Mozilla hesap bilgilerimi gizli tutar mı?"
 
 #: apps/pages/templates/pages/dev_faq.html:298
 msgid ""
@@ -11000,7 +11003,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Eklentimi incelenmek üzere nasıl gönderirim?"
 
 #: apps/pages/templates/pages/dev_faq.html:327
 msgid ""
@@ -11013,7 +11016,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:337
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Eklentim için hangi işletim sistemini seçerim?"
 
 #: apps/pages/templates/pages/dev_faq.html:339
 msgid ""
@@ -11023,7 +11026,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Eklentim için hangi kategoriyi seçerim?"
 
 #: apps/pages/templates/pages/dev_faq.html:347
 msgid ""
@@ -11036,7 +11039,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:356
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Eklentimin \"aday gösterilmesi\" ne demek?"
 
 #: apps/pages/templates/pages/dev_faq.html:358
 msgid ""
@@ -12335,6 +12338,7 @@ msgstr ""
 msgid ""
 "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
 msgstr ""
+"Sonuçlar: <strong>{0}</strong>-<strong>{1}</strong> / <strong>{2}</strong>"
 
 # {0} is a number
 # {1} is a number
@@ -12579,7 +12583,7 @@ msgstr ""
 
 #: apps/signing/views.py:74
 msgid "Version already exists."
-msgstr ""
+msgstr "Sürüm hâlihazırda mevcut."
 
 #: apps/signing/views.py:110
 msgid "No uploaded file for that addon and version."
@@ -12591,38 +12595,38 @@ msgstr ""
 
 #: apps/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
-msgstr ""
+msgstr "Genel Bakış"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "Kaynağa göre"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
-msgstr ""
+msgstr "Eklenti sürümüne göre"
 
 # 84%
 # 78%
 # 100%
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr ""
+msgstr "Uygulamaya göre"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
-msgstr ""
+msgstr "Dile göre"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "Platform ile"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr ""
+msgstr "Eklenti durumuna göre"
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Aboneler"
 
 #: apps/stats/templates/stats/collection_report_menu.html:12
 msgid "Ratings"
@@ -12646,11 +12650,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/global_report_menu.html:18
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Güncellenmiş Eklentiler"
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
-msgstr ""
+msgstr "Oluşturalan Koleksiyonlar"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
@@ -12662,7 +12666,7 @@ msgstr "Kullanıcı kayıtları"
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Özel Tarih Aralığı"
 
 #: apps/stats/templates/stats/popup.html:12
 msgid "From"
@@ -12695,7 +12699,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:33
 msgid "reset zoom"
-msgstr ""
+msgstr "yakınlaşmayı sıfırla"
 
 #: apps/stats/templates/stats/stats.html:40
 msgid "Group by:"
@@ -12800,15 +12804,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Tarihe göre katkılar"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Tarihe göre indirmeler"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "İndirmeler nasıl hesaplanır?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -12819,7 +12823,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Tarihe göre kullanıcı dilleri"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
@@ -12983,7 +12987,7 @@ msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Dili Sil"
 
 #: apps/users/forms.py:38
 msgid "Must be %s characters or more."
@@ -13068,11 +13072,11 @@ msgstr "Parolalar eşleşmedi."
 
 #: apps/users/forms.py:343 apps/users/templates/users/edit.html:107
 msgid "Profile Photo"
-msgstr ""
+msgstr "Kimlik Fotoğrafı"
 
 #: apps/users/forms.py:351 apps/users/templates/users/edit.html:121
 msgid "Default locale"
-msgstr ""
+msgstr "Varsayılan dil"
 
 #: apps/users/forms.py:488
 msgid ""
@@ -13103,11 +13107,11 @@ msgstr ""
 
 #: apps/users/models.py:123
 msgid "No user with that email."
-msgstr ""
+msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 
 #: apps/users/models.py:390
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Hesabınız kısıtlandı."
 
 #: apps/users/models.py:460
 msgid "Please confirm your email address"
@@ -13122,7 +13126,7 @@ msgstr "Mobil eklentilerim"
 
 #: apps/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "bir eklenti geliştiricisi katkılarımdan ötürü bana teşekkür etti"
 
 #: apps/users/notifications.py:24
 msgid "an add-on developer replies to my review"
@@ -13170,7 +13174,7 @@ msgstr "eklentim bir editör tarafından incelendi"
 
 #: apps/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla'nın eklentim hakkında benle iletişim kurması gerekiyor"
 
 #: apps/users/notifications.py:126
 msgid "my app is reviewed by an editor"
@@ -13179,6 +13183,8 @@ msgstr ""
 #: apps/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
 msgstr ""
+"Mozilla'nın benim kişisel uygulamam hakkında benimle iletişim kurması "
+"gerekli"
 
 #: apps/users/notifications.py:139
 msgid ""
@@ -13195,11 +13201,11 @@ msgstr "Kullanıcı Bildirimleri"
 
 #: apps/users/views.py:86
 msgid "An email address is required."
-msgstr ""
+msgstr "Bir e-posta adresi gerekli."
 
 #: apps/users/views.py:91
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Bu e-posta adresi ile kayıtlı bir kullanıcı mevcut değil."
 
 #: apps/users/views.py:108
 msgid "Invalid confirmation code!"
@@ -13249,7 +13255,7 @@ msgstr ""
 
 #: apps/users/views.py:207
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Lütfen %s e-posta adresinizin değişikliğini teyit edin."
 
 #: apps/users/views.py:221
 msgid "Errors Found"
@@ -13795,7 +13801,7 @@ msgstr ""
 #: apps/users/templates/users/t-shirt.html:14
 #: apps/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Not:"
 
 #: apps/users/templates/users/t-shirt.html:15
 msgid ""
@@ -13822,55 +13828,55 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Posta Adresi"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Tam İsim"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Adres Satırı 1"
 
 #: apps/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Adres Satırı 2"
 
 #: apps/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "İl/İlçe"
 
 #: apps/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Eyalet/İdari Bölge (varsa)"
 
 #: apps/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Posta Kodu (varsa)"
 
 #: apps/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Ülke"
 
 #: apps/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: apps/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Tişört Bilgisi"
 
 #: apps/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Gömlek Bedeni"
 
 #: apps/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Gönderimi takiben Google Formlar'a yönlendirileceksiniz."
 
 #: apps/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Tişört İste"
 
 #: apps/users/templates/users/t-shirt.html:137
 msgid ""
@@ -13888,11 +13894,11 @@ msgstr ""
 
 #: apps/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Abonelikten Çık"
 
 #: apps/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Başarıyla abonelikten ayrıldınız!"
 
 #: apps/users/templates/users/unsubscribe.html:10
 msgid ""
@@ -13933,7 +13939,7 @@ msgstr "Üyelik başlangıcı"
 
 #: apps/users/templates/users/vcard.html:34
 msgid "Time of last login"
-msgstr ""
+msgstr "Son giriş zamanı"
 
 #: apps/users/templates/users/vcard.html:40
 msgid "IP address of last login"
@@ -13945,12 +13951,12 @@ msgstr ""
 
 #: apps/users/templates/users/vcard.html:52
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} eklenti"
 
 #: apps/users/templates/users/vcard.html:56
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s tema"
 
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s add-on"
@@ -14176,7 +14182,7 @@ msgstr "Firefox Hakkında"
 
 #: templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Mozilla'ya Katıl"
 
 #: templates/menu_links.html:24
 msgid "Participate"
@@ -14184,7 +14190,7 @@ msgstr "Katılın"
 
 #: templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Basın Merkezi"
 
 #: templates/menu_links.html:27
 msgid "Brand Toolkit"
@@ -14257,6 +14263,8 @@ msgid ""
 "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a "
 "href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
+"<a href=\"%(reg)s\" class=\"fxa-register\">Kayıt ol</a> veya <a "
+"href=\"%(login)s\" class=\"fxa-login\">giriş yap</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
