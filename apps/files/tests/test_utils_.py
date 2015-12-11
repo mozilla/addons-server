@@ -420,11 +420,11 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
 
 def test_zip_folder_content():
     extension_file = 'apps/files/fixtures/files/extension.xpi'
+    temp_filename = amo.tests.get_temp_filename()
     try:
         temp_folder = utils.extract_zip(extension_file)
-        assert os.listdir(temp_folder) == [
-            'install.rdf', 'chrome.manifest', 'chrome']
-        temp_filename = amo.tests.get_temp_filename()
+        assert sorted(os.listdir(temp_folder)) == [
+            'chrome', 'chrome.manifest', 'install.rdf']
         utils.zip_folder_content(temp_folder, temp_filename)
         # Make sure the zipped files contain the same files.
         with zipfile.ZipFile(temp_filename, mode='r') as new:
@@ -446,7 +446,7 @@ def test_repack():
         with utils.repack(temp_filename) as folder_path:
             # Temporary folder contains the unzipped XPI.
             assert sorted(os.listdir(folder_path)) == [
-                'chrome.manifest', 'chrome', 'install.rdf']
+                'chrome', 'chrome.manifest', 'install.rdf']
             # Add a file, which should end up in the repacked file.
             with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
                 file_.write('foobar')
