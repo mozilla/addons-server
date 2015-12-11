@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-11 08:15+0000\n"
+"PO-Revision-Date: 2015-12-11 09:55+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -10836,7 +10836,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:186
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Eklentimin başarımını nasıl artırabilirim?"
 
 #: apps/pages/templates/pages/dev_faq.html:188
 msgid ""
