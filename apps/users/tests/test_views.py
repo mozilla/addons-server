@@ -1172,7 +1172,7 @@ class TestProfileSections(amo.tests.TestCase):
 
         r = self.client.get(self.url)
         self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        assert r.context['own_coll'] == list(coll)
+        assert list(r.context['own_coll']) == list(coll)
 
         doc = pq(r.content)
         eq_(doc('#reviews.full').length, 0)
