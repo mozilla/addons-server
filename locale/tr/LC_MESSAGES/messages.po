@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-11 09:55+0000\n"
+"PO-Revision-Date: 2015-12-11 11:18+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -10849,7 +10849,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:196
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Eklentim birden çok dili destekleyebilir mi?"
 
 #: apps/pages/templates/pages/dev_faq.html:198
 msgid ""
@@ -10862,6 +10862,8 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:211
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr ""
+"Eklentimi inşa etmek için biraz tavsiyeye ihtiyacım var. Nereden yardım "
+"alabilirim?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: apps/pages/templates/pages/dev_faq.html:217
