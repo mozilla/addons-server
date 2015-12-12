@@ -96,7 +96,7 @@ reindex:
 	python manage.py reindex $(ARGS)
 
 flake8:
-	flake8 --ignore=E265,E266 --exclude=services,wsgi,docs,node_modules,.npm,build*.py .
+	flake8 --ignore=E265,E266,E501 --exclude=services,wsgi,docs,node_modules,.npm,build*.py .
 
 initialize_docker:
 	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner
