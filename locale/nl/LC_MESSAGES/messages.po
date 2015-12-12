@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-12-12 11:13+0000\n"
+"PO-Revision-Date: 2015-12-12 11:21+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1449918820.0\n"
+"X-POOTLE-MTIME: 1449919312.0\n"
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
@@ -13897,8 +13897,8 @@ msgstr "http://localservice1/?url={url}&title={title}"
 #: apps/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] "{0} post on localservice1"
-msgstr[1] "{0} posts on localservice1"
+msgstr[0] "{0} bericht op localservice1"
+msgstr[1] "{0} berichten op localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:76
