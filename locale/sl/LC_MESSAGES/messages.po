@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-12 09:35+0000\n"
+"PO-Revision-Date: 2015-12-12 20:47+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1567,7 +1567,7 @@ msgstr[3] "Oglejte si vseh %(cnt)s ocen uporabnikov"
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr "Tega dodatka se še ni pregledalo."
+msgstr "Tega dodatka ni ocenil še nihče."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
@@ -4888,7 +4888,7 @@ msgstr "Uporabniške zbirke"
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
-msgstr "Pregledi uporabnikov"
+msgstr "Ocene uporabnikov"
 
 #: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479
 #: apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1163
@@ -6580,11 +6580,11 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
-"Če imate vprašanja glede urednikove redakcije kakega dodatka ali pa če bi "
-"radi prijavili kršitev pravil, pošljite prosim pošto na %(mail_editors)s. "
+"Če imate vprašanja glede urednikovega pregleda dodatka ali pa če bi radi "
+"prijavili kršitev pravil, pošljite e-pošto na %(mail_editors)s. "
 "<strong>Skoraj vsa sporočila o dodatkih spadajo v to kategorijo.</strong> "
-"Prosim, ne pozabite dodati povezave do vprašljivega dodatka in podrobne "
-"obrazložitve svojega vprašanja ali pripombe."
+"Prosim, ne pozabite dodati povezave do dodatka, na katerega se nanaša "
+"vprašanje, in podrobne obrazložitve svojega vprašanja ali pripombe."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6785,10 +6785,10 @@ msgid ""
 " moderation, but negative reviews will not be removed unless they provide "
 "false information."
 msgstr ""
-"Pregledi morajo upoštevati <a href=\"%(link_guidelines)s\">smernice za "
-"preglede</a>. Mnenja, ki se ne držijo teh smernic, se lahko označi za "
-"pregled s strani moderatorja, vendar se negativnih ocen ne bodo "
-"odstranjevalo, razen če vsebujejo lažne informacije."
+"Ocene morajo upoštevati <a href=\"%(link_guidelines)s\">smernice za "
+"ocene</a>. Ocene, ki se ne držijo teh smernic, se lahko označi za "
+"moderatorjev pregled, vendar se negativnih ocen ne bo odstranjevalo, razen "
+"če vsebujejo lažne informacije."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
@@ -6798,7 +6798,7 @@ msgid ""
 msgstr ""
 "Veliko razvijalcev ponuja mehanizem za podporo, na primer forum, skupino za "
 "razpravo ali e-poštni naslov. Priporočamo, da vprašanja za podporo zastavite"
-" na teh medijih, namesto med pregledi tega dodatka."
+" tam, namesto med ocenami tega dodatka."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
