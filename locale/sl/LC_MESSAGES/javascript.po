@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-05 13:57+0000\n"
+"PO-Revision-Date: 2015-12-12 09:12+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -126,7 +126,7 @@ msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
 
 #: static/js/common/upload-addon.js:436
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Vaša oddaja bo samodejno podpisana."
 
 #: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."

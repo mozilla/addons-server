@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-05 16:05+0000\n"
+"PO-Revision-Date: 2015-12-12 09:35+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1920,7 +1920,7 @@ msgstr "Zbirke"
 #: apps/amo/helpers.py:170 apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr "Slovarji in Jezikovni paketi"
+msgstr "Slovarji in jezikovni paketi"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:413
@@ -4949,7 +4949,7 @@ msgstr "Ob predaji je prišlo do napake."
 
 #: apps/devhub/views.py:836 apps/signing/views.py:64
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Te vrste dodatka ne morete oddati"
 
 #: apps/devhub/views.py:1068 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
@@ -7427,10 +7427,10 @@ msgid ""
 "way to get user testing and feedback without going through the longer, more "
 "thorough review process. We aim to complete these reviews in under 3 days."
 msgstr ""
-"Predhodni pregledi so primerni za eksperimentalne dodatke in nudijo možnost,"
-" priti uporabniki dodatek testirajo in nudijo povratne informacije, ne da bi"
-" bilo zato potrebno iti skozi daljši, bolj temeljit proces pregleda. Naš "
-"cilj je te preglede opraviti v največ 3 dneh."
+"Predhodni pregledi so primerni za eksperimentalne dodatke in uporabnikom "
+"omogočajo testiranje dodatka in pošiljanje povratnih informacij, ne da bi "
+"bilo zato potrebno iti skozi daljši, temeljitejši proces pregleda. Naš cilj "
+"je te preglede opraviti v največ 3 dneh."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -8828,7 +8828,7 @@ msgstr "Upravljanje različice {0}"
 #: apps/devhub/templates/devhub/versions/edit.html:12
 #: apps/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
-msgstr "Status in različice"
+msgstr "Stanje in različice"
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
@@ -12321,7 +12321,7 @@ msgstr ""
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
-msgstr "Smeti ali druga vsebina, ki ni pregled"
+msgstr "Oglasi ali druga vsebina, ki ni ocena"
 
 #. part of a list (<li>)
 #: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
@@ -13406,7 +13406,7 @@ msgstr "Drugo (navedite)"
 
 #: apps/reviews/views.py:146
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Hvala, ta pregled je sedaj označen za postopek uredniške odobritve."
+msgstr "Hvala, ta ocena je sedaj označena za postopek uredniške odobritve."
 
 #: apps/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
@@ -13473,7 +13473,7 @@ msgstr "%(user)s <b>(Razvijalec)</b> dne %(date)s"
 #: apps/reviews/templates/reviews/review.html:50
 #: apps/reviews/templates/reviews/mobile/review_list.html:41
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Ta pregled je za prejšnjo različico dodatka ({0})."
+msgstr "Ta ocena je za prejšnjo različico dodatka ({0})."
 
 #: apps/reviews/templates/reviews/review.html:56
 msgid ""
@@ -13916,7 +13916,7 @@ msgstr "Deli to zbirko z drugimi"
 
 #: apps/signing/views.py:37
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Dodatka z ID-jem \"{}\" ni bilo mogoče najti."
 
 #: apps/signing/views.py:41
 msgid "You do not own this addon."
@@ -13968,7 +13968,7 @@ msgstr "po platformi"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr "po statusu dodatka"
+msgstr "po stanju dodatka"
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
@@ -14276,7 +14276,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "Status dodatka po datumu"
+msgstr "Stanje dodatka po datumu"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
@@ -14309,11 +14309,11 @@ msgid ""
 " Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Kdo so dnevni uporabniki?</h2> <p> Teme, nameščene s te strani, enkrat "
-"dnevno preverjajo posodobitve. Skupno število teh posodobitvenih pingov je "
-"znano kot Aktivni dnevni uporabniki. Dnevne uporabnike se lahko razčleni po "
-"različici dodatka, operacijskem sistemu, statusu dodatka, aplikaciji in "
-"območju. </p>"
+"<h2>Kdo so dnevni uporabniki?</h2> <p> Dodatki, nameščeni s te strani, "
+"enkrat dnevno preverjajo posodobitve. Skupno število teh preverjanj je znano"
+" kot Aktivni dnevni uporabniki. Dnevne uporabnike se lahko razčleni po "
+"različici dodatka, operacijskem sistemu, stanju dodatka, aplikaciji in "
+"jeziku. </p>"
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
