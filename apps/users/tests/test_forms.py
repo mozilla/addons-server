@@ -36,7 +36,7 @@ class TestSetPasswordForm(UserFormBase):
 
     def test_url_fail(self):
         r = self.client.get('/users/pwreset/junk/', follow=True)
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
 
         r = self.client.get('/en-US/firefox/users/pwreset/%s/12-345' %
                             self.uidb64)
@@ -81,9 +81,7 @@ class TestSetPasswordForm(UserFormBase):
         self.user_profile = UserProfile.objects.get(id='4043307')
 
         assert self.user_profile.check_password('testlonger')
-        eq_(self.user_profile.userlog_set
-                .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id)
-                .count(), 1)
+        assert self.user_profile.userlog_set .filter(activity_log__action=amo.LOG.CHANGE_PASSWORD.id) .count() == 1
 
 
 class TestPasswordResetForm(UserFormBase):
@@ -93,8 +91,7 @@ class TestPasswordResetForm(UserFormBase):
             reverse('password_reset_form'),
             {'email': 'someemail@somedomain.com'}
         )
-
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
         self.assert3xx(r, reverse('password_reset_done'))
 
     def test_request_success(self):
@@ -102,8 +99,7 @@ class TestPasswordResetForm(UserFormBase):
             reverse('password_reset_form'),
             {'email': self.user.email}
         )
-
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('Password reset') == 0
         assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
@@ -119,16 +115,15 @@ class TestPasswordResetForm(UserFormBase):
             reverse('password_reset_form'),
             {'email': self.user.email}
         )
-
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('Password reset') == 0
         assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
     def test_required_attrs(self):
         res = self.client.get(reverse('password_reset_form'))
         email_input = pq(res.content.decode('utf-8'))('#id_email')
-        eq_(email_input.attr('required'), 'required')
-        eq_(email_input.attr('aria-required'), 'true')
+        assert email_input.attr('required') == 'required'
+        assert email_input.attr('aria-required') == 'true'
 
 
 class TestUserDeleteForm(UserFormBase):
@@ -153,8 +148,8 @@ class TestUserDeleteForm(UserFormBase):
         # TODO XXX: Bug 593055
         #self.assertContains(r, "Profile Deleted")
         u = UserProfile.objects.get(id=4043307)
-        eq_(u.deleted, True)
-        eq_(u.email, None)
+        assert u.deleted is True
+        assert u.email is None
 
     @patch('users.models.UserProfile.is_developer')
     def test_developer_attempt(self, f):
@@ -248,12 +243,12 @@ class TestUserEditForm(UserFormBase):
         # Lang is already set: don't change it.
         res = self.client.get(self.url)
         form = res.context['form']
-        eq_(form.initial['lang'], 'en-US')
+        assert form.initial['lang'] == 'en-US'
 
         with self.activate('fr'):
             res = self.client.get(reverse('users.edit'))
             form = res.context['form']
-            eq_(form.initial['lang'], 'en-US')
+            assert form.initial['lang'] == 'en-US'
 
         # Lang isn't set yet: initial value is set to the current locale.
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -262,18 +257,18 @@ class TestUserEditForm(UserFormBase):
 
         res = self.client.get(self.url)
         form = res.context['form']
-        eq_(form.initial['lang'], 'en-US')
+        assert form.initial['lang'] == 'en-US'
 
         with self.activate('fr'):
             res = self.client.get(reverse('users.edit'))
             form = res.context['form']
-            eq_(form.initial['lang'], 'fr')
+            assert form.initial['lang'] == 'fr'
 
     def test_required_attrs(self):
         res = self.client.get(self.url)
         username_input = pq(res.content.decode('utf-8'))('#id_username')
-        eq_(username_input.attr('required'), 'required')
-        eq_(username_input.attr('aria-required'), 'true')
+        assert username_input.attr('required') == 'required'
+        assert username_input.attr('aria-required') == 'true'
 
     def test_existing_email(self):
         data = {'email': 'testo@example.com'}
@@ -292,9 +287,8 @@ class TestAdminUserEditForm(UserFormBase):
 
     def test_delete_link(self):
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('a.delete').attr('href'),
-            reverse('admin:users_userprofile_delete', args=[self.user.id]))
+        assert r.status_code == 200
+        assert pq(r.content)('a.delete').attr('href') == reverse('admin:users_userprofile_delete', args=[self.user.id])
 
 
 class TestUserLoginForm(UserFormBase):
@@ -331,16 +325,14 @@ class TestUserLoginForm(UserFormBase):
         url = self._get_login_url()
         r = self.client.post(url, {'username': user.email,
                                    'password': 'password'}, follow=True)
-        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
-            user.display_name)
-        eq_(pq(r.content)('.account .user').attr('title'), user.email)
+        assert pq(r.content.decode('utf-8'))('.account .user').text() == user.display_name
+        assert pq(r.content)('.account .user').attr('title') == user.email
 
         r = self.client.post(url, {'username': user.email,
                                    'password': 'password',
                                    'rememberme': 1}, follow=True)
-        eq_(pq(r.content.decode('utf-8'))('.account .user').text(),
-            user.display_name)
-        eq_(pq(r.content)('.account .user').attr('title'), user.email)
+        assert pq(r.content.decode('utf-8'))('.account .user').text() == user.display_name
+        assert pq(r.content)('.account .user').attr('title') == user.email
         # Subtract 100 to give some breathing room
         age = settings.SESSION_COOKIE_AGE - 100
         assert self.client.session.get_expiry_age() > age
@@ -389,8 +381,8 @@ class TestUserLoginForm(UserFormBase):
     def test_required_attrs(self):
         res = self.client.get(self._get_login_url())
         username_input = pq(res.content.decode('utf-8'))('#id_username')
-        eq_(username_input.attr('required'), 'required')
-        eq_(username_input.attr('aria-required'), 'true')
+        assert username_input.attr('required') == 'required'
+        assert username_input.attr('aria-required') == 'true'
 
     def test_disabled_account(self):
         url = self._get_login_url()
@@ -409,9 +401,9 @@ class TestUserLoginForm(UserFormBase):
         self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                'password': 'password'}, follow=True)
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        eq_(u.failed_login_attempts, 0)
-        eq_(u.last_login_attempt_ip, '127.0.0.1')
-        eq_(u.last_login_ip, '127.0.0.1')
+        assert u.failed_login_attempts == 0
+        assert u.last_login_attempt_ip == '127.0.0.1'
+        assert u.last_login_ip == '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
 
     def test_failed_login_logging(self):
@@ -422,8 +414,8 @@ class TestUserLoginForm(UserFormBase):
         self.client.post(url, {'username': 'jbalogh@mozilla.com',
                                'password': 'wrongpassword'})
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        eq_(u.failed_login_attempts, 4)
-        eq_(u.last_login_attempt_ip, '127.0.0.1')
+        assert u.failed_login_attempts == 4
+        assert u.last_login_attempt_ip == '127.0.0.1'
         assert u.last_login_ip != '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
 
@@ -465,7 +457,7 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'email',
                              'User profile with this Email already exists.')
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_set_unmatched_passwords(self):
         data = {'email': 'john.connor@sky.net',
@@ -474,7 +466,7 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'password2',
                              'The passwords did not match.')
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_invalid_username(self):
         data = {'email': 'testo@example.com',
@@ -580,7 +572,7 @@ class TestUserRegisterForm(UserFormBase):
         u = UserProfile.objects.get(email='john.connor@sky.net')
 
         assert u.confirmationcode
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('Please confirm your email') == 0
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0

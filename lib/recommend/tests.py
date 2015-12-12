@@ -10,7 +10,7 @@ pytestmark = pytest.mark.django_db
 
 def test_symmetric_diff_count():
     def check(a, b, val):
-        eq_(recommend.symmetric_diff_count(a, b), val)
+        assert recommend.symmetric_diff_count(a, b) == val
     vals = [
         ([], [], 0),
         ([], [1], 1),
@@ -34,4 +34,4 @@ def test_symmetric_diff_count():
 
 # The algorithm is in flux so this is minimal coverage.
 def test_similarity():
-    eq_(1 / 2., recommend.similarity([1], [1, 2]))
+    assert 1 / 2. == recommend.similarity([1], [1, 2])

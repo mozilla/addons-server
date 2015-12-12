@@ -26,8 +26,8 @@ u = u'Ελληνικά'
 
 
 def test_slug_validator():
-    eq_(slug_validator(u.lower()), None)
-    eq_(slug_validator('-'.join([u.lower(), u.lower()])), None)
+    assert slug_validator(u.lower()) is None
+    assert slug_validator('-'.join([u.lower(), u.lower()])) is None
     assert_raises(ValidationError, slug_validator, '234.add')
     assert_raises(ValidationError, slug_validator, 'a a a')
     assert_raises(ValidationError, slug_validator, 'tags/')
@@ -38,7 +38,7 @@ def test_slugify():
     y = ' - '.join([u, u])
 
     def check(x, y):
-        eq_(slugify(x), y)
+        assert slugify(x) == y
         slug_validator(slugify(x))
     s = [('xx x  - "#$@ x', 'xx-x-x'),
          (u'Bän...g (bang)', u'bäng-bang'),
@@ -103,7 +103,7 @@ def test_to_language():
              ('el', 'el'))
 
     def check(a, b):
-        eq_(to_language(a), b)
+        assert to_language(a) == b
     for a, b in tests:
         yield check, a, b
 
@@ -118,7 +118,7 @@ def test_find_language():
              ('xxx', None))
 
     def check(a, b):
-        eq_(find_language(a), b)
+        assert find_language(a) == b
     for a, b in tests:
         yield check, a, b
 
@@ -129,10 +129,9 @@ def test_find_language():
 def test_spotcheck():
     """Check a couple product-details files to make sure they're available."""
     languages = product_details.languages
-    eq_(languages['el']['English'], 'Greek')
-    eq_(languages['el']['native'], u'Ελληνικά')
-
-    eq_(product_details.firefox_history_major_releases['1.0'], '2004-11-09')
+    assert languages['el']['English'] == 'Greek'
+    assert languages['el']['native'] == u'Ελληνικά'
+    assert product_details.firefox_history_major_releases['1.0'] == '2004-11-09'
 
 
 def test_no_translation():
@@ -170,21 +169,21 @@ class TestLocalFileStorage(BaseTestCase):
         with self.stor.open(fn, 'w') as fd:
             fd.write('stuff')
         with self.stor.open(fn, 'r') as fd:
-            eq_(fd.read(), 'stuff')
+            assert fd.read() == 'stuff'
 
     def test_non_ascii_filename(self):
         fn = os.path.join(self.tmp, u'Ivan Krsti\u0107.txt')
         with self.stor.open(fn, 'w') as fd:
             fd.write('stuff')
         with self.stor.open(fn, 'r') as fd:
-            eq_(fd.read(), 'stuff')
+            assert fd.read() == 'stuff'
 
     def test_non_ascii_content(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
         with self.stor.open(fn, 'w') as fd:
             fd.write(u'Ivan Krsti\u0107.txt'.encode('utf8'))
         with self.stor.open(fn, 'r') as fd:
-            eq_(fd.read().decode('utf8'), u'Ivan Krsti\u0107.txt')
+            assert fd.read().decode('utf8') == u'Ivan Krsti\u0107.txt'
 
     def test_make_file_dirs(self):
         dp = os.path.join(self.tmp, 'path', 'to')
@@ -207,13 +206,13 @@ class TestLocalFileStorage(BaseTestCase):
         with self.stor.open(os.path.join(dp, 'file.txt'), 'w') as fd:
             fd.write('stuff')
         with self.stor.open(os.path.join(dp, 'file.txt'), 'r') as fd:
-            eq_(fd.read(), 'stuff')
+            assert fd.read() == 'stuff'
 
     def test_delete_empty_dir(self):
         dp = os.path.join(self.tmp, 'path')
         os.mkdir(dp)
         self.stor.delete(dp)
-        eq_(os.path.exists(dp), False)
+        assert os.path.exists(dp) is False
 
     @raises(OSError)
     def test_cannot_delete_non_empty_dir(self):
@@ -228,8 +227,8 @@ class TestLocalFileStorage(BaseTestCase):
         with self.stor.open(fn, 'w') as fp:
             fp.write('stuff')
         self.stor.delete(fn)
-        eq_(os.path.exists(fn), False)
-        eq_(os.path.exists(dp), True)
+        assert os.path.exists(fn) is False
+        assert os.path.exists(dp) is True
 
 
 class TestCacheNamespaces(BaseTestCase):
@@ -242,13 +241,12 @@ class TestCacheNamespaces(BaseTestCase):
     @mock.patch('amo.utils.epoch')
     def test_no_preexisting_key(self, epoch_mock):
         epoch_mock.return_value = 123456
-        eq_(cache_ns_key(self.namespace), '123456:ns:%s' % self.namespace)
+        assert cache_ns_key(self.namespace) == '123456:ns:%s' % self.namespace
 
     @mock.patch('amo.utils.epoch')
     def test_no_preexisting_key_incr(self, epoch_mock):
         epoch_mock.return_value = 123456
-        eq_(cache_ns_key(self.namespace, increment=True),
-            '123456:ns:%s' % self.namespace)
+        assert cache_ns_key(self.namespace, increment=True) == '123456:ns:%s' % self.namespace
 
     @mock.patch('amo.utils.epoch')
     def test_key_incr(self, epoch_mock):
@@ -256,8 +254,8 @@ class TestCacheNamespaces(BaseTestCase):
         cache_ns_key(self.namespace)  # Sets ns to 123456
         ns_key = cache_ns_key(self.namespace, increment=True)
         expected = '123457:ns:%s' % self.namespace
-        eq_(ns_key, expected)
-        eq_(cache_ns_key(self.namespace), expected)
+        assert ns_key == expected
+        assert cache_ns_key(self.namespace) == expected
 
 
 def test_escape_all():
@@ -265,7 +263,7 @@ def test_escape_all():
     y = ' - '.join([u, u])
 
     def check(x, y):
-        eq_(escape_all(x), y)
+        assert escape_all(x) == y
 
     # All I ask: Don't crash me, bro.
     s = [
@@ -287,15 +285,10 @@ def test_escape_all():
 @mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'http://outgoing.firefox.com'
-
-    eq_(escape_all('http://firefox.com', linkify_only_full=True),
-        '<a href="http://outgoing.firefox.com">http://firefox.com</a>')
-    eq_(escape_all('http://firefox.com', linkify_only_full=False),
-        '<a href="http://outgoing.firefox.com">http://firefox.com</a>')
-
-    eq_(escape_all('firefox.com', linkify_only_full=True), 'firefox.com')
-    eq_(escape_all('firefox.com', linkify_only_full=False),
-        '<a href="http://outgoing.firefox.com">firefox.com</a>')
+    assert escape_all('http://firefox.com', linkify_only_full=True) == '<a href="http://outgoing.firefox.com">http://firefox.com</a>'
+    assert escape_all('http://firefox.com', linkify_only_full=False) == '<a href="http://outgoing.firefox.com">http://firefox.com</a>'
+    assert escape_all('firefox.com', linkify_only_full=True) == 'firefox.com'
+    assert escape_all('firefox.com', linkify_only_full=False) == '<a href="http://outgoing.firefox.com">firefox.com</a>'
 
 
 def test_no_jinja_autoescape():
@@ -303,7 +296,7 @@ def test_no_jinja_autoescape():
     tpl = '{{ val }}'
     ctx = {'val': val}
     template = jingo.env.from_string(tpl)
-    eq_(template.render(ctx), 'some double quote: &#34; and a &lt;')
+    assert template.render(ctx) == 'some double quote: &#34; and a &lt;'
     with no_jinja_autoescape():
         template = jingo.env.from_string(tpl)
-        eq_(template.render(ctx), 'some double quote: " and a <')
+        assert template.render(ctx) == 'some double quote: " and a <'

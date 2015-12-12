@@ -72,9 +72,9 @@ class TestFFmpegVideo(amo.tests.TestCase):
 
     def test_meta(self):
         self.video.get_meta()
-        eq_(self.video.meta['formats'], ['matroska', 'webm'])
-        eq_(self.video.meta['duration'], 10.0)
-        eq_(self.video.meta['dimensions'], (640, 360))
+        assert self.video.meta['formats'] == ['matroska', 'webm']
+        assert self.video.meta['duration'] == 10.0
+        assert self.video.meta['dimensions'] == (640, 360)
 
     def test_valid(self):
         self.video.get_meta()
@@ -83,7 +83,7 @@ class TestFFmpegVideo(amo.tests.TestCase):
     def test_dev_valid(self):
         self.video._call.return_value = other_output
         self.video.get_meta()
-        eq_(self.video.meta['formats'], ['webm'])
+        assert self.video.meta['formats'] == ['webm']
 
     # These tests can be a little bit slow, to say the least so they are
     # skipped. Un-skip them if you want.
@@ -116,7 +116,7 @@ class TestBadFFmpegVideo(amo.tests.TestCase):
         self.video.get_meta()
 
     def test_meta(self):
-        eq_(self.video.meta['formats'], ['image2'])
+        assert self.video.meta['formats'] == ['image2']
         assert not self.video.is_valid()
 
     def test_valid(self):
@@ -141,8 +141,8 @@ class TestTotemVideo(amo.tests.TestCase):
     def test_meta(self):
         self.video._call_indexer.return_value = totem_indexer_good
         self.video.get_meta()
-        eq_(self.video.meta['formats'], 'VP8')
-        eq_(self.video.meta['duration'], '10')
+        assert self.video.meta['formats'] == 'VP8'
+        assert self.video.meta['duration'] == '10'
 
     def test_valid(self):
         self.video._call_indexer = Mock()
@@ -183,11 +183,11 @@ class TestTotemVideo(amo.tests.TestCase):
 def test_choose(ffmpeg_, totem_):
     ffmpeg_.return_value = True
     totem_.return_value = True
-    eq_(get_library(), totem.Video)
+    assert get_library() == totem.Video
     totem_.return_value = False
-    eq_(get_library(), ffmpeg.Video)
+    assert get_library() == ffmpeg.Video
     ffmpeg_.return_value = False
-    eq_(get_library(), None)
+    assert get_library() is None
 
 
 class TestTask(amo.tests.TestCase):

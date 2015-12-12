@@ -17,7 +17,7 @@ class TestManagement(amo.tests.TestCase):
         url = reverse('addons.detail_more', args=['a3615'])
         r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
-        eq_(len(doc('li.tag')), 4)
+        assert len(doc('li.tag')) == 4
         assert 'Tags' in [d.text for d in doc('h3')]
 
 

@@ -32,34 +32,34 @@ def render(s, context={}):
 
 
 def test_strip_html():
-    eq_('Hey Brother!', render('{{ "Hey <b>Brother!</b>"|strip_html }}'))
+    assert 'Hey Brother!' == render('{{ "Hey <b>Brother!</b>"|strip_html }}')
 
 
 def test_currencyfmt():
-    eq_(helpers.currencyfmt(None, 'USD'), '')
-    eq_(helpers.currencyfmt(5, 'USD'), '$5.00')
+    assert helpers.currencyfmt(None, 'USD') == ''
+    assert helpers.currencyfmt(5, 'USD') == '$5.00'
 
 
 def test_strip_html_none():
-    eq_('', render('{{ a|strip_html }}', {'a': None}))
-    eq_('', render('{{ a|strip_html(True) }}', {'a': None}))
+    assert '' == render('{{ a|strip_html }}', {'a': None})
+    assert '' == render('{{ a|strip_html(True) }}', {'a': None})
 
 
 def test_strip_controls():
     # We want control codes like \x0c to disappear.
-    eq_('I ove you', helpers.strip_controls('I \x0cove you'))
+    assert 'I ove you' == helpers.strip_controls('I \x0cove you')
 
 
 def test_finalize():
     """We want None to show up as ''.  We do this in JINJA_CONFIG."""
-    eq_('', render('{{ x }}', {'x': None}))
+    assert '' == render('{{ x }}', {'x': None})
 
 
 def test_slugify_spaces():
     """We want slugify to preserve spaces, but not at either end."""
-    eq_(utils.slugify(' b ar '), 'b-ar')
-    eq_(utils.slugify(' b ar ', spaces=True), 'b ar')
-    eq_(utils.slugify(' b  ar ', spaces=True), 'b  ar')
+    assert utils.slugify(' b ar ') == 'b-ar'
+    assert utils.slugify(' b ar ', spaces=True) == 'b ar'
+    assert utils.slugify(' b  ar ', spaces=True) == 'b  ar'
 
 
 def test_page_title():
@@ -67,12 +67,12 @@ def test_page_title():
     request.APP = amo.THUNDERBIRD
     title = 'Oh hai!'
     s = render('{{ page_title("%s") }}' % title, {'request': request})
-    eq_(s, '%s :: Add-ons for Thunderbird' % title)
+    assert s == '%s :: Add-ons for Thunderbird' % title
 
     # pages without app should show a default
     request.APP = None
     s = render('{{ page_title("%s") }}' % title, {'request': request})
-    eq_(s, '%s :: Add-ons' % title)
+    assert s == '%s :: Add-ons' % title
 
     # Check the dirty unicodes.
     request.APP = amo.FIREFOX
@@ -94,22 +94,22 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
         s = render('{{ breadcrumbs() }}', {'request': self.req_noapp})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 1)
-        eq_(crumbs.text(), 'Add-ons')
-        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+        assert len(crumbs) == 1
+        assert crumbs.text() == 'Add-ons'
+        assert crumbs.attr('href') == urlresolvers.reverse('home')
 
     def test_with_app(self):
         s = render('{{ breadcrumbs() }}', {'request': self.req_app})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 1)
-        eq_(crumbs.text(), 'Add-ons for Firefox')
-        eq_(crumbs.attr('href'), urlresolvers.reverse('home'))
+        assert len(crumbs) == 1
+        assert crumbs.text() == 'Add-ons for Firefox'
+        assert crumbs.attr('href') == urlresolvers.reverse('home')
 
     def test_no_add_default(self):
         s = render('{{ breadcrumbs(add_default=False) }}',
                    {'request': self.req_app})
-        eq_(len(s), 0)
+        assert len(s) == 0
 
     def test_items(self):
         s = render("""{{ breadcrumbs([('/foo', 'foo'),
@@ -118,11 +118,11 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.req_app})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 2)
-        eq_(crumbs.eq(0).text(), 'foo')
-        eq_(crumbs.eq(0).attr('href'), '/foo')
-        eq_(crumbs.eq(1).text(), 'bar')
-        eq_(crumbs.eq(1).attr('href'), '/bar')
+        assert len(crumbs) == 2
+        assert crumbs.eq(0).text() == 'foo'
+        assert crumbs.eq(0).attr('href') == '/foo'
+        assert crumbs.eq(1).text() == 'bar'
+        assert crumbs.eq(1).attr('href') == '/bar'
 
     def test_items_with_default(self):
         s = render("""{{ breadcrumbs([('/foo', 'foo'),
@@ -130,11 +130,11 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.req_app})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 3)
-        eq_(crumbs.eq(1).text(), 'foo')
-        eq_(crumbs.eq(1).attr('href'), '/foo')
-        eq_(crumbs.eq(2).text(), 'bar')
-        eq_(crumbs.eq(2).attr('href'), '/bar')
+        assert len(crumbs) == 3
+        assert crumbs.eq(1).text() == 'foo'
+        assert crumbs.eq(1).attr('href') == '/foo'
+        assert crumbs.eq(2).text() == 'bar'
+        assert crumbs.eq(2).attr('href') == '/bar'
 
     def test_truncate(self):
         s = render("""{{ breadcrumbs([('/foo', 'abcd efghij'),],
@@ -142,7 +142,7 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.req_app})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_('abcd ...', crumbs.eq(1).text())
+        assert 'abcd ...' == crumbs.eq(1).text()
 
     def test_xss(self):
         s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
@@ -176,19 +176,19 @@ def test_urlparams():
 
     # Adding a query.
     s = render('{{ base_frag|urlparams(sort=sort) }}', c)
-    eq_(s, '%s?sort=name#hash' % url)
+    assert s == '%s?sort=name#hash' % url
 
     # Adding a fragment.
     s = render('{{ base|urlparams(frag) }}', c)
-    eq_(s, '%s#frag' % url)
+    assert s == '%s#frag' % url
 
     # Replacing a fragment.
     s = render('{{ base_frag|urlparams(frag) }}', c)
-    eq_(s, '%s#frag' % url)
+    assert s == '%s#frag' % url
 
     # Adding query and fragment.
     s = render('{{ base_frag|urlparams(frag, sort=sort) }}', c)
-    eq_(s, '%s?sort=name#frag' % url)
+    assert s == '%s?sort=name#frag' % url
 
     # Adding query with existing params.
     s = render('{{ base_query|urlparams(frag, sort=sort) }}', c)
@@ -196,15 +196,15 @@ def test_urlparams():
 
     # Replacing a query param.
     s = render('{{ base_query|urlparams(frag, x="z") }}', c)
-    eq_(s, '%s?x=z#frag' % url)
+    assert s == '%s?x=z#frag' % url
 
     # Params with value of None get dropped.
     s = render('{{ base|urlparams(sort=None) }}', c)
-    eq_(s, url)
+    assert s == url
 
     # Removing a query
     s = render('{{ base_query|urlparams(x=None) }}', c)
-    eq_(s, url)
+    assert s == url
 
 
 def test_urlparams_unicode():
@@ -215,17 +215,17 @@ def test_urlparams_unicode():
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
-    eq_(s, '2009-12-25T18:11:12Z')
+    assert s == '2009-12-25T18:11:12Z'
     s = render('{{ d|isotime }}', {'d': None})
-    eq_(s, '')
+    assert s == ''
 
 
 def test_epoch():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|epoch }}', {'d': time})
-    eq_(s, '1261764672')
+    assert s == '1261764672'
     s = render('{{ d|epoch }}', {'d': None})
-    eq_(s, '')
+    assert s == ''
 
 
 def test_locale_url():
@@ -234,7 +234,7 @@ def test_locale_url():
     prefixer = urlresolvers.Prefixer(request)
     urlresolvers.set_url_prefix(prefixer)
     s = render('{{ locale_url("mobile") }}')
-    eq_(s, '/z/de/mobile')
+    assert s == '/z/de/mobile'
 
 
 def test_external_url():
@@ -246,7 +246,7 @@ def test_external_url():
     try:
         myurl = 'http://example.com'
         s = render('{{ "%s"|external_url }}' % myurl)
-        eq_(s, urlresolvers.get_outgoing_url(myurl))
+        assert s == urlresolvers.get_outgoing_url(myurl)
     finally:
         settings.REDIRECT_URL = redirect_url
         settings.REDIRECT_SECRET_KEY = secretkey
@@ -257,9 +257,7 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
     res = urlresolvers.linkify_bounce_url_callback({'href': 'foo'})
-
-    # Make sure get_outgoing_url was called.
-    eq_(res, {'href': 'bar'})
+    assert res == {'href': 'bar'}
     mock_get_outgoing_url.assert_called_with('foo')
 
 
@@ -274,7 +272,7 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     # Without nofollow.
     res = urlresolvers.linkify_with_outgoing('a text http://example.com link',
                                              nofollow=False)
-    eq_(res, 'a text <a href="bar">http://example.com</a> link')
+    assert res == 'a text <a href="bar">http://example.com</a> link'
 
     # With nofollow (default).
     res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
@@ -299,7 +297,7 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     res = urlresolvers.linkify_with_outgoing(
         'a markup <a href="http://example.com">link</a> with text',
         nofollow=False)
-    eq_(res, 'a markup <a href="bar">link</a> with text')
+    assert res == 'a markup <a href="bar">link</a> with text'
 
     # With nofollow (default).
     res = urlresolvers.linkify_with_outgoing(
@@ -341,31 +339,31 @@ class TestLicenseLink(amo.tests.TestCase):
         for lic, ex in expected.items():
             res = render('{{ license_link(lic) }}', {'lic': lic})
             res = ''.join([s.strip() for s in res.split('\n')])
-            eq_(res, ex)
+            assert res == ex
 
     def test_theme_license_link(self):
         s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_COPYRIGHT})
 
         ul = PyQuery(s)('.license')
-        eq_(ul.find('.icon').length, 1)
-        eq_(ul.find('.icon.copyr').length, 1)
+        assert ul.find('.icon').length == 1
+        assert ul.find('.icon.copyr').length == 1
 
         text = ul.find('.text')
-        eq_(text.find('a').length, 0)
-        eq_(text.text(), 'All Rights Reserved')
+        assert text.find('a').length == 0
+        assert text.text() == 'All Rights Reserved'
 
         s = render('{{ license_link(lic) }}', {'lic': amo.LICENSE_CC_BY_NC_SA})
 
         ul = PyQuery(s)('.license')
-        eq_(ul.find('.icon').length, 3)
-        eq_(ul.find('.icon.cc-attrib').length, 1)
-        eq_(ul.find('.icon.cc-noncom').length, 1)
-        eq_(ul.find('.icon.cc-share').length, 1)
+        assert ul.find('.icon').length == 3
+        assert ul.find('.icon.cc-attrib').length == 1
+        assert ul.find('.icon.cc-noncom').length == 1
+        assert ul.find('.icon.cc-share').length == 1
 
         link = ul.find('.text a')
-        eq_(link.find('a').length, 0)
-        eq_(link.text(), 'Some rights reserved')
-        eq_(link.attr('href'), amo.LICENSE_CC_BY_NC_SA.url)
+        assert link.find('a').length == 0
+        assert link.text() == 'Some rights reserved'
+        assert link.attr('href') == amo.LICENSE_CC_BY_NC_SA.url
 
     def test_license_link_xss(self):
         mit = License.objects.create(
@@ -392,7 +390,7 @@ class TestLicenseLink(amo.tests.TestCase):
         for lic, ex in expected.items():
             res = render('{{ license_link(lic) }}', {'lic': lic})
             res = ''.join([s.strip() for s in res.split('\n')])
-            eq_(res, ex)
+            assert res == ex
 
 
 def get_image_path(name):
@@ -440,21 +438,20 @@ def test_jinja_trans_monkeypatch():
 
 
 def test_absolutify():
-    eq_(helpers.absolutify('/woo'), urljoin(settings.SITE_URL, '/woo'))
-    eq_(helpers.absolutify('https://addons.mozilla.org'),
-        'https://addons.mozilla.org')
+    assert helpers.absolutify('/woo') == urljoin(settings.SITE_URL, '/woo')
+    assert helpers.absolutify('https://addons.mozilla.org') == 'https://addons.mozilla.org'
 
 
 def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
-    eq_(helpers.timesince(month_ago), u'1 month ago')
-    eq_(helpers.timesince(None), u'')
+    assert helpers.timesince(month_ago) == u'1 month ago'
+    assert helpers.timesince(None) == u''
 
 
 def test_f():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
-    eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
+    assert render(u'{{ "foo {0}"|f("baré") }}') == u'foo baré'
 
 
 def test_inline_css(monkeypatch):
@@ -479,12 +476,12 @@ class TestStoragePath(amo.tests.TestCase):
     def test_without_settings(self):
         del settings.ADDONS_PATH
         path = helpers.user_media_path('addons')
-        eq_(path, '/path/addons')
+        assert path == '/path/addons'
 
     @override_settings(ADDONS_PATH="/another/path/")
     def test_with_settings(self):
         path = helpers.user_media_path('addons')
-        eq_(path, '/another/path/')
+        assert path == '/another/path/'
 
 
 class TestMediaUrl(amo.tests.TestCase):
@@ -494,19 +491,19 @@ class TestMediaUrl(amo.tests.TestCase):
         del settings.USERPICS_URL
         settings.MEDIA_URL = '/mediapath/'
         url = helpers.user_media_url('userpics')
-        eq_(url, '/mediapath/userpics/')
+        assert url == '/mediapath/userpics/'
 
 
 class TestIdToPath(amo.tests.TestCase):
 
     def test_with_1_digit(self):
-        eq_(helpers.id_to_path(1), '1/1/1')
+        assert helpers.id_to_path(1) == '1/1/1'
 
     def test_with_2_digits(self):
-        eq_(helpers.id_to_path(12), '2/12/12')
+        assert helpers.id_to_path(12) == '2/12/12'
 
     def test_with_3_digits(self):
-        eq_(helpers.id_to_path(123), '3/23/123')
+        assert helpers.id_to_path(123) == '3/23/123'
 
     def test_with_many_digits(self):
-        eq_(helpers.id_to_path(123456789), '9/89/123456789')
+        assert helpers.id_to_path(123456789) == '9/89/123456789'

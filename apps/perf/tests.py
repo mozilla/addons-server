@@ -22,32 +22,32 @@ class TestModels(amo.tests.TestCase):
     def test_perf_over(self, get_baseline):
         get_baseline.return_value = 1.0
         self.result.average = 2.0
-        eq_(self.result.startup_is_too_slow(), True)
+        assert self.result.startup_is_too_slow() is True
 
     @patch.object(settings, 'PERF_THRESHOLD', 101)
     @patch('perf.models.Performance.get_baseline')
     def test_perf_under(self, get_baseline):
         get_baseline.return_value = 1.0
         self.result.average = 2.0
-        eq_(self.result.startup_is_too_slow(), False)
+        assert self.result.startup_is_too_slow() is False
 
     @patch.object(settings, 'PERF_THRESHOLD', 1)
     @patch('perf.models.Performance.get_baseline')
     def test_perf_not_slow(self, get_baseline):
         get_baseline.return_value = 100.0
         self.result.average = 90.0  # Not possible, just to check negatives
-        eq_(self.result.startup_is_too_slow(), False)
+        assert self.result.startup_is_too_slow() is False
 
     @patch.object(settings, 'PERF_THRESHOLD', 25)
     @patch('perf.models.Performance.get_baseline')
     def test_perf_barely_slow(self, get_baseline):
         get_baseline.return_value = 100.0
         self.result.average = 126.0
-        eq_(self.result.startup_is_too_slow(), True)
+        assert self.result.startup_is_too_slow() is True
 
     def test_baseline(self):
-        eq_(self.result.get_baseline(), 1.2)
+        assert self.result.get_baseline() == 1.2
 
     def test_missing_baseline(self):
         Performance.objects.filter(addon=None).delete()
-        eq_(self.result.get_baseline(), self.result.average)
+        assert self.result.get_baseline() == self.result.average

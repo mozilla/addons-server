@@ -47,8 +47,8 @@ class MiddlewareTest(BaseTestCase):
 
         for path, location in redirections.items():
             response = self.middleware.process_request(self.rf.get(path))
-            eq_(response.status_code, 301)
-            eq_(response['Location'], location)
+            assert response.status_code == 301
+            assert response['Location'] == location
 
     def process(self, *args, **kwargs):
         request = self.rf.get(*args, **kwargs)
@@ -65,13 +65,13 @@ class MiddlewareTest(BaseTestCase):
 
     def test_vary(self):
         response = self.process('/')
-        eq_(response['Vary'], 'Accept-Language, User-Agent')
+        assert response['Vary'] == 'Accept-Language, User-Agent'
 
         response = self.process('/firefox')
-        eq_(response['Vary'], 'Accept-Language')
+        assert response['Vary'] == 'Accept-Language'
 
         response = self.process('/en-US')
-        eq_(response['Vary'], 'User-Agent')
+        assert response['Vary'] == 'User-Agent'
 
         response = self.process('/en-US/thunderbird')
         assert 'Vary' not in response
@@ -83,7 +83,7 @@ class MiddlewareTest(BaseTestCase):
     def test_get_app(self):
         def check(url, expected, ua):
             response = self.process(url, HTTP_USER_AGENT=ua)
-            eq_(response['Location'], expected)
+            assert response['Location'] == expected
 
         check('/en-US/', '/en-US/firefox/', 'Firefox')
         check('/de/', '/de/mobile/', 'Fennec')
@@ -142,7 +142,7 @@ class TestPrefixer(BaseTestCase):
             rf = RequestFactory()
             prefixer = urlresolvers.Prefixer(rf.get(url))
             actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
-            eq_(actual, (locale, app, path))
+            assert actual == (locale, app, path)
 
         split_eq('/', '', '', '')
         split_eq('/en-US', 'en-US', '', '')
@@ -162,75 +162,73 @@ class TestPrefixer(BaseTestCase):
     def test_fix(self):
         rf = RequestFactory()
         prefixer = urlresolvers.Prefixer(rf.get('/'))
-
-        eq_(prefixer.fix('/'), '/en-US/firefox/')
-        eq_(prefixer.fix('/foo'), '/en-US/firefox/foo')
-        eq_(prefixer.fix('/foo/'), '/en-US/firefox/foo/')
-        eq_(prefixer.fix('/admin'), '/en-US/admin')
-        eq_(prefixer.fix('/admin/'), '/en-US/admin/')
+        assert prefixer.fix('/') == '/en-US/firefox/'
+        assert prefixer.fix('/foo') == '/en-US/firefox/foo'
+        assert prefixer.fix('/foo/') == '/en-US/firefox/foo/'
+        assert prefixer.fix('/admin') == '/en-US/admin'
+        assert prefixer.fix('/admin/') == '/en-US/admin/'
 
         prefixer.locale = 'de'
         prefixer.app = 'thunderbird'
-
-        eq_(prefixer.fix('/'), '/de/thunderbird/')
-        eq_(prefixer.fix('/foo'), '/de/thunderbird/foo')
-        eq_(prefixer.fix('/foo/'), '/de/thunderbird/foo/')
-        eq_(prefixer.fix('/admin'), '/de/admin')
-        eq_(prefixer.fix('/admin/'), '/de/admin/')
+        assert prefixer.fix('/') == '/de/thunderbird/'
+        assert prefixer.fix('/foo') == '/de/thunderbird/foo'
+        assert prefixer.fix('/foo/') == '/de/thunderbird/foo/'
+        assert prefixer.fix('/admin') == '/de/admin'
+        assert prefixer.fix('/admin/') == '/de/admin/'
 
     def test_reverse(self):
         # Make sure it works outside the request.
         urlresolvers.clean_url_prefixes()  # Modified in BaseTestCase.
-        eq_(urlresolvers.reverse('home'), '/')
+        assert urlresolvers.reverse('home') == '/'
 
         # With a request, locale and app prefixes work.
         Client().get('/')
-        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):
         func, args, kwargs = urlresolvers.resolve('/')
-        eq_(func.__name__, 'home')
+        assert func.__name__ == 'home'
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
         func, args, kwargs = urlresolvers.resolve('/en-US/firefox/')
-        eq_(func.__name__, 'home')
+        assert func.__name__ == 'home'
 
     def test_script_name(self):
         rf = RequestFactory()
         request = rf.get('/foo', SCRIPT_NAME='/oremj')
         prefixer = urlresolvers.Prefixer(request)
-        eq_(prefixer.fix(prefixer.shortened_path), '/oremj/en-US/firefox/foo')
+        assert prefixer.fix(prefixer.shortened_path) == '/oremj/en-US/firefox/foo'
 
         # Now check reverse.
         urlresolvers.set_url_prefix(prefixer)
         set_script_prefix('/oremj')
-        eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
+        assert urlresolvers.reverse('home') == '/oremj/en-US/firefox/'
 
 
 class TestPrefixerActivate(amo.tests.TestCase):
 
     def test_activate_locale(self):
         with self.activate(locale='fr'):
-            eq_(urlresolvers.reverse('home'), '/fr/firefox/')
-        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+            assert urlresolvers.reverse('home') == '/fr/firefox/'
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_activate_app(self):
         with self.activate(app='mobile'):
-            eq_(urlresolvers.reverse('home'), '/en-US/mobile/')
-        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+            assert urlresolvers.reverse('home') == '/en-US/mobile/'
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_activate_app_locale(self):
         with self.activate(locale='de', app='thunderbird'):
-            eq_(urlresolvers.reverse('home'), '/de/thunderbird/')
-        eq_(urlresolvers.reverse('home'), '/en-US/firefox/')
+            assert urlresolvers.reverse('home') == '/de/thunderbird/'
+        assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
 
 def test_redirect():
     """Make sure django.shortcuts.redirect uses our reverse."""
     Client().get('/')
     redirect = shortcuts.redirect('home')
-    eq_(redirect['Location'], '/en-US/firefox/')
+    assert redirect['Location'] == '/en-US/firefox/'
 
 
 def test_outgoing_url():
@@ -244,16 +242,11 @@ def test_outgoing_url():
     try:
         myurl = 'http://example.com'
         s = urlresolvers.get_outgoing_url(myurl)
-
-        # Regular URLs must be escaped.
-        eq_(s,
-            'http://example.net/bc7d4bb262c9f0b0f6d3412ede7d3252c2e311bb1d55f6'
-            '2315f636cb8a70913b/'
-            'http%3A//example.com')
+        assert s == 'http://example.net/bc7d4bb262c9f0b0f6d3412ede7d3252c2e311bb1d55f6' '2315f636cb8a70913b/' 'http%3A//example.com'
 
         # No double-escaping of outgoing URLs.
         s2 = urlresolvers.get_outgoing_url(s)
-        eq_(s, s2)
+        assert s == s2
 
         evil = settings.REDIRECT_URL.rstrip('/') + '.evildomain.com'
         s = urlresolvers.get_outgoing_url(evil)
@@ -261,7 +254,7 @@ def test_outgoing_url():
                          'No subdomain abuse of double-escaping protection.')
 
         nice = 'http://nicedomain.com/lets/go/go/go'
-        eq_(nice, urlresolvers.get_outgoing_url(nice))
+        assert nice == urlresolvers.get_outgoing_url(nice)
 
     finally:
         settings.REDIRECT_URL = redirect_url
@@ -291,7 +284,7 @@ def test_outgoing_url_query_params():
 
 
 def check(x, y):
-    return eq_(urlresolvers.lang_from_accept_header(x), y)
+    return urlresolvers.lang_from_accept_header(x) == y
 
 
 def test_parse_accept_language():

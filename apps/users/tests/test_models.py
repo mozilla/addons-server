@@ -35,18 +35,17 @@ class TestUserProfile(amo.tests.TestCase):
 
     def test_anonymize(self):
         u = UserProfile.objects.get(id='4043307')
-        eq_(u.email, 'jbalogh@mozilla.com')
+        assert u.email == 'jbalogh@mozilla.com'
         u.anonymize()
         x = UserProfile.objects.get(id='4043307')
-        eq_(x.email, None)
+        assert x.email is None
 
     def test_email_confirmation_code(self):
         u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
-
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, 'Please confirm your email address')
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == 'Please confirm your email address'
         assert mail.outbox[0].body.find('%s/confirm/%s' %
                                         (u.id, u.confirmationcode)) > 0
 
@@ -55,17 +54,16 @@ class TestUserProfile(amo.tests.TestCase):
         u = UserProfile.objects.get(id='4043307')
         u.confirmationcode = 'blah'
         u.email_confirmation_code()
-
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, 'Please confirm your email address')
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == 'Please confirm your email address'
 
     def test_welcome_name(self):
         u1 = UserProfile(username='sc')
         u2 = UserProfile(username='sc', display_name="Sarah Connor")
         u3 = UserProfile()
-        eq_(u1.welcome_name, 'sc')
-        eq_(u2.welcome_name, 'Sarah Connor')
-        eq_(u3.welcome_name, '')
+        assert u1.welcome_name == 'sc'
+        assert u2.welcome_name == 'Sarah Connor'
+        assert u3.welcome_name == ''
 
     def test_add_admin_powers(self):
         u = UserProfile.objects.get(username='jbalogh')
@@ -126,8 +124,7 @@ class TestUserProfile(amo.tests.TestCase):
         new_reply.save()
 
         review_list = [r.pk for r in u.reviews]
-
-        eq_(len(review_list), 1)
+        assert len(review_list) == 1
         assert new_review.pk in review_list, (
             'Original review must show up in review list.')
         assert new_reply.pk not in review_list, (
@@ -138,7 +135,7 @@ class TestUserProfile(amo.tests.TestCase):
         AddonUser.objects.create(addon_id=3615, user_id=2519, listed=True)
         u = UserProfile.objects.get(id=2519)
         addons = u.addons_listed.values_list('id', flat=True)
-        eq_(sorted(addons), [3615])
+        assert sorted(addons) == [3615]
 
     def test_addons_not_listed(self):
         """Make sure user is not listed when another is."""
@@ -155,7 +152,7 @@ class TestUserProfile(amo.tests.TestCase):
         addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons()
-        eq_(sorted(a.name for a in addons), [addon1.name, addon2.name])
+        assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
 
     def test_my_addons_with_unlisted_addons(self):
         """Test helper method can return unlisted addons."""
@@ -165,42 +162,38 @@ class TestUserProfile(amo.tests.TestCase):
                                       is_listed=False)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons(with_unlisted=True)
-        eq_(sorted(a.name for a in addons), [addon1.name, addon2.name])
+        assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
 
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
         assert not Collection.objects.filter(author=u)
 
         c = u.mobile_collection()
-        eq_(c.type, amo.COLLECTION_MOBILE)
-        eq_(c.slug, 'mobile')
+        assert c.type == amo.COLLECTION_MOBILE
+        assert c.slug == 'mobile'
 
     def test_favorites_collection(self):
         u = UserProfile.objects.get(id='4043307')
         assert not Collection.objects.filter(author=u)
 
         c = u.favorites_collection()
-        eq_(c.type, amo.COLLECTION_FAVORITES)
-        eq_(c.slug, 'favorites')
+        assert c.type == amo.COLLECTION_FAVORITES
+        assert c.slug == 'favorites'
 
     def test_get_url_path(self):
-        eq_(UserProfile(username='yolo').get_url_path(),
-            '/en-US/firefox/user/yolo/')
-        eq_(UserProfile(username='yolo', id=1).get_url_path(),
-            '/en-US/firefox/user/yolo/')
-        eq_(UserProfile(id=1).get_url_path(),
-            '/en-US/firefox/user/1/')
-        eq_(UserProfile(username='<yolo>', id=1).get_url_path(),
-            '/en-US/firefox/user/1/')
+        assert UserProfile(username='yolo').get_url_path() == '/en-US/firefox/user/yolo/'
+        assert UserProfile(username='yolo', id=1).get_url_path() == '/en-US/firefox/user/yolo/'
+        assert UserProfile(id=1).get_url_path() == '/en-US/firefox/user/1/'
+        assert UserProfile(username='<yolo>', id=1).get_url_path() == '/en-US/firefox/user/1/'
 
     @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
     def test_activate_locale(self):
-        eq_(translation.get_language(), 'en-us')
+        assert translation.get_language() == 'en-us'
         with UserProfile(username='yolo').activate_lang():
-            eq_(translation.get_language(), 'en-us')
+            assert translation.get_language() == 'en-us'
 
         with UserProfile(username='yolo', lang='fr').activate_lang():
-            eq_(translation.get_language(), 'fr')
+            assert translation.get_language() == 'fr'
 
     def test_remove_locale(self):
         u = UserProfile.objects.create()
@@ -209,7 +202,7 @@ class TestUserProfile(amo.tests.TestCase):
         u.remove_locale('fr')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
-        eq_(sorted(qs.filter(id=u.bio_id)), ['en-US'])
+        assert sorted(qs.filter(id=u.bio_id)) == ['en-US']
 
     def test_get_fallback(self):
         """Return the translation for the locale fallback."""
@@ -279,8 +272,8 @@ class TestPasswords(amo.tests.TestCase):
         assert u.check_password(self.utf) is True
         # Make sure we updated the old password.
         algo, salt, hsh = u.password.split('$')
-        eq_(algo, 'sha512')
-        eq_(hsh, get_hexdigest(algo, salt, self.utf))
+        assert algo == 'sha512'
+        assert hsh == get_hexdigest(algo, salt, self.utf)
         assert u.has_usable_password() is True
 
     def test_valid_new_password(self):
@@ -369,17 +362,17 @@ class TestBlacklistedName(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
-        eq_(BlacklistedName.blocked('IE6Fan'), True)
-        eq_(BlacklistedName.blocked('IE6fantastic'), True)
-        eq_(BlacklistedName.blocked('IE6'), False)
-        eq_(BlacklistedName.blocked('testo'), False)
+        assert BlacklistedName.blocked('IE6Fan') is True
+        assert BlacklistedName.blocked('IE6fantastic') is True
+        assert BlacklistedName.blocked('IE6') is False
+        assert BlacklistedName.blocked('testo') is False
 
 
 class TestBlacklistedEmailDomain(amo.tests.TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
-        eq_(BlacklistedEmailDomain.blocked('mailinator.com'), True)
+        assert BlacklistedEmailDomain.blocked('mailinator.com') is True
         assert not BlacklistedEmailDomain.blocked('mozilla.com')
 
 
@@ -407,7 +400,7 @@ class TestUserEmailField(amo.tests.TestCase):
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)
-        eq_(UserEmailField().clean(user.email), user)
+        assert UserEmailField().clean(user.email) == user
 
     def test_failure(self):
         with pytest.raises(forms.ValidationError):
@@ -417,7 +410,7 @@ class TestUserEmailField(amo.tests.TestCase):
         UserProfile.objects.create(email='')
         with pytest.raises(forms.ValidationError) as exc:
             UserEmailField().clean('')
-        eq_(exc.value.messages[0], 'This field is required.')
+        assert exc.value.messages[0] == 'This field is required.'
 
 
 class TestBlacklistedPassword(amo.tests.TestCase):
@@ -432,11 +425,11 @@ class TestUserHistory(amo.tests.TestCase):
 
     def test_user_history(self):
         user = UserProfile.objects.create(email='foo@bar.com')
-        eq_(user.history.count(), 0)
+        assert user.history.count() == 0
         user.update(email='foopy@barby.com')
-        eq_(user.history.count(), 1)
+        assert user.history.count() == 1
         user.update(email='foopy@barby.com')
-        eq_(user.history.count(), 1)
+        assert user.history.count() == 1
 
     def test_user_find(self):
         user = UserProfile.objects.create(email='luke@jedi.com')
@@ -445,8 +438,8 @@ class TestUserHistory(amo.tests.TestCase):
         user.update(email='dark@sith.com')
         user.update(email='luke@jedi.com')
         user.update(email='dark@sith.com')
-        eq_([user], list(find_users('luke@jedi.com')))
-        eq_([user], list(find_users('dark@sith.com')))
+        assert [user] == list(find_users('luke@jedi.com'))
+        assert [user] == list(find_users('dark@sith.com'))
 
     def test_user_find_multiple(self):
         user_1 = UserProfile.objects.create(username='user_1',
@@ -454,7 +447,7 @@ class TestUserHistory(amo.tests.TestCase):
         user_1.update(email='dark@sith.com')
         user_2 = UserProfile.objects.create(username='user_2',
                                             email='luke@jedi.com')
-        eq_([user_1, user_2], list(find_users('luke@jedi.com')))
+        assert [user_1, user_2] == list(find_users('luke@jedi.com'))
 
 
 class TestUserManager(amo.tests.TestCase):

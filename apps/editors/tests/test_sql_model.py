@@ -117,24 +117,23 @@ class TestSQLModel(BaseTestCase):
         request.addfinalizer(teardown)
 
     def test_all(self):
-        eq_(sorted([s.category for s in Summary.objects.all()]),
-            ['apparel', 'safety'])
+        assert sorted([s.category for s in Summary.objects.all()]) == ['apparel', 'safety']
 
     def test_count(self):
-        eq_(Summary.objects.all().count(), 2)
+        assert Summary.objects.all().count() == 2
 
     def test_one(self):
         c = Summary.objects.all().order_by('category')[0]
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
 
     def test_get_by_index(self):
         qs = Summary.objects.all().order_by('category')
-        eq_(qs[0].category, 'apparel')
-        eq_(qs[1].category, 'safety')
+        assert qs[0].category == 'apparel'
+        assert qs[1].category == 'safety'
 
     def test_get(self):
         c = Summary.objects.all().having('total =', 1).get()
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
 
     @raises(Summary.DoesNotExist)
     def test_get_no_object(self):
@@ -146,30 +145,24 @@ class TestSQLModel(BaseTestCase):
 
     def test_slice1(self):
         qs = Summary.objects.all()[0:1]
-        eq_([c.category for c in qs], ['apparel'])
+        assert [c.category for c in qs] == ['apparel']
 
     def test_slice2(self):
         qs = Summary.objects.all()[1:2]
-        eq_([c.category for c in qs], ['safety'])
+        assert [c.category for c in qs] == ['safety']
 
     def test_slice3(self):
         qs = Summary.objects.all()[:2]
-        eq_(sorted([c.category for c in qs]), ['apparel', 'safety'])
+        assert sorted([c.category for c in qs]) == ['apparel', 'safety']
 
     def test_slice4(self):
         qs = Summary.objects.all()[0:]
-        eq_(sorted([c.category for c in qs]), ['apparel', 'safety'])
+        assert sorted([c.category for c in qs]) == ['apparel', 'safety']
 
     def test_slice5(self):
-        eq_([c.product for c in
-             ProductDetail.objects.all().order_by('product')[0:1]],
-            ['defilbrilator'])
-        eq_([c.product for c in
-             ProductDetail.objects.all().order_by('product')[1:2]],
-            ['life jacket'])
-        eq_([c.product for c in
-             ProductDetail.objects.all().order_by('product')[2:3]],
-            ['snake skin jacket'])
+        assert [c.product for c in ProductDetail.objects.all().order_by('product')[0:1]] == ['defilbrilator']
+        assert [c.product for c in ProductDetail.objects.all().order_by('product')[1:2]] == ['life jacket']
+        assert [c.product for c in ProductDetail.objects.all().order_by('product')[2:3]] == ['snake skin jacket']
 
     @raises(IndexError)
     def test_negative_slices_not_supported(self):
@@ -177,15 +170,15 @@ class TestSQLModel(BaseTestCase):
 
     def test_order_by(self):
         c = Summary.objects.all().order_by('category')[0]
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
         c = Summary.objects.all().order_by('-category')[0]
-        eq_(c.category, 'safety')
+        assert c.category == 'safety'
 
     def test_order_by_alias(self):
         c = ProductDetail.objects.all().order_by('product')[0]
-        eq_(c.product, 'defilbrilator')
+        assert c.product == 'defilbrilator'
         c = ProductDetail.objects.all().order_by('-product')[0]
-        eq_(c.product, 'snake skin jacket')
+        assert c.product == 'snake skin jacket'
 
     @raises(ValueError)
     def test_order_by_injection(self):
@@ -193,40 +186,40 @@ class TestSQLModel(BaseTestCase):
 
     def test_filter(self):
         c = Summary.objects.all().filter(category='apparel')[0]
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
 
     def test_filter_raw_equals(self):
         c = Summary.objects.all().filter_raw('category =', 'apparel')[0]
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
 
     def test_filter_raw_in(self):
         qs = Summary.objects.all().filter_raw('category IN',
                                               ['apparel', 'safety'])
-        eq_([c.category for c in qs], ['apparel', 'safety'])
+        assert [c.category for c in qs] == ['apparel', 'safety']
 
     def test_filter_raw_non_ascii(self):
         uni = 'フォクすけといっしょ'.decode('utf8')
         qs = (Summary.objects.all().filter_raw('category =', uni)
               .filter_raw(Q('category =', uni) | Q('category !=', uni)))
-        eq_([c.category for c in qs], [])
+        assert [c.category for c in qs] == []
 
     def test_combining_filters_with_or(self):
         qs = (ProductDetail.objects.all()
               .filter(Q(product='life jacket') | Q(product='defilbrilator')))
-        eq_(sorted([r.product for r in qs]), ['defilbrilator', 'life jacket'])
+        assert sorted([r.product for r in qs]) == ['defilbrilator', 'life jacket']
 
     def test_combining_raw_filters_with_or(self):
         qs = (ProductDetail.objects.all()
               .filter_raw(Q('product =', 'life jacket') |
                           Q('product =', 'defilbrilator')))
-        eq_(sorted([r.product for r in qs]), ['defilbrilator', 'life jacket'])
+        assert sorted([r.product for r in qs]) == ['defilbrilator', 'life jacket']
 
     def test_nested_raw_filters_with_or(self):
         qs = (ProductDetail.objects.all()
               .filter_raw(Q('category =', 'apparel',
                             'product =', 'defilbrilator') |
                           Q('product =', 'life jacket')))
-        eq_(sorted([r.product for r in qs]), ['life jacket'])
+        assert sorted([r.product for r in qs]) == ['life jacket']
 
     def test_crazy_nesting(self):
         qs = (ProductDetail.objects.all()
@@ -235,12 +228,11 @@ class TestSQLModel(BaseTestCase):
                             Q('product =', 'life jacket') |
                             Q('product =', 'snake skin jacket'),
                             'category =', 'safety')))
-        # print qs.as_sql()
-        eq_(sorted([r.product for r in qs]), ['life jacket'])
+        assert sorted([r.product for r in qs]) == ['life jacket']
 
     def test_having_gte(self):
         c = Summary.objects.all().having('total >=', 2)[0]
-        eq_(c.category, 'safety')
+        assert c.category == 'safety'
 
     @raises(ValueError)
     def test_invalid_raw_filter_spec(self):
@@ -253,7 +245,7 @@ class TestSQLModel(BaseTestCase):
         f = ("c.name = 'apparel'; drop table foo; "
              "select * from sql_model_test_cat where c.name = 'apparel'")
         c = Summary.objects.all().filter(**{f: 'apparel'})[0]
-        eq_(c.category, 'apparel')
+        assert c.category == 'apparel'
 
     def test_filter_value_injection(self):
         v = ("'apparel'; drop table foo; "
@@ -280,7 +272,6 @@ class TestSQLModel(BaseTestCase):
 
     def test_values(self):
         row = Summary.objects.all().order_by('category')[0]
-        eq_(row.category, 'apparel')
-        eq_(row.total, 1)
-        eq_(row.latest_product_date.timetuple()[0:3],
-            datetime.utcnow().timetuple()[0:3])
+        assert row.category == 'apparel'
+        assert row.total == 1
+        assert row.latest_product_date.timetuple()[0:3] == datetime.utcnow().timetuple()[0:3]

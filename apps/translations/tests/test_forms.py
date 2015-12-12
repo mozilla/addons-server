@@ -22,6 +22,6 @@ class TestTranslationFormMixin(amo.tests.TestCase):
         obj.get_fallback = lambda: 'pl'
 
         f = TestForm(instance=obj)
-        eq_(f.fields['name'].default_locale, 'pl')
-        eq_(f.fields['name'].widget.default_locale, 'pl')
-        eq_(pq(f.as_p())('input:not([lang=init])').attr('lang'), 'pl')
+        assert f.fields['name'].default_locale == 'pl'
+        assert f.fields['name'].widget.default_locale == 'pl'
+        assert pq(f.as_p())('input:not([lang=init])').attr('lang') == 'pl'

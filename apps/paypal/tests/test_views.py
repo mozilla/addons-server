@@ -83,7 +83,7 @@ class TestPaypal(PaypalTest):
     def test_no_payment_status(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
         response = self.client.post(self.url)
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
 
     def test_mail(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
@@ -93,8 +93,8 @@ class TestPaypal(PaypalTest):
         Contribution.objects.create(addon_id=add.pk,
                                     uuid=sample_contribution['tracking_id'])
         response = self.client.post(self.url, sample_contribution)
-        eq_(response.status_code, 200)
-        eq_(len(mail.outbox), 1)
+        assert response.status_code == 200
+        assert len(mail.outbox) == 1
 
     def test_get_not_allowed(self, urlopen):
         response = self.client.get(self.url)
@@ -103,23 +103,23 @@ class TestPaypal(PaypalTest):
     def test_mysterious_contribution(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
         response = self.client.post(self.url, sample_contribution)
-        eq_(response.content, 'Transaction not found; skipping.')
+        assert response.content == 'Transaction not found; skipping.'
 
     def test_query_string_order(self, urlopen):
         urlopen.return_value = self.urlopener('HEY MISTER')
         query = 'x=x&a=a&y=y'
         response = self.client.post(self.url, data=query,
                                     content_type=URL_ENCODED)
-        eq_(response.status_code, 403)
+        assert response.status_code == 403
         _, path = urlopen.call_args[0]
-        eq_(path, 'cmd=_notify-validate&%s' % query)
+        assert path == 'cmd=_notify-validate&%s' % query
 
     @patch.object(settings, 'IN_TEST_SUITE', False)
     def test_any_exception(self, urlopen):
         urlopen.side_effect = Exception()
         response = self.client.post(self.url)
-        eq_(response.status_code, 500)
-        eq_(response.content, 'Unknown error.')
+        assert response.status_code == 500
+        assert response.content == 'Unknown error.'
 
     def test_no_status(self, urlopen):
         # An IPN with status_for_sender_txn: Pending, will not have a status.
@@ -129,8 +129,8 @@ class TestPaypal(PaypalTest):
         del ipn['transaction[0].status']
 
         response = self.client.post(self.url, ipn)
-        eq_(response.status_code, 200)
-        eq_(response.content, 'Ignoring %s' % ipn['tracking_id'])
+        assert response.status_code == 200
+        assert response.content == 'Ignoring %s' % ipn['tracking_id']
 
     def test_wrong_status(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
@@ -139,8 +139,8 @@ class TestPaypal(PaypalTest):
         ipn['transaction[0].status'] = 'blah!'
 
         response = self.client.post(self.url, ipn)
-        eq_(response.status_code, 200)
-        eq_(response.content, 'Ignoring %s' % ipn['tracking_id'])
+        assert response.status_code == 200
+        assert response.content == 'Ignoring %s' % ipn['tracking_id']
 
     def test_duplicate_complete(self, urlopen):
         urlopen.return_value = self.urlopener('VERIFIED')
@@ -149,5 +149,5 @@ class TestPaypal(PaypalTest):
             addon_id=add.pk, transaction_id=sample_contribution['tracking_id'])
 
         response = self.client.post(self.url, sample_contribution)
-        eq_(response.status_code, 200)
-        eq_(response.content, 'Transaction already processed')
+        assert response.status_code == 200
+        assert response.content == 'Transaction already processed'

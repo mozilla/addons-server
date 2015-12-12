@@ -41,7 +41,7 @@ class TestVersion(amo.tests.TestCase):
 
     def get_doc(self):
         res = self.client.get(self.url)
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
         return pq(res.content)
 
     def test_version_status_public(self):
@@ -51,45 +51,34 @@ class TestVersion(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=True)
         doc = self.get_doc()
         assert doc('.addon-status .status-admin-disabled')
-        eq_(doc('.addon-status .status-admin-disabled').text(),
-            'Disabled by Mozilla')
+        assert doc('.addon-status .status-admin-disabled').text() == 'Disabled by Mozilla'
 
         self.addon.update(disabled_by_user=False)
         doc = self.get_doc()
-        eq_(doc('.addon-status .status-admin-disabled').text(),
-            'Disabled by Mozilla')
+        assert doc('.addon-status .status-admin-disabled').text() == 'Disabled by Mozilla'
 
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         doc = self.get_doc()
-        eq_(doc('.addon-status .status-disabled').text(),
-            'You have disabled this add-on')
+        assert doc('.addon-status .status-disabled').text() == 'You have disabled this add-on'
 
     def test_no_validation_results(self):
         doc = self.get_doc()
         v = doc('td.file-validation').text()
-        eq_(re.sub(r'\s+', ' ', v),
-            'All Platforms Not validated. Validate now.')
-        eq_(doc('td.file-validation a').attr('href'),
-            reverse('devhub.file_validation',
-                    args=[self.addon.slug, self.version.all_files[0].id]))
+        assert re.sub(r'\s+', ' ', v) == 'All Platforms Not validated. Validate now.'
+        assert doc('td.file-validation a').attr('href') == reverse('devhub.file_validation', args=[self.addon.slug, self.version.all_files[0].id])
 
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('.addon-status>.addon-upload>strong>a').text(),
-            'Upload a new file')
+        assert doc('.addon-status>.addon-upload>strong>a').text() == 'Upload a new file'
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#modal-delete p').eq(0).text(),
-            'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted ever again, even by '
-            'you. The existing users of your add-on will remain on this '
-            'update channel and never receive updates again.')
+        assert doc('#modal-delete p').eq(0).text() == 'Deleting your add-on will permanently remove it from the site ' 'and prevent its GUID from being submitted ever again, even by ' 'you. The existing users of your add-on will remain on this ' 'update channel and never receive updates again.'
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
@@ -99,11 +88,7 @@ class TestVersion(amo.tests.TestCase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#modal-delete p').eq(0).text(),
-            'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted ever again, even by '
-            'you. The existing users of your add-on will remain on this '
-            'update channel and never receive updates again.')
+        assert doc('#modal-delete p').eq(0).text() == 'Deleting your add-on will permanently remove it from the site ' 'and prevent its GUID from being submitted ever again, even by ' 'you. The existing users of your add-on will remain on this ' 'update channel and never receive updates again.'
 
     def test_delete_message_incomplete(self):
         """
@@ -115,32 +100,30 @@ class TestVersion(amo.tests.TestCase):
         self.addon.save()
         r = self.client.get(self.url)
         doc = pq(r.content)
-        # Normally 2 paragraphs, one is the warning which we should take out.
-        eq_(doc('#modal-delete p.warning').length, 0)
+        assert doc('#modal-delete p.warning').length == 0
 
     def test_delete_version(self):
         self.client.post(self.delete_url, self.delete_data)
         assert not Version.objects.filter(pk=81551).exists()
-        eq_(ActivityLog.objects.filter(action=amo.LOG.DELETE_VERSION.id)
-            .count(), 1)
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_VERSION.id) .count() == 1
 
     def test_delete_version_then_detail(self):
         version, file = self._extra_version_and_file(amo.STATUS_LITE)
         self.client.post(self.delete_url, self.delete_data)
         res = self.client.get(reverse('addons.detail', args=[self.addon.slug]))
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
 
     def test_cant_delete_version(self):
         self.client.logout()
         res = self.client.post(self.delete_url, self.delete_data)
-        eq_(res.status_code, 302)
+        assert res.status_code == 302
         assert Version.objects.filter(pk=81551).exists()
 
     def test_version_delete_status_null(self):
         res = self.client.post(self.delete_url, self.delete_data)
-        eq_(res.status_code, 302)
-        eq_(self.addon.versions.count(), 0)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_NULL)
+        assert res.status_code == 302
+        assert self.addon.versions.count() == 0
+        assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
@@ -158,31 +141,31 @@ class TestVersion(amo.tests.TestCase):
         self._extra_version_and_file(amo.STATUS_PUBLIC)
 
         res = self.client.post(self.delete_url, self.delete_data)
-        eq_(res.status_code, 302)
-        eq_(self.addon.versions.count(), 1)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_PUBLIC)
+        assert res.status_code == 302
+        assert self.addon.versions.count() == 1
+        assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
     def test_version_delete_status_unreviewd(self):
         self._extra_version_and_file(amo.STATUS_BETA)
 
         res = self.client.post(self.delete_url, self.delete_data)
-        eq_(res.status_code, 302)
-        eq_(self.addon.versions.count(), 1)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
+        assert res.status_code == 302
+        assert self.addon.versions.count() == 1
+        assert Addon.objects.get(id=3615).status == amo.STATUS_UNREVIEWED
 
     @mock.patch('files.models.File.hide_disabled_file')
     def test_user_can_disable_addon(self, hide_mock):
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
         res = self.client.post(self.disable_url)
-        eq_(res.status_code, 302)
+        assert res.status_code == 302
         addon = Addon.objects.get(id=3615)
-        eq_(addon.disabled_by_user, True)
-        eq_(addon.status, amo.STATUS_PUBLIC)
+        assert addon.disabled_by_user is True
+        assert addon.status == amo.STATUS_PUBLIC
         assert hide_mock.called
 
         entry = ActivityLog.objects.get()
-        eq_(entry.action, amo.LOG.USER_DISABLE.id)
+        assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
@@ -224,18 +207,18 @@ class TestVersion(amo.tests.TestCase):
         assert self.addon.name.__unicode__() in msg
 
     def test_user_get(self):
-        eq_(self.client.get(self.enable_url).status_code, 405)
+        assert self.client.get(self.enable_url).status_code == 405
 
     def test_user_can_enable_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         res = self.client.post(self.enable_url)
         self.assert3xx(res, self.url, 302)
         addon = self.get_addon()
-        eq_(addon.disabled_by_user, False)
-        eq_(addon.status, amo.STATUS_PUBLIC)
+        assert addon.disabled_by_user is False
+        assert addon.status == amo.STATUS_PUBLIC
 
         entry = ActivityLog.objects.get()
-        eq_(entry.action, amo.LOG.USER_ENABLE.id)
+        assert entry.action == amo.LOG.USER_ENABLE.id
         msg = entry.to_string()
         assert unicode(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
@@ -243,8 +226,8 @@ class TestVersion(amo.tests.TestCase):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
         res = self.client.post(self.disable_url)
-        eq_(res.status_code, 302)
-        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
+        assert res.status_code == 302
+        assert Addon.objects.get(id=3615).disabled_by_user is False
 
     def test_non_owner_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
@@ -252,8 +235,8 @@ class TestVersion(amo.tests.TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         res = self.client.post(self.disable_url)
-        eq_(res.status_code, 403)
-        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
+        assert res.status_code == 403
+        assert Addon.objects.get(id=3615).disabled_by_user is False
 
     def test_non_owner_cant_enable_addon(self):
         self.addon.update(disabled_by_user=False)
@@ -261,8 +244,8 @@ class TestVersion(amo.tests.TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         res = self.client.get(self.enable_url)
-        eq_(res.status_code, 403)
-        eq_(Addon.objects.get(id=3615).disabled_by_user, False)
+        assert res.status_code == 403
+        assert Addon.objects.get(id=3615).disabled_by_user is False
 
     def test_non_owner_cant_change_status(self):
         """A non-owner can't use the radio buttons."""
@@ -337,7 +320,7 @@ class TestVersion(amo.tests.TestCase):
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        eq_(self.client.get(cancel_url).status_code, 405)
+        assert self.client.get(cancel_url).status_code == 405
 
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
@@ -347,26 +330,26 @@ class TestVersion(amo.tests.TestCase):
 
             self.addon.update(status=status)
             self.client.post(cancel_url)
-            eq_(Addon.objects.get(id=3615).status, status)
+            assert Addon.objects.get(id=3615).status == status
 
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         self.client.post(cancel_url)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_LITE)
+        assert Addon.objects.get(id=3615).status == amo.STATUS_LITE
 
         for status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
             self.addon.update(status=status)
             self.client.post(cancel_url)
-            eq_(Addon.objects.get(id=3615).status, amo.STATUS_NULL)
+            assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
     def test_not_cancel(self):
         self.client.logout()
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         res = self.client.post(cancel_url)
-        eq_(res.status_code, 302)
-        eq_(Addon.objects.get(id=3615).status, amo.STATUS_PUBLIC)
+        assert res.status_code == 302
+        assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
     def test_cancel_button(self):
         for status in Addon.STATUS_CHOICES:
@@ -394,29 +377,27 @@ class TestVersion(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_PURGATORY)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        eq_(buttons, 'Request Preliminary Review Request Full Review')
+        assert buttons == 'Request Preliminary Review Request Full Review'
 
     def test_incomplete_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        eq_(buttons, 'Request Preliminary Review Request Full Review')
+        assert buttons == 'Request Preliminary Review Request Full Review'
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        eq_(buttons, None)
+        assert buttons is None
 
     def test_add_version_modal(self):
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
-        # Make sure checkboxes are visible:
-        eq_(doc('.supported-platforms input.platform').length, 5)
-        eq_(set([i.attrib['type'] for i in doc('input.platform')]),
-            set(['checkbox']))
+        assert doc('.supported-platforms input.platform').length == 5
+        assert set([i.attrib['type'] for i in doc('input.platform')]) == set(['checkbox'])
 
 
 class TestVersionEditMixin(object):
@@ -464,8 +445,7 @@ class TestVersionEditMobile(TestVersionEditBase):
     def test_mobile_platform_options(self):
         ctx = self.client.get(self.url).context
         fld = ctx['file_form'].forms[0]['platform'].field
-        eq_(sorted(amo.PLATFORMS[p[0]].shortname for p in fld.choices),
-            ['android'])
+        assert sorted(amo.PLATFORMS[p[0]].shortname for p in fld.choices) == ['android']
 
 
 class TestVersionEditDetails(TestVersionEditBase):
@@ -485,10 +465,10 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_edit_notes(self):
         d = self.formset(releasenotes='xx', approvalnotes='yy')
         r = self.client.post(self.url, d)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         version = self.get_version()
-        eq_(unicode(version.releasenotes), 'xx')
-        eq_(unicode(version.approvalnotes), 'yy')
+        assert unicode(version.releasenotes) == 'xx'
+        assert unicode(version.approvalnotes) == 'yy'
 
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
@@ -500,7 +480,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         choices = res.context['new_file_form'].fields['platform'].choices
         taken = [f.platform for f in self.version.files.all()]
         platforms = set(self.version.compatible_platforms()) - set(taken)
-        eq_(len(choices), len(platforms))
+        assert len(choices) == len(platforms)
 
     def test_can_upload(self):
         self.version.files.all().delete()
@@ -539,7 +519,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
-        eq_(response.status_code, 302)
+        assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert version.addon.admin_review
@@ -558,7 +538,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
-            eq_(response.status_code, 200)
+            assert response.status_code == 200
             assert not Version.objects.get(pk=self.version.pk).source
 
     def test_dont_reset_admin_review_flag_if_no_new_source(self):
@@ -569,7 +549,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
-            eq_(response.status_code, 302)
+            assert response.status_code == 302
             version = Version.objects.get(pk=self.version.pk)
             assert version.source
             assert version.addon.admin_review
@@ -579,7 +559,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         version.addon.update(admin_review=False)
         data = self.formset(name='some other name')
         response = self.client.post(self.url, data)
-        eq_(response.status_code, 302)
+        assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.admin_review
@@ -601,10 +581,10 @@ class TestVersionEditSearchEngine(TestVersionEditMixin,
                           approvalnotes='yy')
 
         r = self.client.post(self.url, dd)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         version = Addon.objects.no_cache().get(id=4594).current_version
-        eq_(unicode(version.releasenotes), 'xx')
-        eq_(unicode(version.approvalnotes), 'yy')
+        assert unicode(version.releasenotes) == 'xx'
+        assert unicode(version.approvalnotes) == 'yy'
 
     def test_no_compat(self):
         r = self.client.get(self.url)
@@ -639,25 +619,19 @@ class TestVersionEditFiles(TestVersionEditBase):
     def test_delete_file(self):
         version = self.addon.current_version
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-
-        eq_(self.version.files.count(), 1)
+        assert self.version.files.count() == 1
         forms = map(initial,
                     self.client.get(self.url).context['file_form'].forms)
         forms[0]['DELETE'] = True
-        eq_(ActivityLog.objects.count(), 0)
+        assert ActivityLog.objects.count() == 0
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
-
-        eq_(ActivityLog.objects.count(), 2)
+        assert ActivityLog.objects.count() == 2
         log = ActivityLog.objects.order_by('created')[1]
-        eq_(log.to_string(), u'File delicious_bookmarks-2.1.072-fx.xpi deleted'
-                             ' from <a href="/en-US/firefox/addon/a3615'
-                             '/versions/2.1.072">Version 2.1.072</a> of <a '
-                             'href="/en-US/firefox/addon/a3615/">Delicious '
-                             'Bookmarks</a>.')
-        eq_(r.status_code, 302)
-        eq_(self.version.files.count(), 0)
+        assert log.to_string() == u'File delicious_bookmarks-2.1.072-fx.xpi deleted' ' from <a href="/en-US/firefox/addon/a3615' '/versions/2.1.072">Version 2.1.072</a> of <a ' 'href="/en-US/firefox/addon/a3615/">Delicious ' 'Bookmarks</a>.'
+        assert r.status_code == 302
+        assert self.version.files.count() == 0
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_unique_platforms(self):
         # Move the existing file to Linux.
@@ -673,9 +647,8 @@ class TestVersionEditFiles(TestVersionEditBase):
         r = self.client.post(self.url, self.formset(*forms, prefix='files'))
         doc = pq(r.content)
         assert doc('#id_files-0-platform')
-        eq_(r.status_code, 200)
-        eq_(r.context['file_form'].non_form_errors(),
-            ['A platform can only be chosen once.'])
+        assert r.status_code == 200
+        assert r.context['file_form'].non_form_errors() == ['A platform can only be chosen once.']
 
     def test_all_platforms(self):
         version = self.addon.current_version
@@ -686,8 +659,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         res = self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(res.context['file_form'].non_form_errors()[0],
-            'The platform All cannot be combined with specific platforms.')
+        assert res.context['file_form'].non_form_errors()[0] == 'The platform All cannot be combined with specific platforms.'
 
     def test_all_platforms_and_delete(self):
         version = self.addon.current_version
@@ -700,7 +672,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         # A test that we don't check the platform for deleted files.
         forms[1]['DELETE'] = 1
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(self.version.files.count(), 1)
+        assert self.version.files.count() == 1
 
     def add_in_bsd(self):
         f = self.version.files.get()
@@ -730,8 +702,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(File.objects.no_cache().get(pk=bsd.pk).platform,
-            amo.PLATFORM_BSD.id)
+        assert File.objects.no_cache().get(pk=bsd.pk).platform == amo.PLATFORM_BSD.id
 
     def test_all_unsupported_platforms_change(self):
         bsd = self.add_in_bsd()
@@ -740,8 +711,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         # Update the file platform to Linux:
         forms[1]['platform'] = amo.PLATFORM_LINUX.id
         self.client.post(self.url, self.formset(*forms, prefix='files'))
-        eq_(File.objects.no_cache().get(pk=bsd.pk).platform,
-            amo.PLATFORM_LINUX.id)
+        assert File.objects.no_cache().get(pk=bsd.pk).platform == amo.PLATFORM_LINUX.id
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[1])
         assert 'bsd' not in choices, (
@@ -750,12 +720,10 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_add_file_modal(self):
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
-        # Make sure radio buttons are visible:
-        eq_(doc('.platform ul label').text(), 'Linux Mac OS X Windows')
-        eq_(set([i.attrib['type'] for i in doc('input.platform')]),
-            set(['radio']))
+        assert doc('.platform ul label').text() == 'Linux Mac OS X Windows'
+        assert set([i.attrib['type'] for i in doc('input.platform')]) == set(['radio'])
 
     def test_mobile_addon_supports_only_mobile_platforms(self):
         for a in self.version.apps.all():
@@ -764,8 +732,7 @@ class TestVersionEditFiles(TestVersionEditBase):
         self.version.files.all().update(platform=amo.PLATFORM_ANDROID.id)
         forms = self.client.get(self.url).context['file_form'].forms
         choices = self.get_platforms(forms[0])
-        eq_(sorted(choices),
-            sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()]))
+        assert sorted(choices) == sorted([p.shortname for p in amo.MOBILE_PLATFORMS.values()])
 
 
 class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
@@ -790,9 +757,9 @@ class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
                           prefix='files', releasenotes='xx',
                           approvalnotes='yy')
         response = self.client.post(self.url, dd)
-        eq_(response.status_code, 302)
+        assert response.status_code == 302
         file_ = Version.objects.no_cache().get(id=42352).files.all()[0]
-        eq_(amo.PLATFORM_ALL.id, file_.platform)
+        assert amo.PLATFORM_ALL.id == file_.platform
 
 
 class TestVersionEditCompat(TestVersionEditBase):
@@ -801,8 +768,8 @@ class TestVersionEditCompat(TestVersionEditBase):
         if not url:
             url = self.url
         av = self.version.apps.get()
-        eq_(av.min.version, '2.0')
-        eq_(av.max.version, '4.0')
+        assert av.min.version == '2.0'
+        assert av.max.version == '4.0'
         f = self.client.get(url).context['compat_form'].initial_forms[0]
         return initial(f)
 
@@ -816,23 +783,21 @@ class TestVersionEditCompat(TestVersionEditBase):
         d = self.formset(initial(f), dict(application=18, min=288, max=298),
                          initial_count=1)
         r = self.client.post(self.url, d)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         apps = self.get_version().compatible_apps.keys()
-        eq_(sorted(apps), sorted([amo.FIREFOX, amo.THUNDERBIRD]))
-        eq_(list(ActivityLog.objects.all().values_list('action')),
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+        assert sorted(apps) == sorted([amo.FIREFOX, amo.THUNDERBIRD])
+        assert list(ActivityLog.objects.all().values_list('action')) == [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
 
     def test_update_appversion(self):
         d = self.get_form()
         d.update(min=self.v1.id, max=self.v5.id)
         r = self.client.post(self.url,
                              self.formset(d, initial_count=1))
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         av = self.version.apps.get()
-        eq_(av.min.version, '1.0')
-        eq_(av.max.version, '5.0')
-        eq_(list(ActivityLog.objects.all().values_list('action')),
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+        assert av.min.version == '1.0'
+        assert av.max.version == '5.0'
+        assert list(ActivityLog.objects.all().values_list('action')) == [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
 
     def test_ajax_update_appversion(self):
         url = reverse('devhub.ajax.compat.update',
@@ -840,12 +805,11 @@ class TestVersionEditCompat(TestVersionEditBase):
         d = self.get_form(url)
         d.update(min=self.v1.id, max=self.v5.id)
         r = self.client.post(url, self.formset(d, initial_count=1))
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         av = self.version.apps.get()
-        eq_(av.min.version, '1.0')
-        eq_(av.max.version, '5.0')
-        eq_(list(ActivityLog.objects.all().values_list('action')),
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+        assert av.min.version == '1.0'
+        assert av.max.version == '5.0'
+        assert list(ActivityLog.objects.all().values_list('action')) == [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
 
     def test_delete_appversion(self):
         # Add thunderbird compat so we can delete firefox.
@@ -854,11 +818,10 @@ class TestVersionEditCompat(TestVersionEditBase):
         d = map(initial, f.initial_forms)
         d[0]['DELETE'] = True
         r = self.client.post(self.url, self.formset(*d, initial_count=2))
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         apps = self.get_version().compatible_apps.keys()
-        eq_(apps, [amo.THUNDERBIRD])
-        eq_(list(ActivityLog.objects.all().values_list('action')),
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+        assert apps == [amo.THUNDERBIRD]
+        assert list(ActivityLog.objects.all().values_list('action')) == [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
 
     def test_unique_apps(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]
@@ -866,7 +829,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         del dupe['id']
         d = self.formset(initial(f), dupe, initial_count=1)
         r = self.client.post(self.url, d)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         # Because of how formsets work, the second form is expected to be a
         # tbird version range.  We got an error, so we're good.
 
@@ -876,25 +839,23 @@ class TestVersionEditCompat(TestVersionEditBase):
         d = initial(f)
         d['DELETE'] = True
         r = self.client.post(self.url, self.formset(d, initial_count=1))
-        eq_(r.status_code, 200)
-        eq_(r.context['compat_form'].non_form_errors(),
-            ['Need at least one compatible application.'])
-        eq_(self.version.apps.get(), old_av)
+        assert r.status_code == 200
+        assert r.context['compat_form'].non_form_errors() == ['Need at least one compatible application.']
+        assert self.version.apps.get() == old_av
 
     def test_proper_min_max(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]
         d = initial(f)
         d['min'], d['max'] = d['max'], d['min']
         r = self.client.post(self.url, self.formset(d, initial_count=1))
-        eq_(r.status_code, 200)
-        eq_(r.context['compat_form'].forms[0].non_field_errors(),
-            ['Invalid version range.'])
+        assert r.status_code == 200
+        assert r.context['compat_form'].forms[0].non_field_errors() == ['Invalid version range.']
 
     def test_same_min_max(self):
         f = self.client.get(self.url).context['compat_form'].initial_forms[0]
         d = initial(f)
         d['min'] = d['max']
         r = self.client.post(self.url, self.formset(d, initial_count=1))
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         av = self.version.apps.all()[0]
-        eq_(av.min, av.max)
+        assert av.min == av.max

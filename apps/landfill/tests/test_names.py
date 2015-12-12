@@ -9,5 +9,5 @@ from landfill.names import generate_names
 class NamesTests(amo.tests.TestCase):
 
     def test_names_generation(self):
-        eq_(len(generate_names()), 136)
+        assert len(generate_names()) == 136
         ok_('Exquisite Sandwich' in generate_names())

@@ -66,7 +66,7 @@ class TestPayKey(amo.tests.TestCase):
     @mock.patch('paypal.requests.post')
     def test_get_key(self, opener):
         opener.return_value.text = good_response
-        eq_(paypal.get_paykey(self.data), ('AP-9GD76073HJ780401K', 'CREATED'))
+        assert paypal.get_paykey(self.data) == ('AP-9GD76073HJ780401K', 'CREATED')
 
     @mock.patch('paypal.requests.post')
     def test_error_is_paypal(self, opener):
@@ -80,7 +80,7 @@ class TestPayKey(amo.tests.TestCase):
         try:
             paypal.get_paykey(self.data)
         except paypal.PaypalError as error:
-            eq_(error.id, '589023')
+            assert error.id == '589023'
             assert 'The amount is too small' in str(error)
         else:
             raise ValueError('No PaypalError was raised')
@@ -93,7 +93,7 @@ class TestPayKey(amo.tests.TestCase):
             data['currency'] = 'BRL'
             paypal.get_paykey(data)
         except paypal.PaypalError as error:
-            eq_(error.id, '559044')
+            assert error.id == '559044'
             assert 'Real' in str(error), str(error)
         else:
             raise ValueError('No PaypalError was raised')
@@ -105,7 +105,7 @@ class TestPayKey(amo.tests.TestCase):
             data = self.data.copy()
             paypal.get_paykey(data)
         except paypal.PaypalError as error:
-            eq_(error.id, '559044')
+            assert error.id == '559044'
         else:
             raise ValueError('No PaypalError was raised')
 
@@ -122,7 +122,7 @@ class TestPayKey(amo.tests.TestCase):
         _call.return_value = {'payKey': '123', 'paymentExecStatus': ''}
         paypal.get_paykey(data)
         qs = _call.call_args[0][1]['returnUrl'].split('?')[1]
-        eq_(dict(urlparse.parse_qsl(qs))['foo'], 'bar')
+        assert dict(urlparse.parse_qsl(qs))['foo'] == 'bar'
 
     @mock.patch.object(settings, 'SITE_URL', 'http://foo.com')
     def _test_no_mock(self):
@@ -134,13 +134,13 @@ class TestPayKey(amo.tests.TestCase):
     def _test_check_purchase_no_mock(self):
         # Remove _ and run if you'd like to try this unmocked.
         key = paypal.get_paykey(self.data)
-        eq_(paypal.check_purchase(key), 'CREATED')
+        assert paypal.check_purchase(key) == 'CREATED'
 
     @mock.patch('paypal._call')
     def test_usd_default(self, _call):
         _call.return_value = {'payKey': '', 'paymentExecStatus': ''}
         paypal.get_paykey(self.data)
-        eq_(_call.call_args[0][1]['currencyCode'], 'USD')
+        assert _call.call_args[0][1]['currencyCode'] == 'USD'
 
     @mock.patch('paypal._call')
     def test_other_currency(self, _call):
@@ -148,7 +148,7 @@ class TestPayKey(amo.tests.TestCase):
         data = self.data.copy()
         data['currency'] = 'EUR'
         paypal.get_paykey(data)
-        eq_(_call.call_args[0][1]['currencyCode'], 'EUR')
+        assert _call.call_args[0][1]['currencyCode'] == 'EUR'
 
     @mock.patch('paypal._call')
     def test_error_currency(self, _call):
@@ -164,23 +164,23 @@ class TestPurchase(amo.tests.TestCase):
     @mock.patch('paypal.requests.post')
     def test_check_purchase(self, opener):
         opener.return_value.text = good_check_purchase
-        eq_(paypal.check_purchase('some-paykey'), 'CREATED')
+        assert paypal.check_purchase('some-paykey') == 'CREATED'
 
     @mock.patch('paypal.requests.post')
     def test_check_purchase_fails(self, opener):
         opener.return_value.text = other_error
-        eq_(paypal.check_purchase('some-paykey'), False)
+        assert paypal.check_purchase('some-paykey') is False
 
 
 @mock.patch('paypal.requests.get')
 def test_check_paypal_id(get):
     get.return_value.text = 'ACK=Success'
     val = paypal.check_paypal_id(u'\u30d5\u30a9\u30af\u3059\u3051')
-    eq_(val, (True, None))
+    assert val == (True, None)
 
 
 def test_nvp():
-    eq_(paypal._nvp_dump({'foo': 'bar'}), 'foo=bar')
-    eq_(paypal._nvp_dump({'foo': 'ba r'}), 'foo=ba%20r')
-    eq_(paypal._nvp_dump({'foo': 'bar', 'bar': 'foo'}), 'bar=foo&foo=bar')
-    eq_(paypal._nvp_dump({'foo': ['bar', 'baa']}), 'foo(0)=bar&foo(1)=baa')
+    assert paypal._nvp_dump({'foo': 'bar'}) == 'foo=bar'
+    assert paypal._nvp_dump({'foo': 'ba r'}) == 'foo=ba%20r'
+    assert paypal._nvp_dump({'foo': 'bar', 'bar': 'foo'}) == 'bar=foo&foo=bar'
+    assert paypal._nvp_dump({'foo': ['bar', 'baa']}) == 'foo(0)=bar&foo(1)=baa'

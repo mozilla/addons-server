@@ -42,7 +42,7 @@ class TestAddonView(amo.tests.TestCase):
 
     def test_200_by_slug(self):
         res = self.view(self.request, self.addon.slug)
-        eq_(res, mock.sentinel.OK)
+        assert res == mock.sentinel.OK
 
     def test_404_by_id(self):
         with pytest.raises(http.Http404):
@@ -66,7 +66,7 @@ class TestAddonView(amo.tests.TestCase):
 
         view = dec.addon_view_factory(qs=qs)(self.func)
         res = view(self.request, self.addon.slug)
-        eq_(res, mock.sentinel.OK)
+        assert res == mock.sentinel.OK
 
     def test_alternate_qs_404_by_id(self):
         def qs():
@@ -87,15 +87,15 @@ class TestAddonView(amo.tests.TestCase):
     def test_addon_no_slug(self):
         app = Addon.objects.create(type=1, name='xxxx')
         res = self.view(self.request, app.slug)
-        eq_(res, mock.sentinel.OK)
+        assert res == mock.sentinel.OK
 
     def test_slug_isdigit(self):
         app = Addon.objects.create(type=1, name='xxxx')
         app.update(slug=str(app.id))
         r = self.view(self.request, app.slug)
-        eq_(r, mock.sentinel.OK)
+        assert r == mock.sentinel.OK
         request, addon = self.func.call_args[0]
-        eq_(addon, app)
+        assert addon == app
 
 
 class TestAddonViewWithUnlisted(TestAddonView):

@@ -84,21 +84,21 @@ class TestFindJetpacks(amo.tests.TestCase):
 
     def test_success(self):
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file])
+        assert files == [self.file]
 
     def test_skip_autorepackage(self):
         Addon.objects.update(auto_repackage=False)
-        eq_(utils.find_jetpacks('1.0', '1.1'), [])
+        assert utils.find_jetpacks('1.0', '1.1') == []
 
     def test_minver(self):
         files = utils.find_jetpacks('1.1', '1.2')
-        eq_(files, [self.file])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file]
+        assert files[0].needs_upgrade is False
 
     def test_maxver(self):
         files = utils.find_jetpacks('.1', '1.0')
-        eq_(files, [self.file])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file]
+        assert files[0].needs_upgrade is False
 
     def test_unreviewed_files_plus_reviewed_file(self):
         # We upgrade unreviewed files up to the latest reviewed file.
@@ -106,18 +106,18 @@ class TestFindJetpacks(amo.tests.TestCase):
         new_file = File.objects.create(version=v, jetpack_version='1.0')
         Version.objects.create(addon_id=3615)
         new_file2 = File.objects.create(version=v, jetpack_version='1.0')
-        eq_(new_file.status, amo.STATUS_UNREVIEWED)
-        eq_(new_file2.status, amo.STATUS_UNREVIEWED)
+        assert new_file.status == amo.STATUS_UNREVIEWED
+        assert new_file2.status == amo.STATUS_UNREVIEWED
 
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file, new_file, new_file2])
+        assert files == [self.file, new_file, new_file2]
         assert all(f.needs_upgrade for f in files)
 
         # Now self.file will not need an upgrade since we skip old versions.
         new_file.update(status=amo.STATUS_PUBLIC)
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file, new_file, new_file2])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file, new_file, new_file2]
+        assert files[0].needs_upgrade is False
         assert all(f.needs_upgrade for f in files[1:])
 
 

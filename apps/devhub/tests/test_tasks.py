@@ -73,7 +73,7 @@ def _uploader(resize_size, final_size):
     shutil.copyfile(img, src.name)
 
     src_image = Image.open(src.name)
-    eq_(src_image.size, original_size)
+    assert src_image.size == original_size
 
     if isinstance(final_size, list):
         uploadto = user_media_path('addon_icons')
@@ -86,7 +86,7 @@ def _uploader(resize_size, final_size):
 
             tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
             dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
-            eq_(dest_image.size, fsize)
+            assert dest_image.size == fsize
 
             if os.path.exists(dest_image.filename):
                 os.remove(dest_image.filename)
@@ -96,7 +96,7 @@ def _uploader(resize_size, final_size):
         dest = tempfile.mktemp(suffix='.png')
         tasks.resize_icon(src.name, dest, resize_size, locally=True)
         dest_image = Image.open(dest)
-        eq_(dest_image.size, final_size)
+        assert dest_image.size == final_size
 
     assert not os.path.exists(src.name)
 
@@ -375,24 +375,24 @@ class TestFlagBinary(amo.tests.TestCase):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 1, '
                               '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+        assert Addon.objects.get(pk=self.addon.pk).binary is True
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
                               '"contains_binary_content": 1}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+        assert Addon.objects.get(pk=self.addon.pk).binary is True
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_not_binary(self, _mock):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
                               '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+        assert Addon.objects.get(pk=self.addon.pk).binary is False
 
     @mock.patch('devhub.tasks.run_validator')
     def test_flag_error(self, _mock):
         _mock.side_effect = RuntimeError()
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+        assert Addon.objects.get(pk=self.addon.pk).binary is False
 
 
 @mock.patch('devhub.tasks.send_html_mail_jinja')

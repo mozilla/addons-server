@@ -20,15 +20,15 @@ class VersionsTests(amo.tests.TestCase):
     def test_versions_themes_generation(self):
         num_appversions = AppVersion.objects.all().count()
         generate_version(self.addon)
-        eq_(Version.objects.all().count(), 1)
-        eq_(File.objects.all().count(), 1)
-        eq_(AppVersion.objects.all().count(), num_appversions)
-        eq_(ApplicationsVersions.objects.all().count(), 0)
+        assert Version.objects.all().count() == 1
+        assert File.objects.all().count() == 1
+        assert AppVersion.objects.all().count() == num_appversions
+        assert ApplicationsVersions.objects.all().count() == 0
 
     def test_versions_addons_generation(self):
         num_appversions = AppVersion.objects.all().count()
         generate_version(self.addon, APPS['android'])
-        eq_(Version.objects.all().count(), 1)
-        eq_(File.objects.all().count(), 1)
-        eq_(AppVersion.objects.all().count(), num_appversions + 2)
-        eq_(ApplicationsVersions.objects.all().count(), 1)
+        assert Version.objects.all().count() == 1
+        assert File.objects.all().count() == 1
+        assert AppVersion.objects.all().count() == num_appversions + 2
+        assert ApplicationsVersions.objects.all().count() == 1

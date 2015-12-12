@@ -42,13 +42,13 @@ class TestPerfViews(amo.tests.TestCase):
         re = self.client.get(reverse('devhub.file_perf_tests_start',
                              args=[self.file.version.addon.id, self.file.id]),
                              follow=True)
-        eq_(re.status_code, 200)
+        assert re.status_code == 200
         return json.loads(re.content)
 
     def test_start_linux(self):
         self.file.update(platform=amo.PLATFORM_LINUX.id)
         re = self.start()
-        eq_(re, {'success': True})
+        assert re == {'success': True}
         self.assert_call(((self.file, 'linux', 'firefox3.6'), {}))
         self.assert_call(((self.file, 'linux', 'firefox6.0'), {}))
 
@@ -59,4 +59,4 @@ class TestPerfViews(amo.tests.TestCase):
 
     def test_unsupported_plat(self):
         self.file.update(platform=amo.PLATFORM_ANDROID.id)
-        eq_(self.start(), {'success': False})
+        assert self.start() == {'success': False}

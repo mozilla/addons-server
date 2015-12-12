@@ -32,15 +32,15 @@ def test_dev_page_title():
     title = 'Oh hai!'
     s1 = render('{{ dev_page_title("%s") }}' % title, ctx)
     s2 = render('{{ page_title("%s :: Developer Hub") }}' % title, ctx)
-    eq_(s1, s2)
+    assert s1 == s2
 
     s1 = render('{{ dev_page_title() }}', ctx)
     s2 = render('{{ page_title("Developer Hub") }}', ctx)
-    eq_(s1, s2)
+    assert s1 == s2
 
     s1 = render('{{ dev_page_title("%s", addon) }}' % title, ctx)
     s2 = render('{{ page_title("%s :: %s") }}' % (title, addon.name), ctx)
-    eq_(s1, s2)
+    assert s1 == s2
 
 
 class TestDevBreadcrumbs(amo.tests.BaseTestCase):
@@ -54,18 +54,18 @@ class TestDevBreadcrumbs(amo.tests.BaseTestCase):
         s = render('{{ dev_breadcrumbs() }}', {'request': self.request})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(len(crumbs), 2)
-        eq_(crumbs.text(), 'Developer Hub My Submissions')
-        eq_(crumbs.eq(1).children('a'), [])
+        assert len(crumbs) == 2
+        assert crumbs.text() == 'Developer Hub My Submissions'
+        assert crumbs.eq(1).children('a') == []
 
     def test_no_args_with_default(self):
         s = render('{{ dev_breadcrumbs(add_default=True) }}',
                    {'request': self.request})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(crumbs.text(), 'Add-ons Developer Hub My Submissions')
-        eq_(crumbs.eq(1).children('a').attr('href'), reverse('devhub.index'))
-        eq_(crumbs.eq(2).children('a'), [])
+        assert crumbs.text() == 'Add-ons Developer Hub My Submissions'
+        assert crumbs.eq(1).children('a').attr('href') == reverse('devhub.index')
+        assert crumbs.eq(2).children('a') == []
 
     def test_with_items(self):
         s = render("""{{ dev_breadcrumbs(items=[('/foo', 'foo'),
@@ -73,11 +73,11 @@ class TestDevBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.request})
         doc = pq(s)
         crumbs = doc('li>a')
-        eq_(len(crumbs), 4)
-        eq_(crumbs.eq(2).text(), 'foo')
-        eq_(crumbs.eq(2).attr('href'), '/foo')
-        eq_(crumbs.eq(3).text(), 'bar')
-        eq_(crumbs.eq(3).attr('href'), '/bar')
+        assert len(crumbs) == 4
+        assert crumbs.eq(2).text() == 'foo'
+        assert crumbs.eq(2).attr('href') == '/foo'
+        assert crumbs.eq(3).text() == 'bar'
+        assert crumbs.eq(3).attr('href') == '/bar'
 
     def test_with_addon(self):
         addon = Mock()
@@ -87,11 +87,11 @@ class TestDevBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.request, 'addon': addon})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(crumbs.text(), 'Developer Hub My Submissions Firebug')
-        eq_(crumbs.eq(1).text(), 'My Submissions')
-        eq_(crumbs.eq(1).children('a').attr('href'), reverse('devhub.addons'))
-        eq_(crumbs.eq(2).text(), 'Firebug')
-        eq_(crumbs.eq(2).children('a'), [])
+        assert crumbs.text() == 'Developer Hub My Submissions Firebug'
+        assert crumbs.eq(1).text() == 'My Submissions'
+        assert crumbs.eq(1).children('a').attr('href') == reverse('devhub.addons')
+        assert crumbs.eq(2).text() == 'Firebug'
+        assert crumbs.eq(2).children('a') == []
 
     def test_with_addon_and_items(self):
         addon = Mock()
@@ -106,30 +106,24 @@ class TestDevBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.request, 'addon': addon})
         doc = pq(s)
         crumbs = doc('li')
-        eq_(len(crumbs), 5)
-        eq_(crumbs.eq(2).text(), 'Firebug')
-        eq_(crumbs.eq(2).children('a').attr('href'), addon.get_dev_url())
-        eq_(crumbs.eq(3).text(), 'foo')
-        eq_(crumbs.eq(3).children('a').attr('href'), '/foo')
-        eq_(crumbs.eq(4).text(), 'bar')
-        eq_(crumbs.eq(4).children('a').attr('href'), '/bar')
+        assert len(crumbs) == 5
+        assert crumbs.eq(2).text() == 'Firebug'
+        assert crumbs.eq(2).children('a').attr('href') == addon.get_dev_url()
+        assert crumbs.eq(3).text() == 'foo'
+        assert crumbs.eq(3).children('a').attr('href') == '/foo'
+        assert crumbs.eq(4).text() == 'bar'
+        assert crumbs.eq(4).children('a').attr('href') == '/bar'
 
 
 def test_summarize_validation():
     v = Mock()
     v.errors = 1
     v.warnings = 1
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'1 error, 1 warning')
+    assert render('{{ summarize_validation(validation) }}', {'validation': v}) == u'1 error, 1 warning'
     v.errors = 2
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'2 errors, 1 warning')
+    assert render('{{ summarize_validation(validation) }}', {'validation': v}) == u'2 errors, 1 warning'
     v.warnings = 2
-    eq_(render('{{ summarize_validation(validation) }}',
-               {'validation': v}),
-        u'2 errors, 2 warnings')
+    assert render('{{ summarize_validation(validation) }}', {'validation': v}) == u'2 errors, 2 warnings'
 
 
 def test_log_action_class():
@@ -139,7 +133,7 @@ def test_log_action_class():
             cls = 'action-' + v.action_class
         else:
             cls = ''
-        eq_(render('{{ log_action_class(id) }}', {'id': v.id}), cls)
+        assert render('{{ log_action_class(id) }}', {'id': v.id}) == cls
 
 
 class TestDisplayUrl(amo.tests.BaseTestCase):
@@ -150,19 +144,16 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def test_utf8(self):
         url = urllib.quote(self.raw_url.encode('utf8'))
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
+        assert render('{{ url|display_url }}', {'url': url}) == self.raw_url
 
     def test_unicode(self):
         url = urllib.quote(self.raw_url.encode('utf8'))
         url = unicode(url, 'utf8')
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
+        assert render('{{ url|display_url }}', {'url': url}) == self.raw_url
 
     def test_euc_jp(self):
         url = urllib.quote(self.raw_url.encode('euc_jp'))
-        eq_(render('{{ url|display_url }}', {'url': url}),
-            self.raw_url)
+        assert render('{{ url|display_url }}', {'url': url}) == self.raw_url
 
 
 class TestDevFilesStatus(amo.tests.TestCase):
@@ -177,8 +168,8 @@ class TestDevFilesStatus(amo.tests.TestCase):
 
     def expect(self, expected):
         cnt, msg = helpers.dev_files_status([self.file], self.addon)[0]
-        eq_(cnt, 1)
-        eq_(msg, unicode(expected))
+        assert cnt == 1
+        assert msg == unicode(expected)
 
     def test_unreviewed_lite(self):
         self.addon.status = amo.STATUS_LITE

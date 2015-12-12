@@ -101,37 +101,37 @@ class TestFileOps(BaseTestCase):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_self_copy(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('src.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_move(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
-        eq_(storage.exists(src), False)
+        assert self.contents(dest) == '<contents>'
+        assert storage.exists(src) is False
 
     def test_non_ascii(self):
         src = self.newfile(u'kristi\u0107.txt',
                            u'ivan kristi\u0107'.encode('utf8'))
         dest = self.path(u'somedir/kristi\u0107.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), 'ivan kristi\xc4\x87')
+        assert self.contents(dest) == 'ivan kristi\xc4\x87'
 
     def test_copy_chunking(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_move_chunking(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
-        eq_(storage.exists(src), False)
+        assert self.contents(dest) == '<contents>'
+        assert storage.exists(src) is False

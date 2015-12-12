@@ -113,8 +113,8 @@ class TestThemeUpdate(amo.tests.TestCase):
         return update
 
     def test_get_json_bad_ids(self):
-        eq_(self.get_update('en-US', 999).get_json(), None)
-        eq_(self.get_update('en-US', 813).get_json(), None)
+        assert self.get_update('en-US', 999).get_json() is None
+        assert self.get_update('en-US', 813).get_json() is None
 
     def test_get_json_good_ids(self):
         self.addon = Addon.objects.get()

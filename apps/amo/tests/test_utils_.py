@@ -41,12 +41,8 @@ class TestAttachTransDict(amo.tests.TestCase):
         attach_trans_dict(Addon, [addon])
         ok_(isinstance(addon.translations, collections.defaultdict))
         translations = dict(addon.translations)
-
-        # addon.translations is a defaultdict.
-        eq_(addon.translations['whatever'], [])
-
-        # No-translated fields should be absent.
-        eq_(addon.thankyou_note_id, None)
+        assert addon.translations['whatever'] == []
+        assert addon.thankyou_note_id is None
         ok_(None not in translations)
 
         # Build expected translations dict.
@@ -64,7 +60,7 @@ class TestAttachTransDict(amo.tests.TestCase):
             addon.support_email_id: [('en-us', unicode(addon.support_email))],
             addon.support_url_id: [('en-us', unicode(addon.support_url))]
         }
-        eq_(translations, expected_translations)
+        assert translations == expected_translations
 
     def test_multiple_objects_with_multiple_translations(self):
         addon = amo.tests.addon_factory()
@@ -81,19 +77,12 @@ class TestAttachTransDict(amo.tests.TestCase):
         }
         addon2.save()
         attach_trans_dict(Addon, [addon, addon2])
-        eq_(set(addon.translations[addon.description_id]),
-            set([('en-us', 'English Description'),
-                 ('fr', 'French Description')]))
-        eq_(set(addon2.translations[addon2.name_id]),
-            set([('en-us', 'English 2 Name'),
-                 ('es', 'Spanish 2 Name'),
-                 ('fr', 'French 2 Name')]))
+        assert set(addon.translations[addon.description_id]) == set([('en-us', 'English Description'), ('fr', 'French Description')])
+        assert set(addon2.translations[addon2.name_id]) == set([('en-us', 'English 2 Name'), ('es', 'Spanish 2 Name'), ('fr', 'French 2 Name')])
 
     def test_translations_for_field(self):
         version = Version.objects.create(addon=Addon.objects.create())
-
-        # No translations.
-        eq_(translations_for_field(version.releasenotes), {})
+        assert translations_for_field(version.releasenotes) == {}
 
         # With translations.
         initial = {'en-us': 'release notes', 'fr': 'notes de version'}
@@ -101,7 +90,7 @@ class TestAttachTransDict(amo.tests.TestCase):
         version.save()
 
         translations = translations_for_field(version.releasenotes)
-        eq_(translations, initial)
+        assert translations == initial
 
 
 def test_has_links():
@@ -124,10 +113,8 @@ def test_walkfiles():
     file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
     file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
     file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
-
-    # Only files ending with _foo.
-    eq_(list(walkfiles(basedir, suffix='_foo')), [file1path, file2path])
+    assert list(walkfiles(basedir, suffix='_foo')) == [file1path, file2path]
     # All files.
     all_files = list(walkfiles(basedir))
-    eq_(len(all_files), 3)
-    eq_(set(all_files), set([file1path, file2path, file3path]))
+    assert len(all_files) == 3
+    assert set(all_files) == set([file1path, file2path, file3path])

@@ -15,7 +15,7 @@ class RatingsTests(amo.tests.TestCase):
 
     def test_ratings_generation(self):
         generate_ratings(self.addon, 1)
-        eq_(Review.objects.all().count(), 1)
-        eq_(Review.objects.last().addon, self.addon)
-        eq_(unicode(Review.objects.last().title), u'Test Review 1')
-        eq_(Review.objects.last().user.email, u'testuser1@example.com')
+        assert Review.objects.all().count() == 1
+        assert Review.objects.last().addon == self.addon
+        assert unicode(Review.objects.last().title) == u'Test Review 1'
+        assert Review.objects.last().user.email == u'testuser1@example.com'

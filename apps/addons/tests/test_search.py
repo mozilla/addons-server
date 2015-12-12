@@ -26,4 +26,4 @@ class TestExtract(amo.tests.TestCase):
     def test_extract_attributes(self):
         extracted = self._extract()
         for attr in self.attrs:
-            eq_(extracted[attr], getattr(self.addon, attr))
+            assert extracted[attr] == getattr(self.addon, attr)

@@ -43,8 +43,7 @@ class TestCollections(amo.tests.TestCase):
         c = Collection.objects.create(
             description='<a href="http://example.com">example.com</a> '
                         'http://example.com <b>foo</b> some text')
-        # All markup escaped, links are stripped.
-        eq_(unicode(c.description), '&lt;b&gt;foo&lt;/b&gt; some text')
+        assert unicode(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
 
     def test_icon_url(self):
         # Has no icon.
@@ -71,7 +70,7 @@ class TestCollections(amo.tests.TestCase):
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
         c = Collection.objects.get(pk=512)
-        eq_(unicode(c.name), 'yay')
+        assert unicode(c.name) == 'yay'
 
     def test_listed(self):
         """Make sure the manager's listed() filter works."""
@@ -80,8 +79,7 @@ class TestCollections(amo.tests.TestCase):
         Collection.objects.create(
             name="Hello", uuid="4e2a1acc-39ae-47ec-956f-46e080ac7f69",
             listed=False, author=self.user)
-
-        eq_(Collection.objects.listed().count(), listed_count)
+        assert Collection.objects.listed().count() == listed_count
 
     def test_auto_uuid(self):
         c = Collection.objects.create(author=self.user)
@@ -91,15 +89,15 @@ class TestCollections(amo.tests.TestCase):
     def test_addon_index(self):
         c = Collection.objects.get(pk=512)
         c.author = self.user
-        eq_(c.addon_index, None)
+        assert c.addon_index is None
         ids = c.addons.values_list('id', flat=True)
         c.save()
-        eq_(c.addon_index, Collection.make_index(ids))
+        assert c.addon_index == Collection.make_index(ids)
 
     def test_recommended_collection(self):
         """RecommendedCollections automatically get type=rec."""
         c = RecommendedCollection.objects.create(author=self.user)
-        eq_(c.type, amo.COLLECTION_RECOMMENDED)
+        assert c.type == amo.COLLECTION_RECOMMENDED
 
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
@@ -108,21 +106,21 @@ class TestCollections(amo.tests.TestCase):
         # Check insert.
         random.shuffle(addons)
         c.set_addons(addons)
-        eq_(get_addons(c), addons)
-        eq_(activitylog_count(amo.LOG.ADD_TO_COLLECTION), len(addons))
+        assert get_addons(c) == addons
+        assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == len(addons)
 
         # Check update.
         random.shuffle(addons)
         c.set_addons(addons)
-        eq_(get_addons(c), addons)
+        assert get_addons(c) == addons
 
         # Check delete.
         delete_cnt = len(addons) - 1
         addons = addons[:2]
         c.set_addons(addons)
-        eq_(activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION), delete_cnt)
-        eq_(get_addons(c), addons)
-        eq_(c.addons.count(), len(addons))
+        assert activitylog_count(amo.LOG.REMOVE_FROM_COLLECTION) == delete_cnt
+        assert get_addons(c) == addons
+        assert c.addons.count() == len(addons)
 
     def test_set_addons_comment(self):
         addons = list(Addon.objects.values_list('id', flat=True))
@@ -131,12 +129,12 @@ class TestCollections(amo.tests.TestCase):
         c.set_addons(addons, {addons[0]: 'This is a comment.'})
         collection_addon = CollectionAddon.objects.get(collection=c,
                                                        addon=addons[0])
-        eq_(collection_addon.comments, 'This is a comment.')
+        assert collection_addon.comments == 'This is a comment.'
 
     def test_publishable_by(self):
         c = Collection(pk=512, author=self.other)
         CollectionUser(collection=c, user=self.user).save()
-        eq_(c.publishable_by(self.user), True)
+        assert c.publishable_by(self.user) is True
 
     def test_manager_publishable_by(self):
         c1 = Collection.objects.create(author=self.user, name='B')
@@ -152,35 +150,35 @@ class TestCollections(amo.tests.TestCase):
 
     def test_collection_meta(self):
         c = Collection.objects.create(author=self.user)
-        eq_(c.addon_count, 0)
+        assert c.addon_count == 0
         c.add_addon(Addon.objects.all()[0])
-        eq_(activitylog_count(amo.LOG.ADD_TO_COLLECTION), 1)
+        assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == 1
         c = Collection.objects.get(id=c.id)
         assert not c.from_cache
-        eq_(c.addon_count, 1)
+        assert c.addon_count == 1
 
     def test_favorites_slug(self):
         c = Collection.objects.create(author=self.user, slug='favorites')
-        eq_(c.type, amo.COLLECTION_NORMAL)
-        eq_(c.slug, 'favorites~')
+        assert c.type == amo.COLLECTION_NORMAL
+        assert c.slug == 'favorites~'
 
         c = Collection.objects.create(author=self.user, slug='favorites')
-        eq_(c.type, amo.COLLECTION_NORMAL)
-        eq_(c.slug, 'favorites~-1')
+        assert c.type == amo.COLLECTION_NORMAL
+        assert c.slug == 'favorites~-1'
 
     def test_slug_dupe(self):
         c = Collection.objects.create(author=self.user, slug='boom')
-        eq_(c.slug, 'boom')
+        assert c.slug == 'boom'
         c.save()
-        eq_(c.slug, 'boom')
+        assert c.slug == 'boom'
         c = Collection.objects.create(author=self.user, slug='boom')
-        eq_(c.slug, 'boom-1')
+        assert c.slug == 'boom-1'
         c = Collection.objects.create(author=self.user, slug='boom')
-        eq_(c.slug, 'boom-2')
+        assert c.slug == 'boom-2'
 
     def test_watchers(self):
         def check(num):
-            eq_(Collection.objects.get(id=512).subscribers, num)
+            assert Collection.objects.get(id=512).subscribers == num
         tasks.collection_watchers(512)
         check(0)
         CollectionWatcher.objects.create(collection_id=512, user=self.user)
@@ -195,23 +193,23 @@ class TestCollections(amo.tests.TestCase):
 
         # Owner.
         fake_request.user = self.user
-        eq_(c.can_view_stats(fake_request), True)
+        assert c.can_view_stats(fake_request) is True
 
         # Bad user.
         fake_request.user = UserProfile.objects.create(
             username='scrub', email='ez@dee')
-        eq_(c.can_view_stats(fake_request), False)
+        assert c.can_view_stats(fake_request) is False
 
         # Member of group with Collections:Edit permission.
         fake_request.groups = (Group(name='Collections Agency',
                                      rules='CollectionStats:View'),)
-        eq_(c.can_view_stats(fake_request), True)
+        assert c.can_view_stats(fake_request) is True
 
         # Developer.
         CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.groups = ()
         fake_request.user = self.user
-        eq_(c.can_view_stats(fake_request), True)
+        assert c.can_view_stats(fake_request) is True
 
 
 class TestCollectionQuerySet(amo.tests.TestCase):
@@ -252,15 +250,14 @@ class TestRecommendations(amo.tests.TestCase):
         return [x[0] for x in addons if x[0] not in self.ids]
 
     def test_build_recs(self):
-        eq_(RecommendedCollection.build_recs(self.ids), self.expected_recs())
+        assert RecommendedCollection.build_recs(self.ids) == self.expected_recs()
 
     @mock.patch('bandwagon.models.AddonRecommendation.scores')
     def test_no_dups(self, scores):
         # The inner dict is the recommended addons for addon 7.
         scores.return_value = {7: {1: 5, 2: 3, 3: 4}}
         recs = RecommendedCollection.build_recs([7, 3, 8])
-        # 3 should not be in the list since we already have it.
-        eq_(recs, [1, 2])
+        assert recs == [1, 2]
 
 
 class TestSyncedCollection(amo.tests.TestCase):

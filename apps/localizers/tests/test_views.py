@@ -18,19 +18,19 @@ class TestDecorators(amo.tests.TestCase):
         url = reverse('localizers.locale_dashboard',
                       kwargs=dict(locale_code=settings.AMO_LANGUAGES[0]))
         res = self.client.head(url)
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
 
     def test_hidden_locale(self):
         url = reverse('localizers.locale_dashboard',
                       kwargs=dict(locale_code=settings.HIDDEN_LANGUAGES[0]))
         res = self.client.head(url)
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
 
     def test_invalid_locale(self):
         url = reverse('localizers.locale_dashboard',
                       kwargs=dict(locale_code='xx'))
         res = self.client.head(url)
-        eq_(res.status_code, 404)
+        assert res.status_code == 404
 
     def test_locale_switcher(self):
         # Test valid locale redirect.
@@ -50,7 +50,7 @@ class TestDecorators(amo.tests.TestCase):
                          kwargs=dict(locale_code=to_locale))
         res = self.client.get(urlparams(from_url, userlang=to_locale),
                               follow=True)
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
 
 
 class TestCategory(amo.tests.TestCase):
@@ -76,7 +76,7 @@ class TestCategory(amo.tests.TestCase):
                                  password='password')
         url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         res = self.client.get(url)
-        eq_(res.status_code, 403)
+        assert res.status_code == 403
 
     def test_the_basics(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -84,9 +84,9 @@ class TestCategory(amo.tests.TestCase):
         # Test page loads and names are as we expect.
         url = reverse('localizers.categories', kwargs=dict(locale_code='es'))
         res = self.client.get(url)
-        eq_(res.status_code, 200)
+        assert res.status_code == 200
         doc = pq(res.content.decode('utf-8'))
-        eq_(doc('#id_form-0-name').val(), u'Campañas')
+        assert doc('#id_form-0-name').val() == u'Campañas'
 
     def test_the_basics_other_locale(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -96,14 +96,11 @@ class TestCategory(amo.tests.TestCase):
             url = reverse('localizers.categories',
                           kwargs=dict(locale_code='es'))
             res = self.client.get(url)
-            eq_(res.status_code, 200)
+            assert res.status_code == 200
             doc = pq(res.content.decode('utf-8'))
-            # Site UI (logout link) is in German.
-            eq_(doc('.nomenu a').text(), u'Abmelden')
-            # Form fields are in Spanish.
-            eq_(doc('#id_form-0-name').val(), u'Campañas')
-            # en-us column is in English.
-            eq_(doc('td.enus').eq(0).text(), u'Causes')
+            assert doc('.nomenu a').text() == u'Abmelden'
+            assert doc('#id_form-0-name').val() == u'Campañas'
+            assert doc('td.enus').eq(0).text() == u'Causes'
 
     def test_other_local(self):
         # Test that somethign other than /en-US/ as the site locale doesn't
@@ -112,10 +109,10 @@ class TestCategory(amo.tests.TestCase):
             url = reverse('localizers.categories',
                           kwargs=dict(locale_code='es'))
             res = self.client.get(url)
-            eq_(res.status_code, 200)
+            assert res.status_code == 200
             doc = pq(res.content.decode('utf-8'))
-            eq_(doc('#id_form-0-name').val(), u'Campañas')
-            eq_(doc('td.enus').eq(0).text(), u'Causes')
+            assert doc('#id_form-0-name').val() == u'Campañas'
+            assert doc('td.enus').eq(0).text() == u'Causes'
 
     def test_post(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -132,15 +129,15 @@ class TestCategory(amo.tests.TestCase):
         res = self.client.post(url, data, follow=True)
         self.assert3xx(res, url, status_code=302)
         doc = pq(res.content.decode('utf-8'))
-        eq_(doc('#id_form-0-name').val(), u'Nada')
-        eq_(doc('#id_form-1-name').val(), u'Música')
+        assert doc('#id_form-0-name').val() == u'Nada'
+        assert doc('#id_form-1-name').val() == u'Música'
         translation.activate('es')
         # Test translation change.
         cat = Category.objects.get(pk=self.cat1.id)
-        eq_(cat.name, u'Nada')
+        assert cat.name == u'Nada'
         # Test new translation.
         cat = Category.objects.get(pk=self.cat2.id)
-        eq_(cat.name, u'Música')
+        assert cat.name == u'Música'
         translation.deactivate()
 
     def test_post_with_empty_translations(self):
@@ -158,13 +155,13 @@ class TestCategory(amo.tests.TestCase):
         res = self.client.post(url, data, follow=True)
         self.assert3xx(res, url, status_code=302)
         doc = pq(res.content.decode('utf-8'))
-        eq_(doc('#id_form-0-name').val(), u'Campañas')
-        eq_(doc('#id_form-1-name').val(), None)
+        assert doc('#id_form-0-name').val() == u'Campañas'
+        assert doc('#id_form-1-name').val() is None
         translation.activate('es')
         # Test translation change.
         cat = Category.objects.get(pk=self.cat1.id)
-        eq_(cat.name, u'Campañas')
+        assert cat.name == u'Campañas'
         # Test new translation.
         cat = Category.objects.get(pk=self.cat2.id)
-        eq_(cat.name.localized_string, u'Music')  # en-US fallback.
+        assert cat.name.localized_string == u'Music'  # en-US fallback.
         translation.deactivate()

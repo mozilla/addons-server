@@ -51,12 +51,8 @@ class SharingModelsTestCase(BaseTestCase):
 
     def test_share_count(self):
         addon = Addon.objects.get(id=3615)
-
-        eq_(addon.share_counts[TWITTER.shortname], 29)
-
-        # total count with no shares
-        eq_(addon.share_counts[FACEBOOK.shortname], 0,
-            'Total count with no shares must be 0')
+        assert addon.share_counts[TWITTER.shortname] == 29
+        assert addon.share_counts[FACEBOOK.shortname] == 0
 
 
 def test_services_unicode():
@@ -91,7 +87,7 @@ def test_share_form():
         'description': 'x' * 250 + 'abcdef',
     })
     form.full_clean()
-    eq_(form.cleaned_data['description'], 'x' * 250 + '...')
+    assert form.cleaned_data['description'] == 'x' * 250 + '...'
     assert form.cleaned_data['url'].startswith('http'), (
         "Unexpected: URL not absolute")
 

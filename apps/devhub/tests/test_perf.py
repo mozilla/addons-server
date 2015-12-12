@@ -36,9 +36,9 @@ class TestPerf(amo.tests.TestCase):
         assert urlopen.called
         url, params = urlopen.call_args[0][0].split('?')
         params = cgi.parse_qs(params)
-        eq_(params['os'], ['win32'])
-        eq_(params['firefox'], ['firefox4.0'])
-        eq_(params['url'], [self.file.get_url_path('perftest')])
+        assert params['os'] == ['win32']
+        assert params['firefox'] == ['firefox4.0']
+        assert params['url'] == [self.file.get_url_path('perftest')]
 
     @raises(BadResponse)
     @patch('devhub.perf.urlopen')

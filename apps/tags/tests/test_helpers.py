@@ -45,7 +45,7 @@ class TestHelpers(amo.tests.BaseTestCase):
         s = render('{{ tag_list(addon, tags=tags) }}', ctx)
         assert s, "Non-empty tags must return tag list."
         doc = pq(s)
-        eq_(doc('li').length, len(tags))
+        assert doc('li').length == len(tags)
 
     def test_helper(self):
         addon = Addon.objects.get(pk=3615)

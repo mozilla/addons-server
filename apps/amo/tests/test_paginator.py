@@ -19,7 +19,7 @@ def mock_pager(page_number, num_pages, count):
 
 def assert_range(page_number, num_pages, expected):
     p = Paginator(mock_pager(page_number, num_pages, 100))
-    eq_(p.range(), expected)
+    assert p.range() == expected
 
 
 def test_page_range():

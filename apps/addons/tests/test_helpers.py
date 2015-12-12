@@ -19,30 +19,30 @@ class TestHelpers(amo.tests.TestCase):
 
         # unreviewed
         a = Addon(status=amo.STATUS_UNREVIEWED)
-        eq_(statusflags(ctx, a), 'unreviewed')
+        assert statusflags(ctx, a) == 'unreviewed'
 
         # recommended
         featured = Addon.objects.get(pk=1003)
-        eq_(statusflags(ctx, featured), 'featuredaddon')
+        assert statusflags(ctx, featured) == 'featuredaddon'
 
         # category featured
         featured = Addon.objects.get(pk=1001)
-        eq_(statusflags(ctx, featured), 'featuredaddon')
+        assert statusflags(ctx, featured) == 'featuredaddon'
 
     def test_flags(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
         # unreviewed
         a = Addon(status=amo.STATUS_UNREVIEWED)
-        eq_(flag(ctx, a), '<h5 class="flag">Not Reviewed</h5>')
+        assert flag(ctx, a) == '<h5 class="flag">Not Reviewed</h5>'
 
         # recommended
         featured = Addon.objects.get(pk=1003)
-        eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
+        assert flag(ctx, featured) == '<h5 class="flag">Featured</h5>'
 
         # category featured
         featured = Addon.objects.get(pk=1001)
-        eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
+        assert flag(ctx, featured) == '<h5 class="flag">Featured</h5>'
 
     def test_contribution_box(self):
         a = Addon.objects.get(pk=7661)
@@ -76,7 +76,7 @@ class TestHelpers(amo.tests.TestCase):
 
         s = contribution(c, a, contribution_src='browse')
         doc = PyQuery(s)
-        eq_(doc('input[name=source]').attr('value'), 'browse')
+        assert doc('input[name=source]').attr('value') == 'browse'
 
     def test_mobile_persona_preview(self):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
@@ -86,7 +86,7 @@ class TestHelpers(amo.tests.TestCase):
         bt = doc('.persona-preview div[data-browsertheme]')
         assert bt
         assert persona.preview_url in bt.attr('style')
-        eq_(persona.json_data, bt.attr('data-browsertheme'))
+        assert persona.json_data == bt.attr('data-browsertheme')
         assert bt.find('p')
 
     def _test_mobile_persona_ctx(self):
@@ -118,7 +118,7 @@ class TestHelpers(amo.tests.TestCase):
         assert doc('.confirm-buttons .cancel')
         more = doc('.more')
         assert more
-        eq_(more.attr('href'), persona.addon.get_url_path())
+        assert more.attr('href') == persona.addon.get_url_path()
 
 
 class TestPerformanceNote(amo.tests.TestCase):
@@ -142,4 +142,4 @@ class TestPerformanceNote(amo.tests.TestCase):
     def test_only_fx(self):
         self.ctx['request'].APP = amo.THUNDERBIRD
         r = performance_note(self.ctx, 30)
-        eq_(r.strip(), '')
+        assert r.strip() == ''

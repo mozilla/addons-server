@@ -75,8 +75,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
         self.heka.error(msg)
         logrecord = self.handler.buffer[-1]
         assert logrecord.msg == "oldstyle: %s" % msg
-
-        eq_(logrecord.levelno, logging.ERROR)
+        assert logrecord.levelno == logging.ERROR
 
         msg = 'info'
         self.heka.info(msg)
@@ -88,21 +87,17 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
         msg = 'warn'
         self.heka.warn(msg)
         logrecord = self.handler.buffer[-1]
-
-        eq_(logrecord.msg, "oldstyle: %s" % msg)
-        eq_(logrecord.levelno, logging.WARN)
-
-        # debug shouldn't log
-        eq_(logrecord, self.handler.buffer[-1])
+        assert logrecord.msg == "oldstyle: %s" % msg
+        assert logrecord.levelno == logging.WARN
+        assert logrecord == self.handler.buffer[-1]
 
     def test_other_sends_json(self):
         timer = 'footimer'
         elapsed = 4
         self.heka.timer_send(timer, elapsed)
         logrecord = self.handler.buffer[-1]
-        # Note that the face that this is a timer is lost entirely
-        eq_(logrecord.levelno, logging.INFO)
-        eq_(logrecord.msg, "timer: %s" % str(elapsed))
+        assert logrecord.levelno == logging.INFO
+        assert logrecord.msg == "timer: %s" % str(elapsed)
 
 
 class TestRaven(amo.tests.TestCase):
@@ -128,6 +123,6 @@ class TestRaven(amo.tests.TestCase):
         except:
             self.heka.raven('blah')
 
-        eq_(len(self.heka.stream.msgs), 1)
+        assert len(self.heka.stream.msgs) == 1
         msg = self.heka.stream.msgs[0]
-        eq_(msg.type, 'sentry')
+        assert msg.type == 'sentry'
