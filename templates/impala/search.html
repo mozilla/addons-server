@@ -4,6 +4,7 @@
 {% endif %}
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 <form id="search" action="{{ search_url }}">
+    <label for="search-q" hidden>search for add-ons</label>
   <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder(search_placeholder) }}"
