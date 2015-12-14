@@ -1,3 +1,8 @@
+my-addon/
+         data
+         lib
+         locale/
+                en-US.properties
 {% extends "editors/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been fully reviewed by an editor and is now available for download in our gallery at {{ addon_url}}
 {% include "editors/emails/files.ltxt" %}
@@ -9,5 +14,5 @@ Comments:
 
 {{ tested }}
 
-Your add-on will no longer display warnings and can make full use of features such as contributions and beta channels.  To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
+Your add-on will no longer display warnings and can make full use of features such as contributions and beta channels.  To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
 {% endblock %}
