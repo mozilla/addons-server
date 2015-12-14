@@ -1,0 +1,723 @@
+// Colors
+@primary-blue: rgba( 12, 153, 213, 1);
+
+#tabzilla:before {
+    background: none;
+}
+
+body {
+    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+    font-style: normal;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #333;
+    background: #FFF none repeat scroll 0% 0%;
+    min-width: 1018px;
+}
+
+h1 {
+    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+    font-style: normal;
+    font-size: 2.25rem;
+}
+
+/* Main Content Wrapper */
+#background-wrapper {
+    border-top: 2px solid #FFF;
+    background-color: #0C99D5;
+    width: 100%;
+    position: absolute;
+    height: 130px;
+    /* Main Content Wrapper Background - General
+     blue-pattern, blue-gradient, white overlay
+     (sharp-cut at 130px) */
+    background-image:
+      linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 100px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba( 12, 153, 213, 0) 0,
+      @primary-blue 131px,
+      #FFF 131px
+    ),
+    repeating-linear-gradient(
+      118deg,
+      rgba(12, 153, 213, 0) 0,
+      #00A7E0 550px,
+      rgba(12, 153, 213, 0) 550px,
+      #00A7E0 800px,
+      rgba(12, 153,213, 0) 800px,
+      #00A7E0 950px
+    );
+    background-position:
+      0 130px,
+      0 0,
+      0 0;
+}
+/* Main Content Wrapper Background  - Home and Add-on Details page
+blue-pattern, blue-gradient, white overlay
+(sharp-cut at 416px) */
+.home #background-wrapper,
+.addon-details #background-wrapper {
+    background-image:
+    linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 100px
+    ),
+    linear-gradient(
+        to bottom,
+        rgba( 12, 153, 213, 0) 0,
+        @primary-blue 417px,
+        #FFF 417px
+    ),
+    repeating-linear-gradient(
+        118deg,
+        rgba(12, 153, 213, 0) 0,
+        #00A7E0 550px,
+        rgba(12, 153, 213, 0) 550px,
+        #00A7E0 800px,
+        rgba(12, 153,213, 0) 800px,
+        #00A7E0 950px
+    );
+    background-position:
+        0 416px,
+        0 0,
+        0 0;
+}
+/* hide overflow to cover streching of bg in
+ .addon-details .primary:first-of-type:before */
+.addon-details #background-wrapper {
+    overflow: hidden;
+}
+
+
+.amo-header {
+    font-family: inherit;
+}
+.menu-nav {
+    font-size: 0.75rem;
+    color: #fff;
+}
+.amo-header ul a {
+    color: #fff;
+}
+#masthead h1 {
+font: inherit;
+    font-size: 3.5rem;
+    line-height: 3rem;
+    letter-spacing: -1px;
+    text-transform: none;
+}
+
+.site-title a {
+    color: #fff;
+    text-decoration: none;
+
+    &:focus, &:hover{
+        color: #fff;
+        text-shadow: none;
+    }
+
+    img {
+        width: 70px;
+    }
+}
+/* DevHub Title */
+.site-title.prominent a:before {
+    background-image: none;
+}
+.site-title.prominent a small {
+    margin-left: 5px;
+}
+/* Navigation Menu & Panels */
+#site-nav > ul > li {
+    border-left: none;
+    left: -9px;
+}
+#aux-nav,
+#site-nav {
+  line-height: inherit;
+}
+.menu-nav {
+    a {
+        color: #000;
+    }
+    > ul {
+        > li {
+            /* Menu Panel */
+            > ul {
+                a {
+                    color: #000;
+                }
+
+                background-color: #fff;
+                border: none;
+                border-radius: 0;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+                top: 25px;
+
+                /* Menu Panel trinagle */
+                &:after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    z-index: 1;
+                    transform: rotate(45deg);
+                    background-color: #fff;
+                    top: -6px;
+                    width: 12px;
+                    height: 12px;
+                    left: 15px;
+                    box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+                }
+            }
+
+            > a, &:hover > a {
+                background: none;
+                border: none;
+                box-shadow: none;
+            }
+
+            /* Menu Panel White block covering lower area of triangle and
+             * helping keep the
+             * mouse on hover */
+            &:hover:after {
+                content: "";
+                width: 200px;
+                z-index: 62;
+                height: 16px;
+                background: none;
+                background-color: inherit;
+                background-image: linear-gradient(to bottom,
+                  transparent 0%,
+                  transparent 7px,
+                  #FFF 7px,
+                  #FFF 100%
+                );
+                position: absolute;
+                top: 18px;
+                left: 1px;
+            }
+        }
+    }
+}
+
+#site-nav #themes ul.two-col {
+    padding: 8px;
+    height: 270px;
+
+    div {
+        display: none;
+        top: 314px;
+        left: -1px;
+    }
+}
+
+// New stuff
+
+
+/* Top Menu */
+/*seperator */
+#aux-nav > ul > li:not(:first-child):before {
+    ul {
+        li {
+            /* Other Applications Panel trinagle position*/
+            ul:after {
+                left: auto;
+                right: 15px;
+            }
+
+            /* Other Applications Menu Arrow */
+            a:after {
+                display: none;
+            }
+
+            /* Other Applications Panel white block position*/
+            &:hover:after {
+                top: 24px;
+                left: -65px;
+                width: 120px;
+            }
+
+            &not(:first-child):before {
+                background:linear-gradient(to bottom,
+                  transparent 0%,
+                  transparent 20%,
+                  #fff 20%,
+                  #fff 80%,
+                  transparent 80%
+                );
+            }
+        }
+    }
+}
+
+.header-search {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    input {
+        border-radius: 0;
+        box-shadow: none;
+        font: inherit;
+    }
+}
+
+button.search-button {
+    background-image: url("https://addons.cdn.mozilla.net/static/img/icons/go-arrow.png?ad8fa66"),
+      linear-gradient(#6FBF4A, #6FBF4A);
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* fix color of search suggestions */
+#site-search-suggestions a span {
+    color: #0996F8;
+}
+
+
+
+.site-balloon {
+    display: none !important;
+}
+
+#promos {
+    width: 960px;
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin-left: -210px;
+    margin-bottom: 15px;
+    visibility: visible !important;
+    display: block !important;
+    opacity: 1 !important;
+}
+#promos, #promos li > div, #promos > div {
+    border-radius: 0;
+}
+#promos .feature {
+    border-radius: 0;
+}
+.island {
+    background: none;
+    border-radius: 0;
+    border: 0;
+    box-shadow: none;
+}
+#promos .promo-purple {
+    background: none;
+}
+/* Featured/Monthly Add-on background modification */
+#featured-addon, #monthly {
+    background: none;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index:0;
+        top: 0;
+        left: 0;
+        width:100%;
+        height:100%;
+        background-image: url(https://addons.cdn.mozilla.net/static/img/zamboni/discovery_pane/promos/monthly-bg.png?eb06c0f);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: contrast(170%) grayscale(100%);
+        mix-blend-mode: multiply;
+        opacity: 0.3;
+    }
+}
+
+#featured-addon, #monthly {
+    .wrap > div  {
+        max-height: 160px;
+    }
+}
+
+#starter.feature {
+    background: none;
+}
+#promos .feature {
+    padding: 10px 78px;
+}
+#promos .control {
+    &:hover {
+        background: rgba(255,255,255,0.1);
+        color: rgba(255,255,255, 0.3);
+    }
+
+    &:after {
+        background: none;
+        color: rgba(255,255,255, 1);
+        height: 100%;
+        border: 0;
+        font-family: inherit;
+        line-height: 260px;
+        vertical-align: middle;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+#promos .prev {
+    left: 0;
+}
+#promos .next {
+    right: 0;
+}
+#promos h2, #promos h3 {
+    font-style: normal;
+    font-family: inherit;
+}
+#promos .promo h2, #promos .ryff h3 {
+    font-size: 36px;
+    font-weight: 100;
+    line-height: 1.3em;
+    color: #fff;
+}
+#promos h3 {
+    color: #fff;
+}
+.promo h2 {
+    text-shadow: none;
+}
+
+
+/* Featured/Monthly Add-on Carousel Element */
+/* move icon to the left */
+#featured-addon .wrap > div,
+#monthly .wrap > div {
+    display: block;
+}
+#featured-addon .blurb,
+#featured-addon .thumb,
+#monthly .blurb,
+#monthly .thumb {
+    display: block;
+}
+#featured-addon .blurb,
+#monthly .blurb {
+    max-width: 80%;
+    float: right;
+}
+#featured-addon .thumb,
+#monthly .thumb {
+    float: left;
+}
+
+/*  */
+#featured-addon > div, #go-mobile > div, #monthly > div, .addons li > a {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+    background-color: rgba(255, 255, 255, 0.0);
+    transition-property: background-color;
+}
+.addons li > a:active, .addons li > a:focus, .addons li > a:hover {
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition-property: background-color;
+}
+.addons img {
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 3px;
+}
+.addons h3, #featured-addon h3, #monthly h3 {
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    max-height: 1.2rem;
+    font-weight: 200;
+    text-align: left;
+    padding-bottom: 5px;
+}
+.addons li > a:active h3,
+.addons li > a:focus h3,
+.addons li > a:hover h3 {
+    text-decoration: none;
+}
+#featured-addon h3 a, #monthly h3 a {
+    color: #fff;
+}
+.addons p.desc, #monthly .wrap p {
+    max-height: 5.4em;
+    font-size: 0.85rem;
+    font-weight: 200;
+    color: #fff;
+    text-overflow: ellipsis;
+    clear: both;
+}
+
+/* Side nav on Home */
+.home #side-nav {
+    /* pushed down to make room for more header */
+    margin-top: 0;
+}
+
+
+/* Install Button */
+.button,
+button,
+input[type="submit"] {
+/* font: 700 13px/1em "Trebuchet MS",sans-serif;*/
+    font-family: inherit;
+    background: #5784BF;
+    border-radius: 0;
+    box-shadow: none;
+    border: 0 none;
+}
+.button.add,
+.button.good,
+button.good {
+    background: #489615;
+}
+.button.selected,
+.button:active,
+.button:focus,
+.button:hover {
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.2) inset;
+}
+
+
+.secondary {
+    h2 {
+        font-family: inherit;
+        font-style: normal;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #aaa;
+    }
+
+    li {
+        border-style: none;
+    }
+}
+
+.island .pager {
+    display: none;
+}
+#featured-extensions {
+    padding-top: 0;
+}
+.sidebar-breakout h3, h2 {
+    font: inherit;
+    font-size: 1.25rem;
+}
+
+#footer {
+    background-color: #fff;
+    background-image: linear-gradient(to bottom,
+      #fff 0,
+      #fff 123px,
+      rgba(12, 153, 213, 1) 123px,
+      rgba(12, 153, 213, 1) 200px,
+      rgba(12, 153,213, 0.5) 200px,
+      rgba(12, 153, 213, 0.0) 400px);
+    font-family: inherit;
+    font-style: normal;
+}
+
+/* --------------------*/
+/* Add-on Details Page */
+/* --------------------*/
+#breadcrumbs {
+    display: none;
+}
+.addon-details .primary,
+.addon-details .secondary {
+    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+}
+
+#addon h1 {
+    color: #fff;
+}
+.version-number {
+    color: #ccc;
+    font-size: .5em;
+}
+/* first block of details - icon, name, description ... */
+.addon-details .primary:first-of-type{
+    padding-bottom: 1em; /* */
+    min-height: 257px; /* make sure it is at least as high as the background extends down */
+}
+/* hack to extend background blue to the bottom of this block, even if it is higher than the background-blue - breaks if content is too high*/
+.addon-details .primary:first-of-type:before {
+    content: "";
+    display: block;
+    width: 400vw;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: -50vw;
+    background-image: linear-gradient( to bottom, rgba( 12, 153, 213, 0) 0%, @primary-blue 50% );
+}
+.addon-details .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+}
+
+/* DevHub */
+#devhub-promo h2 strong {
+    font-family: 'Open Sans';
+}
+#masthead h1 {
+    margin-top: -5px;
+}
+/* Re-colors links on top of details page to white */
+#addon a { color: #FFFFFF; }
+.author a { color: #FFFFFF; }
+.secondary a { color: #FFFFFF; }
+.addon-vitals .widgets .widget { color: #FFFFFF; }
+
+.install-button > .button.add.installer {
+    background: #57BD35;
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.10), inset 0 -2px 0 0 rgba(56,136,30,0.50);
+    border-radius: 3px;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 16px;
+}
+
+.install-button > .button.add.installer:hover {
+    background: #90E07F;
+}
+.install-button > .button.add.installer:active {
+    background: #40A624;
+    box-shadow: none;
+}
+
+/* Notice - underneath description (asking for contribution or  )*/
+.notice {
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+    border-top: 1px solid #CCD6E3;
+    background: 0;
+}
+
+/* move elements in front of the background hack */
+.addon-details .primary .notice,
+.addon-details .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+}
+
+/* Notice - underneath description (asking for contribution &/or showing dependencies )*/
+.addon-details .primary .notice {
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    background: 0;
+}
+
+/* modify dependency to show "add to firefox" button and hide overlay */
+/* make hovercard hide discription and always show "add to firefox" */
+.addon-details .primary .notice.dependencies {
+    height: 130px;
+}
+.addon-details .primary .notice .hovercard.addon:hover,
+.addon-details .primary .notice .hovercard.addon:hover:before,
+.addon-details .primary .notice .hovercard.addon:hover .icon,
+.addon-details .primary .notice .hovercard.addon:hover .summary,
+.addon-details .primary .notice .hovercard.addon:hover .more {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+.addon-details .primary .notice .hovercard.addon:hover .summary {
+    height: 55px; /* keep fixed hight on hover */
+}
+.addon-details .primary .notice .addon.hovercard .more {
+    display: block !important;
+}
+.addon-details .primary .notice .hovercard.addon .more .addon-summary,
+.addon-details .primary .notice .hovercard.addon .more .byline,
+.addon-details .primary .notice .hovercard.addon .more .vitals {
+    display: none;
+}
+
+/* font issues on addon-details */
+.addon-details .version-number,
+.addon-details h4.author,
+.addon-details h4.author a,
+.addon-details #addon-summary,
+.addon-details a.privacy-policy,
+.addon-details .notice h3,
+.addon-details .notice p,
+.addon-details .notice p a,
+.addon-details .notice p b,
+.addon-details .category.more-info,
+.addon-details .vital a,
+.addon-details #reviews-link,
+.addon-details #daily-users a {
+    color: #fff;
+}
+
+.addon-details .version-number,
+.addon-details h4.author,
+.addon-details a.privacy-policy,
+.addon-details #contribution.notice p a,
+.addon-details .category.more-info,
+.addon-details .vital a,
+.addon-details #reviews-link,
+.addon-details #daily-users a {
+    opacity: 0.4;
+}
+
+.addon-details .version-number {
+    font-size: 0.39em;
+}
+
+.addon-details .notice h3 {
+    font-style: normal;
+}
+
+.addon-details .addon-vitals .stats {
+    background: none;
+}
+
+.addon-details .widgets {
+    display: none;
+}
+
+#promos.shown {
+    height: 271px !important;
+    min-height: 271px !important;
+}
+
+#side-nav.c.expanded {
+    margin-top: 286px;
+    margin-top: 0;
+}
+
+.home #side-nav.top {
+    margin-top: 0;
+}
+
+#background-wrapper.expanded {
+    height: 420px;
+}
+
+/* Themes */
+.other-categories h3 a {
+    color: #C63717;
+    font-family: 'Open Sans';
+}
+
+.other-categories li a {
+    color: rgba(12, 153, 213, 1);
+}
+
+.personas-home .intro {
+    font-size: 1.2em;
+}

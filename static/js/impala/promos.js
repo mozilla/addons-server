@@ -25,6 +25,12 @@ function initPromos($context, module_context, version, platform) {
         data = {version: version, platform: platform};
     }
     $.get(promo_url, data, function(resp) {
+        // Hide panel is we have no promos to show
+        if (resp !== '') {
+            $('#background-wrapper').addClass('carousel-header');
+            $('#promos').addClass('show');
+            $('#side-nav').addClass('expanded');
+        }
         $('.slider', $promos).append($(resp));
         if ($('.panel', $promos).length) {
             // Show promo module only if we have at least panel.
