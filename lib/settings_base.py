@@ -157,6 +157,7 @@ def lazy_langs(languages):
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib', 'product_json')
+PROD_DETAILS_URL = 'https://svn.mozilla.org/libs/product-details/json/'
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
