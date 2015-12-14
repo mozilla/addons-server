@@ -9,6 +9,7 @@ from celery import chain, group
 from tower import ugettext as _
 
 import amo
+import commonware.log
 from addons.models import Addon
 from amo.decorators import write
 from amo.urlresolvers import linkify_escape
@@ -17,6 +18,8 @@ from files.utils import parse_addon
 from validator.constants import SIGNING_SEVERITIES
 from validator.version import Version
 from . import tasks
+
+log = commonware.log.getLogger('z.devhub')
 
 
 def process_validation(validation, is_compatibility=False, file_hash=None):
@@ -67,8 +70,14 @@ def limit_validation_results(validation):
     if lim and len(messages) > lim:
         # Sort messages by severity first so that the most important messages
         # are the one we keep.
-        TYPES = {'error': 0, 'warning': 1, 'notice': 2}
-        messages.sort(key=lambda msg: TYPES.get(msg.get('type')))
+        TYPES = {'error': 0, 'warning': 2, 'notice': 3}
+
+        def message_key(message):
+            if message.get('signing_severity'):
+                return 1
+            else:
+                return TYPES.get(message.get('type'))
+        messages.sort(key=message_key)
 
         leftover_count = len(messages) - lim
         del messages[lim:]
@@ -137,8 +146,12 @@ class ValidationAnnotator(object):
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, check=False)
-            except ValidationError:
+            except ValidationError as form_error:
+                log.info('could not parse addon for upload {}: {}'
+                         .format(file_.pk, form_error))
                 addon_data = None
+            else:
+                file_.update(version=addon_data.get('version'))
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override

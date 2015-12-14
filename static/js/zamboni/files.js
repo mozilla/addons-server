@@ -1,41 +1,191 @@
 "use strict";
 
-if (typeof diff_match_patch !== 'undefined') {
-    diff_match_patch.prototype.diff_prettyHtml = function(diffs) {
-        /* An override of prettyHthml from diff_match_patch. This
-           one will not put any style attrs in the ins or del. */
-        var html = [];
-        for (var x = 0; x < diffs.length; x++) {
-            var op = diffs[x][0];    // Operation (insert, delete, equal)
-            var data = diffs[x][1];  // Text of change.
-            var lines = data.split('\n');
-            for (var t = 0; t < lines.length; t++) {
-                /* A diff gets an empty element on the end (the last \n).
-                   Unless the diff line in question does not have a new line on
-                   the end. We can't just set lines.length - 1, because this
-                   will just chop off lines. But if we don't trim these empty
-                   lines we'll end up with lines between each diff. */
-                if ((t + 1) == lines.length && lines[t] == '') {
-                    continue;
-                }
+$(function() {
+    // Compile our templates.
+    Highlighter.templates = _.object(_.map(
+        $('script[type="text/x-template"]'),
+        function(node) {
+            return [$.camelCase(node.id),
+                    _.template($(node).text())];
+        }));
+});
+
+var Highlighter = {
+    squash_space: function squash_space(str) {
+        // Squash non-significant whitespace in a string, so it can be
+        // ignored for the sake of diffs.
+        return str.replace(/[^\n]+/g, function (match) {
+            return match.trim()
+                .replace(/\s+/g, ' ')
+                .replace(/([^a-z0-9_$]) | (?![a-z0-9_$])/gi, "$1");
+        })
+    },
+
+    diff: function diff(left, right, brush) {
+        // Creates a unified diff of the arbitrary strings `left` and
+        // `right`, ignoring white-space changes within lines..
+
+        var differ = new diff_match_patch();
+
+        // Start by squashing the whitespace in both input strings,
+        // and converting them to arrays of characters.
+        var charred_inputs = differ.diff_linesToChars_(
+            this.squash_space(right), this.squash_space(left));
+
+        // Then have the diff library diff thos.
+        var diffs = differ.diff_main(charred_inputs[0],
+                                     charred_inputs[1], false);
+
+        // And convert them back to lines.
+        differ.diff_charsToLines_(diffs, charred_inputs[2]);
+
+        // If we have a brush, filter the left lines through the syntax
+        // highlighter. Otherwise, just escape them.
+        if (brush) {
+            var left_lines = this.highlight_lines(left, brush);
+        } else {
+            left_lines = _.map(left.split('\n'), _.escape);
+        }
+        var right_lines = _.map(right.split('\n'), _.escape);;
+
+        // And finally convert that to a unified diff, restoring the
+        // original white-space.
+        // Note that, for historic reasons, the diff library has a
+        // different opinion on what constitutes left and right than we
+        // do.
+        var classes = {'-': 'delete', '+': 'add', ' ': ''};
+
+        function output(line_no, op, line) {
+            // Wrap a line in HTML and append a metadata object to our
+            // output.
+            var html = format('<code class="plain">{op}{line}</code>',
+                              {op: op, line: line});
+
+            result.push({
+                number: line_no,
+                'class': classes[op],
+                code: html
+            });
+        }
+
+        var result = [];
+        var left_line = 0;
+        var right_line = 0;
+
+        for (var i = 0; i < diffs.length; i++) {
+            // Each element in `diffs` is an addition, a removal, or
+            // common fragment, and may contain multiple lines.
+            var op = diffs[i][0];
+            // Strip off the last \n of the group and split into lines.
+            var lines = diffs[i][1].replace(/\n$/, "").split('\n');
+
+            for (var j = 0; j < lines.length; j++) {
                 switch (op) {
-                    /* The syntax highlighter needs an extra space
-                       to do it's work. */
-                    case DIFF_INSERT:
-                        html.push('+' + lines[t] + '\n');
-                        break;
-                    case DIFF_DELETE:
-                        html.push('-' + lines[t] + '\n');
-                        break;
-                    case DIFF_EQUAL:
-                        html.push(' ' + lines[t] + '\n');
-                        break;
+                case DIFF_DELETE:
+                    // A removal. Take a line from the right.
+                    output('', '-', right_lines[right_line])
+                    right_line += 1;
+                    break;
+
+                case DIFF_EQUAL:
+                    // A Common line. Take a line from the left,
+                    // but increment both counters.
+                    output(left_line + 1, ' ', left_lines[left_line]);
+                    left_line += 1;
+                    right_line += 1;
+                    break;
+
+                case DIFF_INSERT:
+                    // An insert. Take a line from the left.
+                    output(left_line + 1, '+', left_lines[left_line]);
+                    left_line += 1;
+                    break;
+
+                default:
+                    throw 'an unexpected fit';
                 }
             }
         }
-        return html.join('');
-    };
-}
+
+        return result;
+    },
+
+    highlight_lines: function highlight_lines(text, brush) {
+        // Highlight the given text with the brush `brush`,
+        // and return the resulting lines.
+
+        // This involves a lot of hackery to deal with the `shCore`
+        // library.
+
+        // Create an element containing the text we want to diff,
+        // and put it inside another element, since the syntax
+        // highlighter will try to replace the original element in the
+        // DOM when it's done.
+
+        var $node = $('<pre>', {'class': format('brush: {0}; toolbar: false;',
+                                                [brush]),
+                                text: text});
+        $('<div>').append($node);
+
+        var output = [];
+        SyntaxHighlighter.amo_vars = {'lines': output};
+        SyntaxHighlighter.highlight({}, $node[0]);
+
+        // At this point, we have the highlighted lines in the `output`
+        // array.
+        return output;
+    },
+
+    highlight: function highlight($node) {
+        // Do not use `.data()` for these. jQuery will attempt
+        // to parse them as JSON if they start with `{` or `[`.
+        var brush = $node.data('brush');
+
+        if ($node.is('[data-content]')) {
+            var content = $node.attr('data-content');
+
+            var lines = _.map(this.highlight_lines(content, brush), function(line, idx) {
+                return {
+                    number: idx + 1,
+                    classes: '',
+                    code: line
+                };
+            });
+        } else {
+            // Diff.
+            var left = $node.attr('data-left');
+            var right = $node.attr('data-right');
+
+            var lines = this.diff(left, right, brush);
+        }
+
+        // Annotate the lines a bit.
+        var deleted_line = 0;
+        _.each(lines, function(line) {
+            if (line.number) {
+                line.id = "L" + line.number;
+            } else {
+                deleted_line++;
+                line.id = "D" + deleted_line;
+            }
+        });
+
+        var line_order = Math.ceil(Math.log(lines.length) / Math.log(10));
+        // Width of the line numbers column.
+        // 1.2 ex width per digit, just to be safe, and an additional 4 for padding.
+        var lines_width = 1.2 * line_order + 4;
+
+        var html = this.templates.syntaxTable({lines_width: lines_width,
+                                               lines: lines});
+
+        $node.html(html);
+    },
+};
+
+_.extend(_.templateSettings, {
+    evaluate:    /\{%([^]+?)%\}/g,
+    escape:      /\{\{([^]+?)\}\}/g
+});
 
 var config = {
     diff_context: 2,
@@ -46,161 +196,72 @@ if (typeof SyntaxHighlighter !== 'undefined') {
     /* Turn off double click on the syntax highlighter. */
     SyntaxHighlighter.defaults['quick-code'] = false;
     SyntaxHighlighter.defaults['auto-links'] = false;
-    SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': false};
-
-    SyntaxHighlighter.Highlighter.prototype.getLineNumbersHtml = function(code, lineNumbers) {
-        return '';
-    };
 
     SyntaxHighlighter.Highlighter.prototype.getLineHtml = function(lineIndex, lineNumber, code) {
-        var classes = [
-            'original',
-            'line',
-            'number' + lineNumber,
-            'index' + lineIndex,
-        ];
-        var td_classes = [
-            'td-line-code',
-            'alt' + (lineNumber % 2 + 1)
-        ];
-        var line_classes = classes.slice();
-        var line_attrs = [];
+        // We're just after HTML for individual lines here. Don't bother
+        // doing anything aside from storing it.
 
-        classes.push('line-code');
-        line_classes.push('line-number');
-
-        if (this.isLineHighlighted(lineNumber)) {
-            classes.push('highlighted');
+        if (lineIndex == 0) {
+            // See comment in getHtml.
+            code = code.replace(/(^|>)\|/, '');
         }
 
-        if (lineNumber === 0) {
-            classes.push('break');
-        }
-
-        /* For diffs we have to do more work to make the line numbers
-         * do what we'd like. */
-        var vars = SyntaxHighlighter.amo_vars;
-        var line_id = 'L' + lineNumber;
-        if (vars.is_diff) {
-            // Wow. This is terrible.
-            if (code.match(/<code class=".*?comments.*?">/)) {
-                // Line deletion.
-                vars.right_line += 1;
-                line_id = 'D' + vars.right_line;
-
-                td_classes.push('delete');
-                line_classes.push('delete');
-            } else {
-                var lines = vars.highlighted_lines || [];
-
-                vars.left_line += 1;
-                line_id = 'L' + vars.left_line;
-
-                var new_line;
-                if (vars.left_line in lines) {
-                    new_line = lines[vars.left_line];
-                }
-
-                line_attrs.push('data-linenumber="' + vars.left_line + '"')
-
-                if (code.match(/<code class=".*?string.*?">/)) {
-                    // Line addition.
-                    td_classes.push('add');
-                    line_classes.push('add');
-                    if (new_line) {
-                        code = '<code class="xml plain">+</code>' + new_line;
-                    }
-                } else {
-                    // Common line.
-                    vars.right_line += 1;
-                    if (new_line) {
-                        code = '<code class="xml plain">\u00a0</code>' + new_line;  // Non-breaking space.
-                    }
-                }
-            }
-        } else {
-            line_attrs.push('data-linenumber="' + lineNumber + '"');
-            if (vars.lines) {
-                vars.lines[lineNumber] = code;
-            }
-        }
-
-        line_attrs.push('id="' + line_id + '"',
-                        'href="#' + line_id + '"',
-                        'class="' + line_classes.join(' ') + '"');
-
-        return '<tr class="tr-line">' +
-                    '<td class="td-line-number"><a ' + line_attrs.join(' ') + '></a></td>' +
-                    '<td class="' + td_classes.join(' ') + '"><span class="' + classes.join(' ') + '">' + code + '</span></td>' +
-               '</tr>';
+        SyntaxHighlighter.amo_vars.lines[lineIndex] = code;
     };
 
     SyntaxHighlighter.Highlighter.prototype.getHtml = function(code) {
-        // Copied from shCore.js with slight modifications, to output
-        // code and line numbers as a table, rather than parallel divs.
+        // Just the bare minimum we need to get the HTML for individual
+        // lines.
         //
-        // Original:
+        // Much of this comes from the original:
         //   https://github.com/mozilla/olympia/blob/a35ab083/static/js/lib/syntaxhighlighter/shCore.js#L1552
-        var html = '',
-            classes = [ 'syntaxhighlighter' ],
-            tabSize,
-            matches,
-            lineNumbers;
-
-        // process light mode
-        if (this.getParam('light') == true)
-            this.params.toolbar = this.params.gutter = false;
-
-        if (this.getParam('collapse') == true)
-            classes.push('collapsed');
-
-        classes.push('nogutter');
-
-        // add custom user style name
-        classes.push(this.getParam('class-name'));
-
-        // add brush alias to the class name for custom CSS
-        classes.push(this.getParam('brush'));
-
-        lineNumbers = this.figureOutLineNumbers(code);
 
         // find matches in the code using brushes regex list
-        matches = this.findMatches(this.regexList, code);
+        var matches = this.findMatches(this.regexList, code);
+
         // processes found matches into the html
-        html = this.getMatchesHtml(code, matches);
-        // finally, split all lines so that they wrap well
-        html = this.getCodeLinesHtml(html, lineNumbers);
+        var html = this.getMatchesHtml(code, matches);
 
-        // finally, process the links
-        if (this.getParam('auto-links'))
-            html = processUrls(html);
+        // N.B.(Kris): This... unbelievably... trims whitespace from both
+        // sides of the output, even though it was already trimmed
+        // prior to output in the stock version of this function.
+        html = '|' + html;
+        this.getCodeLinesHtml(html);
 
-        if (typeof(navigator) != 'undefined' && navigator.userAgent && navigator.userAgent.match(/MSIE/))
-            classes.push('ie');
+        // And we're done. The line HTML is now in `SyntaxHighlighter.amo_vars.lines`.
+    };
 
-        var line_order = Math.ceil(Math.log(lineNumbers.length) / Math.log(10)) + 1;
-        var lines_width = 1.2 * line_order + 4;  // 1.2 ex width per digit, just to be safe, + 4 for padding.
+    // Urgh. Why, oh why, with the absurd Crockford Closures...
+    // I shouldn't have to do this.
+    //
+    // Slightly modified from the built-in version to handle
+    // newer keywords:
+    new function() {
+        function JSBrush() {
+            var keywords =  'break case catch continue ' +
+                            'default delete do else false  ' +
+                            'for function if in instanceof ' +
+                            'new null return super switch ' +
+                            'this throw true try typeof var while with ' +
+                            'const let of debugger'
+                            ;
 
-        if (SyntaxHighlighter.amo_vars.lines) {
-            // Just generating HTML for the diff highlighter.
-            // Bail early.
-            return '';
-        }
+            var r = SyntaxHighlighter.regexLib;
 
-        html =
-            '<div id="highlighter_' + this.id + '" class="' + classes.join(' ') + '">'
-                + (this.getParam('toolbar') ? sh.toolbar.getHtml(this) : '')
-                    + '<table border="0" cellpadding="0" cellspacing="0">'
-                        + this.getTitleHtml(this.getParam('title'))
-                            + '<colgroup><col class="highlighter-column-line-numbers" style="width: ' + lines_width + 'ex;"/>'
-                                      + '<col class="highlighter-column-code"/></colgroup>'
-                            + '<tbody>'
-                                + html
-                            + '</tbody>'
-                    + '</table>'
-            + '</div>';
+            this.regexList = [
+                { regex: r.multiLineDoubleQuotedString,                 css: 'string' },            // double quoted strings
+                { regex: r.multiLineSingleQuotedString,                 css: 'string' },            // single quoted strings
+                { regex: r.singleLineCComments,                         css: 'comments' },          // one line comments
+                { regex: r.multiLineCComments,                          css: 'comments' },          // multiline comments
+                { regex: /\s*#.*/gm,                                    css: 'preprocessor' },      // preprocessor tags like #region and #endregion
+                { regex: new RegExp(this.getKeywords(keywords), 'gm'),  css: 'keyword' }            // keywords
+                ];
 
-        return html;
+            this.forHtmlScript(r.scriptScriptTags);
+        };
+        JSBrush.aliases = ['js', 'jsm', 'es'];
+        JSBrush.prototype = SyntaxHighlighter.brushes.JScript.prototype;
+        SyntaxHighlighter.brushes.JScript = JSBrush;
     };
 }
 
@@ -279,41 +340,7 @@ function bind_viewer(nodes) {
         this.top = null;
         this.last = null;
         this.compute = function(node) {
-            var $diff = node.find('#diff'),
-                $content = node.find('#content');
-
-            if ($diff.length) {
-                var dmp = new diff_match_patch();
-
-                // Line diffs http://code.google.com/p/google-diff-match-patch/wiki/LineOrWordDiffs
-                var a = dmp.diff_linesToChars_($diff.siblings('.right').text(),
-                                               $diff.siblings('.left').text());
-                var diffs = dmp.diff_main(a[0], a[1], false);
-
-                dmp.diff_charsToLines_(diffs, a[2]);
-
-                $diff.text(dmp.diff_prettyHtml(diffs)).show();
-
-                var highlighted_lines = []
-                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': false,
-                                              'lines': highlighted_lines};
-
-
-                var $left = $diff.siblings('.left');
-                $('<div>').hide().append($left).insertAfter($diff);
-                SyntaxHighlighter.highlight({}, $left[0]);
-
-                /* Reset the syntax highlighter variables. */
-                SyntaxHighlighter.amo_vars = {'left_line': 0, 'right_line': 0, 'is_diff': true,
-                                              'highlighted_lines': highlighted_lines};
-                SyntaxHighlighter.highlight({}, $diff[0]);
-                // Note SyntaxHighlighter has nuked the node and replaced it.
-                $diff = node.find('#diff');
-            } else if ($content) {
-                SyntaxHighlighter.highlight({}, $content[0]);
-                // Note SyntaxHighlighter has nuked the node and replaced it.
-            }
-
+            Highlighter.highlight(node.find('#diff, #content'));
 
             this.compute_messages(node);
 
@@ -572,7 +599,9 @@ function bind_viewer(nodes) {
                     var $self = $(this);
                     var $ul = $self.parent().next();
 
-                    $.each(['warning', 'error', 'notice'], function(i, type) {
+                    $.each(['warning', 'warning-signing',
+                            'error', 'error-signing',
+                            'notice', 'notice-signing'], function(i, type) {
                         if ($ul.find('.' + type + ':eq(0)').length) {
                             $self.addClass(type);
                         }

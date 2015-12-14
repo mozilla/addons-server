@@ -194,11 +194,11 @@ class TestCollections(amo.tests.TestCase):
         fake_request.user.is_authenticated.return_value = True
 
         # Owner.
-        fake_request.amo_user = self.user
+        fake_request.user = self.user
         eq_(c.can_view_stats(fake_request), True)
 
         # Bad user.
-        fake_request.amo_user = UserProfile.objects.create(
+        fake_request.user = UserProfile.objects.create(
             username='scrub', email='ez@dee')
         eq_(c.can_view_stats(fake_request), False)
 
@@ -210,8 +210,28 @@ class TestCollections(amo.tests.TestCase):
         # Developer.
         CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.groups = ()
-        fake_request.amo_user = self.user
+        fake_request.user = self.user
         eq_(c.can_view_stats(fake_request), True)
+
+
+class TestCollectionQuerySet(amo.tests.TestCase):
+    fixtures = ('base/addon_3615',)
+
+    def test_with_has_addon(self):
+        user = UserProfile.objects.create(username='uhhh', email='uh@hh')
+        collection = Collection.objects.create(author=user)
+        addon = Addon.objects.all()[0]
+
+        qset = (
+            Collection.objects
+            .filter(pk=collection.id)
+            .with_has_addon(addon.id))
+
+        assert not qset.first().has_addon
+
+        collection.add_addon(addon)
+
+        assert qset.first().has_addon
 
 
 class TestRecommendations(amo.tests.TestCase):

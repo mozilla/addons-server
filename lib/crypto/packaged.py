@@ -35,12 +35,12 @@ def supports_firefox(file_obj):
     if not file_obj.binary_components and not file_obj.strict_compatibility:
         # Version is "default to compatible".
         return apps.filter(
-            max__application=amo.FIREFOX.id,
+            max__application__in=[amo.FIREFOX.id, amo.ANDROID.id],
             max__version_int__gte=version_int(settings.MIN_D2C_VERSION))
     else:
         # Version isn't "default to compatible".
         return apps.filter(
-            max__application=amo.FIREFOX.id,
+            max__application__in=[amo.FIREFOX.id, amo.ANDROID.id],
             max__version_int__gte=version_int(settings.MIN_NOT_D2C_VERSION))
 
 

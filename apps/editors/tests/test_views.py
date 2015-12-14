@@ -479,6 +479,22 @@ class TestHome(EditorTest):
         eq_(cols.eq(0).text(), self.user.display_name)
         eq_(int(cols.eq(1).text()), 2, 'Approval count should be 2')
 
+    def test_stats_total_admin(self):
+        self.login_as_admin()
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
+        amo.set_user(self.user)
+
+        create_addon_file('No admin review', version_str='1.0',
+                          addon_status=amo.STATUS_NOMINATED,
+                          file_status=amo.STATUS_UNREVIEWED)
+        create_addon_file('Admin review', version_str='1.0',
+                          addon_status=amo.STATUS_NOMINATED, admin_review=True,
+                          file_status=amo.STATUS_UNREVIEWED)
+
+        doc = pq(self.client.get(self.url).content)
+        tooltip = doc('.editor-stats-table').eq(0).find('.waiting_new')
+        assert '2 add-ons' in tooltip.attr('title')
+
     def test_stats_monthly(self):
         self.approve_reviews()
 
@@ -909,7 +925,7 @@ class TestQueueBasics(QueueTest):
         self.client.logout()
         self.login(users[0])
         res = self.client.get(reverse('editors.home'))
-        self.assertRedirects(res, reverse('editors.themes.home'))
+        self.assert3xx(res, reverse('editors.themes.home'))
 
         self.grant_permission(users[1], 'Addons:Review')
         self.client.logout()
@@ -1136,7 +1152,7 @@ class TestModeratedQueue(QueueTest):
         data_formset['form-0-action'] = action
 
         r = self.client.post(self.url, data_formset)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
 
     def test_skip(self):
         self.setup_actions(reviews.REVIEW_MODERATE_SKIP)
@@ -1244,6 +1260,26 @@ class TestModeratedQueue(QueueTest):
 
         eq_(doc('.no-results').length, 1)
         eq_(doc('.review-saved button').length, 1)  # Show only one button.
+
+    def test_do_not_show_reviews_for_non_public_addons(self):
+        Addon.objects.all().update(status=amo.STATUS_NULL)
+
+        res = self.client.get(self.url)
+        assert res.status_code == 200
+        doc = pq(res.content)('#reviews-flagged')
+
+        # There should be no results since all add-ons are not public.
+        assert doc('.no-results').length == 1
+
+    def test_do_not_show_reviews_for_unlisted_addons(self):
+        Addon.objects.all().update(is_listed=False)
+
+        res = self.client.get(self.url)
+        assert res.status_code == 200
+        doc = pq(res.content)('#reviews-flagged')
+
+        # There should be no results since all add-ons are unlisted.
+        assert doc('.no-results').length == 1
 
 
 class TestUnlistedPendingQueue(TestPendingQueue):
@@ -1820,11 +1856,10 @@ class ReviewBase(QueueTest):
         return Addon.objects.get(pk=self.addon.pk)
 
     def get_dict(self, **kw):
-        files = [self.version.files.all()[0].pk]
-        d = {'operating_systems': 'win', 'applications': 'something',
-             'comments': 'something', 'addon_files': files}
-        d.update(kw)
-        return d
+        data = {'operating_systems': 'win', 'applications': 'something',
+                'comments': 'something'}
+        data.update(kw)
+        return data
 
 
 class TestReview(ReviewBase):
@@ -1835,7 +1870,7 @@ class TestReview(ReviewBase):
     def test_not_anonymous(self):
         self.client.logout()
         r = self.client.head(self.url)
-        self.assertRedirects(
+        self.assert3xx(
             r, '%s?to=%s' % (reverse('users.login'), self.url))
 
     @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
@@ -2007,11 +2042,10 @@ class TestReview(ReviewBase):
             v.update(created=v.created + timedelta(days=i))
 
             if 'action' in version:
-                d = dict(action=version['action'], operating_systems='win',
-                         applications='something',
-                         comments=version['comments'],
-                         addon_files=[v.files.all()[0].pk])
-                self.client.post(self.url, d)
+                data = dict(action=version['action'], operating_systems='win',
+                            applications='something',
+                            comments=version['comments'])
+                self.client.post(self.url, data)
                 v.delete()
 
     @patch('editors.helpers.sign_file')
@@ -2094,19 +2128,15 @@ class TestReview(ReviewBase):
         eq_(doc('th').eq(1).text(), 'Comment')
         eq_(doc('.history-comment').text(), 'hello sailor')
 
-    @patch('editors.helpers.sign_file')
-    def test_files_in_item_history(self, mock_sign):
+    def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
-                'applications': 'something', 'comments': 'something',
-                'addon_files': [self.version.files.all()[0].pk]}
+                'applications': 'something', 'comments': 'something'}
         self.client.post(self.url, data)
 
         r = self.client.get(self.url)
         items = pq(r.content)('#review-files .files .file-info')
         eq_(items.length, 1)
         eq_(items.find('a.editors-install').text(), 'All Platforms')
-
-        assert mock_sign.called
 
     def test_no_items(self):
         r = self.client.get(self.url)
@@ -2201,8 +2231,8 @@ class TestReview(ReviewBase):
                                                'adminflag': True})
         eq_(response.status_code, 302,
             "Review should be processed as normal and redirect")
-        self.assertRedirects(response, reverse('editors.queue_pending'),
-                             status_code=302)
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
         eq_(Addon.objects.get(pk=self.addon.pk).admin_review, False,
             "Admin flag should still be removed if admin")
 
@@ -2215,8 +2245,8 @@ class TestReview(ReviewBase):
         eq_(response.status_code, 302,
             "Review should be processed as normal and redirect")
         # Should silently fail to set adminflag but work otherwise.
-        self.assertRedirects(response, reverse('editors.queue_pending'),
-                             status_code=302)
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
         eq_(Addon.objects.get(pk=self.addon.pk).admin_review, True,
             "Admin flag should still be in place if editor")
 
@@ -2287,10 +2317,9 @@ class TestReview(ReviewBase):
     @patch('editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-        d = dict(action='prelim', operating_systems='win',
-                 applications='something', comments='something',
-                 addon_files=[version.files.all()[0].pk])
-        self.client.post(url, d)
+        data = dict(action='prelim', operating_systems='win',
+                    applications='something', comments='something')
+        self.client.post(url, data)
 
         assert mock_sign.called
 
@@ -2555,33 +2584,6 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
-    def test_prelim_from_lite_no_files(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        data = self.prelim_dict()
-        del data['addon_files']
-        response = self.client.post(self.url, data)
-        eq_(response.context['form'].errors['addon_files'][0],
-            'You must select some files.')
-
-    def test_prelim_from_lite_wrong(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        response = self.client.post(self.url, self.prelim_dict())
-        eq_(response.context['form'].errors['addon_files'][0],
-            'File Public.xpi is not pending review.')
-
-    def test_prelim_from_lite_wrong_two(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        data = self.prelim_dict()
-        f = self.version.files.all()[0]
-
-        statuses = dict(File.STATUS_CHOICES)  # Shallow copy.
-        del statuses[amo.STATUS_BETA], statuses[amo.STATUS_UNREVIEWED]
-        for status in statuses:
-            f.update(status=status)
-            response = self.client.post(self.url, data)
-            eq_(response.context['form'].errors['addon_files'][0],
-                'File Public.xpi is not pending review.')
-
     def test_prelim_from_lite_files(self):
         self.addon.update(status=amo.STATUS_LITE)
         self.client.post(self.url, self.prelim_dict())
@@ -2603,7 +2605,6 @@ class TestReviewPreliminary(ReviewBase):
         file_.save()
         self.addon.update(status=amo.STATUS_LITE)
         data = self.prelim_dict()
-        data['addon_files'] = [file_.pk]
         self.client.post(self.url, data)
         eq_([amo.STATUS_DISABLED, amo.STATUS_LITE],
             [f.status for f in self.version.files.all().order_by('status')])
@@ -2618,22 +2619,21 @@ class TestReviewPending(ReviewBase):
         self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
-        files = list(self.version.files.values_list('id', flat=True))
-        return self.get_dict(action='public', addon_files=files)
+        return self.get_dict(action='public')
 
     @patch('editors.helpers.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        eq_(list(statuses), [amo.STATUS_UNREVIEWED, amo.STATUS_LITE])
+        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]
 
-        r = self.client.post(self.url, self.pending_dict())
-        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
-        self.assertRedirects(r, reverse('editors.queue_pending'))
+        response = self.client.post(self.url, self.pending_dict())
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        self.assert3xx(response, reverse('editors.queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        eq_(list(statuses), [amo.STATUS_PUBLIC] * 2)
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_LITE]
 
         assert mock_sign.called
 
@@ -2647,22 +2647,54 @@ class TestReviewPending(ReviewBase):
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
         assert self.addon.reload().status == amo.STATUS_PUBLIC
-        self.assertRedirects(response,
-                             reverse('editors.unlisted_queue_pending'))
+        self.assert3xx(response, reverse('editors.unlisted_queue_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_PUBLIC] * 2
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_LITE]
 
         assert mock_sign.called
 
-    def test_disabled_file(self):
-        obj = File.objects.create(version=self.version,
-                                  status=amo.STATUS_DISABLED)
+    def test_display_only_unreviewed_files(self):
+        """Only the currently unreviewed files are displayed."""
+        self.file.update(filename='somefilename.xpi')
+        reviewed = File.objects.create(version=self.version,
+                                       status=amo.STATUS_PUBLIC,
+                                       filename='file_reviewed.xpi')
+        disabled = File.objects.create(version=self.version,
+                                       status=amo.STATUS_DISABLED,
+                                       filename='file_disabled.xpi')
+        unreviewed = File.objects.create(version=self.version,
+                                         status=amo.STATUS_UNREVIEWED,
+                                         filename='file_unreviewed.xpi')
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
-        assert 'disabled' in doc('#file-%s' % obj.pk)[0].keys()
-        assert 'disabled' not in doc('#file-%s' % self.file.pk)[0].keys()
+        assert len(doc('.review-actions-files ul li')) == 2
+        assert reviewed.filename not in response.content
+        assert disabled.filename not in response.content
+        assert unreviewed.filename in response.content
+        assert self.file.filename in response.content
+
+    @patch('editors.helpers.sign_file')
+    def test_review_unreviewed_files(self, mock_sign):
+        """Review all the unreviewed files when submitting a review."""
+        reviewed = File.objects.create(version=self.version,
+                                       status=amo.STATUS_PUBLIC)
+        disabled = File.objects.create(version=self.version,
+                                       status=amo.STATUS_DISABLED)
+        unreviewed = File.objects.create(version=self.version,
+                                         status=amo.STATUS_UNREVIEWED)
+        self.login_as_admin()
+        response = self.client.post(self.url, self.pending_dict())
+        self.assert3xx(response, reverse('editors.queue_pending'))
+
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
+        assert reviewed.reload().status == amo.STATUS_PUBLIC
+        assert disabled.reload().status == amo.STATUS_DISABLED
+        assert unreviewed.reload().status == amo.STATUS_PUBLIC
+        assert self.file.reload().status == amo.STATUS_PUBLIC
+
+        assert mock_sign.called
 
 
 class TestEditorMOTD(EditorTest):
@@ -2675,14 +2707,14 @@ class TestEditorMOTD(EditorTest):
         motd = "Let's get crazy"
         r = self.client.post(self.get_url(save=True), {'motd': motd})
         url = self.get_url()
-        self.assertRedirects(r, url)
+        self.assert3xx(r, url)
         r = self.client.get(url)
         eq_(pq(r.content)('.daily-message p').text(), motd)
 
     def test_require_editor_to_view(self):
         url = self.get_url()
         r = self.client.head(url)
-        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
+        self.assert3xx(r, '%s?to=%s' % (reverse('users.login'), url))
 
     def test_require_admin_to_change_motd(self):
         self.login_as_editor()
@@ -2714,6 +2746,13 @@ class TestEditorMOTD(EditorTest):
         r = self.client.post(self.get_url(save=True))
         doc = pq(r.content)
         eq_(doc('#editor-motd .errorlist').text(), 'This field is required.')
+
+    def test_motd_tab(self):
+        self.login_as_admin()
+        r = self.client.get(self.get_url())
+        announcement_tab = pq(r.content)(
+            'li.top:nth-child(5) > a:nth-child(1)').text()
+        assert announcement_tab == 'Announcement'
 
 
 class TestStatusFile(ReviewBase):

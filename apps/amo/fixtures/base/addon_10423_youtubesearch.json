@@ -174,7 +174,6 @@
             "bio": null,
             "failed_login_attempts": 0,
             "deleted": false,
-            "emailhidden": true,
             "last_login_attempt_ip": "",
             "last_login_attempt": null,
             "password": "",

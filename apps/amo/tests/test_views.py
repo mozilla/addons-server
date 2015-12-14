@@ -5,6 +5,7 @@ import urllib
 
 from django import test
 from django.conf import settings
+from django.test.utils import override_settings
 
 import commonware.log
 from lxml import etree
@@ -66,6 +67,7 @@ class TestCommon(amo.tests.TestCase):
     def setUp(self):
         super(TestCommon, self).setUp()
         self.url = reverse('home')
+        self.create_switch('signing-api', db=True)
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
@@ -76,13 +78,14 @@ class TestCommon(amo.tests.TestCase):
     def test_tools_regular_user(self):
         self.login('regular')
         r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, False)
+        eq_(r.context['request'].user.is_developer, False)
 
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
@@ -95,7 +98,7 @@ class TestCommon(amo.tests.TestCase):
         GroupUser.objects.create(group=group, user=user)
 
         r = self.client.get(self.url, follow=True)
-        eq_(r.context['request'].amo_user.is_developer, True)
+        eq_(r.context['request'].user.is_developer, True)
 
         expected = [
             ('Tools', '#'),
@@ -103,6 +106,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
@@ -110,7 +114,7 @@ class TestCommon(amo.tests.TestCase):
         self.login('editor')
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
+        eq_(request.user.is_developer, False)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
@@ -118,6 +122,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -129,7 +134,7 @@ class TestCommon(amo.tests.TestCase):
 
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
+        eq_(request.user.is_developer, True)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
 
         expected = [
@@ -138,6 +143,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -146,7 +152,7 @@ class TestCommon(amo.tests.TestCase):
         self.login('admin')
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, False)
+        eq_(request.user.is_developer, False)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)
@@ -156,6 +162,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
@@ -169,7 +176,7 @@ class TestCommon(amo.tests.TestCase):
 
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
-        eq_(request.amo_user.is_developer, True)
+        eq_(request.user.is_developer, True)
         eq_(acl.action_allowed(request, 'Addons', 'Review'), True)
         eq_(acl.action_allowed(request, 'Localizer', '%'), True)
         eq_(acl.action_allowed(request, 'Admin', '%'), True)
@@ -180,6 +187,7 @@ class TestCommon(amo.tests.TestCase):
             ('Submit a New Add-on', reverse('devhub.submit.1')),
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
+            ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
             ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
@@ -383,3 +391,14 @@ class TestContribute(amo.tests.TestCase):
         res = self.client.get('/contribute.json')
         eq_(res.status_code, 200)
         eq_(res._headers['content-type'], ('Content-Type', 'application/json'))
+
+
+class TestRobots(amo.tests.TestCase):
+
+    @override_settings(ENGAGE_ROBOTS=True)
+    def test_disable_collections(self):
+        """Make sure /en-US/firefox/collections/ gets disabled"""
+        url = reverse('collections.list')
+        response = self.client.get('/robots.txt')
+        eq_(response.status_code, 200)
+        assert 'Disallow: %s' % url in response.content

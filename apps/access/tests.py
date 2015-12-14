@@ -76,7 +76,7 @@ class ACLTestCase(TestCase):
         # Login form for anonymous user on the admin page.
         url = '/en-US/admin/models/'
         r = self.client.get(url)
-        self.assertRedirects(r, '%s?to=%s' % (reverse('users.login'), url))
+        self.assert3xx(r, '%s?to=%s' % (reverse('users.login'), url))
 
 
 class TestHasPerm(TestCase):
@@ -89,10 +89,14 @@ class TestHasPerm(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.au = AddonUser.objects.get(addon=self.addon, user=self.user)
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
-        self.request = mock.Mock()
-        self.request.groups = ()
-        self.request.amo_user = self.user
-        self.request.user.is_authenticated.return_value = True
+        self.request = self.fake_request_with_user(self.user)
+
+    def fake_request_with_user(self, user):
+        request = mock.Mock()
+        request.groups = user.groups.all()
+        request.user = user
+        request.user.is_authenticated = mock.Mock(return_value=True)
+        return request
 
     def login_admin(self):
         assert self.client.login(username='admin@mozilla.com',
@@ -105,8 +109,7 @@ class TestHasPerm(TestCase):
         assert not check_addon_ownership(self.request, self.addon)
 
     def test_admin(self):
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request = self.fake_request_with_user(self.login_admin())
         assert check_addon_ownership(self.request, self.addon)
         assert check_addon_ownership(self.request, self.addon, admin=True)
         assert not check_addon_ownership(self.request, self.addon, admin=False)
@@ -115,8 +118,8 @@ class TestHasPerm(TestCase):
         assert check_ownership(self.request, self.addon, require_author=True)
 
     def test_require_author_when_admin(self):
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request = self.fake_request_with_user(self.login_admin())
+        self.request.groups = self.request.user.groups.all()
         assert check_ownership(self.request, self.addon, require_author=False)
 
         assert not check_ownership(self.request, self.addon,
@@ -130,8 +133,8 @@ class TestHasPerm(TestCase):
     def test_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
         assert not check_addon_ownership(self.request, self.addon)
-        self.request.amo_user = self.login_admin()
-        self.request.groups = self.request.amo_user.groups.all()
+        self.request.user = self.login_admin()
+        self.request.groups = self.request.user.groups.all()
         assert not check_addon_ownership(self.request, self.addon)
 
     def test_ignore_disabled(self):

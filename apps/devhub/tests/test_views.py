@@ -5,7 +5,9 @@ import socket
 from datetime import datetime, timedelta
 from decimal import Decimal
 
+from django import http
 from django.conf import settings
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
 
@@ -30,6 +32,7 @@ from amo.helpers import absolutify, user_media_path, url as url_reverse
 from amo.tests import addon_factory, formset, initial
 from amo.tests.test_helpers import get_image_path
 from amo.urlresolvers import reverse
+from api.models import APIKey, SYMMETRIC_JWT_TYPE
 from applications.models import AppVersion
 from devhub.forms import ContribForm
 from devhub.models import ActivityLog, BlogPost, SubmitStep
@@ -362,13 +365,13 @@ class TestDevRequired(amo.tests.TestCase):
         self.client.logout()
         r = self.client.get(self.get_url, follow=True)
         login = reverse('users.login')
-        self.assertRedirects(r, '%s?to=%s' % (login, self.get_url))
+        self.assert3xx(r, '%s?to=%s' % (login, self.get_url))
 
     def test_dev_get(self):
         eq_(self.client.get(self.get_url).status_code, 200)
 
     def test_dev_post(self):
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
     def test_viewer_get(self):
         self.au.role = amo.AUTHOR_ROLE_VIEWER
@@ -388,7 +391,7 @@ class TestDevRequired(amo.tests.TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
-        self.assertRedirects(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
 class TestVersionStats(amo.tests.TestCase):
@@ -1112,6 +1115,7 @@ class TestSubmitBase(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitBase, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
 
     def get_addon(self):
@@ -1124,9 +1128,96 @@ class TestSubmitBase(amo.tests.TestCase):
         return SubmitStep.objects.get(addon=self.get_addon())
 
 
-class TestSubmitStep1(TestSubmitBase):
+class TestAPIAgreement(TestSubmitBase):
+    def setUp(self):
+        super(TestAPIAgreement, self).setUp()
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.create_switch('signing-api', db=True)
 
+    def test_agreement_first(self):
+        with mock.patch('devhub.views.render_agreement') as mock_submit:
+            mock_submit.return_value = http.HttpResponse("Okay")
+            self.client.get(reverse('devhub.api_key_agreement'))
+        assert mock_submit.called
+
+    def test_agreement_second(self):
+        self.user.update(read_dev_agreement=None)
+
+        response = self.client.post(reverse('devhub.api_key_agreement'),
+                                    follow=True)
+
+        self.assert3xx(response, reverse('devhub.api_key'))
+
+
+class TestAPIKeyPage(amo.tests.TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super(TestAPIKeyPage, self).setUp()
+        self.url = reverse('devhub.api_key')
+        assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.create_switch('signing-api', db=True)
+
+    def test_key_redirect(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key'))
+        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+
+    def test_view_without_credentials(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        submit = doc('#generate-key')
+        assert submit.text() == 'Generate new credentials'
+        inputs = doc('.api-input input')
+        assert len(inputs) == 0, 'Inputs should be hidden before keys exist'
+
+    def test_view_with_credentials(self):
+        APIKey.objects.create(user=self.user,
+                              type=SYMMETRIC_JWT_TYPE,
+                              key='some-jwt-key',
+                              secret='some-jwt-secret')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        submit = doc('#generate-key')
+        assert submit.text() == 'Revoke and regenerate credentials'
+        key_input = doc('.key-input input').val()
+        assert key_input == 'some-jwt-key'
+
+    def test_create_new_credentials(self):
+        patch = mock.patch('devhub.views.APIKey.new_jwt_credentials')
+        with patch as mock_creator:
+            response = self.client.post(self.url)
+        mock_creator.assert_called_with(self.user)
+
+        email = mail.outbox[0]
+        assert len(mail.outbox) == 1
+        assert email.to == [self.user.email]
+        assert reverse('devhub.api_key') in email.body
+
+        self.assert3xx(response, self.url)
+
+    def test_delete_and_recreate_credentials(self):
+        old_key = APIKey.objects.create(user=self.user,
+                                        type=SYMMETRIC_JWT_TYPE,
+                                        key='some-jwt-key',
+                                        secret='some-jwt-secret')
+        response = self.client.post(self.url)
+        self.assert3xx(response, self.url)
+
+        old_key = APIKey.objects.get(pk=old_key.pk)
+        assert not old_key.is_active
+
+        new_key = APIKey.get_jwt_key(user=self.user)
+        assert new_key.key != old_key.key
+        assert new_key.secret != old_key.secret
+
+
+class TestSubmitStep1(TestSubmitBase):
     def test_step1_submit(self):
+        self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.1'))
         eq_(response.status_code, 200)
         doc = pq(response.content)
@@ -1141,12 +1232,16 @@ class TestSubmitStep1(TestSubmitBase):
 
     def test_read_dev_agreement_set(self):
         """Store current date when the user agrees with the user agreement."""
-        response = self.client.get(reverse('devhub.submit.1'))
-        previous = response.context['user'].read_dev_agreement
+        self.user.update(read_dev_agreement=None)
 
         response = self.client.post(reverse('devhub.submit.1'), follow=True)
         user = response.context['user']
-        assert user.read_dev_agreement != previous
+        self.assertCloseToNow(user.read_dev_agreement)
+
+    def test_read_dev_agreement_skip(self):
+        # The current user fixture has already read the agreement so we skip
+        response = self.client.get(reverse('devhub.submit.1'))
+        self.assert3xx(response, reverse('devhub.submit.2'))
 
 
 class TestSubmitStep2(amo.tests.TestCase):
@@ -1156,21 +1251,23 @@ class TestSubmitStep2(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitStep2, self).setUp()
         self.client.login(username='regular@mozilla.com', password='password')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
-    def test_step_2_with_cookie(self):
+    def test_step_2_seen(self):
         r = self.client.post(reverse('devhub.submit.1'))
-        self.assertRedirects(r, reverse('devhub.submit.2'))
+        self.assert3xx(r, reverse('devhub.submit.2'))
         r = self.client.get(reverse('devhub.submit.2'))
         eq_(r.status_code, 200)
 
-    def test_step_2_no_cookie(self):
+    def test_step_2_not_seen(self):
         # We require a cookie that gets set in step 1.
-        r = self.client.get(reverse('devhub.submit.2'), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.1'))
+        self.user.update(read_dev_agreement=None)
 
-    def test_step_2_listed_checkbox_unlisted_addons_flag(self):
+        r = self.client.get(reverse('devhub.submit.2'), follow=True)
+        self.assert3xx(r, reverse('devhub.submit.1'))
+
+    def test_step_2_listed_checkbox(self):
         # There is a checkbox for the "is_listed" addon field.
-        self.create_flag('unlisted-addons')
         self.client.post(reverse('devhub.submit.1'))
         response = self.client.get(reverse('devhub.submit.2'))
         eq_(response.status_code, 200)
@@ -1178,15 +1275,6 @@ class TestSubmitStep2(amo.tests.TestCase):
         assert doc('.list-addon input#id_is_unlisted[type=checkbox]')
         # There also is a checkbox to select full review (side-load) or prelim.
         assert doc('.list-addon input#id_is_sideload[type=checkbox]')
-
-    def test_step_2_no_listed_checkbox_no_unlisted_addons_flag(self):
-        """If the unlisted-addons flag isn't enabled, don't accept them."""
-        self.client.post(reverse('devhub.submit.1'))
-        response = self.client.get(reverse('devhub.submit.2'))
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        assert not doc('.list-addon input#id_is_listed[type=checkbox]')
-        assert not doc('.list-addon input#id_is_sideload[type=checkbox]')
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -1570,7 +1658,7 @@ class TestSubmitStep5(Step5TestBase):
 
     def test_set_license(self):
         r = self.client.post(self.url, {'builtin': 3})
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(self.get_addon().current_version.license.builtin, 3)
         eq_(self.get_step().step, 6)
         log_items = ActivityLog.objects.for_addons(self.get_addon())
@@ -1589,7 +1677,7 @@ class TestSubmitStep5(Step5TestBase):
         self.get_addon().update(eula=None, privacy_policy=None)
         r = self.client.post(self.url, dict(builtin=3, has_eula=True,
                                             eula='xxx'))
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(unicode(self.get_addon().eula), 'xxx')
         eq_(self.get_step().step, 6)
 
@@ -1601,7 +1689,7 @@ class TestSubmitStep5(Step5TestBase):
         """
         self.get_addon().update(eula=None, privacy_policy=None)
         r = self.client.post(self.url, dict(builtin=3, has_eula=True))
-        self.assertRedirects(r, self.next_step)
+        self.assert3xx(r, self.next_step)
         eq_(self.get_step().step, 6)
 
 
@@ -1785,7 +1873,7 @@ class TestSubmitStep7(TestSubmitBase):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
+        self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
     @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_link_to_activityfeed(self):
@@ -1815,21 +1903,21 @@ class TestResumeStep(TestSubmitBase):
 
     def test_no_step_redirect(self):
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_dev_url('versions'), 302)
+        self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
     def test_step_redirects(self):
         SubmitStep.objects.create(addon_id=3615, step=1)
         for i in xrange(3, 7):
             SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
             r = self.client.get(self.url, follow=True)
-            self.assertRedirects(r, reverse('devhub.submit.%s' % i,
-                                            args=['a3615']))
+            self.assert3xx(r, reverse('devhub.submit.%s' % i,
+                                      args=['a3615']))
 
     def test_redirect_from_other_pages(self):
         SubmitStep.objects.create(addon_id=3615, step=4)
         r = self.client.get(reverse('devhub.addons.edit', args=['a3615']),
                             follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
 
 
 class TestSubmitBump(TestSubmitBase):
@@ -1846,7 +1934,7 @@ class TestSubmitBump(TestSubmitBase):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         r = self.client.post(self.url, {'step': 4}, follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.4', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
         eq_(self.get_step().step, 4)
 
 
@@ -1856,6 +1944,7 @@ class TestSubmitSteps(amo.tests.TestCase):
     def setUp(self):
         super(TestSubmitSteps, self).setUp()
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
 
     def assert_linked(self, doc, numbers):
         """Check that the nth <li> in the steps list is a link."""
@@ -1875,6 +1964,7 @@ class TestSubmitSteps(amo.tests.TestCase):
         eq_(len(pq('.current', lis)), 1)
 
     def test_step_1(self):
+        self.user.update(read_dev_agreement=None)
         r = self.client.get(reverse('devhub.submit.1'))
         eq_(r.status_code, 200)
 
@@ -1890,15 +1980,16 @@ class TestSubmitSteps(amo.tests.TestCase):
         SubmitStep.objects.create(addon_id=3615, step=3)
         r = self.client.get(reverse('devhub.submit.6',
                                     args=['a3615']), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.3', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.3', args=['a3615']))
 
     def test_all_done(self):
         # There's no SubmitStep, so we must be done.
         r = self.client.get(reverse('devhub.submit.6',
                                     args=['a3615']), follow=True)
-        self.assertRedirects(r, reverse('devhub.submit.7', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.7', args=['a3615']))
 
     def test_menu_step_1(self):
+        self.user.update(read_dev_agreement=None)
         doc = pq(self.client.get(reverse('devhub.submit.1')).content)
         self.assert_linked(doc, [1])
         self.assert_highlight(doc, 1)
@@ -1974,8 +2065,8 @@ class TestUpload(BaseUploadTest):
     def test_create_fileupload(self):
         self.post()
 
-        upload = FileUpload.objects.get(name='animated.png')
-        eq_(upload.name, 'animated.png')
+        upload = FileUpload.objects.filter().order_by('-created').first()
+        assert 'animated.png' in upload.name
         data = open(self.image_path, 'rb').read()
         eq_(storage.open(upload.path).read(), data)
 
@@ -1988,7 +2079,7 @@ class TestUpload(BaseUploadTest):
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
-        fu = FileUpload.objects.get(name='animated.png')
+        fu = FileUpload.objects.filter().order_by('-created').first()
         assert fu.validation
         validation = json.loads(fu.validation)
 
@@ -2007,7 +2098,7 @@ class TestUpload(BaseUploadTest):
         r = self.post()
         upload = FileUpload.objects.get()
         url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
-        self.assertRedirects(r, url)
+        self.assert3xx(r, url)
 
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
@@ -2075,12 +2166,13 @@ class TestUploadDetail(BaseUploadTest):
 
     def test_detail_view(self):
         self.post()
-        upload = FileUpload.objects.get(name='animated.png')
+        upload = FileUpload.objects.filter().order_by('-created').first()
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid]))
         eq_(r.status_code, 200)
         doc = pq(r.content)
-        eq_(doc('header h2').text(), 'Validation Results for animated.png')
+        assert (doc('header h2').text() ==
+                'Validation Results for {0}_animated.png'.format(upload.pk))
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
@@ -2129,6 +2221,30 @@ class TestUploadDetail(BaseUploadTest):
         eq_([(m['message'], m.get('fatal', False))
              for m in data['validation']['messages']],
             [(u'Could not parse install.rdf.', True)])
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_experiment_xpi_allowed(self, mock_validator):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Experiments:submit')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
+
+    @mock.patch('devhub.tasks.run_validator')
+    def test_experiment_xpi_not_allowed(self, mock_validator):
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail',
+                                           args=[upload.uuid, 'json']))
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == [
+            {u'tier': 1, u'message': u'You cannot submit this type of add-on',
+             u'fatal': True, u'type': u'error'}]
 
 
 def assert_json_error(request, field, msg):
@@ -2450,20 +2566,56 @@ class TestVersionAddFile(UploadTest):
         assert 'source' in json.loads(response.content)
 
     @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_sideload(self, mock_sign_file):
-        """Sideloadable addons need manual full review."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
         self.post()
         file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual full review.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
+
+    @mock.patch('editors.helpers.sign_file')
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has no validation signing related messages.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
 
     @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
-        """Files that fail validation need a manual preliminary review."""
+        """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
@@ -2476,15 +2628,18 @@ class TestVersionAddFile(UploadTest):
                        ' "passed_auto_validation": 1}')
         self.post()
         file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual preliminary review.
+        # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
+        assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
 
     @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
-        """Files that pass validation are not automatically signed/reviewed if
-        the flag is not enabled."""
+    def test_unlisted_addon_pass_validation(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         # Make sure the file has no validation signing related messages.
@@ -2495,43 +2650,21 @@ class TestVersionAddFile(UploadTest):
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
-
-        # Without the flag: should still go through manual prelim review.
-        self.post()
-        file_ = File.objects.latest()
-        # The status is unchanged and the file is not signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
-
-    @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
-        """Files that pass validation are automatically signed/reviewed if
-        the flag is enabled."""
-        self.create_flag('automatic-validation')
-        self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
-        # Make sure the file has no validation signing related messages.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 0,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
-        # With the flag: should be signed.
         self.post()
         file_ = File.objects.latest()
         # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with passed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED.id
 
     @mock.patch('devhub.views.sign_file')
-    def test_beta_addon_pass_validation_with_flag(self, mock_sign_file):
-        """Beta files that pass validation are automatically signed/reviewed if
-        the flag is enabled."""
-        self.create_flag('automatic-validation')
+    def test_beta_addon_pass_validation(self, mock_sign_file):
+        """Beta files that pass validation are automatically
+        signed/reviewed."""
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2540,7 +2673,6 @@ class TestVersionAddFile(UploadTest):
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
         assert self.addon.status == amo.STATUS_PUBLIC
-        # With the flag: should be signed.
         self.post(beta=True)
         file_ = File.objects.latest()
         # Addon status didn't change and the file is signed.
@@ -2715,8 +2847,6 @@ class TestAddVersion(AddVersionTest):
 
     @mock.patch('devhub.views.auto_sign_file')
     def test_multiple_platforms_unlisted_addon(self, mock_auto_sign_file):
-        self.create_flag('unlisted-addons')
-        self.create_flag('automatic-validation')
         self.addon.update(is_listed=False)
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX])
@@ -2724,8 +2854,7 @@ class TestAddVersion(AddVersionTest):
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
         mock_auto_sign_file.assert_has_calls(
-            [mock.call(f, is_beta=False, admin_override=False)
-             for f in version.all_files])
+            [mock.call(f, is_beta=False) for f in version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()
@@ -2758,81 +2887,128 @@ class TestAddVersion(AddVersionTest):
         assert f.status != amo.STATUS_BETA
 
     @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_sideload(self, mock_sign_file):
-        """Sideloadable addons need manual full review."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 1,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual full review.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
+
+    @mock.patch('editors.helpers.sign_file')
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 1}))
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
 
     @mock.patch('editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
-        """Files that fail validation need a manual preliminary review."""
+        """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
             is_listed=False, status=amo.STATUS_LITE, trusted=False)
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # Make sure the file has validation warnings or errors.
         self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 1,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 0}')
-        self.post()
-        file_ = File.objects.latest()
-        # The status stays unchanged: it needs a manual preliminary review.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
-
-    @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_pass_validation_no_flag(self, mock_sign_file):
-        """Files that pass validation are not automatically signed/reviewed if
-        the flag is not enabled."""
-        self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
-        # Make sure the file has no validation warnings nor errors.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 0,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
-        # Without the flag: should not be signed.
-        self.post()
-        file_ = File.objects.latest()
-        # The status is changed to preliminary reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_UNREVIEWED
-        assert not mock_sign_file.called
-
-    @mock.patch('editors.helpers.sign_file')
-    def test_unlisted_addon_pass_validation_with_flag(self, mock_sign_file):
-        """Files that pass validation are automatically signed/reviewed if
-        the flag is enabled."""
-        self.create_flag('automatic-validation')
-        self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
-        # Make sure the file has no validation warnings nor errors.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 0,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
-        # With the flag: should be signed.
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 1,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
         # Status is changed to preliminary reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_LITE
         assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
+
+    @mock.patch('editors.helpers.sign_file')
+    def test_unlisted_addon_pass_validation(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 1}))
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with passed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED.id
+
+    @mock.patch('devhub.views.sign_file')
+    def test_experiments_are_auto_signed(self, mock_sign_file):
+        """Experiment extensions (bug 1220097) are auto-signed."""
+        # We're going to sign even if it has signing related errors/warnings.
+        self.upload = self.get_upload(
+            'experiment.xpi',
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 1},
+                "passed_auto_validation": 0}))
+        self.addon.update(guid='experiment@xpi', is_listed=True,
+                          status=amo.STATUS_PUBLIC, trusted=False)
+        self.post()
+        # Make sure the file created and signed is for this addon.
+        assert mock_sign_file.call_count == 1
+        mock_sign_file_call = mock_sign_file.call_args[0]
+        signed_file = mock_sign_file_call[0]
+        assert signed_file.version.addon == self.addon
+        # There is a log for that beta file signature (with passed validation).
+        log = ActivityLog.objects.get()
+        assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
 
 class TestAddBetaVersion(AddVersionTest):
@@ -2875,10 +3051,8 @@ class TestAddBetaVersion(AddVersionTest):
         assert f.status == amo.STATUS_PUBLIC
 
     @mock.patch('devhub.views.sign_file')
-    def test_listed_beta_pass_validation_with_flag(self, mock_sign_file):
-        """Beta files that pass validation are signed with prelim cert if flag
-        is enabled."""
-        self.create_flag('automatic-validation')
+    def test_listed_beta_pass_validation(self, mock_sign_file):
+        """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
             is_listed=True, status=amo.STATUS_PUBLIC, trusted=False)
         # Make sure the file has no validation warnings nor errors.
@@ -2899,10 +3073,8 @@ class TestAddBetaVersion(AddVersionTest):
         assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id
 
     @mock.patch('devhub.views.sign_file')
-    def test_listed_beta_do_not_pass_validation_with_flag(self,
-                                                          mock_sign_file):
-        """Beta files that don't pass validation should raise an error."""
-        self.create_flag('automatic-validation')
+    def test_listed_beta_do_not_pass_validation(self, mock_sign_file):
+        """Beta files that don't pass validation should be logged."""
         self.addon.update(is_listed=True, status=amo.STATUS_PUBLIC)
         # Make sure the file has validation warnings.
         self.upload.update(
@@ -3057,59 +3229,19 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert get_addon_count('xpi name') == 2
 
     def test_success_listed(self):
-        eq_(Addon.objects.count(), 0)
+        assert Addon.objects.count() == 0
         r = self.post()
         addon = Addon.objects.get()
         assert addon.is_listed
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    def test_list_addon_no_unlisted_addons_flag(self):
-        """List an add-on if unlisted-addons flag isn't set."""
-        self.upload = self.get_upload(
-            'extension.xpi',
-            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
-                                       metadata={}, messages=[],
-                                       signing_summary={
-                                           'trivial': 1, 'low': 0, 'medium': 0,
-                                           'high': 0},
-                                       passed_auto_validation=True
-                                       )))
-        assert self.post(is_listed=False)  # Post as unlisted.
-        addon = Addon.with_unlisted.get()
-        assert addon.is_listed  # But add-on is still listed.
-
     @mock.patch('editors.helpers.sign_file')
-    def test_success_unlisted_no_automatic_validation_flag(self,
-                                                           mock_sign_file):
-        """No automatic-validation flag: don't sign automatically."""
-        self.create_flag('unlisted-addons')
-        eq_(Addon.with_unlisted.count(), 0)
-        # No validation errors or warning.
-        self.upload = self.get_upload(
-            'extension.xpi',
-            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
-                                       metadata={}, messages=[],
-                                       signing_summary={
-                                           'trivial': 1, 'low': 0, 'medium': 0,
-                                           'high': 0},
-                                       passed_auto_validation=True
-                                       )))
-        self.post(is_listed=False)
-        addon = Addon.with_unlisted.get()
-        assert not addon.is_listed
-        assert addon.status == amo.STATUS_UNREVIEWED  # No automatic signing.
-        assert not mock_sign_file.called
-
-    @mock.patch('editors.helpers.sign_file')
-    def test_success_unlisted_with_automatic_validation_flag(self,
-                                                             mock_sign_file):
-        """With automatic-validation flag: sign automatically."""
-        self.create_flag('unlisted-addons')
-        self.create_flag('automatic-validation')
-        eq_(Addon.with_unlisted.count(), 0)
+    def test_success_unlisted(self, mock_sign_file):
+        """Sign automatically."""
+        assert Addon.with_unlisted.count() == 0
         # No validation errors or warning.
         self.upload = self.get_upload(
             'extension.xpi',
@@ -3128,24 +3260,31 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
 
     @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
-        self.create_flag('unlisted-addons')
-        eq_(Addon.with_unlisted.count(), 0)
+        assert Addon.with_unlisted.count() == 0
+        self.upload = self.get_upload(
+            'extension.xpi',
+            validation=json.dumps(dict(errors=0, warnings=0, notices=2,
+                                       metadata={}, messages=[],
+                                       signing_summary={
+                                           'trivial': 0, 'low': 1, 'medium': 0,
+                                           'high': 0},
+                                       passed_auto_validation=False
+                                       )))
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_UNREVIEWED  # Prelim review.
-        assert not mock_sign_file.called
+        assert addon.status == amo.STATUS_LITE  # Prelim review.
+        assert mock_sign_file.called
 
     @mock.patch('editors.helpers.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
-        self.create_flag('unlisted-addons')
-        eq_(Addon.with_unlisted.count(), 0)
+        assert Addon.with_unlisted.count() == 0
         self.post(is_listed=False, is_sideload=True)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         # Full review for sideload addons.
-        assert addon.status == amo.STATUS_NOMINATED
-        assert not mock_sign_file.called
+        assert addon.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
 
     def test_missing_platforms(self):
         r = self.client.post(self.url, dict(upload=self.upload.pk))
@@ -3161,24 +3300,19 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
     @mock.patch('devhub.views.auto_sign_file')
     def test_one_xpi_for_multiple_platforms_unlisted_addon(
             self, mock_auto_sign_file):
-        # Make sure we fixed bug 1173125.
-        self.create_flag('unlisted-addons')
-        self.create_flag('automatic-validation')
         eq_(Addon.objects.count(), 0)
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX],
                       is_listed=False)
         addon = Addon.unfiltered.get()
-        self.assertRedirects(r, reverse('devhub.submit.3',
-                                        args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
         mock_auto_sign_file.assert_has_calls(
@@ -3192,7 +3326,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         eq_(Addon.objects.count(), 0)
         r = self.post(source=source)
         addon = Addon.objects.get()
-        self.assertRedirects(r, reverse('devhub.submit.3', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         assert addon.current_version.source
         assert Addon.objects.get(pk=addon.pk).admin_review
 
@@ -3208,14 +3342,14 @@ class TestDeleteAddon(amo.tests.TestCase):
 
     def test_bad_password(self):
         r = self.client.post(self.url, dict(password='turd'))
-        self.assertRedirects(r, self.addon.get_dev_url('versions'))
+        self.assert3xx(r, self.addon.get_dev_url('versions'))
         eq_(r.context['title'],
             'Password was incorrect. Add-on was not deleted.')
         eq_(Addon.objects.count(), 1)
 
     def test_success(self):
         r = self.client.post(self.url, dict(password='password'))
-        self.assertRedirects(r, reverse('devhub.addons'))
+        self.assert3xx(r, reverse('devhub.addons'))
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)
 
@@ -3246,7 +3380,7 @@ class TestRequestReview(amo.tests.TestCase):
     def check(self, old_status, url, new_status):
         self.addon.update(status=old_status)
         r = self.client.post(url)
-        self.assertRedirects(r, self.redirect_url)
+        self.assert3xx(r, self.redirect_url)
         eq_(self.get_addon().status, new_status)
 
     def check_400(self, url):
@@ -3336,25 +3470,23 @@ class TestRedirects(amo.tests.TestCase):
     def test_edit(self):
         url = self.base + 'addon/edit/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
-                             301)
+        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
 
         url = self.base + 'addon/edit/3615/'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.edit', args=['a3615']),
-                             301)
+        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
 
     def test_status(self):
         url = self.base + 'addon/status/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.versions',
-                                        args=['a3615']), 301)
+        self.assert3xx(r, reverse('devhub.addons.versions',
+                                  args=['a3615']), 301)
 
     def test_versions(self):
         url = self.base + 'versions/3615'
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, reverse('devhub.addons.versions',
-                                        args=['a3615']), 301)
+        self.assert3xx(r, reverse('devhub.addons.versions',
+                                  args=['a3615']), 301)
 
 
 class TestDocs(amo.tests.TestCase):
@@ -3379,7 +3511,7 @@ class TestDocs(amo.tests.TestCase):
             eq_(r.status_code, url[1])
 
             if url[1] == 302:  # Redirect to the index page
-                self.assertRedirects(r, index)
+                self.assert3xx(r, index)
 
 
 class TestRemoveLocale(amo.tests.TestCase):

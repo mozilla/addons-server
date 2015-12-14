@@ -312,7 +312,7 @@ class UserView(RetrieveAPIView, DRFView):
             self.check_object_permissions(self.request, obj)
             return obj
         else:
-            return self.request.amo_user
+            return self.request.user
 
 
 class AddonsViewSet(DRFView, ModelViewSet):
@@ -363,13 +363,16 @@ class AddonsViewSet(DRFView, ModelViewSet):
         Returns authors who can update an addon (not Viewer role) for addons
         that have not been admin disabled. Optionally provide an addon id.
         """
-        ids = (AddonUser.objects.values_list('addon_id', flat=True)
-                                .filter(user=request.amo_user,
-                                        role__in=[amo.AUTHOR_ROLE_DEV,
-                                                  amo.AUTHOR_ROLE_OWNER]))
-        qs = (Addon.objects.filter(id__in=ids)
-                           .exclude(status=amo.STATUS_DISABLED)
-                           .no_transforms())
+        if request.user.is_authenticated():
+            ids = (AddonUser.objects.values_list('addon_id', flat=True)
+                                    .filter(user=request.user,
+                                            role__in=[amo.AUTHOR_ROLE_DEV,
+                                                      amo.AUTHOR_ROLE_OWNER]))
+            qs = (Addon.objects.filter(id__in=ids)
+                               .exclude(status=amo.STATUS_DISABLED)
+                               .no_transforms())
+        else:
+            qs = Addon.objects.none()
         if addon_id:
             try:
                 addon = qs.get(id=addon_id)

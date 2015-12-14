@@ -1,6 +1,5 @@
-{# TODO(jbalogh): make this a global fix: bug 551748 #}
-{% set amo_user = user if user.is_authenticated() else None %}
-{% if not addon.has_author(amo_user) %}
+{% set user = user if user.is_authenticated() else None %}
+{% if not addon.has_author(user) %}
   <h3>{{ _('What do you think?') }}</h3>
   <div id="review-box" class="highlight">
     {% if not user.is_authenticated() %}
@@ -36,7 +35,7 @@
         {% endtrans %}
       </p>
       {% endif %}
-      <p><a href="{{ remora_url('/pages/review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
+      <p><a href="{{ url('pages.review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
     </div>
 
   </div>{# /#review-box #}

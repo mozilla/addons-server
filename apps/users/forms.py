@@ -284,8 +284,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     class Meta:
         model = UserProfile
         fields = ('username', 'display_name', 'location', 'occupation',
-                  'password', 'password2', 'recaptcha', 'homepage', 'email',
-                  'emailhidden')
+                  'password', 'password2', 'recaptcha', 'homepage', 'email')
 
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
@@ -518,7 +517,7 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
                         username=self.instance.username,
                         signature='PASSWORDRESET',
                         msg='Admin requested password reset',
-                        cs1=self.request.amo_user.username,
+                        cs1=self.request.user.username,
                         cs1Label='AdminName')
         return profile
 

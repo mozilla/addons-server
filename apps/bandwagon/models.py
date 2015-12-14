@@ -45,10 +45,29 @@ class TopTags(object):
         cache.set(self.key(obj), value, two_days)
 
 
+class CollectionQuerySet(caching.CachingQuerySet):
+
+    def with_has_addon(self, addon_id):
+        """Add a `has_addon` property to each collection.
+
+        `has_addon` will be `True` if `addon_id` exists in that
+        particular collection.
+        """
+        has_addon = """
+            select 1 from addons_collections as ac
+                where ac.addon_id = %s and ac.collection_id = collections.id
+                limit 1"""
+
+        return self.extra(
+            select={'has_addon': has_addon},
+            select_params=(addon_id,))
+
+
 class CollectionManager(amo.models.ManagerBase):
 
     def get_query_set(self):
         qs = super(CollectionManager, self).get_query_set()
+        qs = qs._clone(klass=CollectionQuerySet)
         return qs.transform(Collection.transformer)
 
     def manual(self):
@@ -346,8 +365,8 @@ class Collection(CollectionBase, amo.models.ModelBase):
         return (user.id == self.author_id)
 
     def can_view_stats(self, request):
-        if request and request.amo_user:
-            return (self.publishable_by(request.amo_user) or
+        if request and request.user:
+            return (self.publishable_by(request.user) or
                     acl.action_allowed(request, 'CollectionStats', 'View'))
         return False
 

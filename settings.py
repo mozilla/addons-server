@@ -43,8 +43,7 @@ HAS_SYSLOG = False  # syslog is used if HAS_SYSLOG and NOT DEBUG.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
-# Disables custom routing in settings.py so that tasks actually run.
-CELERY_ALWAYS_EAGER = True
+CELERY_ALWAYS_EAGER = False
 CELERY_ROUTES = {}
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
@@ -53,23 +52,27 @@ ALLOW_SELF_REVIEWS = True
 
 # Assuming you did `npm install` (and not `-g`) like you were supposed to, this
 # will be the path to the `stylus` and `lessc` executables.
-STYLUS_BIN = path('node_modules/stylus/bin/stylus')
-LESS_BIN = path('node_modules/less/bin/lessc')
-CLEANCSS_BIN = path('node_modules/clean-css/bin/cleancss')
-UGLIFY_BIN = path('node_modules/uglify-js/bin/uglifyjs')
+STYLUS_BIN = os.getenv('STYLUS_BIN', path('node_modules/stylus/bin/stylus'))
+LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
+CLEANCSS_BIN = os.getenv(
+    'CLEANCSS_BIN',
+    path('node_modules/clean-css/bin/cleancss'))
+UGLIFY_BIN = os.getenv(
+    'UGLIFY_BIN',
+    path('node_modules/uglify-js/bin/uglifyjs'))
+VALIDATOR_BIN = os.getenv(
+    'VALIDATOR_BIN',
+    path('node_modules/addons-validator/bin/addons-validator'))
 
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 
-SITE_URL = 'http://localhost:8000'
+SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# Turn off validation by default on development instances, until we have an
-# easy way to install a working copy of Spidermonkey. Real Soon Now(R).
-# No, really, though, soon.
-VALIDATE_ADDONS = False
+VALIDATE_ADDONS = True
 
 ADDON_COLLECTOR_ID = 1
 
@@ -78,6 +81,49 @@ TASK_USER_ID = 10968
 
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
+
+# Enable the Django Debug Toolbar for local dev.
+INSTALLED_APPS += (
+    'debug_toolbar',
+)
+DEBUG_TOOLBAR_PATCH_SETTINGS = False  # Prevent DDT from patching the settings.
+
+MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+
+
+def debug_toolbar_disabled(request):
+    """Callback used by the Django Debug Toolbar to decide when to display."""
+    return False
+
+
+def debug_toolbar_enabled(request):
+    """Callback used by the Django Debug Toolbar to decide when to display."""
+    # We want to make sure to have the DEBUG value at runtime, not the one we
+    # have in this specific settings file.
+    from django.conf import settings
+    return settings.DEBUG
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
+}
+
+AES_KEYS = {
+    'api_key:secret': os.path.join(ROOT, 'apps', 'api', 'tests', 'assets',
+                                   'test-api-key.txt'),
+}
+
+# FxA config for local development only.
+FXA_CONFIG = {
+    'client_id': 'cd5a21fafacc4744',
+    'client_secret':
+        '4db6f78940c6653d5b0d2adced8caf6c6fd8fd4f2a3a448da927a54daba7d401',
+    'content_host': 'https://stable.dev.lcip.org',
+    'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+    'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+    'redirect_url': 'http://olympia.dev/api/v3/accounts/authorize/',
+    'scope': 'profile',
+}
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

@@ -21,7 +21,7 @@ from tower import ugettext as _
 import amo
 import validator
 from amo.celery import task
-from amo.decorators import write, set_modified_on
+from amo.decorators import atomic, set_modified_on, write
 from amo.utils import resize_image, send_html_mail_jinja
 from addons.models import Addon
 from applications.management.commands import dump_apps
@@ -29,6 +29,7 @@ from applications.models import AppVersion
 from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
+from versions.models import Version
 
 from PIL import Image
 
@@ -36,7 +37,7 @@ from PIL import Image
 log = logging.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None):
+def validate(file_, listed=None, subtask=None):
     """Run the validator on the given File or FileUpload object, and annotate
     the results using the ValidationAnnotator. If a task has already begun
     for this file, instead return an AsyncResult object for that task."""
@@ -49,9 +50,53 @@ def validate(file_, listed=None):
     if task_id:
         return AsyncResult(task_id)
     else:
-        result = annotator.task.delay()
+        chain = annotator.task
+        if subtask is not None:
+            chain |= subtask
+        result = chain.delay()
         cache.set(annotator.cache_key, result.task_id, 5 * 60)
         return result
+
+
+def validate_and_submit(addon, file_, listed=None):
+    return validate(file_, listed=listed,
+                    subtask=submit_file.si(addon.pk, file_.pk))
+
+
+@task
+@write
+def submit_file(addon_pk, file_pk):
+    addon = Addon.unfiltered.get(pk=addon_pk)
+    file_ = FileUpload.objects.get(pk=file_pk)
+    if file_.passed_all_validations:
+        create_version_for_upload(addon, file_)
+    else:
+        log.info('Skipping version creation for {file_id} that failed '
+                 'validation'.format(file_id=file_pk))
+
+
+@atomic
+def create_version_for_upload(addon, file_):
+    if (addon.fileupload_set.filter(created__gt=file_.created,
+                                    version=file_.version).exists()
+            or addon.versions.filter(version=file_.version).exists()):
+        log.info('Skipping Version creation for {file_id} that would cause '
+                 'duplicate version'.format(file_id=file_.pk))
+    else:
+        # Import loop.
+        from devhub.views import auto_sign_version
+
+        log.info('Creating version for {file_id} that passed '
+                 'validation'.format(file_id=file_.pk))
+        version = Version.from_upload(file_, addon, [amo.PLATFORM_ALL.id])
+        # The add-on's status will be STATUS_NULL when its first version is
+        # created because the version has no files when it gets added and it
+        # gets flagged as invalid. We need to manually set the status.
+        # TODO: Handle sideload add-ons. This assumes the user wants a prelim
+        # review since listed and sideload aren't supported for creation yet.
+        if addon.status == amo.STATUS_NULL:
+            addon.update(status=amo.STATUS_LITE)
+        auto_sign_version(version)
 
 
 # Override the validator's stock timeout exception so that it can

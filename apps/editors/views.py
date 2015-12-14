@@ -182,7 +182,11 @@ def home(request):
         unlisted_percentage=unlisted_percentage,
         durations=durations,
         reviews_max_display=reviews_max_display,
-        motd_editable=motd_editable)
+        motd_editable=motd_editable,
+        queue_counts_total=queue_counts(admin_reviewer=True),
+        unlisted_queue_counts_total=queue_counts(admin_reviewer=True,
+                                                 unlisted=True),
+    )
 
     return render(request, 'editors/home.html', data)
 
@@ -192,10 +196,12 @@ def _editor_progress(unlisted=False):
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'prelim', 'pending']
-    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted),
+    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted,
+                                    admin_reviewer=True),
                 'med': queue_counts(types, days_min=5, days_max=10,
-                                    unlisted=unlisted),
-                'old': queue_counts(types, days_min=11, unlisted=unlisted)}
+                                    unlisted=unlisted, admin_reviewer=True),
+                'old': queue_counts(types, days_min=11, unlisted=unlisted,
+                                    admin_reviewer=True)}
 
     # Return the percent of (p)rogress out of (t)otal.
     def pct(p, t):
@@ -213,7 +219,7 @@ def _editor_progress(unlisted=False):
 
 @addons_reviewer_required
 def performance(request, user_id=False):
-    user = request.amo_user
+    user = request.user
     editors = _recent_editors()
 
     is_admin = (acl.action_allowed(request, 'Admin', '%') or
@@ -223,7 +229,7 @@ def performance(request, user_id=False):
         try:
             user = UserProfile.objects.get(pk=user_id)
         except UserProfile.DoesNotExist:
-            pass  # Use request.amo_user from above.
+            pass  # Use request.user from above.
 
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
@@ -274,7 +280,7 @@ def performance(request, user_id=False):
                    performance_year=performance_total['year'],
                    breakdown=breakdown, point_total=point_total,
                    editors=editors, current_user=user, is_admin=is_admin,
-                   is_user=(request.amo_user.id == user.id),
+                   is_user=(request.user.id == user.id),
                    motd_editable=motd_editable)
 
     return render(request, 'editors/performance.html', data)
@@ -359,7 +365,8 @@ def motd(request):
     if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    data = context(request, form=form)
+    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'editors/motd.html', data)
 
 
@@ -480,9 +487,14 @@ def queue_fast_track(request):
 
 @addons_reviewer_required
 def queue_moderated(request):
+    # In addition to other checks, this only show reviews for public and
+    # listed add-ons. Unlisted add-ons typically won't have reviews anyway
+    # but they might if their status ever gets changed.
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
+                                 Q(addon__is_listed=False) |
                                  Q(reviewflag__isnull=True))
-                        .filter(editorreview=1)
+                        .filter(editorreview=1,
+                                addon__status__in=amo.LISTED_STATUSES)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
@@ -551,15 +563,15 @@ def review(request, addon):
 
     version = addon.latest_version
 
-    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.amo_user):
+    if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
     form = forms.get_review_form(request.POST or None, request=request,
                                  addon=addon, version=version)
 
-    queue_type = (form.helper.review_type if form.helper.review_type
-                  != 'preliminary' else 'prelim')
+    queue_type = ('prelim' if form.helper.review_type == 'preliminary'
+                  else form.helper.review_type)
     if addon.is_listed:
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
@@ -570,7 +582,7 @@ def review(request, addon):
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
         if form.cleaned_data.get('notify'):
-            EditorSubscription.objects.get_or_create(user=request.amo_user,
+            EditorSubscription.objects.get_or_create(user=request.user,
                                                      addon=addon)
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
@@ -603,9 +615,6 @@ def review(request, addon):
 
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
-
-    # We only allow the user to check/uncheck files for "pending"
-    allow_unchecking_files = form.helper.review_type == "pending"
 
     versions = (Version.objects.filter(addon=addon)
                                .exclude(files__status=amo.STATUS_BETA)
@@ -671,7 +680,6 @@ def review(request, addon):
                   pager=pager, num_pages=num_pages, count=count, flags=flags,
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
-                  allow_unchecking_files=allow_unchecking_files,
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
@@ -688,7 +696,7 @@ def review_viewing(request):
         return {}
 
     addon_id = request.POST['addon_id']
-    user_id = request.amo_user.id
+    user_id = request.user.id
     current_name = ''
     is_user = 0
     key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
@@ -703,7 +711,7 @@ def review_viewing(request):
         # just to account for latency and the like.
         cache.set(key, user_id, interval * 2)
         currently_viewing = user_id
-        current_name = request.amo_user.name
+        current_name = request.user.name
         is_user = 1
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -720,7 +728,7 @@ def queue_viewing(request):
         return {}
 
     viewing = {}
-    user_id = request.amo_user.id
+    user_id = request.user.id
 
     for addon_id in request.POST['addon_ids'].split(','):
         addon_id = addon_id.strip()

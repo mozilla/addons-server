@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for olympia project.
 
+import datetime
 import logging
 import os
 import socket
@@ -15,9 +16,6 @@ ALLOWED_HOSTS = [
     '.mozilla.com',
     '.mozilla.net',
 ]
-
-LOG_TABLE_SUFFIX = ''
-EVENT_TABLE_SUFFIX = ''
 
 # jingo-minify settings
 CACHEBUST_IMGS = True
@@ -49,13 +47,6 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-# need to view JS errors on a remote device? (requires node)
-# > npm install now
-# > node media/js/debug/remote_debug_server.node.js
-# REMOTE_JS_DEBUG = 'localhost:37767'
-# then connect to http://localhost:37767/ to view
-REMOTE_JS_DEBUG = False
-
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
@@ -85,8 +76,7 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
-DATABASES['default']['OPTIONS'] = {'init_command': 'SET storage_engine=InnoDB',
-                                   'sql_mode': 'STRICT_ALL_TABLES'}
+DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 
@@ -157,6 +147,7 @@ def lazy_langs(languages):
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('lib', 'product_json')
+PROD_DETAILS_URL = 'https://svn.mozilla.org/libs/product-details/json/'
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -229,6 +220,11 @@ DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 # Tarballs in DUMPED_USERS_PATH deleted 30 days after they have been written.
 DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 
+# path that isn't just one /, and doesn't require any locale or app.
+SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
+    'api/v3',
+)
+
 # paths that don't require an app prefix
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
@@ -245,7 +241,7 @@ SUPPORTED_NONLOCALES = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'r#%9w^o_80)7f%!_ir5zx$tu3mupw9u%&s!)-_q%gy7i+fhx#)'
+SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # Templates
 
@@ -369,6 +365,7 @@ INSTALLED_APPS = (
     'amo',  # amo comes first so it always takes precedence.
     'abuse',
     'access',
+    'accounts',
     'addons',
     'api',
     'applications',
@@ -401,6 +398,7 @@ INSTALLED_APPS = (
     'zadmin',
 
     # Third party apps
+    'aesfield',
     'django_extensions',
     'raven.contrib.django',
     'piston',
@@ -470,7 +468,6 @@ MINIFY_BUNDLES = {
             'css/impala/moz-tab.css',
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
-            'css/impala/collection-stats.less',
             'css/zamboni/themes.less',
         ),
         'zamboni/impala': (
@@ -518,6 +515,7 @@ MINIFY_BUNDLES = {
             'css/impala/tables.less',
             'css/impala/compat.less',
             'css/impala/localizers.less',
+            'css/impala/fxa-migration.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
@@ -555,6 +553,7 @@ MINIFY_BUNDLES = {
             'css/devhub/submission.less',
             'css/devhub/search.less',
             'css/devhub/refunds.less',
+            'css/impala/devhub-api.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
@@ -588,7 +587,6 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
-            'js/lib/jquery-1.6.4.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -603,13 +601,14 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
+            'js/lib/jquery-ui/core.js',
+            'js/lib/jquery-ui/position.js',
+            'js/lib/jquery-ui/widget.js',
+            'js/lib/jquery-ui/menu.js',
+            'js/lib/jquery-ui/mouse.js',
+            'js/lib/jquery-ui/autocomplete.js',
+            'js/lib/jquery-ui/datepicker.js',
+            'js/lib/jquery-ui/sortable.js',
 
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
@@ -662,7 +661,8 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
@@ -684,13 +684,14 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/jquery.ui.core.js',
-            'js/lib/jquery-ui/jquery.ui.position.js',
-            'js/lib/jquery-ui/jquery.ui.widget.js',
-            'js/lib/jquery-ui/jquery.ui.mouse.js',
-            'js/lib/jquery-ui/jquery.ui.autocomplete.js',
-            'js/lib/jquery-ui/jquery.ui.datepicker.js',
-            'js/lib/jquery-ui/jquery.ui.sortable.js',
+            'js/lib/jquery-ui/core.js',
+            'js/lib/jquery-ui/position.js',
+            'js/lib/jquery-ui/widget.js',
+            'js/lib/jquery-ui/mouse.js',
+            'js/lib/jquery-ui/menu.js',
+            'js/lib/jquery-ui/autocomplete.js',
+            'js/lib/jquery-ui/datepicker.js',
+            'js/lib/jquery-ui/sortable.js',
 
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
@@ -751,8 +752,13 @@ MINIFY_BUNDLES = {
             # Fix-up outgoing links
             'js/zamboni/outgoing_links.js',
         ),
+        'fxa': [
+            'js/lib/fxa-relier-client.js',
+            'js/common/fxa-login.js',
+        ],
         'zamboni/discovery': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -829,7 +835,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.6.4.js',
+            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-migrate-1.2.1.min.js',
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
@@ -1139,9 +1146,10 @@ CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
-# don't want to be crawled?  Default is false, disallow everything.
+# don't want to be crawled?  Default is true, allow everything, toggled to
+# False on -dev and stage.
 # Also see http://www.google.com/support/webmasters/bin/answer.py?answer=93710
-ENGAGE_ROBOTS = False
+ENGAGE_ROBOTS = True
 
 # Read-only mode setup.
 READ_ONLY = False
@@ -1426,3 +1434,46 @@ STATICFILES_DIRS = (
     JINGO_MINIFY_ROOT
 )
 NETAPP_STORAGE = TMP_PATH
+
+
+# These are key files that must be present on disk to encrypt/decrypt certain
+# database fields.
+AES_KEYS = {
+    #'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
+}
+
+# Time in seconds for how long a JWT auth token can live.
+# When developers are creating auth tokens they cannot set the expiration any
+# longer than this.
+MAX_JWT_AUTH_TOKEN_LIFETIME = 60
+
+
+# django-rest-framework-jwt settings:
+JWT_AUTH = {
+    # We don't want to refresh tokens right now. Refreshing a token is when
+    # you accept a request with a valid token and return a new one with a
+    # longer expiration.
+    'JWT_ALLOW_REFRESH': False,
+
+    # JWTs are only valid for one minute. Note that this setting only applies
+    # to token creation which we don't do (yet?).
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(
+        seconds=MAX_JWT_AUTH_TOKEN_LIFETIME),
+
+    'JWT_ENCODE_HANDLER': 'apps.api.jwt_auth.handlers.jwt_encode_handler',
+    'JWT_DECODE_HANDLER': 'apps.api.jwt_auth.handlers.jwt_decode_handler',
+    'JWT_PAYLOAD_HANDLER': 'apps.api.jwt_auth.handlers.jwt_payload_handler',
+    'JWT_ALGORITHM': 'HS256',
+    # This adds some padding to timestamp validation in case client/server
+    # clocks are off.
+    'JWT_LEEWAY': 5,
+}
+
+REST_FRAMEWORK = {
+    # Set this because the default is to also include:
+    #   'rest_framework.renderers.BrowsableAPIRenderer'
+    # Which it will try to use if the client accepts text/html.
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+}

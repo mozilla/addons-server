@@ -16,6 +16,7 @@ from django.template import defaultfilters
 import caching.base as caching
 import jinja2
 import six
+import waffle
 from babel.support import Format
 from jingo import register, env
 # Needed to make sure our own |f filter overrides jingo's one.
@@ -39,6 +40,11 @@ register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
 register.function(utils.randslice)
+
+
+@register.function
+def switch_is_active(switch_name):
+    return waffle.switch_is_active(switch_name)
 
 
 @register.filter
@@ -538,22 +544,6 @@ def loc(s):
 @register.function
 def site_event_type(type):
     return amo.SITE_EVENT_CHOICES[type]
-
-
-@register.function
-@jinja2.contextfunction
-def remora_url(context, url, lang=None, app=None, prefix=''):
-    """Wrapper for urlresolvers.remora_url"""
-    if lang is None:
-        _lang = context['LANG']
-        if _lang:
-            lang = translation.to_locale(_lang).replace('_', '-')
-    if app is None:
-        try:
-            app = context['APP'].short
-        except (AttributeError, KeyError):
-            pass
-    return urlresolvers.remora_url(url=url, lang=lang, app=app, prefix=prefix)
 
 
 @register.function

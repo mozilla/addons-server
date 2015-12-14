@@ -1,5 +1,5 @@
 {% for c in collections %}
-  {% set is_watching = request.user.is_authenticated() and c.id in request.amo_user.watching %}
+  {% set is_watching = request.user.is_authenticated() and c.id in request.user.watching %}
   <div class="item{{ ' watching' if is_watching }}">
     <div class="info">
       <h3>

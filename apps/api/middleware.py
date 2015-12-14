@@ -4,7 +4,7 @@ from django.contrib.auth.models import AnonymousUser
 import commonware.log
 import waffle
 
-from users.models import RequestUser
+from users.models import UserProfile
 
 from .models import Access
 from .oauth import OAuthServer
@@ -73,17 +73,17 @@ class RestOAuthMiddleware(object):
             log.error(u'Cannot find Access with that key: %s'
                       % oauth_request.client_key)
             return
-        request.amo_user = RequestUser.objects.get(pk=uid)
-        request.user = request.amo_user
+
+        request.user = UserProfile.objects.get(pk=uid)
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])
-        roles = set(request.amo_user.groups.values_list('name', flat=True))
+        roles = set(request.user.groups.values_list('name', flat=True))
         if roles and roles.intersection(denied_groups):
             log.info(u'Attempt to use API with denied role, user: %s'
-                     % request.amo_user.pk)
+                     % request.user.pk)
             # Set request attributes back to None.
-            request.user = request.amo_user = None
+            request.user = None
             return
 
         if request.user:

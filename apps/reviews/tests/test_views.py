@@ -135,7 +135,7 @@ class TestViews(ReviewTest):
         actions = item.find('.item-actions')
         eq_(actions.length, 1)
         classes = sorted(c.get('class') for c in actions.find('li a'))
-        eq_(classes, ['delete-review', 'review-edit'])
+        eq_(classes, ['delete-review', 'review-reply-edit'])
 
     def test_cant_view_unlisted_addon_reviews(self):
         """An unlisted addon doesn't have reviews."""
@@ -420,7 +420,7 @@ class TestEdit(ReviewTest):
         response = self.client.get(helpers.url('addons.reviews.list',
                                    self.addon.slug))
         doc = pq(response.content)
-        assert doc('#review-218468 .review-edit').text() == 'Edit reply'
+        assert doc('#review-218468 .review-reply-edit').text() == 'Edit reply'
 
 
 class TestTranslate(ReviewTest):

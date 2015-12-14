@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:56-0700\n"
+"POT-Creation-Date: 2015-12-03 08:54-0700\n"
 "PO-Revision-Date: 2015-09-19 21:17+0000\n"
 "Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -14,385 +14,92 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1442697439.0\n"
 
-#: static/js/common-all.js:10461 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:10428 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:10989
-#: static/js/zamboni/mobile-min.js:4
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
-
-#: static/js/common-all.js:10873 static/js/impala-all.js:1923 static/js/zamboni/apps.js:54 static/js/zamboni/mobile-all.js:10726 static/js/zamboni/mobile-min.js:4
-msgid "App installation not allowed."
-msgstr "Inštalácia aplikácie nie je povolená."
-
-#: static/js/common-all.js:10876 static/js/impala-all.js:1926 static/js/zamboni/apps.js:57 static/js/zamboni/mobile-all.js:10729 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is malformed."
-msgstr "Manifest aplikácie je poškodený."
-
-#: static/js/common-all.js:10879 static/js/impala-all.js:1929 static/js/zamboni/apps.js:60 static/js/zamboni/mobile-all.js:10732 static/js/zamboni/mobile-min.js:4
-msgid "App host could not be reached."
-msgstr "Nebolo možné sa pripojiť k umiestneniu aplikácie."
-
-#: static/js/common-all.js:10882 static/js/impala-all.js:1932 static/js/zamboni/apps.js:63 static/js/zamboni/mobile-all.js:10735 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is unparsable."
-msgstr "Manifest aplikácie je nespracovateľný."
-
-#: static/js/common-all.js:10885 static/js/impala-all.js:1935 static/js/zamboni/apps.js:66 static/js/zamboni/mobile-all.js:10738 static/js/zamboni/mobile-min.js:4
-msgid "App manifest is invalid."
-msgstr "Manifest aplikácie je nevalidný."
-
-#: static/js/common-all.js:10888 static/js/impala-all.js:1938 static/js/zamboni/apps.js:69 static/js/zamboni/mobile-all.js:10741 static/js/zamboni/mobile-min.js:4
-msgid "Install failed. Please try again later."
-msgstr "Inštalácia zlyhala. Skúste to, prosím, neskôr."
-
-#: static/js/common-all.js:10899 static/js/impala-all.js:1949 static/js/zamboni/apps.js:80 static/js/zamboni/mobile-all.js:10752 static/js/zamboni/mobile-min.js:4
-msgid "App installation failed."
-msgstr "Inštalácia aplikácie zlyhala."
-
-#: static/js/common-all.js:10900 static/js/impala-all.js:1950 static/js/zamboni/apps.js:81 static/js/zamboni/mobile-all.js:10753 static/js/zamboni/mobile-min.js:4
-msgid "This system does not support installing apps."
-msgstr "Systém nepodporuje inštaláciu aplikácií."
-
-#. L10n: {0} is an app name like Firefox.
-#: static/js/common-all.js:11022 static/js/impala-all.js:2072 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10964
-msgid "Accept and Install"
-msgstr "Prijať a nainštalovať"
-
-#: static/js/common-all.js:11022 static/js/impala-all.js:2072 static/js/zamboni/buttons.js:82 static/js/zamboni/discovery-all.js:10964
-msgid "Add to {0}"
-msgstr "Pridať do programu {0}"
-
-#: static/js/common-all.js:11027 static/js/impala-all.js:2077 static/js/zamboni/buttons.js:87 static/js/zamboni/discovery-all.js:10969
-msgid "Download Now"
-msgstr "Prevziať teraz"
-
-#: static/js/common-all.js:11068 static/js/impala-all.js:2118 static/js/zamboni/buttons.js:128 static/js/zamboni/discovery-all.js:11010
-msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Doplnok nebol aktualizovaný tak, aby bol v predvolenom nastavení kompatibilný."
-
-#: static/js/common-all.js:11073 static/js/impala-all.js:2123 static/js/zamboni/buttons.js:133 static/js/zamboni/discovery-all.js:11015
-msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Musíte používať Firefox 10.0 alebo novší."
-
-#: static/js/common-all.js:11085 static/js/impala-all.js:2135 static/js/zamboni/buttons.js:145 static/js/zamboni/discovery-all.js:11027
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla označila túto verziu ako nekompatibilnú s vašou verziou Firefoxu."
-
-#. L10n: {0} is an platform like Windows or Linux.
-#: static/js/common-all.js:11167 static/js/impala-all.js:2217 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11109
-msgid "Install for {0} anyway"
-msgstr "Napriek tomu nainštalovať pre {0}"
-
-#: static/js/common-all.js:11167 static/js/impala-all.js:2217 static/js/zamboni/buttons.js:227 static/js/zamboni/discovery-all.js:11109
-msgid "Download for {0} anyway"
-msgstr "Napriek tomu prevziať pre {0}"
-
-#: static/js/common-all.js:11224 static/js/impala-all.js:2274 static/js/zamboni/buttons.js:284 static/js/zamboni/discovery-all.js:11166
-msgid "Not available for your platform"
-msgstr "Nie je dostupné pre vašu platformu."
-
-#. L10n: {0} is an app name, {1} is the app version.
-#: static/js/common-all.js:11235 static/js/common-all.js:11272 static/js/impala-all.js:2285 static/js/impala-all.js:2322 static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
-#: static/js/zamboni/discovery-all.js:11177 static/js/zamboni/discovery-all.js:11214
-msgid "Not available for {0} {1}"
-msgstr "Nie je dostupné pre {0} {1}"
-
-#: static/js/common-all.js:11298 static/js/impala-all.js:2348 static/js/zamboni/buttons.js:358 static/js/zamboni/discovery-all.js:11240
-msgid "Works with {app} {min} - {max}"
-msgstr "Funguje s {app} {min} - {max}"
-
-#: static/js/common-all.js:11300 static/js/impala-all.js:2350 static/js/zamboni/buttons.js:360 static/js/zamboni/discovery-all.js:11242
-msgid "View other versions"
-msgstr "Zobraziť ďalšie verzie"
-
-#: static/js/common-all.js:11514 static/js/impala-all.js:2564 static/js/zamboni/buttons.js:551 static/js/zamboni/discovery-all.js:11456 static/js/zamboni/mobile-all.js:11216
-#: static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
-
-#: static/js/common-all.js:16623 static/js/common-min.js:7 static/js/impala-all.js:8253 static/js/impala-min.js:5 static/js/zamboni/global.js:416
-msgid "Loading..."
-msgstr "Načítava sa..."
-
-#. L10n: {0} is the number of characters left.
-#: static/js/common-all.js:16696 static/js/common-min.js:7 static/js/impala-all.js:8326 static/js/impala-min.js:5 static/js/zamboni/global.js:489
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Zostáva <b>{0}</b> znak."
-msgstr[1] "Zostávajú <b>{0}</b> znaky."
-msgstr[2] "Zostáva <b>{0}</b> znakov."
-
-#: static/js/common-all.js:17133 static/js/common-min.js:8 static/js/impala-all.js:8706 static/js/impala-min.js:5 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:12201
-#: static/js/zamboni/mobile-min.js:5
+#: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} hviezdička"
 msgstr[1] "{0} hviezdičky"
 msgstr[2] "{0} hviezdičiek"
 
-#: static/js/common-all.js:17277 static/js/common-min.js:8 static/js/impala-all.js:8850 static/js/impala-min.js:5 static/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "Odstrániť túto lokalizáciu"
-
-#: static/js/common-all.js:18470 static/js/common-min.js:8 static/js/impala-all.js:10160 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
-msgid "Flagged for review"
-msgstr "Označené na kontrolu"
-
-#: static/js/common-all.js:18486 static/js/common-min.js:8 static/js/impala-all.js:10177 static/js/impala-min.js:6 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
-msgid "Your input is required"
-msgstr "Vyžaduje sa zadanie údajov"
-
-#: static/js/common-all.js:18555 static/js/common-min.js:8 static/js/impala-all.js:10270 static/js/impala-min.js:6 static/js/impala/reviews.js:133 static/js/zamboni/reviews.js:103
-msgid "Marked for deletion"
-msgstr "Označené na odstránenie"
-
-#: static/js/common-all.js:19141 static/js/common-min.js:9 static/js/impala-all.js:12035 static/js/impala-min.js:7 static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "vymazať naposledy zobrazené"
-
-#: static/js/common-all.js:19313 static/js/common-min.js:9 static/js/impala-all.js:12207 static/js/impala-min.js:7 static/js/zamboni/collections.js:365
-msgid "Adding to Favorites&hellip;"
-msgstr "Pridať medzi obľúbené&hellip;"
-
-#: static/js/common-all.js:19316 static/js/common-min.js:9 static/js/impala-all.js:12210 static/js/impala-min.js:7 static/js/zamboni/collections.js:368
-msgid "Removing Favorite&hellip;"
-msgstr "Odstraňuje sa zo zoznamu obľúbených&hellip;"
-
-#: static/js/common-all.js:19319 static/js/common-min.js:9 static/js/impala-all.js:12213 static/js/impala-min.js:7 static/js/zamboni/collections.js:371
-msgid "Add to Favorites"
-msgstr "Pridať medzi obľúbené"
-
-#: static/js/common-all.js:19322 static/js/common-min.js:9 static/js/impala-all.js:12216 static/js/impala-min.js:7 static/js/zamboni/collections.js:374
-msgid "Remove from Favorites"
-msgstr "Odstrániť z obľúbených"
-
-#: static/js/common-all.js:19385 static/js/common-min.js:9 static/js/impala-all.js:12279 static/js/impala-min.js:7 static/js/zamboni/collections.js:437
-msgid "Pending"
-msgstr "Čakajúci"
-
-#: static/js/common-all.js:19386 static/js/common-min.js:9 static/js/impala-all.js:12280 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
-msgid "Add a comment"
-msgstr "Pridať komentár"
-
-#: static/js/common-all.js:19386 static/js/common-min.js:9 static/js/impala-all.js:12280 static/js/impala-min.js:7 static/js/zamboni/collections.js:438
-msgid "Comment"
-msgstr "Komentár"
-
-#: static/js/common-all.js:19387 static/js/common-min.js:9 static/js/impala-all.js:12281 static/js/impala-min.js:7 static/js/zamboni/collections.js:439
-msgid "Remove this add-on from the collection"
-msgstr "Odstrániť tento doplnok z kolekcie"
-
-#: static/js/common-all.js:19387 static/js/common-all.js:19416 static/js/common-min.js:9 static/js/impala-all.js:12281 static/js/impala-all.js:12310 static/js/impala-min.js:7
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
-msgid "Remove"
-msgstr "Odstrániť"
-
-#: static/js/common-all.js:19416 static/js/common-min.js:9 static/js/impala-all.js:12310 static/js/impala-min.js:7 static/js/zamboni/collections.js:468
-msgid "Remove this user as a contributor"
-msgstr "Odstrániť tohto používateľa ako prispievateľa"
-
-#: static/js/common-all.js:19428 static/js/common-min.js:9 static/js/impala-all.js:12322 static/js/impala-min.js:7 static/js/zamboni/collections.js:480
-msgid "An email address is required."
-msgstr "E-mailová adresa je požadovaná."
-
-#: static/js/common-all.js:19446 static/js/common-min.js:9 static/js/impala-all.js:12340 static/js/impala-min.js:7 static/js/zamboni/collections.js:498
-msgid "You cannot add yourself as a contributor."
-msgstr "Nemôžete ako prispievateľa pridať samých seba."
-
-#: static/js/common-all.js:19448 static/js/common-min.js:9 static/js/impala-all.js:12342 static/js/impala-min.js:7 static/js/zamboni/collections.js:500
-msgid "You have already added that user."
-msgstr "Tohto používateľa ste už pridali."
-
-#: static/js/common-all.js:19655 static/js/common-min.js:9 static/js/impala-all.js:12549 static/js/impala-min.js:7 static/js/zamboni/collections.js:707
-msgid "Add to favorites"
-msgstr "Pridať medzi obľúbené"
-
-#: static/js/common-all.js:19659 static/js/common-min.js:9 static/js/impala-all.js:12553 static/js/impala-min.js:7 static/js/zamboni/collections.js:711
-msgid "Remove from favorites"
-msgstr "Odstrániť z obľúbených"
-
-#: static/js/common-all.js:19677 static/js/common-min.js:9 static/js/impala-all.js:12571 static/js/impala-all.js:12637 static/js/impala-min.js:7 static/js/impala/collections.js:10
-#: static/js/zamboni/collections.js:729
-msgid "Follow this Collection"
-msgstr "Odoberať túto kolekciu"
-
-#: static/js/common-all.js:19686 static/js/common-min.js:9 static/js/impala-all.js:12580 static/js/impala-min.js:7 static/js/zamboni/collections.js:738
-msgid "Stop following"
-msgstr "Zastaviť odber"
-
-#: static/js/common-all.js:19762 static/js/common-all.js:19775 static/js/common-min.js:9 static/js/impala-all.js:12688 static/js/impala-all.js:12701 static/js/impala-min.js:7
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Všetky"
-
-#: static/js/common-all.js:19924 static/js/common-min.js:9 static/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr "Sila hesla:"
-
-#: static/js/common-all.js:19930 static/js/common-min.js:9 static/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Zostáva najmenej {0} znak."
-msgstr[1] "Zostávajú najmenej {0} znaky."
-msgstr[2] "Zostáva najmenej {0} znakov."
-
-#: static/js/common-all.js:20114 static/js/common-min.js:9 static/js/impala-all.js:13083 static/js/impala-min.js:7 static/js/impala/suggestions.js:39
-msgid "Search themes for <b>{0}</b>"
-msgstr "Vyhľadávanie tém podľa <b>{0}</b>"
-
-#: static/js/common-all.js:20116 static/js/common-min.js:9 static/js/impala-all.js:13085 static/js/impala-min.js:7 static/js/impala/suggestions.js:41
-msgid "Search apps for <b>{0}</b>"
-msgstr "Vyhľadávanie aplikácií pre <b>{0}</b>"
-
-#: static/js/common-all.js:20118 static/js/common-min.js:9 static/js/impala-all.js:13087 static/js/impala-min.js:7 static/js/impala/suggestions.js:43
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Vyhľadávanie doplnkov pre <b>{0}</b>"
-
-#: static/js/common-all.js:20349 static/js/common-min.js:9 static/js/impala-all.js:13318 static/js/impala-min.js:7 static/js/impala/site_suggestions.js:46
-msgid "Category"
-msgstr "Kategória"
-
-#: static/js/impala-all.js:3013 static/js/zamboni/mobile-all.js:12268 static/js/zamboni/mobile-min.js:5
-msgid "Admins and editors must provide a password to log in."
-msgstr ""
-
-#: static/js/impala-all.js:3018 static/js/zamboni/mobile-all.js:12273 static/js/zamboni/mobile-min.js:5
-msgid "BrowserID login failed. Maybe you don't have an account under that email address?"
-msgstr ""
-
-#. L10n: {0} is an app name.
-#: static/js/impala-all.js:10298 static/js/impala-min.js:6 static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Táto téma nie je kompatibilná s vašou verziou aplikácie {0}"
-
-#: static/js/impala-all.js:10809 static/js/impala-all.js:12817 static/js/impala-min.js:6 static/js/impala-min.js:7 static/js/common/upload-image.js:97 static/js/impala/users.js:51
-#: static/js/zamboni/devhub-all.js:775 static/js/zamboni/devhub-min.js:1
-msgid "Images must be either PNG or JPG."
-msgstr "Obrázky musia mať formát PNG alebo JPG."
-
-#: static/js/impala-all.js:10813 static/js/impala-min.js:6 static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:779 static/js/zamboni/devhub-min.js:1
-msgid "Videos must be in WebM."
-msgstr "Videá musia byť vo formáte WebM."
-
-#: static/js/impala-all.js:10840 static/js/impala-min.js:6 static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128 static/js/zamboni/devhub-all.js:271
-#: static/js/zamboni/devhub-all.js:806 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
 msgstr "Pri kontaktovaní servera sa vyskytla chyba."
 
-#: static/js/impala-all.js:11559 static/js/impala-min.js:6 static/js/impala/persona_creation.js:102
-msgid "All Rights Reserved"
-msgstr "Všetky práva vyhradené"
-
-#: static/js/impala-all.js:11563 static/js/impala-min.js:6 static/js/impala/persona_creation.js:106
-msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
-
-#: static/js/impala-all.js:11568 static/js/impala-min.js:6 static/js/impala/persona_creation.js:111
-msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
-
-#: static/js/impala-all.js:11573 static/js/impala-min.js:6 static/js/impala/persona_creation.js:116
-msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-
-#: static/js/impala-all.js:11578 static/js/impala-min.js:6 static/js/impala/persona_creation.js:121
-msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-
-#: static/js/impala-all.js:11583 static/js/impala-min.js:6 static/js/impala/persona_creation.js:126
-msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
-
-#: static/js/impala-all.js:11588 static/js/impala-min.js:6 static/js/impala/persona_creation.js:131
-msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
-
-#: static/js/impala-all.js:11795 static/js/impala-min.js:6 static/js/impala/persona_creation.js:338
-msgid "Your Theme's Name"
-msgstr "Názov vašej témy"
-
-#: static/js/impala-all.js:12646 static/js/impala-min.js:7 static/js/impala/collections.js:19
-msgid "Stop Following"
-msgstr "Zastaviť odoberanie"
-
-#: static/js/impala-all.js:12647 static/js/impala-min.js:7 static/js/impala/collections.js:20
-msgid "Following"
-msgstr "Odoberať"
-
-#: static/js/impala-all.js:12799 static/js/impala-min.js:7 static/js/impala/users.js:33
-msgid "use original"
-msgstr "použiť originál"
-
-#: static/js/impala-all.js:12974 static/js/impala-min.js:7 static/js/impala/search.js:114
-msgid "Updating results&hellip;"
-msgstr "Prebieha aktualizácia výsledkov&hellip;"
-
-#: static/js/common/upload-addon.js:59 static/js/zamboni/devhub-all.js:289 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:59
 msgid "Select a file..."
 msgstr "Zvoľte súbor..."
 
-#: static/js/common/upload-addon.js:60 static/js/zamboni/devhub-all.js:290 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:60
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Váš doplnok by mal mať koncovku .xpi, .jar alebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94 static/js/zamboni/devhub-all.js:324 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:94
 msgid "{0}% complete"
 msgstr "Dokončené: {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97 static/js/zamboni/devhub-all.js:327 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:97
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
-#: static/js/common/upload-addon.js:130 static/js/zamboni/devhub-all.js:357 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:130
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: static/js/common/upload-addon.js:152 static/js/zamboni/devhub-all.js:379 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:152
 msgid "Uploading {0}"
 msgstr "Odosiela sa {0}"
 
-#: static/js/common/upload-addon.js:179 static/js/zamboni/devhub-all.js:406 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:179
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: static/js/common/upload-addon.js:184 static/js/zamboni/devhub-all.js:411 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:184
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Váš doplnok neprešiel overením, výsledok: {0} chyba."
 msgstr[1] "Váš doplnok neprešiel overením, výsledok: {0} chyby."
 msgstr[2] "Váš doplnok neprešiel overením, výsledok: {0} chýb."
 
-#: static/js/common/upload-addon.js:198 static/js/zamboni/devhub-all.js:425 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:198
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; a jedna ďalšia"
 msgstr[1] "&hellip; a {0} ďalšie"
 msgstr[2] "&hellip; a {0} ďalších"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:520 static/js/zamboni/devhub-all.js:439 static/js/zamboni/devhub-all.js:619 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
-#: static/js/common/upload-addon.js:224 static/js/zamboni/devhub-all.js:451 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:224
 msgid "Validating {0}"
 msgstr "Overuje sa {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263 static/js/zamboni/devhub-all.js:490 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:263
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prijatá prázdna odpoveď zo servera. Stav: {0}"
 
-#: static/js/common/upload-addon.js:368 static/js/zamboni/devhub-all.js:506 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Počas overovania sa vyskytla neočakávaná chyba."
 
-#: static/js/common/upload-addon.js:407 static/js/zamboni/devhub-all.js:544 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Ukončené overovanie {0}"
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+
+#: static/js/common/upload-addon.js:411
+msgid "Your add-on was validated with no errors and {0} warning."
+msgid_plural "Your add-on was validated with no errors and {0} warnings."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
@@ -405,39 +112,31 @@ msgstr[2] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Váš doplnok bol overený bez chýb alebo varovaní."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:443
-msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
-
-#: static/js/common/upload-addon.js:445
-msgid "Your submission passed validation and will go through a manual review."
-msgstr ""
-
-#: static/js/common/upload-addon.js:473 static/js/zamboni/devhub-all.js:571 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:474 static/js/zamboni/devhub-all.js:572 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:456
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno vykonať v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:475
+#: static/js/common/upload-addon.js:457
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:488 static/js/zamboni/devhub-all.js:587 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Zoznam doplnkov odoslaných na kontrolu"
 
-#: static/js/common/upload-addon.js:489 static/js/zamboni/devhub-all.js:588 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:471
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri procese kontroly:"
 
-#: static/js/common/upload-addon.js:491 static/js/zamboni/devhub-all.js:590 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -445,859 +144,1140 @@ msgstr ""
 "Skompilované binárne súčasti rovnako ako obfuscované skripty (okrem známych knižníc) musia mať predložené zdrojové súbory na kontrolu oddelene. Uistite sa, že ste použili pole pre nahranie "
 "zdrojových kódov, aby nedošlo k zamietnutiu kontroly."
 
-#: static/js/common/upload-addon.js:509 static/js/zamboni/devhub-all.js:608 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
 
-#: static/js/common/upload-addon.js:526 static/js/zamboni/devhub-all.js:625 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:508
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ak ešte neviete, ako prebieha proces kontroly, môžete si o ňom prečítať tu."
 
-#: static/js/common/upload-addon.js:562 static/js/zamboni/devhub-all.js:662 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
 msgstr "Niektoré platformy nie sú pre tento typ doplnku dostupné."
 
-#: static/js/common/upload-addon.js:564 static/js/zamboni/devhub-all.js:664 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:546
 msgid "Sorry, no supported platform has been found."
 msgstr "Ospravedlňujeme sa, ale nebola nájdená podporovaná platforma."
 
-#: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:193 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Nebol rozpoznaný typ súboru, ktorý ste odoslali."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:215 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:79
 msgid "You cancelled the upload."
 msgstr "Odosielanie ste zrušili."
 
-#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16986 static/js/zamboni/stats-min.js:6
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
+msgid "Images must be either PNG or JPG."
+msgstr "Obrázky musia mať formát PNG alebo JPG."
+
+#: static/js/common/upload-image.js:101
+msgid "Videos must be in WebM."
+msgstr "Videá musia byť vo formáte WebM."
+
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+msgid "Follow this Collection"
+msgstr "Odoberať túto kolekciu"
+
+#: static/js/impala/collections.js:19
+msgid "Stop Following"
+msgstr "Zastaviť odoberanie"
+
+#: static/js/impala/collections.js:20
+msgid "Following"
+msgstr "Odoberať"
+
+#. L10n: {0} is an app name.
+#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+msgid "This theme is incompatible with your version of {0}"
+msgstr "Táto téma nie je kompatibilná s vašou verziou aplikácie {0}"
+
+#: static/js/impala/persona_creation.js:60
+msgid "All Rights Reserved"
+msgstr "Všetky práva vyhradené"
+
+#: static/js/impala/persona_creation.js:64
+msgid "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Attribution 3.0"
+
+#: static/js/impala/persona_creation.js:69
+msgid "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
+
+#: static/js/impala/persona_creation.js:74
+msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:79
+msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+
+#: static/js/impala/persona_creation.js:84
+msgid "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
+
+#: static/js/impala/persona_creation.js:89
+msgid "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
+
+#: static/js/impala/persona_creation.js:296
+msgid "Your Theme's Name"
+msgstr "Názov vašej témy"
+
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+msgid "Flagged for review"
+msgstr "Označené na kontrolu"
+
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+msgid "Your input is required"
+msgstr "Vyžaduje sa zadanie údajov"
+
+#: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
+msgid "Marked for deletion"
+msgstr "Označené na odstránenie"
+
+#: static/js/impala/search.js:114
+msgid "Updating results&hellip;"
+msgstr "Prebieha aktualizácia výsledkov&hellip;"
+
+#: static/js/impala/site_suggestions.js:46
+msgid "Category"
+msgstr "Kategória"
+
+#: static/js/impala/suggestions.js:39
+msgid "Search themes for <b>{0}</b>"
+msgstr "Vyhľadávanie tém podľa <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:41
+msgid "Search apps for <b>{0}</b>"
+msgstr "Vyhľadávanie aplikácií pre <b>{0}</b>"
+
+#: static/js/impala/suggestions.js:43
+msgid "Search add-ons for <b>{0}</b>"
+msgstr "Vyhľadávanie doplnkov pre <b>{0}</b>"
+
+#: static/js/impala/users.js:33
+msgid "use original"
+msgstr "použiť originál"
+
+#: static/js/impala/stats/chart.js:267
 msgid "Week of {0}"
 msgstr "Týždeň {0}"
 
-#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16988 static/js/zamboni/stats-min.js:6
-msgid "downloads"
-msgstr "prevzatí"
+#: static/js/impala/stats/chart.js:269
+msgid " downloads"
+msgstr ""
 
-#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16989 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:270
 msgid "{0} users"
 msgstr "{0} používateľov"
 
-#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16990 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
 msgstr "{0} doplnkov"
 
-#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16991 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
 msgstr "{0} kolekcií"
 
-#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16992 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
 msgstr "{0} recenzií"
 
-#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16994 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
 msgstr "{0} predaných"
 
-#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16995 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:276
 msgid "{0} refunds"
 msgstr "{0} vrátených platieb"
 
-#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16996 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
 msgstr "{0} inštalácií"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:102 static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15478
-#: static/js/zamboni/stats-all.js:17088 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Prevzatí"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:103 static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-all.js:15479
-#: static/js/zamboni/stats-all.js:17098 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Denní používatelia"
 
-#: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17129 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
 msgstr "Množstvo, v USD"
 
-#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:97 static/js/zamboni/stats-all.js:15473 static/js/zamboni/stats-all.js:17140 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Počet príspevkov"
 
-#: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17166 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:447
 msgid "More Info..."
 msgstr "Viac informácií..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17170 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/chart.js:451
 msgid "Details for {0}"
 msgstr "Detaily pre {0}"
 
-#: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:9
 msgid "Collections Created"
 msgstr "Vytvorené kolekcie"
 
-#: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15388 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
 msgstr "Používané doplnky"
 
-#: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
 msgstr "Vytvorené doplnky"
 
-#: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
 msgstr "Prevzaté doplnky"
 
-#: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15397 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
 msgstr "Aktualizované doplnky"
 
-#: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15400 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:24
 msgid "Reviews Written"
 msgstr "Napísané recenzie"
 
-#: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15403 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:27
 msgid "User Signups"
 msgstr "Prihlásení používatelia"
 
-#: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15406 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
 msgstr "Odberatelia"
 
-#: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15409 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr "Hodnotenia"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:107 static/js/zamboni/stats-all.js:15412 static/js/zamboni/stats-all.js:15483 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Predaje"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15415 static/js/zamboni/stats-all.js:15482 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Inštalácie"
 
-#: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15418 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15419 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Správca doplnkov"
 
-#: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15420 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:44
+msgid "Add-ons Manager Promo"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:45
+msgid "Add-ons Manager Featured"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:46
+msgid "Add-ons Manager Learn More"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:47
+msgid "Search Suggestions"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
 msgstr "Výsledky hľadania"
 
-#: static/js/impala/stats/csv_keys.js:45 static/js/impala/stats/csv_keys.js:46 static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15421 static/js/zamboni/stats-all.js:15422
-#: static/js/zamboni/stats-all.js:15423 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Domovská stránka (propagácia)"
 
-#: static/js/impala/stats/csv_keys.js:48 static/js/impala/stats/csv_keys.js:49 static/js/zamboni/stats-all.js:15424 static/js/zamboni/stats-all.js:15425 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Domovská stránka (odporúčané)"
 
-#: static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15426 static/js/zamboni/stats-all.js:15427 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Domovská stránka (zaujímavé)"
 
-#: static/js/impala/stats/csv_keys.js:52 static/js/zamboni/stats-all.js:15428 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
 msgstr "Domovská stránka (populárne)"
 
-#: static/js/impala/stats/csv_keys.js:53 static/js/impala/stats/csv_keys.js:55 static/js/zamboni/stats-all.js:15429 static/js/zamboni/stats-all.js:15431 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Stránka s detailmi"
 
-#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15430 static/js/zamboni/stats-all.js:15432 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Stránka s detailmi (dole)"
 
-#: static/js/impala/stats/csv_keys.js:57 static/js/zamboni/stats-all.js:15433 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
 msgstr "Stránka s detailmi (vývojársky kanál)"
 
-#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:59 static/js/impala/stats/csv_keys.js:60 static/js/zamboni/stats-all.js:15434 static/js/zamboni/stats-all.js:15435
-#: static/js/zamboni/stats-all.js:15436 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Často sa používa spolu s"
 
-#: static/js/impala/stats/csv_keys.js:61 static/js/impala/stats/csv_keys.js:62 static/js/zamboni/stats-all.js:15437 static/js/zamboni/stats-all.js:15438 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "Ďalšie aplikácie tohto autora"
 
-#: static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15439 static/js/zamboni/stats-all.js:15440 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Závislosti"
 
-#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66 static/js/zamboni/stats-all.js:15441 static/js/zamboni/stats-all.js:15442 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Prechod na platenú variantu"
 
-#: static/js/impala/stats/csv_keys.js:68 static/js/zamboni/stats-all.js:15444 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:71
+msgid "Meet the Developer"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:72
+msgid "User Profile"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:73
+msgid "Version History"
+msgstr ""
+
+#: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
 msgstr "Zdieľanie"
 
-#: static/js/impala/stats/csv_keys.js:69 static/js/zamboni/stats-all.js:15445 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:76
 msgid "Category Pages"
 msgstr "Stránky kategórií"
 
-#: static/js/impala/stats/csv_keys.js:70 static/js/zamboni/stats-all.js:15446 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:77
 msgid "Collections"
 msgstr "Kolekcie"
 
-#: static/js/impala/stats/csv_keys.js:71 static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15447 static/js/zamboni/stats-all.js:15448 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Kategória s odporúčanými doplnkami"
 
-#: static/js/impala/stats/csv_keys.js:73 static/js/impala/stats/csv_keys.js:74 static/js/zamboni/stats-all.js:15449 static/js/zamboni/stats-all.js:15450 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Kategórie najlepšie hodnotených"
 
-#: static/js/impala/stats/csv_keys.js:75 static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15451 static/js/zamboni/stats-all.js:15452 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Kategórie najviac populárnych"
 
-#: static/js/impala/stats/csv_keys.js:77 static/js/impala/stats/csv_keys.js:78 static/js/zamboni/stats-all.js:15453 static/js/zamboni/stats-all.js:15454 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Kategórie naposledy pridaných"
 
-#: static/js/impala/stats/csv_keys.js:79 static/js/impala/stats/csv_keys.js:80 static/js/zamboni/stats-all.js:15455 static/js/zamboni/stats-all.js:15456 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "Zoznam doplnkov podľa obľúbenosti"
 
-#: static/js/impala/stats/csv_keys.js:81 static/js/impala/stats/csv_keys.js:82 static/js/zamboni/stats-all.js:15457 static/js/zamboni/stats-all.js:15458 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "Zoznam doplnkov podľa počtu používateľov"
 
-#: static/js/impala/stats/csv_keys.js:83 static/js/impala/stats/csv_keys.js:84 static/js/zamboni/stats-all.js:15459 static/js/zamboni/stats-all.js:15460 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "Zoznam doplnkov podľa hodnotenia"
 
-#: static/js/impala/stats/csv_keys.js:85 static/js/impala/stats/csv_keys.js:86 static/js/zamboni/stats-all.js:15461 static/js/zamboni/stats-all.js:15462 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "Zoznam doplnkov podľa dátumu vytvorenia"
 
-#: static/js/impala/stats/csv_keys.js:87 static/js/impala/stats/csv_keys.js:88 static/js/zamboni/stats-all.js:15463 static/js/zamboni/stats-all.js:15464 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "Zoznam doplnkov podľa názvu"
 
-#: static/js/impala/stats/csv_keys.js:89 static/js/impala/stats/csv_keys.js:90 static/js/zamboni/stats-all.js:15465 static/js/zamboni/stats-all.js:15466 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "Zoznam doplnkov podľa popularity"
 
-#: static/js/impala/stats/csv_keys.js:91 static/js/impala/stats/csv_keys.js:92 static/js/zamboni/stats-all.js:15467 static/js/zamboni/stats-all.js:15468 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "Zoznam doplnkov podľa dátumu aktualizácie"
 
-#: static/js/impala/stats/csv_keys.js:93 static/js/impala/stats/csv_keys.js:94 static/js/zamboni/stats-all.js:15469 static/js/zamboni/stats-all.js:15470 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Zoznam doplnkov podľa žiadanosti"
 
-#: static/js/impala/stats/csv_keys.js:98 static/js/zamboni/stats-all.js:15474 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
 msgstr "Celkovo prispelo"
 
-#: static/js/impala/stats/csv_keys.js:99 static/js/zamboni/stats-all.js:15475 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:106
 msgid "Average Contribution"
 msgstr "Priemerný príspevok"
 
-#: static/js/impala/stats/csv_keys.js:108 static/js/zamboni/stats-all.js:15484 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:115
 msgid "Usage"
 msgstr "Používanie"
 
-#: static/js/impala/stats/csv_keys.js:111 static/js/zamboni/stats-all.js:15487 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js:112 static/js/zamboni/stats-all.js:15488 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:119
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15489 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:120
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15490 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:121
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15491 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:122
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js:116 static/js/zamboni/stats-all.js:15492 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:123
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js:117 static/js/zamboni/stats-all.js:15493 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15498 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:129
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Prevzatia a denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15500 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Prevzatia a denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:128 static/js/zamboni/stats-all.js:15504 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:135
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Inštalácie a denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:130 static/js/zamboni/stats-all.js:15506 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:137
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Inštalácie a denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:134 static/js/zamboni/stats-all.js:15510 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:141
 msgid "Downloads, last {0} days"
 msgstr "Prevzatia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:136 static/js/zamboni/stats-all.js:15512 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
 msgstr "Prevzatí od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:140 static/js/zamboni/stats-all.js:15516 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:147
 msgid "Daily Users, last {0} days"
 msgstr "Denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:142 static/js/zamboni/stats-all.js:15518 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:149
 msgid "Daily Users from {0} to {1}"
 msgstr "Denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:146 static/js/zamboni/stats-all.js:15522 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:153
 msgid "Applications, last {0} days"
 msgstr "Aplikácie, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:148 static/js/zamboni/stats-all.js:15524 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:155
 msgid "Applications from {0} to {1}"
 msgstr "Aplikácie od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:152 static/js/zamboni/stats-all.js:15528 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:159
 msgid "Platforms, last {0} days"
 msgstr "Platformy, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:154 static/js/zamboni/stats-all.js:15530 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:161
 msgid "Platforms from {0} to {1}"
 msgstr "Platformy od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:158 static/js/zamboni/stats-all.js:15534 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:165
 msgid "Languages, last {0} days"
 msgstr "Jazyky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:160 static/js/zamboni/stats-all.js:15536 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:167
 msgid "Languages from {0} to {1}"
 msgstr "Jazyky od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:164 static/js/zamboni/stats-all.js:15540 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:171
 msgid "Add-on Versions, last {0} days"
 msgstr "Verzie doplnkov, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:166 static/js/zamboni/stats-all.js:15542 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:173
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Verzie doplnku od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:170 static/js/zamboni/stats-all.js:15546 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:177
 msgid "Add-on Status, last {0} days"
 msgstr "Stav doplnkov, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:172 static/js/zamboni/stats-all.js:15548 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:179
 msgid "Add-on Status from {0} to {1}"
 msgstr "Stav doplnku od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:176 static/js/zamboni/stats-all.js:15552 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:183
 msgid "Download Sources, last {0} days"
 msgstr "Zdroje prevzatí, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:178 static/js/zamboni/stats-all.js:15554 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:185
 msgid "Download Sources from {0} to {1}"
 msgstr "Zdroje preberania od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:182 static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:189
 msgid "Contributions, last {0} days"
 msgstr "Príspevky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:184 static/js/zamboni/stats-all.js:15560 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:191
 msgid "Contributions from {0} to {1}"
 msgstr "Prispievatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:188 static/js/zamboni/stats-all.js:15564 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:195
 msgid "Site Metrics, last {0} days"
 msgstr "Štatistika webu, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:190 static/js/zamboni/stats-all.js:15566 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:197
 msgid "Site Metrics from {0} to {1}"
 msgstr "Štatistika webu od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:194 static/js/zamboni/stats-all.js:15570 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:201
 msgid "Add-ons in Use, last {0} days"
 msgstr "Používané doplnky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:196 static/js/zamboni/stats-all.js:15572 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:203
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Používané doplnky od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:200 static/js/zamboni/stats-all.js:15576 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Prevzaté doplnky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:202 static/js/zamboni/stats-all.js:15578 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:209
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Prevzaté doplnky od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:206 static/js/zamboni/stats-all.js:15582 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:213
 msgid "Add-ons Created, last {0} days"
 msgstr "Vytvorené doplnky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:208 static/js/zamboni/stats-all.js:15584 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:215
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Vytvorené doplnky, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:212 static/js/zamboni/stats-all.js:15588 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:219
 msgid "Add-ons Updated, last {0} days"
 msgstr "Aktualizované doplnky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:214 static/js/zamboni/stats-all.js:15590 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:221
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Aktualizované doplnky, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:218 static/js/zamboni/stats-all.js:15594 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:225
 msgid "Reviews Written, last {0} days"
 msgstr "Napísané recenzie, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:220 static/js/zamboni/stats-all.js:15596 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
 msgstr "Napísané recenzie, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:224 static/js/zamboni/stats-all.js:15600 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:231
 msgid "User Signups, last {0} days"
 msgstr "Prihlásení používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:226 static/js/zamboni/stats-all.js:15602 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:233
 msgid "User Signups from {0} to {1}"
 msgstr "Prihlásení používatelia, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:230 static/js/zamboni/stats-all.js:15606 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:237
 msgid "Collections Created, last {0} days"
 msgstr "Vytvorené kolekcie, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:232 static/js/zamboni/stats-all.js:15608 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:239
 msgid "Collections Created from {0} to {1}"
 msgstr "Vytvorené kolekcie, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:236 static/js/zamboni/stats-all.js:15612 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:243
 msgid "Subscribers, last {0} days"
 msgstr "Odbery, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:238 static/js/zamboni/stats-all.js:15614 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:245
 msgid "Subscribers from {0} to {1}"
 msgstr "Odbery, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:242 static/js/zamboni/stats-all.js:15618 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:249
 msgid "Ratings, last {0} days"
 msgstr "Hodnotenia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:244 static/js/zamboni/stats-all.js:15620 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:251
 msgid "Ratings from {0} to {1}"
 msgstr "Hodnotenia, od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:248 static/js/zamboni/stats-all.js:15624 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:255
 msgid "Sales, last {0} days"
 msgstr "Predaje, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:250 static/js/zamboni/stats-all.js:15626 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:257
 msgid "Sales from {0} to {1}"
 msgstr "Predaje od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:254 static/js/zamboni/stats-all.js:15630 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:261
 msgid "Installs, last {0} days"
 msgstr "Inštalácie, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:256 static/js/zamboni/stats-all.js:15632 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:263
 msgid "Installs from {0} to {1}"
 msgstr "Inštalácie, od {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:262 static/js/zamboni/stats-all.js:15638 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> za posledných {1} dní"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:264 static/js/impala/stats/csv_keys.js:270 static/js/zamboni/stats-all.js:15640 static/js/zamboni/stats-all.js:15646 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> od {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:268 static/js/zamboni/stats-all.js:15644 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/csv_keys.js:275
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> priemerne za posledných {1} dní"
 
-#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16557 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/overview.js:19
 msgid "No data available."
 msgstr "Údaje sú nedostupné."
 
-#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17297 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/table.js:74
 msgid "Date"
 msgstr "Dátum"
 
-#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16688 static/js/zamboni/stats-min.js:6
+#: static/js/impala/stats/topchart.js:96
 msgid "Other"
 msgstr "Iný"
 
-#: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2306 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1275 static/js/zamboni/editors-all.js:15600 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
-#: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:51
+#: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnok a odoslať e-mailovú správu autorom."
 msgstr[1] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnky a odoslať e-mailovú správu autorom."
 msgstr[2] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnkov a odoslať e-mailovú správu autorom."
 
-#: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:54
+#: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Odoslať e-mail autorovi {2} doplnku, u ktorého zlyhala kontrola."
 msgstr[1] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
 msgstr[2] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
 
-#: static/js/zamboni/devhub-all.js:550 static/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors and {0} message."
-msgid_plural "Your add-on passed validation with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#: static/js/zamboni/apps.js:54
+msgid "App installation not allowed."
+msgstr "Inštalácia aplikácie nie je povolená."
 
-#: static/js/zamboni/devhub-all.js:555 static/js/zamboni/devhub-min.js:1
-msgid "Your add-on passed validation with no errors or warnings."
+#: static/js/zamboni/apps.js:57
+msgid "App manifest is malformed."
+msgstr "Manifest aplikácie je poškodený."
+
+#: static/js/zamboni/apps.js:60
+msgid "App host could not be reached."
+msgstr "Nebolo možné sa pripojiť k umiestneniu aplikácie."
+
+#: static/js/zamboni/apps.js:63
+msgid "App manifest is unparsable."
+msgstr "Manifest aplikácie je nespracovateľný."
+
+#: static/js/zamboni/apps.js:66
+msgid "App manifest is invalid."
+msgstr "Manifest aplikácie je nevalidný."
+
+#: static/js/zamboni/apps.js:69
+msgid "Install failed. Please try again later."
+msgstr "Inštalácia zlyhala. Skúste to, prosím, neskôr."
+
+#: static/js/zamboni/apps.js:80
+msgid "App installation failed."
+msgstr "Inštalácia aplikácie zlyhala."
+
+#: static/js/zamboni/apps.js:81
+msgid "This system does not support installing apps."
+msgstr "Systém nepodporuje inštaláciu aplikácií."
+
+#. L10n: {0} is an app name like Firefox.
+#: static/js/zamboni/buttons.js:82
+msgid "Accept and Install"
+msgstr "Prijať a nainštalovať"
+
+#: static/js/zamboni/buttons.js:82
+msgid "Add to {0}"
+msgstr "Pridať do programu {0}"
+
+#: static/js/zamboni/buttons.js:87
+msgid "Download Now"
+msgstr "Prevziať teraz"
+
+#: static/js/zamboni/buttons.js:128
+msgid "Add-on has not been updated to support default-to-compatible."
+msgstr "Doplnok nebol aktualizovaný tak, aby bol v predvolenom nastavení kompatibilný."
+
+#: static/js/zamboni/buttons.js:133
+msgid "You need to be using Firefox 10.0 or higher."
+msgstr "Musíte používať Firefox 10.0 alebo novší."
+
+#: static/js/zamboni/buttons.js:145
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla označila túto verziu ako nekompatibilnú s vašou verziou Firefoxu."
+
+#. L10n: {0} is an platform like Windows or Linux.
+#: static/js/zamboni/buttons.js:227
+msgid "Install for {0} anyway"
+msgstr "Napriek tomu nainštalovať pre {0}"
+
+#: static/js/zamboni/buttons.js:227
+msgid "Download for {0} anyway"
+msgstr "Napriek tomu prevziať pre {0}"
+
+#: static/js/zamboni/buttons.js:284
+msgid "Not available for your platform"
+msgstr "Nie je dostupné pre vašu platformu."
+
+#. L10n: {0} is an app name, {1} is the app version.
+#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+msgid "Not available for {0} {1}"
+msgstr "Nie je dostupné pre {0} {1}"
+
+#: static/js/zamboni/buttons.js:358
+msgid "Works with {app} {min} - {max}"
+msgstr "Funguje s {app} {min} - {max}"
+
+#: static/js/zamboni/buttons.js:360
+msgid "View other versions"
+msgstr "Zobraziť ďalšie verzie"
+
+#: static/js/zamboni/buttons.js:411
+msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/devhub-all.js:585 static/js/zamboni/devhub-min.js:1
-msgid "If your add-on is intended for a limited audience, you should choose Preliminary Review instead of Full Review."
-msgstr ""
+#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
 
-#: static/js/zamboni/devhub-all.js:1169 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:111
+#: static/js/zamboni/collections.js:193
+msgid "clear recently viewed"
+msgstr "vymazať naposledy zobrazené"
+
+#: static/js/zamboni/collections.js:365
+msgid "Adding to Favorites&hellip;"
+msgstr "Pridať medzi obľúbené&hellip;"
+
+#: static/js/zamboni/collections.js:368
+msgid "Removing Favorite&hellip;"
+msgstr "Odstraňuje sa zo zoznamu obľúbených&hellip;"
+
+#: static/js/zamboni/collections.js:371
+msgid "Add to Favorites"
+msgstr "Pridať medzi obľúbené"
+
+#: static/js/zamboni/collections.js:374
+msgid "Remove from Favorites"
+msgstr "Odstrániť z obľúbených"
+
+#: static/js/zamboni/collections.js:437
+msgid "Pending"
+msgstr "Čakajúci"
+
+#: static/js/zamboni/collections.js:438
+msgid "Add a comment"
+msgstr "Pridať komentár"
+
+#: static/js/zamboni/collections.js:438
+msgid "Comment"
+msgstr "Komentár"
+
+#: static/js/zamboni/collections.js:439
+msgid "Remove this add-on from the collection"
+msgstr "Odstrániť tento doplnok z kolekcie"
+
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: static/js/zamboni/collections.js:468
+msgid "Remove this user as a contributor"
+msgstr "Odstrániť tohto používateľa ako prispievateľa"
+
+#: static/js/zamboni/collections.js:480
+msgid "An email address is required."
+msgstr "E-mailová adresa je požadovaná."
+
+#: static/js/zamboni/collections.js:498
+msgid "You cannot add yourself as a contributor."
+msgstr "Nemôžete ako prispievateľa pridať samých seba."
+
+#: static/js/zamboni/collections.js:500
+msgid "You have already added that user."
+msgstr "Tohto používateľa ste už pridali."
+
+#: static/js/zamboni/collections.js:707
+msgid "Add to favorites"
+msgstr "Pridať medzi obľúbené"
+
+#: static/js/zamboni/collections.js:711
+msgid "Remove from favorites"
+msgstr "Odstrániť z obľúbených"
+
+#: static/js/zamboni/collections.js:738
+msgid "Stop following"
+msgstr "Zastaviť odber"
+
+#: static/js/zamboni/devhub.js:111
 msgid "Your browser does not support the video tag"
 msgstr "Váš prehliadač nepodporuje HTML značku video"
 
-#: static/js/zamboni/devhub-all.js:1424 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:391
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: static/js/zamboni/devhub-all.js:1440 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:407
 msgid "Enter a new author's email address"
 msgstr "Zadajte e-mailovú adresu nového autora"
 
-#: static/js/zamboni/devhub-all.js:1587 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: static/js/zamboni/devhub-all.js:1732 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} súbor"
 msgstr[1] "{files} súbory"
 msgstr[2] "{files} súborov"
 
-#: static/js/zamboni/devhub-all.js:1735 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recenzia používateľa"
 msgstr[1] "{reviews} recenzie používateľa"
 msgstr[2] "{reviews} recenzií používateľa"
 
-#: static/js/zamboni/devhub-all.js:1847 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "Ďalšie informácie"
 
-#: static/js/zamboni/devhub-all.js:1851 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "Príklad"
 
-#: static/js/zamboni/devhub-all.js:2207 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1176
+#: static/js/zamboni/devhub.js:1151
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
-#: static/js/zamboni/devhub-all.js:2334 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1303
+#: static/js/zamboni/devhub.js:1278
 msgid "Starting tests..."
 msgstr "Spúšťajú sa testy..."
 
-#: static/js/zamboni/devhub-all.js:2341 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1310
+#: static/js/zamboni/devhub.js:1285
 msgid "Waiting for test results..."
 msgstr "Čaká sa na výsledky testov..."
 
-#: static/js/zamboni/devhub-all.js:2343 static/js/zamboni/devhub-all.js:2348 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1312 static/js/zamboni/devhub.js:1317
+#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
 msgid "Internal Server Error"
 msgstr "Vnútorná chyba servera"
 
-#: static/js/zamboni/devhub-all.js:2383 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1352
+#: static/js/zamboni/devhub.js:1327
 msgid "Must be a valid e-mail address."
 msgstr "Musí to byť platná e-mailová adresa."
 
-#: static/js/zamboni/devhub-all.js:2528 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:80
+#: static/js/zamboni/devhub_search.js:8
+msgid "No results found."
+msgstr "Neboli nájdené žiadne výsledky."
+
+#: static/js/zamboni/discovery_pane.js:217
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Ospravedlňujeme sa, nebolo pre vás možné nájsť žiadne odporúčania.<br>Navštívte <a href=\"{0}\">stránku s doplnkami</a> a vyhľadajte si ten pre vás najvhodnejší doplnok."
+
+#: static/js/zamboni/discovery_pane.js:247
+msgid "Finding recommendations&hellip;"
+msgstr "Vyhľadávajú sa odporúčania&hellip;"
+
+#: static/js/zamboni/discovery_pane.js:249
+msgid "Updating recommendations&hellip;"
+msgstr "Aktualizujú sa odporúčania&hellip;"
+
+#: static/js/zamboni/editors.js:121
+msgid "{name} was viewing this page first."
+msgstr "{name} zobrazil túto stránku skôr."
+
+#: static/js/zamboni/editors.js:171
+msgid "Receipt checked by app."
+msgstr "Potvrdenie bolo aplikáciou skontrolované."
+
+#: static/js/zamboni/editors.js:173
+msgid "Receipt was not checked by app."
+msgstr "Potvrdenie nebolo aplikáciou skontrolované."
+
+#: static/js/zamboni/editors.js:244
+msgid "{name} was viewing this add-on first."
+msgstr "{name} skontroloval tento doplnok."
+
+#: static/js/zamboni/editors.js:255
+msgid "Loading&hellip;"
+msgstr "Načítava sa&hellip;"
+
+#: static/js/zamboni/editors.js:260
+msgid "Version Notes"
+msgstr "Poznámky k verzii"
+
+#: static/js/zamboni/editors.js:265
+msgid "Notes for Reviewers"
+msgstr "Poznámky ku kontrole"
+
+#: static/js/zamboni/editors.js:270
+msgid "No version notes found"
+msgstr "Neboli nájdené poznámky k verzii"
+
+#: static/js/zamboni/editors.js:330
+msgid "Average Reviews"
+msgstr "Priemerne recenzií"
+
+#: static/js/zamboni/editors.js:386
+msgid "Number of Reviews"
+msgstr "Počet recenzií"
+
+#: static/js/zamboni/editors.js:445
+msgid "Error loading translation"
+msgstr "Chyba pri načítaní prekladu"
+
+#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+msgid "Ignore this message in future updates"
+msgstr ""
+
+#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+msgid "Severity for automated signing:"
+msgstr ""
+
+#: static/js/zamboni/global.js:416
+msgid "Loading..."
+msgstr "Načítava sa..."
+
+#. L10n: {0} is the number of characters left.
+#: static/js/zamboni/global.js:489
+msgid "<b>{0}</b> character left."
+msgid_plural "<b>{0}</b> characters left."
+msgstr[0] "Zostáva <b>{0}</b> znak."
+msgstr[1] "Zostávajú <b>{0}</b> znaky."
+msgstr[2] "Zostáva <b>{0}</b> znakov."
+
+#: static/js/zamboni/init.js:28
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "Odstrániť túto lokalizáciu"
+
+#: static/js/zamboni/password-strength.js:20
+msgid "Password strength:"
+msgstr "Sila hesla:"
+
+#: static/js/zamboni/password-strength.js:26
+msgid "At least {0} character left."
+msgid_plural "At least {0} characters left."
+msgstr[0] "Zostáva najmenej {0} znak."
+msgstr[1] "Zostávajú najmenej {0} znaky."
+msgstr[2] "Zostáva najmenej {0} znakov."
+
+#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
+msgid "All"
+msgstr "Všetky"
+
+#: static/js/zamboni/themes_review.js:176
+msgid "Requested Info"
+msgstr "Požadované informácie"
+
+#: static/js/zamboni/themes_review.js:177
+msgid "Flagged"
+msgstr "Označené"
+
+#: static/js/zamboni/themes_review.js:178
+msgid "Duplicate"
+msgstr "Duplicitné"
+
+#: static/js/zamboni/themes_review.js:179
+msgid "Rejected"
+msgstr "Zamietnuté"
+
+#: static/js/zamboni/themes_review.js:180
+msgid "Approved"
+msgstr "Schválené"
+
+#: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
 msgstr "Všetky testy ukončené úspešne."
 
-#: static/js/zamboni/devhub-all.js:2531 static/js/zamboni/devhub-all.js:2824 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:470
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
 msgid "These tests were not run."
 msgstr "Tieto testy neboli spustené."
 
-#: static/js/zamboni/devhub-all.js:2577 static/js/zamboni/devhub-all.js:2590 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
+#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
 msgstr "Testy"
 
-#: static/js/zamboni/devhub-all.js:2651 static/js/zamboni/devhub-all.js:2906 static/js/zamboni/devhub-all.js:2925 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:246
-#: static/js/zamboni/validator.js:567 static/js/zamboni/validator.js:586
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Chyba"
 
-#: static/js/zamboni/devhub-all.js:2652 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:247
+#: static/js/zamboni/validator.js:247
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: static/js/zamboni/devhub-all.js:2739 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:387
+#: static/js/zamboni/validator.js:299
+msgid "Suggestions for passing automated signing:"
+msgstr ""
+
+#: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
 msgstr "Testy kompatibility"
 
-#: static/js/zamboni/devhub-all.js:2788 static/js/zamboni/devhub-min.js:2
-msgid "App failed validation."
-msgstr ""
-
-#: static/js/zamboni/devhub-all.js:2790 static/js/zamboni/devhub-min.js:2
-msgid "App passed validation."
-msgstr ""
-
-#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:458
+#: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
 msgstr "Doplnok neprešiel overením."
 
-#: static/js/zamboni/devhub-all.js:2796 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:460
+#: static/js/zamboni/validator.js:468
 msgid "Add-on passed validation."
 msgstr "Doplnok prešiel overením."
 
-#: static/js/zamboni/devhub-all.js:2827 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:473
+#: static/js/zamboni/validator.js:481
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chýb"
 
-#: static/js/zamboni/devhub-all.js:2829 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:475
+#: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: static/js/zamboni/devhub-all.js:2831 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:477
+#: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: static/js/zamboni/devhub-all.js:2908 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:569
+#: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
 msgstr "Úloha overenia nemohla byť dokončená alebo bola ukončená s chybami"
 
-#: static/js/zamboni/devhub-all.js:2926 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:587
+#: static/js/zamboni/validator.js:595
 msgid "Internal server error"
 msgstr "Vnútorná chyba servera"
 
-#. L10n: {0} is a filename, such as `addon.zip`.
-#: static/js/zamboni/devhub-all.js:2972 static/js/zamboni/devhub-min.js:2
-msgid "Download {0}"
-msgstr ""
-
-#: static/js/zamboni/devhub_search.js:8
-msgid "No results found."
-msgstr "Neboli nájdené žiadne výsledky."
-
-#: static/js/zamboni/discovery-all.js:12754 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Ospravedlňujeme sa, nebolo pre vás možné nájsť žiadne odporúčania.<br>Navštívte <a href=\"{0}\">stránku s doplnkami</a> a vyhľadajte si ten pre vás najvhodnejší doplnok."
-
-#: static/js/zamboni/discovery-all.js:12784 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Vyhľadávajú sa odporúčania&hellip;"
-
-#: static/js/zamboni/discovery-all.js:12786 static/js/zamboni/discovery-min.js:5 static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Aktualizujú sa odporúčania&hellip;"
-
-#: static/js/zamboni/editors-all.js:15426 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:121
-msgid "{name} was viewing this page first."
-msgstr "{name} zobrazil túto stránku skôr."
-
-#: static/js/zamboni/editors-all.js:15476 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:171
-msgid "Receipt checked by app."
-msgstr "Potvrdenie bolo aplikáciou skontrolované."
-
-#: static/js/zamboni/editors-all.js:15478 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:173
-msgid "Receipt was not checked by app."
-msgstr "Potvrdenie nebolo aplikáciou skontrolované."
-
-#: static/js/zamboni/editors-all.js:15549 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:244
-msgid "{name} was viewing this add-on first."
-msgstr "{name} skontroloval tento doplnok."
-
-#: static/js/zamboni/editors-all.js:15560 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255
-msgid "Loading&hellip;"
-msgstr "Načítava sa&hellip;"
-
-#: static/js/zamboni/editors-all.js:15565 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:260
-msgid "Version Notes"
-msgstr "Poznámky k verzii"
-
-#: static/js/zamboni/editors-all.js:15570 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:265
-msgid "Notes for Reviewers"
-msgstr "Poznámky ku kontrole"
-
-#: static/js/zamboni/editors-all.js:15575 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:270
-msgid "No version notes found"
-msgstr "Neboli nájdené poznámky k verzii"
-
-#: static/js/zamboni/editors-all.js:15635 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Priemerne recenzií"
-
-#: static/js/zamboni/editors-all.js:15691 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Počet recenzií"
-
-#: static/js/zamboni/editors-all.js:15750 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:445
-msgid "Error loading translation"
-msgstr "Chyba pri načítaní prekladu"
-
-#: static/js/zamboni/editors-all.js:16144 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:176
-msgid "Requested Info"
-msgstr "Požadované informácie"
-
-#: static/js/zamboni/editors-all.js:16145 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:177
-msgid "Flagged"
-msgstr "Označené"
-
-#: static/js/zamboni/editors-all.js:16146 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:178
-msgid "Duplicate"
-msgstr "Duplicitné"
-
-#: static/js/zamboni/editors-all.js:16147 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:179
-msgid "Rejected"
-msgstr "Zamietnuté"
-
-#: static/js/zamboni/editors-all.js:16148 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:180
-msgid "Approved"
-msgstr "Schválené"
-
-#: static/js/zamboni/files.js:394 static/js/zamboni/validator.js:261
-msgid "Ignore this message in future updates"
-msgstr ""
-
-#: static/js/zamboni/files.js:400 static/js/zamboni/validator.js:284
-msgid "Severity for automated signing:"
-msgstr ""
-
-#: static/js/zamboni/mobile-all.js:11252 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:77
 msgid "Not Updated for {0} {1}"
 msgstr "Neaktualizované pre {0} {1}"
 
-#: static/js/zamboni/mobile-all.js:11253 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:78
 msgid "Requires Newer Version of {0}"
 msgstr "Vyžaduje novšiu verziu {0}u"
 
-#: static/js/zamboni/mobile-all.js:11254 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:79
 msgid "Unreviewed"
 msgstr "Neskontrolované"
 
-#: static/js/zamboni/mobile-all.js:11255 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:80
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimentálne <span>(Ďalšie informácie)</span>"
 
-#: static/js/zamboni/mobile-all.js:11256 static/js/zamboni/mobile-all.js:11257 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "Nie je dostupné pre {0}"
 
-#: static/js/zamboni/mobile-all.js:11258 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:83
 msgid "Experimental"
 msgstr "Experimentálne"
 
-#: static/js/zamboni/mobile-all.js:11259 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:84
 msgid "Themes Require Newer Version of {0}"
 msgstr "Témy požadujú novšiu verziu {0}"
 
-#: static/js/zamboni/mobile-all.js:11260 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:85
 msgid "Themes Require {0}"
 msgstr "Témy požadujú {0}"
 
-#: static/js/zamboni/mobile-all.js:11305 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:130
 msgid "Installing..."
 msgstr "Inštaluje sa..."
 
-#: static/js/zamboni/mobile-all.js:11325 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:150
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Tento doplnok bol predbežne skontrolovaný Mozillou."
 
-#: static/js/zamboni/mobile-all.js:11452 static/js/zamboni/mobile-min.js:4 static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:277
 msgid "Keep it"
 msgstr "Ponechať"
 
-#: static/js/zamboni/mobile-all.js:12127 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:344
+#: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "Skúšate ho"
 
-#: static/js/zamboni/mobile-all.js:12139 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/general.js:356
+#: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Pridané do Firefoxu"
-
-#: static/js/zamboni/validator.js:299
-msgid "Suggestions for passing automated signing:"
-msgstr ""

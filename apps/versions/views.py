@@ -93,9 +93,15 @@ def download_file(request, file_id, type=None):
                 acl.check_addons_reviewer(request)):
             return HttpResponseSendFile(request, file.guarded_file_path,
                                         content_type='application/x-xpinstall')
+        log.info(u'download file {file_id}: addon/file disabled or user '
+                 u'{user_id} is not an owner'.format(file_id=file_id,
+                                                     user_id=request.user.pk))
         raise http.Http404()
 
     if not (addon.is_listed or owner_or_unlisted_reviewer(request, addon)):
+        log.info(u'download file {file_id}: addon is unlisted but user '
+                 u'{user_id} is not an owner'.format(file_id=file_id,
+                                                     user_id=request.user.pk))
         raise http.Http404  # Not listed, not owner or admin.
 
     attachment = (type == 'attachment' or not request.APP.browser)

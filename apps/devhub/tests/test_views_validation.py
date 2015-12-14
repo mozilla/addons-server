@@ -319,7 +319,6 @@ class TestValidateAddon(amo.tests.TestCase):
         eq_(r.status_code, 302)
 
     def test_context(self):
-        self.create_flag('unlisted-addons')
         r = self.client.get(reverse('devhub.validate_addon'))
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -452,7 +451,7 @@ class TestUploadURLs(amo.tests.TestCase):
         self.expect_validation(listed=False, automated_signing=True)
 
         self.upload_addon(listed=False, status=amo.STATUS_PUBLIC)
-        self.expect_validation(listed=False, automated_signing=False)
+        self.expect_validation(listed=False, automated_signing=True)
 
 
 class TestValidateFile(BaseUploadTest):

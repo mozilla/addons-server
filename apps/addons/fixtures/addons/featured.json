@@ -193,44 +193,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "addons.feature",
-        "fields": {
-            "application": 1,
-            "end": "2037-12-01 00:00:00",
-            "created": "2007-10-10 15:34:20",
-            "locale": null,
-            "modified": "2009-12-08 11:00:58",
-            "start": "2007-10-10 15:34:20",
-            "addon": 1003
-        }
-    },
-    {
-        "pk": 2,
-        "model": "addons.feature",
-        "fields": {
-            "application": 1,
-            "end": "2037-12-02 00:00:00",
-            "created": "2007-10-09 15:34:20",
-            "locale": null,
-            "modified": "2009-12-07 11:00:58",
-            "start": "2007-10-09 15:34:20",
-            "addon": 1001
-        }
-    },
-    {
-        "pk": 1001,
-        "model": "versions.version",
-        "fields": {
-            "license": null,
-            "created": "2006-10-23 12:57:41",
-            "approvalnotes": "",
-            "modified": "2006-10-23 19:22:18",
-            "version": "1.0.42",
-            "addon": 1001
-        }
-    },
-    {
         "pk": 1003,
         "model": "versions.version",
         "fields": {
@@ -255,6 +217,18 @@
             "version": 1001,
             "datestatuschanged": "2007-04-04 12:30:11",
             "size": 173056
+        }
+    },
+    {
+        "pk": 1001,
+        "model": "versions.version",
+        "fields": {
+            "license": null,
+            "created": "2006-10-23 12:57:41",
+            "approvalnotes": "",
+            "modified": "2006-10-23 19:22:18",
+            "version": "1.0.42",
+            "addon": 1001
         }
     },
     {

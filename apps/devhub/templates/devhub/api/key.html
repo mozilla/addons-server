@@ -1,0 +1,70 @@
+{% extends "devhub/base_impala.html" %}
+
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{% block content %}
+<header>
+  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
+  <h1>{{ title }}</h1>
+</header>
+
+<section class="primary full">
+  <div class="island prettyform row">
+    <form method="post" class="item">
+      {{ csrf() }}
+      <fieldset>
+        <legend>
+          {{ _('API Credentials') }}
+        </legend>
+        <p class="island">
+        {% trans
+            docs_url='https://olympia.readthedocs.org/en/latest/topics/api/index.html' %}
+          For detailed instructions, consult the <a href="{{ docs_url }}">API documentation</a>.
+        {% endtrans %}
+        </p>
+        {% if credentials %}
+          <ul class="api-credentials">
+            <li class="row api-input key-input">
+              <label for="jwtkey" class="row">{{ _('JWT issuer') }}</label>
+              <input type="text" name="jwtkey" value="{{ credentials.key }}" readonly/>
+            </li>
+            <li class="row api-input">
+              <label for="jwtsecret" class="row">{{ _('JWT secret') }}</label>
+              <input type="text" name="jwtsecret" value="{{ credentials.secret }}" readonly/>
+            </li>
+          </ul>
+          <p>
+          {% trans
+              docs_url='https://olympia.readthedocs.org/en/latest/topics/api/auth.html',
+              jwt_url='https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html' %}
+            To make API requests, send a <a href="{{ jwt_url }}">JSON Web Token (JWT)</a> as the authorization header.
+            You'll need to generate a JWT for every request as explained in the
+            <a href="{{ docs_url }}">API documentation</a>.
+          {% endtrans %}
+          </p>
+        {% else %}
+          <p>
+          {% trans %}
+            You don't have any API credentials yet.
+          {% endtrans %}
+          </p>
+        {% endif %}
+        <p>
+          {% trans bug_link='https://github.com/mozilla/olympia/issues' %}
+            This feature is under active development. If you find a problem please <a target="_blank" href="{{ bug_link }}">report a bug</a>.
+          {% endtrans %}
+        </p>
+      </fieldset>
+      <div class="listing-footer">
+        <button id="generate-key" class="button prominent" type="submit">
+          {% if credentials %}
+            {{ _('Revoke and regenerate credentials') }}
+          {% else %}
+            {{ _('Generate new credentials') }}
+          {% endif %}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock content %}

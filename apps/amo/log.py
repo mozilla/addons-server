@@ -607,6 +607,36 @@ class DELETE_ADDON(_LOG):
     keep = True
 
 
+class EXPERIMENT_SIGNED(_LOG):
+    id = 134
+    format = _(u'{file} was signed.')
+    keep = True
+
+
+class UNLISTED_SIGNED_VALIDATION_PASSED(_LOG):
+    id = 135
+    format = _(u'{file} was signed.')
+    keep = True
+
+
+class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
+    id = 136
+    format = _(u'{file} was signed.')
+    keep = True
+
+
+class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
+    id = 137
+    format = _(u'{file} was signed.')
+    keep = True
+
+
+class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
+    id = 138
+    format = _(u'{file} was signed.')
+    keep = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

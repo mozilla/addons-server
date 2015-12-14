@@ -124,7 +124,6 @@
             "bio": null,
             "failed_login_attempts": 0,
             "deleted": false,
-            "emailhidden": true,
             "last_login_attempt_ip": "",
             "last_login_attempt": null,
             "password": "sha512$308d46cdaf22e72f733811461a8ec6f99b6f5ff61f000096f4183009923fecd8$0b7d13e659492aca20eaada963bd2f77152ab83da9bbee750dee1f5b8789059e97a0db57e7ec13840e275932614fad8f805e76cc8411d6c847bcdb6a9e142fb8",

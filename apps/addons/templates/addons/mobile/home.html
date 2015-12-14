@@ -6,7 +6,11 @@
   <header id="home-header">
     {% include "mobile/header.html" %}
     <div class="get-fx-message">
+    {% if ios_user %}
+      {{ _('Add-ons are not currently available on Firefox for iOS.') }}
+    {% else %}
       {{ _('You need Firefox to install add-ons. <a href="http://mozilla.com/mobile">Learn More&nbsp;&raquo;</a>') }}
+    {% endif %}
     </div>
     <hgroup>
       <h1 class="site-title">

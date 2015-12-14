@@ -24,6 +24,7 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
+from constants.base import FIREFOX_IOS_USER_AGENTS
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from users.helpers import users_list
@@ -457,7 +458,7 @@ class TestLicensePage(amo.tests.TestCase):
     def test_legacy_redirect(self):
         r = self.client.get('/versions/license/%s' % self.version.id,
                             follow=True)
-        self.assertRedirects(r, self.version.license_url(), 301)
+        self.assert3xx(r, self.version.license_url(), 301)
 
     def test_explicit_version(self):
         url = reverse('addons.license', args=['a3615', self.version.version])
@@ -831,6 +832,14 @@ class TestDetailPage(amo.tests.TestCase):
         """Unlisted addons are not listed and return 404."""
         self.addon.update(is_listed=False)
         assert self.client.get(self.url).status_code == 404
+
+    def test_fx_ios_addons_message(self):
+        c = Client(HTTP_USER_AGENT=FIREFOX_IOS_USER_AGENTS[0])
+        r = c.get(self.url)
+        addons_banner = pq(r.content)('.get-fx-message')
+        banner_message = ('Add-ons are not currently available on Firefox for '
+                          'iOS.')
+        assert addons_banner.text() == banner_message
 
 
 class TestImpalaDetailPage(amo.tests.TestCase):
@@ -1268,7 +1277,7 @@ class TestEula(amo.tests.TestCase):
     def test_redirect_no_eula(self):
         self.addon.update(eula=None)
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_url_path())
+        self.assert3xx(r, self.addon.get_url_path())
 
     def test_cat_sidebar(self):
         check_cat_sidebar(self.url, self.addon)
@@ -1313,7 +1322,7 @@ class TestPrivacyPolicy(amo.tests.TestCase):
     def test_redirect_no_eula(self):
         eq_(self.addon.privacy_policy, None)
         r = self.client.get(self.url, follow=True)
-        self.assertRedirects(r, self.addon.get_url_path())
+        self.assert3xx(r, self.addon.get_url_path())
 
     def test_cat_sidebar(self):
         self.addon.privacy_policy = 'shizzle'
@@ -1385,7 +1394,7 @@ class TestReportAbuse(amo.tests.TestCase):
         self.client.login(username='regular@mozilla.com', password='password')
         r = self.client.post(reverse('addons.abuse', args=['a15663']),
                              {'text': 'spammy'})
-        self.assertRedirects(r, shared_url)
+        self.assert3xx(r, shared_url)
         eq_(len(mail.outbox), 1)
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=15663)

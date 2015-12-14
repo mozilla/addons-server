@@ -221,7 +221,7 @@ class TestEditAuthor(TestOwnership):
 
         orig = ActivityLog.objects.all().count()
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
@@ -234,7 +234,7 @@ class TestEditAuthor(TestOwnership):
                  role=amo.AUTHOR_ROLE_DEV, position=0)
         data = self.formset(f.initial, u, initial_count=1)
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         eq_(list(q.all()), [55021, 999])
 
         # An email has been sent to the authors to warn them.
@@ -261,7 +261,7 @@ class TestEditAuthor(TestOwnership):
         empty = dict(user='', listed=True, role=5, position=0)
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
         eq_(AddonUser.objects.no_cache().get(addon=3615, user=999).listed,
             False)
 
@@ -281,7 +281,7 @@ class TestEditAuthor(TestOwnership):
         empty = dict(user='', listed=True, role=5, position=0)
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
-        self.assertRedirects(r, self.url, 302)
+        self.assert3xx(r, self.url, 302)
 
         # An email has been sent to the authors to warn them.
         author_edit = mail.outbox[1]  # First mail was for the addition.

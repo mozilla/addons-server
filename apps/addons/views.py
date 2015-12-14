@@ -32,6 +32,7 @@ from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
+from constants.base import FIREFOX_IOS_USER_AGENTS
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -144,7 +145,9 @@ def extension_detail(request, addon):
 
 @mobilized(extension_detail)
 def extension_detail(request, addon):
-    return render(request, 'addons/mobile/details.html', {'addon': addon})
+    ios_user = request.META.get('HTTP_USER_AGENT') in FIREFOX_IOS_USER_AGENTS
+    return render(request, 'addons/mobile/details.html',
+                  {'addon': addon, 'ios_user': ios_user})
 
 
 def _category_personas(qs, limit):
@@ -359,8 +362,11 @@ def home(request):
     featured = [a for a in addons if a.id in featured]
     popular = sorted([a for a in addons if a.id in popular],
                      key=attrgetter('average_daily_users'), reverse=True)
+
+    ios_user = request.META.get('HTTP_USER_AGENT') in FIREFOX_IOS_USER_AGENTS
     return render(request, 'addons/mobile/home.html',
-                  {'featured': featured, 'popular': popular})
+                  {'featured': featured, 'popular': popular,
+                   'ios_user': ios_user})
 
 
 def homepage_promos(request):

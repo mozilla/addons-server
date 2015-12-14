@@ -188,7 +188,6 @@ class TestVersion(amo.tests.TestCase):
 
     @mock.patch('devhub.views.unindex_addons')
     def test_user_can_unlist_addon(self, unindex):
-        self.create_flag('unlisted-addons')
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
         res = self.client.post(self.unlist_url)
@@ -207,7 +206,6 @@ class TestVersion(amo.tests.TestCase):
 
     @mock.patch('devhub.views.unindex_addons')
     def test_user_can_unlist_hidden_addon(self, unindex):
-        self.create_flag('unlisted-addons')
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
                           is_listed=True)
         res = self.client.post(self.unlist_url)
@@ -231,7 +229,7 @@ class TestVersion(amo.tests.TestCase):
     def test_user_can_enable_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         res = self.client.post(self.enable_url)
-        self.assertRedirects(res, self.url, 302)
+        self.assert3xx(res, self.url, 302)
         addon = self.get_addon()
         eq_(addon.disabled_by_user, False)
         eq_(addon.status, amo.STATUS_PUBLIC)
@@ -268,7 +266,6 @@ class TestVersion(amo.tests.TestCase):
 
     def test_non_owner_cant_change_status(self):
         """A non-owner can't use the radio buttons."""
-        self.create_flag('unlisted-addons')
         self.addon.update(disabled_by_user=False)
         addon_user = AddonUser.objects.get(addon=self.addon)
         addon_user.role = amo.AUTHOR_ROLE_VIEWER
@@ -314,7 +311,6 @@ class TestVersion(amo.tests.TestCase):
 
     def test_status_disabled_addon_radio(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
-        self.create_flag('unlisted-addons')
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
@@ -327,7 +323,6 @@ class TestVersion(amo.tests.TestCase):
 
     def test_unlisted_addon_cant_change_status(self):
         """Unlisted addon: can't change its status."""
-        self.create_flag('unlisted-addons')
         self.addon.update(disabled_by_user=False, is_listed=False)
         res = self.client.get(self.url)
         doc = pq(res.content)
@@ -498,7 +493,7 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, self.url)
+        self.assert3xx(r, self.url)
 
     def test_supported_platforms(self):
         res = self.client.get(self.url)

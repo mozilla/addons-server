@@ -19,7 +19,7 @@ import amo.tests
 from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from amo.signals import _connect, _disconnect
-from bandwagon.models import Collection
+from bandwagon.models import Collection, CollectionWatcher
 from reviews.models import Review
 from translations.models import Translation
 from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
@@ -221,6 +221,41 @@ class TestUserProfile(amo.tests.TestCase):
             # Uses the default fallback.
             self.trans_eq(user.bio, 'ma bio', 'fr')
 
+    def test_mobile_addons(self):
+        user = UserProfile.objects.get(id='4043307')
+        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
+        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
+        mobile_collection = user.mobile_collection()
+        mobile_collection.add_addon(addon1)
+        other_collection = Collection.objects.create(name='other')
+        other_collection.add_addon(addon2)
+        assert user.mobile_addons.count() == 1
+        assert user.mobile_addons[0] == addon1.pk
+
+    def test_favorite_addons(self):
+        user = UserProfile.objects.get(id='4043307')
+        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
+        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
+        favorites_collection = user.favorites_collection()
+        favorites_collection.add_addon(addon1)
+        other_collection = Collection.objects.create(name='other')
+        other_collection.add_addon(addon2)
+        assert user.favorite_addons.count() == 1
+        assert user.favorite_addons[0] == addon1.pk
+
+    def test_watching(self):
+        user = UserProfile.objects.get(id='4043307')
+        watched_collection1 = Collection.objects.create(name='watched-1')
+        watched_collection2 = Collection.objects.create(name='watched-2')
+        Collection.objects.create(name='other')
+        CollectionWatcher.objects.create(user=user,
+                                         collection=watched_collection1)
+        CollectionWatcher.objects.create(user=user,
+                                         collection=watched_collection2)
+        assert len(user.watching) == 2
+        assert tuple(user.watching) == (watched_collection1.pk,
+                                        watched_collection2.pk)
+
 
 class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
@@ -320,8 +355,12 @@ class TestPasswords(amo.tests.TestCase):
     def test_empty_password(self):
         profile = UserProfile(password=None)
         assert profile.has_usable_password() is False
+        assert not check_password(None, profile.password)
+        assert not profile.check_password(None)
         profile = UserProfile(password='')
         assert profile.has_usable_password() is False
+        assert not check_password('', profile.password)
+        assert not profile.check_password('')
 
 
 class TestBlacklistedName(amo.tests.TestCase):

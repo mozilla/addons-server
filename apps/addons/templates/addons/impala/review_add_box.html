@@ -1,7 +1,6 @@
 <div id="review-add-box" class="modal">
-{# TODO(jbalogh): make this a global fix: bug 551748 #}
-{% set amo_user = user if user.is_authenticated() else None %}
-{% if addon.can_review(amo_user) %}
+{% set user = user if user.is_authenticated() else None %}
+{% if addon.can_review(user) %}
   <a class="close" href="#">{{ _('close') }}</a>
   <h2>{{ _('What do you think?') }}</h2>
   <div id="review-box" class="c">
@@ -40,7 +39,7 @@
           {% endwith %}
         </p>
       {% endif %}
-      <p><a href="{{ remora_url('/pages/review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
+      <p><a href="{{ url('pages.review_guide') }}" target="_blank">{{ _('Review Guidelines') }}</a></p>
     </div>
 
   </div>{# /#review-box #}

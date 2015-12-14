@@ -41,6 +41,10 @@ var csv_keys = {
     sources: {
         "null"                  : gettext('Unknown'),
         'api'                   : gettext('Add-ons Manager'),
+        'discovery-promo'       : gettext('Add-ons Manager Promo'),
+        'discovery-featured'    : gettext('Add-ons Manager Featured'),
+        'discovery-learnmore'   : gettext('Add-ons Manager Learn More'),
+        'ss'                    : gettext('Search Suggestions'),
         'search'                : gettext('Search Results'),
         'homepagepromo'         : gettext('Homepage Promo'),
         'hp-btn-promo'          : gettext('Homepage Promo'),
@@ -64,6 +68,9 @@ var csv_keys = {
         'dp-dl-dependencies'    : gettext('Dependencies'),
         'dp-hc-upsell'          : gettext('Upsell'),
         'dp-dl-upsell'          : gettext('Upsell'),
+        'developers'            : gettext('Meet the Developer'),
+        'userprofile'           : gettext('User Profile'),
+        'version-history'       : gettext('Version History'),
 
         'sharingapi'            : gettext('Sharing'),
         'category'              : gettext('Category Pages'),

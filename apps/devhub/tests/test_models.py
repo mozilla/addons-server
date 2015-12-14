@@ -31,7 +31,7 @@ class TestActivityLog(amo.tests.TestCase):
         super(TestActivityLog, self).setUp()
         u = UserProfile.objects.create(username='yolo')
         self.request = Mock()
-        self.request.amo_user = self.user = u
+        self.request.user = self.user = u
         amo.set_user(u)
 
     def tearDown(self):
@@ -125,7 +125,7 @@ class TestActivityLog(amo.tests.TestCase):
     def test_user_log(self):
         request = self.request
         amo.log(amo.LOG['CUSTOM_TEXT'], 'hi there')
-        entries = ActivityLog.objects.for_user(request.amo_user)
+        entries = ActivityLog.objects.for_user(request.user)
         eq_(len(entries), 1)
 
     def test_user_log_as_argument(self):
@@ -137,7 +137,7 @@ class TestActivityLog(amo.tests.TestCase):
         u.save()
         amo.log(amo.LOG['ADD_USER_WITH_ROLE'],
                 u, 'developer', Addon.objects.get())
-        entries = ActivityLog.objects.for_user(self.request.amo_user)
+        entries = ActivityLog.objects.for_user(self.request.user)
         eq_(len(entries), 1)
         entries = ActivityLog.objects.for_user(u)
         eq_(len(entries), 1)
@@ -145,7 +145,7 @@ class TestActivityLog(amo.tests.TestCase):
     def test_version_log(self):
         version = Version.objects.all()[0]
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
-                user=self.request.amo_user)
+                user=self.request.user)
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
         assert version.get_url_path() in unicode(entries[0])
@@ -157,7 +157,7 @@ class TestActivityLog(amo.tests.TestCase):
         url_path = version.get_url_path()
         addon.update(is_listed=False)
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
-                user=self.request.amo_user)
+                user=self.request.user)
         entries = ActivityLog.objects.for_version(version)
         assert len(entries) == 1
         assert url_path not in unicode(entries[0])
@@ -166,14 +166,14 @@ class TestActivityLog(amo.tests.TestCase):
         addon = Addon.objects.get()
         version = addon.latest_version
         amo.log(amo.LOG.REJECT_VERSION, addon, version,
-                user=self.request.amo_user)
+                user=self.request.user)
 
         version_two = Version(addon=addon, license=version.license,
                               version='1.2.3')
         version_two.save()
 
         amo.log(amo.LOG.REJECT_VERSION, addon, version_two,
-                user=self.request.amo_user)
+                user=self.request.user)
 
         versions = (Version.objects.filter(addon=addon).order_by('-created')
                                    .transform(Version.transformer_activity))

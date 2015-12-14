@@ -1,4 +1,4 @@
-{% set amo_user = request.amo_user %}
+{% set user = request.user %}
 {% if user.is_authenticated() %}
   {% if tools_links and tools_links|count > 1 %}
     <ul class="tools">
@@ -18,7 +18,7 @@
   {% endif %}
   <ul class="account">
       <li>
-      <a href="#" class="controller" title="{{ amo_user.email }}">
+      <a href="#" class="controller" title="{{ user.email }}">
         {{ _('My Account') }}</a>
         {% if account_links %}
           <ul>
@@ -34,7 +34,7 @@
 <p class="context">
   {% if user.is_authenticated() %}
     <span class="greeting">
-      {{ _('Welcome, {0}')|f(amo_user.welcome_name) }}
+      {{ _('Welcome, {0}')|f(user.welcome_name) }}
     </span>
   {% else %}
     {# TODO(jbalogh): reverse #}

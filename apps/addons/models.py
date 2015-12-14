@@ -14,7 +14,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real as translation
+from django.utils.translation import trans_real
 
 import caching.base as caching
 import commonware.log
@@ -32,8 +32,8 @@ from amo import helpers
 from amo.decorators import use_master, write
 from amo.fields import DecimalCharField
 from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
-                       JSONEncoder, send_mail, slugify, sorted_groupby, timer,
-                       to_language, urlparams)
+                       JSONEncoder, no_translation, send_mail, slugify,
+                       sorted_groupby, timer, to_language, urlparams)
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from reviews.models import Review
@@ -96,20 +96,19 @@ def clean_slug(instance, slug_field='slug'):
     # available.
     clash = qs.filter(**{slug_field: slug})
     if clash.exists():
-        # Leave space for "-" and 99 clashes.
-        slug = slugify(slug)[:max_length - 3]
+        # Leave space for 99 clashes.
+        slug = slugify(slug)[:max_length - 2]
 
         # There is a clash, so find a suffix that will make this slug unique.
-        prefix = '%s-' % slug
-        lookup = {'%s__startswith' % slug_field: prefix}
+        lookup = {'%s__startswith' % slug_field: slug}
         clashes = qs.filter(**lookup)
 
         # Try numbers between 1 and the number of clashes + 1 (+ 1 because we
         # start the range at 1, not 0):
-        # if we have two clashes "foo-1" and "foo-2", we need to try "foo-x"
+        # if we have two clashes "foo1" and "foo2", we need to try "foox"
         # for x between 1 and 3 to be absolutely sure to find an available one.
         for idx in range(1, len(clashes) + 2):
-            new = ('%s%s' % (prefix, idx))[:max_length]
+            new = ('%s%s' % (slug, idx))[:max_length]
             if new not in clashes:
                 slug = new
                 break
@@ -455,8 +454,12 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             to = [settings.FLIGTAR]
             user = amo.get_user()
 
+            # Don't localize email to admins, use 'en-US' always.
+            with no_translation():
+                # The types are lazy translated in apps/constants/base.py.
+                atype = amo.ADDON_TYPE.get(self.type).upper()
             context = {
-                'atype': amo.ADDON_TYPE.get(self.type).upper(),
+                'atype': atype,
                 'authors': [u.email for u in self.authors.all()],
                 'adu': self.average_daily_users,
                 'guid': self.guid,
@@ -511,13 +514,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return True
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
-                    is_listed=True, data=None):
-        from files.utils import parse_addon
-
-        if not data:
-            data = parse_addon(upload)
-
+    def initialize_addon_from_upload(cls, data, is_listed=True):
         fields = cls._meta.get_all_field_names()
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
         addon.status = amo.STATUS_NULL
@@ -528,7 +525,27 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                              settings.HIDDEN_LANGUAGES) and
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
-            addon.default_locale = to_language(translation.get_language())
+            addon.default_locale = to_language(trans_real.get_language())
+
+        return addon
+
+    @classmethod
+    def create_addon_from_upload_data(cls, data, user=None, **kwargs):
+        addon = cls.initialize_addon_from_upload(data, **kwargs)
+        addon.save()
+        AddonUser(addon=addon, user=user).save()
+        return addon
+
+    @classmethod
+    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
+                    is_listed=True, data=None):
+        from files.utils import parse_addon
+
+        if not data:
+            data = parse_addon(upload)
+
+        addon = cls.initialize_addon_from_upload(
+            is_listed=is_listed, data=data)
         if upload.validation_timeout:
             addon.admin_review = True
         addon.save()
@@ -607,12 +624,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     @property
     def automated_signing(self):
-        # We allow automated signing for add-ons which are not listed, and
-        # have not asked for side-loading privileges (full review).
+        # We allow automated signing for add-ons which are not listed.
         # Beta versions are a special case for listed add-ons, and are dealt
         # with on a file-by-file basis.
-        return not (self.is_listed or
-                    self.status in (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC))
+        return not self.is_listed
+
+    @property
+    def is_sideload(self):
+        # An add-on can side-load if it has been fully reviewed.
+        return self.status in (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
@@ -635,7 +655,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return categories[0] if categories else None
 
     def language_ascii(self):
-        lang = translation.to_language(self.default_locale)
+        lang = trans_real.to_language(self.default_locale)
         return settings.LANGUAGES.get(lang)
 
     @property
@@ -1771,7 +1791,7 @@ class Persona(caching.CachingMixin, models.Model):
 
     @amo.cached_property
     def update_url(self):
-        locale = settings.LANGUAGE_URL_MAP.get(translation.get_language())
+        locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
         return settings.NEW_PERSONAS_UPDATE_URL % {
             'locale': locale or settings.LANGUAGE_CODE,
             'id': self.addon.id
@@ -1968,22 +1988,6 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')
 
 
-class Feature(amo.models.ModelBase):
-    addon = models.ForeignKey(Addon)
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    locale = models.CharField(max_length=10, default='', blank=True, null=True)
-    application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
-                                              db_column='application_id')
-
-    class Meta:
-        db_table = 'features'
-
-    def __unicode__(self):
-        app = amo.APP_IDS[self.application.id].pretty
-        return '%s (%s: %s)' % (self.addon.name, app, self.locale)
-
-
 class Preview(amo.models.ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews')
     filetype = models.CharField(max_length=25)
@@ -2158,15 +2162,6 @@ def freezer(sender, instance, **kw):
     # Adjust the hotness of the FrozenAddon.
     if instance.addon_id:
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
-
-
-class AddonUpsell(amo.models.ModelBase):
-    free = models.ForeignKey(Addon, related_name='_upsell_from')
-    premium = models.ForeignKey(Addon, related_name='_upsell_to')
-
-    class Meta:
-        db_table = 'addon_upsell'
-        unique_together = ('free', 'premium')
 
 
 class CompatOverride(amo.models.ModelBase):

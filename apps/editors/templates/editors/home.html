@@ -10,21 +10,21 @@
           <a href="{{ url('editors.queue_nominated') }}">
             {{ ngettext('Full Review ({num})',
                         'Full Reviews ({num})',
-                        queue_counts['nominated'])|f(num=queue_counts['nominated']) }}
+                        queue_counts_total['nominated'])|f(num=queue_counts_total['nominated']) }}
           </a>
         </div>
         <div class="editor-stats-title">
           <a href="{{ url('editors.queue_pending') }}">
             {{ ngettext('Pending Update ({num})',
                         'Pending Updates ({num})',
-                        queue_counts['pending'])|f(num=queue_counts['pending']) }}
+                        queue_counts_total['pending'])|f(num=queue_counts_total['pending']) }}
           </a>
         </div>
         <div class="editor-stats-title">
           <a href="{{ url('editors.queue_prelim') }}">
             {{ ngettext('Preliminary Review ({num})',
                         'Preliminary Reviews ({num})',
-                        queue_counts['prelim'])|f(num=queue_counts['prelim']) }}
+                        queue_counts_total['prelim'])|f(num=queue_counts_total['prelim']) }}
           </a>
         </div>
       </div>
@@ -170,7 +170,7 @@
         {# L10n: num = number of reviews in the queue #}
         {{ ngettext('Moderated Review ({num})',
                     'Moderated Reviews ({num})',
-                    queue_counts['moderated'])|f(num=queue_counts['moderated']) }}</a>
+                    queue_counts_total['moderated'])|f(num=queue_counts_total['moderated']) }}</a>
       </div>
       {% for item in eventlog %}
       <div class="row">

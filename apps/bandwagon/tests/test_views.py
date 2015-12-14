@@ -99,7 +99,7 @@ class TestViews(amo.tests.TestCase):
         if code == 404:
             eq_(response.status_code, 404)
         elif code in (301, 302):
-            self.assertRedirects(response, to, status_code=code)
+            self.assert3xx(response, to, status_code=code)
         else:  # pragma: no cover
             assert code in (301, 302, 404), code
 
@@ -309,7 +309,7 @@ class TestVotes(amo.tests.TestCase):
 
     def test_post_required(self):
         r = self.client.get(self.up, follow=True)
-        self.assertRedirects(r, self.c_url)
+        self.assert3xx(r, self.c_url)
 
     def check(self, upvotes=0, downvotes=0):
         c = Collection.objects.no_cache().get(slug='slug', author=9945)
@@ -344,7 +344,7 @@ class TestVotes(amo.tests.TestCase):
 
     def test_normal_response(self):
         r = self.client.post(self.up, follow=True)
-        self.assertRedirects(r, self.c_url)
+        self.assert3xx(r, self.c_url)
 
     def test_ajax_response(self):
         r = self.client.post_ajax(self.up, follow=True)
@@ -386,6 +386,11 @@ class TestCRUD(amo.tests.TestCase):
         eq_(r.status_code, 200)
         return r
 
+    @patch('bandwagon.views.statsd.incr')
+    def test_create_collection_statsd(self, mock_incr):
+        self.client.post(self.add_url, self.data, follow=True)
+        mock_incr.assert_any_call('collections.created')
+
     def test_restricted(self, **kw):
         g, created = Group.objects.get_or_create(rules='Restricted:UGC')
         self.client.login(username='clouserw@gmail.com',
@@ -399,7 +404,7 @@ class TestCRUD(amo.tests.TestCase):
     def test_no_xss_in_edit_page(self):
         name = '"><script>alert(/XSS/);</script>'
         self.create_collection(name=name)
-        collection = Collection.objects.latest()
+        collection = Collection.objects.get(slug=self.slug)
         eq_(collection.name, name)
         url = reverse('collections.edit', args=['admin', collection.slug, ])
         r = self.client.get(url)
@@ -562,7 +567,7 @@ class TestCRUD(amo.tests.TestCase):
         self.data['description'] = 'abc'
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
-        self.assertRedirects(r, edit_url, 302)
+        self.assert3xx(r, edit_url, 302)
         eq_(unicode(Collection.objects.get(slug=self.slug).description),
             'abc')
 
@@ -574,7 +579,7 @@ class TestCRUD(amo.tests.TestCase):
         self.data['description'] = ''
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
-        self.assertRedirects(r, edit_url, 302)
+        self.assert3xx(r, edit_url, 302)
         eq_(unicode(Collection.objects.get(slug=self.slug).description),
             '')
 
@@ -649,7 +654,7 @@ class TestCRUD(amo.tests.TestCase):
 
     def test_edit_favorites(self):
         r = self.client.get(reverse('collections.list'))
-        fav = r.context['request'].amo_user.favorites_collection()
+        fav = r.context['request'].user.favorites_collection()
         r = self.client.post(fav.edit_url(), {'name': 'xxx', 'listed': True})
         eq_(r.status_code, 302)
 
@@ -677,21 +682,21 @@ class TestCRUD(amo.tests.TestCase):
         eq_(doc('p').text(), 'View your collection to see the changes.')
 
     def test_edit_no_contrib_tab(self):
-        self.create_collection()
-        c = Collection.objects.no_cache().get(slug=self.slug)
-        url = c.edit_url()
+        user = UserProfile.objects.get(email='admin@mozilla.com')
 
-        c.update(type=amo.COLLECTION_FAVORITES)
-        r = self.client.get(url)
-        doc = pq(r.content)
-        eq_(doc('.tab-nav li a[href$=users-edit]').length, 0)
-        eq_(doc('#users-edit').length, 0)
+        favorites_url = user.favorites_collection().edit_url()
+        response = self.client.get(favorites_url)
+        doc = pq(response.content)
+        assert not doc('.tab-nav li a[href$=users-edit]').length
+        assert not doc('#users-edit').length
 
-        c.update(type=amo.COLLECTION_SYNCHRONIZED)
-        r = self.client.get(url)
-        doc = pq(r.content)
-        eq_(doc('.tab-nav li a[href$=users-edit]').length, 0)
-        eq_(doc('#users-edit').length, 0)
+        synchronized = Collection.objects.create(
+            name='synchronized', author=user, type=amo.COLLECTION_SYNCHRONIZED)
+        synchronized_url = synchronized.edit_url()
+        response = self.client.get(synchronized_url)
+        doc = pq(response.content)
+        assert not doc('.tab-nav li a[href$=users-edit]').length
+        assert not doc('#users-edit').length
 
     def test_edit_addons_get(self):
         self.create_collection()
@@ -724,7 +729,7 @@ class TestCRUD(amo.tests.TestCase):
     def test_no_xss_in_delete_confirm_page(self):
         name = '"><script>alert(/XSS/);</script>'
         self.create_collection(name=name)
-        collection = Collection.objects.latest()
+        collection = Collection.objects.get(slug=self.slug)
         eq_(collection.name, name)
         url = reverse('collections.delete', args=['admin', collection.slug, ])
         r = self.client.get(url)
@@ -923,8 +928,8 @@ class TestChangeAddon(amo.tests.TestCase):
     def test_no_ajax_response(self):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
                              follow=True)
-        self.assertRedirects(r, reverse('collections.detail',
-                                        args=['jbalogh', 'mobile']))
+        self.assert3xx(r, reverse('collections.detail',
+                                  args=['jbalogh', 'mobile']))
 
 
 class AjaxTest(amo.tests.TestCase):
@@ -942,7 +947,7 @@ class AjaxTest(amo.tests.TestCase):
         r = self.client.get(reverse('collections.ajax_list')
                             + '?addon_id=3615',)
         doc = pq(r.content)
-        eq_(doc('li').attr('data-id'), '80')
+        eq_(doc('li.selected').attr('data-id'), '80')
 
     def test_add_collection(self):
         r = self.client.post_ajax(reverse('collections.ajax_add'),
@@ -961,15 +966,15 @@ class AjaxTest(amo.tests.TestCase):
         eq_(len(doc('li.selected')), 0)
 
     def test_new_collection(self):
-        num_collections = Collection.objects.all().count()
+        assert not Collection.objects.filter(slug='auniqueone')
         r = self.client.post(
             reverse('collections.ajax_new'),
             {'addon_id': 5299, 'name': 'foo', 'slug': 'auniqueone',
-             'description': 'yermom', 'listed': True},
+             'description': 'foobar', 'listed': True},
             follow=True)
         doc = pq(r.content)
         eq_(len(doc('li.selected')), 1, "The new collection is not selected.")
-        eq_(Collection.objects.all().count(), num_collections + 1)
+        assert Collection.objects.filter(slug='auniqueone')
 
     def test_add_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
@@ -1025,10 +1030,10 @@ class TestWatching(amo.tests.TestCase):
         eq_(self.qs.count(), 0)
 
     def test_amouser_watching(self):
-        r = self.client.post(self.url, follow=True)
-        eq_(r.status_code, 200)
-        r = self.client.get('/en-US/firefox/')
-        eq_(r.context['amo_user'].watching, [57181])
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 200
+        response = self.client.get('/en-US/firefox/')
+        assert tuple(response.context['user'].watching) == (57181,)
 
     def test_ajax_response(self):
         r = self.client.post_ajax(self.url, follow=True)
@@ -1091,7 +1096,7 @@ class TestCollectionListing(amo.tests.TestCase):
     def test_users_redirect(self):
         """Test that 'users' sort redirects to 'followers' sort."""
         r = self.client.get(urlparams(self.url, sort='users'))
-        self.assertRedirects(r, urlparams(self.url, sort='followers'), 301)
+        self.assert3xx(r, urlparams(self.url, sort='followers'), 301)
 
     def test_mostsubscribers_sort(self):
         r = self.client.get(urlparams(self.url, sort='followers'))
@@ -1272,3 +1277,51 @@ class TestCollectionForm(amo.tests.TestCase):
             'description': '<a href="http://example.com">example.com</a>'}
         with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
             form.clean_description()
+
+    def test_honeypot_not_required(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+            }
+        )
+
+        assert form.is_valid()
+
+    def test_honeypot_fails_on_entry(self):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+                'your_name': "I'm a super dumb bot",
+            }
+        )
+
+        assert not form.is_valid()
+        assert 'spam' in form.errors['__all__'][0]
+
+    @patch('bandwagon.forms.statsd.incr')
+    def test_honeypot_statsd_incr(self, mock_incr):
+        author = UserProfile.objects.get(pk=9945)
+
+        form = forms.CollectionForm(
+            initial={'author': author},
+            data={
+                'name': 'test collection',
+                'slug': 'test-collection',
+                'listed': False,
+                'your_name': "I'm a super dumb bot",
+            }
+        )
+
+        assert not form.is_valid()
+
+        mock_incr.assert_any_call('collections.honeypotted')

@@ -107,11 +107,11 @@ def contribution_type(type):
 
 
 @register.function
-def user_data(amo_user):
+def user_data(user):
     anonymous, currency, email = True, 'USD', ''
-    if hasattr(amo_user, 'is_anonymous'):
-        anonymous = amo_user.is_anonymous()
+    if hasattr(user, 'is_anonymous'):
+        anonymous = user.is_anonymous()
     if not anonymous:
-        email = amo_user.email
+        email = user.email
 
     return {'anonymous': anonymous, 'currency': currency, 'email': email}

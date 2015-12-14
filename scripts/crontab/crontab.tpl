@@ -3,10 +3,6 @@
 MAILTO=amo-developers@mozilla.org
 DJANGO_SETTINGS_MODULE='settings_local'
 
-# Enable python27
-LD_LIBRARY_PATH=/opt/rh/python27/root/usr/lib64
-PATH=/opt/rh/python27/root/usr/bin
-
 HOME=/tmp
 
 # Every minute!
@@ -27,6 +23,9 @@ HOME=/tmp
 
 #every 3 hours
 20 */3 * * * %(z_cron)s compatibility_report
+
+#every 4 hours
+40 */4 * * * %(django)s clean_redis
 
 #twice per day
 25 16,4 * * * %(z_cron)s update_collections_total

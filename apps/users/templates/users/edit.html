@@ -39,13 +39,6 @@ data-default-locale="{{ request.LANG|lower }}"
               {{ form.email.errors }}
             </li>
             <li>
-              <label for="id_emailhidden" class="check">
-                {{ form.emailhidden }}
-                {{ _('Hide email address from other users') }}
-              </label>
-              {{ form.emailhidden.errors }}
-            </li>
-            <li>
               <a href="#acct-password" id="change-acct-password">
                 {{ _('Change Password') }}</a>
             </li>

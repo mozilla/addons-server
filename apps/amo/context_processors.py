@@ -8,7 +8,7 @@ from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import remora_url, reverse
+from amo.urlresolvers import reverse
 from access import acl
 from zadmin.models import get_config
 
@@ -57,14 +57,14 @@ def global_settings(request):
     is_reviewer = False
 
     if request.user.is_authenticated():
-        amo_user = request.amo_user
+        user = request.user
         profile = request.user
         is_reviewer = (acl.check_addons_reviewer(request) or
                        acl.check_personas_reviewer(request))
 
         account_links.append({'text': _('My Profile'),
                               'href': profile.get_url_path()})
-        if amo_user.is_artist:
+        if user.is_artist:
             account_links.append({'text': _('My Themes'),
                                   'href': profile.get_user_url('themes')})
 
@@ -72,23 +72,23 @@ def global_settings(request):
                               'href': reverse('users.edit')})
         account_links.append({
             'text': _('My Collections'),
-            'href': reverse('collections.user', args=[amo_user.username])})
+            'href': reverse('collections.user', args=[user.username])})
 
-        if amo_user.favorite_addons:
+        if user.favorite_addons:
             account_links.append(
                 {'text': _('My Favorites'),
                  'href': reverse('collections.detail',
-                                 args=[amo_user.username, 'favorites'])})
+                                 args=[user.username, 'favorites'])})
 
         account_links.append({
             'text': _('Log out'),
-            'href': remora_url('/users/logout?to=' + urlquote(request.path)),
+            'href': reverse('users.logout') + '?to=' + urlquote(request.path),
         })
 
-        if request.amo_user.is_developer:
+        if request.user.is_developer:
             tools_links.append({'text': _('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
-        tools_links += [
+        links = [
             {'text': _('Submit a New Add-on'),
              'href': reverse('devhub.submit.1')},
             {'text': _('Submit a New Theme'),
@@ -96,7 +96,11 @@ def global_settings(request):
             {'text': _('Developer Hub'),
              'href': reverse('devhub.index')},
         ]
+        if waffle.switch_is_active('signing-api'):
+            links.append({'text': _('Manage API Keys'),
+                          'href': reverse('devhub.api_key')})
 
+        tools_links += links
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
@@ -108,9 +112,9 @@ def global_settings(request):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 
-        context['amo_user'] = request.amo_user
+        context['user'] = request.user
     else:
-        context['amo_user'] = AnonymousUser()
+        context['user'] = AnonymousUser()
 
     context.update({'account_links': account_links,
                     'settings': settings, 'amo': amo,

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 from dateutil.parser import parse as parse_dt
 import re
 from urlparse import urlparse
@@ -21,7 +20,7 @@ import amo.tests
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, numberfmt, urlparams
 from addons.tests.test_views import TestMobile
-from addons.models import (Addon, AddonCategory, Category, AppSupport, Feature,
+from addons.models import (Addon, AddonCategory, Category, AppSupport,
                            FrozenAddon, Persona)
 from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
 from browse import feeds
@@ -693,15 +692,6 @@ class TestFeaturedLocale(amo.tests.TestCase):
         eq_([1003, 3481], sorted(items[0:2]))
         eq_([1001, 2464, 7661, 15679], sorted(items[2:]))
 
-    def test_featured_duplicated(self):
-        another = Addon.objects.get(id=1003)
-        self.change_addon(another, 'en-US')
-        another.feature_set.create(application=amo.FIREFOX.id,
-                                   locale=None,
-                                   start=datetime.today(),
-                                   end=datetime.today())
-        eq_(Addon.featured_random(amo.FIREFOX, 'en-US').count(1003), 1)
-
     def change_addon(self, addon, locale='es'):
         fc = FeaturedCollection.objects.filter(collection__addons=addon.id)[0]
         feature = FeaturedCollection.objects.create(
@@ -886,37 +876,6 @@ class TestSearchToolsPages(BaseSearchToolsTest):
                 assert addon.type == amo.ADDON_SEARCH, (
                     "sort=%s; Unexpected Add-on type for %r" % (
                         sort_key, addon))
-
-    def test_no_featured_addons_by_category(self):
-        Feature.objects.all().delete()
-        # Pretend Foxy is a bookmarks related search add-on
-        foxy = Addon.objects.get(name__localized_string='FoxyProxy Standard')
-        foxy.type = amo.ADDON_SEARCH
-        foxy.save()
-        bookmarks = Category.objects.get(slug='bookmarks')
-        bookmarks.addoncategory_set.add(
-            AddonCategory(addon=foxy, feature=False))
-        bookmarks.save()
-
-        response = self.client.get(reverse('browse.search-tools',
-                                           args=('bookmarks',)))
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        eq_([a.name.localized_string
-             for a in response.context['addons'].object_list],
-            [u'FoxyProxy Standard'])
-        eq_(response.context['filter'].field, 'popular')
-
-        eq_(doc('title').text(),
-            'Bookmarks :: Search Tools :: Add-ons for Firefox')
-
-        # Ensure that all heading links have the proper base URL
-        # between the category / no category cases.
-        sort_links = [urlparse(a.attrib['href']).path for a in
-                      doc('.listing-header ul li a')]
-        eq_(set(sort_links), set([reverse('browse.search-tools',
-                                          args=('bookmarks',))]))
 
     def test_rss_links_per_page(self):
 

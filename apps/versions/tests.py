@@ -336,7 +336,7 @@ class TestVersion(amo.tests.TestCase):
                             follow=True)
         url = reverse('addons.versions.update_info',
                       args=(self.version.addon.slug, self.version.version))
-        self.assertRedirects(r, url, 301)
+        self.assert3xx(r, url, 301)
 
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
@@ -488,6 +488,58 @@ class TestVersion(amo.tests.TestCase):
         assert uploaded_name.endswith(u'crosswarpex-확장-0.1-src.tar.gz')
 
 
+@pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
+    (amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_LITE, True),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, False),
+    (amo.STATUS_UNREVIEWED, amo.STATUS_BETA, False),
+    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, True),
+    (amo.STATUS_LITE, amo.STATUS_LITE, False),
+    (amo.STATUS_LITE, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_LITE, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_LITE, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_LITE, amo.STATUS_DISABLED, False),
+    (amo.STATUS_LITE, amo.STATUS_BETA, False),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED, True),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, True),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_DISABLED, False),
+    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_BETA, False),
+    (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, True),
+    (amo.STATUS_NOMINATED, amo.STATUS_LITE, True),
+    (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
+    (amo.STATUS_NOMINATED, amo.STATUS_BETA, False),
+    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, True),
+    (amo.STATUS_PUBLIC, amo.STATUS_LITE, False),
+    (amo.STATUS_PUBLIC, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False),
+    (amo.STATUS_PUBLIC, amo.STATUS_BETA, False)])
+def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
+    """Files that need to be reviewed are returned by version.unreviewed_files.
+
+    Use cases are triples taken from the "use_case" fixture above.
+    """
+    addon = amo.tests.addon_factory(status=addon_status, guid='foo')
+    version = addon.latest_version
+    file_ = version.files.get()
+    file_.update(status=file_status)
+    # If the addon is public, and we change its only file to something else
+    # than public, it'll change to unreviewed.
+    addon.update(status=addon_status)
+    assert addon.reload().status == addon_status
+    assert file_.reload().status == file_status
+
+
 class TestViews(amo.tests.TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
@@ -509,11 +561,11 @@ class TestViews(amo.tests.TestCase):
 
         version, url = urls[0]
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, base + '?page=1#version-%s' % version)
+        self.assert3xx(r, base + '?page=1#version-%s' % version)
 
         version, url = urls[1]
         r = self.client.get(url, follow=True)
-        self.assertRedirects(r, base + '?page=2#version-%s' % version)
+        self.assert3xx(r, base + '?page=2#version-%s' % version)
 
     def test_version_detail_404(self):
         r = self.client.get(reverse('addons.versions',

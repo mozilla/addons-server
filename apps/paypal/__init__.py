@@ -239,7 +239,7 @@ def check_paypal_id(name):
 
 def paypal_log_cef(request, addon, uuid, msg, caps, longer):
     log_cef('Paypal %s' % msg, 5, request,
-            username=request.amo_user,
+            username=request.user,
             signature='PAYPAL%s' % caps,
             msg=longer, cs2=addon.name, cs2Label='PaypalTransaction',
             cs4=uuid, cs4Label='TxID')

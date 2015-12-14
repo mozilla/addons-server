@@ -13,7 +13,7 @@ import pytest
 
 import amo
 import amo.tests
-from files.utils import extract_xpi, parse_xpi
+from files.utils import extract_xpi
 from lib.crypto import packaged, tasks
 from versions.compare import version_int
 
@@ -92,6 +92,19 @@ class TestPackaged(amo.tests.TestCase):
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_not_signed()
 
+    def test_supports_firefox_android_old_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Old, and not default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_not_signed()
+
     def test_supports_firefox_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
@@ -104,14 +117,15 @@ class TestPackaged(amo.tests.TestCase):
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
 
-    def test_supports_firefox_recent_not_default_to_compatible(self):
+    def test_supports_firefox_android_old_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
 
-        # Recent, not default to compatible.
-        max_appversion.update(version=settings.MIN_NOT_D2C_VERSION,
+        # Old, and default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_D2C_VERSION,
                               version_int=version_int(
-                                  settings.MIN_NOT_D2C_VERSION))
-        self.file_.update(binary_components=True, strict_compatibility=True)
+                                  settings.MIN_D2C_VERSION))
+        self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
@@ -124,6 +138,19 @@ class TestPackaged(amo.tests.TestCase):
                               version_int=version_int(
                                   settings.MIN_NOT_D2C_VERSION))
         self.file_.update(binary_components=False, strict_compatibility=False)
+        self.assert_not_signed()
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        self.assert_signed()
+
+    def test_supports_firefox_android_recent_not_default_to_compatible(self):
+        max_appversion = self.version.apps.first().max
+
+        # Recent, not default to compatible.
+        max_appversion.update(application=amo.ANDROID.id,
+                              version=settings.MIN_NOT_D2C_VERSION,
+                              version_int=version_int(
+                                  settings.MIN_NOT_D2C_VERSION))
+        self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         self.assert_signed()
@@ -548,25 +575,3 @@ class TestTasks(amo.tests.TestCase):
             assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
-
-    def test_bump_version_in_install_rdf(self):
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '1.3.1-signed'
-
-    def test_bump_version_in_alt_install_rdf(self):
-        with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
-                                 self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '2.1.106.1-signed'
-
-    def test_bump_version_in_package_json(self):
-        with amo.tests.copy_file(
-                'apps/files/fixtures/files/new-format-0.0.1.xpi',
-                self.file_.file_path):
-            tasks.bump_version_number(self.file_)
-            parsed = parse_xpi(self.file_.file_path)
-            assert parsed['version'] == '0.0.1.1-signed'

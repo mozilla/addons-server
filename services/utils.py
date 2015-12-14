@@ -156,7 +156,7 @@ def log_cef(request, app, msg, longer):
          'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
          'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
 
-    kwargs = {'username': getattr(request, 'amo_user', ''),
+    kwargs = {'username': getattr(request, 'user', ''),
               'signature': 'RECEIPT%s' % msg.upper(),
               'msg': longer, 'config': c,
               'cs2': app, 'cs2Label': 'ReceiptTransaction'}

@@ -62,7 +62,7 @@
         {{ status_and_tip(addon,
                           _("Your add-on was disabled by a site administrator and is no
                              longer shown in our gallery. If you have any questions,
-                             please email marketplace-staff@mozilla.org.")) }}
+                             please email amo-admins@mozilla.org.")) }}
       </a>
     {% elif addon.status == amo.STATUS_LITE %}
       <a href="{{ addon.get_dev_url('versions') }}">

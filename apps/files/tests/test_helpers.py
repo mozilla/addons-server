@@ -378,34 +378,34 @@ class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
-        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
-        self.assertRaises(forms.ValidationError, zip.is_valid)
+        zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
+        self.assertRaises(forms.ValidationError, zip_file.is_valid)
 
     def test_unzip_fatal(self):
-        zip = SafeUnzip(self.xpi_path('search.xml'))
-        self.assertRaises(zipfile.BadZipfile, zip.is_valid)
+        zip_file = SafeUnzip(self.xpi_path('search.xml'))
+        self.assertRaises(zipfile.BadZipfile, zip_file.is_valid)
 
     def test_unzip_not_fatal(self):
-        zip = SafeUnzip(self.xpi_path('search.xml'))
-        assert not zip.is_valid(fatal=False)
+        zip_file = SafeUnzip(self.xpi_path('search.xml'))
+        assert not zip_file.is_valid(fatal=False)
 
     def test_extract_path(self):
-        zip = SafeUnzip(self.xpi_path('langpack-localepicker'))
-        assert zip.is_valid()
-        assert'locale browser de' in zip.extract_path('chrome.manifest')
+        zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
+        assert zip_file.is_valid()
+        assert'locale browser de' in zip_file.extract_path('chrome.manifest')
 
     def test_not_secure(self):
-        zip = SafeUnzip(self.xpi_path('extension'))
-        zip.is_valid()
-        assert not zip.is_signed()
+        zip_file = SafeUnzip(self.xpi_path('extension'))
+        zip_file.is_valid()
+        assert not zip_file.is_signed()
 
     def test_is_secure(self):
-        zip = SafeUnzip(self.xpi_path('signed'))
-        zip.is_valid()
-        assert zip.is_signed()
+        zip_file = SafeUnzip(self.xpi_path('signed'))
+        zip_file.is_valid()
+        assert zip_file.is_signed()
 
     def test_is_broken(self):
-        zip = SafeUnzip(self.xpi_path('signed'))
-        zip.is_valid()
-        zip.info[2].filename = 'META-INF/foo.sf'
-        assert not zip.is_signed()
+        zip_file = SafeUnzip(self.xpi_path('signed'))
+        zip_file.is_valid()
+        zip_file.info_list[2].filename = 'META-INF/foo.sf'
+        assert not zip_file.is_signed()

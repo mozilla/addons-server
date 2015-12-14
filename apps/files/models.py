@@ -77,6 +77,10 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Is the file a multi-package?
     #     https://developer.mozilla.org/en-US/docs/Multiple_Item_Packaging
     is_multi_package = models.BooleanField(default=False)
+    # Is the file an experiment (see bug 1220097)?
+    is_experiment = models.BooleanField(default=False)
+    # Is the file a WebExtension?
+    is_webextension = models.BooleanField(default=False)
 
     class Meta(amo.models.ModelBase.Meta):
         db_table = 'files'
@@ -131,10 +135,15 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         return posixpath.join(*map(smart_str, [host, addon.id, self.filename]))
 
     def get_url_path(self, src):
+        return self._make_download_url('downloads.file', src)
+
+    def get_signed_url(self, src):
+        return self._make_download_url('signing.file', src)
+
+    def _make_download_url(self, view_name, src):
         from amo.helpers import urlparams, absolutify
-        url = os.path.join(reverse('downloads.file', args=[self.id]),
+        url = os.path.join(reverse(view_name, args=[self.pk]),
                            self.filename)
-        # Firefox's Add-on Manager needs absolute urls.
         return absolutify(urlparams(url, src=src))
 
     @classmethod
@@ -159,6 +168,8 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         file_.strict_compatibility = parse_data.get('strict_compatibility',
                                                     False)
         file_.is_multi_package = parse_data.get('is_multi_package', False)
+        file_.is_experiment = parse_data.get('is_experiment', False)
+        file_.is_webextension = parse_data.get('is_webextension', False)
 
         if is_beta and addon.status == amo.STATUS_PUBLIC:
             file_.status = amo.STATUS_BETA
@@ -581,6 +592,10 @@ class FileUpload(amo.models.ModelBase):
         choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver')
+    # Not all FileUploads will have a version and addon but it will be set
+    # if the file was uploaded using the new API.
+    version = models.CharField(max_length=255, null=True)
+    addon = models.ForeignKey('addons.Addon', null=True)
 
     objects = amo.models.UncachedManagerBase()
 
@@ -592,12 +607,14 @@ class FileUpload(amo.models.ModelBase):
 
     def save(self, *args, **kw):
         if self.validation:
-            if json.loads(self.validation)['errors'] == 0:
+            if self.load_validation()['errors'] == 0:
                 self.valid = True
         super(FileUpload, self).save()
 
     def add_file(self, chunks, filename, size):
-        filename = smart_str(filename)
+        if not self.pk:
+            self.save()
+        filename = smart_str(u'{0}_{1}'.format(self.pk, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(amo.utils.smart_path(filename))
         if ext in EXTENSIONS:
@@ -626,7 +643,7 @@ class FileUpload(amo.models.ModelBase):
     @property
     def validation_timeout(self):
         if self.processed:
-            validation = json.loads(self.validation)
+            validation = self.load_validation()
             messages = validation['messages']
             timeout_id = ['validator',
                           'unexpected_exception',
@@ -642,10 +659,21 @@ class FileUpload(amo.models.ModelBase):
             # Import loop.
             from devhub.utils import process_validation
 
-            validation = json.loads(self.validation)
+            validation = self.load_validation()
             is_compatibility = self.compat_with_app is not None
 
             return process_validation(validation, is_compatibility, self.hash)
+
+    @property
+    def passed_all_validations(self):
+        return self.processed and self.valid
+
+    @property
+    def passed_auto_validation(self):
+        return self.load_validation()['passed_auto_validation']
+
+    def load_validation(self):
+        return json.loads(self.validation)
 
 
 class FileValidation(amo.models.ModelBase):

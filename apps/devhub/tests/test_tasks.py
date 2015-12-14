@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import tempfile
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -19,6 +20,7 @@ from amo.helpers import user_media_path
 from amo.tests.test_helpers import get_image_path
 from devhub import tasks
 from files.models import FileUpload
+from versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -406,3 +408,92 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         use_blacklist=False,
         perm_setting='individual_contact',
         headers={'Reply-To': settings.EDITORS_EMAIL})
+
+
+class TestSubmitFile(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestSubmitFile, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        patcher = mock.patch('devhub.tasks.create_version_for_upload')
+        self.create_version_for_upload = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def create_upload(self, version='1.0'):
+        return FileUpload.objects.create(
+            addon=self.addon, version=version, validation='{"errors":0}',
+            automated_signing=self.addon.automated_signing)
+
+    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
+    def test_file_passed_all_validations(self):
+        upload = self.create_upload()
+        tasks.submit_file(self.addon.pk, upload.pk)
+        self.create_version_for_upload.assert_called_with(self.addon, upload)
+
+    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', False)
+    def test_file_not_passed_all_validations(self):
+        upload = self.create_upload()
+        tasks.submit_file(self.addon.pk, upload.pk)
+        assert not self.create_version_for_upload.called
+
+
+class TestCreateVersionForUpload(amo.tests.TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestCreateVersionForUpload, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        self.create_version_for_upload = (
+            tasks.create_version_for_upload.non_atomic)
+        patcher = mock.patch('devhub.tasks.Version.from_upload')
+        self.version__from_upload = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def create_upload(self, version='1.0'):
+        return FileUpload.objects.create(
+            addon=self.addon, version=version, validation='{"errors":0}',
+            automated_signing=self.addon.automated_signing)
+
+    def test_file_passed_all_validations_not_most_recent(self):
+        upload = self.create_upload()
+        newer_upload = self.create_upload()
+        newer_upload.update(created=datetime.today() + timedelta(hours=1))
+
+        # Check that the older file won't turn into a Version.
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
+
+        # But the newer one will.
+        self.create_version_for_upload(self.addon, newer_upload)
+        self.version__from_upload.assert_called_with(
+            newer_upload, self.addon, [amo.PLATFORM_ALL.id])
+
+    def test_file_passed_all_validations_version_exists(self):
+        upload = self.create_upload()
+        Version.objects.create(addon=upload.addon, version=upload.version)
+
+        # Check that the older file won't turn into a Version.
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
+
+    def test_file_passed_all_validations_most_recent_failed(self):
+        upload = self.create_upload()
+        newer_upload = self.create_upload()
+        newer_upload.update(created=datetime.today() + timedelta(hours=1),
+                            valid=False,
+                            validation=json.dumps({"errors": 5}))
+
+        self.create_version_for_upload(self.addon, upload)
+        assert not self.version__from_upload.called
+
+    def test_file_passed_all_validations_most_recent(self):
+        upload = self.create_upload(version='1.0')
+        newer_upload = self.create_upload(version='0.5')
+        newer_upload.update(created=datetime.today() + timedelta(hours=1))
+
+        # The Version is created because the newer upload is for a different
+        # version_string.
+        self.create_version_for_upload(self.addon, upload)
+        self.version__from_upload.assert_called_with(
+            upload, self.addon, [amo.PLATFORM_ALL.id])

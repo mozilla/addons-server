@@ -218,7 +218,7 @@ class TestESSearch(SearchBase):
 
     def test_legacy_redirects(self):
         r = self.client.get(self.url + '?sort=averagerating')
-        self.assertRedirects(r, self.url + '?sort=rating', status_code=301)
+        self.assert3xx(r, self.url + '?sort=rating', status_code=301)
 
     def test_legacy_redirects_to_non_ascii(self):
         # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
@@ -794,7 +794,7 @@ class TestCollectionSearch(SearchBase):
         self._generate()
         # Ensure `sort=newest` redirects to `sort=created`.
         r = self.client.get(urlparams(self.url, sort='newest'))
-        self.assertRedirects(r, urlparams(self.url, sort='created'), 301)
+        self.assert3xx(r, urlparams(self.url, sort='created'), 301)
 
     def test_sort_order_unknown(self):
         self._generate()

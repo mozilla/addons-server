@@ -6,6 +6,7 @@ import mock
 
 from celery.result import AsyncResult
 from django.conf import settings
+from django.test.utils import override_settings
 
 import amo
 import amo.tests
@@ -366,12 +367,12 @@ class TestValidationComparator(amo.tests.TestCase):
         utils.ValidationComparator(annotated).annotate_results(HASH)
 
         # The two annotations for this file should be applied.
-        assert annotated['messages'][0]['ignore_duplicates'] == False
-        assert annotated['messages'][1]['ignore_duplicates'] == True
+        assert annotated['messages'][0]['ignore_duplicates'] is False
+        assert annotated['messages'][1]['ignore_duplicates'] is True
         # The annotation for the wrong file should not be applied, and
         # `ignore_duplicates` should be set to the default for the messge
         # severity (false).
-        assert annotated['messages'][2]['ignore_duplicates'] == False
+        assert annotated['messages'][2]['ignore_duplicates'] is False
 
     def test_is_ignorable(self):
         """Test that is_ignorable returns the correct value in all relevant
@@ -801,3 +802,53 @@ class TestAnnotateValidation(amo.tests.TestCase):
                 {'high': 0, 'medium': 0, 'low': 0, 'trivial': 0})
         assert (result['signing_ignored_summary'] ==
                 {'high': 0, 'medium': 0, 'low': 1, 'trivial': 0})
+
+
+class TestLimitValidationResults(amo.tests.TestCase):
+    """Test that higher priority messages are truncated last."""
+
+    def make_validation(self, types):
+        """Take a list of error types or signing severities and make a
+        validation results dict."""
+        validation = {
+            'messages': [],
+            'errors': 0,
+            'warnings': 0,
+            'notices': 0,
+        }
+        severities = ['low', 'medium', 'high']
+        for type_ in types:
+            if type_ in severities:
+                severity = type_
+                type_ = 'warning'
+            else:
+                severity = None
+            validation[type_ + 's'] += 1
+            validation['messages'].append({'type': type_})
+            if severity is not None:
+                validation['messages'][-1]['signing_severity'] = severity
+        return validation
+
+    @override_settings(VALIDATOR_MESSAGE_LIMIT=2)
+    def test_errors_are_first(self):
+        validation = self.make_validation(
+            ['error', 'warning', 'notice', 'error'])
+        utils.limit_validation_results(validation)
+        limited = validation['messages']
+        assert len(limited) == 3
+        assert '2 messages were truncated' in limited[0]['message']
+        assert limited[1]['type'] == 'error'
+        assert limited[2]['type'] == 'error'
+
+    @override_settings(VALIDATOR_MESSAGE_LIMIT=3)
+    def test_signing_severity_comes_second(self):
+        validation = self.make_validation(
+            ['error', 'warning', 'medium', 'notice', 'warning', 'error'])
+        utils.limit_validation_results(validation)
+        limited = validation['messages']
+        assert len(limited) == 4
+        assert '3 messages were truncated' in limited[0]['message']
+        assert limited[1]['type'] == 'error'
+        assert limited[2]['type'] == 'error'
+        assert limited[3]['type'] == 'warning'
+        assert limited[3]['signing_severity'] == 'medium'

@@ -68,6 +68,18 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
                     'delicious_bookmarks-2.1.072-fx.xpi?src=src')
         assert url.endswith(expected), url
 
+    def test_get_url_path(self):
+        file_ = File.objects.get(id=67442)
+        assert file_.get_url_path('src') == \
+            file_.get_absolute_url(src='src')
+
+    def test_get_signed_url(self):
+        file_ = File.objects.get(id=67442)
+        url = file_.get_signed_url('src')
+        expected = ('/api/v3/file/67442/'
+                    'delicious_bookmarks-2.1.072-fx.xpi?src=src')
+        assert url.endswith(expected), url
+
     def check_delete(self, file_, filename):
         """Test that when the File object is deleted, it is removed from the
         filesystem."""
@@ -404,7 +416,9 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_guid_match(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
-        eq_(self.parse(addon)['guid'], 'guid@xpi')
+        parsed = self.parse(addon)
+        assert parsed['guid'] == 'guid@xpi'
+        assert not parsed['is_experiment']
 
     def test_guid_nomatch(self):
         addon = Addon.objects.create(guid='xxx', type=1)
@@ -424,6 +438,18 @@ class TestParseXpi(amo.tests.TestCase):
             self.parse(addon)
         eq_(e.exception.messages,
             ["<em:type> doesn't match add-on"])
+
+    def test_match_type_extension_for_experiments(self):
+        parsed = self.parse(filename='experiment.xpi')
+        # See bug 1220097: experiments (type 128) map to extensions.
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_experiment']
+
+    def test_match_type_extension_for_webextensions(self):
+        self.create_switch('webextensions')
+        parsed = self.parse(filename='webextension.xpi')
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
 
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
@@ -561,7 +587,8 @@ class TestFileUpload(UploadTest):
         eq_(storage.open(self.upload().path).read(), self.data)
 
     def test_from_post_filename(self):
-        eq_(self.upload().name, 'filename.xpi')
+        upload = self.upload()
+        eq_(upload.name, '{0}_filename.xpi'.format(upload.pk))
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
@@ -805,6 +832,37 @@ class TestFileUpload(UploadTest):
         assert validation['messages'][0]['type'] == 'error'
 
 
+def test_file_upload_passed_auto_validation_passed():
+    upload = FileUpload(validation=json.dumps({
+        'passed_auto_validation': True,
+    }))
+    assert upload.passed_auto_validation
+
+
+def test_file_upload_passed_auto_validation_failed():
+    upload = FileUpload(validation=json.dumps({
+        'passed_auto_validation': False,
+    }))
+    assert not upload.passed_auto_validation
+
+
+def test_file_upload_passed_all_validations_processing():
+    upload = FileUpload(valid=False, validation='')
+    assert not upload.passed_all_validations
+
+
+def test_file_upload_passed_all_validations_valid():
+    upload = FileUpload(
+        valid=True, validation=json.dumps(amo.VALIDATOR_SKELETON_RESULTS))
+    assert upload.passed_all_validations
+
+
+def test_file_upload_passed_all_validations_invalid():
+    upload = FileUpload(
+        valid=False, validation=json.dumps(amo.VALIDATOR_SKELETON_RESULTS))
+    assert not upload.passed_all_validations
+
+
 class TestFileFromUpload(UploadTest):
 
     def setUp(self):
@@ -1035,6 +1093,31 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension')
         file_ = File.from_upload(upload, self.version, self.platform)
         assert not file_.is_multi_package
+
+    def test_experiment(self):
+        upload = self.upload('experiment')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_experiment': True})
+        assert file_.is_experiment
+
+    def test_not_experiment(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_experiment': False})
+        assert not file_.is_experiment
+
+    def test_webextension(self):
+        self.create_switch('webextensions')
+        upload = self.upload('webextension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.is_webextension
+
+    def test_not_webextension(self):
+        upload = self.upload('extension')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={})
+        assert not file_.is_experiment
 
 
 class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):

@@ -63,7 +63,7 @@ def _xpi_form_error(f, request):
     error = ','.join([e[0] for e in f.errors.values()])
     resp.write(': ' + _('Add-on did not validate: %s') % error)
     log.debug('Add-on did not validate (%s) for %s'
-              % (error, request.amo_user))
+              % (error, request.user))
     return resp
 
 
@@ -84,7 +84,7 @@ class UserHandler(BaseHandler):
             else:
                 return rc.FORBIDDEN
 
-        return request.amo_user
+        return request.user
 
 
 class AddonsHandler(BaseHandler):
@@ -144,7 +144,7 @@ class AddonsHandler(BaseHandler):
         if not request.user.is_authenticated():
             return rc.BAD_REQUEST
         ids = (AddonUser.objects.values_list('addon_id', flat=True)
-                                .filter(user=request.amo_user,
+                                .filter(user=request.user,
                                         role__in=[amo.AUTHOR_ROLE_DEV,
                                                   amo.AUTHOR_ROLE_OWNER]))
         qs = (Addon.objects.filter(id__in=ids)

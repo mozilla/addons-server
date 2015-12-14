@@ -5,11 +5,23 @@ from django.utils import translation
 
 import caching
 import pytest
+from multidb import pinning
 
 import amo
 from access.models import Group, GroupUser
 from translations.hold import clean_translations
 from users.models import UserProfile
+
+
+@pytest.fixture(autouse=True)
+def unpin_db(request):
+    """Unpin the database from master in the current DB.
+
+    The `multidb` middleware pins the current thread to master for 15 seconds
+    after any POST request, which can lead to unexpected results for tests
+    of DB slave functionality."""
+
+    request.addfinalizer(pinning.unpin_this_thread)
 
 
 @pytest.fixture(autouse=True)
@@ -35,8 +47,6 @@ def prefix_indexes(config):
         prefix = 'test_{[slaveid]}'.format(config.slaveinput)
     else:
         prefix = 'test'
-
-    from django.conf import settings
 
     # Ideally, this should be a session-scoped fixture that gets injected into
     # any test that requires ES. This would be especially useful, as it would

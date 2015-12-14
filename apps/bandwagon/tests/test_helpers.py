@@ -5,28 +5,12 @@ import jingo
 
 from amo.tests import BaseTestCase
 from amo.urlresolvers import reverse
-from bandwagon.helpers import (barometer, collection_favorite,
-                               user_collection_list)
+from bandwagon.helpers import (barometer, user_collection_list)
 from bandwagon.models import Collection
 from users.models import UserProfile
 
 
 class TestHelpers(BaseTestCase):
-
-    def test_collection_favorite(self):
-        self.user = UserProfile.objects.create(username='uniq', email='uniq')
-
-        c = {'request': Mock(amo_user=self.user)}
-        collection = Collection.objects.create()
-
-        # Not subscribed yet.
-        doc = pq(collection_favorite(c, collection))
-        eq_(doc('button').text(), u'Add to Favorites')
-
-        # Subscribed.
-        collection.following.create(user=self.user)
-        doc = pq(collection_favorite(c, collection))
-        eq_(doc('button').text(), u'Remove from Favorites')
 
     def test_barometer(self):
         self.client.get('/')
@@ -44,7 +28,7 @@ class TestHelpers(BaseTestCase):
         eq_(doc('form')[0].action, '/en-US/firefox/users/login?to=yermom')
 
         # Mock logged in.
-        c['request'].amo_user.votes.filter.return_value = [Mock(vote=1)]
+        c['request'].user.votes.filter.return_value = [Mock(vote=1)]
         c['request'].user.is_authenticated.return_value = True
         barometer(c, collection)
         doc = pq(barometer(c, collection))

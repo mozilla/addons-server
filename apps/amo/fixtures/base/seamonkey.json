@@ -132,19 +132,6 @@
         }
     },
     {
-        "pk": 84,
-        "model": "addons.feature",
-        "fields": {
-            "end": "2010-12-01 00:00:00",
-            "application": 59,
-            "locale": null,
-            "created": "2008-05-20 17:17:37",
-            "modified": "2009-12-11 13:05:47",
-            "start": "2008-05-20 17:17:37",
-            "addon": 6076
-        }
-    },
-    {
         "pk": 307,
         "model": "applications.appversion",
         "fields": {

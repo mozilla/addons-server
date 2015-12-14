@@ -1,7 +1,9 @@
+import mock
 import pytest
 
 from django.conf import settings
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 import amo
 import amo.tests
@@ -87,17 +89,32 @@ def test_approve_addons_get_files_bad_guid():
     assert approve_addons.get_files(['foo']) == [addon1_file]
 
 
+def id_function(fixture_value):
+    """Convert a param from the use_case fixture to a nicer name.
+
+    By default, the name (used in the test generated from the parameterized
+    fixture) will use the fixture name and a number.
+    Eg: test_foo[use_case0]
+
+    Providing explicit 'ids' (either as strings, or as a function) will use
+    those names instead. Here the name will be something like
+    test_foo[public-unreviewed-full], for the status values, and if the file is
+    unreviewed.
+    """
+    addon_status, file_status, review_type = fixture_value
+    return '{0}-{1}-{2}'.format(amo.STATUS_CHOICES_API[addon_status],
+                                amo.STATUS_CHOICES_API[file_status],
+                                review_type)
+
+
 @pytest.fixture(
     params=[(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, 'prelim'),
             (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, 'prelim'),
             (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
             (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full'),
             (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, 'full')],
-    ids=['1-1-prelim',  # Those are used to build better test names, for the
-         '8-1-prelim',  # tests using this fixture, eg:
-         '3-1-full',    # > test_approve_addons_get_files[1-1-prelim]
-         '4-1-full',    # instead of simply:
-         '9-8-full'])   # > test_approve_addons_get_files[usecase0]
+    # ids are used to build better names for the tests using this fixture.
+    ids=id_function)
 def use_case(request, db):
     """This fixture will return quadruples for different use cases.
 
@@ -196,3 +213,21 @@ def test_approve_addons_get_review_type(use_case):
     """
     addon, file1, _, review_type = use_case
     assert approve_addons.get_review_type(file1) == review_type
+
+
+# fix_let_scope_bustage.
+
+
+def test_fix_let_scope_bustage_no_addon_id():
+    """If no add-on id is provided, raise."""
+    with pytest.raises(CommandError) as exc_info:
+        call_command('fix_let_scope_bustage')
+    assert 'Please provide at least one add-on id to fix.' in exc_info.value
+
+
+@mock.patch('addons.management.commands.fix_let_scope_bustage.'
+            'fix_let_scope_bustage_in_addons.delay')
+def test_fix_let_scope_bustage(mock_fixer):
+    """The command should call the task with the list of add-on id provided."""
+    call_command('fix_let_scope_bustage', 1, 2, 3)
+    mock_fixer.assert_called_once_with([1, 2, 3])

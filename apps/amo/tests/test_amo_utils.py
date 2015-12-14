@@ -76,6 +76,25 @@ def test_resize_transparency():
             os.remove(dest)
 
 
+def test_resize_transparency_for_P_mode_bug_1181221():
+    # We had a monkeypatch that was added in
+    # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5  # noqa
+    # which caused the issue in bug 1181221. Since then we upgraded Pillow, and
+    # we don't need it anymore. We thus don't have this issue anymore.
+    src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
+                       'images', 'icon64.png')
+    dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
+    expected = src.replace('.png', '-expected.png')
+    try:
+        resize_image(src, dest, (32, 32), remove_src=False, locally=True)
+        with open(dest) as dfh:
+            with open(expected) as efh:
+                assert dfh.read() == efh.read()
+    finally:
+        if os.path.exists(dest):
+            os.remove(dest)
+
+
 def test_to_language():
     tests = (('en-us', 'en-US'),
              ('en_US', 'en-US'),
@@ -121,15 +140,18 @@ def test_no_translation():
     `no_translation` provides a context where only the default
     language is active.
     """
-    lang = translation.get_language()
-    translation.activate('pt-br')
-    with no_translation():
-        eq_(translation.get_language(), settings.LANGUAGE_CODE)
-    eq_(translation.get_language(), 'pt-br')
-    with no_translation('es'):
-        eq_(translation.get_language(), 'es')
-    eq_(translation.get_language(), 'pt-br')
-    translation.activate(lang)
+    old_lang = translation.get_language()
+    try:
+        translation.activate('pt-br')
+        with no_translation():
+            assert (translation.get_language().lower() ==
+                    settings.LANGUAGE_CODE.lower())
+        assert translation.get_language() == 'pt-br'
+        with no_translation('es'):
+            assert translation.get_language() == 'es'
+        assert translation.get_language() == 'pt-br'
+    finally:
+        translation.activate(old_lang)
 
 
 class TestLocalFileStorage(BaseTestCase):

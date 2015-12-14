@@ -320,7 +320,7 @@ class TestThemeForm(amo.tests.TestCase):
                                           username='a' * 255,
                                           display_name='b' * 255)
         request = RequestFactory()
-        request.amo_user = user
+        request.user = user
         cat = Category.objects.create(type=amo.ADDON_PERSONA)
         form = forms.ThemeForm({
             'name': 'my theme',

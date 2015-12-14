@@ -213,7 +213,7 @@ def queue_tabnav(context):
 @register.inclusion_tag('editors/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
 def reviewers_score_bar(context, types=None, addon_type=None):
-    user = context.get('amo_user')
+    user = context.get('user')
 
     return new_context(dict(
         request=context.get('request'),
@@ -449,7 +449,7 @@ class ReviewHelper:
         self.handler = None
         self.required = {}
         self.addon = addon
-        self.all_files = version.files.all() if version else []
+        self.version = version
         self.get_review_type(request, addon, version)
         self.actions = self.get_actions(request, addon)
 
@@ -584,7 +584,7 @@ class ReviewBase(object):
         self.addon = addon
         self.version = version
         self.review_type = review_type
-        self.files = None
+        self.files = self.version.unreviewed_files if self.version else []
 
     def set_addon(self, **kw):
         """Alters addon and sets reviewed timestamp on version."""
@@ -688,9 +688,8 @@ class ReviewAddon(ReviewBase):
 
     def set_data(self, data):
         self.data = data
-        self.files = self.version.files.all()
 
-    def process_public(self):
+    def process_public(self, auto_validation=False):
         """Set an addon to public."""
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
@@ -713,6 +712,8 @@ class ReviewAddon(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
@@ -720,9 +721,8 @@ class ReviewAddon(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+        if self.request and not auto_validation:
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
@@ -753,8 +753,7 @@ class ReviewAddon(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_preliminary(self, auto_validation=False):
         """Set an addon to preliminary."""
@@ -792,8 +791,7 @@ class ReviewAddon(ReviewBase):
 
         if self.request and not auto_validation:
             # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review."""
@@ -807,9 +805,10 @@ class ReviewFiles(ReviewBase):
 
     def set_data(self, data):
         self.data = data
-        self.files = data.get('addon_files', None)
+        if 'addon_files' in data:
+            self.files = data['addon_files']
 
-    def process_public(self):
+    def process_public(self, auto_validation=False):
         """Set an addons files to public."""
         if self.review_type == 'preliminary':
             raise AssertionError('Preliminary addons cannot be made public.')
@@ -828,6 +827,8 @@ class ReviewFiles(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
+            if auto_validation:
+                template = u'unlisted_to_reviewed_auto'
             subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
@@ -836,9 +837,8 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+        if self.request and not auto_validation:
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addons files to sandbox."""
@@ -863,8 +863,7 @@ class ReviewFiles(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_preliminary(self, auto_validation=False):
         """Set an addons files to preliminary."""
@@ -893,8 +892,7 @@ class ReviewFiles(ReviewBase):
 
         if self.request and not auto_validation:
             # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.amo_user, self.addon,
-                                       status)
+            ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_super_review(self):
         """Give an addon super review when preliminary."""

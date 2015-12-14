@@ -18,8 +18,21 @@ from editors.models import ReviewerScore
 
 
 class ReviewReplyForm(forms.Form):
-    title = forms.CharField(required=False)
-    body = forms.CharField(widget=forms.Textarea(attrs={'rows': 3}))
+    form_id = "review-reply-edit"
+
+    title = forms.CharField(
+        required=False,
+        label=_lazy(u"Title"),
+        widget=forms.TextInput(
+            attrs={'id': 'id_review_reply_title', },
+        ),
+    )
+    body = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'rows': 3, 'id': 'id_review_reply_body', },
+        ),
+        label="Review",
+    )
 
     def clean_body(self):
         body = self.cleaned_data.get('body', '')
@@ -30,7 +43,24 @@ class ReviewReplyForm(forms.Form):
 
 
 class ReviewForm(ReviewReplyForm):
-    rating = forms.ChoiceField(zip(range(1, 6), range(1, 6)))
+    form_id = "review-edit"
+
+    title = forms.CharField(
+        required=False,
+        label=_lazy(u"Title"),
+        widget=forms.TextInput(
+            attrs={'id': 'id_review_title', },
+        ),
+    )
+    body = forms.CharField(
+        widget=forms.Textarea(
+            attrs={'rows': 3, 'id': 'id_review_body', },
+        ),
+        label="Review",
+    )
+    rating = forms.ChoiceField(
+        zip(range(1, 6), range(1, 6)), label=_lazy(u"Rating")
+    )
     flags = re.I | re.L | re.U | re.M
     # This matches the following three types of patterns:
     # http://... or https://..., generic domain names, and IPv4
@@ -97,7 +127,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.amo_user, addon, review.id)
+                            self.request.user, addon, review.id)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
@@ -109,7 +139,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.amo_user, addon, review.id)
+                            self.request.user, addon, review.id)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):

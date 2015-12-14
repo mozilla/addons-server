@@ -8,6 +8,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial, wraps
+from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
@@ -17,6 +18,8 @@ from django.db.models.signals import post_save
 from django.forms.fields import Field
 from django.http import SimpleCookie
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
+from django.conf import urls as django_urls
 from django.utils import translation
 
 import mock
@@ -26,6 +29,7 @@ from dateutil.parser import parse as dateutil_parser
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
+from rest_framework.views import APIView
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
@@ -45,7 +49,9 @@ from files.models import File
 from lib.es.signals import process, reset
 from translations.models import Translation
 from versions.models import ApplicationsVersions, Version
-from users.models import RequestUser, UserProfile
+from users.models import UserProfile
+
+from . import dynamic_urls
 
 
 # We might now have gettext available in jinja2.env.globals when running tests.
@@ -149,6 +155,31 @@ def assert_url_equal(url, other, compare_host=False):
         parse_qs(parsed_other.path))  # Params are equal.
     if compare_host:
         eq_(parsed.netloc, parsed_other.netloc)
+
+
+def create_sample(name=None, db=False, **kw):
+    if name is not None:
+        kw['name'] = name
+    kw.setdefault('percent', 100)
+    sample = Sample(**kw)
+    sample.save() if db else cache_sample(instance=sample)
+    return sample
+
+
+def create_switch(name=None, db=False, **kw):
+    kw.setdefault('active', True)
+    if name is not None:
+        kw['name'] = name
+    switch = Switch(**kw)
+    switch.save() if db else cache_switch(instance=switch)
+    return switch
+
+
+def create_flag(name=None, **kw):
+    if name is not None:
+        kw['name'] = name
+    kw.setdefault('everyone', True)
+    return Flag.objects.create(**kw)
 
 
 class RedisTest(object):
@@ -327,7 +358,7 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
 
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
-        # is good, but bad for assertRedirects which will fail.
+        # is good, but bad for assert3xx which will fail.
         self.assert3xx(
             response, '%s?to=%s' % (reverse('users.login'), to), status_code)
 
@@ -456,27 +487,14 @@ class TestCase(MockEsMixin, RedisTest, BaseTestCase):
         cookie[settings.SESSION_COOKIE_NAME] = session._get_session_key()
         self.client.cookies.update(cookie)
 
-    def create_sample(self, name=None, db=False, **kw):
-        if name is not None:
-            kw['name'] = name
-        kw.setdefault('percent', 100)
-        sample = Sample(**kw)
-        sample.save() if db else cache_sample(instance=sample)
-        return sample
+    def create_sample(self, *args, **kwargs):
+        return create_sample(*args, **kwargs)
 
-    def create_switch(self, name=None, db=False, **kw):
-        kw.setdefault('active', True)
-        if name is not None:
-            kw['name'] = name
-        switch = Switch(**kw)
-        switch.save() if db else cache_switch(instance=switch)
-        return switch
+    def create_switch(self, *args, **kwargs):
+        return create_switch(*args, **kwargs)
 
-    def create_flag(self, name=None, **kw):
-        if name is not None:
-            kw['name'] = name
-        kw.setdefault('everyone', True)
-        return Flag.objects.create(**kw)
+    def create_flag(self, *args, **kwargs):
+        return create_flag(*args, **kwargs)
 
     def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""
@@ -651,8 +669,7 @@ def req_factory_factory(url, user=None, post=False, data=None):
     else:
         req = req.get(url, data or {})
     if user:
-        req.amo_user = RequestUser.objects.get(id=user.id)
-        req.user = user
+        req.user = UserProfile.objects.get(id=user.id)
         req.groups = user.groups.all()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
@@ -823,3 +840,51 @@ def copy_file(source, dest, overwrite=False):
     yield
     if os.path.exists(dest):
         os.unlink(dest)
+
+
+@contextmanager
+def copy_file_to_temp(source):
+    """Context manager that copies the source file to a temporary destination.
+
+    The files are relative to the root folder (containing the settings file).
+    The temporary file is yielded by the context manager.
+
+    The copied file is removed on exit."""
+    temp_filename = get_temp_filename()
+    with copy_file(source, temp_filename):
+        yield temp_filename
+
+
+# This sets up a module that we can patch dynamically with URLs.
+@override_settings(ROOT_URLCONF='amo.tests.dynamic_urls')
+class WithDynamicEndpoints(TestCase):
+    """
+    Mixin to allow registration of ad-hoc views.
+    """
+
+    def endpoint(self, view, url_regex=None):
+        """
+        Register a view function or view class temporarily
+        as the handler for requests to /dynamic-endpoint
+        """
+        url_regex = url_regex or r'^dynamic-endpoint$'
+        try:
+            is_class = issubclass(view, APIView)
+        except TypeError:
+            is_class = False
+        if is_class:
+            view = view.as_view()
+        dynamic_urls.urlpatterns = django_urls.patterns(
+            '',
+            django_urls.url(url_regex, view),
+        )
+        self.addCleanup(self._clean_up_dynamic_urls)
+
+    def _clean_up_dynamic_urls(self):
+        dynamic_urls.urlpatterns = None
+
+
+def get_temp_filename():
+    """Get a unique, non existing, temporary filename."""
+    with NamedTemporaryFile() as tempfile:
+        return tempfile.name

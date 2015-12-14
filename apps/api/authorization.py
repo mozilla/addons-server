@@ -69,9 +69,9 @@ class AllowAppOwner(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         try:
-            return obj.authors.filter(pk=request.amo_user.pk).exists()
+            return obj.authors.filter(pk=request.user.pk).exists()
 
-        # Appropriately handles AnonymousUsers when `amo_user` is None.
+        # Appropriately handles AnonymousUsers when `user` is None.
         except AttributeError:
             return False
 

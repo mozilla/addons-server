@@ -24,6 +24,7 @@ import waffle
 from PIL import Image
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
+from waffle.decorators import waffle_switch
 
 import amo
 import amo.utils
@@ -37,7 +38,8 @@ from amo import messages
 from amo.decorators import json_view, login_required, post_required
 from amo.helpers import absolutify, urlparams
 from amo.urlresolvers import reverse
-from amo.utils import escape_all, MenuItem
+from amo.utils import escape_all, MenuItem, send_mail_jinja
+from api.models import APIKey
 from applications.models import AppVersion
 from devhub import perf
 from devhub.decorators import dev_required
@@ -64,7 +66,6 @@ paypal_log = commonware.log.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.
-DEV_AGREEMENT_COOKIE = 'yes-I-read-the-dev-agreement'
 
 MDN_BASE = 'https://developer.mozilla.org/Add-ons'
 
@@ -87,9 +88,9 @@ class ThemeFilter(BaseFilter):
 def addon_listing(request, default='name', theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = request.amo_user.addons.filter(type=amo.ADDON_PERSONA)
+        qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
     else:
-        qs = Addon.with_unlisted.filter(authors=request.amo_user).exclude(
+        qs = Addon.with_unlisted.filter(authors=request.user).exclude(
             type=amo.ADDON_PERSONA)
     filter_cls = ThemeFilter if theme else AddonFilter
     filter_ = filter_cls(request, qs, 'sort', default)
@@ -99,8 +100,8 @@ def addon_listing(request, default='name', theme=False):
 def index(request):
 
     ctx = {'blog_posts': _get_posts()}
-    if request.amo_user:
-        user_addons = Addon.with_unlisted.filter(authors=request.amo_user)
+    if request.user.is_authenticated():
+        user_addons = Addon.with_unlisted.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
@@ -113,7 +114,7 @@ def index(request):
 @login_required
 def dashboard(request, theme=False):
     addon_items = _get_items(
-        None, Addon.with_unlisted.filter(authors=request.amo_user))[:4]
+        None, Addon.with_unlisted.filter(authors=request.user))[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
@@ -237,7 +238,7 @@ def _get_items(action, addons):
 
 
 def _get_rss_feed(request):
-    key, __ = RssKey.objects.get_or_create(user=request.amo_user)
+    key, __ = RssKey.objects.get_or_create(user=request.user)
     return urlparams(reverse('devhub.feed_all'), privaterss=key.key)
 
 
@@ -252,7 +253,7 @@ def feed(request, addon_id=None):
         p = urlquote(request.get_full_path())
         return http.HttpResponseRedirect('%s?to=%s' % (url, p))
     else:
-        addons_all = Addon.with_unlisted.filter(authors=request.amo_user)
+        addons_all = Addon.with_unlisted.filter(authors=request.user)
 
         if addon_id:
             addon = get_object_or_404(Addon.with_unlisted.id_or_slug(addon_id))
@@ -394,8 +395,6 @@ def disable(request, addon_id, addon):
 @dev_required
 @post_required
 def unlist(request, addon_id, addon):
-    if not waffle.flag_is_active(request, 'unlisted-addons'):
-        raise PermissionDenied
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
     unindex_addons.delay([addon.id])
@@ -613,32 +612,45 @@ def file_perf_tests_start(request, addon_id, addon, file_id):
     return {'success': True}
 
 
-@login_required
-@post_required
-def upload(request, addon=None, is_standalone=False, is_listed=True,
-           automated=False):
-    filedata = request.FILES['upload']
-
+def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
+                  is_standalone=False, is_listed=True, automated=False,
+                  submit=False):
     if addon:
         # TODO: Handle betas.
         automated = addon.automated_signing
         is_listed = addon.is_listed
 
     fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
-    fu.update(automated_signing=automated)
+    fu.update(automated_signing=automated, addon=addon)
     log.info('FileUpload created: %s' % fu.pk)
-    if request.user.is_authenticated():
-        fu.user = request.amo_user
+    if user.is_authenticated():
+        fu.user = user
         fu.save()
-    app_id = request.POST.get('app_id')
-    if app_id and request.POST.get('version_id'):
+    if app_id and version_id:
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()
-        ver = get_object_or_404(AppVersion, pk=request.POST['version_id'])
+        ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
+    elif submit:
+        tasks.validate_and_submit(addon, fu, listed=is_listed)
     else:
         tasks.validate(fu, listed=is_listed)
+
+    return fu
+
+
+@login_required
+@post_required
+def upload(request, addon=None, is_standalone=False, is_listed=True,
+           automated=False):
+    filedata = request.FILES['upload']
+    app_id = request.POST.get('app_id')
+    version_id = request.POST.get('version_id')
+    fu = handle_upload(
+        filedata=filedata, user=request.user, app_id=app_id,
+        version_id=version_id, addon=addon, is_standalone=is_standalone,
+        is_listed=is_listed, automated=automated)
     if addon:
         return redirect('devhub.upload_detail_for_addon', addon.slug, fu.pk)
     elif is_standalone:
@@ -819,6 +831,9 @@ def json_upload_detail(request, upload, addon_slug=None):
     if result['validation']:
         try:
             pkg = parse_addon(upload, addon=addon)
+            if not acl.submission_allowed(request.user, pkg):
+                raise django_forms.ValidationError(
+                    _(u'You cannot submit this type of add-on'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -1204,19 +1219,14 @@ def check_validation_override(request, form, addon, version):
         helper.actions['super']['method']()
 
 
-def auto_sign_file(file_, is_beta=False, admin_override=False):
+def auto_sign_file(file_, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
     validation = file_.validation
 
-    if addon.automated_signing and validation.passed_auto_validation:
-        # Passed validation: sign automatically without manual review.
-        helper = ReviewHelper(request=None, addon=addon,
-                              version=file_.version)
-        # Provide the file to review/sign to the helper.
-        helper.set_data({'addon_files': [file_],
-                         'comments': 'automatic validation'})
-        helper.handler.process_preliminary(auto_validation=True)
+    if file_.is_experiment:  # See bug 1220097.
+        amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
+        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
@@ -1226,6 +1236,33 @@ def auto_sign_file(file_, is_beta=False, admin_override=False):
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
         # Beta files always get signed with prelim cert.
         sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+    elif addon.automated_signing:
+        # Sign automatically without manual review.
+        helper = ReviewHelper(request=None, addon=addon,
+                              version=file_.version)
+        # Provide the file to review/sign to the helper.
+        helper.set_data({'addon_files': [file_],
+                         'comments': 'automatic validation'})
+        if addon.is_sideload:
+            helper.handler.process_public(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED,
+                        file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED,
+                        file_)
+        else:
+            helper.handler.process_preliminary(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
+
+
+def auto_sign_version(version, **kwargs):
+    # Sign all the files submitted, one for each platform.
+    for file_ in version.files.all():
+        auto_sign_file(file_, **kwargs)
 
 
 @json_view
@@ -1269,11 +1306,8 @@ def version_add(request, addon_id, addon):
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
-    if waffle.flag_is_active(request, 'automatic-validation'):
-        override = form.cleaned_data.get('admin_override_validation')
-        # Sign all the files submitted, one for each platform.
-        for file_ in version.files.all():
-            auto_sign_file(file_, is_beta=is_beta, admin_override=override)
+    # Sign all the files submitted, one for each platform.
+    auto_sign_version(version, is_beta=is_beta)
 
     return dict(url=url)
 
@@ -1300,9 +1334,7 @@ def version_add_file(request, addon_id, addon, version_id):
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
     form = [f for f in file_form.forms if f.instance == new_file]
 
-    if waffle.flag_is_active(request, 'automatic-validation'):
-        override = new_file_form.cleaned_data.get('admin_override_validation')
-        auto_sign_file(new_file, is_beta=is_beta, admin_override=override)
+    auto_sign_file(new_file, is_beta=is_beta)
 
     return render(request, 'devhub/includes/version_file.html',
                   {'form': form[0], 'addon': addon})
@@ -1387,19 +1419,14 @@ def _step_url(step):
 @login_required
 @submit_step(1)
 def submit(request, step):
-    if request.method == 'POST':
-        request.user.update(read_dev_agreement=now())
-        response = redirect(_step_url(2))
-        response.set_cookie(DEV_AGREEMENT_COOKIE)
-        return response
-
-    return render(request, 'devhub/addons/submit/start.html', {'step': step})
+    return render_agreement(request, 'devhub/addons/submit/start.html',
+                            _step_url(2), step)
 
 
 @login_required
 @submit_step(2)
 def submit_addon(request, step):
-    if DEV_AGREEMENT_COOKIE not in request.COOKIES:
+    if request.user.read_dev_agreement is None:
         return redirect(_step_url(1))
     form = forms.NewAddonForm(
         request.POST or None,
@@ -1413,12 +1440,10 @@ def submit_addon(request, step):
             p = data.get('supported_platforms', [])
 
             is_listed = not data['is_unlisted']
-            if not waffle.flag_is_active(request, 'unlisted-addons'):
-                is_listed = True
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'],
                                       is_listed=is_listed)
-            AddonUser(addon=addon, user=request.amo_user).save()
+            AddonUser(addon=addon, user=request.user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
             if not addon.is_listed:  # Not listed? Automatically choose queue.
@@ -1426,10 +1451,8 @@ def submit_addon(request, step):
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
                     addon.update(status=amo.STATUS_UNREVIEWED)
-                    if waffle.flag_is_active(request, 'automatic-validation'):
-                        # Sign all the files submitted, one for each platform.
-                        for file_ in addon.versions.get().files.all():
-                            auto_sign_file(file_)
+                # Sign all the files submitted, one for each platform.
+                auto_sign_version(addon.versions.get())
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
@@ -1735,3 +1758,69 @@ def docs(request, doc_name=None):
 def search(request):
     query = request.GET.get('q', '')
     return render(request, 'devhub/devhub_search.html', {'query': query})
+
+
+@login_required
+@waffle_switch('signing-api')
+def api_key_agreement(request):
+    next_step = reverse('devhub.api_key')
+    return render_agreement(request, 'devhub/api/agreement.html', next_step)
+
+
+def render_agreement(request, template, next_step, step=None):
+    if request.method == 'POST':
+        request.user.update(read_dev_agreement=now())
+        return redirect(next_step)
+
+    if request.user.read_dev_agreement is None:
+        return render(request, template,
+                      {'step': step})
+    else:
+        response = redirect(next_step)
+        return response
+
+
+@login_required
+@waffle_switch('signing-api')
+@transaction.commit_on_success
+def api_key(request):
+    if request.user.read_dev_agreement is None:
+        return redirect(reverse('devhub.api_key_agreement'))
+
+    try:
+        credentials = APIKey.get_jwt_key(user=request.user)
+    except APIKey.DoesNotExist:
+        credentials = None
+
+    if request.method == 'POST':
+        if credentials:
+            log.info('JWT key was made inactive: {}'.format(credentials))
+            credentials.update(is_active=False)
+            msg = _(
+                'Your old credentials were revoked and are no longer valid. '
+                'Be sure to update all API clients with the new credentials.')
+            messages.success(request, msg)
+
+        new_credentials = APIKey.new_jwt_credentials(request.user)
+        log.info('new JWT key created: {}'.format(new_credentials))
+
+        send_key_change_email(request.user.email, new_credentials.key)
+
+        return redirect(reverse('devhub.api_key'))
+
+    return render(request, 'devhub/api/key.html',
+                  {'title': _('Manage API Keys'),
+                   'credentials': credentials})
+
+
+def send_key_change_email(to_email, key):
+    subject = _('New API key created')
+    template = 'devhub/email/new-key-email.ltxt'
+
+    send_mail_jinja(
+        subject=subject,
+        template=template,
+        context={'key': key},
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[to_email],
+    )

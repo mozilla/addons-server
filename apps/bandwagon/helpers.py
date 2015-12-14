@@ -6,7 +6,7 @@ from tower import ugettext as _
 
 from addons.helpers import new_context
 from amo.helpers import login_link
-from amo.urlresolvers import remora_url, reverse
+from amo.urlresolvers import reverse
 from amo.utils import chunked
 
 
@@ -35,29 +35,6 @@ def user_collection_list(collections=[], heading='', id='', link=None):
     return jinja2.Markup(t)
 
 
-@register.inclusion_tag('bandwagon/collection_favorite.html')
-@jinja2.contextfunction
-def collection_favorite(context, collection):
-    c = dict(context.items())
-    user = c['request'].amo_user
-    is_subscribed = collection.is_subscribed(user)
-
-    button_class = 'add-to-fav'
-
-    if is_subscribed:
-        button_class += ' fav'
-        text = _('Remove from Favorites')
-        action = remora_url('collections/unsubscribe')
-
-    else:
-        text = _('Add to Favorites')
-        action = remora_url('collections/subscribe')
-
-    c.update(locals())
-    c.update({'c': collection})
-    return c
-
-
 @register.inclusion_tag('bandwagon/barometer.html')
 @jinja2.contextfunction
 def barometer(context, collection):
@@ -78,7 +55,7 @@ def barometer(context, collection):
         if 'collection_votes' in context:
             user_vote = context['collection_votes'].get(collection.id)
         else:
-            votes = request.amo_user.votes.filter(collection=collection)
+            votes = request.user.votes.filter(collection=collection)
             if votes:
                 user_vote = votes[0]
 
@@ -140,16 +117,16 @@ def favorites_widget(context, addon, condensed=False):
     c = dict(context.items())
     request = c['request']
     if request.user.is_authenticated():
-        is_favorite = addon.id in request.amo_user.favorite_addons
+        is_favorite = addon.id in request.user.favorite_addons
         faved_class = 'faved' if is_favorite else ''
 
         unfaved_text = '' if condensed else _('Add to favorites')
         faved_text = _('Favorite') if condensed else _('Remove from favorites')
 
         add_url = reverse('collections.alter',
-                          args=[request.amo_user.username, 'favorites', 'add'])
+                          args=[request.user.username, 'favorites', 'add'])
         remove_url = reverse('collections.alter',
-                             args=[request.amo_user.username,
+                             args=[request.user.username,
                                    'favorites', 'remove'])
 
         c.update(locals())

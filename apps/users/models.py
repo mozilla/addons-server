@@ -130,9 +130,19 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, amo.models.ManagerBase):
 
-    def create_user(self, username, email, password=None):
-        user = self.model(username=username, email=email)
-        user.set_password(password)
+    def create_user(self, username, email, password=None, fxa_id=None):
+        # We'll send username=None when registering through FxA to try and
+        # generate a username from the email.
+        if username is None:
+            username = self._generate_username(email)
+        user = self.model(username=username, email=email, fxa_id=fxa_id)
+        # FxA won't set a password so don't let a user log in with one.
+        if password is None:
+            user.set_unusable_password()
+        else:
+            user.set_password(password)
+        log.debug('Creating user with email {} and username {}'.format(
+            email, username))
         user.save(using=self._db)
         return user
 
@@ -144,6 +154,25 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
+
+    def _generate_username(self, seed):
+        """Generate a username from a seed which is intended to be an email
+        address. If the username is taken a single attempt will be made to
+        append a random number to it and get a unique username.
+        """
+        log.info('Generating username for {}'.format(seed))
+        if self.model.objects.filter(username=seed).exists():
+            # Only make one attempt at generating a new username. This isn't
+            # meant to be exhaustive but to make it difficult to maliciously
+            # prevent someone from signing up. See #967 for more discussion.
+            username = '{seed}-{num}'.format(
+                seed=seed, num=random.randint(1000, 9999))
+            log.warning('Username taken for {} trying {}'.format(
+                seed, username))
+            return username
+        else:
+            log.info('Using seeded username for {}'.format(seed))
+            return seed
 
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
@@ -167,7 +196,6 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
-    emailhidden = models.BooleanField(default=True)
     homepage = models.URLField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)
@@ -193,6 +221,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     t_shirt_requested = models.DateTimeField(blank=True, null=True,
                                              default=None, editable=False)
+    fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
     class Meta:
         db_table = 'users'
@@ -322,6 +351,13 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                 acl.action_allowed_user(user, 'Users', 'Edit'))
 
     @property
+    def source(self):
+        if self.fxa_id:
+            return 'fxa'
+        else:
+            return 'amo'
+
+    @property
     def name(self):
         return smart_unicode(self.display_name or self.username)
 
@@ -339,6 +375,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.password = "sha512$Anonymous$Password"
+        self.fxa_id = None
         self.username = "Anonymous-%s" % self.id  # Can't be null
         self.display_name = None
         self.homepage = ""
@@ -373,6 +410,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
                                                           string.digits, 60))
         return self.confirmationcode
 
+    def set_unusable_password(self):
+        self.password = ''
+
     def has_usable_password(self):
         """Override AbstractBaseUser.has_usable_password."""
         # We also override the check_password method, and don't rely on
@@ -382,6 +422,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         return bool(self.password)  # Not None and not empty.
 
     def check_password(self, raw_password):
+        if not self.has_usable_password():
+            return False
+
         if '$' not in self.password:
             valid = (get_hexdigest('md5', '', raw_password) == self.password)
             if valid:
@@ -484,6 +527,25 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def get_fallback(cls):
         return cls._meta.get_field('lang')
 
+    def addons_for_collection_type(self, type_):
+        """Return the addons for the given special collection type."""
+        from bandwagon.models import CollectionAddon
+        qs = CollectionAddon.objects.filter(
+            collection__author=self, collection__type=type_)
+        return qs.values_list('addon', flat=True)
+
+    @amo.cached_property
+    def mobile_addons(self):
+        return self.addons_for_collection_type(amo.COLLECTION_MOBILE)
+
+    @amo.cached_property
+    def favorite_addons(self):
+        return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
+
+    @amo.cached_property
+    def watching(self):
+        return self.collectionwatcher_set.values_list('collection', flat=True)
+
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,
                                 dispatch_uid='userprofile_translations')
@@ -519,59 +581,6 @@ class UserNotification(amo.models.ModelBase):
         if not rows:
             update.update(dict(**kwargs))
             UserNotification.objects.create(**update)
-
-
-class RequestUserManager(amo.models.ManagerBase):
-
-    def get_query_set(self):
-        qs = super(RequestUserManager, self).get_query_set()
-        return qs.transform(RequestUser.transformer)
-
-
-class RequestUser(UserProfile):
-    """
-    A RequestUser has extra attributes we don't care about for normal users.
-    """
-
-    objects = RequestUserManager()
-
-    def __init__(self, *args, **kw):
-        super(RequestUser, self).__init__(*args, **kw)
-        self.mobile_addons = []
-        self.favorite_addons = []
-        self.watching = []
-
-    class Meta:
-        proxy = True
-
-    @staticmethod
-    def transformer(users):
-        # We don't want to cache these things on every UserProfile; they're
-        # only used by a user attached to a request.
-        if not users:
-            return
-
-        # Touch this @cached_property so the answer is cached with the object.
-        user = users[0]
-        user.is_developer
-
-        from bandwagon.models import CollectionAddon, CollectionWatcher
-        SPECIAL = amo.COLLECTION_SPECIAL_SLUGS.keys()
-        qs = CollectionAddon.objects.filter(
-            collection__author=user, collection__type__in=SPECIAL)
-        addons = dict((type_, []) for type_ in SPECIAL)
-        for addon, ctype in qs.values_list('addon', 'collection__type'):
-            addons[ctype].append(addon)
-        user.mobile_addons = addons[amo.COLLECTION_MOBILE]
-        user.favorite_addons = addons[amo.COLLECTION_FAVORITES]
-        user.watching = list((CollectionWatcher.objects.filter(user=user)
-                             .values_list('collection', flat=True)))
-
-    def _cache_keys(self):
-        # Add UserProfile.cache_key so RequestUser gets invalidated when the
-        # UserProfile is changed.
-        keys = super(RequestUser, self)._cache_keys()
-        return keys + (UserProfile._cache_key(self.id, 'default'),)
 
 
 class BlacklistedName(amo.models.ModelBase):
