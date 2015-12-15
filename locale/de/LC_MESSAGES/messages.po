@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-03 20:03+0000\n"
+"PO-Revision-Date: 2015-12-15 20:20+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4712,8 +4712,7 @@ msgstr ""
 #: apps/devhub/forms.py:541
 msgid "This add-on will be bundled with an application installer."
 msgstr ""
-"Dieses Add-on wird wird mit einem Anwendungs-Installationsprogramm "
-"verknüpft."
+"Dieses Add-on wird mit einem Anwendungs-Installationsprogramm verknüpft."
 
 #: apps/devhub/forms.py:543
 msgid ""
