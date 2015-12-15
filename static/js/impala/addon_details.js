@@ -1,5 +1,6 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
+    $('#background-wrapper').css('height', '100%');
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",

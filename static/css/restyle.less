@@ -154,6 +154,10 @@ font: inherit;
                     color: #000;
                 }
 
+                > a {
+                    color: #FFF;
+                }
+
                 background-color: #fff;
                 border: none;
                 border-radius: 0;
@@ -165,13 +169,12 @@ font: inherit;
                     content: "";
                     display: block;
                     position: absolute;
+                    top: -6px;
                     z-index: 1;
                     transform: rotate(45deg);
                     background-color: #fff;
-                    top: -6px;
                     width: 12px;
                     height: 12px;
-                    left: 15px;
                     box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
                 }
             }
@@ -191,18 +194,34 @@ font: inherit;
                 z-index: 62;
                 height: 16px;
                 background: none;
-                background-color: inherit;
-                background-image: linear-gradient(to bottom,
-                  transparent 0%,
-                  transparent 7px,
-                  #FFF 7px,
-                  #FFF 100%
-                );
+                background-color: #FFF;
                 position: absolute;
-                top: 18px;
-                left: 1px;
             }
         }
+    }
+}
+
+#aux-nav > ul > li {
+    > ul:after {
+        right: 10px;
+    }
+
+    &:hover:after {
+        top: 32px;
+        right: 1px;
+    }
+}
+
+#site-nav > ul > li {
+    // arrow
+    > ul:after {
+        left: 10px;
+    }
+
+    &:hover:after {
+        top: 25px;
+        left: 1px;
+        height: 10px;
     }
 }
 
@@ -488,6 +507,8 @@ button.good {
 
 
 .secondary {
+    margin: 12px 0;
+
     h2 {
         font-family: inherit;
         font-style: normal;
@@ -528,7 +549,7 @@ button.good {
 /* --------------------*/
 /* Add-on Details Page */
 /* --------------------*/
-#breadcrumbs {
+#page #breadcrumbs {
     display: none;
 }
 .addon-details .primary,
@@ -552,7 +573,7 @@ button.good {
 .addon-details .primary:first-of-type:before {
     content: "";
     display: block;
-    width: 400vw;
+    width: 100%;
     height: 100%;
     position: absolute;
     z-index: 0;
@@ -720,4 +741,15 @@ button.good {
 
 .personas-home .intro {
     font-size: 1.2em;
+}
+
+// Theme Page
+.section > hgroup a,
+.article.prose a,
+#persona-side a {
+    color: @primary-blue;
+}
+
+.xoxo a {
+    color: @primary-blue;
 }
