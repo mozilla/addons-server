@@ -1,17 +1,18 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-09-19 21:17+0000\n"
-"Last-Translator: kusavica <kusavica@gmail.com>\n"
+"PO-Revision-Date: 2015-12-14 22:14+0000\n"
+"Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1442697439.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -93,20 +94,21 @@ msgstr "Ukončené overovanie {0}"
 #: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Overovanie vášho doplnku vypršalo, doplnok bude skontrolovaný manuálne."
 
 #: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplnok bol overený bez chýb a s {0} varovaním."
+msgstr[1] "Váš doplnok bol overený bez chýb a s {0} varovaniami."
+msgstr[2] "Váš doplnok bol overený bez chýb a s {0} varovaniami."
 
 #: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Váš doplnok bol overený bez chýb a s {0} správou."
+msgstr[1] "Váš doplnok bol overený bez chýb a s {0} správami."
+msgstr[2] "Váš doplnok bol overený bez chýb a s {0} správami."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
@@ -114,43 +116,67 @@ msgstr "Váš doplnok bol overený bez chýb alebo varovaní."
 
 #: static/js/common/upload-addon.js:436
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Vaše doplnky odoslané na kontrolu budú automaticky podpísané."
 
 #: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
 #: static/js/common/upload-addon.js:456
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno vykonať v ďalšom kroku)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
+msgstr ""
+"Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, "
+"zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno "
+"vykonať v ďalšom kroku)."
 
 #: static/js/common/upload-addon.js:457
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
 msgstr ""
+"Ak je váš doplnok určený pre obmedzený počet používateľov, mali by ste "
+"vybrať predbežnú kontrolu namiesto kompletnej."
 
 #: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Zoznam doplnkov odoslaných na kontrolu"
 
 #: static/js/common/upload-addon.js:471
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri procese kontroly:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
+msgstr ""
+"Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. "
+"Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri "
+"procese kontroly:"
 
 #: static/js/common/upload-addon.js:473
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
 msgstr ""
-"Skompilované binárne súčasti rovnako ako obfuscované skripty (okrem známych knižníc) musia mať predložené zdrojové súbory na kontrolu oddelene. Uistite sa, že ste použili pole pre nahranie "
-"zdrojových kódov, aby nedošlo k zamietnutiu kontroly."
+"Skompilované binárne súčasti rovnako ako obfuscované skripty (okrem známych "
+"knižníc) musia mať predložené zdrojové súbory na kontrolu oddelene. Uistite "
+"sa, že ste použili pole pre nahranie zdrojových kódov, aby nedošlo k "
+"zamietnutiu kontroly."
 
 #: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
+msgstr ""
+"Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k "
+"zamietnutiu kontroly:"
 
 #: static/js/common/upload-addon.js:508
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Ak ešte neviete, ako prebieha proces kontroly, môžete si o ňom prečítať tu."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
+msgstr ""
+"Ak ešte neviete, ako prebieha proces kontroly, môžete si o ňom prečítať tu."
 
 #: static/js/common/upload-addon.js:544
 msgid "Some platforms are not available for this type of add-on."
@@ -267,7 +293,7 @@ msgstr "Týždeň {0}"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " prevzatí"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -297,11 +323,13 @@ msgstr "{0} vrátených platieb"
 msgid "{0} installs"
 msgstr "{0} inštalácií"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Prevzatí"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Denní používatelia"
 
@@ -358,11 +386,13 @@ msgstr "Odberatelia"
 msgid "Ratings"
 msgstr "Hodnotenia"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Predaje"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Inštalácie"
 
@@ -376,25 +406,26 @@ msgstr "Správca doplnkov"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Propagácia v správcovi doplnkov"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Odporúčané v správcovi doplnkov"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Zistiť viac v správcovi doplnkov"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Návrhy vyhľadávania"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
 msgstr "Výsledky hľadania"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Domovská stránka (propagácia)"
 
@@ -422,7 +453,8 @@ msgstr "Stránka s detailmi (dole)"
 msgid "Detail Page (Development Channel)"
 msgstr "Stránka s detailmi (vývojársky kanál)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Často sa používa spolu s"
 
@@ -440,15 +472,15 @@ msgstr "Prechod na platenú variantu"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Spoznajte vývojára"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Používateľský profil"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "História verzií"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -506,7 +538,8 @@ msgstr "Zoznam doplnkov podľa popularity"
 msgid "Browse Listing Updated Sort"
 msgstr "Zoznam doplnkov podľa dátumu aktualizácie"
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Zoznam doplnkov podľa žiadanosti"
 
@@ -786,7 +819,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> za posledných {1} dní"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> od {1} do {2}"
 
@@ -807,16 +841,23 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Iný"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
+#: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnok a odoslať e-mailovú správu autorom."
-msgstr[1] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnky a odoslať e-mailovú správu autorom."
-msgstr[2] "Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnkov a odoslať e-mailovú správu autorom."
+msgstr[0] ""
+"Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnok a odoslať e-mailovú "
+"správu autorom."
+msgstr[1] ""
+"Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnky a odoslať e-mailovú "
+"správu autorom."
+msgstr[2] ""
+"Nastaviť maximálnu verziu aplikácie {1} pre {0} doplnkov a odoslať e-mailovú"
+" správu autorom."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -872,15 +913,19 @@ msgstr "Prevziať teraz"
 
 #: static/js/zamboni/buttons.js:128
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Doplnok nebol aktualizovaný tak, aby bol v predvolenom nastavení kompatibilný."
+msgstr ""
+"Doplnok nebol aktualizovaný tak, aby bol v predvolenom nastavení "
+"kompatibilný."
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Musíte používať Firefox 10.0 alebo novší."
 
 #: static/js/zamboni/buttons.js:145
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla označila túto verziu ako nekompatibilnú s vašou verziou Firefoxu."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla označila túto verziu ako nekompatibilnú s vašou verziou Firefoxu."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:227
@@ -910,11 +955,15 @@ msgstr "Zobraziť ďalšie verzie"
 
 #: static/js/zamboni/buttons.js:411
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Len pre Firefox — získajte Firefox teraz!"
 
 #: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na"
+" kóde Mozilla (napríklad Firefox)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1047,8 +1096,13 @@ msgid "No results found."
 msgstr "Neboli nájdené žiadne výsledky."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Ospravedlňujeme sa, nebolo pre vás možné nájsť žiadne odporúčania.<br>Navštívte <a href=\"{0}\">stránku s doplnkami</a> a vyhľadajte si ten pre vás najvhodnejší doplnok."
+msgid ""
+"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
+"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr ""
+"Ospravedlňujeme sa, nebolo pre vás možné nájsť žiadne "
+"odporúčania.<br>Navštívte <a href=\"{0}\">stránku s doplnkami</a> a "
+"vyhľadajte si ten pre vás najvhodnejší doplnok."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1104,11 +1158,11 @@ msgstr "Chyba pri načítaní prekladu"
 
 #: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Ignorovať toto hlásenie pri ďalších aktualizáciách"
 
 #: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Závažnosť pre automatické podpisovanie:"
 
 #: static/js/zamboni/global.js:416
 msgid "Loading..."
@@ -1123,8 +1177,12 @@ msgstr[1] "Zostávajú <b>{0}</b> znaky."
 msgstr[2] "Zostáva <b>{0}</b> znakov."
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. "
+"Prosím, skúste to neskôr."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1177,7 +1235,8 @@ msgstr "Tieto testy neboli spustené."
 msgid "Tests"
 msgstr "Testy"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Chyba"
 
@@ -1187,7 +1246,7 @@ msgstr "Upozornenie"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Odporúčania k úspešnému dokončeniu automatického podpísania:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
@@ -1246,7 +1305,8 @@ msgstr "Neskontrolované"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimentálne <span>(Ďalšie informácie)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:81
+#: static/js/zamboni/mobile/buttons.js:82
 msgid "Not Available for {0}"
 msgstr "Nie je dostupné pre {0}"
 
