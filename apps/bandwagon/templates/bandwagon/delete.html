@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}
 {# L10n: %s is the name of the collection. #}
-{{ page_title(_('Delete {0}')|f(collection.name)) }}
+{{ page_title(_('Delete {0}')|fe(collection.name)) }}
 {% endblock %}
 
 {% block content %}
