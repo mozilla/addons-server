@@ -38,18 +38,6 @@ def flag(context, addon):
         return ''
 
 
-@register.inclusion_tag('addons/performance_note.html')
-@jinja2.contextfunction
-def performance_note(context, amount, listing=False):
-    return new_context(**locals())
-
-
-@register.inclusion_tag('addons/impala/performance_note.html')
-@jinja2.contextfunction
-def impala_performance_note(context, amount, listing=False):
-    return new_context(**locals())
-
-
 @register.inclusion_tag('addons/impala/dependencies_note.html')
 @jinja2.contextfunction
 def dependencies_note(context, addon, module_context='impala'):

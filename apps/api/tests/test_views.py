@@ -191,7 +191,7 @@ class StripHTMLTest(TestCase):
 
 class APITest(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_4664_twitterbar',
-                'base/addon_5299_gcal', 'perf/index']
+                'base/addon_5299_gcal']
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -549,36 +549,6 @@ class APITest(TestCase):
         self.assertContains(result, '<full type="">')
         self.assertContains(result,
                             '<thumbnail type="" width="200" height="150">')
-
-    def test_performance_data(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        eq_(doc('performance application').eq(0).attr('name'), 'fx')
-        eq_(doc('performance application').eq(0).attr('version'), '3.6')
-        eq_(doc('performance application platform').eq(0).attr('name'), 'mac')
-        eq_(doc('performance application platform').eq(0).attr('version'),
-            '10.6')
-        result = doc('performance application platform result').eq(0)
-        eq_(result.attr('type'), 'ts')
-        eq_(result.attr('average'), '5.21')
-        eq_(result.attr('baseline'), '1.2')
-
-    @patch.object(settings, 'PERF_THRESHOLD', 335)
-    def test_performance_threshold_false(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        eq_(result.attr('above_threshold'), 'false')
-
-    @patch.object(settings, 'PERF_THRESHOLD', 332)
-    def test_performance_threshold_true(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        eq_(result.attr('above_threshold'), 'true')
 
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):

@@ -134,20 +134,9 @@
     <homepage>{{ addon.homepage }}</homepage>
     <support>{{ addon.support_url }}</support>
     <featured>{{ addon.is_featured(request.APP, request.LANG)|int }}</featured>
-    {% if settings.API_SHOW_PERF_DATA %}
+    {# Only kept for backwards compatibility of the API #}
     <performance>
-      {% for appversion, results in addon.app_perf_results() %}
-      <application name="{{ appversion.app }}" version="{{ appversion.version }}">
-        {% for res in results %}
-        <platform name="{{ res.result.osversion.os }}" version="{{ res.result.osversion.version }}">
-          <result type="{{ res.result.test }}" baseline="{{ res.baseline }}" average="{{ res.result.average }}"
-                  {% if res.result.test == 'ts' %}above_threshold="{{ res.startup_is_too_slow|json }}"{% endif %} />
-        </platform>
-        {%- endfor -%}
-      </application>
-      {%- endfor -%}
     </performance>
-    {% endif -%}
 
     {% if show_localepicker -%}
     <strings><![CDATA[

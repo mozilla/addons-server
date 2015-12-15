@@ -18,11 +18,6 @@
       {% include 'addons/includes/install_button.html' %}
     {% endfor %}
   </div>
-  <ul class="badges">
-    {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-      <li class="warning">{{ _('May Slow Down Your Browser') }}</li>
-    {% endif %}
-  </ul>
   {% if addon.privacy_policy %}
     <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
       {{ _('View privacy policy') }}

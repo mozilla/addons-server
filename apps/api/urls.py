@@ -138,8 +138,6 @@ urlpatterns = patterns(
 
     # Piston
     url(r'^2/', include(piston_patterns)),
-    url(r'^2/performance/add$', views.performance_add,
-        name='api.performance.add'),
     url(r'^1.5/search_suggestions/', views.search_suggestions),
     # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',

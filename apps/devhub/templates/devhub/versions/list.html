@@ -55,11 +55,6 @@
         {% endfor %}
       </ul>
     </td>
-    {% if waffle.flag('perf-tests') %}
-      <td class="perf-tests">
-        {% include "devhub/addons/listing/perf_file_listing.html" %}
-      </td>
-    {% endif %}
     <td class="version-delete">
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
@@ -133,9 +128,6 @@
             <th>{{ _('Currently on AMO') }}</th>
             <th>{{ _('Status') }}</th>
             <th>{{ _('Validation') }}</th>
-            {% if waffle.flag('perf-tests') %}
-              <th>{{ _('Performance') }}</th>
-            {% endif %}
             <th class="version-delete">{{ _('Delete') }}</th>
           </tr>
           {{ version_details(addon.current_version,
@@ -154,9 +146,6 @@
             <th>{{ _('Next version of this add-on') }}</th>
             <th>{{ _('Status') }}</th>
             <th>{{ _('Validation') }}</th>
-            {% if waffle.flag('perf-tests') %}
-              <th>{{ _('Performance') }}</th>
-            {% endif %}
             <th class="version-delete">{{ _('Delete') }}</th>
           </tr>
           {{ version_details(addon.latest_version, full_info=True) }}
@@ -174,9 +163,6 @@
           <th>{{ _('Version') }}</th>
           <th>{{ _('Status') }}</th>
           <th>{{ _('Validation') }}</th>
-          {% if waffle.flag('perf-tests') %}
-            <th>{{ _('Performance') }}</th>
-          {% endif %}
           <th class="version-delete">{{ _('Delete') }}</th>
         </tr>
         <tr>

@@ -44,8 +44,6 @@ from api.authentication import AMOOAuthAuthentication
 from addons.models import Addon, AddonUser, BlacklistedGuid
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File
-from perf.models import (Performance, PerformanceAppVersions,
-                         PerformanceOSVersion)
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import AppVersion, Version
@@ -842,100 +840,3 @@ class TestDRFAddon(TestAddon):
     def test_diff_addon(self):
         data = self.create_addon()
         self.compare_output(('api.addon', data['id']))
-
-
-class TestPerformanceAPI(BaseOAuth):
-    fixtures = ['base/users']
-
-    def get_data(self):
-        return {
-            'os': 'WINNT',
-            'version': '123',
-            'platform': 'x86',
-            'product': 'firefox',
-            'product_version': 'x.y.z',
-            'average': '1.25',
-            'test': 'ts'
-        }
-
-    def make_create_request(self, data):
-        return oclient.post('api.performance.add', self.accepted_consumer,
-                            self.token, data=data)
-
-    def test_form_fails(self):
-        res = self.make_create_request({})
-        eq_(res.status_code, 400)
-
-    def test_not_allowed(self):
-        res = self.client.post(reverse('api.performance.add'), {})
-        eq_(res.status_code, 401)
-
-    def test_form_incomplete(self):
-        data = self.get_data()
-        del data['test']
-        res = self.make_create_request(data)
-        eq_(res.status_code, 400)
-        assert 'This field is required. (test)' in res.content
-
-    def test_form_validate(self):
-        data = self.get_data()
-        data['os'] = 'WebOS hotness'
-        res = self.make_create_request(data)
-        eq_(res.status_code, 400)
-        assert 'WebOS hotness' in res.content
-
-    def test_no_addon(self):
-        data = self.get_data()
-        data['addon_id'] = '123'
-        res = self.make_create_request(data)
-        eq_(res.status_code, 400)
-        assert 'Add-on not found' in res.content
-
-    def test_addon(self):
-        data = self.get_data()
-        data['addon_id'] = Addon.objects.create(type=amo.ADDON_EXTENSION).pk
-        res = self.make_create_request(data)
-        eq_(res.status_code, 200)
-        perfs = Performance.objects.all()
-        eq_(perfs[0].addon_id, data['addon_id'])
-
-    def test_form_data(self):
-        res = self.make_create_request(self.get_data())
-        eq_(res.status_code, 200)
-        perfs = Performance.objects.all()
-        eq_(perfs.count(), 1)
-        eq_(perfs[0].average, 1.25)
-
-    def test_form_updates(self):
-        self.test_form_data()
-        data = self.get_data()
-        data['average'] = 1.3
-        self.make_create_request(data)
-        perfs = Performance.objects.all()
-        eq_(len(perfs), 1)
-        eq_(perfs[0].average, 1.3)
-
-    def test_creates_app_version(self):
-        self.test_form_data()
-        apps = PerformanceAppVersions.objects.all()
-        eq_(len(apps), 1)
-        eq_(apps[0].app, 'firefox')
-        eq_(apps[0].version, 'x.y.z')
-
-    def test_gets_app_version(self):
-        self.test_form_data()
-        eq_(PerformanceAppVersions.objects.all().count(), 1)
-        self.test_form_data()
-        eq_(PerformanceAppVersions.objects.all().count(), 1)
-
-    def test_creates_os_version(self):
-        self.test_form_data()
-        apps = PerformanceOSVersion.objects.all()
-        eq_(apps.count(), 1)
-        eq_(apps[0].os, 'WINNT')
-
-    def test_gets_os_version(self):
-        self.test_form_data()
-        eq_(PerformanceOSVersion.objects.all().count(), 1)
-        self.test_form_data()
-        eq_(PerformanceOSVersion.objects.all().count(), 1)

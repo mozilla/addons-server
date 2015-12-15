@@ -275,31 +275,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
         assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
 
-    def test_public_is_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_PUBLIC)
-        eq_(f.can_be_perf_tested(), True)
-
-    def test_reviewed_is_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_LITE)
-        eq_(f.can_be_perf_tested(), True)
-
-    def test_unreviewed_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_UNREVIEWED)
-        eq_(f.can_be_perf_tested(), False)
-
-    def test_disabled_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_DISABLED)
-        eq_(f.can_be_perf_tested(), False)
-
-    def test_deleted_addon_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.version.addon.update(disabled_by_user=True)
-        eq_(f.can_be_perf_tested(), False)
-
     def test_file_is_mirrorable(self):
         f = File.objects.get(pk=67442)
         eq_(f.is_mirrorable(), True)

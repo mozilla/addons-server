@@ -119,10 +119,6 @@
     {% endif %}
   </div>
 
-  {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-    {{ impala_performance_note(amount=addon.ts_slowness) }}
-  {% endif %}
-
   {{ dependencies_note(addon) }}
 
   {% if addon.takes_contributions %}
