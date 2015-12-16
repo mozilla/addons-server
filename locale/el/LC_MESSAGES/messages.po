@@ -376,7 +376,7 @@ msgid ""
 msgstr ""
 "Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο "
 "προγραμματιστής ζητά να κάνετε μια δωρεά στο <a "
-"href=\"%(charity_url)s\">%(charity_name)</a> <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
@@ -388,7 +388,7 @@ msgid ""
 msgstr ""
 "Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο "
 "προγραμματιστής ζητά να κάνετε μια δωρεά στο <a "
-"href=\"%(charity_url)s\">%(charity_name)</a> <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
