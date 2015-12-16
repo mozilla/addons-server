@@ -2,7 +2,8 @@
 import hashlib
 import os
 
-from datetime import datetime
+import calendar
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -1236,6 +1237,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(self.upload, self.addon, [self.platform])
         files = version.all_files
         assert not files[0].is_multi_package
+
+    def test_track_upload_time(self):
+        # Set created time back (just for sanity) otherwise the delta
+        # would be in the microsecond range.
+        self.upload.update(created=datetime.now() - timedelta(days=1))
+
+        with mock.patch('versions.models.statsd.timing') as mock_timing:
+            Version.from_upload(self.upload, self.addon, [self.platform])
+
+            upload_start = calendar.timegm(
+                self.upload.created.utctimetuple())
+            now = calendar.timegm(datetime.now().utctimetuple())
+            rough_delta = (now - upload_start) * 1000
+            actual_delta = mock_timing.call_args[0][1]
+
+            fuzz = 2000  # 2 seconds
+            assert (actual_delta >= (rough_delta - fuzz) and
+                    actual_delta <= (rough_delta + fuzz))
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
