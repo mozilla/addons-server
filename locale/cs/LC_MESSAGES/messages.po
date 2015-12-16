@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-14 06:36+0000\n"
+"PO-Revision-Date: 2015-12-16 22:10+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6463,6 +6463,9 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web "
+"Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý "
+"požadavek, jak je vysvětleno v <a href=\"%(docs_url)s\">API dokumentaci</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -6583,6 +6586,10 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Pokud jste nalezli problém s webem, rádi jej opravíme. <a "
+"href=\"https://github.com/mozilla/olympia/issues\">Nahlaste jej</a> prosím "
+"na GitHubu spolu s informací, kde se problém vyskytl a jak jej lze "
+"zreprodukovat."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8731,6 +8738,10 @@ msgid ""
 "ons. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that "
 "you encounter."
 msgstr ""
+"Odesílání aktualizací nezveřejněných doplňků k automatickému podepisování je"
+" ve stádiu otevřené bety. Pro velké množství doplňků může být stále "
+"vyžadována ruční kontrola. <a href=\"%(url)s\" "
+"target=\"_blank\">Nahlaste</a> prosím všechny chyby, na který narazíte."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8752,6 +8763,11 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(issues_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Chování beta kanálu bylo změněno, aby odpovídalo <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">povinnému podepisování "
+"doplňků</a>. Nový proces je ve fázi otevřeného testování a může se v "
+"budoucnu změnit. <a href=\"%(issues_url)s\" target=\"_blank\">Nahlaste nám "
+"prosím jakékoliv chyby</a>, kterých si všimnete."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9098,6 +9114,9 @@ msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Změna stavu doplňku na neveřejný je aktuálně ve fázi otevřené bety. <a "
+"href=\"%(url)s\" target=\"_blank\">Nahlaste</a> prosím jakékoli chyby, na "
+"které narazíte."
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "Unlisting an add-on is irreversible!"
@@ -11184,6 +11203,9 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Pomozte nám vylepšit tento web. Má otevřený zdrojový kód a hlásit chyby a "
+"posílat záplaty na mě můžete i vy. <a href=\"%(url)s\">GitHub</a> obsahuje "
+"soupis všech aktuálních chyb, starší chyby pak můžete nalézt na BugZille."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -15392,7 +15414,7 @@ msgstr "Zobrazit mobilní verzi"
 
 #: templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "Stav stránky"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
