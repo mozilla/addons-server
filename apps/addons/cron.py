@@ -304,7 +304,7 @@ def unhide_disabled_files():
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
-            log.warning('File that should not be guarded: %s.' % filepath)
+            log.warning(u'File that should not be guarded: %s.', filepath)
             try:
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
