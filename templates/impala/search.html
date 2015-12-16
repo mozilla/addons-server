@@ -5,8 +5,11 @@
 {% set search_form = SimpleSearchForm(request, search_cat) %}
 
 <form id="search" action="{{ search_url }}">
-    <div role="status" aria-live="polite" id="announce-suggestions"></div>
-    <label for="search-q" hidden>type to search for add-ons</label>
+    <div role="status" aria-live="polite" id="live-announcements"
+         class="visuallyhidden"></div>
+    <label for="search-q" class="visuallyhidden">
+        {{_('search for add-ons')}}
+    </label>
   <input id="search-q" type="text" name="q" autocomplete="off" title=""
          class="text {% if not search_form.q.data %}placeholder{% endif %}"
          placeholder="{{ search_form.placeholder(search_placeholder) }}"
@@ -19,9 +22,10 @@
     {{ search_form.platform }}
   {% endif %}
   <button class="search-button" type="submit" title="{{ _('Search') }}"
-         src="{{ static('img/zamboni/global/btn-search.png') }}"
-          style="text-indent:-999em;">search
-      add-ons
+         src="{{ static('img/zamboni/global/btn-search.png') }}">
+      <span class="visuallyhidden">
+          {{_('search for add-ons')}}
+      </span>
   </button>
   {% if search_cat != 'collections' %}
     <div id="site-search-suggestions"

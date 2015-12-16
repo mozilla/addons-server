@@ -800,6 +800,10 @@ msgstr "Date"
 msgid "Other"
 msgstr "Other"
 
+#: static/js/impala/ajaxcache.js:96
+msgid "One or more suggestion is available You can select between them"
+msgstr "One or more suggestion is available You can select between them"
+
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Select an application first"
