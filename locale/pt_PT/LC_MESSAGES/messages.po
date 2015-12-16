@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-08 01:05+0000\n"
+"PO-Revision-Date: 2015-12-16 01:54+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -17,16 +17,16 @@ msgstr ""
 
 #: apps/addons/buttons.py:178
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 #: apps/addons/buttons.py:180
 msgid "Download"
-msgstr "Transferir"
+msgstr "Descarregar"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:184
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Continuar para a transferência&nbsp;&rarr;"
+msgstr "Continuar para a descarga&nbsp;&rarr;"
 
 #: apps/addons/buttons.py:200
 msgctxt "install_button"
@@ -41,7 +41,7 @@ msgstr "Não revisto"
 #: apps/addons/buttons.py:212
 msgctxt "install_button"
 msgid "Experimental"
-msgstr "Em teste"
+msgstr "Experimental"
 
 #: apps/addons/buttons.py:219
 msgid "Add to {0}"
@@ -49,15 +49,15 @@ msgstr "Adicionar ao {0}"
 
 #: apps/addons/forms.py:58
 msgid "This name is already in use. Please choose another."
-msgstr "Este nome já está em uso. Por favor, escolha outro."
+msgstr "Este nome já está em utilização. Por favor, escolha outro."
 
 #: apps/addons/forms.py:69
 msgid "This slug is already in use. Please choose another."
-msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
+msgstr "Este identificador já está a ser utilizado. Por favor, escolha outro."
 
 #: apps/addons/forms.py:72
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
+msgstr "O identificador não pode ser \"%s\". Por favor, escolha outro."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: apps/addons/forms.py:91
@@ -83,14 +83,14 @@ msgstr[1] "Tem {0} etiquetas a mais."
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
-"Todas as etiquetas têm de ter %s caracteres ou menos depois de removidos os "
-"caracteres inválidos."
+"Todas as etiquetas têm de ter %s caráteres ou menos depois de removidos os "
+"caráteres inválidos."
 
 #: apps/addons/forms.py:119
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
-msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
+msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caráter."
+msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caráteres."
 
 #: apps/addons/forms.py:232
 msgid ""
@@ -117,12 +117,12 @@ msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
-"Antes de alterar o seu idioma pré-definido tem de ter um nome, sumário e uma"
-" descrição nesse idioma. Falta %s."
+"Antes de alterar o seu idioma predefinido tem de ter um nome, resumo e uma "
+"descrição nesse idioma. Falta %s."
 
 #: apps/addons/forms.py:481 apps/addons/forms.py:572
 msgid "A license must be selected."
-msgstr "Tem de ser seleccionada uma licença."
+msgstr "Tem de ser selecionada uma licença."
 
 #: apps/addons/forms.py:553
 msgid "Give Your Theme a Name."
@@ -131,11 +131,11 @@ msgstr "Dê um nome ao seu tema."
 #: apps/addons/forms.py:559
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr "Descreva seu tema."
+msgstr "Descreva o seu tema."
 
 #: apps/addons/forms.py:700
 msgid "Enter a new author's email address"
-msgstr "Introduza o novo endereço de email do autor"
+msgstr "Introduza o novo endereço de e-mail do autor"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
@@ -165,7 +165,7 @@ msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
 "Os utilizadores serão sempre informados no Gestor de Extras (Firefox 4 e "
-"superiores)"
+"superior)"
 
 # Column name in a table.
 #: apps/addons/models.py:1902 apps/addons/templates/addons/details_box.html:59
@@ -187,7 +187,7 @@ msgstr "Adicionado recentemente"
 #: apps/addons/views.py:318 apps/bandwagon/views.py:92 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
-msgstr "Actualizado recentemente"
+msgstr "Atualizado recentemente"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -235,7 +235,7 @@ msgstr "Ver a política de privacidade"
 #: apps/addons/templates/addons/mobile/button.html:33
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
-msgstr "Ver Acordo de licenciamento para o utilizador final"
+msgstr "Ver acordo de licenciamento para o utilizador final"
 
 #: apps/addons/templates/addons/button.html:92
 #: apps/addons/templates/addons/impala/button.html:54
@@ -260,15 +260,15 @@ msgid ""
 "The developer of this add-on asks that you help support its continued "
 "development by making a small contribution."
 msgstr ""
-"O desenvolvedor deste extra pede que o ajude para continuar o "
-"desenvolvimento com uma pequena contribuição."
+"O programador deste extra pede que o ajude a continuar o desenvolvimento com"
+" uma pequena contribuição."
 
 #: apps/addons/templates/addons/contribution.html:14
 msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
-"O desenvolvedor deste extra pede que mostre o seu apoio, fazendo uma doação "
+"O programador deste extra pede que mostre o seu apoio fazendo um donativo "
 "para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:19
@@ -276,8 +276,8 @@ msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
-"O desenvolvedor deste extra pede que mostre o seu apoio, fazendo uma pequena"
-" doação para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+"O programador deste extra pede que mostre o seu apoio fazendo um pequeno "
+"donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/contribution.html:30
 #: apps/addons/templates/addons/impala/contribution.html:18
@@ -326,7 +326,7 @@ msgid ""
 "The developer of this add-on would like you to consider making a donation to"
 " the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
-"O desenvolvedor deste extra gostaria que fizesse uma doação para <a "
+"O programador deste extra gostaria que fizesse um donativo para <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o usar."
 
 #: apps/addons/templates/addons/contribution.html:69
@@ -335,8 +335,8 @@ msgid ""
 "contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you "
 "enjoy using it."
 msgstr ""
-"O desenvolvedor deste extra gostaria que fizesse uma pequena contribuição "
-"para <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o usar."
+"O programador deste extra gostaria que fizesse uma pequena contribuição para"
+" <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o usar."
 
 #: apps/addons/templates/addons/contribution.html:76
 msgid ""
@@ -344,9 +344,9 @@ msgid ""
 "ecosystem. Your optional contribution helps sustain further development of "
 "this add-on."
 msgstr ""
-"A Mozilla está empenhada em ajudar um eco-sistema de desenvolvedores "
-"saudável e vibrante. A sua contribuição opcional ajuda a um futuro "
-"desenvolvimento contínuo deste extra."
+"A Mozilla está empenhada em ajudar um eco-sistema de programadores saudável "
+"e vibrante. A sua contribuição opcional ajuda a um desenvolvimento contínuo "
+"deste extra."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
@@ -358,8 +358,8 @@ msgid ""
 " making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 "Ajude a suportar o desenvolvimento contínuo do "
-"<strong>%(addon_name)s</strong> fazendo uma pequena contribuição através de "
-"<a href=\"%(paypal_url)s\">PayPal</a>."
+"<strong>%(addon_name)s</strong> com uma pequena contribuição através do <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
@@ -367,9 +367,9 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Para mostrar o seu suporte ao <strong>%(addon_name)s</strong>, o "
-"desenvolvedor pede que faça uma doação para <a "
-"href=\"%(charity_url)s\">%(charity_name)s</a> através de <a "
+"Para mostrar o seu apoio ao <strong>%(addon_name)s</strong>, o programador "
+"pede que faça umm donativo para <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> através do <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:21
@@ -379,10 +379,10 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Para mostrar o seu suporte ao <strong>%(addon_name)s</strong>, o "
-"desenvolvedor pede que faça uma pequena doação para <a "
-"href=\"%(charity_url)s\">%(charity_name)s</a> através de <a "
-"href=\"%(paypal_url)s\">PayPal</a>"
+"Para mostrar o seu apoio ao <b>%(addon_name)s</b>, o programador pede que "
+"faça um pequeno donativo para <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> através do <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -442,7 +442,7 @@ msgstr "Contribuição efetuada, obrigado."
 #: apps/addons/templates/addons/details_box.html:10
 #: apps/discovery/templates/discovery/addons/detail.html:25
 msgid "No restart required"
-msgstr "Não é necessário reiniciar"
+msgstr "Não necessita de reiniciar"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: apps/addons/templates/addons/details_box.html:30
@@ -456,14 +456,14 @@ msgstr "Informação do extra para {0}"
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:450 apps/devhub/views.py:75
 msgid "Updated"
-msgstr "Actualizado"
+msgstr "Atualizado"
 
 #: apps/addons/templates/addons/details_box.html:42
 #: apps/addons/templates/addons/mobile/details.html:71
 #: apps/devhub/templates/devhub/addons/edit/support.html:43
 #: apps/discovery/templates/discovery/addons/detail.html:87
 msgid "Website"
-msgstr "Sítio web"
+msgstr "Website"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: apps/addons/templates/addons/details_box.html:51
@@ -503,14 +503,14 @@ msgstr "Avaliação"
 #: apps/addons/templates/addons/details_box.html:89
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
-msgstr "Transferências"
+msgstr "Descargas"
 
 #: apps/addons/templates/addons/details_box.html:95
 #: apps/addons/templates/addons/details_box.html:107
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
-msgstr "Ver Estatísticas"
+msgstr "Ver estatísticas"
 
 #: apps/addons/templates/addons/details_box.html:101
 msgid "Average Daily Users"
@@ -538,12 +538,12 @@ msgstr "Ver política de privacidade"
 
 #: apps/addons/templates/addons/details_box.html:134
 msgid "EULA"
-msgstr "ALUF"
+msgstr "EULA"
 
 #: apps/addons/templates/addons/details_box.html:175
 #: apps/addons/templates/addons/details_box.html:235
 msgid "More about this add-on"
-msgstr "Mais sobre este extra"
+msgstr "Mais acerca este extra"
 
 #: apps/addons/templates/addons/details_box.html:184
 msgid "Image Gallery"
@@ -552,7 +552,7 @@ msgstr "Galeria de imagens"
 #: apps/addons/templates/addons/details_box.html:194
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
-msgstr "Comentários do desenvolvedor"
+msgstr "Comentários do programador"
 
 #: apps/addons/templates/addons/details_box.html:203
 #: apps/addons/templates/addons/impala/details.html:266
@@ -566,10 +566,9 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
-"O Canal de Desenvolvimento permite que você teste uma versão experimental do"
-" novo extra antes de ser lançado ao público em geral. Depois de instalar a "
-"versão de desenvolvimento, você vai continuar a receber as actualizações "
-"deste canal."
+"O canal de desenvolvimento permite que teste uma versão experimental do novo"
+" extra antes de ser lançado ao público em geral. Depois de instalar a versão"
+" de desenvolvimento vai continuar a receber as atualizações deste canal."
 
 #: apps/addons/templates/addons/details_box.html:211
 msgid "Install development version"
@@ -585,9 +584,9 @@ msgid ""
 msgstr ""
 "<strong>Cuidado:</strong> As versões de desenvolvimento deste extra não "
 "foram revistas pela Mozilla. Depois de instalar uma versão de "
-"desenvolvimento vai continuar a receber actualizações deste desenvolvedor. "
-"Para parar de receber actualizações de desenvolvimento, reinstale a versão "
-"pré-definida na ligação acima."
+"desenvolvimento vai continuar a receber atualizações deste programador. Para"
+" parar de receber atualizações de desenvolvimento, reinstale a versão "
+"predefinida na ligação acima."
 
 #: apps/addons/templates/addons/details_box.html:224
 #: apps/addons/templates/addons/impala/details.html:285
@@ -597,8 +596,7 @@ msgstr "Versão {0}:"
 #: apps/addons/templates/addons/details_box.html:238
 msgid "Nothing to see here! The developer did not include any details."
 msgstr ""
-"Não existe nada para ver aqui!! O desenvolvedor não incluiu detalhes "
-"nenhuns."
+"Não existe nada para ver aqui! O programador não incluiu nenhuns detalhes."
 
 #: apps/addons/templates/addons/details_box.html:255
 msgctxt "addons_display_release_notes"
@@ -706,7 +704,7 @@ msgstr "Ordenar por:"
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr "Actualizado {0}"
+msgstr "Atualizado {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10
@@ -722,8 +720,8 @@ msgstr "Adicionado {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s transferência semanal"
-msgstr[1] "%(num)s transferências semanais"
+msgstr[0] "%(num)s descarga semanal"
+msgstr[1] "%(num)s descargas semanais"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
@@ -736,8 +734,8 @@ msgstr[1] "%(num)s utilizadores"
 #: apps/addons/templates/addons/impala/details.html:64
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} transferência semanal"
-msgstr[1] "{0} transferências semanais"
+msgstr[0] "{0} descarga semanal"
+msgstr[1] "{0} descargas semanais"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
@@ -766,7 +764,7 @@ msgstr "Voltar ao extra."
 #: apps/addons/templates/addons/impala/performance_note.html:4
 #: apps/addons/templates/addons/impala/performance_note.html:20
 msgid "This add-on can slow down Firefox."
-msgstr "Este extra pode reduzir o desempenho do Firefox."
+msgstr "Este extra pode tornar o Firefox lento."
 
 #: apps/addons/templates/addons/performance_note.html:5
 #: apps/amo/templates/amo/site_nav.html:76
@@ -779,8 +777,8 @@ msgid ""
 "<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
 "start-up by <b>%(amount)s%%</b>."
 msgstr ""
-"<b>Aviso de desempenho:</b> Instalar este extra pode reduzir o desempenho no"
-" arranque do Firefox em <b>%(amount)s%%</b>."
+"<b>Aviso de desempenho:</b> Instalar este extra pode tornar o arranque do "
+"Firefox lento em <b>%(amount)s%%</b>."
 
 #: apps/addons/templates/addons/performance_note.html:14
 #: apps/addons/templates/addons/performance_note.html:27
@@ -949,8 +947,8 @@ msgstr "Saber mais sobre o Firefox"
 #: apps/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
-"ou <b><a class=\"installer\" href=\"{url}\">transferir de qualquer "
-"maneira</a></b>"
+"ou <b><a class=\"installer\" href=\"{url}\">descarregar de qualquer "
+"forma</a></b>"
 
 #: apps/addons/templates/addons/popups.html:26
 msgid ""
@@ -960,18 +958,18 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Como instalar no Thunderbird</strong> <ol> <li>Transfira e guarde o "
-"ficheiro no seu disco.</li> <li>No Mozilla Thunderbird, abrir Extras a "
+"<strong>Como instalar no Thunderbird</strong> <ol> <li>Descarregue e guarde "
+"o ficheiro no seu disco.</li> <li>No Mozilla Thunderbird, abra o Extras a "
 "partir do menu Ferramentas.</li> <li>A partir do botão opções a seguir ao "
 "campo da pesquisa, selecione \"Instalar extra a partir de ficheiro...\" e "
-"localize o extra transferido.</li> </ol>"
+"localize o extra descarregado.</li> </ol>"
 
 #: apps/addons/templates/addons/popups.html:41
 msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
-"Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de correio "
+"Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de e-mail "
 "gratuito e de código aberto da Mozilla, e instale o extra Personas Plus."
 
 #: apps/addons/templates/addons/popups.html:46
