@@ -1,7 +1,7 @@
 import random
 
-from addons.models import Review
-from users.models import UserProfile
+from olympia.addons.models import Review
+from olympia.users.models import UserProfile
 
 
 def generate_ratings(addon, num):

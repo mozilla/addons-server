@@ -1,8 +1,9 @@
-from rest_framework.renderers import (JSONRenderer as BaseJSONRenderer,
-                                      XMLRenderer)
-
-from amo.utils import JSONEncoder
 import commonware.log
+from rest_framework.renderers import (
+    JSONRenderer as BaseJSONRenderer,
+    XMLRenderer)
+
+from olympia.amo.utils import JSONEncoder
 
 from .views import render_xml_to_string
 

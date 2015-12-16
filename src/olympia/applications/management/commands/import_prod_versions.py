@@ -2,8 +2,8 @@ from django.core.management.base import BaseCommand
 
 from pyquery import PyQuery
 
-from applications.models import AppVersion
-from constants.applications import APP_GUIDS
+from olympia.applications.models import AppVersion
+from olympia.constants.applications import APP_GUIDS
 
 
 class Command(BaseCommand):

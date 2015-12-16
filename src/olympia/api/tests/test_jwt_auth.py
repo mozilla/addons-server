@@ -9,11 +9,11 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
 
-from amo.tests import TestCase, WithDynamicEndpoints
-from apps.api.jwt_auth import handlers
-from apps.api.jwt_auth.views import JWTKeyAuthentication, JWTProtectedView
-from apps.api.models import APIKey, SYMMETRIC_JWT_TYPE
-from apps.users.models import UserProfile
+from olympia.amo.tests import TestCase, WithDynamicEndpoints
+from olympia.api.jwt_auth import handlers
+from olympia.api.jwt_auth.views import JWTKeyAuthentication, JWTProtectedView
+from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
+from olympia.users.models import UserProfile
 
 
 class ProtectedView(JWTProtectedView):

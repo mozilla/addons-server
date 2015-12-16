@@ -14,21 +14,21 @@ from django.utils import encoding, translation
 from mock import patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser
-from amo.signals import _connect, _disconnect
-from bandwagon.models import Collection, CollectionWatcher
-from reviews.models import Review
-from translations.models import Translation
-from users.models import (BlacklistedEmailDomain, BlacklistedPassword,
-                          BlacklistedName, get_hexdigest, UserEmailField,
-                          UserProfile)
-from users.utils import find_users
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo.signals import _connect, _disconnect
+from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.reviews.models import Review
+from olympia.translations.models import Translation
+from olympia.users.models import (
+    BlacklistedEmailDomain, BlacklistedPassword,
+    BlacklistedName, get_hexdigest, UserEmailField, UserProfile)
+from olympia.users.utils import find_users
 
 
-class TestUserProfile(amo.tests.TestCase):
+class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'users/test_backends')
 
@@ -257,7 +257,7 @@ class TestUserProfile(amo.tests.TestCase):
                                         watched_collection2.pk)
 
 
-class TestPasswords(amo.tests.TestCase):
+class TestPasswords(TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
     bytes_ = '\xb1\x98og\x88\x87\x08q'
 
@@ -363,7 +363,7 @@ class TestPasswords(amo.tests.TestCase):
         assert not profile.check_password('')
 
 
-class TestBlacklistedName(amo.tests.TestCase):
+class TestBlacklistedName(TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
@@ -373,7 +373,7 @@ class TestBlacklistedName(amo.tests.TestCase):
         eq_(BlacklistedName.blocked('testo'), False)
 
 
-class TestBlacklistedEmailDomain(amo.tests.TestCase):
+class TestBlacklistedEmailDomain(TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
@@ -381,7 +381,7 @@ class TestBlacklistedEmailDomain(amo.tests.TestCase):
         assert not BlacklistedEmailDomain.blocked('mozilla.com')
 
 
-class TestFlushURLs(amo.tests.TestCase):
+class TestFlushURLs(TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
@@ -400,7 +400,7 @@ class TestFlushURLs(amo.tests.TestCase):
         assert urlparse(user.picture_url).query.find('modified') > -1
 
 
-class TestUserEmailField(amo.tests.TestCase):
+class TestUserEmailField(TestCase):
     fixtures = ['base/user_2519']
 
     def test_success(self):
@@ -418,7 +418,7 @@ class TestUserEmailField(amo.tests.TestCase):
         eq_(e.exception.messages[0], 'This field is required.')
 
 
-class TestBlacklistedPassword(amo.tests.TestCase):
+class TestBlacklistedPassword(TestCase):
 
     def test_blacklisted(self):
         BlacklistedPassword.objects.create(password='password')
@@ -426,7 +426,7 @@ class TestBlacklistedPassword(amo.tests.TestCase):
         assert not BlacklistedPassword.blocked('passw0rd')
 
 
-class TestUserHistory(amo.tests.TestCase):
+class TestUserHistory(TestCase):
 
     def test_user_history(self):
         user = UserProfile.objects.create(email='foo@bar.com')
@@ -455,7 +455,7 @@ class TestUserHistory(amo.tests.TestCase):
         eq_([user_1, user_2], list(find_users('luke@jedi.com')))
 
 
-class TestUserManager(amo.tests.TestCase):
+class TestUserManager(TestCase):
     fixtures = ('users/test_backends', )
 
     def test_create_user(self):

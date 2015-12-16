@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from addons.urls import ADDON_ID
-from editors import views, views_themes
+from olympia.addons.urls import ADDON_ID
+from olympia.editors import views, views_themes
 
 
 # All URLs under /editors/

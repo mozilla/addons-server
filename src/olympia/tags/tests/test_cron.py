@@ -1,13 +1,13 @@
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from files.models import File
-from tags.models import Tag, AddonTag
-from tags import cron
+from olympia.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.files.models import File
+from olympia.tags.models import Tag, AddonTag
+from olympia.tags import cron
 
 
-class TestTagJetpacks(amo.tests.TestCase):
+class TestTagJetpacks(TestCase):
     fixtures = ['base/apps', 'base/addon_3615']
 
     def setUp(self):

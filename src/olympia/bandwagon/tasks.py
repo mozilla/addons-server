@@ -4,16 +4,17 @@ import math
 from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
-import amo
-from amo.celery import task
-from amo.decorators import set_modified_on
-from amo.helpers import user_media_path
-from amo.utils import attach_trans_dict, resize_image
-from tags.models import Tag
-from lib.es.utils import index_objects
+from olympia import amo
+from olympia.amo.celery import task
+from olympia.amo.decorators import set_modified_on
+from olympia.amo.helpers import user_media_path
+from olympia.amo.utils import attach_trans_dict, resize_image
+from olympia.tags.models import Tag
+from olympia.lib.es.utils import index_objects
+
 from . import search
-from .models import (Collection, CollectionAddon, CollectionVote,
-                     CollectionWatcher)
+from .models import (
+    Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
 log = logging.getLogger('z.task')
 

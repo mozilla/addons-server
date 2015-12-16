@@ -2,9 +2,9 @@ from datetime import datetime
 
 from rest_framework.test import APITestCase
 
-from api.jwt_auth.views import JWTKeyAuthentication
-from api.tests.test_jwt_auth import JWTAuthTester
-from users.models import UserProfile
+from olympia.api.jwt_auth.views import JWTKeyAuthentication
+from olympia.api.tests.test_jwt_auth import JWTAuthTester
+from olympia.users.models import UserProfile
 
 
 class APIAuthTestCase(APITestCase, JWTAuthTester):

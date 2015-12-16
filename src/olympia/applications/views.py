@@ -4,8 +4,9 @@ from django.shortcuts import render
 import caching.base as caching
 from tower import ugettext as _
 
-import amo
-from amo.helpers import url, absolutify
+from olympia import amo
+from olympia.amo.helpers import url, absolutify
+
 from .models import AppVersion
 
 

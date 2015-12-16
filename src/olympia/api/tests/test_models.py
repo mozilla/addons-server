@@ -1,7 +1,7 @@
 import mock
 
-from amo.tests import TestCase
-from users.models import UserProfile
+from olympia.amo.tests import TestCase
+from olympia.users.models import UserProfile
 
 from ..models import APIKey, SYMMETRIC_JWT_TYPE
 

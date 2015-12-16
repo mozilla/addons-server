@@ -4,11 +4,11 @@ import mock
 from elasticsearch import TransportError
 from nose.tools import eq_
 
-import amo.tests
-from search.middleware import ElasticsearchExceptionMiddleware as ESM
+from olympia.amo.tests import TestCase
+from olympia.search.middleware import ElasticsearchExceptionMiddleware as ESM
 
 
-class TestElasticsearchExceptionMiddleware(amo.tests.TestCase):
+class TestElasticsearchExceptionMiddleware(TestCase):
 
     def setUp(self):
         super(TestElasticsearchExceptionMiddleware, self).setUp()

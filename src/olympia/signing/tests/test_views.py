@@ -7,14 +7,14 @@ from django.test.utils import override_settings
 import mock
 from rest_framework.response import Response
 
-import amo
-from addons.models import Addon, AddonUser
-from api.tests.utils import APIAuthTestCase
-from devhub import tasks
-from files.models import File, FileUpload
-from signing.views import VersionView
-from users.models import UserProfile
-from versions.models import Version
+from olympia import amo
+from olympia.addons.models import Addon, AddonUser
+from olympia.api.tests.utils import APIAuthTestCase
+from olympia.devhub import tasks
+from olympia.files.models import File, FileUpload
+from olympia.signing.views import VersionView
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 class SigningAPITestCase(APIAuthTestCase):

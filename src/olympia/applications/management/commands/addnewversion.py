@@ -3,8 +3,8 @@ from django.db import IntegrityError
 
 import commonware.log
 
-import amo.models
-from applications.models import AppVersion
+from olympia import amo
+from olympia.applications.models import AppVersion
 
 
 class Command(BaseCommand):

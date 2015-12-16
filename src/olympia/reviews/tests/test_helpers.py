@@ -3,14 +3,14 @@ from nose.tools import eq_
 import jingo
 from pyquery import PyQuery as pq
 
-import amo.tests
-from addons.models import Addon
-from amo.urlresolvers import reverse
-from reviews.models import ReviewFlag
-from reviews.forms import ReviewForm
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.amo.urlresolvers import reverse
+from olympia.reviews.models import ReviewFlag
+from olympia.reviews.forms import ReviewForm
 
 
-class HelpersTest(amo.tests.TestCase):
+class HelpersTest(TestCase):
 
     def render(self, s, context={}):
         t = jingo.env.from_string(s)

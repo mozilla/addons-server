@@ -11,11 +11,13 @@ from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
 
-from amo.utils import sorted_groupby
-from amo.tasks import flush_front_end_cache_urls
-from versions.compare import version_int
-from .models import (BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx,
-                     BlocklistItem, BlocklistIssuerCert, BlocklistPlugin)
+from olympia.amo.utils import sorted_groupby
+from olympia.amo.tasks import flush_front_end_cache_urls
+from olympia.versions.compare import version_int
+
+from .models import (
+    BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx, BlocklistItem,
+    BlocklistIssuerCert, BlocklistPlugin)
 
 
 App = collections.namedtuple('App', 'guid min max')

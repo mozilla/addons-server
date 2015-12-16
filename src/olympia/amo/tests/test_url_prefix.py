@@ -6,10 +6,10 @@ from django.test.client import Client, RequestFactory
 import pytest
 from nose.tools import eq_, assert_not_equal
 
-import amo.tests
-from amo import urlresolvers
-from amo.middleware import LocaleAndAppURLMiddleware
-from amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
+from olympia.amo import urlresolvers
+from olympia.amo.middleware import LocaleAndAppURLMiddleware
+from olympia.amo.tests import BaseTestCase
 
 
 pytestmark = pytest.mark.django_db
@@ -208,7 +208,7 @@ class TestPrefixer(BaseTestCase):
         eq_(urlresolvers.reverse('home'), '/oremj/en-US/firefox/')
 
 
-class TestPrefixerActivate(amo.tests.TestCase):
+class TestPrefixerActivate(TestCase):
 
     def test_activate_locale(self):
         with self.activate(locale='fr'):
@@ -327,7 +327,7 @@ def test_parse_accept_language():
         yield check, x, y
 
 
-class TestShorter(amo.tests.TestCase):
+class TestShorter(TestCase):
 
     def test_no_shorter_language(self):
         check('zh', 'zh-CN')

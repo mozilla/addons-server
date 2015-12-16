@@ -4,11 +4,11 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
-from addons.models import Addon
-from compat.models import CompatReport, CompatTotals
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon
+from olympia.compat.models import CompatReport, CompatTotals
 
 
 # This is the structure sent to /compatibility/incoming from the ACR.
@@ -25,7 +25,7 @@ incoming_data = {
 }
 
 
-class TestCompatReportModel(amo.tests.TestCase):
+class TestCompatReportModel(TestCase):
 
     def test_none(self):
         eq_(CompatReport.get_counts('xxx'), {'success': 0, 'failure': 0})
@@ -40,7 +40,7 @@ class TestCompatReportModel(amo.tests.TestCase):
         eq_(CompatReport.get_counts(guid), {'success': 2, 'failure': 1})
 
 
-class TestIndex(amo.tests.TestCase):
+class TestIndex(TestCase):
 
     # TODO: Test valid version processing here.
 
@@ -71,7 +71,7 @@ class TestIndex(amo.tests.TestCase):
             '{url}?type=all&page=1&previous=1'.format(url=self.url))
 
 
-class TestIncoming(amo.tests.TestCase):
+class TestIncoming(TestCase):
 
     def setUp(self):
         super(TestIncoming, self).setUp()
@@ -110,7 +110,7 @@ class TestIncoming(amo.tests.TestCase):
         eq_(r.status_code, 400)
 
 
-class TestReporter(amo.tests.TestCase):
+class TestReporter(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -167,7 +167,7 @@ class TestReporter(amo.tests.TestCase):
         assert self.addon in response.context['addons']
 
 
-class TestReporterDetail(amo.tests.TestCase):
+class TestReporterDetail(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

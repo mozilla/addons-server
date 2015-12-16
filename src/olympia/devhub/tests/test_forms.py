@@ -5,29 +5,28 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
-import paypal
 from nose import SkipTest
 from nose.tools import eq_
 from PIL import Image
 
-import amo
-import amo.tests
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
-from amo.helpers import user_media_path
-from applications.models import AppVersion
-from addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
-from addons.models import Addon, Category, Charity, Persona
-from devhub import forms
-from editors.models import RereviewQueueTheme
-from files.helpers import copyfileobj
-from files.models import FileUpload
-from tags.models import Tag
-from users.models import UserProfile
-from versions.models import ApplicationsVersions, License, Version
+from olympia import amo, paypal
+from olympia.amo.tests import TestCase
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import user_media_path
+from olympia.applications.models import AppVersion
+from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
+from olympia.addons.models import Addon, Category, Charity, Persona
+from olympia.devhub import forms
+from olympia.editors.models import RereviewQueueTheme
+from olympia.files.helpers import copyfileobj
+from olympia.files.models import FileUpload
+from olympia.tags.models import Tag
+from olympia.users.models import UserProfile
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
-class TestNewAddonForm(amo.tests.TestCase):
+class TestNewAddonForm(TestCase):
 
     def test_only_valid_uploads(self):
         f = FileUpload.objects.create(valid=False)
@@ -69,7 +68,7 @@ class TestNewAddonForm(amo.tests.TestCase):
         assert mock_check_xpi_info.called
 
 
-class TestNewVersionForm(amo.tests.TestCase):
+class TestNewVersionForm(TestCase):
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
@@ -98,7 +97,7 @@ class TestNewVersionForm(amo.tests.TestCase):
         assert mock_check_xpi_info.called
 
 
-class TestNewFileForm(amo.tests.TestCase):
+class TestNewFileForm(TestCase):
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
@@ -132,7 +131,7 @@ class TestNewFileForm(amo.tests.TestCase):
         assert mock_check_xpi_info.called
 
 
-class TestContribForm(amo.tests.TestCase):
+class TestContribForm(TestCase):
 
     def test_neg_suggested_amount(self):
         form = forms.ContribForm({'suggested_amount': -10})
@@ -149,7 +148,7 @@ class TestContribForm(amo.tests.TestCase):
             settings.MAX_CONTRIBUTION)
 
 
-class TestCharityForm(amo.tests.TestCase):
+class TestCharityForm(TestCase):
 
     def setUp(self):
         super(TestCharityForm, self).setUp()
@@ -175,7 +174,7 @@ class TestCharityForm(amo.tests.TestCase):
         assert new_charity.id != charity.id
 
 
-class TestCompatForm(amo.tests.TestCase):
+class TestCompatForm(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_mozilla_app(self):
@@ -189,7 +188,7 @@ class TestCompatForm(amo.tests.TestCase):
         assert moz in apps
 
 
-class TestPreviewForm(amo.tests.TestCase):
+class TestPreviewForm(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -223,7 +222,7 @@ class TestPreviewForm(amo.tests.TestCase):
             {u'image': [250, 297], u'thumbnail': [126, 150]})
 
 
-class TestThemeForm(amo.tests.TestCase):
+class TestThemeForm(TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
@@ -468,7 +467,7 @@ class TestThemeForm(amo.tests.TestCase):
         eq_(personas[0].dupe_persona, None)
 
 
-class TestEditThemeForm(amo.tests.TestCase):
+class TestEditThemeForm(TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
@@ -692,7 +691,7 @@ class TestEditThemeForm(amo.tests.TestCase):
         assert not rqt[0].dupe_persona
 
 
-class TestEditThemeOwnerForm(amo.tests.TestCase):
+class TestEditThemeOwnerForm(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

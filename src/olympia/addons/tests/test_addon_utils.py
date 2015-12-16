@@ -1,11 +1,12 @@
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from addons.utils import reverse_name_lookup
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.addons.utils import reverse_name_lookup
 
 
-class TestReverseNameLookup(amo.tests.TestCase):
+class TestReverseNameLookup(TestCase):
     fixtures = ('base/addon_3615',)
 
     def setUp(self):

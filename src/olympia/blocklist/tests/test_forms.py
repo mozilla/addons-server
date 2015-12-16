@@ -1,6 +1,6 @@
-from amo.tests import TestCase
-from blocklist import forms
-from blocklist.models import BlocklistItem, BlocklistPlugin
+from olympia.amo.tests import TestCase
+from olympia.blocklist import forms
+from olympia.blocklist.models import BlocklistItem, BlocklistPlugin
 
 
 class BlocklistFormTest(TestCase):

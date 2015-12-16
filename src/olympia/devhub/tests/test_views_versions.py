@@ -6,19 +6,19 @@ from pyquery import PyQuery as pq
 
 from django.core.files import temp
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
-from amo.tests import formset, initial
-from addons.models import Addon, AddonUser
-from applications.models import AppVersion
-from devhub.models import ActivityLog
-from files.models import File
-from users.models import UserProfile
-from versions.models import ApplicationsVersions, Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import formset, initial
+from olympia.addons.models import Addon, AddonUser
+from olympia.applications.models import AppVersion
+from olympia.devhub.models import ActivityLog
+from olympia.files.models import File
+from olympia.users.models import UserProfile
+from olympia.versions.models import ApplicationsVersions, Version
 
 
-class TestVersion(amo.tests.TestCase):
+class TestVersion(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -429,7 +429,7 @@ class TestVersionEditMixin(object):
         return formset(*args, **defaults)
 
 
-class TestVersionEditBase(TestVersionEditMixin, amo.tests.TestCase):
+class TestVersionEditBase(TestVersionEditMixin, TestCase):
     fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
 
     def setUp(self):

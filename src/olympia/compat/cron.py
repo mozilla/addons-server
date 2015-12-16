@@ -5,14 +5,14 @@ from django.db.models import Count, Max
 
 import cronjobs
 
-import amo
-import amo.search
-import amo.utils
-from addons.models import Addon
-from search.utils import floor_version
-from stats.models import UpdateCount
-from versions.compare import version_int as vint
-from lib.es.utils import get_indices
+from olympia import amo
+from olympia.amo import search as amo_search
+from olympia.amo.utils import chunked
+from olympia.addons.models import Addon
+from olympia.search.utils import floor_version
+from olympia.stats.models import UpdateCount
+from olympia.versions.compare import version_int as vint
+from olympia.lib.es.utils import get_indices
 
 from .models import AppCompat, CompatReport, CompatTotals
 
@@ -37,7 +37,7 @@ def compatibility_report(index=None):
                                         date=latest)
 
         updates = dict(qs.values_list('addon', 'count'))
-        for chunk in amo.utils.chunked(updates.items(), 50):
+        for chunk in chunked(updates.items(), 50):
             chunk = dict(chunk)
             for addon in Addon.objects.filter(id__in=chunk):
                 doc = docs[addon.id]
@@ -120,9 +120,9 @@ def compatibility_report(index=None):
             doc['top_95'][app][ver] = running_total < (.95 * total)
 
     # Send it all to the index.
-    for chunk in amo.utils.chunked(docs.values(), 150):
+    for chunk in chunked(docs.values(), 150):
         for doc in chunk:
             for index in indices:
                 AppCompat.index(doc, id=doc['id'], refresh=False, index=index)
-    es = amo.search.get_es()
+    es = amo_search.get_es()
     es.indices.refresh()

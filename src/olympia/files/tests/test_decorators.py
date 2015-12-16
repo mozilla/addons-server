@@ -4,12 +4,13 @@ from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 import pytest
 from mock import Mock, patch
 
-import amo.tests
-from access import acl
-from files.decorators import allowed
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.access import acl
+from olympia.files.decorators import allowed
 
 
-class AllowedTest(amo.tests.TestCase):
+class AllowedTest(TestCase):
 
     def setUp(self):
         super(AllowedTest, self).setUp()

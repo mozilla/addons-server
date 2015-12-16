@@ -16,11 +16,11 @@ from mock import Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery
 
-import amo
-import amo.tests
-from amo import urlresolvers, utils, helpers
-from amo.utils import ImageCheck
-from versions.models import License
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo import urlresolvers, utils, helpers
+from olympia.amo.utils import ImageCheck
+from olympia.versions.models import License
 
 
 pytestmark = pytest.mark.django_db
@@ -325,7 +325,7 @@ def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
-class TestLicenseLink(amo.tests.TestCase):
+class TestLicenseLink(TestCase):
 
     def test_license_link(self):
         mit = License.objects.create(
@@ -416,7 +416,7 @@ def get_uploaded_file(name):
                               content_type=mimetypes.guess_type(name)[0])
 
 
-class TestAnimatedImages(amo.tests.TestCase):
+class TestAnimatedImages(TestCase):
 
     def test_animated_images(self):
         img = ImageCheck(open(get_image_path('animated.png')))
@@ -484,7 +484,7 @@ def test_inline_css(monkeypatch):
     ok_('background-image: url(/static/img/icons/stars.png);' in s)
 
 
-class TestStoragePath(amo.tests.TestCase):
+class TestStoragePath(TestCase):
 
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
     def test_without_settings(self):
@@ -498,7 +498,7 @@ class TestStoragePath(amo.tests.TestCase):
         eq_(path, '/another/path/')
 
 
-class TestMediaUrl(amo.tests.TestCase):
+class TestMediaUrl(TestCase):
 
     @override_settings(USERPICS_URL=None)
     def test_without_settings(self):
@@ -508,7 +508,7 @@ class TestMediaUrl(amo.tests.TestCase):
         eq_(url, '/mediapath/userpics/')
 
 
-class TestIdToPath(amo.tests.TestCase):
+class TestIdToPath(TestCase):
 
     def test_with_1_digit(self):
         eq_(helpers.id_to_path(1), '1/1/1')

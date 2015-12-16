@@ -3,7 +3,8 @@ from jinja2 import Markup
 
 from django.http import HttpResponsePermanentRedirect, HttpResponseNotFound
 from django.shortcuts import render
-from amo.utils import urlparams
+
+from olympia.amo.utils import urlparams
 
 
 REGEX = dict(

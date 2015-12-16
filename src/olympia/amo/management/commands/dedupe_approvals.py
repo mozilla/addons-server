@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
 
-from addons.models import Addon
-from amo.utils import chunked
-from amo.tasks import dedupe_approvals
+from olympia.addons.models import Addon
+from olympia.amo.utils import chunked
+from olympia.amo.tasks import dedupe_approvals
 
 
 class Command(BaseCommand):

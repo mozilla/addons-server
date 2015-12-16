@@ -4,18 +4,18 @@ import tempfile
 import pytest
 from nose.tools import eq_, ok_
 
-
-import amo
-import amo.tests
-from amo.utils import attach_trans_dict, translations_for_field, walkfiles
-from addons.models import Addon
-from versions.models import Version
+from olympia import amo
+from olympia.tests import TestCase, addon_factory
+from olympia.amo.utils import (
+    attach_trans_dict, translations_for_field, walkfiles)
+from olympia.addons.models import Addon
+from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
 
 
-class TestAttachTransDict(amo.tests.TestCase):
+class TestAttachTransDict(TestCase):
     """
     Tests for attach_trans_dict. For convenience, we re-use Addon model instead
     of mocking one from scratch and we rely on internal Translation unicode
@@ -23,7 +23,7 @@ class TestAttachTransDict(amo.tests.TestCase):
     """
 
     def test_basic(self):
-        addon = amo.tests.addon_factory(
+        addon = addon_factory(
             name='Name', description='Description <script>alert(42)</script>!',
             eula='', summary='Summary', homepage='http://home.pa.ge',
             developer_comments='Developer Comments', privacy_policy='Policy',
@@ -67,13 +67,13 @@ class TestAttachTransDict(amo.tests.TestCase):
         eq_(translations, expected_translations)
 
     def test_multiple_objects_with_multiple_translations(self):
-        addon = amo.tests.addon_factory()
+        addon = addon_factory()
         addon.description = {
             'fr': 'French Description',
             'en-us': 'English Description'
         }
         addon.save()
-        addon2 = amo.tests.addon_factory(description='English 2 Description')
+        addon2 = addon_factory(description='English 2 Description')
         addon2.name = {
             'fr': 'French 2 Name',
             'en-us': 'English 2 Name',

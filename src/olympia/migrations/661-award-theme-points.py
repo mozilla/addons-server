@@ -4,7 +4,7 @@ import datetime
 
 from django.db.models import Q
 
-import amo
+from olympia import amo
 from amo.utils import chunked
 from devhub.models import ActivityLog
 

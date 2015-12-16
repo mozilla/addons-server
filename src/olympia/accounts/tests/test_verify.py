@@ -3,7 +3,7 @@ from unittest import TestCase
 import mock
 import pytest
 
-from apps.accounts import verify
+from olympia.apps.accounts import verify
 
 
 class TestProfile(TestCase):

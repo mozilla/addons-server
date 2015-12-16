@@ -5,14 +5,14 @@ from django.conf import settings
 
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from devhub.cron import update_blog_posts
-from devhub.tasks import convert_purified
-from devhub.models import BlogPost
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.devhub.cron import update_blog_posts
+from olympia.devhub.tasks import convert_purified
+from olympia.devhub.models import BlogPost
 
 
-class TestRSS(amo.tests.TestCase):
+class TestRSS(TestCase):
 
     def test_rss_cron(self):
         url = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
@@ -32,7 +32,7 @@ class TestRSS(amo.tests.TestCase):
         eq_(bp.permalink, url)
 
 
-class TestPurify(amo.tests.TestCase):
+class TestPurify(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

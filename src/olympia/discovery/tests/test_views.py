@@ -11,25 +11,25 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
-import amo
-import amo.tests
-from amo.tests import addon_factory
-import addons.signals
-from amo.urlresolvers import reverse
-from addons.models import (Addon, AddonDependency, CompatOverride,
-                           CompatOverrideRange, Preview)
-from applications.models import AppVersion
-from bandwagon.models import MonthlyPick
-from bandwagon.tests.test_models import TestRecommendations as Recs
-from discovery import views
-from discovery.forms import DiscoveryModuleForm
-from discovery.models import DiscoveryModule
-from discovery.modules import registry
-from files.models import File
-from versions.models import Version, ApplicationsVersions
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory
+from olympia.addons.signals import version_changed
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import (
+    Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import MonthlyPick, SyncedCollection
+from olympia.bandwagon.tests.test_models import TestRecommendations as Recs
+from olympia.discovery import views
+from olympia.discovery.forms import DiscoveryModuleForm
+from olympia.discovery.models import DiscoveryModule
+from olympia.discovery.modules import registry
+from olympia.files.models import File
+from olympia.versions.models import Version, ApplicationsVersions
 
 
-class TestRecs(amo.tests.TestCase):
+class TestRecs(TestCase):
     fixtures = ['base/appversion', 'base/addon_3615',
                 'base/addon-recs', 'base/addon_5299_gcal', 'base/category',
                 'base/featured', 'addons/featured']
@@ -63,7 +63,7 @@ class TestRecs(amo.tests.TestCase):
                 version=v, application=amo.FIREFOX.id,
                 min_id=self.min_id, max_id=self.max_id)
             addon.update(_current_version=v)
-            addons.signals.version_changed.send(sender=addon)
+            version_changed.send(sender=addon)
         Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
 
     def test_get(self):
@@ -180,7 +180,7 @@ class TestRecs(amo.tests.TestCase):
         assert one['addons'] != two['addons']
 
 
-class TestModuleAdmin(amo.tests.TestCase):
+class TestModuleAdmin(TestCase):
 
     def test_sync_db_and_registry(self):
         def check():
@@ -213,7 +213,7 @@ class TestModuleAdmin(amo.tests.TestCase):
         eq_(sorted(cleaned_locales), ['en-US', 'fa', 'he'])
 
 
-class TestUrls(amo.tests.TestCase):
+class TestUrls(TestCase):
     fixtures = ['base/users', 'base/featured', 'addons/featured',
                 'base/addon_3615']
 
@@ -256,7 +256,7 @@ class TestUrls(amo.tests.TestCase):
         eq_(r.status_code, 404)
 
 
-class TestPromos(amo.tests.TestCase):
+class TestPromos(TestCase):
     fixtures = ['base/users', 'discovery/discoverymodules']
 
     def get_disco_url(self, platform, version):
@@ -293,7 +293,7 @@ class TestPromos(amo.tests.TestCase):
         eq_(r.content, '')
 
 
-class TestPane(amo.tests.TestCase):
+class TestPane(TestCase):
     fixtures = ['addons/featured', 'base/addon_3615', 'base/collections',
                 'base/featured', 'base/users',
                 'bandwagon/featured_collections']
@@ -386,7 +386,7 @@ class TestPane(amo.tests.TestCase):
         eq_(featured.find('.addon-title').text(), unicode(addon.name))
 
 
-class TestDetails(amo.tests.TestCase):
+class TestDetails(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592']
 
     def setUp(self):
@@ -437,7 +437,7 @@ class TestDetails(amo.tests.TestCase):
         eq_(a.attr('href').endswith('?src=discovery-dependencies'), True)
 
 
-class TestPersonaDetails(amo.tests.TestCase):
+class TestPersonaDetails(TestCase):
     fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
@@ -481,7 +481,7 @@ class TestPersonaDetails(amo.tests.TestCase):
             assert False, 'No "Created" entry found.'
 
 
-class TestDownloadSources(amo.tests.TestCase):
+class TestDownloadSources(TestCase):
     fixtures = ['base/addon_3615', 'base/users',
                 'base/collections', 'base/featured', 'addons/featured',
                 'discovery/discoverymodules']
@@ -529,7 +529,7 @@ class TestDownloadSources(amo.tests.TestCase):
             '?src=discovery-upandcoming')
 
 
-class TestMonthlyPick(amo.tests.TestCase):
+class TestMonthlyPick(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'discovery/discoverymodules']
 
@@ -585,7 +585,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(r.content, '')
 
 
-class TestPaneMoreAddons(amo.tests.TestCase):
+class TestPaneMoreAddons(TestCase):
     fixtures = ['base/appversion']
 
     def setUp(self):

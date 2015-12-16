@@ -3,11 +3,11 @@ import jingo
 import jinja2
 from tower import ugettext_lazy as _
 
-import amo
-from addons.models import Addon
-from api.views import addon_filter
-from bandwagon.models import Collection, MonthlyPick as MP
-from versions.compare import version_int
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.api.views import addon_filter
+from olympia.bandwagon.models import Collection, MonthlyPick as MP
+from olympia.versions.compare import version_int
 
 
 # The global registry for promo modules.  Managed through PromoModuleMeta.

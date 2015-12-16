@@ -12,11 +12,12 @@ from celery_tasktree import task_with_callbacks, TaskTree
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from amo.search import get_es
-from apps.addons import search as addons_search
-from apps.stats import search as stats_search
-from lib.es.utils import (is_reindexing_amo, unflag_reindexing_amo,
-                          flag_reindexing_amo, timestamp_index)
+from olympia.amo.search import get_es
+from olympia.apps.addons import search as addons_search
+from olympia.apps.stats import search as stats_search
+from olympia.lib.es.utils import (
+    is_reindexing_amo, unflag_reindexing_amo, flag_reindexing_amo,
+    timestamp_index)
 
 logger = logging.getLogger('z.elasticsearch')
 time_limits = settings.CELERY_TIME_LIMITS['lib.es.management.commands.reindex']

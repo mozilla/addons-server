@@ -1,11 +1,10 @@
 from rest_framework import serializers
 
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-
-from addons.models import Addon
-from users.models import UserProfile
-from versions.models import Version
+from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 class UserSerializer(serializers.ModelSerializer):

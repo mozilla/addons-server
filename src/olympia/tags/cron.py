@@ -1,6 +1,7 @@
 import cronjobs
-from addons.models import Addon
-from tags.models import AddonTag, Tag
+
+from olympia.addons.models import Addon
+from olympia.tags.models import AddonTag, Tag
 
 
 @cronjobs.register

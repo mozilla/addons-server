@@ -5,7 +5,7 @@ import pytest
 from mock import Mock
 from nose.tools import eq_
 
-from amo.tests.test_helpers import render
+from olympia.amo.tests.test_helpers import render
 
 
 pytestmark = pytest.mark.django_db

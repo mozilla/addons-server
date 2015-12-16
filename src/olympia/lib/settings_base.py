@@ -146,7 +146,8 @@ def lazy_langs(languages):
                  for i in languages])
 
 # Where product details are stored see django-mozilla-product-details
-PROD_DETAILS_DIR = path('lib', 'product_json')
+PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
+PROD_DETAILS_URL = 'https://svn.mozilla.org/libs/product-details/json/'
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -243,7 +244,7 @@ SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'lib.template_loader.Loader',
+    'olympia.lib.template_loader.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
@@ -293,7 +294,7 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from django.core.cache import cache
-    config = {'extensions': ['tower.template.i18n', 'amo.ext.cache',
+    config = {'extensions': ['tower.template.i18n', 'olympia.amo.ext.cache',
                              'jinja2.ext.do',
                              'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
               'finalize': lambda x: x if x is not None else ''}
@@ -351,53 +352,50 @@ AUTHENTICATION_BACKENDS = (
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # Override this in the site settings.
-ROOT_URLCONF = 'lib.urls_base'
+ROOT_URLCONF = 'olympia.lib.urls_base'
 
 INSTALLED_APPS = (
-    # This the path management and monkey-patching required to load the rest,
-    # so it must come first.
-    'olympia',
-
-    'amo',  # amo comes first so it always takes precedence.
-    'abuse',
-    'access',
-    'accounts',
-    'addons',
-    'api',
-    'applications',
-    'bandwagon',
-    'blocklist',
-    'browse',
-    'compat',
-    'cronjobs',
-    'csp',
-    'devhub',
-    'discovery',
-    'editors',
-    'files',
-    'jingo_minify',
-    'localizers',
-    'lib.es',
-    'moz_header',
-    'pages',
-    'product_details',
-    'reviews',
-    'search',
-    'sharing',
-    'stats',
-    'tags',
-    'tower',  # for ./manage.py extract
-    'translations',
-    'users',
-    'versions',
-    'zadmin',
+    'olympia.amo',  # amo comes first so it always takes precedence.
+    'olympia.abuse',
+    'olympia.access',
+    'olympia.accounts',
+    'olympia.addons',
+    'olympia.api',
+    'olympia.applications',
+    'olympia.bandwagon',
+    'olympia.blocklist',
+    'olympia.browse',
+    'olympia.compat',
+    'olympia.devhub',
+    'olympia.discovery',
+    'olympia.editors',
+    'olympia.files',
+    'olympia.localizers',
+    'olympia.lib.es',
+    'olympia.pages',
+    'olympia.perf',
+    'olympia.reviews',
+    'olympia.search',
+    'olympia.sharing',
+    'olympia.stats',
+    'olympia.tags',
+    'olympia.translations',
+    'olympia.users',
+    'olympia.versions',
+    'olympia.zadmin',
 
     # Third party apps
+    'tower',  # for ./manage.py extract
+    'product_details',
+    'moz_header',
+    'cronjobs',
+    'csp',
     'aesfield',
     'django_extensions',
     'raven.contrib.django',
     'piston',
     'waffle',
+    'jingo_minify',
 
     # Django contrib apps
     'django.contrib.admin',
@@ -414,7 +412,7 @@ INSTALLED_APPS = (
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the amo.runner.TestRunner test runner.
 TEST_INSTALLED_APPS = (
-    'translations.tests.testapp',
+    'olympia.translations.tests.testapp',
 )
 
 # Tells the extract script what files to look for l10n in and what function
@@ -980,8 +978,10 @@ CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
-CELERY_IMPORTS = ('lib.crypto.tasks', 'lib.es.management.commands.reindex',
-                  'lib.video.tasks')
+CELERY_IMPORTS = (
+    'olympia.lib.crypto.tasks',
+    'olympia.lib.es.management.commands.reindex',
+    'olympia.lib.video.tasks')
 
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
@@ -991,38 +991,38 @@ CELERY_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
-    'addons.tasks.index_addons': {'queue': 'priority'},
-    'addons.tasks.unindex_addons': {'queue': 'priority'},
-    'addons.tasks.save_theme': {'queue': 'priority'},
-    'addons.tasks.save_theme_reupload': {'queue': 'priority'},
-    'bandwagon.tasks.index_collections': {'queue': 'priority'},
-    'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
-    'users.tasks.index_users': {'queue': 'priority'},
-    'users.tasks.unindex_users': {'queue': 'priority'},
+    'olympia.addons.tasks.index_addons': {'queue': 'priority'},
+    'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
+    'olympia.addons.tasks.save_theme': {'queue': 'priority'},
+    'olympia.addons.tasks.save_theme_reupload': {'queue': 'priority'},
+    'olympia.bandwagon.tasks.index_collections': {'queue': 'priority'},
+    'olympia.bandwagon.tasks.unindex_collections': {'queue': 'priority'},
+    'olympia.users.tasks.index_users': {'queue': 'priority'},
+    'olympia.users.tasks.unindex_users': {'queue': 'priority'},
 
     # Other queues we prioritize below.
 
     # AMO Devhub.
-    'devhub.tasks.validate_file': {'queue': 'devhub'},
-    'devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
-    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
+    'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     # This is currently used only by validation tasks.
-    'celery.chord_unlock': {'queue': 'devhub'},
-    'devhub.tasks.compatibility_check': {'queue': 'devhub'},
+    'olympia.celery.chord_unlock': {'queue': 'devhub'},
+    'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
 
     # Videos.
-    'lib.video.tasks.resize_video': {'queue': 'devhub'},
+    'olympia.lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
-    'bandwagon.tasks.resize_icon': {'queue': 'images'},
-    'users.tasks.resize_photo': {'queue': 'images'},
-    'users.tasks.delete_photo': {'queue': 'images'},
-    'devhub.tasks.resize_icon': {'queue': 'images'},
-    'devhub.tasks.resize_preview': {'queue': 'images'},
+    'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
+    'olympia.users.tasks.resize_photo': {'queue': 'images'},
+    'olympia.users.tasks.delete_photo': {'queue': 'images'},
+    'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
+    'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
 
     # AMO validator.
-    'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
+    'olympia.zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
 }
 
 # This is just a place to store these values, you apply them in your
@@ -1030,9 +1030,9 @@ CELERY_ROUTES = {
 #   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
-    'lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
+    'olympia.lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
     # The reindex management command can take up to 3 hours to run.
-    'lib.es.management.commands.reindex': {'soft': 10800, 'hard': 14400},
+    'olympia.lib.es.management.commands.reindex': {'soft': 10800, 'hard': 14400},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -1301,7 +1301,7 @@ NO_ADDONS_MODULES = ()
 FFMPEG_BINARY = 'ffmpeg'
 TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
-VIDEO_LIBRARIES = ['lib.video.totem', 'lib.video.ffmpeg']
+VIDEO_LIBRARIES = ['olympia.lib.video.totem', 'olympia.lib.video.ffmpeg']
 
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''

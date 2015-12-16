@@ -15,22 +15,25 @@ import commonware.log
 from tower import ugettext_lazy as _lazy, ugettext as _
 from django_statsd.clients import statsd
 
-import amo
-from amo import messages
-import sharing.views
-from amo.decorators import (allow_mine, json_view, login_required,
-                            post_required, restricted_content, write)
-from amo.urlresolvers import reverse
-from amo.utils import paginate, redirect_for_login, urlparams
-from access import acl
-from addons.models import Addon
-from addons.views import BaseFilter
-from api.utils import addon_to_dict
-from tags.models import Tag
-from translations.query import order_by_translation
-from users.models import UserProfile
-from .models import (Collection, CollectionAddon, CollectionWatcher,
-                     CollectionVote, SPECIAL_SLUGS)
+from olympia import amo
+from olympia.amo import messages
+from olympia.sharing.views import share as share_view
+from olympia.amo.decorators import (
+    allow_mine, json_view, login_required, post_required, restricted_content,
+    write)
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import paginate, redirect_for_login, urlparams
+from olympia.access import acl
+from olympia.addons.models import Addon
+from olympia.addons.views import BaseFilter
+from olympia.api.utils import addon_to_dict
+from olympia.tags.models import Tag
+from olympia.translations.query import order_by_translation
+from olympia.users.models import UserProfile
+
+from .models import (
+    Collection, CollectionAddon, CollectionWatcher, CollectionVote,
+    SPECIAL_SLUGS)
 from . import forms, tasks
 
 log = commonware.log.getLogger('z.collections')
@@ -591,9 +594,8 @@ def watch(request, username, slug):
 
 def share(request, username, slug):
     collection = get_collection(request, username, slug)
-    return sharing.views.share(request, collection,
-                               name=collection.name,
-                               description=collection.description)
+    return share_view(request, collection, name=collection.name,
+                      description=collection.description)
 
 
 @login_required

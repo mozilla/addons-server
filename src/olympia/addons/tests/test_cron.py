@@ -9,17 +9,18 @@ from django.test.utils import override_settings
 from nose.tools import eq_
 import mock
 
-import amo
-import amo.tests
-from addons import cron
-from addons.models import Addon, AppSupport
-from files.models import File
-from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
-from stats.models import UpdateCount
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons import cron
+from olympia.addons.models import Addon, AppSupport
+from olympia.django.core.management.base import CommandError
+from olympia.files.models import File
+from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
+from olympia.stats.models import UpdateCount
+from olympia.versions.models import Version
 
 
-class CurrentVersionTestCase(amo.tests.TestCase):
+class CurrentVersionTestCase(TestCase):
     fixtures = ['base/addon_3615']
 
     @mock.patch('waffle.switch_is_active', lambda x: True)
@@ -37,7 +38,7 @@ class CurrentVersionTestCase(amo.tests.TestCase):
         eq_(Addon.objects.filter(_current_version=None, pk=3615).count(), 0)
 
 
-class TestLastUpdated(amo.tests.TestCase):
+class TestLastUpdated(TestCase):
     fixtures = ['base/addon_3615', 'addons/listed',
                 'addons/persona', 'base/seamonkey', 'base/thunderbird']
 
@@ -116,7 +117,7 @@ class TestLastUpdated(amo.tests.TestCase):
                                       app=amo.SEAMONKEY.id).count(), 1)
 
 
-class TestHideDisabledFiles(amo.tests.TestCase):
+class TestHideDisabledFiles(TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
@@ -253,7 +254,7 @@ class TestUnhideDisabledFiles(amo.tests.TestCase):
                     cron.unhide_disabled_files()
 
 
-class AvgDailyUserCountTestCase(amo.tests.TestCase):
+class AvgDailyUserCountTestCase(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_adu_is_adjusted_in_cron(self):
@@ -296,7 +297,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
         eq_(addon.average_daily_users, 1234)
 
 
-class TestCleanupImageFiles(amo.tests.TestCase):
+class TestCleanupImageFiles(TestCase):
 
     @mock.patch('addons.cron.os')
     def test_cleanup_image_files_exists(self, os_mock):

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import Addon, Review
-from landfill.ratings import generate_ratings
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, Review
+from olympia.landfill.ratings import generate_ratings
 
 
-class RatingsTests(amo.tests.TestCase):
+class RatingsTests(TestCase):
 
     def setUp(self):
         super(RatingsTests, self).setUp()

@@ -6,15 +6,17 @@ from django.core.management import call_command
 import mock
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from bandwagon.models import Collection, CollectionAddon
-from stats import cron, tasks
-from stats.models import (AddonCollectionCount, Contribution, DownloadCount,
-                          GlobalStat, ThemeUserCount, UpdateCount)
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.bandwagon.models import Collection, CollectionAddon
+from olympia.stats import cron, tasks
+from olympia.stats.models import (
+    AddonCollectionCount, Contribution, DownloadCount, GlobalStat,
+    ThemeUserCount, UpdateCount)
 
 
-class TestGlobalStats(amo.tests.TestCase):
+class TestGlobalStats(TestCase):
     fixtures = ['stats/test_models']
 
     def test_stats_for_date(self):
@@ -36,7 +38,7 @@ class TestGlobalStats(amo.tests.TestCase):
                 tasks._get_daily_jobs(x)
 
 
-class TestGoogleAnalytics(amo.tests.TestCase):
+class TestGoogleAnalytics(TestCase):
     @mock.patch.object(settings, 'GOOGLE_ANALYTICS_CREDENTIALS',
                        {'access_token': '', 'client_id': '',
                         'client_secret': '', 'refresh_token': '',
@@ -57,7 +59,7 @@ class TestGoogleAnalytics(amo.tests.TestCase):
                                    date=d).count, 49)
 
 
-class TestTotalContributions(amo.tests.TestCase):
+class TestTotalContributions(TestCase):
     fixtures = ['base/appversion', 'base/users', 'base/addon_3615']
 
     def test_total_contributions(self):
@@ -82,7 +84,7 @@ class TestTotalContributions(amo.tests.TestCase):
 
 
 @mock.patch('stats.management.commands.index_stats.create_tasks')
-class TestIndexStats(amo.tests.TestCase):
+class TestIndexStats(TestCase):
     fixtures = ['stats/test_models']
 
     def setUp(self):
@@ -171,7 +173,7 @@ class TestIndexLatest(amo.tests.ESTestCase):
                                     date='%s:%s' % (start, finish))
 
 
-class TestUpdateDownloads(amo.tests.TestCase):
+class TestUpdateDownloads(TestCase):
     fixtures = ['base/users', 'base/collections', 'base/addon_3615']
 
     def test_addons_collections(self):

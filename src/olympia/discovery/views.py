@@ -7,23 +7,22 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 
-import amo
-import amo.utils
-import api.utils
-import api.views
-from amo.decorators import post_required
-from amo.models import manual_order
-from amo.urlresolvers import reverse
-from addons.decorators import addon_view_factory
-from addons.models import Addon
-from addons.utils import get_featured_ids
-from browse.views import personas_listing
-from bandwagon.models import Collection
-from discovery.modules import PromoVideoCollection
-from reviews.models import Review
-from stats.models import GlobalStat
-from versions.compare import version_int
-from zadmin.decorators import admin_required
+from olympia import amo, api
+from olympia.amo.utils import JSONEncoder
+from olympia.api import views as api_views
+from olympia.amo.decorators import post_required
+from olympia.amo.models import manual_order
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon
+from olympia.addons.utils import get_featured_ids
+from olympia.browse.views import personas_listing
+from olympia.bandwagon.models import Collection, SyncedCollection
+from olympia.discovery.modules import PromoVideoCollection
+from olympia.reviews.models import Review
+from olympia.stats.models import GlobalStat
+from olympia.versions.compare import version_int
+from olympia.zadmin.decorators import admin_required
 
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
@@ -127,7 +126,7 @@ def api_view(request, platform, version, list_type, api_version=1.5,
              format='json', content_type='application/json',
              compat_mode='strict'):
     """Wrapper for calling an API view."""
-    view = api.views.ListView()
+    view = api_views.ListView()
     view.request, view.version = request, api_version
     view.format, view.content_type = format, content_type
     r = view.process_request(list_type, platform=platform, version=version,
@@ -201,14 +200,14 @@ def recommendations(request, version, platform, limit=9, compat_mode=None):
 def _recommendations(request, version, platform, limit, token, ids, qs,
                      compat_mode='strict'):
     """Return a JSON response for the recs view."""
-    addons = api.views.addon_filter(qs, 'ALL', 0, request.APP, platform,
+    addons = api_views.addon_filter(qs, 'ALL', 0, request.APP, platform,
                                     version, compat_mode, shuffle=False)
     addons = dict((a.id, a) for a in addons)
     addons = [api.utils.addon_to_dict(addons[i], disco=True,
                                       src='discovery-personalrec')
               for i in ids if i in addons][:limit]
     data = {'token2': token, 'addons': addons}
-    content = json.dumps(data, cls=amo.utils.JSONEncoder)
+    content = json.dumps(data, cls=JSONEncoder)
     return http.HttpResponse(content, content_type='application/json')
 
 

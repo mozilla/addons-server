@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from amo.tests import BaseTestCase
-from lib.template_loader import Loader
+from olympia.amo.tests import BaseTestCase
+from olympia.lib.template_loader import Loader
 
 
 class TestLoader(BaseTestCase):

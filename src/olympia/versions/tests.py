@@ -15,29 +15,30 @@ import pytest
 from nose.tools import eq_
 from pyquery import PyQuery
 
-import amo
-import amo.tests
-from access import acl
-from access.models import Group, GroupUser
-from amo.helpers import user_media_url
-from amo.tests import addon_factory
-from amo.urlresolvers import reverse
-from amo.utils import urlparams, utc_millesecs_from_epoch
-from addons.models import Addon, CompatOverride, CompatOverrideRange
-from addons.tests.test_views import TestMobile
-from applications.models import AppVersion
-from devhub.models import ActivityLog
-from editors.models import (ViewFullReviewQueue, ViewPendingQueue,
-                            ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
-                            ViewUnlistedPendingQueue,
-                            ViewUnlistedPreliminaryQueue)
-from files.models import File
-from files.tests.test_models import UploadTest
-from users.models import UserProfile
-from versions import feeds, views
-from versions.models import Version, ApplicationsVersions, source_upload_path
-from versions.compare import (MAXVERSION, version_int, dict_from_int,
-                              version_dict)
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.access import acl
+from olympia.access.models import Group, GroupUser
+from olympia.amo.helpers import user_media_url
+from olympia.amo.tests import addon_factory
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
+from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
+from olympia.addons.tests.test_views import TestMobile
+from olympia.applications.models import AppVersion
+from olympia.devhub.models import ActivityLog
+from olympia.editors.models import (
+    ViewFullReviewQueue, ViewPendingQueue, ViewPreliminaryQueue,
+    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,
+    ViewUnlistedPreliminaryQueue)
+from olympia.files.models import File
+from olympia.files.tests.test_models import UploadTest
+from olympia.users.models import UserProfile
+from olympia.versions import feeds, views
+from olympia.versions.models import (
+    Version, ApplicationsVersions, source_upload_path)
+from olympia.versions.compare import (
+    MAXVERSION, version_int, dict_from_int, version_dict)
 
 
 pytestmark = pytest.mark.django_db
@@ -110,7 +111,7 @@ def test_watch_source(addon_type, mozilla_user):
     assert addon.admin_review == is_extension
 
 
-class TestVersion(amo.tests.TestCase):
+class TestVersion(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
@@ -540,7 +541,7 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     assert file_.reload().status == file_status
 
 
-class TestViews(amo.tests.TestCase):
+class TestViews(TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
@@ -615,7 +616,7 @@ class TestViews(amo.tests.TestCase):
         assert self.client.get(url).status_code == 404
 
 
-class TestFeeds(amo.tests.TestCase):
+class TestFeeds(TestCase):
     fixtures = ['addons/eula+contrib-addon', 'addons/default-to-compat']
     rel_ns = {'atom': 'http://www.w3.org/2005/Atom'}
 
@@ -714,7 +715,7 @@ class TestFeeds(amo.tests.TestCase):
             'Addon for DTC 1.3 - December  5, 2011')
 
 
-class TestDownloadsBase(amo.tests.TestCase):
+class TestDownloadsBase(TestCase):
     fixtures = ['base/addon_5299_gcal', 'base/users']
 
     def setUp(self):
@@ -1014,7 +1015,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
 
 @override_settings(XSENDFILE=True)
-class TestDownloadSource(amo.tests.TestCase):
+class TestDownloadSource(TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
@@ -1115,7 +1116,7 @@ class TestDownloadSource(amo.tests.TestCase):
         assert self.client.get(self.url).status_code == 200
 
 
-class TestVersionFromUpload(UploadTest, amo.tests.TestCase):
+class TestVersionFromUpload(UploadTest, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1330,7 +1331,7 @@ class TestMobileVersions(TestMobile):
         self.assertTemplateUsed(r, 'versions/mobile/version_list.html')
 
 
-class TestApplicationsVersions(amo.tests.TestCase):
+class TestApplicationsVersions(TestCase):
 
     def setUp(self):
         super(TestApplicationsVersions, self).setUp()

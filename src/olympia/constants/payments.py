@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-from lib.constants import ALL_CURRENCIES
+from olympia.lib.constants import ALL_CURRENCIES
 
 # Source, PayPal docs, PP_AdaptivePayments.PDF
 PAYPAL_CURRENCIES = ['AUD', 'BRL', 'CAD', 'CHF', 'CZK', 'DKK', 'EUR', 'GBP',

@@ -15,6 +15,9 @@ import warnings
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+
+from django.conf import settings  # noqa
+
 log = logging.getLogger('z.startup')
 
 
@@ -26,6 +29,25 @@ def filter_warnings():
 
     if not settings.DEBUG:
         warnings.simplefilter('ignore')
+
+
+def init_amo():
+    """Load the `amo` module.
+
+    Waffle and amo form an import cycle because amo patches waffle and waffle
+    loads the user model, so we have to make sure amo gets imported before
+    anything else imports waffle."""
+    global amo
+    amo = __import__('olympia.amo')
+
+
+def init_celery():
+    """Initialize Celery, and make our app instance available as `celery_app`
+    for use by the `celery` command."""
+    from amo import celery
+
+    global celery_app
+    celery_app = celery.app
 
 
 def init_session_csrf():
@@ -102,7 +124,7 @@ def init_celery():
 def configure_logging():
     """Configure the `logging` module to route logging based on settings
     in our various settings modules and defaults in `lib.log_settings_base`."""
-    from lib.log_settings_base import log_configure
+    from olympia.lib.log_settings_base import log_configure
 
     log_configure()
 
@@ -120,6 +142,7 @@ def load_product_details():
 
 
 filter_warnings()
+init_amo()
 init_session_csrf()
 init_jinja2()
 init_amo()

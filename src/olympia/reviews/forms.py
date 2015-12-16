@@ -10,11 +10,11 @@ from tower import ugettext_lazy as _lazy
 from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet
 
-import amo
-import reviews
+from olympia import amo, reviews
+from olympia.amo.utils import raise_required
+from olympia.editors.models import ReviewerScore
+
 from .models import Review, ReviewFlag
-from amo.utils import raise_required
-from editors.models import ReviewerScore
 
 
 class ReviewReplyForm(forms.Form):

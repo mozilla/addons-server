@@ -13,19 +13,22 @@ from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.helpers import user_media_path
-from amo.tests import addon_factory, formset, initial, req_factory_factory
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
-from addons.forms import AddonFormBasic
-from addons.models import Addon, AddonCategory, AddonDependency, Category
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from devhub.models import ActivityLog
-from devhub.views import edit_theme
-from tags.models import Tag, AddonTag
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.helpers import user_media_path
+from olympia.amo.tests import (
+    addon_factory, formset, initial, req_factory_factory)
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.forms import AddonFormBasic
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonDependency, Category)
+from olympia.bandwagon.models import (
+    Collection, CollectionAddon, FeaturedCollection)
+from olympia.devhub.models import ActivityLog
+from olympia.devhub.views import edit_theme
+from olympia.tags.models import Tag, AddonTag
+from olympia.users.models import UserProfile
 
 
 def get_section_url(addon, section, edit=False):
@@ -36,7 +39,7 @@ def get_section_url(addon, section, edit=False):
 
 
 @override_settings(MEDIA_ROOT=None)  # Make it overridable.
-class TestEdit(amo.tests.TestCase):
+class TestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
 
@@ -1222,7 +1225,7 @@ class TestEditTechnical(TestEdit):
         self.check_dep_ids([5299])
 
 
-class TestAdmin(amo.tests.TestCase):
+class TestAdmin(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def login_admin(self):
@@ -1262,7 +1265,7 @@ class TestAdmin(amo.tests.TestCase):
         eq_(r.status_code, 403)
 
 
-class TestThemeEdit(amo.tests.TestCase):
+class TestThemeEdit(TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):

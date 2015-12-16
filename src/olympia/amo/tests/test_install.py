@@ -1,7 +1,7 @@
-from amo.install import addons
-from amo.tests import TestCase
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
+from olympia.amo.install import addons
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
 
 
 class InstallTests(TestCase):

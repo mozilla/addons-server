@@ -2,13 +2,14 @@
 import collections
 from nose.tools import eq_, ok_
 
-import amo
-import amo.tests
-from addons.models import Addon, Persona
-from constants.applications import APPS
-from landfill.categories import addons_categories, themes_categories
-from landfill.generators import _yield_name_and_cat, create_addon, create_theme
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, Persona
+from olympia.constants.applications import APPS
+from olympia.landfill.categories import addons_categories, themes_categories
+from olympia.landfill.generators import (
+    _yield_name_and_cat, create_addon, create_theme)
+from olympia.versions.models import Version
 
 
 class _BaseAddonGeneratorMixin(object):
@@ -51,29 +52,29 @@ class _BaseAddonGeneratorMixin(object):
         eq_(len(set(addonname for addonname, cat in data)), size)
 
 
-class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
+class FirefoxAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['firefox']
 
 
 class ThunderbirdAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                     amo.tests.TestCase):
+                                     TestCase):
     app = APPS['thunderbird']
 
 
-class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
+class AndroidAddonGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = APPS['android']
 
 
 class SeamonkeyAddonGeneratorTests(_BaseAddonGeneratorMixin,
-                                   amo.tests.TestCase):
+                                   TestCase):
     app = APPS['seamonkey']
 
 
-class ThemeGeneratorTests(_BaseAddonGeneratorMixin, amo.tests.TestCase):
+class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
     app = None
 
 
-class CreateGeneratorTests(amo.tests.TestCase):
+class CreateGeneratorTests(TestCase):
 
     def test_create_addon(self):
         addon = create_addon('foo', 'icon/default', APPS['android'])

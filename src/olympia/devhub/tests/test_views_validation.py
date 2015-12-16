@@ -11,19 +11,20 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 import waffle
 
-import amo
-import amo.tests
-from addons.models import Addon, AddonUser
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
-from applications.models import AppVersion
-from devhub.tasks import compatibility_check
-from files.helpers import copyfileobj
-from files.models import File, FileUpload, FileValidation, ValidationAnnotation
-from files.tests.test_models import UploadTest as BaseUploadTest
-from files.utils import check_xpi_info, parse_addon
-from users.models import UserProfile
-from zadmin.models import ValidationResult
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
+from olympia.applications.models import AppVersion
+from olympia.devhub.tasks import compatibility_check
+from olympia.files.helpers import copyfileobj
+from olympia.files.models import (
+    File, FileUpload, FileValidation, ValidationAnnotation)
+from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.files.utils import check_xpi_info, parse_addon
+from olympia.users.models import UserProfile
+from olympia.zadmin.models import ValidationResult
 
 
 class TestUploadValidation(BaseUploadTest):
@@ -108,7 +109,7 @@ class TestUploadErrors(BaseUploadTest):
         assert xpi_info['guid'] == long_guid
 
 
-class TestFileValidation(amo.tests.TestCase):
+class TestFileValidation(TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
 
     def setUp(self):
@@ -216,7 +217,7 @@ class TestFileValidation(amo.tests.TestCase):
         assert self.client.get(self.json_url).status_code == 405
 
 
-class TestFileAnnotation(amo.tests.TestCase):
+class TestFileAnnotation(TestCase):
     fixtures = ['base/users', 'devhub/addon-validation-1']
 
     def setUp(self):
@@ -305,7 +306,7 @@ class TestFileAnnotation(amo.tests.TestCase):
         assert ValidationAnnotation.objects.count() == 2
 
 
-class TestValidateAddon(amo.tests.TestCase):
+class TestValidateAddon(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -366,7 +367,7 @@ class TestValidateAddon(amo.tests.TestCase):
         assert FileUpload.objects.get().automated_signing is False
 
 
-class TestUploadURLs(amo.tests.TestCase):
+class TestUploadURLs(TestCase):
     fixtures = ('base/users',)
 
     def setUp(self):
@@ -657,7 +658,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(run_validator.call_args[1]['compat'], True)
 
 
-class TestCompatibilityResults(amo.tests.TestCase):
+class TestCompatibilityResults(TestCase):
     fixtures = ['base/users', 'devhub/addon-compat-results']
 
     def setUp(self):

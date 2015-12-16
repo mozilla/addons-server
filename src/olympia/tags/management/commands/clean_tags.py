@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 
-from tags.models import Tag
-from tags.tasks import clean_tag
+from olympia.tags.models import Tag
+from olympia.tags.tasks import clean_tag
 
 
 class Command(BaseCommand):

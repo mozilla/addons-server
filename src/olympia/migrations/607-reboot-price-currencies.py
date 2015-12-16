@@ -1,6 +1,6 @@
 from django.db import models
 
-import amo
+from olympia import amo
 from market.models import Price
 
 tiers = {

@@ -28,10 +28,10 @@ import waffle
 from lxml import etree
 from tower import ugettext as _
 
-import amo
-from amo.utils import rm_local_tmp_dir
-from applications.models import AppVersion
-from versions.compare import version_int as vint
+from olympia import amo
+from olympia.amo.utils import rm_local_tmp_dir
+from olympia.applications.models import AppVersion
+from olympia.versions.compare import version_int as vint
 
 
 log = logging.getLogger('z.files.utils')

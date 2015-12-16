@@ -1,13 +1,12 @@
+import urllib
+
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
-from amo import helpers
-
-from addons.models import Addon, Review
-
-import urllib
+from olympia.amo import helpers
+from olympia.addons.models import Addon, Review
 
 
 class ReviewsRss(Feed):

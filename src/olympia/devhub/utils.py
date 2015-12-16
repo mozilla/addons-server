@@ -7,16 +7,17 @@ from django.forms import ValidationError
 
 from celery import chain, group
 from tower import ugettext as _
-
-import amo
 import commonware.log
-from addons.models import Addon
-from amo.decorators import write
-from amo.urlresolvers import linkify_escape
-from files.models import File, FileUpload, ValidationAnnotation
-from files.utils import parse_addon
-from validator.constants import SIGNING_SEVERITIES
-from validator.version import Version
+
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.decorators import write
+from olympia.amo.urlresolvers import linkify_escape
+from olympia.files.models import File, FileUpload, ValidationAnnotation
+from olympia.files.utils import parse_addon
+from olympia.validator.constants import SIGNING_SEVERITIES
+from olympia.validator.version import Version
+
 from . import tasks
 
 log = commonware.log.getLogger('z.devhub')

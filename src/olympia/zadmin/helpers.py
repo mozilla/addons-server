@@ -1,6 +1,6 @@
 from jingo import register
 
-from amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import reverse
 
 
 @register.function

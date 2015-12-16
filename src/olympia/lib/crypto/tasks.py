@@ -5,14 +5,14 @@ import shutil
 from django.conf import settings
 from django.db.models import Q
 
-import amo
-from addons.models import AddonUser
-from amo.celery import task
-from files.models import File
-from files.utils import update_version_number
-from lib.crypto.packaged import sign_file
-from versions.compare import version_int
-from versions.models import Version
+from olympia import amo
+from olympia.addons.models import AddonUser
+from olympia.amo.celery import task
+from olympia.files.models import File
+from olympia.files.utils import update_version_number
+from olympia.lib.crypto.packaged import sign_file
+from olympia.versions.compare import version_int
+from olympia.versions.models import Version
 
 log = logging.getLogger('z.task')
 

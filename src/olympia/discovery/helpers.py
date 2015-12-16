@@ -4,9 +4,9 @@ import jinja2
 
 from jingo import register
 
-from amo.utils import urlparams
-from amo.urlresolvers import reverse
-from addons.helpers import persona_preview
+from olympia.amo.utils import urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.helpers import persona_preview
 
 
 @register.function

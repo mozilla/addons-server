@@ -1,9 +1,9 @@
 from django.conf.urls import include, patterns, url
 from django.shortcuts import redirect
 
-from amo.urlresolvers import reverse
-from browse.feeds import (ExtensionCategoriesRss, FeaturedRss, SearchToolsRss,
-                          ThemeCategoriesRss)
+from olympia.amo.urlresolvers import reverse
+from olympia.browse.feeds import (
+    ExtensionCategoriesRss, FeaturedRss, SearchToolsRss, ThemeCategoriesRss)
 from . import views
 
 

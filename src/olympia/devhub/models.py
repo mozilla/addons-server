@@ -12,18 +12,18 @@ import jinja2
 from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
-import amo
-import amo.models
-from access.models import Group
-from addons.models import Addon
-from bandwagon.models import Collection
-from files.models import File
-from reviews.models import Review
-from tags.models import Tag
-from translations.fields import save_signal, TranslatedField
-from users.helpers import user_link
-from users.models import UserProfile
-from versions.models import Version
+from olympia import amo
+from olympia.models import ModelBase, ManagerBase
+from olympia.access.models import Group
+from olympia.addons.models import Addon
+from olympia.bandwagon.models import Collection
+from olympia.files.models import File
+from olympia.reviews.models import Review
+from olympia.tags.models import Tag
+from olympia.translations.fields import save_signal, TranslatedField
+from olympia.users.helpers import user_link
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 log = commonware.log.getLogger('devhub')
 
@@ -38,7 +38,7 @@ class RssKey(models.Model):
         db_table = 'hubrsskeys'
 
 
-class BlogPost(amo.models.ModelBase):
+class BlogPost(ModelBase):
     title = models.CharField(max_length=255)
     date_posted = models.DateField(default=datetime.now)
     permalink = models.CharField(max_length=255)
@@ -47,7 +47,7 @@ class BlogPost(amo.models.ModelBase):
         db_table = 'blogposts'
 
 
-class HubPromo(amo.models.ModelBase):
+class HubPromo(ModelBase):
     VISIBILITY_CHOICES = (
         (0, 'Nobody'),
         (1, 'Visitors'),
@@ -72,7 +72,7 @@ models.signals.pre_save.connect(save_signal, sender=HubPromo,
                                 dispatch_uid='hubpromo_translations')
 
 
-class HubEvent(amo.models.ModelBase):
+class HubEvent(ModelBase):
     name = models.CharField(max_length=255, default='')
     url = models.URLField(max_length=255, default='')
     location = models.CharField(max_length=255, default='')
@@ -88,7 +88,7 @@ class HubEvent(amo.models.ModelBase):
         return ['*/developers*']
 
 
-class AddonLog(amo.models.ModelBase):
+class AddonLog(ModelBase):
     """
     This table is for indexing the activity log by addon.
     """
@@ -100,7 +100,7 @@ class AddonLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class CommentLog(amo.models.ModelBase):
+class CommentLog(ModelBase):
     """
     This table is for indexing the activity log by comment.
     """
@@ -112,7 +112,7 @@ class CommentLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class VersionLog(amo.models.ModelBase):
+class VersionLog(ModelBase):
     """
     This table is for indexing the activity log by version.
     """
@@ -124,7 +124,7 @@ class VersionLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class UserLog(amo.models.ModelBase):
+class UserLog(ModelBase):
     """
     This table is for indexing the activity log by user.
     Note: This includes activity performed unto the user.
@@ -137,7 +137,7 @@ class UserLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class GroupLog(amo.models.ModelBase):
+class GroupLog(ModelBase):
     """
     This table is for indexing the activity log by access group.
     """
@@ -149,7 +149,7 @@ class GroupLog(amo.models.ModelBase):
         ordering = ('-created',)
 
 
-class ActivityLogManager(amo.models.ManagerBase):
+class ActivityLogManager(ManagerBase):
     def for_addons(self, addons):
         if isinstance(addons, Addon):
             addons = (addons,)
@@ -258,7 +258,7 @@ class SafeFormatter(string.Formatter):
         return jinja2.escape(obj), used_key
 
 
-class ActivityLog(amo.models.ModelBase):
+class ActivityLog(ModelBase):
     TYPES = sorted([(value.id, key) for key, value in amo.LOG.items()])
     user = models.ForeignKey('users.UserProfile', null=True)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)

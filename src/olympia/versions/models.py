@@ -14,20 +14,19 @@ import jinja2
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
-import addons.query
-import amo
-import amo.models
-import amo.utils
-from amo.decorators import use_master
-from amo.urlresolvers import reverse
-from amo.helpers import user_media_path, id_to_path
-from amo.utils import utc_millesecs_from_epoch
-from applications.models import AppVersion
-from files import utils
-from files.models import File, cleanup_file
-from translations.fields import (LinkifiedField, PurifiedField, save_signal,
-                                 TranslatedField)
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
+from olympia.addons.query import IndexQuerySet
+from olympia.amo.decorators import use_master
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import user_media_path, id_to_path
+from olympia.applications.models import AppVersion
+from olympia.files import utils
+from olympia.files.models import File, cleanup_file
+from olympia.translations.fields import (
+    LinkifiedField, PurifiedField, save_signal, TranslatedField)
+from olympia.users.models import UserProfile
 
 from .compare import version_dict, version_int
 
@@ -39,15 +38,15 @@ VALID_SOURCE_EXTENSIONS = (
 )
 
 
-class VersionManager(amo.models.ManagerBase):
+class VersionManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
-        amo.models.ManagerBase.__init__(self)
+        ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
     def get_query_set(self):
         qs = super(VersionManager, self).get_query_set()
-        qs = qs._clone(klass=addons.query.IndexQuerySet)
+        qs = qs._clone(klass=IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
@@ -71,7 +70,7 @@ def source_upload_path(instance, filename):
     )
 
 
-class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
+class Version(OnChangeMixin, ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='versions')
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
@@ -100,7 +99,7 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'versions'
         ordering = ['-created', '-modified']
 
@@ -442,7 +441,7 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         files = File.objects.filter(version__in=ids).no_cache()
 
         def rollup(xs):
-            groups = amo.utils.sorted_groupby(xs, 'version_id')
+            groups = sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
         av_dict, file_dict = rollup(avs), rollup(files)
@@ -467,7 +466,7 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
               .select_related('activity_log', 'version').no_cache())
 
         def rollup(xs):
-            groups = amo.utils.sorted_groupby(xs, 'version_id')
+            groups = sorted_groupby(xs, 'version_id')
             return dict((k, list(vs)) for k, vs in groups)
 
         al_dict = rollup(al)
@@ -646,13 +645,13 @@ models.signals.post_delete.connect(
     dispatch_uid='clear_compatversion_cache_del')
 
 
-class LicenseManager(amo.models.ManagerBase):
+class LicenseManager(ManagerBase):
 
     def builtins(self):
         return self.filter(builtin__gt=0).order_by('builtin')
 
 
-class License(amo.models.ModelBase):
+class License(ModelBase):
     OTHER = 0
 
     name = TranslatedField(db_column='name')
@@ -680,7 +679,7 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='version_translations')
 
 
-class VersionComment(amo.models.ModelBase):
+class VersionComment(ModelBase):
     """Editor comments for version discussion threads."""
     version = models.ForeignKey(Version)
     user = models.ForeignKey(UserProfile)
@@ -689,7 +688,7 @@ class VersionComment(amo.models.ModelBase):
     subject = models.CharField(max_length=1000)
     comment = models.TextField()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'versioncomments'
 
 

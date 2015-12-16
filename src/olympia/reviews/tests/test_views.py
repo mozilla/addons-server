@@ -5,16 +5,16 @@ from pyquery import PyQuery as pq
 
 import mock
 
-import amo.tests
-from amo import helpers
-from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser
-from devhub.models import ActivityLog
-from reviews.models import Review, ReviewFlag
-from users.models import UserProfile
+from olympia.amo.tests import TestCase, MobileTest
+from olympia.amo import helpers
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon, AddonUser
+from olympia.devhub.models import ActivityLog
+from olympia.reviews.models import Review, ReviewFlag
+from olympia.users.models import UserProfile
 
 
-class ReviewTest(amo.tests.TestCase):
+class ReviewTest(TestCase):
     fixtures = ['reviews/dev-reply.json', 'base/admin']
 
     def setUp(self):
@@ -488,7 +488,7 @@ class TestTranslate(ReviewTest):
         eq_(r.status_code, 400)
 
 
-class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
+class TestMobileReviews(MobileTest, TestCase):
     fixtures = ['reviews/dev-reply.json', 'base/admin', 'base/users']
 
     def setUp(self):

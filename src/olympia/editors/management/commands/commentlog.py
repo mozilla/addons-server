@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
 
-from amo.utils import chunked
-from devhub.models import ActivityLog
-from editors.tasks import add_commentlog
+from olympia.amo.utils import chunked
+from olympia.devhub.models import ActivityLog
+from olympia.editors.tasks import add_commentlog
 
 
 class Command(BaseCommand):

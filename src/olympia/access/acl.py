@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 
 
 def match_rules(rules, app, action):

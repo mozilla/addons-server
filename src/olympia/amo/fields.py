@@ -6,7 +6,7 @@ from django.forms import fields
 
 from tower import ugettext as _
 
-from amo.widgets import ColorWidget
+from olympia.amo.widgets import ColorWidget
 
 
 class DecimalCharField(models.DecimalField):

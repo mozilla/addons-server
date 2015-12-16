@@ -1,17 +1,8 @@
 import logging
-import os
-import site
 
-# Add the parent dir to the python path so we can import manage.
-parent_dir = os.path.dirname(__file__)
-site.addsitedir(os.path.abspath(os.path.join(parent_dir, '../')))
-
-# manage adds /apps and /lib to the Python path.
-import manage  # noqa: we need this so it's a standalone script.
-
-import amo  # noqa
-from files.models import File  # noqa
-from files.utils import parse_addon  # noqa
+from olympia import amo
+from olympia.files.models import File
+from olympia.files.utils import parse_addon
 
 
 log = logging.getLogger('backfill-files-is_multi_package')

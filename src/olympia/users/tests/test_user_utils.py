@@ -4,12 +4,12 @@ from nose.tools import eq_
 
 from django.conf import settings
 
-import amo.tests
-from users.models import BlacklistedName
-from users.utils import EmailResetCode, autocreate_username
+from olympia.amo.tests import TestCase
+from olympia.users.models import BlacklistedName
+from olympia.users.utils import EmailResetCode, autocreate_username
 
 
-class TestEmailResetCode(amo.tests.TestCase):
+class TestEmailResetCode(TestCase):
 
     def test_parse(self):
         id = 1
@@ -25,7 +25,7 @@ class TestEmailResetCode(amo.tests.TestCase):
         self.assertRaises(ValueError, EmailResetCode.parse, token[5:], hash)
 
 
-class TestAutoCreateUsername(amo.tests.TestCase):
+class TestAutoCreateUsername(TestCase):
 
     def test_invalid_characters(self):
         eq_(autocreate_username('testaccount+slug'),

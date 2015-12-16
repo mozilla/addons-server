@@ -53,7 +53,7 @@ handlers = {
         'formatter': 'prod2',
     },
     'null': {
-        'class': 'lib.misc.admin_log.NullHandler',
+        'class': 'olympia.lib.misc.admin_log.NullHandler',
     },
     'statsd': {
         'level': 'ERROR',

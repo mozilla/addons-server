@@ -8,12 +8,12 @@ import spidermonkey
 from cache_nuggets.lib import Message
 from tower import ugettext as _
 
-import amo
-from addons.models import Addon, AddonUser
-from amo.celery import task
-from files.utils import repack, update_version_number
-from lib.crypto.packaged import sign_file
-from versions.compare import version_int
+from olympia import amo
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo.celery import task
+from olympia.files.utils import repack, update_version_number
+from olympia.lib.crypto.packaged import sign_file
+from olympia.versions.compare import version_int
 
 
 log = logging.getLogger('z.task')

@@ -26,13 +26,13 @@ import commonware.log
 import tower
 from tower import ugettext as _
 
-import amo
-import amo.models
-from access.models import Group, GroupUser
-from amo.urlresolvers import reverse
-from translations.fields import NoLinksField, save_signal
-from translations.models import Translation
-from translations.query import order_by_translation
+from olympia import amo
+from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
+from olympia.access.models import Group, GroupUser
+from olympia.amo.urlresolvers import reverse
+from olympia.translations.fields import NoLinksField, save_signal
+from olympia.translations.models import Translation
+from olympia.translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
 
@@ -128,7 +128,7 @@ class UserEmailField(forms.EmailField):
                 'data-src': lazy_reverse('users.ajax')}
 
 
-class UserManager(BaseUserManager, amo.models.ManagerBase):
+class UserManager(BaseUserManager, ManagerBase):
 
     def create_user(self, username, email, password=None, fxa_id=None):
         # We'll send username=None when registering through FxA to try and
@@ -178,7 +178,7 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
 AbstractBaseUser._meta.get_field('password').max_length = 255
 
 
-class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
+class UserProfile(OnChangeMixin, ModelBase,
                   AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
@@ -569,7 +569,7 @@ def user_post_delete(sender, instance, **kw):
         tasks.unindex_users.delay([instance.id])
 
 
-class UserNotification(amo.models.ModelBase):
+class UserNotification(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='notifications')
     notification_id = models.IntegerField()
     enabled = models.BooleanField(default=False)
@@ -585,7 +585,7 @@ class UserNotification(amo.models.ModelBase):
             UserNotification.objects.create(**update)
 
 
-class BlacklistedName(amo.models.ModelBase):
+class BlacklistedName(ModelBase):
     """Blacklisted User usernames and display_names + Collections' names."""
     name = models.CharField(max_length=255, unique=True, default='')
 
@@ -612,7 +612,7 @@ class BlacklistedName(amo.models.ModelBase):
         return any(n in name for n in blacklist)
 
 
-class BlacklistedEmailDomain(amo.models.ModelBase):
+class BlacklistedEmailDomain(ModelBase):
     """Blacklisted user e-mail domains."""
     domain = models.CharField(max_length=255, unique=True, default='',
                               blank=False)
@@ -638,7 +638,7 @@ class BlacklistedEmailDomain(amo.models.ModelBase):
                 return True
 
 
-class BlacklistedPassword(amo.models.ModelBase):
+class BlacklistedPassword(ModelBase):
     """Blacklisted passwords"""
     password = models.CharField(max_length=255, unique=True, blank=False)
 
@@ -650,7 +650,7 @@ class BlacklistedPassword(amo.models.ModelBase):
         return cls.objects.filter(password=password)
 
 
-class UserHistory(amo.models.ModelBase):
+class UserHistory(ModelBase):
     email = models.EmailField()
     user = models.ForeignKey(UserProfile, related_name='history')
 

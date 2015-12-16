@@ -5,13 +5,13 @@ from django.core.management import call_command
 from django.db import IntegrityError
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from amo.helpers import url
-from applications.models import AppVersion
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.helpers import url
+from olympia.applications.models import AppVersion
 
 
-class TestAppVersion(amo.tests.TestCase):
+class TestAppVersion(TestCase):
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
@@ -45,7 +45,7 @@ class TestAppVersion(amo.tests.TestCase):
             AppVersion.objects.create(application=1, version='123')
 
 
-class TestViews(amo.tests.TestCase):
+class TestViews(TestCase):
     fixtures = ['base/appversion']
 
     def test_appversions(self):
@@ -55,7 +55,7 @@ class TestViews(amo.tests.TestCase):
         eq_(self.client.get(url('apps.appversions.rss')).status_code, 200)
 
 
-class TestCommands(amo.tests.TestCase):
+class TestCommands(TestCase):
     fixtures = ['base/appversion']
 
     def test_dump_apps(self):

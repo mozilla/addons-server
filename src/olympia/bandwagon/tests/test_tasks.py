@@ -8,8 +8,8 @@ import pytest
 from nose.tools import eq_
 from PIL import Image
 
-from amo.tests.test_helpers import get_image_path
-from bandwagon.tasks import resize_icon
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.bandwagon.tasks import resize_icon
 
 
 pytestmark = pytest.mark.django_db

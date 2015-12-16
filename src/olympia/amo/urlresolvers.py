@@ -14,7 +14,7 @@ from django.core import urlresolvers
 from django.utils import encoding
 from django.utils.translation.trans_real import parse_accept_lang_header
 
-import amo
+from olympia import amo
 
 # Get a pointer to Django's reverse and resolve because we're going to hijack
 # them after we define our own.

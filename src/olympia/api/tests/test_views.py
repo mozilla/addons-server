@@ -12,22 +12,22 @@ from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import api
-from addons.models import (Addon, AppSupport, CompatOverride,
-                           CompatOverrideRange, Persona, Preview)
-from amo import helpers
-from amo.helpers import absolutify
-from amo.tests import addon_factory, ESTestCase, TestCase
-from amo.urlresolvers import reverse
-from amo.views import handler500
-from api.utils import addon_to_dict
-from api.views import addon_filter
-from applications.models import AppVersion
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from files.models import File
-from files.tests.test_models import UploadTest
-from tags.models import AddonTag, Tag
+from olympia import amo, api
+from olympia.addons.models import (
+    Addon, AppSupport, CompatOverride, CompatOverrideRange, Persona, Preview)
+from olympia.amo import helpers
+from olympia.amo.helpers import absolutify
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.views import handler500
+from olympia.api.utils import addon_to_dict
+from olympia.api.views import addon_filter
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import (
+    Collection, CollectionAddon, FeaturedCollection)
+from olympia.files.models import File
+from olympia.files.tests.test_models import UploadTest
+from olympia.tags.models import AddonTag, Tag
 
 
 pytestmark = pytest.mark.django_db

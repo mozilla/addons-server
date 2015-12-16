@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 from addons.models import Addon, CompatOverride, CompatOverrideRange
 
 

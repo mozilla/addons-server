@@ -3,7 +3,7 @@ from django.forms.widgets import RadioSelect
 
 from tower import ugettext_lazy as _
 
-import amo
+from olympia import amo
 
 
 appvers = [(amo.APP_IDS[d['app']], d['main']) for d in amo.COMPAT]

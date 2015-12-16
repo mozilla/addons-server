@@ -1,7 +1,7 @@
 import jinja2
 from jingo import register
 
-import acl
+from . import acl
 
 
 @register.function

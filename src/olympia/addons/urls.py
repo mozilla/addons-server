@@ -2,8 +2,8 @@ from django.conf.urls import include, patterns, url
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 
-from reviews.urls import review_patterns
-from stats.urls import stats_patterns
+from olympia.reviews.urls import review_patterns
+from olympia.stats.urls import stats_patterns
 from . import views
 
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""

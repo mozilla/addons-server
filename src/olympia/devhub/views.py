@@ -26,36 +26,38 @@ from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
 
-import amo
-import amo.utils
-from access import acl
-from addons import forms as addon_forms
-from addons.decorators import addon_view
-from addons.models import Addon, AddonUser
-from addons.tasks import unindex_addons
-from addons.views import BaseFilter
-from amo import messages
-from amo.decorators import json_view, login_required, post_required
-from amo.helpers import absolutify, urlparams
-from amo.urlresolvers import reverse
-from amo.utils import escape_all, MenuItem, send_mail_jinja
-from api.models import APIKey
-from applications.models import AppVersion
-from devhub.decorators import dev_required
-from devhub.forms import CheckCompatibilityForm
-from devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
-from devhub.utils import (ValidationAnnotator, ValidationComparator,
-                          process_validation)
-from editors.decorators import addons_reviewer_required
-from editors.helpers import get_position, ReviewHelper
-from files.models import File, FileUpload, FileValidation, ValidationAnnotation
-from files.utils import is_beta, parse_addon
-from lib.crypto.packaged import sign_file
-from search.views import BaseAjaxSearch
-from translations.models import delete_translation
-from users.models import UserProfile
-from versions.models import Version
-from zadmin.models import ValidationResult
+from olympia import amo
+from olympia.amo import utils as amo_utils
+from olympia.access import acl
+from olympia.addons import forms as addon_forms
+from olympia.addons.decorators import addon_view
+from olympia.addons.models import Addon, AddonUser
+from olympia.addons.tasks import unindex_addons
+from olympia.addons.views import BaseFilter
+from olympia.amo import messages
+from olympia.amo.decorators import json_view, login_required, post_required
+from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import escape_all, MenuItem, send_mail_jinja
+from olympia.api.models import APIKey
+from olympia.applications.models import AppVersion
+from olympia.devhub import perf
+from olympia.devhub.decorators import dev_required
+from olympia.devhub.forms import CheckCompatibilityForm
+from olympia.devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep
+from olympia.devhub.utils import (
+    ValidationAnnotator, ValidationComparator, process_validation)
+from olympia.editors.decorators import addons_reviewer_required
+from olympia.editors.helpers import get_position, ReviewHelper
+from olympia.files.models import (
+    File, FileUpload, FileValidation, ValidationAnnotation)
+from olympia.files.utils import is_beta, parse_addon
+from olympia.lib.crypto.packaged import sign_file
+from olympia.search.views import BaseAjaxSearch
+from olympia.translations.models import delete_translation
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
+from olympia.zadmin.models import ValidationResult
 
 from . import forms, tasks, feeds, signals
 
@@ -121,11 +123,11 @@ def dashboard(request, theme=False):
 
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
-        data['addons'] = amo.utils.paginate(request, addons, per_page=10)
+        data['addons'] = amo_utils.paginate(request, addons, per_page=10)
 
     if theme:
         themes, data['filter'] = addon_listing(request, theme=True)
-        data['themes'] = amo.utils.paginate(request, themes, per_page=10)
+        data['themes'] = amo_utils.paginate(request, themes, per_page=10)
 
     if 'filter' in data:
         data['sorting'] = data['filter'].field
@@ -282,7 +284,7 @@ def feed(request, addon_id=None):
     activities = _get_activities(request, action)
     addon_items = _get_addons(request, addons_all, addon_selected, action)
 
-    pager = amo.utils.paginate(request, items, 20)
+    pager = amo_utils.paginate(request, items, 20)
     data = dict(addons=addon_items, pager=pager, activities=activities,
                 rss=rssurl, addon=addon)
     return render(request, 'devhub/addons/activity.html', data)
@@ -1038,7 +1040,7 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         is_icon = upload_type == 'icon'
         is_persona = upload_type.startswith('persona_')
 
-        check = amo.utils.ImageCheck(upload_preview)
+        check = amo_utils.ImageCheck(upload_preview)
         if (not check.is_image() or
                 upload_preview.content_type not in amo.IMG_TYPES):
             if is_icon:
@@ -1272,7 +1274,7 @@ def version_add(request, addon_id, addon):
         # Let's reuse the release and approval notes from the previous
         # rejected version.
         last_rejected = rejected_versions[0]
-        version.releasenotes = amo.utils.translations_for_field(
+        version.releasenotes = amo_utils.translations_for_field(
             last_rejected.releasenotes)
         version.approvalnotes = last_rejected.approvalnotes
         version.save()
@@ -1322,7 +1324,7 @@ def version_add_file(request, addon_id, addon, version_id):
 @dev_required
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
-    versions = amo.utils.paginate(request, qs)
+    versions = amo_utils.paginate(request, qs)
     new_file_form = forms.NewVersionForm(None, addon=addon, request=request)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 

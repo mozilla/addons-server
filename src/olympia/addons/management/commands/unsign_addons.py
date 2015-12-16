@@ -3,7 +3,7 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 
-from lib.crypto.tasks import unsign_addons
+from olympia.lib.crypto.tasks import unsign_addons
 
 
 class Command(BaseCommand):

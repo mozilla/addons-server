@@ -6,10 +6,10 @@ import uuid
 from PIL import Image, ImageColor
 from django.conf import settings
 
-from addons.models import Preview
-from addons.tasks import save_theme
-from amo.helpers import user_media_path
-from devhub.tasks import resize_preview
+from olympia.addons.models import Preview
+from olympia.addons.tasks import save_theme
+from olympia.amo.helpers import user_media_path
+from olympia.devhub.tasks import resize_preview
 
 
 def generate_addon_preview(addon):

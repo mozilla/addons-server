@@ -5,8 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.test.utils import override_settings
 
-from amo.utils import chunked
-from lib.crypto.tasks import resign_files
+from olympia.amo.utils import chunked
+from olympia.lib.crypto.tasks import resign_files
 
 
 class Command(BaseCommand):

@@ -4,11 +4,11 @@ import mock
 import pytest
 from nose.tools import assert_false
 
-import amo
-from amo.tests import TestCase, req_factory_factory
-from amo.urlresolvers import reverse
-from addons.models import Addon, AddonUser
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase, req_factory_factory
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon, AddonUser
+from olympia.users.models import UserProfile
 
 from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_addons_reviewer, check_personas_reviewer,

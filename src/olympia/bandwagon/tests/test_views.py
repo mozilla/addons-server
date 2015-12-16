@@ -13,21 +13,22 @@ from mock import patch, Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from access.models import Group, GroupUser
-from addons.models import Addon
-from addons.tests.test_views import TestMobile
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
-from amo.tests.test_helpers import get_uploaded_file
-from bandwagon import forms
-from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionVote, CollectionWatcher)
-from bandwagon.views import CollectionFilter
-from browse.tests import TestFeeds
-from devhub.models import ActivityLog
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon
+from olympia.addons.tests.test_views import TestMobile
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
+from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.bandwagon import forms
+from olympia.bandwagon.models import (
+    Collection, CollectionAddon, CollectionUser, CollectionVote,
+    CollectionWatcher)
+from olympia.bandwagon.views import CollectionFilter
+from olympia.browse.tests import TestFeeds
+from olympia.devhub.models import ActivityLog
+from olympia.users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
@@ -90,7 +91,7 @@ class HappyUnicodeClient(django.test.Client):
     # Add head, put, options, delete if you need them.
 
 
-class TestViews(amo.tests.TestCase):
+class TestViews(TestCase):
     fixtures = ['users/test_backends', 'bandwagon/test_models',
                 'base/addon_3615']
 
@@ -238,7 +239,7 @@ class TestViews(amo.tests.TestCase):
         eq_(res.status_code, 403)  # The view is csrf protected.
 
 
-class TestPrivacy(amo.tests.TestCase):
+class TestPrivacy(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -288,7 +289,7 @@ class TestPrivacy(amo.tests.TestCase):
         #    'Add-on authors (not just owners) should be able to view stats')
 
 
-class TestVotes(amo.tests.TestCase):
+class TestVotes(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -352,7 +353,7 @@ class TestVotes(amo.tests.TestCase):
         eq_(r.status_code, 200)
 
 
-class TestCRUD(amo.tests.TestCase):
+class TestCRUD(TestCase):
     """Test the collection form."""
     fixtures = ('base/users', 'base/addon_3615', 'base/collections')
 
@@ -832,7 +833,7 @@ class TestCRUD(amo.tests.TestCase):
         eq_(unicode(newc.name), 'new name')
 
 
-class TestChangeAddon(amo.tests.TestCase):
+class TestChangeAddon(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -932,7 +933,7 @@ class TestChangeAddon(amo.tests.TestCase):
                                   args=['jbalogh', 'mobile']))
 
 
-class AjaxTest(amo.tests.TestCase):
+class AjaxTest(TestCase):
     fixtures = ('base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections')
 
@@ -1002,7 +1003,7 @@ class AjaxTest(amo.tests.TestCase):
         eq_(self.client.get(url).status_code, 400)
 
 
-class TestWatching(amo.tests.TestCase):
+class TestWatching(TestCase):
     fixtures = ['base/users', 'base/collection_57181']
 
     def setUp(self):
@@ -1041,7 +1042,7 @@ class TestWatching(amo.tests.TestCase):
         eq_(json.loads(r.content), {'watching': True})
 
 
-class TestSharing(amo.tests.TestCase):
+class TestSharing(TestCase):
     fixtures = ['base/collection_57181']
 
     def test_twitter_share(self):
@@ -1073,7 +1074,7 @@ class TestCollectionFeed(TestFeeds):
         self.filter = CollectionFilter
 
 
-class TestCollectionListing(amo.tests.TestCase):
+class TestCollectionListing(TestCase):
     fixtures = ['base/users', 'base/addon_3615', 'base/category',
                 'base/featured', 'addons/featured', 'addons/listed',
                 'base/collections', 'bandwagon/featured_collections']
@@ -1180,7 +1181,7 @@ class TestCollectionListing(amo.tests.TestCase):
         eq_('weekly follower' in d('.items .item .followers').text(), True)
 
 
-class TestCollectionDetailFeed(amo.tests.TestCase):
+class TestCollectionDetailFeed(TestCase):
     fixtures = ['base/collection_57181']
 
     def setUp(self):
@@ -1228,7 +1229,7 @@ class TestMobileCollections(TestMobile):
         self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
 
 
-class TestCollectionForm(amo.tests.TestCase):
+class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
     @patch('amo.models.ModelBase.update')

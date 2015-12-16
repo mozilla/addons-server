@@ -1,9 +1,9 @@
 from django.contrib.auth import authenticate
 
-import amo.tests
+from olympia.amo.tests import TestCase
 
 
-class TestAmoUserBackend(amo.tests.TestCase):
+class TestAmoUserBackend(TestCase):
     fixtures = ['users/test_backends']
 
     def test_success(self):

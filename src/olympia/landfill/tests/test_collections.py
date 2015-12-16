@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_, ok_
 
-import amo
-import amo.tests
-from addons.models import Addon
-from bandwagon.models import Collection, CollectionAddon, FeaturedCollection
-from constants.applications import APPS
-from landfill.collection import generate_collection
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.bandwagon.models import (
+    Collection, CollectionAddon, FeaturedCollection)
+from olympia.constants.applications import APPS
+from olympia.landfill.collection import generate_collection
 
 
-class CollectionsTests(amo.tests.TestCase):
+class CollectionsTests(TestCase):
 
     def setUp(self):
         super(CollectionsTests, self).setUp()

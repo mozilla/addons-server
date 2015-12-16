@@ -1,8 +1,9 @@
 import pytest
 from nose.tools import eq_
 
-from translations.models import Translation
-from translations.utils import transfield_changed, truncate, truncate_text
+from olympia.translations.models import Translation
+from olympia.translations.utils import (
+    transfield_changed, truncate, truncate_text)
 
 
 pytestmark = pytest.mark.django_db

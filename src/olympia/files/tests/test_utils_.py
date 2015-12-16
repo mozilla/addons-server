@@ -9,13 +9,13 @@ from nose.tools import eq_
 
 from django import forms
 
-import amo
-import amo.tests
-from addons.models import Addon
-from applications.models import AppVersion
-from files import utils
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.applications.models import AppVersion
+from olympia.files import utils
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -74,7 +74,7 @@ def test_is_beta():
     assert utils.is_beta('1.2rc-123')
 
 
-class TestFindJetpacks(amo.tests.TestCase):
+class TestFindJetpacks(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -121,7 +121,7 @@ class TestFindJetpacks(amo.tests.TestCase):
         assert all(f.needs_upgrade for f in files[1:])
 
 
-class TestExtractor(amo.tests.TestCase):
+class TestExtractor(TestCase):
 
     def os_path_exists_for(self, path_to_accept):
         """Helper function that returns a function for a mock.
@@ -194,7 +194,7 @@ class TestExtractor(amo.tests.TestCase):
         assert not manifest_json_extractor.called
 
 
-class TestPackageJSONExtractor(amo.tests.TestCase):
+class TestPackageJSONExtractor(TestCase):
 
     def parse(self, base_data):
         return utils.PackageJSONExtractor('/fake_path',
@@ -316,7 +316,7 @@ class TestPackageJSONExtractor(amo.tests.TestCase):
         assert 'is_webextension' not in self.parse({})
 
 
-class TestManifestJSONExtractor(amo.tests.TestCase):
+class TestManifestJSONExtractor(TestCase):
 
     def parse(self, base_data):
         return utils.ManifestJSONExtractor('/fake_path',

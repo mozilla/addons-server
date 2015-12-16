@@ -8,14 +8,15 @@ import caching.base as caching
 import commonware.log
 from mobility.decorators import mobile_template
 
-import amo
-from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, urlparams
-from access import acl
-from addons.decorators import addon_view_factory, owner_or_unlisted_reviewer
-from addons.models import Addon
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import HttpResponseSendFile, urlparams
+from olympia.access import acl
+from olympia.addons.decorators import (
+    addon_view_factory, owner_or_unlisted_reviewer)
+from olympia.addons.models import Addon
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 # The version detail page redirects to the version within pagination, so we

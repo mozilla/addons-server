@@ -1,6 +1,6 @@
 """Testing the pytest fixtures themselves which are declared in conftest.py."""
 
-from access.models import Group
+from olympia.access.models import Group
 
 
 def test_admin_group(admin_group):

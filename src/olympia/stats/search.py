@@ -3,12 +3,11 @@ import collections
 from django.conf import settings
 from django.core.management import call_command
 
-import amo
-import amo.search
-from applications.models import AppVersion
-from lib.es.utils import create_index
-from stats.models import (CollectionCount, DownloadCount, StatsSearchMixin,
-                          UpdateCount)
+from olympia import amo
+from olympia.applications.models import AppVersion
+from olympia.lib.es.utils import create_index
+from olympia.stats.models import (
+    CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount)
 
 
 def es_dict(items):

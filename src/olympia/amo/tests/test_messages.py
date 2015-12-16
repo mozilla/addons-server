@@ -8,7 +8,7 @@ from jingo import env
 from nose.tools import eq_
 from tower import ugettext as _
 
-from amo.messages import _make_message, info
+from olympia.amo.messages import _make_message, info
 
 
 pytestmark = pytest.mark.django_db

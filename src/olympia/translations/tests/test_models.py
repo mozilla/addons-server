@@ -17,14 +17,14 @@ from nose import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from amo.tests import BaseTestCase
-from testapp.models import TranslatedModel, UntranslatedModel, FancyModel
-from translations import widgets
-from translations.query import order_by_translation
-from translations.models import (LinkifiedTranslation, NoLinksTranslation,
-                                 NoLinksNoMarkupTranslation,
-                                 PurifiedTranslation, Translation,
-                                 TranslationSequence)
+from olympia.amo.tests import BaseTestCase
+from olympia.testapp.models import (
+    TranslatedModel, UntranslatedModel, FancyModel)
+from olympia.translations import widgets
+from olympia.translations.query import order_by_translation
+from olympia.translations.models import (
+    LinkifiedTranslation, NoLinksTranslation, NoLinksNoMarkupTranslation,
+    PurifiedTranslation, Translation, TranslationSequence)
 
 
 pytestmark = pytest.mark.django_db

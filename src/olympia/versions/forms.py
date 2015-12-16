@@ -7,12 +7,12 @@ from django.core.files.storage import default_storage as storage
 import commonware.log
 import happyforms
 
-import amo
-from amo.helpers import user_media_path
-from addons.models import Addon, AddonUser
-from files.models import File
-from files.utils import parse_addon
-from versions.models import ApplicationsVersions, Version
+from olympia import amo
+from olympia.amo.helpers import user_media_path
+from olympia.addons.models import Addon, AddonUser
+from olympia.files.models import File
+from olympia.files.utils import parse_addon
+from olympia.versions.models import ApplicationsVersions, Version
 
 log = commonware.log.getLogger('z.addons')
 

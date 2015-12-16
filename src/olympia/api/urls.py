@@ -4,8 +4,8 @@ from django.conf.urls import include, patterns, url
 import waffle
 from piston.resource import Resource
 
-from addons.urls import ADDON_ID
-from api import authentication, handlers, views, views_drf
+from olympia.addons.urls import ADDON_ID
+from olympia.api import authentication, handlers, views, views_drf
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 

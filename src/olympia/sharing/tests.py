@@ -8,7 +8,8 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from olympia.addons.models import Addon
-from olympia import amo, sharing, sharing.views
+from olympia import amo, sharing
+from olympia.sharing.views import share as share_view
 from olympia.amo.tests import BaseTestCase
 from olympia.sharing.forms import ShareForm
 from olympia.sharing.helpers import sharing_box
@@ -74,9 +75,9 @@ def test_share_view():
     request, obj = Mock(), Mock()
     request.GET = {'service': 'twitter'}
     obj.get_url_path.return_value = u
-    sharing.views.share(request, obj, u, u)
+    share_view(request, obj, u, u)
     obj.get_url_path.return_value = s
-    sharing.views.share(request, obj, s, s)
+    share_view(request, obj, s, s)
 
 
 @patch.object(settings, 'SITE_URL', 'http://test')

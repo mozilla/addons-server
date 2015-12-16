@@ -21,15 +21,17 @@ from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
 
-from olympia import amo, users.notifications as notifications
+from olympia import amo
+from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.access.middleware import ACLMiddleware
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo import messages
-from olympia.amo.decorators import (json_view, login_required, permission_required,
-                            post_required, write)
+from olympia.amo.decorators import (
+    json_view, login_required, permission_required,
+    post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, log_cef, send_mail

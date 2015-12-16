@@ -8,23 +8,23 @@ from nose.tools import eq_
 from mock import Mock
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from addons.models import Addon, AddonUser
-from bandwagon.models import Collection
-from devhub.models import ActivityLog, AddonLog, BlogPost
-from tags.models import Tag
-from files.models import File
-from reviews.models import Review
-from users.models import UserProfile
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, AddonUser
+from olympia.bandwagon.models import Collection
+from olympia.devhub.models import ActivityLog, AddonLog, BlogPost
+from olympia.tags.models import Tag
+from olympia.files.models import File
+from olympia.reviews.models import Review
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 TESTS_DIR = path.dirname(path.abspath(__file__))
 ATTACHMENTS_DIR = path.join(TESTS_DIR, 'attachments')
 
 
-class TestActivityLog(amo.tests.TestCase):
+class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -234,7 +234,7 @@ class TestActivityLog(amo.tests.TestCase):
         assert log == msg
 
 
-class TestVersion(amo.tests.TestCase):
+class TestVersion(TestCase):
     fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
 
     def setUp(self):
@@ -290,7 +290,7 @@ class TestVersion(amo.tests.TestCase):
         eq_(self.addon.status, amo.STATUS_NULL)
 
 
-class TestActivityLogCount(amo.tests.TestCase):
+class TestActivityLogCount(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -394,7 +394,7 @@ class TestActivityLogCount(amo.tests.TestCase):
         eq_(len(ActivityLog.objects.for_developer()), 1)
 
 
-class TestBlogPosts(amo.tests.TestCase):
+class TestBlogPosts(TestCase):
 
     def test_blog_posts(self):
         BlogPost.objects.create(title='hi')

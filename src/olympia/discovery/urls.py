@@ -2,7 +2,8 @@ from django.conf.urls import include, patterns, url
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
-from addons.urls import ADDON_ID
+from olympia.addons.urls import ADDON_ID
+
 from . import views
 
 

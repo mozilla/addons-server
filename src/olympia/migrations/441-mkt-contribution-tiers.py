@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 from market.models import Price
 from stats.models import Contribution
 

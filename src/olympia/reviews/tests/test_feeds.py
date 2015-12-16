@@ -2,12 +2,12 @@
 import mock
 from nose.tools import eq_
 
-import amo.tests
-from reviews import feeds
-from translations.models import Translation
+from olympia.amo.tests import TestCase
+from olympia.reviews import feeds
+from olympia.translations.models import Translation
 
 
-class FeedTest(amo.tests.TestCase):
+class FeedTest(TestCase):
     # Rub some unicode all over the reviews feed.
 
     def setUp(self):

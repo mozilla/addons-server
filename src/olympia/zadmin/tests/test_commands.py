@@ -1,12 +1,12 @@
-import amo.tests
+from olympia.amo.tests import TestCase
 
-from apps.access.acl import action_allowed_user
-from apps.users.models import UserProfile
-from zadmin.management.commands.addusertogroup import do_adduser
-from zadmin.management.commands.removeuserfromgroup import do_removeuser
+from olympia.access.acl import action_allowed_user
+from olympia.users.models import UserProfile
+from olympia.zadmin.management.commands.addusertogroup import do_adduser
+from olympia.zadmin.management.commands.removeuserfromgroup import do_removeuser  # noqa
 
 
-class TestCommand(amo.tests.TestCase):
+class TestCommand(TestCase):
     fixtures = ['zadmin/group_admin', 'zadmin/users']
 
     def test_group_management(self):

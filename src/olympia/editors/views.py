@@ -14,37 +14,34 @@ from django.views.decorators.cache import never_cache
 
 from tower import ugettext as _
 
-import amo
-import devhub.tasks
-from abuse.models import AbuseReport
-from access import acl
-from addons.decorators import addon_view, addon_view_factory
-from addons.models import Addon, Version
-from amo.decorators import json_view, post_required
-from amo.utils import paginate
-from amo.urlresolvers import reverse
-from devhub.models import ActivityLog, AddonLog, CommentLog
-from editors import forms
-from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
-                            PerformanceGraph, ReviewerScore,
-                            ViewFastTrackQueue, ViewFullReviewQueue,
-                            ViewPendingQueue, ViewPreliminaryQueue,
-                            ViewQueue,
-                            ViewUnlistedFullReviewQueue,
-                            ViewUnlistedPendingQueue,
-                            ViewUnlistedPreliminaryQueue)
-from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
-                             ViewPendingQueueTable, ViewPreliminaryQueueTable,
-                             ViewUnlistedFullReviewQueueTable,
-                             ViewUnlistedPendingQueueTable,
-                             ViewUnlistedPreliminaryQueueTable)
-from reviews.forms import ReviewFlagFormSet
-from reviews.models import Review, ReviewFlag
-from users.models import UserProfile
-from zadmin.models import get_config, set_config
+from olympia import amo
+from olympia.devhub import tasks as devhub_tasks
+from olympia.abuse.models import AbuseReport
+from olympia.access import acl
+from olympia.addons.decorators import addon_view, addon_view_factory
+from olympia.addons.models import Addon, Version
+from olympia.amo.decorators import json_view, post_required
+from olympia.amo.utils import paginate
+from olympia.amo.urlresolvers import reverse
+from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
+from olympia.editors import forms
+from olympia.editors.models import (
+    AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
+    ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
+    ViewPreliminaryQueue, ViewQueue, ViewUnlistedFullReviewQueue,
+    ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
+from olympia.editors.helpers import (
+    ViewFastTrackQueueTable, ViewFullReviewQueueTable, ViewPendingQueueTable,
+    ViewPreliminaryQueueTable, ViewUnlistedFullReviewQueueTable,
+    ViewUnlistedPendingQueueTable, ViewUnlistedPreliminaryQueueTable)
+from olympia.reviews.forms import ReviewFlagFormSet
+from olympia.reviews.models import Review, ReviewFlag
+from olympia.users.models import UserProfile
+from olympia.zadmin.models import get_config, set_config
 
-from .decorators import (addons_reviewer_required, any_reviewer_required,
-                         unlisted_addons_reviewer_required)
+from .decorators import (
+    addons_reviewer_required, any_reviewer_required,
+    unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -596,7 +593,7 @@ def review(request, addon):
     if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
         for file_ in version.files.all():
             if not file_.has_been_validated:
-                devhub.tasks.validate(file_)
+                devhub_tasks.validate(file_)
 
     canned = AddonCannedResponse.objects.all()
     actions = form.helper.actions.items()

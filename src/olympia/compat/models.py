@@ -2,11 +2,10 @@ from django.db import models
 
 import json_field
 
-import amo
-import amo.models
+from olympia.amo.models import ModelBase
 
 
-class CompatReport(amo.models.ModelBase):
+class CompatReport(ModelBase):
     guid = models.CharField(max_length=128)
     version = models.CharField(max_length=128)
     app_guid = models.CharField(max_length=128)
@@ -32,7 +31,7 @@ class CompatReport(amo.models.ModelBase):
         }
 
 
-class AppCompat(amo.models.ModelBase):
+class AppCompat(ModelBase):
     """
     Stub model for use with search. The schema:
 
@@ -59,7 +58,7 @@ class AppCompat(amo.models.ModelBase):
         db_table = 'compat'
 
 
-class CompatTotals(amo.models.ModelBase):
+class CompatTotals(ModelBase):
     """
     Cache for totals of success/failure reports.
     """

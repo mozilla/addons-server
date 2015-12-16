@@ -9,7 +9,7 @@ import bleach
 import jinja2
 import jingo
 
-from amo.utils import clean_nl
+from olympia.amo.utils import clean_nl
 
 jingo.register.filter(to_language)
 

@@ -7,7 +7,7 @@ This migration empties all the previously soft deleted add-ons."""
 
 from django.conf import settings
 
-import amo
+from olympia import amo
 from addons.models import Addon
 from users.models import UserProfile
 

@@ -2,7 +2,7 @@ import pytest
 from array import array
 from nose.tools import eq_
 
-from lib import recommend
+from olympia.lib import recommend
 
 
 pytestmark = pytest.mark.django_db

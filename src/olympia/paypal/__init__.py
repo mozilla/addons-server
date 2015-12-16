@@ -8,12 +8,12 @@ from django.utils.http import urlquote
 import commonware.log
 from django_statsd.clients import statsd
 import requests
-
-import amo
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from amo.utils import log_cef
 from tower import ugettext as _
+
+from olympia import amo
+from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import log_cef
 
 
 class PaypalError(Exception):

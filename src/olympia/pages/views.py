@@ -3,8 +3,8 @@ from collections import defaultdict
 from django.conf import settings
 from django.shortcuts import render
 
-from devhub.models import ActivityLog
-from users.models import UserProfile
+from olympia.devhub.models import ActivityLog
+from olympia.users.models import UserProfile
 
 
 def credits(request):

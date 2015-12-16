@@ -15,14 +15,15 @@ import multidb
 from celery.task.sets import TaskSet
 import waffle
 
-import amo
-from amo.celery import task
-from amo.decorators import write
-from amo.utils import chunked, walkfiles
-from addons.models import Addon, AppSupport, FrozenAddon, Persona
-from files.models import File
-from lib.es.utils import raise_if_reindex_in_progress
-from stats.models import ThemeUserCount, UpdateCount
+from olympia import amo
+from olympia.amo.celery import task
+from olympia.amo.decorators import write
+from olympia.amo.utils import chunked, walkfiles
+from olympia.addons.models import Addon, AppSupport, FrozenAddon, Persona
+from olympia.files.models import File
+from olympia.lib.es.utils import raise_if_reindex_in_progress
+from olympia.lib import recommend
+from olympia.stats.models import ThemeUserCount, UpdateCount
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')

@@ -7,11 +7,12 @@ from django.db.models import Max, Min
 
 from celery.task.sets import TaskSet
 
-from amo.utils import chunked
-from stats.models import (CollectionCount, DownloadCount, ThemeUserCount,
-                          UpdateCount)
-from stats.tasks import (index_collection_counts, index_download_counts,
-                         index_theme_user_counts, index_update_counts)
+from olympia.amo.utils import chunked
+from olympia.stats.models import (
+    CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)
+from olympia.stats.tasks import (
+    index_collection_counts, index_download_counts, index_theme_user_counts,
+    index_update_counts)
 
 log = logging.getLogger('z.stats')
 

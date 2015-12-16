@@ -4,16 +4,16 @@ from pyquery import PyQuery as pq
 
 from django.core import mail
 
-import amo
-import amo.tests
-from amo.tests import formset
-from addons.models import Addon, AddonUser
-from devhub.forms import LicenseForm
-from devhub.models import ActivityLog
-from versions.models import License, Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.tests import formset
+from olympia.addons.models import Addon, AddonUser
+from olympia.devhub.forms import LicenseForm
+from olympia.devhub.models import ActivityLog
+from olympia.versions.models import License, Version
 
 
-class TestOwnership(amo.tests.TestCase):
+class TestOwnership(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):

@@ -26,11 +26,11 @@ from jingo_minify.helpers import (_build_html, _get_compiled_css_url, get_path,
                                   is_external)
 from tower import ugettext as _, strip_whitespace
 
-import amo
-from amo import utils, urlresolvers
-from constants.licenses import PERSONA_LICENSES_IDS
-from translations.query import order_by_translation
-from translations.helpers import truncate
+from olympia import amo
+from olympia.amo import utils, urlresolvers
+from olympia.constants.licenses import PERSONA_LICENSES_IDS
+from olympia.translations.query import order_by_translation
+from olympia.translations.helpers import truncate
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)

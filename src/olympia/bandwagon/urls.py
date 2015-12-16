@@ -1,8 +1,9 @@
 from django.conf.urls import include, patterns, url
 
+from olympia.stats.urls import collection_stats_urls
+
 from . import views, feeds
 
-from stats.urls import collection_stats_urls
 
 edit_urls = patterns(
     '',

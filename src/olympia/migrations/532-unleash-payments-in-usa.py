@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 import mkt
 from mkt.webapps.models import AddonExcludedRegion
 

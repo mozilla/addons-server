@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 """Check all our redirects from remora to zamboni."""
 from nose.tools import eq_
-
-import amo
-import amo.tests
-from addons.models import Category
-
 from django.db import connection
 
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Category
 
-class TestRedirects(amo.tests.TestCase):
+
+class TestRedirects(TestCase):
     fixtures = ['reviews/test_models', 'addons/persona', 'base/global-stats']
 
     def test_persona_category(self):
@@ -180,7 +179,7 @@ class TestRedirects(amo.tests.TestCase):
         self.assert3xx(res, '/en-US/mobile/extensions/', status_code=301)
 
 
-class TestPersonaRedirect(amo.tests.TestCase):
+class TestPersonaRedirect(TestCase):
     fixtures = ['addons/persona']
 
     def test_persona_redirect(self):

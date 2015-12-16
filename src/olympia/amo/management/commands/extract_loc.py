@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
-from amo.storage_utils import walk_storage
+from olympia.amo.storage_utils import walk_storage
 
 _loc_re = re.compile(r"""\\?(loc)\(.*?\)""", (re.M | re.S))
 _exts = ('.py', '.html')

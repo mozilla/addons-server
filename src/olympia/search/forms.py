@@ -4,8 +4,8 @@ from django.forms.util import ErrorDict
 import happyforms
 from tower import ugettext_lazy as _lazy
 
-import amo
-from search.utils import floor_version
+from olympia import amo
+from olympia.search.utils import floor_version
 
 collection_sort_by = (
     ('weekly', _lazy(u'Most popular this week')),

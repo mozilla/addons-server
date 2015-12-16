@@ -5,7 +5,7 @@ from celeryutils import task
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 
-import amo
+from olympia import amo
 from addons.models import AddonDeviceType as ADT
 from amo.decorators import write
 from amo.utils import chunked

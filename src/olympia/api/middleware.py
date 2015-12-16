@@ -4,7 +4,7 @@ from django.contrib.auth.models import AnonymousUser
 import commonware.log
 import waffle
 
-from users.models import UserProfile
+from olympia.users.models import UserProfile
 
 from .models import Access
 from .oauth import OAuthServer

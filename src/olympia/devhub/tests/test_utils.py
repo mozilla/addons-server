@@ -8,14 +8,15 @@ from celery.result import AsyncResult
 from django.conf import settings
 from django.test.utils import override_settings
 
-import amo
-import amo.tests
-from addons.models import Addon
-from amo.tests import addon_factory, version_factory
-from devhub import tasks, utils
-from devhub.tasks import annotate_validation_results
-from files.models import File, FileUpload, FileValidation, ValidationAnnotation
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory, version_factory
+from olympia.devhub import tasks, utils
+from olympia.devhub.tasks import annotate_validation_results
+from olympia.files.models import (
+    File, FileUpload, FileValidation, ValidationAnnotation)
+from olympia.versions.models import Version
 
 
 def merge_dicts(base, changes):
@@ -24,7 +25,7 @@ def merge_dicts(base, changes):
     return res
 
 
-class TestValidationComparator(amo.tests.TestCase):
+class TestValidationComparator(TestCase):
     SIGNING_SUMMARY = {'high': 0, 'medium': 0, 'low': 0, 'trivial': 0}
 
     def setUp(self):
@@ -412,7 +413,7 @@ class TestValidationComparator(amo.tests.TestCase):
                 assert is_ignorable(signing_severity=severity, type=type_)
 
 
-class TestValidationAnnotatorBase(amo.tests.TestCase):
+class TestValidationAnnotatorBase(TestCase):
 
     def setUp(self):
         # FIXME: Switch to factory_boy.
@@ -740,7 +741,7 @@ class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
 
 # This is technically in tasks at the moment, but may make more sense as a
 # class method of ValidationAnnotator in the future.
-class TestAnnotateValidation(amo.tests.TestCase):
+class TestAnnotateValidation(TestCase):
     """Test the `annotate_validation_results` task."""
 
     VALIDATION = {
@@ -804,7 +805,7 @@ class TestAnnotateValidation(amo.tests.TestCase):
                 {'high': 0, 'medium': 0, 'low': 1, 'trivial': 0})
 
 
-class TestLimitValidationResults(amo.tests.TestCase):
+class TestLimitValidationResults(TestCase):
     """Test that higher priority messages are truncated last."""
 
     def make_validation(self, types):

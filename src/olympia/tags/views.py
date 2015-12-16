@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from tags.models import Tag
+from olympia.tags.models import Tag
 
 
 def top_cloud(request, num_tags=100):

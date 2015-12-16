@@ -8,9 +8,9 @@ from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
 
-from addons.models import File
-from stats.models import update_inc, DownloadCount
-from zadmin.models import DownloadSource
+from olympia.addons.models import File
+from olympia.stats.models import update_inc, DownloadCount
+from olympia.zadmin.models import DownloadSource
 
 from . import get_date_from_file
 

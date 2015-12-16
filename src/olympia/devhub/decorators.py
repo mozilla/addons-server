@@ -3,11 +3,11 @@ import functools
 from django import http
 from django.core.exceptions import PermissionDenied
 
-from amo.decorators import login_required
-from access import acl
-from addons.decorators import addon_view_factory
-from addons.models import Addon
-from devhub.models import SubmitStep
+from olympia.amo.decorators import login_required
+from olympia.access import acl
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon
+from olympia.devhub.models import SubmitStep
 
 
 def dev_required(owner_for_post=False, allow_editors=False, theme=False):

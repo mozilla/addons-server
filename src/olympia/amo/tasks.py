@@ -7,15 +7,15 @@ import commonware.log
 import phpserialize
 from hera.contrib.django_utils import flush_urls
 
-import amo
-from addons.models import Addon
-from amo.celery import task
-from amo.utils import get_email_backend
-from bandwagon.models import Collection
-from devhub.models import ActivityLog
-from editors.models import EventLog
-from reviews.models import Review
-from stats.models import Contribution
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.celery import task
+from olympia.amo.utils import get_email_backend
+from olympia.bandwagon.models import Collection
+from olympia.devhub.models import ActivityLog
+from olympia.editors.models import EventLog
+from olympia.reviews.models import Review
+from olympia.stats.models import Contribution
 
 
 log = commonware.log.getLogger('z.task')

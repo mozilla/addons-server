@@ -1,11 +1,10 @@
-import amo
-import amo.tests
-from services.pfs import get_output
-
 from pyquery import PyQuery as pq
 
+from olympia.amo.tests import TestCase
+from olympia.services.pfs import get_output
 
-class TestPfs(amo.tests.TestCase):
+
+class TestPfs(TestCase):
 
     def test_xss(self):
         for k in ['name', 'mimetype', 'guid', 'version', 'iconUrl',

@@ -8,14 +8,14 @@ from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
-from amo.tests.test_helpers import render
-from addons.models import Addon
-from devhub import helpers
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests.test_helpers import render
+from olympia.addons.models import Addon
+from olympia.devhub import helpers
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -165,7 +165,7 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
             self.raw_url)
 
 
-class TestDevFilesStatus(amo.tests.TestCase):
+class TestDevFilesStatus(TestCase):
 
     def setUp(self):
         super(TestDevFilesStatus, self).setUp()

@@ -12,25 +12,24 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
-
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from tower import ugettext as _
-
-import amo
-import validator
-from amo.celery import task
-from amo.decorators import atomic, set_modified_on, write
-from amo.utils import resize_image, send_html_mail_jinja
-from addons.models import Addon
-from applications.management.commands import dump_apps
-from applications.models import AppVersion
-from files.helpers import copyfileobj
-from files.models import FileUpload, File, FileValidation
-from versions.models import Version
-
 from PIL import Image
+import validator
+
+from olympia import amo
+from olympia.amo.celery import task
+from olympia.amo.decorators import atomic, set_modified_on, write
+from olympia.amo.utils import resize_image, send_html_mail_jinja
+from olympia.addons.models import Addon
+from olympia.applications.management.commands import dump_apps
+from olympia.applications.models import AppVersion
+from olympia.devhub import perf
+from olympia.files.helpers import copyfileobj
+from olympia.files.models import FileUpload, File, FileValidation
+from olympia.versions.models import Version
 
 
 log = logging.getLogger('z.devhub.task')

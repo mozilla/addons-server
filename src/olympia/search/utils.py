@@ -1,6 +1,6 @@
 import re
 
-from versions.compare import version_re
+from olympia.versions.compare import version_re
 
 
 def floor_version(s):

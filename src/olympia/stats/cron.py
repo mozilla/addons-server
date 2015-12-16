@@ -7,12 +7,12 @@ import commonware.log
 from celery.task.sets import TaskSet
 import cronjobs
 
-from amo.utils import chunked
-from addons.models import Addon
-from .models import (AddonCollectionCount, CollectionCount,
-                     UpdateCount)
+from olympia.amo.utils import chunked
+from olympia.addons.models import Addon
+from .models import (
+    AddonCollectionCount, CollectionCount, UpdateCount)
 from . import tasks
-from lib.es.utils import raise_if_reindex_in_progress
+from olympia.lib.es.utils import raise_if_reindex_in_progress
 
 task_log = commonware.log.getLogger('z.task')
 cron_log = commonware.log.getLogger('z.cron')

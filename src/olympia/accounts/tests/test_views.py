@@ -8,10 +8,10 @@ import mock
 
 from rest_framework.test import APITestCase
 
-from accounts import verify, views
-from amo.tests import create_switch, InitializeSessionMixin
-from api.tests.utils import APIAuthTestCase
-from users.models import UserProfile
+from olympia.accounts import verify, views
+from olympia.amo.tests import create_switch, InitializeSessionMixin
+from olympia.api.tests.utils import APIAuthTestCase
+from olympia.users.models import UserProfile
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
 

@@ -12,24 +12,26 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 
-import amo
-import amo.tests
-from amo.helpers import locale_url, numberfmt, urlparams
-from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, AddonUser, Category, Persona
-from bandwagon.tasks import unindex_collections
-from search import views
-from search.utils import floor_version
-from search.views import version_sidebar
-from tags.models import AddonTag, Tag
-from users.models import UserProfile
-from versions.compare import num as vnum, version_int as vint, MAXVERSION
+from olympia import amo
+from olympia.amo.tests import ESTestCaseWithAddons
+from olympia.amo.helpers import locale_url, numberfmt, urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonUser, Category, Persona)
+from olympia.bandwagon.tasks import unindex_collections
+from olympia.search import views
+from olympia.search.utils import floor_version
+from olympia.search.views import version_sidebar
+from olympia.tags.models import AddonTag, Tag
+from olympia.users.models import UserProfile
+from olympia.versions.compare import (
+    num as vnum, version_int as vint, MAXVERSION)
 
 
 pytestmark = pytest.mark.django_db
 
 
-class TestSearchboxTarget(amo.tests.ESTestCaseWithAddons):
+class TestSearchboxTarget(ESTestCaseWithAddons):
 
     def check(self, url, placeholder, cat=None, action=None, q=None):
         # Checks that we search within addons, personas, collections, etc.
@@ -65,7 +67,7 @@ class TestSearchboxTarget(amo.tests.ESTestCaseWithAddons):
                    'search for add-ons', q='ballin')
 
 
-class SearchBase(amo.tests.ESTestCaseWithAddons):
+class SearchBase(ESTestCaseWithAddons):
 
     def get_results(self, r, sort=True):
         """Return pks of add-ons shown on search results page."""
@@ -1063,7 +1065,7 @@ def test_search_redirects():
         yield same, qs
 
 
-class TestAjaxSearch(amo.tests.ESTestCaseWithAddons):
+class TestAjaxSearch(ESTestCaseWithAddons):
 
     def search_addons(self, url, params, addons=[], types=amo.ADDON_TYPES,
                       src=None):

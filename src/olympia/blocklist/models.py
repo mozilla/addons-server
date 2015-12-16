@@ -1,10 +1,10 @@
 from django.db import models
 
-import amo.models
-from amo.urlresolvers import reverse
+from olympia.amo.models import ModelBase
+from olympia.amo.urlresolvers import reverse
 
 
-class BlocklistApp(amo.models.ModelBase):
+class BlocklistApp(ModelBase):
     blitem = models.ForeignKey('BlocklistItem', related_name='app', blank=True,
                                null=True)
     blplugin = models.ForeignKey('BlocklistPlugin', related_name='app',
@@ -14,7 +14,7 @@ class BlocklistApp(amo.models.ModelBase):
     min = models.CharField(max_length=255, blank=True, null=True)
     max = models.CharField(max_length=255, blank=True, null=True)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'blapps'
 
     def __unicode__(self):
@@ -24,23 +24,23 @@ class BlocklistApp(amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistCA(amo.models.ModelBase):
+class BlocklistCA(ModelBase):
     data = models.TextField()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'blca'
 
     def flush_urls(self):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistDetail(amo.models.ModelBase):
+class BlocklistDetail(ModelBase):
     name = models.CharField(max_length=255)
     why = models.TextField()
     who = models.TextField()
     bug = models.URLField()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'bldetails'
 
     def __unicode__(self):
@@ -64,7 +64,7 @@ class BlocklistBase(object):
         return super(BlocklistBase, self).save(*args, **kw)
 
 
-class BlocklistItem(BlocklistBase, amo.models.ModelBase):
+class BlocklistItem(BlocklistBase, ModelBase):
     _type = 'i'
     guid = models.CharField(max_length=255, blank=True, null=True)
     min = models.CharField(max_length=255, blank=True, null=True)
@@ -77,7 +77,7 @@ class BlocklistItem(BlocklistBase, amo.models.ModelBase):
     homepage_url = models.URLField(blank=True, null=True)
     update_url = models.URLField(blank=True, null=True)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'blitems'
 
     def __unicode__(self):
@@ -87,7 +87,7 @@ class BlocklistItem(BlocklistBase, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
+class BlocklistPlugin(BlocklistBase, ModelBase):
     _type = 'p'
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, blank=True, db_index=True,
@@ -106,7 +106,7 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
     info_url = models.URLField(blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'blplugins'
 
     def __unicode__(self):
@@ -127,7 +127,7 @@ class BlocklistPlugin(BlocklistBase, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
+class BlocklistGfx(BlocklistBase, ModelBase):
     _type = 'g'
     guid = models.CharField(max_length=255, blank=True, null=True)
     os = models.CharField(max_length=255, blank=True, null=True)
@@ -154,7 +154,7 @@ class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistIssuerCert(BlocklistBase, amo.models.ModelBase):
+class BlocklistIssuerCert(BlocklistBase, ModelBase):
     _type = 'c'
     issuer = models.TextField()  # Annoyingly, we can't know the size.
     serial = models.CharField(max_length=255)
@@ -170,7 +170,7 @@ class BlocklistIssuerCert(BlocklistBase, amo.models.ModelBase):
         return ['/blocklist*']  # no lang/app
 
 
-class BlocklistPref(amo.models.ModelBase):
+class BlocklistPref(ModelBase):
     """Preferences which should be reset when a blocked item is detected."""
 
     blitem = models.ForeignKey('BlocklistItem', related_name='prefs')

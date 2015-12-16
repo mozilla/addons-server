@@ -8,23 +8,23 @@ from django.db import transaction
 
 from PIL import Image
 
-import amo
-from addons.models import AppSupport, Persona
-from editors.models import RereviewQueueTheme
-from amo.celery import task
-from amo.decorators import set_modified_on, write
-from amo.helpers import user_media_path
-from amo.storage_utils import rm_stored_dir
-from amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
-from lib.es.utils import index_objects
-from versions.models import Version
+from olympia import amo
+from olympia.addons.models import AppSupport, Persona
+from olympia.editors.models import RereviewQueueTheme
+from olympia.amo.celery import task
+from olympia.amo.decorators import set_modified_on, write
+from olympia.amo.helpers import user_media_path
+from olympia.amo.storage_utils import rm_stored_dir
+from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
+from olympia.lib.es.utils import index_objects
+from olympia.versions.models import Version
 
 # pulling tasks from cron
 from . import cron  # noqa
 from . import search
-from .models import (Addon, attach_categories, attach_tags,
-                     attach_translations, CompatOverride, IncompatibleVersions,
-                     Preview)
+from .models import (
+    Addon, attach_categories, attach_tags, attach_translations, CompatOverride,
+    IncompatibleVersions, Preview)
 
 
 log = logging.getLogger('z.task')

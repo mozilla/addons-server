@@ -1,9 +1,10 @@
 from django.db import models
 
-import amo.models
+from olympia import amo
+from olympia.amo.models import ModelBase
 
 
-class DiscoveryModule(amo.models.ModelBase):
+class DiscoveryModule(ModelBase):
     """
     Keeps the application, ordering, and locale metadata for a module.
 

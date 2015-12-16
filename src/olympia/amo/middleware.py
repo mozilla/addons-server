@@ -19,7 +19,8 @@ from django.utils.encoding import iri_to_uri, smart_str
 import MySQLdb as mysql
 import tower
 
-import amo
+from olympia import amo
+
 from . import urlresolvers
 from .helpers import urlparams
 

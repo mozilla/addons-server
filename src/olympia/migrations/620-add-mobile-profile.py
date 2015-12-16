@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 from mkt.webapps.models import AppFeatures, Webapp
 
 

@@ -7,14 +7,14 @@ from jingo import register
 from jingo.helpers import datetime
 from tower import ugettext as _, ungettext as ngettext
 
-import amo
-from amo.urlresolvers import reverse
-from amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
-from access import acl
-from addons.helpers import new_context
-from addons.models import Addon
-from compat.models import CompatReport
-from files.models import File
+from olympia import amo
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
+from olympia.access import acl
+from olympia.addons.helpers import new_context
+from olympia.addons.models import Addon
+from olympia.compat.models import CompatReport
+from olympia.files.models import File
 
 
 register.function(acl.check_addon_ownership)

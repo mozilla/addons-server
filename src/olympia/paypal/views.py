@@ -11,10 +11,10 @@ import phpserialize as php
 import requests
 from django_statsd.clients import statsd
 
-from amo.decorators import post_required, write
-from paypal import paypal_log_cef
-from stats.db import StatsDictField
-from stats.models import Contribution, ContributionError
+from olympia.amo.decorators import post_required, write
+from olympia.paypal import paypal_log_cef
+from olympia.stats.db import StatsDictField
+from olympia.stats.models import Contribution, ContributionError
 
 
 paypal_log = commonware.log.getLogger('z.paypal')

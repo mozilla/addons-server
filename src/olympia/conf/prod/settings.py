@@ -3,7 +3,7 @@ import os
 import environ
 import datetime
 
-from lib.settings_base import *  # noqa
+from olympia.lib.settings_base import *  # noqa
 
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()

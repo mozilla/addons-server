@@ -6,13 +6,12 @@ import pytest
 from mock import Mock, patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import Addon
-from translations import helpers
-from translations.fields import save_signal
-from translations.models import PurifiedTranslation
-from translations.tests.testapp.models import TranslatedModel
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.translations import helpers
+from olympia.translations.fields import save_signal
+from olympia.translations.models import PurifiedTranslation
+from olympia.translations.tests.testapp.models import TranslatedModel
 
 
 pytestmark = pytest.mark.django_db
@@ -121,7 +120,7 @@ def test_l10n_menu():
 
 
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
-class TestAllLocales(amo.tests.TestCase):
+class TestAllLocales(TestCase):
     def test_all_locales_none(self):
         addon = None
         field_name = 'description'

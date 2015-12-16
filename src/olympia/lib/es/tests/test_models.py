@@ -1,11 +1,11 @@
 import mock
 from nose.tools import eq_
 
-import amo.tests
-from lib.es.models import Reindexing
+from olympia.amo.tests import TestCase
+from olympia.lib.es.models import Reindexing
 
 
-class TestReindexManager(amo.tests.TestCase):
+class TestReindexManager(TestCase):
 
     def test_flag_reindexing(self):
         assert Reindexing.objects.filter(site='foo').count() == 0

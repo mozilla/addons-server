@@ -5,7 +5,7 @@ from django.db import models
 
 from django.utils import translation as translation_utils
 
-import addons.query
+from olympia.addons.query import IndexCompiler, IndexQuery
 
 
 def order_by_translation(qs, fieldname):
@@ -54,7 +54,7 @@ def order_by_translation(qs, fieldname):
                     order_by=[prefix + name])
 
 
-class TranslationQuery(addons.query.IndexQuery):
+class TranslationQuery(IndexQuery):
     """
     Overrides sql.Query to hit our special compiler that knows how to JOIN
     translations.
@@ -72,7 +72,7 @@ class TranslationQuery(addons.query.IndexQuery):
         return SQLCompiler(self, c.connection, c.using)
 
 
-class SQLCompiler(addons.query.IndexCompiler):
+class SQLCompiler(IndexCompiler):
     """Overrides get_from_clause to LEFT JOIN translations with a locale."""
 
     def get_from_clause(self):

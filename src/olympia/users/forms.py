@@ -15,16 +15,19 @@ import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-from olympia import amo, users.notifications as email
+from olympia import amo
+from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import clean_nl, has_links, log_cef, slug_validator
 from olympia.translations import LOCALES
 
 from . import tasks
-from .models import (UserProfile, UserNotification, BlacklistedName,
-                     BlacklistedEmailDomain, BlacklistedPassword)
-from .widgets import (NotificationsSelectMultiple, RequiredEmailInput,
-                      RequiredInputMixin, RequiredTextInput)
+from .models import (
+    UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain,
+    BlacklistedPassword)
+from .widgets import (
+    NotificationsSelectMultiple, RequiredEmailInput, RequiredInputMixin,
+    RequiredTextInput)
 
 
 log = commonware.log.getLogger('z.users')

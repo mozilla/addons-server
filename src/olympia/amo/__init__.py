@@ -4,16 +4,16 @@ Miscellaneous helpers that make Django compatible with AMO.
 import threading
 
 import commonware.log
-
 from product_details import product_details
 
-from apps.search.utils import floor_version
-from constants.applications import *  # noqa
-from constants.base import *  # noqa
-from constants.licenses import *  # noqa
-from constants.payments import *  # noqa
-from constants.platforms import *  # noqa
-from constants.search import *  # noqa
+from olympia.search.utils import floor_version
+from olympia.constants.applications import *  # noqa
+from olympia.constants.base import *  # noqa
+from olympia.constants.licenses import *  # noqa
+from olympia.constants.payments import *  # noqa
+from olympia.constants.platforms import *  # noqa
+from olympia.constants.search import *  # noqa
+
 from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,  # noqa
                   LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)

@@ -9,11 +9,11 @@ from django.db import connection, transaction
 
 import commonware.log
 
+from olympia.amo import get_user, set_user
+from olympia.users.utils import get_task_user
+
 from . import models as context
 from .utils import JSONEncoder, redirect_for_login
-
-from amo import get_user, set_user
-from users.utils import get_task_user
 
 
 task_log = commonware.log.getLogger('z.task')

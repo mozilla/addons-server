@@ -10,15 +10,15 @@ import commonware.log
 from mobility.decorators import mobile_template
 from tower import ugettext as _
 
-import amo
-import bandwagon.views
-import browse.views
-from addons.models import Addon, Category
-from amo.decorators import json_view
-from amo.helpers import locale_url, urlparams
-from amo.utils import sorted_groupby
-from bandwagon.models import Collection
-from versions.compare import dict_from_int, version_dict, version_int
+from olympia import amo
+from olympia.bandwagon.views import get_filter as get_filter_view
+from olympia.browse.views import personas_listing as personas_listing_view
+from olympia.addons.models import Addon, Category
+from olympia.amo.decorators import json_view
+from olympia.amo.helpers import locale_url, urlparams
+from olympia.amo.utils import sorted_groupby
+from olympia.bandwagon.models import Collection
+from olympia.versions.compare import dict_from_int, version_dict, version_int
 
 from .forms import ESSearchForm, SecondarySearchForm
 
@@ -61,7 +61,7 @@ def _personas(request):
     search_opts['offset'] = (page - 1) * search_opts['limit']
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
-    categories, filter, base, category = browse.views.personas_listing(request)
+    categories, filter, base, category = personas_listing_view(request)
     c = dict(pager=pager, form=form, categories=categories, query=form_data,
              filter=filter, search_placeholder='themes')
     return render(request, 'search/personas.html', c)
@@ -104,7 +104,7 @@ def _collections(request):
 
     pager = amo.utils.paginate(request, results, per_page=search_opts['limit'])
     c = dict(pager=pager, form=form, query=form_data, opts=search_opts,
-             filter=bandwagon.views.get_filter(request),
+             filter=get_filter_view(request),
              search_placeholder='collections')
     return render(request, 'search/collections.html', c)
 

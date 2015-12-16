@@ -8,9 +8,9 @@ from django.conf import settings
 import commonware.log
 from PIL import Image
 
-import amo.search
-from amo.helpers import user_media_path
-from applications.management.commands import dump_apps
+from olympia.amo import search
+from olympia.amo.helpers import user_media_path
+from olympia.applications.management.commands import dump_apps
 
 monitor_log = commonware.log.getLogger('z.monitor')
 
@@ -93,7 +93,7 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        es = amo.search.get_es()
+        es = search.get_es()
         health = es.cluster.health()
         if health['status'] == 'red':
             status = 'ES is red'

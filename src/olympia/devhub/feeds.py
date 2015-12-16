@@ -4,10 +4,10 @@ from django.utils.feedgenerator import Rss201rev2Feed as RSS
 
 from tower import ugettext as _
 
-import amo
-from addons.models import Addon
-from amo.helpers import absolutify, url, strip_html
-from devhub.models import ActivityLog, RssKey
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.helpers import absolutify, url, strip_html
+from olympia.devhub.models import ActivityLog, RssKey
 
 
 class ActivityFeedRSS(Feed):

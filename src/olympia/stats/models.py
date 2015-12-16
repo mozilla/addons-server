@@ -11,11 +11,11 @@ from babel import Locale, numbers
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 
-import amo
-from amo.models import SearchMixin
-from amo.fields import DecimalCharField
-from amo.utils import get_locale_from_lang, send_mail_jinja
-from zadmin.models import DownloadSource
+from olympia import amo
+from olympia.amo.models import SearchMixin
+from olympia.amo.fields import DecimalCharField
+from olympia.amo.utils import get_locale_from_lang, send_mail_jinja
+from olympia.zadmin.models import DownloadSource
 
 from .db import LargeStatsDictField, StatsDictField
 

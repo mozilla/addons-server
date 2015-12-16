@@ -1,5 +1,5 @@
-from addons.models import Category
-from constants.base import ADDON_EXTENSION, ADDON_PERSONA
+from olympia.addons.models import Category
+from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 
 from .translations import generate_translations
 

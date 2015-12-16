@@ -12,11 +12,12 @@ from django import forms
 from mock import Mock, patch
 from nose.tools import eq_
 
-import amo.tests
-from amo.urlresolvers import reverse
-from files.helpers import FileViewer, DiffHelper
-from files.models import File
-from files.utils import SafeUnzip
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.files.helpers import FileViewer, DiffHelper
+from olympia.files.models import File
+from olympia.files.utils import SafeUnzip
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 
@@ -38,7 +39,7 @@ def make_file(pk, file_path, **kwargs):
     return obj
 
 
-class TestFileHelper(amo.tests.TestCase):
+class TestFileHelper(TestCase):
 
     def setUp(self):
         super(TestFileHelper, self).setUp()
@@ -229,7 +230,7 @@ class TestFileHelper(amo.tests.TestCase):
         eq_({}, self.viewer.get_files())
 
 
-class TestSearchEngineHelper(amo.tests.TestCase):
+class TestSearchEngineHelper(TestCase):
     fixtures = ['base/addon_4594_a9']
 
     def setUp(self):
@@ -263,7 +264,7 @@ class TestSearchEngineHelper(amo.tests.TestCase):
         eq_(self.viewer.get_default(None), None)
 
 
-class TestDiffSearchEngine(amo.tests.TestCase):
+class TestDiffSearchEngine(TestCase):
 
     def setUp(self):
         super(TestDiffSearchEngine, self).setUp()
@@ -288,7 +289,7 @@ class TestDiffSearchEngine(amo.tests.TestCase):
         eq_(len(self.helper.get_deleted_files()), 0)
 
 
-class TestDiffHelper(amo.tests.TestCase):
+class TestDiffHelper(TestCase):
 
     def setUp(self):
         super(TestDiffHelper, self).setUp()
@@ -383,7 +384,7 @@ class TestDiffHelper(amo.tests.TestCase):
         open(path, 'w').write(data)
 
 
-class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestSafeUnzipFile(TestCase, amo.tests.AMOPaths):
 
     # TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.

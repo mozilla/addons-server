@@ -8,13 +8,14 @@ import commonware.log
 from product_details import product_details
 from tower import ugettext as _
 
-import amo
-from access.models import Group
-from addons.models import Category
-from amo.decorators import json_view, login_required, post_required, write
-from amo.urlresolvers import reverse
-from amo.utils import no_translation
-from translations.models import Translation
+from olympia import amo
+from olympia.access.models import Group
+from olympia.addons.models import Category
+from olympia.amo.decorators import (
+    json_view, login_required, post_required, write)
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import no_translation
+from olympia.translations.models import Translation
 
 from .decorators import locale_switcher, valid_locale
 from .forms import CategoryFormSet

@@ -5,10 +5,11 @@ from itertools import cycle, islice
 
 from django.db.models.signals import post_save
 
-from amo.utils import slugify
-from addons.models import Addon, Persona, update_search_index
-from constants.applications import APPS
-from constants.base import ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC
+from olympia.amo.utils import slugify
+from olympia.addons.models import Addon, Persona, update_search_index
+from olympia.constants.applications import APPS
+from olympia.constants.base import (
+    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 
 from .categories import generate_categories
 from .collection import generate_collection

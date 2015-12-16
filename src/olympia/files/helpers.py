@@ -9,6 +9,8 @@ from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
 from django.utils.translation import get_language
 from django.template.defaultfilters import filesizeformat
+from validator.testcases.packagelayout import (
+    blacklisted_extensions, blacklisted_magic_numbers)
 
 import jinja2
 import commonware.log
@@ -16,12 +18,10 @@ from cache_nuggets.lib import memoize, Message
 from jingo import register, env
 from tower import ugettext as _
 
-import amo
-from amo.utils import rm_local_tmp_dir
-from amo.urlresolvers import reverse
-from files.utils import extract_xpi, get_md5
-from validator.testcases.packagelayout import (blacklisted_extensions,
-                                               blacklisted_magic_numbers)
+from olympia import amo
+from olympia.amo.utils import rm_local_tmp_dir
+from olympia.amo.urlresolvers import reverse
+from olympia.files.utils import extract_xpi, get_md5
 
 # Allow files with a shebang through.
 blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)

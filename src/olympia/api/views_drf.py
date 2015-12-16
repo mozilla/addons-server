@@ -17,29 +17,30 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
-import amo
-from addons.forms import AddonForm
-from addons.models import Addon, AddonUser
-from amo.decorators import allow_cross_site_request
-from amo.models import manual_order
-from amo.utils import paginate
-import api
-from devhub.forms import LicenseForm
-from search.views import name_query
-from users.models import UserProfile
-from versions.forms import XPIForm
-from versions.models import Version
+from olympia import amo, api
+from olympia.addons.forms import AddonForm
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo.decorators import allow_cross_site_request
+from olympia.amo.models import manual_order
+from olympia.amo.utils import paginate
+from olympia.devhub.forms import LicenseForm
+from olympia.search.views import name_query
+from olympia.users.models import UserProfile
+from olympia.versions.forms import XPIForm
+from olympia.versions.models import Version
 
 from .authentication import RestOAuthAuthentication
-from .authorization import (AllowAppOwner, AllowReadOnlyIfPublic,
-                            AllowRelatedAppOwner, AnyOf, ByHttpMethod)
+from .authorization import (
+    AllowAppOwner, AllowReadOnlyIfPublic, AllowRelatedAppOwner, AnyOf,
+    ByHttpMethod)
 from .handlers import _form_error, _xpi_form_error
 from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
 from .serializers import AddonSerializer, UserSerializer, VersionSerializer
 from .utils import addon_to_dict, extract_filters
-from .views import (BUFFER, ERROR, MAX_LIMIT, NEW_DAYS, OUT_OF_DATE,
-                    addon_filter)
+from .views import (
+    BUFFER, ERROR, MAX_LIMIT, NEW_DAYS, OUT_OF_DATE, addon_filter)
+
 
 log = commonware.log.getLogger('z.api')
 

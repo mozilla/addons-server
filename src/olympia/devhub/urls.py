@@ -1,11 +1,10 @@
 from django.conf.urls import include, patterns, url
 from django.shortcuts import redirect
 
-from lib.misc.urlconf_decorator import decorate
-
-from addons.urls import ADDON_ID
-from amo.decorators import write
-from amo.utils import partial
+from olympia.addons.urls import ADDON_ID
+from olympia.amo.decorators import write
+from olympia.amo.utils import partial
+from olympia.lib.misc.urlconf_decorator import decorate
 
 from . import views
 

@@ -7,9 +7,10 @@ from django.conf import settings
 
 from elasticsearch import helpers
 
-import amo.search
+from olympia.amo import search as amo_search
 
 from .models import Reindexing
+
 
 log = logging.getLogger('z.es')
 
@@ -47,7 +48,7 @@ def index_objects(ids, model, search, index=None, transforms=None,
                 "_index": index
             })
 
-    es = amo.search.get_es()
+    es = amo_search.get_es()
     return helpers.bulk(es, bulk)
 
 
@@ -79,7 +80,7 @@ def create_index(index, config=None):
     - config: if provided, used as the settings option for the
       ES calls.
     """
-    es = amo.search.get_es()
+    es = amo_search.get_es()
 
     if settings.IN_TEST_SUITE:
         if not config:

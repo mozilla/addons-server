@@ -10,14 +10,13 @@ from product_details import product_details
 from mobility.decorators import mobile_template
 from tower import ugettext_lazy as _lazy
 
-import amo
-import amo.models
-from amo.models import manual_order
-from amo.urlresolvers import reverse
-from addons.models import Addon, AddonCategory, Category, FrozenAddon
-from addons.utils import get_featured_ids, get_creatured_ids
-from addons.views import BaseFilter, ESBaseFilter
-from translations.query import order_by_translation
+from olympia import amo
+from olympia.amo.models import manual_order
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
+from olympia.addons.utils import get_featured_ids, get_creatured_ids
+from olympia.addons.views import BaseFilter, ESBaseFilter
+from olympia.translations.query import order_by_translation
 
 
 languages = dict((lang.lower(), val)

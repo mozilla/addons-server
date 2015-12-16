@@ -4,7 +4,7 @@ import jinja2
 from jingo import register
 from product_details import product_details
 
-from access import acl
+from olympia.access import acl
 
 from .models import L10nSettings
 

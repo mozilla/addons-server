@@ -8,14 +8,13 @@ from base64 import b64decode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-
 import commonware.log
 import requests
 from django_statsd.clients import statsd
 from signing_clients.apps import get_signature_serial_number, JarExtractor
 
-import amo
-from versions.compare import version_int
+from olympia import amo
+from olympia.versions.compare import version_int
 
 log = commonware.log.getLogger('z.crypto')
 

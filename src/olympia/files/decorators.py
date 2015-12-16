@@ -9,11 +9,11 @@ from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
-import amo
-from access import acl
-from addons.decorators import owner_or_unlisted_reviewer
-from files.helpers import DiffHelper, FileViewer
-from files.models import File
+from olympia import amo
+from olympia.access import acl
+from olympia.addons.decorators import owner_or_unlisted_reviewer
+from olympia.files.helpers import DiffHelper, FileViewer
+from olympia.files.models import File
 
 log = commonware.log.getLogger('z.addons')
 

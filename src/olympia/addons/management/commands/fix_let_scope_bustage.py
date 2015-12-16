@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from amo.utils import chunked
-from files.tasks import fix_let_scope_bustage_in_addons
+from olympia.amo.utils import chunked
+from olympia.files.tasks import fix_let_scope_bustage_in_addons
 
 
 class Command(BaseCommand):

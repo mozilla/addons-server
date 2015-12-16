@@ -5,13 +5,12 @@ from jingo.helpers import datetime
 
 from tower import ugettext as _
 
-import amo
-from amo.urlresolvers import reverse
-from amo.helpers import absolutify, url
-from amo.utils import urlparams
-
-from addons.models import Addon
-from versions.views import PER_PAGE
+from olympia import amo
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import absolutify, url
+from olympia.amo.utils import urlparams
+from olympia.addons.models import Addon
+from olympia.versions.views import PER_PAGE
 
 
 class PagedFeed(DefaultFeed):

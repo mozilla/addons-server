@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from access import acl
+from olympia.access import acl
 
 
 class GroupPermission(BasePermission):

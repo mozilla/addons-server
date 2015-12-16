@@ -1,12 +1,12 @@
 from django.core.files.storage import default_storage as storage
 
 import commonware.log
-from lib.es.utils import index_objects
 
-from amo.celery import task
-from amo.decorators import set_modified_on
-from amo.utils import resize_image
-from amo.helpers import user_media_path
+from olympia.amo.celery import task
+from olympia.amo.decorators import set_modified_on
+from olympia.amo.utils import resize_image
+from olympia.amo.helpers import user_media_path
+from olympia.lib.es.utils import index_objects
 
 from .models import UserProfile
 from . import search

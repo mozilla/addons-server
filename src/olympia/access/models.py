@@ -1,16 +1,16 @@
 from django.db import models
 from django import dispatch
 from django.db.models import signals
-
-import amo
-import amo.models
 import commonware.log
+
+from olympia import amo
+from olympia.models import ModelBase
 
 
 log = commonware.log.getLogger('z.users')
 
 
-class Group(amo.models.ModelBase):
+class Group(ModelBase):
 
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()

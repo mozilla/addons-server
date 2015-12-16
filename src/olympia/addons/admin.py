@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 
-import amo
+from olympia import amo
 
 from . import models
 

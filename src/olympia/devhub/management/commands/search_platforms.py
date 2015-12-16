@@ -4,11 +4,11 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.db.models import Count
 
-from addons.models import Version
-import amo
-from amo.utils import chunked
-from amo.urlresolvers import reverse
-from files.models import File
+from olympia import amo
+from olympia.addons.models import Version
+from olympia.amo.utils import chunked
+from olympia.amo.urlresolvers import reverse
+from olympia.files.models import File
 
 
 class Command(BaseCommand):

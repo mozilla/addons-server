@@ -4,10 +4,10 @@ from datetime import datetime, timedelta
 
 from django.test.utils import override_settings
 
-import amo.tests
-from files import tasks
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.files import tasks
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 # Very basic js file that contains a `let`, a `const`, and a `var` in the

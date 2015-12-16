@@ -3,11 +3,11 @@ from django.core.urlresolvers import reverse, NoReverseMatch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
-from addons.models import Addon
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
 
 
-class TestManagement(amo.tests.TestCase):
+class TestManagement(TestCase):
     fixtures = ['base/addon_3615',
                 'tags/tags.json']
 
@@ -20,7 +20,7 @@ class TestManagement(amo.tests.TestCase):
         assert 'Tags' in [d.text for d in doc('h3')]
 
 
-class TestXSS(amo.tests.TestCase):
+class TestXSS(TestCase):
     fixtures = ['base/addon_3615',
                 'tags/tags.json']
 
@@ -49,7 +49,7 @@ class TestXSS(amo.tests.TestCase):
         assert self.xss not in r.content
 
 
-class TestXSSURLFail(amo.tests.TestCase):
+class TestXSSURLFail(TestCase):
     fixtures = ['base/addon_3615',
                 'tags/tags.json']
 
@@ -84,7 +84,7 @@ class TestXSSURLFail(amo.tests.TestCase):
         assert not self.tag.can_reverse()
 
 
-class TestNoTags(amo.tests.TestCase):
+class TestNoTags(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_tags_no_details_view(self):

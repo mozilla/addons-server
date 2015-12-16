@@ -2,7 +2,7 @@ from operator import attrgetter
 
 from django.conf import settings
 
-import amo
+from olympia import amo
 
 
 def extract(collection):

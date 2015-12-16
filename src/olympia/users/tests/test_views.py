@@ -12,10 +12,9 @@ from django.utils.http import urlsafe_base64_encode
 from mock import Mock, patch
 from nose.tools import eq_
 
-# Unused, but needed so that we can patch jingo.
-from waffle import helpers  # NOQA
-
-from olympia import amo, amo.tests, users.notifications as email
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.users import notifications as email
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, Category
@@ -25,7 +24,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
-from olympia.users.models import BlacklistedPassword, UserProfile, UserNotification
+from olympia.users.models import (
+    BlacklistedPassword, UserProfile, UserNotification)
 from olympia.users.utils import EmailResetCode, UnsubscribeCode
 from olympia.users.views import tshirt_eligible
 
@@ -48,7 +48,7 @@ def check_sidebar_links(self, expected):
     eq_(links.filter('.selected').attr('href'), self.url)
 
 
-class TestTShirtOrder(amo.tests.TestCase):
+class TestTShirtOrder(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def test_normal_user(self):
@@ -83,7 +83,7 @@ class TestTShirtOrder(amo.tests.TestCase):
         assert tshirt_eligible(user)
 
 
-class UserViewBase(amo.tests.TestCase):
+class UserViewBase(TestCase):
     fixtures = ['users/test_backends']
 
     def setUp(self):
@@ -969,7 +969,7 @@ class TestProfileLinks(UserViewBase):
         assert hasattr(request.user, 'favorite_addons')
 
 
-class TestProfileSections(amo.tests.TestCase):
+class TestProfileSections(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5299_gcal', 'base/collections',
                 'reviews/dev-reply']
@@ -1218,7 +1218,7 @@ class TestProfileSections(amo.tests.TestCase):
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
 
-class TestThemesProfile(amo.tests.TestCase):
+class TestThemesProfile(TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
@@ -1281,7 +1281,7 @@ class TestThemesProfile(amo.tests.TestCase):
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
-class TestReportAbuse(amo.tests.TestCase):
+class TestReportAbuse(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

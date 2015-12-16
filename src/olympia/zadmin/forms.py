@@ -14,14 +14,15 @@ from product_details import product_details
 from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
-import amo
-from addons.models import Addon
-from amo.urlresolvers import reverse
-from applications.models import AppVersion
-from bandwagon.models import Collection, FeaturedCollection, MonthlyPick
-from compat.forms import CompatForm as BaseCompatForm
-from files.models import File
-from zadmin.models import SiteEvent, ValidationJob
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.urlresolvers import reverse
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import (
+    Collection, FeaturedCollection, MonthlyPick)
+from olympia.compat.forms import CompatForm as BaseCompatForm
+from olympia.files.models import File
+from olympia.zadmin.models import SiteEvent, ValidationJob
 
 LOGGER_NAME = 'z.zadmin'
 log = commonware.log.getLogger(LOGGER_NAME)

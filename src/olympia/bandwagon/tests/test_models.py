@@ -5,15 +5,16 @@ import random
 import mock
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from access.models import Group
-from addons.models import Addon, AddonRecommendation
-from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionWatcher, RecommendedCollection)
-from devhub.models import ActivityLog
-from bandwagon import tasks
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.access.models import Group
+from olympia.addons.models import Addon, AddonRecommendation
+from olympia.bandwagon.models import (
+    Collection, CollectionAddon, CollectionUser, CollectionWatcher,
+    RecommendedCollection)
+from olympia.devhub.models import ActivityLog
+from olympia.bandwagon import tasks
+from olympia.users.models import UserProfile
 
 
 def get_addons(c):
@@ -28,7 +29,7 @@ def activitylog_count(type):
     return qs.count()
 
 
-class TestCollections(amo.tests.TestCase):
+class TestCollections(TestCase):
     fixtures = ('base/addon_3615', 'bandwagon/test_models',
                 'base/user_4043307')
 
@@ -213,7 +214,7 @@ class TestCollections(amo.tests.TestCase):
         eq_(c.can_view_stats(fake_request), True)
 
 
-class TestCollectionQuerySet(amo.tests.TestCase):
+class TestCollectionQuerySet(TestCase):
     fixtures = ('base/addon_3615',)
 
     def test_with_has_addon(self):
@@ -233,7 +234,7 @@ class TestCollectionQuerySet(amo.tests.TestCase):
         assert qset.first().has_addon
 
 
-class TestRecommendations(amo.tests.TestCase):
+class TestRecommendations(TestCase):
     fixtures = ['base/addon-recs']
     ids = [5299, 1843, 2464, 7661, 5369]
 

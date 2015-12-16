@@ -3,12 +3,12 @@ import re
 from django.conf import settings
 from django.utils.html import strip_tags
 
-import amo
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from amo.utils import urlparams, epoch
-from tags.models import Tag
-from versions.compare import version_int
+from olympia import amo
+from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams, epoch
+from olympia.tags.models import Tag
+from olympia.versions.compare import version_int
 
 
 # For app version major.minor matching.

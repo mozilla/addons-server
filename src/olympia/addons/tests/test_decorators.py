@@ -3,12 +3,12 @@ from django import http
 import mock
 from nose.tools import eq_
 
-import amo.tests
-from addons import decorators as dec
-from addons.models import Addon
+from olympia.amo.tests import TestCase
+from olympia.addons import decorators as dec
+from olympia.addons.models import Addon
 
 
-class TestAddonView(amo.tests.TestCase):
+class TestAddonView(TestCase):
 
     def setUp(self):
         super(TestAddonView, self).setUp()

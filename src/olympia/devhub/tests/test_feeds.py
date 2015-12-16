@@ -3,14 +3,14 @@ from urllib import urlencode
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-from amo.urlresolvers import reverse
-from devhub.models import RssKey
-from devhub.tests.test_views import HubTest
-from bandwagon.models import Collection
-from reviews.models import Review
-from tags.models import Tag
-from versions.models import Version
+from olympia import amo
+from olympia.amo.urlresolvers import reverse
+from olympia.devhub.models import RssKey
+from olympia.devhub.tests.test_views import HubTest
+from olympia.bandwagon.models import Collection
+from olympia.reviews.models import Review
+from olympia.tags.models import Tag
+from olympia.versions.models import Version
 
 
 class TestActivity(HubTest):

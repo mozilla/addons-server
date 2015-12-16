@@ -5,14 +5,14 @@ from django.utils import translation
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
-from addons.models import Category
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
+from olympia.addons.models import Category
 
 
-class TestDecorators(amo.tests.TestCase):
+class TestDecorators(TestCase):
 
     def test_valid_locale(self):
         url = reverse('localizers.locale_dashboard',
@@ -53,7 +53,7 @@ class TestDecorators(amo.tests.TestCase):
         eq_(res.status_code, 200)
 
 
-class TestCategory(amo.tests.TestCase):
+class TestCategory(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

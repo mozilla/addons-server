@@ -14,13 +14,13 @@ from nose.tools import eq_
 from pyquery import PyQuery as pq
 from waffle.models import Switch
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
-from addons.models import Addon
-from files.helpers import DiffHelper, FileViewer
-from files.models import File
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon
+from olympia.files.helpers import DiffHelper, FileViewer
+from olympia.files.models import File
+from olympia.users.models import UserProfile
 
 dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
 unicode_filenames = 'apps/files/fixtures/files/unicode-filenames.xpi'
@@ -309,7 +309,7 @@ class FilesBase(object):
         eq_(disabled_file.attr('value'), str(self.files[2].id))
 
 
-class TestFileViewer(FilesBase, amo.tests.TestCase):
+class TestFileViewer(FilesBase, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def poll_url(self):
@@ -467,7 +467,7 @@ class TestFileViewer(FilesBase, amo.tests.TestCase):
         assert self.client.get(self.file_url()).status_code == 404
 
 
-class TestDiffViewer(FilesBase, amo.tests.TestCase):
+class TestDiffViewer(FilesBase, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):

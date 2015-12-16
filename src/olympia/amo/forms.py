@@ -6,7 +6,7 @@ from django.conf import settings
 import captcha.fields
 import happyforms
 
-from translations.fields import TranslatedField
+from olympia.translations.fields import TranslatedField
 
 
 class AbuseForm(happyforms.Form):

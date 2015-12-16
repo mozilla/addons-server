@@ -4,10 +4,10 @@ import shutil
 
 from django.conf import settings
 
-import amo
-from amo.celery import task
-from amo.decorators import set_modified_on
-from lib.video import library
+from olympia import amo
+from olympia.amo.celery import task
+from olympia.amo.decorators import set_modified_on
+from olympia.lib.video import library
 
 log = logging.getLogger('z.devhub.task')
 time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']

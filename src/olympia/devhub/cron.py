@@ -5,7 +5,8 @@ from dateutil import parser
 import feedparser
 
 import cronjobs
-from devhub.models import BlogPost
+
+from olympia.devhub.models import BlogPost
 
 log = commonware.log.getLogger('z.cron')
 
@@ -13,7 +14,6 @@ log = commonware.log.getLogger('z.cron')
 @cronjobs.register
 def update_blog_posts():
     """Update the blog post cache."""
-
     items = feedparser.parse(settings.DEVELOPER_BLOG_URL)['items']
     if not items:
         return

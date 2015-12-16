@@ -1,7 +1,7 @@
 from datetime import datetime
 from itertools import chain
 
-import amo
+from olympia import amo
 from access.models import Group
 from devhub.models import ActivityLog
 from editors.models import EventLog

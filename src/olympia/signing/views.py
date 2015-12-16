@@ -8,16 +8,16 @@ from rest_framework import status
 from rest_framework.response import Response
 from tower import ugettext as _
 
-from access import acl
-from addons.models import Addon
-from amo.decorators import use_master
-from api.jwt_auth.views import JWTProtectedView
-from devhub.views import handle_upload
-from files.models import FileUpload
-from files.utils import parse_addon
-from versions import views as version_views
-from versions.models import Version
-from signing.serializers import FileUploadSerializer
+from olympia.access import acl
+from olympia.addons.models import Addon
+from olympia.amo.decorators import use_master
+from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.devhub.views import handle_upload
+from olympia.files.models import FileUpload
+from olympia.files.utils import parse_addon
+from olympia.versions import views as version_views
+from olympia.versions.models import Version
+from olympia.signing.serializers import FileUploadSerializer
 
 log = logging.getLogger('signing')
 

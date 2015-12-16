@@ -4,9 +4,9 @@ from django.test.client import RequestFactory
 from mock import Mock
 from nose.tools import eq_
 
-from amo.tests import TestCase
-from amo.urlresolvers import reverse
-from users.models import UserProfile
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.users.models import UserProfile
 
 from ..urls import SwitchToDRF
 

@@ -4,7 +4,7 @@ from django import http
 from django.conf import settings
 from django.http import Http404
 
-from amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import reverse
 
 
 def locale_switcher(f):

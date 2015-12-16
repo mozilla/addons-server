@@ -11,12 +11,12 @@ from django.utils import translation
 import mock
 from nose.tools import eq_
 
-from amo.models import FakeEmail
-from amo.tests import BaseTestCase
-from amo.utils import send_mail, send_html_mail_jinja
-from devhub.tests.test_models import ATTACHMENTS_DIR
-from users.models import UserProfile, UserNotification
-import users.notifications
+from olympia.amo.models import FakeEmail
+from olympia.amo.tests import BaseTestCase
+from olympia.amo.utils import send_mail, send_html_mail_jinja
+from olympia.devhub.tests.test_models import ATTACHMENTS_DIR
+from olympia.users.models import UserProfile, UserNotification
+from olympia.users import notifications
 
 
 class TestSendMail(BaseTestCase):
@@ -68,7 +68,7 @@ class TestSendMail(BaseTestCase):
         eq_(UserNotification.objects.count(), 0)
 
         # Make sure that this is True by default
-        setting = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        setting = notifications.NOTIFICATIONS_BY_SHORT['reply']
         eq_(setting.default_checked, True)
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
@@ -82,7 +82,7 @@ class TestSendMail(BaseTestCase):
     def test_user_setting_checked(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        n = notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(
             notification_id=n.id, user=user, enabled=True)
 
@@ -100,7 +100,7 @@ class TestSendMail(BaseTestCase):
         # Make sure there's no unsubscribe link in mandatory emails.
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
+        n = notifications.NOTIFICATIONS_BY_SHORT['individual_contact']
 
         UserNotification.objects.get_or_create(
             notification_id=n.id, user=user, enabled=True)
@@ -118,7 +118,7 @@ class TestSendMail(BaseTestCase):
     def test_user_setting_unchecked(self):
         user = UserProfile.objects.all()[0]
         to = user.email
-        n = users.notifications.NOTIFICATIONS_BY_SHORT['reply']
+        n = notifications.NOTIFICATIONS_BY_SHORT['reply']
         UserNotification.objects.get_or_create(
             notification_id=n.id, user=user, enabled=False)
 
@@ -223,7 +223,7 @@ class TestSendMail(BaseTestCase):
         assert '<a href' not in message1, 'text-only email contained HTML!'
         assert '<a href' in message2, 'HTML email did not contain HTML!'
 
-        unsubscribe_msg = unicode(users.notifications.individual_contact.label)
+        unsubscribe_msg = unicode(notifications.individual_contact.label)
         assert unsubscribe_msg in message1
         assert unsubscribe_msg in message2
 

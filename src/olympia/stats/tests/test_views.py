@@ -10,19 +10,20 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
-from amo.urlresolvers import reverse
-from access.models import Group, GroupUser
-from addons.models import Addon
-from bandwagon.models import Collection
-from stats import views, tasks
-from stats import search
-from stats.models import (CollectionCount, DownloadCount, GlobalStat,
-                          ThemeUserCount, UpdateCount)
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon
+from olympia.bandwagon.models import Collection
+from olympia.stats import views, tasks
+from olympia.stats import search
+from olympia.stats.models import (
+    CollectionCount, DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
+from olympia.users.models import UserProfile
 
 
-class StatsTest(amo.tests.TestCase):
+class StatsTest(TestCase):
     fixtures = ['stats/test_views.json', 'stats/test_models.json']
 
     def setUp(self):
@@ -708,7 +709,7 @@ class TestResponses(ESStatsTest):
 
 
 # Test the SQL query by using known dates, for weeks and months etc.
-class TestSiteQuery(amo.tests.TestCase):
+class TestSiteQuery(TestCase):
 
     def setUp(self):
         super(TestSiteQuery, self).setUp()
@@ -746,7 +747,7 @@ class TestSiteQuery(amo.tests.TestCase):
 
 
 @mock.patch('stats.views._site_query')
-class TestSite(amo.tests.TestCase):
+class TestSite(TestCase):
 
     def tests_period(self, _site_query):
         _site_query.return_value = ['.', '.']

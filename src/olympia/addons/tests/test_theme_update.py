@@ -8,14 +8,14 @@ from django.db import connection
 import mock
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from amo.helpers import user_media_path, user_media_url
-from versions.models import Version
-from services import theme_update
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.amo.helpers import user_media_path, user_media_url
+from olympia.versions.models import Version
+from olympia.services import theme_update
 
 
-class TestWSGIApplication(amo.tests.TestCase):
+class TestWSGIApplication(TestCase):
 
     def setUp(self):
         super(TestWSGIApplication, self).setUp()
@@ -62,7 +62,7 @@ class TestWSGIApplication(amo.tests.TestCase):
             self.start_response.assert_called_with('404 Not Found', [])
 
 
-class TestThemeUpdate(amo.tests.TestCase):
+class TestThemeUpdate(TestCase):
     fixtures = ['addons/persona']
 
     def setUp(self):

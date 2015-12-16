@@ -1,7 +1,6 @@
-from accounts.serializers import UserProfileSerializer
-
-from amo.tests import BaseTestCase
-from users.models import UserProfile
+from olympia.amo.tests import BaseTestCase
+from olympia.accounts.serializers import UserProfileSerializer
+from olympia.users.models import UserProfile
 
 
 class TestAccountSerializer(BaseTestCase):

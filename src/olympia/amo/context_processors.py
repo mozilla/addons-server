@@ -6,10 +6,10 @@ from django.utils.http import urlquote
 import waffle
 from tower import ugettext as _
 
-import amo
-from amo.urlresolvers import reverse
-from access import acl
-from zadmin.models import get_config
+from olympia import amo
+from olympia.amo.urlresolvers import reverse
+from olympia.access import acl
+from olympia.zadmin.models import get_config
 
 
 def app(request):

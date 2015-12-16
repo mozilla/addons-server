@@ -2,8 +2,8 @@ from django.db import models
 
 import caching.base
 
-import amo.models
-from translations.fields import PurifiedField, save_signal
+from olympia.amo.models import ManagerBase, ModelBase
+from olympia.translations.fields import PurifiedField, save_signal
 
 
 class L10nEventlog(caching.base.CachingMixin, models.Model):
@@ -20,14 +20,14 @@ class L10nEventlog(caching.base.CachingMixin, models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
-    objects = amo.models.ManagerBase()
+    objects = ManagerBase()
 
     class Meta:
         db_table = 'l10n_eventlog'
         get_latest_by = 'created'
 
 
-class L10nSettings(amo.models.ModelBase):
+class L10nSettings(ModelBase):
     """Per-locale L10n Dashboard settings"""
     locale = models.CharField(max_length=30, default='', unique=True)
     motd = PurifiedField()

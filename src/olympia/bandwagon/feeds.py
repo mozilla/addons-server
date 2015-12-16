@@ -3,11 +3,12 @@ from django.contrib.syndication.views import Feed
 
 from tower import ugettext as _
 
-from amo.helpers import absolutify, page_name
-from amo.urlresolvers import reverse
-from access import acl
-from addons.models import Addon
-from browse.feeds import AddonFeedMixin
+from olympia.amo.helpers import absolutify, page_name
+from olympia.amo.urlresolvers import reverse
+from olympia.access import acl
+from olympia.addons.models import Addon
+from olympia.browse.feeds import AddonFeedMixin
+
 from . import views
 
 

@@ -10,22 +10,20 @@ from django.utils.translation import force_text
 from jingo import register
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
-import amo
-from access import acl
-from addons.helpers import new_context
-from addons.models import Addon
-from amo.helpers import absolutify, breadcrumbs, page_title
-from amo.urlresolvers import reverse
-from amo.utils import send_mail as amo_send_mail
-from editors.models import (ReviewerScore, ViewFastTrackQueue,
-                            ViewFullReviewQueue, ViewPendingQueue,
-                            ViewPreliminaryQueue,
-                            ViewUnlistedFullReviewQueue,
-                            ViewUnlistedPendingQueue,
-                            ViewUnlistedPreliminaryQueue)
-from editors.sql_table import SQLTable
-from lib.crypto.packaged import sign_file
-from users.models import UserProfile
+from olympia import amo
+from olympia.access import acl
+from olympia.addons.helpers import new_context
+from olympia.addons.models import Addon
+from olympia.amo.helpers import absolutify, breadcrumbs, page_title
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import send_mail as amo_send_mail
+from olympia.editors.models import (
+    ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
+    ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
+    ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
+from olympia.editors.sql_table import SQLTable
+from olympia.lib.crypto.packaged import sign_file
+from olympia.users.models import UserProfile
 
 
 @register.function

@@ -7,9 +7,9 @@ from rest_framework.authentication import BaseAuthentication
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render
 
-from access.middleware import ACLMiddleware
-from users.models import UserProfile
-from zadmin import jinja_for_django
+from olympia.access.middleware import ACLMiddleware
+from olympia.users.models import UserProfile
+from olympia.zadmin import jinja_for_django
 
 
 # This allows the views in piston.authentication.oauth to cope with

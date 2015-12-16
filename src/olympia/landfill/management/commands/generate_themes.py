@@ -3,7 +3,7 @@ from optparse import make_option
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from landfill.generators import generate_themes
+from olympia.landfill.generators import generate_themes
 
 
 class Command(BaseCommand):

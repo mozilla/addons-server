@@ -4,13 +4,13 @@ from datetime import datetime
 
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import Addon
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.users.models import UserProfile
 
 
-class LogTest(amo.tests.TestCase):
+class LogTest(TestCase):
     def setUp(self):
         super(LogTest, self).setUp()
         u = UserProfile.objects.create(username='foo')

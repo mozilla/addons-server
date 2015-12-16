@@ -1,6 +1,6 @@
-from amo.utils import slugify
-from addons.models import AddonCategory, AddonUser
-from users.models import UserProfile
+from olympia.amo.utils import slugify
+from olympia.addons.models import AddonCategory, AddonUser
+from olympia.users.models import UserProfile
 
 
 def generate_addon_user_and_category(addon, user, category):

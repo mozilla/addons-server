@@ -6,11 +6,11 @@ import jingo
 import jinja2
 from tower import ugettext as _, ugettext_lazy as _lazy
 
-import amo
-from amo.helpers import urlparams
-from amo.urlresolvers import reverse
-from addons.models import Addon
-from translations.models import Translation
+from olympia import amo
+from olympia.amo.helpers import urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon
+from olympia.translations.models import Translation
 
 
 @jinja2.contextfunction

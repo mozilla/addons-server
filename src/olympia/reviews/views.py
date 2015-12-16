@@ -1,3 +1,7 @@
+import HTMLParser
+import json
+import requests
+
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
@@ -10,23 +14,19 @@ from tower import ugettext as _
 from mobility.decorators import mobile_template
 from waffle.decorators import waffle_switch
 
-import amo
-from amo import messages
-from amo.decorators import (json_view, login_required, post_required,
-                            restricted_content)
-from amo import helpers
-import amo.utils
-from access import acl
-from addons.decorators import addon_view_factory
-from addons.models import Addon
+from olympia import amo
+from olympia.amo import messages
+from olympia.amo.decorators import (
+    json_view, login_required, post_required, restricted_content)
+from olympia.amo import helpers, utils as amo_utils
+from olympia.access import acl
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
 from . import forms
 
-import HTMLParser
-import json
-import requests
 
 log = commonware.log.getLogger('z.reviews')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
@@ -34,7 +34,7 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 def send_mail(template, subject, emails, context, perm_setting):
     template = loader.get_template(template)
-    amo.utils.send_mail(subject, template.render(Context(context,
+    amo_utils.send_mail(subject, template.render(Context(context,
                                                          autoescape=False)),
                         recipient_list=emails, perm_setting=perm_setting)
 
@@ -67,7 +67,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         ctx['page'] = 'list'
         q = q.filter(is_latest=True)
 
-    ctx['reviews'] = reviews = amo.utils.paginate(request, q)
+    ctx['reviews'] = reviews = amo_utils.paginate(request, q)
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {

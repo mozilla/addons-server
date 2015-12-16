@@ -6,8 +6,8 @@ import MySQLdb as mysql
 from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
-from addons.models import Addon
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
 
 
 def pubdir(ob):
@@ -24,7 +24,7 @@ def quickcopy(val):
     return val
 
 
-class ReadOnlyModeTest(amo.tests.TestCase):
+class ReadOnlyModeTest(TestCase):
     extra = ('amo.middleware.ReadOnlyMiddleware',)
 
     def setUp(self):

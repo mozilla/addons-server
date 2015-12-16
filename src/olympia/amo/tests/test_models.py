@@ -3,12 +3,12 @@ import pytest
 from mock import Mock
 from nose.tools import eq_
 
-import amo.models
-from amo.models import manual_order
-from amo.tests import TestCase
-from amo import models as context
-from addons.models import Addon
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo import models as amo_models
+from olympia.amo.tests import TestCase
+from olympia.amo import models as context
+from olympia.addons.models import Addon
+from olympia.users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
@@ -22,7 +22,8 @@ class ManualOrderTest(TestCase):
         in that order."""
 
         semi_arbitrary_order = [40, 5299, 3615]
-        addons = manual_order(Addon.objects.all(), semi_arbitrary_order)
+        addons = amo_models.manual_order(
+            Addon.objects.all(), semi_arbitrary_order)
         eq_(semi_arbitrary_order, [addon.id for addon in addons])
 
 
@@ -52,24 +53,24 @@ class TestModelBase(TestCase):
 
     def setUp(self):
         super(TestModelBase, self).setUp()
-        self.saved_cb = amo.models._on_change_callbacks.copy()
-        amo.models._on_change_callbacks.clear()
+        self.saved_cb = amo_models._on_change_callbacks.copy()
+        amo_models._on_change_callbacks.clear()
         self.cb = Mock()
         self.cb.__name__ = 'testing_mock_callback'
         Addon.on_change(self.cb)
 
     def tearDown(self):
-        amo.models._on_change_callbacks = self.saved_cb
+        amo_models._on_change_callbacks = self.saved_cb
         super(TestModelBase, self).tearDown()
 
     def test_multiple_ignored(self):
         cb = Mock()
         cb.__name__ = 'something'
-        old = len(amo.models._on_change_callbacks[Addon])
+        old = len(amo_models._on_change_callbacks[Addon])
         Addon.on_change(cb)
-        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
+        eq_(len(amo_models._on_change_callbacks[Addon]), old + 1)
         Addon.on_change(cb)
-        eq_(len(amo.models._on_change_callbacks[Addon]), old + 1)
+        eq_(len(amo_models._on_change_callbacks[Addon]), old + 1)
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):

@@ -5,11 +5,10 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-import amo
-import amo.tests
-from addons.management.commands import approve_addons
-from devhub.models import AddonLog
-from editors.models import ReviewerScore
+from olympia import amo
+from olympia.addons.management.commands import approve_addons
+from olympia.devhub.models import AddonLog
+from olympia.editors.models import ReviewerScore
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.

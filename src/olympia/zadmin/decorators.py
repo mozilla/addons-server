@@ -2,8 +2,8 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from access.acl import action_allowed
-from amo.decorators import login_required
+from olympia.access.acl import action_allowed
+from olympia.amo.decorators import login_required
 
 
 def admin_required(reviewers=False, theme_reviewers=False):

@@ -23,15 +23,16 @@ import commonware.log
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
-from lib.log_settings_base import formatters, handlers, loggers
+from olympia.lib.log_settings_base import formatters, handlers, loggers
 
 # Ugh. But this avoids any zamboni or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
-from constants.applications import APPS_ALL
-from constants.platforms import PLATFORMS
-from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
-                            STATUS_LITE, STATUS_LITE_AND_NOMINATED)
+from olympia.constants.applications import APPS_ALL
+from olympia.constants.platforms import PLATFORMS
+from olympia.constants.base import (
+    STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA, STATUS_LITE,
+    STATUS_LITE_AND_NOMINATED)
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an

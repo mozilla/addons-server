@@ -5,11 +5,12 @@ import pytest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from olympia import amo, amo.tests
+from olympia import amo
+from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestPersonas
-from olympia.users.helpers import (addon_users_list, emaillink, user_data, user_link,
-                           users_list)
+from olympia.users.helpers import (
+    addon_users_list, emaillink, user_data, user_link, users_list)
 from olympia.users.models import UserProfile
 
 
@@ -105,7 +106,7 @@ def test_user_link_unicode():
                                              u.username))
 
 
-class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
+class TestAddonUsersList(TestPersonas, TestCase):
 
     def setUp(self):
         super(TestAddonUsersList, self).setUp()

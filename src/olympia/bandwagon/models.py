@@ -12,19 +12,20 @@ from django.db import connection, models
 
 import caching.base as caching
 
-import amo
-import amo.models
-import sharing.utils as sharing
-from access import acl
-from addons.models import Addon, AddonRecommendation
-from amo.helpers import absolutify, user_media_path, user_media_url
-from amo.urlresolvers import reverse
-from amo.utils import sorted_groupby
-from stats.models import CollectionShareCountTotal
-from translations.fields import (LinkifiedField, save_signal,
-                                 NoLinksNoMarkupField, TranslatedField)
-from users.models import UserProfile
-from versions import compare
+from olympia import amo
+from olympia.models import ManagerBase, ModelBase
+from olympia.sharing.utils import attach_share_counts
+from olympia.access import acl
+from olympia.addons.models import Addon, AddonRecommendation
+from olympia.amo.helpers import absolutify, user_media_path, user_media_url
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import sorted_groupby
+from olympia.stats.models import CollectionShareCountTotal
+from olympia.translations.fields import (
+    LinkifiedField, save_signal, NoLinksNoMarkupField, TranslatedField)
+from olympia.users.models import UserProfile
+from olympia.versions import compare
+
 
 SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
 
@@ -63,7 +64,7 @@ class CollectionQuerySet(caching.CachingQuerySet):
             select_params=(addon_id,))
 
 
-class CollectionManager(amo.models.ManagerBase):
+class CollectionManager(ManagerBase):
 
     def get_query_set(self):
         qs = super(CollectionManager, self).get_query_set()
@@ -90,8 +91,7 @@ class CollectionManager(amo.models.ManagerBase):
         return collections.distinct().order_by('name__localized_string')
 
 
-class Collection(amo.models.ModelBase):
-
+class Collection(ModelBase):
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     uuid = models.CharField(max_length=36, blank=True, unique=True)
@@ -146,7 +146,7 @@ class Collection(amo.models.ModelBase):
 
     top_tags = TopTags()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collections'
         unique_together = (('author', 'slug'),)
 
@@ -380,8 +380,7 @@ class Collection(amo.models.ModelBase):
         for c in collections:
             c.author = authors.get(c.author_id)
         c_dict = dict((c.pk, c) for c in collections)
-        sharing.attach_share_counts(CollectionShareCountTotal, 'collection',
-                                    c_dict)
+        attach_share_counts(CollectionShareCountTotal, 'collection', c_dict)
 
     @staticmethod
     def post_save(sender, instance, **kwargs):
@@ -416,7 +415,7 @@ models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
                                    dispatch_uid='coll.post_delete')
 
 
-class CollectionAddon(amo.models.ModelBase):
+class CollectionAddon(ModelBase):
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
     # category (deprecated: for "Fashion Your Firefox")
@@ -429,7 +428,7 @@ class CollectionAddon(amo.models.ModelBase):
         help_text='Add-ons are displayed in ascending order '
                   'based on this field.')
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
         unique_together = (('addon', 'collection'),)
 
@@ -451,23 +450,23 @@ models.signals.post_delete.connect(CollectionAddon.post_save_or_delete,
                                    dispatch_uid='coll.post_save')
 
 
-class CollectionFeature(amo.models.ModelBase):
+class CollectionFeature(ModelBase):
     title = TranslatedField()
     tagline = TranslatedField()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collection_features'
 
 models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
                                 dispatch_uid='collectionfeature_translations')
 
 
-class CollectionPromo(amo.models.ModelBase):
+class CollectionPromo(ModelBase):
     collection = models.ForeignKey(Collection, null=True)
     locale = models.CharField(max_length=10, null=True)
     collection_feature = models.ForeignKey(CollectionFeature)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collection_promos'
         unique_together = ('collection', 'locale', 'collection_feature')
 
@@ -485,11 +484,11 @@ class CollectionPromo(amo.models.ModelBase):
             promo_dict[promo_id].collection = collection.next()
 
 
-class CollectionWatcher(amo.models.ModelBase):
+class CollectionWatcher(ModelBase):
     collection = models.ForeignKey(Collection, related_name='following')
     user = models.ForeignKey(UserProfile)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'collection_subscriptions'
 
     def flush_urls(self):
@@ -569,7 +568,7 @@ class RecommendedCollection(Collection):
         return [addon for addon, score in addons if addon not in addon_ids]
 
 
-class FeaturedCollection(amo.models.ModelBase):
+class FeaturedCollection(ModelBase):
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     collection = models.ForeignKey(Collection)
@@ -583,7 +582,7 @@ class FeaturedCollection(amo.models.ModelBase):
                                  self.locale)
 
 
-class MonthlyPick(amo.models.ModelBase):
+class MonthlyPick(ModelBase):
     addon = models.ForeignKey(Addon)
     blurb = models.TextField()
     image = models.URLField()

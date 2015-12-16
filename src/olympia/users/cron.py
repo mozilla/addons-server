@@ -5,8 +5,9 @@ import multidb
 from celery.task.sets import TaskSet
 
 import cronjobs
-from amo import VALID_STATUSES
-from amo.utils import chunked
+from olympia.amo import VALID_STATUSES
+from olympia.amo.utils import chunked
+
 from .models import UserProfile
 from .tasks import update_user_ratings_task
 

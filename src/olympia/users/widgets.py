@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 
 from tower import ugettext as _
 
-import users.notifications as email
+from olympia.users import notifications as email
 
 
 class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):

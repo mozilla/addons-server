@@ -9,17 +9,17 @@ from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from addons.models import Addon
-from amo.urlresolvers import reverse
-from devhub.models import ActivityLog
-from editors import helpers
-from editors.models import ReviewerScore
-from files.models import File
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.amo.urlresolvers import reverse
+from olympia.devhub.models import ActivityLog
+from olympia.editors import helpers
+from olympia.editors.models import ReviewerScore
+from olympia.files.models import File
+from olympia.translations.models import Translation
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 from . test_models import create_addon_file
 
@@ -33,7 +33,7 @@ REVIEW_FILES_STATUSES = (amo.STATUS_PUBLIC,
                          amo.STATUS_DISABLED, amo.STATUS_LITE)
 
 
-class TestViewPendingQueueTable(amo.tests.TestCase):
+class TestViewPendingQueueTable(TestCase):
 
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
@@ -108,7 +108,7 @@ class TestViewPendingQueueTable(amo.tests.TestCase):
         assert doc('div.ed-sprite-admin-review').length
 
 
-class TestAdditionalInfoInQueue(amo.tests.TestCase):
+class TestAdditionalInfoInQueue(TestCase):
 
     def setUp(self):
         super(TestAdditionalInfoInQueue, self).setUp()
@@ -161,7 +161,7 @@ class TestAdditionalInfoInQueue(amo.tests.TestCase):
 yesterday = datetime.today() - timedelta(days=1)
 
 
-class TestReviewHelper(amo.tests.TestCase):
+class TestReviewHelper(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
 
@@ -971,7 +971,7 @@ def test_send_email_autoescape():
     eq_(mail.outbox[0].body.count(s), len(ctx))
 
 
-class TestCompareLink(amo.tests.TestCase):
+class TestCompareLink(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

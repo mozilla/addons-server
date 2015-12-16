@@ -11,16 +11,16 @@ from django.test.utils import override_settings
 import mock
 import pytest
 
-import amo
-import amo.tests
-from files.utils import extract_xpi
-from lib.crypto import packaged, tasks
-from versions.compare import version_int
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.files.utils import extract_xpi
+from olympia.lib.crypto import packaged, tasks
+from olympia.versions.compare import version_int
 
 
 @override_settings(SIGNING_SERVER='http://full',
                    PRELIMINARY_SIGNING_SERVER='http://prelim')
-class TestPackaged(amo.tests.TestCase):
+class TestPackaged(TestCase):
 
     def setUp(self):
         super(TestPackaged, self).setUp()
@@ -284,7 +284,7 @@ class TestPackaged(amo.tests.TestCase):
         assert packaged.get_id(self.addon) == hashed
 
 
-class TestTasks(amo.tests.TestCase):
+class TestTasks(TestCase):
 
     def setUp(self):
         super(TestTasks, self).setUp()

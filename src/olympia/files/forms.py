@@ -8,9 +8,9 @@ import happyforms
 import jinja2
 from tower import ugettext as _
 
-import amo
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 log = commonware.log.getLogger('z.files')
 

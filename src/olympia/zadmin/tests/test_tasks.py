@@ -4,13 +4,13 @@ from django.conf import settings
 import mock
 import urlparse
 
-import amo
-import amo.tests
-from addons.models import Addon
-from applications.models import AppVersion
-from files.utils import make_xpi
-from versions.compare import version_int
-from zadmin import tasks
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.applications.models import AppVersion
+from olympia.files.utils import make_xpi
+from olympia.versions.compare import version_int
+from olympia.zadmin import tasks
 
 
 def RequestMock(response='', headers=None):
@@ -68,7 +68,7 @@ def make_langpack(version):
     }).read()
 
 
-class TestLangpackFetcher(amo.tests.TestCase):
+class TestLangpackFetcher(TestCase):
     fixtures = ['zadmin/users']
 
     LISTING = 'pretend-this-is-a-sha256-sum  win32/xpi/de-DE.xpi\n'

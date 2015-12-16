@@ -1,12 +1,12 @@
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import (Addon, attach_categories, attach_tags,
-                           attach_translations)
-from addons.search import extract
+from olympia.amo.tests import TestCase
+from olympia.addons.models import (
+    Addon, attach_categories, attach_tags, attach_translations)
+from olympia.addons.search import extract
 
 
-class TestExtract(amo.tests.TestCase):
+class TestExtract(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):

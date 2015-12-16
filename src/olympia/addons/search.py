@@ -3,19 +3,18 @@ import logging
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-import amo
-import amo.search
-from amo.models import SearchMixin
-from addons.cron import reindex_addons
-from addons.models import Persona
-from bandwagon.cron import reindex_collections
-from bandwagon.models import Collection
-from compat.cron import compatibility_report
-from compat.models import AppCompat
-from lib.es.utils import create_index
-from users.cron import reindex_users
-from users.models import UserProfile
-from versions.compare import version_int
+from olympia import amo
+from olympia.amo.models import SearchMixin
+from olympia.addons.cron import reindex_addons
+from olympia.addons.models import Persona
+from olympia.bandwagon.cron import reindex_collections
+from olympia.bandwagon.models import Collection
+from olympia.compat.cron import compatibility_report
+from olympia.compat.models import AppCompat
+from olympia.lib.es.utils import create_index
+from olympia.users.cron import reindex_users
+from olympia.users.models import UserProfile
+from olympia.versions.compare import version_int
 
 from .models import Addon
 

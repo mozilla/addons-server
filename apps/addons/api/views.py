@@ -3,8 +3,8 @@ from rest_framework.response import Response
 
 from waffle.decorators import waffle_switch
 
-import amo
-from addons.models import Addon
+from olympia import amo
+from olympia.addons.models import Addon
 
 
 class AddonSerializer(serializers.ModelSerializer):

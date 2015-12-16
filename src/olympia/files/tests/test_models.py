@@ -17,25 +17,23 @@ import pytest
 from mock import patch
 from nose.tools import eq_
 
-import amo
-import amo.tests
-import amo.utils
-
-from amo.utils import rm_local_tmp_dir
-from addons.models import Addon
-from applications.models import AppVersion
-from files.models import (
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.utils import rm_local_tmp_dir, chunked
+from olympia.addons.models import Addon
+from olympia.applications.models import AppVersion
+from olympia.files.models import (
     File, FileUpload, FileValidation, nfd_str, track_file_status_change,
 )
-from files.helpers import copyfileobj
-from files.utils import check_xpi_info, parse_addon, parse_xpi
-from versions.models import Version
+from olympia.files.helpers import copyfileobj
+from olympia.files.utils import check_xpi_info, parse_addon, parse_xpi
+from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
 
 
-class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
+class UploadTest(TestCase, amo.tests.AMOPaths):
     """
     Base for tests that mess with file uploads, safely using temp directories.
     """
@@ -55,7 +53,7 @@ class UploadTest(amo.tests.TestCase, amo.tests.AMOPaths):
         return upload
 
 
-class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestFile(TestCase, amo.tests.AMOPaths):
     """
     Tests the methods of the File model.
     """
@@ -290,7 +288,7 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(f.addon.id, addon_id)
 
 
-class TestTrackFileStatusChange(amo.tests.TestCase):
+class TestTrackFileStatusChange(TestCase):
 
     def create_file(self, **kwargs):
         addon = Addon()
@@ -349,7 +347,7 @@ class TestTrackFileStatusChange(amo.tests.TestCase):
         )
 
 
-class TestParseXpi(amo.tests.TestCase):
+class TestParseXpi(TestCase):
 
     def setUp(self):
         super(TestParseXpi, self).setUp()
@@ -502,7 +500,7 @@ class TestParseXpi(amo.tests.TestCase):
         eq_(result['strict_compatibility'], True)
 
 
-class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestParseAlternateXpi(TestCase, amo.tests.AMOPaths):
     # This install.rdf is completely different from our other xpis.
 
     def setUp(self):
@@ -554,7 +552,7 @@ class TestFileUpload(UploadTest):
 
     def upload(self):
         # The data should be in chunks.
-        data = [''.join(x) for x in amo.utils.chunked(self.data, 3)]
+        data = [''.join(x) for x in chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
                                     len(self.data))
 
@@ -1095,7 +1093,7 @@ class TestFileFromUpload(UploadTest):
         assert not file_.is_experiment
 
 
-class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestZip(TestCase, amo.tests.AMOPaths):
 
     def test_zip(self):
         # This zip contains just one file chrome/ that we expect
@@ -1114,7 +1112,7 @@ class TestZip(amo.tests.TestCase, amo.tests.AMOPaths):
             rm_local_tmp_dir(dest)
 
 
-class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestParseSearch(TestCase, amo.tests.AMOPaths):
 
     def parse(self, filename='search.xml'):
         return parse_addon(open(self.file_fixture_path(filename)))

@@ -5,8 +5,8 @@ from django.db import connection
 
 import commonware.log
 
-from addons.models import Persona
-from stats.models import ThemeUpdateCount, ThemeUpdateCountBulk
+from olympia.addons.models import Persona
+from olympia.stats.models import ThemeUpdateCount, ThemeUpdateCountBulk
 
 
 log = commonware.log.getLogger('adi.themepopularitymovers')

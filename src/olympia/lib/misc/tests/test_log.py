@@ -4,10 +4,10 @@ from django.conf import settings
 
 from nose.tools import eq_
 from heka.config import client_from_dict_config
-
-import amo.tests
 import commonware.log
-from lib.log_settings_base import error_fmt
+
+from olympia.amo.tests import TestCase
+from olympia.lib.log_settings_base import error_fmt
 
 
 cfg = {
@@ -36,7 +36,7 @@ cfg = {
 }
 
 
-class TestHekaStdLibLogging(amo.tests.TestCase):
+class TestHekaStdLibLogging(TestCase):
     """
     The StdLibLoggingStream is only used for *debugging* purposes.
 
@@ -105,7 +105,7 @@ class TestHekaStdLibLogging(amo.tests.TestCase):
         eq_(logrecord.msg, "timer: %s" % str(elapsed))
 
 
-class TestRaven(amo.tests.TestCase):
+class TestRaven(TestCase):
     def setUp(self):
         """
         We need to set the settings.HEKA instance to use a

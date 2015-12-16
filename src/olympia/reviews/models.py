@@ -8,16 +8,16 @@ import bleach
 import caching.base as caching
 from tower import ugettext_lazy as _
 
-import amo.models
-from amo import helpers
-from amo.celery import task
-from translations.fields import save_signal, TranslatedField
-from users.models import UserProfile
+from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo import helpers
+from olympia.amo.celery import task
+from olympia.translations.fields import save_signal, TranslatedField
+from olympia.users.models import UserProfile
 
 log = logging.getLogger('z.review')
 
 
-class ReviewManager(amo.models.ManagerBase):
+class ReviewManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
@@ -48,7 +48,7 @@ class ReviewQuerySet(caching.CachingQuerySet):
             review.delete()
 
 
-class Review(amo.models.ModelBase):
+class Review(ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='_reviews')
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
@@ -150,7 +150,7 @@ models.signals.pre_save.connect(save_signal, sender=Review,
 
 
 # TODO: translate old flags.
-class ReviewFlag(amo.models.ModelBase):
+class ReviewFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'

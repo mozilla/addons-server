@@ -4,10 +4,10 @@ from django.core.management.base import BaseCommand
 
 from celery.task.sets import TaskSet
 
-import bandwagon.tasks
-import users.tasks
-from amo.helpers import user_media_path
-from amo.utils import walkfiles
+from olympia.bandwagon.tasks import resize_icon
+from olympia.users.tasks import resize_photo
+from olympia.amo.helpers import user_media_path
+from olympia.amo.utils import walkfiles
 
 log = logging.getLogger('z.cmd')
 
@@ -20,8 +20,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         z = ((user_media_path('collection_icons'),
-              bandwagon.tasks.resize_icon),
-             (user_media_path('userpics'), users.tasks.resize_photo))
+              resize_icon),
+             (user_media_path('userpics'), resize_photo))
         for base, task in z:
             self.fix(base, task)
 

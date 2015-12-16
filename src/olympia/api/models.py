@@ -6,8 +6,8 @@ from django.db import models
 
 from aesfield.field import AESField
 
-import amo.models
-from users.models import UserProfile
+from olympia.amo.models import ModelBase
+from olympia.users.models import UserProfile
 
 
 KEY_SIZE = 18
@@ -89,7 +89,7 @@ API_KEY_TYPES = [
 ]
 
 
-class APIKey(amo.models.ModelBase):
+class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.
     """

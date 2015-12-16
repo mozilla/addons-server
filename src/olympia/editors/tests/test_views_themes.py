@@ -8,17 +8,17 @@ import mock
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-import constants.editors as rvw
-from access.models import GroupUser
-from addons.models import Persona
-from amo.tests import addon_factory, days_ago
-from amo.urlresolvers import reverse
-from devhub.models import ActivityLog, AddonLog
-from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
-from editors.views_themes import _get_themes, home, themes_search
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.constants import editors as rvw
+from olympia.access.models import GroupUser
+from olympia.addons.models import Persona
+from olympia.amo.tests import addon_factory, days_ago
+from olympia.amo.urlresolvers import reverse
+from olympia.devhub.models import ActivityLog, AddonLog
+from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
+from olympia.editors.views_themes import _get_themes, home, themes_search
+from olympia.users.models import UserProfile
 
 
 class ThemeReviewTestMixin(object):
@@ -275,7 +275,7 @@ class ThemeReviewTestMixin(object):
             eq_(res.context['reviewable'], not self.flagged)
 
 
-class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
+class TestThemeQueue(ThemeReviewTestMixin, TestCase):
 
     def setUp(self):
         super(TestThemeQueue, self).setUp()
@@ -460,7 +460,7 @@ class TestThemeQueue(ThemeReviewTestMixin, amo.tests.TestCase):
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(), 0)
 
 
-class TestThemeQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
+class TestThemeQueueFlagged(ThemeReviewTestMixin, TestCase):
 
     def setUp(self):
         super(TestThemeQueueFlagged, self).setUp()
@@ -476,7 +476,7 @@ class TestThemeQueueFlagged(ThemeReviewTestMixin, amo.tests.TestCase):
         eq_(self.client.get(self.queue_url).status_code, 200)
 
 
-class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
+class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
 
     def setUp(self):
         super(TestThemeQueueRereview, self).setUp()
@@ -667,7 +667,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, amo.tests.TestCase):
         delete_mock.assert_any_call(rereview.header_path)
 
 
-class TestDeletedThemeLookup(amo.tests.TestCase):
+class TestDeletedThemeLookup(TestCase):
     fixtures = ['base/users', 'editors/user_persona_reviewer',
                 'editors/user_senior_persona_reviewer']
 
@@ -723,7 +723,7 @@ class TestThemeSearch(amo.tests.ESTestCase):
         eq_(self.search('theme', rereview=True)[0]['id'], self.addon.id)
 
 
-class TestDashboard(amo.tests.TestCase):
+class TestDashboard(TestCase):
     fixtures = ['editors/user_senior_persona_reviewer']
 
     def setUp(self):

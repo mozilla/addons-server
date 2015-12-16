@@ -5,12 +5,10 @@ from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
-from amo.urlresolvers import reverse
-from amo.utils import urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
+from olympia.versions.urls import download_patterns
 
-import addons.views
-import blocklist.views
-import versions.urls
 
 admin.autodiscover()
 
@@ -27,11 +25,11 @@ urlpatterns = patterns(
     # There are many more params but we only care about these three. The end is
     # not anchored on purpose!
     url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
-        blocklist.views.blocklist, name='blocklist'),
+        'blocklist.views.blocklist', name='blocklist'),
     ('^blocked/', include('blocklist.urls')),
 
     # Home.
-    url('^$', addons.views.home, name='home'),
+    url('^$', 'addons.views.home', name='home'),
 
     # Add-ons.
     ('', include('addons.urls')),
@@ -49,7 +47,7 @@ urlpatterns = patterns(
     ('^files/', include('files.urls')),
 
     # Downloads.
-    ('^downloads/', include(versions.urls.download_patterns)),
+    ('^downloads/', include(download_patterns)),
 
     # Localizer Pages
     ('^localizers/', include('localizers.urls')),

@@ -3,8 +3,9 @@ from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
-from addons.urls import ADDON_ID
-from amo.urlresolvers import reverse
+from olympia.addons.urls import ADDON_ID
+from olympia.amo.urlresolvers import reverse
+
 from . import views
 
 

@@ -3,10 +3,10 @@ import logging
 
 from django.core.management.base import BaseCommand, CommandError
 
-import amo
-from addons.models import Addon
-from amo.utils import chunked
-from editors.helpers import ReviewHelper
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.utils import chunked
+from olympia.editors.helpers import ReviewHelper
 
 log = logging.getLogger('z.addons')
 

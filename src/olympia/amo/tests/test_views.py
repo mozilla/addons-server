@@ -14,17 +14,17 @@ from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
-from access import acl
-from access.models import Group, GroupUser
-from addons.models import Addon, AddonUser
-from amo.pyquery_wrapper import PyQuery
-from amo.tests import check_links
-from amo.urlresolvers import reverse
-from users.models import UserProfile
+from olympia.amo.tests import TestCase
+from olympia.access import acl
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo.pyquery_wrapper import PyQuery
+from olympia.amo.tests import check_links
+from olympia.amo.urlresolvers import reverse
+from olympia.users.models import UserProfile
 
 
-class Test403(amo.tests.TestCase):
+class Test403(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -43,7 +43,7 @@ class Test403(amo.tests.TestCase):
         self.assertTemplateUsed(response, 'amo/403.html')
 
 
-class Test404(amo.tests.TestCase):
+class Test404(TestCase):
 
     def test_404_no_app(self):
         """Make sure a 404 without an app doesn't turn into a 500."""
@@ -61,7 +61,7 @@ class Test404(amo.tests.TestCase):
         eq_(links.length, 4)
 
 
-class TestCommon(amo.tests.TestCase):
+class TestCommon(TestCase):
     fixtures = ('base/users', 'base/global-stats', 'base/addon_3615')
 
     def setUp(self):
@@ -195,7 +195,7 @@ class TestCommon(amo.tests.TestCase):
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
 
 
-class TestOtherStuff(amo.tests.TestCase):
+class TestOtherStuff(TestCase):
     # Tests that don't need fixtures but do need redis mocked.
 
     @mock.patch.object(settings, 'READ_ONLY', False)
@@ -358,7 +358,7 @@ class TestOtherStuff(amo.tests.TestCase):
 
 
 @mock.patch('amo.views.log_cef')
-class TestCSP(amo.tests.TestCase):
+class TestCSP(TestCase):
 
     def setUp(self):
         super(TestCSP, self).setUp()
@@ -385,7 +385,7 @@ class TestCSP(amo.tests.TestCase):
         eq_(log_cef.call_args[0][2]['PATH_INFO'], '/services/csp/report')
 
 
-class TestContribute(amo.tests.TestCase):
+class TestContribute(TestCase):
 
     def test_contribute_json(self):
         res = self.client.get('/contribute.json')
@@ -393,7 +393,7 @@ class TestContribute(amo.tests.TestCase):
         eq_(res._headers['content-type'], ('Content-Type', 'application/json'))
 
 
-class TestRobots(amo.tests.TestCase):
+class TestRobots(TestCase):
 
     @override_settings(ENGAGE_ROBOTS=True)
     def test_disable_collections(self):

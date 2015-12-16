@@ -10,8 +10,8 @@ import pytest
 from mock import Mock
 from nose.tools import eq_
 
-import amo.tests
-import paypal
+from olympia.amo.tests import TestCase
+from olympia import paypal
 
 
 pytestmark = pytest.mark.django_db
@@ -35,7 +35,7 @@ good_check_purchase = ('status=CREATED')  # There is more, but I trimmed it.
 good_token = urllib.urlencode({'token': 'foo', 'secret': 'bar'})
 
 
-class TestPayKey(amo.tests.TestCase):
+class TestPayKey(TestCase):
     def setUp(self):
         super(TestPayKey, self).setUp()
         self.data = {'slug': 'xx',
@@ -154,7 +154,7 @@ class TestPayKey(amo.tests.TestCase):
         self.assertRaises(paypal.CurrencyError, paypal.get_paykey, data)
 
 
-class TestPurchase(amo.tests.TestCase):
+class TestPurchase(TestCase):
 
     @mock.patch('paypal.requests.post')
     def test_check_purchase(self, opener):

@@ -48,12 +48,13 @@ from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import env
 from PIL import Image
 
-import amo.search
-from amo import ADDON_ICON_SIZES
-from amo.urlresolvers import linkify_with_outgoing, reverse
-from translations.models import Translation
-from users.models import UserNotification
-from users.utils import UnsubscribeCode
+from olympia import amo
+from olympia.amo import search
+from olympia.amo import ADDON_ICON_SIZES
+from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
+from olympia.translations.models import Translation
+from olympia.users.models import UserNotification
+from olympia.users.utils import UnsubscribeCode
 
 from . import logger_log as log
 
@@ -130,7 +131,7 @@ def paginate(request, queryset, per_page=20, count=None):
     ``.count()`` on the queryset.  This can be good if the queryset would
     produce an expensive count query.
     """
-    p = (ESPaginator if isinstance(queryset, amo.search.ES)
+    p = (ESPaginator if isinstance(queryset, search.ES)
          else paginator.Paginator)(queryset, per_page)
 
     if count is not None:

@@ -2,8 +2,8 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from access import acl
-from amo.decorators import login_required
+from olympia.access import acl
+from olympia.amo.decorators import login_required
 
 
 def _view_on_get(request):

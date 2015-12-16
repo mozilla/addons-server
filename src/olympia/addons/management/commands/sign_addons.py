@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.test.utils import override_settings
 
-from lib.crypto.tasks import sign_addons
+from olympia.lib.crypto.tasks import sign_addons
 
 
 class Command(BaseCommand):

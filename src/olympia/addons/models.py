@@ -23,29 +23,30 @@ from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 from tower import ugettext_lazy as _
 
-from addons.utils import get_creatured_ids, get_featured_ids
-
-import amo
-import amo.models
-from access import acl
-from amo import helpers
-from amo.decorators import use_master, write
-from amo.fields import DecimalCharField
-from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
-                       JSONEncoder, no_translation, send_mail, slugify,
-                       sorted_groupby, timer, to_language, urlparams)
-from amo.urlresolvers import get_outgoing_url, reverse
-from files.models import File
-from reviews.models import Review
-import sharing.utils as sharing
-from stats.models import AddonShareCountTotal
-from tags.models import Tag
-from translations.fields import (LinkifiedField, PurifiedField, save_signal,
-                                 TranslatedField, Translation)
-from translations.query import order_by_translation
-from users.models import UserForeignKey, UserProfile
-from versions.compare import version_int
-from versions.models import inherit_nomination, Version
+from olympia import amo
+from olympia.amo.models import (
+    SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
+from olympia.access import acl
+from olympia.addons.utils import get_creatured_ids, get_featured_ids
+from olympia.amo import helpers
+from olympia.amo.decorators import use_master, write
+from olympia.amo.fields import DecimalCharField
+from olympia.amo.utils import (
+    attach_trans_dict, cache_ns_key, chunked, find_language, JSONEncoder,
+    no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
+    urlparams)
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.files.models import File
+from olympia.reviews.models import Review
+from olympia.sharing import utils as sharing
+from olympia.stats.models import AddonShareCountTotal
+from olympia.tags.models import Tag
+from olympia.translations.fields import (
+    LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
+from olympia.translations.query import order_by_translation
+from olympia.users.models import UserForeignKey, UserProfile
+from olympia.versions.compare import version_int
+from olympia.versions.models import inherit_nomination, Version
 
 from . import query, signals
 
@@ -127,14 +128,14 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonManager(amo.models.ManagerBase):
+class AddonManager(ManagerBase):
 
     def __init__(self, include_deleted=False, include_unlisted=False):
         # DO NOT change the default value of include_deleted and
         # include_unlisted unless you've read through the comment just above
         # the Addon managers declaration/instanciation and understand the
         # consequences.
-        amo.models.ManagerBase.__init__(self)
+        ManagerBase.__init__(self)
         self.include_deleted = include_deleted
         self.include_unlisted = include_unlisted
 
@@ -187,7 +188,7 @@ class AddonManager(amo.models.ManagerBase):
         Filter for all featured add-ons for an application in all locales.
         """
         ids = get_featured_ids(app, lang, type)
-        return amo.models.manual_order(self.listed(app), ids, 'addons.id')
+        return manual_order(self.listed(app), ids, 'addons.id')
 
     def listed(self, app, *status):
         """
@@ -219,7 +220,7 @@ class AddonManager(amo.models.ManagerBase):
                  disabled_by_user=False, status__in=status)
 
 
-class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
+class Addon(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
 
     guid = models.CharField(max_length=255, unique=True, null=True)
@@ -1494,7 +1495,7 @@ dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 
 
-class AddonDeviceType(amo.models.ModelBase):
+class AddonDeviceType(ModelBase):
     addon = models.ForeignKey(Addon, db_constraint=False)
     device_type = models.PositiveIntegerField(
         default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
@@ -1875,7 +1876,7 @@ class AddonDependency(models.Model):
         unique_together = ('addon', 'dependent_addon')
 
 
-class BlacklistedGuid(amo.models.ModelBase):
+class BlacklistedGuid(ModelBase):
     guid = models.CharField(max_length=255, unique=True)
     comments = models.TextField(default='', blank=True)
 
@@ -1886,10 +1887,10 @@ class BlacklistedGuid(amo.models.ModelBase):
         return self.guid
 
 
-class Category(amo.models.OnChangeMixin, amo.models.ModelBase):
+class Category(OnChangeMixin, ModelBase):
     name = TranslatedField()
-    slug = amo.models.SlugField(max_length=50,
-                                help_text='Used in Category URLs.')
+    slug = SlugField(max_length=50,
+                     help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
@@ -1938,7 +1939,7 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
                            dispatch_uid='category_translations')
 
 
-class Preview(amo.models.ModelBase):
+class Preview(ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews')
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)
@@ -2054,7 +2055,7 @@ models.signals.post_delete.connect(delete_preview_files,
                                    dispatch_uid='delete_preview_files')
 
 
-class AppSupport(amo.models.ModelBase):
+class AppSupport(ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
     addon = models.ForeignKey(Addon)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
@@ -2067,7 +2068,7 @@ class AppSupport(amo.models.ModelBase):
         unique_together = ('addon', 'app')
 
 
-class Charity(amo.models.ModelBase):
+class Charity(ModelBase):
     name = models.CharField(max_length=255)
     url = models.URLField()
     paypal = models.CharField(max_length=255)
@@ -2082,7 +2083,7 @@ class Charity(amo.models.ModelBase):
         return get_outgoing_url(unicode(self.url))
 
 
-class BlacklistedSlug(amo.models.ModelBase):
+class BlacklistedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
@@ -2114,7 +2115,7 @@ def freezer(sender, instance, **kw):
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
 
 
-class CompatOverride(amo.models.ModelBase):
+class CompatOverride(ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, unique=True)
@@ -2189,7 +2190,7 @@ OVERRIDE_TYPES = (
 )
 
 
-class CompatOverrideRange(amo.models.ModelBase):
+class CompatOverrideRange(ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
     compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
@@ -2214,7 +2215,7 @@ class CompatOverrideRange(amo.models.ModelBase):
         return {0: 'compatible', 1: 'incompatible'}[self.type]
 
 
-class IncompatibleVersions(amo.models.ModelBase):
+class IncompatibleVersions(ModelBase):
     """
     Denormalized table to join against for fast compat override filtering.
 

@@ -3,8 +3,8 @@ from django.db import IntegrityError
 
 import commonware.log
 
-from access.models import Group, GroupUser
-from users.models import UserProfile
+from olympia.access.models import Group, GroupUser
+from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):

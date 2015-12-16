@@ -10,24 +10,24 @@ from django.utils.datastructures import SortedDict
 import commonware.log
 from tower import ugettext_lazy as _lazy
 
-import amo
-import amo.models
-from access.models import Group
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from amo.utils import cache_ns_key, send_mail
-from addons.models import Addon, Persona
-from devhub.models import ActivityLog
-from editors.sql_model import RawSQLModel
-from translations.fields import save_signal, TranslatedField
-from users.models import UserForeignKey, UserProfile
-from versions.models import version_uploaded
+from olympia import amo
+from olympia.amo.models import ManagerBase, ModelBase, skip_cache
+from olympia.access.models import Group
+from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import cache_ns_key, send_mail
+from olympia.addons.models import Addon, Persona
+from olympia.devhub.models import ActivityLog
+from olympia.editors.sql_model import RawSQLModel
+from olympia.translations.fields import save_signal, TranslatedField
+from olympia.users.models import UserForeignKey, UserProfile
+from olympia.versions.models import version_uploaded
 
 
 user_log = commonware.log.getLogger('z.users')
 
 
-class CannedResponse(amo.models.ModelBase):
+class CannedResponse(ModelBase):
 
     name = TranslatedField()
     response = TranslatedField(short=False)
@@ -45,7 +45,7 @@ models.signals.pre_save.connect(save_signal, sender=CannedResponse,
                                 dispatch_uid='cannedresponses_translations')
 
 
-class AddonCannedResponseManager(amo.models.ManagerBase):
+class AddonCannedResponseManager(ManagerBase):
     def get_query_set(self):
         qs = super(AddonCannedResponseManager, self).get_query_set()
         return qs.filter(type=amo.CANNED_RESPONSE_ADDON)
@@ -281,7 +281,7 @@ class PerformanceGraph(ViewQueue):
         }
 
 
-class EditorSubscription(amo.models.ModelBase):
+class EditorSubscription(ModelBase):
     user = models.ForeignKey(UserProfile)
     addon = models.ForeignKey(Addon)
 
@@ -327,7 +327,7 @@ def send_notifications(signal=None, sender=None, **kw):
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 
-class ReviewerScore(amo.models.ModelBase):
+class ReviewerScore(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
     addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
     score = models.SmallIntegerField()
@@ -487,7 +487,7 @@ class ReviewerScore(amo.models.ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id]))
         cache.set(key, val, None)
         return val
@@ -513,7 +513,7 @@ class ReviewerScore(amo.models.ModelBase):
              GROUP BY `addons`.`addontype_id`
              ORDER BY `total` DESC
         """
-        with amo.models.skip_cache():
+        with skip_cache():
             val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
         cache.set(key, val, 3600)
         return val
@@ -644,14 +644,14 @@ class ReviewerScore(amo.models.ModelBase):
         return scores
 
 
-class EscalationQueue(amo.models.ModelBase):
+class EscalationQueue(ModelBase):
     addon = models.ForeignKey(Addon)
 
     class Meta:
         db_table = 'escalation_queue'
 
 
-class RereviewQueue(amo.models.ModelBase):
+class RereviewQueue(ModelBase):
     addon = models.ForeignKey(Addon)
 
     class Meta:
@@ -667,13 +667,13 @@ class RereviewQueue(amo.models.ModelBase):
             amo.log(event, addon, addon.current_version)
 
 
-class RereviewQueueThemeManager(amo.models.ManagerBase):
+class RereviewQueueThemeManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
         # declaration/instanciation and understand the consequences.
-        amo.models.ManagerBase.__init__(self)
+        ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
     def get_query_set(self):
@@ -684,7 +684,7 @@ class RereviewQueueThemeManager(amo.models.ManagerBase):
             return qs.exclude(theme__addon__status=amo.STATUS_DELETED)
 
 
-class RereviewQueueTheme(amo.models.ModelBase):
+class RereviewQueueTheme(ModelBase):
     theme = models.ForeignKey(Persona)
     header = models.CharField(max_length=72, blank=True, default='')
     footer = models.CharField(max_length=72, blank=True, default='')
@@ -727,7 +727,7 @@ class RereviewQueueTheme(amo.models.ModelBase):
         return footer and self.theme._image_url(footer) or ''
 
 
-class ThemeLock(amo.models.ModelBase):
+class ThemeLock(ModelBase):
     theme = models.OneToOneField('addons.Persona')
     reviewer = UserForeignKey()
     expiry = models.DateTimeField()

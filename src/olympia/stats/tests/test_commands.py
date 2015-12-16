@@ -8,13 +8,13 @@ from nose.tools import eq_
 from django.conf import settings
 from django.core import management
 
-import amo.search
-import amo.tests
-from addons.models import Addon, Persona
-from stats.management.commands.download_counts_from_file import is_valid_source
-from stats.management.commands.update_counts_from_file import Command
-from stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
-from zadmin.models import DownloadSource
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, Persona
+from olympia.stats.management.commands.download_counts_from_file import is_valid_source  # noqa
+from olympia.stats.management.commands.update_counts_from_file import Command
+from olympia.stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
+from olympia.zadmin.models import DownloadSource
 
 
 hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
@@ -43,7 +43,7 @@ class FixturesFolderMixin(object):
         super(FixturesFolderMixin, self).tearDown()
 
 
-class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
+class TestADICommand(FixturesFolderMixin, TestCase):
     fixtures = ('base/addon_3615', 'base/featured', 'addons/persona',
                 'base/appversion.json')
     date = '2014-07-10'
@@ -234,7 +234,7 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
                                    prefixes=['baz', 'cruux'])
 
 
-class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
+class TestThemeADICommand(FixturesFolderMixin, TestCase):
     date = '2014-11-06'
     fixtures = ['base/appversion.json']
     source_folder = '1093699'

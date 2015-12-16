@@ -6,15 +6,15 @@ from django.utils.translation import override
 import commonware.log
 from tower import ugettext as _
 
-import constants.editors as rvw
-from addons.tasks import create_persona_preview_images
-from amo.celery import task
-from amo.decorators import write
-from amo.helpers import user_media_path
-from amo.storage_utils import copy_stored_file, move_stored_file
-from amo.utils import LocalFileStorage, send_mail_jinja
-from devhub.models import ActivityLog, CommentLog, VersionLog
-from versions.models import Version
+from olympia.constants import editors as rvw
+from olympia.addons.tasks import create_persona_preview_images
+from olympia.amo.celery import task
+from olympia.amo.decorators import write
+from olympia.amo.helpers import user_media_path
+from olympia.amo.storage_utils import copy_stored_file, move_stored_file
+from olympia.amo.utils import LocalFileStorage, send_mail_jinja
+from olympia.devhub.models import ActivityLog, CommentLog, VersionLog
+from olympia.versions.models import Version
 
 
 log = commonware.log.getLogger('z.task')

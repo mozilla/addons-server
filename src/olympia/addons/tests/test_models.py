@@ -18,33 +18,32 @@ import jingo
 from mock import Mock, patch
 from nose.tools import assert_not_equal, eq_, ok_
 
-import amo
-import amo.tests
-from amo import set_user
-from amo.helpers import absolutify, user_media_url
-from amo.signals import _connect, _disconnect
-from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonRecommendation,
-                           AddonUser, AppSupport, BlacklistedGuid,
-                           BlacklistedSlug, Category, Charity, CompatOverride,
-                           CompatOverrideRange, FrozenAddon,
-                           IncompatibleVersions, Persona, Preview,
-                           track_addon_status_change)
-from applications.models import AppVersion
-from bandwagon.models import Collection
-from constants.applications import DEVICE_TYPES
-from devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
-from editors.models import EscalationQueue
-from files.models import File
-from files.tests.test_models import UploadTest
-from reviews.models import Review, ReviewFlag
-from translations.models import Translation, TranslationSequence
-from users.models import UserProfile
-from versions.models import ApplicationsVersions, Version
-from versions.compare import version_int
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo import set_user
+from olympia.amo.helpers import absolutify, user_media_url
+from olympia.amo.signals import _connect, _disconnect
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonDependency, AddonDeviceType,
+    AddonRecommendation, AddonUser, AppSupport, BlacklistedGuid,
+    BlacklistedSlug, Category, Charity, CompatOverride, CompatOverrideRange,
+    FrozenAddon, IncompatibleVersions, Persona, Preview,
+    track_addon_status_change)
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import Collection
+from olympia.constants.applications import DEVICE_TYPES
+from olympia.devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
+from olympia.editors.models import EscalationQueue
+from olympia.files.models import File
+from olympia.files.tests.test_models import UploadTest
+from olympia.reviews.models import Review, ReviewFlag
+from olympia.translations.models import Translation, TranslationSequence
+from olympia.users.models import UserProfile
+from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.compare import version_int
 
 
-class TestCleanSlug(amo.tests.TestCase):
+class TestCleanSlug(TestCase):
 
     def test_clean_slug_new_object(self):
         # Make sure there's at least an addon with the "addon" slug, subsequent
@@ -193,7 +192,7 @@ class TestCleanSlug(amo.tests.TestCase):
         assert b.slug == amo.utils.slugify(b.slug)
 
 
-class TestAddonManager(amo.tests.TestCase):
+class TestAddonManager(TestCase):
     fixtures = ['base/appversion', 'base/users',
                 'base/addon_3615', 'addons/featured', 'addons/test_manager',
                 'base/collections', 'base/featured',
@@ -385,7 +384,7 @@ class TestAddonManager(amo.tests.TestCase):
         assert version.addon == self.addon
 
 
-class TestAddonModels(amo.tests.TestCase):
+class TestAddonModels(TestCase):
     fixtures = ['base/appversion',
                 'base/collections',
                 'base/featured',
@@ -1392,7 +1391,7 @@ class TestAddonModels(amo.tests.TestCase):
         assert addon.is_incomplete()
 
 
-class TestAddonNomination(amo.tests.TestCase):
+class TestAddonNomination(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_set_nomination(self):
@@ -1528,7 +1527,7 @@ class TestAddonNomination(amo.tests.TestCase):
         self.check_nomination_reset_with_new_version(addon, nomination)
 
 
-class TestAddonDelete(amo.tests.TestCase):
+class TestAddonDelete(TestCase):
 
     def test_cascades(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1575,7 +1574,7 @@ class TestAddonDelete(amo.tests.TestCase):
         eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
 
 
-class TestUpdateStatus(amo.tests.TestCase):
+class TestUpdateStatus(TestCase):
 
     def test_no_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1599,7 +1598,7 @@ class TestUpdateStatus(amo.tests.TestCase):
         eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
 
 
-class TestGetVersion(amo.tests.TestCase):
+class TestGetVersion(TestCase):
     fixtures = ['base/addon_3615', ]
 
     def setUp(self):
@@ -1663,7 +1662,7 @@ class TestGetVersion(amo.tests.TestCase):
         eq_(self.addon.get_version(), self.version)
 
 
-class TestAddonGetURLPath(amo.tests.TestCase):
+class TestAddonGetURLPath(TestCase):
 
     def test_get_url_path(self):
         addon = Addon(slug='woo')
@@ -1694,7 +1693,7 @@ class TestAddonGetURLPath(amo.tests.TestCase):
         assert result == '<a href="&lt;script&gt;xss&lt;/script&gt;">foo</a>'
 
 
-class TestAddonModelsFeatured(amo.tests.TestCase):
+class TestAddonModelsFeatured(TestCase):
     fixtures = ['base/appversion', 'base/users',
                 'addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured']
@@ -1717,7 +1716,7 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
         self._test_featured_random()
 
 
-class TestBackupVersion(amo.tests.TestCase):
+class TestBackupVersion(TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
@@ -1768,7 +1767,7 @@ class TestBackupVersion(amo.tests.TestCase):
         assert self.addon._current_version == self.addon._latest_version
 
 
-class TestCategoryModel(amo.tests.TestCase):
+class TestCategoryModel(TestCase):
 
     def test_category_url(self):
         """Every type must have a url path for its categories."""
@@ -1779,7 +1778,7 @@ class TestCategoryModel(amo.tests.TestCase):
             assert cat.get_url_path()
 
 
-class TestPersonaModel(amo.tests.TestCase):
+class TestPersonaModel(TestCase):
     fixtures = ['addons/persona']
 
     def setUp(self):
@@ -1873,7 +1872,7 @@ class TestPersonaModel(amo.tests.TestCase):
         assert data['footer'] == ''
 
 
-class TestPreviewModel(amo.tests.TestCase):
+class TestPreviewModel(TestCase):
     fixtures = ['base/previews']
 
     def test_as_dict(self):
@@ -1919,7 +1918,7 @@ class TestPreviewModel(amo.tests.TestCase):
         self.check_delete(preview, preview.thumbnail_path)
 
 
-class TestAddonRecommendations(amo.tests.TestCase):
+class TestAddonRecommendations(TestCase):
     fixtures = ['base/addon-recs']
 
     def test_scores(self):
@@ -1931,7 +1930,7 @@ class TestAddonRecommendations(amo.tests.TestCase):
                 eq_(scores[addon][rec.other_addon_id], rec.score)
 
 
-class TestAddonDependencies(amo.tests.TestCase):
+class TestAddonDependencies(TestCase):
     fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_5299_gcal',
@@ -1961,14 +1960,14 @@ class TestAddonDependencies(amo.tests.TestCase):
             AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
-class TestListedAddonTwoVersions(amo.tests.TestCase):
+class TestListedAddonTwoVersions(TestCase):
     fixtures = ['addons/listed-two-versions']
 
     def test_listed_two_versions(self):
         Addon.objects.get(id=2795)  # bug 563967
 
 
-class TestFlushURLs(amo.tests.TestCase):
+class TestFlushURLs(TestCase):
     fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_5579',
@@ -2136,7 +2135,7 @@ class TestAddonFromUpload(UploadTest):
 REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
 
 
-class TestCharity(amo.tests.TestCase):
+class TestCharity(TestCase):
     fixtures = ['base/charity.json']
 
     @patch.object(settings, 'REDIRECT_URL', REDIRECT_URL)
@@ -2151,7 +2150,7 @@ class TestCharity(amo.tests.TestCase):
         assert not foundation.outgoing_url.startswith(REDIRECT_URL)
 
 
-class TestFrozenAddons(amo.tests.TestCase):
+class TestFrozenAddons(TestCase):
 
     def test_immediate_freeze(self):
         # Adding a FrozenAddon should immediately drop the addon's hotness.
@@ -2160,7 +2159,7 @@ class TestFrozenAddons(amo.tests.TestCase):
         eq_(Addon.objects.get(id=a.id).hotness, 0)
 
 
-class TestRemoveLocale(amo.tests.TestCase):
+class TestRemoveLocale(TestCase):
 
     def test_remove(self):
         a = Addon.objects.create(type=1)
@@ -2183,7 +2182,7 @@ class TestRemoveLocale(amo.tests.TestCase):
                                .values_list('locale', flat=True))
 
 
-class TestUpdateNames(amo.tests.TestCase):
+class TestUpdateNames(TestCase):
 
     def setUp(self):
         super(TestUpdateNames, self).setUp()
@@ -2272,7 +2271,7 @@ class TestUpdateNames(amo.tests.TestCase):
         self.check_names(self.names)
 
 
-class TestAddonWatchDisabled(amo.tests.TestCase):
+class TestAddonWatchDisabled(TestCase):
 
     def setUp(self):
         super(TestAddonWatchDisabled, self).setUp()
@@ -2315,7 +2314,7 @@ class TestAddonWatchDisabled(amo.tests.TestCase):
         assert not mock.hide_disabled_file.called
 
 
-class TestAddonWatchDeveloperNotes(amo.tests.TestCase):
+class TestAddonWatchDeveloperNotes(TestCase):
 
     def make_addon(self, **kwargs):
         addon = Addon(type=amo.ADDON_EXTENSION, status=amo.STATUS_PUBLIC,
@@ -2403,7 +2402,7 @@ class TestAddonWatchDeveloperNotes(amo.tests.TestCase):
         self.assertHasInfoSet(addon)
 
 
-class TestTrackAddonStatusChange(amo.tests.TestCase):
+class TestTrackAddonStatusChange(TestCase):
 
     def create_addon(self, **kwargs):
         kwargs.setdefault('type', amo.ADDON_EXTENSION)
@@ -2543,7 +2542,7 @@ class TestSearchSignals(amo.tests.ESTestCase):
         assert Addon.search_public().count() == 0
 
 
-class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
+class TestLanguagePack(TestCase, amo.tests.AMOPaths):
 
     def setUp(self):
         super(TestLanguagePack, self).setUp()
@@ -2584,7 +2583,7 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
         eq_(self.addon.reload().get_localepicker(), '')
 
 
-class TestCompatOverride(amo.tests.TestCase):
+class TestCompatOverride(TestCase):
 
     def setUp(self):
         super(TestCompatOverride, self).setUp()
@@ -2723,7 +2722,7 @@ class TestCompatOverride(amo.tests.TestCase):
         self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
 
 
-class TestIncompatibleVersions(amo.tests.TestCase):
+class TestIncompatibleVersions(TestCase):
 
     def setUp(self):
         super(TestIncompatibleVersions, self).setUp()
@@ -2783,7 +2782,7 @@ class TestIncompatibleVersions(amo.tests.TestCase):
         eq_(IncompatibleVersions.objects.count(), 0)
 
 
-class TestQueue(amo.tests.TestCase):
+class TestQueue(TestCase):
 
     def test_in_queue(self):
         addon = Addon.objects.create(guid='f', type=amo.ADDON_EXTENSION)

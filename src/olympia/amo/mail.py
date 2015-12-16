@@ -4,7 +4,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.mail.backends.base import BaseEmailBackend
 
-from amo.models import FakeEmail
+from olympia.amo.models import FakeEmail
 
 log = logging.getLogger('z.amo.mail')
 

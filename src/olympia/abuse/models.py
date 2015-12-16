@@ -4,16 +4,17 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext
 
-import amo.models
-import amo.utils
-from addons.models import Addon
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.models import ModelBase
+from olympia.amo.utils import send_mail, no_translation
+from olympia.addons.models import Addon
+from olympia.users.models import UserProfile
 
 
 log = logging.getLogger('z.abuse')
 
 
-class AbuseReport(amo.models.ModelBase):
+class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(UserProfile, null=True,
                                  blank=True, related_name='abuse_reported')
@@ -35,7 +36,7 @@ class AbuseReport(amo.models.ModelBase):
         else:
             user_name = 'An anonymous coward'
 
-        with amo.utils.no_translation():
+        with no_translation():
             type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
                      if self.addon else 'User')
 
@@ -43,8 +44,8 @@ class AbuseReport(amo.models.ModelBase):
         msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
             user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
             self.message)
-        amo.utils.send_mail(subject, msg,
-                            recipient_list=(settings.ABUSE_EMAIL,))
+        send_mail(subject, msg,
+                  recipient_list=(settings.ABUSE_EMAIL,))
 
     @classmethod
     def recent_high_abuse_reports(cls, threshold, period, addon_id=None,

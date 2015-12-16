@@ -20,34 +20,34 @@ import jinja2
 from hera.contrib.django_forms import FlushForm
 from hera.contrib.django_utils import get_hera, flush_urls
 
-import amo
-import amo.search
-from addons.decorators import addon_view_factory
-from addons.models import Addon, AddonUser, CompatOverride
-from addons.search import get_mappings as get_addons_mappings
-from amo import messages, get_user
-from amo.decorators import (any_permission_required, json_view, login_required,
-                            post_required)
-from amo.mail import DevEmailBackend
-from amo.urlresolvers import reverse
-from amo.utils import HttpResponseSendFile, chunked
-from bandwagon.models import Collection
-from compat.models import AppCompat, CompatTotals
-from devhub.models import ActivityLog
-from files.models import Approval, File, FileUpload
-from stats.search import get_mappings as get_stats_mappings
-from users.models import UserProfile
-from versions.compare import version_int as vint
-from versions.models import Version
-from zadmin.forms import GenerateErrorForm, SiteEventForm
-from zadmin.models import SiteEvent
+from olympia import amo
+from olympia.amo import search
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon, AddonUser, CompatOverride
+from olympia.addons.search import get_mappings as get_addons_mappings
+from olympia.amo import messages, get_user
+from olympia.amo.decorators import (
+    any_permission_required, json_view, login_required, post_required)
+from olympia.amo.mail import DevEmailBackend
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import HttpResponseSendFile, chunked
+from olympia.bandwagon.models import Collection
+from olympia.compat.models import AppCompat, CompatTotals
+from olympia.devhub.models import ActivityLog
+from olympia.files.models import Approval, File, FileUpload
+from olympia.stats.search import get_mappings as get_stats_mappings
+from olympia.users.models import UserProfile
+from olympia.versions.compare import version_int as vint
+from olympia.versions.models import Version
+from olympia.zadmin.forms import GenerateErrorForm, SiteEventForm
+from olympia.zadmin.models import SiteEvent
 
 from . import tasks
 from .decorators import admin_required
-from .forms import (AddonStatusForm, BulkValidationForm, CompatForm,
-                    DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
-                    MonthlyPickFormSet, NotifyForm, OAuthConsumerForm,
-                    YesImSure)
+from .forms import (
+    AddonStatusForm, BulkValidationForm, CompatForm, DevMailerForm,
+    FeaturedCollectionFormSet, FileFormSet, MonthlyPickFormSet, NotifyForm,
+    OAuthConsumerForm, YesImSure)
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -460,7 +460,7 @@ def monthly_pick(request):
 @admin.site.admin_view
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
-    es = amo.search.get_es()
+    es = search.get_es()
 
     indexes = set(settings.ES_INDEXES.values())
     es_mappings = {

@@ -19,30 +19,25 @@ from nose.tools import assert_not_equal, assert_raises, eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
-# Unused, but needed so that we can patch jingo.
 
-import amo
-import amo.tests
-import files
-import paypal
-from addons.models import Addon, AddonCategory, Category, Charity
-
-from amo.helpers import absolutify, user_media_path, url as url_reverse
-
-from amo.tests import addon_factory, formset, initial
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
-from api.models import APIKey, SYMMETRIC_JWT_TYPE
-from applications.models import AppVersion
-from devhub.forms import ContribForm
-from devhub.models import ActivityLog, BlogPost, SubmitStep
-from devhub.tasks import validate
-from files.models import File, FileUpload
-from files.tests.test_models import UploadTest as BaseUploadTest
-from reviews.models import Review
-from translations.models import Translation
-from users.models import UserProfile
-from versions.models import ApplicationsVersions, License, Version
+from olympia import amo, paypal, files
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, AddonCategory, Category, Charity
+from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
+from olympia.amo.tests import addon_factory, formset, initial
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
+from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
+from olympia.applications.models import AppVersion
+from olympia.devhub.forms import ContribForm
+from olympia.devhub.models import ActivityLog, BlogPost, SubmitStep
+from olympia.devhub.tasks import validate
+from olympia.files.models import File, FileUpload
+from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.reviews.models import Review
+from olympia.translations.models import Translation
+from olympia.users.models import UserProfile
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 def get_addon_count(name):
@@ -50,7 +45,7 @@ def get_addon_count(name):
     return Addon.unfiltered.filter(name__localized_string=name).count()
 
 
-class HubTest(amo.tests.TestCase):
+class HubTest(TestCase):
     fixtures = ['browse/nameless-addon', 'base/users']
 
     def setUp(self):
@@ -282,7 +277,7 @@ class TestDashboard(HubTest):
             strip_whitespace(datetime_filter(addon.created)))
 
 
-class TestUpdateCompatibility(amo.tests.TestCase):
+class TestUpdateCompatibility(TestCase):
     fixtures = ['base/users', 'base/addon_4594_a9', 'base/addon_3615']
 
     def setUp(self):
@@ -349,7 +344,7 @@ class TestUpdateCompatibility(amo.tests.TestCase):
         assert doc('.item[data-addonid=3615] .tooltip.compat-error')
 
 
-class TestDevRequired(amo.tests.TestCase):
+class TestDevRequired(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -394,7 +389,7 @@ class TestDevRequired(amo.tests.TestCase):
         self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
-class TestVersionStats(amo.tests.TestCase):
+class TestVersionStats(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -418,7 +413,7 @@ class TestVersionStats(amo.tests.TestCase):
         self.assertDictEqual(r, exp)
 
 
-class TestEditPayments(amo.tests.TestCase):
+class TestEditPayments(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -637,7 +632,7 @@ class TestEditPayments(amo.tests.TestCase):
             'Contributions are only available for listed add-ons.')
 
 
-class TestDisablePayments(amo.tests.TestCase):
+class TestDisablePayments(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -665,7 +660,7 @@ class TestDisablePayments(amo.tests.TestCase):
         eq_(Addon.objects.no_cache().get(id=3615).wants_contributions, False)
 
 
-class TestPaymentsProfile(amo.tests.TestCase):
+class TestPaymentsProfile(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -749,7 +744,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         eq_(self.get_addon().wants_contributions, False)
 
 
-class TestDelete(amo.tests.TestCase):
+class TestDelete(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -778,7 +773,7 @@ class TestDelete(amo.tests.TestCase):
         eq_(self.get_addon().exists(), False)
 
 
-class TestHome(amo.tests.TestCase):
+class TestHome(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -864,7 +859,7 @@ class TestHome(amo.tests.TestCase):
         no_link()
 
 
-class TestActivityFeed(amo.tests.TestCase):
+class TestActivityFeed(TestCase):
     fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
@@ -952,7 +947,7 @@ class TestActivityFeed(amo.tests.TestCase):
         eq_(len(doc('#recent-activity .item')), 1)
 
 
-class TestProfileBase(amo.tests.TestCase):
+class TestProfileBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -1109,7 +1104,7 @@ class TestProfile(TestProfileBase):
         self.check(the_reason='to be hot', the_future='cold stuff')
 
 
-class TestSubmitBase(amo.tests.TestCase):
+class TestSubmitBase(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
@@ -1149,7 +1144,7 @@ class TestAPIAgreement(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.api_key'))
 
 
-class TestAPIKeyPage(amo.tests.TestCase):
+class TestAPIKeyPage(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1244,7 +1239,7 @@ class TestSubmitStep1(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.submit.2'))
 
 
-class TestSubmitStep2(amo.tests.TestCase):
+class TestSubmitStep2(TestCase):
     # More tests in TestCreateAddon.
     fixtures = ['base/users']
 
@@ -1938,7 +1933,7 @@ class TestSubmitBump(TestSubmitBase):
         eq_(self.get_step().step, 4)
 
 
-class TestSubmitSteps(amo.tests.TestCase):
+class TestSubmitSteps(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -2264,7 +2259,7 @@ def assert_json_field(request, field, msg):
     eq_(content[field], msg)
 
 
-class UploadTest(BaseUploadTest, amo.tests.TestCase):
+class UploadTest(BaseUploadTest, TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3180,7 +3175,7 @@ class UploadAddon(object):
         return r
 
 
-class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
+class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -3331,7 +3326,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert Addon.objects.get(pk=addon.pk).admin_review
 
 
-class TestDeleteAddon(amo.tests.TestCase):
+class TestDeleteAddon(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3354,7 +3349,7 @@ class TestDeleteAddon(amo.tests.TestCase):
         eq_(Addon.objects.count(), 0)
 
 
-class TestRequestReview(amo.tests.TestCase):
+class TestRequestReview(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -3458,7 +3453,7 @@ class TestRequestReview(amo.tests.TestCase):
             orig_date.timetuple()[0:5])
 
 
-class TestRedirects(amo.tests.TestCase):
+class TestRedirects(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3489,7 +3484,7 @@ class TestRedirects(amo.tests.TestCase):
                                   args=['a3615']), 301)
 
 
-class TestDocs(amo.tests.TestCase):
+class TestDocs(TestCase):
 
     def test_doc_urls(self):
         eq_('/en-US/developers/docs/', reverse('devhub.docs', args=[]))
@@ -3514,7 +3509,7 @@ class TestDocs(amo.tests.TestCase):
                 self.assert3xx(r, index)
 
 
-class TestRemoveLocale(amo.tests.TestCase):
+class TestRemoveLocale(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -3554,7 +3549,7 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(len(doc('div.trans textarea')), 2)
 
 
-class TestSearch(amo.tests.TestCase):
+class TestSearch(TestCase):
 
     def test_search_titles(self):
         r = self.client.get(reverse('devhub.search'), {'q': 'davor'})

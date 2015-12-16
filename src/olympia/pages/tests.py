@@ -2,12 +2,11 @@ from django.conf import settings
 
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from amo.urlresolvers import reverse
+from olympia.olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
 
 
-class TestPages(amo.tests.TestCase):
+class TestPages(TestCase):
 
     def _check(self, url, status):
         resp = self.client.get(reverse(url))
@@ -21,7 +20,7 @@ class TestPages(amo.tests.TestCase):
             self._check(page, 200)
 
 
-class TestRedirects(amo.tests.TestCase):
+class TestRedirects(TestCase):
 
     def _check(self, pages):
         for old, new in pages.iteritems():

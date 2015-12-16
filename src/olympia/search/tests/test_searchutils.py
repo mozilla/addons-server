@@ -1,7 +1,7 @@
 import pytest
 from nose.tools import eq_
 
-from search.utils import floor_version
+from olympia.search.utils import floor_version
 
 
 pytestmark = pytest.mark.django_db

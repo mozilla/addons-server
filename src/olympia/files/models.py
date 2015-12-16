@@ -21,16 +21,16 @@ from cache_nuggets.lib import memoize
 from django_statsd.clients import statsd
 from uuidfield.fields import UUIDField
 
-import amo
-import amo.models
-import amo.utils
-from amo.decorators import use_master
-from amo.storage_utils import copy_stored_file, move_stored_file
-from amo.urlresolvers import reverse
-from amo.helpers import user_media_path, user_media_url
-from applications.models import AppVersion
-from files.utils import SafeUnzip
-from tags.models import Tag
+from olympia import amo
+from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
+from olympia.amo.utils import smart_path
+from olympia.amo.decorators import use_master
+from olympia.amo.storage_utils import copy_stored_file, move_stored_file
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import user_media_path, user_media_url
+from olympia.applications.models import AppVersion
+from olympia.files.utils import SafeUnzip
+from olympia.tags.models import Tag
 
 log = commonware.log.getLogger('z.files')
 
@@ -38,7 +38,7 @@ log = commonware.log.getLogger('z.files')
 EXTENSIONS = ('.xpi', '.jar', '.xml', '.json', '.zip')
 
 
-class File(amo.models.OnChangeMixin, amo.models.ModelBase):
+class File(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey('versions.Version', related_name='files')
@@ -82,7 +82,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
     # Is the file a WebExtension?
     is_webextension = models.BooleanField(default=False)
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'files'
 
     def __unicode__(self):
@@ -145,7 +145,7 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon = version.addon
 
         file_ = cls(version=version, platform=platform)
-        upload.path = amo.utils.smart_path(nfd_str(upload.path))
+        upload.path = smart_path(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
         if ext == '.jar':
             ext = '.xpi'
@@ -552,7 +552,7 @@ def track_file_status_change(file_):
 
 
 # TODO(davedash): Get rid of this table once /editors is on zamboni
-class Approval(amo.models.ModelBase):
+class Approval(ModelBase):
 
     reviewtype = models.CharField(max_length=10, default='pending')
     action = models.IntegerField(default=0)
@@ -565,12 +565,12 @@ class Approval(amo.models.ModelBase):
     file = models.ForeignKey(File)
     reply_to = models.ForeignKey('self', null=True, db_column='reply_to')
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'approvals'
         ordering = ('-created',)
 
 
-class FileUpload(amo.models.ModelBase):
+class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = UUIDField(primary_key=True, auto=True)
     path = models.CharField(max_length=255, default='')
@@ -590,9 +590,9 @@ class FileUpload(amo.models.ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey('addons.Addon', null=True)
 
-    objects = amo.models.UncachedManagerBase()
+    objects = UncachedManagerBase()
 
-    class Meta(amo.models.ModelBase.Meta):
+    class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
 
     def __unicode__(self):
@@ -609,7 +609,7 @@ class FileUpload(amo.models.ModelBase):
             self.save()
         filename = smart_str(u'{0}_{1}'.format(self.pk, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
-        base, ext = os.path.splitext(amo.utils.smart_path(filename))
+        base, ext = os.path.splitext(smart_path(filename))
         if ext in EXTENSIONS:
             loc += ext
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
@@ -669,7 +669,7 @@ class FileUpload(amo.models.ModelBase):
         return json.loads(self.validation)
 
 
-class FileValidation(amo.models.ModelBase):
+class FileValidation(ModelBase):
     file = models.OneToOneField(File, related_name='validation')
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)
@@ -729,7 +729,7 @@ class FileValidation(amo.models.ModelBase):
                                   file_hash=self.file.original_hash)
 
 
-class ValidationAnnotation(amo.models.ModelBase):
+class ValidationAnnotation(ModelBase):
     file_hash = models.CharField(max_length=255, db_index=True)
     message_key = models.CharField(max_length=1024)
     ignore_duplicates = models.NullBooleanField(blank=True, null=True)

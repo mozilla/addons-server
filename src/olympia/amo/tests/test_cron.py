@@ -1,13 +1,13 @@
 from nose.tools import eq_
 
-import amo.tests
-from amo.cron import gc
-from bandwagon.models import Collection
-from devhub.models import ActivityLog
-from stats.models import AddonShareCount, Contribution
+from olympia.amo.tests import TestCase
+from olympia.amo.cron import gc
+from olympia.bandwagon.models import Collection
+from olympia.devhub.models import ActivityLog
+from olympia.stats.models import AddonShareCount, Contribution
 
 
-class GarbageTest(amo.tests.TestCase):
+class GarbageTest(TestCase):
     fixtures = ['base/addon_59', 'base/garbage']
 
     def test_garbage_collection(self):

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import Addon, AddonCategory, AddonUser, Category
-from users.models import UserProfile
-from landfill.user import generate_addon_user_and_category, generate_user
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
+from olympia.users.models import UserProfile
+from olympia.landfill.user import (
+    generate_addon_user_and_category, generate_user)
 
 
-class RatingsTests(amo.tests.TestCase):
+class RatingsTests(TestCase):
 
     def setUp(self):
         super(RatingsTests, self).setUp()

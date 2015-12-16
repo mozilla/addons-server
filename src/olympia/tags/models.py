@@ -1,18 +1,19 @@
 from django.db import models
 from django.core.urlresolvers import NoReverseMatch
 
-import amo.models
-from amo.urlresolvers import reverse
+from olympia import amo
+from olympia.amo.models import ModelBase, ManagerBase
+from olympia.amo.urlresolvers import reverse
 
 
-class TagManager(amo.models.ManagerBase):
+class TagManager(ManagerBase):
 
     def not_blacklisted(self):
         """Get allowed tags only"""
         return self.filter(blacklisted=False)
 
 
-class Tag(amo.models.ModelBase):
+class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
     blacklisted = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
@@ -67,7 +68,7 @@ class Tag(amo.models.ModelBase):
         self.save()
 
 
-class AddonTag(amo.models.ModelBase):
+class AddonTag(ModelBase):
     addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
 

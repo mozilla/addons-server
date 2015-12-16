@@ -19,23 +19,23 @@ from django.utils import translation
 
 import requests
 
-import amo
-from addons.models import Addon, AddonUser
-from amo import set_user
-from amo.celery import task
-from amo.decorators import write
-from amo.helpers import absolutify
-from amo.urlresolvers import reverse
-from amo.utils import chunked, send_mail, sorted_groupby
-from devhub.tasks import run_validator
-from files.models import FileUpload
-from files.utils import parse_addon
-from lib.crypto.packaged import sign_file
-from users.models import UserProfile
-from users.utils import get_task_user
-from versions.models import Version
-from zadmin.models import (EmailPreviewTopic, ValidationJob,
-                           ValidationJobTally, ValidationResult)
+from olympia import amo
+from olympia.addons.models import Addon, AddonUser
+from olympia.amo import set_user
+from olympia.amo.celery import task
+from olympia.amo.decorators import write
+from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import chunked, send_mail, sorted_groupby
+from olympia.devhub.tasks import run_validator
+from olympia.files.models import FileUpload
+from olympia.files.utils import parse_addon
+from olympia.lib.crypto.packaged import sign_file
+from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
+from olympia.versions.models import Version
+from olympia.zadmin.models import (
+    EmailPreviewTopic, ValidationJob, ValidationJobTally, ValidationResult)
 
 log = logging.getLogger('z.task')
 

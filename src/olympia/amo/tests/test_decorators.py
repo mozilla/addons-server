@@ -8,11 +8,10 @@ import mock
 import pytest
 from nose.tools import eq_
 
-import amo.tests
-from amo import decorators, get_user, set_user
-from amo.urlresolvers import reverse
-
-from users.models import UserProfile
+from olympia.amo.tests import BaseTestCase, TestCase
+from olympia.amo import decorators, get_user, set_user
+from olympia.amo.urlresolvers import reverse
+from olympia.users.models import UserProfile
 
 
 pytestmark = pytest.mark.django_db
@@ -79,7 +78,7 @@ def test_json_view_response_status():
     eq_(response.status_code, 202)
 
 
-class TestTaskUser(amo.tests.TestCase):
+class TestTaskUser(TestCase):
     fixtures = ['base/users']
 
     def test_set_task_user(self):
@@ -93,7 +92,7 @@ class TestTaskUser(amo.tests.TestCase):
         eq_(get_user().pk, 999)
 
 
-class TestLoginRequired(amo.tests.BaseTestCase):
+class TestLoginRequired(BaseTestCase):
 
     def setUp(self):
         super(TestLoginRequired, self).setUp()
@@ -131,7 +130,7 @@ class TestLoginRequired(amo.tests.BaseTestCase):
         assert self.f.called
 
 
-class TestSetModifiedOn(amo.tests.TestCase):
+class TestSetModifiedOn(TestCase):
     fixtures = ['base/users']
 
     @decorators.set_modified_on
@@ -156,7 +155,7 @@ class TestSetModifiedOn(amo.tests.TestCase):
             assert date < datetime.today().date()
 
 
-class TestPermissionRequired(amo.tests.TestCase):
+class TestPermissionRequired(TestCase):
 
     def setUp(self):
         super(TestPermissionRequired, self).setUp()

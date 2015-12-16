@@ -7,16 +7,15 @@ from django.test.client import RequestFactory
 import phpserialize as php
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import Addon
-from stats.models import ClientData, Contribution
-from stats.db import StatsDictField
-from users.models import UserProfile
-from zadmin.models import DownloadSource
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.stats.models import ClientData, Contribution
+from olympia.stats.db import StatsDictField
+from olympia.users.models import UserProfile
+from olympia.zadmin.models import DownloadSource
 
 
-class TestStatsDictField(amo.tests.TestCase):
+class TestStatsDictField(TestCase):
 
     def test_to_python_none(self):
         eq_(StatsDictField().to_python(None), None)
@@ -33,7 +32,7 @@ class TestStatsDictField(amo.tests.TestCase):
         eq_(StatsDictField().to_python(json.dumps(val)), val)
 
 
-class TestEmail(amo.tests.TestCase):
+class TestEmail(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -64,7 +63,7 @@ class TestEmail(amo.tests.TestCase):
         assert '&lt;script&gt;' not in email.body
 
 
-class TestClientData(amo.tests.TestCase):
+class TestClientData(TestCase):
 
     def test_get_or_create(self):
         download_source = DownloadSource.objects.create(name='mkt-home')

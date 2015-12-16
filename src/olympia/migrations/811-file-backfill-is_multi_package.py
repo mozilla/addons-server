@@ -1,6 +1,6 @@
 import logging
 
-import amo
+from olympia import amo
 from files.models import File
 from files.utils import parse_addon
 

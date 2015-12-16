@@ -1,6 +1,6 @@
 from django.conf.urls import include, patterns, url
 
-from files import views
+from olympia.files import views
 
 file_patterns = patterns(
     '',

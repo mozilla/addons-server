@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from addons.models import Addon
-import amo
+from olympia import amo
 
 
 def run():

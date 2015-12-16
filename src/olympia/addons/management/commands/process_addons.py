@@ -5,12 +5,13 @@ from django.db.models import Q
 
 from celery import chord, group
 
-import amo
-from addons.models import Addon
-from amo.utils import chunked
-from devhub.tasks import convert_purified, flag_binary, get_preview_sizes
-from lib.crypto.tasks import sign_addons, unsign_addons
-from reviews.tasks import addon_review_aggregates
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.amo.utils import chunked
+from olympia.devhub.tasks import (
+    convert_purified, flag_binary, get_preview_sizes)
+from olympia.lib.crypto.tasks import sign_addons, unsign_addons
+from olympia.reviews.tasks import addon_review_aggregates
 
 
 tasks = {

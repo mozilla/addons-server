@@ -8,15 +8,16 @@ from django.views.decorators.csrf import csrf_exempt
 
 from tower import ugettext as _
 
-import amo
-import amo.utils
-from addons.decorators import owner_or_unlisted_reviewer
-from amo.decorators import post_required
-from amo.utils import urlparams
-from amo.urlresolvers import reverse
-from addons.models import Addon
-from search.utils import floor_version
-from versions.compare import version_dict as vdict, version_int as vint
+from olympia import amo
+from olympia.amo import utils as amo_utils
+from olympia.addons.decorators import owner_or_unlisted_reviewer
+from olympia.amo.decorators import post_required
+from olympia.amo.utils import urlparams
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.models import Addon
+from olympia.search.utils import floor_version
+from olympia.versions.compare import version_dict as vdict, version_int as vint
+
 from .models import CompatReport, AppCompat, CompatTotals
 from .forms import AppVerForm, CompatForm
 
@@ -97,7 +98,7 @@ def usage_stats(request, compat, app, binary=None):
         qs = qs.filter(**{'support.%s.max__gte' % app: 0})
     if binary is not None:
         qs = qs.filter(binary=binary)
-    addons = amo.utils.paginate(request, qs)
+    addons = amo_utils.paginate(request, qs)
     for obj in addons.object_list:
         obj['usage'] = obj['usage'][app]
         obj['max_version'] = obj['max_version'][app]
@@ -185,7 +186,7 @@ def reporter_detail(request, guid):
     works_properly = request.GET.get('works_properly')
     if works_properly:
         qs = qs.filter(works_properly=works_properly)
-    reports = amo.utils.paginate(request, qs.order_by('-created'), 100)
+    reports = amo_utils.paginate(request, qs.order_by('-created'), 100)
 
     return render(request, 'compat/reporter_detail.html',
                   dict(reports=reports, works=works,

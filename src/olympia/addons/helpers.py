@@ -3,8 +3,9 @@ import jinja2
 from jingo import register
 from tower import ugettext as _
 
+from olympia.amo.utils import chunked
+
 from . import buttons
-from amo.utils import chunked
 
 
 register.function(buttons.install_button)

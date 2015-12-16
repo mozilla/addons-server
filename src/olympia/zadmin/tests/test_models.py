@@ -1,7 +1,7 @@
 from nose.tools import eq_
 
-from amo.tests import TestCase
-from zadmin.models import DownloadSource
+from olympia.amo.tests import TestCase
+from olympia.zadmin.models import DownloadSource
 
 
 class TestDownloadSource(TestCase):

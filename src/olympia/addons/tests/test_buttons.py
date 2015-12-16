@@ -9,18 +9,17 @@ from nose.tools import eq_
 from pyquery import PyQuery
 import pytest
 
-import amo
-import amo.models
-import amo.tests
-from amo.urlresolvers import reverse
-from addons.buttons import install_button, big_install_button
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.urlresolvers import reverse
+from olympia.addons.buttons import install_button, big_install_button
 
 
 def setup():
     jingo.load_helpers()
 
 
-class ButtonTest(amo.tests.TestCase):
+class ButtonTest(TestCase):
 
     def setUp(self):
         super(ButtonTest, self).setUp()
@@ -554,7 +553,7 @@ class TestButtonHtml(ButtonTest):
         eq_(install_shell.find('.d2c-reasons-popup ul li').length, 2)
 
 
-class TestViews(amo.tests.TestCase):
+class TestViews(TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def test_eula_with_contrib_roadblock(self):

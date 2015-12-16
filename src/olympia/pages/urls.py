@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 from django.http import HttpResponsePermanentRedirect as perma_redirect
 from django.views.generic.base import TemplateView
 
-from amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import reverse
 
 from . import views
 

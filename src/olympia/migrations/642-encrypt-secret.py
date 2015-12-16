@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import amo
+from olympia import amo
 
 from aesfield.field import AESField
 

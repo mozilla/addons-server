@@ -1,11 +1,11 @@
 from pyquery import PyQuery as pq
 from nose.tools import eq_
 
-import amo.tests
-from translations import models, widgets
+from olympia.amo.tests import TestCase
+from olympia.translations import models, widgets
 
 
-class TestWidget(amo.tests.TestCase):
+class TestWidget(TestCase):
 
     def test_avoid_purified_translation(self):
         # Even if we pass in a LinkifiedTranslation the widget switches to a

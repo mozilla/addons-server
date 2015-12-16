@@ -6,14 +6,14 @@ from django.db import connection
 
 from nose.tools import eq_
 
-import amo
-import amo.tests
-from addons.models import (Addon, CompatOverride, CompatOverrideRange,
-                           IncompatibleVersions)
-from applications.models import AppVersion
-from files.models import File
-from services import update
-from versions.models import ApplicationsVersions, Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import (
+    Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions)
+from olympia.applications.models import AppVersion
+from olympia.files.models import File
+from olympia.services import update
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 class VersionCheckMixin(object):
@@ -24,7 +24,7 @@ class VersionCheckMixin(object):
         return up
 
 
-class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
+class TestDataValidate(VersionCheckMixin, TestCase):
     fixtures = ['base/addon_3615', 'base/appversion']
 
     def setUp(self):
@@ -100,7 +100,7 @@ class TestDataValidate(VersionCheckMixin, amo.tests.TestCase):
         assert not up.is_valid()
 
 
-class TestLookup(VersionCheckMixin, amo.tests.TestCase):
+class TestLookup(VersionCheckMixin, TestCase):
     fixtures = ['addons/update', 'base/appversion']
 
     def setUp(self):
@@ -402,7 +402,7 @@ class TestLookup(VersionCheckMixin, amo.tests.TestCase):
         eq_(version, self.version_1_2_1)
 
 
-class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
+class TestDefaultToCompat(VersionCheckMixin, TestCase):
     """
     Test default to compatible with all the various combinations of input.
     """
@@ -591,7 +591,7 @@ class TestDefaultToCompat(VersionCheckMixin, amo.tests.TestCase):
         self.check(self.expected)
 
 
-class TestResponse(VersionCheckMixin, amo.tests.TestCase):
+class TestResponse(VersionCheckMixin, TestCase):
     fixtures = ['base/addon_3615', 'base/seamonkey']
 
     def setUp(self):
@@ -814,7 +814,7 @@ class TestResponse(VersionCheckMixin, amo.tests.TestCase):
         eq_(upd.get_rdf(), upd.get_no_updates_rdf())
 
 
-class TestFirefoxHotfix(VersionCheckMixin, amo.tests.TestCase):
+class TestFirefoxHotfix(VersionCheckMixin, TestCase):
 
     def setUp(self):
         """Create a "firefox hotfix" addon with a few versions.

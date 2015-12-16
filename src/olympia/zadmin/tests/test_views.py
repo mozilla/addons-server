@@ -14,33 +14,34 @@ from nose.tools import eq_
 from piston.models import Consumer
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.tests import formset, initial
-from access.models import Group, GroupUser
-from addons.models import Addon, CompatOverride, CompatOverrideRange
-from amo.urlresolvers import reverse
-from amo.tests.test_helpers import get_image_path
-from amo.utils import urlparams
-from applications.models import AppVersion
-from bandwagon.models import FeaturedCollection, MonthlyPick
-from compat.cron import compatibility_report
-from compat.models import CompatReport
-from constants.base import VALIDATOR_SKELETON_RESULTS
-from devhub.models import ActivityLog
-from files.models import Approval, File, FileUpload
-from stats.models import UpdateCount
-from users.models import UserProfile
-from users.utils import get_task_user
-from versions.models import ApplicationsVersions, Version
-from zadmin import forms, tasks
-from zadmin.forms import DevMailerForm
-from zadmin.models import EmailPreviewTopic, ValidationJob, ValidationResult
-from zadmin.tasks import updated_versions
-from zadmin.views import find_files
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.tests import formset, initial
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import urlparams
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
+from olympia.compat.cron import compatibility_report
+from olympia.compat.models import CompatReport
+from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
+from olympia.devhub.models import ActivityLog
+from olympia.files.models import Approval, File, FileUpload
+from olympia.stats.models import UpdateCount
+from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
+from olympia.versions.models import ApplicationsVersions, Version
+from olympia.zadmin import forms, tasks
+from olympia.zadmin.forms import DevMailerForm
+from olympia.zadmin.models import (
+    EmailPreviewTopic, ValidationJob, ValidationResult)
+from olympia.zadmin.tasks import updated_versions
+from olympia.zadmin.views import find_files
 
 
-class TestSiteEvents(amo.tests.TestCase):
+class TestSiteEvents(TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 
     def setUp(self):
@@ -86,7 +87,7 @@ class TestSiteEvents(amo.tests.TestCase):
         eq_(len(events), 0)
 
 
-class TestFlagged(amo.tests.TestCase):
+class TestFlagged(TestCase):
     fixtures = ['base/users', 'zadmin/tests/flagged']
 
     def setUp(self):
@@ -140,7 +141,7 @@ class TestFlagged(amo.tests.TestCase):
         eq_(set(res.context['addons']), set([]))
 
 
-class BulkValidationTest(amo.tests.TestCase):
+class BulkValidationTest(TestCase):
     fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
 
     def setUp(self):
@@ -1114,7 +1115,7 @@ class TestTallyValidationErrors(BulkValidationTest):
         tasks.tally_validation_results(job.pk, data_str)
 
 
-class TestEmailPreview(amo.tests.TestCase):
+class TestEmailPreview(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1137,7 +1138,7 @@ class TestEmailPreview(amo.tests.TestCase):
                          'the subject', 'Hello Ivan Krsti\xc4\x87'])
 
 
-class TestMonthlyPick(amo.tests.TestCase):
+class TestMonthlyPick(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1212,7 +1213,7 @@ class TestMonthlyPick(amo.tests.TestCase):
         eq_(r.status_code, 302)
 
 
-class TestFeatures(amo.tests.TestCase):
+class TestFeatures(TestCase):
     fixtures = ['base/users', 'base/collections', 'base/addon_3615.json']
 
     def setUp(self):
@@ -1324,7 +1325,7 @@ class TestFeatures(amo.tests.TestCase):
         eq_(FeaturedCollection.objects.count(), 0)
 
 
-class TestOAuth(amo.tests.TestCase):
+class TestOAuth(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1340,7 +1341,7 @@ class TestOAuth(amo.tests.TestCase):
         eq_(Consumer.objects.count(), 1)
 
 
-class TestLookup(amo.tests.TestCase):
+class TestLookup(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1408,7 +1409,7 @@ class TestAddonSearch(amo.tests.ESTestCase):
         eq_(res.status_code, 302)
 
 
-class TestAddonAdmin(amo.tests.TestCase):
+class TestAddonAdmin(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -1426,7 +1427,7 @@ class TestAddonAdmin(amo.tests.TestCase):
             '/en-US/admin/models/addons/addon/3615/')
 
 
-class TestAddonManagement(amo.tests.TestCase):
+class TestAddonManagement(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1668,7 +1669,7 @@ class TestCompat(amo.tests.ESTestCase):
         eq_(tr.length, 0)
 
 
-class TestMemcache(amo.tests.TestCase):
+class TestMemcache(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1705,7 +1706,7 @@ class TestElastic(amo.tests.ESTestCase):
             reverse('users.login') + '?to=/en-US/admin/elastic')
 
 
-class TestEmailDevs(amo.tests.TestCase):
+class TestEmailDevs(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1781,7 +1782,7 @@ class TestEmailDevs(amo.tests.TestCase):
             eq_(len(mail.outbox), 0)
 
 
-class TestFileDownload(amo.tests.TestCase):
+class TestFileDownload(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1806,7 +1807,7 @@ class TestFileDownload(amo.tests.TestCase):
         assert resp.content == self.file.read()
 
 
-class TestPerms(amo.tests.TestCase):
+class TestPerms(TestCase):
     fixtures = ['base/users', 'zadmin/tests/flagged']
 
     FILE_ID = '1234567890abcdef1234567890abcdef'

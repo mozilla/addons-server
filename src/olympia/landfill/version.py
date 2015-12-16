@@ -1,10 +1,10 @@
 import random
 from datetime import datetime
 
-import amo
-from applications.models import AppVersion
-from files.models import File
-from versions.models import ApplicationsVersions, Version
+from olympia import amo
+from olympia.applications.models import AppVersion
+from olympia.files.models import File
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 def generate_version(addon, app=None):

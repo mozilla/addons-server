@@ -9,16 +9,17 @@ from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo.tests
-from amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
-from amo.urlresolvers import reverse
-from zadmin.models import Config
+from olympia.amo.tests import TestCase
+
+from olympia.amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
+from olympia.amo.urlresolvers import reverse
+from olympia.zadmin.models import Config
 
 
 pytestmark = pytest.mark.django_db
 
 
-class TestMiddleware(amo.tests.TestCase):
+class TestMiddleware(TestCase):
 
     def test_no_vary_cookie(self):
         # We don't break good usage of Vary.
@@ -69,7 +70,7 @@ def test_trailing_slash_middleware():
     assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
 
 
-class AdminMessageTest(amo.tests.TestCase):
+class AdminMessageTest(TestCase):
 
     def test_message(self):
         c = Config.objects.create(key='site_notice', value='ET Sighted.')
@@ -94,7 +95,7 @@ def test_hide_password_middleware():
     eq_(request.POST['password2'], '******')
 
 
-class TestNoAddonsMiddleware(amo.tests.TestCase):
+class TestNoAddonsMiddleware(TestCase):
 
     @patch('amo.middleware.ViewMiddleware.get_name')
     def process(self, name, get_name):
@@ -111,7 +112,7 @@ class TestNoAddonsMiddleware(amo.tests.TestCase):
         assert not self.process('something.else')
 
 
-class TestNoDjangoDebugToolbar(amo.tests.TestCase):
+class TestNoDjangoDebugToolbar(TestCase):
     """Make sure the Django Debug Toolbar isn't available when DEBUG=False."""
 
     def test_no_django_debug_toolbar(self):

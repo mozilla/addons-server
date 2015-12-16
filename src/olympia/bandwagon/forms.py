@@ -8,11 +8,12 @@ import commonware.log
 from tower import ugettext as _, ugettext_lazy as _lazy
 from django_statsd.clients import statsd
 
-import amo
-from amo.utils import clean_nl, has_links, slug_validator, slugify
-from happyforms import Form, ModelForm
-from translations.widgets import TranslationTextInput, TranslationTextarea
-from users.models import BlacklistedName, UserProfile
+from olympia import amo
+from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
+from olympia.happyforms import Form, ModelForm
+from olympia.translations.widgets import (
+    TranslationTextInput, TranslationTextarea)
+from olympia.users.models import BlacklistedName, UserProfile
 from .models import Collection, CollectionUser
 from . import tasks
 

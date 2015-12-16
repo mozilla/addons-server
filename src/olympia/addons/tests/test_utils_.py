@@ -1,11 +1,11 @@
 from nose.tools import eq_
 
-from addons.utils import get_featured_ids, get_creatured_ids
+from olympia import amo
+from olympia.addons.utils import get_featured_ids, get_creatured_ids
+from olympia.amo.tests import TestCase
 
-import amo.tests
 
-
-class TestGetFeaturedIds(amo.tests.TestCase):
+class TestGetFeaturedIds(TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured',
                 'base/users']
@@ -40,7 +40,7 @@ class TestGetFeaturedIds(amo.tests.TestCase):
         eq_((ids[0],), self.en_us_locale)
 
 
-class TestGetCreaturedIds(amo.tests.TestCase):
+class TestGetCreaturedIds(TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured',
                 'base/users']

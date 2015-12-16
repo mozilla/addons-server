@@ -1,8 +1,8 @@
 import commonware.log
 
-from amo.celery import task
-from amo.utils import slugify
-from tags.models import AddonTag, Tag
+from olympia.amo.celery import task
+from olympia.amo.utils import slugify
+from olympia.tags.models import AddonTag, Tag
 
 
 task_log = commonware.log.getLogger('z.task')

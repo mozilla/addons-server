@@ -11,8 +11,8 @@ from django.db.models import Q
 import pytest
 from nose.tools import eq_, raises
 
-from amo.tests import BaseTestCase
-from editors.sql_model import RawSQLModel
+from olympia.amo.tests import BaseTestCase
+from olympia.editors.sql_model import RawSQLModel
 
 
 def execute_all(statements):

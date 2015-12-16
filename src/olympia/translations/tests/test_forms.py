@@ -3,9 +3,9 @@ from nose.tools import eq_
 
 from django.forms import ModelForm
 
-import amo.tests
-from translations import forms, fields
-from translations.tests.testapp.models import TranslatedModel
+from olympia.amo.tests import TestCase
+from olympia.translations import forms, fields
+from olympia.translations.tests.testapp.models import TranslatedModel
 
 
 class TestForm(forms.TranslationFormMixin, ModelForm):
@@ -15,7 +15,7 @@ class TestForm(forms.TranslationFormMixin, ModelForm):
         model = TranslatedModel
 
 
-class TestTranslationFormMixin(amo.tests.TestCase):
+class TestTranslationFormMixin(TestCase):
 
     def test_default_locale(self):
         obj = TranslatedModel()

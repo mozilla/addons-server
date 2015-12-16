@@ -3,13 +3,13 @@ import json
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.tests.test_helpers import get_image_path
-from amo.urlresolvers import reverse
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
 
 
-class TestSubmitPersona(amo.tests.TestCase):
+class TestSubmitPersona(TestCase):
     fixtures = ['base/user_999']
 
     def setUp(self):

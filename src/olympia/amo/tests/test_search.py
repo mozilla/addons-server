@@ -3,13 +3,12 @@ from django.core import paginator
 import mock
 from nose.tools import eq_, ok_
 
-import amo
-import amo.search
-import amo.tests
-from addons.models import Addon
+from olympia import amo, search
+from olympia.amo.tests import TestCase, ESTestCaseWithAddons
+from olympia.addons.models import Addon
 
 
-class TestESIndexing(amo.tests.ESTestCaseWithAddons):
+class TestESIndexing(ESTestCaseWithAddons):
 
     # This needs to be in its own class for data isolation.
     def test_indexed_count(self):
@@ -21,11 +20,11 @@ class TestESIndexing(amo.tests.ESTestCaseWithAddons):
                                  status__in=amo.VALID_STATUSES).count())
 
     def test_get_es_not_mocked(self):
-        es = amo.search.get_es()
+        es = search.get_es()
         assert not issubclass(es.__class__, mock.Mock)
 
 
-class TestNoESIndexing(amo.tests.TestCase):
+class TestNoESIndexing(TestCase):
     mock_es = True
 
     def test_no_es(self):
@@ -40,11 +39,11 @@ class TestNoESIndexing(amo.tests.TestCase):
             mock.Mock)
 
     def test_get_es_mocked(self):
-        es = amo.search.get_es()
+        es = search.get_es()
         assert issubclass(es.__class__, mock.Mock)
 
 
-class TestES(amo.tests.ESTestCaseWithAddons):
+class TestES(ESTestCaseWithAddons):
 
     def test_clone(self):
         # Doing a filter creates a new ES object.
@@ -395,7 +394,7 @@ class TestES(amo.tests.ESTestCaseWithAddons):
         eq_(qs._build_query()['_source'], ['versions'])
 
 
-class TestPaginator(amo.tests.ESTestCaseWithAddons):
+class TestPaginator(ESTestCaseWithAddons):
 
     def setUp(self):
         super(TestPaginator, self).setUp()

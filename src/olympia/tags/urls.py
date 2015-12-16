@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 
-from search.views import search
+from olympia.search.views import search
+
 from . import views
 
 

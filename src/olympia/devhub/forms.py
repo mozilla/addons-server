@@ -15,25 +15,26 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
-from access import acl
-import amo
-import addons.forms
-import paypal
-from addons.models import (Addon, AddonDependency, AddonUser,
-                           Charity, Preview)
-from amo.forms import AMOModelForm
-from amo.urlresolvers import reverse
+from olympia.access import acl
+from olympia import amo, paypal
+from olympia.addons.forms import clean_addon_name, AddonFormBasic
+from olympia.addons.models import (
+    Addon, AddonDependency, AddonUser, Charity, Preview)
+from olympia.amo.forms import AMOModelForm
+from olympia.amo.urlresolvers import reverse
+from olympia.applications.models import AppVersion
+from olympia.files.models import File, FileUpload
+from olympia.files.utils import parse_addon
+from olympia.translations.widgets import (
+    TranslationTextarea, TranslationTextInput)
+from olympia.translations.fields import TransTextarea, TransField
+from olympia.translations.models import delete_translation, Translation
+from olympia.translations.forms import TranslationFormMixin
+from olympia.versions.models import (
+    ApplicationsVersions, License, VALID_SOURCE_EXTENSIONS, Version)
 
-from applications.models import AppVersion
-from files.models import File, FileUpload
-from files.utils import parse_addon
-from translations.widgets import TranslationTextarea, TranslationTextInput
-from translations.fields import TransTextarea, TransField
-from translations.models import delete_translation, Translation
-from translations.forms import TranslationFormMixin
-from versions.models import (ApplicationsVersions, License,
-                             VALID_SOURCE_EXTENSIONS, Version)
 from . import tasks, utils
+
 
 paypal_log = commonware.log.getLogger('z.paypal')
 
@@ -551,7 +552,7 @@ class NewAddonForm(AddonUploadForm):
             xpi = parse_addon(self.cleaned_data['upload'])
             # We don't enforce name uniqueness for unlisted add-ons.
             if not self.cleaned_data.get('is_unlisted', False):
-                addons.forms.clean_name(xpi['name'], addon_type=xpi['type'])
+                clean_addon_name(xpi['name'], addon_type=xpi['type'])
         return self.cleaned_data
 
 
@@ -703,7 +704,7 @@ class ReviewTypeForm(forms.Form):
         error_messages={'required': _lazy(u'A review type must be selected.')})
 
 
-class Step3Form(addons.forms.AddonFormBasic):
+class Step3Form(AddonFormBasic):
     description = TransField(widget=TransTextarea, required=False)
 
     class Meta:

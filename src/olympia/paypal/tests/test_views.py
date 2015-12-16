@@ -8,10 +8,11 @@ from django.core import mail
 from mock import Mock, patch
 from nose.tools import eq_
 
-import amo.tests
-from addons.models import Addon
-from amo.urlresolvers import reverse
-from stats.models import Contribution
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.models import Addon
+from olympia.amo.urlresolvers import reverse
+from olympia.stats.models import Contribution
 
 
 URL_ENCODED = 'application/x-www-form-urlencoded'
@@ -57,7 +58,7 @@ sample_contribution = {
 }
 
 
-class PaypalTest(amo.tests.TestCase):
+class PaypalTest(TestCase):
 
     def setUp(self):
         super(PaypalTest, self).setUp()

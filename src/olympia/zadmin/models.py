@@ -7,11 +7,11 @@ from django.core.cache import cache
 from django.conf import settings
 from django.db import models
 
-import amo
-import amo.models
-from amo.urlresolvers import reverse
-from applications.models import AppVersion
-from files.models import File
+from olympia import amo
+from olympia.amo.models import ModelBase
+from olympia.amo.urlresolvers import reverse
+from olympia.applications.models import AppVersion
+from olympia.files.models import File
 
 
 class Config(caching.base.CachingMixin, models.Model):
@@ -44,7 +44,7 @@ def set_config(conf, value):
     cf.save()
 
 
-class ValidationJob(amo.models.ModelBase):
+class ValidationJob(ModelBase):
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     curr_max_version = models.ForeignKey(AppVersion,
@@ -119,7 +119,7 @@ class ValidationJob(amo.models.ModelBase):
         db_table = 'validation_job'
 
 
-class ValidationResult(amo.models.ModelBase):
+class ValidationResult(ModelBase):
     """Result of a single validation task based on the addon file.
 
     This is different than FileValidation because it allows multiple
@@ -183,7 +183,7 @@ class EmailPreviewTopic(object):
             from_email=from_email)
 
 
-class EmailPreview(amo.models.ModelBase):
+class EmailPreview(ModelBase):
     """A log of emails for previewing purposes.
 
     This is only for development and the data might get deleted at any time.

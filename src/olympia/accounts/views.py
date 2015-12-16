@@ -14,10 +14,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from waffle.decorators import waffle_switch
 
+from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.users.models import UserProfile
+from olympia.accounts.serializers import UserProfileSerializer
+
 from . import verify
-from api.jwt_auth.views import JWTProtectedView
-from users.models import UserProfile
-from accounts.serializers import AccountSourceSerializer, UserProfileSerializer
 
 log = logging.getLogger('accounts')
 

@@ -2,14 +2,15 @@ from mock import Mock
 from nose.tools import eq_
 from pyquery import PyQuery
 
-import amo
-import amo.tests
-from addons.helpers import (statusflags, flag, contribution,
-                            mobile_persona_preview, mobile_persona_confirm)
-from addons.models import Addon
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.addons.helpers import (
+    statusflags, flag, contribution, mobile_persona_preview,
+    mobile_persona_confirm)
+from olympia.addons.models import Addon
 
 
-class TestHelpers(amo.tests.TestCase):
+class TestHelpers(TestCase):
     fixtures = ['base/addon_3615', 'base/users',
                 'addons/featured', 'base/collections',
                 'base/featured', 'bandwagon/featured_collections']

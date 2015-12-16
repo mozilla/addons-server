@@ -6,8 +6,8 @@ from functools import partial
 
 import commonware.log
 
-import amo
-from access import acl
+from olympia import amo
+from olympia.access import acl
 
 log = commonware.log.getLogger('z.access')
 

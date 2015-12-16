@@ -5,12 +5,11 @@ end up in the correct state.
 """
 import pytest
 
-import amo
-import amo.tests
-from addons.models import Addon
-from editors import helpers
-from files.models import File
-from versions.models import Version
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.editors import helpers
+from olympia.files.models import File
+from olympia.versions.models import Version
 
 
 @pytest.fixture

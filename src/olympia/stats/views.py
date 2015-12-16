@@ -21,19 +21,20 @@ from cache_nuggets.lib import memoize
 from dateutil.parser import parse
 from product_details import product_details
 
-import amo
-from access import acl
-from addons.decorators import addon_view_factory
-from addons.models import Addon
-from amo.decorators import allow_cross_site_request, json_view, login_required
-from amo.urlresolvers import reverse
-from bandwagon.models import Collection
-from bandwagon.views import get_collection
-from stats.forms import DateForm
-from zadmin.models import SiteEvent
+from olympia import amo
+from olympia.access import acl
+from olympia.addons.decorators import addon_view_factory
+from olympia.addons.models import Addon
+from olympia.amo.decorators import (
+    allow_cross_site_request, json_view, login_required)
+from olympia.amo.urlresolvers import reverse
+from olympia.bandwagon.models import Collection
+from olympia.bandwagon.views import get_collection
+from olympia.stats.forms import DateForm
+from olympia.zadmin.models import SiteEvent
 
-from .models import (CollectionCount, Contribution, DownloadCount,
-                     ThemeUserCount, UpdateCount)
+from .models import (
+    CollectionCount, Contribution, DownloadCount, ThemeUserCount, UpdateCount)
 
 
 logger = logging.getLogger('z.apps.stats.views')

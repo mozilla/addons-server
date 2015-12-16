@@ -1,9 +1,9 @@
 import jinja2
 from jingo import env, register
 
-from access import acl
-from addons.models import Addon
-from bandwagon.models import Collection
+from olympia.access import acl
+from olympia.addons.models import Addon
+from olympia.bandwagon.models import Collection
 
 
 @register.function

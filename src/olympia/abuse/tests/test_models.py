@@ -3,11 +3,11 @@ from django.core import mail
 
 from nose.tools import eq_
 
-import amo.tests
-from abuse.models import AbuseReport
+from olympia.amo.tests import TestCase
+from olympia.olympia.abuse.models import AbuseReport
 
 
-class TestAbuse(amo.tests.TestCase):
+class TestAbuse(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
     def test_user(self):

@@ -1,5 +1,7 @@
 from django.conf.urls import include, patterns, url
-from reviews.feeds import ReviewsRss
+
+from olympia.reviews.feeds import ReviewsRss
+
 from . import views
 
 

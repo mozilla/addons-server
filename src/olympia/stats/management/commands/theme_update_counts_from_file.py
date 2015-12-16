@@ -8,8 +8,8 @@ from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
 
-from addons.models import Addon, Persona
-from stats.models import ThemeUpdateCount
+from olympia.addons.models import Addon, Persona
+from olympia.stats.models import ThemeUpdateCount
 
 from . import get_date_from_file
 

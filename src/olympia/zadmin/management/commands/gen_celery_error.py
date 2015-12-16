@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from zadmin.tasks import celery_error
+from olympia.zadmin.tasks import celery_error
 
 
 class Command(BaseCommand):

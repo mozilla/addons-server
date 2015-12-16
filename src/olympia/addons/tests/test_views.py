@@ -16,19 +16,21 @@ from mock import patch
 from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
-import amo
-import amo.tests
-from amo.helpers import absolutify, numberfmt, urlparams
-from amo.tests import addon_factory
-from amo.urlresolvers import reverse
-from abuse.models import AbuseReport
-from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
-from bandwagon.models import Collection
-from paypal.tests.test import other_error
-from stats.models import Contribution
-from users.helpers import users_list
-from users.models import UserProfile
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.amo.helpers import absolutify, numberfmt, urlparams
+from olympia.amo.tests import addon_factory
+from olympia.amo.urlresolvers import reverse
+from olympia.abuse.models import AbuseReport
+from olympia.addons.models import (
+    Addon, AddonDependency, AddonUser, Charity, Persona)
+from olympia.bandwagon.models import Collection
+from olympia.constants.base import FIREFOX_IOS_USER_AGENTS
+from olympia.paypal.tests.test import other_error
+from olympia.stats.models import Contribution
+from olympia.users.helpers import users_list
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 def norm(s):
@@ -67,7 +69,7 @@ def test_hovercards(self, doc, addons, src=''):
         eq_(hc.find('h3').text(), unicode(addon.name))
 
 
-class TestHomepage(amo.tests.TestCase):
+class TestHomepage(TestCase):
 
     def setUp(self):
         super(TestHomepage, self).setUp()
@@ -92,7 +94,7 @@ class TestHomepage(amo.tests.TestCase):
             'make Thunderbird your own.')
 
 
-class TestHomepageFeatures(amo.tests.TestCase):
+class TestHomepageFeatures(TestCase):
     fixtures = ['base/appversion',
                 'base/users',
                 'base/addon_3615',
@@ -153,7 +155,7 @@ class TestHomepageFeatures(amo.tests.TestCase):
                                   reverse=True)])
 
 
-class TestPromobox(amo.tests.TestCase):
+class TestPromobox(TestCase):
     fixtures = ['addons/ptbr-promobox']
 
     def test_promo_box_ptbr(self):
@@ -162,7 +164,7 @@ class TestPromobox(amo.tests.TestCase):
         eq_(response.status_code, 200)
 
 
-class TestContributeInstalled(amo.tests.TestCase):
+class TestContributeInstalled(TestCase):
     fixtures = ['base/appversion', 'base/addon_592']
 
     def setUp(self):
@@ -193,7 +195,7 @@ class TestContributeInstalled(amo.tests.TestCase):
         eq_(title.startswith('Thank you for installing Gmail S/MIME'), True)
 
 
-class TestContributeEmbedded(amo.tests.TestCase):
+class TestContributeEmbedded(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
@@ -350,7 +352,7 @@ class TestContributeEmbedded(amo.tests.TestCase):
         return self.client.post(urlparams(url, result_type='json'))
 
 
-class TestDeveloperPages(amo.tests.TestCase):
+class TestDeveloperPages(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592',
                 'base/users', 'addons/eula+contrib-addon',
                 'addons/addon_228106_info+dev+bio.json',
@@ -446,7 +448,7 @@ class TestDeveloperPages(amo.tests.TestCase):
         eq_(pq(r.content)('#about-addon b').length, 2)
 
 
-class TestLicensePage(amo.tests.TestCase):
+class TestLicensePage(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -495,7 +497,7 @@ class TestLicensePage(amo.tests.TestCase):
                           self.addon)
 
 
-class TestDetailPage(amo.tests.TestCase):
+class TestDetailPage(TestCase):
     fixtures = ['base/addon_3615',
                 'base/users',
                 'base/addon_59',
@@ -849,7 +851,7 @@ class TestDetailPage(amo.tests.TestCase):
         assert addons_banner.text() == banner_message
 
 
-class TestImpalaDetailPage(amo.tests.TestCase):
+class TestImpalaDetailPage(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
 
     def setUp(self):
@@ -1026,7 +1028,7 @@ class TestPersonas(object):
         return AddonUser.objects.create(addon=addon, user_id=999)
 
 
-class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
+class TestPersonaDetailPage(TestPersonas, TestCase):
 
     def setUp(self):
         super(TestPersonas, self).setUp()
@@ -1100,7 +1102,7 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         self._test_by()
 
 
-class TestStatus(amo.tests.TestCase):
+class TestStatus(TestCase):
     fixtures = ['base/addon_3615', 'addons/persona']
 
     def setUp(self):
@@ -1179,7 +1181,7 @@ class TestStatus(amo.tests.TestCase):
             eq_(self.client.head(self.persona_url).status_code, 404)
 
 
-class TestTagsBox(amo.tests.TestCase):
+class TestTagsBox(TestCase):
     fixtures = ['base/addontag']
 
     def test_tag_box(self):
@@ -1190,7 +1192,7 @@ class TestTagsBox(amo.tests.TestCase):
         eq_('SEO', doc('#tagbox ul').children().text())
 
 
-class TestEulaPolicyRedirects(amo.tests.TestCase):
+class TestEulaPolicyRedirects(TestCase):
 
     def test_eula_legacy_url(self):
         """
@@ -1209,7 +1211,7 @@ class TestEulaPolicyRedirects(amo.tests.TestCase):
         assert (response['Location'].find('/addon/592/privacy/') != -1)
 
 
-class TestEula(amo.tests.TestCase):
+class TestEula(TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
@@ -1312,7 +1314,7 @@ class TestXssOnName(amo.tests.TestXss):
         self.assertNameAndNoXSS(url)
 
 
-class TestPrivacyPolicy(amo.tests.TestCase):
+class TestPrivacyPolicy(TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
     def setUp(self):
@@ -1331,7 +1333,7 @@ class TestPrivacyPolicy(amo.tests.TestCase):
         check_cat_sidebar(self.url, self.addon)
 
 
-class TestAddonSharing(amo.tests.TestCase):
+class TestAddonSharing(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_redirect_sharing(self):
@@ -1345,7 +1347,7 @@ class TestAddonSharing(amo.tests.TestCase):
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
-class TestReportAbuse(amo.tests.TestCase):
+class TestReportAbuse(TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -1401,7 +1403,7 @@ class TestReportAbuse(amo.tests.TestCase):
         assert AbuseReport.objects.get(addon=15663)
 
 
-class TestMobile(amo.tests.MobileTest, amo.tests.TestCase):
+class TestMobile(amo.tests.MobileTest, TestCase):
     fixtures = ['addons/featured', 'base/users',
                 'base/addon_3615', 'base/featured',
                 'bandwagon/featured_collections']

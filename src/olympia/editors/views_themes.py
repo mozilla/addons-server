@@ -10,19 +10,20 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from tower import ugettext as _, ungettext as ngettext
 
-import amo
-import constants.editors as rvw
-from access import acl
-from addons.models import Addon, Persona
-from amo.decorators import json_view, post_required
-from amo.urlresolvers import reverse
-from amo.utils import paginate
-from devhub.models import ActivityLog
-from editors import forms
-from editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
-from editors.views import base_context as context
-from search.views import name_only_query
-from zadmin.decorators import admin_required
+from olympia import amo
+from olympia.constants import editors as rvw
+from olympia.access import acl
+from olympia.addons.models import Addon, Persona
+from olympia.amo.decorators import json_view, post_required
+from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import paginate
+from olympia.devhub.models import ActivityLog
+from olympia.editors import forms
+from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
+from olympia.editors.views import base_context as context
+from olympia.search.views import name_only_query
+from olympia.zadmin.decorators import admin_required
+
 from .decorators import personas_reviewer_required
 
 

@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 
 from tower import ugettext as _
 
-from addons.models import Category
+from olympia.addons.models import Category
 
 
 class IconWidgetRenderer(forms.RadioSelect.renderer):

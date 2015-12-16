@@ -12,15 +12,15 @@ import pytest
 from nose.tools import eq_
 from PIL import Image
 
-import amo
-import amo.tests
-from constants.base import VALIDATOR_SKELETON_RESULTS
-from addons.models import Addon
-from amo.helpers import user_media_path
-from amo.tests.test_helpers import get_image_path
-from devhub import tasks
-from files.models import FileUpload
-from versions.models import Version
+from olympia import amo
+from olympia.amo.tests import TestCase
+from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
+from olympia.addons.models import Addon
+from olympia.amo.helpers import user_media_path
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.devhub import tasks
+from olympia.files.models import FileUpload
+from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
@@ -101,7 +101,7 @@ def _uploader(resize_size, final_size):
     assert not os.path.exists(src.name)
 
 
-class TestValidator(amo.tests.TestCase):
+class TestValidator(TestCase):
     mock_sign_addon_warning = json.dumps({
         "warnings": 1,
         "errors": 0,
@@ -247,7 +247,7 @@ class TestValidator(amo.tests.TestCase):
         mock_track.assert_called_with(mock_validate.return_value)
 
 
-class TestTrackValidatorStats(amo.tests.TestCase):
+class TestTrackValidatorStats(TestCase):
 
     def setUp(self):
         super(TestTrackValidatorStats, self).setUp()
@@ -363,7 +363,7 @@ class TestTrackValidatorStats(amo.tests.TestCase):
         )
 
 
-class TestFlagBinary(amo.tests.TestCase):
+class TestFlagBinary(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -410,7 +410,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         headers={'Reply-To': settings.EDITORS_EMAIL})
 
 
-class TestSubmitFile(amo.tests.TestCase):
+class TestSubmitFile(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -438,7 +438,7 @@ class TestSubmitFile(amo.tests.TestCase):
         assert not self.create_version_for_upload.called
 
 
-class TestCreateVersionForUpload(amo.tests.TestCase):
+class TestCreateVersionForUpload(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

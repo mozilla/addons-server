@@ -1,4 +1,4 @@
-import amo
+from olympia import amo
 from bandwagon.models import Collection
 from users.models import UserProfile
 

@@ -34,23 +34,24 @@ from rest_framework.views import APIView
 from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
-from access.acl import check_ownership
-import addons.search
-import amo
-import amo.search
-import stats.search
-from access.models import Group, GroupUser
-from addons.models import (Addon, Persona,
-                           update_search_index as addon_update_search_index)
-from amo.urlresolvers import get_url_prefix, Prefixer, reverse, set_url_prefix
-from addons.tasks import unindex_addons
-from applications.models import AppVersion
-from bandwagon.models import Collection
-from files.models import File
-from lib.es.signals import process, reset
-from translations.models import Translation
-from versions.models import ApplicationsVersions, Version
-from users.models import UserProfile
+from olympia import amo
+from olympia.access.acl import check_ownership
+from olympia.addons import search as addons_search
+from olympia.stats import search as stats_search
+from olympia.amo import search as amo_search
+from olympia.access.models import Group, GroupUser
+from olympia.addons.models import (
+    Addon, Persona, update_search_index as addon_update_search_index)
+from olympia.amo.urlresolvers import (
+    get_url_prefix, Prefixer, reverse, set_url_prefix)
+from olympia.addons.tasks import unindex_addons
+from olympia.applications.models import AppVersion
+from olympia.bandwagon.models import Collection
+from olympia.files.models import File
+from olympia.lib.es.signals import process, reset
+from olympia.translations.models import Translation
+from olympia.versions.models import ApplicationsVersions, Version
+from olympia.users.models import UserProfile
 
 from . import dynamic_urls
 
@@ -262,7 +263,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-Mocked_ES = mock.patch('amo.search.get_es', spec=True)
+Mocked_ES = mock.patch('olympia.amo.search.get_es', spec=True)
 
 
 def mock_es(f):
@@ -748,7 +749,7 @@ class ESTestCase(TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.es = amo.search.get_es(timeout=settings.ES_TIMEOUT)
+        cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
 
         super(ESTestCase, cls).setUpClass()
         try:
@@ -769,8 +770,8 @@ class ESTestCase(TestCase):
         for index in set(settings.ES_INDEXES.values()):
             cls.es.indices.delete(index, ignore=[404])
 
-        addons.search.create_new_index()
-        stats.search.create_new_index()
+        addons_search.create_new_index()
+        stats_search.create_new_index()
 
     @classmethod
     def tearDownClass(cls):

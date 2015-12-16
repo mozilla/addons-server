@@ -9,19 +9,18 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
-import amo
-import amo.tests
-from amo.tests import addon_factory
-from amo.tests.test_helpers import get_image_path
-from amo.utils import rm_local_tmp_dir
-from addons import forms
-from addons.models import Addon, Category
-from files.helpers import copyfileobj
-from tags.models import Tag, AddonTag
-from users.models import UserProfile
+from olympia import amo
+from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import rm_local_tmp_dir
+from olympia.addons import forms
+from olympia.addons.models import Addon, Category
+from olympia.files.helpers import copyfileobj
+from olympia.tags.models import Tag, AddonTag
+from olympia.users.models import UserProfile
 
 
-class FormsTest(amo.tests.TestCase):
+class FormsTest(TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
                 'addons/blacklisted')
 
@@ -112,7 +111,7 @@ class FormsTest(amo.tests.TestCase):
             [u'The slug cannot be "123". Please choose another.'])
 
 
-class TestTagsForm(amo.tests.TestCase):
+class TestTagsForm(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
@@ -237,7 +236,7 @@ class TestTagsForm(amo.tests.TestCase):
                                   ' after invalid characters are removed.'])
 
 
-class TestIconForm(amo.tests.TestCase):
+class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
 
     # TODO: AddonFormMedia save() method could do with cleaning up
@@ -300,7 +299,7 @@ class TestIconForm(amo.tests.TestCase):
         assert update_mock.called
 
 
-class TestCategoryForm(amo.tests.TestCase):
+class TestCategoryForm(TestCase):
 
     def test_no_possible_categories(self):
         Category.objects.create(type=amo.ADDON_SEARCH,
@@ -311,7 +310,7 @@ class TestCategoryForm(amo.tests.TestCase):
         eq_(apps, [amo.FIREFOX])
 
 
-class TestThemeForm(amo.tests.TestCase):
+class TestThemeForm(TestCase):
 
     @patch('addons.forms.save_theme')  # Don't save image, we use a fake one.
     def test_long_author_or_display_username(self, mock_save_theme):
