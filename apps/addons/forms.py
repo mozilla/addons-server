@@ -9,7 +9,7 @@ from django.forms.formsets import formset_factory
 
 import commonware.log
 import happyforms
-from quieter_formset.formset import BaseFormSet
+from django.forms.formsets import BaseFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from access import acl
