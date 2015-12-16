@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import calendar
 import datetime
 import os
 
@@ -11,6 +12,7 @@ from django.db import models
 import caching.base
 import commonware.log
 import jinja2
+from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import addons.query
@@ -162,6 +164,19 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
+
+        # Track the time it took from first upload through validation
+        # (and whatever else) until a version was created.
+        upload_start = calendar.timegm(upload.created.utctimetuple())
+        now = datetime.datetime.now()
+        now_ts = calendar.timegm(now.utctimetuple())
+        upload_time = (now_ts - upload_start) * 1000
+
+        log.info('Time for version {version} creation from upload: {delta}; '
+                 'created={created}; now={now}'
+                 .format(delta=upload_time, version=v,
+                         created=upload.created, now=now))
+        statsd.timing('devhub.version_created_from_upload', upload_time)
 
         return v
 
