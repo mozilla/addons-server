@@ -1,10 +1,4 @@
 $(function() {
-    $('.performance-note .popup').each(function(i,p) {
-        var $p = $(this),
-            $a = $p.siblings('a').first();
-        $p.popup($a, {width: 300, pointTo: $a});
-    });
-
     initListingCompat();
 
     $('.theme-grid .hovercard.theme').each(function() {

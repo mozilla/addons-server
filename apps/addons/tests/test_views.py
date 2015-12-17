@@ -927,12 +927,6 @@ class TestImpalaDetailPage(amo.tests.TestCase):
         eq_(self.get_pq()('#weekly-downloads a.stats').attr('href'),
             reverse('stats.overview', args=[self.addon.slug]))
 
-    def test_perf_warning(self):
-        eq_(self.addon.ts_slowness, None)
-        eq_(self.get_pq()('.performance-note').length, 0)
-        self.addon.update(ts_slowness=100)
-        eq_(self.get_pq()('.performance-note').length, 1)
-
     def test_dependencies(self):
         eq_(self.get_pq()('.dependencies').length, 0)
         req = Addon.objects.get(id=592)

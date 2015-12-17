@@ -427,14 +427,6 @@ class TestDetails(amo.tests.TestCase):
         r = self.client.get(self.eula_url)
         self.assert3xx(r, self.detail_url, 302)
 
-    def test_perf_warning(self):
-        eq_(self.addon.ts_slowness, None)
-        doc = pq(self.client.get(self.detail_url).content)
-        eq_(doc('.performance-note').length, 0)
-        self.addon.update(ts_slowness=100)
-        doc = pq(self.client.get(self.detail_url).content)
-        eq_(doc('.performance-note').length, 1)
-
     def test_dependencies(self):
         doc = pq(self.client.get(self.detail_url).content)
         eq_(doc('.dependencies').length, 0)

@@ -125,8 +125,6 @@ PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
-PERF_THRESHOLD = 20
-
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
 # Remove DetectMobileMiddleware from middleware in production.

@@ -1012,14 +1012,6 @@ li#no-restart {
     margin: 0;
 }
 
-.performance-note {
-    background: url(../../img/impala/turtle.png) no-repeat 28px 16px #fff8dc;
-    padding: 14px 14px 14px 104px;
-}
-.html-rtl .performance-note {
-    background-position: 96% 16px;
-    padding: 14px 104px 14px 14px;
-}
 .notice h3,
 .upsell .premium a {
     font: normal bold 14px/1.2em "helvetica neue", helvetica, arial, sans-serif;

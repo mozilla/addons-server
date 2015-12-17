@@ -10,16 +10,6 @@ $(document).ready(function() {
         })
     }
 
-    $(".performance-note .popup").each(function(i,p) {
-        var $p = $(p),
-            $a = $p.siblings("a").first();
-        $p.removeClass("hidden")
-          .popup($a, {
-            width: 300,
-            pointTo: $a
-        });
-    });
-
     if ($('#addon.primary').length == 0) return;
 
     var lb_baseurl = z.static_url+'img/jquery-lightbox/';

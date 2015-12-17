@@ -117,13 +117,6 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
             return False
         return storage.exists(self.mirror_file_path)
 
-    def can_be_perf_tested(self):
-        """True if it's okay to run performance tests on this addon file.
-        """
-        is_eligible = (self.status in amo.REVIEWED_STATUSES and
-                       not self.version.addon.disabled_by_user)
-        return is_eligible
-
     def get_mirror(self, addon, attachment=False):
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
