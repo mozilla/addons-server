@@ -1,6 +1,10 @@
+# -*- coding: utf8 -*-
 import os
 import datetime
 import time
+
+from django.core.management.base import CommandError
+from django.test.utils import override_settings
 
 from nose.tools import eq_
 import mock
@@ -9,7 +13,6 @@ import amo
 import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
-from django.core.management.base import CommandError
 from files.models import File
 from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from stats.models import UpdateCount
@@ -204,6 +207,50 @@ class TestHideDisabledFiles(amo.tests.TestCase):
         # It should have been removed from mirror stagins.
         m_storage.delete.assert_called_with(f1.mirror_file_path)
         eq_(m_storage.delete.call_count, 1)
+
+
+class TestUnhideDisabledFiles(amo.tests.TestCase):
+
+    def setUp(self):
+        super(TestUnhideDisabledFiles, self).setUp()
+        p = amo.PLATFORM_ALL.id
+        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.version = Version.objects.create(addon=self.addon)
+        self.file_ = File.objects.create(version=self.version, platform=p,
+                                         filename=u'fé')
+
+    @mock.patch('files.models.os')
+    def test_leave_disabled_files(self, os_mock):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        cron.unhide_disabled_files()
+        assert not os_mock.path.exists.called
+
+        self.addon.update(status=amo.STATUS_LITE)
+        self.file_.update(status=amo.STATUS_DISABLED)
+        cron.unhide_disabled_files()
+        assert not os_mock.path.exists.called
+
+        self.addon.update(disabled_by_user=True)
+        self.file_.update(status=amo.STATUS_LITE)
+        cron.unhide_disabled_files()
+        assert not os_mock.path.exists.called
+
+    @override_settings(GUARDED_ADDONS_PATH=u'/tmp/guarded-addons')
+    @mock.patch('files.models.File.unhide_disabled_file')
+    def test_move_not_disabled_files(self, unhide_mock):
+        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                 self.file_.guarded_file_path):
+            cron.unhide_disabled_files()
+            assert unhide_mock.called
+
+            # Not a unicode string for the path.
+            with override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons'):
+                with self.assertRaises(UnicodeDecodeError):
+                    # If the parameter to "os.walk" (called by
+                    # amo.utils.walkfiles) isn't a unicode string, it'll return
+                    # ascii encoded paths, which will break the File query with
+                    # the filename, raising the exception.
+                    cron.unhide_disabled_files()
 
 
 class AvgDailyUserCountTestCase(amo.tests.TestCase):

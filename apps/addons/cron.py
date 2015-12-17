@@ -304,7 +304,7 @@ def unhide_disabled_files():
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
-            log.warning('File that should not be guarded: %s.' % filepath)
+            log.warning(u'File that should not be guarded: %s.', filepath)
             try:
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
@@ -313,9 +313,9 @@ def unhide_disabled_files():
                         and file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
-                log.warning('File object does not exist for: %s.' % filepath)
+                log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:
-                log.error('Could not unhide file: %s.' % filepath,
+                log.error(u'Could not unhide file: %s.' % filepath,
                           exc_info=True)
 
 

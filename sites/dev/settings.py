@@ -86,10 +86,10 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
 
 # Must be forced in settings because name => path can't be dyncamically
 # computed: reviewer_attachmentS VS reviewer_attachment.
@@ -125,10 +125,10 @@ RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
                  RECAPTCHA_PUBLIC_KEY)
 
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
+ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
