@@ -12330,7 +12330,7 @@ msgid ""
 msgstr ""
 "Tillägg är små bitar av programvara som ger nya funktioner eller "
 "funktionalitet till din installation av %(app_name)s. Tillägg kan öka "
-"%(app_name)s% med nya funktioner, utländska ordböcker eller ändra dess "
+"%(app_name)s med nya funktioner, utländska ordböcker eller ändra dess "
 "utseende. Genom tillägg, kan du skräddarsy %(app_name)s för att möta dina "
 "behov och smak. <a href=\"%(learnmore_url)s\">Läs mer om anpassning</a>"
 
