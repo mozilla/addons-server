@@ -3,6 +3,9 @@ import os
 import datetime
 import time
 
+from django.core.management.base import CommandError
+from django.test.utils import override_settings
+
 from nose.tools import eq_
 import mock
 
@@ -10,8 +13,6 @@ import amo
 import amo.tests
 from addons import cron
 from addons.models import Addon, AppSupport
-from django.core.management.base import CommandError
-from django.test.utils import override_settings
 from files.models import File
 from lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from stats.models import UpdateCount
@@ -209,7 +210,6 @@ class TestHideDisabledFiles(amo.tests.TestCase):
 
 
 class TestUnhideDisabledFiles(amo.tests.TestCase):
-    msg = u'File that should not be guarded: %s'
 
     def setUp(self):
         super(TestUnhideDisabledFiles, self).setUp()
@@ -235,14 +235,17 @@ class TestUnhideDisabledFiles(amo.tests.TestCase):
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
+    @override_settings(GUARDED_ADDONS_PATH=u'/tmp/guarded-addons')
     @mock.patch('files.models.File.unhide_disabled_file')
-    def test_move_not_disabled_addon(self, unhide_mock):
+    def test_move_not_disabled_files(self, unhide_mock):
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
+                                 self.file_.guarded_file_path):
             cron.unhide_disabled_files()
-            unhide_mock.assert_called()
-            with override_settings(GUARDED_ADDONS_PATH='tmp'):  # Not unicode.
-                with self.assertRaises(Exception):
+            assert unhide_mock.called
+
+            # Not a unicode string for the path.
+            with override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons'):
+                with self.assertRaises(UnicodeDecodeError):
                     # If the parameter to "os.walk" (called by
                     # amo.utils.walkfiles) isn't a unicode string, it'll return
                     # ascii encoded paths, which will break the File query with

@@ -313,9 +313,9 @@ def unhide_disabled_files():
                         and file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
-                log.warning('File object does not exist for: %s.' % filepath)
+                log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:
-                log.error('Could not unhide file: %s.' % filepath,
+                log.error(u'Could not unhide file: %s.' % filepath,
                           exc_info=True)
 
 

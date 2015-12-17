@@ -105,7 +105,7 @@ def debug_toolbar_enabled(request):
 
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_enabled",
+    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
 }
 
 AES_KEYS = {
