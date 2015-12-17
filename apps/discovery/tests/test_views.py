@@ -19,7 +19,7 @@ from amo.urlresolvers import reverse
 from addons.models import (Addon, AddonDependency, CompatOverride,
                            CompatOverrideRange, Preview)
 from applications.models import AppVersion
-from bandwagon.models import MonthlyPick, SyncedCollection
+from bandwagon.models import MonthlyPick
 from bandwagon.tests.test_models import TestRecommendations as Recs
 from discovery import views
 from discovery.forms import DiscoveryModuleForm
@@ -178,10 +178,6 @@ class TestRecs(amo.tests.TestCase):
         # Tokens are based on guid list, so these should be different.
         assert one['token2'] != two['token2']
         assert one['addons'] != two['addons']
-        eq_(SyncedCollection.objects.filter(addon_index=one['token2']).count(),
-            1)
-        eq_(SyncedCollection.objects.filter(addon_index=two['token2']).count(),
-            1)
 
 
 class TestModuleAdmin(amo.tests.TestCase):
