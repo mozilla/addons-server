@@ -12,7 +12,7 @@ import happyforms
 from piston.models import Consumer
 from product_details import product_details
 from tower import ugettext_lazy as _lazy
-from quieter_formset.formset import BaseModelFormSet
+from django.forms.models import BaseModelFormSet
 
 import amo
 from addons.models import Addon

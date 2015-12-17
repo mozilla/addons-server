@@ -8,7 +8,7 @@ import happyforms
 from tower import ugettext_lazy as _lazy
 
 from bleach import TLDS
-from quieter_formset.formset import BaseModelFormSet
+from django.forms.models import BaseModelFormSet
 
 import amo
 import reviews

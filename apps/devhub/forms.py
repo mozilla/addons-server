@@ -13,7 +13,7 @@ from django.utils.encoding import force_unicode
 import commonware
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
-from quieter_formset.formset import BaseModelFormSet
+from django.forms.models import BaseModelFormSet
 
 from access import acl
 import amo
