@@ -289,8 +289,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         default=True, help_text='Automatically upgrade jetpack add-on to a '
                                 'new sdk version?')
 
-    nomination_message = models.TextField(null=True,
-                                          db_column='nominationmessage')
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
         help_text="For dictionaries and language packs")
