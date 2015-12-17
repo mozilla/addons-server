@@ -40,7 +40,7 @@ TMP_PATH = _polite_tmpdir()
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (
-    'users.backends.AmoUserBackend',
+    'olympia.users.backends.AmoUserBackend',
 )
 
 CELERY_ALWAYS_EAGER = True
@@ -82,7 +82,7 @@ CACHES = {
 }
 
 # Overrides whatever storage you might have put in local settings.
-DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
 VIDEO_LIBRARIES = ['lib.video.dummy']
 

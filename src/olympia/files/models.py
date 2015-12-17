@@ -134,7 +134,7 @@ class File(OnChangeMixin, ModelBase):
         return self._make_download_url('signing.file', src)
 
     def _make_download_url(self, view_name, src):
-        from amo.helpers import urlparams, absolutify
+        from olympia.amo.helpers import urlparams, absolutify
         url = os.path.join(reverse(view_name, args=[self.pk]),
                            self.filename)
         return absolutify(urlparams(url, src=src))
@@ -195,8 +195,8 @@ class File(OnChangeMixin, ModelBase):
 
         if upload.validation:
             # Import loop.
-            from devhub.tasks import annotate_validation_results
-            from devhub.utils import ValidationAnnotator
+            from olympia.devhub.tasks import annotate_validation_results
+            from olympia.devhub.utils import ValidationAnnotator
 
             validation = annotate_validation_results(validation)
             FileValidation.from_json(file_, validation)
@@ -650,7 +650,7 @@ class FileUpload(ModelBase):
         """Return processed validation results as expected by the frontend."""
         if self.validation:
             # Import loop.
-            from devhub.utils import process_validation
+            from olympia.devhub.utils import process_validation
 
             validation = self.load_validation()
             is_compatibility = self.compat_with_app is not None
@@ -724,7 +724,7 @@ class FileValidation(ModelBase):
     def processed_validation(self):
         """Return processed validation results as expected by the frontend."""
         # Import loop.
-        from devhub.utils import process_validation
+        from olympia.devhub.utils import process_validation
         return process_validation(json.loads(self.validation),
                                   file_hash=self.file.original_hash)
 

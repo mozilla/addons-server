@@ -420,7 +420,7 @@ def ownership(request, addon_id, addon):
     fs.append(policy_form)
 
     def mail_user_changes(author, title, template_part, recipients):
-        from amo.utils import send_mail
+        from olympia.amo.utils import send_mail
 
         t = loader.get_template(
             'users/email/{part}.ltxt'.format(part=template_part))

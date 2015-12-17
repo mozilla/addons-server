@@ -662,13 +662,13 @@ def log(action, *args, **kw):
     e.g. amo.log(amo.LOG.CREATE_ADDON, []),
          amo.log(amo.LOG.ADD_FILE_TO_VERSION, file, version)
     """
-    from access.models import Group
-    from addons.models import Addon
-    from amo import get_user, logger_log
-    from devhub.models import (ActivityLog, AddonLog, CommentLog, GroupLog,
-                               UserLog, VersionLog)
-    from users.models import UserProfile
-    from versions.models import Version
+    from olympia.access.models import Group
+    from olympia.addons.models import Addon
+    from olympia.amo import get_user, logger_log
+    from olympia.devhub.models import (
+        ActivityLog, AddonLog, CommentLog, GroupLog, UserLog, VersionLog)
+    from olympia.users.models import UserProfile
+    from olympia.versions.models import Version
 
     user = kw.get('user', get_user())
 

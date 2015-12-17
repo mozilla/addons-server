@@ -20,7 +20,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False):
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
-            from devhub.views import _resume
+            from olympia.devhub.views import _resume
             if theme:
                 kw['theme'] = addon.is_persona()
             elif addon.is_persona():

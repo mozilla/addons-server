@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from olympia.apps.users.models import UserProfile
+from olympia.users.models import UserProfile
 
 
 class UserProfileSerializer(serializers.ModelSerializer):

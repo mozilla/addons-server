@@ -58,7 +58,7 @@ def permission_required(app, action):
         @functools.wraps(f)
         @login_required
         def wrapper(request, *args, **kw):
-            from access import acl
+            from olympia.access import acl
             if acl.action_allowed(request, app, action):
                 return f(request, *args, **kw)
             else:
@@ -75,7 +75,7 @@ def any_permission_required(pairs):
         @functools.wraps(f)
         @login_required
         def wrapper(request, *args, **kw):
-            from access import acl
+            from olympia.access import acl
             for app, action in pairs:
                 if acl.action_allowed(request, app, action):
                     return f(request, *args, **kw)
@@ -91,7 +91,7 @@ def restricted_content(f):
     """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        from access import acl
+        from olympia.access import acl
         if (acl.action_allowed(request, '*', '*')
                 or not acl.action_allowed(request, 'Restricted', 'UGC')):
             return f(request, *args, **kw)
@@ -179,7 +179,7 @@ def set_modified_on(f):
     when the wrapped function exits sucessfully (returns True).
     Looks up objects defined in the set_modified_on kwarg.
     """
-    from amo.tasks import set_modified_on_object
+    from olympia.amo.tasks import set_modified_on_object
 
     @functools.wraps(f)
     def wrapper(*args, **kw):

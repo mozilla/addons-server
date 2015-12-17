@@ -44,7 +44,7 @@ def init_amo():
 def init_celery():
     """Initialize Celery, and make our app instance available as `celery_app`
     for use by the `celery` command."""
-    from amo import celery
+    from olympia.amo import celery
 
     global celery_app
     celery_app = celery.app

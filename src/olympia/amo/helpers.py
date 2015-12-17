@@ -147,7 +147,7 @@ def is_mobile(app):
 @register.function
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
-    from addons.models import Category
+    from olympia.addons.models import Category
     if app is None:
         return [], []
 
@@ -369,7 +369,7 @@ def shuffle(sequence):
 def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
-    from versions.models import License
+    from olympia.versions.models import License
     if isinstance(license, (long, int)):
         if license in PERSONA_LICENSES_IDS:
             # Grab built-in license.
@@ -498,7 +498,7 @@ def side_nav(context, addon_type, category=None):
 
 def _side_nav(context, addon_type, cat):
     # Prevent helpers generating circular imports.
-    from addons.models import Category, Addon
+    from olympia.addons.models import Category, Addon
     request = context['request']
     qs = Category.objects.filter(weight__gte=0)
     if addon_type != amo.ADDON_PERSONA:
@@ -523,7 +523,7 @@ def site_nav(context):
 
 def _site_nav(context):
     # Prevent helpers from generating circular imports.
-    from addons.models import Category
+    from olympia.addons.models import Category
     request = context['request']
 
     def sorted_cats(qs):

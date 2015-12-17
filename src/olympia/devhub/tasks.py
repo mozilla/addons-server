@@ -82,7 +82,7 @@ def create_version_for_upload(addon, file_):
                  'duplicate version'.format(file_id=file_.pk))
     else:
         # Import loop.
-        from devhub.views import auto_sign_version
+        from olympia.devhub.views import auto_sign_version
 
         log.info('Creating version for {file_id} that passed '
                  'validation'.format(file_id=file_.pk))

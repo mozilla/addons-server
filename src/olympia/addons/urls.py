@@ -39,7 +39,7 @@ detail_patterns = patterns(
 
     ('^reviews/', include(review_patterns('addons'))),
     ('^statistics/', include(stats_patterns)),
-    ('^versions/', include('versions.urls')),
+    ('^versions/', include('olympia.versions.urls')),
 )
 
 
@@ -52,10 +52,11 @@ urlpatterns = patterns(
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
     # Accept extra junk at the end for a cache-busting build id.
-    url('^addons/buttons.js(?:/.+)?$', 'addons.buttons.js'),
+    url('^addons/buttons.js(?:/.+)?$', 'olympia.addons.buttons.js',
+        name='addons.buttons.js'),
 
     # For happy install button debugging.
-    url('^addons/smorgasbord$', 'addons.buttons.smorgasbord'),
+    url('^addons/smorgasbord$', 'olympia.addons.buttons.smorgasbord'),
 
     # Remora EULA and Privacy policy URLS
     ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',

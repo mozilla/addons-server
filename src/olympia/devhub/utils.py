@@ -7,6 +7,8 @@ from django.forms import ValidationError
 
 from celery import chain, group
 from tower import ugettext as _
+from validator.constants import SIGNING_SEVERITIES
+from validator.version import Version
 import commonware.log
 
 from olympia import amo
@@ -15,8 +17,6 @@ from olympia.amo.decorators import write
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload, ValidationAnnotation
 from olympia.files.utils import parse_addon
-from olympia.validator.constants import SIGNING_SEVERITIES
-from olympia.validator.version import Version
 
 from . import tasks
 

@@ -179,7 +179,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
         If one of the locales matches lang, that Translation will be returned.
         """
-        from amo.utils import to_language as amo_to_language
+        from olympia.amo.utils import to_language as amo_to_language
 
         rv = None
         for locale, string in dict_.items():

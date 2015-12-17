@@ -102,7 +102,7 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
         super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
 
     def save(self):
-        from reviews.helpers import user_can_delete_review
+        from olympia.reviews.helpers import user_can_delete_review
 
         for form in self.forms:
             if form.cleaned_data and user_can_delete_review(self.request,

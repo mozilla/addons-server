@@ -35,8 +35,8 @@ def mock_inline_css(monkeypatch):
     bundle the css.
 
     """
-    import amo.helpers
-    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: True)
+    from olympia.amo import helpers
+    monkeypatch.setattr(helpers, 'is_external', lambda css: True)
 
 
 def prefix_indexes(config):

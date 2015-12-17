@@ -20,86 +20,86 @@ handler500 = 'amo.views.handler500'
 urlpatterns = patterns(
     '',
     # Discovery pane is first for undetectable efficiency wins.
-    ('^discovery/', include('discovery.urls')),
+    ('^discovery/', include('olympia.discovery.urls')),
 
     # There are many more params but we only care about these three. The end is
     # not anchored on purpose!
     url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
-        'blocklist.views.blocklist', name='blocklist'),
-    ('^blocked/', include('blocklist.urls')),
+        'olympia.blocklist.views.blocklist', name='blocklist'),
+    ('^blocked/', include('olympia.blocklist.urls')),
 
     # Home.
-    url('^$', 'addons.views.home', name='home'),
+    url('^$', 'olympia.addons.views.home', name='home'),
 
     # Add-ons.
-    ('', include('addons.urls')),
+    ('', include('olympia.addons.urls')),
 
     # Browse pages.
-    ('', include('browse.urls')),
+    ('', include('olympia.browse.urls')),
 
     # Tags.
-    ('', include('tags.urls')),
+    ('', include('olympia.tags.urls')),
 
     # Collections.
-    ('', include('bandwagon.urls')),
+    ('', include('olympia.bandwagon.urls')),
 
     # Files
-    ('^files/', include('files.urls')),
+    ('^files/', include('olympia.files.urls')),
 
     # Downloads.
     ('^downloads/', include(download_patterns)),
 
     # Localizer Pages
-    ('^localizers/', include('localizers.urls')),
+    ('^localizers/', include('olympia.localizers.urls')),
 
     # Users
-    ('', include('users.urls')),
+    ('', include('olympia.users.urls')),
 
     # Developer Hub.
-    ('^developers/', include('devhub.urls')),
+    ('^developers/', include('olympia.devhub.urls')),
 
     # Developer Hub.
-    ('editors/', include('editors.urls')),
+    ('editors/', include('olympia.editors.urls')),
 
     # AMO admin (not django admin).
-    ('^admin/', include('zadmin.urls')),
+    ('^admin/', include('olympia.zadmin.urls')),
 
     # Localizable pages.
-    ('', include('pages.urls')),
+    ('', include('olympia.pages.urls')),
 
     # App versions.
-    ('pages/appversions/', include('applications.urls')),
+    ('pages/appversions/', include('olympia.applications.urls')),
 
     # Services
-    ('', include('amo.urls')),
+    ('', include('olympia.amo.urls')),
 
     # Paypal
-    ('^services/', include('paypal.urls')),
+    ('^services/', include('olympia.paypal.urls')),
 
     # Search
-    ('^search/', include('search.urls')),
+    ('^search/', include('olympia.search.urls')),
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
         {'domain': 'javascript', 'packages': []}, name='jsi18n'),
 
     # SAMO/API
-    ('^api/', include('api.urls')),
+    ('^api/', include('olympia.api.urls')),
 
-    ('^compatibility/', include('compat.urls')),
+    ('^compatibility/', include('olympia.compat.urls')),
 
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
-        'stats.views.site_events', name='amo.site_events'),
+        'olympia.stats.views.site_events', name=' amo.site_events'),
 
     # Site statistics that we are going to catch, the rest will fall through.
-    url('^statistics/', include('stats.urls')),
+    url('^statistics/', include('olympia.stats.urls')),
 
     # Fall through for any URLs not matched above stats dashboard.
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Review spam.
-    url('^reviews/spam/$', 'reviews.views.spam', name='addons.reviews.spam'),
+    url('^reviews/spam/$', 'olympia.reviews.views.spam', name='addons.reviews.spam'),
 
     # Redirect patterns.
     ('^bookmarks/?$',
@@ -128,8 +128,8 @@ urlpatterns = patterns(
      lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',
                         permanent=True)),
 
-    url('^persona/(?P<persona_id>\d+)', 'addons.views.persona_redirect',
-        name='persona'),
+    url('^persona/(?P<persona_id>\d+)',
+        'olympia.addons.views.persona_redirect', name='persona'),
 
     # Redirect top-tags to tags/top
     ('^top-tags/?',
@@ -146,7 +146,7 @@ urlpatterns = patterns(
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     ('^versions/updateInfo/(?P<version_id>\d+)',
-     'versions.views.update_info_redirect'),
+     'olympia.versions.views.update_info_redirect'),
 
     ('^addons/reviews/(\d+)/format:rss$',
      lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),

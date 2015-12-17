@@ -108,7 +108,7 @@ def find_users(email):
 def autocreate_username(candidate, tries=1):
     """Returns a unique valid username."""
     max_tries = settings.MAX_GEN_USERNAME_TRIES
-    from amo.utils import slugify, SLUG_OK
+    from olympia.amo.utils import slugify, SLUG_OK
     make_u = partial(slugify, ok=SLUG_OK, lower=True, spaces=False,
                      delimiter='-')
     adjusted_u = make_u(candidate)

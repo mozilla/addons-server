@@ -23,7 +23,7 @@ urlpatterns = patterns(
     url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
 
-    url('^opensearch.xml$', 'api.views.render_xml',
+    url('^opensearch.xml$', 'olympia.api.views.render_xml',
                             {'template': 'amo/opensearch.xml'},
                             name='amo.opensearch'),
 

@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
-from olympia.apps.api.models import APIKey
+from olympia.api.models import APIKey
 
 
 class JWTKeyAuthentication(JSONWebTokenAuthentication):

@@ -13,8 +13,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from olympia.amo.search import get_es
-from olympia.apps.addons import search as addons_search
-from olympia.apps.stats import search as stats_search
+from olympia.addons import search as addons_search
+from olympia.stats import search as stats_search
 from olympia.lib.es.utils import (
     is_reindexing_amo, unflag_reindexing_amo, flag_reindexing_amo,
     timestamp_index)

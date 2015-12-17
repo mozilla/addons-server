@@ -240,7 +240,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     @property
     def is_staff(self):
-        from access import acl
+        from olympia.access import acl
         return acl.action_allowed_user(self, 'Admin', '%')
 
     def has_perm(self, perm, obj=None):
@@ -249,7 +249,7 @@ class UserProfile(OnChangeMixin, ModelBase,
     def has_module_perms(self, app_label):
         return self.is_superuser
 
-    backend = 'users.backends.AmoUserBackend'
+    backend = 'olympia.users.backends.AmoUserBackend'
 
     def is_anonymous(self):
         return False
@@ -259,7 +259,7 @@ class UserProfile(OnChangeMixin, ModelBase,
         We use <username> as the slug, unless it contains gross
         characters - in which case use <id> as the slug.
         """
-        from amo.utils import urlparams
+        from olympia.amo.utils import urlparams
         chars = '/<>"\''
         slug = self.username
         if not self.username or any(x in chars for x in self.username):
@@ -300,7 +300,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     @property
     def picture_dir(self):
-        from amo.helpers import user_media_path
+        from olympia.amo.helpers import user_media_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(user_media_path('userpics'),
                             split_id.group(2) or '0',
@@ -312,7 +312,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     @property
     def picture_url(self):
-        from amo.helpers import user_media_url
+        from olympia.amo.helpers import user_media_url
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:
@@ -342,7 +342,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     @amo.cached_property
     def needs_tougher_password(user):
-        from access import acl
+        from olympia.access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
                 acl.action_allowed_user(user, 'Addons', 'Edit') or
                 acl.action_allowed_user(user, 'Addons', 'Review') or
@@ -387,7 +387,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     @transaction.commit_on_success
     def restrict(self):
-        from amo.utils import send_mail
+        from olympia.amo.utils import send_mail
         log.info(u'User (%s: <%s>) is being restricted and '
                  'its user-generated content removed.' % (self, self.email))
         g = Group.objects.get(rules='Restricted:UGC')
@@ -457,7 +457,7 @@ class UserProfile(OnChangeMixin, ModelBase,
         # Can't do CEF logging here because we don't have a request object.
 
     def email_confirmation_code(self):
-        from amo.utils import send_mail
+        from olympia.amo.utils import send_mail
         log.debug("Sending account confirmation code for user (%s)", self)
 
         url = "%s%s" % (settings.SITE_URL,
@@ -501,7 +501,7 @@ class UserProfile(OnChangeMixin, ModelBase,
                       'name': _('My Favorite Add-ons')})
 
     def special_collection(self, type_, defaults):
-        from bandwagon.models import Collection
+        from olympia.bandwagon.models import Collection
         c, new = Collection.objects.get_or_create(
             author=self, type=type_, defaults=defaults)
         if new:
@@ -531,7 +531,7 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     def addons_for_collection_type(self, type_):
         """Return the addons for the given special collection type."""
-        from bandwagon.models import CollectionAddon
+        from olympia.bandwagon.models import CollectionAddon
         qs = CollectionAddon.objects.filter(
             collection__author=self, collection__type=type_)
         return qs.values_list('addon', flat=True)

@@ -540,7 +540,7 @@ def parse_xpi(xpi, addon=None, check=True):
 
 
 def check_xpi_info(xpi_info, addon=None):
-    from addons.models import Addon, BlacklistedGuid
+    from olympia.addons.models import Addon, BlacklistedGuid
     guid = xpi_info['guid']
     if not guid:
         raise forms.ValidationError(_("Could not find an add-on ID."))

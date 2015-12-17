@@ -813,7 +813,7 @@ class ESTestCaseWithAddons(ESTestCase):
         addon_ids = [1, 2, 3, 4, 5, 6]  # From the addons/base_es fixture.
         cls._addons = list(Addon.objects.filter(pk__in=addon_ids)
                            .order_by('id'))
-        from addons.tasks import index_addons
+        from olympia.addons.tasks import index_addons
         index_addons(addon_ids)
         # Refresh ES.
         cls.refresh()

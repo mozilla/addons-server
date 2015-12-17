@@ -13,7 +13,7 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from olympia import amo
-from olympia.models import ModelBase, ManagerBase
+from olympia.amo.models import ModelBase, ManagerBase
 from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import Collection

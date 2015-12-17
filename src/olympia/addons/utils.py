@@ -12,7 +12,7 @@ rnlog = logging.getLogger('z.rn')
 
 
 def reverse_name_lookup(key, addon_type):
-    from addons.models import Addon
+    from olympia.addons.models import Addon
     # This uses the Addon.objects manager, which filters out unlisted addons,
     # on purpose. We don't want to enforce name uniqueness between listed and
     # unlisted addons.
@@ -29,7 +29,7 @@ def reverse_name_lookup(key, addon_type):
 
 @memoize('addons:featured', time=60 * 10)
 def get_featured_ids(app, lang=None, type=None):
-    from addons.models import Addon
+    from olympia.addons.models import Addon
     ids = []
     is_featured = (Q(collections__featuredcollection__isnull=False) &
                    Q(collections__featuredcollection__application=app.id))
@@ -60,8 +60,8 @@ def get_featured_ids(app, lang=None, type=None):
 
 @memoize('addons:creatured', time=60 * 10)
 def get_creatured_ids(category, lang):
-    from addons.models import Addon
-    from bandwagon.models import FeaturedCollection
+    from olympia.addons.models import Addon
+    from olympia.bandwagon.models import FeaturedCollection
     if lang:
         lang = lang.lower()
     per_locale = set()

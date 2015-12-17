@@ -2497,7 +2497,7 @@ class TestReview(ReviewBase):
         # Create an activy log for each of the following: user addition, role
         # change and deletion.
         author = self.addon.addonuser_set.get()
-        from amo import set_user
+        from olympia.amo import set_user
         set_user(author.user)
         amo.log(amo.LOG.ADD_USER_WITH_ROLE,
                 author.user, author.get_role_display(), self.addon)

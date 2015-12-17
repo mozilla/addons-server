@@ -521,7 +521,7 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms, source=None, is_listed=True,
                     data=None):
-        from files.utils import parse_addon
+        from olympia.files.utils import parse_addon
 
         if not data:
             data = parse_addon(upload)
@@ -1215,7 +1215,7 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
     def is_incomplete(self):
-        from devhub.models import SubmitStep  # Avoid import loop.
+        from olympia.devhub.models import SubmitStep  # Avoid import loop.
         return SubmitStep.objects.filter(addon=self).exists()
 
     def is_pending(self):

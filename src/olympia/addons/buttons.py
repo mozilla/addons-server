@@ -54,7 +54,7 @@ def install_button(context, addon, version=None, show_contrib=True,
 
 @jinja2.contextfunction
 def big_install_button(context, addon, **kwargs):
-    from addons.helpers import statusflags
+    from olympia.addons.helpers import statusflags
     flags = jinja2.escape(statusflags(context, addon))
     button = install_button(context, addon, detailed=True, size='prominent',
                             **kwargs)
@@ -64,7 +64,7 @@ def big_install_button(context, addon, **kwargs):
 
 @jinja2.contextfunction
 def mobile_install_button(context, addon, **kwargs):
-    from addons.helpers import statusflags
+    from olympia.addons.helpers import statusflags
     button = install_button(context, addon, detailed=True, size='prominent',
                             mobile=True, **kwargs)
     flags = jinja2.escape(statusflags(context, addon))

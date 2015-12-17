@@ -192,7 +192,7 @@ class PurifiedTranslation(Translation):
         return utils.truncate(unicode(self), length, killwords, end)
 
     def clean(self):
-        from amo.utils import clean_nl
+        from olympia.amo.utils import clean_nl
         super(PurifiedTranslation, self).clean()
         cleaned = self.clean_localized_string()
         self.localized_string_clean = clean_nl(cleaned).strip()

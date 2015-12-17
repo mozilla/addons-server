@@ -90,7 +90,7 @@ class BulkValidationForm(happyforms.ModelForm):
         return self._clean_appversion(self.cleaned_data['target_version'])
 
 
-path = os.path.join(settings.ROOT, 'apps/zadmin/templates/zadmin')
+path = os.path.join(settings.ROOT, 'src/olympia/zadmin/templates/zadmin')
 texts = {
     'validation': open('%s/%s' % (path, 'validation-email.txt')).read(),
 }
@@ -295,7 +295,7 @@ class GenerateErrorForm(happyforms.Form):
             except:
                 settings.HEKA.raven('heka_sentry error triggered')
         elif error == 'amo_cef':
-            from amo.utils import log_cef
+            from olympia.amo.utils import log_cef
             env = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_HOST': '127.0.0.1',
                    'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
                    'HTTP_USER_AGENT': 'MySuperBrowser'}

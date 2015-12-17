@@ -4,7 +4,7 @@ from django.db.models import signals
 import commonware.log
 
 from olympia import amo
-from olympia.models import ModelBase
+from olympia.amo.models import ModelBase
 
 
 log = commonware.log.getLogger('z.users')

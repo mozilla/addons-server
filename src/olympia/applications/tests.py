@@ -61,7 +61,7 @@ class TestCommands(TestCase):
     def test_dump_apps(self):
         tmpdir = tempfile.mkdtemp()
         with self.settings(MEDIA_ROOT=tmpdir):  # Don't overwrite apps.json.
-            from applications.management.commands import dump_apps
+            from olympia.applications.management.commands import dump_apps
             call_command('dump_apps')
             with open(dump_apps.Command.JSON_PATH, 'r') as f:
                 apps = json.load(f)

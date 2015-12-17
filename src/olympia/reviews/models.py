@@ -123,7 +123,7 @@ class Review(ModelBase):
             check_spam.apply_async(args=[instance.id], countdown=600)
 
     def refresh(self, update_denorm=False):
-        from addons.models import update_search_index
+        from olympia.addons.models import update_search_index
         from . import tasks
 
         if update_denorm:

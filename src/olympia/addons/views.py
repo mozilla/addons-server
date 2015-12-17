@@ -21,6 +21,7 @@ import commonware.log
 import session_csrf
 from tower import ugettext as _, ugettext_lazy as _lazy
 from mobility.decorators import mobilized, mobile_template
+from session_csrf import anonymous_csrf_exempt
 
 from olympia import amo
 from olympia.amo import messages
@@ -37,7 +38,6 @@ from olympia.constants.base import FIREFOX_IOS_USER_AGENTS
 from olympia import paypal
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
-from olympia.session_csrf import anonymous_csrf_exempt
 from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
@@ -378,7 +378,7 @@ def home(request):
 
 
 def homepage_promos(request):
-    from discovery.views import promos
+    from olympia.discovery.views import promos
     version, platform = request.GET.get('version'), request.GET.get('platform')
     if not (platform or version):
         raise http.Http404
