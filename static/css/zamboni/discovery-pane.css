@@ -1013,65 +1013,7 @@ li#no-restart {
 }
 
 .notice h3,
-.upsell .premium a {
-    font: normal bold 14px/1.2em "helvetica neue", helvetica, arial, sans-serif;
-}
 
-.upsell {
-    position: relative;
-}
-
-.upsell > h3,
-.upsell .premium {
-    line-height: 32px;
-    padding: 0 0 .5em;
-}
-
-.upsell > h3 {
-    float: left;
-    margin-right: 1em;
-}
-.html-rtl .upsell > h3 {
-    float: right;
-    margin: 0 0 0 1em;
-}
-
-.upsell .premium {
-    float: right;
-}
-.html-rtl .upsell .premium {
-    float: left;
-}
-
-.upsell .premium a {
-    text-decoration: none;
-}
-
-.upsell img {
-    float: left;
-    margin-right: 5px;
-    height: 32px;
-}
-
-.upsell .prose {
-    clear: both;
-}
-
-.upsell ul {
-    list-style: disc;
-}
-.upsell ol {
-    list-style: decimal;
-}
-
-.upsell ul,
-.upsell ol {
-    margin: 0 0 0 2em;
-}
-.html-rtl .upsell ul,
-.html-rtl .upsell ol {
-    margin: 0 2em 0 0;
-}
 
 /* @group Installation popup notices */
 

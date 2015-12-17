@@ -324,11 +324,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     dependencies = models.ManyToManyField('self', symmetrical=False,
                                           through='AddonDependency',
                                           related_name='addons')
-    premium_type = models.PositiveIntegerField(
-        choices=amo.ADDON_PREMIUM_TYPES.items(), default=amo.ADDON_FREE)
-    manifest_url = models.URLField(max_length=255, blank=True, null=True)
-    app_domain = models.CharField(max_length=255, blank=True, null=True,
-                                  db_index=True)
 
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
@@ -336,18 +331,10 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    make_public = models.DateTimeField(null=True)
     mozilla_contact = models.EmailField(blank=True)
-
-    vip_app = models.BooleanField(default=False)
-
-    # Whether the app is packaged or not (aka hosted).
-    is_packaged = models.BooleanField(default=False, db_index=True)
 
     # This gets overwritten in the transformer.
     share_counts = collections.defaultdict(int)
-
-    enable_new_regions = models.BooleanField(default=False, db_index=True)
 
     whiteboard = models.TextField(blank=True)
 
@@ -490,7 +477,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             self._reviews.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
             amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
-            self.update(status=amo.STATUS_DELETED, slug=None, app_domain=None,
+            self.update(status=amo.STATUS_DELETED, slug=None,
                         _current_version=None, guid=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
@@ -531,8 +518,8 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         return addon
 
     @classmethod
-    def from_upload(cls, upload, platforms, is_packaged=False, source=None,
-                    is_listed=True, data=None):
+    def from_upload(cls, upload, platforms, source=None, is_listed=True,
+                    data=None):
         from files.utils import parse_addon
 
         if not data:

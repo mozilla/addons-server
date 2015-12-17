@@ -31,9 +31,8 @@ from lib.log_settings_base import formatters, handlers, loggers
 # remove all this.
 from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
-from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
-                            STATUS_BETA, STATUS_LITE,
-                            STATUS_LITE_AND_NOMINATED)
+from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
+                            STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
