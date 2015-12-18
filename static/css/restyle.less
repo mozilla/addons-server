@@ -1,5 +1,6 @@
 // Colors
 @primary-blue: rgba( 12, 153, 213, 1);
+@primary-link: #6AC3E2;
 
 #tabzilla:before {
     background: none;
@@ -582,10 +583,14 @@ button.good {
     margin-top: -5px;
 }
 /* Re-colors links on top of details page to white */
-#addon a { color: #FFFFFF; }
-.author a { color: #FFFFFF; }
-.secondary a { color: #FFFFFF; }
-.addon-vitals .widgets .widget { color: #FFFFFF; }
+#addon a, .author a, .secondary a,
+.addon-vitals .widgets .widget { 
+    color: #FFFFFF; 
+}
+#addon-summary a,
+.notice.c.author a {
+    color: @primary-link;
+}
 
 .install-button > .button.add.installer {
     background: #57BD35;

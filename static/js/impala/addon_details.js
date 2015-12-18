@@ -3,8 +3,6 @@ $(function () {
     $('#background-wrapper').css('height',
         $('.amo-header').height() +
         $('#addon-description-header').height() + 20 + 'px');
-    console.log($('#addon-description-header').height())
-    console.log($('section#addon-description-header.primary').height())
 
     $(".previews").zCarousel({
         btnNext: ".previews .next",
