@@ -28,7 +28,7 @@ def supports_firefox(file_obj):
     """Return True if the file support a high enough version of Firefox.
 
     We only sign files that are at least compatible with Firefox
-    MIN_NOT_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
+    MIN_D2C_VERSION, or Firefox MIN_NOT_D2C_VERSION if they are not default
     to compatible.
     """
     apps = file_obj.version.apps.all()
