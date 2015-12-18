@@ -380,7 +380,8 @@ button.search-button {
 #promos .feature {
     padding: 10px 78px;
 }
-#promos .control {
+#promos .control,
+.carousel > a {
     &:hover {
         background: rgba(255,255,255,0.1);
         color: rgba(255,255,255, 0.3);
@@ -391,12 +392,16 @@ button.search-button {
         color: rgba(255,255,255, 1);
         height: 100%;
         border: 0;
-        font-family: inherit;
+        font-family: 'Open Sans';
         line-height: 260px;
         vertical-align: middle;
         border-radius: 0;
         box-shadow: none;
     }
+}
+
+.control {
+    font-family: 'Open Sans' !important;
 }
 
 #promos .prev {
