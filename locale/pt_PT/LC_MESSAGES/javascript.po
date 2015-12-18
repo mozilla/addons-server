@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-11-25 10:07+0000\n"
-"Last-Translator: manuelarodsilva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2015-12-18 01:18+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -123,8 +123,8 @@ msgid ""
 "done in the next step)."
 msgstr ""
 "Se para ser completamente testado, o seu extra requer uma conta para um "
-"sítio web, inclua um nome de utilizador e palavra-passe de teste nas Notas "
-"ao Revisor (isto pode ser feito no próximo passo)."
+"website, inclua um nome de utilizador e palavra-passe de teste nas Notas ao "
+"Revisor (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:457
 msgid ""
@@ -153,10 +153,10 @@ msgid ""
 " Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
-"Binários compilados, bem como scripts minificados ou ofuscados (excluindo "
-"bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente "
-"para revisão. Tenha a certeza que utiliza o campo de envio de código fonte "
-"para evitar que as sua submissão seja rejeitada."
+"Os binários compilados, bem como os scripts reduzidos ou ofuscados "
+"(excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas "
+"separadamente para revisão. Certifique-se que utiliza o campo de envio do "
+"código fonte para evitar que a sua submissão seja rejeitada."
 
 #: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
@@ -358,7 +358,7 @@ msgstr "Extras criados"
 
 #: static/js/impala/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr "Extras transferidos"
+msgstr "Extras descarregados"
 
 #: static/js/impala/stats/csv_keys.js:21
 msgid "Add-ons Updated"
@@ -580,12 +580,12 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Transferências e utilizadores diários, últimos {0} dias"
+msgstr "Descargas e utilizadores diários, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Transferências e utilizadores diários de {0} a {1}"
+msgstr "Descargas e utilizadores diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
@@ -600,12 +600,12 @@ msgstr "Instalações e utilizadores diários de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
 msgid "Downloads, last {0} days"
-msgstr "Transferências, últimos {0} dias"
+msgstr "Descargas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
-msgstr "Transferências de {0} a {1}"
+msgstr "Descargas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147
@@ -670,12 +670,12 @@ msgstr "Estado do extra de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183
 msgid "Download Sources, last {0} days"
-msgstr "Origens das transferências, últimos {0} dias"
+msgstr "Origens das descargas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
 msgid "Download Sources from {0} to {1}"
-msgstr "Origens das transferências de {0} a {1}"
+msgstr "Origens das descargas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:189
@@ -690,12 +690,12 @@ msgstr "Contribuições de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195
 msgid "Site Metrics, last {0} days"
-msgstr "medições do sítio , últimos {0} dias"
+msgstr "Medições do site , últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:197
 msgid "Site Metrics from {0} to {1}"
-msgstr "Medições do sítio de {0} a {1}"
+msgstr "Medições do site de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:201
@@ -710,12 +710,12 @@ msgstr "Extras em utilização de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Extras transferidos, últimos {0} dias"
+msgstr "Extras descarregados, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Extras transferidosde {0} a {1}"
+msgstr "Extras descarregados de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213
@@ -745,7 +745,7 @@ msgstr "Revisões escritas, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr "Revisºoes escritas de {0} a {1}"
+msgstr "Revisões escritas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
@@ -800,7 +800,7 @@ msgstr "Vendas de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261
 msgid "Installs, last {0} days"
-msgstr "instalações, últimos {0} dias"
+msgstr "Instalações, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263
@@ -838,7 +838,7 @@ msgstr "Outro"
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
 #: static/js/zamboni/editors.js:295
 msgid "Select an application first"
-msgstr "Primeiro seleccione uma aplicação"
+msgstr "Primeiro selecione uma aplicação"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -852,7 +852,7 @@ msgstr[1] ""
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Email do autor do extra {2} que falhou a validação."
+msgstr[0] "E-mail do autor do extra {2} que falhou a validação."
 msgstr[1] "Email dos autores do extra {2} que falhou a validação."
 
 #: static/js/zamboni/apps.js:54
@@ -898,12 +898,12 @@ msgstr "Adicionar a {0}"
 
 #: static/js/zamboni/buttons.js:87
 msgid "Download Now"
-msgstr "Transferir agora"
+msgstr "Descarregar agora"
 
 #: static/js/zamboni/buttons.js:128
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
-"O extra não foi atualizado para suportar a compatibilidade por omissão."
+"O extra não foi atualizado para suportar a compatibilidade por predefinição."
 
 #: static/js/zamboni/buttons.js:133
 msgid "You need to be using Firefox 10.0 or higher."
@@ -922,7 +922,7 @@ msgstr "Instalar para o {0} de qualquer maneira"
 
 #: static/js/zamboni/buttons.js:227
 msgid "Download for {0} anyway"
-msgstr "Transferir para o {0} de qualquer maneira"
+msgstr "Descarregar para o {0} de qualquer maneira"
 
 #: static/js/zamboni/buttons.js:284
 msgid "Not available for your platform"
@@ -987,7 +987,7 @@ msgstr "Comentário"
 
 #: static/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
-msgstr "Remover este extra da colecção"
+msgstr "Remover este extra da coleção"
 
 #: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
 msgid "Remove"
@@ -995,15 +995,15 @@ msgstr "Remover"
 
 #: static/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr "Remover este utilizador como contribuinte"
+msgstr "Remover este utilizador como colaborador"
 
 #: static/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr "É necessário um endereço de correio."
+msgstr "É necessário um endereço de e-mail."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr "Não se pode adicionar a si próprio como um contribuinte."
+msgstr "Não se pode adicionar a si próprio como um colaborador."
 
 #: static/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -1031,7 +1031,7 @@ msgstr "Alterações guardadas"
 
 #: static/js/zamboni/devhub.js:407
 msgid "Enter a new author's email address"
-msgstr "Escreva o novo enderço de correio do autor"
+msgstr "Escreva o novo endereço de e-mail do autor"
 
 #: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
@@ -1075,7 +1075,7 @@ msgstr "Erro interno do servidor"
 
 #: static/js/zamboni/devhub.js:1327
 msgid "Must be a valid e-mail address."
-msgstr "Tem de ser um endereço de correio válido."
+msgstr "É necessário um endereço de e-mail válido."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1087,8 +1087,8 @@ msgid ""
 "href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
 msgstr ""
 "Desculpe, não conseguimos encontrar nenhuma recomendação para si. <br>Por "
-"favor, visite o <a href=\"{0}\">sítio dos extras</a> para encontrar um extra"
-" para si."
+"favor, visite o <a href=\"{0}\">site dos extras</a> para encontrar um extra "
+"para si."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1096,7 +1096,7 @@ msgstr "A procurar recomendações&hellip;"
 
 #: static/js/zamboni/discovery_pane.js:249
 msgid "Updating recommendations&hellip;"
-msgstr "A actualizar recomendações&hellip;"
+msgstr "A atualizar recomendações&hellip;"
 
 #: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
@@ -1158,7 +1158,7 @@ msgstr "A carregar..."
 #: static/js/zamboni/global.js:489
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Falta <b>{0}</b> caractere."
+msgstr[0] "Falta <b>{0}</b> caráter."
 msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 #: static/js/zamboni/init.js:28
@@ -1166,8 +1166,8 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
-"Esta funcionalidade está desativada temporariamente enquanto procedemos à "
-"manutenção do sítio web. Por favor, volte mais tarde."
+"Esta funcionalidade está temporariamente desativada enquanto procedemos à "
+"manutenção do website. Por favor, volte mais tarde."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1175,12 +1175,12 @@ msgstr "Remover esta tradução"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr "Força da senha:"
+msgstr "Força da palavra-passe:"
 
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Falta pelo menos {0} caractere."
+msgstr[0] "Falta pelo menos {0} caráter."
 msgstr[1] "Faltam pelo menos {0} caracteres."
 
 #: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
@@ -1234,7 +1234,7 @@ msgstr "Sugestões para passar a assinatura automática:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
-msgstr "testes de compatibilidade"
+msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
@@ -1272,7 +1272,7 @@ msgstr "Erro interno do servidor"
 
 #: static/js/zamboni/mobile/buttons.js:77
 msgid "Not Updated for {0} {1}"
-msgstr "Não actualizado para {0} {1}"
+msgstr "Não atualizado para {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js:78
 msgid "Requires Newer Version of {0}"
