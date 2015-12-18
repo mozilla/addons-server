@@ -10,7 +10,7 @@ pytestmark = pytest.mark.django_db
 
 
 def test_truncate_text():
-    eq_(truncate_text('foobar', 5), ('...', 0))
+    eq_(truncate_text('foobar', 5), ('fooba...', 0))
     eq_(truncate_text('foobar', 5, True), ('fooba...', 0))
     eq_(truncate_text('foobar', 5, True, 'xxx'), ('foobaxxx', 0))
     eq_(truncate_text('foobar', 6), ('foobar...', 0))
