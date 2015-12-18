@@ -30,11 +30,13 @@ class CoreConfig(AppConfig):
         session_csrf.monkeypatch()
 
         self.configure_logging()
+        self.load_product_details()
 
     def configure_logging(self):
         """Configure the `logging` module to route logging based on settings
-        in our various settings modules and defaults in `lib.log_settings_base`."""
-        from lib.log_settings_base import log_configure
+        in our various settings modules and defaults in
+        `lib.log_settings_base`."""
+        from olympia.lib.log_settings_base import log_configure
 
         log_configure()
 
