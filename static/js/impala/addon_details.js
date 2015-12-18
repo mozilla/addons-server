@@ -1,6 +1,11 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
-    $('#background-wrapper').css('height', '100%');
+    $('#background-wrapper').css('height',
+        $('.amo-header').height() +
+        $('#addon-description-header').height() + 20 + 'px');
+    console.log($('#addon-description-header').height())
+    console.log($('section#addon-description-header.primary').height())
+
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",
