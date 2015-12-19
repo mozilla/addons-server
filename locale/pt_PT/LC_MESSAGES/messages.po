@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-19 01:23+0000\n"
+"PO-Revision-Date: 2015-12-19 01:39+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1627,7 +1627,7 @@ msgstr "Utilizadores"
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:59
 #: apps/browse/views.py:70 apps/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr "Transferências semanais"
+msgstr "Descargas semanais"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
@@ -1655,7 +1655,7 @@ msgstr "Cuidado"
 
 #: apps/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr "Visite o sítio de suporte"
+msgstr "Visite o site de apoio"
 
 #: apps/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
@@ -1671,7 +1671,7 @@ msgid ""
 "before installation can proceed:"
 msgstr ""
 "%(name)s necessita que aceite o seguinte Acordo de Licenciamento de "
-"Utilizador Final antes de a instalação poder continuar:"
+"Utilizador Final antes da instalação poder continuar:"
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
@@ -1728,9 +1728,9 @@ msgid ""
 "read a busy page, there's an add-on to improve your on-the-go browsing."
 msgstr ""
 "Os extras são aplicações que permitem personalizar o Firefox com "
-"funcionalidade e estilo extra. Se você escrever o nome de um sítio ou não "
-"consegue ler uma página ocupada, existe um extra para melhorar a sua "
-"experiência de navegação."
+"funcionalidade e estilo extra. Se escrever o nome de um site ou não consegue"
+" ler uma página ocupada, existe um extra para melhorar a sua experiência de "
+"navegação."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1827,7 +1827,7 @@ msgstr "Sair"
 #: apps/amo/context_processors.py:89
 #: apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr "Gerenciar Meus Envios"
+msgstr "Gerir as minhas submissões"
 
 #: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27
 #: apps/devhub/templates/devhub/addons/dashboard.html:25
@@ -1840,7 +1840,7 @@ msgstr "Submeter um novo extra"
 #: apps/devhub/templates/devhub/index.html:24
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr "Enviar um Tema Novo"
+msgstr "Submeter um tema novo"
 
 #: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85
 #: apps/devhub/helpers.py:36 apps/devhub/helpers.py:68
@@ -1868,7 +1868,7 @@ msgstr "Ferramentas do admin"
 
 #: apps/amo/fields.py:72
 msgid "This must be a valid hex color code, such as #000000."
-msgstr "Tem de ser um código hex de cor válido, tal como #000000."
+msgstr "É necessário um código hexadecimal de cor válido, tal como #000000."
 
 #: apps/amo/fields.py:98
 msgid "Enter at least one value."
@@ -1932,11 +1932,11 @@ msgstr "Contribuições para {addon}."
 
 #: apps/amo/log.py:67 apps/amo/log.py:417
 msgid "{addon} disabled."
-msgstr "{addon} desactivado."
+msgstr "{addon} desativado."
 
 #: apps/amo/log.py:73
 msgid "{addon} enabled."
-msgstr "{addon} activado."
+msgstr "{addon} ativado."
 
 #: apps/amo/log.py:80
 msgid "Stats set public for {addon}."
@@ -1944,7 +1944,7 @@ msgstr "Estatísticas definidas como públicas para {addon}."
 
 #: apps/amo/log.py:87
 msgid "{addon} stats set to private."
-msgstr "{addon} restatísticas definidas como privadas."
+msgstr "Estatísticas de {addon} definidas como privadas."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:94
@@ -1961,7 +1961,7 @@ msgstr "Pré-visualização editada para {addon}."
 
 #: apps/amo/log.py:113
 msgid "Preview deleted from {addon}."
-msgstr "Pré-visualizaçãoeliminada de {addon}."
+msgstr "Pré-visualização de {addon} eliminada."
 
 #: apps/amo/log.py:119
 msgid "{version} added to {addon}."
@@ -1990,7 +1990,7 @@ msgstr "{addon} {version} aprovado."
 
 #: apps/amo/log.py:168
 msgid "{addon} {version} given preliminary review."
-msgstr "Efectuada revisão preliminar de {addon} {version}."
+msgstr "Efetuada revisão preliminar de {addon} {version}."
 
 #: apps/amo/log.py:169
 msgid "Preliminarily approved"
@@ -2018,31 +2018,31 @@ msgstr "Escalado"
 
 #: apps/amo/log.py:209
 msgid "{addon} {version} review requested."
-msgstr "{addon} {version} análise solicitada."
+msgstr "Solicitada uma análise para {addon} {version}."
 
 #: apps/amo/log.py:210
 msgid "Review requested"
-msgstr "Análise pedida"
+msgstr "Análise solicitada"
 
 #: apps/amo/log.py:218
 msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} pedida mais informação."
+msgstr "Solicitada mais informação para {addon} {version}."
 
 #: apps/amo/log.py:219
 msgid "More information requested"
-msgstr "Pedida mais informação"
+msgstr "Solicitada mais informação"
 
 #: apps/amo/log.py:227
 msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} pedido de super revisão."
+msgstr "Super revisão para {addon} {version} solicitada."
 
 #: apps/amo/log.py:228
 msgid "Super review requested"
-msgstr "Pedida super revisão"
+msgstr "Solicitada super revisão"
 
 #: apps/amo/log.py:235
 msgid "Comment on {addon} {version}."
-msgstr "Comentário em {addon} {version}."
+msgstr "Comentário sobre {addon} {version}."
 
 #: apps/amo/log.py:236
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19
@@ -2130,23 +2130,19 @@ msgstr "{user} eliminou {review} para {addon}."
 
 #: apps/amo/log.py:354
 msgid "Application max version for {version} updated."
-msgstr "Actualizada a versão máx. da aplicação para {version}"
+msgstr "Versão máx. da aplicação atualizada para {version}."
 
 #: apps/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
-"Mensagem de correio enviada aos autores sobre a compatibilidade da "
-"{version}."
+msgstr "E-mail enviado aos autores sobre a compatibilidade da {version}."
 
 #: apps/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
-"Mensagem de correio eletrónico enviada ao autor sobre a compatibilidade do "
-"extra."
+msgstr "E-mail enviado ao autor sobre a compatibilidade do extra."
 
 #: apps/amo/log.py:369
 msgid "Password changed."
-msgstr "Senha alterada."
+msgstr "Palavra-passe alterada."
 
 #: apps/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
@@ -2158,7 +2154,7 @@ msgstr "{addon} manifesto atualizado."
 
 #: apps/amo/log.py:385
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} aprovado mas aguardando para ser publicado."
+msgstr "{addon} {version} aprovado mas a aguardar para ser publicado."
 
 #: apps/amo/log.py:386
 msgid "Approved but waiting"
@@ -2187,7 +2183,7 @@ msgstr "Encaminhado para análise superior removido"
 
 #: apps/amo/log.py:418
 msgid "App disabled"
-msgstr "Aplicativo desativado"
+msgstr "Aplicação desativada"
 
 #: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2218,7 +2214,7 @@ msgstr "Vídeo removido"
 #: apps/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
 msgstr ""
-"{addon} revistos novamente devido à incorporação de novo(s) dispositivo(s)."
+"{addon} revisto novamente devido à incorporação de novo(s) dispositivo(s)."
 
 #: apps/amo/log.py:450
 msgid "Device(s) Added"
@@ -2255,11 +2251,11 @@ msgstr "Utilizador {user} anónimo."
 
 #: apps/amo/log.py:505
 msgid "User {user} restricted."
-msgstr "Usuário {user} restringido."
+msgstr "Utilizador {user} restringido."
 
 #: apps/amo/log.py:511
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "O administrador {0} visualizou o registro de atividade de {user}."
+msgstr "O administrador {0} visualizou o registo de atividade de {user}."
 
 # 83%
 #: apps/amo/log.py:518
@@ -2345,8 +2341,8 @@ msgid ""
 "<p>Try going back to the previous page, refreshing and then trying "
 "again.</p>"
 msgstr ""
-"<p>Tente voltar para a página anterior, actualize e volte a tentar de "
-"novo.</p>"
+"<p>Tente voltar para a página anterior, atualize e depois tente "
+"novamente.</p>"
 
 #: apps/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -2369,16 +2365,16 @@ msgid ""
 "</li> <li> If you prefer to start over, just go to the <a href=\"%(home)s"
 "\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Pedimos desculpa mas não encontrámos o que procura.</h1> <p> A página ou"
-" ficheiro que pediu não foi encontrado no sítio. É possível que tenha "
-"clicado numa ligação desactualizada, ou tenha escrito o endereço "
-"incorrectamente. </p> <ul> <li> Se escreveu o endereço, verifique a "
-"escrita.</li> <li> Se seguiu uma ligação de um outro local, por favor "
+"<h1>Pedimos desculpa, mas não encontrámos o que procura.</h1> <p> A página "
+"ou ficheiro que pediu não foi encontrado no nosso site. É possível que tenha"
+" clicado numa ligação desatualizada, ou tenha digitado o endereço "
+"incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a "
+"ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor "
 "informe-nos em <a "
 "href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Diga-nos de"
 " onde veio e o que procura e nós faremos os possíveis para o corrigir.</li> "
-"</ul> <p>Ou pode ir para algumas das páginas populares do nosso sítio web. "
-"</p> <ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em "
+"</ul> <p>Ou pode ir a algumas das páginas populares do nosso website. </p> "
+"<ul> <li>Está interessado numa <a href=\"%(rec)s\">lista de extras em "
 "destaque</a>?</li> <li>Deseja <a href=\"%(search)s\">procurar extras</a>? "
 "Pode ir para a <a href=\"%(search)s\">página de pesquisa</a> ou para o campo"
 " de pesquisa em cima.</li> <li> Se preferir recomeçar, vá para a <a "
@@ -2394,7 +2390,7 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Oops! Aconteceu um erro.</h1> <p>Vamos repará-lo logo que possível.</p> "
+"<h1>Oops! Ocorreu um erro.</h1> <p>Vamos repará-lo logo que possível.</p> "
 "<p> Pode tentar atualizar a página, ou volte à <a href=\"%(home)s\">página "
 "inicial Extras</a>. </p>"
 
@@ -2455,18 +2451,17 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please use your browser's Back button and try again a little later."
 msgstr ""
-"Esta funcionalidade está temporariamente desactivadas enquanto efectuamos "
-"uma manutenção ao sítio web. Use o botão retroceder do seu navegador e tente"
-" de novo mais tarde."
+"Esta funcionalidade está temporariamente desativada enquanto efetuamos uma "
+"manutenção ao website. Use o botão retroceder do seu navegador e tente de "
+"novo mais tarde."
 
 #: apps/amo/templates/amo/read-only.html:14
 msgid ""
 "Some features on this page are temporarily disabled while we perform website"
 " maintenance. Please try again a little later."
 msgstr ""
-"Algumas funcionalidades estão temporariamente desactivadas enquanto "
-"efectuamos uma manutenção ao sítio web. Volte a tentar dentro de alguns "
-"minutos."
+"Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos"
+" uma manutenção ao website. Volte a tentar dentro de alguns minutos."
 
 #: apps/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -2515,7 +2510,7 @@ msgstr "Quer mais personalização? Tente <b>Temas completos</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:89
 msgid "Most Followers"
-msgstr "Mais seguidores"
+msgstr "Maior número de seguidores"
 
 #: apps/amo/templates/amo/site_nav.html:66
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
@@ -2632,7 +2627,7 @@ msgstr "Ainda não implementado."
 #: apps/api/templates/piston/request_token_ready.html:3
 #: apps/api/templates/piston/oauth/authorize.html:6
 msgid "Anonymous Party"
-msgstr "Festa anónima"
+msgstr "Parte anónima"
 
 #: apps/api/templates/piston/request_token_ready.html:8
 #: apps/api/templates/piston/request_token_ready.html:18
@@ -2649,7 +2644,7 @@ msgid ""
 "You have chosen to give access to %(consumer)s. They will be able to act on "
 "your behalf or retrieve information about you."
 msgstr ""
-"Escolheu dar acesso a %(consumer)s. Eles poderão agir em seu nome ou obter "
+"Escolheu dar acesso a %(consumer)s. Estes poderão agir em seu nome ou obter "
 "informação sobre si."
 
 #: apps/api/templates/piston/request_token_ready.html:32
@@ -2657,8 +2652,8 @@ msgid ""
 "You have chosen to not give access to %(consumer)s. They will not be able to"
 " act on your behalf or retrieve information about you."
 msgstr ""
-"Escolheu não dar acesso a %(consumer)s. Eles não poderão agir em seu nome ou"
-" obter informação sobre si."
+"Escolheu não dar acesso a %(consumer)s. Estes não poderão agir em seu nome "
+"ou obter informação sobre si."
 
 #: apps/api/templates/piston/oauth/authorize.html:3
 msgid "Authorize access to your data"
@@ -2677,11 +2672,11 @@ msgid ""
 " behalf.</li> <li> Learning personal information about you, such as your "
 "username and email address (but not your password). </li> </ul>"
 msgstr ""
-"<p> O %(consumer)s quer ser autorizado a agir em sem nome. Isto pode "
-"incluir: </p> <ul> <li>Enviar, alterar ou remover extras em seu nome.</li> "
-"<li>Enviar, alterar ou remover extras por si.</li> <li> Obter informação "
-"pessoal sobre si, tais como o nome de utilizador e endereço de correio "
-"eletróncio (mas não a sua senha). </li> </ul>"
+"<p> %(consumer)s quer ser autorizado a agir em seu nome. Isto pode incluir: "
+"</p> <ul> <li>Carregar, alterar ou remover extras em seu nome.</li> "
+"<li>Carregar, alterar ou remover extras em seu nome.</li> <li> Obter "
+"informações pessoais sobre si, tais como o nome de utilizador e endereço de "
+"e-mail (mas não a sua palavra-passe). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -2711,9 +2706,9 @@ msgid ""
 "least one of the below applications supported. Only the versions listed "
 "below are allowed for these applications."
 msgstr ""
-"Extras submetidos nos Extras da Mozilla têm de ter um ficheiro install.rdf "
-"com pelo menos uma aplicação suportada. Apenas as versões listadas abaixo "
-"são permitidas para essas aplicações."
+"Os extras submetidos nos Extras da Mozilla necessitam de ter um ficheiro "
+"install.rdf com pelo menos uma aplicação suportada. Apenas as versões "
+"listadas abaixo são permitidas para essas aplicações."
 
 #: apps/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2759,15 +2754,15 @@ msgstr "{0} :: Coleções :: {1}"
 
 #: apps/bandwagon/forms.py:20
 msgid "Only I can view this collection."
-msgstr "Apenas eu posso ver esta colecção."
+msgstr "Apenas eu posso ver esta coleção."
 
 #: apps/bandwagon/forms.py:21
 msgid "Anybody can view this collection."
-msgstr "Todos podem ver esta colecção."
+msgstr "Todos podem ver esta coleção."
 
 #: apps/bandwagon/forms.py:122
 msgid "Give your collection a name."
-msgstr "Dê à sua colecção um nome."
+msgstr "Dê um nome à sua coleção."
 
 #: apps/bandwagon/forms.py:124
 msgid "URL:"
