@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-18 01:28+0000\n"
+"PO-Revision-Date: 2015-12-19 01:23+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1081,9 +1081,9 @@ msgid ""
 "your phone. (You'll need a QR reader. Search your phone's marketplace if "
 "don't have one.)"
 msgstr ""
-"Quer o {0} no seu Firefox mobile?Digitalize este código QR para o instalar "
-"directamente no seu telefone. (Necessita de um leitor QR. Procure no mercado"
-" do seu telefone se não tiver um.)"
+"Quer o {0} no seu Firefox móvel? Digitalize este código QR para o instalar "
+"diretamente no seu telefone. (Necessita de um leitor QR. Procure no mercado "
+"do seu telefone se não tiver um.)"
 
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
@@ -1144,13 +1144,14 @@ msgstr "O que acha?"
 #: apps/addons/templates/addons/impala/review_add_box.html:9
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
-"Por favor <a href=\"%(login)s\">inicie sessão</a> para colocar um comentário"
+"Por favor <a href=\"%(login)s\">inicie sessão</a> para submeter um "
+"comentário"
 
 #: apps/addons/templates/addons/review_add_box.html:16
 #: apps/addons/templates/addons/impala/review_add_box.html:18
 #: apps/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr "Titúlo:"
+msgstr "Título:"
 
 #: apps/addons/templates/addons/review_add_box.html:17
 #: apps/addons/templates/addons/impala/review_add_box.html:19
@@ -1179,9 +1180,9 @@ msgid ""
 " available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
-"Por favor não coloque relatos de erro nos comentários. Nós não "
-"disponibilizamos o seu endereço de correio ao desenvolvedor do extra e ele "
-"poderá ter que o contactar para resolver o problema."
+"Por favor, não insira relatos de erro nos comentários. Não disponibilizamos "
+"o seu endereço de e-mail aos programadores de extras e eles poderão ter que "
+"o contactar para resolver o problema."
 
 #: apps/addons/templates/addons/review_add_box.html:32
 #: apps/addons/templates/addons/impala/review_add_box.html:35
@@ -1217,7 +1218,7 @@ msgstr "pelo %(user)s em %(date)s"
 #: apps/addons/templates/addons/review_list_box.html:19
 #: apps/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr "Mostrar a resposta do desenvolvedor a está revisão"
+msgstr "Mostrar a resposta do programador a esta revisão"
 
 #: apps/addons/templates/addons/review_list_box.html:27
 msgid "See all reviews of this add-on"
@@ -1260,8 +1261,8 @@ msgid ""
 "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help"
 " support its continued development by making a small contribution."
 msgstr ""
-"O <a href=\"%(meet_url)s\">desenvolvedor deste extra</a> pede que o ajude na"
-" continuação do desenvolvimento fazendo uma pequena contribuição."
+"O <a href=\"%(meet_url)s\">programador deste extra</a> pede que o apoie no "
+"desenvolvimento com uma pequena contribuição."
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid ""
@@ -1269,8 +1270,8 @@ msgid ""
 " your support by making a donation to the <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
-"O <a href=\"%(meet_url)s\">desenvolvedor deste extra</a> pede mostre a sua "
-"ajuda fazendo uma contribuição para <a "
+"O <a href=\"%(meet_url)s\">programador deste extra</a> pede mostre o seu "
+"apoio com uma contribuição para <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/contribution.html:53
@@ -1279,14 +1280,14 @@ msgid ""
 " your support by making a small contribution to <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
-"O <a href=\"%(meet_url)s\">desenvolvedor deste extra</a> pede que o ajude na"
-" continuação do desenvolvimento fazendo uma pequena contribuição para <a "
+"O <a href=\"%(meet_url)s\">programador deste extra</a> pede que o apoie no "
+"desenvolvimento com uma pequena contribuição para <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
-"Este extra necessita dos seguintes extras para funcionar correctamente:"
+"Este extra necessita dos seguintes extras para funcionar corretamente:"
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
@@ -1341,8 +1342,8 @@ msgstr "Sem reínicio"
 #: apps/addons/templates/addons/impala/details.html:134
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Conheça o desenvolvedor: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Conheça os desenvolvedores</a>"
+msgstr[0] "Conheça o programador: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Conheça os programadores</a>"
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:144
@@ -1362,11 +1363,11 @@ msgstr "Página do extra"
 
 #: apps/addons/templates/addons/impala/details.html:192
 msgid "Support site"
-msgstr "Sítio de ajuda"
+msgstr "Site de apoio"
 
 #: apps/addons/templates/addons/impala/details.html:196
 msgid "Support E-mail"
-msgstr "Endereço de correio de ajuda"
+msgstr "Endereço de e-mail de apoio"
 
 #: apps/addons/templates/addons/impala/details.html:201
 #: apps/devhub/models.py:381
@@ -1404,7 +1405,7 @@ msgstr "Sobre este extra"
 
 #: apps/addons/templates/addons/impala/details.html:240
 msgid "Developer’s Comments"
-msgstr "Comentários do desenvolvedor"
+msgstr "Comentários do programador"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "Version Information"
@@ -1422,7 +1423,7 @@ msgid ""
 "stop receiving development updates, reinstall the default version from the "
 "link above."
 msgstr ""
-"O Canal de Desenvolvimento permite que teste uma nova versão experimental "
+"O canal de desenvolvimento permite que teste uma nova versão experimental "
 "deste extra antes de ser lançado ao público em geral. Assim que instalar a "
 "versão de desenvolvimento, vai continuar a receber as atualizações deste "
 "canal. Para parar de receber atualizações de desenvolvimento, reinstale a "
@@ -1438,7 +1439,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:294
 msgid "See complete development channel history"
-msgstr "Consulte o histórico completo do canal de desenvolvimento"
+msgstr "Ver o histórico completo do canal de desenvolvimento"
 
 #: apps/addons/templates/addons/impala/details.html:313
 #: apps/addons/templates/addons/impala/details.html:322
@@ -1460,15 +1461,15 @@ msgstr "Obrigado por instalar {0}"
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
-msgstr "Encontre-se com o desenvolvedor do {0}"
+msgstr "Conheça o programador de {0}"
 
 #: apps/addons/templates/addons/impala/developers.html:41
 msgid ""
 "Before downloading this add-on, please consider supporting the development "
 "of this add-on by making a small contribution."
 msgstr ""
-"Antes de transferir este extra, considere em ajudar o desenvolvimento deste "
-"extra fazendo uma pequena contribuição."
+"Antes de descarregar este extra, considere ajudar o desenvolvimento deste "
+"extra com uma pequena contribuição."
 
 # %1 is an add-on name.
 #: apps/addons/templates/addons/impala/developers.html:80
@@ -1483,7 +1484,7 @@ msgstr "O que há a seguir para {0}"
 #: apps/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] "Sobre o desenvolvedor"
+msgstr[0] "Sobre o programador"
 msgstr[1] "Sobre os desenvolvedores"
 
 #: apps/addons/templates/addons/impala/developers.html:96
@@ -1502,7 +1503,7 @@ msgstr "Este extra foi removido pelo autor."
 
 #: apps/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr "Este extra foi desactivado por um administrador."
+msgstr "Este extra foi desativado por um administrador."
 
 #: apps/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -1525,7 +1526,7 @@ msgstr "{0} utilizadores"
 #: apps/addons/templates/addons/impala/review_list_box.html:19
 #: apps/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr "permalink"
+msgstr "ligação permanente"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:23
 #: apps/editors/templates/editors/queue.html:98
@@ -1556,7 +1557,7 @@ msgstr "Mais"
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7
 #: apps/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr "Adicionar à colecção"
+msgstr "Adicionar à coleção"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:4
 #: apps/devhub/templates/devhub/index.html:73
@@ -1596,7 +1597,7 @@ msgstr "Este tema está pendente. Não é visível a mais ninguém a não ser vo
 
 #: apps/addons/templates/addons/listing/items.html:31
 msgid "Collector's Note"
-msgstr "Nota do coleccionador"
+msgstr "Nota do colecionador"
 
 #: apps/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
@@ -1608,8 +1609,8 @@ msgstr "Sem avaliações"
 #: apps/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> transferência semanal"
-msgstr[1] "<strong>{0}</strong> transferências semanais"
+msgstr[0] "<strong>{0}</strong> descarga semanal"
+msgstr[1] "<strong>{0}</strong> descargas semanais"
 
 #: apps/addons/templates/addons/mobile/button.html:23
 msgid "May Slow Down Your Browser"
