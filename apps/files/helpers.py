@@ -197,14 +197,14 @@ class FileViewer(object):
 
     def get_default(self, key=None):
         """Gets the default file and copes with search engines."""
-        if self.is_search_engine() and not key:
-            files = self.get_files()
-            return files.keys()[0] if files else None
-
         if key:
             return key
 
-        return 'install.rdf'
+        files = self.get_files()
+        for manifest in ('install.rdf', 'manifest.json', 'package.json'):
+            if manifest in files:
+                return manifest
+        return files.keys()[0] if files else None  # Eg: it's a search engine.
 
     def get_files(self):
         """
