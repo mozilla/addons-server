@@ -18,6 +18,7 @@ task = app.task
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(settings.INSTALLED_APPS)
 
+# See olympia.py::init_celery() for more configuration.
 
 @task_failure.connect
 def process_failure_signal(exception, traceback, sender, task_id,
