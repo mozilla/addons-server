@@ -1,5 +1,13 @@
 """Performs a number of path mutation and monkey patching operations which are
-required for Olympia to start up correctly."""
+required for Olympia to start up correctly.
+
+This is imported into manage.py and wsgi.py.
+
+This is executed when celery starts up by way of `bin/celery --app=olympia`
+where `olympia` is this module.
+
+This docstring will probably be wrong by the time you read it.
+"""
 
 import logging
 import os
@@ -72,12 +80,32 @@ def init_amo():
 
 
 def init_celery():
-    """Initialize Celery, and make our app instance available as `celery_app`
-    for use by the `celery` command."""
+    """
+    Initialize Celery, and make our app instance available as `celery_app`
+    for use by the `celery` command.
+    """
+    from django.conf import settings
+    from raven import Client
+    from raven.contrib.celery import register_signal, register_logger_signal
     from amo import celery
 
+    # I think `manage.py celery` relies on this global? We typically don't run
+    # celery like that anymore though.
     global celery_app
     celery_app = celery.app
+
+    # Hook up Sentry in celery.
+    client = Client(settings.SENTRY_DSN)
+
+    # register a custom filter to filter out duplicate logs
+    register_logger_signal(client)
+
+    # hook into the Celery error handler
+    register_signal(client)
+
+    # After upgrading raven we can specify loglevel=logging.INFO to override
+    # the default (which is ERROR).
+    register_logger_signal(client)
 
 
 def configure_logging():
