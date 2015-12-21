@@ -184,7 +184,4 @@ if os.environ.get('RUNNING_IN_CI'):
                     u'native': u'Srpski',
                     u'English': u'Serbian'}})
 
-        def delete_cache(self, *args, **kw):
-            pass
-
     product_details.product_details = MockProductDetails()
