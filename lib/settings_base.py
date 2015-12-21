@@ -1486,3 +1486,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
 }
+
+# This is the DSN to the local Sentry service. It might be overidden in
+# site-specific settings files as well.
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
