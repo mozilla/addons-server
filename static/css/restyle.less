@@ -1,13 +1,20 @@
 // Colors
 @primary-blue: rgba( 12, 153, 213, 1);
 @primary-link: #6AC3E2;
+@primary-font: "Open Sans", X-LocaleSpecific, sans-serif;
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url(../../css/impala/fonts/OpenSans-Regular.ttf) format('ttf');
+    font-style: normal;
+}
 
 #tabzilla:before {
     background: none;
 }
 
 body {
-    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+    font-family: @primary-font !important;
     font-style: normal;
     font-size: 0.875rem;
     line-height: 1.5;
@@ -17,7 +24,7 @@ body {
 }
 
 h1 {
-    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+    font-family: @primary-font !important;
     font-style: normal;
     font-size: 2.25rem;
 }
@@ -33,26 +40,26 @@ h1 {
      blue-pattern, blue-gradient, white overlay
      (sharp-cut at 130px) */
     background-image:
-    linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 100px
-    ),
-    linear-gradient(
-        to bottom,
-        rgba( 12, 153, 213, 0) 0,
-        @primary-blue 500px,
-        #FFF 0%
-    ),
-    repeating-linear-gradient(
-        118deg,
-        rgba(12, 153, 213, 0) 0,
-        #00A7E0 550px,
-        rgba(12, 153, 213, 0) 550px,
-        #00A7E0 800px,
-        rgba(12, 153,213, 0) 800px,
-        #00A7E0 950px
-    );
+        linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 100px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba( 12, 153, 213, 0) 0,
+            @primary-blue 500px,
+            #FFF 0%
+        ),
+        repeating-linear-gradient(
+            118deg,
+            rgba(12, 153, 213, 0) 0,
+            #00A7E0 550px,
+            rgba(12, 153, 213, 0) 550px,
+            #00A7E0 800px,
+            rgba(12, 153,213, 0) 800px,
+            #00A7E0 950px
+        );
     background-position:
         0 416px,
         0 0,
@@ -64,26 +71,26 @@ blue-pattern, blue-gradient, white overlay
 .home #background-wrapper,
 .addon-details #background-wrapper {
     background-image:
-    linear-gradient(
-        to bottom,
-        transparent 0,
-        transparent 100px
-    ),
-    linear-gradient(
-        to bottom,
-        rgba( 12, 153, 213, 0) 0,
-        @primary-blue 500px,
-        #FFF 0%
-    ),
-    repeating-linear-gradient(
-        118deg,
-        rgba(12, 153, 213, 0) 0,
-        #00A7E0 550px,
-        rgba(12, 153, 213, 0) 550px,
-        #00A7E0 800px,
-        rgba(12, 153,213, 0) 800px,
-        #00A7E0 950px
-    );
+        linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 100px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba( 12, 153, 213, 0) 0,
+            @primary-blue 500px,
+            #FFF 0%
+        ),
+        repeating-linear-gradient(
+            118deg,
+            rgba(12, 153, 213, 0) 0,
+            #00A7E0 550px,
+            rgba(12, 153, 213, 0) 550px,
+            #00A7E0 800px,
+            rgba(12, 153,213, 0) 800px,
+            #00A7E0 950px
+        );
     background-position:
         0 416px,
         0 0,
@@ -107,7 +114,7 @@ blue-pattern, blue-gradient, white overlay
     color: #fff;
 }
 #masthead h1 {
-font: inherit;
+    font-family: inherit;
     font-size: 3.5rem;
     line-height: 3rem;
     letter-spacing: -1px;
@@ -173,7 +180,7 @@ font: inherit;
                 box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
                 top: 25px;
 
-                /* Menu Panel trinagle */
+                /* Menu Panel triangle */
                 &:after {
                     content: "";
                     display: block;
@@ -271,12 +278,13 @@ font: inherit;
             }
 
             &not(:first-child):before {
-                background:linear-gradient(to bottom,
-                  transparent 0%,
-                  transparent 20%,
-                  #fff 20%,
-                  #fff 80%,
-                  transparent 80%
+                background:linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    transparent 20%,
+                    #fff 20%,
+                    #fff 80%,
+                    transparent 80%
                 );
             }
         }
@@ -297,7 +305,8 @@ font: inherit;
 
 button.search-button {
     background-image: url("https://addons.cdn.mozilla.net/static/img/icons/go-arrow.png?ad8fa66"),
-      linear-gradient(#6FBF4A, #6FBF4A);
+                      linear-gradient(#6FBF4A, #6FBF4A);
+
     border-radius: 0;
     box-shadow: none;
 }
@@ -389,7 +398,7 @@ button.search-button {
         color: rgba(255,255,255, 1);
         height: 100%;
         border: 0;
-        font-family: 'Open Sans';
+        font-family: @primary-font;
         line-height: 260px;
         vertical-align: middle;
         border-radius: 0;
@@ -398,7 +407,7 @@ button.search-button {
 }
 
 .control {
-    font-family: 'Open Sans' !important;
+    font-family: @primary-font !important;
 }
 
 #promos .prev {
@@ -521,6 +530,9 @@ button.good {
     box-shadow: 0 0 100px rgba(255, 255, 255, 0.2) inset;
 }
 
+#popular-extensions {
+    margin-top: 0;
+}
 
 .secondary {
     margin: 12px 0;
@@ -534,8 +546,13 @@ button.good {
     }
 
     li {
-        border-style: none;
+        border-color: lighten(desaturate(@primary-blue, 50%), 20%);
     }
+}
+
+.button.CTA {
+    font-size: 16px;
+    padding: 16px;
 }
 
 .island .pager {
@@ -556,10 +573,13 @@ button.good {
       #fff 123px,
       rgba(12, 153, 213, 1) 123px,
       rgba(12, 153, 213, 1) 200px,
-      rgba(12, 153,213, 0.5) 200px,
+      #FFF 200px,
       rgba(12, 153, 213, 0.0) 400px);
     font-family: inherit;
     font-style: normal;
+}
+#lang_form {
+     margin-top: 12px;
 }
 
 /* --------------------*/
@@ -570,7 +590,7 @@ button.good {
 }
 .addon-details .primary,
 .addon-details .secondary {
-    font-family: "Open Sans",X-LocaleSpecific,sans-serif !important;
+    font-family: @primary-font !important;
 }
 
 #addon h1 {
@@ -591,24 +611,33 @@ button.good {
 }
 
 #addon-description.prose {
-     font-family: 'Open Sans';
+     font-family: @primary-font;
 }
 
 /* DevHub */
 #devhub-promo h2 strong {
-    font-family: 'Open Sans';
+    font-family: @primary-font;
 }
 #masthead h1 {
     margin-top: -5px;
 }
 /* Re-colors links on top of details page to white */
 #addon a, .author a,
-.addon-vitals .widgets .widget { 
-    color: #FFFFFF; 
+.addon-vitals .widgets .widget {
+    color: #FFFFFF;
 }
 #addon-summary a,
 .notice.c.author a {
-    color: @primary-link;
+    color: #FFF !important;
+}
+
+.notice.c.author {
+    h3, p {
+        a {
+            color: #FFF;
+        }
+        margin-left: 90px;
+    }
 }
 
 .install-button > .button.add.installer {
@@ -637,11 +666,13 @@ button.good {
     background: 0;
 }
 
+
 /* move elements in front of the background hack */
 .addon-details .primary .notice,
 .addon-details .secondary.addon-vitals {
     position: relative;
     z-index: 1;
+    color: #FFF;
 }
 
 /* Notice - underneath description (asking for contribution &/or showing dependencies )*/
@@ -651,6 +682,22 @@ button.good {
     border: 0;
     border-top: 1px solid rgba(255,255,255,0.3);
     background: 0;
+
+    .hovercard.addon {
+         &:hover, &:hover:before, &:hover .icon, &:hover .summary,
+         &:hover .more {
+            background: none;
+            border-color: transparent;
+            box-shadow: none;
+         }
+
+         .more {
+             display: block !important;
+             .addon-summary, .byline, .vitals {
+                display: none;
+             }
+         }
+    }
 }
 
 /* modify dependency to show "add to firefox" button and hide overlay */
@@ -658,69 +705,30 @@ button.good {
 .addon-details .primary .notice.dependencies {
     height: 130px;
 }
-.addon-details .primary .notice .hovercard.addon:hover,
-.addon-details .primary .notice .hovercard.addon:hover:before,
-.addon-details .primary .notice .hovercard.addon:hover .icon,
-.addon-details .primary .notice .hovercard.addon:hover .summary,
-.addon-details .primary .notice .hovercard.addon:hover .more {
-    background: none;
-    border-color: transparent;
-    box-shadow: none;
-}
-.addon-details .primary .notice .hovercard.addon:hover .summary {
-    height: 55px; /* keep fixed hight on hover */
-}
-.addon-details .primary .notice .addon.hovercard .more {
-    display: block !important;
-}
-.addon-details .primary .notice .hovercard.addon .more .addon-summary,
-.addon-details .primary .notice .hovercard.addon .more .byline,
-.addon-details .primary .notice .hovercard.addon .more .vitals {
-    display: none;
-}
 
 /* font issues on addon-details */
-.addon-details .version-number,
-.addon-details h4.author,
-.addon-details h4.author a,
-.addon-details #addon-summary,
-.addon-details a.privacy-policy,
-.addon-details .notice h3,
-.addon-details .notice p,
-.addon-details .notice p a,
-.addon-details .notice p b,
-.addon-details .category.more-info,
-.addon-details .vital a,
-.addon-details #reviews-link,
-.addon-details #daily-users a {
-    color: #fff;
-}
-
-.addon-details .version-number,
-.addon-details h4.author,
-.addon-details a.privacy-policy,
-.addon-details #contribution.notice p a,
-.addon-details .category.more-info,
-.addon-details .vital a,
-.addon-details #reviews-link,
-.addon-details #daily-users a {
-    opacity: 0.4;
-}
-
-.addon-details .version-number {
-    font-size: 0.39em;
-}
-
-.addon-details .notice h3 {
-    font-style: normal;
-}
-
-.addon-details .addon-vitals .stats {
-    background: none;
-}
-
-.addon-details .widgets {
-    display: none;
+.addon-details {
+    .version-number, h4.author, h4.author a, #addon-summary, a.privacy-policy,
+    .notice h3, .notice p, .notice p a, .notice p b, .category.more-info,
+    .vital a, #reviews-link, #daily-users a {
+        color: #fff;
+    }
+    .version-number, h4.author, a.privacy-policy, #contribution.notice p a,
+    .category.more-info, .vital a, #reviews-link {
+        opacity: 0.4;
+    }
+    .version-number {
+        font-size: 0.39em;
+    }
+    .notice h3 {
+        font-style: normal;
+    }
+    .addon-vitals .stats {
+        background: none;
+    }
+    .widgets {
+        display: none;
+    }
 }
 
 #promos.shown {
@@ -752,7 +760,7 @@ button.good {
         }
     }
     h3 a {
-        font-family: 'Open Sans';
+        font-family: @primary-font;
         font-weight: 700 !important;
         font-style: normal;
         font-size: 14px;
@@ -779,7 +787,7 @@ button.good {
 
 .addons-column {
     h3 a {
-        font-family: 'Open Sans';
+        font-family: @primary-font;
     }
 
     > ul.personas {
@@ -799,7 +807,7 @@ button.good {
 
 .secondary .submit-theme {
     h3, p {
-        font-family: 'Open Sans';
+        font-family: @primary-font;
     }
 
     border: none;
