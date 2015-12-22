@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 13:42+0000\n"
+"PO-Revision-Date: 2015-12-22 14:20+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -13469,9 +13469,9 @@ msgstr "http://www.facebook.com/sharer.php?u={url}&t={title}"
 #: apps/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} поширення на Facebook"
+msgstr[1] "{0} поширення на Facebook"
+msgstr[2] "{0} поширень на Facebook"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:76
@@ -13529,11 +13529,11 @@ msgstr "Поділитися цією збіркою"
 
 #: apps/signing/views.py:37
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Не вдалося знайти додаток з ID \"{}\"."
 
 #: apps/signing/views.py:41
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Ви не володієте цим додатком."
 
 #: apps/signing/views.py:56
 msgid "Missing \"upload\" key in multipart file data."
@@ -13545,7 +13545,7 @@ msgstr ""
 
 #: apps/signing/views.py:74
 msgid "Version already exists."
-msgstr ""
+msgstr "Версія вже існує."
 
 #: apps/signing/views.py:110
 msgid "No uploaded file for that addon and version."
@@ -13557,31 +13557,31 @@ msgstr ""
 
 #: apps/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
-msgstr ""
+msgstr "Огляд"
 
 #: apps/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "за джерелом"
 
 #: apps/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
-msgstr ""
+msgstr "за версією додатка"
 
 #: apps/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr ""
+msgstr "за програмою"
 
 #: apps/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
-msgstr ""
+msgstr "за мовою"
 
 #: apps/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "за платформою"
 
 #: apps/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr ""
+msgstr "за статусом додатка"
 
 #: apps/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
@@ -13597,31 +13597,31 @@ msgstr "Статистика додатку"
 
 #: apps/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Використовується додатків"
 
 #: apps/stats/templates/stats/global_report_menu.html:10
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Створено додатків"
 
 #: apps/stats/templates/stats/global_report_menu.html:14
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Завантажено додатків"
 
 #: apps/stats/templates/stats/global_report_menu.html:18
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Оновлено додатків"
 
 #: apps/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
-msgstr ""
+msgstr "Створено збірок"
 
 #: apps/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
-msgstr ""
+msgstr "Написано відгуків"
 
 #: apps/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
-msgstr ""
+msgstr "Реєстрації користувачів"
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
@@ -13642,19 +13642,19 @@ msgstr "Експорт"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: apps/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Панель статистики :: Додатки для {1}"
 
 #: apps/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Панель статистики"
 
 #: apps/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Панель статистики :: Додатки для {0}"
 
 #: apps/stats/templates/stats/stats.html:30
 msgid "Controls:"
-msgstr ""
+msgstr "Керування:"
 
 #: apps/stats/templates/stats/stats.html:33
 msgid "reset zoom"
@@ -13712,14 +13712,14 @@ msgstr "Панель статистики"
 
 #: apps/stats/templates/stats/stats.html:102
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Завантаження останніх даних&hellip;"
 
 #: apps/stats/templates/stats/stats.html:134
 #: apps/stats/templates/stats/reports/overview.html:25
 #: apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr ""
+msgstr "Дані відсутні."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
@@ -13735,39 +13735,39 @@ msgstr ""
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
-msgstr ""
+msgstr "Змінити налаштування."
 
 #: apps/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Додатків створено, за датою"
 
 #: apps/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Додатків завантажено за датою"
 
 #: apps/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Додатків використовується, за датою"
 
 #: apps/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Додатків оновлено, за датою"
 
 #: apps/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Використання програм за датою"
 
 #: apps/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Створено збірок за датою"
 
 #: apps/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Внески за датою"
 
 #: apps/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Завантажено за датою"
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
@@ -13782,11 +13782,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Мови користувача за датою"
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Використання платформи за датою"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
