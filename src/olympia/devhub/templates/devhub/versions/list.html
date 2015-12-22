@@ -9,7 +9,7 @@
       <strong>
         <a href="{{ url('devhub.versions.edit', addon.slug, version.id) }}"
            title="{{ _('Edit this version') }}">
-          {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+          {{ _('Version {0}')|f(version.version) }}</a>
       </strong>
       <span title="{{ version.created|isotime }}" class="note">
         {{ version.created|datetime }}
