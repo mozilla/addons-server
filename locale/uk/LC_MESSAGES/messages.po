@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 10:36+0000\n"
+"PO-Revision-Date: 2015-12-22 10:58+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11952,7 +11952,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:373
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Чи можу я включити для мого додатка політику приватності?"
 
 #: apps/pages/templates/pages/dev_faq.html:375
 msgid ""
@@ -11963,7 +11963,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:384
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Чому мій додаток повинен бути перевірений?"
 
 #: apps/pages/templates/pages/dev_faq.html:386
 msgid ""
@@ -11975,7 +11975,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:394
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Хто перевіряє мій додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:396
 msgid ""
@@ -11989,7 +11989,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:407
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Які критерії використовуються для перевірки мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:409
 msgid ""
@@ -12002,7 +12002,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:419
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Скільки часу займе перевірка мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:421
 msgid ""
@@ -12036,7 +12036,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:447
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Як я можу побачити скільки разів був завантажений мій додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:449
 msgid ""
@@ -12048,6 +12048,7 @@ msgstr ""
 #: apps/pages/templates/pages/dev_faq.html:456
 msgid "How can I see how many active users are using my add-on?"
 msgstr ""
+"Як я можу побачити скільки активних користувачів використовують мій додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:458
 msgid ""
@@ -12058,7 +12059,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:465
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Як мені надіслати оновлення для мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:467
 msgid ""
@@ -12069,7 +12070,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:474
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Чи моє оновлення повинно бути перевірено редакторами?"
 
 #: apps/pages/templates/pages/dev_faq.html:476
 msgid ""
@@ -12082,7 +12083,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:487
 msgid "What are the Recommended Lists?"
-msgstr ""
+msgstr "Що таке списки Рекомендованих додатків?"
 
 #: apps/pages/templates/pages/dev_faq.html:489
 msgid ""
@@ -12102,7 +12103,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:506
 msgid "What is a Featured add-on?"
-msgstr ""
+msgstr "Що таке Відібраний додаток?"
 
 #: apps/pages/templates/pages/dev_faq.html:508
 msgid ""
@@ -12117,7 +12118,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:520
 msgid "How can my add-on be listed as Recommended?"
-msgstr ""
+msgstr "Як мій додаток може потрапити в Рекомендовані?"
 
 #: apps/pages/templates/pages/dev_faq.html:522
 #: apps/pages/templates/pages/dev_faq.html:532
@@ -12128,7 +12129,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:527
 msgid "Can I pay to have my add-on listed as Recommended?"
-msgstr ""
+msgstr "Чи можу я заплатити, щоб мій додаток потрапив в Рекомендовані?"
 
 #: apps/pages/templates/pages/dev_faq.html:530
 msgid "Why is my add-on no longer listed as Recommended?"
@@ -12433,7 +12434,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Чи безпечно встановлювати додатки?"
 
 #: apps/pages/templates/pages/faq.html:123
 msgid ""
@@ -12447,7 +12448,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Чи можуть додатки сповільнити роботу %(app_name)s?"
 
 #: apps/pages/templates/pages/faq.html:135
 msgid ""
@@ -12582,7 +12583,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Що таке бета-додатки?"
 
 #: apps/pages/templates/pages/faq.html:219
 msgid ""
@@ -12982,11 +12983,11 @@ msgstr ""
 #. colon.
 #: apps/perf/templates/perf/index.html:40
 msgid "Show:"
-msgstr ""
+msgstr "Показати:"
 
 #: apps/perf/templates/perf/index.html:57
 msgid "Impact"
-msgstr ""
+msgstr "Вплив"
 
 #: apps/perf/templates/perf/index.html:58
 msgid "Longer lines are slower"
@@ -12995,7 +12996,7 @@ msgstr ""
 #. {0} is an add-on's percentage of slowness
 #: apps/perf/templates/perf/index.html:92
 msgid "<b>{0}%</b> <span>slower</span>"
-msgstr ""
+msgstr "<b>{0}%</b> <span>повільніше</span>"
 
 #: apps/perf/templates/perf/index.html:104
 msgid "Show more add-ons"
@@ -13209,7 +13210,7 @@ msgstr ""
 
 #: apps/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
-msgstr ""
+msgstr "Написати новий відгук"
 
 #: apps/reviews/templates/reviews/review_list.html:81
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:15
