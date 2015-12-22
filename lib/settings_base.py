@@ -740,6 +740,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
         ),
         'fxa': [
+            'js/lib/uri.js',
             'js/lib/fxa-relier-client.js',
             'js/common/fxa-login.js',
         ],

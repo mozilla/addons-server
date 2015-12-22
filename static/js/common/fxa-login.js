@@ -5,8 +5,13 @@
         oauthHost: config.oauthHost,
     });
 
-    function currentPath() {
-        return location.pathname + location.search + location.hash;
+    function nextPath() {
+        var to = new Uri(location).getQueryParamValue('to');
+        if (to) {
+            return to;
+        } else {
+            return location.pathname + location.search + location.hash;
+        }
     }
 
     function urlsafe(str) {
@@ -28,18 +33,10 @@
     }
 
     function fxaLogin(opts) {
-        function postConfig(response) {
-            return {
-                action: response.action,
-                code: response.code,
-                state: response.state,
-                client_id: config.clientId,
-            };
-        }
-
         opts = opts || {};
         var authConfig = {
-            state: config.state + ':' + urlsafe(btoa(currentPath())),
+            email: opts.email,
+            state: config.state + ':' + urlsafe(btoa(nextPath())),
             redirectUri: config.redirectUrl,
             scope: config.scope,
         };
@@ -52,11 +49,42 @@
         }
     }
 
-    $('body').on('click', '.fxa-login', function(e) {
-        e.preventDefault();
-        fxaLogin();
-    }).on('click', '.fxa-register', function(e) {
+    $('body').on('click', '.fxa-register', function(e) {
         e.preventDefault();
         fxaLogin({signUp: true});
+    });
+
+    function showLoginForm($form) {
+        $form.removeClass('login-source-form')
+             .addClass('login-form');
+        $form.find('[name="password"]').attr('required', true);
+    }
+
+    function showLoginSourceForm($form) {
+        $form.addClass('login-source-form')
+             .removeClass('login-form');
+        $form.find('[name="password"]').removeAttr('required');
+    }
+
+    $('body').on('submit', '.login-source-form', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var email = $form.find('input[name="username"]').val();
+        $.get('/api/v3/accounts/source/', {email: email}).then(function(data) {
+            if (data.source === 'amo') {
+                showLoginForm($form);
+            } else {
+                fxaLogin({email: email});
+            }
+        });
+    }).on('input', '.login-form input[name="username"]', function(e) {
+        showLoginSourceForm($('.login-form'));
+    });
+
+    $(function() {
+        var $form = $('.login-source-form');
+        if ($form.length > 0) {
+            showLoginSourceForm($form);
+        }
     });
 })();
