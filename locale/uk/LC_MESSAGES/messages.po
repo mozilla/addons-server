@@ -13361,11 +13361,11 @@ msgstr "Результати пошуку підбору"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr "Пошук неможливий"
+msgstr "Пошук недоступний"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Пошук тимчасово неможливий. Спробуйте через декілька хвилин."
+msgstr "Пошук тимчасово недоступний. Спробуйте знову через декілька хвилин."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
@@ -13423,13 +13423,13 @@ msgstr "Помістити на Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] "{0} лайк"
-msgstr[1] "{0} лайка"
-msgstr[2] "{0} лайків"
+msgstr[0] "{0} вподобання"
+msgstr[1] "{0} вподобання"
+msgstr[2] "{0} вподобань"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr "Твітнути на Твіттері"
+msgstr "Твітнути на Twitter"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
