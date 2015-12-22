@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 08:37+0000\n"
+"PO-Revision-Date: 2015-12-22 09:31+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -10013,11 +10013,11 @@ msgstr "Сталася невідома помилка"
 
 #: apps/editors/views.py:567
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Самоперевірки не допускаються."
 
 #: apps/editors/views.py:589
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Перевірка успішно оброблена."
 
 #: apps/editors/views.py:787
 msgid "was approved"
@@ -10025,7 +10025,7 @@ msgstr "було схвалено"
 
 #: apps/editors/views.py:788
 msgid "given preliminary review"
-msgstr ""
+msgstr "надано попередній розгляд"
 
 #: apps/editors/views.py:789
 msgid "rejected"
@@ -10042,19 +10042,19 @@ msgstr "потребує додаткову інформацію"
 
 #: apps/editors/views.py:793
 msgid "needs super review"
-msgstr ""
+msgstr "потребує супер-перегляду"
 
 #: apps/editors/views.py:794
 msgid "commented"
-msgstr ""
+msgstr "прокоментовано"
 
 #: apps/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "успішно проведена {0} перевірка теми (+{1} балів, всього: {2})."
+msgstr[1] "успішно проведено {0} перевірок теми (+{1} балів, всього: {2})."
+msgstr[2] "успішно проведено {0} перевірок теми (+{1} балів, всього: {2})."
 
 #: apps/editors/views_themes.py:341
 msgid ""
@@ -10062,6 +10062,9 @@ msgid ""
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
+"Ваші блокування тем були успішно зняті. Інші рецензенти тепер можуть "
+"перевірити ці розблоковані теми. Можливо, вам знадобиться оновити сторінку, "
+"щоб побачити зміни у таблиці нижче."
 
 #: apps/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -10686,7 +10689,7 @@ msgstr "Опції розгляду"
 
 #: apps/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Автоматичний перехід після перевірки"
 
 #: apps/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -10706,19 +10709,19 @@ msgstr "Попередня тема"
 
 #: apps/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Ваша історія перевірок"
 
 #: apps/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Внести рецензію"
 
 #: apps/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Внести рецензії"
 
 #: apps/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "перевірено {0} з {1}"
 
 #: apps/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
@@ -10730,7 +10733,7 @@ msgstr "Очистити пошук"
 
 #: apps/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Зняти мої блокування тем"
 
 #: apps/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
@@ -11218,6 +11221,10 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Допоможіть покращити цей веб-сайт. Його програмний код є відкритим і ви "
+"можете реєструвати помилки та відправляти виправлення. <a "
+"href=\"%(url)s\">GitHub</a> містить всі наші поточні помилки, успадковані "
+"помилки все ще можуть бути знайдені в Bugzilla."
 
 #: apps/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -11359,7 +11366,7 @@ msgstr "Дякуємо!"
 
 #: apps/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Автори сайту"
 
 #: apps/pages/templates/pages/credits.html:12
 msgid ""
@@ -11406,6 +11413,11 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>."
 msgstr ""
+"Деякі використані піктограми входять в <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">набір піктограм famfamfam "
+"Silk</a>, ліцензований умовами <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution версії 2.5</a>."
 
 #: apps/pages/templates/pages/credits.html:60
 msgid ""
@@ -11414,6 +11426,10 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 msgstr ""
+"Деякі використані піктограми входять в <a href=\"http://www.fatcow.com/free-"
+"icons/\">набір піктограм FatCow Farm-Fresh</a>, ліцензований умовами <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution версії 3.0</a>."
 
 #: apps/pages/templates/pages/credits.html:61
 msgid ""
@@ -11422,12 +11438,19 @@ msgid ""
 "commercial), licensed under a <a href=\"http://creativecommons.org/licenses"
 "/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Деякі сторінки використовують елементи з <a "
+"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> "
+"(некомерційна), ліцензованою умовами <a "
+"href=\"http://creativecommons.org/licenses/by-nc/3.0/\">ліцензії Creative "
+"Commons Attribution-NonCommercial версії 3.0</a>."
 
 #: apps/pages/templates/pages/credits.html:65
 msgid ""
 "For information on contributing, please see our <a href=\"%(url)s\">wiki "
 "page</a>."
 msgstr ""
+"Для отримання інформації про внесок, будь ласка, перевірте нашу <a "
+"href=\"%(url)s\">сторінку wiki</a>."
 
 #: apps/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
@@ -11452,7 +11475,7 @@ msgstr "Ресурси підтримки"
 #: apps/pages/templates/pages/dev_faq.html:35
 #: apps/pages/templates/pages/dev_faq.html:262
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Сприяння вашому додатку"
 
 #: apps/pages/templates/pages/dev_faq.html:36
 #: apps/pages/templates/pages/dev_faq.html:382
@@ -11510,10 +11533,13 @@ msgid ""
 " the add-on for and a code editor of your choice. Add-ons can be built for "
 "almost all Mozilla software but are primarily targeted for:"
 msgstr ""
+"Вам буде за необхідне мати версію програми Mozilla, для якої ви створюєте "
+"додаток, і редактор коду на ваш вибір. Додатки можуть бути створені майже "
+"для всіх програм Mozilla, але в першу чергу призначені для:"
 
 #: apps/pages/templates/pages/dev_faq.html:83
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Популярні редактори коду:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: apps/pages/templates/pages/dev_faq.html:86
@@ -11523,6 +11549,10 @@ msgid ""
 "://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
 "href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> "
+"<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
+"://notepad-plus-plus.org/\">Notepad++</a></li> <li><a "
+"href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: apps/pages/templates/pages/dev_faq.html:95
 msgid ""
@@ -11530,6 +11560,9 @@ msgid ""
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
+"Ви можете також дізнатися більше про налаштування середовища розробки, "
+"прочитавши статтю в MDN <a href=\"%(url)s\">Setting up extension development"
+" environment</a>"
 
 #: apps/pages/templates/pages/dev_faq.html:101
 msgid "What is a \".xpi\" file?"
@@ -11540,6 +11573,8 @@ msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
 msgstr ""
+"Розширення упаковані й поширені у ZIP-файлах чи пакетах, з файловим "
+"розширенням XPI (вимовляється як \"зіппі\")."
 
 #: apps/pages/templates/pages/dev_faq.html:109
 msgid "What is XUL?"
@@ -11552,6 +11587,12 @@ msgid ""
 "interface widgets like buttons, menus, toolbars, trees, etc that can be used"
 " to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML-мова інтерфейсу користувача) це мова на основі Mozilla XML, яка "
+"дозволяє вам створювати кросплатформні додатки з розширеною "
+"функціональністю. Вона забезпечує віджети інтерфейсу користувача, такі як "
+"кнопки, меню, панелі інструментів, дерева, і т.д., які можуть "
+"використовуватися для збільшення можливостей додатків шляхом змінювання "
+"частин інтерфейсу браузера користувача."
 
 #: apps/pages/templates/pages/dev_faq.html:120
 msgid "What is the \"install.rdf\" file used for?"
@@ -11570,7 +11611,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "Що значить \"maxVersion\"?"
 
 #: apps/pages/templates/pages/dev_faq.html:135
 msgid ""
@@ -11578,6 +11619,8 @@ msgid ""
 "will work with. Set this to be no newer than the newest currently available "
 "version!"
 msgstr ""
+"Це визначає максимальну версію Firefox, з якої, як ви кажете, буде працювати"
+" це розширення. Встановіть її значення не вище, ніж номер найновішої версії!"
 
 #: apps/pages/templates/pages/dev_faq.html:142
 msgid "Can my add-on contain binary components?"
@@ -11589,6 +11632,9 @@ msgid ""
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Так. Ви можете використовувати <a href=\"%(url)s\">об'єктну модель "
+"компоненту XPCOM</a> Mozilla для покращення ваших додатків. Окрім C++, XPCOM"
+" компоненти використовуються й розробляются на JavaScript, Java та Python."
 
 #: apps/pages/templates/pages/dev_faq.html:151
 msgid ""
