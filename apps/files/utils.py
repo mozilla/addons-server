@@ -547,6 +547,9 @@ def check_xpi_info(xpi_info, addon=None):
     if not waffle.switch_is_active('allow-long-addon-guid') and len(guid) > 64:
         raise forms.ValidationError(
             _("Add-on ID must be 64 characters or less."))
+    if len(guid) < 4:
+        raise forms.ValidationError(
+            _("Add-on ID must be 4 characters or more."))
     if addon and addon.guid != guid:
         raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
     if (not addon and
