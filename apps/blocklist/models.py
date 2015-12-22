@@ -136,6 +136,8 @@ class BlocklistGfx(BlocklistBase, amo.models.ModelBase):
     feature = models.CharField(max_length=255, blank=True, null=True)
     feature_status = models.CharField(max_length=255, blank=True, null=True)
     driver_version = models.CharField(max_length=255, blank=True, null=True)
+    driver_version_max = models.CharField(
+        max_length=255, blank=True, null=True)
     driver_version_comparator = models.CharField(max_length=255, blank=True,
                                                  null=True)
     hardware = models.CharField(max_length=255, blank=True, null=True)
