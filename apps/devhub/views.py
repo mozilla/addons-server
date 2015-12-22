@@ -1404,6 +1404,7 @@ def submit(request, step):
 
 @login_required
 @submit_step(2)
+@transaction.commit_on_success
 def submit_addon(request, step):
     if request.user.read_dev_agreement is None:
         return redirect(_step_url(1))
