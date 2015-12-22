@@ -352,7 +352,9 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     @property
     def source(self):
-        if self.fxa_id:
+        if not self.pk:
+            return None
+        elif self.fxa_id:
             return 'fxa'
         else:
             return 'amo'

@@ -19,6 +19,7 @@ class TestFxALoginWaffle(APITestCase):
     def setUp(self):
         self.login_url = reverse('accounts.login')
         self.register_url = reverse('accounts.register')
+        self.source_url = reverse('accounts.source')
 
     def test_login_404_when_waffle_is_off(self):
         create_switch('fxa-auth', active=False)
@@ -39,6 +40,16 @@ class TestFxALoginWaffle(APITestCase):
         create_switch('fxa-auth', active=True)
         response = self.client.post(self.register_url)
         assert response.status_code == 422
+
+    def test_source_404_when_waffle_is_off(self):
+        create_switch('fxa-auth', active=False)
+        response = self.client.get(self.source_url)
+        assert response.status_code == 404
+
+    def test_source_200_when_waffle_is_on(self):
+        create_switch('fxa-auth', active=True)
+        response = self.client.get(self.source_url)
+        assert response.status_code == 200
 
 
 class TestLoginUser(TestCase):
@@ -432,3 +443,31 @@ class TestProfileView(APIAuthTestCase):
 
     def test_verbs_allowed(self):
         self.verbs_allowed(self.cls, ['get'])
+
+
+class TestAccountSourceView(APITestCase):
+
+    def setUp(self):
+        create_switch('fxa-auth', active=True)
+
+    def get(self, email):
+        return self.client.get(reverse('accounts.source'), {'email': email})
+
+    def test_user_has_migrated(self):
+        email = 'migrated@mozilla.org'
+        UserProfile.objects.create(email=email, fxa_id='ya')
+        response = self.get(email)
+        assert response.status_code == 200
+        assert response.data == {'source': 'fxa'}
+
+    def test_user_has_not_migrated(self):
+        email = 'not-migrated@mozilla.org'
+        UserProfile.objects.create(email=email, fxa_id=None)
+        response = self.get(email)
+        assert response.status_code == 200
+        assert response.data == {'source': 'amo'}
+
+    def test_user_does_not_exist(self):
+        response = self.get('no-user@mozilla.org')
+        assert response.status_code == 200
+        assert response.data == {'source': 'fxa'}
