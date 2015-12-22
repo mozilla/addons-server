@@ -525,8 +525,8 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.gfx = BlocklistGfx.objects.create(
             guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
             feature='feature', feature_status='status', details=self.details,
-            driver_version='version', driver_version_comparator='compare',
-            hardware='giant_robot')
+            driver_version='version', driver_version_max='version max',
+            driver_version_comparator='compare', hardware='giant_robot')
 
     def test_no_gfx(self):
         dom = self.dom(self.mobile_url)
@@ -542,18 +542,19 @@ class BlocklistGfxTest(BlocklistViewTest):
         def find(e):
             return gfx.getElementsByTagName(e)[0].childNodes[0].wholeText
 
-        eq_(find('os'), self.gfx.os)
-        eq_(find('feature'), self.gfx.feature)
-        eq_(find('vendor'), self.gfx.vendor)
-        eq_(find('featureStatus'), self.gfx.feature_status)
-        eq_(find('driverVersion'), self.gfx.driver_version)
-        eq_(find('driverVersionComparator'),
-            self.gfx.driver_version_comparator)
-        eq_(find('hardware'), self.gfx.hardware)
+        assert find('os') == self.gfx.os
+        assert find('feature') == self.gfx.feature
+        assert find('vendor') == self.gfx.vendor
+        assert find('featureStatus') == self.gfx.feature_status
+        assert find('driverVersion') == self.gfx.driver_version
+        assert find('driverVersionMax') == self.gfx.driver_version_max
+        expected_version_comparator = self.gfx.driver_version_comparator
+        assert find('driverVersionComparator') == expected_version_comparator
+        assert find('hardware') == self.gfx.hardware
         devices = gfx.getElementsByTagName('devices')[0]
         for device, val in zip(devices.getElementsByTagName('device'),
                                self.gfx.devices.split(' ')):
-            eq_(device.childNodes[0].wholeText, val)
+            assert device.childNodes[0].wholeText == val
 
     def test_empty_devices(self):
         self.gfx.devices = None
@@ -564,8 +565,8 @@ class BlocklistGfxTest(BlocklistViewTest):
     def test_no_empty_nodes(self):
         self.gfx.update(os=None, vendor=None, devices=None,
                         feature=None, feature_status=None,
-                        driver_version=None, driver_version_comparator=None,
-                        hardware=None)
+                        driver_version=None, driver_version_max=None,
+                        driver_version_comparator=None, hardware=None)
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<os>')
         self.assertNotContains(r, '<vendor>')
@@ -573,6 +574,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.assertNotContains(r, '<feature>')
         self.assertNotContains(r, '<featureStatus>')
         self.assertNotContains(r, '<driverVersion>')
+        self.assertNotContains(r, '<driverVersionMax>')
         self.assertNotContains(r, '<driverVersionComparator>')
         self.assertNotContains(r, '<hardware>')
 

@@ -94,6 +94,9 @@
       {%- if gfx.driver_version %}
       <driverVersion>{{ gfx.driver_version }}</driverVersion>
       {%- endif %}
+      {%- if gfx.driver_version_max %}
+      <driverVersionMax>{{ gfx.driver_version_max }}</driverVersionMax>
+      {%- endif %}
       {%- if gfx.driver_version_comparator %}
       <driverVersionComparator>{{ gfx.driver_version_comparator }}</driverVersionComparator>
       {%- endif %}
