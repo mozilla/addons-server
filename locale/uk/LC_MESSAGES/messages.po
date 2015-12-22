@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 10:58+0000\n"
+"PO-Revision-Date: 2015-12-22 13:42+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -13215,7 +13215,7 @@ msgstr "Написати новий відгук"
 #: apps/reviews/templates/reviews/review_list.html:81
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:15
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Напишіть перший відгук."
 
 #: apps/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
@@ -13226,46 +13226,46 @@ msgstr[2] "{num} відгуків"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Оцінка {0} з 5 зірок"
 
 #: apps/reviews/templates/reviews/impala/reviews_rating.html:4
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Оцінено на %(rating)s з 5 зірок"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:3
 #: apps/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
-msgstr ""
+msgstr "Додати відгук"
 
 #: apps/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Увійти, щоб залишити відгук"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr ""
+msgstr "Рейтингу ще немає."
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Середнє з {0} рейтинга"
+msgstr[1] "Середнє з {0} рейтингів"
+msgstr[2] "Середнє з {0} рейтингів"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:34
 msgid "by %(user)s"
-msgstr ""
+msgstr "від %(user)s"
 
 #: apps/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Детальніше&nbsp;&raquo;"
 
 #: apps/reviews/templates/reviews/mobile/reviews_link.html:7
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Подивитися всі відгуки"
+msgstr[1] "Подивитися всі %(cnt)s відгуки"
+msgstr[2] "Подивитися всі %(cnt)s відгуків"
 
 #: apps/search/forms.py:11
 msgid "Most popular this week"
@@ -13289,11 +13289,11 @@ msgstr "шукати збірки"
 
 #: apps/search/forms.py:25
 msgid "search for themes"
-msgstr ""
+msgstr "пошук тем"
 
 #: apps/search/forms.py:26
 msgid "search for apps"
-msgstr ""
+msgstr "пошук програм"
 
 #: apps/search/forms.py:49
 msgid "Sort By"
@@ -13301,7 +13301,7 @@ msgstr "Сортувати за"
 
 #: apps/search/forms.py:84
 msgid "Relevance"
-msgstr ""
+msgstr "Релевантність"
 
 #: apps/search/helpers.py:24
 msgid ""
@@ -13339,63 +13339,63 @@ msgstr "Додатки {0}"
 #. Firefox."
 #: apps/search/views.py:550
 msgid "Any {0}"
-msgstr ""
+msgstr "Будь-яка {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: apps/search/views.py:585
 msgid "All Systems"
-msgstr ""
+msgstr "Всі системи"
 
 #: apps/search/views.py:596
 msgid "All Tags"
-msgstr ""
+msgstr "Всі мітки"
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/collections.html:8
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Результати пошуку підбору для {0}"
 
 #: apps/search/templates/search/collections.html:10
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Результати пошуку підбору"
 
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Пошук неможливий"
 
 #: apps/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Пошук тимчасово неможливий. Спробуйте через декілька хвилин."
 
 #. {0} is the string the user was searching for
 #: apps/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Результати пошуку тем для {0}"
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Результати пошуку тем"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Мітка"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Результати пошуку для мітки \"{0}\""
 
 #: apps/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> відповідний результат"
+msgstr[1] "<b>{0}</b> відповідних результата"
+msgstr[2] "<b>{0}</b> відповідних результатів"
 
 #: apps/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr ""
+msgstr "Фільтр результатів"
 
 #: apps/search/templates/search/results.html:69
 msgid "Category"
@@ -13403,11 +13403,11 @@ msgstr "Категорія"
 
 #: apps/search/templates/search/results.html:84
 msgid "Tag"
-msgstr ""
+msgstr "Мітка"
 
 #: apps/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Результати пошуку <i>({num})</i>"
 
 #: apps/sharing/__init__.py:14
 msgid "{0} post"
@@ -13423,13 +13423,13 @@ msgstr "Помістити на Facebook"
 #: apps/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} лайк"
+msgstr[1] "{0} лайка"
+msgstr[2] "{0} лайків"
 
 #: apps/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Твітнути на Твіттері"
 
 #: apps/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -13440,30 +13440,30 @@ msgstr[2] "{0} твітів"
 
 #: apps/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Поділитися на g+"
 
 #: apps/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Розмістити на Reddit"
 
 #: apps/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Розмістити на Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:61
 msgid "localservice1"
-msgstr ""
+msgstr "Facebook"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:63
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Розмістити на Facebook"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://www.facebook.com/sharer.php?u={url}&t={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: apps/sharing/__init__.py:70
