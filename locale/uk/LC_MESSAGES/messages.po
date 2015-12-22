@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 09:31+0000\n"
+"PO-Revision-Date: 2015-12-22 10:36+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -9795,7 +9795,7 @@ msgstr "Додатково"
 
 #: apps/editors/helpers.py:284
 msgid "Site Specific"
-msgstr ""
+msgstr "Специфічні для сайту"
 
 #: apps/editors/helpers.py:286
 msgid "Requires External Software"
@@ -10569,7 +10569,7 @@ msgstr "Файли в цій версії:"
 
 #: apps/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr ""
+msgstr "Зміст"
 
 #: apps/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
@@ -10589,19 +10589,19 @@ msgstr "Новіший"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Недавні бали"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Балів поки не нараховано."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Топ редакторів (останні 7 днів)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Поки немає топу редакторів."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -10610,7 +10610,7 @@ msgstr "Весь час"
 #. {0} is a number, like "480".
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "У вас <span>{0}</span> балів."
 
 #: apps/editors/templates/editors/includes/search_results_themes.html:6
 #: apps/editors/templates/editors/themes/history_table.html:7
@@ -10635,11 +10635,11 @@ msgstr "Не знайдено видалених тем за цей період
 
 #: apps/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Журнал перевірки теми {0}"
 
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Дата перевірки"
 
 #: apps/editors/templates/editors/themes/history_table.html:9
 #: apps/editors/templates/editors/themes/logs.html:18
@@ -10652,21 +10652,21 @@ msgstr "Причина"
 
 #: apps/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "В даний момент перевірок немає."
 
 #: apps/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} тема очікує на перевірку"
+msgstr[1] "{num} теми очікують на перевірку"
+msgstr[2] "{num} тем очікують на перевірку"
 
 #: apps/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} перевірка з позначкою"
+msgstr[1] "{num} перевірки з позначкою"
+msgstr[2] "{num} перевірок з позначкою"
 
 #: apps/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
@@ -11608,6 +11608,13 @@ msgid ""
 "with, how it should be updated, and so on. The format of the Install "
 "Manifest is RDF/XML."
 msgstr ""
+"Цей файл, що називається <a href=\"%(url)s\">Маніфестом встановлення</a>, "
+"використовується програмами XUL з Менеджером додатків, задля отримання "
+"інформації про додаток в процесі його встановлення. Він містить метадані, "
+"які ідентифікують додаток, надають інформацію про його автора, про те, де "
+"можна знайти більше інформації про нього, з якими версіями програм воно "
+"сумісно, як його треба оновлювати, і так далі. Форматом файлу маніфесту "
+"встановлення є RDF/XML."
 
 #: apps/pages/templates/pages/dev_faq.html:133
 msgid "What does \"maxVersion\" mean?"
@@ -11862,7 +11869,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:303
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Що таке \"інструменти розробника\", перелічені на AMO?"
 
 #: apps/pages/templates/pages/dev_faq.html:305
 msgid ""
@@ -11888,7 +11895,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:325
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Як мені подати мій додаток на перевірку?"
 
 #: apps/pages/templates/pages/dev_faq.html:327
 msgid ""
@@ -11901,7 +11908,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:337
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Яку операційну систему мені вибрати для мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:339
 msgid ""
@@ -11911,7 +11918,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:345
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Яку категорію мені вибрати для мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:347
 msgid ""
@@ -11924,7 +11931,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:356
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Що означає \"номінація\" мого додатку?"
 
 #: apps/pages/templates/pages/dev_faq.html:358
 msgid ""
@@ -11934,7 +11941,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:364
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Чи можу я вказати ліцензійну угоду на використання мого додатка?"
 
 #: apps/pages/templates/pages/dev_faq.html:366
 msgid ""
@@ -13978,11 +13985,11 @@ msgstr ""
 
 #: apps/users/forms.py:249
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Це ім'я користувача не може використовуватися."
 
 #: apps/users/forms.py:255
 msgid "This username is already in use."
-msgstr ""
+msgstr "Це ім’я користувача вже використовується."
 
 #: apps/users/forms.py:267 apps/users/templates/users/edit.html:86
 msgid "Display Name"
@@ -14036,32 +14043,32 @@ msgstr ""
 
 #: apps/users/forms.py:534
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Будь ласка, введіть принаймні одне ім'я в чорний список."
 
 #: apps/users/helpers.py:51
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "інші"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "алгоритм"
 
 #: apps/users/models.py:64
 msgid "salt"
-msgstr ""
+msgstr "сіль"
 
 #: apps/users/models.py:65
 msgid "hash"
-msgstr ""
+msgstr "хеш"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
-msgstr ""
+msgstr "Немає користувача з цією адресою ел. пошти."
 
 #: apps/users/models.py:390
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Ваш обліковий запис було обмежено"
 
 #: apps/users/models.py:460
 msgid "Please confirm your email address"
@@ -14131,15 +14138,20 @@ msgstr "моя програма перевірена редактором"
 #: apps/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
 msgstr ""
+"Mozilla необхідно зв'язатися зі мною з приводу моєї індивідуальної програми"
 
 #: apps/users/notifications.py:139
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla хоче зв'язатися зі мною з приводу новин та опитувань для розробників"
+" програм"
 
 #: apps/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla хоче зв'язатися зі мною з приводу нових регіонів, що були додані на "
+"Marketplace"
 
 #: apps/users/notifications.py:158
 msgid "User Notifications"
