@@ -442,7 +442,7 @@ class TestValidationAnnotatorBase(TestCase):
 
         # Create a FileUpload object for an XPI containing version 1.1.
         path = os.path.join(settings.ROOT,
-                            'apps/devhub/tests/addons/desktop.xpi')
+                            'src/olympia/devhub/tests/addons/desktop.xpi')
         self.file_upload = FileUpload.objects.create(path=path)
         self.xpi_version = '1.1'
 

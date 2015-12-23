@@ -564,7 +564,7 @@ class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
 
     def file_fixture_path(self, name):
-        path = 'apps/files/fixtures/files/%s' % name
+        path = 'src/olympia/files/fixtures/files/%s' % name
         return os.path.join(settings.ROOT, path)
 
     def xpi_path(self, name):

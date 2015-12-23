@@ -17,7 +17,7 @@ from olympia.stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
 from olympia.zadmin.models import DownloadSource
 
 
-hive_folder = os.path.join(settings.ROOT, 'apps/stats/fixtures/files')
+hive_folder = os.path.join(settings.ROOT, 'src/olympia/stats/fixtures/files')
 
 
 class FixturesFolderMixin(object):

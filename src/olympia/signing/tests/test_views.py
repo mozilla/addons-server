@@ -167,7 +167,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert not qs.exists()
         response = self.put(
             addon=guid, version='0.1',
-            filename='apps/files/fixtures/files/experiment.xpi')
+            filename='src/olympia/files/fixtures/files/experiment.xpi')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -183,7 +183,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert not qs.exists()
         response = self.put(
             addon=guid, version='0.1',
-            filename='apps/files/fixtures/files/experiment.xpi')
+            filename='src/olympia/files/fixtures/files/experiment.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')

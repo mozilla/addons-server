@@ -419,7 +419,7 @@ class TestManifestJSONExtractor(TestCase):
 
 
 def test_zip_folder_content():
-    extension_file = 'apps/files/fixtures/files/extension.xpi'
+    extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
     try:
         temp_folder = utils.extract_zip(extension_file)
         assert os.listdir(temp_folder) == [
@@ -439,7 +439,7 @@ def test_zip_folder_content():
 
 def test_repack():
     # Warning: context managers all the way down. Because they're awesome.
-    extension_file = 'apps/files/fixtures/files/extension.xpi'
+    extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
     # We don't want to overwrite our fixture, so use a copy.
     with amo.tests.copy_file_to_temp(extension_file) as temp_filename:
         # This is where we're really testing the repack helper.
@@ -468,7 +468,7 @@ def file_obj():
 
 
 def test_bump_version_in_install_rdf(file_obj):
-    with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+    with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
                              file_obj.file_path):
         utils.update_version_number(file_obj, '1.3.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
@@ -476,7 +476,7 @@ def test_bump_version_in_install_rdf(file_obj):
 
 
 def test_bump_version_in_alt_install_rdf(file_obj):
-    with amo.tests.copy_file('apps/files/fixtures/files/alt-rdf.xpi',
+    with amo.tests.copy_file('src/olympia/files/fixtures/files/alt-rdf.xpi',
                              file_obj.file_path):
         utils.update_version_number(file_obj, '2.1.106.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
@@ -485,7 +485,7 @@ def test_bump_version_in_alt_install_rdf(file_obj):
 
 def test_bump_version_in_package_json(file_obj):
     with amo.tests.copy_file(
-            'apps/files/fixtures/files/new-format-0.0.1.xpi',
+            'src/olympia/files/fixtures/files/new-format-0.0.1.xpi',
             file_obj.file_path):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)

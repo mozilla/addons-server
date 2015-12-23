@@ -57,7 +57,7 @@ class TestUploadValidation(BaseUploadTest):
         eq_(doc('td').text(), 'December  6, 2010')
 
     def test_upload_processed_validation(self):
-        addon_file = open('apps/files/fixtures/files/validation-error.xpi')
+        addon_file = open('src/olympia/files/fixtures/files/validation-error.xpi')
         response = self.client.post(reverse('devhub.upload'),
                                     {'name': 'addon.xpi',
                                      'upload': addon_file})
@@ -405,7 +405,7 @@ class TestUploadURLs(TestCase):
         FileUpload.objects.all().delete()
         self.run_validator.reset_mock()
 
-        with open('apps/files/fixtures/files/validation-error.xpi') as file_:
+        with open('src/olympia/files/fixtures/files/validation-error.xpi') as file_:
             resp = self.client.post(reverse(view, kwargs=kw),
                                     {'upload': file_})
             assert resp.status_code == 302

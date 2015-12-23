@@ -22,8 +22,8 @@ from olympia.files.helpers import DiffHelper, FileViewer
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 
-dictionary = 'apps/files/fixtures/files/dictionary-test.xpi'
-unicode_filenames = 'apps/files/fixtures/files/unicode-filenames.xpi'
+dictionary = 'src/olympia/files/fixtures/files/dictionary-test.xpi'
+unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
 not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 

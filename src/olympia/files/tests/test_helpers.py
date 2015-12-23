@@ -19,7 +19,7 @@ from olympia.files.helpers import FileViewer, DiffHelper
 from olympia.files.models import File
 from olympia.files.utils import SafeUnzip
 
-root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
+root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
 
 
 def get_file(filename):

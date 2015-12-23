@@ -46,13 +46,13 @@ All being well it should look like this::
 
     """)
     :/opt/rh/python27/root/usr/lib/python2.7/site-packages/celery/utils/__init__.py:93
-    > /code/apps/browse/views.py(148)themes()
+    > /code/src/olympia/browse/views.py(148)themes()
         147     import ipdb;ipdb.set_trace()
     --> 148     TYPE = amo.ADDON_THEME
         149     if category is not None:
 
     ipdb> n
-    > /code/apps/browse/views.py(149)themes()
+    > /code/src/olympia/browse/views.py(149)themes()
         148     TYPE = amo.ADDON_THEME
     --> 149     if category is not None:
         150         q = Category.objects.filter(application=request.APP.id, type=TYPE)

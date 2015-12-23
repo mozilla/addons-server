@@ -150,7 +150,7 @@ class TestValidator(TestCase):
 
         self.upload.update(
             path=os.path.join(settings.ROOT,
-                              'apps/devhub/tests/addons/desktop.xpi'))
+                              'src/olympia/devhub/tests/addons/desktop.xpi'))
 
         assert self.upload.validation is None
 

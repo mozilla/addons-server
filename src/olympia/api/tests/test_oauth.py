@@ -316,7 +316,7 @@ class TestAddon(BaseOAuth):
 
     def setUp(self):
         super(TestAddon, self).setUp()
-        path = 'apps/files/fixtures/files/extension.xpi'
+        path = 'src/olympia/files/fixtures/files/extension.xpi'
         xpi = os.path.join(settings.ROOT, path)
         f = open(xpi)
 
@@ -326,7 +326,7 @@ class TestAddon(BaseOAuth):
                                 platform='mac',
                                 xpi=f)
 
-        path = 'apps/files/fixtures/files/extension-0.2.xpi'
+        path = 'src/olympia/files/fixtures/files/extension-0.2.xpi'
         self.version_data = dict(builtin=2, platform='windows',
                                  xpi=open(os.path.join(settings.ROOT, path)))
         self.update_data = dict(name='fu',
@@ -591,7 +591,7 @@ class TestAddon(BaseOAuth):
         a = Addon.objects.get(pk=id)
         v = a.versions.get()
         eq_(v.version, '0.1')
-        return a, v, 'apps/files/fixtures/files/extension-0.2.xpi'
+        return a, v, 'src/olympia/files/fixtures/files/extension-0.2.xpi'
 
     def test_update_version_no_license(self):
         a, v, path = self.create_for_update()

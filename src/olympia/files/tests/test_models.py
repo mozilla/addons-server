@@ -356,7 +356,7 @@ class TestParseXpi(TestCase):
                                       version=version)
 
     def parse(self, addon=None, filename='extension.xpi'):
-        path = 'apps/files/fixtures/files/' + filename
+        path = 'src/olympia/files/fixtures/files/' + filename
         xpi = os.path.join(settings.ROOT, path)
         return parse_addon(open(xpi), addon)
 
@@ -1158,7 +1158,7 @@ def test_parse_addon(search_mock, xpi_mock):
 def test_parse_xpi():
     """Fire.fm can sometimes give us errors.  Let's prevent that."""
     firefm = os.path.join(settings.ROOT,
-                          'apps/files/fixtures/files/firefm.xpi')
+                          'src/olympia/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(open(firefm))
     eq_(rdf['name'], 'Fire.fm')
 
