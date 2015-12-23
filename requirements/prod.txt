@@ -26,6 +26,7 @@ django_csp==2.0.3
 django-environ==0.4.0
 django-extensions==1.2.5
 django-filter==0.7
+django-mozilla-product-details==0.8.2
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
 django-post-request-task==0.0.3
@@ -100,7 +101,6 @@ django-cache-machine==0.9.1
 -e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
 -e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
 -e git+https://github.com/mozilla/nuggets.git@9c4344a802b07d95c0dd6256570a4facddf54784#egg=nuggets
--e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
 
 ## Forked.
