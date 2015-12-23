@@ -17,7 +17,7 @@
 
         opts = opts || {};
         var authConfig = {
-            state: 'foo',
+            state: config.state,
             redirectUri: config.redirectUrl,
             scope: config.scope,
         };

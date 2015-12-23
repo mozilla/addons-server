@@ -65,6 +65,9 @@ def with_user(fn):
         data = request.GET if request.method == 'GET' else request.DATA
         if 'code' not in data:
             return Response({'error': 'No code provided.'}, status=422)
+        elif ('fxa_state' not in request.session or
+                request.session['fxa_state'] != data['state']):
+            return Response({'error': 'State mismatch.'}, status=400)
 
         try:
             identity = verify.fxa_identify(data['code'],
