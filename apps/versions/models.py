@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import calendar
 import datetime
 import os
 
@@ -22,6 +21,7 @@ import amo.utils
 from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, id_to_path
+from amo.utils import utc_millesecs_from_epoch
 from applications.models import AppVersion
 from files import utils
 from files.models import File, cleanup_file
@@ -167,10 +167,10 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
-        upload_start = calendar.timegm(upload.created.utctimetuple())
+        upload_start = utc_millesecs_from_epoch(upload.created)
         now = datetime.datetime.now()
-        now_ts = calendar.timegm(now.utctimetuple())
-        upload_time = (now_ts - upload_start) * 1000
+        now_ts = utc_millesecs_from_epoch(now)
+        upload_time = now_ts - upload_start
 
         log.info('Time for version {version} creation from upload: {delta}; '
                  'created={created}; now={now}'
