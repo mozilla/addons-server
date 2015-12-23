@@ -24,7 +24,6 @@ from amo.urlresolvers import reverse
 from abuse.models import AbuseReport
 from addons.models import Addon, AddonDependency, AddonUser, Charity, Persona
 from bandwagon.models import Collection
-from constants.base import FIREFOX_IOS_USER_AGENTS
 from paypal.tests.test import other_error
 from stats.models import Contribution
 from users.helpers import users_list
@@ -503,6 +502,14 @@ class TestDetailPage(amo.tests.TestCase):
                 'base/addon_4594_a9',
                 'addons/listed',
                 'addons/persona']
+    firefox_ios_user_agents = [
+        ('Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) '
+         'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
+         'Safari/600.1.4'),
+        ('Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) '
+         'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
+         'Safari/600.1.4')
+    ]
 
     def setUp(self):
         super(TestDetailPage, self).setUp()
@@ -834,7 +841,7 @@ class TestDetailPage(amo.tests.TestCase):
         assert self.client.get(self.url).status_code == 404
 
     def test_fx_ios_addons_message(self):
-        c = Client(HTTP_USER_AGENT=FIREFOX_IOS_USER_AGENTS[0])
+        c = Client(HTTP_USER_AGENT=self.firefox_ios_user_agents[0])
         r = c.get(self.url)
         addons_banner = pq(r.content)('.get-fx-message')
         banner_message = ('Add-ons are not currently available on Firefox for '
