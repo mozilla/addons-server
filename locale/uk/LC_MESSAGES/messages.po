@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-22 14:20+0000\n"
+"PO-Revision-Date: 2015-12-24 10:58+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -12479,7 +12479,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Що робити, якщо у мене проблеми з додатком?"
 
 #: apps/pages/templates/pages/faq.html:158
 msgid ""
@@ -12536,6 +12536,8 @@ msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
 msgstr ""
+"Що це означає, коли додаток \"експериментальний\" чи \"попередньо "
+"перевірений\"?"
 
 #: apps/pages/templates/pages/faq.html:189
 msgid ""
@@ -12548,7 +12550,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:197
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Що це означає, коли додаток \"не перевірений\"?"
 
 #: apps/pages/templates/pages/faq.html:198
 msgid ""
@@ -12562,16 +12564,18 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:207
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Скільки коштують додатки?"
 
 #: apps/pages/templates/pages/faq.html:208
 msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
+"Додатки, розміщені у нашій галереї, безкоштовні, якщо явно не вказано "
+"протилежне."
 
 #: apps/pages/templates/pages/faq.html:211
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Що означає, коли додаток запитує про внесок?"
 
 #: apps/pages/templates/pages/faq.html:212
 msgid ""
@@ -12580,6 +12584,10 @@ msgid ""
 "directly to the developer unless a third party is indicated, such as the "
 "non-profit Mozilla Foundation."
 msgstr ""
+"Деякі автори додатків пропонують користувачам, яким подобається їх додатки, "
+"зробити вклад у його розвиток, зробивши грошовий внесок. Ці внески йдуть "
+"безпосередньо розробнику, якщо тільки не вказана третя сторона, така як "
+"некомерційна Mozilla Foundation."
 
 #: apps/pages/templates/pages/faq.html:217
 msgid "What are beta add-ons?"
