@@ -32,7 +32,6 @@ from amo import urlresolvers
 from amo.urlresolvers import reverse
 from abuse.models import send_abuse_report
 from bandwagon.models import Collection, CollectionFeature, CollectionPromo
-from constants.base import FIREFOX_IOS_USER_AGENTS
 import paypal
 from reviews.forms import ReviewForm
 from reviews.models import Review, GroupedRating
@@ -145,7 +144,10 @@ def extension_detail(request, addon):
 
 @mobilized(extension_detail)
 def extension_detail(request, addon):
-    ios_user = request.META.get('HTTP_USER_AGENT') in FIREFOX_IOS_USER_AGENTS
+    if not request.META.get('HTTP_USER_AGENT'):
+        ios_user = False
+    else:
+        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
     return render(request, 'addons/mobile/details.html',
                   {'addon': addon, 'ios_user': ios_user})
 
@@ -363,7 +365,10 @@ def home(request):
     popular = sorted([a for a in addons if a.id in popular],
                      key=attrgetter('average_daily_users'), reverse=True)
 
-    ios_user = request.META.get('HTTP_USER_AGENT') in FIREFOX_IOS_USER_AGENTS
+    if not request.META.get('HTTP_USER_AGENT'):
+        ios_user = False
+    else:
+        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
     return render(request, 'addons/mobile/home.html',
                   {'featured': featured, 'popular': popular,
                    'ios_user': ios_user})
