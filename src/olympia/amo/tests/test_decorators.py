@@ -163,21 +163,21 @@ class TestPermissionRequired(TestCase):
         self.f.__name__ = 'function'
         self.request = mock.Mock()
 
-    @mock.patch('access.acl.action_allowed')
+    @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_not_allowed(self, action_allowed):
         action_allowed.return_value = False
         func = decorators.permission_required('', '')(self.f)
         with self.assertRaises(PermissionDenied):
             func(self.request)
 
-    @mock.patch('access.acl.action_allowed')
+    @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed(self, action_allowed):
         action_allowed.return_value = True
         func = decorators.permission_required('', '')(self.f)
         func(self.request)
         assert self.f.called
 
-    @mock.patch('access.acl.action_allowed')
+    @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed_correctly(self, action_allowed):
         func = decorators.permission_required('Admin', '%')(self.f)
         func(self.request)

@@ -97,7 +97,7 @@ def test_hide_password_middleware():
 
 class TestNoAddonsMiddleware(TestCase):
 
-    @patch('amo.middleware.ViewMiddleware.get_name')
+    @patch('olympia.amo.middleware.ViewMiddleware.get_name')
     def process(self, name, get_name):
         get_name.return_value = name
         request = RequestFactory().get('/')

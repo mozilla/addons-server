@@ -25,7 +25,7 @@ def quickcopy(val):
 
 
 class ReadOnlyModeTest(TestCase):
-    extra = ('amo.middleware.ReadOnlyMiddleware',)
+    extra = ('olympia.amo.middleware.ReadOnlyMiddleware',)
 
     def setUp(self):
         super(ReadOnlyModeTest, self).setUp()

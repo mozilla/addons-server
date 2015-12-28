@@ -4,7 +4,7 @@ from django.core import mail
 from nose.tools import eq_
 
 from olympia.amo.tests import TestCase
-from olympia.olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport
 
 
 class TestAbuse(TestCase):

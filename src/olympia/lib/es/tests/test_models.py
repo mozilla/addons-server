@@ -23,7 +23,7 @@ class TestReindexManager(TestCase):
         assert Reindexing.objects.filter(site='foo').count() == 1
         assert res is None
 
-    @mock.patch('lib.es.models.ReindexingManager._flag_reindexing')
+    @mock.patch('olympia.lib.es.models.ReindexingManager._flag_reindexing')
     def test_flag_reindexing_amo(self, flag_reindexing_mock):
         Reindexing.objects.flag_reindexing_amo('bar', 'baz', 'quux')
         assert flag_reindexing_mock.called_with([
@@ -50,7 +50,7 @@ class TestReindexManager(TestCase):
         Reindexing.objects._unflag_reindexing('foo')
         assert Reindexing.objects.filter(site='bar').count() == 1
 
-    @mock.patch('lib.es.models.ReindexingManager._unflag_reindexing')
+    @mock.patch('olympia.lib.es.models.ReindexingManager._unflag_reindexing')
     def test_unflag_reindexing_amo(self, unflag_reindexing_mock):
         Reindexing.objects.unflag_reindexing_amo()
         assert unflag_reindexing_mock.called_with([('amo')])
@@ -66,7 +66,7 @@ class TestReindexManager(TestCase):
         # Reindexing on another site doesn't clash.
         assert not Reindexing.objects._is_reindexing('bar')
 
-    @mock.patch('lib.es.models.ReindexingManager._is_reindexing')
+    @mock.patch('olympia.lib.es.models.ReindexingManager._is_reindexing')
     def test_is_reindexing_amo(self, is_reindexing_mock):
         Reindexing.objects.is_reindexing_amo()
         assert is_reindexing_mock.called_with([('amo')])

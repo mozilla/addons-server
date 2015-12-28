@@ -176,10 +176,10 @@ class TestTotemVideo(TestCase):
             os.remove(video)
 
 
-@patch('lib.video.totem.Video.library_available')
-@patch('lib.video.ffmpeg.Video.library_available')
+@patch('olympia.lib.video.totem.Video.library_available')
+@patch('olympia.lib.video.ffmpeg.Video.library_available')
 @patch.object(settings, 'VIDEO_LIBRARIES',
-              ['lib.video.totem', 'lib.video.ffmpeg'])
+              ['olympia.lib.video.totem', 'olympia.lib.video.ffmpeg'])
 def test_choose(ffmpeg_, totem_):
     ffmpeg_.return_value = True
     totem_.return_value = True
@@ -201,7 +201,7 @@ class TestTask(TestCase):
         self.mock.image_path = tempfile.mkstemp()[1]
         self.mock.pk = 1
 
-    @patch('lib.video.tasks._resize_video')
+    @patch('olympia.lib.video.tasks._resize_video')
     def test_resize_error(self, _resize_video):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.side_effect = ValueError
@@ -211,7 +211,7 @@ class TestTask(TestCase):
         assert UserLog.objects.filter(
             user=user, activity_log__action=amo.LOG.VIDEO_ERROR.id).exists()
 
-    @patch('lib.video.tasks._resize_video')
+    @patch('olympia.lib.video.tasks._resize_video')
     def test_resize_failed(self, _resize_video):
         user = UserProfile.objects.create(email='a@a.com')
         _resize_video.return_value = None

@@ -136,13 +136,13 @@ class TestReporter(TestCase):
         self.assert3xx(
             self.client.get(self.url.format(self.addon.guid[:5])), expected)
 
-    @mock.patch('compat.views.owner_or_unlisted_reviewer', lambda r, a: True)
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: True)
     def test_unlisted_addon_redirect_for_authorized(self):
         """Can display the reports for an unlisted addon if authorized."""
         self.addon.update(is_listed=False)
         self.test_redirect()
 
-    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: False)
     def test_unlisted_addon_no_redirect_for_unauthorized(self):
         """If the user isn't authorized, don't redirect to unlisted addon."""
@@ -294,7 +294,7 @@ class TestReporterDetail(TestCase):
         msg = 'Unknown (%s)' % app_guid
         assert msg in r.content, 'Expected %s in body' % msg
 
-    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: True)
     def test_unlisted_addon_details_for_authorized(self):
         """If the user is authorized, display the reports."""
@@ -304,7 +304,7 @@ class TestReporterDetail(TestCase):
             good=3, bad=7, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
-    @mock.patch('compat.views.owner_or_unlisted_reviewer',
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: False)
     def test_unlisted_addon_no_details_for_unauthorized(self):
         """If the user isn't authorized, don't display the reports."""

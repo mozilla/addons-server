@@ -450,7 +450,7 @@ class TestTranslate(ReviewTest):
         eq_(r.get('Location'),
             'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9%203%25')
 
-    @mock.patch('reviews.views.requests')
+    @mock.patch('olympia.reviews.views.requests')
     def test_ajax_call(self, requests):
         # Mock requests.
         response = mock.Mock()
@@ -470,7 +470,7 @@ class TestTranslate(ReviewTest):
         eq_(json.loads(r.content), {"body": "oui", "title": "oui"})
 
     @mock.patch('waffle.switch_is_active', lambda x: True)
-    @mock.patch('reviews.views.requests')
+    @mock.patch('olympia.reviews.views.requests')
     def test_invalid_api_key(self, requests):
         # Mock requests.
         response = mock.Mock()

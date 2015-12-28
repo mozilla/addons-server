@@ -34,7 +34,7 @@ def test_fix_let_scope_bustage():
             assert_test_file_fixed(temp_filename2)
 
 
-@mock.patch('files.tasks.fix_let_scope_bustage')
+@mock.patch('olympia.files.tasks.fix_let_scope_bustage')
 def test_fix_let_scope_bustage_in_xpi(mock_fixer):
     """Fix the "let scope bustage" in the test XPI.
 
@@ -58,9 +58,9 @@ def test_fix_let_scope_bustage_in_xpi(mock_fixer):
     assert call[1].endswith('foobar/main.js')
 
 
-@mock.patch('files.tasks.fix_let_scope_bustage_in_xpi')
-@mock.patch('files.tasks.update_version_number')
-@mock.patch('files.tasks.sign_file')
+@mock.patch('olympia.files.tasks.fix_let_scope_bustage_in_xpi')
+@mock.patch('olympia.files.tasks.update_version_number')
+@mock.patch('olympia.files.tasks.sign_file')
 def test_fix_let_scope_bustage_in_addon(mock_sign_file, mock_version_bump,
                                         mock_fixer, db):
     # Create an add-on, with a version.

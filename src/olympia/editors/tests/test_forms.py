@@ -66,7 +66,7 @@ class TestReviewActions(TestCase):
         # so the length of the actions is one shorter
         eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)
 
-    @mock.patch('access.acl.action_allowed')
+    @mock.patch('olympia.access.acl.action_allowed')
     def test_admin_flagged_addon_actions(self, action_allowed_mock):
         self.addon.update(admin_review=True)
         # Test with an admin editor.

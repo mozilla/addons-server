@@ -63,8 +63,9 @@ class TestPackaged(TestCase):
     @pytest.fixture(autouse=True)
     def mock_get_signature_serial_number(self, monkeypatch):
         """Fake a standard signing-client response."""
-        monkeypatch.setattr('lib.crypto.packaged.get_signature_serial_number',
-                            lambda pkcs7: 'serial number')
+        monkeypatch.setattr(
+            'olympia.lib.crypto.packaged.get_signature_serial_number',
+            lambda pkcs7: 'serial number')
 
     def assert_not_signed(self):
         assert not self.file_.is_signed
@@ -318,7 +319,7 @@ class TestTasks(TestCase):
         """Make sure there's no backup file."""
         assert not os.path.exists(self.get_backup_file_path())
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_unreviewed(self, mock_sign_file):
         """Don't bump nor sign unreviewed files."""
         for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
@@ -336,7 +337,7 @@ class TestTasks(TestCase):
                 assert file_hash == self.file_.generate_hash()
                 self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
         # We want to make sure each file has been signed.
         self.file2 = amo.tests.file_factory(version=self.version)
@@ -367,7 +368,7 @@ class TestTasks(TestCase):
             if os.path.exists(backup_file2_path):
                 os.unlink(backup_file2_path)
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):
         """Use the full signing server if files are fully reviewed."""
         self.file_.update(status=amo.STATUS_PUBLIC)
@@ -378,7 +379,7 @@ class TestTasks(TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.SIGNING_SERVER)
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_prelim(self, mock_sign_file):
         """Use the prelim signing server if files aren't fully reviewed."""
         self.file_.update(status=amo.STATUS_LITE)
@@ -389,7 +390,7 @@ class TestTasks(TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.PRELIMINARY_SIGNING_SERVER)
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
         """Don't sign files which are too old, or not default to compatible."""
         def not_signed():
@@ -423,7 +424,7 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
             not_signed()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
         self.file_.update(filename=u'jétpack.xpi')
@@ -441,7 +442,7 @@ class TestTasks(TestCase):
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_version(self, mock_sign_file):
         """Sign versions which have non-ascii version numbers."""
         self.version.update(version=u'é1.3')
@@ -459,7 +460,7 @@ class TestTasks(TestCase):
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_old_versions_default_compat(self, mock_sign_file):
         """Sign files which are old, but default to compatible."""
         with amo.tests.copy_file(
@@ -477,7 +478,7 @@ class TestTasks(TestCase):
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_new_versions_not_default_compat(self, mock_sign_file):
         """Sign files which are recent, event if not default to compatible."""
         with amo.tests.copy_file(
@@ -496,7 +497,7 @@ class TestTasks(TestCase):
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_resign_dont_bump_version_in_model(self, mock_sign_file):
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/new-addon-signature.xpi',
@@ -513,7 +514,7 @@ class TestTasks(TestCase):
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_version_bad_zipfile(self, mock_sign_file):
         with amo.tests.copy_file(__file__, self.file_.file_path):
             file_hash = self.file_.generate_hash()
@@ -527,7 +528,7 @@ class TestTasks(TestCase):
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
         mock_sign_file.side_effect = IOError()
         with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
@@ -543,7 +544,7 @@ class TestTasks(TestCase):
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_bump_not_signed(self, mock_sign_file):
         mock_sign_file.return_value = None  # Pretend we didn't sign.
         with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
@@ -559,7 +560,7 @@ class TestTasks(TestCase):
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_bump_version_in_model_if_force(self, mock_sign_file):
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/new-addon-signature.xpi',

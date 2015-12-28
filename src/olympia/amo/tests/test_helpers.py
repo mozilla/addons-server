@@ -162,7 +162,7 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
         assert '<script>' not in s
 
 
-@patch('amo.helpers.urlresolvers.reverse')
+@patch('olympia.amo.helpers.urlresolvers.reverse')
 def test_url(mock_reverse):
     render('{{ url("viewname", 1, z=2) }}')
     mock_reverse.assert_called_with('viewname', args=(1,), kwargs={'z': 2},
@@ -263,7 +263,7 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('amo.helpers.urlresolvers.get_outgoing_url')
+@patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -274,7 +274,7 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.assert_called_with('foo')
 
 
-@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -298,7 +298,7 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
 
-@patch('amo.helpers.urlresolvers.linkify_bounce_url_callback')
+@patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -407,7 +407,8 @@ class TestLicenseLink(TestCase):
 
 
 def get_image_path(name):
-    return os.path.join(settings.ROOT, 'apps', 'amo', 'tests', 'images', name)
+    return os.path.join(
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', name)
 
 
 def get_uploaded_file(name):

@@ -12,8 +12,9 @@ from olympia.addons.models import (
     Addon, CompatOverride, CompatOverrideRange, IncompatibleVersions)
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
-from olympia.services import update
 from olympia.versions.models import ApplicationsVersions, Version
+
+from services import update
 
 
 class VersionCheckMixin(object):

@@ -109,8 +109,8 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 AES_KEYS = {
-    'api_key:secret': os.path.join(ROOT, 'apps', 'api', 'tests', 'assets',
-                                   'test-api-key.txt'),
+    'api_key:secret': os.path.join(
+        ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
 }
 
 # FxA config for local development only.

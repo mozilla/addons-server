@@ -45,7 +45,7 @@ class TestAutoCreateUsername(TestCase):
         assert not un.startswith('fuuuuuuuuuuuuuuuuuu'), 'Unexpected: %s' % un
 
     @mock.patch.object(settings, 'MAX_GEN_USERNAME_TRIES', 3)
-    @fudge.patch('users.utils.UserProfile.objects.filter')
+    @fudge.patch('olympia.users.utils.UserProfile.objects.filter')
     def test_too_many_tries(self, filter):
         filter = (filter.is_callable().returns_fake().provides('count')
                   .returns(1))
@@ -58,7 +58,7 @@ class TestAutoCreateUsername(TestCase):
         un = autocreate_username('base')
         assert not un.startswith('base'), 'Unexpected: %s' % un
 
-    @fudge.patch('users.utils.UserProfile.objects.filter')
+    @fudge.patch('olympia.users.utils.UserProfile.objects.filter')
     def test_duplicate_username_counter(self, filter):
         filter = (filter.expects_call().returns_fake().expects('count')
                                                       .returns(1)

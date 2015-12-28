@@ -9,7 +9,7 @@ from olympia.accounts import verify
 class TestProfile(TestCase):
 
     def setUp(self):
-        patcher = mock.patch('apps.accounts.verify.requests.get')
+        patcher = mock.patch('olympia.accounts.verify.requests.get')
         self.get = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -53,7 +53,7 @@ class TestProfile(TestCase):
 class TestToken(TestCase):
 
     def setUp(self):
-        patcher = mock.patch('apps.accounts.verify.requests.post')
+        patcher = mock.patch('olympia.accounts.verify.requests.post')
         self.post = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -111,10 +111,10 @@ class TestIdentify(TestCase):
     CONFIG = {'foo': 'bar'}
 
     def setUp(self):
-        patcher = mock.patch('apps.accounts.verify.get_fxa_token')
+        patcher = mock.patch('olympia.accounts.verify.get_fxa_token')
         self.get_token = patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = mock.patch('apps.accounts.verify.get_fxa_profile')
+        patcher = mock.patch('olympia.accounts.verify.get_fxa_profile')
         self.get_profile = patcher.start()
         self.addCleanup(patcher.stop)
 

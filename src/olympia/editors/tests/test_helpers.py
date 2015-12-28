@@ -419,7 +419,7 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
@@ -444,7 +444,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
@@ -469,7 +469,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public_failed_signing(self, sign_mock):
         sign_mock.side_effect = Exception
         for status in helpers.NOMINATED_STATUSES:
@@ -486,7 +486,7 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 0
             assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_preliminary(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
@@ -512,7 +512,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_preliminary_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
@@ -538,7 +538,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_FULL)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_preliminary_unlisted_auto(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             sign_mock.reset()
@@ -564,7 +564,7 @@ class TestReviewHelper(TestCase):
 
             assert not ReviewerScore.objects.all()
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_preliminary_failed_signing(self, sign_mock):
         sign_mock.side_effect = Exception
         for status in helpers.NOMINATED_STATUSES:
@@ -580,7 +580,7 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 0
             assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_sandbox(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status)
@@ -599,7 +599,7 @@ class TestReviewHelper(TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_sandbox_unlisted(self, sign_mock):
         for status in helpers.NOMINATED_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -657,7 +657,7 @@ class TestReviewHelper(TestCase):
         self.assertRaises(AssertionError,
                           self.helper.handler.process_public)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_preliminary_to_preliminary(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status)
@@ -677,7 +677,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_preliminary_to_preliminary_unlisted(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -697,7 +697,7 @@ class TestReviewHelper(TestCase):
 
             self._check_score(amo.REVIEWED_ADDON_PRELIM)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_preliminary_to_preliminary_unlisted_auto(self, sign_mock):
         for status in helpers.PRELIMINARY_STATUSES:
             self.setup_data(status, is_listed=False)
@@ -717,7 +717,7 @@ class TestReviewHelper(TestCase):
 
             assert not ReviewerScore.objects.all()
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_preliminary_to_sandbox(self, sign_mock):
         for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status)
@@ -734,7 +734,7 @@ class TestReviewHelper(TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_preliminary_to_sandbox_unlisted(self, sign_mock):
         for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status, is_listed=False)
@@ -804,7 +804,7 @@ class TestReviewHelper(TestCase):
 
             eq_(self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id), 1)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public(self, sign_mock):
         for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status)
@@ -826,7 +826,7 @@ class TestReviewHelper(TestCase):
             if status == amo.STATUS_PUBLIC:
                 self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public_unlisted(self, sign_mock):
         for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
             self.setup_data(status, is_listed=False)
@@ -848,7 +848,7 @@ class TestReviewHelper(TestCase):
             if status == amo.STATUS_PUBLIC:
                 self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox(self, sign_mock):
         for status in amo.UNDER_REVIEW_STATUSES:
             self.setup_data(status)
@@ -865,7 +865,7 @@ class TestReviewHelper(TestCase):
             assert not storage.exists(self.file.mirror_file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox_unlisted(self, sign_mock):
         for status in amo.UNDER_REVIEW_STATUSES:
             self.setup_data(status, is_listed=False)

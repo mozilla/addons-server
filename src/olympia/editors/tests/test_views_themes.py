@@ -95,13 +95,13 @@ class ThemeReviewTestMixin(object):
             eq_(ThemeLock.objects.filter(reviewer=reviewer).count(),
                 len(expected))
 
-    @mock.patch('amo.messages.success')
-    @mock.patch('editors.tasks.reject_rereview')
-    @mock.patch('editors.tasks.approve_rereview')
-    @mock.patch('addons.tasks.version_changed')
-    @mock.patch('editors.tasks.send_mail_jinja')
-    @mock.patch('editors.tasks.create_persona_preview_images')
-    @mock.patch('amo.storage_utils.copy_stored_file')
+    @mock.patch('olympia.amo.messages.success')
+    @mock.patch('olympia.editors.tasks.reject_rereview')
+    @mock.patch('olympia.editors.tasks.approve_rereview')
+    @mock.patch('olympia.addons.tasks.version_changed')
+    @mock.patch('olympia.editors.tasks.send_mail_jinja')
+    @mock.patch('olympia.editors.tasks.create_persona_preview_images')
+    @mock.patch('olympia.amo.storage_utils.copy_stored_file')
     def test_commit(self, copy_mock, create_preview_mock,
                     send_mail_jinja_mock, version_changed_mock,
                     approve_rereview_mock, reject_rereview_mock,
@@ -539,10 +539,10 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.theme').length, 0)
 
-    @mock.patch('editors.tasks.send_mail_jinja')
-    @mock.patch('editors.tasks.copy_stored_file')
-    @mock.patch('editors.tasks.create_persona_preview_images')
-    @mock.patch('amo.storage_utils.copy_stored_file')
+    @mock.patch('olympia.editors.tasks.send_mail_jinja')
+    @mock.patch('olympia.editors.tasks.copy_stored_file')
+    @mock.patch('olympia.editors.tasks.create_persona_preview_images')
+    @mock.patch('olympia.amo.storage_utils.copy_stored_file')
     def test_update_legacy_theme(self, copy_mock, prev_mock, copy_mock2,
                                  noop3):
         """
@@ -627,7 +627,7 @@ class TestThemeQueueRereview(ThemeReviewTestMixin, TestCase):
                                           args=[addon.slug]))
         eq_(res.status_code, 200)
 
-    @mock.patch('amo.utils.LocalFileStorage.delete')
+    @mock.patch('olympia.amo.utils.LocalFileStorage.delete')
     def test_reject_theme_without_footer_bug_1142449(self, delete_mock):
         """Don't fail on trying to deleted a non existent footer image."""
         user = UserProfile.objects.get(email='persona_reviewer@mozilla.com')

@@ -661,7 +661,7 @@ class TestLogin(UserViewBase):
 
 
 @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
-@patch('users.models.UserProfile.log_login_attempt')
+@patch('olympia.users.models.UserProfile.log_login_attempt')
 class TestFailedCount(UserViewBase):
     fixtures = ['users/test_backends', 'base/addon_3615']
 

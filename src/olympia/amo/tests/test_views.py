@@ -357,7 +357,7 @@ class TestOtherStuff(TestCase):
              'chromeLocale=en-US&appRelease=10.0.2'))
 
 
-@mock.patch('amo.views.log_cef')
+@mock.patch('olympia.amo.views.log_cef')
 class TestCSP(TestCase):
 
     def setUp(self):

@@ -349,7 +349,7 @@ class TestReviewLog(EditorTest):
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Add-on Review Log', None)])
 
-    @patch('devhub.models.ActivityLog.arguments', new=Mock)
+    @patch('olympoia.devhub.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)
@@ -2047,7 +2047,7 @@ class TestReview(ReviewBase):
                 self.client.post(self.url, data)
                 v.delete()
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):
         self.generate_deleted_versions()
 
@@ -2313,7 +2313,7 @@ class TestReview(ReviewBase):
         eq_(ths.length, 2)
         assert '0.1' in ths.text()
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
         data = dict(action='prelim', operating_systems='win',
@@ -2468,7 +2468,7 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_admin()
@@ -2524,7 +2524,7 @@ class TestReview(ReviewBase):
         assert '(Owner) removed from ' in user_changes[2].text
 
     @override_settings(CELERY_ALWAYS_EAGER=True)
-    @mock.patch('devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_eagerly(self, validate):
         """Tests that validation is not run in eager mode."""
         assert not self.file.has_been_validated
@@ -2534,7 +2534,7 @@ class TestReview(ReviewBase):
         assert not validate.called
 
     @override_settings(CELERY_ALWAYS_EAGER=False)
-    @mock.patch('devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_run(self, validate):
         """Tests that validation is run if necessary."""
         assert not self.file.has_been_validated
@@ -2544,7 +2544,7 @@ class TestReview(ReviewBase):
         validate.assert_called_once_with(self.file)
 
     @override_settings(CELERY_ALWAYS_EAGER=False)
-    @mock.patch('devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.validate')
     def test_validation_not_run_again(self, validate):
         """Tests that validation is not run for files which have cached
         results."""
@@ -2567,7 +2567,7 @@ class TestReviewPreliminary(ReviewBase):
         eq_(response.context['form'].errors['comments'][0],
             'This field is required.')
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_prelim_from_lite(self, mock_sign):
         self.addon.update(status=amo.STATUS_LITE)
         self.version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
@@ -2588,7 +2588,7 @@ class TestReviewPreliminary(ReviewBase):
         self.client.post(self.url, self.prelim_dict())
         eq_(self.get_addon().status, amo.STATUS_LITE)
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_prelim_from_unreviewed(self, mock_sign):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.prelim_dict())
@@ -2620,7 +2620,7 @@ class TestReviewPending(ReviewBase):
     def pending_dict(self):
         return self.get_dict(action='public')
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
@@ -2636,7 +2636,7 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public_unlisted_addon(self, mock_sign):
         self.addon.update(is_listed=False)
         statuses = (self.version.files.values_list('status', flat=True)
@@ -2674,7 +2674,7 @@ class TestReviewPending(ReviewBase):
         assert unreviewed.filename in response.content
         assert self.file.filename in response.content
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,
@@ -2801,7 +2801,7 @@ class TestWhiteboard(ReviewBase):
         assert response.status_code == 302
         assert self.get_addon().whiteboard == whiteboard_info
 
-    @patch('addons.decorators.owner_or_unlisted_reviewer', lambda r, a: True)
+    @patch('olympia.addons.decorators.owner_or_unlisted_reviewer', lambda r, a: True)
     def test_whiteboard_addition_unlisted_addon(self):
         self.addon.update(is_listed=False)
         whiteboard_info = u'Whiteboard info.'

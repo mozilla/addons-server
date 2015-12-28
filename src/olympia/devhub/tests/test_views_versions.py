@@ -166,7 +166,7 @@ class TestVersion(TestCase):
         eq_(self.addon.versions.count(), 1)
         eq_(Addon.objects.get(id=3615).status, amo.STATUS_UNREVIEWED)
 
-    @mock.patch('files.models.File.hide_disabled_file')
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon(self, hide_mock):
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
@@ -182,7 +182,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
-    @mock.patch('devhub.views.unindex_addons')
+    @mock.patch('olympia.devhub.views.unindex_addons')
     def test_user_can_unlist_addon(self, unindex):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
@@ -200,7 +200,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg
 
-    @mock.patch('devhub.views.unindex_addons')
+    @mock.patch('olympia.devhub.views.unindex_addons')
     def test_user_can_unlist_hidden_addon(self, unindex):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
                           is_listed=True)
@@ -612,7 +612,7 @@ class TestVersionEditSearchEngine(TestVersionEditMixin,
         doc = pq(r.content)
         assert not doc('a.add-file')
 
-    @mock.patch('versions.models.Version.is_allowed_upload')
+    @mock.patch('olympia.versions.models.Version.is_allowed_upload')
     def test_can_upload(self, allowed):
         allowed.return_value = True
         res = self.client.get(self.url)

@@ -45,8 +45,8 @@ class TestGoogleAnalytics(TestCase):
                         'token_expiry': '', 'token_uri': '',
                         'user_agent': ''}, create=True)
     @mock.patch('httplib2.Http')
-    @mock.patch('stats.tasks.get_profile_id')
-    @mock.patch('stats.tasks.build')
+    @mock.patch('olympia.stats.tasks.get_profile_id')
+    @mock.patch('olympia.stats.tasks.build')
     def test_ask_google(self, build, gpi, http):
         gpi.return_value = '1'
         d = '2012-01-01'
@@ -83,7 +83,7 @@ class TestTotalContributions(TestCase):
         eq_(float(a.total_contributions), 19.99)
 
 
-@mock.patch('stats.management.commands.index_stats.create_tasks')
+@mock.patch('olympia.stats.management.commands.index_stats.create_tasks')
 class TestIndexStats(TestCase):
     fixtures = ['stats/test_models']
 
@@ -167,7 +167,7 @@ class TestIndexLatest(amo.tests.ESTestCase):
 
         start = latest.strftime('%Y-%m-%d')
         finish = datetime.date.today().strftime('%Y-%m-%d')
-        with mock.patch('stats.cron.call_command') as call:
+        with mock.patch('olympia.stats.cron.call_command') as call:
             cron.index_latest_stats()
             call.assert_called_with('index_stats', addons=None,
                                     date='%s:%s' % (start, finish))

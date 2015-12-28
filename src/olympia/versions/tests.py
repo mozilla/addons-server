@@ -272,7 +272,7 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
-    @mock.patch('files.models.File.hide_disabled_file')
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
         addon = Addon.objects.get(id=3615)
         # The status doesn't change for public files.
@@ -362,7 +362,7 @@ class TestVersion(TestCase):
 
         # Non-public addon.
         self._reset_version(version)
-        with mock.patch('addons.models.Addon.is_public') as is_addon_public:
+        with mock.patch('olympia.addons.models.Addon.is_public') as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
 
@@ -431,13 +431,13 @@ class TestVersion(TestCase):
                                            max_app_version='10.*')
         eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
 
-    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
+    @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
     def test_invalidate_d2c_version_signals_on_delete(self, inv_mock):
         version = Addon.objects.get(pk=3615).current_version
         version.delete()
         assert inv_mock.called
 
-    @mock.patch('addons.models.Addon.invalidate_d2c_versions')
+    @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
     def test_invalidate_d2c_version_signals_on_save(self, inv_mock):
         addon = Addon.objects.get(pk=3615)
         amo.tests.version_factory(addon=addon)
@@ -1243,7 +1243,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # would be in the microsecond range.
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
-        with mock.patch('versions.models.statsd.timing') as mock_timing:
+        with mock.patch('olympia.versions.models.statsd.timing') as mock_timing:
             Version.from_upload(self.upload, self.addon, [self.platform])
 
             upload_start = utc_millesecs_from_epoch(self.upload.created)

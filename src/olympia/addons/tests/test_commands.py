@@ -12,7 +12,7 @@ from olympia.editors.models import ReviewerScore
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
-SIGN_ADDONS = 'addons.management.commands.sign_addons.sign_addons'
+SIGN_ADDONS = 'olympia.addons.management.commands.sign_addons.sign_addons'
 
 
 # Test the "sign_addons" command.
@@ -224,7 +224,7 @@ def test_fix_let_scope_bustage_no_addon_id():
     assert 'Please provide at least one add-on id to fix.' in exc_info.value
 
 
-@mock.patch('addons.management.commands.fix_let_scope_bustage.'
+@mock.patch('olympia.addons.management.commands.fix_let_scope_bustage.'
             'fix_let_scope_bustage_in_addons.delay')
 def test_fix_let_scope_bustage(mock_fixer):
     """The command should call the task with the list of add-on id provided."""

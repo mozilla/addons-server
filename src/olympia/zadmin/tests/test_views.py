@@ -217,7 +217,7 @@ class BulkValidationTest(TestCase):
 
 class TestBulkValidation(BulkValidationTest):
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_start(self, bulk_validate_file):
         new_max = self.appversion('3.7a3')
         r = self.client.post(reverse('zadmin.start_validation'),
@@ -238,7 +238,7 @@ class TestBulkValidation(BulkValidationTest):
             len(self.version.all_files))
         assert bulk_validate_file.delay.called
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_ignore_user_disabled_addons(self, bulk_validate_file):
         self.addon.update(disabled_by_user=True)
         r = self.client.post(reverse('zadmin.start_validation'),
@@ -251,7 +251,7 @@ class TestBulkValidation(BulkValidationTest):
         self.assert3xx(r, reverse('zadmin.validation'))
         assert not bulk_validate_file.delay.called
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_ignore_non_public_addons(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
         for status in (amo.STATUS_DISABLED, amo.STATUS_NULL,
@@ -268,7 +268,7 @@ class TestBulkValidation(BulkValidationTest):
             assert not bulk_validate_file.delay.called, (
                 'Addon with status %s should be ignored' % status)
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_ignore_lang_packs(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
         self.addon.update(type=amo.ADDON_LPAPP)
@@ -283,7 +283,7 @@ class TestBulkValidation(BulkValidationTest):
         assert not bulk_validate_file.delay.called, (
             'Lang pack addons should be ignored')
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_ignore_themes(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
         self.addon.update(type=amo.ADDON_THEME)
@@ -295,7 +295,7 @@ class TestBulkValidation(BulkValidationTest):
         assert not bulk_validate_file.delay.called, (
             'Theme addons should be ignored')
 
-    @mock.patch('zadmin.tasks.bulk_validate_file')
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_validate_all_non_disabled_addons(self, bulk_validate_file):
         target_ver = self.appversion('3.7a3').id
         bulk_validate_file.delay.called = False
@@ -505,7 +505,7 @@ class TestBulkUpdate(BulkValidationTest):
         eq_(mail.outbox[0].subject,
             '%s' % self.addon.name)
 
-    @mock.patch('zadmin.tasks.log')
+    @mock.patch('olympia.zadmin.tasks.log')
     def test_bulk_email_logs_stats(self, log):
         log.info = mock.Mock()
         self.create_result(self.job, self.create_file(self.version))
@@ -743,7 +743,7 @@ class TestBulkValidationTask(BulkValidationTest):
             pass
         assert validate.call_args[1].get('compat_test')
 
-    @mock.patch('zadmin.tasks.run_validator')
+    @mock.patch('olympia.zadmin.tasks.run_validator')
     def test_task_error(self, run_validator):
         run_validator.side_effect = RuntimeError('validation error')
         try:
@@ -761,7 +761,7 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(res.validation_job.stats['passing'], 0)
         eq_(res.validation_job.stats['failing'], 0)
 
-    @mock.patch('zadmin.tasks.run_validator')
+    @mock.patch('olympia.zadmin.tasks.run_validator')
     def test_validate_for_appversions(self, run_validator):
         data = {
             "errors": 1,
@@ -781,7 +781,7 @@ class TestBulkValidationTask(BulkValidationTest):
         eq_(run_validator.call_args[1]['for_appversions'],
             {amo.FIREFOX.guid: [self.new_max.version]})
 
-    @mock.patch('zadmin.tasks.run_validator')
+    @mock.patch('olympia.zadmin.tasks.run_validator')
     def test_validate_all_tiers(self, run_validator):
         run_validator.return_value = json.dumps(VALIDATOR_SKELETON_RESULTS)
         res = self.create_result(self.create_job(), self.create_file(), **{})
@@ -789,7 +789,7 @@ class TestBulkValidationTask(BulkValidationTest):
         assert run_validator.called
         eq_(run_validator.call_args[1]['test_all_tiers'], True)
 
-    @mock.patch('zadmin.tasks.run_validator')
+    @mock.patch('olympia.zadmin.tasks.run_validator')
     def test_merge_with_compat_summary(self, run_validator):
         data = {
             "errors": 1,
@@ -1076,7 +1076,7 @@ class TestTallyValidationErrors(BulkValidationTest):
         rows = sorted((r for r in rdr), key=lambda r: r[0])
         return header, rows
 
-    @mock.patch('zadmin.tasks.run_validator')
+    @mock.patch('olympia.zadmin.tasks.run_validator')
     def test_csv(self, run_validator):
         run_validator.return_value = json.dumps(self.data)
         self.start_validation()

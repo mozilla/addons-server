@@ -137,10 +137,10 @@ class TestExtractor(TestCase):
         assert exc.exception.message == (
             "No install.rdf or package.json or manifest.json found")
 
-    @mock.patch('files.utils.ManifestJSONExtractor')
-    @mock.patch('files.utils.PackageJSONExtractor')
-    @mock.patch('files.utils.RDFExtractor')
-    @mock.patch('files.utils.os.path.exists')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.PackageJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_install_rdf(self, exists_mock, rdf_extractor,
                                package_json_extractor,
                                manifest_json_extractor):
@@ -150,10 +150,10 @@ class TestExtractor(TestCase):
         assert not package_json_extractor.called
         assert not manifest_json_extractor.called
 
-    @mock.patch('files.utils.ManifestJSONExtractor')
-    @mock.patch('files.utils.PackageJSONExtractor')
-    @mock.patch('files.utils.RDFExtractor')
-    @mock.patch('files.utils.os.path.exists')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.PackageJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_package_json(self, exists_mock, rdf_extractor,
                                 package_json_extractor,
                                 manifest_json_extractor):
@@ -163,10 +163,10 @@ class TestExtractor(TestCase):
         assert package_json_extractor.called
         assert not manifest_json_extractor.called
 
-    @mock.patch('files.utils.ManifestJSONExtractor')
-    @mock.patch('files.utils.PackageJSONExtractor')
-    @mock.patch('files.utils.RDFExtractor')
-    @mock.patch('files.utils.os.path.exists')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.PackageJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_manifest_json(self, exists_mock, rdf_extractor,
                                  package_json_extractor,
                                  manifest_json_extractor):
@@ -177,10 +177,10 @@ class TestExtractor(TestCase):
         assert not package_json_extractor.called
         assert manifest_json_extractor.called
 
-    @mock.patch('files.utils.ManifestJSONExtractor')
-    @mock.patch('files.utils.PackageJSONExtractor')
-    @mock.patch('files.utils.RDFExtractor')
-    @mock.patch('files.utils.os.path.exists')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.PackageJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_manifest_json_no_waffle(self, exists_mock, rdf_extractor,
                                            package_json_extractor,
                                            manifest_json_extractor):

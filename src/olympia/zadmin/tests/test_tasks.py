@@ -75,7 +75,7 @@ class TestLangpackFetcher(TestCase):
 
     def setUp(self):
         super(TestLangpackFetcher, self).setUp()
-        request_patch = mock.patch('zadmin.tasks.requests.get')
+        request_patch = mock.patch('olympia.zadmin.tasks.requests.get')
         self.mock_request = request_patch.start()
         self.addCleanup(request_patch.stop)
 
@@ -103,7 +103,7 @@ class TestLangpackFetcher(TestCase):
             [mock.call(list_url, verify=settings.CA_CERT_BUNDLE_PATH),
              mock.call(langpack_url, verify=settings.CA_CERT_BUNDLE_PATH)])
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack(self, mock_sign_file):
         assert self.get_langpacks().count() == 0
 
@@ -125,7 +125,7 @@ class TestLangpackFetcher(TestCase):
         mock_sign_file.assert_called_once_with(
             addon.current_version.files.get(), settings.SIGNING_SERVER)
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack(self, mock_sign_file):
         versions = ('16.0', '17.0')
 
@@ -147,7 +147,7 @@ class TestLangpackFetcher(TestCase):
         mock_sign_file.assert_called_with(
             version.files.get(), settings.SIGNING_SERVER)
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_duplicate_langpack(self, mock_sign_file):
         self.fetch_langpacks(amo.FIREFOX.latest_version)
 
@@ -169,7 +169,7 @@ class TestLangpackFetcher(TestCase):
         mock_sign_file.assert_called_once_with(
             addon.current_version.files.get(), settings.SIGNING_SERVER)
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_updated_langpack_beta(self, mock_sign_file):
         versions = ('16.0', '16.0a2')
 
@@ -191,7 +191,7 @@ class TestLangpackFetcher(TestCase):
         mock_sign_file.assert_called_with(
             version.files.get(), settings.PRELIMINARY_SIGNING_SERVER)
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):
         self.fetch_langpacks('16.0a2')
 
@@ -199,7 +199,7 @@ class TestLangpackFetcher(TestCase):
 
         assert not mock_sign_file.called
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_langpack_wrong_owner(self, mock_sign_file):
         Addon.objects.create(guid='langpack-de-DE@firefox.mozilla.org',
                              type=amo.ADDON_LPAPP)
@@ -209,7 +209,7 @@ class TestLangpackFetcher(TestCase):
 
         assert not mock_sign_file.called
 
-    @mock.patch('zadmin.tasks.sign_file')
+    @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_langpack_invalid_path_fails(self, mock_sign_file):
         self.mock_request.return_value = None
 

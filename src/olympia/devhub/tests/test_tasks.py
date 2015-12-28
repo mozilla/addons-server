@@ -132,13 +132,13 @@ class TestValidator(TestCase):
     def get_upload(self):
         return FileUpload.objects.get(pk=self.upload.pk)
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
         tasks.validate(self.upload)
         assert self.get_upload().valid
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
         tasks.validate(self.upload)
@@ -164,8 +164,8 @@ class TestValidator(TestCase):
         assert not self.upload.valid
 
     @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=False)
-    @mock.patch('devhub.tasks.annotate_validation_results')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.annotate_validation_results')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_annotation_error(self, run_validator, annotate):
         """Test that an error that occurs during annotation is saved as an
         error result."""
@@ -186,7 +186,7 @@ class TestValidator(TestCase):
 
     @override_settings(SIGNING_SERVER='http://full',
                        PRELIMINARY_SIGNING_SERVER='http://prelim')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
@@ -196,7 +196,7 @@ class TestValidator(TestCase):
         assert len(validation['messages']) == 1
 
     @override_settings(SIGNING_SERVER='', PRELIMINARY_SIGNING_SERVER='')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_no_signing_warning(self, _mock):
         """If we're not signing addon don't warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
@@ -205,7 +205,7 @@ class TestValidator(TestCase):
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_annotate_passed_auto_validation(self, _mock):
         """Set passed_auto_validation on reception of the results."""
         result = {'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
@@ -217,7 +217,7 @@ class TestValidator(TestCase):
         validation = json.loads(self.get_upload().validation)
         assert validation['passed_auto_validation']
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_annotate_failed_auto_validation(self, _mock):
         """Set passed_auto_validation on reception of the results."""
         result = {'signing_summary': {'trivial': 0, 'low': 1, 'medium': 0,
@@ -229,7 +229,7 @@ class TestValidator(TestCase):
         validation = json.loads(self.get_upload().validation)
         assert not validation['passed_auto_validation']
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_annotate_passed_auto_validation_bogus_result(self, _mock):
         """Don't set passed_auto_validation, don't fail if results is bogus."""
         _mock.return_value = '{"errors": 0}'
@@ -240,7 +240,7 @@ class TestValidator(TestCase):
                                      "low": 0, "trivial": 0}})
 
     @mock.patch('validator.validate.validate')
-    @mock.patch('devhub.tasks.track_validation_stats')
+    @mock.patch('olympia.devhub.tasks.track_validation_stats')
     def test_track_validation_stats(self, mock_track, mock_validate):
         mock_validate.return_value = '{"errors": 0}'
         tasks.validate(self.upload)
@@ -251,7 +251,7 @@ class TestTrackValidatorStats(TestCase):
 
     def setUp(self):
         super(TestTrackValidatorStats, self).setUp()
-        patch = mock.patch('devhub.tasks.statsd.incr')
+        patch = mock.patch('olympia.devhub.tasks.statsd.incr')
         self.mock_incr = patch.start()
         self.addCleanup(patch.stop)
 
@@ -370,7 +370,7 @@ class TestFlagBinary(TestCase):
         super(TestFlagBinary, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_flag_binary(self, _mock):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 1, '
                               '"contains_binary_content": 0}}')
@@ -381,21 +381,21 @@ class TestFlagBinary(TestCase):
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_flag_not_binary(self, _mock):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
                               '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_flag_error(self, _mock):
         _mock.side_effect = RuntimeError()
         tasks.flag_binary([self.addon.pk])
         eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
 
 
-@mock.patch('devhub.tasks.send_html_mail_jinja')
+@mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
     tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
     send_html_mail_jinja_mock.assert_called_with(
@@ -416,7 +416,7 @@ class TestSubmitFile(TestCase):
     def setUp(self):
         super(TestSubmitFile, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
-        patcher = mock.patch('devhub.tasks.create_version_for_upload')
+        patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload')
         self.create_version_for_upload = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -425,13 +425,13 @@ class TestSubmitFile(TestCase):
             addon=self.addon, version=version, validation='{"errors":0}',
             automated_signing=self.addon.automated_signing)
 
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', True)
+    @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', True)
     def test_file_passed_all_validations(self):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk)
         self.create_version_for_upload.assert_called_with(self.addon, upload)
 
-    @mock.patch('apps.devhub.tasks.FileUpload.passed_all_validations', False)
+    @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', False)
     def test_file_not_passed_all_validations(self):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk)
@@ -446,7 +446,7 @@ class TestCreateVersionForUpload(TestCase):
         self.addon = Addon.objects.get(pk=3615)
         self.create_version_for_upload = (
             tasks.create_version_for_upload.non_atomic)
-        patcher = mock.patch('devhub.tasks.Version.from_upload')
+        patcher = mock.patch('olympia.devhub.tasks.Version.from_upload')
         self.version__from_upload = patcher.start()
         self.addCleanup(patcher.stop)
 

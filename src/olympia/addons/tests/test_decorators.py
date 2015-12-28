@@ -104,8 +104,8 @@ class TestAddonViewWithUnlisted(TestAddonView):
         self.view = dec.addon_view_factory(
             qs=Addon.with_unlisted.all)(self.func)
 
-    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: False)
-    @mock.patch('access.acl.check_addon_ownership',
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_addon_ownership',
                 lambda *args, **kwargs: False)
     def test_unlisted_addon(self):
         """Return a 404 for non authorized access."""
@@ -113,8 +113,8 @@ class TestAddonViewWithUnlisted(TestAddonView):
         with self.assertRaises(http.Http404):
             self.view(self.request, self.addon.slug)
 
-    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: False)
-    @mock.patch('access.acl.check_addon_ownership',
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: False)
+    @mock.patch('olympia.access.acl.check_addon_ownership',
                 lambda *args, **kwargs: True)
     def test_unlisted_addon_owner(self):
         """Addon owners have access."""
@@ -123,8 +123,8 @@ class TestAddonViewWithUnlisted(TestAddonView):
         request, addon = self.func.call_args[0]
         assert addon == self.addon
 
-    @mock.patch('access.acl.check_unlisted_addons_reviewer', lambda r: True)
-    @mock.patch('access.acl.check_addon_ownership',
+    @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer', lambda r: True)
+    @mock.patch('olympia.access.acl.check_addon_ownership',
                 lambda *args, **kwargs: False)
     def test_unlisted_addon_unlisted_admin(self):
         """Unlisted addon reviewers have access."""

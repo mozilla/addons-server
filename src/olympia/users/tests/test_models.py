@@ -392,7 +392,7 @@ class TestFlushURLs(TestCase):
         _disconnect()
         super(TestFlushURLs, self).tearDown()
 
-    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
+    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
     def test_flush(self, flush):
         user = UserProfile.objects.get(pk=2519)
         user.save()

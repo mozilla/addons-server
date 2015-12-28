@@ -63,8 +63,9 @@ def test_resize_image():
 
 
 def test_resize_transparency():
-    src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
-                       'images', 'transparent.png')
+    src = os.path.join(
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests',
+        'images', 'transparent.png')
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
@@ -82,8 +83,9 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5  # noqa
     # which caused the issue in bug 1181221. Since then we upgraded Pillow, and
     # we don't need it anymore. We thus don't have this issue anymore.
-    src = os.path.join(settings.ROOT, 'apps', 'amo', 'tests',
-                       'images', 'icon64.png')
+    src = os.path.join(
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests',
+        'images', 'icon64.png')
     dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
     expected = src.replace('.png', '-expected.png')
     try:
@@ -240,18 +242,18 @@ class TestCacheNamespaces(BaseTestCase):
         cache.clear()
         self.namespace = 'redis-is-dead'
 
-    @mock.patch('amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.epoch')
     def test_no_preexisting_key(self, epoch_mock):
         epoch_mock.return_value = 123456
         eq_(cache_ns_key(self.namespace), '123456:ns:%s' % self.namespace)
 
-    @mock.patch('amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.epoch')
     def test_no_preexisting_key_incr(self, epoch_mock):
         epoch_mock.return_value = 123456
         eq_(cache_ns_key(self.namespace, increment=True),
             '123456:ns:%s' % self.namespace)
 
-    @mock.patch('amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.epoch')
     def test_key_incr(self, epoch_mock):
         epoch_mock.return_value = 123456
         cache_ns_key(self.namespace)  # Sets ns to 123456
@@ -284,7 +286,7 @@ def test_escape_all():
         yield check, val, expected
 
 
-@mock.patch('amo.helpers.urlresolvers.get_outgoing_url')
+@mock.patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
 @mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'http://outgoing.firefox.com'

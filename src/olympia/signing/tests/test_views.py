@@ -31,7 +31,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
         super(BaseUploadVersionCase, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
-        patcher = mock.patch('devhub.tasks.create_version_for_upload',
+        patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload',
                              tasks.create_version_for_upload.non_atomic)
         self.create_version_for_upload = patcher.start()
         self.addCleanup(patcher.stop)
@@ -75,7 +75,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 503
         assert 'website maintenance' in response.data['error']
 
-    @mock.patch('devhub.views.auto_sign_version')
+    @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_addon_does_not_exist(self, sign_version):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
@@ -107,7 +107,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
-    @mock.patch('devhub.views.Version.from_upload')
+    @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
         response = self.put(self.url(self.guid, '3.0'))
         assert response.status_code == 202
@@ -117,7 +117,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         assert 'processed' in response.data
 
-    @mock.patch('devhub.views.auto_sign_version')
+    @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_added(self, sign_version):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
@@ -159,7 +159,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         assert 'processed' in response.data
 
-    @mock.patch('devhub.views.auto_sign_version')
+    @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_added_is_experiment(self, sign_version):
         self.grant_permission(self.user, 'Experiments:submit')
         guid = 'experiment@xpi'
@@ -176,7 +176,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.status == amo.STATUS_LITE
         sign_version.assert_called_with(addon.latest_version)
 
-    @mock.patch('devhub.views.auto_sign_version')
+    @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_added_is_experiment_reject_no_perm(self, sign_version):
         guid = 'experiment@xpi'
         qs = Addon.unfiltered.filter(guid=guid)
@@ -223,7 +223,7 @@ class TestCheckVersion(BaseUploadVersionCase):
 
     def test_version_exists_with_pk(self):
         # Mock Version.from_upload so the Version won't be created.
-        with mock.patch('devhub.tasks.Version.from_upload'):
+        with mock.patch('olympia.devhub.tasks.Version.from_upload'):
             self.create_version('3.0')
         upload = FileUpload.objects.latest()
         upload.update(created=datetime.today() - timedelta(hours=1))
@@ -237,7 +237,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert response.data['pk'] == upload.pk
         assert 'processed' in response.data
 
-    @mock.patch('devhub.tasks.submit_file')
+    @mock.patch('olympia.devhub.tasks.submit_file')
     def test_version_exists_with_pk_not_owner(self, submit_file):
         orig_user, orig_api_key = self.user, self.api_key
 
@@ -327,7 +327,7 @@ class TestSignedFile(SigningAPITestCase):
         assert response.status_code == 401
 
     def test_api_relies_on_version_downloader(self):
-        with mock.patch('versions.views.download_file') as df:
+        with mock.patch('olympia.versions.views.download_file') as df:
             df.return_value = Response({})
             self.get(self.url())
         assert df.called is True

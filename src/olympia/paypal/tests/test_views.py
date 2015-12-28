@@ -72,7 +72,7 @@ class PaypalTest(TestCase):
         return m
 
 
-@patch('paypal.views.requests.post')
+@patch('olympia.paypal.views.requests.post')
 class TestPaypal(PaypalTest):
     fixtures = ['base/users']
 

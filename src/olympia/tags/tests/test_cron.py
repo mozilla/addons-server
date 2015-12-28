@@ -1,6 +1,6 @@
 from nose.tools import eq_
 
-from olympia.tests import TestCase
+from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.tags.models import Tag, AddonTag

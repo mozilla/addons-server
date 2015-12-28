@@ -46,11 +46,11 @@ class TestNewAddonForm(TestCase):
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('files.utils.Extractor.parse')
-    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('files.utils.get_file', lambda xpi: None)
+    @mock.patch('olympia.files.utils.Extractor.parse')
+    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
     # This is the one we want to test.
-    @mock.patch('files.utils.check_xpi_info')
+    @mock.patch('olympia.files.utils.check_xpi_info')
     def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
         """Make sure the check_xpi_info helper is called.
 
@@ -72,11 +72,11 @@ class TestNewVersionForm(TestCase):
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('files.utils.Extractor.parse')
-    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('files.utils.get_file', lambda xpi: None)
+    @mock.patch('olympia.files.utils.Extractor.parse')
+    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
     # This is the one we want to test.
-    @mock.patch('files.utils.check_xpi_info')
+    @mock.patch('olympia.files.utils.check_xpi_info')
     def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
         """Make sure the check_xpi_info helper is called.
 
@@ -101,11 +101,11 @@ class TestNewFileForm(TestCase):
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('files.utils.Extractor.parse')
-    @mock.patch('files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('files.utils.get_file', lambda xpi: None)
+    @mock.patch('olympia.files.utils.Extractor.parse')
+    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
+    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
     # This is the one we want to test.
-    @mock.patch('files.utils.check_xpi_info')
+    @mock.patch('olympia.files.utils.check_xpi_info')
     def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
         """Make sure the check_xpi_info helper is called.
 
@@ -197,7 +197,7 @@ class TestPreviewForm(TestCase):
         if not os.path.exists(self.dest):
             os.makedirs(self.dest)
 
-    @mock.patch('amo.models.ModelBase.update')
+    @mock.patch('olympia.amo.models.ModelBase.update')
     def test_preview_modified(self, update_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent.png'
@@ -370,9 +370,9 @@ class TestThemeForm(TestCase):
             {'data-allowed-types': 'image/jpeg|image/png',
              'data-upload-url': footer_url})
 
-    @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images')
-    @mock.patch('addons.tasks.save_persona_image')
+    @mock.patch('olympia.addons.tasks.make_checksum')
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
+    @mock.patch('olympia.addons.tasks.save_persona_image')
     def test_success(self, save_persona_image_mock,
                      create_persona_preview_images_mock, make_checksum_mock):
         if not hasattr(Image.core, 'jpeg_encoder'):
@@ -441,9 +441,9 @@ class TestThemeForm(TestCase):
                       os.path.join(dst, 'icon.png')],
             set_modified_on=[addon])
 
-    @mock.patch('addons.tasks.create_persona_preview_images')
-    @mock.patch('addons.tasks.save_persona_image')
-    @mock.patch('addons.tasks.make_checksum')
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
+    @mock.patch('olympia.addons.tasks.save_persona_image')
+    @mock.patch('olympia.addons.tasks.make_checksum')
     def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
         """
         Submitting persona with checksum already in db should be marked
@@ -585,9 +585,9 @@ class TestEditThemeForm(TestCase):
         eq_(self.form.is_valid(), True, self.form.errors)
         self.form.save()
 
-    @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images')
-    @mock.patch('addons.tasks.save_persona_image')
+    @mock.patch('olympia.addons.tasks.make_checksum')
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
+    @mock.patch('olympia.addons.tasks.save_persona_image')
     def test_reupload(self, save_persona_image_mock,
                       create_persona_preview_images_mock,
                       make_checksum_mock):
@@ -616,9 +616,9 @@ class TestEditThemeForm(TestCase):
         eq_(rqt[0].footer, 'pending_footer.png')
         assert not rqt[0].dupe_persona
 
-    @mock.patch('addons.tasks.create_persona_preview_images', new=mock.Mock)
-    @mock.patch('addons.tasks.save_persona_image', new=mock.Mock)
-    @mock.patch('addons.tasks.make_checksum')
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.make_checksum')
     def test_reupload_duplicate(self, make_checksum_mock):
         make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
 
@@ -635,9 +635,9 @@ class TestEditThemeForm(TestCase):
         rqt = RereviewQueueTheme.objects.get(theme=self.instance.persona)
         eq_(rqt.dupe_persona, theme.persona)
 
-    @mock.patch('addons.tasks.make_checksum', new=mock.Mock)
-    @mock.patch('addons.tasks.create_persona_preview_images', new=mock.Mock)
-    @mock.patch('addons.tasks.save_persona_image', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.make_checksum', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
     def test_reupload_legacy_header_only(self):
         """
         STR the bug this test fixes:
@@ -663,9 +663,9 @@ class TestEditThemeForm(TestCase):
         eq_(rqt.header, 'pending_header.png')
         eq_(rqt.footer, 'Legacy-footer3H-Copy.jpg')
 
-    @mock.patch('addons.tasks.make_checksum')
-    @mock.patch('addons.tasks.create_persona_preview_images')
-    @mock.patch('addons.tasks.save_persona_image')
+    @mock.patch('olympia.addons.tasks.make_checksum')
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
+    @mock.patch('olympia.addons.tasks.save_persona_image')
     def test_reupload_no_footer(self, save_persona_image_mock,
                                 create_persona_preview_images_mock,
                                 make_checksum_mock):

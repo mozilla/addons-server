@@ -118,7 +118,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file.update(filename='')
         file.delete()
 
-    @mock.patch('files.models.File.hide_disabled_file')
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disable_signal(self, hide_mock):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_PUBLIC
@@ -129,7 +129,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.save()
         assert hide_mock.called
 
-    @mock.patch('files.models.File.unhide_disabled_file')
+    @mock.patch('olympia.files.models.File.unhide_disabled_file')
     def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_PUBLIC
@@ -176,7 +176,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert storage.exists(fo.mirror_file_path), (
             'file not copied back to mirror')
 
-    @mock.patch('files.models.File.copy_to_mirror')
+    @mock.patch('olympia.files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
 
         assert amo.STATUS_UNREVIEWED not in amo.MIRROR_STATUSES
@@ -304,13 +304,13 @@ class TestTrackFileStatusChange(TestCase):
         return f
 
     def test_track_stats_on_new_file(self):
-        with patch('files.models.track_file_status_change') as mock_:
+        with patch('olympia.files.models.track_file_status_change') as mock_:
             f = self.create_file()
         mock_.assert_called_with(f)
 
     def test_track_stats_on_updated_file(self):
         f = self.create_file()
-        with patch('files.models.track_file_status_change') as mock_:
+        with patch('olympia.files.models.track_file_status_change') as mock_:
             f.update(status=amo.STATUS_PUBLIC)
 
         f.reload()
@@ -318,7 +318,7 @@ class TestTrackFileStatusChange(TestCase):
 
     def test_ignore_non_status_changes(self):
         f = self.create_file()
-        with patch('files.models.track_file_status_change') as mock_:
+        with patch('olympia.files.models.track_file_status_change') as mock_:
             f.update(size=1024)
         assert not mock_.called, (
             'Unexpected call: {}'.format(self.mock_.call_args)
@@ -326,7 +326,7 @@ class TestTrackFileStatusChange(TestCase):
 
     def test_increment_file_status(self):
         f = self.create_file(status=amo.STATUS_PUBLIC)
-        with patch('files.models.statsd.incr') as mock_incr:
+        with patch('olympia.files.models.statsd.incr') as mock_incr:
             track_file_status_change(f)
         mock_incr.assert_any_call(
             'file_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
@@ -339,7 +339,7 @@ class TestTrackFileStatusChange(TestCase):
             no_restart=True,
             requires_chrome=False,
         )
-        with patch('files.models.statsd.incr') as mock_incr:
+        with patch('olympia.files.models.statsd.incr') as mock_incr:
             track_file_status_change(f)
         mock_incr.assert_any_call(
             'file_status_change.jetpack_sdk_only.status_{}'
@@ -532,7 +532,7 @@ class TestParseAlternateXpi(TestCase, amo.tests.AMOPaths):
                AppVersion.objects.get(version='4.0b3pre'))
         eq_(self.parse()['apps'], [exp])
 
-    @mock.patch('files.utils.rdflib.Graph')
+    @mock.patch('olympia.files.utils.rdflib.Graph')
     def test_no_manifest_node(self, graph_mock):
         rdf_mock = mock.Mock()
         graph_mock.return_value.parse.return_value = rdf_mock
@@ -1005,7 +1005,7 @@ class TestFileFromUpload(UploadTest):
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
-        with mock.patch('addons.models.Addon.update_status'):
+        with mock.patch('olympia.addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
@@ -1015,7 +1015,7 @@ class TestFileFromUpload(UploadTest):
     def test_trusted_litenominated_to_litenominated(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
-        with mock.patch('addons.models.Addon.update_status'):
+        with mock.patch('olympia.addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
                               trusted=True)
@@ -1134,7 +1134,7 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
             'summary': 'Search Engine for Firefox',
             'type': amo.ADDON_SEARCH})
 
-    @mock.patch('files.utils.extract_search')
+    @mock.patch('olympia.files.utils.extract_search')
     def test_extract_search_error(self, extract_mock):
         extract_mock.side_effect = Exception
         with self.assertRaises(forms.ValidationError) as e:
@@ -1142,8 +1142,8 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
         assert e.exception.messages[0].startswith('Could not parse ')
 
 
-@mock.patch('files.utils.parse_xpi')
-@mock.patch('files.utils.parse_search')
+@mock.patch('olympia.files.utils.parse_xpi')
+@mock.patch('olympia.files.utils.parse_search')
 def test_parse_addon(search_mock, xpi_mock):
     parse_addon('file.xpi', None)
     xpi_mock.assert_called_with('file.xpi', None, True)
@@ -1194,13 +1194,13 @@ class TestLanguagePack(LanguagePackBase):
         obj = self.file_create('search.xml')
         eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
+    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
     def test_no_locale_browser(self, extract_path):
         extract_path.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
         eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
+    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
     def test_corrupt_locale_browser_path(self, extract_path):
         extract_path.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
@@ -1209,7 +1209,7 @@ class TestLanguagePack(LanguagePackBase):
         # Result should be 'locale browser de woo:t?!as', but we have caching.
         eq_(obj.get_localepicker(), '')
 
-    @mock.patch('files.utils.SafeUnzip.extract_path')
+    @mock.patch('olympia.files.utils.SafeUnzip.extract_path')
     def test_corrupt_locale_browser_data(self, extract_path):
         extract_path.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
@@ -1221,12 +1221,12 @@ class TestLanguagePack(LanguagePackBase):
         obj.update(filename='garbage')
         assert 'title=Select a language' in obj.get_localepicker()
 
-    @mock.patch('files.models.File.get_localepicker')
+    @mock.patch('olympia.files.models.File.get_localepicker')
     def test_cache_on_create(self, get_localepicker):
         self.file_create('langpack-localepicker')
         assert get_localepicker.called
 
-    @mock.patch('files.models.File.get_localepicker')
+    @mock.patch('olympia.files.models.File.get_localepicker')
     def test_cache_not_on_create(self, get_localepicker):
         self.addon.update(type=amo.ADDON_DICT)
         self.file_create('langpack-localepicker')

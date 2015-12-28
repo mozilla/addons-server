@@ -174,7 +174,7 @@ class TestSendMail(BaseTestCase):
         eq_(mail.outbox[0].to, ['nobody@mozilla.org'])
         eq_(FakeEmail.objects.count(), 1)
 
-    @mock.patch('amo.utils.Context')
+    @mock.patch('olympia.amo.utils.Context')
     def test_dont_localize(self, fake_Context):
         perm_setting = []
 
@@ -261,7 +261,7 @@ class TestSendMail(BaseTestCase):
             return backend
         return make_backend
 
-    @mock.patch('amo.tasks.EmailMessage')
+    @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_retry(self, backend):
         backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(RuntimeError):
@@ -273,7 +273,7 @@ class TestSendMail(BaseTestCase):
                          async=True,
                          recipient_list=['somebody@mozilla.org'])
 
-    @mock.patch('amo.tasks.EmailMessage')
+    @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):
         backend.side_effect = self.make_backend_class([True, True])
         with self.assertRaises(RuntimeError):

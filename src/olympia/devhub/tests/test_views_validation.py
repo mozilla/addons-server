@@ -179,7 +179,7 @@ class TestFileValidation(TestCase):
         eq_(msg['context'],
             [u'<em:description>...', u'<foo/>'])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_json_results_post_not_cached(self, validate):
         validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
 
@@ -191,7 +191,7 @@ class TestFileValidation(TestCase):
         assert self.client.post(self.json_url).status_code == 200
         assert validate.called
 
-    @mock.patch('devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.validate')
     def test_json_results_post_cached(self, validate):
         assert self.file.has_been_validated
 
@@ -381,10 +381,10 @@ class TestUploadURLs(TestCase):
                                           status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.addon, user=user)
 
-        self.run_validator = self.patch('devhub.tasks.run_validator')
+        self.run_validator = self.patch('olympia.devhub.tasks.run_validator')
         self.run_validator.return_value = json.dumps(
             amo.VALIDATOR_SKELETON_RESULTS)
-        self.parse_addon = self.patch('devhub.utils.parse_addon')
+        self.parse_addon = self.patch('olympia.devhub.utils.parse_addon')
         self.parse_addon.return_value = {'guid': self.addon.guid,
                                          'version': '1.0'}
 
@@ -491,7 +491,7 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(r.content)
         assert doc('time').text()
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validator_sets_binary_flag_for_extensions(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -517,7 +517,7 @@ class TestValidateFile(BaseUploadTest):
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_ending_tier_is_preserved(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -542,7 +542,7 @@ class TestValidateFile(BaseUploadTest):
         assert not data['validation']['errors']
         assert data['validation']['ending_tier'] == 5
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validator_sets_binary_flag_for_content(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -568,7 +568,7 @@ class TestValidateFile(BaseUploadTest):
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_linkify_validation_messages(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -600,7 +600,7 @@ class TestValidateFile(BaseUploadTest):
         eq_(doc('a').text(), 'https://bugzilla.mozilla.org/')
 
     @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
         run_validator.return_value = json.dumps({
@@ -637,7 +637,7 @@ class TestValidateFile(BaseUploadTest):
         # Again, make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_compatibility_check(self, run_validator):
         run_validator.return_value = json.dumps({
             'errors': 0,
@@ -786,7 +786,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(doc('#upload-addon').attr('data-upload-url'), self.upload_url)
         # TODO(Kumar) actually check the form here after bug 671587
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_js_upload_validates_compatibility(self, run_validator):
         run_validator.return_value = ''  # Empty to simulate unfinished task.
         data = self.upload()
@@ -797,7 +797,7 @@ class TestUploadCompatCheck(BaseUploadTest):
              'targetapp_maxVersion': {self.app.guid: self.appver.version}})
         eq_(data['url'], self.poll_upload_status_url(data['upload']))
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_js_poll_upload_status(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -808,7 +808,7 @@ class TestUploadCompatCheck(BaseUploadTest):
             raise AssertionError('Unexpected validation errors: %s'
                                  % data['validation']['messages'])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_compat_result_report(self, run_validator):
         run_validator.return_value = self.compatibility_result
         data = self.upload()
@@ -841,7 +841,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         assert not empty, "Unexpected: %r" % data
 
     @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_rdf_parse_errors_are_ignored(self, run_validator,
                                           flag_is_active):
         run_validator.return_value = self.compatibility_result
@@ -855,7 +855,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         # Make sure we don't see a dupe UUID error:
         eq_(data['validation']['messages'], [])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_compat_summary_overrides(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,
@@ -879,7 +879,7 @@ class TestUploadCompatCheck(BaseUploadTest):
         eq_(data['validation']['errors'], 2)
         eq_(data['validation']['warnings'], 3)
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_compat_error_type_override(self, run_validator):
         run_validator.return_value = json.dumps({
             "success": True,

@@ -882,7 +882,7 @@ def copy_file_to_temp(source):
 
 
 # This sets up a module that we can patch dynamically with URLs.
-@override_settings(ROOT_URLCONF='amo.tests.dynamic_urls')
+@override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
 class WithDynamicEndpoints(TestCase):
     """
     Mixin to allow registration of ad-hoc views.

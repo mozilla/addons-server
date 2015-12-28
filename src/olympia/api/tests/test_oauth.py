@@ -468,7 +468,7 @@ class TestAddon(BaseOAuth):
                 "'%s' didn't match: got '%s' instead of '%s'"
                 % (field, getattr(a, field), expected))
 
-    @patch('api.handlers.AddonForm.is_valid')
+    @patch('olympia.api.handlers.AddonForm.is_valid')
     def test_update_fail(self, is_valid):
         data = self.create_addon()
         id = data['id']
@@ -482,7 +482,7 @@ class TestAddon(BaseOAuth):
                         data={})
         eq_(r.status_code, 410, r.content)
 
-    @patch('api.handlers.XPIForm.clean_xpi')
+    @patch('olympia.api.handlers.XPIForm.clean_xpi')
     def test_xpi_failure(self, f):
         f.side_effect = forms.ValidationError('F')
         r = self.make_create_request(self.create_data)
@@ -506,7 +506,7 @@ class TestAddon(BaseOAuth):
         r = self.make_create_request(self.create_data)
         eq_(r.status_code, 400, r.content)
 
-    @patch('versions.models.AppVersion.objects.get')
+    @patch('olympia.versions.models.AppVersion.objects.get')
     def test_bad_appversion(self, get):
         get.side_effect = AppVersion.DoesNotExist()
         data = self.create_addon()
@@ -667,10 +667,10 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['statuses'],
             [[File.objects.all()[0].pk, 1]])
 
-    @patch('api.authorization.AllowRelatedAppOwner.has_object_permission')
-    @patch('api.authorization.AllowAppOwner.has_object_permission')
-    @patch('access.acl.action_allowed')
-    @patch('access.acl.check_addon_ownership')
+    @patch('olympia.api.authorization.AllowRelatedAppOwner.has_object_permission')
+    @patch('olympia.api.authorization.AllowAppOwner.has_object_permission')
+    @patch('olympia.access.acl.action_allowed')
+    @patch('olympia.access.acl.check_addon_ownership')
     def test_not_my_addon(self, addon_ownership, action_allowed,
                           app_owner, related_app_owner):
         data = self.create_addon()

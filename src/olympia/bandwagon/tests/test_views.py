@@ -387,7 +387,7 @@ class TestCRUD(TestCase):
         eq_(r.status_code, 200)
         return r
 
-    @patch('bandwagon.views.statsd.incr')
+    @patch('olympia.bandwagon.views.statsd.incr')
     def test_create_collection_statsd(self, mock_incr):
         self.client.post(self.add_url, self.data, follow=True)
         mock_incr.assert_any_call('collections.created')
@@ -756,7 +756,7 @@ class TestCRUD(TestCase):
         ]
         amo.tests.check_links(expected, links)
 
-    @patch('access.acl.action_allowed')
+    @patch('olympia.access.acl.action_allowed')
     def test_admin(self, f):
         self.create_collection()
         url = reverse('collections.edit',
@@ -1232,7 +1232,7 @@ class TestMobileCollections(TestMobile):
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
 
-    @patch('amo.models.ModelBase.update')
+    @patch('olympia.amo.models.ModelBase.update')
     def test_icon(self, update_mock):
         collection = Collection.objects.get(pk=57181)
         # TODO(andym): altering this form is too complicated, can we simplify?
@@ -1309,7 +1309,7 @@ class TestCollectionForm(TestCase):
         assert not form.is_valid()
         assert 'spam' in form.errors['__all__'][0]
 
-    @patch('bandwagon.forms.statsd.incr')
+    @patch('olympia.bandwagon.forms.statsd.incr')
     def test_honeypot_statsd_incr(self, mock_incr):
         author = UserProfile.objects.get(pk=9945)
 

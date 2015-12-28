@@ -84,7 +84,7 @@ CACHES = {
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-VIDEO_LIBRARIES = ['lib.video.dummy']
+VIDEO_LIBRARIES = ['olympia.lib.video.dummy']
 
 ALLOW_SELF_REVIEWS = True
 

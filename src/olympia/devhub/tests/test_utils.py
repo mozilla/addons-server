@@ -644,7 +644,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
             self.file.update(status=status)
             self.check_file(self.file_1_1, None)
 
-    @mock.patch('devhub.utils.chain')
+    @mock.patch('olympia.devhub.utils.chain')
     def test_run_once_per_file(self, chain):
         """Tests that only a single validation task is run for a given file."""
         task = mock.Mock()
@@ -660,7 +660,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         assert isinstance(tasks.validate(self.file_1_1), mock.Mock)
         assert task.delay.call_count == 2
 
-    @mock.patch('devhub.utils.chain')
+    @mock.patch('olympia.devhub.utils.chain')
     def test_run_once_file_upload(self, chain):
         """Tests that only a single validation task is run for a given file
         upload."""
@@ -685,7 +685,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
                 'validation-task:files.FileUpload:{0}:False'.format(
                     self.file_upload.pk))
 
-    @mock.patch('devhub.utils.parse_addon')
+    @mock.patch('olympia.devhub.utils.parse_addon')
     def test_search_plugin(self, parse_addon):
         """Test that search plugins are handled correctly."""
 
@@ -710,7 +710,7 @@ class TestValidationAnnotatorBeta(TestValidationAnnotatorBase):
 
         self.xpi_version = '1.1b1'
 
-        parse_addon = self.patch('devhub.utils.parse_addon')
+        parse_addon = self.patch('olympia.devhub.utils.parse_addon')
         parse_addon.return_value = {'version': self.xpi_version,
                                     'guid': self.addon.guid}
 

@@ -973,7 +973,7 @@ class TestAddonModels(TestCase):
 
         eq_(self.newlines_helper(before), after)
 
-    @patch('amo.helpers.urlresolvers.get_outgoing_url')
+    @patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
         mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'
@@ -1166,7 +1166,7 @@ class TestAddonModels(TestCase):
         a = Addon(status=amo.STATUS_PUBLIC)
         assert not a.show_beta
 
-    @patch('addons.models.Addon.current_beta_version')
+    @patch('olympia.addons.models.Addon.current_beta_version')
     def test_show_beta_with_beta_version(self, beta_mock):
         beta_mock.return_value = object()
         # Fake current_beta_version to return something truthy.
@@ -1340,7 +1340,7 @@ class TestAddonModels(TestCase):
         a = Addon.objects.create(type=1)
         assert a.view_source
 
-    @patch('files.models.File.hide_disabled_file')
+    @patch('olympia.files.models.File.hide_disabled_file')
     def test_admin_disabled_file_hidden(self, hide_mock):
         a = Addon.objects.get(id=3615)
         a.status = amo.STATUS_PUBLIC
@@ -1351,7 +1351,7 @@ class TestAddonModels(TestCase):
         a.save()
         assert hide_mock.called
 
-    @patch('files.models.File.hide_disabled_file')
+    @patch('olympia.files.models.File.hide_disabled_file')
     def test_user_disabled_file_hidden(self, hide_mock):
         a = Addon.objects.get(id=3615)
         a.disabled_by_user = False
@@ -1995,7 +1995,7 @@ class TestFlushURLs(TestCase):
     def is_url_hashed(self, url):
         return urlparse(url).query.find('modified') > -1
 
-    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
+    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
     def test_addon_flush(self, flush):
         addon = Addon.objects.get(pk=159)
         addon.icon_type = "image/png"
@@ -2005,7 +2005,7 @@ class TestFlushURLs(TestCase):
             assert url in flush.call_args[1]['args'][0]
             assert self.is_url_hashed(url), url
 
-    @patch('amo.tasks.flush_front_end_cache_urls.apply_async')
+    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
     def test_preview_flush(self, flush):
         addon = Addon.objects.get(pk=4664)
         preview = addon.previews.all()[0]
@@ -2028,8 +2028,9 @@ class TestAddonFromUpload(UploadTest):
         self.addCleanup(translation.deactivate)
 
     def manifest(self, basename):
-        return os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                            'addons', basename)
+        return os.path.join(
+            settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons',
+            basename)
 
     def test_blacklisted_guid(self):
         BlacklistedGuid.objects.create(guid='guid@xpi')
@@ -2279,7 +2280,7 @@ class TestAddonWatchDisabled(TestCase):
                            status=amo.STATUS_PUBLIC)
         self.addon.save()
 
-    @patch('addons.models.File.objects.filter')
+    @patch('olympia.addons.models.File.objects.filter')
     def test_no_disabled_change(self, file_mock):
         mock = Mock()
         file_mock.return_value = [mock]
@@ -2287,7 +2288,7 @@ class TestAddonWatchDisabled(TestCase):
         assert not mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
 
-    @patch('addons.models.File.objects.filter')
+    @patch('olympia.addons.models.File.objects.filter')
     def test_disable_addon(self, file_mock):
         mock = Mock()
         file_mock.return_value = [mock]
@@ -2295,7 +2296,7 @@ class TestAddonWatchDisabled(TestCase):
         assert not mock.unhide_disabled_file.called
         assert mock.hide_disabled_file.called
 
-    @patch('addons.models.File.objects.filter')
+    @patch('olympia.addons.models.File.objects.filter')
     def test_admin_disable_addon(self, file_mock):
         mock = Mock()
         file_mock.return_value = [mock]
@@ -2303,7 +2304,7 @@ class TestAddonWatchDisabled(TestCase):
         assert not mock.unhide_disabled_file.called
         assert mock.hide_disabled_file.called
 
-    @patch('addons.models.File.objects.filter')
+    @patch('olympia.addons.models.File.objects.filter')
     def test_enable_addon(self, file_mock):
         mock = Mock()
         file_mock.return_value = [mock]
@@ -2411,13 +2412,13 @@ class TestTrackAddonStatusChange(TestCase):
         return addon
 
     def test_increment_new_status(self):
-        with patch('addons.models.track_addon_status_change') as mock_:
+        with patch('olympia.addons.models.track_addon_status_change') as mock_:
             addon = self.create_addon()
         mock_.assert_called_with(addon)
 
     def test_increment_updated_status(self):
         addon = self.create_addon()
-        with patch('addons.models.track_addon_status_change') as mock_:
+        with patch('olympia.addons.models.track_addon_status_change') as mock_:
             addon.update(status=amo.STATUS_PUBLIC)
 
         addon.reload()
@@ -2425,7 +2426,7 @@ class TestTrackAddonStatusChange(TestCase):
 
     def test_ignore_non_status_changes(self):
         addon = self.create_addon()
-        with patch('addons.models.track_addon_status_change') as mock_:
+        with patch('olympia.addons.models.track_addon_status_change') as mock_:
             addon.update(type=amo.ADDON_THEME)
         assert not mock_.called, (
             'Unexpected call: {}'.format(self.mock_incr.call_args)
@@ -2433,7 +2434,7 @@ class TestTrackAddonStatusChange(TestCase):
 
     def test_increment_all_addon_statuses(self):
         addon = self.create_addon(status=amo.STATUS_PUBLIC)
-        with patch('addons.models.statsd.incr') as mock_incr:
+        with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
             'addon_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
@@ -2441,7 +2442,7 @@ class TestTrackAddonStatusChange(TestCase):
 
     def test_increment_listed_addon_statuses(self):
         addon = self.create_addon(is_listed=True)
-        with patch('addons.models.statsd.incr') as mock_incr:
+        with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
             'addon_status_change.listed.status_{}'.format(addon.status)
@@ -2449,7 +2450,7 @@ class TestTrackAddonStatusChange(TestCase):
 
     def test_increment_unlisted_addon_statuses(self):
         addon = self.create_addon(is_listed=False)
-        with patch('addons.models.statsd.incr') as mock_incr:
+        with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
             'addon_status_change.unlisted.status_{}'.format(addon.status)

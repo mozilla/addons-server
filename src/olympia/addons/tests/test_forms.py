@@ -195,7 +195,7 @@ class TestTagsForm(TestCase):
         eq_(form.errors['tags'][0],
             '"restartless", "sdk" are reserved tags and cannot be used.')
 
-    @patch('access.acl.action_allowed')
+    @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted(self, action_allowed):
         action_allowed.return_value = True
         self.add_restricted('restartless')
@@ -207,7 +207,7 @@ class TestTagsForm(TestCase):
                                     instance=self.addon)
         eq_(form.fields['tags'].initial, 'bar, foo, restartless')
 
-    @patch('access.acl.action_allowed')
+    @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted_count(self, action_allowed):
         action_allowed.return_value = True
         self.add_restricted()
@@ -261,7 +261,7 @@ class TestIconForm(TestCase):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
         return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
 
-    @patch('apps.addons.models.Addon.get_icon_dir')
+    @patch('olympia.addons.models.Addon.get_icon_dir')
     def testIconUpload(self, get_icon_dir):
         # TODO(gkoberger): clarify this please.
         # We no longer use AddonFormMedia to upload icons, so
@@ -284,7 +284,7 @@ class TestIconForm(TestCase):
         for path in self.get_icon_paths():
             assert os.path.exists(path)
 
-    @patch('amo.models.ModelBase.update')
+    @patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
         name = 'transparent.png'
         form = forms.AddonFormMedia({'icon_upload_hash': name},
@@ -312,7 +312,7 @@ class TestCategoryForm(TestCase):
 
 class TestThemeForm(TestCase):
 
-    @patch('addons.forms.save_theme')  # Don't save image, we use a fake one.
+    @patch('olympia.addons.forms.save_theme')  # Don't save image, we use a fake one.
     def test_long_author_or_display_username(self, mock_save_theme):
         # Bug 1181751.
         user = UserProfile.objects.create(email='foo@bar.com',

@@ -1130,7 +1130,7 @@ class TestAPIAgreement(TestSubmitBase):
         self.create_switch('signing-api', db=True)
 
     def test_agreement_first(self):
-        with mock.patch('devhub.views.render_agreement') as mock_submit:
+        with mock.patch('olympia.devhub.views.render_agreement') as mock_submit:
             mock_submit.return_value = http.HttpResponse("Okay")
             self.client.get(reverse('devhub.api_key_agreement'))
         assert mock_submit.called
@@ -1182,7 +1182,7 @@ class TestAPIKeyPage(TestCase):
         assert key_input == 'some-jwt-key'
 
     def test_create_new_credentials(self):
-        patch = mock.patch('devhub.views.APIKey.new_jwt_credentials')
+        patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
             response = self.client.post(self.url)
         mock_creator.assert_called_with(self.user)
@@ -1750,7 +1750,7 @@ class TestSubmitStep7(TestSubmitBase):
         self.url = reverse('devhub.submit.7', args=[self.addon.slug])
 
     @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
-    @mock.patch('devhub.tasks.send_welcome_email.delay')
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_for_newbies(self, send_welcome_email_mock):
         self.client.get(self.url)
         context = {
@@ -1763,7 +1763,7 @@ class TestSubmitStep7(TestSubmitBase):
         send_welcome_email_mock.assert_called_with(
             self.addon.id, ['del@icio.us'], context)
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay')
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email(self, send_welcome_email_mock):
         """You already submitted an add-on? We won't spam again."""
         new_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
@@ -1772,7 +1772,7 @@ class TestSubmitStep7(TestSubmitBase):
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_addon(self):
         eq_(self.addon.current_version.supported_platforms, [amo.PLATFORM_ALL])
 
@@ -1793,7 +1793,7 @@ class TestSubmitStep7(TestSubmitBase):
         # edit your developer profile...
         eq_(next_steps.eq(1).attr('href'), self.addon.get_dev_url('profile'))
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_unlisted_addon(self):
         self.addon.update(is_listed=False, status=amo.STATUS_UNREVIEWED)
 
@@ -1807,7 +1807,7 @@ class TestSubmitStep7(TestSubmitBase):
         assert len(content('a')) == 2
         assert content('a').eq(0).attr('href') == self.addon.get_dev_url()
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_unlisted_addon_signed(self):
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
 
@@ -1825,7 +1825,7 @@ class TestSubmitStep7(TestSubmitBase):
             args=[self.addon.slug, self.addon.current_version.id])
         assert links[1].attrib['href'] == self.addon.get_dev_url()
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_platform_specific_addon(self):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
@@ -1843,7 +1843,7 @@ class TestSubmitStep7(TestSubmitBase):
         # edit listing of freshly submitted add-on...
         eq_(next_steps.eq(1).attr('href'), addon.get_dev_url())
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_addon_for_prelim_review(self):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
 
@@ -1853,7 +1853,7 @@ class TestSubmitStep7(TestSubmitBase):
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_addon_for_full_review(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
 
@@ -1863,21 +1863,21 @@ class TestSubmitStep7(TestSubmitBase):
         intro = doc('.addon-submission-process p').text().strip()
         assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_incomplete_addon_no_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
         self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_link_to_activityfeed(self):
         r = self.client.get(self.url, follow=True)
         doc = pq(r.content)
         eq_(doc('.done-next-steps a').eq(2).attr('href'),
             reverse('devhub.feed', args=[self.addon.slug]))
 
-    @mock.patch('devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_display_non_ascii_url(self):
         u = 'フォクすけといっしょ'
         self.addon.update(slug=u)
@@ -2172,7 +2172,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def check_excluded_platforms(self, xpi, platforms, v):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file(xpi)
@@ -2203,7 +2203,7 @@ class TestUploadDetail(BaseUploadTest):
         self.check_excluded_platforms('desktop.xpi', [
             str(p) for p in amo.MOBILE_PLATFORMS])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     @mock.patch.object(waffle, 'flag_is_active')
     def test_unparsable_xpi(self, flag_is_active, v):
         flag_is_active.return_value = True
@@ -2217,7 +2217,7 @@ class TestUploadDetail(BaseUploadTest):
              for m in data['validation']['messages']],
             [(u'Could not parse install.rdf.', True)])
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_experiment_xpi_allowed(self, mock_validator):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
@@ -2229,7 +2229,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_experiment_xpi_not_allowed(self, mock_validator):
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file('../../../files/fixtures/files/experiment.xpi')
@@ -2473,7 +2473,7 @@ class TestVersionAddFile(UploadTest):
                           'There was an error with your upload. Please try '
                           'again.')
 
-    @mock.patch('versions.models.Version.is_allowed_upload')
+    @mock.patch('olympia.versions.models.Version.is_allowed_upload')
     def test_cant_upload(self, allowed):
         """Test that if is_allowed_upload fails, the upload will fail."""
         allowed.return_value = False
@@ -2560,7 +2560,7 @@ class TestVersionAddFile(UploadTest):
         eq_(response.status_code, 400)
         assert 'source' in json.loads(response.content)
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2584,7 +2584,7 @@ class TestVersionAddFile(UploadTest):
         expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
         assert log.action == expected
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2608,7 +2608,7 @@ class TestVersionAddFile(UploadTest):
         expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
         assert log.action == expected
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
@@ -2632,7 +2632,7 @@ class TestVersionAddFile(UploadTest):
         log = ActivityLog.objects.order_by('pk').last()
         assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
@@ -2656,7 +2656,7 @@ class TestVersionAddFile(UploadTest):
         log = ActivityLog.objects.order_by('pk').last()
         assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED.id
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('olympia.devhub.views.sign_file')
     def test_beta_addon_pass_validation(self, mock_sign_file):
         """Beta files that pass validation are automatically
         signed/reviewed."""
@@ -2695,8 +2695,8 @@ class TestUploadErrors(UploadTest):
                     'rb')
 
     @mock.patch.object(waffle, 'flag_is_active', return_value=True)
-    @mock.patch('devhub.tasks.validate')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_version_upload(self, run_validator, validate_, flag_is_active):
         # Load the versions page:
         res = self.client.get(self.addon.get_dev_url('versions'))
@@ -2730,8 +2730,8 @@ class TestUploadErrors(UploadTest):
             'Unexpected validation errors: %s' % data['validation']['messages']
 
     @mock.patch.object(waffle, 'flag_is_active', return_value=True)
-    @mock.patch('devhub.tasks.validate')
-    @mock.patch('devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_dupe_xpi(self, run_validator, validate_, flag_is_active):
         # Submit a new addon:
         self.client.post(reverse('devhub.submit.1'))  # set cookie
@@ -2840,7 +2840,7 @@ class TestAddVersion(AddVersionTest):
         version = self.addon.versions.get(version='0.1')
         eq_(len(version.all_files), 2)
 
-    @mock.patch('devhub.views.auto_sign_file')
+    @mock.patch('olympia.devhub.views.auto_sign_file')
     def test_multiple_platforms_unlisted_addon(self, mock_auto_sign_file):
         self.addon.update(is_listed=False)
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
@@ -2881,7 +2881,7 @@ class TestAddVersion(AddVersionTest):
         f = File.objects.latest()
         assert f.status != amo.STATUS_BETA
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
         """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2906,7 +2906,7 @@ class TestAddVersion(AddVersionTest):
         expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
         assert log.action == expected
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
         """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
@@ -2931,7 +2931,7 @@ class TestAddVersion(AddVersionTest):
         expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
         assert log.action == expected
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
@@ -2956,7 +2956,7 @@ class TestAddVersion(AddVersionTest):
         log = ActivityLog.objects.order_by('pk').last()
         assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
@@ -2981,7 +2981,7 @@ class TestAddVersion(AddVersionTest):
         log = ActivityLog.objects.order_by('pk').last()
         assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED.id
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('olympia.devhub.views.sign_file')
     def test_experiments_are_auto_signed(self, mock_sign_file):
         """Experiment extensions (bug 1220097) are auto-signed."""
         # We're going to sign even if it has signing related errors/warnings.
@@ -3045,7 +3045,7 @@ class TestAddBetaVersion(AddVersionTest):
         f = File.objects.latest()
         assert f.status == amo.STATUS_PUBLIC
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_pass_validation(self, mock_sign_file):
         """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
@@ -3067,7 +3067,7 @@ class TestAddBetaVersion(AddVersionTest):
         log = ActivityLog.objects.beta_signed_events().get()
         assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id
 
-    @mock.patch('devhub.views.sign_file')
+    @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_do_not_pass_validation(self, mock_sign_file):
         """Beta files that don't pass validation should be logged."""
         self.addon.update(is_listed=True, status=amo.STATUS_PUBLIC)
@@ -3233,7 +3233,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
         assert Addon.with_unlisted.count() == 0
@@ -3253,7 +3253,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         assert addon.status == amo.STATUS_LITE  # Automatic signing.
         assert mock_sign_file.called
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
         assert Addon.with_unlisted.count() == 0
         self.upload = self.get_upload(
@@ -3271,7 +3271,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         assert addon.status == amo.STATUS_LITE  # Prelim review.
         assert mock_sign_file.called
 
-    @mock.patch('editors.helpers.sign_file')
+    @mock.patch('olympia.editors.helpers.sign_file')
     def test_success_unlisted_sideload(self, mock_sign_file):
         assert Addon.with_unlisted.count() == 0
         self.post(is_listed=False, is_sideload=True)
@@ -3299,7 +3299,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         eq_(sorted([f.filename for f in addon.current_version.all_files]),
             [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi'])
 
-    @mock.patch('devhub.views.auto_sign_file')
+    @mock.patch('olympia.devhub.views.auto_sign_file')
     def test_one_xpi_for_multiple_platforms_unlisted_addon(
             self, mock_auto_sign_file):
         eq_(Addon.objects.count(), 0)

@@ -223,7 +223,7 @@ class TestFileHelper(TestCase):
         eq_(res, '')
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('files.helpers.get_md5')
+    @patch('olympia.files.helpers.get_md5')
     def test_delete_mid_tree(self, get_md5):
         get_md5.side_effect = IOError('ow')
         self.viewer.extract()
@@ -279,7 +279,7 @@ class TestDiffSearchEngine(TestCase):
         self.helper.cleanup()
         super(TestDiffSearchEngine, self).tearDown()
 
-    @patch('files.helpers.FileViewer.is_search_engine')
+    @patch('olympia.files.helpers.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
         is_search_engine.return_value = True
         self.helper.extract()

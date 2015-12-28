@@ -156,7 +156,7 @@ class TestUserDeleteForm(UserFormBase):
         eq_(u.deleted, True)
         eq_(u.email, None)
 
-    @patch('users.models.UserProfile.is_developer')
+    @patch('olympia.users.models.UserProfile.is_developer')
     def test_developer_attempt(self, f):
         """A developer's attempt to delete one's self must be thwarted."""
         f.return_value = True
@@ -228,7 +228,7 @@ class TestUserEditForm(UserFormBase):
             err = u'Ensure this value has at most %s characters (it has %s).'
             self.assertFormError(r, 'form', field, err % (length, length + 1))
 
-    @patch('amo.models.ModelBase.update')
+    @patch('olympia.amo.models.ModelBase.update')
     def test_photo_modified(self, update_mock):
         dummy = Mock()
         dummy.user = self.user

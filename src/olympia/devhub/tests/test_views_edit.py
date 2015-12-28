@@ -1274,7 +1274,7 @@ class TestThemeEdit(TestCase):
         self.user = UserProfile.objects.get()
         self.addon.addonuser_set.create(user=self.user)
 
-    @mock.patch('amo.messages.error')
+    @mock.patch('olympia.amo.messages.error')
     def test_desc_too_long_error(self, message_mock):
         data = {'description': 'a' * 501}
         req = req_factory_factory(

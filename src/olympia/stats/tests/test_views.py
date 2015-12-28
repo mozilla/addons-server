@@ -746,7 +746,7 @@ class TestSiteQuery(TestCase):
                           self.start, self.end)
 
 
-@mock.patch('stats.views._site_query')
+@mock.patch('olympia.stats.views._site_query')
 class TestSite(TestCase):
 
     def tests_period(self, _site_query):

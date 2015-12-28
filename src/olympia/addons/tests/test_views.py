@@ -203,7 +203,7 @@ class TestContributeEmbedded(TestCase):
         self.addon = Addon.objects.get(pk=592)
         self.detail_url = self.addon.get_url_path()
 
-    @patch('paypal.get_paykey')
+    @patch('olympia.paypal.get_paykey')
     def client_post(self, get_paykey, **kwargs):
         get_paykey.return_value = ['abc', '']
         url = reverse('addons.contribute', args=kwargs.pop('rev'))
@@ -220,7 +220,7 @@ class TestContributeEmbedded(TestCase):
         response = self.client_post(rev=[1])
         eq_(response.status_code, 404)
 
-    @fudge.patch('paypal.get_paykey')
+    @fudge.patch('olympia.paypal.get_paykey')
     def test_charity_name(self, get_paykey):
         (get_paykey.expects_call()
                    .with_matching_args(memo=u'Contribution for foë: foë')
@@ -317,13 +317,13 @@ class TestContributeEmbedded(TestCase):
         doc = pq(res.content)
         eq_(len(doc('#contribute-box input[type=radio]')), 1)
 
-    @fudge.patch('paypal.get_paykey')
+    @fudge.patch('olympia.paypal.get_paykey')
     def test_paypal_error_json(self, get_paykey, **kwargs):
         get_paykey.expects_call().returns((None, None))
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
-    @patch('paypal.requests.post')
+    @patch('olympia.paypal.requests.post')
     def test_paypal_other_error_json(self, post, **kwargs):
         post.return_value.text = other_error
         res = self.contribute()
@@ -338,7 +338,7 @@ class TestContributeEmbedded(TestCase):
     def test_addons_result_page(self):
         self._test_result_page()
 
-    @fudge.patch('paypal.get_paykey')
+    @fudge.patch('olympia.paypal.get_paykey')
     def test_not_split(self, get_paykey):
         def check_call(*args, **kw):
             assert 'chains' not in kw

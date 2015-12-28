@@ -7,13 +7,13 @@ from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
 from nose.tools import eq_
+from django.core.management.base import CommandError
 import mock
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport
-from olympia.django.core.management.base import CommandError
 from olympia.files.models import File
 from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
 from olympia.stats.models import UpdateCount
@@ -130,7 +130,7 @@ class TestHideDisabledFiles(TestCase):
         self.f2 = File.objects.create(version=self.version, filename='f2',
                                       platform=p)
 
-    @mock.patch('files.models.os')
+    @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
         stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
@@ -146,8 +146,8 @@ class TestHideDisabledFiles(TestCase):
             cron.hide_disabled_files()
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.storage')
     def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
@@ -170,8 +170,8 @@ class TestHideDisabledFiles(TestCase):
         eq_(mv_mock.call_count, 2)
         eq_(m_storage.delete.call_count, 2)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.storage')
     def test_move_admin_disabled_addon(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
@@ -193,8 +193,8 @@ class TestHideDisabledFiles(TestCase):
         eq_(mv_mock.call_count, 2)
         eq_(m_storage.delete.call_count, 2)
 
-    @mock.patch('files.models.File.mv')
-    @mock.patch('files.models.storage')
+    @mock.patch('olympia.files.models.File.mv')
+    @mock.patch('olympia.files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
@@ -299,15 +299,15 @@ class AvgDailyUserCountTestCase(TestCase):
 
 class TestCleanupImageFiles(TestCase):
 
-    @mock.patch('addons.cron.os')
+    @mock.patch('olympia.addons.cron.os')
     def test_cleanup_image_files_exists(self, os_mock):
         cron.cleanup_image_files()
         assert os_mock.path.exists.called
 
-    @mock.patch('addons.cron.os.unlink')
-    @mock.patch('addons.cron.os.stat')
-    @mock.patch('addons.cron.os.listdir')
-    @mock.patch('addons.cron.os.path')
+    @mock.patch('olympia.addons.cron.os.unlink')
+    @mock.patch('olympia.addons.cron.os.stat')
+    @mock.patch('olympia.addons.cron.os.listdir')
+    @mock.patch('olympia.addons.cron.os.path')
     def test_cleanup_image_files_age(self, os_path_mock, os_listdir_mock,
                                      os_stat_mock, os_unlink_mock):
         os_path_mock.exists.return_value = True

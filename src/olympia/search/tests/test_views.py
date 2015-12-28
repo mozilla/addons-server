@@ -751,7 +751,7 @@ class TestPersonaSearch(SearchBase):
         self.check_name_results({}, sorted(p.id for p in self.personas))
 
     # Pretend we only want 2 personas per result page.
-    @mock.patch('search.views.DEFAULT_NUM_PERSONAS', 2)
+    @mock.patch('olympia.search.views.DEFAULT_NUM_PERSONAS', 2)
     def test_pagination(self):
         self._generate_personas()  # This creates 3 public personas.
 

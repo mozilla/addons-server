@@ -60,7 +60,7 @@ class TestLoginUser(TestCase):
         self.request = RequestFactory().get('/login')
         self.user = UserProfile.objects.create(email='real@yeahoo.com')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        patcher = mock.patch('accounts.views.login')
+        patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -112,10 +112,10 @@ class TestFindUser(TestCase):
 class TestWithUser(TestCase):
 
     def setUp(self):
-        patcher = mock.patch('accounts.views.verify.fxa_identify')
+        patcher = mock.patch('olympia.accounts.views.verify.fxa_identify')
         self.fxa_identify = patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = mock.patch('accounts.views.find_user')
+        patcher = mock.patch('olympia.accounts.views.find_user')
         self.find_user = patcher.start()
         self.addCleanup(patcher.stop)
         self.request = mock.MagicMock()
@@ -245,7 +245,7 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
-    @mock.patch('accounts.views.Response')
+    @mock.patch('olympia.accounts.views.Response')
     def test_profile_does_not_exist(self, Response):
         self.fxa_identify.side_effect = verify.IdentificationError
         self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
@@ -254,7 +254,7 @@ class TestWithUser(TestCase):
             {'error': 'Profile not found.'}, status=401)
         assert not self.find_user.called
 
-    @mock.patch('accounts.views.Response')
+    @mock.patch('olympia.accounts.views.Response')
     def test_code_not_provided(self, Response):
         self.request.DATA = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
@@ -291,7 +291,7 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
-    @mock.patch('accounts.views.Response')
+    @mock.patch('olympia.accounts.views.Response')
     def test_logged_in_does_not_match_identity_migrated(self, Response):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
@@ -303,7 +303,7 @@ class TestWithUser(TestCase):
         Response.assert_called_with(
             {'error': 'User already migrated.'}, status=422)
 
-    @mock.patch('accounts.views.Response')
+    @mock.patch('olympia.accounts.views.Response')
     def test_logged_in_does_not_match_conflict(self, Response):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
@@ -329,7 +329,7 @@ class TestRegisterUser(TestCase):
     def setUp(self):
         self.request = RequestFactory().get('/register')
         self.identity = {'email': 'me@yeahoo.com', 'uid': '9005'}
-        patcher = mock.patch('accounts.views.login')
+        patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -364,7 +364,7 @@ class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
     def setUp(self):
         self.url = reverse(self.view_name)
         create_switch('fxa-auth', active=True)
-        self.fxa_identify = self.patch('accounts.views.verify.fxa_identify')
+        self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
 
     def patch(self, thing):
         patcher = mock.patch(thing)
@@ -378,7 +378,7 @@ class TestLoginView(BaseAuthenticationView):
     def setUp(self):
         super(TestLoginView, self).setUp()
         self.initialize_session({'fxa_state': 'some-blob'})
-        self.login_user = self.patch('accounts.views.login_user')
+        self.login_user = self.patch('olympia.accounts.views.login_user')
 
     def test_no_code_provided(self):
         response = self.client.post(self.url)
@@ -439,7 +439,7 @@ class TestRegisterView(BaseAuthenticationView):
     def setUp(self):
         super(TestRegisterView, self).setUp()
         self.initialize_session({'fxa_state': 'some-blob'})
-        self.register_user = self.patch('accounts.views.register_user')
+        self.register_user = self.patch('olympia.accounts.views.register_user')
 
     def test_no_code_provided(self):
         response = self.client.post(self.url)
@@ -481,8 +481,8 @@ class TestAuthorizeView(BaseAuthenticationView):
     def setUp(self):
         super(TestAuthorizeView, self).setUp()
         self.initialize_session({'fxa_state': 'the-right-blob'})
-        self.login_user = self.patch('accounts.views.login_user')
-        self.register_user = self.patch('accounts.views.register_user')
+        self.login_user = self.patch('olympia.accounts.views.login_user')
+        self.register_user = self.patch('olympia.accounts.views.register_user')
 
     def test_no_code_provided(self):
         response = self.client.get(self.url)

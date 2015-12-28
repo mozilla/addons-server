@@ -56,22 +56,22 @@ class TestPayKey(TestCase):
         data['amount'] = 'some random text'
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, data)
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_auth_fails(self, opener):
         opener.return_value.text = auth_error
         self.assertRaises(paypal.AuthError, paypal.get_paykey, self.data)
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_get_key(self, opener):
         opener.return_value.text = good_response
         eq_(paypal.get_paykey(self.data), ('AP-9GD76073HJ780401K', 'CREATED'))
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_error_is_paypal(self, opener):
         opener.side_effect = ZeroDivisionError
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_error_raised(self, opener):
         opener.return_value.text = other_error.replace('520001', '589023')
         try:
@@ -82,7 +82,7 @@ class TestPayKey(TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_error_one_currency(self, opener):
         opener.return_value.text = other_error.replace('520001', '559044')
         try:
@@ -95,7 +95,7 @@ class TestPayKey(TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_error_no_currency(self, opener):
         opener.return_value.text = other_error.replace('520001', '559044')
         try:
@@ -106,12 +106,12 @@ class TestPayKey(TestCase):
         else:
             raise ValueError('No PaypalError was raised')
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_other_fails(self, opener):
         opener.return_value.text = other_error
         self.assertRaises(paypal.PaypalError, paypal.get_paykey, self.data)
 
-    @mock.patch('paypal._call')
+    @mock.patch('olympia.paypal._call')
     def test_qs_passed(self, _call):
         data = self.data.copy()
         data['qs'] = {'foo': 'bar'}
@@ -132,13 +132,13 @@ class TestPayKey(TestCase):
         key = paypal.get_paykey(self.data)
         eq_(paypal.check_purchase(key), 'CREATED')
 
-    @mock.patch('paypal._call')
+    @mock.patch('olympia.paypal._call')
     def test_usd_default(self, _call):
         _call.return_value = {'payKey': '', 'paymentExecStatus': ''}
         paypal.get_paykey(self.data)
         eq_(_call.call_args[0][1]['currencyCode'], 'USD')
 
-    @mock.patch('paypal._call')
+    @mock.patch('olympia.paypal._call')
     def test_other_currency(self, _call):
         _call.return_value = {'payKey': '', 'paymentExecStatus': ''}
         data = self.data.copy()
@@ -146,7 +146,7 @@ class TestPayKey(TestCase):
         paypal.get_paykey(data)
         eq_(_call.call_args[0][1]['currencyCode'], 'EUR')
 
-    @mock.patch('paypal._call')
+    @mock.patch('olympia.paypal._call')
     def test_error_currency(self, _call):
         _call.side_effect = paypal.CurrencyError()
         data = self.data.copy()
@@ -156,18 +156,18 @@ class TestPayKey(TestCase):
 
 class TestPurchase(TestCase):
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_check_purchase(self, opener):
         opener.return_value.text = good_check_purchase
         eq_(paypal.check_purchase('some-paykey'), 'CREATED')
 
-    @mock.patch('paypal.requests.post')
+    @mock.patch('olympia.paypal.requests.post')
     def test_check_purchase_fails(self, opener):
         opener.return_value.text = other_error
         eq_(paypal.check_purchase('some-paykey'), False)
 
 
-@mock.patch('paypal.requests.get')
+@mock.patch('olympia.paypal.requests.get')
 def test_check_paypal_id(get):
     get.return_value.text = 'ACK=Success'
     val = paypal.check_paypal_id(u'\u30d5\u30a9\u30af\u3059\u3051')

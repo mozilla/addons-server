@@ -5,7 +5,7 @@ import pytest
 from nose.tools import eq_, ok_
 
 from olympia import amo
-from olympia.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
     attach_trans_dict, translations_for_field, walkfiles)
 from olympia.addons.models import Addon

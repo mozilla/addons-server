@@ -12,7 +12,8 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.versions.models import Version
-from olympia.services import theme_update
+
+from services import theme_update
 
 
 class TestWSGIApplication(TestCase):

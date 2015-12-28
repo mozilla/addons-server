@@ -1315,13 +1315,13 @@ class LanguagePacksTest(UploadTest):
         self.setup_localepicker(amo.PLATFORM_MAC.id)
         eq_(self.addon.get_localepicker(), '')
 
-    @patch('apps.files.models.File.get_localepicker')
+    @patch('olympia.files.models.File.get_localepicker')
     def test_search_right_platform(self, get_localepicker):
         get_localepicker.return_value = 'some data'
         self.setup_localepicker(amo.PLATFORM_ANDROID.id)
         eq_(self.addon.get_localepicker(), 'some data')
 
-    @patch('apps.addons.models.Addon.get_localepicker')
+    @patch('olympia.addons.models.Addon.get_localepicker')
     def test_localepicker(self, get_localepicker):
         get_localepicker.return_value = unicode('title=اختر لغة', 'utf8')
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)

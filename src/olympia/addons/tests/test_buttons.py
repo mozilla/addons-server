@@ -73,7 +73,7 @@ class ButtonTest(TestCase):
             'request': self.request,
         }
 
-    @patch('addons.buttons.jingo.env.get_template')
+    @patch('olympia.addons.buttons.jingo.env.get_template')
     def get_button(self, t_mock, **kwargs):
         """Proxy for calling install_button."""
         template_mock = Mock()
@@ -486,8 +486,8 @@ class TestButtonHtml(ButtonTest):
         doc = self.render()
         eq_(doc('.contrib .os').text(), '')
 
-    @patch('addons.buttons.install_button')
-    @patch('addons.helpers.statusflags')
+    @patch('olympia.addons.buttons.install_button')
+    @patch('olympia.addons.helpers.statusflags')
     def test_big_install_button_xss(self, flags_mock, button_mock):
         # Make sure there's no xss in statusflags.
         button_mock.return_value = jinja2.Markup('<b>button</b>')

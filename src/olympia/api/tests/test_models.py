@@ -39,7 +39,7 @@ class TestAPIKey(TestCase):
         max = 3
 
         # Make APIKey.objects.filter().exists() always return True.
-        patch = mock.patch('apps.api.models.APIKey.objects.filter')
+        patch = mock.patch('olympia.api.models.APIKey.objects.filter')
         mock_filter = patch.start()
         self.addCleanup(patch.stop)
         mock_filter.return_value.exists.return_value = True
