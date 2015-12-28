@@ -1,5 +1,6 @@
 import functools
 import logging
+from collections import namedtuple
 
 from django.conf import settings
 from django.contrib.auth import login
@@ -14,9 +15,11 @@ from waffle.decorators import waffle_switch
 from . import verify
 from api.jwt_auth.views import JWTProtectedView
 from users.models import UserProfile
-from accounts.serializers import UserProfileSerializer
+from accounts.serializers import AccountSourceSerializer, UserProfileSerializer
 
 log = logging.getLogger('accounts')
+
+STUB_FXA_USER = namedtuple('FxAUser', ['source'])('fxa')
 
 
 def find_user(identity):
@@ -135,3 +138,19 @@ class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kw):
         return Response(self.get_serializer(request.user).data)
+
+
+class AccountSourceView(generics.RetrieveAPIView):
+    serializer_class = AccountSourceSerializer
+
+    @waffle_switch('fxa-auth')
+    def retrieve(self, request, *args, **kwargs):
+        email = request.GET.get('email')
+        try:
+            user = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            # Use the stub FxA user with source='fxa' when the account doesn't
+            # exist. This will make it more difficult to discover if an email
+            # address has an account associated with it.
+            user = STUB_FXA_USER
+        return Response(self.get_serializer(user).data)

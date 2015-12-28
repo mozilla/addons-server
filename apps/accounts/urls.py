@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^profile/$', views.ProfileView.as_view(), name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),
+    url(r'^source/$', views.AccountSourceView.as_view(),
+        name='accounts.source'),
 ]

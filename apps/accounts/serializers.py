@@ -16,3 +16,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'read_dev_agreement', 'is_verified',
             'region', 'lang', 'picture_url'
         )
+
+
+class AccountSourceSerializer(serializers.ModelSerializer):
+    source = serializers.CharField(source='source')
+
+    class Meta:
+        model = UserProfile
+        fields = ['source']
