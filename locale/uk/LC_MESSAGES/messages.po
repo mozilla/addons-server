@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-29 12:59+0000\n"
+"PO-Revision-Date: 2015-12-29 13:56+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -12396,6 +12396,12 @@ msgid ""
 "needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about "
 "customization</a>"
 msgstr ""
+"Додатки це невеликі програми, які додають нові можливості або "
+"функціональність у встановлений вами %(app_name)s. Додатки можуть "
+"доповнювати %(app_name)s новими функціями, додавати словники іноземної мови "
+"або змінювати його зовнішній вигляд. Додатками ви можете налаштувати "
+"%(app_name)s на свій смак, щоб задовольнити свої потреби. <a "
+"href=\"%(learnmore_url)s\">Дізнайтеся більше про налаштування</a>"
 
 #: apps/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
@@ -12413,6 +12419,15 @@ msgid ""
 "as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will "
 "indicate whether the add-on is compatible or not."
 msgstr ""
+"Додатки в цій галереї працюють тільки з програмами на основі Mozilla, такими"
+" як <a href=\"%(getfirefox_url)s\">Firefox</a>, <a "
+"href=\"%(getmobile_url)s\">мобільний Firefox</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a> і <a "
+"href=\"%(getthunderbird_url)s\">Thunderbird</a>. Однак, не всі додатки "
+"працюють з кожною із цих програм, чи будь-якою версією цих додатків. У "
+"кожному додатку вказано, з якими програмами і версіями він працює, "
+"наприклад, Firefox 2.0 - 3.6.*. Для додатків Firefox кнопки встановлення "
+"будуть вказувати, сумісний додаток чи ні."
 
 #: apps/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
@@ -12422,7 +12437,7 @@ msgstr "Чому існують різні типи додатків?"
 msgid ""
 "There are several kinds of add-ons that customize %(app_name)s in different "
 "ways:"
-msgstr ""
+msgstr "Є кілька типів додатків, які по різному налаштовують %(app_name)s:"
 
 #: apps/pages/templates/pages/faq.html:47
 msgid ""
@@ -12789,11 +12804,11 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:279
 msgid "Personalized recommendations"
-msgstr ""
+msgstr "Персоналізовані рекомендації"
 
 #: apps/pages/templates/pages/faq.html:282
 msgid "What are personalized recommendations?"
-msgstr ""
+msgstr "Що таке персоналізовані рекомендації?"
 
 #: apps/pages/templates/pages/faq.html:283
 msgid ""
@@ -12801,10 +12816,14 @@ msgid ""
 "installed. If you have at least 3 add-ons installed, just visit the Get Add-"
 "ons area of the Add-ons Manager to see the \"Recommended for You\" box."
 msgstr ""
+"Firefox рекомендує вам додатки, ґрунтуючись на вже встановлених вами "
+"додатках. Якщо у вас встановлено щонайменше 3 додатка, просто відвідайте "
+"вкладку \"Отримати додаток\" у вікні управління додатками, щоб побачити "
+"віконце \"Рекомендоване для вас\"."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
-msgstr ""
+msgstr "Як визначаються персоналізовані рекомендації?"
 
 #: apps/pages/templates/pages/faq.html:289
 msgid ""
@@ -12814,16 +12833,24 @@ msgid ""
 "Policy</a>. Add-ons that are often used together are determined from the "
 "aggregate data and displayed to you as personalized recommendations."
 msgstr ""
+"Firefox надсилає інформацію про встановлені у вас додатки в Mozilla один раз"
+" на день з метою оновлення інформації, яка відображається у вас в менеджері "
+"додатків, що вказано в нашій <a href=\"%(privacy_url)s\">політиці "
+"приватності</a>. Додатки, які часто використовуються разом, визначаються із "
+"сукупності даних і відображаються для вас у вигляді персональних "
+"рекомендацій."
 
 #: apps/pages/templates/pages/faq.html:296
 msgid "How can I opt out of these recommendations?"
-msgstr ""
+msgstr "Як я можу відмовитися від цих рекомендацій?"
 
 #: apps/pages/templates/pages/faq.html:297
 msgid ""
 "Please see <a href=\"%(support_url)s\">this support article</a> for "
 "instructions on how to opt out."
 msgstr ""
+"Будь ласка, прочитайте <a href=\"%(support_url)s\">цю статтю підтримки</a> "
+"для отримання інструкцій про те, як відмовитися."
 
 #: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13
 #: templates/impala/header_title.html:13
