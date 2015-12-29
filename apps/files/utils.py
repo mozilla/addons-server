@@ -64,7 +64,7 @@ def get_filepath(fileorpath):
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload
-        return fileorpath.path
+        return storage.open(fileorpath.path)
     if hasattr(fileorpath, 'name'):
         return fileorpath
     return storage.open(fileorpath)

@@ -45,14 +45,20 @@ class GithubCallback(object):
     def pending(self):
         self.post(self.data['status_url'], data={'state': 'pending'})
 
-    def success(self):
-        self.post(self.data['status_url'], data={'state': 'success'})
+    def success(self, url):
+        self.post(self.data['status_url'], data={
+            'state': 'success',
+            'target_url': url
+        })
 
-    def error(self, description, url):
+    def error(self, url):
         self.post(self.data['status_url'], data={
             'state': 'error',
             # Not localising because we aren't sure what locale to localise to.
-            'description': description,
+            # I would like to pass a longer string here that shows more details
+            # however, we are limited to "A short description of the status."
+            # Which means all the fancy things I wanted to do got truncated.
+            'description': 'This add-on did not validate.',
             'target_url': url
         })
 

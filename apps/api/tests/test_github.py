@@ -103,17 +103,18 @@ class TestCallback(GithubBase):
         self.check_status('pending')
 
     def test_success(self):
-        self.github.success()
-        self.check_status('success')
+        self.github.success('http://a.m.o/')
+        self.check_status('success', target_url='http://a.m.o/')
 
     def test_error(self):
-        self.github.error()
-        self.check_status('error', description=mock.ANY)
+        self.github.error('http://a.m.o/')
+        self.check_status(
+            'error', description=mock.ANY, target_url='http://a.m.o/')
 
     def test_failure(self):
-        self.github.failure('http://a.m.o/')
+        self.github.failure()
         self.check_status(
-            'failure', description=mock.ANY, target_url='http://a.m.o/')
+            'failure', description=mock.ANY)
 
     def test_comment(self):
         self.github.comment({'line': 35, 'path': 'some/file'})
