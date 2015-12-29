@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-24 10:58+0000\n"
+"PO-Revision-Date: 2015-12-29 11:17+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5248,6 +5248,10 @@ msgid ""
 "Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Функція подання неопублікованих додатків на підписання в даний момент "
+"знаходиться у відкритому бета-тестуванні. Будь ласка, <a href=\"%(url)s\" "
+"target=\"_blank\">повідомляйте про будь-які помилки</a>, з якими ви "
+"стикаєтесь."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -9628,7 +9632,7 @@ msgstr "Зняти прапор перевірки адміністраторо�
 
 #: apps/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Зняти прапорець \"запитано більше інформації\""
 
 #: apps/editors/forms.py:281
 msgid "Choose a canned response..."
@@ -9922,11 +9926,13 @@ msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr ""
+"Це схвалить розміщену в \"пісочниці\" версію публічного додатка, яка "
+"з'явиться в загальному доступі."
 
 #: apps/editors/helpers.py:556
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
-msgstr ""
+msgstr "Це відкине версію публічного додатка і видалить його з черги."
 
 #: apps/editors/helpers.py:559
 msgid ""
@@ -9934,6 +9940,9 @@ msgid ""
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr ""
+"Це позначить додаток, його найновішу версію і файли як загальнодоступні. "
+"Майбутні версії будуть потрапляти в «пісочницю», поки вони не будуть "
+"перевірені редактором."
 
 #: apps/editors/helpers.py:632
 msgid "add-on"
@@ -11662,6 +11671,15 @@ msgid ""
 "on. Developers need to be very, very careful with using them. Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Так. Це можливо, але деякі з функцій, забезпечувані цими бібліотеками, "
+"доступні через XPCOM, XUL і JavaScript. Крім того, автори повинні бути "
+"обережні у випадку, якщо бібліотеки змінюють прототипи примітивних об'єктів "
+"(String.prototype, Date.prototype і т.д.) і / або визначають глобальні "
+"функції (напр. $ функцію). Подібна поведінка схильна викликати конфлікт з "
+"іншими додатками, особливо якщо різні додатки використовують різні версії "
+"бібліотек і так далі. Розробники повинні бути дуже, дуже обережні при їх "
+"використанні. Mozilla не надає документацію щодо їх використання для "
+"створення додатків."
 
 #: apps/pages/templates/pages/dev_faq.html:166
 msgid "How do I debug my add-on?"
@@ -13549,7 +13567,7 @@ msgstr ""
 
 #: apps/signing/views.py:70
 msgid "Version does not match install.rdf."
-msgstr ""
+msgstr "Версія не відповідає install.rdf."
 
 #: apps/signing/views.py:74
 msgid "Version already exists."
@@ -13557,11 +13575,11 @@ msgstr "Версія вже існує."
 
 #: apps/signing/views.py:110
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Немає завантаженого файлу для цього додатка і версії."
 
 #: apps/stats/models.py:271
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Дякуємо за внесок у {addon_name}"
 
 #: apps/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
@@ -13731,15 +13749,15 @@ msgstr "Дані відсутні."
 
 #: apps/stats/templates/stats/stats.html:169
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Зараз ця панель є <b>публічною</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Зараз статистика внесків є <b>приватною</b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Зараз ця панель є <b>приватною</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
@@ -13798,7 +13816,7 @@ msgstr "Використання платформи за датою"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> завантажень"
 
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
@@ -13807,27 +13825,27 @@ msgstr "Завантаження..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "В середньому <b>{0}</b> користувачів щодня"
 
 #: apps/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Найпопулярніші програми"
 
 #: apps/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Дивитися інші програми&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Найпопулярніші мови"
 
 #: apps/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Дивитися інші мови&hellip;"
 
 #: apps/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Найпопулярніші платформи"
 
 #: apps/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
@@ -13835,19 +13853,19 @@ msgstr "Дивитися інші платформи&hellip;"
 
 #: apps/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Рейтинги за датою"
 
 #: apps/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Відгуків створено, за датою"
 
 #: apps/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Джерела завантажень за датою"
 
 #: apps/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Про відстеження зовнішніх джерел..."
 
 #: apps/stats/templates/stats/reports/sources.html:10
 msgid ""
@@ -13868,7 +13886,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Статус додатка за датою"
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
@@ -13876,11 +13894,11 @@ msgstr "Підписники за датою"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Щоденно користувачів, за датою"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Що таке щоденні користувачі?"
 
 #: apps/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -13900,15 +13918,15 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Користувачів зареєстровано, за датою"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Версії програми за датою"
 
 #: apps/tags/templates/tags/top_cloud.html:4
 msgid "Top {0} Tags"
-msgstr ""
+msgstr "{0} найпопулярніших міток"
 
 #. {0} is the current application name
 #: apps/tags/templates/tags/top_cloud.html:14
@@ -13923,15 +13941,15 @@ msgstr "Локалізація для: <a id=\"change-locale\" href=\"#\">%(dl)s
 #: apps/translations/templates/translations/trans-menu.html:16
 #: apps/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: apps/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Існуючі локалі"
 
 #: apps/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Нові локалі"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:42
@@ -13942,7 +13960,7 @@ msgstr ""
 
 #: apps/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Відхилити зміни"
 
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:56
@@ -13950,22 +13968,24 @@ msgid ""
 "Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
 "undone."
 msgstr ""
+"Ви впевнені, що хочете прибрати всі <b>{0}</b> переклади? Цю дію неможливо "
+"відмінити."
 
 #: apps/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Видалити локаль"
 
 #: apps/users/forms.py:38
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "Має бути не менше %s символів."
 
 #: apps/users/forms.py:58
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "Необхідні букви і цифри."
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Цей пароль не допускається."
 
 #: apps/users/forms.py:87
 msgid ""
@@ -13973,6 +13993,9 @@ msgid ""
 "more. Please update your password by <a href=\"%s\">issuing a password "
 "reset</a>."
 msgstr ""
+"У рамках нашої нової політики паролів, ваш пароль повинен містити %s "
+"символів або більше. Будь ласка, оновіть ваш пароль <a href=\"%s\">виконавши"
+" скидання пароля</a>."
 
 #: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
 msgid "New password"
@@ -13984,13 +14007,15 @@ msgstr "Введено невірний пароль!"
 
 #: apps/users/forms.py:243
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Імена користувачів не можуть містити лише цифри."
 
 #: apps/users/forms.py:246
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
+"Введіть дійсне ім'я користувача, що складається з букв, цифр, підкреслень "
+"або дефісів."
 
 #: apps/users/forms.py:249
 msgid "This username cannot be used."
@@ -14027,6 +14052,8 @@ msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
+"Будь ласка, використовуйте адресу електронної пошти іншого провайдера, щоб "
+"завершити реєстрацію."
 
 #: apps/users/forms.py:311
 msgid "This display name cannot be used."
@@ -14048,7 +14075,7 @@ msgstr "Типова локаль"
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
-msgstr ""
+msgstr "Задля анонімності, зазначте причину зміни, але не змінюйте інші поля."
 
 #: apps/users/forms.py:534
 msgid "Please enter at least one name to blacklist."
