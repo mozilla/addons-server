@@ -1,3 +1,4 @@
+import base64
 import functools
 import logging
 from collections import namedtuple
@@ -6,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.utils.http import is_safe_url
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -66,16 +68,24 @@ def with_user(fn):
     @functools.wraps(fn)
     def inner(self, request):
         data = request.GET if request.method == 'GET' else request.DATA
+        state_parts = data.get('state', '').split(':', 1)
+        state = state_parts[0]
         if 'code' not in data:
+            log.info('No code provided.')
             return Response({'error': 'No code provided.'}, status=422)
-        elif ('fxa_state' not in request.session or
-                request.session['fxa_state'] != data['state']):
+        elif (not request.session.get('fxa_state') or
+                request.session['fxa_state'] != state):
+            log.info('State mismatch. URL: {url} Session: {session}'.format(
+                url=data.get('state'),
+                session=request.session.get('fxa_state'),
+            ))
             return Response({'error': 'State mismatch.'}, status=400)
 
         try:
             identity = verify.fxa_identify(data['code'],
                                            config=settings.FXA_CONFIG)
         except verify.IdentificationError:
+            log.info('Profile not found. Code: {}'.format(data['code']))
             return Response({'error': 'Profile not found.'}, status=401)
         else:
             identity_user = find_user(identity)
@@ -86,13 +96,30 @@ def with_user(fn):
                                  request.user.pk, identity_user.pk))
                     return Response({'error': 'User mismatch.'}, status=422)
                 elif request.user.fxa_id is not None:
+                    log.info('User already migrated. '
+                             'request.user: {}, identity_user: {}'.format(
+                                 request.user, identity_user))
                     return Response(
                         {'error': 'User already migrated.'}, status=422)
                 else:
                     user = request.user
             else:
                 user = identity_user
-            return fn(self, request, user=user, identity=identity)
+            next_path = None
+            if len(state_parts) == 2:
+                # The = signs will be stripped off so we need to add them back
+                # but it only cares if there are too few so add 4 of them.
+                encoded_path = state_parts[1] + '===='
+                try:
+                    next_path = base64.urlsafe_b64decode(str(encoded_path))
+                except TypeError:
+                    log.info('Error decoding next_path {}'.format(
+                        encoded_path))
+                    pass
+            if not is_safe_url(next_path):
+                next_path = None
+            return fn(self, request, user=user, identity=identity,
+                      next_path=next_path)
     return inner
 
 
@@ -100,7 +127,7 @@ class LoginView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def post(self, request, user, identity):
+    def post(self, request, user, identity, next_path):
         if user is None:
             return Response({'error': 'User does not exist.'}, status=422)
         else:
@@ -112,7 +139,7 @@ class RegisterView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def post(self, request, user, identity):
+    def post(self, request, user, identity, next_path):
         if user is not None:
             return Response({'error': 'That account already exists.'},
                             status=422)
@@ -125,12 +152,12 @@ class AuthorizeView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def get(self, request, user, identity):
+    def get(self, request, user, identity, next_path):
         if user is None:
             register_user(request, identity)
         else:
             login_user(request, user, identity)
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(next_path or '/')
 
 
 class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
