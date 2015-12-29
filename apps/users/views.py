@@ -370,6 +370,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
         return http.HttpResponseRedirect(
             request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
+    data['login_source_form'] = (waffle.switch_is_active('fxa-auth') and
+                                 not request.POST)
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
     login_status = None
