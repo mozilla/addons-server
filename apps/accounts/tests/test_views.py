@@ -9,6 +9,7 @@ import mock
 from rest_framework.test import APITestCase
 
 from accounts import verify, views
+from amo.helpers import absolutify
 from amo.tests import create_switch, InitializeSessionMixin
 from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
@@ -517,7 +518,7 @@ class TestAuthorizeView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 302
-        assert response['location'] == 'http://testserver/'
+        assert response['location'] == absolutify(reverse('users.edit'))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
@@ -533,7 +534,7 @@ class TestAuthorizeView(BaseAuthenticationView):
                 next_path=base64.urlsafe_b64encode('/go/here')),
         })
         assert response.status_code == 302
-        assert response['location'] == 'http://testserver/go/here'
+        assert response['location'] == absolutify(reverse('users.edit'))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
