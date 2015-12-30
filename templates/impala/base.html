@@ -53,7 +53,6 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
-        data-collect-timings="{{ url('amo.timing.record') }}:{{ collect_timings_percent }}"
         {% if switch_is_active('fxa-auth') %}
           data-fxa-config="{{ fxa_config()|json }}"
         {% endif %}

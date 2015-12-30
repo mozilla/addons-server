@@ -688,7 +688,6 @@ MINIFY_BUNDLES = {
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
-            'js/lib/stick.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',

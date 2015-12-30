@@ -4,7 +4,6 @@ import re
 
 from django import http
 from django.conf import settings
-from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.utils.encoding import iri_to_uri
@@ -14,14 +13,11 @@ from django.views.decorators.http import require_POST
 
 import commonware.log
 import waffle
-from django_statsd.views import record as django_statsd_record
 from django_statsd.clients import statsd
 
 import amo
 import api
-from amo.decorators import post_required
 from amo.utils import log_cef
-from amo.context_processors import get_collect_timings
 from . import monitors
 
 log = commonware.log.getLogger('z.amo')
@@ -152,16 +148,6 @@ def cspreport(request):
         return HttpResponseBadRequest()
 
     return HttpResponse()
-
-
-@csrf_exempt
-@post_required
-def record(request):
-    # The rate limiting is done up on the client, but if things go wrong
-    # we can just turn the percentage down to zero.
-    if get_collect_timings():
-        return django_statsd_record(request)
-    raise PermissionDenied
 
 
 def plugin_check_redirect(request):
