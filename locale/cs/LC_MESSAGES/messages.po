@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-24 11:25+0000\n"
+"PO-Revision-Date: 2015-12-01 12:26+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -13804,7 +13804,6 @@ msgid "You do not own this addon."
 msgstr "Tento doplněk nevlastníte."
 
 #: apps/signing/views.py:56
-#, fuzzy
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "Chybí klíč \"upload\" v multipart části dat."
 
