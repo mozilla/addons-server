@@ -10062,7 +10062,7 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "успішно проведена {0} перевірка теми (+{1} балів, всього: {2})."
-msgstr[1] "успішно проведено {0} перевірок теми (+{1} балів, всього: {2})."
+msgstr[1] "успішно проведено {0} перевірки теми (+{1} балів, всього: {2})."
 msgstr[2] "успішно проведено {0} перевірок теми (+{1} балів, всього: {2})."
 
 #: apps/editors/views_themes.py:341
@@ -10606,11 +10606,11 @@ msgstr "Балів поки не нараховано."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr "Топ редакторів (останні 7 днів)"
+msgstr "Найкращі редактори (останні 7 днів)"
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr "Поки немає топу редакторів."
+msgstr "Поки немає найкращих редакторів."
 
 #: apps/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
