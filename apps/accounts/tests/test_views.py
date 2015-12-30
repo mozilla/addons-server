@@ -340,7 +340,7 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username == 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
         self.login.assert_called_with(self.request, user)
@@ -353,8 +353,7 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username.startswith('me@yeahoo.com')
-        assert user.username != 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
 
