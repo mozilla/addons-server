@@ -349,7 +349,7 @@ class TestReviewLog(EditorTest):
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Add-on Review Log', None)])
 
-    @patch('olympoia.devhub.models.ActivityLog.arguments', new=Mock)
+    @patch('olympia.devhub.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)

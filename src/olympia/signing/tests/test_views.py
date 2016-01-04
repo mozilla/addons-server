@@ -48,7 +48,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
 
     def xpi_filepath(self, addon, version):
         return os.path.join(
-            'apps', 'signing', 'fixtures',
+            'src', 'olympia', 'signing', 'fixtures',
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
     def put(self, url=None, version='3.0', addon='@upload-version',

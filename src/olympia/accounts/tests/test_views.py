@@ -313,7 +313,7 @@ class TestWithUser(TestCase):
         self.fn(self.request)
         Response.assert_called_with({'error': 'User mismatch.'}, status=422)
 
-    @mock.patch('accounts.views.Response')
+    @mock.patch('olympia.accounts.views.Response')
     def test_state_does_not_match(self, Response):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity

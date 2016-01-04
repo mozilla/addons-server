@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django_statsd.clients import statsd
 
-from amo.utils import utc_millesecs_from_epoch
+from olympia.amo.utils import utc_millesecs_from_epoch
 
 
 log = commonware.log.getLogger('z.task')

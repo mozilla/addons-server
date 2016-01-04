@@ -220,7 +220,7 @@ class TestUnhideDisabledFiles(amo.tests.TestCase):
         self.file_ = File.objects.create(version=self.version, platform=p,
                                          filename=u'fé')
 
-    @mock.patch('files.models.os')
+    @mock.patch('olympia.files.models.os')
     def test_leave_disabled_files(self, os_mock):
         self.addon.update(status=amo.STATUS_DISABLED)
         cron.unhide_disabled_files()
@@ -237,10 +237,10 @@ class TestUnhideDisabledFiles(amo.tests.TestCase):
         assert not os_mock.path.exists.called
 
     @override_settings(GUARDED_ADDONS_PATH=u'/tmp/guarded-addons')
-    @mock.patch('files.models.File.unhide_disabled_file')
+    @mock.patch('olympia.files.models.File.unhide_disabled_file')
     def test_move_not_disabled_files(self, unhide_mock):
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 self.file_.guarded_file_path):
+        fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        with amo.tests.copy_file(fpath, self.file_.guarded_file_path):
             cron.unhide_disabled_files()
             assert unhide_mock.called
 

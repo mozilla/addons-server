@@ -16,8 +16,6 @@ import warnings
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
 
-from django.conf import settings  # noqa
-
 log = logging.getLogger('z.startup')
 
 
@@ -44,6 +42,7 @@ def init_amo():
 def init_celery():
     """Initialize Celery, and make our app instance available as `celery_app`
     for use by the `celery` command."""
+    from django.conf import settings
     from olympia.amo import celery
 
     global celery_app
@@ -142,7 +141,6 @@ def load_product_details():
 
 
 filter_warnings()
-init_amo()
 init_session_csrf()
 init_jinja2()
 init_amo()

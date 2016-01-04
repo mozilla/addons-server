@@ -2133,8 +2133,8 @@ class TestUploadDetail(BaseUploadTest):
             'metadata': {}}
 
     def upload_file(self, file):
-        addon = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                             'addons', file)
+        addon = os.path.join(
+            settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
         with open(addon, 'rb') as f:
             r = self.client.post(reverse('devhub.upload'),
                                  {'upload': f})

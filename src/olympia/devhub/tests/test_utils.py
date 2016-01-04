@@ -449,14 +449,14 @@ class TestValidationAnnotatorBase(TestCase):
         # Patch validation tasks that we expect the annotator to call.
         self.patchers = []
         self.save_file = self.patch(
-            'devhub.tasks.handle_file_validation_result').subtask
+            'olympia.devhub.tasks.handle_file_validation_result').subtask
         self.save_upload = self.patch(
-            'devhub.tasks.handle_upload_validation_result').subtask
+            'olympia.devhub.tasks.handle_upload_validation_result').subtask
 
         self.validate_file = self.patch(
-            'devhub.tasks.validate_file').subtask
+            'olympia.devhub.tasks.validate_file').subtask
         self.validate_upload = self.patch(
-            'devhub.tasks.validate_file_path').subtask
+            'olympia.devhub.tasks.validate_file_path').subtask
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""

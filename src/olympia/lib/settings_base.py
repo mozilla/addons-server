@@ -106,7 +106,7 @@ DATABASE_POOL_ARGS = {
 SLAVE_DATABASES = []
 
 PASSWORD_HASHERS = (
-    'users.models.SHA512PasswordHasher',
+    'olympia.users.models.SHA512PasswordHasher',
 )
 
 # Local time zone for this installation. Choices can be found here:

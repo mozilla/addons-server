@@ -15,8 +15,9 @@ from olympia.devhub.models import BlogPost
 class TestRSS(TestCase):
 
     def test_rss_cron(self):
-        url = os.path.join(settings.ROOT, 'apps', 'devhub', 'tests',
-                           'rss_feeds', 'blog.xml')
+        url = os.path.join(
+            settings.ROOT, 'src', 'olympia', 'devhub', 'tests',
+            'rss_feeds', 'blog.xml')
 
         settings.DEVELOPER_BLOG_URL = url
 

@@ -57,6 +57,7 @@ RUN cd /pip && \
         --find-links https://pyrepo.stage.mozaws.net/olympia/ \
         --no-index --no-deps \
         -r requirements/docker.txt && \
+    pip install -e /code &&
     rm -r build cache
 
 # Install the node_modules.

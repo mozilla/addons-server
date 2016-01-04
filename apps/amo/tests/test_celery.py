@@ -4,8 +4,8 @@ from datetime import timedelta
 
 import mock
 
-from amo.celery import task
-from amo.utils import utc_millesecs_from_epoch
+from olympia.amo.celery import task
+from olympia.amo.utils import utc_millesecs_from_epoch
 
 
 @task
@@ -16,11 +16,11 @@ def fake_task(**kw):
 class TestTaskTiming(unittest.TestCase):
 
     def setUp(self):
-        patch = mock.patch('amo.celery.cache', autospec=True)
+        patch = mock.patch('olympia.amo.celery.cache', autospec=True)
         self.cache = patch.start()
         self.addCleanup(patch.stop)
 
-        patch = mock.patch('amo.celery.statsd', autospec=True)
+        patch = mock.patch('olympia.amo.celery.statsd', autospec=True)
         self.statsd = patch.start()
         self.addCleanup(patch.stop)
 
@@ -37,7 +37,7 @@ class TestTaskTiming(unittest.TestCase):
 
         approx_run_time = utc_millesecs_from_epoch() - task_start
         assert (self.statsd.timing.call_args[0][0] ==
-                'tasks.apps.amo.tests.test_celery.fake_task')
+                'tasks.test_celery.fake_task')
         actual_run_time = self.statsd.timing.call_args[0][1]
 
         fuzz = 2000  # 2 seconds

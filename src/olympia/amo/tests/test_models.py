@@ -153,13 +153,13 @@ class TestModelBase(TestCase):
 
     def test_measure_save_time(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        with mock.patch('amo.models.statsd.timer') as timer:
+        with mock.patch('olympia.amo.models.statsd.timer') as timer:
             addon.save()
         timer.assert_any_call('cache_machine.manager.post_save')
 
     def test_measure_delete_time(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        with mock.patch('amo.models.statsd.timer') as timer:
+        with mock.patch('olympia.amo.models.statsd.timer') as timer:
             addon.delete()
         timer.assert_any_call('cache_machine.manager.post_delete')
 
