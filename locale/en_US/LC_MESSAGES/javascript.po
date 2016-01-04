@@ -800,7 +800,6 @@ msgstr "Date"
 msgid "Other"
 msgstr "Other"
 
-
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Select an application first"
