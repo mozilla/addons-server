@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-16 00:08+0000\n"
-"Last-Translator: Albert De Castro <albertdecastro@tutanota.com>\n"
+"PO-Revision-Date: 2015-12-25 08:08+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -894,7 +894,7 @@ msgstr "Aceitar e instalar"
 
 #: static/js/zamboni/buttons.js:82
 msgid "Add to {0}"
-msgstr "Adicionar a {0}"
+msgstr "Adicionar ao {0}"
 
 #: static/js/zamboni/buttons.js:87
 msgid "Download Now"
@@ -959,7 +959,7 @@ msgstr "limpar visualizados recentemente"
 
 #: static/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
-msgstr "A adicionar aos favoritos"
+msgstr "A adicionar aos favoritos&hellip;"
 
 #: static/js/zamboni/collections.js:368
 msgid "Removing Favorite&hellip;"

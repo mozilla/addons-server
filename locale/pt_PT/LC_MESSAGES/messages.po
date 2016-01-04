@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-19 01:39+0000\n"
+"PO-Revision-Date: 2016-01-04 11:34+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1847,7 +1847,7 @@ msgstr "Submeter um tema novo"
 #: apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr "Hub do desenvolvedor"
+msgstr "Central do programador"
 
 #: apps/amo/context_processors.py:100 apps/devhub/views.py:1812
 msgid "Manage API Keys"
@@ -2782,7 +2782,8 @@ msgstr "Ícone"
 
 #: apps/bandwagon/forms.py:142
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Por favor não preencha este campo pois é utilizado para apanhar bots"
+msgstr ""
+"Por favor, não preencha este campo, pois é utilizado para apanhar bots"
 
 #: apps/bandwagon/forms.py:166
 msgid "This name cannot be used."
@@ -2794,7 +2795,7 @@ msgstr "Não são permitidas ligações."
 
 #: apps/bandwagon/forms.py:186
 msgid "This url is already in use by another collection"
-msgstr "Este url já está em uso por outra colecção"
+msgstr "Este url já está a ser utilizado por outra coleção"
 
 #: apps/bandwagon/forms.py:196 apps/devhub/views.py:1066
 msgid "Icons must be either PNG or JPG."
@@ -2803,23 +2804,23 @@ msgstr "Os ícones devem ser PNG ou JPG."
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1084
 #: apps/users/forms.py:423
 msgid "Please use images smaller than %dMB."
-msgstr "Por favor use imagens menores que %dMB."
+msgstr "Por favor, use imagens menores que %dMB."
 
 #: apps/bandwagon/helpers.py:51
 msgid "Add a positive vote for this collection"
-msgstr "Adicionar um voto positivo a esta colecção"
+msgstr "Adicionar um voto positivo a esta coleção"
 
 #: apps/bandwagon/helpers.py:52
 msgid "Add a negative vote for this collection"
-msgstr "Adicionar um voto negativo a esta colecção"
+msgstr "Adicionar um voto negativo a esta coleção"
 
 #: apps/bandwagon/helpers.py:53
 msgid "Remove my vote for this collection"
-msgstr "Remover o meu voto para esta colecção"
+msgstr "Remover o meu voto para esta coleção"
 
 #: apps/bandwagon/helpers.py:64
 msgid "Log in to vote for this collection"
-msgstr "Inicie sessão para votar nesta colecção"
+msgstr "Inicie sessão para votar nesta coleção"
 
 #: apps/bandwagon/helpers.py:123
 #: apps/bandwagon/templates/bandwagon/favorites_widget.html:2
@@ -2861,19 +2862,19 @@ msgstr "Popularidade"
 
 #: apps/bandwagon/views.py:303
 msgid "Collection created!"
-msgstr "Colecção criada!"
+msgstr "Coleção criada!"
 
 #: apps/bandwagon/views.py:304
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
-"A sua nova colecção é apresentada em baixo. Se quiser pode <a "
+"A sua nova coleção é apresentada em baixo. Se desejar, pode <a "
 "href=\"%(url)s\">editar configurações adicionais</a>."
 
 #: apps/bandwagon/views.py:308
 msgid "Collection updated!"
-msgstr "Colecção actualizada!"
+msgstr "Coleção atualizada!"
 
 #: apps/bandwagon/views.py:309
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
@@ -2887,7 +2888,7 @@ msgstr "Ícone eliminado"
 #: apps/bandwagon/templates/bandwagon/add.html:11
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr "Criar uma nova colecção"
+msgstr "Criar uma nova coleção"
 
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/devhub/templates/devhub/personas/submit.html:14
@@ -2908,19 +2909,19 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/add.html:33
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr "Criar colecção"
+msgstr "Criar coleção"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr "Ver esta colecção"
+msgstr "Ver esta coleção"
 
 #: apps/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr "Iniciar uma nova colecção..."
+msgstr "Iniciar uma nova coleção..."
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr "Iniciar uma nova colecção"
+msgstr "Iniciar uma nova coleção"
 
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:6
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:7
@@ -2934,7 +2935,7 @@ msgstr "ou <a id=\"collections-new-cancel\" href=\"#\">Cancele</a>"
 #. Link to remove a collection vote
 #: apps/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Para avaliar extras, tem de ter uma conta dos extras."
+msgstr "Para avaliar extras, é necessário uma conta dos extras."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18
 #: templates/base.html:135 templates/impala/base.html:180
@@ -2944,7 +2945,7 @@ msgstr "Criar uma conta dos extras"
 #: apps/bandwagon/templates/bandwagon/barometer.html:21
 #: templates/base.html:138 templates/impala/base.html:183
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "ou <a href=\"%(login)s\">inicie sessão na sua conta actual</a>"
+msgstr "ou <a href=\"%(login)s\">inicie sessão na sua conta atual</a>"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
@@ -2963,7 +2964,7 @@ msgstr[1] "<span>%(num)s</span> seguidores"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
-msgstr "Sobre esta colecção"
+msgstr "Sobre esta coleção"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
@@ -2971,11 +2972,11 @@ msgstr "Extras sincronizados com o meu Firefox para dispositivos móveis"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
-msgstr "Tornar esta colecção privada"
+msgstr "Tornar esta coleção privada"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:71
 msgid "Make this Collection Public"
-msgstr "Tornar esta colecção pública"
+msgstr "Tornar esta coleção pública"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:78
 msgid "Learn about collections"
@@ -2987,12 +2988,12 @@ msgstr "Mais opções:"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Edit Collection"
-msgstr "Editar colecção"
+msgstr "Editar coleção"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:88
 #: apps/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
-msgstr "Eliminar colecção"
+msgstr "Eliminar coleção"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:100
 msgid "%(num)s Theme in this Collection"
@@ -3003,8 +3004,8 @@ msgstr[1] "%(num)s temas nesta coleção"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:111
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "Colecção com %(num)s extra "
-msgstr[1] "Colecção com %(num)s extras"
+msgstr[0] "Coleção com %(num)s extra "
+msgstr[1] "Coleção com %(num)s extras"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:125
 #: apps/compat/templates/compat/index.html:25
@@ -3049,9 +3050,9 @@ msgid ""
 "the button below to make it private."
 msgstr ""
 "Os extras que marcar como favoritos usando a funcionalidade <b>Adicionar aos"
-" favoritos</b> aparecem em baixo. Esta colecção actualmente é "
-"<b>pública</b>, o que significa que todos a podem ver. Se desejar ocultá-la,"
-" clique no botão em baixo para a tornar privada."
+" favoritos</b> aparecem em baixo. Esta coleção atualmente é <b>pública</b>, "
+"o que significa que todos a podem ver. Se desejar ocultá-la, clique no botão"
+" em baixo para a tornar privada."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:195
 msgid ""
@@ -3061,10 +3062,9 @@ msgid ""
 "favorites, click the button below to make it public."
 msgstr ""
 "Os extras que marcar como favoritos usando a funcionalidade <b>Adicionar aos"
-" favoritos</b> aparecem em baixo. Esta colecção actualmente é "
-"<b>privada</b>, o que significa que apenas você a pode ver. Se desejar que "
-"todos possam ver os seus favoritos, clique no botão em baixo para a tornar "
-"pública."
+" favoritos</b> aparecem em baixo. Esta coleção atualmente é <b>privada</b>, "
+"o que significa que apenas você a pode ver. Se desejar que todos possam ver "
+"os seus favoritos, clique no botão em baixo para a tornar pública."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:205
 msgid "My favorite add-ons"
@@ -3120,17 +3120,17 @@ msgstr "por {0}"
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:7
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Stop Following"
-msgstr "Parar o seguimento"
+msgstr "Deixar de seguir"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:6
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:7
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr "Siga esta colecção"
+msgstr "Siga esta coleção"
 
 #: apps/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr "Editar esta colecção"
+msgstr "Editar esta coleção"
 
 #. %s is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/delete.html:4
@@ -3214,11 +3214,11 @@ msgstr "Guardar alterações"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58
 #: apps/constants/base.py:137
 msgid "Owner"
-msgstr "Dono"
+msgstr "Proprietário"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr "Tornar dono"
+msgstr "Tornar proprietário"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
@@ -3234,7 +3234,7 @@ msgstr "Remover"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr "Contribuintes da colecção"
+msgstr "Contribuintes da coleção"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
@@ -3243,11 +3243,10 @@ msgid ""
 "description. To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Pode adicionar múltiplos contribuintes a esta colecção. Um contribuinte pode"
-" adicionar ou remover extras desta colecção, mas não pode alterar o nome ou "
-"a descrição. Para adicionar um contribuinte, escreva o endereço de correio "
-"electrónico na caixa em baixo. Os contribuintes devem ter uma conta nos "
-"extras da Mozilla."
+"Pode adicionar múltiplos contribuintes a esta coleção. Um contribuinte pode "
+"adicionar ou remover extras desta coleção, mas não pode alterar o nome ou a "
+"descrição. Para adicionar um contribuinte, escreva o endereço de e-mail na "
+"caixa em baixo. Os contribuintes devem ter uma conta nos extras da Mozilla."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -3256,7 +3255,7 @@ msgstr "Utilizador"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41
 #: apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr "Correio electrónico"
+msgstr "E-mail"
 
 # Column name in a table.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
@@ -3265,7 +3264,7 @@ msgstr "Papel"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr "Escreva o endereço de correio electrónico do contribuinte a adicionar"
+msgstr "Escreva o endereço de e-mail do contribuinte a adicionar"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
@@ -3277,7 +3276,7 @@ msgstr "Contribuinte"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
-msgstr "Definições de admin"
+msgstr "Definições de administrador"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:76
 msgid ""
@@ -3285,8 +3284,8 @@ msgid ""
 " be able to edit it. You will only be able to add and remove add-ons from "
 "it."
 msgstr ""
-"<b>Aviso:</b> Ao alterar o dono desta colecção, já não a poderá editar. "
-"Apenas poderá adicionar ou remover extras."
+"<b>Aviso:</b> Ao alterar o proprietário desta coleção, já não a poderá "
+"editar. Apenas poderá adicionar ou remover extras."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:157
@@ -3312,7 +3311,7 @@ msgstr "Coleções de {0}"
 
 #: apps/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
-msgstr "Nenhuma colecção encontrada."
+msgstr "Nenhuma coleção encontrada."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
@@ -3341,7 +3340,7 @@ msgid ""
 "your own</a>."
 msgstr ""
 "As coleções são grupos de extras relacionados que qualquer um pode criar e "
-"partilhar. Explore as coleções criadas pelos outros utilizadores ou <a "
+"partilhar. Explore as coleções criadas por outros utilizadores ou <a "
 "href=\"%(url)s\">crie a sua</a>."
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:37
@@ -3358,7 +3357,7 @@ msgstr "Seguinte"
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr "Criar uma colecção"
+msgstr "Criar uma coleção"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
@@ -3366,12 +3365,12 @@ msgid ""
 "Collections make it easy to keep track of favorite add-ons and share your "
 "perfectly customized browser with others."
 msgstr ""
-"As coleções tornam mais fácil o seguimento dos extras favoritos partilham o "
-"seu navegador completamente personalizado com os outros."
+"As coleções tornam mais fácil seguir os extras favoritos e partilham o seu "
+"navegador completamente personalizado com os outros."
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:42
 msgid "Collection Icon"
-msgstr "Ícone da colecção"
+msgstr "Ícone da coleção"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit.html:44
 msgid "Reset"
@@ -3384,11 +3383,11 @@ msgstr "PNG e JPG suportados. A imagem será redimensionada para 32x32."
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 #: apps/localizers/templates/localizers/categories.html:19
 msgid "There are errors in this form. Please correct them below."
-msgstr "Existem erros neste formulário. Corriga-os em baixo."
+msgstr "Existem erros neste formulário. Por favor, corrija-os em baixo."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr "Extras na sua colecção"
+msgstr "Extras na sua coleção"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
@@ -3396,10 +3395,9 @@ msgid ""
 " hit enter. You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
-"Para incluir um extra nesta colecção, escreva o nome na caixa em baixo e "
-"clique em enter. Pode também usar as ligações <strong>Adicionar à "
-"colecção</strong> presentes em todo o sítio para incluir os extras mais "
-"tarde."
+"Para incluir um extra nesta coleção, insira o respetivo nome na caixa em "
+"baixo e carregue em Enter. Pode também usar as ligações <strong>Adicionar à "
+"coleção</strong> presentes em todo o site para incluir os extras mais tarde."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: apps/constants/base.py:445
@@ -3410,11 +3408,11 @@ msgstr "Extra"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
-msgstr "Escreva o nome do extra a incluir"
+msgstr "Insira o nome do extra a incluir"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
-msgstr "Adicionar à colecção"
+msgstr "Adicionar à coleção"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 #: apps/editors/helpers.py:931 apps/editors/helpers.py:951
@@ -3427,7 +3425,7 @@ msgstr "Adicionar um comentário"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
-msgstr "Remover este extra desta colecção"
+msgstr "Remover este extra da coleção"
 
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
@@ -3446,12 +3444,12 @@ msgstr "Extras bloqueados"
 #: apps/blocklist/templates/blocklist/blocked_detail.html:8
 #: apps/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr "Lista de bloqueados"
+msgstr "Lista de bloqueio"
 
 #. {0} is an add-on name.
 #: apps/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> foi bloqueado para sua protecção."
+msgstr "<b>{0}</b> foi bloqueado para a sua proteção."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
@@ -3459,7 +3457,7 @@ msgstr "Porque é que foi bloqueado?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr "Quem é afectado?"
+msgstr "Quem é afetado?"
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
@@ -3470,16 +3468,16 @@ msgid ""
 "Users are strongly encouraged to disable the problematic add-on or plugin, "
 "but may choose to continue using it if they accept the risks described."
 msgstr ""
-"Os utilizadores são fortemente encorajados a desactivar os extras ou plugins"
-" problemáticos, mas podem optar por continuar a usá-los se eles aceitarem os"
-" riscos descritos."
+"Os utilizadores são fortemente encorajados a desativar os extras ou plugins "
+"problemáticos, mas podem optar por continuar a usá-los se aceitarem os "
+"riscos descritos."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:27
 msgid ""
 "The problematic add-on or plugin will be automatically disabled and no "
 "longer usable."
 msgstr ""
-"Os extras ou plugins problemáticos serão automaticamente desactivados e não "
+"Os extras ou plugins problemáticos serão automaticamente desativados e não "
 "poderão ser utilizados."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:33
@@ -3490,11 +3488,11 @@ msgid ""
 "software may be blocked from general use. For more information, please read "
 "<a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Quando a Mozilla se torna consciente de extras, plugins, ou software de "
-"terceiros, que comprometem seriamente a segurança, estabilidade ou "
-"desempenho  do %(app)s e reúne <a href=\"%(criteria)s\">determinados "
-"critérios </a >, o software pode ser impedido de ser usado. Para obter mais "
-"informações, leia <a href=\"%(support)s\">este artigo de suporte</a>."
+"Quando a Mozilla toma conhecimento de extras, plugins, ou software de "
+"terceiros que comprometem seriamente a segurança, estabilidade ou desempenho"
+" do %(app)s e reúne <a href=\"%(criteria)s\">determinados critérios </a >, o"
+" software pode ser impedido do usp geral. Para obter mais informações, por "
+"favor leia <a href=\"%(support)s\">este artigo de suporte</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
@@ -3531,8 +3529,8 @@ msgstr "Extras em destaque :: %s"
 msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing %s."
 msgstr ""
-"Eis alguns dos nosso extras favoritos para o ajudar a começar a personalizar"
-" o %s."
+"Aqui estão alguns dos nossos extras favoritos para o ajudar a começar a "
+"personalizar o %s."
 
 #. L10n: %s is a category name.
 #: apps/browse/feeds.py:157
@@ -3549,7 +3547,7 @@ msgstr "Ferramentas de pesquisa"
 
 #: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:85
 msgid "Most Users"
-msgstr "maior número de utilizadores"
+msgstr "Maior número de utilizadores"
 
 #: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:273
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
@@ -3566,7 +3564,7 @@ msgstr "Criado"
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr "Transferências"
+msgstr "Descargas"
 
 #: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85
 #: apps/discovery/templates/discovery/addons/detail.html:67
@@ -3610,19 +3608,19 @@ msgstr ""
 
 #: apps/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
-msgstr "Instalar Dicionário"
+msgstr "Instalar dicionário"
 
 #: apps/browse/templates/browse/language_tools.html:10
 msgid "Install Language Pack"
-msgstr "Instalar Pacote de Idioma"
+msgstr "Instalar pacote de idioma"
 
 #: apps/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
-msgstr "Transferir Dicionário"
+msgstr "Descarregar dicionário"
 
 #: apps/browse/templates/browse/language_tools.html:13
 msgid "Download Language Pack"
-msgstr "Transferir Pacote de Idioma"
+msgstr "Descarregar pacote de idioma"
 
 #: apps/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
@@ -3746,7 +3744,7 @@ msgstr "Extensões por transferências semanais"
 
 #: apps/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr "Extensões actualizadas recentemente"
+msgstr "Extensões recentemente atualizadas"
 
 #: apps/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
@@ -3970,9 +3968,10 @@ msgid ""
 "upcoming Firefox version. </p>"
 msgstr ""
 "<p> Os relatórios que nos são submetidos através do <a "
-"href=\"%(url_)s\">Relator de compatibilidade de extra</a> são guardados qui "
-"para os desenvolvedores verem. estes relatórios ajudam-nos a determinar que "
-"extras necessitam de ajuda para suportar a próxima versão do Firefox. </p>"
+"href=\"%(url_)s\">relator de compatibilidade de extra</a> são guardados aqui"
+" para que os programadores os vejam. Estes relatórios ajudam-nos a "
+"determinar que extras necessitam de ajuda para suportarem a próxima versão "
+"do Firefox. </p>"
 
 #: apps/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
@@ -4118,7 +4117,7 @@ msgstr "Totalmente analisado"
 
 #: apps/constants/base.py:29 apps/constants/base.py:50
 msgid "Disabled by Mozilla"
-msgstr "Desactivado pela Mozilla"
+msgstr "Desativado pela Mozilla"
 
 #: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Preliminarily Reviewed"
@@ -4156,7 +4155,7 @@ msgstr "Preliminares"
 
 #: apps/constants/base.py:138 apps/users/notifications.py:157
 msgid "Developer"
-msgstr "Desenvolvedor"
+msgstr "Programador"
 
 # <option> text in a <select> for Author role in an add-on.
 #: apps/constants/base.py:139
@@ -4244,7 +4243,7 @@ msgstr "Eu usarei meu próprio sistema de pagamentos pelo aplicativo"
 
 #: apps/constants/base.py:307
 msgid "Only ask on this add-on's page and developer profile"
-msgstr "Pedir apenas na página deste extra e no perfil do desenvolvedor"
+msgstr "Pedir apenas na página deste extra e no perfil do programador"
 
 #: apps/constants/base.py:308
 msgid "Ask after users start downloading this add-on"
@@ -4392,7 +4391,7 @@ msgstr "Nível 9"
 
 #: apps/constants/base.py:564
 msgid "Not signed"
-msgstr "Não sinalizado"
+msgstr "Não assinado"
 
 #: apps/constants/base.py:565
 msgid "Signed for a full review"
@@ -4600,7 +4599,7 @@ msgstr "O que há a seguir para este extra?"
 
 #: apps/devhub/forms.py:316
 msgid "The developers of this add-on"
-msgstr "Os desenvolvedores deste extra"
+msgstr "Os programadores deste extra"
 
 #: apps/devhub/forms.py:317
 msgid "The Mozilla Foundation"
@@ -4657,7 +4656,7 @@ msgstr "Enviar o meu extra para revisão manual."
 
 #: apps/devhub/forms.py:534
 msgid "Do not list my add-on on this site (beta)"
-msgstr "Não listar o meu extra neste sítio (beta)"
+msgstr "Não listar o meu extra neste site (beta)"
 
 #: apps/devhub/forms.py:535
 msgid ""
@@ -4762,7 +4761,7 @@ msgstr "Não pode haver mais do que 3 extras pedidos."
 
 #: apps/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentação do extra :: Hub do desenvolvedor"
+msgstr "Documentação do extra :: Central do programador"
 
 #: apps/devhub/helpers.py:69
 msgid "My Submissions"
@@ -4770,7 +4769,7 @@ msgstr "As minhas submissões"
 
 #: apps/devhub/helpers.py:103
 msgid "Developer Docs"
-msgstr "Documentos do desenvolvedor"
+msgstr "Documentação do programador"
 
 #. L10n: first parameter is the number of errors
 #: apps/devhub/helpers.py:200
@@ -4820,7 +4819,7 @@ msgstr "Toda a actividade"
 
 #: apps/devhub/views.py:207
 msgid "Add-on Updates"
-msgstr "Actualizações do extra"
+msgstr "Atualizações do extra"
 
 #: apps/devhub/views.py:208
 msgid "Add-on Status"
@@ -5140,7 +5139,7 @@ msgstr "Voltar à página inicial do DevHub"
 #. Text in small tag is smaller and on its own line.
 #: apps/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Hub do desenvolvedor do <small>extra</small>"
+msgstr "Central do programador de <small>extras</small>"
 
 #: apps/devhub/templates/devhub/nav.html:20
 msgid "more add-ons..."
@@ -5202,7 +5201,7 @@ msgstr "Mais recursos"
 
 #: apps/devhub/templates/devhub/search.html:7
 msgid "Search Developer Docs"
-msgstr "Procurar documentos do desenvolvedor"
+msgstr "Procurar na documentação do programador"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5228,7 +5227,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/validate_addon.html:42
 #: apps/devhub/templates/devhub/addons/submit/upload.html:23
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Gostaria que o seu extra fosse distribuído neste sítio?"
+msgstr "Gostaria que o seu extra fosse distribuído neste site?"
 
 #: apps/devhub/templates/devhub/validate_addon.html:49
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30
@@ -5424,10 +5423,10 @@ msgid ""
 "settings and statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 "<p>Extras podem ter qualquer número de autores com 3 possíveis funções:</p> "
-"<ul> <li><b>Dono:</b> pode gerenciar todos os detalhes do extra, incluindo "
-"adicionar e remover outros autores</li> <li><b>Desenvolvedor:</b> pode "
-"gerenciar todos os detalhes do extra, exceto adicionar ou remover outros "
-"autores e gerenciar pagamentos</li> <li><b>Visualizador:</b> pode ver as "
+"<ul> <li><b>Proprietário:</b> pode gerir todos os detalhes do extra, "
+"incluindo adicionar e remover outros autores</li> <li><b>Programador:</b> "
+"pode gerir todos os detalhes do extra, exceto adicionar ou remover outros "
+"autores e gerir pagamentos</li> <li><b>Visualizador:</b> pode ver as "
 "configurações e estatísticas do extra, mas não pode fazer nenhuma "
 "alteração</li> </ul>"
 
@@ -5435,15 +5434,15 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:53
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
-msgstr "Gerir o perfil do desenvolvedor"
+msgstr "Gerir o perfil do programador"
 
 #: apps/devhub/templates/devhub/addons/profile.html:16
 msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
-"O seu <a href=\"%(url)s\">perfil de desenvolvedor</a> actual é "
-"<strong>públicoc</strong> e <strong>pede</strong> contribuições."
+"O seu <a href=\"%(url)s\">perfil de programador</a> atual é "
+"<strong>público</strong> e <strong>requer</strong> contribuições."
 
 #: apps/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
@@ -5454,7 +5453,7 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong>."
 msgstr ""
-"O seu <a href=\"%(url)s\">perfil de desenvolvedor</a> actualmente é "
+"O seu <a href=\"%(url)s\">perfil de programador</a> atualmente é "
 "<strong>público</strong>."
 
 #: apps/devhub/templates/devhub/addons/profile.html:33
@@ -5608,7 +5607,7 @@ msgid ""
 "be added. It is only relevant for listed add-ons."
 msgstr ""
 "Se o seu extra tem outra página inicial, introduza o respetivo endereço "
-"aqui. Se o seu sítio web está traduzido em vários idiomas podem ser "
+"aqui. Se o seu website está traduzido em vários idiomas podem ser "
 "adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
 "para extras listados."
 
@@ -5643,9 +5642,9 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added. It is only relevant for listed add-ons."
 msgstr ""
-"Se o seu extra tem um sítio web ou fórum de apoio, introduza o respetivo "
-"endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser"
-" adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
+"Se o seu extra tem um website ou fórum de apoio, introduza o respetivo "
+"endereço aqui. Se o seu website está traduzido em vários idiomas podem ser "
+"adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
 "para extras listados."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:6
@@ -5659,7 +5658,7 @@ msgstr "Detalhes técnicos para {0}"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr "Comentários do desenvolvedor"
+msgstr "Comentários do programador"
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
@@ -5692,7 +5691,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
-msgstr "Este é um extra específico de um sítio."
+msgstr "Este é um extra específico de um site."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:77
 msgid "This add-on requires external software."
@@ -5759,12 +5758,12 @@ msgid ""
 "This add-on will be automatically upgraded to new versions of the Add-on "
 "SDK."
 msgstr ""
-"Este extra vai ser actualizado automaticamente para as novas versões de SDK "
+"Este extra vai ser atualizado automaticamente para as novas versões de SDK "
 "do extra."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "No, this add-on will be upgraded manually."
-msgstr "Não, este extra será actualizado manualmente."
+msgstr "Não, este extra será atualizado manualmente."
 
 #: apps/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "Universally unique identifier"
@@ -5948,10 +5947,10 @@ msgid ""
 " your add-on will remain on this update channel and never receive updates "
 "again."
 msgstr ""
-"Eliminar o seu extra remove-lo permanentemente do sítio e impedir que a sua "
-"GUID seja apresentada de novo, até mesmo por você. Os utilizadores actuais "
-"do extra irão permanecer neste canal de actualização e nunca mais irão "
-"receber actualizações."
+"Eliminar o seu extra remove-o permanentemente do site e impedirá que a sua "
+"GUID seja apresentada de novo, até mesmo por si. Os utilizadores atuais do "
+"extra irão permanecer neste canal de atualização e nunca mais irão receber "
+"atualizações."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -6059,7 +6058,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
-msgstr "Desactivado"
+msgstr "Desativado"
 
 #: apps/devhub/templates/devhub/addons/listing/items.html:36
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -6180,16 +6179,16 @@ msgid ""
 "Tell your users why you created this in your <a href=\"{0}\">Developer "
 "Profile</a>."
 msgstr ""
-"Conte aos seus utilizadores por que  criou isto no seu <a "
-"href=\"{0}\">Perfil de desenvolvedor</a>."
+"Conte aos seus utilizadores por que criou isto no seu <a href=\"{0}\">Perfil"
+" de programador</a>."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:36
 msgid ""
 "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to "
 "stay updated on reviews, collections, and more."
 msgstr ""
-"Ver e subscrever à <a href=\"{0}\">fonte de actividade</a> do seu extra para"
-" se manter actualizado sobre revisões, coleções e muito mais."
+"Ver e subscrever à <a href=\"{0}\">fonte de atividade</a> do seu extra para "
+"se manter atualizado sobre revisões, coleções e muito mais."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:37
 #: apps/devhub/templates/devhub/addons/submit/done.html:86
@@ -6231,7 +6230,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr "O seu extra não estará disponível publicamente neste sítio web."
+msgstr "O seu extra não estará disponível publicamente neste website."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:84
 msgid ""
@@ -6492,7 +6491,7 @@ msgstr "Gerar novas credenciais"
 #: apps/devhub/templates/devhub/docs/policies.html:24
 #: apps/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr "Acordo do desenvolvedor"
+msgstr "Acordo do programador"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:3
 #: apps/devhub/templates/devhub/docs/policies-contact.html:7
@@ -6569,17 +6568,17 @@ msgid ""
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "Se descobriu uma vulnerabilidade de segurança num extra, mesmo que não "
-"esteja hospedado aqui, a Mozilla está muito interessada na sua descoberta e "
-"vai trabalhar com o desenvolvedor do extra para corrigir o problema o mais "
-"rapidamente possível. Problemas de segurança do extra podem  ser relatadas "
+"esteja alojado aqui, a Mozilla está muito interessada na sua descoberta e "
+"vai trabalhar com o programador do extra para corrigir o problema o mais "
+"rapidamente possível. Problemas de segurança de extras podem ser reportados "
 "<a href=\"http://www.mozilla.org/projects/security/security-bugs-"
 "policy.html\">confidencialmente</a> no <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> ou enviando uma mensagem de correio "
-"%(mail_admins)s."
+"para %(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr "Funcionalidade & desenvolvimento do sítio web"
+msgstr "Desenvolvimento e funcionalidade do website"
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
@@ -6612,13 +6611,13 @@ msgid ""
 "provided. There is no limit to the number of versions that can be submitted,"
 " but please remember that versions must be reviewed by an editor."
 msgstr ""
-"Os desenvolvedores são encorajados a apresentar atualizações para os seus "
-"extras para corrigir bugs, adicionar funcionalidades, e de outra maneira "
-"melhorar seu produto. Novas versões de um extra devem ter um <a "
+"Os programadores são encorajados a apresentar atualizações para os seus "
+"extras para corrigir bugs, adicionar funcionalidades e, também, melhorar o "
+"seu produto. Novas versões de um extra devem ter um <a "
 "href=\"https://developer.mozilla.org/en/Toolkit_version_format\">número de "
-"versão maior</a> e podem ser enviados através das Ferramentas do "
-"desenvolvedor fornecidas. Não há limite para o número de versões que podem "
-"ser enviados, mas lembre-se que as versões devem ser revistas ​​por um "
+"versão maior</a> e podem ser enviados através das \"Ferramentas do "
+"programador\" fornecidas. Não há limite para o número de versões que podem "
+"ser enviadas, mas lembre-se que as versões devem ser revistas ​​por um "
 "editor."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:18
@@ -6691,7 +6690,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
-msgstr "Actualizações necessárias"
+msgstr "Atualizações necessárias"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid ""
@@ -6703,14 +6702,14 @@ msgid ""
 "demoted from fully-reviewed status, disabled, or permanently removed from "
 "the site."
 msgstr ""
-"Podem surgir situações em que a Mozilla pode pedir a um desenvolvedor de "
-"extra para atualizar os seus extras dentro de um determinado período de "
+"Podem surgir situações em que a Mozilla pode pedir a um programador de "
+"extras para atualizar os seus extras dentro de um determinado período de "
 "tempo para resolver um grande problema de segurança ou uma violação de "
-"política. Nós trabalhamos com os desenvolvedores para definir os seus "
-"próprios horários, mas se o problema for de natureza suficientemente grave, "
-"os extras que não lançarem uma atualização com a correção necessária podem "
-"ser despromovidos de totalmente revisto, serem desactivados ou  removidos "
-"permanentemente do sítio."
+"política. Nós trabalhamos com os programadores para definir os seus próprios"
+" horários, mas se o problema for de natureza suficientemente grave, os "
+"extras que não lançarem uma atualização com a correção necessária podem ser "
+"despromovidos de estarem totalmente revistos, serem desativados ou removidos"
+" de forma permanente do site."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -6726,9 +6725,9 @@ msgid ""
 msgstr ""
 "Os extras podem ter vários utilizadores com permissão para atualizar e gerir"
 " a listagem. Os autores existentes de um extra podem transferir a "
-"propriedade e adicionar desenvolvedores adicionais para uma listagem do "
-"extra através das Ferramentas do desenvolvedor fornecidas. Nenhuma interação"
-" com representantes da Mozilla é necessária para uma transferência de "
+"propriedade e adicionar programadores adicionais para uma listagem do extra "
+"através das Ferramentas do programador fornecidas. Nenhuma interação com "
+"representantes da Mozilla é necessária para uma transferência de "
 "propriedade."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:63
@@ -6750,9 +6749,9 @@ msgid ""
 msgstr ""
 "A Mozilla incentiva os seus utilizadores a oferecer feedback sobre as suas "
 "experiências ao utilizar um extra. Isto permite que outros utilizadores "
-"determinem se o extra é estável e útil. Ele também fornece informações "
-"valiosas para os desenvolvedores, permitindo-lhes melhorar continuamente os "
-"seus extra para atender às necessidades do utilizador."
+"determinem se o extra é estável e útil. Também fornece informações valiosas "
+"para os programadores, permitindo-lhes melhorar continuamente os seus extra "
+"para atender às necessidades do utilizador."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:76
 msgid ""
@@ -6802,12 +6801,12 @@ msgid ""
 "submissions (including updates) containing infringing code will be denied "
 "approval for public status."
 msgstr ""
-"No caso em que sejamos notificados de uma violação de direitos de autor ou "
+"No caso de sermos notificados de uma violação de direitos de autor ou "
 "licença, tomaremos medidas para rever a situação e determinar se ocorreu uma"
-" violação da propriedade. Se se determinar que existe uma infracção, vamos "
-"remover o extra em causa e contatar com o autor. Novas submissões do extra "
-"(incluindo atualizações) contendo o código infrator terá a aprovação de "
-"estatuto público negada."
+" violação. Se se determinar que existe uma infração, vamos remover o extra "
+"em causa e contactar o autor. Novas submissões do extra (incluindo "
+"atualizações) contendo o código infrator terão a aprovação de estatuto "
+"público negada."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid ""
@@ -6823,7 +6822,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:306
 #: apps/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr "Última actualização: 13 de Janeiro de 2011"
+msgstr "Última atualização: 13 de Janeiro de 2011"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:13
 msgid ""
@@ -6893,7 +6892,7 @@ msgstr "descrição e política de privacidade detalhada, se aplicável"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
-msgstr "miniaturas actualizadas da funcionalidade do extra"
+msgstr "miniaturas atualizadas da funcionalidade do extra"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid ""
@@ -6908,7 +6907,7 @@ msgid ""
 "requests must be promptly addressed by the developer."
 msgstr ""
 "O extra deve ter comentários excelentes e quaisquer problemas ou pedidos de "
-"apoio devem ser prontamente resolvidos pelo desenvolvedor."
+"apoio devem ser prontamente resolvidos pelo programador."
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6953,7 +6952,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr "o nomedo extra, URL, e se você é o seu desenvolvedor"
+msgstr "o nome do extra, URL, e se é você o respetivo programador"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid ""
@@ -7049,7 +7048,7 @@ msgid ""
 "be active members of the add-ons community, whether as a developer, "
 "evangelist, or fan"
 msgstr ""
-"ser membros ativos da comunidade dos extras, seja como desenvolvedor, "
+"ser membros ativos da comunidade dos extras, seja como programador, "
 "evangelista, ou fã"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:109
@@ -7126,11 +7125,11 @@ msgid ""
 "We offer two types of review and developers are free to choose the best fit "
 "for their add-on."
 msgstr ""
-"A fim de garantir que todos os extras alojados na nossa galeria são seguros "
-"para os utilizadores instalarem, a Mozilla começará a exigir que todos os "
-"extras alojados sejam submetidos a uma revisão. Nós oferecemos dois tipos de"
-" revisão e os desenvolvedores são livres para escolher o melhor deles para o"
-" seu extra."
+"Com o objetivo de garantir que todos os extras alojados na nossa galeria são"
+" seguros para serem instalados pelos utilizadores, a Mozilla começará a "
+"exigir que todos os extras alojados sejam submetidos a uma revisão. Nós "
+"oferecemos dois tipos de revisão e os programadores são livres para escolher"
+" o que melhor se enquadra no seu extra."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
@@ -7168,13 +7167,13 @@ msgid ""
 "review process."
 msgstr ""
 "Descrições detalhadas de cada opção estão disponíveis abaixo. Após "
-"selecionar um processo de análise, o extra será posicionado na fila de "
-"análises. Os extras são analisados pelos <a "
+"selecionar um processo de revisão, o extra será posicionado na fila de "
+"revisão. Os extras são revistos pelos <a "
 "href=\"https://wiki.mozilla.org/AMO:Editors\">Editores do AMO</a>, um grupo "
-"de desenvolvedores talentosos que são voluntários para ajudar o projeto "
-"Mozilla a analisar os extras e assegurar-se de que eles oferecem uma "
-"experiência estável e segura aos usuários. Desenvolvedores receberão uma "
-"mensagem com quaisquer atualizações durante o processo de análise."
+"de talentosos programadores que são voluntários para ajudar o projeto "
+"Mozilla a analisar os extras e assegurar-se de que estes oferecem uma "
+"experiência estável e segura aos utilizadores. Os programadores irão receber"
+" uma mensagem com quaisquer atualizações durante o processo de revisão."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -7244,7 +7243,8 @@ msgid ""
 "look for compliance with all of Mozilla's policies, detailed in these "
 "documents"
 msgstr ""
-"a verificação com as políticas da Mozilla, detalhada nestes documentos"
+"verifique a conformidade com todas as políticas da Mozilla, detalhadas "
+"nestes documentos"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid ""
@@ -7348,11 +7348,11 @@ msgid ""
 "Developer Hub."
 msgstr ""
 "Se o extra funcionar com um site específico, é recomendado que uma conta de "
-"testes seja fornecida para uso durante o processo de análise. "
+"testes seja fornecida para ser utilizada durante o processo de revisão. "
 "Adicionalmente, a inclusão de instruções detalhadas de teste permitirão que "
 "o Editor entenda melhor como o extra funciona e agilizarão o processo de "
-"testes. Essas informações podem ser incluídas no campo Comentários ao editor"
-" ao editar uma versão na Central de Desenvolvedores."
+"testes. Estas informações podem ser incluídas no campo Comentários ao editor"
+" ao editar uma versão na Central do programador."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -7610,8 +7610,8 @@ msgid ""
 "preliminarily reviewed add-ons."
 msgstr ""
 "Estes são os requisitos mínimos e não uma garantia de que o extra será "
-"aprovado. Esta secção se aplica a todos os extras alojados no sítio, "
-"incluindo extras preliminar-mente revistos."
+"aprovado. Esta secção aplica-se a todos os extras alojados no site, "
+"incluindo extras preliminarmente revistos."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
@@ -7992,8 +7992,8 @@ msgid ""
 "Terms of Service for submitting your work to our site. Developers are "
 "required to accept this agreement before submission."
 msgstr ""
-"Termos do Serviço para a submissão do seu trabalho no nosso sítio. Os "
-"desenvolvedores são obrigados a aceitar este contrato antes do envio."
+"Termos do Serviço para a submissão do seu trabalho no nosso site. Os "
+"programadores são obrigados a aceitar este acordo antes da submissão."
 
 #: apps/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -8047,7 +8047,7 @@ msgid ""
 "updates."
 msgstr ""
 "O seu extra é apresentado na nossa galeria e os utilizadores estão a receber"
-" actualizações automáticas."
+" atualizações automáticas."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
@@ -8062,7 +8062,7 @@ msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
-"O seu extra foi desativado por um administrador do sítio e já não é "
+"O seu extra foi desativado por um administrador do site e já não é "
 "apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie "
 "um email para amo-admins@mozilla.org."
 
@@ -8072,7 +8072,7 @@ msgid ""
 "receiving automatic updates. Some features are unavailable to your add-on."
 msgstr ""
 "O seu extra é mostrado na nossa galeria como experimental e os utilizadores "
-"recebem as actualizações automáticas. Alguns recursos não estão disponíveis "
+"recebem as atualizações automáticas. Alguns recursos não estão disponíveis "
 "para o extra."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:74
@@ -8087,7 +8087,7 @@ msgid ""
 msgstr ""
 "Irá receber uma mensagem de correio quando a revisão completa estiver "
 "terminada. Até aí, o extra é apresentado na nossa galeria como experimental "
-"e os utilizadores recebem as actualizações automáticas. Alguns recursos não "
+"e os utilizadores recebem as atualizações automáticas. Alguns recursos não "
 "estão disponíveis para o extra."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
@@ -8174,12 +8174,12 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
-msgstr "Verifique se o seu perfil está actualizado."
+msgstr "Verifique se o seu perfil está atualizado."
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:34
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
 msgstr ""
-"<a href=\"%(url)s\"><strong>Actualize o seu perfil de "
+"<a href=\"%(url)s\"><strong>Atualize o seu perfil de "
 "utilizador.</strong></a>"
 
 #: apps/devhub/templates/devhub/includes/addons_create_profile.html:45
@@ -8318,7 +8318,7 @@ msgstr "A sua página de contribuição: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: apps/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
-msgstr "Desactivar contribuições"
+msgstr "Desativar contribuições"
 
 #: apps/devhub/templates/devhub/payments/payments.html:37
 msgid "Voluntary Contributions"
@@ -8701,7 +8701,7 @@ msgstr ""
 "Eu concordo com o <a href=\"%(agreement_url)s\" target=\"_blank\">acordo de "
 "distribuição de extra do Firefox</a> e com o facto da minha informação ser "
 "gerida tal como descrito na <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">política de privacidade para sítios web, comunicação e "
+"target=\"_blank\">política de privacidade para websites, comunicações e "
 "cookies</a>."
 
 #: apps/devhub/templates/devhub/personas/submit.html:205
@@ -9161,10 +9161,10 @@ msgid ""
 " file for automatic updates."
 msgstr ""
 "Ao não listar o seu extra irá fazer com que o mesmo (e respetivas "
-"versões/ficheiros) fiquem invisíveis para este sítio web. Não será "
-"apresentado em pesquisas, não terá uma página pública e não será atualizado "
-"de forma automática para os utilizadores atuais. É recomendável que os "
-"extras não listados forneçam uma <a href=\"%(update_url)s\" "
+"versões/ficheiros) fiquem invisíveis para este website. Não será apresentado"
+" em pesquisas, não terá uma página pública e não será atualizado de forma "
+"automática para os utilizadores atuais. É recomendável que os extras não "
+"listados forneçam uma <a href=\"%(update_url)s\" "
 "target=\"_blank\">updateURL</a> personalizada no seu ficheiro install.rdf "
 "para atualizações automáticas."
 
@@ -9221,7 +9221,7 @@ msgstr "Guarde os seus itens favoritos no conforto do seu navegador."
 
 #: apps/discovery/modules.py:149
 msgid "Build the perfect website"
-msgstr "Construa o sítio web perfeito"
+msgstr "Construa o website perfeito"
 
 #: apps/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
@@ -9255,7 +9255,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:183
 msgid "Firefox 4 Collection"
-msgstr "Colecção do Firefox 4"
+msgstr "Coleção do Firefox 4"
 
 #: apps/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
@@ -9271,7 +9271,7 @@ msgstr "Decore o seu navegador pata celebrar o Dia de São Patrício."
 
 #: apps/discovery/modules.py:203
 msgid "Firefox Summer Collection"
-msgstr "Colecção de Verão do Firefox"
+msgstr "Coleção de verão do Firefox"
 
 #: apps/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
@@ -9279,7 +9279,7 @@ msgstr "Aqui estão alguns grandes extras para o Firefox."
 
 #: apps/discovery/modules.py:212
 msgid "Thunderbird Collection"
-msgstr "Colecção do Thunderbird"
+msgstr "Coleção do Thunderbird"
 
 #: apps/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
@@ -9323,7 +9323,7 @@ msgstr "Extras para professores, pais e estudantes que regressam à escola."
 
 #: apps/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr "Deseja saber em que sítios web pode confiar?"
+msgstr "Deseja saber em que websites pode confiar?"
 
 #: apps/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
@@ -9419,7 +9419,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane.html:63
 msgid "Recommended for You"
-msgstr "recomendado para si"
+msgstr "Recomendado para si"
 
 #: apps/discovery/templates/discovery/pane.html:66
 msgid "What is this?"
@@ -9478,7 +9478,7 @@ msgstr "Utilizadores activos"
 
 #: apps/discovery/templates/discovery/addons/detail.html:80
 msgid "Last Updated"
-msgstr "Última actualização"
+msgstr "Última atualização"
 
 #: apps/discovery/templates/discovery/addons/eula.html:27
 msgid "Cancel Installation"
@@ -9533,7 +9533,7 @@ msgstr "Ver a coleção completa de extras para compras em épocas festivas."
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Escolha do mês da Mozilla&rsquo;s!"
+msgstr "Escolha do mês da Mozilla!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
@@ -9652,8 +9652,8 @@ msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not"
 " generate an email)"
 msgstr ""
-"Notificar-me da próxima vez que este extra for actualizado (as actualizações"
-" seguintes não vão criar uma mensagem de correio)"
+"Notificar-me da próxima vez que este extra for atualizado. (As atualizações "
+"seguintes não vão gerar um e-mail)"
 
 #: apps/editors/forms.py:265
 msgid "Clear Admin Review Flag"
@@ -9700,7 +9700,7 @@ msgstr "Fila"
 #: apps/editors/helpers.py:123 apps/editors/templates/editors/base.html:50
 #: apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
-msgstr "Actualizações pendentes"
+msgstr "Atualizações pendentes"
 
 #: apps/editors/helpers.py:124 apps/editors/templates/editors/base.html:48
 #: apps/editors/templates/editors/base.html:63
@@ -9760,8 +9760,8 @@ msgstr[1] "Revisões completas ({0})"
 #: apps/editors/helpers.py:179
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
-msgstr[0] "Actualização em falta ({0})"
-msgstr[1] "Actualizações em falta ({0})"
+msgstr[0] "Atualização em falta ({0})"
+msgstr[1] "Atualizações em falta ({0})"
 
 #: apps/editors/helpers.py:184
 msgid "Preliminary Review ({0})"
@@ -9820,7 +9820,7 @@ msgstr "Adicional"
 
 #: apps/editors/helpers.py:284
 msgid "Site Specific"
-msgstr "Específico do sítio"
+msgstr "Específico do site"
 
 #: apps/editors/helpers.py:286
 msgid "Requires External Software"
@@ -10224,8 +10224,8 @@ msgstr[1] "Revisões completas ({num})"
 #: apps/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
-msgstr[0] "Actualização em espera ({num})"
-msgstr[1] "Actualizações em espera ({num})"
+msgstr[0] "Atualização em espera ({num})"
+msgstr[1] "Atualizações em espera ({num})"
 
 #: apps/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
@@ -10236,7 +10236,7 @@ msgstr[1] "Revisões preliminares ({num})"
 #: apps/editors/templates/editors/home.html:36
 #: apps/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
-msgstr "Tempos de espera actuais:"
+msgstr "Tempos de espera atuais:"
 
 #: apps/editors/templates/editors/home.html:44
 #: apps/editors/templates/editors/home.html:94
@@ -11210,7 +11210,7 @@ msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the "
 "add-ons community and discuss upcoming changes to AMO."
 msgstr ""
-"Os nosso <a href=\"%(url)s\">fóruns</a> são um ótimo sítio para interagir "
+"Os nossos <a href=\"%(url)s\">fóruns</a> são um ótimo sítio para interagir "
 "com a comunidade de extras e discutir as futuras alterações ao AMO."
 
 #: apps/pages/templates/pages/about.lhtml:39
@@ -11951,9 +11951,9 @@ msgid ""
 " functionality and security."
 msgstr ""
 "Sim. As <a href=\"%(p_url)s\">Políticas de extras</a> da Mozilla descrevem "
-"que tipos de envios são aceitos. Essas políticas estão sujeitas a alterações"
-" sem aviso prévio. Além disso, a equipe de editores do AMO usa o <a "
-"href=\"%(g_url)s\">Guia de análise para editores</a> para garantir que seu "
+"que tipos de envios são aceites. Essas políticas estão sujeitas a alterações"
+" sem aviso prévio. Além disso, a equipa de editores do AMO usa o <a "
+"href=\"%(g_url)s\">guia de revisão para editores</a> para garantir que seu "
 "extra atende aos critérios específicos de funcionalidade e segurança."
 
 #: apps/pages/templates/pages/dev_faq.html:325
@@ -12435,7 +12435,7 @@ msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
-"Um sítio para fornecer indicações sem juízos de valor sobre a escolha da "
+"Um site para fornecer indicações sem juízos de valor sobre a escolha da "
 "licença para o seu projeto de código aberto."
 
 #: apps/pages/templates/pages/faq.html:3 apps/pages/templates/pages/faq.html:9
@@ -12515,9 +12515,9 @@ msgid ""
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Extensões</a></strong> adicionam novas "
 "funcionalidades ao %(app_name)s ou modificam uma funcionalidade existente. "
-"Existem extensões qie lhe permitem bloquear anúncios, transferir vídeos de "
-"sítios web, integrar de uma melhor maneira os sítios web sociais e adicionar"
-" funcionalidades que vê noutras aplicações."
+"Existem extensões que lhe permitem bloquear anúncios, transferir vídeos de "
+"websites, integrar de uma melhor maneira os websites sociais e adicionar "
+"funcionalidades que vê noutras aplicações."
 
 #: apps/pages/templates/pages/faq.html:55
 msgid ""
@@ -12546,7 +12546,7 @@ msgid ""
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Fornecedores de pesquisa</a> </strong> "
 "adicionam escolhas adicionais à caixa de pesquisa. Estes fornecedores "
-"permitem-lhe uma pesquisa rápida a qualquer sítio web."
+"permitem-lhe uma pesquisa rápida a qualquer website."
 
 #: apps/pages/templates/pages/faq.html:72
 msgid ""
@@ -12609,7 +12609,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
-msgstr "Como mantenho os extras actualizados?"
+msgstr "Como mantenho os extras atualizados?"
 
 #: apps/pages/templates/pages/faq.html:111
 msgid ""
@@ -12643,13 +12643,14 @@ msgid ""
 "caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
-"A menos que indicado o contrário, os extras presentes nesta galeria foram "
-"verificados e aprovados pel equipa de editores da Mozilla e é seguro intalá-"
-"los. Recomendamos que instale apenas extras que tenham sido aprovados. Se "
-"desejar instalar extras não aprovados a partir de outros sítios web, tenha "
-"cuidado pois estes extras podem danificar o seu computador ou violar a sua "
-"privacidade. <a href=\"%(learnmore_url)s\">Saiba mais sobre o nosso processo"
-" de aprovação</a>"
+"A menos que seja claramente indicado o contrário, os extras presentes nesta "
+"galeria foram verificados e aprovados pela equipa de editores da Mozilla e a"
+" sua instalação é considerada segura. Recomendamos que instale apenas extras"
+" que tenham sido aprovados. Se desejar instalar extras não aprovados a "
+"partir de outros websites, tenha cuidado pois estes extras podem danificar o"
+" seu computador ou violar a sua privacidade. <a "
+"href=\"%(learnmore_url)s\">Saiba mais sobre o nosso processo de "
+"aprovação</a>"
 
 #: apps/pages/templates/pages/faq.html:133
 msgid "Can add-ons make %(app_name)s slower?"
@@ -12666,8 +12667,8 @@ msgstr ""
 "A maioria dos extras não provoca um decréscimo no desempenho do "
 "%(app_name)s, no entanto instalar demasiados extras pode ter efeitos "
 "adversos. Se suspeitar que um extra está a fazer com que o %(app_name)s "
-"fique lento, experimente desactivá-lo. Extras que causem demasiados "
-"problemas no arranque têm mensagens de aviso na página de detalhes."
+"fique lento, experimente desativá-lo. Extras que causem demasiados problemas"
+" no arranque têm mensagens de aviso na página de detalhes."
 
 #: apps/pages/templates/pages/faq.html:142
 msgid ""
@@ -12688,15 +12689,16 @@ msgid ""
 "Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility "
 "Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"Se um extra não for compatível com a sua versão do %(app_name)s, é devido ou"
-" à sua versão do %(app_name)s estar desactualizado ou ao autor do extra "
-"ainda não ter atualizado o extra para ser compatível com a versão mais "
-"recente que está a usar. A Mozilla não recomenda tentar ultrapassar esta "
-"verificações de compatibilidade, pois podem levar à instabilidade do "
-"navegador e em alguns casos à perda de dados. Para utilizadores que estejam "
-"a testar versões alfa ou beta do Firefox, oferecemos o <a href=\"%(acr_url)s"
-"\">Add-on Compatibility Reporter</a> para ajudar os desenvolvedores a "
-"actualizar a compatibilidade dos seus extras."
+"Se um extra não for compatível com a sua versão do %(app_name)s, isto "
+"geralmente acontece devido ou à sua versão do %(app_name)s estar "
+"desatualizada ou pelo facto do autor do extra ainda não ter atualizado o "
+"extra para ser compatível com a versão mais recente que está a usar. A "
+"Mozilla não recomenda tentar ultrapassar estas verificações de "
+"compatibilidade, pois podem levar à instabilidade do navegador e em alguns "
+"casos à perda de dados. Para utilizadores que estejam a testar versões alfa "
+"ou beta do Firefox, oferecemos o <a href=\"%(acr_url)s\">relator de "
+"compatibilidade de extras</a> para ajudar os programadores a atualizar a "
+"compatibilidade dos seus extras."
 
 #: apps/pages/templates/pages/faq.html:157
 msgid "What if I have problems with an add-on?"
@@ -12754,10 +12756,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
-"Com milhares de extras disponíveis, existe sempre alguma algo para toda a "
-"gente. Mas se está à procura de um extra específico e não o consegue "
-"encontrar, pode tentar procurar em outros sítios ou fazer uma entrada no "
-"nosso fórum de <a href=\"%(forum_url)s\">Extras</a>."
+"Com milhares de extras disponíveis, existe sempre algo para toda a gente. "
+"Mas se está à procura de um extra específico e não o consegue encontrar, "
+"pode tentar procurar em outros sites ou fazer uma entrada no nosso fórum de "
+"<a href=\"%(forum_url)s\">Extras</a>."
 
 #: apps/pages/templates/pages/faq.html:188
 msgid ""
@@ -12852,7 +12854,7 @@ msgid ""
 "computer."
 msgstr ""
 "Tenha em atenção que quando instala extras da secção \"versão Beta\" de uma "
-"listagem de extras, continua a receber actualizações assim que estejam "
+"listagem de extras, continua a receber atualizações assim que estejam "
 "disponíveis. Tal como a versão que instalou, todos os lançamentos beta não "
 "são revistos pela Mozilla e podem danificar o seu computador."
 
@@ -12917,9 +12919,9 @@ msgid ""
 msgstr ""
 "O código fonte usado para criar um extra é um direito registado e exclusivo "
 "do autor do extra, a menos que indicado na licença do código fonte. Muitos "
-"extras deste sítio têm <a href=\"%(url)s\" lang=\"en\">licenças de código "
+"extras deste site têm <a href=\"%(url)s\" lang=\"en\">licenças de código "
 "aberto</a> que fazem com que o código fonte esteja disponível para copiar e "
-"reutilizar sobre condições determinadas pelo autor. Muitos autores escolhes "
+"reutilizar sob condições determinadas pelo autor. Muitos autores escolhem "
 "licenças de código aberto muito conhecidas como as licenças GPL ou BSD em "
 "vez de fazerem a sua própria licença."
 
@@ -12936,7 +12938,7 @@ msgstr "Coleções e favoritos"
 
 #: apps/pages/templates/pages/faq.html:270
 msgid "What is a collection?"
-msgstr "O que é uma colecção?"
+msgstr "O que é uma coleção?"
 
 #: apps/pages/templates/pages/faq.html:271
 msgid "Collections are groups of related add-ons created by users to share."
@@ -12945,7 +12947,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:273
 msgid "What is the My Favorites collection?"
-msgstr "Qual é a minha colecção favorita?"
+msgstr "Qual é a minha coleção favorita?"
 
 #: apps/pages/templates/pages/faq.html:274
 msgid ""
@@ -12953,8 +12955,8 @@ msgid ""
 "later. You can add an add-on to your favorites collection by clicking \"Add "
 "to favorites\" on its details page."
 msgstr ""
-"Extras favoritos são extras que adicionou aos marcadores para facilmente "
-"voltar mais tarde. Pode adicionar um extra à sua colecção de favoritos "
+"Extras favoritos são extras que adicionou aos marcadores para voltar "
+"facilmente mais tarde. Pode adicionar um extra à sua coleção de favoritos "
 "clicando em \"Adicionar aos favoritos\" na página de detalhes."
 
 #: apps/pages/templates/pages/faq.html:279
@@ -12971,10 +12973,9 @@ msgid ""
 "installed. If you have at least 3 add-ons installed, just visit the Get Add-"
 "ons area of the Add-ons Manager to see the \"Recommended for You\" box."
 msgstr ""
-"O Firefox recomenda extras para você baseado nos extras que você já tem "
-"instalados. Se você tem pelo menos 3 extras instalados, basta visitar a "
-"seção Adicionar do Gerenciador de extras para ver a caixa \"Recomendados "
-"para você\"."
+"O Firefox recomenda-lhe extras com base nos extras que já tem instalados. Se"
+" tem pelo menos 3 extras instalados, basta visitar a secção \"Obter extras\""
+" do \"Gestor de extras\" para ver a caixa \"Recomendado para si\"."
 
 #: apps/pages/templates/pages/faq.html:288
 msgid "How are personalized recommendations determined?"
@@ -13052,9 +13053,9 @@ msgid ""
 "website</a>. For general add-on and website questions, visit our <a "
 "href=\"%(forum_url)s\">forum</a>."
 msgstr ""
-"Para ajuda geral do Firefox, visite o nosso <a href=\"%(sumo_url)s\">sítio "
-"web de ajuda</a>.Para questões gerais sobre extras ou sobre o sítio web, "
-"visite o nosso <a href=\"%(forum_url)s\">forum</a>."
+"Para ajuda geral do Firefox, visite o nosso <a href=\"%(sumo_url)s\">website"
+" de apoio</a>. Para questões gerais sobre extras ou sobre o website, visite "
+"o nosso <a href=\"%(forum_url)s\">fórum</a>."
 
 #: apps/pages/templates/pages/review_guide.html:36
 #: apps/pages/templates/pages/review_guide.html:51
@@ -13209,9 +13210,9 @@ msgid ""
 " delete the review or restore it back to the site."
 msgstr ""
 "Por favor denuncie ou reporte quaisquer análises questionáveis clicando em "
-"\"Reportar esta análise\" e esta será submetida para o sítio para moderação."
-" A nossa equipa de moderação irá utilizar as linhas orientadoras da revisão "
-"para avaliar se análise deve ser eliminada ou reposta no sítio."
+"\"Reportar esta análise\" e esta será submetida para o site para moderação. "
+"A nossa equipa de moderação irá utilizar as linhas orientadoras de revisão "
+"para avaliar se a análise deve ser eliminada ou reposta para o site."
 
 #: apps/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -13313,10 +13314,10 @@ msgid ""
 msgstr ""
 "Os extras fornecem muitos recursos úteis e funções, mas eles também podem "
 "fazer com que o %(app)s se torne mais lento. Alguns extras podem até tornar "
-"mais lento o %(app)s  e tornar difícil a navegação na web. Se acha que os "
+"o %(app)s mais lento e tornar a navegação na web difícil. Se acha que os "
 "extras são a razão para que o %(app)s fique lento, confira a lista abaixo de"
 " alguns dos maiores problemas. E lembre-se, para o melhor desempenho você "
-"deve desactivar extras que não usa regularmente."
+"deve desativar extras que não usa regularmente."
 
 #: apps/perf/templates/perf/index.html:33
 msgid "Add-ons with Slow Start-up"
@@ -13883,7 +13884,7 @@ msgstr "Partilhar este extra"
 
 #: apps/sharing/templates/sharing/sharing_widget.html:5
 msgid "Share this Collection"
-msgstr "Partilhar esta colecção"
+msgstr "Partilhar esta coleção"
 
 #: apps/signing/views.py:37
 msgid "Could not find add-on with id \"{}\"."
@@ -14500,11 +14501,11 @@ msgstr "estão disponíveis novos extras ou funcionalidades do Firefox"
 
 #: apps/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "a compatibilidade do meu extra foi actualizada com sucesso"
+msgstr "a compatibilidade do meu extra foi atualizada com sucesso"
 
 #: apps/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr "o meu extra baseado no sdk foi actualizado com sucesso"
+msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
@@ -14521,11 +14522,11 @@ msgstr "concursos ou eventos de extras são anunciados"
 
 #: apps/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "a compatibilidade do meu extra não pode ser actualizada"
+msgstr "a compatibilidade do meu extra não pode ser atualizada"
 
 #: apps/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr "o meu extra baseado no sdk não pode ser actualizado"
+msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #: apps/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
@@ -14602,7 +14603,7 @@ msgstr "Fotografia eliminada"
 
 #: apps/users/views.py:184 apps/users/views.py:291
 msgid "Profile Updated"
-msgstr "Perfil actualizado"
+msgstr "Perfil atualizado"
 
 #: apps/users/views.py:193
 msgid "Email Confirmation Sent"
@@ -14907,7 +14908,7 @@ msgstr "Eliminar conta"
 
 #: apps/users/templates/users/edit.html:228
 msgid "Update Account"
-msgstr "Actualizar conta"
+msgstr "Atualizar conta"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
@@ -15463,7 +15464,7 @@ msgstr "Histórico da versão"
 
 #: apps/zadmin/forms.py:48
 msgid "Current Max. Version"
-msgstr "Versão máx. actual"
+msgstr "Versão máx. atual"
 
 #: apps/zadmin/forms.py:51
 msgid "Target Version"
@@ -15471,11 +15472,11 @@ msgstr "Versão de destino"
 
 #: apps/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr "Correio electrónico após terminar"
+msgstr "Envie um e-mail quando terminar"
 
 #: apps/zadmin/forms.py:105
 msgid "Log emails instead of sending"
-msgstr "Registar mensagens de correio em vez de enviar"
+msgstr "Registar e-mails em vez de enviar"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
@@ -15491,9 +15492,9 @@ msgid ""
 "Some features are temporarily disabled while we perform website maintenance."
 " We'll be back to full capacity shortly."
 msgstr ""
-"Algumas funcionalidades estão temporariamente desactivadas enquanto "
-"efectuamos uma manutenção ao sítio web. Voltamos dentro de alguns momentos "
-"com todas as funcionalidades."
+"Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos"
+" uma manutenção ao website. Voltamos dentro de alguns momentos com todas as "
+"funcionalidades."
 
 #: templates/base.html:81 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
@@ -15524,7 +15525,7 @@ msgstr "Categorias do Mobile"
 
 #: templates/copyright.html:5
 msgid "View Mobile Site"
-msgstr "Ver sítio do Mobile"
+msgstr "Ver site móvel"
 
 #: templates/copyright.html:7
 msgid "Site Status"
@@ -15642,13 +15643,13 @@ msgstr "Bem-vindo aos extras do {0}."
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
-"Escolha a partir de centenas de funcionalidades e estilos adicionais para "
-"tornar o Firefox só seu."
+"Escolha a partir de centenas de funcionalidades e estilos extra para tornar "
+"o Firefox só seu."
 
 #: templates/impala/base.html:138
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
-"Adicione funcionalidades e estilos adicionais para tornar o %(app)s só seu."
+"Adicione funcionalidades e estilos extra para tornar o %(app)s só seu."
 
 #: templates/impala/base.html:146
 msgid "On the go?"
@@ -15657,8 +15658,8 @@ msgstr "Em qualquer lugar?"
 #: templates/impala/base.html:148
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
-"Veja o nosso <a class=\"mobile-link\" href=\"#\">sítio de extras do "
-"Mobile</a>."
+"Veja o nosso <a class=\"mobile-link\" href=\"#\">site de extras para "
+"dispositivos móveis</a>."
 
 #: templates/impala/header_title.html:17
 msgid "Android Add-ons"
@@ -15686,7 +15687,7 @@ msgstr "Mobile Home"
 
 #: templates/mobile/base_addons.html:79
 msgid "View full site"
-msgstr "Ver o sítio completo"
+msgstr "Ver o site completo"
 
 #: templates/mobile/base_addons.html:82
 msgid "Legal Notices"
