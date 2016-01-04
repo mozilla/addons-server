@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-12 20:47+0000\n"
-"Last-Translator: Marko <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2016-01-04 11:24+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -4398,7 +4398,7 @@ msgstr "Posodobljen pregled celotne teme"
 
 #: apps/constants/base.py:499
 msgid "Moderated Addon Review"
-msgstr "Moderiran pregled dodatka"
+msgstr "Moderirana ocena dodatka"
 
 #: apps/constants/base.py:500
 msgid "Addon Review Moderation Reverted"
@@ -5295,6 +5295,8 @@ msgid ""
 "Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Predložitev navedenih dodatkov za podpisovanje je trenutno na odprti stopnji"
+" beta. <a href=\"%(url)s\" target=\"_blank\">Prijavite morebitne hrošče</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
@@ -6488,6 +6490,8 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Za podrobna navodila se posvetujte z <a href=\"%(docs_url)s\">dokumentacijo "
+"o API-jih</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
@@ -6504,6 +6508,10 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Za opravljanje zahtev API kot glavo pooblastitve pošljite <a "
+"href=\"%(jwt_url)s\">spletni žeton JSON (JWT)</a>. JWT boste morali "
+"ustvariti za vsako zahtevo, kot je to razloženo v <a "
+"href=\"%(docs_url)s\">dokumentaciji o API-jih</a>."
 
 #: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -6622,6 +6630,9 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Če ste na strani našli napako, bi jo radi popravili. Na GtHubu <a "
+"href=\"https://github.com/mozilla/olympia/issues\">pošljite poročilo o "
+"hrošču</a> vključno z mestom težave in kako ste nanjo naleteli."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8799,6 +8810,9 @@ msgid ""
 "ons. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that "
 "you encounter."
 msgstr ""
+"Predložitev navedenih dodatkov za podpisovanje je trenutno na odprti stopnji"
+" beta. Za večje število dodatkov bo morda še vedno zahtevan ročni pregled. "
+"<a href=\"%(url)s\" target=\"_blank\">Prijavite morebitne hrošče</a>."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8820,6 +8834,11 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(issues_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Vedenje kanala beta se je spremenilo za umestitev <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">obveznega podpisovanja "
+"dodatkov</a>. Nov postopek je trenutno na stopnji beta in se lahko v bližnji"
+" prihodnosti znatno spremeni. <a href=\"%(issues_url)s\" "
+"target=\"_blank\">Prijavite morebitne hrošče</a>."
 
 #: apps/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -9164,6 +9183,8 @@ msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Preklapljanje dodatkov na nenavedene je trenutno na odprti stopnji beta. <a "
+"href=\"%(url)s\" target=\"_blank\">Prijavite morebitne hrošče</a>."
 
 #: apps/devhub/templates/devhub/versions/list.html:319
 msgid "Unlisting an add-on is irreversible!"
@@ -9768,18 +9789,18 @@ msgstr[3] "Predhodni pregledi ({0})"
 #: apps/editors/helpers.py:189
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderirana recenzija ({0})"
-msgstr[1] "Moderirani recenziji ({0})"
-msgstr[2] "Moderirane recenzije ({0})"
-msgstr[3] "Moderirane recenzije ({0})"
+msgstr[0] "Moderiran pregled ({0})"
+msgstr[1] "Moderirana pregleda ({0})"
+msgstr[2] "Moderirani pregledi ({0})"
+msgstr[3] "Moderirani pregledi ({0})"
 
 #: apps/editors/helpers.py:195
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Polna recenzija za nenavedene ({0})"
-msgstr[1] "Polni recenziji za nenavedene ({0})"
-msgstr[2] "Polne recenzije za nenavedene ({0})"
-msgstr[3] "Polne recenzije za nenavedene ({0})"
+msgstr[0] "Poln pregled za nenavedene ({0})"
+msgstr[1] "Polna pregleda za nenavedene ({0})"
+msgstr[2] "Polni pregledi za nenavedene ({0})"
+msgstr[3] "Polni pregledi za nenavedene ({0})"
 
 #: apps/editors/helpers.py:200
 msgid "Unlisted Pending Update ({0})"
@@ -9792,10 +9813,10 @@ msgstr[3] "Posodobitve na čakanju za nenavedene ({0})"
 #: apps/editors/helpers.py:205
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Predhodna recenzija za nenavedene ({0})"
-msgstr[1] "Predhodni recenziji za nenavedene ({0})"
-msgstr[2] "Predhodne recenzije za nenavedene ({0})"
-msgstr[3] "Predhodne recenzije za nenavedene ({0})"
+msgstr[0] "Predhoden pregled za nenavedene ({0})"
+msgstr[1] "Predhodna pregleda za nenavedene ({0})"
+msgstr[2] "Predhodni pregledi za nenavedene ({0})"
+msgstr[3] "Predhodni pregledi za nenavedene ({0})"
 
 #: apps/editors/helpers.py:260
 msgid "Addon"
@@ -9989,7 +10010,7 @@ msgstr "Posodobitve"
 
 #: apps/editors/models.py:184
 msgid "Admin Review"
-msgstr "Skrbnikova recenzija"
+msgstr "Skrbnikov pregled"
 
 #: apps/editors/models.py:185
 msgid "Jetpack Add-on"
@@ -10053,11 +10074,11 @@ msgstr "Prišlo je do neznane napake"
 
 #: apps/editors/views.py:567
 msgid "Self-reviews are not allowed."
-msgstr "Samo-recenzije niso dovoljene."
+msgstr "Samopregledi niso dovoljeni."
 
 #: apps/editors/views.py:589
 msgid "Review successfully processed."
-msgstr "Recenzija uspešno obdelana."
+msgstr "Pregled uspešno obdelan."
 
 #: apps/editors/views.py:787
 msgid "was approved"
@@ -10284,10 +10305,10 @@ msgstr "{0}%"
 #: apps/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Polna recenzija za nenavedene ({num})"
-msgstr[1] "Polni recenziji za nenavedene ({num})"
-msgstr[2] "Polne recenzije za nenavedene ({num})"
-msgstr[3] "Polne recenzije za nenavedene ({num})"
+msgstr[0] "Poln pregled za nenavedene ({num})"
+msgstr[1] "Polna pregleda za nenavedene ({num})"
+msgstr[2] "Polni pregledi za nenavedene ({num})"
+msgstr[3] "Polni pregledi za nenavedene ({num})"
 
 #: apps/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
@@ -10300,16 +10321,16 @@ msgstr[3] "Posodobitve na čakanju za nenavedene ({num})"
 #: apps/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Predhodna recenzija za nenavedene ({num})"
-msgstr[1] "Predhodni recenziji za nenavedene ({num})"
-msgstr[2] "Predhodne recenzije za nenavedene ({num})"
-msgstr[3] "Predhodne recenzije za nenavedene ({num})"
+msgstr[0] "Predhoden pregled za nenavedene ({num})"
+msgstr[1] "Predhodna pregleda za nenavedene ({num})"
+msgstr[2] "Predhodni pregledi za nenavedene ({num})"
+msgstr[3] "Predhodni pregledi za nenavedene ({num})"
 
 #: apps/editors/templates/editors/home.html:109
 #: apps/editors/templates/editors/performance.html:37
 #: apps/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
-msgstr "Skupaj recenzij"
+msgstr "Skupaj pregledov"
 
 #: apps/editors/templates/editors/home.html:110
 #: apps/editors/templates/editors/themes/home.html:55
@@ -10344,7 +10365,7 @@ msgstr "Oglasna deska vodilnih pregledovalcev"
 #: apps/editors/templates/editors/leaderboard.html:18
 #: apps/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr "Nobenih točk recenzije še ni bilo dodeljenih."
+msgstr "Nobenih točk pregleda še ni bilo dodeljenih."
 
 #: apps/editors/templates/editors/leaderboard.html:23
 #: apps/perf/templates/perf/index.html:54
@@ -10437,7 +10458,7 @@ msgstr "Počisti iskanje"
 #: apps/editors/templates/editors/queue.html:72
 #: apps/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr "Obdelaj recenzije"
+msgstr "Obdelaj preglede"
 
 #: apps/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
@@ -10952,7 +10973,7 @@ msgstr "<em:type> se ne ujema z dodatkom"
 
 #: apps/files/views.py:53
 msgid "Back to review"
-msgstr "Nazaj na recenzijo"
+msgstr "Nazaj na pregled"
 
 # 80%
 # 100%
@@ -11553,7 +11574,7 @@ msgstr "Kako prispevate svoj dodatek"
 #: apps/pages/templates/pages/dev_faq.html:36
 #: apps/pages/templates/pages/dev_faq.html:382
 msgid "Add-on Review Process"
-msgstr "Postopek recenzij za dodatke"
+msgstr "Postopek pregledov za dodatke"
 
 #: apps/pages/templates/pages/dev_faq.html:37
 #: apps/pages/templates/pages/dev_faq.html:445
@@ -13200,8 +13221,8 @@ msgid ""
 "requires gathering data to function."
 msgstr ""
 "Ne kritizirajte dodatka zaradi tega, za kar je narejen. Na primer, ne "
-"napišite negativne recenzije za dodatek, če prikazuje oglase ali zahteva "
-"osebne podatke, kadar je to njegov namen ali pogoj za njegovo delovanje."
+"napišite negativne ocene za dodatek, če prikazuje oglase ali zahteva osebne "
+"podatke, kadar je to njegov namen ali pogoj za njegovo delovanje."
 
 #: apps/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
