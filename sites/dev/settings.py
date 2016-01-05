@@ -213,7 +213,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_ENABLE = False
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
