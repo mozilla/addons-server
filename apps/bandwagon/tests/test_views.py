@@ -237,6 +237,16 @@ class TestViews(amo.tests.TestCase):
         res = client.post(collection.delete_icon_url())
         eq_(res.status_code, 403)  # The view is csrf protected.
 
+    def test_no_xss_in_collection_page(self):
+        coll = Collection.objects.get(slug='wut-slug')
+        name = '"><script>alert(/XSS/);</script>'
+        name_escaped = '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+        coll.name = name
+        coll.save()
+        resp = self.client.get(coll.get_url_path())
+        assert name not in resp.content
+        assert name_escaped in resp.content
+
 
 class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
