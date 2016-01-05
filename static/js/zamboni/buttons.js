@@ -192,6 +192,7 @@ var installButton = function() {
             $this.find('.button[data-hash]').each(function() {
                 hashes[$(this).attr('href')] = $(this).attr('data-hash');
             });
+            var hash = hashes[installer.attr('href')];
 
             var f = _.haskey(z.button.after, after) ? z.button.after[after] : _.identity,
                 callback = _.bind(f, self),
