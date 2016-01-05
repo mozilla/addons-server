@@ -1,5 +1,9 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
+    $('#background-wrapper').css('height',
+        $('.amo-header').height() +
+        $('#addon-description-header').height() + 20 + 'px');
+
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",
