@@ -667,7 +667,8 @@ class TestAddon(BaseOAuth):
         eq_(json.loads(r.content)['statuses'],
             [[File.objects.all()[0].pk, 1]])
 
-    @patch('olympia.api.authorization.AllowRelatedAppOwner.has_object_permission')
+    @patch(
+        'olympia.api.authorization.AllowRelatedAppOwner.has_object_permission')
     @patch('olympia.api.authorization.AllowAppOwner.has_object_permission')
     @patch('olympia.access.acl.action_allowed')
     @patch('olympia.access.acl.check_addon_ownership')

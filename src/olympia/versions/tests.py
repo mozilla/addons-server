@@ -362,7 +362,9 @@ class TestVersion(TestCase):
 
         # Non-public addon.
         self._reset_version(version)
-        with mock.patch('olympia.addons.models.Addon.is_public') as is_addon_public:
+
+        is_public_path = 'olympia.addons.models.Addon.is_public'
+        with mock.patch(is_public_path) as is_addon_public:
             is_addon_public.return_value = False
             eq_(version.is_public(), False)
 
@@ -1243,7 +1245,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # would be in the microsecond range.
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
-        with mock.patch('olympia.versions.models.statsd.timing') as mock_timing:
+        mock_timing_path = 'olympia.versions.models.statsd.timing'
+        with mock.patch(mock_timing_path) as mock_timing:
             Version.from_upload(self.upload, self.addon, [self.platform])
 
             upload_start = utc_millesecs_from_epoch(self.upload.created)

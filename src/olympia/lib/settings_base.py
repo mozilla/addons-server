@@ -358,7 +358,8 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
-    # This the monkey-patching required to load the rest, so it must come first.
+    # This the monkey-patching required to load the rest,
+    # so it must come first.
     'olympia.startup',
 
     'olympia.amo',  # amo comes first so it always takes precedence.
@@ -429,7 +430,7 @@ DOMAIN_METHODS = {
             'tower.management.commands.extract.extract_tower_python'),
         ('src/olympia/**/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
-        ('templates/**.html',
+        ('src/olympia/templates/**.html',
             'tower.management.commands.extract.extract_tower_template'),
         ('**/templates/**.lhtml',
             'tower.management.commands.extract.extract_tower_template'),
@@ -1012,7 +1013,8 @@ CELERY_ROUTES = {
     # AMO Devhub.
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_upload_validation_result': {
+        'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     # This is currently used only by validation tasks.
     'olympia.celery.chord_unlock': {'queue': 'devhub'},
@@ -1039,7 +1041,8 @@ CELERY_ROUTES = {
 CELERY_TIME_LIMITS = {
     'olympia.lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
     # The reindex management command can take up to 3 hours to run.
-    'olympia.lib.es.management.commands.reindex': {'soft': 10800, 'hard': 14400},
+    'olympia.lib.es.management.commands.reindex': {
+        'soft': 10800, 'hard': 14400},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.

@@ -2,7 +2,8 @@ import sys
 import os
 from os.path import dirname
 
-sys.path.insert(0, dirname(dirname(dirname(dirname(os.path.abspath(__file__))))))
+sys.path.insert(
+    0, dirname(dirname(dirname(dirname(os.path.abspath(__file__))))))
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 from django.conf import settings  # noqa

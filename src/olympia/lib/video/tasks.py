@@ -10,7 +10,8 @@ from olympia.amo.decorators import set_modified_on
 from olympia.lib.video import library
 
 log = logging.getLogger('z.devhub.task')
-time_limits = settings.CELERY_TIME_LIMITS['olympia.lib.video.tasks.resize_video']
+time_limits = settings.CELERY_TIME_LIMITS[
+    'olympia.lib.video.tasks.resize_video']
 
 
 # Video decoding can take a while, so let's increase these limits.

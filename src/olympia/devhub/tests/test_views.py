@@ -1130,7 +1130,8 @@ class TestAPIAgreement(TestSubmitBase):
         self.create_switch('signing-api', db=True)
 
     def test_agreement_first(self):
-        with mock.patch('olympia.devhub.views.render_agreement') as mock_submit:
+        render_agreement_path = 'olympia.devhub.views.render_agreement'
+        with mock.patch(render_agreement_path) as mock_submit:
             mock_submit.return_value = http.HttpResponse("Okay")
             self.client.get(reverse('devhub.api_key_agreement'))
         assert mock_submit.called

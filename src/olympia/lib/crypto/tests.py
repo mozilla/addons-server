@@ -219,8 +219,8 @@ class TestPackaged(TestCase):
         assert packaged.is_signed(self.file_.file_path)
 
     def test_sign_file_multi_package(self):
-        with amo.tests.copy_file('src/olympia/files/fixtures/files/multi-package.xpi',
-                                 self.file_.file_path, overwrite=True):
+        fpath = 'src/olympia/files/fixtures/files/multi-package.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
@@ -324,8 +324,8 @@ class TestTasks(TestCase):
         """Don't bump nor sign unreviewed files."""
         for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
             self.file_.update(status=amo.STATUS_UNREVIEWED)
-            with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
-                                     self.file_.file_path):
+            fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+            with amo.tests.copy_file(fpath, self.file_.file_path):
                 file_hash = self.file_.generate_hash()
                 assert self.version.version == '1.3'
                 assert self.version.version_int == version_int('1.3')
@@ -345,8 +345,8 @@ class TestTasks(TestCase):
         backup_file2_path = u'{0}.backup_signature'.format(
             self.file2.file_path)
         try:
-            with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
-                                     self.file_.file_path):
+            fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+            with amo.tests.copy_file(fpath, self.file_.file_path):
                 with amo.tests.copy_file(
                         'src/olympia/files/fixtures/files/jetpack.xpi',
                         self.file2.file_path):
@@ -401,8 +401,8 @@ class TestTasks(TestCase):
             assert file_hash == self.file_.generate_hash()
             self.assert_no_backup()
 
-        with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
+        fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
@@ -531,8 +531,8 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
         mock_sign_file.side_effect = IOError()
-        with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
+        fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
@@ -547,8 +547,8 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_bump_not_signed(self, mock_sign_file):
         mock_sign_file.return_value = None  # Pretend we didn't sign.
-        with amo.tests.copy_file('src/olympia/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
+        fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')

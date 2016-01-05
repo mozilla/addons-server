@@ -431,7 +431,8 @@ class TestSubmitFile(TestCase):
         tasks.submit_file(self.addon.pk, upload.pk)
         self.create_version_for_upload.assert_called_with(self.addon, upload)
 
-    @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', False)
+    @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
+                False)
     def test_file_not_passed_all_validations(self):
         upload = self.create_upload()
         tasks.submit_file(self.addon.pk, upload.pk)

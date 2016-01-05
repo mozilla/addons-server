@@ -116,7 +116,7 @@ def path():
           user_media_path('userpics'),
           user_media_path('reviewer_attachments'),
           dump_apps.Command.JSON_PATH,)
-    r = [os.path.join(settings.ROOT, 'locale'),
+    r = [os.path.join(settings.ROOT, 'src', 'olympia', 'locale'),
          # The deploy process will want write access to this.
          # We do not want Django to have write access though.
          settings.PROD_DETAILS_DIR]

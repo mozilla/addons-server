@@ -2801,7 +2801,8 @@ class TestWhiteboard(ReviewBase):
         assert response.status_code == 302
         assert self.get_addon().whiteboard == whiteboard_info
 
-    @patch('olympia.addons.decorators.owner_or_unlisted_reviewer', lambda r, a: True)
+    @patch('olympia.addons.decorators.owner_or_unlisted_reviewer',
+           lambda r, a: True)
     def test_whiteboard_addition_unlisted_addon(self):
         self.addon.update(is_listed=False)
         whiteboard_info = u'Whiteboard info.'

@@ -616,7 +616,8 @@ class TestEditThemeForm(TestCase):
         eq_(rqt[0].footer, 'pending_footer.png')
         assert not rqt[0].dupe_persona
 
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images',
+                new=mock.Mock)
     @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
     @mock.patch('olympia.addons.tasks.make_checksum')
     def test_reupload_duplicate(self, make_checksum_mock):
@@ -636,7 +637,8 @@ class TestEditThemeForm(TestCase):
         eq_(rqt.dupe_persona, theme.persona)
 
     @mock.patch('olympia.addons.tasks.make_checksum', new=mock.Mock)
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images',
+                new=mock.Mock)
     @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
     def test_reupload_legacy_header_only(self):
         """
