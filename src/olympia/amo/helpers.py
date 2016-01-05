@@ -595,19 +595,6 @@ def no_results_amo():
     return jinja2.Markup(t)
 
 
-@register.filter
-def f(string, *args, **kwargs):
-    """This overrides jingo.helpers.f to convert input to unicode if needed.
-
-    This is needed because of
-    https://github.com/jbalogh/jingo/pull/54#issuecomment-36728948
-
-    """
-    if not isinstance(string, six.text_type):
-        string = six.text_type(string)
-    return string.format(*args, **kwargs)
-
-
 def _relative_to_absolute(url):
     """
     Prepends relative URLs with STATIC_URL to turn those inline-able.

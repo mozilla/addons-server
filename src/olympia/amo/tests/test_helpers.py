@@ -464,12 +464,6 @@ def test_timesince():
     eq_(helpers.timesince(None), u'')
 
 
-def test_f():
-    # This makes sure there's no UnicodeEncodeError when doing the string
-    # interpolation.
-    eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
-
-
 def test_inline_css(monkeypatch):
     jingo.load_helpers()
     env = jingo.get_env()
