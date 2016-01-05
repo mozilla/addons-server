@@ -73,7 +73,7 @@ class ButtonTest(TestCase):
             'request': self.request,
         }
 
-    @patch('olympia.buttons.jingo.Environment.get_template')
+    @patch('olympia.addons.buttons.jingo.Environment.get_template')
     def get_button(self, t_mock, **kwargs):
         """Proxy for calling install_button."""
         template_mock = Mock()

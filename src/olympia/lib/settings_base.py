@@ -8,6 +8,7 @@ import socket
 
 import dj_database_url
 from django.utils.functional import lazy
+from django.core.urlresolvers import reverse_lazy
 from heka.config import client_from_dict_config
 
 ALLOWED_HOSTS = [
@@ -61,11 +62,6 @@ CLEANCSS_BIN = 'cleancss'
 
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
-
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-MANAGERS = ADMINS
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
@@ -292,7 +288,6 @@ def JINJA_CONFIG():
     config = {
         'extensions': [
             'olympia.amo.ext.cache',
-            'jinja2.ext.i18n',
             'puente.ext.i18n',
             'waffle.jinja.WaffleExtension',
             'jinja2.ext.do',
@@ -360,7 +355,7 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
-    'olympia.core'
+    'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
     'olympia.access',
@@ -390,7 +385,6 @@ INSTALLED_APPS = (
     'olympia.zadmin',
 
     # Third party apps
-    'tower',  # for ./manage.py extract
     'product_details',
     'moz_header',
     'cronjobs',
@@ -400,6 +394,7 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'waffle',
     'jingo_minify',
+    'puente',
 
     # Django contrib apps
     'django.contrib.admin',
@@ -441,9 +436,10 @@ PUENTE = {
             ('**/templates/**.lhtml', 'jinja2'),
         ],
         'djangojs': [
-            # We can't say **.js because that would dive into mochikit and timeplot
-            # and all the other baggage we're carrying.  Timeplot, in particular,
-            # crashes the extractor with bad unicode data.
+            # We can't say **.js because that would dive into mochikit
+            # and timeplot and all the other baggage we're carrying.
+            # Timeplot, in particular, crashes the extractor with bad
+            # unicode data.
             ('static/js/*.js', 'javascript'),
             ('static/js/amo2009/**.js', 'javascript'),
             ('static/js/common/**.js', 'javascript'),
@@ -947,10 +943,10 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
-LOGIN_URL = "/users/login"
-LOGOUT_URL = "/users/logout"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = reverse_lazy('users.login')
+LOGOUT_URL = reverse_lazy('users.logout')
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 # When logging in with browser ID, a username is created automatically.
 # In the case of duplicates, the process is recursive up to this number
 # of times.

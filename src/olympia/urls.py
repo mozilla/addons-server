@@ -78,7 +78,7 @@ urlpatterns = patterns(
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
-        {'domain': 'javascript', 'packages': []}, name='jsi18n'),
+        {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
     # SAMO/API
     ('^api/', include('olympia.api.urls')),

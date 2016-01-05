@@ -3,6 +3,7 @@ import logging
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from rest_framework import status
 from rest_framework.response import Response

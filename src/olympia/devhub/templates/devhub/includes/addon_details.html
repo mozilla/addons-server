@@ -122,13 +122,13 @@
   <li class="date-created">
     <strong>{{ _('Created:') }}</strong>
       {# L10n: {0} is a date. dennis-ignore: E201 #}
-      {{ addon.created|datetime(_('%b %e, %Y')) }}
+      {{ addon.created|datetime(_('%%b %%e, %%Y')) }}
   </li>
 {% else %}
   <li class="date-updated">
     <strong>{{ _('Last Updated:') }}</strong>
       {# L10n: {0} is a date. dennis-ignore: E201 #}
-      {{ addon.last_updated|datetime(_('%b %e, %Y')) }}
+      {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
   </li>
 {% endif %}
 {% if addon.latest_version and addon.latest_version != addon.current_version %}

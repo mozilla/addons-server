@@ -22,11 +22,11 @@ def fake_task(**kw):
 class TestTaskTiming(unittest.TestCase):
 
     def setUp(self):
-        patch = mock.patch('olympia.amo.celery.cache', autospec=True)
+        patch = mock.patch('olympia.amo.celery.cache')
         self.cache = patch.start()
         self.addCleanup(patch.stop)
 
-        patch = mock.patch('olympia.amo.celery.statsd', autospec=True)
+        patch = mock.patch('olympia.amo.celery.statsd')
         self.statsd = patch.start()
         self.addCleanup(patch.stop)
 

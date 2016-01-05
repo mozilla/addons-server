@@ -444,6 +444,10 @@ def features(request):
     form = FeaturedCollectionFormSet(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save(commit=False)
+
+        for obj in form.deleted_objects:
+            obj.delete()
+
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.features')
     return render(request, 'zadmin/features.html', dict(form=form))
@@ -459,7 +463,7 @@ def monthly_pick(request):
     return render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
-@admin.site.admin_view
+@admin_required
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
     es = search.get_es()
@@ -564,8 +568,9 @@ def general_search(request, app_id, model_id):
     if not admin.site.has_permission(request):
         raise PermissionDenied
 
-    model = apps.get_model(app_id, model_id)
-    if not model:
+    try:
+        model = apps.get_model(app_id, model_id)
+    except LookupError:
         raise http.Http404
 
     limit = 10

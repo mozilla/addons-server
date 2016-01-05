@@ -1,4 +1,5 @@
 import logging
+import warnings
 
 import jingo
 import jingo.monkey
@@ -7,7 +8,6 @@ from django.apps import AppConfig
 from django.core.management import call_command
 from django.conf import settings
 from django.utils import translation
-from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -26,7 +26,10 @@ class CoreConfig(AppConfig):
             warnings.simplefilter('ignore')
 
         jingo.monkey.patch()
-        jingo.get_env().install_gettext_translations(translation, newstyle=True)
+
+        jingo_env = jingo.get_env()
+        jingo_env.install_gettext_translations(translation, newstyle=True)
+
         session_csrf.monkeypatch()
 
         self.configure_logging()

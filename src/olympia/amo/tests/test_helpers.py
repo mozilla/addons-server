@@ -154,7 +154,7 @@ class TestBreadcrumbs(amo.tests.BaseTestCase):
                    {'request': self.req_app})
         doc = PyQuery(s)
         crumbs = doc('li>a')
-        eq_('abcd ...', crumbs.eq(1).text())
+        eq_('ab...', crumbs.eq(1).text())
 
     def test_xss(self):
         s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
@@ -462,6 +462,12 @@ def test_timesince():
     month_ago = datetime.now() - timedelta(days=30)
     eq_(helpers.timesince(month_ago), u'1 month ago')
     eq_(helpers.timesince(None), u'')
+
+
+def test_f():
+    # This makes sure there's no UnicodeEncodeError when doing the string
+    # interpolation.
+    eq_(render(u'{{ "foo {0}"|f("baré") }}'), u'foo baré')
 
 
 def test_inline_css(monkeypatch):

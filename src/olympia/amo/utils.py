@@ -60,9 +60,6 @@ from . import logger_log as log
 
 heka = settings.HEKA
 
-# We are (temporary) patching the environment, thus requiring a global object :(
-jingo_env = get_env()
-
 
 def days_ago(n):
     return datetime.datetime.now() - datetime.timedelta(days=n)
@@ -284,10 +281,11 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 @contextlib.contextmanager
 def no_jinja_autoescape():
     """Disable Jinja2 autoescape."""
-    autoescape_orig = jingo_env.autoescape
-    jingo_env.autoescape = False
+    env = get_env()
+    autoescape_orig = env.autoescape
+    env.autoescape = False
     yield
-    jingo_env.autoescape = autoescape_orig
+    env.autoescape = autoescape_orig
 
 
 def send_mail_jinja(subject, template, context, *args, **kwargs):
@@ -297,7 +295,7 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     control.
     """
     with no_jinja_autoescape():
-        template = jingo_env.get_template(template)
+        template = get_env().get_template(template)
     msg = send_mail(subject, template.render(context), *args, **kwargs)
     return msg
 
@@ -307,8 +305,8 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     """Sends HTML mail using a Jinja template with autoescaping turned off."""
     # Get a jinja environment so we can override autoescaping for text emails.
     with no_jinja_autoescape():
-        html_template = jingo_env.get_template(html_template)
-        text_template = jingo_env.get_template(text_template)
+        html_template = get_env().get_template(html_template)
+        text_template = get_env().get_template(text_template)
     msg = send_mail(subject, text_template.render(context),
                     html_message=html_template.render(context), *args,
                     **kwargs)

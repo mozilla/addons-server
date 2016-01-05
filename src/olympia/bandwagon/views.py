@@ -313,13 +313,16 @@ def initial_data_from_request(request):
 def collection_message(request, collection, option):
     if option == 'add':
         title = _('Collection created!')
-        msg = _("""Your new collection is shown below. You can <a
-                   href="%(url)s">edit additional settings</a> if you'd
-                   like.""") % {'url': collection.edit_url()}
+        msg = _(
+            'Your new collection is shown below. You can <a'
+            'href="%(url)s">edit additional settings</a> if you\'d'
+            'like.'
+        ) % {'url': collection.edit_url()}
     elif option == 'update':
         title = _('Collection updated!')
-        msg = _("""<a href="%(url)s">View your collection</a> to see the
-                   changes.""") % {'url': collection.get_url_path()}
+        msg = _(
+            '<a href="%(url)s">View your collection</a> to see the changes.'
+        ) % {'url': collection.get_url_path()}
     else:
         raise ValueError('Incorrect option "%s", '
                          'takes only "add" or "update".' % option)

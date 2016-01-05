@@ -36,7 +36,7 @@ from olympia.versions.compare import version_int
 
 ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
-    u"The API version, {0:.1f}, you are using is not valid.  "
+    u"The API version, {0:.1f}, you are using is not valid. "
     u"Please upgrade to the current version {1:.1f} API.")
 SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
                        amo.STATUS_LITE_AND_NOMINATED)

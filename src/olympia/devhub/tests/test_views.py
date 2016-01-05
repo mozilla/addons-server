@@ -255,8 +255,8 @@ class TestDashboard(HubTest):
         d = doc('.item-details .date-updated')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            trim_whitespace(datetime_filter(self.addon.last_updated,
-                                             '%b %e, %Y')))
+            trim_whitespace(
+                datetime_filter(self.addon.last_updated, '%b %e, %Y')))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.

@@ -2,6 +2,7 @@ from functools import partial
 
 from django.contrib import messages as django_messages
 from django.utils import safestring
+from rest_framework.request import Request
 
 import jinja2
 from jingo import get_env
@@ -69,6 +70,11 @@ def _file_message(type_, request, title, message=None, extra_tags='',
     # Don't save duplicates.
     if _is_dupe(msg, request):
         return
+
+    if isinstance(request, Request):
+        # Support for passing of django-rest-framework wrapped request objects
+        request = request._request
+
     getattr(django_messages, type_)(request, msg, extra_tags, fail_silently)
 
 

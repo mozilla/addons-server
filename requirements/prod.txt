@@ -90,7 +90,6 @@ suds==0.4
 thrift==0.9.1
 puente==0.4
 urllib3==1.9
-django-cache-machine==0.9.1
 
 ## Not on pypi.
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform

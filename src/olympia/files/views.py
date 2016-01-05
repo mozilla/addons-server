@@ -9,7 +9,6 @@ from django.utils.translation import ugettext as _
 import commonware.log
 import waffle
 from cache_nuggets.lib import Message, Token
-from tower import ugettext as _
 
 from olympia.access import acl
 from olympia.amo.decorators import json_view

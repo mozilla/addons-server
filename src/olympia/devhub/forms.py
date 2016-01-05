@@ -113,19 +113,11 @@ class AnnotateFileForm(happyforms.Form):
         return msg
 
 
-class LicenseChoiceRadio(forms.widgets.RadioFieldRenderer):
-
-    def __iter__(self):
-        for i, choice in enumerate(self.choices):
-            yield LicenseRadioInput(self.name, self.value, self.attrs.copy(),
-                                    choice, i)
-
-
-class LicenseRadioInput(forms.widgets.RadioInput):
+class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
 
     def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioInput, self).__init__(name, value, attrs, choice,
-                                                index)
+        super(LicenseRadioChoiceInput, self).__init__(
+            name, value, attrs, choice, index)
         license = choice[1]  # Choice is a tuple (object.id, object).
         link = u'<a class="xx extra" href="%s" target="_blank">%s</a>'
         if hasattr(license, 'url'):
@@ -133,11 +125,18 @@ class LicenseRadioInput(forms.widgets.RadioInput):
             self.choice_label = mark_safe(self.choice_label + details)
 
 
+class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
+    choice_input_class = LicenseRadioChoiceInput
+
+
+class LicenseRadioSelect(forms.RadioSelect):
+    renderer = LicenseRadioFieldRenderer
+
+
 class LicenseForm(AMOModelForm):
     builtin = forms.TypedChoiceField(
         choices=[], coerce=int,
-        widget=forms.RadioSelect(attrs={'class': 'license'},
-                                 renderer=LicenseChoiceRadio))
+        widget=LicenseRadioSelect(attrs={'class': 'license'}))
     name = forms.CharField(widget=TranslationTextInput(),
                            label=_lazy(u"What is your license's name?"),
                            required=False, initial=_lazy('Custom License'))
@@ -470,7 +469,7 @@ class BaseCompatFormSet(BaseModelFormSet):
                         [{'application': a.id} for a in apps])
         self.extra = len(amo.APP_GUIDS) - len(self.forms)
 
-        # After these changes, the forms need to be rebuilt. `forms`
+        # After these changes, the foms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
         del self.forms
@@ -479,8 +478,10 @@ class BaseCompatFormSet(BaseModelFormSet):
     def clean(self):
         if any(self.errors):
             return
+
         apps = filter(None, [f.cleaned_data for f in self.forms
                              if not f.cleaned_data.get('DELETE', False)])
+
         if not apps:
             raise forms.ValidationError(
                 _('Need at least one compatible application.'))

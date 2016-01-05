@@ -73,8 +73,7 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         assert update_count.locales == {u'en-us': 1, u'en-US': 4}
 
         # save_stats_to_file is called with a non-saved model.
-        update_count.id = None
-        mock_save_stats_to_file.assert_called_once_with(update_count)
+        assert isinstance(mock_save_stats_to_file.call_args[0][0], UpdateCount)
 
     def test_update_version(self):
         # Initialize the known addons and their versions.
@@ -190,8 +189,8 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         assert download_count.sources == {u'search': 1, u'collection': 1}
 
         # save_stats_to_file is called with a non-saved model.
-        download_count.id = None
-        mock_save_stats_to_file.assert_called_once_with(download_count)
+        assert isinstance(
+            mock_save_stats_to_file.call_args[0][0], DownloadCount)
 
     @mock.patch('olympia.stats.management.commands.save_stats_to_file')
     def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
@@ -207,11 +206,10 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         assert tuc2.count == 15
 
         assert mock_save_stats_to_file.call_count == 2
+
         # save_stats_to_file is called with a non-saved model.
-        tuc1.id = None
-        tuc2.id = None
-        mock_save_stats_to_file.assert_has_calls(
-            [mock.call(tuc1), mock.call(tuc2)])
+        assert isinstance(
+            mock_save_stats_to_file.call_args[0][0], ThemeUpdateCount)
 
     def test_update_theme_popularity_movers(self):
         # Create ThemeUpdateCount entries for the persona 559 with addon_id
@@ -299,8 +297,8 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
         assert (uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'] ==
                 {u'2.0': 3})
 
-        uc.id = None  # save_stats_to_file is called with a non-saved model.
-        mock_save_stats_to_file.assert_called_once_with(uc)
+        # save_stats_to_file is called with a non-saved model.
+        assert isinstance(mock_save_stats_to_file.call_args[0][0], UpdateCount)
 
 
 def test_stats_from_model_theme_update_count():

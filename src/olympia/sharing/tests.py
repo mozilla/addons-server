@@ -73,7 +73,7 @@ def test_share_form():
         'description': 'x' * 250 + 'abcdef',
     })
     form.full_clean()
-    eq_(form.cleaned_data['description'], 'x' * 250 + '...')
+    eq_(form.cleaned_data['description'], 'x' * 247 + '...')
     assert form.cleaned_data['url'].startswith('http'), (
         "Unexpected: URL not absolute")
 

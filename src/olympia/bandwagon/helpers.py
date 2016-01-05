@@ -31,8 +31,8 @@ def user_collection_list(collections=[], heading='', id='', link=None):
     """list of collections, as used on the user profile page"""
     c = {'collections': collections, 'heading': heading, 'link': link,
          'id': id}
-    t = get_env().get_template('bandwagon/users/collection_list.html').render(c)
-    return jinja2.Markup(t)
+    template = get_env().get_template('bandwagon/users/collection_list.html')
+    return jinja2.Markup(template.render(c))
 
 
 @register.inclusion_tag('bandwagon/barometer.html')
@@ -142,8 +142,8 @@ def collection_widgets(context, collection, condensed=False):
     if collection:
         c.update({'condensed': condensed,
                   'c': collection})
-        t = get_env().get_template('bandwagon/collection_widgets.html').render(c)
-        return jinja2.Markup(t)
+        template = get_env().get_template('bandwagon/collection_widgets.html')
+        return jinja2.Markup(template.render(c))
 
 
 @register.inclusion_tag('bandwagon/mobile/listing_items.html')

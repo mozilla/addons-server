@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.utils import translation
-from django.utils.translation import ugettext as _, get_language, get_language_bidi
+from django.utils.translation import (
+    ugettext as _, get_language, get_language_bidi)
 from django.utils.http import urlquote
 
 import waffle
-from cache_nuggets.lib import memoize
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
@@ -22,11 +21,10 @@ def static_url(request):
 
 
 def i18n(request):
+    lang = get_language()
     return {'LANGUAGES': settings.LANGUAGES,
-            'LANG': (
-                settings.LANGUAGE_URL_MAP.get(get_language()) or get_language()),
-            'DIR': 'rtl' if get_language_bidi() else 'ltr',
-            }
+            'LANG': settings.LANGUAGE_URL_MAP.get(lang) or lang,
+            'DIR': 'rtl' if get_language_bidi() else 'ltr'}
 
 
 def global_settings(request):

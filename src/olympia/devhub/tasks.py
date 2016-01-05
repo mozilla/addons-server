@@ -20,10 +20,6 @@ from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from PIL import Image
 
-from celery.exceptions import SoftTimeLimitExceeded
-from celery.result import AsyncResult
-from django_statsd.clients import statsd
-
 import validator
 
 from olympia import amo

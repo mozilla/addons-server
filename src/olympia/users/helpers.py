@@ -2,7 +2,7 @@ import random
 
 from django.conf import settings
 from django.utils.encoding import smart_unicode
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import pgettext
 
 import jinja2
 from jingo import register, get_env

@@ -9,6 +9,19 @@ from olympia.amo.urlresolvers import reverse
 from . import views
 
 
+# Hijack the admin's login to use our pages.
+def login(request):
+    # If someone is already auth'd then they're getting directed to login()
+    # because they don't have sufficient permissions.
+    if request.user.is_authenticated():
+        raise PermissionDenied
+    else:
+        return redirect('%s?to=%s' % (reverse('users.login'), request.path))
+
+
+admin.site.login = login
+
+
 urlpatterns = patterns(
     '',
     # AMO stuff.
@@ -78,16 +91,3 @@ urlpatterns = patterns(
     url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search.json$',
         views.general_search, name='zadmin.search'),
 )
-
-
-# Hijack the admin's login to use our pages.
-def login(request):
-    # If someone is already auth'd then they're getting directed to login()
-    # because they don't have sufficient permissions.
-    if request.user.is_authenticated():
-        raise PermissionDenied
-    else:
-        return redirect('%s?to=%s' % (reverse('users.login'), request.path))
-
-
-admin.site.login = login

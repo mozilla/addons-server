@@ -142,20 +142,20 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
         except SMTPException, e:
             log.error("Failed to send mail for (%s): %s" % (user, e))
 
-    # Copypaste from superclass.
+    # Copypaste from superclass
     def base_save(
             self, domain_override=None,
             subject_template_name='registration/password_reset_subject.txt',
             email_template_name='registration/password_reset_email.html',
             use_https=False, token_generator=default_token_generator,
-            from_email=None, request=None):
+            from_email=None, request=None, html_email_template_name=None):
         """
         Generates a one-use only link for resetting password and sends to the
         user.
         """
+        from django.core.mail import send_mail
         from django.contrib.auth import get_user_model
         from django.contrib.sites.models import get_current_site
-        from django.core.mail import send_mail
         from django.template import loader
         from django.utils.encoding import force_bytes
         from django.utils.http import urlsafe_base64_encode
@@ -191,7 +191,15 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
             email = loader.render_to_string(email_template_name, c)
-            send_mail(subject, email, from_email, [user.email])
+
+            if html_email_template_name:
+                html_email = loader.render_to_string(
+                    html_email_template_name, c)
+            else:
+                html_email = None
+            send_mail(
+                subject, email, from_email, [user.email],
+                html_message=html_email)
 
 
 class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):

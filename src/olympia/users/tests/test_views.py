@@ -2,7 +2,7 @@ import collections
 import json
 from urlparse import urlparse
 
-from waffle import Switch
+from waffle.models import Switch
 
 from django.conf import settings
 from django.core import mail
@@ -944,10 +944,12 @@ class TestLogout(UserViewBase):
         r = self.client.get(url, follow=True)
         self.assert3xx(r, '/en-US/about', status_code=302)
 
-    def test_session_cookie_should_be_http_only(self):
+    def test_session_cookie_deleted_on_logout(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get(reverse('users.logout'))
-        self.assertIn('httponly', str(r.cookies[settings.SESSION_COOKIE_NAME]))
+        cookie = r.cookies[settings.SESSION_COOKIE_NAME]
+        assert cookie.value == ''
+        assert cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
 
 
 class TestRegistration(UserViewBase):

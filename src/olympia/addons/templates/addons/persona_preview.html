@@ -62,8 +62,8 @@
         <h6><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h6>
         <div class="details">
           <p>
-          {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
-            {% set dt = _('%Y-%m-%d') %}
+            {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
+            {% set dt = _('%%Y-%%m-%%d') %}
             {{ _('by {0} on {1}')|f(users_list(addon.listed_authors)|safe or persona.display_username|safe,
                                     addon.created|datetime(dt)) }}
           </p>

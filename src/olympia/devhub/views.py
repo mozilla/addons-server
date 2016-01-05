@@ -162,6 +162,10 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         for compat in compat_form.save(commit=False):
             compat.version = version
             compat.save()
+
+        for compat in compat_form.deleted_objects:
+            compat.delete()
+
         for form in compat_form.forms:
             if (isinstance(form, forms.CompatForm) and
                     'max' in form.changed_data):
@@ -1135,6 +1139,10 @@ def version_edit(request, addon_id, addon, version_id):
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
                 compat.save()
+
+            for compat in data['compat_form'].deleted_objects:
+                compat.delete()
+
             for form in data['compat_form'].forms:
                 if (isinstance(form, forms.CompatForm) and
                         'max' in form.changed_data):

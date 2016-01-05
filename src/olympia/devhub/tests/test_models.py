@@ -190,12 +190,13 @@ class TestActivityLog(TestCase):
         amo.log(amo.LOG.CHANGE_USER_WITH_ROLE, au.user, au.get_role_display(),
                 addon)
         log = ActivityLog.objects.get()
+        env = jingo.get_env()
 
         log_expected = ('yolo role changed to Owner for <a href="/en-US/'
                         'firefox/addon/a3615/">Delicious &lt;script src='
                         '&#34;x.js&#34;&gt;Bookmarks</a>.')
         eq_(log.to_string(), log_expected)
-        eq_(jingo.get_env().from_string('<p>{{ log }}</p>').render({'log': log}),
+        eq_(env.from_string('<p>{{ log }}</p>').render({'log': log}),
             '<p>%s</p>' % log_expected)
 
     def test_tag_no_match(self):
@@ -203,7 +204,8 @@ class TestActivityLog(TestCase):
         tag = Tag.objects.create(tag_text='http://foo.com')
         amo.log(amo.LOG.ADD_TAG, addon, tag)
         log = ActivityLog.objects.get()
-        text = jingo.get_env().from_string('<p>{{ log }}</p>').render({'log': log})
+        env = jingo.get_env()
+        text = env.from_string('<p>{{ log }}</p>').render({'log': log})
         # There should only be one a, the link to the addon, but no tag link.
         eq_(len(pq(text)('a')), 1)
 
