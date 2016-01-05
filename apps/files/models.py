@@ -602,12 +602,13 @@ class FileUpload(amo.models.ModelBase):
         if self.validation:
             if self.load_validation()['errors'] == 0:
                 self.valid = True
-        super(FileUpload, self).save()
+        super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
-        if not self.pk:
-            self.save()
-        filename = smart_str(u'{0}_{1}'.format(self.pk, filename))
+        force_insert = not self.uuid
+        if force_insert:
+            self.uuid = self._meta.get_field('uuid')._create_uuid().hex
+        filename = smart_str(u'{0}_{1}'.format(self.uuid, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(amo.utils.smart_path(filename))
         if ext in EXTENSIONS:
@@ -621,11 +622,11 @@ class FileUpload(amo.models.ModelBase):
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash.hexdigest()
-        self.save()
+        self.save(force_insert=force_insert)
 
     @classmethod
-    def from_post(cls, chunks, filename, size):
-        fu = FileUpload()
+    def from_post(cls, chunks, filename, size, **params):
+        fu = FileUpload(**params)
         fu.add_file(chunks, filename, size)
         return fu
 

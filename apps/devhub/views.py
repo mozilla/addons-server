@@ -599,8 +599,8 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
         automated = addon.automated_signing
         is_listed = addon.is_listed
 
-    fu = FileUpload.from_post(filedata, filedata.name, filedata.size)
-    fu.update(automated_signing=automated, addon=addon)
+    fu = FileUpload.from_post(filedata, filedata.name, filedata.size,
+                              automated_signing=automated, addon=addon)
     log.info('FileUpload created: %s' % fu.pk)
     if user.is_authenticated():
         fu.user = user
