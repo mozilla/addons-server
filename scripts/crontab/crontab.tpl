@@ -38,7 +38,6 @@ HOME=/tmp
 30 14 * * * %(z_cron)s category_totals
 30 15 * * * %(z_cron)s collection_subscribers
 30 17 * * * %(z_cron)s share_count_totals
-30 18 * * * %(z_cron)s recs
 0 22 * * * %(z_cron)s gc
 30 6 * * * %(z_cron)s deliver_hotness
 45 7 * * * %(django)s dump_apps
