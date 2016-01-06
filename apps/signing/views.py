@@ -107,21 +107,21 @@ class VersionView(JWTProtectedView):
 
     @use_master
     @with_addon()
-    def get(self, request, addon, version_string, pk=None):
+    def get(self, request, addon, version_string, uuid=None):
         file_upload_qs = FileUpload.objects.filter(
             addon=addon, version=version_string)
         try:
-            if pk is None:
+            if uuid is None:
                 file_upload = file_upload_qs.latest()
                 log.info('getting latest upload for {addon} {version}: '
-                         '{file_upload.pk}'.format(
+                         '{file_upload.uuid}'.format(
                              addon=addon, version=version_string,
                              file_upload=file_upload))
             else:
-                file_upload = file_upload_qs.get(pk=pk)
-                log.info('getting specific upload for {addon} {version} {pk}: '
-                         '{file_upload.pk}'.format(
-                             addon=addon, version=version_string, pk=pk,
+                file_upload = file_upload_qs.get(uuid=uuid)
+                log.info('getting specific upload for {addon} {version} '
+                         '{uuid}: {file_upload.uuid}'.format(
+                             addon=addon, version=version_string, uuid=uuid,
                              file_upload=file_upload))
         except FileUpload.DoesNotExist:
             return Response(

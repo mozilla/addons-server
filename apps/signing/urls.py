@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^addons/(?P<guid>[^/]+)/versions/(?P<version_string>[^/]+)/'
-        r'uploads/(?P<pk>[^/]+)/$',
+        r'uploads/(?P<uuid>[^/]+)/$',
         views.VersionView.as_view(),
         name='signing.version'),
     url(r'^addons/(?P<guid>[^/]+)/versions/(?P<version_string>[^/]+)/$',

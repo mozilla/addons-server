@@ -494,6 +494,7 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
+        to_field_name='uuid',
         error_messages={
             'invalid_choice': _lazy(u'There was an error with your '
                                     u'upload. Please try again.')

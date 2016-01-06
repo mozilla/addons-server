@@ -232,9 +232,10 @@ class TestCheckVersion(BaseUploadVersionCase):
         newer_upload = FileUpload.objects.latest()
         assert newer_upload != upload
 
-        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid))
         assert response.status_code == 200
-        assert response.data['pk'] == upload.pk
+        # For backwards-compatibility reasons, we return the uuid as "pk".
+        assert response.data['pk'] == upload.uuid
         assert 'processed' in response.data
 
     @mock.patch('devhub.tasks.submit_file')
@@ -251,7 +252,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         upload = FileUpload.objects.latest()
 
         # Check that the user that created the upload can access it properly.
-        response = self.get(self.url('@create-version', '1.0', upload.pk))
+        response = self.get(self.url('@create-version', '1.0', upload.uuid))
         assert response.status_code == 200
         assert 'processed' in response.data
 
@@ -260,9 +261,9 @@ class TestCheckVersion(BaseUploadVersionCase):
         self.user, self.api_key = orig_user, orig_api_key
         self.create_version('3.0')
 
-        # Check that we can't access the FileUpload by pk even if we pass in
+        # Check that we can't access the FileUpload by uuid even if we pass in
         # an add-on and version that we own if we don't own the FileUpload.
-        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid))
         assert response.status_code == 404
         assert 'error' in response.data
 
