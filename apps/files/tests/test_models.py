@@ -552,11 +552,11 @@ class TestFileUpload(UploadTest):
         super(TestFileUpload, self).setUp()
         self.data = 'file contents'
 
-    def upload(self):
+    def upload(self, **params):
         # The data should be in chunks.
         data = [''.join(x) for x in amo.utils.chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
-                                    len(self.data))
+                                    len(self.data), **params)
 
     def test_from_post_write_file(self):
         eq_(storage.open(self.upload().path).read(), self.data)
@@ -568,6 +568,15 @@ class TestFileUpload(UploadTest):
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
         eq_(self.upload().hash, 'sha256:%s' % hash)
+
+    def test_from_post_extra_params(self):
+        upload = self.upload(automated_signing=True, addon_id=3615)
+        assert upload.addon_id == 3615
+        assert upload.automated_signing
+
+    def test_from_post_is_one_query(self):
+        with self.assertNumQueries(1):
+            self.upload(automated_signing=True, addon_id=3615)
 
     def test_save_without_validation(self):
         f = FileUpload.objects.create()
