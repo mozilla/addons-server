@@ -136,7 +136,8 @@ class TestReporter(TestCase):
         self.assert3xx(
             self.client.get(self.url.format(self.addon.guid[:5])), expected)
 
-    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer', lambda r, a: True)
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: True)
     def test_unlisted_addon_redirect_for_authorized(self):
         """Can display the reports for an unlisted addon if authorized."""
         self.addon.update(is_listed=False)

@@ -5,9 +5,7 @@ import time
 
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
-
 from nose.tools import eq_
-from django.core.management.base import CommandError
 import mock
 
 from olympia import amo

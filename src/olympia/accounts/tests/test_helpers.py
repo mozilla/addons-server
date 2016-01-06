@@ -2,7 +2,7 @@ from django.test.utils import override_settings
 
 import mock
 
-from olympia.apps.accounts import helpers
+from olympia.accounts import helpers
 
 
 @override_settings(FXA_CONFIG={

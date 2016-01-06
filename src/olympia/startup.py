@@ -29,26 +29,6 @@ def filter_warnings():
         warnings.simplefilter('ignore')
 
 
-def init_amo():
-    """Load the `amo` module.
-
-    Waffle and amo form an import cycle because amo patches waffle and waffle
-    loads the user model, so we have to make sure amo gets imported before
-    anything else imports waffle."""
-    global amo
-    amo = __import__('olympia.amo')
-
-
-def init_celery():
-    """Initialize Celery, and make our app instance available as `celery_app`
-    for use by the `celery` command."""
-    from django.conf import settings
-    from olympia.amo import celery
-
-    global celery_app
-    celery_app = celery.app
-
-
 def init_session_csrf():
     """Load the `session_csrf` module and enable its monkey patches to
     Django's CSRF middleware."""

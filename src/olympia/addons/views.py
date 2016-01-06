@@ -34,7 +34,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import (
     Collection, CollectionFeature, CollectionPromo)
-from olympia.constants.base import FIREFOX_IOS_USER_AGENTS
 from olympia import paypal
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating

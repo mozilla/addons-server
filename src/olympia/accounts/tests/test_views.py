@@ -364,7 +364,8 @@ class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
     def setUp(self):
         self.url = reverse(self.view_name)
         create_switch('fxa-auth', active=True)
-        self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
+        self.fxa_identify = self.patch(
+            'olympia.accounts.views.verify.fxa_identify')
 
     def patch(self, thing):
         patcher = mock.patch(thing)

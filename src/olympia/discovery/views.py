@@ -17,7 +17,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
-from olympia.bandwagon.models import Collection, SyncedCollection
+from olympia.bandwagon.models import Collection
 from olympia.discovery.modules import PromoVideoCollection
 from olympia.reviews.models import Review
 from olympia.stats.models import GlobalStat

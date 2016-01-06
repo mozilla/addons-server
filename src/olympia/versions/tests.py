@@ -22,7 +22,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
+from olympia.amo.utils import urlparams, utc_millesecs_from_epoch
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion

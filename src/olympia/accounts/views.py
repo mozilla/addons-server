@@ -16,7 +16,8 @@ from waffle.decorators import waffle_switch
 
 from olympia.api.jwt_auth.views import JWTProtectedView
 from olympia.users.models import UserProfile
-from olympia.accounts.serializers import UserProfileSerializer
+from olympia.accounts.serializers import (
+    UserProfileSerializer, AccountSourceSerializer)
 
 from . import verify
 

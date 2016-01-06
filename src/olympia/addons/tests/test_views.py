@@ -25,7 +25,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Persona)
 from olympia.bandwagon.models import Collection
-from olympia.constants.base import FIREFOX_IOS_USER_AGENTS
 from olympia.paypal.tests.test import other_error
 from olympia.stats.models import Contribution
 from olympia.users.helpers import users_list

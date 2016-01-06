@@ -16,9 +16,7 @@ import waffle
 from django_statsd.clients import statsd
 
 from olympia import amo, api
-from olympia.amo.decorators import post_required
 from olympia.amo.utils import log_cef
-from olympia.amo.context_processors import get_collect_timings
 
 from . import monitors
 

@@ -26,7 +26,6 @@ from olympia.amo.utils import resize_image, send_html_mail_jinja
 from olympia.addons.models import Addon
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
-from olympia.devhub import perf
 from olympia.files.helpers import copyfileobj
 from olympia.files.models import FileUpload, File, FileValidation
 from olympia.versions.models import Version

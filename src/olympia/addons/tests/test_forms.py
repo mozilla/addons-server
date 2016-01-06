@@ -312,7 +312,8 @@ class TestCategoryForm(TestCase):
 
 class TestThemeForm(TestCase):
 
-    @patch('olympia.addons.forms.save_theme')  # Don't save image, we use a fake one.
+    # Don't save image, we use a fake one.
+    @patch('olympia.addons.forms.save_theme')
     def test_long_author_or_display_username(self, mock_save_theme):
         # Bug 1181751.
         user = UserProfile.objects.create(email='foo@bar.com',

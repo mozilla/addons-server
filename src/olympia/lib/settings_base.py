@@ -5,7 +5,6 @@ import datetime
 import logging
 import os
 import socket
-from os.path import dirname
 
 import dj_database_url
 from django.utils.functional import lazy

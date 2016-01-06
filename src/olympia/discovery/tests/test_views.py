@@ -19,7 +19,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.applications.models import AppVersion
-from olympia.bandwagon.models import MonthlyPick, SyncedCollection
+from olympia.bandwagon.models import MonthlyPick
 from olympia.bandwagon.tests.test_models import TestRecommendations as Recs
 from olympia.discovery import views
 from olympia.discovery.forms import DiscoveryModuleForm

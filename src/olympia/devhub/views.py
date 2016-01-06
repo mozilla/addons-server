@@ -41,7 +41,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import escape_all, MenuItem, send_mail_jinja
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
-from olympia.devhub import perf
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import CheckCompatibilityForm
 from olympia.devhub.models import ActivityLog, BlogPost, RssKey, SubmitStep

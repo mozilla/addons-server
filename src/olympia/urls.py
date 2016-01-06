@@ -99,7 +99,8 @@ urlpatterns = patterns(
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Review spam.
-    url('^reviews/spam/$', 'olympia.reviews.views.spam', name='addons.reviews.spam'),
+    url('^reviews/spam/$', 'olympia.reviews.views.spam',
+        name='addons.reviews.spam'),
 
     # Redirect patterns.
     ('^bookmarks/?$',
