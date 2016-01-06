@@ -3,17 +3,17 @@ var purchases = {
         $("#contribute-why").popup("#contribute-more-info", {
             pointTo: "#contribute-more-info"
         });
-        $('.price-wrapper a').live('click', _pd(function(event) {
+        $('document').on('click', '.price-wrapper a', _pd(function(event) {
             /* Update the currency from the drop down. */
             var $w = $('.price-wrapper');
             $(this).hide().next().show();
-            $w.find('select').live('change', _pd(function(event) {
+            $('document').on('change', '.price-wrapper select', _pd(function(event) {
                 $w.find('.price').text(
                     $w.find('option:selected').attr('data-display')
                 );
             }));
         }));
-        $('button.paypal').live('click', function(event) {
+        $('document').on('click', 'button.paypal', function(event) {
             var el = this,
                 classes = 'ajax-loading loading-submit disabled',
                 url = $(el).closest('form').attr('action'),
