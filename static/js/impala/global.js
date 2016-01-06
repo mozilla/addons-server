@@ -181,7 +181,7 @@ function initBanners(delegate) {
 // AJAX form submit
 
 $(function() {
-  $('document').on('submit', 'form.ajax-submit, .ajax-submit form', function() {
+  $(document).on('submit', 'form.ajax-submit, .ajax-submit form', function() {
       var $form = $(this),
           $parent = $form.is('.ajax-submit') ? $form : $form.closest('.ajax-submit'),
           params = $form.serializeArray();
