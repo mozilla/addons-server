@@ -196,11 +196,3 @@ $(function() {
       return false;
   });
 });
-
-$(function() {
-    "use strict";
-
-    $(document).ready(function() {
-        stick.basic();
-    });
-});
