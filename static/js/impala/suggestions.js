@@ -195,7 +195,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         clearCurrentSuggestions(e);
     });
 
-    $results.delegate('li, p', 'hover', function() {
+    $results.delegate('li, p', 'mouseenter mouseleave', function() {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
