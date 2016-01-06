@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2014-05-08 06:27+0000\n"
 "Last-Translator: Sung-wook <arbi316@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,11 +140,7 @@ msgstr ""
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "이러한 부가 기능 형태는 일부 플랫폼에선 사용할 수 없습니다."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -177,7 +173,7 @@ msgid "Following"
 msgstr "팔로잉"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
 
@@ -795,7 +791,7 @@ msgstr "날짜"
 msgid "Other"
 msgstr "기타"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -809,94 +805,62 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "유효성 확인에 실패한 {2} 부가 기능 개발자에게 메일을 보냅니다."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "앱 설치를 허용할 수 없습니다."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "앱 정보 설정 파일이 변형됐습니다."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "앱 호스트에 연결할 수 없습니다."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "앱 정보 설정 파일을 분석할 수 없습니다."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "앱 정보 설정 파일이 잘못되었습니다."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "설치를 할 수 없습니다. 나중에 다시 시도해 주세요."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "앱 설치를 실패했습니다."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "현재 사용중인 시스템이 앱 설치를 지원하지 않습니다."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "동의 및 설치"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "{0}에 추가"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "다운로드"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "부가 기능이 기본으로 호환성을 갖출 수 있도록 업데이트 되지 않았습니다."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 이상 버전이 필요합니다."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla에서 이 버전이 현재 사용중인 Firefox 버전과 호환되지 않음을 표시하고 있습니다."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "{0}용 강제 설치"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "{0}용 강제 다운로드"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "현재 플랫폼에서 사용 불가"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "{0} {1}에서 사용 불가"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max}에서 작동"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "다른 버전 보기"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
 
@@ -968,57 +932,45 @@ msgstr "선호 목록에서 삭제"
 msgid "Stop following"
 msgstr "팔로우 중단"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "예"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "시험 시작..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "시험 결과 산출 대기중..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "내부 서버 오류 발생"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 
@@ -1038,47 +990,39 @@ msgstr "추천 부가 기능 검색중&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "추천 부가 기능 업데이트중&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "앱이 영수증을 확인했습니다."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "버전 기록서"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "심사자의 메모"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "평균 심사 횟수"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "심사 횟수"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "번역 결과를 불러오는 과정에서 오류 발생"
 
@@ -1116,10 +1060,6 @@ msgstr "비밀번호 보안 등급:"
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "최소 {0}글자를 더 입력해야 합니다."
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "전부"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1200,47 +1140,47 @@ msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 msgid "Internal server error"
 msgstr "내부 서버 오류"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "{0} {1}용으로 아직 업데이트 되지 않음"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "{0} 최신 버전 필요"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "미심사"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "시험용 <span>(자세히 알아보기)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "{0}용으로 사용 불가"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "시험용"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "새로운 버전의 {0}이 필요한 테마"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "{0}이 필요한 테마"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "설치 중..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "이 부가 기능은 Mozilla의 예비 심사를 통과했습니다."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "받기"
 

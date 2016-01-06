@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2015-12-03 18:43+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -112,18 +112,11 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "詳しいリリースノートを含める (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js:456
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください"
-" (これは次のステップで行えます)。"
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js:457
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "このアドオンが限られたユーザ向けの場合は、本審査の代わりに事前審査を選択してください。"
 
 #: static/js/common/upload-addon.js:470
@@ -131,36 +124,26 @@ msgid "Add-on submission checklist"
 msgstr "アドオン登録チェックリスト"
 
 #: static/js/common/upload-addon.js:471
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
 #: static/js/common/upload-addon.js:473
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) "
-"がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、審査が即座に却下されないようにしてください。"
+"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
+"ドフォームを使い、審査が即座に却下されないようにしてください。"
 
 #: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
 #: static/js/common/upload-addon.js:508
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "アドオンの審査手続きについてよくご存じない場合は、こちらをご覧ください。"
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "この種類のアドオンは OS によっては対応していない場合があります。"
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "申し訳ありませんが、対応プラットフォームがひとつも見つかりませんでした。"
 
@@ -193,7 +176,7 @@ msgid "Following"
 msgstr "フォロー中"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
 
@@ -301,13 +284,11 @@ msgstr "{0} 個の返品"
 msgid "{0} installs"
 msgstr "{0} 回のインストール"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "ダウンロード"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "日別ユーザ数"
 
@@ -364,13 +345,11 @@ msgstr "購読者数"
 msgid "Ratings"
 msgstr "評価数"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "販売数"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "インストール回数"
 
@@ -402,8 +381,7 @@ msgstr "検索サジェスト"
 msgid "Search Results"
 msgstr "検索結果"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "ホームページの宣伝枠"
 
@@ -431,8 +409,7 @@ msgstr "詳細ページ (下部)"
 msgid "Detail Page (Development Channel)"
 msgstr "詳細ページ (開発チャンネル)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "同時使用アドオン"
 
@@ -516,8 +493,7 @@ msgstr "一覧ページの人気順"
 msgid "Browse Listing Updated Sort"
 msgstr "一覧ページの更新日順"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "一覧ページの注目度順"
 
@@ -797,8 +773,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 日間の <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} から {2} までの <b>{0}</b>"
 
@@ -819,8 +794,7 @@ msgstr "日付"
 msgid "Other"
 msgstr "その他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
@@ -834,98 +808,63 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "検証をパスしなかった {2} 個のアドオンの作者へメールを送ります。"
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "アプリのインストールは許可されていません。"
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "アプリマニフェストが不正な形式です。"
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "アプリのサーバへ接続できませんでした。"
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "アプリマニフェストを解析できません。"
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "アプリマニフェストが不正な形式です。"
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "インストールに失敗しました。また後で試してください。"
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "アプリのインストールに失敗しました。"
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "このシステムはアプリのインストールに対応していません。"
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "同意してインストール"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "{0} へ追加"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "今すぐダウンロード"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "アドオンが自動的に互換性を保つバージョンへ更新されていません。"
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10 以上のバージョンを使ってください。"
 
-#: static/js/zamboni/buttons.js:145
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+#: static/js/zamboni/buttons.js:129
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "このバージョンは、お使いの Firefox のバージョンと互換性がありません。"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "{0} へ強制インストール"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "{0} へ強制ダウンロード"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "お使いの OS には対応していません"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "{0} {1} には対応していません"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "動作環境: {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "他のバージョンを見る"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザが必要です。"
 
 #: static/js/zamboni/collections.js:193
@@ -996,57 +935,45 @@ msgstr "お気に入りから削除"
 msgid "Stop following"
 msgstr "フォローをやめる"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "お使いのブラウザは video タグに対応していません"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個のファイル"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 件のユーザレビュー"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "詳細"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "例"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "テストを開始します..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "テスト結果が出るまで待機しています..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "内部サーバエラー"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "正しいメールアドレスを入力してください。"
 
@@ -1055,12 +982,8 @@ msgid "No results found."
 msgstr "結果が見つかりませんでした。"
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"申し訳ありませんが、あなたにおすすめのアドオンは見つかりませんでした。<br><a href=\"{0}\">アドオンのサイト</a> "
-"を訪れて、お好みのアドオンを見つけてください。"
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "申し訳ありませんが、あなたにおすすめのアドオンは見つかりませんでした。<br><a href=\"{0}\">アドオンのサイト</a> を訪れて、お好みのアドオンを見つけてください。"
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1070,47 +993,39 @@ msgstr "おすすめのアドオンを探しています..."
 msgid "Updating recommendations&hellip;"
 msgstr "おすすめのアドオンを更新しています..."
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "レシートがアプリによって検証されました。"
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "レシートがアプリによって検証されませんでした。"
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} が初めてこのアドオンを見ました。"
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "読み込み中..."
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "リリースノート"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "審査担当者へのメモ"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "リリースノートはありません"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "平均的なレビュー"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "レビュー数"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "翻訳読み込みエラー"
 
@@ -1133,9 +1048,7 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "残り <b>{0}</b> 文字です。"
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
 
 #: static/js/zamboni/l10n.js:45
@@ -1150,10 +1063,6 @@ msgstr "パスワードの強度:"
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "あと {0} 文字以上入力してください。"
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "すべて"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1187,8 +1096,7 @@ msgstr "これらのテストは実行されませんでした。"
 msgid "Tests"
 msgstr "テスト"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "エラー"
 
@@ -1235,48 +1143,47 @@ msgstr "検証作業を完了できなかったか、エラーを出力して完
 msgid "Internal server error"
 msgstr "内部サーバエラー"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "まだ {0} {1} には対応していません"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "{0} の新バージョンが必要です"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "未審査"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "実験的 <span>(詳細)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "{0} には対応していません"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "実験的"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "このテーマを使うには {0} の新バージョンが必要です"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "このテーマを使うには {0} が必要です"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "インストール中..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "このアドオンは Mozilla の事前審査を受けています。"
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "適用"
 

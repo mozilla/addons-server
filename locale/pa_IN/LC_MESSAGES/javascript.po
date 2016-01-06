@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,11 +147,7 @@ msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ 
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "ਜੇਕਰ ਤੁਸੀਂ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ ਤੋਂ ਜਾਣੂ ਨਹੀਂ ਹੋ, ਤੁਸੀਂ ਉਸ ਬਾਰੇ ਇੱਥੇ ਪੜ੍ਹ ਸਕਦੇ ਹੋ।"
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਲਈ ਕੁੱਝ ਪਲੇਟਫਾਰਮ ਮੌਜੂਦ ਨਹੀਂ।"
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "ਮੁਆਫ਼ੀ, ਕੋਈ ਸਹਾਇਕ ਪਲੇਟਫਾਰਮ ਨਹੀਂ ਲੱਭਿਆ।"
 
@@ -184,7 +180,7 @@ msgid "Following"
 msgstr "ਸਮਰਥਨ ਕਰ ਰਿਹਾ"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
 
@@ -802,7 +798,7 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
 
@@ -818,94 +814,62 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨ ਦੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 msgstr[1] "ਪ੍ਰਮਾਣਿਕਤਾ ਵਿੱਚ ਫ਼ੇਲ੍ਹ ਹੋਏ {2} ਐਡ-ਆਨਾਂ ਦੇ ਲੇਖਕਾਂ ਨੂੰ ਈਮੇਲ ਕਰੋ।"
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਆਗਿਆ ਨਹੀਂ"
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਕਾਰਾ ਹੈ।"
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "ਐਪ ਹੋਸਟ ਪਹੁੰਚ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਨਾਪਾਰਸਕਰਨਯੋਗ ਹੈ।"
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "ਐਪ ਮੈਨੀਫਿਸਟ ਗਲਤ ਹੈ।"
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "ਐਪ ਇੰਸਟਾਲੇਸ਼ਨ ਫ੍ਹੇਲ ਹੋਈ।"
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "ਇਹ ਸਿਸਟਮ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਵਿੱਚ ਸਹਾਇਕ ਨਹੀਂ।"
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "ਮੂਲ ਤੌਰ ਤੇ ਅਨੁਕੂਲਤਾ ਦਾ ਸਹਿਯੋਗ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ।"
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "ਤੁਹਾਨੂੰ ਫ਼ਾਇਰਫ਼ਾਕਸ 10.0 ਜਾਂ ਅੱਗੇ ਵਰਤੋਂ ਕਰਨ ਦੀ ਜਰੂਰਤ ਹੈ।"
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਵਰਜਨ ਤੇ ਤੁਹਾਡੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਰਜਨ ਨਾਲ ਅਨੁਕੂਲ ਨਾ ਹੋਣ ਦਾ ਨਿਸ਼ਾਨ ਲੱਗਾ ਦਿੱਤਾ।"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "{0} {1} ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
 
@@ -977,59 +941,47 @@ msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
 msgid "Stop following"
 msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
 msgstr[1] "{files} ਫਾਈਲਾਂ"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "ਉਦਾਹਰਨ"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "ਟੈਸਟ ਸੁਰੂ ਹੋ ਰਹੇ ਹਨ...."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "ਟੈਸਟ ਨਤੀਜਿਆਂ ਲਈ ਉਡੀਕ ਕਰ ਰਿਹਾ"
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
@@ -1049,47 +1001,39 @@ msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਲੱਭ ਰਿਹਾ&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "ਸਿਫ਼ਾਰਿਸ਼ਾਂ ਅੱਪਡੇਟ ਕਰ ਰਿਹਾ&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ।"
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "ਰਸ਼ੀਦ ਐਪ ਦੁਆਰਾ ਚੈੱਕ ਨਹੀਂ ਕੀਤੀ ਸੀ।"
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "ਔਸਤ ਸਮੀਖਿਆ"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "ਲ੍ਹੋਡ ਕਰਨ ਦੌਰਾਨ ਅਨੁਵਾਦ ਗਲਤੀ"
 
@@ -1129,10 +1073,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
 msgstr[1] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "ਸਾਰੇ"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1216,47 +1156,47 @@ msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਮੁਕੰਮਲ ਨਹੀ
 msgid "Internal server error"
 msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "ਨਾ-ਸਮੀਖਿਆ"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "ਪ੍ਰਯੋਗਆਤਮਕ <span>(ਹੋਰ ਜਾਣੋ)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "{0} ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "ਤਜਰਬੇ"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੇ ਨਵੇਂ ਵਰਜਨ ਦੀ ਲੋੜ"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੀ ਲੋੜ"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕੀਤੀ।"
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
 

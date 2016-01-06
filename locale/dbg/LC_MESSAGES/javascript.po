@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,11 +169,7 @@ msgstr ""
 "Īƒ ẏǿŭ ȧřḗ ŭƞƒȧḿīŀīȧř ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş řḗṽīḗẇ ƥřǿƈḗşş, ẏǿŭ ƈȧƞ řḗȧḓ ȧƀǿŭŧ īŧ "
 "ħḗřḗ."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Şǿḿḗ ƥŀȧŧƒǿřḿş ȧřḗ ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "Şǿřřẏ, ƞǿ şŭƥƥǿřŧḗḓ ƥŀȧŧƒǿřḿ ħȧş ƀḗḗƞ ƒǿŭƞḓ."
 
@@ -208,7 +204,7 @@ msgid "Following"
 msgstr "Ƒǿŀŀǿẇīƞɠ"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17
+#: static/js/impala/listing.js:11
 #: static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
@@ -862,8 +858,8 @@ msgid "Other"
 msgstr "Ǿŧħḗř"
 
 #: static/js/zamboni/admin_validation.js:24
-#: static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/devhub.js:1245
+#: static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -879,97 +875,65 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Ḗḿȧīŀ ȧŭŧħǿř ǿƒ {2} ȧḓḓ-ǿƞ ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 msgstr[1] "Ḗḿȧīŀ ȧŭŧħǿřş ǿƒ {2} ȧḓḓ-ǿƞş ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ ƞǿŧ ȧŀŀǿẇḗḓ."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ḿȧŀƒǿřḿḗḓ."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Ȧƥƥ ħǿşŧ ƈǿŭŀḓ ƞǿŧ ƀḗ řḗȧƈħḗḓ."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş ŭƞƥȧřşȧƀŀḗ."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Ȧƥƥ ḿȧƞīƒḗşŧ īş īƞṽȧŀīḓ."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Īƞşŧȧŀŀ ƒȧīŀḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Ȧƥƥ īƞşŧȧŀŀȧŧīǿƞ ƒȧīŀḗḓ."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Ŧħīş şẏşŧḗḿ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ īƞşŧȧŀŀīƞɠ ȧƥƥş."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Ȧƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Ȧḓḓ ŧǿ {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Īƞşŧȧŀŀ ƒǿř {0} ȧƞẏẇȧẏ"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Ḓǿẇƞŀǿȧḓ ƒǿř {0} ȧƞẏẇȧẏ"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295
-#: static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278
+#: static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
 
-#: static/js/zamboni/buttons.js:551
+#: static/js/zamboni/buttons.js:507
 #: static/js/zamboni/mobile/buttons.js:41
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
@@ -1047,60 +1011,47 @@ msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 msgid "Stop following"
 msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
 msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
 msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "Ḗẋȧḿƥŀḗ"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Şŧȧřŧīƞɠ ŧḗşŧş..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Ẇȧīŧīƞɠ ƒǿř ŧḗşŧ řḗşŭŀŧş..."
-
-#: static/js/zamboni/devhub.js:1287
-#: static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Īƞŧḗřƞȧŀ Şḗřṽḗř Ḗřřǿř"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 
@@ -1124,47 +1075,39 @@ msgstr "Ƒīƞḓīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ŭƥḓȧŧīƞɠ řḗƈǿḿḿḗƞḓȧŧīǿƞş&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
@@ -1210,11 +1153,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
 msgstr[1] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
-
-#: static/js/zamboni/perf.js:29
-#: static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Ȧŀŀ"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1302,48 +1240,48 @@ msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ �
 msgid "Internal server error"
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "Ƞǿŧ Ŭƥḓȧŧḗḓ ƒǿř {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "Řḗɋŭīřḗş Ƞḗẇḗř Ṽḗřşīǿƞ ǿƒ {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "Ŭƞřḗṽīḗẇḗḓ"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ <span>(Ŀḗȧřƞ Ḿǿřḗ)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "Ƞǿŧ Ȧṽȧīŀȧƀŀḗ ƒǿř {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ Ƞḗẇḗř Ṽḗřşīǿƞ ǿƒ {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "Īƞşŧȧŀŀīƞɠ..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "Ķḗḗƥ īŧ"
 

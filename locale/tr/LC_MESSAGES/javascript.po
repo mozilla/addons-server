@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2016-01-05 12:35+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,8 +87,7 @@ msgstr "{0} doğrulaması tamamlandı"
 
 #: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
-"Eklenti doğrulamanız zaman aşımına uğradı; eklenti özel olarak incelenecek."
+msgstr "Eklenti doğrulamanız zaman aşımına uğradı; eklenti özel olarak incelenecek."
 
 #: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
@@ -113,67 +112,38 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
 #: static/js/common/upload-addon.js:456
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması "
-"gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını "
-"yazın. (Bu, sonraki adımda da yapılabilir.)"
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
 #: static/js/common/upload-addon.js:457
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön "
-"İnceleme'yi seçin."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön İnceleme'yi seçin."
 
 #: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Eklenti gönderimi kontrol listesi"
 
 #: static/js/common/upload-addon.js:471
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece "
-"inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş "
-"olursunuz:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş olursunuz:"
 
 #: static/js/common/upload-addon.js:473
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen "
-"kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak "
-"bulunması gerekir. Başvurunuzun geri çevrilmesini önlemek adına, kaynak kodu"
-" gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
+"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 #: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar "
-"bulundu:"
+msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
 
 #: static/js/common/upload-addon.js:508
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi "
-"alabilirsiniz."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi alabilirsiniz."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Bu eklenti türü bazı platformlarda kullanılamaz."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "Üzgünüz, desteklenen platform bulunamadı."
 
@@ -206,7 +176,7 @@ msgid "Following"
 msgstr "Takip ediliyor"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Bu tema sizin {0} sürümünüzle uyumlu değil"
 
@@ -314,13 +284,11 @@ msgstr "{0} iade"
 msgid "{0} installs"
 msgstr "{0} kurulum"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "İndirme"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Günlük kullanıcı"
 
@@ -377,13 +345,11 @@ msgstr "Abone"
 msgid "Ratings"
 msgstr "Puanlama"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Satış"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Kurulum"
 
@@ -415,8 +381,7 @@ msgstr "Arama Önerileri"
 msgid "Search Results"
 msgstr "Arama Sonuçları"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Ana sayfa tanıtımı"
 
@@ -444,8 +409,7 @@ msgstr "Ayrıntı sayfası (alt)"
 msgid "Detail Page (Development Channel)"
 msgstr "Ayrıntı sayfası (geliştirme kanalı)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Sıklıkla birlikte kullanılanlar"
 
@@ -529,8 +493,7 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -810,8 +773,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "son {1} günde <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} - {2} arasında <b>{0}</b>"
 
@@ -832,118 +794,78 @@ msgstr "Tarih"
 msgid "Other"
 msgstr "Diğer"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "Önce bir uygulama seçin"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere "
-"e-posta gönder."
+msgstr[0] "{0} eklentinin maksimum sürümünü {1} olarak ayarla ve geliştiricilere e-posta gönder."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Doğrulamayı geçemeyen {2} eklentisinin yazarına e-posta gönder."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Eklenti kurulumuna izin verilmez."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Uygulama bildirimi bozuk biçimde."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Eklenti ana sunucusuna ulaşılamıyor."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Uygulama bildirimi okunamıyor."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Uygulama bildirimi geçersiz."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Yükleme başarısız oldu. Lütfen daha sonra tekrar deneyin."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Uygulama yüklemesi başarısız oldu."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Bu sistem uygulama yüklemeyi desteklemiyor."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Kabul et ve kur"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "{0}'a Ekle"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Şimdi İndir"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 ve üstü bir sürüm kullanmanız gerek."
 
-#: static/js/zamboni/buttons.js:145
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+#: static/js/zamboni/buttons.js:129
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla bu sürümü Firefox sürümünüz ile uyumsuz olarak işaretledi."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Yine de {0} için yükle"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Yine de {0} için indir"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Sizin platformunuz için mevcut değil"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "{0} {1} için mevcut değil"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ile çalışır"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Diğer sürümleri görüntüle"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox)"
-" bir tarayıcıya ihtiyacınız var."
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1013,57 +935,45 @@ msgstr "Favorilerimden kaldır"
 msgid "Stop following"
 msgstr "İzlemeyi durdur"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Tarayıcınız video etiketini desteklemiyor"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Değişiklikler kaydedildi"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Yeni geliştiricinin e-posta adresini girin"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "Dosyanız yüklenirken bir hata oluştu."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} dosya"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} kullanıcı incelemesi"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "Daha fazla bilgi"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "Örnek"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "Resim değişiklikleri işleniyor"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Testler başlatılıyor..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Test sonuçları bekleniyor..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "İç sunucu hatası"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "Geçerli bir e-posta adresi olmalı."
 
@@ -1072,12 +982,8 @@ msgid "No results found."
 msgstr "Sonuç bulunamadı."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Üzgünüz, sizin için hiç tavsiye bulamadık.<br>Size uygun eklentileri "
-"keşfetmek için lütfen <a href=\"{0}\">eklenti sitemizi</a> ziyaret edin."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Üzgünüz, sizin için hiç tavsiye bulamadık.<br>Size uygun eklentileri keşfetmek için lütfen <a href=\"{0}\">eklenti sitemizi</a> ziyaret edin."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1087,47 +993,39 @@ msgstr "Tavsiyeler aranıyor&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Tavsiyeler güncelleniyor&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name} bu sayfayı ilk olarak inceliyordu."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "Alındı bilgisi uygulama tarafından denetlendi."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "Alındı bilgisi uygulama tarafından denetlenmedi."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "İlk {name} bu eklentiye bakıyordu."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Yükleniyor&hellip;"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "Sürüm Notları"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Yorumcular İçin Notlar"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "Hiçbir sürüm notu bulunamadı"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Ortalama Görüşler"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Görüş Sayısı"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "Çeviri yüklemede hata"
 
@@ -1150,12 +1048,8 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> karakter kaldı."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar "
-"deneyin."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha sonra tekrar deneyin."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1169,10 +1063,6 @@ msgstr "Parola gücü:"
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "En az {0} karakter kaldı."
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Tümü"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1206,8 +1096,7 @@ msgstr "Bu testler çalıştırılmadı."
 msgid "Tests"
 msgstr "Testler"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Hata"
 
@@ -1254,48 +1143,47 @@ msgstr "Doğrulama görevi tamamlanmadı veya hatalı olarak tamamlandı"
 msgid "Internal server error"
 msgstr "İç sunucu hatası"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "{0} {1} için güncellenmemiş"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "{0}'un daha yeni sürümünü gerektiriyor"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "İncelenmemiş"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Deneysel <span>(Daha fazla bilgi)</ span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "{0} için mevcut değil"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "Deneysel"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "Temalar Daha Yeni {0} Sürümü Gerektiriyor"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "Temalar {0} Gerektiriyor"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "Yükleniyor..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Bu eklenti, Mozilla tarafından ön incelemeden geçirilmiştir."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "Kalsın"
 

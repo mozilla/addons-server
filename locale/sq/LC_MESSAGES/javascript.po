@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2015-12-25 20:18+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -116,72 +116,42 @@ msgstr "Parashtrimi juaj do të nënshkruhet vetvetiu."
 
 #: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin "
-"pasues)."
+msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."
 
 #: static/js/common/upload-addon.js:456
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet "
-"plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet "
-"për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
+"Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
 
 #: static/js/common/upload-addon.js:457
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Nëse shtesa juaj është menduar për një publik të kufizuar, në vend të "
-"Shqyrtimit të Plotë do të duhej të zgjidhnit Shqyrtim Paraprak."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Nëse shtesa juaj është menduar për një publik të kufizuar, në vend të Shqyrtimit të Plotë do të duhej të zgjidhnit Shqyrtim Paraprak."
 
 #: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Listë kontrolli parashtrimi shtese"
 
 #: static/js/common/upload-addon.js:471
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni "
-"parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë "
-"procesit të shqyrtimit:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë procesit të shqyrtimit:"
 
 #: static/js/common/upload-addon.js:473
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur "
-"njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e"
-" tyre, për shqyrtim. Mos harroni të përdorni fushën e ngarkimit të kodit "
-"burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
+"Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e tyre, për shqyrtim. Mos harroni të përdorni "
+"fushën e ngarkimit të kodit burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
 
 #: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë "
-"të parashtrimit:"
+msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
 
 #: static/js/common/upload-addon.js:508
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni "
-"këtu."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Nëse procesi i shqyrtimit është i panjohur për ju, rreth tij mund të lexoni këtu."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Kjo shtesë nuk është e passhme për disa platforma."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
 
@@ -214,7 +184,7 @@ msgid "Following"
 msgstr "Po e Ndiqni"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
 
@@ -322,13 +292,11 @@ msgstr "{0} rimbursime"
 msgid "{0} installs"
 msgstr "{0} instalime"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Shkarkime"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Përdorues të Përditshëm"
 
@@ -385,13 +353,11 @@ msgstr "Pajtimtarë"
 msgid "Ratings"
 msgstr "Vlerësime"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Shitje"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Instalime"
 
@@ -423,8 +389,7 @@ msgstr "Këshillime Kërkimi"
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr ""
 
@@ -452,8 +417,7 @@ msgstr "Faqe Hollësish (fundi)"
 msgid "Detail Page (Development Channel)"
 msgstr "Faqe Hollësish (Kanali i Zhvillimeve)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Përdorur Shpesh Me"
 
@@ -537,8 +501,7 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -818,8 +781,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> në {1} ditët e fundit"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> nga {1} te {2}"
 
@@ -840,124 +802,80 @@ msgstr "Datë"
 msgid "Other"
 msgstr "Tjetër"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Caktoji {0} shtese versionin maksimal {1} dhe dërgoji email autorit."
-msgstr[1] ""
-"Caktoji {0} shtesave versionin maksimal {1} dhe dërgoji email autorëve."
+msgstr[0] "Caktoji {0} shtese versionin maksimal {1} dhe dërgoji email autorit."
+msgstr[1] "Caktoji {0} shtesave versionin maksimal {1} dhe dërgoji email autorëve."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Dërgojini email autorit të {2} shtese që nuk e kaloi vleftësimin."
-msgstr[1] ""
-"Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
-
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Instalimi i aplikacionit nuk u lejua."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Manifesti i aplikacionit është i keqformuar."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Nuk u kap dot streha e aplikacionit."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Manifesti i aplikacionit është i papërtypshëm."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Manifesti i aplikacionit është i pavlefshëm."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Instalimi dështoi. Ju lutemi, riprovoni më vonë."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Instalimi i aplikacionit dështoi."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Ky sistem nuk mbulon instalim aplikacionesh."
+msgstr[1] "Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Pranoje dhe Instaloje"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Shtoje te {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Shkarkojeni Tani"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-"Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
+msgstr "Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Lypset të përdorni Firefox 10.0 ose më të ri."
 
-#: static/js/zamboni/buttons.js:145
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj"
-" të Firefox-it."
+#: static/js/zamboni/buttons.js:129
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj të Firefox-it."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Instaloje për {0} sido qoftë"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Shkarkoje për {0} sido qoftë"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Jo i passhëm për {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Funksionon me {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Shihni versione të tjera"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues"
-" me bazë Mozilla (si Firefox-i)."
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1027,59 +945,47 @@ msgstr "Hiqe prej të parapëlqyerve"
 msgid "Stop following"
 msgstr "Resht së ndjekuri"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Shfletuesi juaj nuk e mbulon etiketën video"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Jepni adresën email të autorit të ri"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "Pati një gabim gjatë ngarkimit të kartelës suaj."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} kartelë"
 msgstr[1] "{files} kartela"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} shqyrtim përdoruesi"
 msgstr[1] "{reviews} shqyrtime përdoruesi"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "Mësoni më tepër"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "Shembull"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Po fillohen provat..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Po pritet për përfundimet e provave..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Gabim i Brendshëm Shërbyesi"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "Duhet të jetë një adresë e-mail e vlefshme."
 
@@ -1088,13 +994,8 @@ msgid "No results found."
 msgstr "Nuk u gjetën përfundime."
 
 #: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Na ndjeni, nuk gjetëm ndonjë këshillim për ju.<br>Ju lutemi, vizitoni <a "
-"href=\"{0}\">site-in e shtesave</a> që të gjeni një shtesë që ju vjen për "
-"shtat."
+msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
+msgstr "Na ndjeni, nuk gjetëm ndonjë këshillim për ju.<br>Ju lutemi, vizitoni <a href=\"{0}\">site-in e shtesave</a> që të gjeni një shtesë që ju vjen për shtat."
 
 #: static/js/zamboni/discovery_pane.js:247
 msgid "Finding recommendations&hellip;"
@@ -1104,47 +1005,39 @@ msgstr "Po gjenden këshillime&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Po përditësohen këshillimet&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "Dëftesa u kontrollua nga aplikacioni."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "Dëftesa nuk qe kontrolluar nga aplikacioni."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Po ngarkohet&hellip;"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "Shënime Versioni"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Shënime për Shqyrtuesit"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "S'u gjetën shënime versioni"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Shqyrtime Mesatarisht"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Numër Shqyrtimesh"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "Gabim gjatë ngarkimit të përkthimit"
 
@@ -1168,12 +1061,8 @@ msgstr[0] "Edhe <b>{0}</b> shenjë."
 msgstr[1] "Edhe <b>{0}</b> shenja."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e "
-"\"site\"-it web. Ju lutemi, riprovoni pas pak."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1188,10 +1077,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Të paktën edhe <b>{0}</b> shenjë."
 msgstr[1] "Të paktën edhe <b>{0}</b> shenja."
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Krejt"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1225,8 +1110,7 @@ msgstr "Këto prova nuk u xhiruan."
 msgid "Tests"
 msgstr "Prova"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Gabim"
 
@@ -1276,48 +1160,47 @@ msgstr "Akti i vleftësimit nuk u plotësua dot ose u plotësua me gabime"
 msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "Nuk Është Përditësuar për {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "Lyp Version Më të Ri të {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "Të pashqyrtuara"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperimentale <span>(Mësoni Më Tepër)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "Jo i Passhëm për {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "Eksperimentale"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "Temat Lypin Version Më të Ri të {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "Temat Lypin {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "Po instalohet..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Kjo shtesë është shqyrtuar paraprakisht nga Mozilla."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "Mbaje"
 
