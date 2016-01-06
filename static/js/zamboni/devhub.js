@@ -92,7 +92,7 @@ $(document).ready(function() {
                     var errors = $.parseJSON(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
-                    $('#upload-file-finish').attr('disabled', false);
+                    $('#upload-file-finish').prop('disabled', false);
                     $modalFile.setPos();
                 }
             });
@@ -316,7 +316,7 @@ $(document).ready(function() {
     if (z.noEdit) {
         $primary = $(".primary");
         $els = $primary.find("input, select, textarea, button, a.button");
-        $els.attr("disabled", "disabled");
+        $els.prop("disabled", true);
         $primary.find("span.handle, a.remove").hide();
         $(".primary h3 a.button").remove();
         $(document).ready(function() {
@@ -355,7 +355,7 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         };
-        $('.edit-media-button button').attr('disabled', false);
+        $('.edit-media-button button').prop('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
@@ -518,12 +518,12 @@ function initUploadPreview() {
         $('.edit-addon-media-screenshot-error').hide();
 
         // Don't let users submit a form.
-        $('.edit-media-button button').attr('disabled', true);
+        $('.edit-media-button button').prop('disabled', true);
     }
 
     function upload_finished_all(e) {
         // They can submit again
-        $('.edit-media-button button').attr('disabled', false);
+        $('.edit-media-button button').prop('disabled', false);
     }
 
     function upload_start(e, file) {
@@ -644,12 +644,12 @@ function initUploadIcon() {
 
             $('.icon_preview img', $f).addClass('loading');
 
-            $('.edit-media-button button').attr('disabled', true);
+            $('.edit-media-button button').prop('disabled', true);
         },
 
         upload_finished = function(e) {
             $('.icon_preview img', $f).removeClass('loading');
-            $('.edit-media-button button').attr('disabled', false);
+            $('.edit-media-button button').prop('disabled', false);
         };
 
     $f.delegate('#id_icon_upload', "upload_success", upload_success)
@@ -723,7 +723,7 @@ function initSubmit() {
         });
     $('#id_slug').each(slugify);
     reorderPreviews();
-    $('.invisible-upload [disabled]').attr("disabled", false);
+    $('.invisible-upload [disabled]').prop("disabled", false);
     $('.invisible-upload .disabled').removeClass("disabled");
 }
 
@@ -752,7 +752,7 @@ function initEditVersions() {
     $("#upload-file-finish").click(function (e) {
         e.preventDefault();
         $tgt = $(this);
-        if ($tgt.attr("disabled")) return;
+        if ($tgt.prop("disabled")) return;
         $.ajax({
             url: $("#upload-file").attr("action"),
             type: 'post',
@@ -874,7 +874,7 @@ function initCatFields(delegate) {
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
-            $("input:not(:checked)", $main).attr("disabled", disabled);
+            $("input:not(:checked)", $main).prop("disabled", disabled);
             return checkedLength;
         };
         var checkMain = function() {
@@ -882,7 +882,7 @@ function initCatFields(delegate) {
             $("input", $misc).prop("checked", checkedLength <= 0);
         };
         var checkOther = function() {
-            $("input", $main).prop("checked", false).attr("disabled", false);
+            $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
         $('input', $main).live('change', checkMain);
