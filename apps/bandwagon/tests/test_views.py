@@ -700,14 +700,6 @@ class TestCRUD(amo.tests.TestCase):
         assert not doc('.tab-nav li a[href$=users-edit]').length
         assert not doc('#users-edit').length
 
-        synchronized = Collection.objects.create(
-            name='synchronized', author=user, type=amo.COLLECTION_SYNCHRONIZED)
-        synchronized_url = synchronized.edit_url()
-        response = self.client.get(synchronized_url)
-        doc = pq(response.content)
-        assert not doc('.tab-nav li a[href$=users-edit]').length
-        assert not doc('#users-edit').length
-
     def test_edit_addons_get(self):
         self.create_collection()
         url = reverse('collections.edit_addons', args=['admin', self.slug])

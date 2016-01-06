@@ -1707,7 +1707,6 @@ def docs(request, doc_name=None):
             'policies/submission': '/AMO/Policy/Submission',
             'policies/reviews': '/AMO/Policy/Reviews',
             'policies/maintenance': '/AMO/Policy/Maintenance',
-            'policies/recommended': '/AMO/Policy/Featured',
             'policies/contact': '/AMO/Policy/Contact',
         })
     if waffle.switch_is_active('mdn-agreement-docs'):
@@ -1721,7 +1720,6 @@ def docs(request, doc_name=None):
                 'policies/submission',
                 'policies/reviews',
                 'policies/maintenance',
-                'policies/recommended',
                 'policies/agreement',
                 'policies/contact')
 

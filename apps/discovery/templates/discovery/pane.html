@@ -9,7 +9,6 @@
 data-version="{{ version }}"
 data-platform="{{ platform }}"
 data-services-url="{{ settings.SERVICES_URL }}"
-data-recs-url="{{ services_url('discovery.recs', version, platform, compat_mode) }}"
 data-account-url="{{ services_url('discovery.pane.account') }}"
 data-featured-url="{{ services_url('discovery.pane.more_addons', 'featured', version, platform, compat_mode) }}"
 data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-coming', version, platform, compat_mode) }}"
@@ -56,29 +55,6 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
       </div>
     </section>
     {% endif %}
-
-    <section id="recs">
-      <div class="header">
-        <h2>
-          {{ _('Recommended for You') }}
-          <a href="{{ url('pages.faq')|
-                      urlparams('personal-recommendations') }}">
-            {{ _('What is this?') }}</a>
-        </h2>
-      </div>
-      <div class="gallery-wrap">
-        <ul id="nav-recs">
-          <li class="nav-prev"><a href="#" class="prev">{{ _('Previous') }}</a></li>
-          <li class="nav-next"><a href="#" class="next">{{ _('Next') }}</a></li>
-        </ul>
-        <div class="gallery-addons">
-          <div class="gallery">
-            <ul class="slider addons"></ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
 
   <section id="sub">
     <div id="watch-video">

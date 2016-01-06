@@ -1,7 +1,7 @@
 from datetime import date
 import itertools
 
-from django.db import connection, transaction
+from django.db import connection
 from django.db.models import Count
 
 import commonware.log
@@ -99,29 +99,6 @@ def collections_add_slugs():
                 c.slug = 'collection'
             c.save(force_update=True)
             task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
-
-
-@cronjobs.register
-def drop_collection_recs():
-    _drop_collection_recs.delay()
-
-
-@task(rate_limit='1/m')
-@transaction.atomic
-def _drop_collection_recs(**kw):
-    task_log.info("[300@%s] Dropping recommended collections." % (
-                  _drop_collection_recs.rate_limit))
-    # Get the first 300 collections and delete them in smaller chunks.
-    types = amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_RECOMMENDED
-    ids = (Collection.objects.filter(type__in=types, author__isnull=True)
-           .values_list('id', flat=True))[:300]
-
-    for chunk in chunked(ids, 100):
-        Collection.objects.filter(id__in=chunk).delete()
-
-    # Go again if we found something to delete.
-    if ids:
-        _drop_collection_recs.delay()
 
 
 @cronjobs.register

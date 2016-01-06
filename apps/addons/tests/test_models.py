@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import itertools
 import json
 import os
 import time
@@ -24,7 +23,7 @@ from amo import set_user
 from amo.helpers import absolutify, user_media_url
 from amo.signals import _connect, _disconnect
 from addons.models import (Addon, AddonCategory, AddonDependency,
-                           AddonDeviceType, AddonRecommendation,
+                           AddonDeviceType,
                            AddonUser, AppSupport, BlacklistedGuid,
                            BlacklistedSlug, Category, Charity, CompatOverride,
                            CompatOverrideRange, FrozenAddon,
@@ -1540,8 +1539,6 @@ class TestAddonDelete(amo.tests.TestCase):
             addon=addon, dependent_addon=addon)
         AddonDeviceType.objects.create(
             addon=addon, device_type=DEVICE_TYPES.keys()[0])
-        AddonRecommendation.objects.create(
-            addon=addon, other_addon=addon, score=0)
         AddonUser.objects.create(
             addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
@@ -1917,18 +1914,6 @@ class TestPreviewModel(amo.tests.TestCase):
     def test_delete_thumbnail(self):
         preview = Preview.objects.get(pk=24)
         self.check_delete(preview, preview.thumbnail_path)
-
-
-class TestAddonRecommendations(amo.tests.TestCase):
-    fixtures = ['base/addon-recs']
-
-    def test_scores(self):
-        ids = [5299, 1843, 2464, 7661, 5369]
-        scores = AddonRecommendation.scores(ids)
-        q = AddonRecommendation.objects.filter(addon__in=ids)
-        for addon, recs in itertools.groupby(q, lambda x: x.addon_id):
-            for rec in recs:
-                eq_(scores[addon][rec.other_addon_id], rec.score)
 
 
 class TestAddonDependencies(amo.tests.TestCase):

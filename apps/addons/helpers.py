@@ -15,7 +15,7 @@ register.function(buttons.mobile_install_button)
 @register.filter
 @jinja2.contextfilter
 def statusflags(context, addon):
-    """unreviewed/recommended status flags for use as CSS classes"""
+    """unreviewed/featuredaddon status flags for use as CSS classes"""
     app = context['APP']
     lang = context['LANG']
     if addon.is_unreviewed():
@@ -29,7 +29,7 @@ def statusflags(context, addon):
 @register.filter
 @jinja2.contextfilter
 def flag(context, addon):
-    """unreviewed/recommended flag heading."""
+    """unreviewed/featuredaddon flag heading."""
     status = statusflags(context, addon)
     msg = {'unreviewed': _('Not Reviewed'), 'featuredaddon': _('Featured')}
     if status:
