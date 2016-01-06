@@ -1,69 +1,13 @@
 /*
  * jqModal - Minimalist Modaling with jQuery
- *   (http://dev.iceburg.net/jquery/jqModal/)
  *
- * Copyright (c) 2007,2008 Brice Burgess <bhb@iceburg.net>
+ * Copyright (c) 2007-2015 Brice Burgess @IceburgBrice
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
- * 
- * $Version: 03/01/2009 +r14
+ *
+ * $Version: 1.4.1 (2015.09.07 +r26)
+ * Requires: jQuery 1.2.3+
  */
-(function($) {
-$.fn.jqm=function(o){
-var p={
-overlay: 50,
-overlayClass: 'jqmOverlay',
-closeClass: 'jqmClose',
-trigger: '.jqModal',
-ajax: F,
-ajaxText: '',
-target: F,
-modal: F,
-toTop: F,
-onShow: F,
-onHide: F,
-onLoad: F
-};
-return this.each(function(){if(this._jqm)return H[this._jqm].c=$.extend({},H[this._jqm].c,o);s++;this._jqm=s;
-H[s]={c:$.extend(p,$.jqm.params,o),a:F,w:$(this).addClass('jqmID'+s),s:s};
-if(p.trigger)$(this).jqmAddTrigger(p.trigger);
-});};
 
-$.fn.jqmAddClose=function(e){return hs(this,e,'jqmHide');};
-$.fn.jqmAddTrigger=function(e){return hs(this,e,'jqmShow');};
-$.fn.jqmShow=function(t){return this.each(function(){t=t||window.event;$.jqm.open(this._jqm,t);});};
-$.fn.jqmHide=function(t){return this.each(function(){t=t||window.event;$.jqm.close(this._jqm,t)});};
-
-$.jqm = {
-hash:{},
-open:function(s,t){var h=H[s],c=h.c,cc='.'+c.closeClass,z=(parseInt(h.w.css('z-index'))),z=(z>0)?z:3000,o=$('<div></div>').css({height:'100%',width:'100%',position:'fixed',left:0,top:0,'z-index':z-1,opacity:c.overlay/100});if(h.a)return F;h.t=t;h.a=true;h.w.css('z-index',z);
- if(c.modal) {if(!A[0])L('bind');A.push(s);}
- else if(c.overlay > 0)h.w.jqmAddClose(o);
- else o=F;
-
- h.o=(o)?o.addClass(c.overlayClass).prependTo('body'):F;
- if(ie6){$('html,body').css({height:'100%',width:'100%'});if(o){o=o.css({position:'absolute'})[0];for(var y in {Top:1,Left:1})o.style.setExpression(y.toLowerCase(),"(_=(document.documentElement.scroll"+y+" || document.body.scroll"+y+"))+'px'");}}
-
- if(c.ajax) {var r=c.target||h.w,u=c.ajax,r=(typeof r == 'string')?$(r,h.w):$(r),u=(u.substr(0,1) == '@')?$(t).attr(u.substring(1)):u;
-  r.html(c.ajaxText).load(u,function(){if(c.onLoad)c.onLoad.call(this,h);if(cc)h.w.jqmAddClose($(cc,h.w));e(h);});}
- else if(cc)h.w.jqmAddClose($(cc,h.w));
-
- if(c.toTop&&h.o)h.w.before('<span id="jqmP'+h.w[0]._jqm+'"></span>').insertAfter(h.o);	
- (c.onShow)?c.onShow(h):h.w.show();e(h);return F;
-},
-close:function(s){var h=H[s];if(!h.a)return F;h.a=F;
- if(A[0]){A.pop();if(!A[0])L('unbind');}
- if(h.c.toTop&&h.o)$('#jqmP'+h.w[0]._jqm).after(h.w).remove();
- if(h.c.onHide)h.c.onHide(h);else{h.w.hide();if(h.o)h.o.remove();} return F;
-},
-params:{}};
-var s=0,H=$.jqm.hash,A=[],ie6=$.browser.msie&&($.browser.version == "6.0"),F=false,
-i=$('<iframe src="javascript:false;document.write(\'\');" class="jqm"></iframe>').css({opacity:0}),
-e=function(h){if(ie6)if(h.o)h.o.html('<p style="width:100%;height:100%"/>').prepend(i);else if(!$('iframe.jqm',h.w)[0])h.w.prepend(i); f(h);},
-f=function(h){try{$(':input:visible',h.w)[0].focus();}catch(_){}},
-L=function(t){$()[t]("keypress",m)[t]("keydown",m)[t]("mousedown",m);},
-m=function(e){var h=H[A[A.length-1]],r=(!$(e.target).parents('.jqmID'+h.s)[0]);if(r)f(h);return !r;},
-hs=function(w,t,c){return w.each(function(){var s=this._jqm;$(t).each(function() {
- if(!this[c]){this[c]=[];$(this).click(function(){for(var i in {jqmShow:1,jqmHide:1})for(var s in this[i])if(H[this[i][s]])H[this[i][s]].w[i](this);return F;});}this[c].push(s);});});};
-})(jQuery);
+!function(n){"object"==typeof module&&"object"==typeof module.exports?module.exports=n(require("jquery")):n(jQuery)}(function(n){n.fn.jqm=function(o){return this.each(function(){var t=n(this).data("jqm")||n.extend({ID:m++},n.jqm.params),e=n.extend(t,o);n(this).data("jqm",e).addClass("jqm-init")[0]._jqmID=e.ID,n(this).jqmAddTrigger(e.trigger)})},n.fn.jqmAddTrigger=function(t){return t?this.each(function(){a(n(this),"jqmShow",t)||o("jqmAddTrigger must be called on initialized modals")}):void 0},n.fn.jqmAddClose=function(t){return t?this.each(function(){a(n(this),"jqmHide",t)||o("jqmAddClose must be called on initialized modals")}):void 0},n.fn.jqmShow=function(o){return this.each(function(){this._jqmShown||t(n(this),o)})},n.fn.jqmHide=function(o){return this.each(function(){this._jqmShown&&e(n(this),o)})};var o=function(n){window.console&&window.console.error&&window.console.error(n)},t=function(o,t){t=t||window.event;var e=o.data("jqm"),i=parseInt(o.css("z-index"))||3e3,s=n("<div></div>").addClass(e.overlayClass).css({height:"100%",width:"100%",position:"fixed",left:0,top:0,"z-index":i-1,opacity:e.overlay/100}),a={w:o,c:e,o:s,t:t};if(o.css("z-index",i),e.ajax){var d=e.target||o,c=e.ajax;d="string"==typeof d?n(d,o):n(d),"@"===c.substr(0,1)&&(c=n(t).attr(c.substring(1))),d.load(c,function(){e.onLoad&&e.onLoad.call(this,a)}),e.ajaxText&&d.html(e.ajaxText),r(a)}else r(a)},e=function(n,o){o=o||window.event;var t=n.data("jqm"),e={w:n,c:t,o:n.data("jqmv"),t:o};d(e)},i=function(o){return o.c.overlay>0&&o.o.prependTo("body"),o.w.show(),n.jqm.focusFunc(o.w,!0),!0},s=function(n){return n.w.hide()&&n.o&&n.o.remove(),!0},a=function(o,t,e){var i=o.data("jqm");return i?n(e).each(function(){this[t]=this[t]||[],n.inArray(i.ID,this[t])<0&&(this[t].push(i.ID),n(this).click(function(n){return n.isDefaultPrevented()||o[t](this),!1}))}):void 0},r=function(o){var t=o.w,e=o.o,i=o.c;i.onShow(o)!==!1&&(t[0]._jqmShown=!0,i.modal?(l[0]||c("bind"),l.push(t[0])):t.jqmAddClose(e),i.closeClass&&t.jqmAddClose(n("."+i.closeClass,t)),i.toTop&&e&&t.before('<span id="jqmP'+i.ID+'"></span>').insertAfter(e),t.data("jqmv",e),t.unbind("keydown",n.jqm.closeOnEscFunc),i.closeOnEsc&&t.attr("tabindex",0).bind("keydown",n.jqm.closeOnEscFunc).focus())},d=function(o){var t=o.w,e=o.o,i=o.c;i.onHide(o)!==!1&&(t[0]._jqmShown=!1,i.modal&&(l.pop(),l[0]||c("unbind")),i.toTop&&e&&n("#jqmP"+i.ID).after(t).remove())},c=function(o){n(document)[o]("keypress keydown mousedown",u)},u=function(o){var t=n(o.target).data("jqm")||n(o.target).parents(".jqm-init:first").data("jqm"),e=l[l.length-1];return t&&t.ID===e._jqmID?!0:n.jqm.focusFunc(e,o)},m=0,l=[];return n.jqm={params:{overlay:50,overlayClass:"jqmOverlay",closeClass:"jqmClose",closeOnEsc:!1,trigger:".jqModal",ajax:!1,target:!1,ajaxText:"",modal:!1,toTop:!1,onShow:i,onHide:s,onLoad:!1},focusFunc:function(o,t){return t&&n(":input:visible:first",o).focus(),!1},closeOnEscFunc:function(o){return 27===o.keyCode?(n(this).jqmHide(),!1):void 0}},n.jqm});
