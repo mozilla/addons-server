@@ -197,7 +197,7 @@
         var $d = $('#persona-design'),
             upload_finished = function(e) {
                 $(this).closest('.row').find('.preview').removeClass('loading');
-                $('#submit-persona button').attr('disabled', false);
+                $('#submit-persona button').prop('disabled', false);
                 updatePersona();
             },
             upload_start = function(e, file) {
@@ -208,7 +208,7 @@
                 }
                 $p.find('.errorlist').html('');
                 $p.find('.preview').addClass('loading').removeClass('error-loading');
-                $('#submit-persona button').attr('disabled', true);
+                $('#submit-persona button').prop('disabled', true);
             },
             upload_success = function(e, file, upload_hash) {
                 var $p = $(this).closest('.row');
@@ -317,7 +317,7 @@
 
     function checkValid(form) {
         if (form) {
-            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+            $(form).find('button[type=submit]').prop('disabled', !form.checkValidity());
         }
     }
 
