@@ -92,7 +92,7 @@ $(document).ready(function() {
                     var errors = $.parseJSON(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
-                    $('#upload-file-finish').attr('disabled', false);
+                    $('#upload-file-finish').prop('disabled', false);
                     $modalFile.setPos();
                 }
             });
@@ -254,16 +254,16 @@ function initPlatformChooser() {
             container = $(this).parents('div:eq(0)');
         if (val == '1') {
             // Platform=ALL
-            if ($(this).attr('checked')) {
+            if ($(this).prop('checked')) {
                 // Uncheck all other platforms:
                 $(format('input.platform:not([value="{0}"])', val),
-                  parent).attr('checked', false);
+                  parent).prop('checked', false);
             }
         } else {
-            if ($(this).attr('checked')) {
+            if ($(this).prop('checked')) {
                 // Any other platform was checked so uncheck Platform=ALL
                 $('input.platform[value="1"]',
-                  parent).attr('checked', false);
+                  parent).prop('checked', false);
             }
         }
     });
@@ -316,7 +316,7 @@ $(document).ready(function() {
     if (z.noEdit) {
         $primary = $(".primary");
         $els = $primary.find("input, select, textarea, button, a.button");
-        $els.attr("disabled", "disabled");
+        $els.prop("disabled", true);
         $primary.find("span.handle, a.remove").hide();
         $(".primary h3 a.button").remove();
         $(document).ready(function() {
@@ -355,7 +355,7 @@ function addonFormSubmit() {
         var baseurl = function(){
             return parent_div.find('#addon-edit-basic').attr('data-baseurl');
         };
-        $('.edit-media-button button').attr('disabled', false);
+        $('.edit-media-button button').prop('disabled', false);
         $('form', parent_div).submit(function(e){
             e.preventDefault();
             var old_baseurl = baseurl();
@@ -518,12 +518,12 @@ function initUploadPreview() {
         $('.edit-addon-media-screenshot-error').hide();
 
         // Don't let users submit a form.
-        $('.edit-media-button button').attr('disabled', true);
+        $('.edit-media-button button').prop('disabled', true);
     }
 
     function upload_finished_all(e) {
         // They can submit again
-        $('.edit-media-button button').attr('disabled', false);
+        $('.edit-media-button button').prop('disabled', false);
     }
 
     function upload_start(e, file) {
@@ -564,7 +564,7 @@ function initUploadPreview() {
         $el.find('.edit-previews-text').addClass('error').html("")
                                        .append($error_title)
                                        .append($error_list);
-        $el.find(".delete input").attr("checked", "checked");
+        $el.find(".delete input").prop("checked", true);
         renumberPreviews();
     }
 
@@ -583,7 +583,7 @@ function initUploadPreview() {
     $("#edit-addon-media, #submit-media").delegate("#file-list .remove", "click", function(e){
         e.preventDefault();
         var row = $(this).closest(".preview");
-        row.find(".delete input").attr("checked", "checked");
+        row.find(".delete input").prop("checked", true);
         row.slideUp(300, renumberPreviews);
     });
 }
@@ -603,7 +603,7 @@ function initUploadIcon() {
         var $error_list = $('#icon_preview').parent().find(".errorlist"),
             $parent = $(this).closest('li');
 
-        $('input', $parent).attr('checked', true);
+        $('input', $parent).prop('checked', true);
         $('#icons_default a.active').removeClass('active');
         $(this).addClass('active');
 
@@ -633,9 +633,9 @@ function initUploadIcon() {
 
             $('#icon_preview img').attr('src', file.dataURL);
 
-            $('#icons_default input:checked').attr('checked', false);
+            $('#icons_default input:checked').prop('checked', false);
             $('input[name="icon_type"][value="'+file.type+'"]', $('#icons_default'))
-                    .attr('checked', true);
+                    .prop('checked', true);
         },
 
         upload_start = function(e, file) {
@@ -644,12 +644,12 @@ function initUploadIcon() {
 
             $('.icon_preview img', $f).addClass('loading');
 
-            $('.edit-media-button button').attr('disabled', true);
+            $('.edit-media-button button').prop('disabled', true);
         },
 
         upload_finished = function(e) {
             $('.icon_preview img', $f).removeClass('loading');
-            $('.edit-media-button button').attr('disabled', false);
+            $('.edit-media-button button').prop('disabled', false);
         };
 
     $f.delegate('#id_icon_upload', "upload_success", upload_success)
@@ -723,7 +723,7 @@ function initSubmit() {
         });
     $('#id_slug').each(slugify);
     reorderPreviews();
-    $('.invisible-upload [disabled]').attr("disabled", false);
+    $('.invisible-upload [disabled]').prop("disabled", false);
     $('.invisible-upload .disabled').removeClass("disabled");
 }
 
@@ -752,7 +752,7 @@ function initEditVersions() {
     $("#upload-file-finish").click(function (e) {
         e.preventDefault();
         $tgt = $(this);
-        if ($tgt.attr("disabled")) return;
+        if ($tgt.prop("disabled")) return;
         $.ajax({
             url: $("#upload-file").attr("action"),
             type: 'post',
@@ -777,14 +777,14 @@ function initEditVersions() {
 
     $("#file-list").delegate("a.remove", "click", function() {
         var row = $(this).closest("tr");
-        $("input:first", row).attr("checked", true);
+        $("input:first", row).prop("checked", true);
         row.hide();
         row.next().show();
     });
 
     $("#file-list").delegate("a.undo", "click", function() {
         var row = $(this).closest("tr").prev();
-        $("input:first", row).attr("checked", false);
+        $("input:first", row).prop("checked", false);
         row.show();
         row.next().hide();
     });
@@ -856,7 +856,7 @@ function initPayments(delegate) {
         $(format("#org-{0}", [v])).removeClass("hidden").show(200);
     });
     $("#id_enable_thankyou").change(function (e) {
-        if ($(this).attr("checked")) {
+        if ($(this).prop("checked")) {
             $(".thankyou-note").show().removeClass("hidden");
         } else {
             $(".thankyou-note").hide();
@@ -874,15 +874,15 @@ function initCatFields(delegate) {
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
                 disabled = checkedLength >= maxCats;
-            $("input:not(:checked)", $main).attr("disabled", disabled);
+            $("input:not(:checked)", $main).prop("disabled", disabled);
             return checkedLength;
         };
         var checkMain = function() {
             var checkedLength = checkMainDefault();
-            $("input", $misc).attr("checked", checkedLength <= 0);
+            $("input", $misc).prop("checked", checkedLength <= 0);
         };
         var checkOther = function() {
-            $("input", $main).attr("checked", false).attr("disabled", false);
+            $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
         $('input', $main).live('change', checkMain);
@@ -892,14 +892,14 @@ function initCatFields(delegate) {
 
 function initLicenseFields() {
     $("#id_has_eula").change(function (e) {
-        if ($(this).attr("checked")) {
+        if ($(this).prop("checked")) {
             $(".eula").show().removeClass("hidden");
         } else {
             $(".eula").hide();
         }
     });
     $("#id_has_priv").change(function (e) {
-        if ($(this).attr("checked")) {
+        if ($(this).prop("checked")) {
             $(".priv").show().removeClass("hidden");
         } else {
             $(".priv").hide();
@@ -953,7 +953,7 @@ function initAuthorFields() {
                 row = tgt.parents("li");
             if (author_list.children(".author:visible").length > 1) {
                 if (row.hasClass("initial")) {
-                    row.find(".delete input").attr("checked", "checked");
+                    row.find(".delete input").prop("checked", true);
                     row.hide();
                 } else {
                     row.remove();
@@ -1017,7 +1017,7 @@ function initCompatibility() {
                 sel = format('tr.app-extra td[class="{0}"]', [$this.attr('class')]),
                 $row = $(sel, outer);
             $row.parents('tr.app-extra').find('input:checkbox')
-                .removeAttr('checked').closest('tr').removeClass('app-extra');
+                .prop('checked', false).closest('tr').removeClass('app-extra');
             $this.closest('li').remove();
             if (!$('tr.app-extra', outer).length) {
                 $('p.add-app', outer).hide();
@@ -1031,7 +1031,7 @@ function initCompatibility() {
             $row = $this.closest('tr');
         $row.addClass('app-extra');
         if (!$row.hasClass('app-extra-orig')) {
-            $row.find('input:checkbox').attr('checked', true);
+            $row.find('input:checkbox').prop('checked', true);
         }
         $('p.add-app:hidden', $this.closest('form')).show();
         addAppRow($row);
