@@ -1,8 +1,8 @@
 from django import http
-from django.contrib.syndication.views import Feed
 
 from tower import ugettext as _
 
+from amo.feeds import NonAtomicFeed
 from amo.helpers import absolutify, page_name
 from amo.urlresolvers import reverse
 from access import acl
@@ -11,7 +11,7 @@ from browse.feeds import AddonFeedMixin
 from . import views
 
 
-class CollectionFeedMixin(Feed):
+class CollectionFeedMixin(NonAtomicFeed):
     """Common pieces for collections in a feed."""
 
     def item_link(self, c):
@@ -31,7 +31,7 @@ class CollectionFeedMixin(Feed):
         return c.created if sort == 'created' else c.modified
 
 
-class CollectionFeed(CollectionFeedMixin, Feed):
+class CollectionFeed(CollectionFeedMixin, NonAtomicFeed):
 
     request = None
 
@@ -54,7 +54,7 @@ class CollectionFeed(CollectionFeedMixin, Feed):
         return views.get_filter(self.request).qs[:20]
 
 
-class CollectionDetailFeed(AddonFeedMixin, Feed):
+class CollectionDetailFeed(AddonFeedMixin, NonAtomicFeed):
 
     def get_object(self, request, username, slug):
         self.request = request

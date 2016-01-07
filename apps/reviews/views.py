@@ -1,6 +1,7 @@
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import urlquote
@@ -41,6 +42,7 @@ def send_mail(template, subject, emails, context, perm_setting):
 
 @addon_view
 @mobile_template('reviews/{mobile/}review_list.html')
+@non_atomic_requests
 def review_list(request, addon, review_id=None, user_id=None, template=None):
     q = (Review.objects.valid().filter(addon=addon)
          .order_by('-created'))
@@ -106,6 +108,7 @@ def _retrieve_translation(text, language):
 
 @addon_view
 @waffle_switch('reviews-translate')
+@non_atomic_requests
 def translate(request, addon, review_id, language):
     """
     Use the Google Translate API for ajax, redirect to Google Translate for

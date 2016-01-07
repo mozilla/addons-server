@@ -9,6 +9,7 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.db import IntegrityError
 from django.db.models import Q, Sum
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.template import Context, loader
@@ -72,6 +73,7 @@ def user_view(f):
 
 @login_required(redirect=False)
 @json_view
+@non_atomic_requests
 def ajax(request):
     """Query for a user matching a given email."""
 
@@ -487,6 +489,7 @@ def logout(request):
 
 
 @user_view
+@non_atomic_requests
 def profile(request, user):
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
@@ -533,6 +536,7 @@ def profile(request, user):
 
 
 @user_view
+@non_atomic_requests
 def themes(request, user, category=None):
     cats = Category.objects.filter(type=amo.ADDON_PERSONA)
 

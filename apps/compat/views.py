@@ -3,6 +3,7 @@ import re
 
 from django import http
 from django.db.models import Count
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -21,6 +22,7 @@ from .models import CompatReport, AppCompat, CompatTotals
 from .forms import AppVerForm, CompatForm
 
 
+@non_atomic_requests
 def index(request, version=None):
     template = 'compat/index.html'
     COMPAT = [v for v in amo.COMPAT if v['app'] == request.APP.id]
@@ -106,6 +108,7 @@ def usage_stats(request, compat, app, binary=None):
 
 @csrf_exempt
 @post_required
+@non_atomic_requests
 def incoming(request):
     # Turn camelCase into snake_case.
     def snake_case(s):
@@ -130,6 +133,7 @@ def incoming(request):
     return http.HttpResponse(status=204)
 
 
+@non_atomic_requests
 def reporter(request):
     query = request.GET.get('guid')
     if query:
@@ -153,6 +157,7 @@ def reporter(request):
                   dict(query=query, addons=addons))
 
 
+@non_atomic_requests
 def reporter_detail(request, guid):
     try:
         addon = Addon.with_unlisted.get(guid=guid)

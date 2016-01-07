@@ -79,6 +79,8 @@ DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+# Run all views in a transaction unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django

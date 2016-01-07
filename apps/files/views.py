@@ -1,4 +1,5 @@
 from django import http, shortcuts
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -63,6 +64,7 @@ def setup_viewer(request, file_obj):
 @never_cache
 @json_view
 @file_view
+@non_atomic_requests
 def poll(request, viewer):
     return {'status': viewer.is_extracted(),
             'msg': [Message('file-viewer:%s' % viewer).get(delete=True)]}
@@ -85,6 +87,7 @@ def check_compare_form(request, form):
 @csrf_exempt
 @file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
+@non_atomic_requests
 def browse(request, viewer, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
                                  initial={'left': viewer.file})
@@ -122,6 +125,7 @@ def browse(request, viewer, key=None, type='file'):
 @never_cache
 @compare_file_view
 @json_view
+@non_atomic_requests
 def compare_poll(request, diff):
     msgs = []
     for f in (diff.left, diff.right):
@@ -134,6 +138,7 @@ def compare_poll(request, diff):
 @csrf_exempt
 @compare_file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
+@non_atomic_requests
 def compare(request, diff, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=diff.addon,
                                  initial={'left': diff.left.file,
@@ -176,6 +181,7 @@ def compare(request, diff, key=None, type='file'):
 
 
 @file_view
+@non_atomic_requests
 def redirect(request, viewer, key):
     new = Token(data=[viewer.file.id, key])
     new.save()
@@ -185,6 +191,7 @@ def redirect(request, viewer, key):
 
 
 @file_view_token
+@non_atomic_requests
 def serve(request, viewer, key):
     """
     This is to serve files off of st.a.m.o, not standard a.m.o. For this we
