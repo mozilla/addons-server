@@ -246,7 +246,7 @@ function initUploadControls() {
 }
 
 function initPlatformChooser() {
-    $('input.platform').live('change', function(e) {
+    $(document).on('change', 'input.platform', function(e) {
         var form = $(this).parents('form'),
             platform = false,
             parent = form,
@@ -298,7 +298,7 @@ $(document).ready(function() {
 
     initCompatibility();
 
-    $('.addon-edit-cancel').live('click', function(){
+    $(document).on('click', '.addon-edit-cancel', function(){
         parent_div = $(this).closest('.edit-addon-section');
         parent_div.load($(this).attr('href'), function() {
             hideSameSizedIcons();
@@ -885,8 +885,8 @@ function initCatFields(delegate) {
             $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
-        $('input', $main).live('change', checkMain);
-        $('input', $misc).live('change', checkOther);
+        $(document).on('change', $main.selector + ' input', checkMain);
+        $(document).on('change', $misc.selector + ' input', checkOther);
     });
 }
 
@@ -1003,7 +1003,7 @@ function initAuthorFields() {
 
 
 function initCompatibility() {
-    $('p.add-app a').live('click', _pd(function(e) {
+    $(document).on('click', 'p.add-app a', _pd(function(e) {
         var outer = $(this).closest('form');
 
         $('tr.app-extra', outer).each(function() {
@@ -1026,7 +1026,7 @@ function initCompatibility() {
     }));
 
 
-    $('.compat-versions .remove').live('click', _pd(function(e) {
+    $(document).on('click', '.compat-versions .remove', _pd(function(e) {
         var $this = $(this),
             $row = $this.closest('tr');
         $row.addClass('app-extra');
@@ -1206,7 +1206,7 @@ function compatModalCallback(obj) {
         $widget.removeClass('ajax-loading');
     });
 
-    $('form.compat-versions').live('submit', function(e) {
+    $(document).on('submit', 'form.compat-versions', function(e) {
         e.preventDefault();
         $widget.empty();
 
