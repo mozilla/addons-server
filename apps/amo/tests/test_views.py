@@ -237,10 +237,10 @@ class TestOtherStuff(amo.tests.TestCase):
             eq_(alt, doc('.site-title img').attr('alt'))
             eq_(text, doc('.site-title').text())
 
-        title_eq('/firefox/', '', 'Add-ons')
-        title_eq('/thunderbird/', '', 'Add-ons')
-        title_eq('/mobile/extensions/', '', 'Mobile Add-ons')
-        title_eq('/android/', '', 'Android Add-ons')
+        title_eq('/firefox/', 'Firefox', 'Add-ons')
+        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
+        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
+        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)

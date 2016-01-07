@@ -202,13 +202,3 @@ VALIDATOR_TIMEOUT = 360
 ES_DEFAULT_NUM_SHARDS = 10
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
-
-restyle = 'css/restyle.less'
-zamboni = tuple(list(MINIFY_BUNDLES['css']['zamboni/css']).remove(restyle))
-impala = tuple(list(MINIFY_BUNDLES['css']['zamboni/impala']).remove(restyle))
-devhub = tuple(list(MINIFY_BUNDLES['css']['zamboni/devhub_impala'])
-               .remove(restyle))
-
-MINIFY_BUNDLES['css']['zamboni/css'] = zamboni
-MINIFY_BUNDLES['css']['zamboni/impala'] = impala
-MINIFY_BUNDLES['css']['zamboni/devhub'] = devhub
