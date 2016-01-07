@@ -72,7 +72,7 @@ $(function() {
 
         var required = 'input[aria-required=true], select[aria-required=true]';
 
-        $form.live('change input', required, validate_required_fields);
+        $form.on('change input', required, validate_required_fields);
         validate_required_fields();
 
         $form.submit(function (e) {
