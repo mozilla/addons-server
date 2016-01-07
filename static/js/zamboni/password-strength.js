@@ -29,7 +29,7 @@ function initStrength(nodes) {
                 $count.hide();
             }
             var val = (complexity($el.val()) / 5) * 100;
-            $strength.children('progress').attr('value', val).text(format('{0}%', val));
+            $strength.children('progress').val(val).text(format('{0}%', val));
         });
     });
 }
