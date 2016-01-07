@@ -59,7 +59,7 @@
                 ui_link = $('<a>', {'class': 'button prominent', 'href': '#', 'text': gettext('Select a file...')}),
                 ui_details = $('<div>', {'class': 'upload-details', 'text': gettext('Your add-on should end with .xpi, .jar or .xml')});
 
-            $upload_field.attr('disabled', false);
+            $upload_field.prop('disabled', false);
             $upload_field.wrap(ui_parent);
             $upload_field.before(ui_link);
             $upload_field.parent().after(ui_details);
@@ -113,11 +113,11 @@
                 $upload_field.closest('form').find('.errorlist').remove();
 
                 /* Set defaults */
-                $('#id_is_manual_review').attr('checked', false);
+                $('#id_is_manual_review').prop('checked', false);
 
                 /* Don't allow submitting */
-                $('.addon-upload-dependant').attr('disabled', true);
-                $('.addon-upload-failure-dependant').attr({'disabled': true,
+                $('.addon-upload-dependant').prop('disabled', true);
+                $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                            'checked': false});
 
                 /* Create elements */
@@ -169,11 +169,11 @@
                 upload_progress_inside.stop().css({'width': '100%'});
 
                 if ($('input#id_upload').val()) {
-                    $('.addon-upload-failure-dependant').attr({'disabled': false,
+                    $('.addon-upload-failure-dependant').prop({'disabled': false,
                                                                'checked': false});
                 }
 
-                $upload_field.val("").attr('disabled', false);
+                $upload_field.val("").prop('disabled', false);
                 $upload_field.trigger("reenable_uploader");
 
                 upload_title.html(format(gettext('Error with {0}'), [escape_(file.name)]));
@@ -269,7 +269,7 @@
 
             $('#id_admin_override_validation').addClass('addon-upload-failure-dependant')
                 .change(function () {
-                    if ($(this).attr('checked')) {
+                    if ($(this).prop('checked')) {
                         // TODO: Disable these when unchecked, or bounce
                         // between upload_errors and upload_success
                         // handlers? I think the latter would mostly be a
@@ -278,12 +278,12 @@
                         // validation might need some additional leeway.
                         $('.platform:hidden').show();
                         $('.platform label').removeClass('platform-disabled');
-                        $('.addon-upload-dependant').attr('disabled', false);
+                        $('.addon-upload-dependant').prop('disabled', false);
                     } else {
-                        $('.addon-upload-dependant').attr('disabled', true);
+                        $('.addon-upload-dependant').prop('disabled', true);
                     }
                 });
-            $('.addon-upload-failure-dependant').attr('disabled', true);
+            $('.addon-upload-failure-dependant').prop('disabled', true);
 
             var $newForm = $('.new-addon-file');
             var $isUnlistedCheckbox = $('#id_is_unlisted');
@@ -321,7 +321,7 @@
                 $upload_field.attr('data-upload-url', $upload_field.data('upload-url-listed'));
                 $betaWarningLabel.hide();
                 $isSideloadLabel.hide();
-                $isSideloadCheckbox.attr('checked', false);
+                $isSideloadCheckbox.prop('checked', false);
                 $submitAddonProgress.removeClass('unlisted');
               } else {  // It's an unlisted add-on.
                 if (isSideload()) {  // It's a sideload add-on.
@@ -334,8 +334,8 @@
                 $submitAddonProgress.addClass('unlisted');
               }
               /* Don't allow submitting, need to reupload/revalidate the file. */
-              $('.addon-upload-dependant').attr('disabled', true);
-              $('.addon-upload-failure-dependant').attr({'disabled': true,
+              $('.addon-upload-dependant').prop('disabled', true);
+              $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                          'checked': false});
               $('.upload-status').remove();
             }
@@ -344,7 +344,7 @@
             updateListedStatus();
 
             $('#id_is_manual_review').bind('change', function() {
-                $('.addon-upload-dependant').attr('disabled', !($(this).is(':checked')));
+                $('.addon-upload-dependant').prop('disabled', !($(this).is(':checked')));
             });
 
             $upload_field.bind("upload_success_results", function(e, file, results) {
@@ -392,11 +392,11 @@
                         return;
                     }
 
-                    $upload_field.val("").attr('disabled', false);
+                    $upload_field.val("").prop('disabled', false);
 
                     /* Allow submitting */
-                    $('.addon-upload-dependant').attr('disabled', false);
-                    $('.addon-upload-failure-dependant').attr({'disabled': true,
+                    $('.addon-upload-dependant').prop('disabled', false);
+                    $('.addon-upload-failure-dependant').prop({'disabled': true,
                                                                'checked': false});
 
                     upload_title.html(format(gettext('Finished validating {0}'), [escape_(file.name)]));
@@ -519,7 +519,7 @@
                     } else {
                         $(".platform:hidden").show();
                         $('.platform label').removeClass('platform-disabled');
-                        $('input.platform').attr('disabled', false);
+                        $('input.platform').prop('disabled', false);
                         if (results.platforms_to_exclude &&
                             results.platforms_to_exclude.length) {
                             // e.g. after uploading a Mobile add-on
@@ -530,8 +530,8 @@
                                               results.platforms_to_exclude) !== -1) {
                                     excluded = true;
                                     $('label[for=' + $input.attr('id') + ']').addClass('platform-disabled');
-                                    $input.attr('checked', false);
-                                    $input.attr('disabled', true);
+                                    $input.prop('checked', false);
+                                    $input.prop('disabled', true);
                                 }
                             });
                             var platforms_selector = '.supported-platforms',
