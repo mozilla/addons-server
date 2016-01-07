@@ -78,14 +78,8 @@ jQuery.fn.tooltip = function(tip_el) {
         }
     }
 
-    if (parseFloat(jQuery.fn.jquery) < 1.7) {
-        // TODO: Upgrade to jQuery 1.9 on AMO (bug 841819).
-        $targets.live('mouseover', mouseover)
-                .live('mouseout', mouseout);
-    } else {
-        $targets.on('mouseover', mouseover)
-                .on('mouseout', mouseout);
-    }
+    $targets.on('mouseover', mouseover)
+            .on('mouseout', mouseout);
 };
 
 // Setting up site tooltips.
