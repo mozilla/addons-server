@@ -1082,7 +1082,7 @@ LOGGING = {
         'amo.validator': {'level': logging.WARNING},
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.WARNING},
+        'caching': {'level': logging.ERROR},
         'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
