@@ -26,7 +26,7 @@ $(document).ready(function(){
     if (z.readonly) {
         $('form[method=post]')
             .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))
-            .find('input, button, select').attr('disabled', true).addClass('disabled');
+            .find('input, button, select').prop('disabled', true).addClass('disabled');
     }
 });
 

@@ -107,5 +107,5 @@ $(document).ready(function() {
 
     $("select[name='rating']").ratingwidget();
 
-    $('.review-flagged.disabled input:not([type=hidden])').attr('disabled', true);
+    $('.review-flagged.disabled input:not([type=hidden])').prop('disabled', true);
 });

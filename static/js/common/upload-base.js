@@ -44,10 +44,10 @@
                 $upload_field.trigger("upload_start", [file]);
 
                 /* Disable uploading while something is uploading */
-                $upload_field.attr('disabled', true);
+                $upload_field.prop('disabled', true);
                 $upload_field.parent().find('a').addClass("disabled");
                 $upload_field.bind("reenable_uploader", function() {
-                    $upload_field.attr('disabled', false);
+                    $upload_field.prop('disabled', false);
                     $upload_field.parent().find('a').removeClass("disabled");
                 });
 

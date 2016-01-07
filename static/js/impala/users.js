@@ -10,7 +10,7 @@ $(function() {
     if($('#user_edit').exists()) {
         $('.more-all, .more-none').click(_pd(function() {
             var $this = $(this);
-            $this.closest('li').find('input:not([disabled]').attr('checked', $this.hasClass('more-all'));
+            $this.closest('li').find('input:not([disabled]').prop('checked', $this.hasClass('more-all'));
         }));
     }
 
@@ -64,7 +64,7 @@ $(function() {
         var validate_required_fields = function() {
             var valid = _.every($(required, $form),
                                 function (e) { return $.trim(e.value) });
-            $submit.attr('disabled', !valid || null);
+            $submit.prop('disabled', !valid || null);
         }
 
         var $form = $('#t-shirt-order-form');
@@ -76,7 +76,7 @@ $(function() {
         validate_required_fields();
 
         $form.submit(function (e) {
-            $submit.attr('disabled', true);
+            $submit.prop('disabled', true);
 
             $.ajax({
                 url: location.href,

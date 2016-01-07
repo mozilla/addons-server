@@ -255,7 +255,7 @@ collections.hijack_favorite_button = function() {
         /* We don't want the button to shrink when the contents
         * inside change. */
         fav_button.css('min-width', fav_button.outerWidth());
-        fav_button.addClass('loading-fav').attr('disabled', 'disabled');
+        fav_button.addClass('loading-fav').prop('disabled', true);
         button(is_fav ? 'removing' : 'adding');
         fav_button.css('min-width', fav_button.outerWidth());
 
@@ -279,7 +279,7 @@ collections.hijack_favorite_button = function() {
                 fav_button.html(previous);
             },
             complete: function(){
-                fav_button.attr('disabled', '');
+                fav_button.prop('disabled', false);
                 fav_button.removeClass('loading-fav');
             }
         });

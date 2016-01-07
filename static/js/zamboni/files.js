@@ -1071,17 +1071,17 @@ $(document).ready(function() {
     var $left = $('#id_left'),
         $right = $('#id_right');
 
-    $left.find('option:not([value])').attr('disabled', true);
+    $left.find('option:not([value])').prop('disabled', true);
 
     var $left_options = $left.find('option:not([disabled])'),
         $right_options = $right.find('option:not([disabled])');
 
     $right.change(function(event) {
         var right = $right.val();
-        $left_options.attr('disabled', function() { return this.value == right; });
+        $left_options.prop('disabled', function() { return this.value == right; });
     }).change();
     $left.change(function(event) {
         var left = $left.val();
-        $right_options.attr('disabled', function() { return this.value == left; });
+        $right_options.prop('disabled', function() { return this.value == left; });
     }).change();
 });
