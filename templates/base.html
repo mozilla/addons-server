@@ -23,6 +23,9 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
+      {% if waffle.flag('restyle') %}
+        {{ css('restyle/css') }}
+      {% endif %}
       <!--[if IE]><link rel="stylesheet" href="{{ static('css/legacy/ie.css') }}"><![endif]-->
       <!--[if IE 7]><link rel="stylesheet" href="{{ static('css/legacy/ie7.css') }}"><![endif]-->
     {% endblock %}

@@ -23,6 +23,9 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/impala') }}
+      {% if waffle.flag('restyle') %}
+        {{ css('restyle/css') }}
+      {% endif %}
       <!--[if lt IE 9]>
         <script src="{{ static('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
