@@ -266,7 +266,7 @@ def edit(request, addon, review_id):
                 setattr(review, field, form.cleaned_data[field])
         amo.log(amo.LOG.EDIT_REVIEW, addon, review)
         review.save()
-        return http.HttpResponse()
+        return {}
     else:
         return json_view.error(form.errors)
 

@@ -394,6 +394,7 @@ class TestEdit(ReviewTest):
         response = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                                     X_REQUESTED_WITH='XMLHttpRequest')
         assert response.status_code == 200
+        assert response['Content-type'] == 'application/json'
         assert '%s' % Review.objects.get(id=218207).body == 'woo woo'
 
         response = self.client.get(helpers.url('addons.reviews.list',
