@@ -102,10 +102,11 @@ function initTrunc() {
 function initSidebar() {
     var account_url = document.body.getAttribute("data-account-url");
     $.get(account_url, function(data) {
-        if ($(data).find("#my-account").length) {
+        var trimmed_data = data.trim();
+        if ($(trimmed_data).find("#my-account").length) {
             $("header").addClass("auth");
         }
-        $("#right-module").replaceWith(data).slideDown("slow");
+        $("#right-module").replaceWith(trimmed_data).slideDown("slow");
     });
 }
 
