@@ -972,6 +972,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 BROKER_URL = os.environ.get('BROKER_URL',
                             'amqp://olympia:olympia@localhost:5672/olympia')
 BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_DEFAULT_QUEUE = 'default'
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -999,10 +1000,18 @@ CELERY_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'devhub.tasks.convert_purified': {'queue': 'devhub'},
+    'devhub.tasks.flag_binary': {'queue': 'devhub'},
+    'devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
+    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'devhub.tasks.resize_icon': {'queue': 'devhub'},
+    'devhub.tasks.resize_preview': {'queue': 'devhub'},
+    'devhub.tasks.send_welcome_email': {'queue': 'devhub'},
+    'devhub.tasks.submit_file': {'queue': 'devhub'},
     'devhub.tasks.validate_file': {'queue': 'devhub'},
     'devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
-    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+
     # This is currently used only by validation tasks.
     'celery.chord_unlock': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
@@ -1019,7 +1028,110 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
+
+    # AMO
+    'amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
+    'amo.tasks.delete_incomplete_addons': {'queue': 'amo'},
+    'amo.tasks.delete_logs': {'queue': 'amo'},
+    'amo.tasks.delete_stale_contributions': {'queue': 'amo'},
+    'amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},
+    'amo.tasks.migrate_editor_eventlog': {'queue': 'amo'},
+    'amo.tasks.send_email': {'queue': 'amo'},
+    'amo.tasks.set_modified_on_object': {'queue': 'amo'},
+
+    # Addons
+    'addons.tasks.calc_checksum': {'queue': 'addons'},
+    'addons.tasks.delete_persona_image': {'queue': 'addons'},
+    'addons.tasks.delete_preview_files': {'queue': 'addons'},
+    'addons.tasks.update_incompatible_appversions': {'queue': 'addons'},
+    'addons.tasks.version_changed': {'queue': 'addons'},
+
+    # API
+    'api.tasks.process_results': {'queue': 'api'},
+    'api.tasks.process_webhook': {'queue': 'api'},
+
+    # Crons
+    'addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
+    'addons.cron._update_addon_download_totals': {'queue': 'cron'},
+    'addons.cron._update_addons_current_version': {'queue': 'cron'},
+    'addons.cron._update_appsupport': {'queue': 'cron'},
+    'addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
+    'bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
+    'bandwagon.cron._update_collections_subscribers': {'queue': 'cron'},
+    'bandwagon.cron._update_collections_votes': {'queue': 'cron'},
+
+    # Bandwagon
+    'bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
+    'bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
+    'bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
+    'bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
+    'bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
+
+    # Editors
+    'editors.tasks.add_commentlog': {'queue': 'editors'},
+    'editors.tasks.add_versionlog': {'queue': 'editors'},
+    'editors.tasks.approve_rereview': {'queue': 'editors'},
+    'editors.tasks.reject_rereview': {'queue': 'editors'},
+    'editors.tasks.send_mail': {'queue': 'editors'},
+
+    # Files
+    'files.tasks.extract_file': {'queue': 'files'},
+    'files.tasks.fix_let_scope_bustage_in_addons': {'queue': 'files'},
+
+    # Crypto
+    'lib.crypto.tasks.resign_files': {'queue': 'crypto'},
+    'lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
+    'lib.crypto.tasks.unsign_addons': {'queue': 'crypto'},
+
+    # Search
+    'lib.es.management.commands.reindex.create_new_index': {'queue': 'search'},
+    'lib.es.management.commands.reindex.delete_indexes': {'queue': 'search'},
+    'lib.es.management.commands.reindex.flag_database': {'queue': 'search'},
+    'lib.es.management.commands.reindex.index_data': {'queue': 'search'},
+    'lib.es.management.commands.reindex.unflag_database': {'queue': 'search'},
+    'lib.es.management.commands.reindex.update_aliases': {'queue': 'search'},
+
+    # Reviews
+    'reviews.models.check_spam': {'queue': 'reviews'},
+    'reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
+    'reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
+    'reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
+    'reviews.tasks.update_denorm': {'queue': 'reviews'},
+
+
+    # Stats
+    'stats.tasks.addon_total_contributions': {'queue': 'stats'},
+    'stats.tasks.index_collection_counts': {'queue': 'stats'},
+    'stats.tasks.index_download_counts': {'queue': 'stats'},
+    'stats.tasks.index_theme_user_counts': {'queue': 'stats'},
+    'stats.tasks.index_update_counts': {'queue': 'stats'},
+    'stats.tasks.update_addons_collections_downloads': {'queue': 'stats'},
+    'stats.tasks.update_collections_total': {'queue': 'stats'},
+    'stats.tasks.update_global_totals': {'queue': 'stats'},
+    'stats.tasks.update_google_analytics': {'queue': 'stats'},
+
+    # Tags
+    'tags.tasks.clean_tag': {'queue': 'tags'},
+    'tags.tasks.update_all_tag_stats': {'queue': 'tags'},
+    'tags.tasks.update_tag_stat': {'queue': 'tags'},
+
+    # Users
+    'users.tasks.delete_photo': {'queue': 'users'},
+    'users.tasks.resize_photo': {'queue': 'users'},
+    'users.tasks.update_user_ratings_task': {'queue': 'users'},
+
+    # Zadmin
+    'zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
+    'zadmin.tasks.admin_email': {'queue': 'zadmin'},
+    'zadmin.tasks.celery_error': {'queue': 'zadmin'},
+    'zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
+    'zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
+    'zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
+    'zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
+    'zadmin.tasks.tally_validation_results': {'queue': 'zadmin'},
+    'zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 }
+
 
 # This is just a place to store these values, you apply them in your
 # task decorator, for example:
