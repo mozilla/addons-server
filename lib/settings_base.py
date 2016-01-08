@@ -466,6 +466,7 @@ MINIFY_BUNDLES = {
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
             'css/zamboni/themes.less',
+            'css/restyle.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -513,6 +514,7 @@ MINIFY_BUNDLES = {
             'css/impala/compat.less',
             'css/impala/localizers.less',
             'css/impala/fxa-migration.less',
+            'css/restyle.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
@@ -551,6 +553,7 @@ MINIFY_BUNDLES = {
             'css/devhub/search.less',
             'css/devhub/refunds.less',
             'css/impala/devhub-api.less',
+            'css/restyle.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
@@ -559,6 +562,7 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/editors.styl',
             'css/zamboni/themes_review.styl',
+            'css/restyle.less',
         ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',

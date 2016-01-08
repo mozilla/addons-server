@@ -1,7 +1,7 @@
 <h1 class="site-title">
 {% macro heading(app, text, icon) -%}
 <a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-  <img alt="{{ APP.pretty }}" src="{{ static('img/app-icons/med/' + icon + '.png')|safe }}">
+  <img alt="" src="{{ static('img/icons/firefox.png')|safe }}">
   {{ text }}
 </a>
 {%- endmacro %}
