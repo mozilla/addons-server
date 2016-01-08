@@ -1,4 +1,3 @@
-from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
 from jingo.helpers import datetime
@@ -6,6 +5,7 @@ from jingo.helpers import datetime
 from tower import ugettext as _
 
 import amo
+from amo.feeds import NonAtomicFeed
 from amo.urlresolvers import reverse
 from amo.helpers import absolutify, url
 from amo.utils import urlparams
@@ -40,7 +40,7 @@ class PagedFeed(DefaultFeed):
         self.add_page_relation(handler, 'last', self.page.paginator.num_pages)
 
 
-class VersionsRss(Feed):
+class VersionsRss(NonAtomicFeed):
 
     feed_type = PagedFeed
     addon = None

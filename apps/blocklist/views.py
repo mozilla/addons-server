@@ -7,6 +7,7 @@ import time
 
 from django.core.cache import cache
 from django.db.models import Q, signals as db_signals
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
@@ -22,6 +23,7 @@ App = collections.namedtuple('App', 'guid min max')
 BlItem = collections.namedtuple('BlItem', 'rows os modified block_id prefs')
 
 
+@non_atomic_requests
 def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     # Use md5 to make sure the memcached key is clean.
@@ -127,6 +129,7 @@ def get_plugins(apiver, app, appver=None):
     return list(plugins)
 
 
+@non_atomic_requests
 def blocked_list(request, apiver=3):
     app = request.APP.guid
     objs = get_items(apiver, app)[1].values() + get_plugins(apiver, app)
@@ -135,6 +138,7 @@ def blocked_list(request, apiver=3):
 
 
 # The id is prefixed with [ip] so we know which model to use.
+@non_atomic_requests
 def blocked_detail(request, id):
     bltypes = dict((m._type, m) for m in (BlocklistItem, BlocklistPlugin))
     item = get_object_or_404(bltypes[id[0]], details=id[1:])

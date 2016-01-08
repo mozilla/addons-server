@@ -1,12 +1,14 @@
 from collections import defaultdict
 
 from django.conf import settings
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 
 from devhub.models import ActivityLog
 from users.models import UserProfile
 
 
+@non_atomic_requests
 def credits(request):
 
     developers = (UserProfile.objects

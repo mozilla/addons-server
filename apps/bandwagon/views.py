@@ -6,6 +6,7 @@ from django import http
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
@@ -36,6 +37,7 @@ from . import forms, tasks
 log = commonware.log.getLogger('z.collections')
 
 
+@non_atomic_requests
 def get_collection(request, username, slug):
     if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
             and request.user.username == username):
@@ -60,6 +62,7 @@ def owner_required(f=None, require_owner=True):
     return decorator(f) if f else decorator
 
 
+@non_atomic_requests
 def legacy_redirect(request, uuid, edit=False):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
@@ -70,6 +73,7 @@ def legacy_redirect(request, uuid, edit=False):
     return http.HttpResponseRedirect(to)
 
 
+@non_atomic_requests
 def legacy_directory_redirects(request, page):
     sorts = {'editors_picks': 'featured', 'popular': 'popular',
              'users': 'followers'}
@@ -119,6 +123,7 @@ def get_filter(request, base=None):
     return CollectionFilter(request, base, key='sort', default='featured')
 
 
+@non_atomic_requests
 def render_cat(request, template, data={}, extra={}):
     data.update(dict(search_cat='collections'))
     return render(request, template, data, **extra)
@@ -126,6 +131,7 @@ def render_cat(request, template, data={}, extra={}):
 
 # TODO (potch): restore this when we do mobile bandwagon
 # @mobile_template('bandwagon/{mobile/}collection_listing.html')
+@non_atomic_requests
 def collection_listing(request, base=None):
     sort = request.GET.get('sort')
     # We turn users into followers.
@@ -156,6 +162,7 @@ def get_votes(request, collections):
 
 
 @allow_mine
+@non_atomic_requests
 def user_listing(request, username):
     author = get_object_or_404(UserProfile, username=username)
     qs = (Collection.objects.filter(author__username=username)
@@ -192,6 +199,7 @@ class CollectionAddonFilter(BaseFilter):
 
 
 @allow_mine
+@non_atomic_requests
 def collection_detail(request, username, slug):
     c = get_collection(request, username, slug)
     if not c.listed:
@@ -238,6 +246,7 @@ def collection_detail(request, username, slug):
 
 @json_view(has_trans=True)
 @allow_mine
+@non_atomic_requests
 def collection_detail_json(request, username, slug):
     c = get_collection(request, username, slug)
     if not (c.listed or acl.check_collection_ownership(request, c)):
@@ -364,6 +373,7 @@ def ajax_new(request):
 
 
 @login_required(redirect=False)
+@non_atomic_requests
 def ajax_list(request):
     try:
         addon_id = int(request.GET['addon_id'])
@@ -589,6 +599,7 @@ def watch(request, username, slug):
         return http.HttpResponseRedirect(collection.get_url_path())
 
 
+@non_atomic_requests
 def share(request, username, slug):
     collection = get_collection(request, username, slug)
     return sharing.views.share(request, collection,
@@ -597,6 +608,7 @@ def share(request, username, slug):
 
 
 @login_required
+@non_atomic_requests
 def following(request):
     qs = (Collection.objects.filter(following__user=request.user)
           .order_by('-following__created'))
@@ -609,6 +621,7 @@ def following(request):
 
 @login_required
 @allow_mine
+@non_atomic_requests
 def mine(request, username=None, slug=None):
     if slug is None:
         return user_listing(request, username)

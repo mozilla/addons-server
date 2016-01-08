@@ -103,9 +103,9 @@ def bulk_validate_file(result_id, **kw):
                                    compat=True)
     except:
         task_error = sys.exc_info()
-        log.error(u"bulk_validate_file exception on file %s (%s): %s: %s"
-                  % (res.file, file_base,
-                     task_error[0], task_error[1]), exc_info=False)
+        log.exception(
+            u'bulk_validate_file exception on file {} ({})'
+            .format(res.file, file_base))
 
     res.completed = datetime.now()
     if task_error:
@@ -117,10 +117,6 @@ def bulk_validate_file(result_id, **kw):
         tally_validation_results.delay(res.validation_job.id, validation)
     res.save()
     tally_job_results(res.validation_job.id)
-
-    if task_error:
-        etype, val, tb = task_error
-        raise etype, val, tb
 
 
 @task

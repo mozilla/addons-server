@@ -1,11 +1,11 @@
-from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
 import amo
-from amo.urlresolvers import reverse
+from amo.feeds import NonAtomicFeed
 from amo.helpers import absolutify, url, page_name
+from amo.urlresolvers import reverse
 from addons.models import Addon, Category
 from .views import addon_listing, SearchToolsFilter
 
@@ -46,7 +46,7 @@ class AddonFeedMixin(object):
         return absolutify(url_)
 
 
-class CategoriesRss(AddonFeedMixin, Feed):
+class CategoriesRss(AddonFeedMixin, NonAtomicFeed):
 
     def get_object(self, request, category_name=None):
         """
@@ -115,7 +115,7 @@ class ThemeCategoriesRss(CategoriesRss):
             return self.title
 
 
-class FeaturedRss(AddonFeedMixin, Feed):
+class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
 
     request = None
 
@@ -143,7 +143,7 @@ class FeaturedRss(AddonFeedMixin, Feed):
         return Addon.objects.featured(self.app)[:20]
 
 
-class SearchToolsRss(AddonFeedMixin, Feed):
+class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
 
     category = None
     request = None

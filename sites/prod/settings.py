@@ -50,8 +50,12 @@ SYSLOG_CSP = "http_app_addons_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
+# Run all views in a transaction (on master) unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
+# Do not open a transaction for every view on the slave DB.
+DATABASES['slave']['ATOMIC_REQUESTS'] = False
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['sa_pool_key'] = 'slave'
 

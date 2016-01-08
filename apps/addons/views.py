@@ -8,6 +8,7 @@ from operator import attrgetter
 from django import http
 from django.conf import settings
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.utils.translation import trans_real as translation
@@ -69,6 +70,7 @@ def author_addon_clicked(f):
 
 
 @addon_valid_disabled_pending_view
+@non_atomic_requests
 def addon_detail(request, addon):
     """Add-ons details page dispatcher."""
     if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
@@ -101,6 +103,7 @@ def addon_detail(request, addon):
 
 
 @vary_on_headers('X-Requested-With')
+@non_atomic_requests
 def extension_detail(request, addon):
     """Extensions details page."""
     # If current version is incompatible with this app, redirect.
@@ -143,6 +146,7 @@ def extension_detail(request, addon):
 
 
 @mobilized(extension_detail)
+@non_atomic_requests
 def extension_detail(request, addon):
     if not request.META.get('HTTP_USER_AGENT'):
         ios_user = False
@@ -160,6 +164,7 @@ def _category_personas(qs, limit):
 
 
 @mobile_template('addons/{mobile/}persona_detail.html')
+@non_atomic_requests
 def persona_detail(request, addon, template=None):
     """Details page for Personas."""
     if not (addon.is_public() or addon.is_pending()):
@@ -322,6 +327,7 @@ class HomepageFilter(BaseFilter):
     filter_new = BaseFilter.filter_created
 
 
+@non_atomic_requests
 def home(request):
     # Add-ons.
     base = Addon.objects.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
@@ -345,6 +351,7 @@ def home(request):
 
 
 @mobilized(home)
+@non_atomic_requests
 def home(request):
     # Shuffle the list and get 3 items.
     def rand(xs):
@@ -374,6 +381,7 @@ def home(request):
                    'ios_user': ios_user})
 
 
+@non_atomic_requests
 def homepage_promos(request):
     from discovery.views import promos
     version, platform = request.GET.get('version'), request.GET.get('platform')
@@ -428,6 +436,7 @@ class CollectionPromoBox(object):
 
 
 @addon_view
+@non_atomic_requests
 def eula(request, addon, file_id=None):
     if not addon.eula:
         return http.HttpResponseRedirect(addon.get_url_path())
@@ -440,6 +449,7 @@ def eula(request, addon, file_id=None):
 
 
 @addon_view
+@non_atomic_requests
 def privacy(request, addon):
     if not addon.privacy_policy:
         return http.HttpResponseRedirect(addon.get_url_path())
@@ -448,6 +458,7 @@ def privacy(request, addon):
 
 
 @addon_view
+@non_atomic_requests
 def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
@@ -476,6 +487,7 @@ def developers(request, addon, page):
 @addon_view
 @anonymous_csrf_exempt
 @post_required
+@non_atomic_requests
 def contribute(request, addon):
     commentlimit = 255  # Enforce paypal-imposed comment length limit
 
@@ -552,6 +564,7 @@ def contribute(request, addon):
 
 @csrf_exempt
 @addon_view
+@non_atomic_requests
 def paypal_result(request, addon, status):
     uuid = request.GET.get('uuid')
     if not uuid:
@@ -567,12 +580,14 @@ def paypal_result(request, addon, status):
 
 
 @addon_view
+@non_atomic_requests
 def share(request, addon):
     """Add-on sharing"""
     return share_redirect(request, addon, addon.name, addon.summary)
 
 
 @addon_view
+@non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
         qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
@@ -585,6 +600,7 @@ def license(request, addon, version=None):
                   dict(addon=addon, version=version))
 
 
+@non_atomic_requests
 def license_redirect(request, version):
     version = get_object_or_404(Version, pk=version)
     return redirect(version.license_url(), permanent=True)
@@ -592,6 +608,7 @@ def license_redirect(request, version):
 
 @session_csrf.anonymous_csrf_exempt
 @addon_view
+@non_atomic_requests
 def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
@@ -604,6 +621,7 @@ def report_abuse(request, addon):
 
 
 @cache_control(max_age=60 * 60 * 24)
+@non_atomic_requests
 def persona_redirect(request, persona_id):
     if persona_id == 0:
         # Newer themes have persona_id == 0, doesn't mean anything.
