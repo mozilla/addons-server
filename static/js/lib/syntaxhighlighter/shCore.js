@@ -620,7 +620,7 @@ function attachEvent(obj, type, func, scope)
 
 		if (!e.target)
 		{
-			e.target = e.srcElement;
+			e.target = e.originalEvent.srcElement;
 			e.preventDefault = function()
 			{
 				this.returnValue = false;
