@@ -48,20 +48,20 @@ HOME=/tmp
 
 # Update ADI metrics from HIVE.
 # Once per day after 1000 UTC (after hive queries + transfer is done)
-30 11 * * * %(django)s update_counts_from_file
-00 12 * * * %(django)s download_counts_from_file
-05 12 * * * %(django)s theme_update_counts_from_hive
-30 12 * * * %(django)s theme_update_counts_from_file
-30 13 * * * %(django)s update_theme_popularity_movers
+00 16 * * * NETAPP_STORAGE_ROOT='/var/tmp' %(django)s update_counts_from_file
+30 16 * * * NETAPP_STORAGE_ROOT='/var/tmp' %(django)s download_counts_from_file
+35 16 * * * NETAPP_STORAGE_ROOT='/var/tmp' %(django)s theme_update_counts_from_hive
+00 17 * * * NETAPP_STORAGE_ROOT='/var/tmp' %(django)s theme_update_counts_from_file
+00 18 * * * NETAPP_STORAGE_ROOT='/var/tmp' %(django)s update_theme_popularity_movers
 
 # Once per day after metrics is done (see above)
-35 12 * * * %(z_cron)s update_addon_download_totals
-40 12 * * * %(z_cron)s weekly_downloads
-35 13 * * * %(z_cron)s update_global_totals
-40 13 * * * %(z_cron)s update_addon_average_daily_users
-30 14 * * * %(z_cron)s index_latest_stats
-45 14 * * * %(z_cron)s update_addons_collections_downloads
-50 14 * * * %(z_cron)s update_daily_theme_user_counts
+00 17 * * * %(z_cron)s update_addon_download_totals
+05 17 * * * %(z_cron)s weekly_downloads
+55 17 * * * %(z_cron)s update_global_totals
+00 18 * * * %(z_cron)s update_addon_average_daily_users
+30 18 * * * %(z_cron)s index_latest_stats
+45 18 * * * %(z_cron)s update_addons_collections_downloads
+50 18 * * * %(z_cron)s update_daily_theme_user_counts
 
 # Once per week
 45 7 * * 4 %(z_cron)s unconfirmed
