@@ -4,7 +4,7 @@ from subprocess import Popen, PIPE
 
 from django.conf import settings
 from django.utils import translation
-from django.db import connection, transaction
+from django.db import connection
 
 import cronjobs
 import commonware.log
@@ -130,7 +130,6 @@ def category_totals():
     AS j ON (t.id = j.category_id)
     SET t.count = j.ct
     """ % (p, p), VALID_STATUSES * 2)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -164,7 +163,6 @@ def collection_subscribers():
         SET c.weekly_subscribers = weekly.count,
             c.monthly_subscribers = monthly.count
     """)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -187,7 +185,6 @@ def unconfirmed():
         AND addons_collections.user_id IS NULL
         AND collections_users.user_id IS NULL
     """)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -205,7 +202,6 @@ def share_count_totals():
                  GROUP BY addon_id, service)
             """ % ','.join(['%s'] * len(SERVICES_LIST)),
                    [s.shortname for s in SERVICES_LIST])
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -243,4 +239,3 @@ def weekly_downloads():
             ON addons.id = tmp_wd.addon_id
         SET weeklydownloads = tmp_wd.count""")
     cursor.execute("DROP TABLE IF EXISTS tmp_wd")
-    transaction.commit_unless_managed()

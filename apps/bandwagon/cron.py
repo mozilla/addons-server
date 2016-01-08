@@ -1,7 +1,7 @@
 from datetime import date
 import itertools
 
-from django.db import connection, transaction
+from django.db import connection
 from django.db.models import Count
 
 import commonware.log
@@ -42,7 +42,6 @@ def _update_collections_subscribers(data, **kw):
                     (%s, %s, %s, %s)"""
         p = [today, 'new_subscribers', var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -79,7 +78,6 @@ def _update_collections_votes(data, stat, **kw):
         p = [date.today(), stat,
              var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
 
 
 # TODO: remove this once zamboni enforces slugs.

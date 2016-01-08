@@ -7,7 +7,7 @@ import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.db import connections, transaction
+from django.db import connections
 from django.db.models import Q, F, Avg
 
 import cronjobs
@@ -86,7 +86,6 @@ def _update_addons_current_version(data, **kw):
         except Addon.DoesNotExist:
             m = "Failed to update current_version. Missing add-on: %d" % (pk)
             task_log.debug(m)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
