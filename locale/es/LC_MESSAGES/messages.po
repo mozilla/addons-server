@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-07 08:54+0000\n"
+"PO-Revision-Date: 2016-01-08 11:07+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5915,6 +5915,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again, even by you."
 msgstr ""
+"Si eliminas el complemento, se eliminará definitivamente de la página y "
+"nadie podrá volver a enviar su GUID, ni siquiera tú."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -12694,6 +12696,10 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"La mayoría de los complementos no provocan un rendimiento decreciente en "
+"%(app_name)s, pero si instalas muchos, puede que haya efectos adversos. Si "
+"crees que un complemento es el causante de que %(app_name)s esté "
+"ralentizada, prueba a deshabilitarlo."
 
 #: apps/pages/templates/pages/faq.html:141
 msgid ""
@@ -12898,6 +12904,9 @@ msgid ""
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
 "can cause a noticeable slowdown."
 msgstr ""
+"La mayoría de los complementos cargan códigos y recursos al mismo tiempo que"
+" Firefox se inicia. El impacto al iniciao suele ser mínimo, pero algunos "
+"complementos pueden provocar una seria ralentización."
 
 #: apps/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -15593,6 +15602,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Inicia sesión en tu cuenta de Firefox para acceder a tus complementos. <a "
+"href=\"%(url)s\" class=\"fxa-login\">Inicia sesión ahora.</a>"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:141
