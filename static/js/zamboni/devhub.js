@@ -455,7 +455,9 @@ function initRequiredAddons() {
             });
             // Firefox automatically escapes the contents of `href`, borking
             // the curly braces in the {url} placeholder, so let's do this.
-            var $f = $(f);
+            // Note: the trim removes the leading space from the template
+            // output so that jquery 1.9 treats it as HTML not a selector.
+            var $f = $(f.trim());
             $f.find('div a').attr('href', item.url);
             return $f;
         }
