@@ -1007,16 +1007,12 @@ CELERY_ROUTES = {
     'devhub.tasks.flag_binary': {'queue': 'devhub'},
     'devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
-    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
-    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
     'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
     'devhub.tasks.resize_icon': {'queue': 'devhub'},
     'devhub.tasks.resize_preview': {'queue': 'devhub'},
     'devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'devhub.tasks.submit_file': {'queue': 'devhub'},
     'devhub.tasks.validate_file': {'queue': 'devhub'},
-    'devhub.tasks.validate_file': {'queue': 'devhub'},
-    'devhub.tasks.validate_file_path': {'queue': 'devhub'},
     'devhub.tasks.validate_file_path': {'queue': 'devhub'},
 
     # This is currently used only by validation tasks.
