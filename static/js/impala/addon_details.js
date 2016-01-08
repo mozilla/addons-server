@@ -1,8 +1,10 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
-    $('#background-wrapper').css('height',
-        $('.amo-header').height() +
-        $('#addon-description-header').height() + 20 + 'px');
+    if ($('#background-wrapper').css('position') === 'absolute') {
+        $('#background-wrapper').css('height',
+            $('.amo-header').height() +
+            $('#addon-description-header').height() + 20 + 'px');
+    }
 
     $(".previews").zCarousel({
         btnNext: ".previews .next",

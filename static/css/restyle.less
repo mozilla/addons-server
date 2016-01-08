@@ -325,7 +325,7 @@ button.search-button {
 #promos {
     width: 960px;
     display: none !important;
-    height: 0 !important;
+    height: auto !important;
     min-height: 0 !important;
     margin-left: -210px;
     margin-bottom: 15px;
@@ -410,27 +410,34 @@ button.search-button {
     font-family: @primary-font !important;
 }
 
-#promos .prev {
-    left: 0;
-}
-#promos .next {
-    right: 0;
-}
-#promos h2, #promos h3 {
-    font-style: normal;
-    font-family: inherit;
-}
-#promos .promo h2, #promos .ryff h3 {
-    font-size: 36px;
-    font-weight: 100;
-    line-height: 1.3em;
-    color: #fff;
-}
-#promos h3 {
-    color: #fff;
-}
-.promo h2 {
-    text-shadow: none;
+#promos {
+    .prev {
+        left: 0;
+    }
+    .next {
+         right: 0;
+    }
+
+    h2, h3 {
+        font-style: normal;
+        font-family: inherit;
+    }
+
+    .promo {
+        background-size: cover;
+    }
+
+    #monthly.promo {
+        h2, h3 {
+            font-size: 36px;
+            font-weight: 100;
+            line-height: 1.3em;
+            color: #fff;
+        }
+        h2 {
+            text-shadow: none;
+        }
+    }
 }
 
 
@@ -491,7 +498,7 @@ button.search-button {
 #featured-addon h3 a, #monthly h3 a {
     color: #fff;
 }
-.addons p.desc, #monthly .wrap p {
+#monthly .addons p.desc, #monthly .wrap p {
     max-height: 5.4em;
     font-size: 0.85rem;
     font-weight: 200;
@@ -532,6 +539,10 @@ button.good {
 
 #popular-extensions {
     margin-top: 0;
+}
+
+.shift-secondary {
+    margin-top: 290px !important;
 }
 
 .secondary {
