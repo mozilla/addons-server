@@ -3,7 +3,7 @@ import httplib2
 import itertools
 
 from django.conf import settings
-from django.db import connection, transaction
+from django.db import connection
 from django.db.models import Sum, Max
 
 import commonware.log
@@ -54,7 +54,6 @@ def update_addons_collections_downloads(data, **kw):
                    list(itertools.chain.from_iterable(
                        [var['sum'], var['addon'], var['collection']]
                        for var in data)))
-    transaction.commit_unless_managed()
 
 
 @task
@@ -131,7 +130,6 @@ def update_google_analytics(date, **kw):
         cursor = connection.cursor()
         cursor.execute('REPLACE INTO global_stats (name, count, date) '
                        'values (%s, %s, %s)', p)
-        transaction.commit_unless_managed()
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
         return
@@ -156,7 +154,6 @@ def update_global_totals(job, date, **kw):
     try:
         cursor = connection.cursor()
         cursor.execute(q, p)
-        transaction.commit_unless_managed()
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
 

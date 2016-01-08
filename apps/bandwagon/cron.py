@@ -42,7 +42,6 @@ def _update_collections_subscribers(data, **kw):
                     (%s, %s, %s, %s)"""
         p = [today, 'new_subscribers', var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -79,7 +78,6 @@ def _update_collections_votes(data, stat, **kw):
         p = [date.today(), stat,
              var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
 
 
 # TODO: remove this once zamboni enforces slugs.
@@ -109,7 +107,7 @@ def drop_collection_recs():
 
 
 @task(rate_limit='1/m')
-@transaction.commit_on_success
+@transaction.atomic
 def _drop_collection_recs(**kw):
     task_log.info("[300@%s] Dropping recommended collections." % (
                   _drop_collection_recs.rate_limit))

@@ -1173,7 +1173,7 @@ def _get_file_history(version):
 
 @dev_required
 @post_required
-@transaction.commit_on_success
+@transaction.atomic
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version, pk=version_id, addon=addon)
@@ -1404,7 +1404,7 @@ def submit(request, step):
 
 @login_required
 @submit_step(2)
-@transaction.commit_on_success
+@transaction.atomic
 def submit_addon(request, step):
     if request.user.read_dev_agreement is None:
         return redirect(_step_url(1))
@@ -1762,7 +1762,7 @@ def render_agreement(request, template, next_step, step=None):
 
 @login_required
 @waffle_switch('signing-api')
-@transaction.commit_on_success
+@transaction.atomic
 def api_key(request):
     if request.user.read_dev_agreement is None:
         return redirect(reverse('devhub.api_key_agreement'))
