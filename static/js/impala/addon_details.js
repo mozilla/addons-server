@@ -1,9 +1,11 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
-    if ($('#background-wrapper').css('position') === 'absolute') {
-        $('#background-wrapper').css('height',
+
+    if($("body#restyle").length === 1) {
+        $('#background-wrapper').height(
             $('.amo-header').height() +
-            $('#addon-description-header').height() + 20 + 'px');
+            $('#addon-description-header').height() + 20
+        );
     }
 
     $(".previews").zCarousel({

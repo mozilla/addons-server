@@ -31,16 +31,16 @@ function initPromos($context, module_context, version, platform) {
             $promos.trigger('promos_shown', [$promos]);
             $('.persona-preview', $promos).previewPersona(true);
         }
-        // Hide panel if we have no promos to show and it's the redesign
-        if (resp !== ''
-            && $('#background-wrapper').css('position') === 'absolute') {
+        // Hide panel is we have no promos to show
+        if (resp !== '' && $('body#restyle').length === 1) {
             $('#page > .secondary').addClass('shift-secondary');
             $('#background-wrapper').addClass('carousel-header');
             $('#promos').addClass('show');
             $('#side-nav').addClass('expanded');
-            $('#background-wrapper').css('height',
+            $('#background-wrapper').height(
                 $('.amo-header').height() +
-                $('#promos').height() + 40 + 'px');
+                $('#promos').height() + 40
+            );
         }
     });
 }

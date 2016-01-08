@@ -57,10 +57,15 @@
         data-static-url="{{ STATIC_URL }}"
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
+        {% if waffle.flag('restyle') %}
+          class="restyle"
+        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      <div id="background-wrapper"></div>
+      {% if waffle.flag('restyle') %}
+        <div id="background-wrapper"></div>
+      {% endif %}
       {% if ADMIN_MESSAGE or settings.READ_ONLY %}
         <div id="site-notice">
           {% if ADMIN_MESSAGE %}

@@ -60,10 +60,15 @@
         {% if switch_is_active('fxa-auth') %}
           data-fxa-config="{{ fxa_config()|json }}"
         {% endif %}
+        {% if waffle.flag('restyle') %}
+          class="restyle"
+        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      <div id="background-wrapper"></div>
+      {% if waffle.flag('restyle') %}
+        <div id="background-wrapper"></div>
+      {% endif %}
       <div id="page" class="c">
         {% block site_header %}
           {% include "tabzilla.html" %}

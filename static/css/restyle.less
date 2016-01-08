@@ -333,7 +333,9 @@ button.search-button {
     display: block !important;
     opacity: 1 !important;
 }
-#promos, #promos li > div, #promos > div {
+#promos,
+#promos li > div,
+#promos > div {
     border-radius: 0;
 }
 #promos .feature {
@@ -415,7 +417,7 @@ button.search-button {
         left: 0;
     }
     .next {
-         right: 0;
+        right: 0;
     }
 
     h2, h3 {
@@ -464,7 +466,10 @@ button.search-button {
 }
 
 /*  */
-#featured-addon > div, #go-mobile > div, #monthly > div, .addons li > a {
+#featured-addon > div,
+#go-mobile > div,
+#monthly > div,
+.addons li > a {
     border: 0;
     border-radius: 0;
     box-shadow: none;
@@ -472,7 +477,9 @@ button.search-button {
     background-color: rgba(255, 255, 255, 0.0);
     transition-property: background-color;
 }
-.addons li > a:active, .addons li > a:focus, .addons li > a:hover {
+.addons li > a:active,
+.addons li > a:focus,
+.addons li > a:hover {
     box-shadow: none;
     background-color: rgba(255, 255, 255, 0.2);
     transition-property: background-color;
@@ -482,7 +489,9 @@ button.search-button {
     margin-right: 8px;
     margin-bottom: 3px;
 }
-.addons h3, #featured-addon h3, #monthly h3 {
+.addons h3,
+#featured-addon h3,
+#monthly h3 {
     font-size: 1.2rem;
     line-height: 1.3rem;
     max-height: 1.2rem;
@@ -557,7 +566,7 @@ button.good {
     }
 
     li {
-        border-color: lighten(desaturate(@primary-blue, 50%), 20%);
+        border: none;
     }
 }
 
@@ -599,6 +608,7 @@ button.good {
 #page #breadcrumbs {
     display: none;
 }
+
 .addon-details .primary,
 .addon-details .secondary {
     font-family: @primary-font !important;
@@ -633,7 +643,8 @@ button.good {
     margin-top: -5px;
 }
 /* Re-colors links on top of details page to white */
-#addon a, .author a,
+#addon a,
+.author a,
 .addon-vitals .widgets .widget {
     color: #FFFFFF;
 }
@@ -695,7 +706,10 @@ button.good {
     background: 0;
 
     .hovercard.addon {
-         &:hover, &:hover:before, &:hover .icon, &:hover .summary,
+         &:hover,
+         &:hover:before,
+         &:hover .icon,
+         &:hover .summary,
          &:hover .more {
             background: none;
             border-color: transparent;
@@ -704,7 +718,9 @@ button.good {
 
          .more {
              display: block !important;
-             .addon-summary, .byline, .vitals {
+             .addon-summary,
+             .byline,
+             .vitals {
                 display: none;
              }
          }
@@ -719,13 +735,28 @@ button.good {
 
 /* font issues on addon-details */
 .addon-details {
-    .version-number, h4.author, h4.author a, #addon-summary, a.privacy-policy,
-    .notice h3, .notice p, .notice p a, .notice p b, .category.more-info,
-    .vital a, #reviews-link, #daily-users a {
+    .version-number, 
+    h4.author, 
+    h4.author a,
+    #addon-summary,
+    a.privacy-policy,
+    .notice h3,
+    .notice p,
+    .notice p a,
+    .notice p b,
+    .category.more-info,
+    .vital a,
+    #reviews-link,
+    #daily-users a {
         color: #fff;
     }
-    .version-number, h4.author, a.privacy-policy, #contribution.notice p a,
-    .category.more-info, .vital a, #reviews-link {
+    .version-number,
+    h4.author,
+    a.privacy-policy,
+    #contribution.notice p a,
+    .category.more-info,
+    .vital a,
+    #reviews-link {
         opacity: 0.4;
     }
     .version-number {

@@ -208,12 +208,3 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 RAVEN_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
 RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
-restyle = 'css/restyle.less'
-zamboni = tuple(list(MINIFY_BUNDLES['css']['zamboni/css']).remove(restyle))
-impala = tuple(list(MINIFY_BUNDLES['css']['zamboni/impala']).remove(restyle))
-devhub = tuple(list(MINIFY_BUNDLES['css']['zamboni/devhub_impala'])
-               .remove(restyle))
-
-MINIFY_BUNDLES['css']['zamboni/css'] = zamboni
-MINIFY_BUNDLES['css']['zamboni/impala'] = impala
-MINIFY_BUNDLES['css']['zamboni/devhub'] = devhub
