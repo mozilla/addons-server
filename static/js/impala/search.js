@@ -176,7 +176,7 @@
             }
         }
 
-        $('.pjax-trigger a').live('click', _pd(hijackLink));
+        $(document).on('click', '.pjax-trigger a', _pd(hijackLink));
         $container.bind('start.pjax', loading).bind('end.pjax', finished);
         $(document).keyup(_.throttle(turnPages, 300));
     };
