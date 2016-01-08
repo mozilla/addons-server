@@ -385,7 +385,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         self.picture_type = ""
         self.save()
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def restrict(self):
         from amo.utils import send_mail
         log.info(u'User (%s: <%s>) is being restricted and '

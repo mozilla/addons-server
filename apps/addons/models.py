@@ -403,7 +403,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             return
         clean_slug(self, slug_field)
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks

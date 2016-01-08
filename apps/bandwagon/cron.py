@@ -1,7 +1,7 @@
 from datetime import date
 import itertools
 
-from django.db import connection
+from django.db import connection, transaction
 from django.db.models import Count
 
 import commonware.log
@@ -107,7 +107,7 @@ def drop_collection_recs():
 
 
 @task(rate_limit='1/m')
-@transaction.commit_on_success
+@transaction.atomic
 def _drop_collection_recs(**kw):
     task_log.info("[300@%s] Dropping recommended collections." % (
                   _drop_collection_recs.rate_limit))
