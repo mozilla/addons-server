@@ -844,7 +844,6 @@ MINIFY_BUNDLES = {
             'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
-            'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
