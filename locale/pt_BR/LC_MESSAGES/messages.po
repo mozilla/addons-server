@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-07 23:37+0000\n"
+"PO-Revision-Date: 2016-01-09 15:35+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5961,7 +5961,7 @@ msgstr "Excluir tema"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 msgid "Delete Add-on and block GUID"
-msgstr ""
+msgstr "Excluir complemento e bloquear GUID"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
@@ -5972,6 +5972,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again, even by you."
 msgstr ""
+"Ao excluir o complemento irá remové-lo permanentemente do site e impedir que"
+" o GUID do mesmo seja submetido novamente, até mesmo por você."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
