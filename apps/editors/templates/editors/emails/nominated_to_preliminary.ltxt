@@ -1,3 +1,8 @@
+my-addon/
+         data
+         lib
+         locale/
+                en-US.properties
 {% extends "editors/emails/base.ltxt" %}{% block content %}
 Your add-on, {{ name }} {{ number }}, has been reviewed by an editor and did not meet the criteria for full review. However, your add-on has been granted preliminary review and is now available for download in our gallery at {{ addon_url }}
 {% include "editors/emails/files.ltxt" %}
@@ -9,6 +14,5 @@ Comments:
 {{ comments }}
 
 {{ tested }}
-
-Your add-on will now appear in search results and categories with some limitations. You may re-request full review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
+Your add-on will now appear in search results and categories with some limitations. You may re-request full review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
 {% endblock %}
