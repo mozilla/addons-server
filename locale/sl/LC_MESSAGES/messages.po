@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-11 17:17+0000\n"
+"PO-Revision-Date: 2016-01-11 17:26+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -12611,6 +12611,10 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"Večina dodatkov ne povzroči zaznavnega zmanjšanja zmogljivosti v "
+"%(app_name)s, lahko pa ga povzroči namestitev prekomernega števila dodatkov."
+" Če sumite, da dodatek povzroča upočasnitev %(app_name)s, ga poskusite "
+"onemogočiti."
 
 #: apps/pages/templates/pages/faq.html:141
 msgid ""
@@ -12809,6 +12813,9 @@ msgid ""
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
 "can cause a noticeable slowdown."
 msgstr ""
+"Večina dodatkov naloži kodo in vire sočasno z zagonom Firefoxa. V večini "
+"primerov je vpliv na zagonski čas majhen, vendar nekateri dodatki lahko "
+"povzročijo znatno upočasnitev."
 
 #: apps/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -15516,6 +15523,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Dodatki bodo za prijavo preklopili na Firefox Račune. <a href=\"%(url)s\" "
+"class=\"fxa-login\">Prijavite se, da prenesete svoj račun</a>."
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:141
