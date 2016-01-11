@@ -248,14 +248,18 @@ var contributions = {
                     if ($.browser.opera) {
                         this.inputs = $(':input:visible').css('visibility', 'hidden');
                     }
+
                     // clean up, then show box
                     hash.w.find('.error').hide();
+                    // If overlay is not disabled, prepend to body
+                    if(hash.c.overlay > 0) {
+                        hash.o.prependTo('body');
+                    }
                     hash.w
                         .find('input:text').val('').end()
                         .find('textarea').val('').keyup().end()
                         .find('input:radio:first').prop('checked', true).end()
                         .fadeIn();
-
                 },
                 onHide: function(hash) {
                     if ($.browser.opera) {
