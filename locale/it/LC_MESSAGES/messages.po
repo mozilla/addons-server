@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-11 08:57+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-01-11 12:27+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5954,7 +5954,7 @@ msgstr "Elimina tema"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
 msgid "Delete Add-on and block GUID"
-msgstr ""
+msgstr "Elimina componente aggiuntivo e blocca GUID"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
@@ -5965,6 +5965,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again, even by you."
 msgstr ""
+"Se decidi di eliminare il componente aggiuntivo esso verrà rimosso in modo "
+"permanente dal sito e non potrai più riutilizzare il GUID corrispondente."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -12812,6 +12814,11 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"Normalmente un componente aggiuntivo non dovrebbe causare cali di "
+"prestazioni rilevanti in %(app_name)s, anche se installarne un numero "
+"eccessivo potrebbe comportare ripercussioni negative. Se sospetti che un "
+"particolare componente aggiuntivo stia causando un rallentamento in "
+"%(app_name)s, prova a disattivarlo."
 
 #: apps/pages/templates/pages/faq.html:141
 msgid ""
@@ -15743,6 +15750,9 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Ora è possibile accedere al sito dei componenti aggiuntivi con il proprio "
+"account Firefox. <a href=\"%(url)s\" class=\"fxa-login\">Accedi per "
+"trasferire il tuo account.</a>"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:141
