@@ -125,6 +125,9 @@ FXA_CONFIG = {
     'scope': 'profile',
 }
 
+# CSP report endpoint which returns a 204 from addons-nginx in local dev.
+CSP_REPORT_URI = '/csp-report'
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa
