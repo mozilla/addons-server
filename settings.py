@@ -128,6 +128,11 @@ FXA_CONFIG = {
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
 
+# Allow GA over http + www subdomain in local development.
+HTTP_GA_SRC = 'http://www.google-analytics.com'
+CSP_SCRIPT_SRC += (HTTP_GA_SRC,)
+CSP_IMG_SRC += (HTTP_GA_SRC,)
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa
