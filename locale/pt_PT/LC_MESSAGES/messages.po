@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-07 09:41+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-01-10 13:54+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -4026,7 +4026,7 @@ msgstr "Mobile"
 
 #: apps/constants/applications.py:103
 msgid "Firefox for Android"
-msgstr "Firefox para o Android"
+msgstr "Firefox para Android"
 
 #: apps/constants/applications.py:138
 msgid "Mozilla"
