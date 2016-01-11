@@ -157,7 +157,7 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
+REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
