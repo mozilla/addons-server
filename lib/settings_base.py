@@ -1233,15 +1233,17 @@ CEF_PRODUCT = "amo"
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
-CSP_DEFAULT_SRC = ("*", "data:")
-CSP_SCRIPT_SRC = ("'self'",
-                  "https://www.google.com",  # Recaptcha
-                  "https://www.paypalobjects.com",
-                  "https://ssl.google-analytics.com",
-                  )
-CSP_STYLE_SRC = ("*", "'unsafe-inline'")
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://www.google.com",  # Recaptcha
+    "https://www.paypalobjects.com",
+    "https://ssl.google-analytics.com",
+)
+CSP_IMG_SRC = ("'self'", "https://ssl.google-analytics.com")
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'",)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
+CSP_CHILD_SRC = ("https://ssl.google-analytics.com",)
 
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
