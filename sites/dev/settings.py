@@ -44,9 +44,6 @@ SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-dev-cdn.allizom.org/user-media/'
 
-CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (MEDIA_URL[:-1],)
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 SYSLOG_TAG = "http_app_addons_dev"

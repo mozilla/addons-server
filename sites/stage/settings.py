@@ -37,9 +37,6 @@ SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-stage-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-stage-cdn.allizom.org/user-media/'
 
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 SYSLOG_TAG = "http_app_addons_stage"
