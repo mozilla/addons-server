@@ -35,6 +35,7 @@ nginx:
     - "80:80"
   volumes:
     - ./static:/srv/static
+    - ./site-static:/srv/site-static
   links:
     - web:web
 
