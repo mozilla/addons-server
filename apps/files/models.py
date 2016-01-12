@@ -572,7 +572,7 @@ class Approval(amo.models.ModelBase):
 
 class FileUpload(amo.models.ModelBase):
     """Created when a file is uploaded for validation/submission."""
-    uuid = UUIDField(primary_key=True, auto=True)
+    uuid = UUIDField(auto=True)
     path = models.CharField(max_length=255, default='')
     name = models.CharField(max_length=255, default='',
                             help_text="The user's original filename")
@@ -605,8 +605,7 @@ class FileUpload(amo.models.ModelBase):
         super(FileUpload, self).save(*args, **kw)
 
     def add_file(self, chunks, filename, size):
-        force_insert = not self.uuid
-        if force_insert:
+        if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid().hex
         filename = smart_str(u'{0}_{1}'.format(self.uuid, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
@@ -622,13 +621,13 @@ class FileUpload(amo.models.ModelBase):
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash.hexdigest()
-        self.save(force_insert=force_insert)
+        self.save()
 
     @classmethod
     def from_post(cls, chunks, filename, size, **params):
-        fu = FileUpload(**params)
-        fu.add_file(chunks, filename, size)
-        return fu
+        upload = FileUpload(**params)
+        upload.add_file(chunks, filename, size)
+        return upload
 
     @property
     def processed(self):
