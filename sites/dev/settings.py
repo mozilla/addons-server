@@ -8,6 +8,12 @@ from lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+# Allow addons-dev CDN for CSP.
+DEV_CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_IMG_SRC += (DEV_CDN_HOST,)
+CSP_STYLE_SRC += (DEV_CDN_HOST,)
+
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
