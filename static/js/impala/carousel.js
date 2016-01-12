@@ -10,8 +10,7 @@
 $.fn.zCarousel = function(o) {
     o = $.extend({
         itemsPerPage: 1,
-        circular: false,
-        useTransitions: z.cssTransitions
+        circular: false
     }, o);
 
     var $self = $(this).eq(0),
@@ -26,21 +25,13 @@ $.fn.zCarousel = function(o) {
     if (!$strip.length) return $self;
 
     function render(pos) {
-        if (o.useTransitions) {
-            if (o.circular) {
-                currentPos = pos > maxPos+1 ? pos-maxPos : (pos < 0 ? pos+maxPos : pos);
-                if ($strip.hasClass("noslide")) {
-                    currentPos = (pos > maxPos) ? 1 : (pos < 1 ? maxPos : pos);
-                }
-            } else {
-                currentPos = Math.min(Math.max(0, pos), maxPos-1);
+        if (o.circular) {
+            currentPos = pos > maxPos+1 ? pos-maxPos : (pos < 0 ? pos+maxPos : pos);
+            if ($strip.hasClass("noslide")) {
+                currentPos = (pos > maxPos) ? 1 : (pos < 1 ? maxPos : pos);
             }
         } else {
-            if (o.circular) {
-                currentPos = (pos > maxPos) ? 1 : (pos < 1 ? maxPos : pos);
-            } else {
-                currentPos = Math.min(Math.max(0, pos), maxPos-1);
-            }
+            currentPos = Math.min(Math.max(0, pos), maxPos-1);
         }
         $strip.css(prop, currentPos * -100 + "%");
         $prev.toggleClass("disabled", currentPos == 0 && !o.circular);
@@ -75,17 +66,15 @@ $.fn.zCarousel = function(o) {
         //pad the beginning with a page from the end vice-versa.
         $strip.prepend($lis.slice(-o.itemsPerPage).clone().addClass("cloned"))
               .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
-        if (o.useTransitions) {
-            $strip.addClass('noslide');
-            $strip.bind("transitionend webkitTransitionEnd", function() {
-                if (currentPos > maxPos || currentPos < 1) {
-                    $strip.addClass("noslide");
-                    setTimeout(function() {
-                        render(currentPos);
-                    }, 0);
-                }
-            });
-        }
+        $strip.addClass('noslide');
+        $strip.bind("transitionend webkitTransitionEnd", function() {
+            if (currentPos > maxPos || currentPos < 1) {
+                $strip.addClass("noslide");
+                setTimeout(function() {
+                    render(currentPos);
+                }, 0);
+            }
+        });
         render(o.itemsPerPage);
     } else {
         render(0);
