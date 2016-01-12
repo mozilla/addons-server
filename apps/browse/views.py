@@ -309,9 +309,7 @@ def personas_listing(request, category_slug=None):
 
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
-    base = (Addon.objects.public().filter(type=TYPE)
-                 .exclude(id__in=frozen)
-                 .extra(select={'_app': request.APP.id}))
+    base = Addon.objects.public().filter(type=TYPE).exclude(id__in=frozen)
 
     cat = None
     if category_slug is not None:
