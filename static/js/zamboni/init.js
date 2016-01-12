@@ -38,12 +38,6 @@ z.inlineSVG = (function() {
 if (!z.inlineSVG) {
     $("body").addClass("noInlineSVG");
 }
-z.hasTruncation = (function() {
-    var shim = document.createElement('div');
-    shim.innerHTML = '<div style="text-overflow: ellipsis"></div>';
-    var s = shim.firstChild.style;
-    return 'textOverflow' in s || 'OTextOverflow' in s;
-})();
 
 /* prevent-default function wrapper */
 function _pd(func) {
