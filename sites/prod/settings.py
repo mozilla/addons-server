@@ -38,8 +38,6 @@ SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
 MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://*.paypal.com",)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
