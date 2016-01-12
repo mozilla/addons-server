@@ -1230,6 +1230,10 @@ USE_HEKA_FOR_TASTYPIE = False
 CEF_PRODUCT = "amo"
 
 # CSP Settings
+
+PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
+ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
@@ -1238,13 +1242,20 @@ CSP_SCRIPT_SRC = (
     "'self'",
     "https://www.google.com",  # Recaptcha
     "https://www.paypalobjects.com",
-    "https://ssl.google-analytics.com",
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
 )
-CSP_IMG_SRC = ("'self'", "https://ssl.google-analytics.com")
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'",)
+CSP_IMG_SRC = (
+    "'self'",
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    PROD_CDN_HOST,
+)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_CHILD_SRC = ("https://ssl.google-analytics.com",)
-
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
