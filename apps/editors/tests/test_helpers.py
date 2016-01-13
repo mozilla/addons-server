@@ -592,8 +592,8 @@ class TestReviewHelper(amo.tests.TestCase):
                 amo.STATUS_DISABLED)
 
             assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject ==
-                '%s didn\'t pass review' % self.preamble
+            assert mail.outbox[0].subject == (
+                '%s didn\'t pass review' % self.preamble)
             assert 'did not meet the criteria' in mail.outbox[0].body
 
             assert not sign_mock.called
@@ -728,8 +728,8 @@ class TestReviewHelper(amo.tests.TestCase):
                 assert file.status == amo.STATUS_DISABLED
 
             assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject ==
-                '%s didn\'t pass review' % self.preamble
+            assert mail.outbox[0].subject == (
+                '%s didn\'t pass review' % self.preamble)
             assert 'did not meet the criteria' in mail.outbox[0].body
 
             assert not sign_mock.called
@@ -860,8 +860,8 @@ class TestReviewHelper(amo.tests.TestCase):
                 assert file.status == amo.STATUS_DISABLED
 
             assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject ==
-                '%s didn\'t pass review' % self.preamble
+            assert mail.outbox[0].subject == (
+                '%s didn\'t pass review' % self.preamble)
             assert 'did not meet the criteria' in mail.outbox[0].body
 
             assert not sign_mock.called
