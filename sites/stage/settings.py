@@ -8,6 +8,11 @@ from lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
+CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
+CSP_IMG_SRC += (STAGE_CDN_HOST,)
+CSP_STYLE_SRC += (STAGE_CDN_HOST,)
+
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
