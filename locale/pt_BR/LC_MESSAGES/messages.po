@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-10 12:40+0000\n"
+"PO-Revision-Date: 2016-01-13 21:23+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1936,7 +1936,7 @@ msgstr "As estatísticas de {addon} foram definidas como públicas."
 
 #: apps/amo/log.py:87
 msgid "{addon} stats set to private."
-msgstr "As estatísticas de {addon} foram definidas como particulares."
+msgstr "As estatísticas de {addon} foram definidas como privadas."
 
 #. L10n: {0} is the status
 #: apps/amo/log.py:94
@@ -2963,7 +2963,7 @@ msgstr "{0} :: Coleções"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr "particular"
+msgstr "privada"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:45
 #: apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
@@ -2982,7 +2982,7 @@ msgstr "Complementos sincronizados com meu Firefox móvel"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
-msgstr "Tornar essa coleção Particular"
+msgstr "Tornar essa coleção privada"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:71
 msgid "Make this Collection Public"
@@ -3061,10 +3061,10 @@ msgid ""
 "everyone can see it. If you would like to hide it from public view, click "
 "the button below to make it private."
 msgstr ""
-"Complementos que você marca como favoritos usando o recurso <b>Adicionar aos"
-" favoritos</b> aparecem abaixo. Essa coleção atualmente é <b>pública</b>, o "
-"que significa que todo mundo pode vê-la. Se você gostaria de escondê-la da "
-"visão do público, clique no botão abaixo para torná-la particular."
+"Complementos que marca como favoritos usando o recurso <b>Adicionar aos "
+"favoritos</b> aparecem abaixo. Essa coleção atualmente é <b>pública</b>, o "
+"que significa que todo mundo pode vê-la. Se desejar escondê-la da visão do "
+"público, clique no botão abaixo para torná-la privada."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:195
 msgid ""
@@ -3073,11 +3073,10 @@ msgid ""
 " you can see it. If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
-"Complementos que você marca como favoritos usando o recurso <b>Adicionar aos"
-" favoritos</b> aparecem abaixo. Esta coleção atualmente é <b>particular</b>,"
-" o que significa que somente você pode vê-la. Se você gostaria que todo "
-"mundo pudesse ver seus favoritos, clique no botão abaixo para torná-los "
-"públicos."
+"Complementos que marca como favoritos usando o recurso <b>Adicionar aos "
+"favoritos</b> aparecem abaixo. Esta coleção atualmente é <b>privada</b>, o "
+"que significa que somente você pode vê-la. Se desejar que todos possam vê-"
+"la, clique no botão abaixo para torná-la pública."
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:205
 msgid "My favorite add-ons"
@@ -7642,7 +7641,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
-msgstr "Modo de Navegação Privativa"
+msgstr "Modo de navegação privada"
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid ""
@@ -7654,10 +7653,10 @@ msgid ""
 msgstr ""
 "Complementos que armazenam ou manipulam dados de navegação devem suportar o "
 "<a "
-"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Modo"
-" de Navegação Privativa</a>. Durante uma sessão de Navegação Privativa, "
-"nenhum dado de navegação pode ser escrito no disco e todos os dados devem "
-"ser limpos ao sair do modo de Navegação Privativa ou quando o Firefox for "
+"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">modo"
+" de navegação Privada</a>. Durante uma sessão de navegação privada, nenhum "
+"dado de navegação pode ser escrito no disco e todos os dados devem ser "
+"limpos ao sair do modo de navegação privada ou quando o Firefox for "
 "encerrado."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:287
@@ -14132,11 +14131,11 @@ msgstr "Este painel atualmente é <b>público</b>."
 
 #: apps/stats/templates/stats/stats.html:171
 msgid "Contribution stats are currently <b>private</b>."
-msgstr "As estatísticas de contribuição atualmente são <b>particulares</b>."
+msgstr "As estatísticas de contribuição atualmente são <b>privadas</b>."
 
 #: apps/stats/templates/stats/stats.html:174
 msgid "This dashboard is currently <b>private</b>."
-msgstr "Este painel atualmente é <b>particular</b>."
+msgstr "Este painel atualmente é <b>privado</b>."
 
 #: apps/stats/templates/stats/stats.html:177
 msgid "Change settings."
