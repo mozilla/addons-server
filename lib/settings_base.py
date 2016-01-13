@@ -503,7 +503,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/colorpicker.less',
+            'css/impala/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
