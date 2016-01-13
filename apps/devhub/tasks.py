@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import logging
 import os
@@ -22,7 +23,8 @@ import amo
 import validator
 from amo.celery import task
 from amo.decorators import atomic, set_modified_on, write
-from amo.utils import resize_image, send_html_mail_jinja
+from amo.utils import (resize_image, send_html_mail_jinja,
+                       utc_millesecs_from_epoch)
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import AppVersion
@@ -171,6 +173,20 @@ def handle_upload_validation_result(results, upload_id, annotate=True):
     upload = FileUpload.objects.get(pk=upload_id)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
+
+    # Track the time it took from first upload through validation
+    # until the results were processed and saved.
+    upload_start = utc_millesecs_from_epoch(upload.created)
+    now = datetime.datetime.now()
+    now_ts = utc_millesecs_from_epoch(now)
+    delta = now_ts - upload_start
+
+    log.info('Time to process and save upload validation; '
+             'upload.pk={upload}; processing time={delta}; '
+             'created={created}; now={now}'
+             .format(delta=delta, upload=upload.pk,
+                     created=upload.created, now=now))
+    statsd.timing('devhub.validation_results_processed', delta)
 
 
 # We need to explicitly not ignore the result, for the sake of `views.py` code
