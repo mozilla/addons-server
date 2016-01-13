@@ -832,6 +832,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
+            'js/zamboni/analytics.js',
             'js/lib/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/lib/truncate.js',
