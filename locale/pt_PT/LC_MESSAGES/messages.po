@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-10 13:54+0000\n"
+"PO-Revision-Date: 2016-01-13 05:24+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -135,7 +135,7 @@ msgstr "Descreva o seu tema."
 
 #: apps/addons/forms.py:700
 msgid "Enter a new author's email address"
-msgstr "Introduza o novo endereço de e-mail do autor"
+msgstr "Introduza o novo endereço de email do autor"
 
 #: apps/addons/helpers.py:34
 msgid "Not Reviewed"
