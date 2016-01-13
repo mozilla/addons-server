@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-06 13:38+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2016-01-13 00:29+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -136,7 +136,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
-msgstr "Lista de controlo de submissão de extra"
+msgstr "Lista de controlo de submissão de extras"
 
 #: static/js/common/upload-addon.js:471
 msgid ""
