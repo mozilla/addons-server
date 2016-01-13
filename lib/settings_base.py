@@ -630,6 +630,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
 
@@ -719,6 +723,10 @@ MINIFY_BUNDLES = {
             'js/common/upload-image.js',
             'js/lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
+
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
 
             # Collections
             'js/zamboni/collections.js',
