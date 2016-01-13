@@ -12,6 +12,7 @@ STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
 CSP_IMG_SRC += (STAGE_CDN_HOST,)
 CSP_STYLE_SRC += (STAGE_CDN_HOST,)
+CSP_IFRAME_SRC += ('https://www.sandbox.paypal.com',)
 
 ENGAGE_ROBOTS = False
 
