@@ -1253,7 +1253,9 @@ CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = (
     "'none'",
 )
-
+CSP_CONNECT_SRC = (
+    "'self'",
+)
 CSP_FONT_SRC = (
     "'self'",
     PROD_CDN_HOST,
