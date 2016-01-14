@@ -1247,15 +1247,21 @@ CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
 
 CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = (
+CSP_IFRAME_SRC = (
     "'self'",
-    "https://www.google.com",  # Recaptcha
-    "https://www.paypalobjects.com",
-    ANALYTICS_HOST,
-    PROD_CDN_HOST,
+    'https://www.paypal.com',
 )
 CSP_IMG_SRC = (
     "'self'",
+    'https://www.paypal.com',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+)
+CSP_OBJECT_SRC = ("'none'",)
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'https://www.google.com',  # Recaptcha
+    'https://www.paypalobjects.com',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
@@ -1264,7 +1270,6 @@ CSP_STYLE_SRC = (
     "'unsafe-inline'",
     PROD_CDN_HOST,
 )
-CSP_OBJECT_SRC = ("'none'",)
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
