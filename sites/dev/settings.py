@@ -239,3 +239,9 @@ FXA_CONFIG = {
 }
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
+CSP_CONNECT_SRC += ('https://sentry.prod.mozaws.net',)
+CSP_IMG_SRC += ('https://sentry.prod.mozaws.net',)
+RAVEN_WHITELIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']
