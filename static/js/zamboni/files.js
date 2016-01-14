@@ -6,7 +6,7 @@ $(function() {
         $('script[type="text/x-template"]'),
         function(node) {
             return [$.camelCase(node.id),
-                    _.template($(node).text())];
+                    syntaxhighlighter_template];
         }));
 });
 
