@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import waffle
+from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
@@ -677,8 +678,15 @@ def standalone_upload_detail(request, uuid):
 @dev_required
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
-    return json_upload_detail(request, upload, addon_slug=addon.slug)
+    try:
+        upload = get_object_or_404(FileUpload, uuid=uuid)
+        response = json_upload_detail(request, upload, addon_slug=addon.slug)
+        statsd.incr('devhub.upload_detail_for_addon.success')
+        return response
+    except Exception as exc:
+        statsd.incr('devhub.upload_detail_for_addon.error')
+        log.error('Error checking upload status: {} {}'.format(type(exc), exc))
+        raise
 
 
 @dev_required(allow_editors=True)
@@ -874,10 +882,21 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
 
 @login_required
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
-
     if format == 'json' or request.is_ajax():
-        return json_upload_detail(request, upload)
+        try:
+            # This is duplicated in the HTML code path.
+            upload = get_object_or_404(FileUpload, uuid=uuid)
+            response = json_upload_detail(request, upload)
+            statsd.incr('devhub.upload_detail.success')
+            return response
+        except Exception as exc:
+            statsd.incr('devhub.upload_detail.error')
+            log.error('Error checking upload status: {} {}'.format(
+                type(exc), exc))
+            raise
+
+    # This is duplicated in the JSON code path.
+    upload = get_object_or_404(FileUpload, uuid=uuid)
 
     validate_url = reverse('devhub.standalone_upload_detail',
                            args=[upload.uuid])
