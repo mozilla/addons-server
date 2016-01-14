@@ -1,15 +1,5 @@
 "use strict";
 
-$(function() {
-    // Compile our templates.
-    Highlighter.templates = _.object(_.map(
-        $('script[type="text/x-template"]'),
-        function(node) {
-            return [$.camelCase(node.id),
-                    syntaxhighlighter_template];
-        }));
-});
-
 var Highlighter = {
     squash_space: function squash_space(str) {
         // Squash non-significant whitespace in a string, so it can be
@@ -175,7 +165,7 @@ var Highlighter = {
         // 1.2 ex width per digit, just to be safe, and an additional 4 for padding.
         var lines_width = 1.2 * line_order + 4;
 
-        var html = this.templates.syntaxTable({lines_width: lines_width,
+        var html = syntaxhighlighter_template({lines_width: lines_width,
                                                lines: lines});
 
         $node.html(html);
