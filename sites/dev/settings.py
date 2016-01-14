@@ -10,10 +10,11 @@ env = environ.Env()
 
 # Allow addons-dev CDN for CSP.
 DEV_CDN_HOST = 'https://addons-dev-cdn.allizom.org'
-CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_FONT_SRC += (DEV_CDN_HOST,)
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (DEV_CDN_HOST,)
+CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
 CSP_STYLE_SRC += (DEV_CDN_HOST,)
-CSP_IFRAME_SRC += ('https://www.sandbox.paypal.com',)
 
 ENGAGE_ROBOTS = False
 
