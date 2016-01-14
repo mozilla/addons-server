@@ -1,5 +1,4 @@
 from datetime import date
-import itertools
 
 from django.db import connection, transaction
 from django.db.models import Count
@@ -9,7 +8,7 @@ from celery.task.sets import TaskSet
 
 import amo
 from amo.celery import task
-from amo.utils import chunked, slugify
+from amo.utils import chunked
 from bandwagon.models import Collection, CollectionVote, CollectionWatcher
 import cronjobs
 
@@ -78,27 +77,6 @@ def _update_collections_votes(data, stat, **kw):
         p = [date.today(), stat,
              var['collection_id'], var['count']]
         cursor.execute(q, p)
-
-
-# TODO: remove this once zamboni enforces slugs.
-@cronjobs.register
-def collections_add_slugs():
-    """Give slugs to any slugless collections."""
-    # Don't touch the modified date.
-    Collection._meta.get_field('modified').auto_now = False
-    q = Collection.objects.filter(slug=None)
-    ids = q.values_list('id', flat=True)
-    task_log.info('%s collections without names' % len(ids))
-    max_length = Collection._meta.get_field('slug').max_length
-    cnt = itertools.count()
-    # Chunk it so we don't do huge queries.
-    for chunk in chunked(ids, 300):
-        for c in q.no_cache().filter(id__in=chunk):
-            c.slug = c.nickname or slugify(c.name)[:max_length]
-            if not c.slug:
-                c.slug = 'collection'
-            c.save(force_update=True)
-            task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
 
 
 @cronjobs.register
