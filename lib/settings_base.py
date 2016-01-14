@@ -802,6 +802,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/editors.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
         'zamboni/files': (
