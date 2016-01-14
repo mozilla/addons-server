@@ -11,7 +11,7 @@
 _.template(`
     <div class="syntaxhighlighter">
        <table border="0" cellpadding="0" cellspacing="0">
-           <colgroup><col class="highlighter-column-line-numbers" style="width: {{ lines_width }}ex;"/>
+           <colgroup><col class="highlighter-column-line-numbers"/>
                      <col class="highlighter-column-code"/></colgroup>
            <tbody>
            {% _.each(lines, function(line) { %}
@@ -37,9 +37,7 @@ _.template(`
 function syntaxhighlighter_template(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n    <div class="syntaxhighlighter">\n       <table border="0" cellpadding="0" cellspacing="0">\n           <colgroup><col class="highlighter-column-line-numbers" style="width: '+
-((__t=( lines_width ))==null?'':_.escape(__t))+
-'ex;"/>\n                     <col class="highlighter-column-code"/></colgroup>\n           <tbody>\n           ';
+__p+='\n    <div class="syntaxhighlighter">\n       <table border="0" cellpadding="0" cellspacing="0">\n           <colgroup><col class="highlighter-column-line-numbers"/>\n                     <col class="highlighter-column-code"/></colgroup>\n           <tbody>\n           ';
  _.each(lines, function(line) { 
 __p+='\n               <tr class="tr-line">\n                   <td class="td-line-number">\n                       <a href="#'+
 ((__t=( line.id ))==null?'':_.escape(__t))+
