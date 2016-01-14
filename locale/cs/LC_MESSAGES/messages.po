@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-07 08:27+0000\n"
+"PO-Revision-Date: 2016-01-14 16:02+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5884,6 +5884,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again, even by you."
 msgstr ""
+"Smazáním doplňku jej nenávratně odstraníte z této stránky a zabráníte "
+"používání jeho GUID komukoli, včetně vás."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -12490,6 +12492,9 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"Většina doplňků nezpůsobuje znatelné zpomalení aplikace %(app_name)s, avšak "
+"používání nadměrného množství doplňků může mít negativní účinky. Pokus si "
+"myslíte, že nějaký doplněk zpomaluje %(app_name)s, zkuste jej zakázat."
 
 #: apps/pages/templates/pages/faq.html:141
 msgid ""
@@ -12684,6 +12689,9 @@ msgid ""
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
 "can cause a noticeable slowdown."
 msgstr ""
+"Většina doplňků načítá svůj kód a zdroje při načítání Firefoxu. Ve většině "
+"případů je dopad na rychlost spouštění minimální, ale některé doplňky mohou "
+"způsobit znatelné zpomalení."
 
 #: apps/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -15355,6 +15363,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Doplňky budou již brzy používat pro přihlašování Firefox Accounts. <a "
+"href=\"%(url)s\" class=\"fxa-login\">Přihlaste se pro převod svého účtu</a>"
 
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:141
