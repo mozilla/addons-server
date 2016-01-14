@@ -9,10 +9,11 @@ environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
 STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
-CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
+CSP_FONT_SRC += (STAGE_CDN_HOST,)
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (STAGE_CDN_HOST,)
+CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
 CSP_STYLE_SRC += (STAGE_CDN_HOST,)
-CSP_IFRAME_SRC += ('https://www.sandbox.paypal.com',)
 
 ENGAGE_ROBOTS = False
 
