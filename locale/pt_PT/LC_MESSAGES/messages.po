@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-13 05:24+0000\n"
+"PO-Revision-Date: 2016-01-14 04:26+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3209,7 +3209,7 @@ msgstr "Utilizador"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41
 #: apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 # Column name in a table.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
