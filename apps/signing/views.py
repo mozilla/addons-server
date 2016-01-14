@@ -53,11 +53,19 @@ def with_addon(allow_missing=False):
                     return Response({'error': _('Could not find add-on with '
                                                 'id "{}".').format(guid)},
                                     status=status.HTTP_404_NOT_FOUND)
-            if addon is not None and not addon.has_author(request.user):
+            # Call the view if there is no add-on, the current user is an
+            # auther of the add-on or the current user is an admin and the
+            # request is a GET.
+            if addon is None or (
+                    addon.has_author(request.user)
+                    or (request.method == 'GET'
+                        and acl.action_allowed_user(request.user, 'Addons',
+                                                    'Edit'))):
+                return fn(view, request, addon=addon, **kwargs)
+            else:
                 return Response(
                     {'error': _('You do not own this addon.')},
                     status=status.HTTP_403_FORBIDDEN)
-            return fn(view, request, addon=addon, **kwargs)
         return inner
     return wrapper
 
