@@ -59,7 +59,7 @@ class DRFMixin(object):
     """
     def setUp(self):
         super(DRFMixin, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def test_drf_running(self):
         """

@@ -31,7 +31,6 @@ from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView
-from waffle import cache_sample, cache_switch
 from waffle.models import Flag, Sample, Switch
 
 from access.acl import check_ownership
@@ -158,21 +157,25 @@ def assert_url_equal(url, other, compare_host=False):
         eq_(parsed.netloc, parsed_other.netloc)
 
 
-def create_sample(name=None, db=False, **kw):
+def create_sample(name=None, **kw):
     if name is not None:
         kw['name'] = name
     kw.setdefault('percent', 100)
-    sample = Sample(**kw)
-    sample.save() if db else cache_sample(instance=sample)
+    sample, created = Sample.objects.get_or_create(name=name, defaults=kw)
+    if not created:
+        sample.__dict__.update(kw)
+        sample.save()
     return sample
 
 
-def create_switch(name=None, db=False, **kw):
+def create_switch(name=None, **kw):
     kw.setdefault('active', True)
     if name is not None:
         kw['name'] = name
-    switch = Switch(**kw)
-    switch.save() if db else cache_switch(instance=switch)
+    switch, created = Switch.objects.get_or_create(name=name, defaults=kw)
+    if not created:
+        switch.__dict__.update(kw)
+        switch.save()
     return switch
 
 
@@ -180,7 +183,11 @@ def create_flag(name=None, **kw):
     if name is not None:
         kw['name'] = name
     kw.setdefault('everyone', True)
-    return Flag.objects.create(**kw)
+    flag, created = Flag.objects.get_or_create(name=name, defaults=kw)
+    if not created:
+        flag.__dict__.update(kw)
+        flag.save()
+    return flag
 
 
 class RedisTest(object):
