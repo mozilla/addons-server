@@ -128,10 +128,10 @@ def confirm_resend(request, user):
 
     user.email_confirmation_code()
 
-    msg = _(u'An email has been sent to your address {0} to confirm '
+    msg = _(u'An email has been sent to your address to confirm '
             u'your account. Before you can log in, you have to activate '
             u'your account by clicking on the link provided in this '
-            u'email.').format(user.email)
+            u'email.')
     messages.info(request, _('Confirmation Email Sent'), msg)
 
     return redirect('users.login')
