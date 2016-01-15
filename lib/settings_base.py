@@ -1267,6 +1267,7 @@ CSP_FRAME_SRC = (
 )
 CSP_IMG_SRC = (
     "'self'",
+    'blob:',  # Needed for image uploads.
     'https://www.paypal.com',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
