@@ -1247,6 +1247,7 @@ ANALYTICS_HOST = 'https://ssl.google-analytics.com'
 
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
+CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
