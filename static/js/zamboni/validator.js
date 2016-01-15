@@ -58,7 +58,7 @@ function initValidator($doc) {
     };
 
     ResultsTier.prototype.createDom = function() {
-        var $tier = $($('.template', this.$suite).html());
+        var $tier = $($('.template', this.$suite).html().trim());
         $tier.attr('id', 'suite-results-tier-' + this.tierId);
         return $tier;
     }
