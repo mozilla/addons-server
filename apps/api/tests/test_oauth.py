@@ -297,7 +297,7 @@ class TestDRFUser(TestUser):
 
     def setUp(self):
         super(TestDRFUser, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def test_forbidden_user_lookup(self):
         super(TestDRFUser, self).test_forbidden_user_lookup(response_code=403)
@@ -783,7 +783,7 @@ class TestDRFAddon(TestAddon):
 
     def setUp(self):
         super(TestDRFAddon, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def _compare_dicts(self, drf_data, piston_data):
         """

@@ -428,7 +428,7 @@ class TestTranslate(ReviewTest):
 
     def setUp(self):
         super(TestTranslate, self).setUp()
-        self.create_switch('reviews-translate', db=True)
+        self.create_switch('reviews-translate')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.review = Review.objects.create(addon=self.addon, user=self.user,
                                             title='or', body='yes')

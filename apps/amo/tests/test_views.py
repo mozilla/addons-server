@@ -69,7 +69,7 @@ class TestCommon(amo.tests.TestCase):
     def setUp(self):
         super(TestCommon, self).setUp()
         self.url = reverse('home')
-        self.create_switch('signing-api', db=True)
+        self.create_switch('signing-api')
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user

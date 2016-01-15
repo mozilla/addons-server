@@ -8,6 +8,7 @@ from django.db import connection
 
 import cronjobs
 import commonware.log
+import waffle
 
 import amo
 from amo.utils import chunked
@@ -138,6 +139,10 @@ def collection_subscribers():
     Collection weekly and monthly subscriber counts.
     """
     log.debug('Starting collection subscriber update...')
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     cursor = connection.cursor()
     cursor.execute("""
         UPDATE collections SET weekly_subscribers = 0, monthly_subscribers = 0
@@ -209,6 +214,10 @@ def weekly_downloads():
     """
     Update 7-day add-on download counts.
     """
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     cursor = connection.cursor()
     cursor.execute("""
