@@ -75,8 +75,6 @@ def cleanup(master, slave):
 
 
 def get_redis_backend(backend_uri):
-    # From django-redis-cache
-    # This is temporary https://github.com/washort/nuggets/pull/1
     _, server, params = parse_backend_uri(backend_uri)
     db = params.pop('db', 0)
     try:
