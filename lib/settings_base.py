@@ -1260,6 +1260,7 @@ CSP_DEFAULT_SRC = (
 )
 CSP_CONNECT_SRC = (
     "'self'",
+    'https://sentry.prod.mozaws.net',
 )
 CSP_FONT_SRC = (
     "'self'",
@@ -1275,6 +1276,7 @@ CSP_IMG_SRC = (
     'https://www.paypal.com',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
+    'https://sentry.prod.mozaws.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (

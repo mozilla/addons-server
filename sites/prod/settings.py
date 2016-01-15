@@ -207,6 +207,4 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 
 RAVEN_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
-CSP_CONNECT_SRC += ('https://sentry.prod.mozaws.net',)
-CSP_IMG_SRC += ('https://sentry.prod.mozaws.net',)
 RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
