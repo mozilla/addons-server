@@ -33,12 +33,22 @@
             $.extend( settings, options );
         }
 
-        function parseErrorsFromJson(response) {
+        function parseErrorsFromJson(response, statusCode) {
             var json, errors = [];
             try {
                 json = JSON.parse(response);
             } catch(err) {
                 errors = [gettext("There was a problem contacting the server.")];
+                try {
+                    Raven.captureMessage('Error parsing upload status JSON.', {
+                        extra: {
+                            status_code: statusCode,
+                            content: response,
+                        },
+                    });
+                } catch (e) {
+                    console.log(e);
+                }
             }
             if (!errors.length) {
                 errors = settings.getErrors(json);
@@ -241,7 +251,7 @@
                          xhr.status == 304 ||
                          xhr.status == 400)) {
 
-                    errOb = parseErrorsFromJson(xhr.responseText);
+                    errOb = parseErrorsFromJson(xhr.responseText, xhr.status);
                     errors = errOb.errors;
                     json = errOb.json;
 
@@ -377,7 +387,7 @@
                                 $upload_field.trigger("upload_success_results", [file, r]);
                             },
                             error: function(xhr) {
-                                var errOb = parseErrorsFromJson(xhr.responseText);
+                                var errOb = parseErrorsFromJson(xhr.responseText, xhr.status);
                                 $upload_field.trigger("upload_errors", [file, errOb.errors, errOb.json]);
                                 $upload_field.trigger("upload_finished", [file]);
                             }
