@@ -159,6 +159,7 @@ class TestIndexStats(amo.tests.TestCase):
 class TestIndexLatest(amo.tests.ESTestCase):
 
     def test_index_latest(self):
+        self.create_switch('local-statistics-processing')
         latest = datetime.date.today() - datetime.timedelta(days=5)
         UpdateCount.index({'date': latest})
         self.refresh('stats')

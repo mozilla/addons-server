@@ -256,8 +256,13 @@ class TestUnhideDisabledFiles(amo.tests.TestCase):
 class AvgDailyUserCountTestCase(amo.tests.TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        super(AvgDailyUserCountTestCase, self).setUp()
+        self.create_switch('local-statistics-processing')
+
     def test_adu_is_adjusted_in_cron(self):
         addon = Addon.objects.get(pk=3615)
+        eq_(addon.average_daily_users, 6000000)
         self.assertTrue(
             addon.average_daily_users > addon.total_downloads + 10000,
             'Unexpected ADU count. ADU of %d not greater than %d' % (
@@ -290,7 +295,7 @@ class AvgDailyUserCountTestCase(amo.tests.TestCase):
             adu()
         finally:
             unflag_reindexing_amo()
-            del os.environ['FORCE_INDEXING']
+            os.environ.pop('FORCE_INDEXING', None)
 
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, 1234)
