@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-14 04:26+0000\n"
+"PO-Revision-Date: 2016-01-17 16:11+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3450,7 +3450,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:44
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Bloqueado em%(date)s. <a href=\"%(link)s\">Ver pedido de bloqueio</a>."
+msgstr "Bloqueado em %(date)s. <a href=\"%(link)s\">Ver pedido de bloqueio</a>."
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
@@ -4185,7 +4185,7 @@ msgstr ""
 
 #: apps/constants/base.py:273
 msgid "Ask before users can download this add-on"
-msgstr "Perguntar antes que os utilizadores transfiram este extra"
+msgstr "Perguntar antes que os utilizadores descarreguem este extra"
 
 #: apps/constants/base.py:389
 msgid "Exception"
@@ -7897,7 +7897,7 @@ msgid ""
 "once your add-on is approved."
 msgstr ""
 "Atualizações de extras, transferência de propriedade, comentários do "
-"utilizador, e o que esperar uma vez que o seu extra seja aprovado."
+"utilizador, e o que esperar quando o seu extra for aprovado."
 
 #: apps/devhub/templates/devhub/docs/policies.html:93
 msgid ""
@@ -10756,8 +10756,8 @@ msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
-"Este ficheiro não é vísivel online. Por favor, transfira o ficheiro para ver"
-" o conteúdo."
+"Este ficheiro não é visível online. Por favor, descarregue o ficheiro para "
+"ver o conteúdo."
 
 #: apps/files/helpers.py:195
 msgid "This file is a directory."
@@ -15472,7 +15472,7 @@ msgid ""
 "To try the thousands of add-ons available here, download <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
-"para experimentar as centenas de extras aqui disponíveis, transfira o <a "
+"Para experimentar as centenas de extras aqui disponíveis, descarregue o <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de "
 "navegar na Web!"
 
