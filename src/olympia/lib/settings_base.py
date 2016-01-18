@@ -1027,7 +1027,8 @@ CELERY_ROUTES = {
     'olympia.devhub.tasks.flag_binary': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
-    'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_upload_validation_result': {
+        'queue': 'devhub'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'devhub'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
@@ -1066,7 +1067,8 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
     'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.update_incompatible_appversions': {'queue': 'addons'},
+    'olympia.addons.tasks.update_incompatible_appversions': {
+        'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
 
     # API
@@ -1080,7 +1082,8 @@ CELERY_ROUTES = {
     'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
     'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_subscribers': {'queue': 'cron'},
+    'olympia.bandwagon.cron._update_collections_subscribers': {
+        'queue': 'cron'},
     'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
 
     # Bandwagon
@@ -1107,12 +1110,18 @@ CELERY_ROUTES = {
     'olympia.lib.crypto.tasks.unsign_addons': {'queue': 'crypto'},
 
     # Search
-    'olympia.lib.es.management.commands.reindex.create_new_index': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.delete_indexes': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.flag_database': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.index_data': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.unflag_database': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.update_aliases': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.create_new_index': {
+        'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.delete_indexes': {
+        'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.flag_database': {
+        'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.index_data': {
+        'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.unflag_database': {
+        'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.update_aliases': {
+        'queue': 'search'},
 
     # Reviews
     'olympia.reviews.models.check_spam': {'queue': 'reviews'},
@@ -1128,7 +1137,8 @@ CELERY_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_addons_collections_downloads': {'queue': 'stats'},
+    'olympia.stats.tasks.update_addons_collections_downloads': {
+        'queue': 'stats'},
     'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
     'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
