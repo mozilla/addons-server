@@ -5,7 +5,7 @@
       {% set pct = ( count|float / addon.total_reviews * 100 )|round( method='floor' ) %}
       <li class="c">{{ rating|stars }}
         <div class="rating_bar" data-num-reviews="{{ count }}">
-          <span class="bar" style="width:{{ pct }}%">
+          <span class="bar" data-barchart-width="{{ pct }}">
             <span class="num_ratings">{{ count }}</span>
           </span>
         </div>

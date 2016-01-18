@@ -840,9 +840,8 @@ class TestQueueBasics(QueueTest):
             self.check_bar(addon, eq=2, data=data)
 
     def check_bar(self, addon, eq, data, reset_status=False):
-        # `eq` is the table number (0, 1 or 2).
-        def style(w):
-            return 'width:%s%%' % (float(w) if w > 0 else 0)
+        def barwidth(w):
+            return str(float(w) if w > 0 else 0)
 
         days, widths = data
 
@@ -862,9 +861,12 @@ class TestQueueBasics(QueueTest):
                                                 else '-unlisted')
         div = doc('{0} .editor-stats-table:eq({1})'.format(sel, eq))
 
-        eq_(div('.waiting_old').attr('style'), style(widths[0]))
-        eq_(div('.waiting_med').attr('style'), style(widths[1]))
-        eq_(div('.waiting_new').attr('style'), style(widths[2]))
+        assert (div('.waiting_old').attr('data-barchart-width') ==
+                barwidth(widths[0]))
+        assert (div('.waiting_med').attr('data-barchart-width') ==
+                barwidth(widths[1]))
+        assert (div('.waiting_new').attr('data-barchart-width') ==
+                barwidth(widths[2]))
 
     def test_flags_jetpack(self):
         ad = create_addon_file('Jetpack', '0.1', amo.STATUS_NOMINATED,

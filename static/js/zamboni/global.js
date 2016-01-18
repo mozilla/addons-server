@@ -581,3 +581,18 @@ $(document).delegate('.mobile-link', 'click', function() {
     $.cookie('mamo', 'on', {expires:30, path: '/'});
     window.location.reload();
 });
+
+
+// Bar chart: any element with a data-barchart-width attribute will have a
+// style applied: "width: <data-width>".
+
+function initBarcharts() {
+  $("[data-barchart-width]").each(function (_index, element) {
+    var element = $(element);
+    element.css('width', element.data('barchart-width') + '%');
+  });
+}
+
+$(document).ready(function() {
+  initBarcharts();
+});

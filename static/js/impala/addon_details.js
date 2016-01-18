@@ -142,6 +142,9 @@ $(function () {
                 var heightDifference = $document.height() - origHeight;
                 $document.scrollTop(scrollTop + heightDifference);
             }
+            // Make sure the elements with a data-barchart-width attribute are
+            // properly initialized.
+            initBarcharts();
         });
     }
 
