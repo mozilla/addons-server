@@ -2,7 +2,6 @@
 {% from 'includes/forms.html' import required %}
 
 {% block title %}{{ page_title(_('New User Registration')) }}{% endblock %}
-{% block js %}{% include "amo/recaptcha_js.html" %}{% endblock %}
 {% block bodyclass %}register{% endblock %}
 {% block content %}
 
@@ -76,7 +75,8 @@
             </li>
             <li>
               {% if settings.RECAPTCHA_PRIVATE_KEY %}
-                {{ recaptcha(form) }}
+                {{ form.recaptcha }}
+                {{ form.recaptcha.errors }}
               {% else %}
                 <p>
                 Welcome Robots, ReCaptcha has been disabled for your convenience. Spam at Wil.

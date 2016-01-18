@@ -3,7 +3,6 @@
 {% set title = _('Report user {0}')|f(profile.name) %}
 {% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
-{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
 <header>
   {{ impala_breadcrumbs([(profile.get_url_path(), profile.name),

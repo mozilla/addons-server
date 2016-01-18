@@ -2,8 +2,8 @@
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
-{% block js %}{% include("amo/recaptcha_js.html") %}
-    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+{% block js %}
+  <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
 {% endblock %}
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 
