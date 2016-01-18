@@ -18,6 +18,7 @@ from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.addons.models import Addon
 from olympia.amo.helpers import user_media_path
 from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.devhub import tasks
 from olympia.files.models import FileUpload
 from olympia.versions.models import Version
@@ -245,6 +246,25 @@ class TestValidator(TestCase):
         mock_validate.return_value = '{"errors": 0}'
         tasks.validate(self.upload)
         mock_track.assert_called_with(mock_validate.return_value)
+
+    def test_track_upload_validation_results_time(self):
+        # Set created time back (just for sanity) otherwise the delta
+        # would be in the microsecond range.
+        self.upload.update(created=datetime.now() - timedelta(days=1))
+
+        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        with mock.patch('devhub.tasks.statsd.timing') as mock_timing:
+            tasks.handle_upload_validation_result(validation, self.upload.pk)
+        assert self.get_upload().validation
+
+        upload_start = utc_millesecs_from_epoch(self.upload.created)
+        now = utc_millesecs_from_epoch()
+        rough_delta = now - upload_start
+        actual_delta = mock_timing.call_args[0][1]
+
+        fuzz = 2000  # 2 seconds
+        assert (actual_delta >= (rough_delta - fuzz) and
+                actual_delta <= (rough_delta + fuzz))
 
 
 class TestTrackValidatorStats(TestCase):

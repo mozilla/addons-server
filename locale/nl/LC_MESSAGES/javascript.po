@@ -1,9 +1,10 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:28-0700\n"
-"PO-Revision-Date: 2015-12-12 10:09+0000\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"PO-Revision-Date: 2015-12-20 13:54+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1449914969.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -20,8 +21,7 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} ster"
 msgstr[1] "{0} sterren"
 
-#: static/js/common/upload-addon.js:41
-#: static/js/common/upload-image.js:128
+#: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de server."
 
@@ -67,8 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "… en nog {0}"
 msgstr[1] "… en nog {0}"
 
-#: static/js/common/upload-addon.js:212
-#: static/js/common/upload-addon.js:515
+#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
 msgid "See full validation report"
 msgstr "Volledig validatierapport bekijken"
 
@@ -81,63 +80,57 @@ msgstr "{0} wordt gevalideerd"
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons van server ontvangen; status: {0}"
 
-#: static/js/common/upload-addon.js:365
+#: static/js/common/upload-addon.js:363
 msgid "Unexpected server error while validating."
 msgstr "Onverwachte serverfout tijdens validatie."
 
-#: static/js/common/upload-addon.js:404
+#: static/js/common/upload-addon.js:402
 msgid "Finished validating {0}"
 msgstr "Validatie van {0} voltooid"
 
-#: static/js/common/upload-addon.js:410
+#: static/js/common/upload-addon.js:408
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 "De validatietijd voor uw add-on is verstreken, deze zal handmatig worden "
 "beoordeeld."
 
-#: static/js/common/upload-addon.js:413
+#: static/js/common/upload-addon.js:411
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Uw add-on is gevalideerd zonder fouten en met {0} waarschuwing."
 msgstr[1] "Uw add-on is gevalideerd zonder fouten en met {0} waarschuwingen."
 
-#: static/js/common/upload-addon.js:418
+#: static/js/common/upload-addon.js:416
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Uw add-on is gevalideerd zonder fouten en met {0} bericht."
 msgstr[1] "Uw add-on is gevalideerd zonder fouten en met {0} berichten."
 
-#: static/js/common/upload-addon.js:423
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Uw add-on is gevalideerd zonder fouten of waarschuwingen."
 
-#: static/js/common/upload-addon.js:439
-msgid "Your submission will go through a manual review."
-msgstr "Uw inzending zal een handmatige beoordeling ondergaan."
+#: static/js/common/upload-addon.js:436
+msgid "Your submission will be automatically signed."
+msgstr "Uw inzending zal automatisch worden ondertekend."
 
-#: static/js/common/upload-addon.js:442
-msgid "Your submission passed validation and will be automatically signed."
-msgstr ""
-"Uw inzending heeft de validatie doorstaan en zal automatisch worden "
-"ondertekend."
-
-#: static/js/common/upload-addon.js:468
+#: static/js/common/upload-addon.js:455
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 "Neem gedetailleerde versieopmerkingen op (dit kunt u in de volgende stap "
 "doen)."
 
-#: static/js/common/upload-addon.js:469
+#: static/js/common/upload-addon.js:456
 msgid ""
-"If your add-on requires an account to a website in order to be fully tested, "
-"include a test username and password in the Notes to Reviewer (this can be "
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 "Als uw add-on een account bij een website vereist om volledig getest te "
 "kunnen worden, vermeld dan een testgebruikersnaam en wachtwoord in de "
 "Opmerkingen voor de beoordelaar (dit kunt u in de volgende stap doen)."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:457
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
@@ -145,11 +138,11 @@ msgstr ""
 "Als uw add-on voor een beperkt publiek is bedoeld, dient u Voorlopige "
 "beoordeling in plaats van Volledige beoordeling te kiezen."
 
-#: static/js/common/upload-addon.js:483
+#: static/js/common/upload-addon.js:470
 msgid "Add-on submission checklist"
 msgstr "Checklist voor add-on-indiening"
 
-#: static/js/common/upload-addon.js:484
+#: static/js/common/upload-addon.js:471
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
@@ -157,37 +150,33 @@ msgstr ""
 "Controleer de volgende punten voordat u uw inzending afrondt. Dit "
 "minimaliseert vertragingen of misvattingen tijdens het beoordelingsproces:"
 
-#: static/js/common/upload-addon.js:486
+#: static/js/common/upload-addon.js:473
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review. "
-"Make sure that you use the source code upload field to avoid having your "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
 "Bronnen van gecompileerde binaire bestanden dienen, net als verkleinde of "
-"verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te "
-"worden ingediend. Zorg ervoor dat u het uploadveld voor broncode gebruikt "
+"verborgen scripts (exclusief bekende bibliotheken), apart ter beoordeling te"
+" worden ingediend. Zorg ervoor dat u het uploadveld voor broncode gebruikt "
 "om te voorkomen dat uw inzending wordt afgewezen."
 
-#: static/js/common/upload-addon.js:504
+#: static/js/common/upload-addon.js:491
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 "Het validatieproces heeft de volgende problemen die tot afwijzing zouden "
 "kunnen leiden gevonden:"
 
-#: static/js/common/upload-addon.js:521
+#: static/js/common/upload-addon.js:508
 msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it "
-"here."
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr ""
-"Als u niet bekend bent met het add-onbeoordelingsproces, kunt u er hier meer "
-"over lezen."
+"Als u niet bekend bent met het add-onbeoordelingsproces, kunt u er hier meer"
+" over lezen."
 
-#: static/js/common/upload-addon.js:557
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Sommige platformen zijn niet beschikbaar voor dit type add-on."
-
-#: static/js/common/upload-addon.js:559
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "Sorry, geen ondersteund platform gevonden."
 
@@ -199,8 +188,7 @@ msgstr "Het door u geüploade bestandstype wordt niet herkend."
 msgid "You cancelled the upload."
 msgstr "U hebt de upload geannuleerd."
 
-#: static/js/common/upload-image.js:97
-#: static/js/impala/users.js:51
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
@@ -208,8 +196,7 @@ msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 msgid "Videos must be in WebM."
 msgstr "Video’s dienen in WebM te zijn."
 
-#: static/js/impala/collections.js:10
-#: static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
 msgid "Follow this Collection"
 msgstr "Deze collectie volgen"
 
@@ -222,8 +209,7 @@ msgid "Following"
 msgstr "Wordt gevolgd"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17
-#: static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Dit thema is niet compatibel met uw versie van {0}"
 
@@ -259,18 +245,15 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 msgid "Your Theme's Name"
 msgstr "De naam van uw thema"
 
-#: static/js/impala/reviews.js:23
-#: static/js/zamboni/reviews.js:18
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Gemarkeerd voor beoordeling"
 
-#: static/js/impala/reviews.js:40
-#: static/js/zamboni/reviews.js:34
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Uw bijdrage is vereist"
 
-#: static/js/impala/reviews.js:152
-#: static/js/zamboni/reviews.js:103
+#: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Gemarkeerd voor verwijdering"
 
@@ -334,14 +317,12 @@ msgstr "{0} restituties"
 msgid "{0} installs"
 msgstr "{0} installaties"
 
-#: static/js/impala/stats/chart.js:369
-#: static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
 #: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Downloads"
 
-#: static/js/impala/stats/chart.js:379
-#: static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Dagelijkse gebruikers"
@@ -350,8 +331,7 @@ msgstr "Dagelijkse gebruikers"
 msgid "Amount, in USD"
 msgstr "Bedrag, in US$"
 
-#: static/js/impala/stats/chart.js:421
-#: static/js/impala/stats/csv_keys.js:104
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Aantal bijdragen"
 
@@ -438,19 +418,16 @@ msgstr "Zoeksuggesties"
 msgid "Search Results"
 msgstr "Zoekresultaten"
 
-#: static/js/impala/stats/csv_keys.js:49
-#: static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
 #: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Startpagina Promotie"
 
-#: static/js/impala/stats/csv_keys.js:52
-#: static/js/impala/stats/csv_keys.js:53
+#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Startpagina Aanbevolen"
 
-#: static/js/impala/stats/csv_keys.js:54
-#: static/js/impala/stats/csv_keys.js:55
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Startpagina Aankomende"
 
@@ -458,13 +435,11 @@ msgstr "Startpagina Aankomende"
 msgid "Homepage Most Popular"
 msgstr "Startpagina Populairste"
 
-#: static/js/impala/stats/csv_keys.js:57
-#: static/js/impala/stats/csv_keys.js:59
+#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Detailpagina"
 
-#: static/js/impala/stats/csv_keys.js:58
-#: static/js/impala/stats/csv_keys.js:60
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Detailpagina (onderzijde)"
 
@@ -472,24 +447,20 @@ msgstr "Detailpagina (onderzijde)"
 msgid "Detail Page (Development Channel)"
 msgstr "Detailpagina (Ontwikkelingskanaal)"
 
-#: static/js/impala/stats/csv_keys.js:62
-#: static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Vaak gebruikt met"
 
-#: static/js/impala/stats/csv_keys.js:65
-#: static/js/impala/stats/csv_keys.js:66
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "Overige door schrijver"
 
-#: static/js/impala/stats/csv_keys.js:67
-#: static/js/impala/stats/csv_keys.js:68
+#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Afhankelijkheden"
 
-#: static/js/impala/stats/csv_keys.js:69
-#: static/js/impala/stats/csv_keys.js:70
+#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Verkoop"
 
@@ -517,58 +488,47 @@ msgstr "Categoriepagina’s"
 msgid "Collections"
 msgstr "Collecties"
 
-#: static/js/impala/stats/csv_keys.js:78
-#: static/js/impala/stats/csv_keys.js:79
+#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Startpagina categorie Aanbevolen-carrousel"
 
-#: static/js/impala/stats/csv_keys.js:80
-#: static/js/impala/stats/csv_keys.js:81
+#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Startpagina categorie Best gewaardeerd"
 
-#: static/js/impala/stats/csv_keys.js:82
-#: static/js/impala/stats/csv_keys.js:83
+#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Startpagina categorie Populairst"
 
-#: static/js/impala/stats/csv_keys.js:84
-#: static/js/impala/stats/csv_keys.js:85
+#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Startpagina categorie Onlangs toegevoegd"
 
-#: static/js/impala/stats/csv_keys.js:86
-#: static/js/impala/stats/csv_keys.js:87
+#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "Lijst doorbladeren gesorteerd op Aanbevolen"
 
-#: static/js/impala/stats/csv_keys.js:88
-#: static/js/impala/stats/csv_keys.js:89
+#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "Lijst doorbladeren gesorteerd op Gebruikers"
 
-#: static/js/impala/stats/csv_keys.js:90
-#: static/js/impala/stats/csv_keys.js:91
+#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "Lijst doorbladeren gesorteerd op Waardering"
 
-#: static/js/impala/stats/csv_keys.js:92
-#: static/js/impala/stats/csv_keys.js:93
+#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "Lijst doorbladeren gesorteerd op Gemaakt"
 
-#: static/js/impala/stats/csv_keys.js:94
-#: static/js/impala/stats/csv_keys.js:95
+#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "Lijst doorbladeren gesorteerd op Naam"
 
-#: static/js/impala/stats/csv_keys.js:96
-#: static/js/impala/stats/csv_keys.js:97
+#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "Lijst doorbladeren gesorteerd op Populair"
 
-#: static/js/impala/stats/csv_keys.js:98
-#: static/js/impala/stats/csv_keys.js:99
+#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "Lijst doorbladeren gesorteerd op Bijgewerkt"
 
@@ -632,8 +592,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js:137
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
@@ -733,8 +693,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js:197
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
@@ -877,9 +837,8 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Overig"
 
-#: static/js/zamboni/admin_validation.js:24
-#: static/js/zamboni/devhub.js:1250
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245
+#: static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
 
@@ -890,8 +849,8 @@ msgstr[0] ""
 "{0} add-on instellen op een maximumversie van {1} en een e-mailbericht naar "
 "de schrijver sturen."
 msgstr[1] ""
-"{0} add-ons instellen op een maximumversie van {1} en een e-mailbericht naar "
-"de schrijvers sturen."
+"{0} add-ons instellen op een maximumversie van {1} en een e-mailbericht naar"
+" de schrijvers sturen."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -900,63 +859,31 @@ msgstr[0] ""
 "E-mailbericht versturen naar schrijver van {2} add-on die de validatie niet "
 "heeft doorstaan."
 msgstr[1] ""
-"E-mailbericht versturen naar schrijver van {2} add-ons die de validatie niet "
-"heeft doorstaan."
-
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Installatie van app niet toegestaan."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "App-manifest is beschadigd."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "App-host kan niet worden bereikt."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "App-manifest kan niet worden ontleed."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "App-manifest is ongeldig."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Installatie mislukt. Probeer het later nog eens."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Installatie van app mislukt."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Dit systeem ondersteunt geen installatie van apps."
+"E-mailbericht versturen naar schrijver van {2} add-ons die de validatie niet"
+" heeft doorstaan."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Accepteren en installeren"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Toevoegen aan {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Nu downloaden"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Add-on is niet bijgewerkt om standaard-compatibel te ondersteunen."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "U dient Firefox 10.0 of hoger te gebruiken."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
@@ -964,44 +891,42 @@ msgstr ""
 "gemarkeerd."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Toch installeren voor {0}"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Toch downloaden voor {0}"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Niet beschikbaar voor uw platform"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295
-#: static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Niet beschikbaar voor {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Werkt met {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Overige versies bekijken"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Alleen bij Firefox – Download Firefox nu!"
 
-#: static/js/zamboni/buttons.js:551
-#: static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
 "search plugin."
 msgstr ""
-"Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een "
-"zoekplug-in te kunnen installeren."
+"Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een"
+" zoekplug-in te kunnen installeren."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1039,8 +964,7 @@ msgstr "Opmerking"
 msgid "Remove this add-on from the collection"
 msgstr "Deze add-on uit de collectie verwijderen"
 
-#: static/js/zamboni/collections.js:439
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
 msgid "Remove"
 msgstr "Verwijderen"
 
@@ -1072,60 +996,47 @@ msgstr "Verwijderen uit favorieten"
 msgid "Stop following"
 msgstr "Volgen stoppen"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Uw browser ondersteunt het videolabel niet"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Wijzigingen opgeslagen"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Voer een e-mailadres voor een nieuwe schrijver in"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "Er is een fout opgetreden tijdens het uploaden van uw bestand."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} bestand"
 msgstr[1] "{files} bestanden"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} gebruikersbeoordeling"
 msgstr[1] "{reviews} gebruikersbeoordelingen"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "Meer info"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "Voorbeeld"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "Afbeeldingswijzigingen worden verwerkt"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Starten tests…"
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Wachten op testresultaten…"
-
-#: static/js/zamboni/devhub.js:1287
-#: static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Interne serverfout"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "Dient een geldig e-mailadres te zijn."
 
@@ -1149,57 +1060,47 @@ msgstr "Aanbevelingen zoeken…"
 msgid "Updating recommendations&hellip;"
 msgstr "Aanbevelingen bijwerken…"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "{name} heeft eerst deze pagina bekeken."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "Ontvangst gecontroleerd door app."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "Ontvangst niet gecontroleerd door app."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "{name} bekeek deze add-on eerst."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Laden…"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Opmerkingen voor beoordelaars"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "Geen versieopmerkingen gevonden"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Gemiddeld aantal beoordelingen"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Aantal beoordelingen"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "Fout bij laden vertaling"
 
-#: static/js/zamboni/files.js:421
-#: static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Dit bericht in toekomstige updates negeren"
 
-#: static/js/zamboni/files.js:427
-#: static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Ernst voor automatische ondertekening:"
 
@@ -1236,11 +1137,6 @@ msgid_plural "At least {0} characters left."
 msgstr[0] "Ten minste {0} teken resterend."
 msgstr[1] "Ten minste {0} tekens resterend."
 
-#: static/js/zamboni/perf.js:29
-#: static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Alles"
-
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "Aangevraagde informatie"
@@ -1265,18 +1161,15 @@ msgstr "Goedgekeurd"
 msgid "All tests passed successfully."
 msgstr "Alle tests met succes doorstaan."
 
-#: static/js/zamboni/validator.js:83
-#: static/js/zamboni/validator.js:478
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
 msgid "These tests were not run."
 msgstr "Deze tests zijn niet uitgevoerd."
 
-#: static/js/zamboni/validator.js:131
-#: static/js/zamboni/validator.js:144
+#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
 msgstr "Tests"
 
-#: static/js/zamboni/validator.js:246
-#: static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Fout"
@@ -1327,48 +1220,48 @@ msgstr "Validatietaak kon niet worden voltooid of is voltooid met fouten"
 msgid "Internal server error"
 msgstr "Interne serverfout"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "Niet bijgewerkt voor {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "Vereist een nieuwere versie van {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "Niet beoordeeld"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimenteel <span>(meer info)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81
-#: static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "Niet beschikbaar voor {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "Experimenteel"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "Thema’s vereisen een nieuwere versie van {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "Thema’s vereisen {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "Installeren…"
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Deze add-on is voorlopig beoordeeld door Mozilla."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "Behouden"
 

@@ -8,6 +8,13 @@ from olympia.lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
+CSP_FONT_SRC += (STAGE_CDN_HOST,)
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_IMG_SRC += (STAGE_CDN_HOST,)
+CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
+CSP_STYLE_SRC += (STAGE_CDN_HOST,)
+
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
@@ -37,9 +44,6 @@ SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-stage-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-stage-cdn.allizom.org/user-media/'
 
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://sandbox.paypal.com",)
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 SYSLOG_TAG = "http_app_addons_stage"
@@ -49,8 +53,12 @@ SYSLOG_CSP = "http_app_addons_stage_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
+# Run all views in a transaction (on master) unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
+# Do not open a transaction for every view on the slave DB.
+DATABASES['slave']['ATOMIC_REQUESTS'] = False
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
@@ -214,3 +222,7 @@ if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
+RAVEN_WHITELIST = ['addons.allizom.org', 'addons-cdn.allizom.org']

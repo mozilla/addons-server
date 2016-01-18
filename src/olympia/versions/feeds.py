@@ -1,4 +1,3 @@
-from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
 from jingo.helpers import datetime
@@ -8,6 +7,7 @@ from tower import ugettext as _
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import absolutify, url
+from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.utils import urlparams
 from olympia.addons.models import Addon
 from olympia.versions.views import PER_PAGE
@@ -39,7 +39,7 @@ class PagedFeed(DefaultFeed):
         self.add_page_relation(handler, 'last', self.page.paginator.num_pages)
 
 
-class VersionsRss(Feed):
+class VersionsRss(NonAtomicFeed):
 
     feed_type = PagedFeed
     addon = None

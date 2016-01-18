@@ -1,0 +1,4 @@
+ALTER TABLE `file_uploads`
+    DROP PRIMARY KEY,
+    ADD id INT PRIMARY KEY AUTO_INCREMENT,
+    ADD UNIQUE (uuid);

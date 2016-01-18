@@ -38,8 +38,6 @@ SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
 MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://*.paypal.com",)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -50,8 +48,12 @@ SYSLOG_CSP = "http_app_addons_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
+# Run all views in a transaction (on master) unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
+# Do not open a transaction for every view on the slave DB.
+DATABASES['slave']['ATOMIC_REQUESTS'] = False
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
@@ -190,7 +192,7 @@ SENTRY_DSN = env('SENTRY_DSN')
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_ENABLE = False
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
@@ -203,12 +205,6 @@ ES_DEFAULT_NUM_SHARDS = 10
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
-restyle = 'css/restyle.less'
-zamboni = tuple(list(MINIFY_BUNDLES['css']['zamboni/css']).remove(restyle))
-impala = tuple(list(MINIFY_BUNDLES['css']['zamboni/impala']).remove(restyle))
-devhub = tuple(list(MINIFY_BUNDLES['css']['zamboni/devhub_impala'])
-               .remove(restyle))
-
-MINIFY_BUNDLES['css']['zamboni/css'] = zamboni
-MINIFY_BUNDLES['css']['zamboni/impala'] = impala
-MINIFY_BUNDLES['css']['zamboni/devhub'] = devhub
+RAVEN_DSN = (
+    'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
+RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']

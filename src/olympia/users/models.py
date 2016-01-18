@@ -385,7 +385,7 @@ class UserProfile(OnChangeMixin, ModelBase,
         self.picture_type = ""
         self.save()
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def restrict(self):
         from olympia.amo.utils import send_mail
         log.info(u'User (%s: <%s>) is being restricted and '

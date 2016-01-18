@@ -74,3 +74,7 @@ class RequiredTextInput(RequiredInputMixin, forms.TextInput):
 
 class RequiredEmailInput(RequiredInputMixin, forms.EmailInput):
     """A Django EmailInput with required attributes."""
+
+
+class RequiredTextarea(RequiredInputMixin, forms.Textarea):
+    """A Django Textarea with required attributes."""

@@ -27,7 +27,7 @@ from .models import (
     BlacklistedPassword)
 from .widgets import (
     NotificationsSelectMultiple, RequiredEmailInput, RequiredInputMixin,
-    RequiredTextInput)
+    RequiredTextarea, RequiredTextInput)
 
 
 log = commonware.log.getLogger('z.users')
@@ -496,7 +496,7 @@ class BaseAdminUserEditForm(object):
 class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
     """This is the form used by admins to edit users' info."""
     admin_log = forms.CharField(required=True, label='Reason for change',
-                                widget=forms.Textarea(attrs={'rows': 4}))
+                                widget=RequiredTextarea(attrs={'rows': 4}))
     confirmationcode = forms.CharField(required=False, max_length=255,
                                        label='Confirmation code')
     notes = forms.CharField(required=False, label='Notes',

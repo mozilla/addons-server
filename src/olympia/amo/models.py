@@ -146,7 +146,7 @@ class UncachedManagerBase(models.Manager):
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
         """
-        with transaction.commit_on_success():
+        with transaction.atomic():
             try:
                 return self.get(**kw), False
             except self.model.DoesNotExist:

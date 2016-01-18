@@ -1,5 +1,4 @@
 from datetime import date
-import itertools
 
 from django.db import connection, transaction
 from django.db.models import Count
@@ -10,9 +9,10 @@ from celery.task.sets import TaskSet
 
 from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.utils import chunked, slugify
+from olympia.amo.utils import chunked
 from olympia.bandwagon.models import (
     Collection, CollectionVote, CollectionWatcher)
+
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -43,7 +43,6 @@ def _update_collections_subscribers(data, **kw):
                     (%s, %s, %s, %s)"""
         p = [today, 'new_subscribers', var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -80,28 +79,6 @@ def _update_collections_votes(data, stat, **kw):
         p = [date.today(), stat,
              var['collection_id'], var['count']]
         cursor.execute(q, p)
-    transaction.commit_unless_managed()
-
-
-# TODO: remove this once zamboni enforces slugs.
-@cronjobs.register
-def collections_add_slugs():
-    """Give slugs to any slugless collections."""
-    # Don't touch the modified date.
-    Collection._meta.get_field('modified').auto_now = False
-    q = Collection.objects.filter(slug=None)
-    ids = q.values_list('id', flat=True)
-    task_log.info('%s collections without names' % len(ids))
-    max_length = Collection._meta.get_field('slug').max_length
-    cnt = itertools.count()
-    # Chunk it so we don't do huge queries.
-    for chunk in chunked(ids, 300):
-        for c in q.no_cache().filter(id__in=chunk):
-            c.slug = c.nickname or slugify(c.name)[:max_length]
-            if not c.slug:
-                c.slug = 'collection'
-            c.save(force_update=True)
-            task_log.info(u'%s. %s => %s' % (next(cnt), c.name, c.slug))
 
 
 @cronjobs.register
@@ -110,7 +87,7 @@ def drop_collection_recs():
 
 
 @task(rate_limit='1/m')
-@transaction.commit_on_success
+@transaction.atomic
 def _drop_collection_recs(**kw):
     task_log.info("[300@%s] Dropping recommended collections." % (
                   _drop_collection_recs.rate_limit))

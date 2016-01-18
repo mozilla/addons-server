@@ -1,12 +1,14 @@
 from collections import defaultdict
 
 from django.conf import settings
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 
 from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 
 
+@non_atomic_requests
 def credits(request):
 
     developers = (UserProfile.objects
@@ -46,6 +48,12 @@ def credits(request):
     reviewers = defaultdict(list)
     for total in total_reviews:
         cnt = total.get('approval_count', 0)
+        if cnt > 10000:
+            reviewers[10000].append(total)
+        if cnt > 5000:
+            reviewers[5000].append(total)
+        if cnt > 2000:
+            reviewers[2000].append(total)
         if cnt > 1000:
             reviewers[1000].append(total)
         elif cnt > 500:

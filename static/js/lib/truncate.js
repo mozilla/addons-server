@@ -15,16 +15,9 @@ var truncate = (function() {
         return t;
     }
 
-    var hasTruncation = (function() {
-        var shim = document.createElement('div');
-        shim.innerHTML = '<div style="text-overflow: ellipsis"></div>';
-        var s = shim.firstChild.style;
-        return 'textOverflow' in s || 'OTextOverflow' in s;
-    })();
-
     function truncate(el, opts) {
         opts = opts || {};
-        if (hasTruncation && (!opts.dir || opts.dir != 'v')) return this;
+        if (!opts.dir || opts.dir != 'v') return this;
         var showTitle = opts.showTitle || false;
         var dir = (opts.dir && opts.dir[0]) || 'h';
         var scrollProp = dir == "h" ? "scrollWidth" : "scrollHeight";

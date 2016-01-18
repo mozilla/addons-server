@@ -41,7 +41,6 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
-    <script src="https://cdn.optimizely.com/js/2006260574.js"></script>
     {{ js('preload') }}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}"
@@ -53,10 +52,11 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
+        data-raven-dsn="{{ settings.RAVEN_DSN }}"
+        data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      <div id="background-wrapper"></div>
       {% if ADMIN_MESSAGE or settings.READ_ONLY %}
         <div id="site-notice">
           {% if ADMIN_MESSAGE %}

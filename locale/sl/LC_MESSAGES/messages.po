@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2016-01-04 11:24+0000\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"PO-Revision-Date: 2016-01-11 17:26+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -151,26 +151,26 @@ msgstr "Vnesite e-poštni naslov novega avtorja"
 msgid "Not Reviewed"
 msgstr "Ni pregledan"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:315
+#: apps/addons/helpers.py:34 apps/addons/views.py:317
 #: apps/addons/templates/addons/impala/details.html:117
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:40
 #: apps/amo/templates/amo/side_nav.html:6
 #: apps/amo/templates/amo/side_nav.html:10
 #: apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:88
+#: apps/amo/templates/amo/site_nav.html:46 apps/bandwagon/views.py:88
 #: apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "Izbran"
 
-#: apps/addons/models.py:311
+#: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
 "Uporabniki imajo možnost, da prispevajo več ali manj kot je ta znesek."
 
-#: apps/addons/models.py:320
+#: apps/addons/models.py:314
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr ""
@@ -178,34 +178,34 @@ msgstr ""
 "novejši)"
 
 # Column name in a table.
-#: apps/addons/models.py:1902 apps/addons/templates/addons/details_box.html:59
+#: apps/addons/models.py:1852 apps/addons/templates/addons/details_box.html:55
 #: apps/devhub/templates/devhub/index.html:92
 #: apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "Na seznamu"
 
-#: apps/addons/views.py:316
+#: apps/addons/views.py:318
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "Priljubljeni"
 
-#: apps/addons/views.py:317 apps/browse/views.py:234 apps/browse/views.py:274
+#: apps/addons/views.py:319 apps/browse/views.py:234 apps/browse/views.py:274
 #: apps/browse/views.py:473
 msgid "Recently Added"
 msgstr "Pred kratkim dodani"
 
-#: apps/addons/views.py:318 apps/bandwagon/views.py:92 apps/browse/views.py:60
+#: apps/addons/views.py:320 apps/bandwagon/views.py:92 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "Pred kratkim posodobljeni"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
-#: apps/addons/views.py:506
+#: apps/addons/views.py:511
 msgid "Contribution for {0}"
 msgstr "Prispevek za {0}"
 
-#: apps/addons/views.py:594
+#: apps/addons/views.py:599
 msgid "Abuse reported."
 msgstr "Zloraba sporočena."
 
@@ -236,13 +236,13 @@ msgid "for {0}"
 msgstr "za {0}"
 
 #: apps/addons/templates/addons/button.html:82
-#: apps/addons/templates/addons/mobile/button.html:28
+#: apps/addons/templates/addons/mobile/button.html:23
 msgid "View privacy policy"
 msgstr "Ogled politike zasebnosti"
 
 #: apps/addons/templates/addons/button.html:87
-#: apps/addons/templates/addons/details_box.html:137
-#: apps/addons/templates/addons/mobile/button.html:33
+#: apps/addons/templates/addons/details_box.html:133
+#: apps/addons/templates/addons/mobile/button.html:28
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
 msgstr "Oglejte si licenčni dogovor za končnega uporabnika"
@@ -313,10 +313,10 @@ msgstr "Prispevajte"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:78
 #: apps/devhub/templates/devhub/versions/edit.html:139
-#: apps/devhub/templates/devhub/versions/list.html:256
-#: apps/devhub/templates/devhub/versions/list.html:290
-#: apps/devhub/templates/devhub/versions/list.html:331
-#: apps/devhub/templates/devhub/versions/list.html:365
+#: apps/devhub/templates/devhub/versions/list.html:242
+#: apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/versions/list.html:351
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -454,121 +454,121 @@ msgid "No restart required"
 msgstr "Ponoven zagon ni potreben"
 
 #. This is a caption for a table. {0} is an add-on name.
-#: apps/addons/templates/addons/details_box.html:30
+#: apps/addons/templates/addons/details_box.html:26
 #: apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
 msgstr "Informacije o dodatku za {0}"
 
-#: apps/addons/templates/addons/details_box.html:34
+#: apps/addons/templates/addons/details_box.html:30
 #: apps/addons/templates/addons/persona_detail_table.html:3
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
-#: apps/browse/views.py:450 apps/devhub/views.py:75
+#: apps/browse/views.py:450 apps/devhub/views.py:74
 msgid "Updated"
 msgstr "Posodobljeno"
 
-#: apps/addons/templates/addons/details_box.html:42
+#: apps/addons/templates/addons/details_box.html:38
 #: apps/addons/templates/addons/mobile/details.html:71
 #: apps/devhub/templates/devhub/addons/edit/support.html:43
-#: apps/discovery/templates/discovery/addons/detail.html:87
+#: apps/discovery/templates/discovery/addons/detail.html:83
 msgid "Website"
 msgstr "Spletno mesto"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
-#: apps/addons/templates/addons/details_box.html:51
+#: apps/addons/templates/addons/details_box.html:47
 #: apps/addons/templates/addons/mobile/details.html:80
 #: apps/search/templates/search/results.html:72
 #: apps/versions/templates/versions/version.html:21
 msgid "Works with"
 msgstr "Deluje z"
 
-#: apps/addons/templates/addons/details_box.html:56
+#: apps/addons/templates/addons/details_box.html:52
 msgid "Visibility"
 msgstr "Vidnost"
 
-#: apps/addons/templates/addons/details_box.html:61
+#: apps/addons/templates/addons/details_box.html:57
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
 msgstr "Skrito"
 
-#: apps/addons/templates/addons/details_box.html:63
+#: apps/addons/templates/addons/details_box.html:59
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
 msgstr "Nenaveden"
 
-#: apps/addons/templates/addons/details_box.html:71
+#: apps/addons/templates/addons/details_box.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
 msgstr "Zahtevani dodatki"
 
-#: apps/addons/templates/addons/details_box.html:85
+#: apps/addons/templates/addons/details_box.html:81
 #: apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
 msgstr "Ocena"
 
-#: apps/addons/templates/addons/details_box.html:89
+#: apps/addons/templates/addons/details_box.html:85
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
 msgstr "Prenosi"
 
-#: apps/addons/templates/addons/details_box.html:95
-#: apps/addons/templates/addons/details_box.html:107
+#: apps/addons/templates/addons/details_box.html:91
+#: apps/addons/templates/addons/details_box.html:103
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
 msgstr "Prikaži statistiko"
 
-#: apps/addons/templates/addons/details_box.html:101
+#: apps/addons/templates/addons/details_box.html:97
 msgid "Average Daily Users"
 msgstr "Povprečno dnevni uporabniki"
 
-#: apps/addons/templates/addons/details_box.html:113
+#: apps/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
 msgstr "Poročila o zlorabah"
 
 #. The Privacy Policy for this add-on.
-#: apps/addons/templates/addons/details_box.html:125
+#: apps/addons/templates/addons/details_box.html:121
 #: apps/addons/templates/addons/privacy.html:19
 #: apps/addons/templates/addons/privacy.html:23
 #: apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:314
+#: apps/addons/templates/addons/impala/details.html:310
 #: apps/devhub/templates/devhub/includes/policy_form.html:20
 #: templates/mobile/base_addons.html:81
 msgid "Privacy Policy"
 msgstr "Izjava o zasebnosti"
 
-#: apps/addons/templates/addons/details_box.html:128
+#: apps/addons/templates/addons/details_box.html:124
 #: apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
 msgstr "Ogled politike zasebnosti"
 
-#: apps/addons/templates/addons/details_box.html:134
+#: apps/addons/templates/addons/details_box.html:130
 msgid "EULA"
 msgstr "EULA"
 
-#: apps/addons/templates/addons/details_box.html:175
-#: apps/addons/templates/addons/details_box.html:235
+#: apps/addons/templates/addons/details_box.html:171
+#: apps/addons/templates/addons/details_box.html:231
 msgid "More about this add-on"
 msgstr "Več o tem dodatku"
 
-#: apps/addons/templates/addons/details_box.html:184
+#: apps/addons/templates/addons/details_box.html:180
 msgid "Image Gallery"
 msgstr "Galerija slik"
 
-#: apps/addons/templates/addons/details_box.html:194
+#: apps/addons/templates/addons/details_box.html:190
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "Komentarji razvijalcev"
 
-#: apps/addons/templates/addons/details_box.html:203
-#: apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/details_box.html:199
+#: apps/addons/templates/addons/impala/details.html:262
 msgid "Development Channel"
 msgstr "Razvojni kanal"
 
-#: apps/addons/templates/addons/details_box.html:206
+#: apps/addons/templates/addons/details_box.html:202
 #: apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
@@ -579,11 +579,11 @@ msgstr ""
 " preden se jo objavi za širšo javnost. Potem ko namestite razvojno "
 "različico, boste prejemali posodobitve z razvojnega kanala."
 
-#: apps/addons/templates/addons/details_box.html:211
+#: apps/addons/templates/addons/details_box.html:207
 msgid "Install development version"
 msgstr "Namesti razvojno različico"
 
-#: apps/addons/templates/addons/details_box.html:215
+#: apps/addons/templates/addons/details_box.html:211
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla. Once you install a development version you will "
@@ -596,16 +596,16 @@ msgstr ""
 "posodobitve tega razvijalca. Če ne želite več prejemati razvojnih "
 "posodobitev, namestite ponovno privzeto različico v zgornji povezavi."
 
-#: apps/addons/templates/addons/details_box.html:224
-#: apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:220
+#: apps/addons/templates/addons/impala/details.html:281
 msgid "Version {0}:"
 msgstr "Različica {0}:"
 
-#: apps/addons/templates/addons/details_box.html:238
+#: apps/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "Tu ni ničesar zanimivega! Razvijalec ni dodal nobenih podrobnosti."
 
-#: apps/addons/templates/addons/details_box.html:255
+#: apps/addons/templates/addons/details_box.html:251
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "Opombe o različici"
@@ -620,7 +620,7 @@ msgstr "Licenčni dogovor za končnega uporabnika za {0}"
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
 #: apps/addons/templates/addons/impala/button.html:48
-#: apps/addons/templates/addons/impala/details.html:323
+#: apps/addons/templates/addons/impala/details.html:319
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
@@ -644,7 +644,7 @@ msgstr "Nazaj na {0}…"
 # Firefox,
 # Sunbird
 #: apps/addons/templates/addons/home.html:3
-#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:234
+#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:235
 msgid "Add-ons for {0}"
 msgstr "Dodatki za {0}"
 
@@ -774,50 +774,12 @@ msgstr "Plačilo zaključeno"
 msgid "Return to the addon."
 msgstr "Nazaj na dodatek."
 
-#: apps/addons/templates/addons/performance_note.html:4
-#: apps/addons/templates/addons/performance_note.html:22
-#: apps/addons/templates/addons/impala/performance_note.html:4
-#: apps/addons/templates/addons/impala/performance_note.html:20
-msgid "This add-on can slow down Firefox."
-msgstr "Ta dodatek lahko upočasni Firefox."
-
-#: apps/addons/templates/addons/performance_note.html:5
-#: apps/amo/templates/amo/site_nav.html:76
-msgid "More&hellip;"
-msgstr "Več &hellip;"
-
-#: apps/addons/templates/addons/performance_note.html:8
-#: apps/addons/templates/addons/impala/performance_note.html:8
-msgid ""
-"<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
-"start-up by <b>%(amount)s%%</b>."
-msgstr ""
-"<b>Opozorilo glede zmogljivosti:</b> Če namestite ta dodatek, se bo Firefox "
-"v bodoče zagnal za<b>%(amount)s%%</b> počasneje."
-
-#: apps/addons/templates/addons/performance_note.html:14
-#: apps/addons/templates/addons/performance_note.html:27
-#: apps/addons/templates/addons/impala/performance_note.html:14
-#: apps/addons/templates/addons/impala/performance_note.html:26
-msgid "Learn more&hellip;"
-msgstr "Več o tem &hellip;"
-
-#: apps/addons/templates/addons/performance_note.html:23
-#: apps/addons/templates/addons/impala/performance_note.html:22
-msgid ""
-"Installing this add-on can slow down Firefox's start-up by "
-"<b>%(amount)s%%</b>."
-msgstr ""
-"Če namestite ta dodatek, se bo Firefox v bodoče zaganjal počasneje "
-"za<b>%(amount)s%%</b>."
-
 #: apps/addons/templates/addons/persona_detail.html:19
 #: apps/addons/templates/addons/impala/details.html:109
 #: apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21
 #: apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31
-#: apps/perf/templates/perf/index.html:78
 msgid "by"
 msgstr "-"
 
@@ -1103,7 +1065,7 @@ msgstr ""
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:335
+#: apps/addons/templates/addons/impala/details.html:331
 msgid "Report Abuse"
 msgstr "Prijava zlorabe"
 
@@ -1138,10 +1100,10 @@ msgstr "Pošlji poročilo"
 #: apps/devhub/templates/devhub/personas/edit.html:222
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:79
 #: apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:222
-#: apps/devhub/templates/devhub/versions/list.html:256
-#: apps/devhub/templates/devhub/versions/list.html:290
-#: apps/devhub/templates/devhub/versions/list.html:331
+#: apps/devhub/templates/devhub/versions/list.html:208
+#: apps/devhub/templates/devhub/versions/list.html:242
+#: apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:317
 #: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
@@ -1357,7 +1319,7 @@ msgstr "Ikona {0}"
 msgid "No Restart"
 msgstr "Ponoven zagon ni potreben"
 
-#: apps/addons/templates/addons/impala/details.html:134
+#: apps/addons/templates/addons/impala/details.html:130
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Spoznajte razvijalca: <a href=\"%(url)s\">%(name)s</a>"
@@ -1366,76 +1328,76 @@ msgstr[2] "<a href=\"%(url)s\">Spoznajte razvijalce</a>"
 msgstr[3] "<a href=\"%(url)s\">Spoznajte razvijalce</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:144
+#: apps/addons/templates/addons/impala/details.html:140
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr ""
 "Več o tem, zakaj je nastal dodatek {0} in o tem, kaj je pričakovati zanj v "
 "bodoče."
 
 #. {0} is an index.
-#: apps/addons/templates/addons/impala/details.html:163
+#: apps/addons/templates/addons/impala/details.html:159
 msgid "Add-on screenshot #{0}"
 msgstr "Slika tega dodatka #{0}"
 
-#: apps/addons/templates/addons/impala/details.html:189
+#: apps/addons/templates/addons/impala/details.html:185
 msgid "Add-on home page"
 msgstr "Domača stran dodatka"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:188
 msgid "Support site"
 msgstr "Stran za podporo"
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support E-mail"
 msgstr "E-pošta za podporo"
 
-#: apps/addons/templates/addons/impala/details.html:201
-#: apps/devhub/models.py:381
+#: apps/addons/templates/addons/impala/details.html:197
+#: apps/devhub/models.py:377
 msgid "Version {0}"
 msgstr "Različica {0}"
 
-#: apps/addons/templates/addons/impala/details.html:201
+#: apps/addons/templates/addons/impala/details.html:197
 msgid "Info"
 msgstr "Informacije"
 
-#: apps/addons/templates/addons/impala/details.html:202
+#: apps/addons/templates/addons/impala/details.html:198
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
 msgstr "Nazadnje posodobljeno:"
 
-#: apps/addons/templates/addons/impala/details.html:207
+#: apps/addons/templates/addons/impala/details.html:203
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "Objavljeno pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:208
-#: apps/addons/templates/addons/impala/details.html:213
-#: apps/amo/helpers.py:383 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:204
+#: apps/addons/templates/addons/impala/details.html:209
+#: apps/amo/helpers.py:387 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Licenca po meri"
 
-#: apps/addons/templates/addons/impala/details.html:212
+#: apps/addons/templates/addons/impala/details.html:208
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Objavljeno pod <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/addons/templates/addons/impala/details.html:224
+#: apps/addons/templates/addons/impala/details.html:220
 msgid "About this Add-on"
 msgstr "O tem dodatku"
 
-#: apps/addons/templates/addons/impala/details.html:240
+#: apps/addons/templates/addons/impala/details.html:236
 msgid "Developer’s Comments"
 msgstr "Komentarji razvijalca"
 
-#: apps/addons/templates/addons/impala/details.html:250
+#: apps/addons/templates/addons/impala/details.html:246
 msgid "Version Information"
 msgstr "Informacije o različici"
 
-#: apps/addons/templates/addons/impala/details.html:257
+#: apps/addons/templates/addons/impala/details.html:253
 msgid "See complete version history"
 msgstr "Glej celotno zgodovino različice"
 
-#: apps/addons/templates/addons/impala/details.html:269
+#: apps/addons/templates/addons/impala/details.html:265
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
 "add-on before it's released to the general public. Once you install the "
@@ -1449,7 +1411,7 @@ msgstr ""
 " prejemati razvojnih posodobitev, ponovno namestite privzeto različico z "
 "zgornje povezave."
 
-#: apps/addons/templates/addons/impala/details.html:279
+#: apps/addons/templates/addons/impala/details.html:275
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
@@ -1457,13 +1419,13 @@ msgstr ""
 "<strong>Pozor:</strong> Razvojnih različic tega dodatkoa Mozilla ni "
 "pregledala."
 
-#: apps/addons/templates/addons/impala/details.html:294
+#: apps/addons/templates/addons/impala/details.html:290
 msgid "See complete development channel history"
 msgstr "Glej celotno zgodovino razvojnega kanala"
 
-#: apps/addons/templates/addons/impala/details.html:313
-#: apps/addons/templates/addons/impala/details.html:322
-#: apps/addons/templates/addons/impala/details.html:334
+#: apps/addons/templates/addons/impala/details.html:309
+#: apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/impala/details.html:330
 #: apps/addons/templates/addons/impala/review_add_box.html:4
 #: apps/stats/templates/stats/popup.html:2
 #: apps/stats/templates/stats/popup.html:8
@@ -1536,10 +1498,6 @@ msgstr "Licenca za izvorno kodo za {addon}"
 msgid "Source Code License"
 msgstr "Licenca za izvorno kodo"
 
-#: apps/addons/templates/addons/impala/performance_note.html:5
-msgid "Explain&hellip;"
-msgstr "Razloži&hellip;"
-
 #: apps/addons/templates/addons/impala/persona_grid.html:16
 #: apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
@@ -1590,7 +1548,7 @@ msgid "My Add-ons"
 msgstr "Moji dodatki"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6
-#: apps/amo/context_processors.py:68
+#: apps/amo/context_processors.py:53
 msgid "My Themes"
 msgstr "Moje teme"
 
@@ -1619,7 +1577,7 @@ msgstr "Oprostite, ta tema je na čakanju. Pridite nazaj kasneje."
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Ta tema je na čakanju. Nevidna je za vse, razen za vas."
 
-#: apps/addons/templates/addons/listing/items.html:31
+#: apps/addons/templates/addons/listing/items.html:28
 msgid "Collector's Note"
 msgstr "Pripomba zbiralca"
 
@@ -1638,10 +1596,6 @@ msgstr[1] "<strong>{0}</strong> prenosov na teden"
 msgstr[2] "<strong>{0}</strong> prenosov na teden"
 msgstr[3] "<strong>{0}</strong> prenosov na teden"
 
-#: apps/addons/templates/addons/mobile/button.html:23
-msgid "May Slow Down Your Browser"
-msgstr "Lahko upočasni vaš brskalnik"
-
 #: apps/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
 msgstr "Preberi več"
@@ -1658,7 +1612,7 @@ msgstr "Prenosov na teden"
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
 #: apps/devhub/forms.py:784
-#: apps/devhub/templates/devhub/versions/list.html:174
+#: apps/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
 msgstr "Različica"
 
@@ -1723,7 +1677,7 @@ msgstr ""
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Vrni se na domačo stran za {0} dodatki"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:236
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:237
 #: apps/bandwagon/templates/bandwagon/edit.html:34
 #: apps/discovery/templates/discovery/pane.html:115
 #: apps/editors/templates/editors/base.html:21
@@ -1772,7 +1726,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/grid.html:11
 #: apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:183
+#: apps/constants/base.py:180
 #: apps/devhub/templates/devhub/personas/submit.html:13
 #: apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73
@@ -1801,7 +1755,7 @@ msgstr "Najvišje ocenjeno"
 #: apps/addons/templates/addons/mobile/home.html:74
 #: apps/amo/templates/amo/side_nav.html:5
 #: apps/amo/templates/amo/site_nav.html:27
-#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:90
+#: apps/amo/templates/amo/site_nav.html:48 apps/bandwagon/views.py:90
 #: apps/browse/views.py:57 apps/browse/views.py:67
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
 #: apps/search/forms.py:15 apps/search/forms.py:87
@@ -1816,79 +1770,79 @@ msgstr "Pomerite!"
 msgid "Theme Info &raquo;"
 msgstr "Podatki o temi &raquo;"
 
-#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
+#: apps/amo/context_processors.py:41 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "Orodja"
 
-#: apps/amo/context_processors.py:65
+#: apps/amo/context_processors.py:50
 #: apps/discovery/templates/discovery/pane_account.html:8
 #: apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
 msgstr "Moj profil"
 
-#: apps/amo/context_processors.py:71 apps/users/templates/users/edit.html:5
+#: apps/amo/context_processors.py:56 apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
 msgstr "Nastavitve računa"
 
-#: apps/amo/context_processors.py:74
+#: apps/amo/context_processors.py:59
 #: apps/discovery/templates/discovery/pane_account.html:11
 #: apps/users/templates/users/profile.html:84
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "Moje zbirke"
 
-#: apps/amo/context_processors.py:79
+#: apps/amo/context_processors.py:64
 #: apps/discovery/templates/discovery/pane_account.html:10
 #: apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
 msgstr "Moje priljubljene"
 
-#: apps/amo/context_processors.py:84
+#: apps/amo/context_processors.py:69
 #: apps/discovery/templates/discovery/pane_account.html:13
 #: templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "Odjava"
 
-#: apps/amo/context_processors.py:89
+#: apps/amo/context_processors.py:74
 #: apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
 msgstr "Urejaj moje prispevke"
 
-#: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27
+#: apps/amo/context_processors.py:77 apps/devhub/templates/devhub/nav.html:27
 #: apps/devhub/templates/devhub/addons/dashboard.html:25
 #: apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
 msgstr "Pošlji nov dodatek"
 
-#: apps/amo/context_processors.py:94
+#: apps/amo/context_processors.py:79
 #: apps/browse/templates/browse/personas/base.html:50
 #: apps/devhub/templates/devhub/index.html:24
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "Pošlji novo temo"
 
-#: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85
+#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:78
 #: apps/devhub/helpers.py:36 apps/devhub/helpers.py:68
 #: apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Razvojni center"
 
-#: apps/amo/context_processors.py:100 apps/devhub/views.py:1812
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1792
 msgid "Manage API Keys"
 msgstr "Upravljaj ključe API"
 
-#: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
+#: apps/amo/context_processors.py:90 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Uredniška orodja"
 
-#: apps/amo/context_processors.py:108
+#: apps/amo/context_processors.py:93
 msgid "Localizer Tools"
 msgstr "Orodja za prevajalce"
 
-#: apps/amo/context_processors.py:112
+#: apps/amo/context_processors.py:97
 msgid "Admin Tools"
 msgstr "Skrbnikova orodja"
 
@@ -1900,7 +1854,7 @@ msgstr "To mora biti veljavna šestnajstiška koda za barvo, kot je #000000."
 msgid "Enter at least one value."
 msgstr "Vnesite vsaj eno vrednost."
 
-#: apps/amo/helpers.py:161 apps/amo/templates/amo/site_nav.html:59
+#: apps/amo/helpers.py:162 apps/amo/templates/amo/site_nav.html:52
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9
@@ -1917,13 +1871,13 @@ msgstr "Vnesite vsaj eno vrednost."
 msgid "Collections"
 msgstr "Zbirke"
 
-#: apps/amo/helpers.py:170 apps/amo/templates/amo/site_nav.html:83
+#: apps/amo/helpers.py:171 apps/amo/templates/amo/site_nav.html:76
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "Slovarji in jezikovni paketi"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:413
+#: apps/amo/helpers.py:417
 msgid "{0} ago"
 msgstr "pred {0}"
 
@@ -2453,7 +2407,7 @@ msgstr "Nazaj"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:46
 #: apps/discovery/templates/discovery/pane.html:72
-#: apps/discovery/templates/discovery/addons/detail.html:49
+#: apps/discovery/templates/discovery/addons/detail.html:45
 #: apps/stats/templates/stats/stats.html:159
 msgid "Next"
 msgstr "Naprej"
@@ -2524,44 +2478,44 @@ msgstr "Razišči"
 #: apps/browse/templates/browse/base_listing.html:7
 #: apps/browse/templates/browse/creatured.html:10
 #: apps/browse/templates/browse/impala/base_listing.html:37
-#: apps/constants/base.py:176 templates/menu_links.html:8
+#: apps/constants/base.py:173 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "Razširitve"
 
-#: apps/amo/templates/amo/site_nav.html:44
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Želite urediti bolj po svoje? Poskusite <b>celotne teme</b>"
-
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:89
+#: apps/amo/templates/amo/site_nav.html:47 apps/bandwagon/views.py:89
 msgid "Most Followers"
 msgstr "Največ sledečih"
 
-#: apps/amo/templates/amo/site_nav.html:66
+#: apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
 msgstr "Zbirke iz moje roke"
 
-#: apps/amo/templates/amo/site_nav.html:68
+#: apps/amo/templates/amo/site_nav.html:61
 #: apps/bandwagon/templates/bandwagon/user_listing.html:4
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
 msgstr "Zbirke, ki jim sledim"
 
-#: apps/amo/templates/amo/site_nav.html:71
+#: apps/amo/templates/amo/site_nav.html:64
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:492
+#: apps/users/models.py:501
 msgid "My Favorite Add-ons"
 msgstr "Moji najljubši dodatki"
 
-#: apps/amo/templates/amo/site_nav.html:80
+#: apps/amo/templates/amo/site_nav.html:69
+msgid "More&hellip;"
+msgstr "Več &hellip;"
+
+#: apps/amo/templates/amo/site_nav.html:73
 msgid "Add-ons for Mobile"
 msgstr "Dodatki za mobilne naprave"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207
-#: apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:179
+#: apps/amo/templates/amo/site_nav.html:77 apps/browse/feeds.py:207
+#: apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176
 #: templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "Orodja za iskanje"
@@ -2585,7 +2539,7 @@ msgstr "Skoči na prvo stran"
 #: apps/amo/templates/amo/mobile/impala_paginator.html:12
 #: apps/discovery/templates/discovery/pane.html:45
 #: apps/discovery/templates/discovery/pane.html:71
-#: apps/discovery/templates/discovery/addons/detail.html:48
+#: apps/discovery/templates/discovery/addons/detail.html:44
 #: apps/stats/templates/stats/stats.html:156
 msgid "Previous"
 msgstr "Nazaj"
@@ -2646,7 +2600,7 @@ msgstr "Neveljavni podatki: {0}"
 msgid "Add-on did not validate: %s"
 msgstr "Veljavnosti dodatka ni bilo mogoče preveriti: %s"
 
-#: apps/api/views.py:256
+#: apps/api/views.py:250
 msgid "Not implemented yet."
 msgstr "Še ni uvedeno."
 
@@ -2824,11 +2778,11 @@ msgstr "Povezave niso dovoljene."
 msgid "This url is already in use by another collection"
 msgstr "Ta url že uporablja druga zbirka"
 
-#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1066
+#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1045
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikone morajo biti bodisi PNG ali JPG."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1084
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1063
 #: apps/users/forms.py:423
 msgid "Please use images smaller than %dMB."
 msgstr "Uporabljajte slike, ki so manjše kot %dMB."
@@ -2865,7 +2819,7 @@ msgstr "Odstrani iz priljubljenih"
 
 #: apps/bandwagon/views.py:91 apps/bandwagon/views.py:181
 #: apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449
-#: apps/devhub/views.py:74 apps/devhub/views.py:82
+#: apps/devhub/views.py:73 apps/devhub/views.py:81
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
 #: apps/editors/templates/editors/themes/queue_list.html:48
@@ -2964,12 +2918,12 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr "Če želite ocenjevati zbirke, morate imeti račun pri dodatkih."
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18
-#: templates/base.html:135 templates/impala/base.html:180
+#: templates/base.html:136 templates/impala/base.html:191
 msgid "Create an Add-ons Account"
 msgstr "Ustvarite račun pri dodatkih"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21
-#: templates/base.html:138 templates/impala/base.html:183
+#: templates/base.html:139 templates/impala/base.html:194
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "ali pa se <a href=\"%(login)s\">prijavite na svoj račun</a>"
 
@@ -3184,9 +3138,9 @@ msgstr "Izbriši {0}"
 #: apps/bandwagon/templates/bandwagon/delete.html:13
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:28
-#: apps/devhub/templates/devhub/versions/list.html:139
-#: apps/devhub/templates/devhub/versions/list.html:160
-#: apps/devhub/templates/devhub/versions/list.html:180
+#: apps/devhub/templates/devhub/versions/list.html:131
+#: apps/devhub/templates/devhub/versions/list.html:149
+#: apps/devhub/templates/devhub/versions/list.html:166
 msgid "Delete"
 msgstr "Izbriši"
 
@@ -3255,7 +3209,7 @@ msgstr "Shrani spremembe"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:12
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58
-#: apps/constants/base.py:137
+#: apps/constants/base.py:134
 msgid "Owner"
 msgstr "Lastnik"
 
@@ -3340,6 +3294,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/login_form.html:41
 msgid "Continue"
 msgstr "Nadaljuj"
 
@@ -3443,9 +3398,8 @@ msgstr ""
 "<strong>Dodaj v zbirko</strong> po spletišču, da dodatke vključite kasneje."
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
-#: apps/constants/base.py:445
+#: apps/constants/base.py:400
 #: apps/devhub/templates/devhub/addons/activity.html:62
-#: apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "Dodatek"
 
@@ -3600,19 +3554,19 @@ msgstr "Največ uporabnikov"
 msgid "Up & Coming"
 msgstr "Kmalu"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:76 apps/devhub/views.py:83
-#: apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:451 apps/devhub/views.py:75 apps/devhub/views.py:82
+#: apps/discovery/templates/discovery/addons/detail.html:72
 msgid "Created"
 msgstr "Ustvarjeno"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:77 apps/devhub/views.py:84
+#: apps/browse/views.py:452 apps/devhub/views.py:76 apps/devhub/views.py:83
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "Prenosi"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85
-#: apps/discovery/templates/discovery/addons/detail.html:67
+#: apps/browse/views.py:453 apps/devhub/views.py:77 apps/devhub/views.py:84
+#: apps/discovery/templates/discovery/addons/detail.html:63
 #: apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
@@ -3682,7 +3636,7 @@ msgstr "Jezik"
 
 #: apps/browse/templates/browse/language_tools.html:42
 #: apps/browse/templates/browse/language_tools.html:64
-#: apps/constants/base.py:165
+#: apps/constants/base.py:162
 msgid "Dictionary"
 msgstr "Slovar"
 
@@ -3764,7 +3718,7 @@ msgstr ""
 "centru Mozilla</a>"
 
 #: apps/browse/templates/browse/themes.html:6
-#: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:177
+#: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
 msgstr "Celotne teme"
 
@@ -3842,7 +3796,6 @@ msgstr[3] "Glej vse razširitve - %(cnt)s - v %(name)s &raquo;"
 #: apps/compat/templates/compat/index.html:82
 #: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
-#: apps/perf/templates/perf/index.html:109
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
@@ -3941,7 +3894,7 @@ msgstr "Več tem"
 msgid "&laquo; All Themes"
 msgstr "&laquo; Vse teme"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
+#: apps/compat/forms.py:17
 msgid "All"
 msgstr "Vsi"
 
@@ -3958,7 +3911,7 @@ msgid "Non-binary"
 msgstr "Ne-binarno"
 
 #. Review points sources other than add-ons and themes.
-#: apps/compat/views.py:85 apps/constants/base.py:433 apps/devhub/forms.py:162
+#: apps/compat/views.py:85 apps/constants/base.py:388 apps/devhub/forms.py:162
 #: apps/editors/templates/editors/performance.html:75
 msgid "Other"
 msgstr "Drugo"
@@ -3983,7 +3936,7 @@ msgstr "Top 95% vseh dodatkov"
 msgid "All active add-ons"
 msgstr "Vsi aktivni dodatki"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:446
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:401
 msgid "App"
 msgstr "Aplikacija"
 
@@ -4196,57 +4149,57 @@ msgstr "Označeno za nadaljnji pregled"
 msgid "Beta"
 msgstr "Beta"
 
-#: apps/constants/base.py:126
+#: apps/constants/base.py:123
 msgid "Full"
 msgstr "Poln"
 
-#: apps/constants/base.py:127
+#: apps/constants/base.py:124
 msgid "Preliminary"
 msgstr "Predhoden"
 
-#: apps/constants/base.py:138 apps/users/notifications.py:157
+#: apps/constants/base.py:135 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "Razvijalec"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:139
+#: apps/constants/base.py:136
 msgid "Viewer"
 msgstr "Prikazovalnik"
 
-#: apps/constants/base.py:140 templates/mobile/header.html:7
+#: apps/constants/base.py:137 templates/mobile/header.html:7
 msgid "Support"
 msgstr "Podpora"
 
-#: apps/constants/base.py:162 apps/constants/base.py:175
+#: apps/constants/base.py:159 apps/constants/base.py:172
 #: apps/constants/platforms.py:11
 msgid "Any"
 msgstr "Poljuben"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:160
 msgid "Extension"
 msgstr "Dodatek"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:161
 msgid "Complete Theme"
 msgstr "Celotna tema"
 
-#: apps/constants/base.py:166
+#: apps/constants/base.py:163
 msgid "Search Engine"
 msgstr "Iskalnik"
 
-#: apps/constants/base.py:167
+#: apps/constants/base.py:164
 msgid "Language Pack (Application)"
 msgstr "Jezikovni paket (aplikacija)"
 
-#: apps/constants/base.py:168
+#: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
 msgstr "Jezikovni paket (dodatek)"
 
-#: apps/constants/base.py:169
+#: apps/constants/base.py:166
 msgid "Plugin"
 msgstr "Vtičnik"
 
-#: apps/constants/base.py:170
+#: apps/constants/base.py:167
 #: apps/editors/templates/editors/includes/search_results_themes.html:5
 #: apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8
@@ -4255,200 +4208,180 @@ msgid "Theme"
 msgstr "Tema"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:178
+#: apps/constants/base.py:175
 msgid "Dictionaries"
 msgstr "Slovarji"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:180
+#: apps/constants/base.py:177
 msgid "Language Packs (Application)"
 msgstr "Jezikovni paketi (aplikacija)"
 
-#: apps/constants/base.py:181
+#: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
 msgstr "Jezikovni paketi (dodatek)"
 
-#: apps/constants/base.py:182
+#: apps/constants/base.py:179
 msgid "Plugins"
 msgstr "Vtičniki"
 
-#: apps/constants/base.py:247
-msgid "Free"
-msgstr "Brezplačno"
-
-#: apps/constants/base.py:248
-msgid "Premium"
-msgstr "Premium"
-
-#: apps/constants/base.py:249
-msgid "Premium with in-app payments"
-msgstr "Premium z in-app plačili"
-
-#: apps/constants/base.py:250
-msgid "Free with in-app payments"
-msgstr "Brezplačno z in-app plačili"
-
-#: apps/constants/base.py:251
-msgid "I'll use my own system for in-app payments"
-msgstr "Za plačila bom rabil svoj lasten sistem znotraj programa"
-
-#: apps/constants/base.py:307
+#: apps/constants/base.py:271
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "Samo vprašaj na tej strani dodatka in na profilu razvijalca"
 
-#: apps/constants/base.py:308
+#: apps/constants/base.py:272
 msgid "Ask after users start downloading this add-on"
 msgstr "Vprašaj potem, ko so uporabniki začeli s prenosom tega dodatka"
 
-#: apps/constants/base.py:309
+#: apps/constants/base.py:273
 msgid "Ask before users can download this add-on"
 msgstr "Vprašaj, preden uporabniki začnejo s prenosom tega dodatka"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:389
 msgid "Exception"
 msgstr "Izjema"
 
-#: apps/constants/base.py:435
+#: apps/constants/base.py:390
 msgid "Release"
 msgstr "Izdaja"
 
-#: apps/constants/base.py:436
+#: apps/constants/base.py:391
 msgid "Change"
 msgstr "Spremeni"
 
-#: apps/constants/base.py:447
+#: apps/constants/base.py:402
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:435
 msgid "Manual Reviewer Points"
 msgstr "Točke ročnega recenzenta"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:436
 msgid "Full Add-on Review"
 msgstr "Popoln pregled dodatka"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:437
 msgid "Preliminary Add-on Review"
 msgstr "Predhodni pregled dodatka"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:438
 msgid "Updated Add-on Review"
 msgstr "Posodobljen pregled dodatka"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:439
 msgid "Full Dictionary Review"
 msgstr "Popoln pregled slovarja"
 
-#: apps/constants/base.py:485
+#: apps/constants/base.py:440
 msgid "Preliminary Dictionary Review"
 msgstr "Predhodni pregled slovarja"
 
-#: apps/constants/base.py:486
+#: apps/constants/base.py:441
 msgid "Updated Dictionary Review"
 msgstr "Posodobljen pregled geslovnika"
 
-#: apps/constants/base.py:487
+#: apps/constants/base.py:442
 msgid "Full Language Pack Review"
 msgstr "Popoln pregled jezikovnega paketa"
 
-#: apps/constants/base.py:488
+#: apps/constants/base.py:443
 msgid "Preliminary Language Pack Review"
 msgstr "Predhoden pregled jezikovnega paketa"
 
-#: apps/constants/base.py:489
+#: apps/constants/base.py:444
 msgid "Updated Language Pack Review"
 msgstr "Posodobljen pregled jezikovnega paketa"
 
-#: apps/constants/base.py:490
+#: apps/constants/base.py:445
 msgid "Bonus for overdue reviews"
 msgstr "Dodatek za zapadle preglede"
 
-#: apps/constants/base.py:491
+#: apps/constants/base.py:446
 msgid "Days Before Bonus Points Applied"
 msgstr "Dnevi pred uveljavljanjem dodatnih točk"
 
-#: apps/constants/base.py:492
+#: apps/constants/base.py:447
 msgid "Theme Review"
 msgstr "Pregled teme"
 
-#: apps/constants/base.py:493
+#: apps/constants/base.py:448
 msgid "Full Search Provider Review"
 msgstr "Popoln pregled ponudnika za iskanje"
 
-#: apps/constants/base.py:494
+#: apps/constants/base.py:449
 msgid "Preliminary Search Provider Review"
 msgstr "Predhoden pregled ponudnika za iskanje"
 
-#: apps/constants/base.py:495
+#: apps/constants/base.py:450
 msgid "Updated Search Provider Review"
 msgstr "Posodobljen pregled ponudnika za iskanje"
 
-#: apps/constants/base.py:496
+#: apps/constants/base.py:451
 msgid "Complete Theme Review"
 msgstr "Pregled celotne teme"
 
-#: apps/constants/base.py:497
+#: apps/constants/base.py:452
 msgid "Preliminary Complete Theme Review"
 msgstr "Predhoden pregled celotne teme"
 
-#: apps/constants/base.py:498
+#: apps/constants/base.py:453
 msgid "Updated Complete Theme Review"
 msgstr "Posodobljen pregled celotne teme"
 
-#: apps/constants/base.py:499
+#: apps/constants/base.py:454
 msgid "Moderated Addon Review"
 msgstr "Moderirana ocena dodatka"
 
-#: apps/constants/base.py:500
+#: apps/constants/base.py:455
 msgid "Addon Review Moderation Reverted"
 msgstr "Moderacija pregleda dodatka je bila obrnjena"
 
-#: apps/constants/base.py:547
+#: apps/constants/base.py:502
 msgid "Level 1"
 msgstr "Raven 1"
 
-#: apps/constants/base.py:548
+#: apps/constants/base.py:503
 msgid "Level 2"
 msgstr "Raven 2"
 
-#: apps/constants/base.py:549
+#: apps/constants/base.py:504
 msgid "Level 3"
 msgstr "Raven 3"
 
-#: apps/constants/base.py:550
+#: apps/constants/base.py:505
 msgid "Level 4"
 msgstr "Raven 4"
 
-#: apps/constants/base.py:551
+#: apps/constants/base.py:506
 msgid "Level 5"
 msgstr "Raven 5"
 
-#: apps/constants/base.py:552
+#: apps/constants/base.py:507
 msgid "Level 6"
 msgstr "Raven 6"
 
-#: apps/constants/base.py:553
+#: apps/constants/base.py:508
 msgid "Level 7"
 msgstr "Raven 7"
 
-#: apps/constants/base.py:554
+#: apps/constants/base.py:509
 msgid "Level 8"
 msgstr "Raven 8"
 
-#: apps/constants/base.py:555
+#: apps/constants/base.py:510
 msgid "Level 9"
 msgstr "Raven 9"
 
-#: apps/constants/base.py:564
+#: apps/constants/base.py:519
 msgid "Not signed"
 msgstr "Ni podpisano"
 
-#: apps/constants/base.py:565
+#: apps/constants/base.py:520
 msgid "Signed for a full review"
 msgstr "Podpisano za poln pregled"
 
-#: apps/constants/base.py:566
+#: apps/constants/base.py:521
 msgid "Signed of a preliminary review"
 msgstr "Predloga uvodnega pregleda"
 
@@ -4838,19 +4771,19 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58
+#: apps/devhub/models.py:374 apps/reviews/templates/reviews/add.html:58
 msgid "Review"
 msgstr "Pregled"
 
-#: apps/devhub/tasks.py:506
+#: apps/devhub/tasks.py:503
 msgid "%s responded with %s (%s)."
 msgstr "%s odgovoril %s (%s)."
 
-#: apps/devhub/tasks.py:510
+#: apps/devhub/tasks.py:507
 msgid "Connection to \"%s\" timed out."
 msgstr "Povezava z \"%s\" je pretekla."
 
-#: apps/devhub/tasks.py:512
+#: apps/devhub/tasks.py:509
 msgid "Could not contact host at \"%s\"."
 msgstr "Ni prišlo do stika z gostiteljem na \"%s\"."
 
@@ -4863,128 +4796,128 @@ msgstr ""
 "bilo %s sporočil skrajšanih. Ko enkrat spravite v red vidna sporočila, boste"
 " lahko videli tudi preostala."
 
-#: apps/devhub/views.py:179
+#: apps/devhub/views.py:178
 msgid "All My Add-ons"
 msgstr "Vsi moji dodatki"
 
-#: apps/devhub/views.py:206
+#: apps/devhub/views.py:205
 msgid "All Activity"
 msgstr "Vsa aktivnost"
 
-#: apps/devhub/views.py:207
+#: apps/devhub/views.py:206
 msgid "Add-on Updates"
 msgstr "Posodobitve dodatkov"
 
-#: apps/devhub/views.py:208
+#: apps/devhub/views.py:207
 msgid "Add-on Status"
 msgstr "Stanje dodatka"
 
-#: apps/devhub/views.py:209
+#: apps/devhub/views.py:208
 msgid "User Collections"
 msgstr "Uporabniške zbirke"
 
-#: apps/devhub/views.py:210
+#: apps/devhub/views.py:209
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: apps/pages/templates/pages/dev_faq.html:39
 #: apps/pages/templates/pages/dev_faq.html:537
 msgid "User Reviews"
 msgstr "Ocene uporabnikov"
 
-#: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479
-#: apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1163
+#: apps/devhub/views.py:322 apps/devhub/views.py:326 apps/devhub/views.py:478
+#: apps/devhub/views.py:507 apps/devhub/views.py:558 apps/devhub/views.py:1142
 msgid "Changes successfully saved."
 msgstr "Spremembe uspešno shranjene."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1644
+#: apps/devhub/views.py:329 apps/devhub/views.py:1624
 msgid "Please check the form for errors."
 msgstr "Prosimo, poiščite napake v obrazcu."
 
-#: apps/devhub/views.py:342
+#: apps/devhub/views.py:341
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodatka ni mogoče zbrisati. Namesto tega ga onemogočite."
 
-#: apps/devhub/views.py:352
+#: apps/devhub/views.py:351
 msgid "Theme deleted."
 msgstr "Tema zbrisana."
 
-#: apps/devhub/views.py:352
+#: apps/devhub/views.py:351
 msgid "Add-on deleted."
 msgstr "Dodatek izbrisan."
 
-#: apps/devhub/views.py:358
+#: apps/devhub/views.py:357
 msgid "Password was incorrect. Theme was not deleted."
 msgstr "Geslo je bilo nepravilno. Teme se ni zbrisalo."
 
-#: apps/devhub/views.py:363
+#: apps/devhub/views.py:362
 msgid "Password was incorrect. Add-on was not deleted."
 msgstr "Geslo je bilo nepravilno. Teme se ni zbrisalo."
 
-#: apps/devhub/views.py:445
+#: apps/devhub/views.py:444
 msgid "An author has been added to your add-on"
 msgstr "Vašemu dodatku je bil dodan avtor"
 
-#: apps/devhub/views.py:452
+#: apps/devhub/views.py:451
 msgid "An author has a role changed on your add-on"
 msgstr "Avtor vašega dodatka ima spremenjeno vlogo"
 
-#: apps/devhub/views.py:471
+#: apps/devhub/views.py:470
 msgid "An author has been removed from your add-on"
 msgstr "Vašemu dodatku je bil odstranjen avtor"
 
-#: apps/devhub/views.py:514
+#: apps/devhub/views.py:513
 msgid "There were errors in your submission."
 msgstr "V vaši oddaji so bile napake."
 
-#: apps/devhub/views.py:578
+#: apps/devhub/views.py:577
 msgid "Validate Add-on"
 msgstr "Preveri veljavnost dodatka"
 
-#: apps/devhub/views.py:589
+#: apps/devhub/views.py:588
 msgid "Check Add-on Compatibility"
 msgstr "Preveri združljivost dodatka"
 
-#: apps/devhub/views.py:678
+#: apps/devhub/views.py:657
 msgid "There was an error with the submission."
 msgstr "Ob predaji je prišlo do napake."
 
-#: apps/devhub/views.py:836 apps/signing/views.py:64
+#: apps/devhub/views.py:815 apps/signing/views.py:82
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
 
-#: apps/devhub/views.py:1068 apps/users/forms.py:418
+#: apps/devhub/views.py:1047 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
 msgstr "Slike morajo biti bodisi PNG ali JPG."
 
-#: apps/devhub/views.py:1072
+#: apps/devhub/views.py:1051
 msgid "Icons cannot be animated."
 msgstr "Ikone ne morejo biti animirane."
 
-#: apps/devhub/views.py:1074
+#: apps/devhub/views.py:1053
 msgid "Images cannot be animated."
 msgstr "Slike ne morejo biti animirane."
 
-#: apps/devhub/views.py:1087
+#: apps/devhub/views.py:1066
 msgid "Images cannot be larger than %dKB."
 msgstr "Slike ne morejo biti večje od %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1076
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Slike morajo biti široke natanko {0} pikslov in visoke {1} pikslov."
 
-#: apps/devhub/views.py:1104
+#: apps/devhub/views.py:1083
 msgid "There was an error uploading your preview."
 msgstr "Med nalaganjem predogleda je prišlo do napake."
 
-#: apps/devhub/views.py:1202
+#: apps/devhub/views.py:1181
 msgid "Version %s disabled."
 msgstr "Različica %s onemogočena."
 
-#: apps/devhub/views.py:1206
+#: apps/devhub/views.py:1185
 msgid "Version %s deleted."
 msgstr "Različica %s izbrisana."
 
-#: apps/devhub/views.py:1216
+#: apps/devhub/views.py:1195
 msgid ""
 "This upload has failed validation, and may lack complete validation results."
 " Please take due care when reviewing it."
@@ -4993,15 +4926,15 @@ msgstr ""
 "veljavnosti ne bodo v celoti na razpolago. Bodite pozorni, ko ga boste "
 "pregledovali."
 
-#: apps/devhub/views.py:1690
+#: apps/devhub/views.py:1670
 msgid "Preliminary Review Requested."
 msgstr "Zahteva se predhodni pregled."
 
-#: apps/devhub/views.py:1691
+#: apps/devhub/views.py:1671
 msgid "Full Review Requested."
 msgstr "Zahteva se popoln pregled."
 
-#: apps/devhub/views.py:1799
+#: apps/devhub/views.py:1779
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
@@ -5009,7 +4942,7 @@ msgstr ""
 "Vaša stara poverila so bila preklicana in niso več veljavna. Prepričajte se,"
 " da posodobite vse odjemalce API z novimi poverili."
 
-#: apps/devhub/views.py:1817
+#: apps/devhub/views.py:1797
 msgid "New API key created"
 msgstr "Nov ključ API ustvarjen"
 
@@ -5284,7 +5217,7 @@ msgstr "Ali želite razširiti dvoj dodatek na tej strani?"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:14
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
-#: apps/devhub/templates/devhub/versions/list.html:312
+#: apps/devhub/templates/devhub/versions/list.html:298
 msgid "Warning:"
 msgstr "Opozorilo:"
 
@@ -5409,10 +5342,10 @@ msgstr "Dodaj drugo aplikacijo ..."
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:365
-#: apps/devhub/templates/devhub/versions/list.html:367
-#: templates/impala/base.html:125 templates/impala/base.html:143
-#: templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:353
+#: templates/impala/base.html:125 templates/impala/base.html:136
+#: templates/impala/base.html:154 templates/impala/base.html:164
 msgid "Close"
 msgstr "Zapri"
 
@@ -5976,26 +5909,21 @@ msgid "Delete Theme"
 msgstr "Zbriši temo"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
-#: apps/devhub/templates/devhub/versions/list.html:122
-msgid "Delete Add-on"
-msgstr "Izbriši dodatek"
+msgid "Delete Add-on and block GUID"
+msgstr "Izbriši dodatek in blokiraj GUID"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr ""
 "Če svojo temo zbrišete, jo boste za vedno odstranili s spletne strani."
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:14
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
-"its GUID from being submitted ever again, even by you. The existing users of"
-" your add-on will remain on this update channel and never receive updates "
-"again."
+"its GUID from being submitted again, even by you."
 msgstr ""
-"Če dodatek izbrišete, se ga bo trajno izbrisalo s spletišča in preprečilo, "
-"da bi kdorkoli, tudi vi, njegov GUID ponovno uporabil. Obstoječi uporabniki "
-"vašega dodatka ostanejo na tem kanalu za posodobitve in odslej ne bodo več "
-"prejemali posodobitev."
+"Če svoj dodatek zbrišete, ga boste za vedno odstranili s spletne strani in "
+"njegovega GUID-ja ne boste več mogli uporabiti."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -6117,19 +6045,6 @@ msgstr[0] "<strong>{0}</strong> aktivni uporabnik"
 msgstr[1] "<strong>{0}</strong> aktivna uporabnika"
 msgstr[2] "<strong>{0}</strong> aktivni uporabniki"
 msgstr[3] "<strong>{0}</strong> aktivnih uporabnikov"
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
-msgid "No test results."
-msgstr "Ni rezultatov testov."
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-msgid "Start performance tests"
-msgstr "Zaženi teste zmogljivosti"
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-msgid "This file is not eligible for performance testing."
-msgstr "Ta dodatek ne pride v poštev za testiranje zmogljivosti"
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -8972,39 +8887,39 @@ msgstr "Veljavnost ni preverjena."
 msgid "Validate now."
 msgstr "Preveri veljavnost zdaj."
 
-#: apps/devhub/templates/devhub/versions/list.html:72
+#: apps/devhub/templates/devhub/versions/list.html:67
 msgid "Request Full Review"
 msgstr "Zahtevam popoln pregled"
 
-#: apps/devhub/templates/devhub/versions/list.html:73
+#: apps/devhub/templates/devhub/versions/list.html:68
 msgid "Request Preliminary Review"
 msgstr "Zahtevam predhodni pregled"
 
-#: apps/devhub/templates/devhub/versions/list.html:85
-#: apps/devhub/templates/devhub/versions/list.html:341
-#: apps/devhub/templates/devhub/versions/list.html:364
+#: apps/devhub/templates/devhub/versions/list.html:80
+#: apps/devhub/templates/devhub/versions/list.html:327
+#: apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
 msgstr "Prekliči zahtevo za pregled"
 
-#: apps/devhub/templates/devhub/versions/list.html:98
+#: apps/devhub/templates/devhub/versions/list.html:93
 msgid "Addon visibility"
 msgstr "Vidnost dodatka"
 
-#: apps/devhub/templates/devhub/versions/list.html:107
+#: apps/devhub/templates/devhub/versions/list.html:102
 msgid "Listed:"
 msgstr "Navedeni:"
 
-#: apps/devhub/templates/devhub/versions/list.html:107
+#: apps/devhub/templates/devhub/versions/list.html:102
 msgid ""
 "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
 "Vidno vsem na {0} in vključeno v iskalne rezultate in strani s seznamom"
 
-#: apps/devhub/templates/devhub/versions/list.html:113
+#: apps/devhub/templates/devhub/versions/list.html:108
 msgid "Hidden:"
 msgstr "Skrito:"
 
-#: apps/devhub/templates/devhub/versions/list.html:113
+#: apps/devhub/templates/devhub/versions/list.html:108
 msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
@@ -9012,11 +8927,11 @@ msgstr ""
 "Gostovano na {0}, vendar skrito za vse razen avtorjev. Uporabite, če želite "
 "dodatek začasno skriti ali ga nehati razvijati."
 
-#: apps/devhub/templates/devhub/versions/list.html:119
+#: apps/devhub/templates/devhub/versions/list.html:114
 msgid "Unlisted:"
 msgstr "Nenavedeni:"
 
-#: apps/devhub/templates/devhub/versions/list.html:119
+#: apps/devhub/templates/devhub/versions/list.html:114
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
@@ -9024,55 +8939,51 @@ msgstr ""
 "Ni razširjen na {0}. Razvijalci bodo poslali nove različice za podpisovanje "
 "in dodatke razširjali po svoje. (beta)"
 
-#: apps/devhub/templates/devhub/versions/list.html:127
+#: apps/devhub/templates/devhub/versions/list.html:117
+msgid "Delete Add-on"
+msgstr "Izbriši dodatek"
+
+#: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
 msgstr "Trenutne različice"
 
-#: apps/devhub/templates/devhub/versions/list.html:133
+#: apps/devhub/templates/devhub/versions/list.html:128
 msgid "Currently on AMO"
 msgstr "Trenutno na AMO"
 
-#: apps/devhub/templates/devhub/versions/list.html:134
-#: apps/devhub/templates/devhub/versions/list.html:155
-#: apps/devhub/templates/devhub/versions/list.html:175
+#: apps/devhub/templates/devhub/versions/list.html:129
+#: apps/devhub/templates/devhub/versions/list.html:147
+#: apps/devhub/templates/devhub/versions/list.html:164
 #: apps/editors/templates/editors/includes/search_results_themes.html:7
 #: apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
 msgstr "Stanje"
 
 # Header for a column in a table
-#: apps/devhub/templates/devhub/versions/list.html:135
-#: apps/devhub/templates/devhub/versions/list.html:156
-#: apps/devhub/templates/devhub/versions/list.html:176
+#: apps/devhub/templates/devhub/versions/list.html:130
+#: apps/devhub/templates/devhub/versions/list.html:148
+#: apps/devhub/templates/devhub/versions/list.html:165
 #: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "Preverjanje veljavnosti"
 
-#: apps/devhub/templates/devhub/versions/list.html:137
-#: apps/devhub/templates/devhub/versions/list.html:158
-#: apps/devhub/templates/devhub/versions/list.html:178
-#: apps/editors/templates/editors/base.html:72
-#: apps/editors/templates/editors/performance.html:6
-msgid "Performance"
-msgstr "Zmogljivost"
-
-#: apps/devhub/templates/devhub/versions/list.html:154
+#: apps/devhub/templates/devhub/versions/list.html:146
 msgid "Next version of this add-on"
 msgstr "Naslednja različica tega dodatka"
 
-#: apps/devhub/templates/devhub/versions/list.html:168
+#: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Older versions"
 msgstr "Starejše različice"
 
-#: apps/devhub/templates/devhub/versions/list.html:184
+#: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Upload a New Version"
 msgstr "Naloži novo različico"
 
-#: apps/devhub/templates/devhub/versions/list.html:214
+#: apps/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
 msgstr "Popoln pregled morda ne bo potreben"
 
-#: apps/devhub/templates/devhub/versions/list.html:215
+#: apps/devhub/templates/devhub/versions/list.html:201
 msgid ""
 "Unlisted add-ons don't need Full Review unless they are distributed as part "
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
@@ -9082,15 +8993,15 @@ msgstr ""
 "distribuirani kot del namestitvenega programa. Za več informacij si "
 "preberite <a href=\"{link}\" target=\"_blank\">dokumentacijo</a>."
 
-#: apps/devhub/templates/devhub/versions/list.html:223
+#: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
 msgstr "Zahtevaj popoln pregled"
 
-#: apps/devhub/templates/devhub/versions/list.html:231
+#: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
 msgstr "Izbriši različico {version}"
 
-#: apps/devhub/templates/devhub/versions/list.html:232
+#: apps/devhub/templates/devhub/versions/list.html:218
 msgid ""
 "You are about to delete the current version of your add-on. This may cause "
 "your add-on status to change, or your listing to lose public visibility, if "
@@ -9100,11 +9011,11 @@ msgstr ""
 "spremembo stanja dodatka, objava pa lahko postane nevidna za javnost, če je "
 "to edina javna različica vašega dodatka."
 
-#: apps/devhub/templates/devhub/versions/list.html:233
+#: apps/devhub/templates/devhub/versions/list.html:219
 msgid "Deleting this version will permanently delete:"
 msgstr "Brisanje te različice bo trajno izbrisalo:"
 
-#: apps/devhub/templates/devhub/versions/list.html:239
+#: apps/devhub/templates/devhub/versions/list.html:225
 msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
@@ -9112,7 +9023,7 @@ msgstr ""
 "<strong>Pomembno:</strong> ko je različica enkrat izbrisana, morda ne boste "
 "več mogli naložiti nove različice z isto številko različice."
 
-#: apps/devhub/templates/devhub/versions/list.html:244
+#: apps/devhub/templates/devhub/versions/list.html:230
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
@@ -9120,32 +9031,32 @@ msgstr ""
 "Če izbrišete različico, ki je že bila pregledana, se lahko pregled naslednje"
 " posodobitve občutno zakasni."
 
-#: apps/devhub/templates/devhub/versions/list.html:247
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
 msgstr "Ali ste prepričani, da želite izbrisati to različico?"
 
-#: apps/devhub/templates/devhub/versions/list.html:252
+#: apps/devhub/templates/devhub/versions/list.html:238
 msgid "Delete Version"
 msgstr "Izbriši različico"
 
-#: apps/devhub/templates/devhub/versions/list.html:254
+#: apps/devhub/templates/devhub/versions/list.html:240
 msgid "Disable Version"
 msgstr "Onemogoči različico"
 
-#: apps/devhub/templates/devhub/versions/list.html:261
+#: apps/devhub/templates/devhub/versions/list.html:247
 msgid "Add a new Version"
 msgstr "Dodaj novo različico"
 
-#: apps/devhub/templates/devhub/versions/list.html:263
+#: apps/devhub/templates/devhub/versions/list.html:249
 msgid "Add Version"
 msgstr "Dodaj različico"
 
-#: apps/devhub/templates/devhub/versions/list.html:270
-#: apps/devhub/templates/devhub/versions/list.html:288
+#: apps/devhub/templates/devhub/versions/list.html:256
+#: apps/devhub/templates/devhub/versions/list.html:274
 msgid "Hide Add-on"
 msgstr "Skrij dodatek"
 
-#: apps/devhub/templates/devhub/versions/list.html:273
+#: apps/devhub/templates/devhub/versions/list.html:259
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
@@ -9153,16 +9064,16 @@ msgstr ""
 "Skrivanje vašega dodatka bo preprečilo njegov prikaz v naši galeriji in bo "
 "ustavilo samodejne posodobitve za uporabnike."
 
-#: apps/devhub/templates/devhub/versions/list.html:279
+#: apps/devhub/templates/devhub/versions/list.html:265
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Ali res želite skriti svoj dodatek?"
 
-#: apps/devhub/templates/devhub/versions/list.html:300
-#: apps/devhub/templates/devhub/versions/list.html:329
+#: apps/devhub/templates/devhub/versions/list.html:286
+#: apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
 msgstr "Odstrani dodatek iz seznama"
 
-#: apps/devhub/templates/devhub/versions/list.html:303
+#: apps/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) "
 "invisible on this website. It won't show up in searches, won't have a public"
@@ -9178,7 +9089,7 @@ msgstr ""
 "ločenega <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> v "
 "datoteki install.rdf za samodejne posodobitve."
 
-#: apps/devhub/templates/devhub/versions/list.html:313
+#: apps/devhub/templates/devhub/versions/list.html:299
 msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -9186,19 +9097,19 @@ msgstr ""
 "Preklapljanje dodatkov na nenavedene je trenutno na odprti stopnji beta. <a "
 "href=\"%(url)s\" target=\"_blank\">Prijavite morebitne hrošče</a>."
 
-#: apps/devhub/templates/devhub/versions/list.html:319
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid "Unlisting an add-on is irreversible!"
 msgstr "Odstranjevanje dodatka s seznama ni mogoče povrniti!"
 
-#: apps/devhub/templates/devhub/versions/list.html:319
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr "Nenavedenega dodatka ni mogoče zopet navesti."
 
-#: apps/devhub/templates/devhub/versions/list.html:321
+#: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Ali res želite odstraniti svoj dodatek iz seznama?"
 
-#: apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/list.html:330
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
@@ -9206,7 +9117,7 @@ msgstr ""
 "Če svojo zahtevo za pregled prekličete, bo vaš dodatek ostal dalje kot "
 "predhodno pregledan."
 
-#: apps/devhub/templates/devhub/versions/list.html:349
+#: apps/devhub/templates/devhub/versions/list.html:335
 msgid ""
 "Canceling your review request will mark your add-on incomplete. If you do "
 "not complete your add-on after several days by re-requesting review, it will"
@@ -9216,7 +9127,7 @@ msgstr ""
 "nepopoln. Če svojega dodatka v času nekaj dni ne dopolnite z zahtevo po "
 "pregledu, se ga zbrisalo."
 
-#: apps/devhub/templates/devhub/versions/list.html:357
+#: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Res želite preklicati zahtevo za pregled?"
 
@@ -9480,11 +9391,11 @@ msgstr ""
 msgid "Add-ons downloaded:"
 msgstr "Naloženi dodatki:"
 
-#: apps/discovery/templates/discovery/addons/detail.html:71
+#: apps/discovery/templates/discovery/addons/detail.html:67
 msgid "Active Users"
 msgstr "Aktivni uporabniki"
 
-#: apps/discovery/templates/discovery/addons/detail.html:80
+#: apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Last Updated"
 msgstr "Nazadnje obnovljeno"
 
@@ -10008,31 +9919,31 @@ msgstr "Označeno"
 msgid "Updates"
 msgstr "Posodobitve"
 
-#: apps/editors/models.py:184
+#: apps/editors/models.py:183
 msgid "Admin Review"
 msgstr "Skrbnikov pregled"
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:184
 msgid "Jetpack Add-on"
 msgstr "Dodatek Jetpack"
 
-#: apps/editors/models.py:187
+#: apps/editors/models.py:186
 msgid "Restartless Add-on"
 msgstr "Dodatek brez ponovnega zagona"
 
-#: apps/editors/models.py:188
+#: apps/editors/models.py:187
 msgid "More Information Requested"
 msgstr "Potrebnih je več informacij"
 
-#: apps/editors/models.py:189
+#: apps/editors/models.py:188
 msgid "Contains Editor Comment"
 msgstr "Vsebuje komentar urednika"
 
-#: apps/editors/models.py:191
+#: apps/editors/models.py:190
 msgid "Sources provided"
 msgstr "Dobavljeni viri"
 
-#: apps/editors/models.py:192
+#: apps/editors/models.py:191
 msgid "WebExtension"
 msgstr "WebExtension"
 
@@ -10160,6 +10071,11 @@ msgstr "Čakalne vrste"
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
 msgstr "Čakalne vrste za nenavedene"
+
+#: apps/editors/templates/editors/base.html:72
+#: apps/editors/templates/editors/performance.html:6
+msgid "Performance"
+msgstr "Zmogljivost"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -10368,7 +10284,6 @@ msgid "No review points awarded yet."
 msgstr "Nobenih točk pregleda še ni bilo dodeljenih."
 
 #: apps/editors/templates/editors/leaderboard.html:23
-#: apps/perf/templates/perf/index.html:54
 msgid "Rank"
 msgstr "Vrstni red"
 
@@ -12694,16 +12609,14 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in "
 "%(app_name)s, though installing an excessive number may have adverse "
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
-"disabling it. Add-ons that cause large start-up performance issues will have"
-" warning messages on their details page."
+"disabling it."
 msgstr ""
-"Večina dodatkov za %(app_name)s ne povzročijo občutnega zmanjšanja "
-"zmogljivosti, vendar ima lahko preveliko število nameščenih dodatkov "
-"škodljive učinke. Če sumite, da dodatek zavira %(app_name)s, ga onemogočite."
-" Dodatki, ki povzročajo veliko težav v zvezi z zagonom aplikacije, vsebujejo"
-" na svoji strani s podrobnostmi opozorilo."
+"Večina dodatkov ne povzroči zaznavnega zmanjšanja zmogljivosti v "
+"%(app_name)s, lahko pa ga povzroči namestitev prekomernega števila dodatkov."
+" Če sumite, da dodatek povzroča upočasnitev %(app_name)s, ga poskusite "
+"onemogočiti."
 
-#: apps/pages/templates/pages/faq.html:142
+#: apps/pages/templates/pages/faq.html:141
 msgid ""
 "%(app_name)s told me an add-on isn't compatible. Is there a way I can still "
 "use it?"
@@ -12711,7 +12624,7 @@ msgstr ""
 "%(app_name)s mi je sporočil, da dodatek ni združljiv. Ali obstaja kak način,"
 " da ga vseeno uporabljam?"
 
-#: apps/pages/templates/pages/faq.html:145
+#: apps/pages/templates/pages/faq.html:144
 msgid ""
 "If an add-on isn't compatible with your version of %(app_name)s, it is "
 "usually either because your version of %(app_name)s is outdated or the add-"
@@ -12732,11 +12645,11 @@ msgstr ""
 "združljivosti dodatkov</a>, ki razvijalcem dodatkov pomaga poskrbeti za "
 "združljivost njihovih izdelkov."
 
-#: apps/pages/templates/pages/faq.html:157
+#: apps/pages/templates/pages/faq.html:156
 msgid "What if I have problems with an add-on?"
 msgstr "Kaj, če imam težave z dodatkom?"
 
-#: apps/pages/templates/pages/faq.html:158
+#: apps/pages/templates/pages/faq.html:157
 msgid ""
 "Add-ons are usually created by third-party developers from around the world,"
 " so the best way to get help with an add-on is to look for support links on "
@@ -12752,15 +12665,15 @@ msgstr ""
 "href=\"%(troubleshooting_url)s\">obiščite ta članek za podporo</a> z nasveti"
 " za odpravljanje težav."
 
-#: apps/pages/templates/pages/faq.html:170
+#: apps/pages/templates/pages/faq.html:169
 msgid "Add-on Gallery"
 msgstr "Galerija dodatkov"
 
-#: apps/pages/templates/pages/faq.html:172
+#: apps/pages/templates/pages/faq.html:171
 msgid "How do I choose between add-ons that seem to do the same thing?"
 msgstr "Kako naj izbiram med dodatki, ki očitno delajo eno in isto?"
 
-#: apps/pages/templates/pages/faq.html:174
+#: apps/pages/templates/pages/faq.html:173
 msgid ""
 "There are often several add-ons that have similar features. To figure out "
 "which is right for you, read the entire description of the add-on and view "
@@ -12777,11 +12690,11 @@ msgstr ""
 "pozabite, da lahko tudi vsakega posebej preprosto preizkusite in si "
 "ustvarite lastno mnenje o njih."
 
-#: apps/pages/templates/pages/faq.html:181
+#: apps/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Kaj, če ne najdem tega, kar iščem?"
 
-#: apps/pages/templates/pages/faq.html:182
+#: apps/pages/templates/pages/faq.html:181
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if "
 "you're looking for a particular add-on and can't find it, you might try "
@@ -12793,13 +12706,13 @@ msgstr ""
 "straneh ali o njem pišete v našem <a href=\"%(forum_url)s\">Forumu za "
 "dodatke</a>."
 
-#: apps/pages/templates/pages/faq.html:188
+#: apps/pages/templates/pages/faq.html:187
 msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
 msgstr "Kaj pomeni, če je dodatek \"eksperimentalen\" ali \"predhodno pregledan\"?"
 
-#: apps/pages/templates/pages/faq.html:189
+#: apps/pages/templates/pages/faq.html:188
 msgid ""
 "Experimental add-ons have been checked by our editors to make sure they "
 "don't have security problems, but they may still have bugs or not work "
@@ -12814,11 +12727,11 @@ msgstr ""
 " naletite na težave. <a href=\"%(url)s\">Več o našem postopku "
 "pregledov</a></dd>"
 
-#: apps/pages/templates/pages/faq.html:197
+#: apps/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Kaj pomeni, če dodatek \"ni pregledan\"?"
 
-#: apps/pages/templates/pages/faq.html:198
+#: apps/pages/templates/pages/faq.html:197
 msgid ""
 "While all add-ons publicly available in our gallery are reviewed by an "
 "editor, you may receive a direct link to an add-on that hasn't yet been "
@@ -12834,22 +12747,22 @@ msgstr ""
 " dodatke, ki so pregledani. <a href=\"%(url)s\">Več o našem postopku "
 "pregledov</a></dd>"
 
-#: apps/pages/templates/pages/faq.html:207
+#: apps/pages/templates/pages/faq.html:206
 msgid "How much do add-ons cost to purchase?"
 msgstr "Koliko stanejo dodatki, če jih hočem kupiti?"
 
-#: apps/pages/templates/pages/faq.html:208
+#: apps/pages/templates/pages/faq.html:207
 msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
 "Dodatki, ki gostujejo v naši galeriji, so brezplačni, razen če ni jasno "
 "označeno drugače."
 
-#: apps/pages/templates/pages/faq.html:211
+#: apps/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
 msgstr "Kaj pomeni, če dodatek prosi za prispevke?"
 
-#: apps/pages/templates/pages/faq.html:212
+#: apps/pages/templates/pages/faq.html:211
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its "
 "development by making a monetary contribution. These contributions go "
@@ -12861,11 +12774,11 @@ msgstr ""
 "razen če je navedena tretja stranka, kot je npr. neprofitna fundacija "
 "Mozilla."
 
-#: apps/pages/templates/pages/faq.html:217
+#: apps/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
 msgstr "Kaj so beta dodatki?"
 
-#: apps/pages/templates/pages/faq.html:219
+#: apps/pages/templates/pages/faq.html:218
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an "
 "add-on author. While different authors have different standards for beta "
@@ -12877,7 +12790,7 @@ msgstr ""
 "kode tiče, različna mnenja, lahko predvidevate, da so ti dodatki na splošno "
 "manj stabilni kot splošne izdaje dodatka."
 
-#: apps/pages/templates/pages/faq.html:223
+#: apps/pages/templates/pages/faq.html:222
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" "
 "section of an add-on's listing, you will continue to receive updates for "
@@ -12890,29 +12803,25 @@ msgstr ""
 "na voljo. Niti prvotne različice, ki ste jo namestili, in tudi ne beta "
 "različic Mozilla ni pregledala, tako da lahko škodijo vašemu računalniku."
 
-#: apps/pages/templates/pages/faq.html:230
+#: apps/pages/templates/pages/faq.html:229
 msgid "What does it mean when an add-on is flagged as slow?"
 msgstr "Kaj pomeni, če je dodatek označen kot počasen?"
 
-#: apps/pages/templates/pages/faq.html:232
+#: apps/pages/templates/pages/faq.html:231
 msgid ""
 "Most add-ons load code and resources at the same time Firefox is starting "
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
-"can cause a noticeable slowdown. We warn you about these add-ons to help you"
-" decide about installing them, and also to help you diagnose performance "
-"issues you may run into in the future."
+"can cause a noticeable slowdown."
 msgstr ""
-"Večina dodatkov nalaga kodo in vire med zagonom Firefoxa. V večini primerov "
-"je vpliv na zagonski čas minimalen, vendar nekateri dodatki občutno "
-"upočasnijo brskalnik. Mi vas na te dodatke opozorimo, da se laže odločite, "
-"ali jih boste namestili ali ne, pa tudi zato, da lahko ugotovite vzroke za "
-"padec učinkovitosti, do katerega lahko pride kasneje."
+"Večina dodatkov naloži kodo in vire sočasno z zagonom Firefoxa. V večini "
+"primerov je vpliv na zagonski čas majhen, vendar nekateri dodatki lahko "
+"povzročijo znatno upočasnitev."
 
-#: apps/pages/templates/pages/faq.html:239
+#: apps/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kako lahko prijavim neprimeren ali zasmeten uporabniški pregled?"
 
-#: apps/pages/templates/pages/faq.html:240
+#: apps/pages/templates/pages/faq.html:237
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the"
 " add-on's reviews page. Find the review you wish to report, click \"Report "
@@ -12924,19 +12833,19 @@ msgstr ""
 "prijaviti, kliknite na \"Poročilo o tem pregledu\" in izberite razlog. Naša "
 "uredniška ekipa bo pregled proučila in ustrezno ukrepala."
 
-#: apps/pages/templates/pages/faq.html:245
+#: apps/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Kako lahko prijavim napako ali se obrnem na ekipo za Dodatke Mozilla"
 
-#: apps/pages/templates/pages/faq.html:246
+#: apps/pages/templates/pages/faq.html:243
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr "Obiščite prosim našo <a href=\"%(contact_url)s\">Stran za stike</a> ."
 
-#: apps/pages/templates/pages/faq.html:249
+#: apps/pages/templates/pages/faq.html:246
 msgid "What is a Source Code License?"
 msgstr "Kaj je licenca za izvorno kodo?"
 
-#: apps/pages/templates/pages/faq.html:250
+#: apps/pages/templates/pages/faq.html:247
 msgid ""
 "The source code used to create an add-on is an exclusive copyright of the "
 "add-on author, unless otherwise declared in a source code license. Many add-"
@@ -12954,32 +12863,32 @@ msgstr ""
 "Večina avtorjev izbere kako splošno znano odprtokodno licenco, kot so "
 "licence GPL in BSD, namesto da si sestavlja svojo lastno."
 
-#: apps/pages/templates/pages/faq.html:259
+#: apps/pages/templates/pages/faq.html:256
 msgid ""
 "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
 "Firefox in druga programska oprema Mozille je <a "
 "href=\"%(url)s\">odprtokodna</a> ."
 
-#: apps/pages/templates/pages/faq.html:267
+#: apps/pages/templates/pages/faq.html:264
 msgid "Collections and Favorites"
 msgstr "Zbirke in Priljubljene"
 
-#: apps/pages/templates/pages/faq.html:270
+#: apps/pages/templates/pages/faq.html:267
 msgid "What is a collection?"
 msgstr "Kaj je zbirka?"
 
-#: apps/pages/templates/pages/faq.html:271
+#: apps/pages/templates/pages/faq.html:268
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
 "Zbirke so skupine sorodnih dodatkov, ki jih lahko vsakdo ustvari in deli z "
 "drugimi."
 
-#: apps/pages/templates/pages/faq.html:273
+#: apps/pages/templates/pages/faq.html:270
 msgid "What is the My Favorites collection?"
 msgstr "Kaj je zbirka Moje priljubljene?"
 
-#: apps/pages/templates/pages/faq.html:274
+#: apps/pages/templates/pages/faq.html:271
 msgid ""
 "Favorite add-ons are add-ons that you have bookmarked to easily get back to "
 "later. You can add an add-on to your favorites collection by clicking \"Add "
@@ -12990,15 +12899,15 @@ msgstr ""
 "priljubljenih s klikom na \"Dodaj med priljubljene\" na svoji strani s "
 "podrobnostmi."
 
-#: apps/pages/templates/pages/faq.html:279
+#: apps/pages/templates/pages/faq.html:276
 msgid "Personalized recommendations"
 msgstr "Poosebljena priporočila"
 
-#: apps/pages/templates/pages/faq.html:282
+#: apps/pages/templates/pages/faq.html:279
 msgid "What are personalized recommendations?"
 msgstr "Kaj so poosebljena priporočila?"
 
-#: apps/pages/templates/pages/faq.html:283
+#: apps/pages/templates/pages/faq.html:280
 msgid ""
 "Firefox recommends add-ons for you based on the add-ons you already have "
 "installed. If you have at least 3 add-ons installed, just visit the Get Add-"
@@ -13008,11 +12917,11 @@ msgstr ""
 "namestili. Če imate nameščene vsaj 3 dodatke, obiščite stran Prenos dodatkov"
 " v Upravitelju dodatkov in si oglejte polje \"Priporočamo vam\"."
 
-#: apps/pages/templates/pages/faq.html:288
+#: apps/pages/templates/pages/faq.html:285
 msgid "How are personalized recommendations determined?"
 msgstr "Kako so sestavlja osebna priporočila?"
 
-#: apps/pages/templates/pages/faq.html:289
+#: apps/pages/templates/pages/faq.html:286
 msgid ""
 "Firefox sends information about the add-ons you have installed to Mozilla "
 "once a day in order to update the information displayed to you in the Add-"
@@ -13026,11 +12935,11 @@ msgstr ""
 " tako zbranih podatkov se ugotavlja, kateri dodatki se pogosto uporabljajo "
 "skupaj, in rezultat prikažemo kot osebno priporočilo."
 
-#: apps/pages/templates/pages/faq.html:296
+#: apps/pages/templates/pages/faq.html:293
 msgid "How can I opt out of these recommendations?"
 msgstr "Kako se lahko odpovem tem priporočilom?"
 
-#: apps/pages/templates/pages/faq.html:297
+#: apps/pages/templates/pages/faq.html:294
 msgid ""
 "Please see <a href=\"%(support_url)s\">this support article</a> for "
 "instructions on how to opt out."
@@ -13038,16 +12947,16 @@ msgstr ""
 "Oglejte si prosim <a href=\"%(support_url)s\">tale članek za podporo</a> z "
 "navodili o tem, kako ta obvestila lahko ukinete."
 
-#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13
+#: apps/pages/templates/pages/faq.html:300 templates/menu_links.html:13
 #: templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "Mobilni dodatki"
 
-#: apps/pages/templates/pages/faq.html:306
+#: apps/pages/templates/pages/faq.html:303
 msgid "What are mobile add-ons?"
 msgstr "Kaj so dodatki za mobilne naprave?"
 
-#: apps/pages/templates/pages/faq.html:307
+#: apps/pages/templates/pages/faq.html:304
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> "
 "and add or modify functionality just like desktop add-ons. You can find add-"
@@ -13059,11 +12968,11 @@ msgstr ""
 "funkcionalnost. Dodatke, ki delujejo z mobilnim Firefoxom, najdete v naši <a"
 " href=\"%(gallery_url)s\">galeriji</a>."
 
-#: apps/pages/templates/pages/faq.html:316
+#: apps/pages/templates/pages/faq.html:313
 msgid "Developer Topics"
 msgstr "Teme za razvijalce"
 
-#: apps/pages/templates/pages/faq.html:317
+#: apps/pages/templates/pages/faq.html:314
 msgid ""
 "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a "
 "href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-"
@@ -13073,11 +12982,11 @@ msgstr ""
 "in <a href=\"%(hub_url)s\">Razvojni center</a> za odgovore na vprašanja, ki "
 "so povezana z razvojem."
 
-#: apps/pages/templates/pages/faq.html:322
+#: apps/pages/templates/pages/faq.html:319
 msgid "Still have questions?"
 msgstr "Še kakšno vprašanje?"
 
-#: apps/pages/templates/pages/faq.html:323
+#: apps/pages/templates/pages/faq.html:320
 msgid ""
 "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support "
 "website</a>. For general add-on and website questions, visit our <a "
@@ -13322,79 +13231,6 @@ msgstr "Kupec in prodajalec morata imeti različna računa PayPal."
 #: apps/paypal/__init__.py:73
 msgid "The seller does not accept payments in %s."
 msgstr "Prodajalec ne sprejema plačila v %s."
-
-#: apps/perf/templates/perf/index.html:3
-msgid "Slow Performing Add-ons"
-msgstr "Dodatki, ki se izvajajo počasi"
-
-#: apps/perf/templates/perf/index.html:24
-msgid ""
-"Add-ons provide many useful features and functions, but they can also cause "
-"%(app)s to become slower. Some add-ons can even slow %(app)s to a crawl and "
-"make it difficult to use for regular web browsing. If you think add-ons "
-"might be the reason %(app)s is lethargic, check the list below for some of "
-"the biggest bottlenecks. And remember, for best performance you should "
-"disable add-ons that you no longer use regularly."
-msgstr ""
-"Dodatki nudijo veliko koristnih novosti in funkcij za vaš brskalnik, vendar "
-"pa lahko zaradi tega %(app)s začne postajati počasna. Nekateri dodatki lahko"
-" %(app)s upočasnijo do take mere, da je redno brskanje po spletu resno "
-"oteženo. Če menite, da bi dodatki lahko bil razlog za to, da je %(app)s "
-"videti kot brez volje, si oglejte seznam spoda, v katere je najti nekaj "
-"največjih ozkih grl. In ne pozabite dodatkov, ki jih ne uporabljate več "
-"redno, onemogočiti, da bo aplikacija lahko tekla optimalno."
-
-#: apps/perf/templates/perf/index.html:33
-msgid "Add-ons with Slow Start-up"
-msgstr "Dodatki s počasnim zagonom"
-
-#: apps/perf/templates/perf/index.html:34
-msgid ""
-"The following add-ons have a significant impact on how long it takes %(app)s"
-" to start up."
-msgstr ""
-"Naslednji dodatki imajo pomemben vpliv na to, kako dolgo traja zagon "
-"%(app)s."
-
-#. Show All, Windows, Mac, Linux. The other names are inserted after the
-#. colon.
-#: apps/perf/templates/perf/index.html:40
-msgid "Show:"
-msgstr "Prikaži:"
-
-#: apps/perf/templates/perf/index.html:57
-msgid "Impact"
-msgstr "Vpliv"
-
-#: apps/perf/templates/perf/index.html:58
-msgid "Longer lines are slower"
-msgstr "Daljše vrste so počasnejše"
-
-#. {0} is an add-on's percentage of slowness
-#: apps/perf/templates/perf/index.html:92
-msgid "<b>{0}%</b> <span>slower</span>"
-msgstr "<b>{0}%</b> <span>počasneje</span>"
-
-#: apps/perf/templates/perf/index.html:104
-msgid "Show more add-ons"
-msgstr "Prikaži še več dodatkov"
-
-#: apps/perf/templates/perf/index.html:115
-msgid "For Add-on Developers"
-msgstr "Za razvijalce dodatkov"
-
-#: apps/perf/templates/perf/index.html:116
-msgid ""
-"Don't let poor performance affect the experience of your users. Here are a "
-"few tips on how to keep your add-ons responsive and nimble."
-msgstr ""
-"Ne dovolite, da suboptimalno delovanje vpliva na izkušnje vaših uporabnikov."
-" Tukaj je nekaj nasvetov o tem, kako poskrbeti, da je vaš dodatek odziven in"
-" okreten."
-
-#: apps/perf/templates/perf/index.html:121
-msgid "Learn more about performance"
-msgstr "Preberite več o tem"
 
 #: apps/reviews/feeds.py:25
 msgid "Reviews for %s"
@@ -13935,27 +13771,36 @@ msgstr "Deli ta dodatek z drugimi"
 msgid "Share this Collection"
 msgstr "Deli to zbirko z drugimi"
 
-#: apps/signing/views.py:37
+#: apps/signing/views.py:30 templates/base.html:66
+#: templates/impala/base.html:108
+msgid ""
+"Some features are temporarily disabled while we perform website maintenance."
+" We'll be back to full capacity shortly."
+msgstr ""
+"Nekatere značilnosti so zaradi vzdrževanja spletišča začasno izklopljene. Še"
+" malo, pa bomo spet nazaj s polno zmogljivostjo."
+
+#: apps/signing/views.py:53
 msgid "Could not find add-on with id \"{}\"."
 msgstr "Dodatka z ID-jem \"{}\" ni bilo mogoče najti."
 
-#: apps/signing/views.py:41
+#: apps/signing/views.py:58
 msgid "You do not own this addon."
 msgstr "Niste lastnik tega dodatka."
 
-#: apps/signing/views.py:56
+#: apps/signing/views.py:74
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "Manjkajoč ključ \"pošlji\" v večdelnih podatkih datoteke."
 
-#: apps/signing/views.py:70
+#: apps/signing/views.py:88
 msgid "Version does not match install.rdf."
 msgstr "Različica se ne ujema z install.rdf."
 
-#: apps/signing/views.py:74
+#: apps/signing/views.py:92
 msgid "Version already exists."
 msgstr "Različica že obstaja."
 
-#: apps/signing/views.py:110
+#: apps/signing/views.py:128
 msgid "No uploaded file for that addon and version."
 msgstr "Ni poslane datoteke za ta dodatek in različico."
 
@@ -14526,15 +14371,15 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Ni uporabnika s tem e-naslovom."
 
-#: apps/users/models.py:390
+#: apps/users/models.py:399
 msgid "Your account has been restricted"
 msgstr "Vaš račun se je omejilo"
 
-#: apps/users/models.py:460
+#: apps/users/models.py:469
 msgid "Please confirm your email address"
 msgstr "Potrdite prosim svoj e-naslov"
 
-#: apps/users/models.py:486
+#: apps/users/models.py:495
 msgid "My Mobile Add-ons"
 msgstr "Moji mobilni dodatki"
 
@@ -14634,7 +14479,7 @@ msgid "Successfully verified!"
 msgstr "Uspešno preverjeno!"
 
 # %1 is the user's email address
-#: apps/users/views.py:129 apps/users/views.py:601
+#: apps/users/views.py:129 apps/users/views.py:603
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14643,7 +14488,7 @@ msgstr ""
 "Poslali smo vam e-pošto na {0}, da potrdite svoj novi račun. Preden se lahko"
 " prijavite, morate aktivirati svoj račun s klikom na povezavo v tej e-pošti."
 
-#: apps/users/views.py:133 apps/users/views.py:605
+#: apps/users/views.py:133 apps/users/views.py:607
 msgid "Confirmation Email Sent"
 msgstr "E-pošta za potrdilo poslana"
 
@@ -14701,11 +14546,11 @@ msgstr "Vaš e-poštni naslov je bil uspešno spremenjen."
 msgid "From now on, please use {0} to log in."
 msgstr "Odslej uporabljajte za prijavo {0}."
 
-#: apps/users/views.py:412
+#: apps/users/views.py:414
 msgid "Wrong email address or password!"
 msgstr "Napačen e-poštni naslov ali geslo!"
 
-#: apps/users/views.py:424
+#: apps/users/views.py:426
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14713,7 +14558,7 @@ msgstr ""
 "Povezavo za aktiviranje vašega uporabniškega računa se je po elektronski "
 "pošti poslalo na vaš naslov {0}. Preden se prijavite, morate klikniti nanjo."
 
-#: apps/users/views.py:429
+#: apps/users/views.py:431
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14725,31 +14570,31 @@ msgstr ""
 "href=\"%s\">sporočilo za potrditev ponovno pošljemo</a> na vaš zgoraj "
 "omenjeni e-poštni naslov."
 
-#: apps/users/views.py:434
+#: apps/users/views.py:436
 msgid "Activation Email Sent"
 msgstr "E-pošta za aktivacijo poslana"
 
-#: apps/users/views.py:435
+#: apps/users/views.py:437
 msgid "Having Trouble?"
 msgstr "Imate težave?"
 
-#: apps/users/views.py:575
+#: apps/users/views.py:577
 msgid "You are already logged in to an account."
 msgstr "Ste že prijavljeni na račun."
 
-#: apps/users/views.py:597
+#: apps/users/views.py:599
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Čestitamo! Vaš uporabniški račun je bil uspešno ustvarjen."
 
-#: apps/users/views.py:625
+#: apps/users/views.py:627
 msgid "There are errors in this form"
 msgstr "Ta obrazec vsebuje napake."
 
-#: apps/users/views.py:626
+#: apps/users/views.py:628
 msgid "Please correct them and resubmit."
 msgstr "Prosimo, da jih popravite in ponovno pošljete."
 
-#: apps/users/views.py:641
+#: apps/users/views.py:643
 msgid "User reported."
 msgstr "Uporabnik sporočen."
 
@@ -14799,7 +14644,7 @@ msgstr "Potrdite brisanje računa"
 
 #: apps/users/templates/users/delete.html:49
 #: apps/users/templates/users/edit.html:49
-#: apps/users/templates/users/login_form.html:21
+#: apps/users/templates/users/login_form.html:22
 #: apps/users/templates/users/register.html:68
 #: apps/users/templates/users/mobile/login.html:37
 msgid "Password"
@@ -14980,17 +14825,17 @@ msgstr "Prijava uporabnika"
 msgid "Log In"
 msgstr "Prijava"
 
-#: apps/users/templates/users/login_form.html:16
+#: apps/users/templates/users/login_form.html:17
 #: apps/users/templates/users/mobile/login.html:32
 msgid "Email address"
 msgstr "E-poštni naslov"
 
-#: apps/users/templates/users/login_form.html:29
+#: apps/users/templates/users/login_form.html:30
 #: apps/users/templates/users/mobile/login.html:44
 msgid "Remember me on this device"
 msgstr "Zapomni si me na tej napravi"
 
-#: apps/users/templates/users/login_form.html:39
+#: apps/users/templates/users/login_form.html:40
 #: apps/users/templates/users/pwreset_complete.html:15
 #: apps/users/templates/users/mobile/login.html:55
 #: templates/mobile/header_auth.html:8
@@ -15430,15 +15275,15 @@ msgstr "Zgodovina različice %s"
 msgid "Version History with Changelogs"
 msgstr "Zgodovina različic z dnevniki sprememb"
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:317
 msgid "Add-on uses binary components."
 msgstr "Dodarek vsebuje binarne komponente."
 
-#: apps/versions/models.py:305
+#: apps/versions/models.py:320
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Dodatek je vključen v strogo preverjanje združljivosti."
 
-#: apps/versions/models.py:703
+#: apps/versions/models.py:718
 msgid "{app} {min} and later"
 msgstr "{app} {min} in kasneje"
 
@@ -15537,29 +15382,21 @@ msgstr "Drugi jeziki"
 msgid "Mozilla Add-ons"
 msgstr "Dodatki Mozilla"
 
-#: templates/base.html:65 templates/impala/base.html:108
-msgid ""
-"Some features are temporarily disabled while we perform website maintenance."
-" We'll be back to full capacity shortly."
-msgstr ""
-"Nekatere značilnosti so zaradi vzdrževanja spletišča začasno izklopljene. Še"
-" malo, pa bomo spet nazaj s polno zmogljivostjo."
-
-#: templates/base.html:81 templates/impala/base.html:74
+#: templates/base.html:82 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
 msgstr "Poišči dodatke za druge aplikacije"
 
-#: templates/base.html:82 templates/impala/base.html:74
+#: templates/base.html:83 templates/impala/base.html:74
 msgid "Other Applications"
 msgstr "Ostale aplikacije"
 
-#: templates/base.html:131 templates/impala/base.html:176
+#: templates/base.html:132 templates/impala/base.html:187
 msgid ""
 "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
 "Če želite ustvarjate lastne zbirke, morate imeti račun pri Dodatki Mozille."
 
-#: templates/base.html:158 templates/impala/base.html:197
+#: templates/base.html:159 templates/impala/base.html:208
 msgid "Footer logo"
 msgstr "Logotip noge"
 
@@ -15681,27 +15518,35 @@ msgstr ""
 "Za uporabo na tisoče dodatkov na voljo tukaj, prenesite <a "
 "href=\"%(url)s\">Mozilla Firefox</a> - hiter, prost spletni brskalnik."
 
+#: templates/impala/base.html:131
+msgid ""
+"Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
+"class=\"fxa-login\">Sign in now to transfer your account.</a>"
+msgstr ""
+"Dodatki bodo za prijavo preklopili na Firefox Račune. <a href=\"%(url)s\" "
+"class=\"fxa-login\">Prijavite se, da prenesete svoj račun</a>."
+
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:130
+#: templates/impala/base.html:141
 msgid "Welcome to {0} Add-ons."
 msgstr "Dobrodošli pri dodatkih za {0}."
 
-#: templates/impala/base.html:133
+#: templates/impala/base.html:144
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
 "Izberite med več tisoč dodatnih funkcij in slogov za Firefox, kar vam "
 "najbolj odgovarja."
 
-#: templates/impala/base.html:138
+#: templates/impala/base.html:149
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "Dodajte funkcije in sloge, kot vam za %(app)s najbolj odgovarja."
 
-#: templates/impala/base.html:146
+#: templates/impala/base.html:157
 msgid "On the go?"
 msgstr "Na poti?"
 
-#: templates/impala/base.html:148
+#: templates/impala/base.html:159
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
 "Oglejte si našo<a class=\"mobile-link\" href=\"#\">spletno stran za dodatke "

@@ -1,6 +1,7 @@
 import json
 from jinja2 import Markup
 
+from django.db.transaction import non_atomic_requests
 from django.http import HttpResponsePermanentRedirect, HttpResponseNotFound
 from django.shortcuts import render
 
@@ -134,6 +135,7 @@ addons = {
 }
 
 
+@non_atomic_requests
 def install(request):
     addon_id = request.GET.get('addon_id', None)
     if addon_id:

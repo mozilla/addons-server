@@ -3,17 +3,17 @@ var purchases = {
         $("#contribute-why").popup("#contribute-more-info", {
             pointTo: "#contribute-more-info"
         });
-        $('.price-wrapper a').live('click', _pd(function(event) {
+        $(document).on('click', '.price-wrapper a', _pd(function(event) {
             /* Update the currency from the drop down. */
             var $w = $('.price-wrapper');
             $(this).hide().next().show();
-            $w.find('select').live('change', _pd(function(event) {
+            $(document).on('change', '.price-wrapper select', _pd(function(event) {
                 $w.find('.price').text(
                     $w.find('option:selected').attr('data-display')
                 );
             }));
         }));
-        $('button.paypal').live('click', function(event) {
+        $(document).on('click', 'button.paypal', function(event) {
             var el = this,
                 classes = 'ajax-loading loading-submit disabled',
                 url = $(el).closest('form').attr('action'),
@@ -172,11 +172,11 @@ var contributions = {
         var contrib_limit = parseFloat($('#contrib-too-much').attr('data-max-amount'));
         cb.find('li label').click(function(e) {
             e.preventDefault();
-            $(this).siblings(':radio').attr('checked', 'checked');
+            $(this).siblings(':radio').prop('checked', true);
             $(this).children('input:text').focus();
         }).end()
         .find('input:text').keypress(function() {
-            $(this).parent().siblings(':radio').attr('checked', 'checked');
+            $(this).parent().siblings(':radio').prop('checked', true);
         }).end()
         .find('textarea').keyup(function() {
             var txt = $(this).val(),
@@ -248,14 +248,18 @@ var contributions = {
                     if ($.browser.opera) {
                         this.inputs = $(':input:visible').css('visibility', 'hidden');
                     }
+
                     // clean up, then show box
                     hash.w.find('.error').hide();
+                    // If overlay is not disabled, prepend to body
+                    if(hash.c.overlay > 0) {
+                        hash.o.prependTo('body');
+                    }
                     hash.w
                         .find('input:text').val('').end()
                         .find('textarea').val('').keyup().end()
-                        .find('input:radio:first').attr('checked', 'checked').end()
+                        .find('input:radio:first').prop('checked', true).end()
                         .fadeIn();
-
                 },
                 onHide: function(hash) {
                     if ($.browser.opera) {

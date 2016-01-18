@@ -94,6 +94,15 @@ Then, to run the tests for example, just run this command in the shell::
 
     py.test
 
+You can also run single commands from your host machine without opening a shell
+on each container. Here is an example of running the ``py.test`` command on the
+``web`` container::
+
+    docker-compose run web py.test
+
+If you'd like to use a python debugger to interactively
+debug Django view code, check out the :ref:`debugging` section.
+
 Updating your containers
 ~~~~~~~~~~~~~~~~~~~~~~~~
 

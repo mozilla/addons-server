@@ -9,10 +9,12 @@ import urllib
 from datetime import date, timedelta
 
 from django.core.cache import cache
+from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import render
 from django.template.context import get_standard_processors
 from django.utils import encoding, translation
+from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
 
 import commonware.log
@@ -72,6 +74,7 @@ def render_xml_to_string(request, template, context={}):
     return template.render(context)
 
 
+@non_atomic_requests
 def render_xml(request, template, context={}, **kwargs):
     """Safely renders xml, stripping out nasty control characters."""
     rendered = render_xml_to_string(request, template, context)
@@ -82,16 +85,19 @@ def render_xml(request, template, context={}, **kwargs):
     return HttpResponse(rendered, **kwargs)
 
 
+@non_atomic_requests
 def handler403(request):
     context = {'error_level': ERROR, 'msg': 'Not allowed'}
     return render_xml(request, 'api/message.xml', context, status=403)
 
 
+@non_atomic_requests
 def handler404(request):
     context = {'error_level': ERROR, 'msg': 'Not Found'}
     return render_xml(request, 'api/message.xml', context, status=404)
 
 
+@non_atomic_requests
 def handler500(request):
     context = {'error_level': ERROR, 'msg': 'Server Error'}
     return render_xml(request, 'api/message.xml', context, status=500)
@@ -209,6 +215,7 @@ class APIView(object):
     Base view class for all API views.
     """
 
+    @method_decorator(non_atomic_requests)
     def __call__(self, request, api_version, *args, **kwargs):
 
         self.version = float(api_version)
@@ -274,6 +281,7 @@ class AddonDetailView(APIView):
         return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
 
 
+@non_atomic_requests
 def guid_search(request, api_version, guids):
     lang = request.LANG
 
@@ -399,6 +407,7 @@ class SearchView(APIView):
 
 
 @json_view
+@non_atomic_requests
 def search_suggestions(request):
     if waffle.sample_is_active('autosuggest-throttle'):
         return HttpResponse(status=503)
@@ -477,6 +486,7 @@ class LanguageView(APIView):
 
 
 # pylint: disable-msg=W0613
+@non_atomic_requests
 def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.
@@ -488,6 +498,7 @@ def redirect_view(request, url):
     return HttpResponsePermanentRedirect(dest)
 
 
+@non_atomic_requests
 def request_token_ready(request, token):
     error = request.GET.get('error', '')
     ctx = {'error': error, 'token': token}

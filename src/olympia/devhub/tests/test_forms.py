@@ -29,17 +29,17 @@ from olympia.versions.models import ApplicationsVersions, License, Version
 class TestNewAddonForm(TestCase):
 
     def test_only_valid_uploads(self):
-        f = FileUpload.objects.create(valid=False)
+        upload = FileUpload.objects.create(valid=False)
         form = forms.NewAddonForm(
-            {'upload': f.pk, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
-        f.validation = '{"errors": 0}'
-        f.save()
+        upload.validation = '{"errors": 0}'
+        upload.save()
         form = forms.NewAddonForm(
-            {'upload': f.pk, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
@@ -60,9 +60,9 @@ class TestNewAddonForm(TestCase):
         """
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        f = FileUpload.objects.create(valid=True)
+        upload = FileUpload.objects.create(valid=True)
         form = forms.NewAddonForm(
-            {'upload': f.pk, 'supported_platforms': [1]},
+            {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
@@ -86,10 +86,10 @@ class TestNewVersionForm(TestCase):
         """
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        f = FileUpload.objects.create(valid=True)
+        upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
         form = forms.NewVersionForm(
-            {'upload': f.pk, 'supported_platforms': [1],
+            {'upload': upload.uuid, 'supported_platforms': [1],
              'nomination_type': amo.STATUS_NOMINATED},
             addon=addon,
             request=mock.Mock())
@@ -115,13 +115,13 @@ class TestNewFileForm(TestCase):
         """
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        f = FileUpload.objects.create(valid=True)
+        upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
         version = Version.objects.create(addon=addon)
         version.compatible_platforms = mock.Mock()
         version.compatible_platforms.return_value = amo.SUPPORTED_PLATFORMS
         form = forms.NewFileForm(
-            {'upload': f.pk, 'supported_platforms': [1],
+            {'upload': upload.uuid, 'supported_platforms': [1],
              'nomination_type': amo.STATUS_NOMINATED,
              'platform': '1'},
             addon=addon,

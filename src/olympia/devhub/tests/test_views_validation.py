@@ -651,12 +651,12 @@ class TestValidateFile(BaseUploadTest):
             'messages': [],
             'metadata': {}
         })
-        xpi = self.get_upload('extension.xpi')
+        upload = self.get_upload('extension.xpi')
         AppVersion.objects.create(
             application=amo.FIREFOX.id,
             version='10.0.*')
 
-        compatibility_check(xpi, amo.FIREFOX.guid, '10.0.*')
+        compatibility_check(upload.pk, amo.FIREFOX.guid, '10.0.*')
 
         eq_(run_validator.call_args[1]['compat'], True)
 

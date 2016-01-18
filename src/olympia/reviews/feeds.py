@@ -1,15 +1,15 @@
 import urllib
 
-from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
 from olympia.amo import helpers
+from olympia.amo.feeds import NonAtomicFeed
 from olympia.addons.models import Addon, Review
 
 
-class ReviewsRss(Feed):
+class ReviewsRss(NonAtomicFeed):
 
     addon = None
 

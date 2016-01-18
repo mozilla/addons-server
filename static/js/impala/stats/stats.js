@@ -41,7 +41,21 @@
         // Restore any session view information from sessionStorage.
         if (z.capabilities.localStorage && sessionStorage.getItem('stats_view')) {
             var ssView = JSON.parse(sessionStorage.getItem('stats_view'));
-            initView.range = _.escape(ssView.range || initView.range);
+
+            // The stored range is either a string or an object.
+            if (ssView.range && typeof ssView.range === 'object') {
+                var objRange = ssView.range;
+                Object.keys(objRange).forEach(function(key) {
+                    var val = objRange[key];
+                    if (typeof val === 'string') {
+                      objRange[key] = _.escape(val);
+                    }
+                });
+                initView.range = objRange;
+            } else {
+                initView.range = _.escape(ssView.range || initView.range);
+            }
+
             initView.group = _.escape(ssView.group || initView.group);
         }
 

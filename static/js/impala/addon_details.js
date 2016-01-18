@@ -1,9 +1,5 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
-    $('#background-wrapper').css('height',
-        $('.amo-header').height() +
-        $('#addon-description-header').height() + 20 + 'px');
-
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",
@@ -131,7 +127,9 @@ $(function () {
                 shouldCorrectScrolling = true;
             }
 
-            var $newContent = $(resp);
+            // Strip the leading whitespace so that $() treats this as html and
+            // not a selector.
+            var $newContent = $(resp.trim());
             $moreEl.replaceWith($newContent);
             $newContent.find('.listing-grid h3').truncate( {dir: 'h'} );
             $newContent.find('.install').installButton();

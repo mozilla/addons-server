@@ -4,8 +4,9 @@ from django.core.management import call_command
 from django.db.models import Sum, Max
 
 import commonware.log
-from celery.task.sets import TaskSet
 import cronjobs
+import waffle
+from celery.task.sets import TaskSet
 
 from olympia.amo.utils import chunked
 from olympia.addons.models import Addon
@@ -87,6 +88,9 @@ def addon_total_contributions():
 
 @cronjobs.register
 def index_latest_stats(index=None):
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     def fmt(d):
         return d.strftime('%Y-%m-%d')
 

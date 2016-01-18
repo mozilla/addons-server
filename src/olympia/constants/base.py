@@ -354,7 +354,7 @@ VALIDATOR_SKELETON_EXCEPTION = {
             "Validation was unable to complete successfully due to an "
             "unexpected error.",
             "The error has been logged, but please consider filing an issue "
-            "report here: http://mzl.la/1DG0sFd"],
+            "report here: http://bit.ly/1POrYYU"],
          "type": "error",
          "tier": 1,
          "for_appversions": None,

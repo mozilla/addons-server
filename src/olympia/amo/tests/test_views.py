@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import json
+import random
 import urllib
 
 from django import test
 from django.conf import settings
+from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
 import commonware.log
@@ -19,7 +21,7 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.pyquery_wrapper import PyQuery
-from olympia.amo.tests import check_links
+from olympia.amo.tests import check_links, WithDynamicEndpoints
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
@@ -67,7 +69,7 @@ class TestCommon(TestCase):
     def setUp(self):
         super(TestCommon, self).setUp()
         self.url = reverse('home')
-        self.create_switch('signing-api', db=True)
+        self.create_switch('signing-api')
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
@@ -237,10 +239,10 @@ class TestOtherStuff(TestCase):
             eq_(alt, doc('.site-title img').attr('alt'))
             eq_(text, doc('.site-title').text())
 
-        title_eq('/firefox/', '', 'Add-ons')
-        title_eq('/thunderbird/', '', 'Add-ons')
-        title_eq('/mobile/extensions/', '', 'Mobile Add-ons')
-        title_eq('/android/', '', 'Android Add-ons')
+        title_eq('/firefox/', 'Firefox', 'Add-ons')
+        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
+        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
+        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)
@@ -402,3 +404,26 @@ class TestRobots(TestCase):
         response = self.client.get('/robots.txt')
         eq_(response.status_code, 200)
         assert 'Disallow: %s' % url in response.content
+
+
+class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
+
+    def setUp(self):
+        super(TestAtomicRequests, self).setUp()
+        self.slug = 'slug-{}'.format(random.randint(1, 1000))
+        self.endpoint(self.view)
+
+    def view(self, request):
+        Addon.objects.create(slug=self.slug)
+        raise RuntimeError(
+            'pretend this is an error that would roll back the transaction')
+
+    def test_exception_rolls_back_transaction(self):
+        qs = Addon.objects.filter(slug=self.slug)
+        try:
+            with self.assertRaises(RuntimeError):
+                self.client.get('/dynamic-endpoint', follow=True)
+            # Make sure the transaction was rolled back.
+            assert qs.count() == 0
+        finally:
+            qs.all().delete()

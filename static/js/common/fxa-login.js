@@ -57,7 +57,7 @@
     function showLoginForm($form) {
         $form.removeClass('login-source-form')
              .addClass('login-form');
-        $form.find('[name="password"]').attr('required', true);
+        $form.find('[name="password"]').prop('required', true);
     }
 
     function showLoginSourceForm($form) {

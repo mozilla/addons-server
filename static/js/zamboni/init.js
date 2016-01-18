@@ -26,7 +26,7 @@ $(document).ready(function(){
     if (z.readonly) {
         $('form[method=post]')
             .before(gettext('This feature is temporarily disabled while we perform website maintenance. Please check back a little later.'))
-            .find('input, button, select').attr('disabled', true).addClass('disabled');
+            .find('input, button, select').prop('disabled', true).addClass('disabled');
     }
 });
 
@@ -38,19 +38,6 @@ z.inlineSVG = (function() {
 if (!z.inlineSVG) {
     $("body").addClass("noInlineSVG");
 }
-z.cssTransitions = (function() {
-    var shim = document.createElement('div');
-    shim.innerHTML = '<div style="-webkit-transition:color 1s linear;-moz-transition:color 1s linear;"></div>';
-    var test = document.body.style.webkitTransition !== undefined ||
-               document.body.style.MozTransition !== undefined;
-    return test;
-})();
-z.hasTruncation = (function() {
-    var shim = document.createElement('div');
-    shim.innerHTML = '<div style="text-overflow: ellipsis"></div>';
-    var s = shim.firstChild.style;
-    return 'textOverflow' in s || 'OTextOverflow' in s;
-})();
 
 /* prevent-default function wrapper */
 function _pd(func) {

@@ -550,61 +550,71 @@ class TestFileUpload(UploadTest):
         super(TestFileUpload, self).setUp()
         self.data = 'file contents'
 
-    def upload(self):
+    def upload(self, **params):
         # The data should be in chunks.
         data = [''.join(x) for x in chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
-                                    len(self.data))
+                                    len(self.data), **params)
 
     def test_from_post_write_file(self):
         eq_(storage.open(self.upload().path).read(), self.data)
 
     def test_from_post_filename(self):
         upload = self.upload()
-        eq_(upload.name, '{0}_filename.xpi'.format(upload.pk))
+        assert upload.uuid
+        eq_(upload.name, '{0}_filename.xpi'.format(upload.uuid))
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
         eq_(self.upload().hash, 'sha256:%s' % hash)
 
+    def test_from_post_extra_params(self):
+        upload = self.upload(automated_signing=True, addon_id=3615)
+        assert upload.addon_id == 3615
+        assert upload.automated_signing
+
+    def test_from_post_is_one_query(self):
+        with self.assertNumQueries(1):
+            self.upload(automated_signing=True, addon_id=3615)
+
     def test_save_without_validation(self):
-        f = FileUpload.objects.create()
-        assert not f.valid
+        upload = FileUpload.objects.create()
+        assert not upload.valid
 
     def test_save_with_validation(self):
-        f = FileUpload.objects.create(
+        upload = FileUpload.objects.create(
             validation='{"errors": 0, "metadata": {}}')
-        assert f.valid
+        assert upload.valid
 
-        f = FileUpload.objects.create(validation='{"errors": 1}')
-        assert not f.valid
+        upload = FileUpload.objects.create(validation='{"errors": 1}')
+        assert not upload.valid
 
         with self.assertRaises(ValueError):
-            f = FileUpload.objects.create(validation='wtf')
+            upload = FileUpload.objects.create(validation='wtf')
 
     def test_update_with_validation(self):
-        f = FileUpload.objects.create()
-        f.validation = '{"errors": 0, "metadata": {}}'
-        f.save()
-        assert f.valid
+        upload = FileUpload.objects.create()
+        upload.validation = '{"errors": 0, "metadata": {}}'
+        upload.save()
+        assert upload.valid
 
     def test_update_without_validation(self):
-        f = FileUpload.objects.create()
-        f.save()
-        assert not f.valid
+        upload = FileUpload.objects.create()
+        upload.save()
+        assert not upload.valid
 
     def test_ascii_names(self):
-        fu = FileUpload.from_post('', u'jétpack.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'jétpack.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        assert 'xpi' in upload.name
 
     def test_validator_sets_binary_via_extensions(self):
         validation = json.dumps({

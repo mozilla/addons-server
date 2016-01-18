@@ -1156,8 +1156,7 @@ class TestPersonas(TestCase):
         Show grid page if there are fewer than
         MIN_COUNT_FOR_LANDING+1 Personas.
         """
-        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-                             .extra(select={'_app': amo.FIREFOX.id}))
+        base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
         eq_(base.count(), 2)
         r = self.client.get(self.landing_url)
         self.assertTemplateUsed(r, self.grid_template)
@@ -1171,8 +1170,7 @@ class TestPersonas(TestCase):
         """
         self.create_personas(MIN_COUNT_FOR_LANDING,
                              persona_extras={'popularity': 100})
-        base = (Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-                             .extra(select={'_app': amo.FIREFOX.id}))
+        base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
         eq_(base.count(), MIN_COUNT_FOR_LANDING + 2)
         r = self.client.get(self.landing_url)
         self.assertTemplateUsed(r, self.landing_template)

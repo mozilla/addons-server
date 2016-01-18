@@ -1,5 +1,5 @@
 -r compiled.txt
-amo-validator==1.10.6
+amo-validator==1.10.7
 amqp==1.4.6
 anyjson==0.3.3
 argparse==1.2.1
@@ -58,7 +58,7 @@ monolith.client==0.9
 moz-addon-packager==1.0.1
 mozilla-logger==0.2
 ndg-httpsclient==0.3.2
-newrelic==2.20.1.18
+newrelic==2.60.0.46
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
@@ -102,7 +102,7 @@ urllib3==1.9
 -e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
 -e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/washort/django-cache-machine@4690198122a96a88267323566dc18a5e0437681f#egg=django-cache-machine
+-e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
 ## Forked.
 -e git+https://github.com/EnTeQuAk/django-piston-oauth2@b205d6c091ffd3b22f28f1852c15e5588175b38a#egg=django-piston-oauth2
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-06 14:15-0700\n"
 "PO-Revision-Date: 2015-09-21 10:44+0000\n"
 "Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -149,11 +149,7 @@ msgstr "Η διαδικασία επικύρωσης βρήκε προβλήμα
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Εάν δεν είστε εξοικειωμένος με την διαδικασία αξιολόγισης στα πρόσθετα, μπορείτε να διαβάσετε γι' αυτό εδώ."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Μερικές πλατφόρμες δεν είναι διαθέσιμες για αυτό τον τύπο προσθέτου."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:545
 msgid "Sorry, no supported platform has been found."
 msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
 
@@ -186,7 +182,7 @@ msgid "Following"
 msgstr "Παρακολούθηση"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
 
@@ -804,7 +800,7 @@ msgstr "Ημερομηνία"
 msgid "Other"
 msgstr "Άλλο"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
 
@@ -820,94 +816,62 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Στείλτε e-mail στον δημιουργό του {2} πρόσθετου το οποίου η επαλήθευση απέτυχε."
 msgstr[1] "Στείλτε e-mail στους δημιουργούς των {2} πρόσθετων των οποίων η επαλήθευση απέτυχε."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Δεν επιτρέπεται η εγκατάσταση της εφαρμογής."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Η δήλωση της εφαρμογής έχει λάθος μορφή."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Δεν ήταν δυνατή "
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Η δήλωση της εφαρμογής δε μπορεί να αναλυθεί."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Η δήλωση της εφαρμογής δεν είναι έγκυρη."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Η εγκατάσταση απέτυχε. Παρακαλώ προσπαθήστε ξανά αργότερα."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Η εγκατάσταση της εφαρμογής απέτυχε."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Το σύστημα δεν υποστηρίζει την εγκατάσταση εφαρμογών."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Αποδοχή και εγκατάσταση"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Προσθήκη στον {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Λήψη τώρα"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Το πρόσθετο δεν έχει ενημερωθεί ώστε να υποστηρίζει την προεπιλογή σε συμβατό."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Χρειάζεται να χρησιμοποιείτε την έκδοση 10.0 του Firefox ή υψηλότερη."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Ο Mozilla έχει σημειώσει αυτή την έκδοση ως μη συμβατή με την έκδοση του Firefox που έχετε."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Εγκατάσταση σε {0} οπωσδήποτε"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Λήψη για {0} οπωσδήποτε"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Δεν διατίθεται για το λειτουργικό σας"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Δεν διατίθεται για τον {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Συμβατό με {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Προβολή άλλων εκδόσεων"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
 
@@ -979,59 +943,47 @@ msgstr "Αφαίρεση απ' τα αγαπημένα"
 msgid "Stop following"
 msgstr "Διακοπή παρακολούθησης"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Ο περιηγητής σας δεν υποστηρίζει την οδηγία video."
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Εισάγετε τη διεύθυνση νέου συντάκτη"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:552
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:697
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:700
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} αξιολόγηση χρήστη"
 msgstr[1] "{reviews} αξιολογήσεις χρήστη"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:812
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:816
 msgid "Example"
 msgstr "Παράδειγμα"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1146
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Έναρξη ελέγχων..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Αναμονή αποτελεσμάτων ελέγχων..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Εσωτερικό σφάλμα διακομιστή"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1296
 msgid "Must be a valid e-mail address."
 msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
 
@@ -1052,47 +1004,39 @@ msgstr "Βρείτε συστάσεις&hellip;"
 msgid "Updating recommendations&hellip;"
 msgstr "Ενημέρωση συστάσεων&hellip;"
 
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:117
 msgid "{name} was viewing this page first."
 msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
 
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:167
 msgid "Receipt checked by app."
 msgstr "Η απόδειξη ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:169
 msgid "Receipt was not checked by app."
 msgstr "Η απόδειξη δεν ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:240
 msgid "{name} was viewing this add-on first."
 msgstr "Ο χρήστης {name} είδε αυτό το πρόσθετο πρώτος."
 
-#: static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors.js:251
 msgid "Loading&hellip;"
 msgstr "Γίνεται φόρτωση&hellip;"
 
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:256
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:261
 msgid "Notes for Reviewers"
 msgstr "Σημειώσεις για αξιολογητές"
 
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:266
 msgid "No version notes found"
 msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js:330
-msgid "Average Reviews"
-msgstr "Μέσος όρος αξιολογήσεων"
-
-#: static/js/zamboni/editors.js:386
-msgid "Number of Reviews"
-msgstr "Αριθμός αξιολογήσεων"
-
-#: static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors.js:356
 msgid "Error loading translation"
 msgstr "Σφάλμα στο φόρτωμα της μετάφρασης"
 
@@ -1132,10 +1076,6 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Τουλάχιστον {0} χαρακτήρας διαθέσιμος"
 msgstr[1] "Τουλάχιστον {0} χαρακτήρες διαθέσιμοι"
-
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Όλα"
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1219,47 +1159,47 @@ msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρ�
 msgid "Internal server error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:50
 msgid "Not Updated for {0} {1}"
 msgstr "Δεν έχει ενημερωθεί για τον {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:51
 msgid "Requires Newer Version of {0}"
 msgstr "Απαιτεί νεότερη έκδοση του {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Unreviewed"
 msgstr "Δεν έχει αξιολογηθεί"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Πειραματικό <span>(Μάθετε περισσότερα)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
 msgid "Not Available for {0}"
 msgstr "Δεν διατίθεται για τον {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:56
 msgid "Experimental"
 msgstr "Πειραματικό"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Themes Require Newer Version of {0}"
 msgstr "Τα θέματα απαιτούν νεότερη έκδοση του {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Themes Require {0}"
 msgstr "Τα θέματα απαιτούν το {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:103
 msgid "Installing..."
 msgstr "Γίνεται εγκατάσταση..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:123
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Αυτό το πρόσθετο έχει αξιολογηθεί μερικώς από την κοινότητα Mozilla"
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:248
 msgid "Keep it"
 msgstr "Διατήρηση"
 

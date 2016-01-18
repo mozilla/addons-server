@@ -33,11 +33,11 @@ $.fn.ratingwidget = function(classes) {
         $widget.click(function(evt) {
             var t = $(evt.target);
             if (t.is('input[type=radio]')) {
-                showStars(rating = t.attr('value'));
+                showStars(rating = t.val());
                 if (!t.val()) {
                     // If the user caused a radio button to become unchecked,
                     // re-check it because that shouldn't happen.
-                    t.attr('checked', true);
+                    t.prop('checked', true);
                 }
             }
         }).mouseover(function(evt) {

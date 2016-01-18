@@ -100,7 +100,7 @@ class AddonsHandler(BaseHandler):
         return addon.name.localized_string if addon.name else ''
 
     # We need multiple validation, so don't use @validate decorators.
-    @transaction.commit_on_success
+    @transaction.atomic
     def create(self, request):
         new_file_form = XPIForm(request, request.POST, request.FILES)
 

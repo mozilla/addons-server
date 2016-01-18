@@ -2,6 +2,7 @@ from itertools import groupby
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect, render
 
 import commonware.log
@@ -59,6 +60,7 @@ def set_motd(request):
     return data
 
 
+@non_atomic_requests
 def summary(request):
     """global L10n dashboard"""
 
@@ -74,6 +76,7 @@ def summary(request):
 
 @locale_switcher
 @valid_locale
+@non_atomic_requests
 def locale_dashboard(request, locale_code):
     """per-locale dashboard"""
     data = {

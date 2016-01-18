@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 
@@ -233,11 +234,13 @@ class Link(object):
 
 # Cache it for a year.
 @cache_page(60 * 60 * 24 * 365)
+@non_atomic_requests
 def js(request):
     return render(request, 'addons/popups.html',
                   content_type='text/javascript')
 
 
+@non_atomic_requests
 def smorgasbord(request):
     """
     Gather many different kinds of tasty add-ons together.

@@ -80,6 +80,8 @@ DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+# Run all views in a transaction unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
@@ -468,7 +470,6 @@ MINIFY_BUNDLES = {
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
             'css/zamboni/themes.less',
-            'css/restyle.less',
         ),
         'zamboni/impala': (
             'css/impala/base.css',
@@ -506,7 +507,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/colorpicker.less',
+            'css/impala/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -516,7 +517,6 @@ MINIFY_BUNDLES = {
             'css/impala/compat.less',
             'css/impala/localizers.less',
             'css/impala/fxa-migration.less',
-            'css/restyle.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
@@ -555,7 +555,6 @@ MINIFY_BUNDLES = {
             'css/devhub/search.less',
             'css/devhub/refunds.less',
             'css/impala/devhub-api.less',
-            'css/restyle.less',
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
@@ -564,7 +563,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/developers.css',
             'css/zamboni/editors.styl',
             'css/zamboni/themes_review.styl',
-            'css/restyle.less',
         ),
         'zamboni/files': (
             'css/lib/syntaxhighlighter/shCoreDefault.css',
@@ -590,6 +588,8 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -636,6 +636,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
 
@@ -660,13 +664,15 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
@@ -726,6 +732,10 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
@@ -752,8 +762,8 @@ MINIFY_BUNDLES = {
             'js/common/fxa-login.js',
         ],
         'zamboni/discovery': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -800,6 +810,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/editors.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
         'zamboni/files': (
@@ -824,20 +835,22 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/storage.js',
+            'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
         ),
         'zamboni/localizers': (
             'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
+            'js/zamboni/analytics.js',
             'js/lib/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/lib/truncate.js',
@@ -850,7 +863,6 @@ MINIFY_BUNDLES = {
             'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
-            'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
@@ -981,6 +993,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 BROKER_URL = os.environ.get('BROKER_URL',
                             'amqp://olympia:olympia@localhost:5672/olympia')
 BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_DEFAULT_QUEUE = 'default'
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -1010,11 +1023,18 @@ CELERY_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'olympia.devhub.tasks.convert_purified': {'queue': 'devhub'},
+    'olympia.devhub.tasks.flag_binary': {'queue': 'devhub'},
+    'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'olympia.devhub.tasks.resize_icon': {'queue': 'devhub'},
+    'olympia.devhub.tasks.resize_preview': {'queue': 'devhub'},
+    'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
+    'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'olympia.devhub.tasks.handle_upload_validation_result': {
-        'queue': 'devhub'},
-    'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+
     # This is currently used only by validation tasks.
     'olympia.celery.chord_unlock': {'queue': 'devhub'},
     'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
@@ -1031,7 +1051,110 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'olympia.zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
+
+    # AMO
+    'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
+    'olympia.amo.tasks.delete_incomplete_addons': {'queue': 'amo'},
+    'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
+    'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
+    'olympia.amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},
+    'olympia.amo.tasks.migrate_editor_eventlog': {'queue': 'amo'},
+    'olympia.amo.tasks.send_email': {'queue': 'amo'},
+    'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
+
+    # Addons
+    'olympia.addons.tasks.calc_checksum': {'queue': 'addons'},
+    'olympia.addons.tasks.delete_persona_image': {'queue': 'addons'},
+    'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
+    'olympia.addons.tasks.update_incompatible_appversions': {'queue': 'addons'},
+    'olympia.addons.tasks.version_changed': {'queue': 'addons'},
+
+    # API
+    'olympia.api.tasks.process_results': {'queue': 'api'},
+    'olympia.api.tasks.process_webhook': {'queue': 'api'},
+
+    # Crons
+    'olympia.addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
+    'olympia.addons.cron._update_addon_download_totals': {'queue': 'cron'},
+    'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
+    'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
+    'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
+    'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
+    'olympia.bandwagon.cron._update_collections_subscribers': {'queue': 'cron'},
+    'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
+
+    # Bandwagon
+    'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
+    'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
+    'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
+    'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
+    'olympia.bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
+
+    # Editors
+    'olympia.editors.tasks.add_commentlog': {'queue': 'editors'},
+    'olympia.editors.tasks.add_versionlog': {'queue': 'editors'},
+    'olympia.editors.tasks.approve_rereview': {'queue': 'editors'},
+    'olympia.editors.tasks.reject_rereview': {'queue': 'editors'},
+    'olympia.editors.tasks.send_mail': {'queue': 'editors'},
+
+    # Files
+    'olympia.files.tasks.extract_file': {'queue': 'files'},
+    'olympia.files.tasks.fix_let_scope_bustage_in_addons': {'queue': 'files'},
+
+    # Crypto
+    'olympia.lib.crypto.tasks.resign_files': {'queue': 'crypto'},
+    'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
+    'olympia.lib.crypto.tasks.unsign_addons': {'queue': 'crypto'},
+
+    # Search
+    'olympia.lib.es.management.commands.reindex.create_new_index': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.delete_indexes': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.flag_database': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.index_data': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.unflag_database': {'queue': 'search'},
+    'olympia.lib.es.management.commands.reindex.update_aliases': {'queue': 'search'},
+
+    # Reviews
+    'olympia.reviews.models.check_spam': {'queue': 'reviews'},
+    'olympia.reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
+    'olympia.reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
+    'olympia.reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
+    'olympia.reviews.tasks.update_denorm': {'queue': 'reviews'},
+
+
+    # Stats
+    'olympia.stats.tasks.addon_total_contributions': {'queue': 'stats'},
+    'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
+    'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
+    'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
+    'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
+    'olympia.stats.tasks.update_addons_collections_downloads': {'queue': 'stats'},
+    'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
+    'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
+    'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
+
+    # Tags
+    'olympia.tags.tasks.clean_tag': {'queue': 'tags'},
+    'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
+    'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
+
+    # Users
+    'olympia.users.tasks.delete_photo': {'queue': 'users'},
+    'olympia.users.tasks.resize_photo': {'queue': 'users'},
+    'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
+
+    # Zadmin
+    'olympia.zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.tally_validation_results': {'queue': 'zadmin'},
+    'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 }
+
 
 # This is just a place to store these values, you apply them in your
 # task decorator, for example:
@@ -1092,7 +1215,7 @@ LOGGING = {
         'amo.validator': {'level': logging.WARNING},
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.WARNING},
+        'caching': {'level': logging.ERROR},
         'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
@@ -1130,19 +1253,52 @@ USE_HEKA_FOR_TASTYPIE = False
 CEF_PRODUCT = "amo"
 
 # CSP Settings
+
+PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
+ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
+CSP_EXCLUDE_URL_PREFIXES = ()
 
-CSP_DEFAULT_SRC = ("*", "data:")
-CSP_SCRIPT_SRC = ("'self'",
-                  "https://www.google.com",  # Recaptcha
-                  "https://www.paypalobjects.com",
-                  "https://ssl.google-analytics.com",
-                  )
-CSP_STYLE_SRC = ("*", "'unsafe-inline'")
+# NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
+# will default to being open to anything.
+CSP_DEFAULT_SRC = (
+    "'none'",
+)
+CSP_CONNECT_SRC = (
+    "'self'",
+    'https://sentry.prod.mozaws.net',
+)
+CSP_FONT_SRC = (
+    "'self'",
+    PROD_CDN_HOST,
+)
+CSP_FRAME_SRC = (
+    "'self'",
+    'https://www.paypal.com',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'blob:',  # Needed for image uploads.
+    'https://www.paypal.com',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+    'https://sentry.prod.mozaws.net',
+)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
-
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'https://www.google.com',  # Recaptcha
+    'https://www.paypalobjects.com',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    PROD_CDN_HOST,
+)
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
