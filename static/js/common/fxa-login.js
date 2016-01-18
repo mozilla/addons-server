@@ -49,11 +49,6 @@
         }
     }
 
-    $('body').on('click', '.fxa-register', function(e) {
-        e.preventDefault();
-        fxaLogin({signUp: true});
-    });
-
     function showLoginForm($form) {
         $form.removeClass('login-source-form')
              .addClass('login-form');

@@ -17,7 +17,7 @@
   </li>
 {% else %}
   <li class="account anonymous nomenu login legacy">
-    {% trans reg=url('users.register'), login=login_link() %}
+    {% trans reg=register_link(), login=login_link() %}
         <a href="{{ reg }}" class="fxa-register">Register</a> or <a href="{{ login }}" class="fxa-login">Log in</a>
     {% endtrans %}
   </li>

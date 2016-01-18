@@ -237,18 +237,29 @@ def page_name(app=None):
         return _('Add-ons')
 
 
-@register.function
-@jinja2.contextfunction
-def login_link(context):
-    next = context['request'].path
+def link_with_final_destination(context, base):
+    next_path = context['request'].path
 
     qs = context['request'].GET.urlencode()
 
     if qs:
-        next += '?' + qs
+        next_path += '?' + qs
 
-    l = urlparams(urlresolvers.reverse('users.login'), to=next)
-    return l
+    return urlparams(base, to=next_path)
+
+
+@register.function
+@jinja2.contextfunction
+def login_link(context):
+    return link_with_final_destination(
+        context, urlresolvers.reverse('users.login'))
+
+
+@register.function
+@jinja2.contextfunction
+def register_link(context):
+    return link_with_final_destination(
+        context, urlresolvers.reverse('users.register'))
 
 
 @register.function
