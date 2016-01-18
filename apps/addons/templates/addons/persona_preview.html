@@ -5,8 +5,8 @@
       {% with addon_url = url_ or addon.get_url_path() %}
         <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
       {% endwith %}
-      style="background-image:url('{{ preview }}')"
       data-browsertheme="{{ persona.json_data }}">
+        <img src="{{ preview }}" alt="{{ _('Preview of a lightweight theme') }}" />
         {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
           {% if addon.is_unreviewed() %}
             <span class="review-decal">{{ _('Awaiting Review') }}</span>

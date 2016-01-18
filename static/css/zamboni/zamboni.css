@@ -1158,6 +1158,7 @@ ul.license li.copyr { background-position: 0 -260px; }
     display: block;
     background: transparent no-repeat right top;
     border: .25em solid #c8e8f2 !important;
+    overflow: hidden;
 }
 .persona-preview span.review-decal {
     border-radius: 0 0 1px 0;
@@ -1874,11 +1875,6 @@ form .error .note.error {
     display: block;
     position: relative;
     text-decoration: none;
-    padding: 0 5px 0 50px;
-}
-
-.html-rtl.category-landing .addons-column ul li a {
-    padding: 0 50px 0 5px;
 }
 
 .category-landing .addons-column ul li a:hover,
