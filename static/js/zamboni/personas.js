@@ -143,7 +143,8 @@ function VerticalCarousel(container) {
     // Pad out the last page if necessary.
     var padAmount = this.numItems % this.numVisible;
     if (padAmount > 0) {
-        this.container.append(repeat('<li style="height:' + this.singleHeight + 'px" class="empty" />', padAmount));
+        this.container.append(repeat('<li class="empty" />', padAmount));
+        this.container.find('> li.empty').css('height', this.singleHeight + 'px');
         this.items = this.container.find('> li');
     }
 
