@@ -14,7 +14,7 @@ import amo
 from addons.models import Addon
 from stats.models import update_inc, UpdateCount
 
-from . import get_date_from_file
+from . import get_date_from_file, save_stats_to_file
 
 
 log = commonware.log.getLogger('adi.updatecountsfromfile')
@@ -196,6 +196,8 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
+        for udate_count in update_counts.values():
+            save_stats_to_file(update_count)
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 
