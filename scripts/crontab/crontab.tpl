@@ -53,7 +53,6 @@ HOME=/tmp
 00 18 * * * %(z_cron)s update_addon_average_daily_users
 30 18 * * * %(z_cron)s index_latest_stats
 45 18 * * * %(z_cron)s update_addons_collections_downloads
-50 18 * * * %(z_cron)s update_daily_theme_user_counts
 
 # Once per week
 45 7 * * 4 %(z_cron)s unconfirmed

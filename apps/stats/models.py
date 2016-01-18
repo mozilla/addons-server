@@ -88,17 +88,16 @@ class UpdateCount(StatsSearchMixin, models.Model):
 
 class ThemeUpdateCountManager(models.Manager):
 
-    def get_range_days_avg(self, start, end):
-        """Return a a dict of the average number of users (count) over the
-        given range of days, per addons."""
-        averages = (self.values('addon_id')
-                        .filter(date__range=[start, end])
-                        .annotate(avg=models.Avg('count')))
-        # Transform the queryset from a list of dicts
-        #   [{'addon_id': id1, 'count__avg': avg1], {'addon_id': id2, ...
-        # to a dict
-        #   {id1: avg1, id2: avg2, ...}
-        return dict((d['addon_id'], d['avg']) for d in averages)
+    def get_range_days_avg(self, start, end, *extra_fields):
+        """Return a a ValuesListQuerySet containing the addon_id and popularity
+        for each theme where popularity is the average number of users (count)
+        over the given range of days passed as start / end arguments.
+
+        If extra_fields are passed, then the list of fields is returned in the
+        queryset, inserted after addon_id but before popularity."""
+        return (self.values_list('addon_id', *extra_fields)
+                    .filter(date__range=[start, end])
+                    .annotate(avg=models.Avg('count')))
 
 
 class ThemeUpdateCount(StatsSearchMixin, models.Model):
