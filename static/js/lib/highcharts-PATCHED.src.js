@@ -1,3 +1,9 @@
+// THIS FILE HAS BEEN PATCHED BY MOZILLA STARTING LINE 251, TO ACCOMODATE WITH CSP.
+// We don't want to enable unsafe inlines (styles that are set inline, like
+// <span style="...">).
+//
+//
+//
 // ==ClosureCompiler==
 // @compilation_level SIMPLE_OPTIMIZATIONS
 
@@ -242,7 +248,21 @@ function attr(elem, prop, value) {
 		// set the value
 		if (defined(value)) {
 
-			elem[setAttribute](prop, value);
+      /* PATCH BY MOZILLA, taken from https://github.com/buttercoin/highcharts/pull/1/files */
+      /* elem[setAttribute](prop, value); */
+      if (prop === "style") {
+        styleArray = value.split(';');
+        parsedStyle = {};
+        for (var s in styleArray) {
+          style = styleArray[s].split(':');
+          parsedStyle[style[0]] = style[1]
+        }
+        $(elem).css(parsedStyle);
+      }
+      else {
+        elem[setAttribute](prop, value);
+      }
+      /* END OF PATCH BY MOZILLA, REMOVE THIS AND UNCOMMENT LINE ABOVE TO UNPATCH */
 
 		// get the value
 		} else if (elem && elem.getAttribute) { // elem not defined when printing pie demo...

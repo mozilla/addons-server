@@ -802,7 +802,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/validator.js',
         ),
         'zamboni/editors': (
-            'js/lib/highcharts.src.js',
+            'js/lib/highcharts-PATCHED.src.js',
             'js/zamboni/editors.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
@@ -859,7 +859,7 @@ MINIFY_BUNDLES = {
             'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
-            'js/lib/highcharts.src.js',
+            'js/lib/highcharts-PATCHED.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
             'js/impala/stats/dateutils.js',
