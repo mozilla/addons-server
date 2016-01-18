@@ -119,7 +119,10 @@
                 hChart = new Highcharts.Chart(newConfig);
                 for (i = 0; i < data.length; i++) {
                    row = $table.find('tr').eq(i);
-                   row.children().eq(0).append($("<b class='seriesdot' style='background:" + hChart.series[0].data[i].color + "'>&nbsp;</b>"));
+                   var seriesdot = $('<b class="seriesdot">&nbsp;</b>');
+                   seriesdot.css('background', hChart.series[0].data[i].color);
+                   row.children().eq(0).append(seriesdot);
+
                 }
                 $self.removeClass('loading');
             }
