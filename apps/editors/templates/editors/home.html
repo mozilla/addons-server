@@ -39,7 +39,7 @@
                 {% set total = progress[d][type] %}
                 <div class="waiting_{{ d }} tooltip"
                      data-delay="100"
-                     style="width:{{ percentage[type][d] }}%"
+                     data-barchart-width="{{ percentage[type][d] }}"
                      title="{{ duration }} ::
                             {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
                             &bull; {{ _('{0}%')|f(percentage[type][d]|round|int) }}"></div>
@@ -89,7 +89,7 @@
                 {% set total = unlisted_progress[d][type] %}
                 <div class="waiting_{{ d }} tooltip"
                      data-delay="100"
-                     style="width:{{ unlisted_percentage[type][d] }}%"
+                     data-barchart-width="{{ unlisted_percentage[type][d] }}"
                      title="{{ duration }} ::
                             {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
                             &bull; {{ _('{0}%')|f(unlisted_percentage[type][d]|round|int) }}"></div>
