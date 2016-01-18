@@ -1039,10 +1039,10 @@ class TestPersonaDetailPage(TestPersonas, amo.tests.TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('h2.addon img').attr('src'), self.persona.icon_url)
-        style = doc('#persona div[data-browsertheme]').attr('style')
-        assert self.persona.preview_url in style, (
-            'style attribute %s does not link to %s' % (
-                style, self.persona.preview_url))
+        preview = doc('#persona div[data-browsertheme] img').attr('src')
+        assert self.persona.preview_url == preview, (
+            'img src attribute %s does not link to %s' % (
+                preview, self.persona.preview_url))
 
     def test_more_personas(self):
         other = addon_factory(type=amo.ADDON_PERSONA)
