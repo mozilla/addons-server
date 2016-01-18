@@ -92,6 +92,9 @@ $.ajaxCache = function(o) {
             }
         }
     }
+    $("#live-announcements").text(gettext(
+    'One or more suggestion is available. You can select between them'));
+
     return request;
 };
 
