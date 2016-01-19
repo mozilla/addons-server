@@ -27,8 +27,7 @@ class AddonAdmin(admin.ModelAdmin):
         ('Stats', {
             'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
                        'weekly_downloads', 'total_downloads',
-                       'average_daily_downloads', 'average_daily_users',
-                       'share_count'),
+                       'average_daily_downloads', 'average_daily_users'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'trusted', 'view_source',

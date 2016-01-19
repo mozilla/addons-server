@@ -1,4 +1,3 @@
-import collections
 import hashlib
 import os
 import re
@@ -14,13 +13,11 @@ import caching.base as caching
 
 import amo
 import amo.models
-import sharing.utils as sharing
 from access import acl
 from addons.models import Addon
 from amo.helpers import absolutify, user_media_path, user_media_url
 from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
-from stats.models import CollectionShareCountTotal
 from translations.fields import (LinkifiedField, save_signal,
                                  NoLinksNoMarkupField, TranslatedField)
 from users.models import UserProfile
@@ -137,9 +134,6 @@ class Collection(amo.models.ModelBase):
     addon_index = models.CharField(
         max_length=40, null=True, db_index=True,
         help_text='Custom index for the add-ons in this collection')
-
-    # This gets overwritten in the transformer.
-    share_counts = collections.defaultdict(int)
 
     objects = CollectionManager()
 
@@ -363,9 +357,6 @@ class Collection(amo.models.ModelBase):
                        UserProfile.objects.filter(id__in=author_ids))
         for c in collections:
             c.author = authors.get(c.author_id)
-        c_dict = dict((c.pk, c) for c in collections)
-        sharing.attach_share_counts(CollectionShareCountTotal, 'collection',
-                                    c_dict)
 
     @staticmethod
     def post_save(sender, instance, **kwargs):
