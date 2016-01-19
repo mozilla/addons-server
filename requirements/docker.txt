@@ -1,7 +1,5 @@
 --no-index
-# This is probably nuts, let's work towards only using /olympia/ in the future
 --find-links https://pyrepo.stage.mozaws.net/olympia/
---find-links https://pyrepo.stage.mozaws.net/
 --find-links https://pyrepo.stage.mozaws.net/wheelhouse
 
 -r dev.txt
