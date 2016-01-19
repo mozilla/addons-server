@@ -398,7 +398,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
                   t.render(Context({})), None, [self.email],
-                  use_blacklist=False, real_email=True)
+                  use_blacklist=False)
 
     def unrestrict(self):
         log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
