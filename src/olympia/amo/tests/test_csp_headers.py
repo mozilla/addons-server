@@ -1,11 +1,11 @@
 from django.test.utils import override_settings
 
-import amo.tests
-import lib.settings_base as base_settings
+from olympia.amo.tests import TestCase
+from olympia.lib import settings_base as base_settings
 
 
 @override_settings(CSP_REPORT_ONLY=False)
-class TestCSPHeaders(amo.tests.TestCase):
+class TestCSPHeaders(TestCase):
 
     def test_for_specific_csp_settings(self):
         """Test that required settings are provided as headers."""
