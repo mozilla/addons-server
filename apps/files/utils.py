@@ -64,7 +64,7 @@ def get_filepath(fileorpath):
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload
-        return storage.open(fileorpath.path)
+        return fileorpath.path
     if hasattr(fileorpath, 'name'):
         return fileorpath
     return storage.open(fileorpath)
@@ -445,6 +445,13 @@ class SafeUnzip(object):
 
     def close(self):
         self.zip_file.close()
+
+    @property
+    def filelist(self):
+        return self.zip_file.filelist
+
+    def read(self, filename):
+        return self.zip_file.read(filename)
 
 
 def extract_zip(source, remove=False, fatal=True):

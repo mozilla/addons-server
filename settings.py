@@ -113,6 +113,13 @@ AES_KEYS = {
                                    'test-api-key.txt'),
 }
 
+GITHUB_API_USER = ''
+GITHUB_API_TOKEN = ''
+# An arbitrary amount of errors that we'll write up to github to prevent
+# one add-on generating a whole pile of errors and then causing github
+# API limits to kick in.
+GITHUB_ERRORS_PER_VALIDATION = 10
+
 # FxA config for local development only.
 FXA_CONFIG = {
     'client_id': 'cd5a21fafacc4744',

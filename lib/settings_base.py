@@ -1008,6 +1008,11 @@ CELERY_ROUTES = {
     'addons.tasks.unindex_addons': {'queue': 'priority'},
     'addons.tasks.save_theme': {'queue': 'priority'},
     'addons.tasks.save_theme_reupload': {'queue': 'priority'},
+
+    # These are basically devhub.
+    'api.tasks.process_webhook': {'queue': 'devhub'},
+    'api.tasks.process_webhook': {'queue': 'devhub'},
+
     'bandwagon.tasks.index_collections': {'queue': 'priority'},
     'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'users.tasks.index_users': {'queue': 'priority'},

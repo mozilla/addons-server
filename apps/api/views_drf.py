@@ -18,12 +18,15 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 import amo
+import api
 from addons.forms import AddonForm
 from addons.models import Addon, AddonUser
 from amo.decorators import allow_cross_site_request
 from amo.models import manual_order
 from amo.utils import paginate
-import api
+from api.tasks import process_webhook
+from apps.api.github import GithubRequest, GithubCallback
+from apps.files.models import FileUpload
 from devhub.forms import LicenseForm
 from search.views import name_query
 from users.models import UserProfile
@@ -474,3 +477,24 @@ class VersionsViewSet(CORSMixin, RetrieveModelMixin, UpdateModelMixin,
         version = self.get_object()
         version.delete()
         return Response(status=204)
+
+
+class GithubView(APIView):
+
+    def post(self, request):
+        if request.META.get('HTTP_X_GITHUB_EVENT') != 'pull_request':
+            # That's ok, we are just going to ignore it, we'll return a 2xx
+            # response so github doesn't report it as an error.
+            return Response({}, status=202)
+
+        github = GithubRequest(data=request.DATA)
+        if not github.is_valid():
+            return Response({}, status=422)
+
+        data = github.cleaned_data
+        upload = FileUpload.objects.create()
+        github = GithubCallback(data)
+        github.pending()
+
+        process_webhook.delay(upload.pk, data)
+        return Response({}, status=200)
