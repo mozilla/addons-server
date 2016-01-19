@@ -1,5 +1,6 @@
 import random
 
+from django.conf import settings
 from django.utils.encoding import smart_unicode
 
 import jinja2
@@ -7,6 +8,7 @@ from jingo import register, env
 from tower import ugettext as _
 
 import amo
+from amo.utils import urlparams
 
 
 @register.function
@@ -115,3 +117,13 @@ def user_data(user):
         email = user.email
 
     return {'anonymous': anonymous, 'currency': currency, 'email': email}
+
+
+@register.function
+@jinja2.contextfunction
+def manage_fxa_link(context):
+    user = context['user']
+    base_url = '{host}/settings'.format(
+        host=settings.FXA_CONFIG['content_host'])
+    return urlparams(
+        base_url, uid=user.fxa_id, email=user.email, entrypoint='addons')
