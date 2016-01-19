@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-06 14:15-0700\n"
-"PO-Revision-Date: 2016-01-19 09:31+0000\n"
+"PO-Revision-Date: 2016-01-19 10:06+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -12809,7 +12809,7 @@ msgstr "Збірки - це групи додатків, створені кор
 
 #: apps/pages/templates/pages/faq.html:270
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Що таке колекція \"Мої улюблені\"?"
 
 #: apps/pages/templates/pages/faq.html:271
 msgid ""
@@ -12884,6 +12884,10 @@ msgid ""
 "ons that work with Firefox for Mobile in our <a "
 "href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
+"Мобільні додатки працюють з <a href=\"%(mobile_url)s\">Firefox для мобільних"
+" пристроїв</a> і додають або змінюють функціональність, як і додатки для "
+"настільних комп'ютерів. Ви можете знайти додатки, які працюють з Firefox для"
+" мобільних пристроїв, в нашій <a href=\"%(gallery_url)s\">галереї</a>."
 
 #: apps/pages/templates/pages/faq.html:313
 msgid "Developer Topics"
