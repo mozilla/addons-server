@@ -35,7 +35,6 @@
       <li><a href="#contributing">{{ _('Contributing your Add-on') }}</a></li>
       <li><a href="#review-process">{{ _('Add-on Review Process') }}</a></li>
       <li><a href="#managing">{{ _('Managing Your Add-on') }}</a></li>
-      <li><a href="#recommended-status">{{ _('Recommended Status') }}</a></li>
       <li><a href="#user-reviews">{{ _('User Reviews') }}</a></li>
       <li><a href="#license">{{ _('References for Open Source Licenses') }}</a></li>
     </ul>
@@ -479,58 +478,6 @@
         software update, then your add-on does not need to be reviewed again.
          If, however, you submit a new updated file, then your add-on update
         will need to be reviewed by an editor.
-      {% endtrans %}
-    </p>
-
-    <h2 id="recommended-status">{{ _('Recommended Status') }}</h2>
-
-    <h3>{{ _('What are the Recommended Lists?') }}</h3>
-    <p>
-      {% trans %}
-        The Recommended lists are an important part of exposing AMO visitors
-        to useful and compelling add-ons within a small &amp; focused list.
-        It allows us to feature add-ons that have done a good job of creating
-        a unique and/or exciting enhancement to Mozilla software and
-        increasing awareness of the thousands of add-ons hosted on AMO.  The
-        lists are broken down into two categories; Recommended and Category
-        Recommended. The former is shown on the home page of AMO and is
-        typically limited to 40 featured add-ons. The latter are lists of
-        add-ons that are recommended at the category level. The only
-        distinction between the two lists is that Category Recommended
-        add-ons are not featured on the home page. Apart from that, both
-        lists are meant to recognize the achievements of individual add-on
-        authors and the work they’ve produced.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('What is a Featured add-on?') }}</h3>
-    <p>
-      {% trans url=url('devhub.docs', 'policies/recommended') %}
-        The main page of AMO as well as the main page for each category
-        contain three slots which are used to display a set of Featured
-        Add-Ons. These add-ons are pulled from the Recommended and Category
-        Recommended lists respectively and periodically rotated as described in
-        the <a href="{{ url }}">Featured Add-ons FAQ</a> to allow recommended
-        add-ons a chance for increased visibility to users. Featured add-ons are
-        rotated regularly to
-        prevent staleness.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('How can my add-on be listed as Recommended?') }}</h3>
-    <p>
-      {% trans url=url('devhub.docs', 'policies/recommended') %}
-        <a href="{{ url }}">This page</a> describes the process by which the Recommended lists are managed.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('Can I pay to have my add-on listed as Recommended?') }}</h3>
-    <p>{{ _('No.') }}</p>
-
-    <h3>{{ _('Why is my add-on no longer listed as Recommended?') }}</h3>
-    <p>
-      {% trans url=url('devhub.docs', 'policies/recommended') %}
-        <a href="{{ url }}">This page</a> describes the process by which the Recommended lists are managed.
       {% endtrans %}
     </p>
 

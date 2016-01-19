@@ -16,7 +16,7 @@ import amo
 import amo.models
 import sharing.utils as sharing
 from access import acl
-from addons.models import Addon, AddonRecommendation
+from addons.models import Addon
 from amo.helpers import absolutify, user_media_path, user_media_url
 from amo.urlresolvers import reverse
 from amo.utils import sorted_groupby
@@ -24,7 +24,6 @@ from stats.models import CollectionShareCountTotal
 from translations.fields import (LinkifiedField, save_signal,
                                  NoLinksNoMarkupField, TranslatedField)
 from users.models import UserProfile
-from versions import compare
 
 SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
 
@@ -157,21 +156,6 @@ class Collection(amo.models.ModelBase):
     def make_index(cls, addon_ids):
         ids = ':'.join(map(str, sorted(addon_ids)))
         return hashlib.md5(ids).hexdigest()
-
-    def get_recs(self, app, version):
-        addons = list(self.addons.values_list('id', flat=True))
-        return self.get_recs_from_ids(addons, app, version)
-
-    @classmethod
-    def get_recs_from_ids(cls, addons, app, version, compat_mode='strict'):
-        vint = compare.version_int(version)
-        recs = RecommendedCollection.build_recs(addons)
-        qs = (Addon.objects.public()
-              .filter(id__in=recs, appsupport__app=app.id,
-                      appsupport__min__lte=vint))
-        if compat_mode == 'strict':
-            qs = qs.filter(appsupport__max__gte=vint)
-        return recs, qs
 
     def flush_urls(self):
         urls = ['*%s' % self.get_url_path(),
@@ -546,27 +530,6 @@ models.signals.post_save.connect(CollectionVote.post_save_or_delete,
                                  sender=CollectionVote)
 models.signals.post_delete.connect(CollectionVote.post_save_or_delete,
                                    sender=CollectionVote)
-
-
-class RecommendedCollection(Collection):
-
-    class Meta:
-        proxy = True
-
-    def save(self, **kw):
-        self.type = amo.COLLECTION_RECOMMENDED
-        return super(RecommendedCollection, self).save(**kw)
-
-    @classmethod
-    def build_recs(cls, addon_ids):
-        """Get the top ranking add-ons according to recommendation scores."""
-        scores = AddonRecommendation.scores(addon_ids)
-        d = collections.defaultdict(int)
-        for others in scores.values():
-            for addon, score in others.items():
-                d[addon] += score
-        addons = sorted(d.items(), key=lambda x: x[1], reverse=True)
-        return [addon for addon, score in addons if addon not in addon_ids]
 
 
 class FeaturedCollection(amo.models.ModelBase):

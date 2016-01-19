@@ -1820,30 +1820,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
         return get_creatured_ids(category, lang)
 
 
-class AddonRecommendation(models.Model):
-    """
-    Add-on recommendations. For each `addon`, a group of `other_addon`s
-    is recommended with a score (= correlation coefficient).
-    """
-    addon = models.ForeignKey(Addon, related_name="addon_recommendations")
-    other_addon = models.ForeignKey(Addon, related_name="recommended_for")
-    score = models.FloatField()
-
-    class Meta:
-        db_table = 'addon_recommendations'
-        ordering = ('-score',)
-
-    @classmethod
-    def scores(cls, addon_ids):
-        """Get a mapping of {addon: {other_addon: score}} for each add-on."""
-        d = {}
-        q = (AddonRecommendation.objects.filter(addon__in=addon_ids)
-             .values('addon', 'other_addon', 'score'))
-        for addon, rows in sorted_groupby(q, key=lambda x: x['addon']):
-            d[addon] = dict((r['other_addon'], r['score']) for r in rows)
-        return d
-
-
 class AddonUser(caching.CachingMixin, models.Model):
     addon = models.ForeignKey(Addon)
     user = UserForeignKey()

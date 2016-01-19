@@ -21,7 +21,7 @@ class TestHelpers(amo.tests.TestCase):
         a = Addon(status=amo.STATUS_UNREVIEWED)
         eq_(statusflags(ctx, a), 'unreviewed')
 
-        # recommended
+        # featured
         featured = Addon.objects.get(pk=1003)
         eq_(statusflags(ctx, featured), 'featuredaddon')
 
@@ -36,7 +36,7 @@ class TestHelpers(amo.tests.TestCase):
         a = Addon(status=amo.STATUS_UNREVIEWED)
         eq_(flag(ctx, a), '<h5 class="flag">Not Reviewed</h5>')
 
-        # recommended
+        # featured
         featured = Addon.objects.get(pk=1003)
         eq_(flag(ctx, featured), '<h5 class="flag">Featured</h5>')
 
