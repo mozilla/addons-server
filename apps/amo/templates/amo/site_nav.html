@@ -39,6 +39,7 @@
             <li><a href="{{ cat.get_url_path() }}">{{ cat.name }}</a></li>
           {% endfor %}
         </ul>
+        {% if not waffle.flag('restyle') %}
         <div>
           <a class="complete-themes" href="{{ url('browse.themes') }}">
             {% trans %}
@@ -46,6 +47,7 @@
             {% endtrans %}
           </a>
         </div>
+        {% endif %}
       {% endif %}
     </li>
 

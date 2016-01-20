@@ -448,6 +448,9 @@ DOMAIN_METHODS = {
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'restyle/css': (
+            'css/restyle.less',
+        ),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',

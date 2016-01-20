@@ -1,5 +1,13 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
+
+    if($("body#restyle").length === 1) {
+        $('#background-wrapper').height(
+            $('.amo-header').height() +
+            $('#addon-description-header').height() + 20
+        );
+    }
+
     $(".previews").zCarousel({
         btnNext: ".previews .next",
         btnPrev: ".previews .prev",
