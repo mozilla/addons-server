@@ -647,27 +647,6 @@ def upload_for_addon(request, addon_id, addon):
 
 
 @login_required
-@post_required
-@json_view
-def upload_manifest(request):
-    form = forms.NewManifestForm(request.POST)
-    if form.is_valid():
-        upload = FileUpload.objects.create()
-        tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.uuid)
-        return redirect('devhub.upload_detail', upload.uuid, 'json')
-    else:
-        error_text = _('There was an error with the submission.')
-        if 'manifest' in form.errors:
-            error_text = ' '.join(form.errors['manifest'])
-        error_message = {'type': 'error',
-                         'message': escape_all(error_text),
-                         'tier': 1}
-
-        v = {'errors': 1, 'success': False, 'messages': [error_message]}
-        return {'validation': v, 'error': error_text}
-
-
-@login_required
 @json_view
 def standalone_upload_detail(request, uuid):
     upload = get_object_or_404(FileUpload, uuid=uuid)
