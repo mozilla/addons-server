@@ -82,31 +82,6 @@ TASK_USER_ID = 10968
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
 
-# Enable the Django Debug Toolbar for local dev.
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-DEBUG_TOOLBAR_PATCH_SETTINGS = False  # Prevent DDT from patching the settings.
-
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-
-
-def debug_toolbar_disabled(request):
-    """Callback used by the Django Debug Toolbar to decide when to display."""
-    return False
-
-
-def debug_toolbar_enabled(request):
-    """Callback used by the Django Debug Toolbar to decide when to display."""
-    # We want to make sure to have the DEBUG value at runtime, not the one we
-    # have in this specific settings file.
-    from django.conf import settings
-    return settings.DEBUG
-
-
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
-}
 
 AES_KEYS = {
     'api_key:secret': os.path.join(ROOT, 'apps', 'api', 'tests', 'assets',
