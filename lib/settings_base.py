@@ -1272,6 +1272,7 @@ CSP_FRAME_SRC = (
 )
 CSP_IMG_SRC = (
     "'self'",
+    'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
     'https://www.paypal.com',
     ANALYTICS_HOST,
