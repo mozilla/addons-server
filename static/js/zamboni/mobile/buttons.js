@@ -34,7 +34,9 @@
     z.installSearch = function(name, url, icon, hash, callback) {
         if (window.external && window.external.AddSearchProvider) {
             window.external.AddSearchProvider(url);
-            callback();
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
             _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
         } else {
             // Alert!  Deal with it.
