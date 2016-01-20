@@ -74,7 +74,7 @@
               {{ form.password2.errors }}
             </li>
             <li>
-              {% if settings.RECAPTCHA_PRIVATE_KEY %}
+              {% if settings.NOBOT_RECAPTCHA_PRIVATE_KEY %}
                 {{ form.recaptcha }}
                 {{ form.recaptcha.errors }}
               {% else %}

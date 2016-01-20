@@ -1338,10 +1338,8 @@ MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
 # RECAPTCHA: overload the following key setttings in local_settings.py
 # with your keys.
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_USE_SSL = True
-NOCAPTCHA = True
+NOBOT_RECAPTCHA_PUBLIC_KEY = ''
+NOBOT_RECAPTCHA_PRIVATE_KEY = ''
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True

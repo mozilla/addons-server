@@ -1344,7 +1344,7 @@ class TestAddonSharing(amo.tests.TestCase):
         assert iri_to_uri(url) in r['Location']
 
 
-@patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+@patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
 class TestReportAbuse(amo.tests.TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
 
@@ -1352,7 +1352,7 @@ class TestReportAbuse(amo.tests.TestCase):
         super(TestReportAbuse, self).setUp()
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
-    @patch('captcha.fields.ReCaptchaField.clean')
+    @patch('amo.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):
         clean.return_value = ""
         self.client.post(self.full_page, {'text': 'spammy'})

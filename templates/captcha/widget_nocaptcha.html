@@ -4,7 +4,7 @@
   <div style="width: 302px; height: 484px;">
     <div style="width: 302px; height: 424px; position: relative;">
       <div style="width: 302px; height: 424px; position: absolute;">
-        <iframe src="https://www.google.com/recaptcha/api/fallback?k={{ public_key }}"
+        <iframe src="https://www.google.com/recaptcha/api/fallback?k={{ public_key }}{% if lang %}&amp;hl={{ lang }}{% endif %}"
                 frameborder="0" scrolling="no"
                 style="width: 302px; height:424px; border-style: none;">
         </iframe>

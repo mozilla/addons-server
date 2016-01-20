@@ -3,14 +3,14 @@ from copy import copy
 from django import forms
 from django.conf import settings
 
-import captcha.fields
+from amo.fields import ReCaptchaField
 import happyforms
 
 from translations.fields import TranslatedField
 
 
 class AbuseForm(happyforms.Form):
-    recaptcha = captcha.fields.ReCaptchaField(label='')
+    recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
                            widget=forms.Textarea())
@@ -22,7 +22,7 @@ class AbuseForm(happyforms.Form):
         super(AbuseForm, self).__init__(*args, **kwargs)
 
         if (not self.request.user.is_anonymous() or
-                not settings.RECAPTCHA_PRIVATE_KEY):
+                not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
             self.has_recaptcha = False
 
