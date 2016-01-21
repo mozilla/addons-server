@@ -8,6 +8,7 @@ import mock
 from rest_framework.response import Response
 
 import amo
+from access.models import Group, GroupUser
 from addons.models import Addon, AddonUser
 from api.tests.utils import APIAuthTestCase
 from devhub import tasks
@@ -61,6 +62,10 @@ class BaseUploadVersionCase(SigningAPITestCase):
             return self.client.put(url, {'upload': upload},
                                    HTTP_AUTHORIZATION=self.authorization())
 
+    def make_admin(self, user):
+        admin_group = Group.objects.create(name='Admin', rules='*:*')
+        GroupUser.objects.create(group=admin_group, user=user)
+
 
 class TestUploadVersion(BaseUploadVersionCase):
 
@@ -93,6 +98,15 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
+        response = self.put(self.url(self.guid, '3.0'))
+        assert response.status_code == 403
+        assert response.data['error'] == 'You do not own this addon.'
+
+    def test_admin_does_not_own_addon(self):
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        self.make_admin(self.user)
         response = self.put(self.url(self.guid, '3.0'))
         assert response.status_code == 403
         assert response.data['error'] == 'You do not own this addon.'
@@ -202,12 +216,23 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert response.data['error'] == 'Could not find add-on with id "foo".'
 
     def test_user_does_not_own_addon(self):
+        self.create_version('3.0')
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 403
         assert response.data['error'] == 'You do not own this addon.'
+
+    def test_admin_can_view(self):
+        self.create_version('3.0')
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.now())
+        self.make_admin(self.user)
+        self.api_key = self.create_api_key(self.user, 'bar')
+        response = self.get(self.url(self.guid, '3.0'))
+        assert response.status_code == 200
+        assert 'processed' in response.data
 
     def test_version_does_not_exist(self):
         response = self.get(self.url(self.guid, '2.5'))
@@ -232,9 +257,10 @@ class TestCheckVersion(BaseUploadVersionCase):
         newer_upload = FileUpload.objects.latest()
         assert newer_upload != upload
 
-        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid))
         assert response.status_code == 200
-        assert response.data['pk'] == upload.pk
+        # For backwards-compatibility reasons, we return the uuid as "pk".
+        assert response.data['pk'] == upload.uuid
         assert 'processed' in response.data
 
     @mock.patch('devhub.tasks.submit_file')
@@ -251,7 +277,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         upload = FileUpload.objects.latest()
 
         # Check that the user that created the upload can access it properly.
-        response = self.get(self.url('@create-version', '1.0', upload.pk))
+        response = self.get(self.url('@create-version', '1.0', upload.uuid))
         assert response.status_code == 200
         assert 'processed' in response.data
 
@@ -260,9 +286,9 @@ class TestCheckVersion(BaseUploadVersionCase):
         self.user, self.api_key = orig_user, orig_api_key
         self.create_version('3.0')
 
-        # Check that we can't access the FileUpload by pk even if we pass in
+        # Check that we can't access the FileUpload by uuid even if we pass in
         # an add-on and version that we own if we don't own the FileUpload.
-        response = self.get(self.url(self.guid, '3.0', upload.pk))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid))
         assert response.status_code == 404
         assert 'error' in response.data
 

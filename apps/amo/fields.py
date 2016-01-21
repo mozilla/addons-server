@@ -7,6 +7,15 @@ from django.forms import fields
 from tower import ugettext as _
 
 from amo.widgets import ColorWidget
+from nobot.fields import HumanCaptchaField
+
+
+class ReCaptchaField(HumanCaptchaField):
+    # Sub-class so we can translate the strings.
+    default_error_messages = {
+        'captcha_invalid': _('Incorrect, please try again.'),
+        'captcha_error': _('Error verifying input, please try again.'),
+    }
 
 
 class DecimalCharField(models.DecimalField):

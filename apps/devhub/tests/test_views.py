@@ -1132,7 +1132,7 @@ class TestAPIAgreement(TestSubmitBase):
     def setUp(self):
         super(TestAPIAgreement, self).setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.create_switch('signing-api', db=True)
+        self.create_switch('signing-api')
 
     def test_agreement_first(self):
         with mock.patch('devhub.views.render_agreement') as mock_submit:
@@ -1157,7 +1157,7 @@ class TestAPIKeyPage(amo.tests.TestCase):
         self.url = reverse('devhub.api_key')
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.create_switch('signing-api', db=True)
+        self.create_switch('signing-api')
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
@@ -2079,9 +2079,9 @@ class TestUpload(BaseUploadTest):
     @attr('validator')
     def test_fileupload_validation(self):
         self.post()
-        fu = FileUpload.objects.filter().order_by('-created').first()
-        assert fu.validation
-        validation = json.loads(fu.validation)
+        upload = FileUpload.objects.filter().order_by('-created').first()
+        assert upload.validation
+        validation = json.loads(upload.validation)
 
         eq_(validation['success'], False)
         # The current interface depends on this JSON structure:
@@ -2097,7 +2097,7 @@ class TestUpload(BaseUploadTest):
     def test_redirect(self):
         r = self.post()
         upload = FileUpload.objects.get()
-        url = reverse('devhub.upload_detail', args=[upload.pk, 'json'])
+        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
         self.assert3xx(r, url)
 
     @mock.patch('validator.validate.validate')
@@ -2172,7 +2172,7 @@ class TestUploadDetail(BaseUploadTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         assert (doc('header h2').text() ==
-                'Validation Results for {0}_animated.png'.format(upload.pk))
+                'Validation Results for {0}_animated.png'.format(upload.uuid))
         suite = doc('#addon-validator-suite')
         eq_(suite.attr('data-validateurl'),
             reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
@@ -2338,7 +2338,7 @@ class TestVersionAddFile(UploadTest):
             a.save()
 
     def post(self, platform=amo.PLATFORM_MAC, source=None, beta=False):
-        return self.client.post(self.url, dict(upload=self.upload.pk,
+        return self.client.post(self.url, dict(upload=self.upload.uuid,
                                                platform=platform.id,
                                                source=source, beta=beta))
 
@@ -2398,7 +2398,7 @@ class TestVersionAddFile(UploadTest):
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
-        data = formset(form, platform=platform, upload=self.upload.pk,
+        data = formset(form, platform=platform, upload=self.upload.uuid,
                        initial_count=1, prefix='files')
 
         r = self.client.post(self.edit_url, data)
@@ -2414,7 +2414,7 @@ class TestVersionAddFile(UploadTest):
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
-        data = formset(form, platform=platform, upload=self.upload.pk,
+        data = formset(form, platform=platform, upload=self.upload.uuid,
                        initial_count=1, prefix='files')
         data.update(formset(total_count=1, initial_count=1))
 
@@ -2715,7 +2715,7 @@ class TestUploadErrors(UploadTest):
 
         data = json.loads(res.content)
         poll_url = data['url']
-        upload = FileUpload.objects.get(pk=data['upload'])
+        upload = FileUpload.objects.get(uuid=data['upload'])
 
         # Check that `tasks.validate` has been called with the expected upload.
         validate_.assert_called_with(upload, listed=True)
@@ -2751,7 +2751,7 @@ class TestUploadErrors(UploadTest):
 
         data = json.loads(res.content)
         poll_url = data['url']
-        upload = FileUpload.objects.get(pk=data['upload'])
+        upload = FileUpload.objects.get(uuid=data['upload'])
 
         # Check that `tasks.validate` has been called with the expected upload.
         validate_.assert_called_with(upload, listed=True)
@@ -2782,7 +2782,7 @@ class AddVersionTest(UploadTest):
     def post(self, supported_platforms=[amo.PLATFORM_MAC],
              override_validation=False, expected_status=200, source=None,
              beta=False):
-        d = dict(upload=self.upload.pk, source=source,
+        d = dict(upload=self.upload.uuid, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
         r = self.client.post(self.url, d)
@@ -3025,7 +3025,7 @@ class TestAddBetaVersion(AddVersionTest):
     def post_additional(self, version, platform=amo.PLATFORM_MAC):
         url = reverse('devhub.versions.add_file',
                       args=[self.addon.slug, version.id])
-        return self.client.post(url, dict(upload=self.upload.pk,
+        return self.client.post(url, dict(upload=self.upload.uuid,
                                           platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
@@ -3168,7 +3168,7 @@ class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
              source=None, is_listed=True, is_sideload=False, status_code=200):
-        d = dict(upload=self.upload.pk, source=source,
+        d = dict(upload=self.upload.uuid, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  is_unlisted=not is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
@@ -3287,7 +3287,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, amo.tests.TestCase):
         assert mock_sign_file.called
 
     def test_missing_platforms(self):
-        r = self.client.post(self.url, dict(upload=self.upload.pk))
+        r = self.client.post(self.url, dict(upload=self.upload.uuid))
         eq_(r.status_code, 200)
         eq_(r.context['new_addon_form'].errors.as_text(),
             '* supported_platforms\n  * Need at least one platform.')

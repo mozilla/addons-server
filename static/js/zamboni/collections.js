@@ -761,19 +761,7 @@ $(document).ready(function () {
             var el = $(obj.click_target);
             var $popup = this;
             var base_url = el.attr('data-base-url');
-            var counts = $.parseJSON(el.attr("data-share-counts"));
             $popup.hideMe();
-            if (counts) {
-                for (s in counts) {
-                    if (!counts.hasOwnProperty(s)) continue;
-                    var c = counts[s];
-                    var $li = $("li." + s, this);
-                    $(".share-count", $li).text(c);
-                    $(".uniquify", $li).attr("href", base_url + s);
-                }
-            } else {
-                return false;
-            }
             ret.pointTo = obj.click_target;
             return ret;
         }

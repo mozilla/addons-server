@@ -21,6 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import waffle
+from django_statsd.clients import statsd
 from PIL import Image
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
@@ -425,7 +426,7 @@ def ownership(request, addon_id, addon):
         send_mail(title,
                   t.render(Context({'author': author, 'addon': addon,
                                     'site_url': settings.SITE_URL})),
-                  None, recipients, use_blacklist=False, real_email=True)
+                  None, recipients, use_blacklist=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -599,24 +600,24 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
         automated = addon.automated_signing
         is_listed = addon.is_listed
 
-    fu = FileUpload.from_post(filedata, filedata.name, filedata.size,
-                              automated_signing=automated, addon=addon)
-    log.info('FileUpload created: %s' % fu.pk)
+    upload = FileUpload.from_post(filedata, filedata.name, filedata.size,
+                                  automated_signing=automated, addon=addon)
+    log.info('FileUpload created: %s' % upload.uuid)
     if user.is_authenticated():
-        fu.user = user
-        fu.save()
+        upload.user = user
+        upload.save()
     if app_id and version_id:
         app = amo.APPS_ALL.get(int(app_id))
         if not app:
             raise http.Http404()
         ver = get_object_or_404(AppVersion, pk=version_id)
-        tasks.compatibility_check.delay(fu.pk, app.guid, ver.version)
+        tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, fu, listed=is_listed)
+        tasks.validate_and_submit(addon, upload, listed=is_listed)
     else:
-        tasks.validate(fu, listed=is_listed)
+        tasks.validate(upload, listed=is_listed)
 
-    return fu
+    return upload
 
 
 @login_required
@@ -626,43 +627,23 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
     filedata = request.FILES['upload']
     app_id = request.POST.get('app_id')
     version_id = request.POST.get('version_id')
-    fu = handle_upload(
+    upload = handle_upload(
         filedata=filedata, user=request.user, app_id=app_id,
         version_id=version_id, addon=addon, is_standalone=is_standalone,
         is_listed=is_listed, automated=automated)
     if addon:
-        return redirect('devhub.upload_detail_for_addon', addon.slug, fu.pk)
+        return redirect('devhub.upload_detail_for_addon',
+                        addon.slug, upload.uuid)
     elif is_standalone:
-        return redirect('devhub.standalone_upload_detail', fu.pk)
+        return redirect('devhub.standalone_upload_detail', upload.uuid)
     else:
-        return redirect('devhub.upload_detail', fu.pk, 'json')
+        return redirect('devhub.upload_detail', upload.uuid, 'json')
 
 
 @post_required
 @dev_required
 def upload_for_addon(request, addon_id, addon):
     return upload(request, addon=addon)
-
-
-@login_required
-@post_required
-@json_view
-def upload_manifest(request):
-    form = forms.NewManifestForm(request.POST)
-    if form.is_valid():
-        upload = FileUpload.objects.create()
-        tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.pk)
-        return redirect('devhub.upload_detail', upload.pk, 'json')
-    else:
-        error_text = _('There was an error with the submission.')
-        if 'manifest' in form.errors:
-            error_text = ' '.join(form.errors['manifest'])
-        error_message = {'type': 'error',
-                         'message': escape_all(error_text),
-                         'tier': 1}
-
-        v = {'errors': 1, 'success': False, 'messages': [error_message]}
-        return {'validation': v, 'error': error_text}
 
 
 @login_required
@@ -676,8 +657,15 @@ def standalone_upload_detail(request, uuid):
 @dev_required
 @json_view
 def upload_detail_for_addon(request, addon_id, addon, uuid):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
-    return json_upload_detail(request, upload, addon_slug=addon.slug)
+    try:
+        upload = get_object_or_404(FileUpload, uuid=uuid)
+        response = json_upload_detail(request, upload, addon_slug=addon.slug)
+        statsd.incr('devhub.upload_detail_for_addon.success')
+        return response
+    except Exception as exc:
+        statsd.incr('devhub.upload_detail_for_addon.error')
+        log.error('Error checking upload status: {} {}'.format(type(exc), exc))
+        raise
 
 
 @dev_required(allow_editors=True)
@@ -873,10 +861,21 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
 
 @login_required
 def upload_detail(request, uuid, format='html'):
-    upload = get_object_or_404(FileUpload, uuid=uuid)
-
     if format == 'json' or request.is_ajax():
-        return json_upload_detail(request, upload)
+        try:
+            # This is duplicated in the HTML code path.
+            upload = get_object_or_404(FileUpload, uuid=uuid)
+            response = json_upload_detail(request, upload)
+            statsd.incr('devhub.upload_detail.success')
+            return response
+        except Exception as exc:
+            statsd.incr('devhub.upload_detail.error')
+            log.error('Error checking upload status: {} {}'.format(
+                type(exc), exc))
+            raise
+
+    # This is duplicated in the JSON code path.
+    upload = get_object_or_404(FileUpload, uuid=uuid)
 
     validate_url = reverse('devhub.standalone_upload_detail',
                            args=[upload.uuid])
@@ -1706,7 +1705,6 @@ def docs(request, doc_name=None):
             'policies/submission': '/AMO/Policy/Submission',
             'policies/reviews': '/AMO/Policy/Reviews',
             'policies/maintenance': '/AMO/Policy/Maintenance',
-            'policies/recommended': '/AMO/Policy/Featured',
             'policies/contact': '/AMO/Policy/Contact',
         })
     if waffle.switch_is_active('mdn-agreement-docs'):
@@ -1720,7 +1718,6 @@ def docs(request, doc_name=None):
                 'policies/submission',
                 'policies/reviews',
                 'policies/maintenance',
-                'policies/recommended',
                 'policies/agreement',
                 'policies/contact')
 

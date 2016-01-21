@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
 "PO-Revision-Date: 2016-01-10 13:07+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,135 +24,124 @@ msgstr[0] "별점 {0}점"
 msgid "There was a problem contacting the server."
 msgstr "서버와 연결 도중 문제가 발생했습니다."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "파일을 선택하세요..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "부가 기능의 확장자는 .xpi, .jar, .xml을 사용해야 합니다."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "{0}% 완료됨"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "취소"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "{0} 업로드 중"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "부가 기능이 {0}개의 오류와 함께 검사를 통과하지 못했습니다."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "{0} 검사중"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "검사 도중 예상치 못한 오류가 발생했습니다."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:456
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+#: static/js/common/upload-addon.js:466
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:457
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
+#: static/js/common/upload-addon.js:467
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:471
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
+#: static/js/common/upload-addon.js:481
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:508
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
+#: static/js/common/upload-addon.js:518
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
 
-#: static/js/common/upload-addon.js:545
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -217,7 +206,7 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "테마 이름"
 
@@ -293,13 +282,11 @@ msgstr "환불 {0}회"
 msgid "{0} installs"
 msgstr "설치 {0}회"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "일일 사용자 수"
 
@@ -356,13 +343,11 @@ msgstr "구독자"
 msgid "Ratings"
 msgstr "평가"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "판매중"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "설치"
 
@@ -394,8 +379,7 @@ msgstr ""
 msgid "Search Results"
 msgstr "검색 결과"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "홈페이지 홍보"
 
@@ -423,8 +407,7 @@ msgstr "상세 정보 페이지 (하단)"
 msgid "Detail Page (Development Channel)"
 msgstr "상세 정보 페이지 (개발 채널)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "이것과 자주 쓰입니다"
 
@@ -508,8 +491,7 @@ msgstr "인기도 순으로 둘러보기"
 msgid "Browse Listing Updated Sort"
 msgstr "업데이트 날짜 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "최근 급상승 순으로 둘러보기"
 
@@ -789,8 +771,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간)"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ({1}부터 {2}까지)"
 
@@ -811,8 +792,7 @@ msgstr "날짜"
 msgid "Other"
 msgstr "기타"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245
-#: static/js/zamboni/editors.js:291
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
@@ -848,8 +828,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 이상 버전이 필요합니다."
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla에서 이 버전이 현재 사용중인 Firefox 버전과 호환되지 않음을 표시하고 있습니다."
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -882,10 +861,8 @@ msgstr "다른 버전 보기"
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
 
 #: static/js/zamboni/collections.js:193
@@ -968,33 +945,33 @@ msgstr "변경 사항이 저장되었습니다"
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: static/js/zamboni/devhub.js:552
+#: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: static/js/zamboni/devhub.js:697
+#: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: static/js/zamboni/devhub.js:700
+#: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 사용자 리뷰"
 
-#: static/js/zamboni/devhub.js:812
+#: static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: static/js/zamboni/devhub.js:816
+#: static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "예"
 
-#: static/js/zamboni/devhub.js:1146
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: static/js/zamboni/devhub.js:1296
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 
@@ -1002,80 +979,70 @@ msgstr "올바른 이메일 주소를 입력해야 합니다."
 msgid "No results found."
 msgstr "검색한 결과가 없습니다."
 
-#: static/js/zamboni/discovery_pane.js:217
-msgid ""
-"Sorry, we couldn't find any recommendations for you.<br>Please visit the <a "
-"href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"죄송합니다. 알맞는 추천 부가 기능을 찾을 수 없네요.<br><a href=\"{0}\">부가 기능 사이트</a>에 가보시면 알맞은 부가"
-" 기능을 찾으실 수 있을겁니다."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "추천 부가 기능 검색중&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "추천 부가 기능 업데이트중&hellip;"
-
-#: static/js/zamboni/editors.js:117
+#: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: static/js/zamboni/editors.js:167
+#: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "앱이 영수증을 확인했습니다."
 
-#: static/js/zamboni/editors.js:169
+#: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
-#: static/js/zamboni/editors.js:240
+#: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: static/js/zamboni/editors.js:251
+#: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
-#: static/js/zamboni/editors.js:256
+#: static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "버전 기록서"
 
-#: static/js/zamboni/editors.js:261
+#: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "심사자의 메모"
 
-#: static/js/zamboni/editors.js:266
+#: static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: static/js/zamboni/editors.js:356
+#: static/js/zamboni/editors.js:330
+msgid "Average Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:386
+msgid "Number of Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "번역 결과를 불러오는 과정에서 오류 발생"
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "향후 업데이트에서 이 메시지를 무시"
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "읽는 중..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b>자 남았습니다."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
 
 #: static/js/zamboni/l10n.js:45
@@ -1111,6 +1078,22 @@ msgstr "거부됨"
 msgid "Approved"
 msgstr "승인됨"
 
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr ""
+
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
 msgstr "모든 테스트에 통과했습니다."
@@ -1123,8 +1106,7 @@ msgstr "이 테스트는 실행되지 않았습니다."
 msgid "Tests"
 msgstr "검사"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "오류"
 
@@ -1171,48 +1153,47 @@ msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 msgid "Internal server error"
 msgstr "내부 서버 오류"
 
-#: static/js/zamboni/mobile/buttons.js:50
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "{0} {1}용으로 아직 업데이트 되지 않음"
 
-#: static/js/zamboni/mobile/buttons.js:51
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "{0} 최신 버전 필요"
 
-#: static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "미심사"
 
-#: static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "시험용 <span>(자세히 알아보기)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:54
-#: static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "{0}용으로 사용 불가"
 
-#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "시험용"
 
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "새로운 버전의 {0}이 필요한 테마"
 
-#: static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "{0}이 필요한 테마"
 
-#: static/js/zamboni/mobile/buttons.js:103
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "설치 중..."
 
-#: static/js/zamboni/mobile/buttons.js:123
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "이 부가 기능은 Mozilla의 예비 심사를 통과했습니다."
 
-#: static/js/zamboni/mobile/buttons.js:248
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "받기"
 

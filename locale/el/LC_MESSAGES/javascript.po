@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
 "PO-Revision-Date: 2015-09-21 10:44+0000\n"
 "Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -24,116 +24,116 @@ msgstr[1] "{0} αστέρια"
 msgid "There was a problem contacting the server."
 msgstr "Παρουσιάστηκε πρόβλημα επικοινωνίας με το διακομιστή."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .xpi, .jar ή .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "Ολοκληρώθηκε {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} από {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "Γίνεται αποστολή του {0}"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "Παρουσιάστηκε σφάλμα στο {0}"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλμα."
 msgstr[1] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλματα."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;και {0} περισσότερο"
 msgstr[1] "&hellip;και {0} περισσότερα"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Δείτε την αναλυτική αναφορά επικύρωσης"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "Γίνεται επικύρωση {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "Απρόσμενο σφάλμα διακομιστή κατά την επικύρωση."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "Ολοκληρώθηκε η επικύρωση του {0}"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:466
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Εάν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, συμπεριλάβετε ένα όνομα χρήστη και κωδικό για δοκιμή στα Σημειώματα του Ελεγκτή (αυτό μπορεί να γίνει στο επόμενο "
 "βήμα). "
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:467
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Λίστα καταχωρήσεων προσθέτων"
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Λίστα καταχωρήσεων προσθέτων"
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:481
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Παρακαλώ επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει καθυστερήσεις είτε ασάφειες κατά την διαδικασία της αξιολόγησης."
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -141,15 +141,15 @@ msgstr ""
 "Μεταγλωττισμένα εκτελέσιμα , καθώς και ελαχιστοποιημένα ή ασαφή σενάρια (με εξαίρεση γνωστές βιβλιοθήκες) είναι αναγκαίο να έχουν υποβάλει τις πηγές τους ξεχωριστά για αξιολόγηση. Βεβαιωθείτε ότι "
 "χρησιμοποιείτε το πεδίο μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψή της υποβολή σας."
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
 
-#: static/js/common/upload-addon.js:508
+#: static/js/common/upload-addon.js:518
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Εάν δεν είστε εξοικειωμένος με την διαδικασία αξιολόγισης στα πρόσθετα, μπορείτε να διαβάσετε γι' αυτό εδώ."
 
-#: static/js/common/upload-addon.js:545
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
 
@@ -214,7 +214,7 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "Όνομα Θέματος"
 
@@ -800,7 +800,7 @@ msgstr "Ημερομηνία"
 msgid "Other"
 msgstr "Άλλο"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
 
@@ -871,7 +871,7 @@ msgstr "Προβολή άλλων εκδόσεων"
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
 
@@ -955,35 +955,35 @@ msgstr "Οι αλλαγές αποθηκεύτηκαν"
 msgid "Enter a new author's email address"
 msgstr "Εισάγετε τη διεύθυνση νέου συντάκτη"
 
-#: static/js/zamboni/devhub.js:552
+#: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: static/js/zamboni/devhub.js:697
+#: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
-#: static/js/zamboni/devhub.js:700
+#: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} αξιολόγηση χρήστη"
 msgstr[1] "{reviews} αξιολογήσεις χρήστη"
 
-#: static/js/zamboni/devhub.js:812
+#: static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: static/js/zamboni/devhub.js:816
+#: static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "Παράδειγμα"
 
-#: static/js/zamboni/devhub.js:1146
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
-#: static/js/zamboni/devhub.js:1296
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
 
@@ -991,69 +991,64 @@ msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
 msgid "No results found."
 msgstr "Δεν βρέθηκαν αποτελέσματα."
 
-#: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr ""
-"Λυπούμαστε αλλά δεν μπορέσαμε να σας συστήσουμε κάτι που να σας ενδιαφέρει.<br>Σας παρακαλούμε να επισκεφθείτε τον <a href=\"{0}\">ιστότοπο πρόσθετων</a> για να βρείτε κάτι που να σας ταιριάζει."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Βρείτε συστάσεις&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Ενημέρωση συστάσεων&hellip;"
-
-#: static/js/zamboni/editors.js:117
+#: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
 
-#: static/js/zamboni/editors.js:167
+#: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "Η απόδειξη ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js:169
+#: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "Η απόδειξη δεν ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js:240
+#: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "Ο χρήστης {name} είδε αυτό το πρόσθετο πρώτος."
 
-#: static/js/zamboni/editors.js:251
+#: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "Γίνεται φόρτωση&hellip;"
 
-#: static/js/zamboni/editors.js:256
+#: static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js:261
+#: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "Σημειώσεις για αξιολογητές"
 
-#: static/js/zamboni/editors.js:266
+#: static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js:356
+#: static/js/zamboni/editors.js:330
+msgid "Average Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:386
+msgid "Number of Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "Σφάλμα στο φόρτωμα της μετάφρασης"
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
@@ -1096,6 +1091,22 @@ msgstr "Απορριφθέν"
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Εγκεκριμένο"
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr ""
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1159,47 +1170,47 @@ msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρ�
 msgid "Internal server error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"
 
-#: static/js/zamboni/mobile/buttons.js:50
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "Δεν έχει ενημερωθεί για τον {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:51
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Απαιτεί νεότερη έκδοση του {0}"
 
-#: static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "Δεν έχει αξιολογηθεί"
 
-#: static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Πειραματικό <span>(Μάθετε περισσότερα)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Δεν διατίθεται για τον {0}"
 
-#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Πειραματικό"
 
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "Τα θέματα απαιτούν νεότερη έκδοση του {0}"
 
-#: static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "Τα θέματα απαιτούν το {0}"
 
-#: static/js/zamboni/mobile/buttons.js:103
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "Γίνεται εγκατάσταση..."
 
-#: static/js/zamboni/mobile/buttons.js:123
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Αυτό το πρόσθετο έχει αξιολογηθεί μερικώς από την κοινότητα Mozilla"
 
-#: static/js/zamboni/mobile/buttons.js:248
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Διατήρηση"
 

@@ -4,12 +4,6 @@
 
 {% block bodyclass %}login{% endblock %}
 
-{% block js %}
-  {% if form.recaptcha %}
-    {% include "amo/recaptcha_js.html" %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 
 <div class="primary">

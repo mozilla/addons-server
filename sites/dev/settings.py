@@ -8,6 +8,15 @@ from lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+# Allow addons-dev CDN for CSP.
+DEV_CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+CSP_REPORT_URI = '/__cspreporting__'
+CSP_FONT_SRC += (DEV_CDN_HOST,)
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_IMG_SRC += (DEV_CDN_HOST,)
+CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_STYLE_SRC += (DEV_CDN_HOST,)
+
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
@@ -37,9 +46,6 @@ SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-dev-cdn.allizom.org/user-media/'
-
-CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (MEDIA_URL[:-1],)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -124,10 +130,8 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -234,3 +238,7 @@ FXA_CONFIG = {
 }
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
+RAVEN_WHITELIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']

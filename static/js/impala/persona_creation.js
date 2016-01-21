@@ -280,17 +280,13 @@
             updatePersona();
         }).trigger('change');
 
-        // Check for native `input[type=color]` support (i.e., WebKit).
-        if ($color[0].type === 'color') {
-            $('.miniColors-trigger').hide();
-        } else {
-            $color.miniColors({
-                change: function() {
-                    $color.trigger('change');
-                    updatePersona();
-                }
-            });
-        }
+        $color.minicolors({
+            dataUris: false,
+            change: function() {
+                $color.trigger('change');
+                updatePersona();
+            }
+        });
 
         $('#id_name').bind('change keyup paste blur', _.throttle(function() {
             $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));

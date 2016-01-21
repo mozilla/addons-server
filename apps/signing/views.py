@@ -53,11 +53,19 @@ def with_addon(allow_missing=False):
                     return Response({'error': _('Could not find add-on with '
                                                 'id "{}".').format(guid)},
                                     status=status.HTTP_404_NOT_FOUND)
-            if addon is not None and not addon.has_author(request.user):
+            # Call the view if there is no add-on, the current user is an
+            # auther of the add-on or the current user is an admin and the
+            # request is a GET.
+            if addon is None or (
+                    addon.has_author(request.user)
+                    or (request.method == 'GET'
+                        and acl.action_allowed_user(request.user, 'Addons',
+                                                    'Edit'))):
+                return fn(view, request, addon=addon, **kwargs)
+            else:
                 return Response(
                     {'error': _('You do not own this addon.')},
                     status=status.HTTP_403_FORBIDDEN)
-            return fn(view, request, addon=addon, **kwargs)
         return inner
     return wrapper
 
@@ -107,21 +115,21 @@ class VersionView(JWTProtectedView):
 
     @use_master
     @with_addon()
-    def get(self, request, addon, version_string, pk=None):
+    def get(self, request, addon, version_string, uuid=None):
         file_upload_qs = FileUpload.objects.filter(
             addon=addon, version=version_string)
         try:
-            if pk is None:
+            if uuid is None:
                 file_upload = file_upload_qs.latest()
                 log.info('getting latest upload for {addon} {version}: '
-                         '{file_upload.pk}'.format(
+                         '{file_upload.uuid}'.format(
                              addon=addon, version=version_string,
                              file_upload=file_upload))
             else:
-                file_upload = file_upload_qs.get(pk=pk)
-                log.info('getting specific upload for {addon} {version} {pk}: '
-                         '{file_upload.pk}'.format(
-                             addon=addon, version=version_string, pk=pk,
+                file_upload = file_upload_qs.get(uuid=uuid)
+                log.info('getting specific upload for {addon} {version} '
+                         '{uuid}: {file_upload.uuid}'.format(
+                             addon=addon, version=version_string, uuid=uuid,
                              file_upload=file_upload))
         except FileUpload.DoesNotExist:
             return Response(

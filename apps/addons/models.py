@@ -37,8 +37,6 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from reviews.models import Review
-import sharing.utils as sharing
-from stats.models import AddonShareCountTotal
 from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField, Translation)
@@ -264,8 +262,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
-    share_count = models.PositiveIntegerField(default=0, db_index=True,
-                                              db_column='sharecount')
+
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
@@ -332,9 +329,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
     mozilla_contact = models.EmailField(blank=True)
-
-    # This gets overwritten in the transformer.
-    share_counts = collections.defaultdict(int)
 
     whiteboard = models.TextField(blank=True)
 
@@ -1102,9 +1096,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
 
-        # Attach sharing stats.
-        sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
-
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
 
@@ -1818,30 +1809,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
     @classmethod
     def creatured_random(cls, category, lang):
         return get_creatured_ids(category, lang)
-
-
-class AddonRecommendation(models.Model):
-    """
-    Add-on recommendations. For each `addon`, a group of `other_addon`s
-    is recommended with a score (= correlation coefficient).
-    """
-    addon = models.ForeignKey(Addon, related_name="addon_recommendations")
-    other_addon = models.ForeignKey(Addon, related_name="recommended_for")
-    score = models.FloatField()
-
-    class Meta:
-        db_table = 'addon_recommendations'
-        ordering = ('-score',)
-
-    @classmethod
-    def scores(cls, addon_ids):
-        """Get a mapping of {addon: {other_addon: score}} for each add-on."""
-        d = {}
-        q = (AddonRecommendation.objects.filter(addon__in=addon_ids)
-             .values('addon', 'other_addon', 'score'))
-        for addon, rows in sorted_groupby(q, key=lambda x: x['addon']):
-            d[addon] = dict((r['other_addon'], r['score']) for r in rows)
-        return d
 
 
 class AddonUser(caching.CachingMixin, models.Model):

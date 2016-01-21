@@ -421,8 +421,7 @@ $(document).ready(function() {
 
 
 function initSearch() {
-    var search_results = _.template($('#queue-search-template').html());
-    var no_results = _.template($('#queue-search-empty-template').html());
+    var no_results = '<p class="no-results">' + gettext('No results found') + '</p>';
 
     var $clear = $('.clear-queue-search'),
         $appQueue = $('.search-toggle'),
@@ -430,9 +429,6 @@ function initSearch() {
         $searchIsland = $('#search-island');
 
     if ($search.length) {
-        // An underscore template for more advanced rendering.
-        var search_result_row = _.template($('#queue-search-row-template').html());
-
         var apiUrl = $search.data('api-url');
         var review_url = $search.data('review-url');
         var statuses = $searchIsland.data('statuses');
@@ -445,15 +441,15 @@ function initSearch() {
                 $clear.show();
                 // Show results.
                 if (data.meta.total_count === 0) {
-                    $searchIsland.html(no_results({})).show();
+                    $searchIsland.html(no_results).show();
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
                         item = buildThemeResultRow(item, review_url,
                                                    statuses);
-                        results.push(search_result_row(item));
+                        results.push(search_result_row_template(item));
                     });
-                    $searchIsland.html(search_results({rows: results.join('')}));
+                    $searchIsland.html(search_results_template({rows: results.join('')}));
                     $searchIsland.removeClass('hidden').show();
                 }
             });

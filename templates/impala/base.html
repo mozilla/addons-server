@@ -23,6 +23,9 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/impala') }}
+      {% if waffle.flag('restyle') %}
+        {{ css('restyle/css') }}
+      {% endif %}
       <!--[if lt IE 9]>
         <script src="{{ static('js/lib/iepp.min.js') }}"></script>
       <![endif]-->
@@ -40,7 +43,6 @@
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
-    <script src="https://cdn.optimizely.com/js/2006260574.js"></script>
     {{ js('preload') }}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} is-impala"
@@ -53,12 +55,20 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
+        data-raven-dsn="{{ settings.RAVEN_DSN }}"
+        data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
         {% if switch_is_active('fxa-auth') %}
           data-fxa-config="{{ fxa_config()|json }}"
+        {% endif %}
+        {% if waffle.flag('restyle') %}
+          class="restyle"
         {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
+      {% if waffle.flag('restyle') %}
+        <div id="background-wrapper"></div>
+      {% endif %}
       <div id="page" class="c">
         {% block site_header %}
           {% include "tabzilla.html" %}

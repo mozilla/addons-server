@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
 "PO-Revision-Date: 2015-12-21 10:26+0000\n"
 "Last-Translator: vzavadsky <vzavadsky@ukr.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,118 +26,118 @@ msgstr[2] "{0} зірок"
 msgid "There was a problem contacting the server."
 msgstr "Виникла проблема при спробі зв'язатись із сервером."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "Виберіть файл..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ваш додаток повинен закінчуватись на .xpi, .jar чи .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "{0}% завершено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} з {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "Вивантаження {0}"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "Помилка з {0}"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваш додаток не пройшов перевірку з {0} помилкою."
 msgstr[1] "Ваш додаток не пройшов перевірку з {0} помилками."
 msgstr[2] "Ваш додаток не пройшов перевірку з {0} помилками."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
 msgstr[2] "&hellip;і ще {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Переглянути повний звіт перевірки"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "Перевірка {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Отримано порожню відвідь з серверу; стан: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "Несподівана помилка серверу під час перевірки."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "Завершена перевірка {0}"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Час очікування затвердження вашого додатку завершився, він буде розглянутий вручну."
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} попередженням."
 msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
 msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
 msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ваш додаток пройшов перевірку без помилок чи застережень."
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
 msgstr "Ваше подання буде автоматично підписане."
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:466
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:467
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні вибрати Попередній Перегляд замість Повного Перегляду."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Контрольний перелік при представленні додатку"
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:481
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -145,15 +145,15 @@ msgstr ""
 "Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для перевірки окремо. Переконайтеся, що ви "
 "використовуєте поле завантаження програмного коду, щоб запобігти відхиленню вашого запиту."
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
 
-#: static/js/common/upload-addon.js:508
+#: static/js/common/upload-addon.js:518
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це тут."
 
-#: static/js/common/upload-addon.js:545
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажаль, не знайдено підтримуваних платформ."
 
@@ -218,7 +218,7 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "Ім'я вашої теми"
 
@@ -804,7 +804,7 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Спочатку виберіть програму"
 
@@ -877,7 +877,7 @@ msgstr "Дивитись інші версії"
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Лише з Firefox — Отримайте Firefox зараз!"
 
-#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
 
@@ -961,37 +961,37 @@ msgstr "Зміни збережено"
 msgid "Enter a new author's email address"
 msgstr "Введіть нову адресу ел. пошти автора"
 
-#: static/js/zamboni/devhub.js:552
+#: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: static/js/zamboni/devhub.js:697
+#: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файли"
 msgstr[2] "{files} файлів"
 
-#: static/js/zamboni/devhub.js:700
+#: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} відгук користувача"
 msgstr[1] "{reviews} відгуки користувача"
 msgstr[2] "{reviews} відгуків користувача"
 
-#: static/js/zamboni/devhub.js:812
+#: static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: static/js/zamboni/devhub.js:816
+#: static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "Приклад"
 
-#: static/js/zamboni/devhub.js:1146
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
 
-#: static/js/zamboni/devhub.js:1296
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "Повинна бути дійсна адреса ел. пошти."
 
@@ -999,68 +999,64 @@ msgstr "Повинна бути дійсна адреса ел. пошти."
 msgid "No results found."
 msgstr "Не знайдено результатів."
 
-#: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Вибачте, але ми не можемо знайти для вас яких-небудь рекомендацій.<br>Відвідайте <a href=\"{0}\">сайт додатків</a>, щоб знайти додаток, який вам підходить."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Пошук рекомендацій&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Оновлення рекомендацій&hellip;"
-
-#: static/js/zamboni/editors.js:117
+#: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name} переглядав цю сторінку першим."
 
-#: static/js/zamboni/editors.js:167
+#: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "Чек перевірено застосунком."
 
-#: static/js/zamboni/editors.js:169
+#: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "Чек не було перевірено застосунком."
 
-#: static/js/zamboni/editors.js:240
+#: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "{name} переглядав цей додаток першим."
 
-#: static/js/zamboni/editors.js:251
+#: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "Завантаження&hellip;"
 
-#: static/js/zamboni/editors.js:256
+#: static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "Примітки до версії"
 
-#: static/js/zamboni/editors.js:261
+#: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "Примітки для рецензентів"
 
-#: static/js/zamboni/editors.js:266
+#: static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "Не знайдено приміток до версії"
 
-#: static/js/zamboni/editors.js:356
+#: static/js/zamboni/editors.js:330
+msgid "Average Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:386
+msgid "Number of Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "Помилка завантаження перекладу"
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Ігнорувати це повідомлення в майбутніх оновленнях"
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Поглибленість для автоматичного підпису:"
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "Завантажується..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "залишився <b>{0}</b> символ."
@@ -1105,6 +1101,22 @@ msgstr "Відхилено"
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Затверджено"
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr ""
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1171,47 +1183,47 @@ msgstr "Завдання з перевірки не змогло заверши�
 msgid "Internal server error"
 msgstr "Внутрішня помилка сервера"
 
-#: static/js/zamboni/mobile/buttons.js:50
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "Не оновлено для {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:51
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Потребує новішу версію {0}"
 
-#: static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "Не перевірено"
 
-#: static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Експериментальне <span>(дізнатись більше)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Недоступно для {0}"
 
-#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Експериментальне"
 
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "Для тем потрібна новіша версія {0}"
 
-#: static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "Для тем потрібно {0}"
 
-#: static/js/zamboni/mobile/buttons.js:103
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "Встановлення..."
 
-#: static/js/zamboni/mobile/buttons.js:123
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Цей додаток було попередньо розглянуто Mozilla."
 
-#: static/js/zamboni/mobile/buttons.js:248
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Залишити їх"
 

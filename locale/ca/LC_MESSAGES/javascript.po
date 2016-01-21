@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-06 14:15-0700\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
 "PO-Revision-Date: 2012-06-22 09:07+0200\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,128 +23,128 @@ msgstr[1] "{0} estrelles"
 msgid "There was a problem contacting the server."
 msgstr "S'ha produït un problema en contactar amb el servidor."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "El vostre complement ha d'acabar amb .xpi, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "{0}% completat"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "S'està pujant {0}"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "Error amb {0}"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "El vostre complement no ha passat la validació i ha generat {0} error."
 msgstr[1] "El vostre complement no ha passat la validació i ha generat {0} errors."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;i {0} altres"
 msgstr[1] "&hellip;i {0} altres"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Consulteu l'informe de validació complet"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "S'està validant {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S'ha rebut una resposta buida des del servidor; l'estat: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "S'ha produït un error del servidor inesperat durant la validació."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "Ha finalitzat la validació de {0}"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:466
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:467
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:481
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:508
+#: static/js/common/upload-addon.js:518
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
 
-#: static/js/common/upload-addon.js:545
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr "Creative Commons Reconeixement-NoDerivats 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Reconeixement-CompartirIgual 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr ""
 
@@ -795,7 +795,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Altres"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1245 static/js/zamboni/editors.js:291
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Primer cal que seleccioneu una aplicació"
 
@@ -866,7 +866,7 @@ msgstr "Vegeu altres versions"
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ho sentim, necessiteu un navegador basat en Mozilla (com ara el Firefox) per instal·lar un connector de cerca."
 
@@ -950,35 +950,35 @@ msgstr "S'han desat els canvis"
 msgid "Enter a new author's email address"
 msgstr "Introduïu una nova adreça electrònica d'autor"
 
-#: static/js/zamboni/devhub.js:552
+#: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
 msgstr "S'ha produït un error en pujar el fitxer."
 
-#: static/js/zamboni/devhub.js:697
+#: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fitxer"
 msgstr[1] "{files} fitxers"
 
-#: static/js/zamboni/devhub.js:700
+#: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:812
+#: static/js/zamboni/devhub.js:814
 msgid "Learn more"
 msgstr "Més informació"
 
-#: static/js/zamboni/devhub.js:816
+#: static/js/zamboni/devhub.js:818
 msgid "Example"
 msgstr "Exemple"
 
-#: static/js/zamboni/devhub.js:1146
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "S'estan processant els canvis a la imatge"
 
-#: static/js/zamboni/devhub.js:1296
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "Cal que sigui una adreça electrònica vàlida."
 
@@ -986,68 +986,64 @@ msgstr "Cal que sigui una adreça electrònica vàlida."
 msgid "No results found."
 msgstr "No s'ha trobat cap resultat."
 
-#: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "No us hem trobat cap recomanació.<br>Visiteu el <a href=\"{0}\">lloc web de complements</a> per trobar-hi el que cerqueu."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "S'estan cercant recomanacions&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "S'estan actualitzant les recomanacions&hellip;"
-
-#: static/js/zamboni/editors.js:117
+#: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name} ha visitat aquesta pàgina per primer cop."
 
-#: static/js/zamboni/editors.js:167
+#: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "L'aplicació ha revisat el rebut."
 
-#: static/js/zamboni/editors.js:169
+#: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "L'aplicació no ha revisat el rebut."
 
-#: static/js/zamboni/editors.js:240
+#: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava mirant aquest complement primer."
 
-#: static/js/zamboni/editors.js:251
+#: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "S'està carregant&hellip;"
 
-#: static/js/zamboni/editors.js:256
+#: static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "Notes de la versió"
 
-#: static/js/zamboni/editors.js:261
+#: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "Notes per als revisors"
 
-#: static/js/zamboni/editors.js:266
+#: static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "No s'han trobat les notes de la versió"
 
-#: static/js/zamboni/editors.js:356
+#: static/js/zamboni/editors.js:330
+msgid "Average Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:386
+msgid "Number of Reviews"
+msgstr ""
+
+#: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr ""
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "S'està carregant..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> caràcter restant."
@@ -1089,6 +1085,22 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
+msgstr ""
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
 msgstr ""
 
 #: static/js/zamboni/validator.js:80
@@ -1153,47 +1165,47 @@ msgstr "El procés de validació no s'ha pogut completar o s'ha completat amb er
 msgid "Internal server error"
 msgstr "Error intern del servidor"
 
-#: static/js/zamboni/mobile/buttons.js:50
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "No actualitzat per a {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:51
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Requereix una nova versió de {0}"
 
-#: static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "No revisat"
 
-#: static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimental <span>(més informació)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:54 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "No disponible per a {0}"
 
-#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Experimental"
 
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile/buttons.js:103
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "S'està instal·lant..."
 
-#: static/js/zamboni/mobile/buttons.js:123
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Aquest complement ha estat revisat de manera preliminar per Mozilla."
 
-#: static/js/zamboni/mobile/buttons.js:248
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Conserva-ho"
 

@@ -448,6 +448,9 @@ DOMAIN_METHODS = {
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'restyle/css': (
+            'css/restyle.less',
+        ),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -503,7 +506,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/colorpicker.less',
+            'css/impala/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -584,6 +587,8 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -630,6 +635,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
 
@@ -654,13 +663,15 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-1.12.0.js',
             'js/lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
@@ -720,6 +731,10 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
@@ -746,7 +761,7 @@ MINIFY_BUNDLES = {
             'js/common/fxa-login.js',
         ],
         'zamboni/discovery': (
-            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-1.12.0.js',
             'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
@@ -794,6 +809,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/editors.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
         'zamboni/files': (
@@ -818,13 +834,14 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/storage.js',
+            'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
         ),
         'zamboni/localizers': (
             'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.9.1.js',
+            'js/lib/jquery-1.12.0.js',
             'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
@@ -832,6 +849,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
+            'js/zamboni/analytics.js',
             'js/lib/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/lib/truncate.js',
@@ -1230,19 +1248,57 @@ USE_HEKA_FOR_TASTYPIE = False
 CEF_PRODUCT = "amo"
 
 # CSP Settings
+
+PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
+ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+
 CSP_REPORT_URI = '/services/csp/report'
 CSP_REPORT_ONLY = True
+CSP_EXCLUDE_URL_PREFIXES = ()
 
-CSP_DEFAULT_SRC = ("*", "data:")
-CSP_SCRIPT_SRC = ("'self'",
-                  "https://www.google.com",  # Recaptcha
-                  "https://www.paypalobjects.com",
-                  "https://ssl.google-analytics.com",
-                  )
-CSP_STYLE_SRC = ("*", "'unsafe-inline'")
+# NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
+# will default to being open to anything.
+CSP_DEFAULT_SRC = (
+    "'none'",
+)
+CSP_CONNECT_SRC = (
+    "'self'",
+    'https://sentry.prod.mozaws.net',
+)
+CSP_FONT_SRC = (
+    "'self'",
+    PROD_CDN_HOST,
+)
+CSP_FRAME_SRC = (
+    "'self'",
+    'https://www.paypal.com',
+    'https://www.google.com/recaptcha/',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'data:',  # Used in inlined mobile css.
+    'blob:',  # Needed for image uploads.
+    'https://www.paypal.com',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+    'https://ssl.gstatic.com/',
+    'https://sentry.prod.mozaws.net',
+)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
-
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'https://www.paypalobjects.com',
+    'https://apis.google.com',
+    'https://www.google.com/recaptcha/',
+    'https://www.gstatic.com/recaptcha/',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    PROD_CDN_HOST,
+)
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
@@ -1284,13 +1340,10 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA: overload all three statements to local_settings.py with your keys.
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
-RECAPTCHA_AJAX_URL = (
-    'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
+# RECAPTCHA: overload the following key setttings in local_settings.py
+# with your keys.
+NOBOT_RECAPTCHA_PUBLIC_KEY = ''
+NOBOT_RECAPTCHA_PRIVATE_KEY = ''
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
@@ -1488,11 +1541,6 @@ BASKET_URL = 'https://basket.mozilla.com'
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
-
-# Monolith settings.
-MONOLITH_SERVER = None
-MONOLITH_INDEX = 'time_*'
-MONOLITH_MAX_DATE_RANGE = 365
 
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.

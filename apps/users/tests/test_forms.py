@@ -427,7 +427,7 @@ class TestUserLoginForm(UserFormBase):
         assert u.last_login_ip != '127.0.0.1'
         assert u.last_login_attempt == t or u.last_login_attempt > t
 
-    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
     def test_recaptcha_errors_only(self):
         """Only recaptcha errors should be returned if validation fails.
 
@@ -568,7 +568,7 @@ class TestUserRegisterForm(UserFormBase):
             'homepage': ''
         }
 
-    @patch('captcha.fields.ReCaptchaField.clean')
+    @patch('amo.fields.ReCaptchaField.clean')
     def test_success(self, clean):
         clean.return_value = ''
 

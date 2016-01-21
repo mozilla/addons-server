@@ -1,7 +1,4 @@
-import array
-import itertools
 import logging
-import operator
 import os
 import time
 from datetime import datetime, timedelta
@@ -26,7 +23,6 @@ from stats.models import ThemeUserCount, UpdateCount
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
-recs_log = logging.getLogger('z.recs')
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
@@ -91,6 +87,9 @@ def _update_addons_current_version(data, **kw):
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT addon_id, AVG(`count`)
@@ -110,6 +109,9 @@ def update_addon_average_daily_users():
 @task
 def _update_addon_average_daily_users(data, **kw):
     task_log.info("[%s] Updating add-ons ADU totals." % (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
 
     for pk, count in data:
         try:
@@ -133,6 +135,9 @@ def _update_addon_average_daily_users(data, **kw):
 @cronjobs.register
 def update_daily_theme_user_counts():
     """Store the day's theme popularity counts into ThemeUserCount."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     d = Persona.objects.values_list('addon', 'popularity').order_by('id')
 
@@ -148,6 +153,9 @@ def _update_daily_theme_user_counts(data, **kw):
     task_log.info("[%s] Updating daily theme user counts for %s."
                   % (len(data), kw['date']))
 
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     for pk, count in data:
         ThemeUserCount.objects.create(addon_id=pk, count=count,
                                       date=datetime.now())
@@ -156,6 +164,9 @@ def _update_daily_theme_user_counts(data, **kw):
 @cronjobs.register
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     cursor = connections[multidb.get_slave()].cursor()
     # We need to use SQL for this until
     # http://code.djangoproject.com/ticket/11003 is resolved
@@ -179,6 +190,9 @@ def update_addon_download_totals():
 def _update_addon_download_totals(data, **kw):
     task_log.info('[%s] Updating add-ons download+average totals.' %
                   (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
 
     for pk, avg, sum in data:
         try:
@@ -278,8 +292,8 @@ def _update_appsupport(ids, **kw):
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
+    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
+         Q(version__addon__disabled_by_user=True))
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
@@ -294,8 +308,8 @@ def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
     log = logging.getLogger('z.files.disabled')
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
+    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
+         Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
@@ -306,8 +320,8 @@ def unhide_disabled_files():
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
-                if (file_.version.addon.status in amo.MIRROR_STATUSES
-                        and file_.status in amo.MIRROR_STATUSES):
+                if (file_.version.addon.status in amo.MIRROR_STATUSES and
+                        file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning(u'File object does not exist for: %s.' % filepath)
@@ -346,25 +360,6 @@ def deliver_hotness():
                 addon.update(hotness=0)
         # Let the database catch its breath.
         time.sleep(10)
-
-
-def _group_addons(qs):
-    # qs is a list of (addon_id, collection_id) order by addon_id.
-    # Return a dict of {addon_id: [collection_id]}.
-    addons = {}
-    for addon, collections in itertools.groupby(qs, operator.itemgetter(0)):
-        # Skip addons in < 3 collections since we'll be overfitting
-        # recommendations to exactly what's in those collections.
-        cs = [c[1] for c in collections]
-        if len(cs) > 3:
-            # array.array() lets us calculate similarities much faster.
-            addons[addon] = array.array('l', cs)
-    # Don't generate recs for frozen add-ons.
-    for addon in FrozenAddon.objects.values_list('addon', flat=True):
-        if addon in addons:
-            recs_log.info('Skipping frozen addon %s.' % addon)
-            del addons[addon]
-    return addons
 
 
 @cronjobs.register

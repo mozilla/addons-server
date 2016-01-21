@@ -38,8 +38,6 @@ SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
 MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://*.paypal.com",)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -127,10 +125,8 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
@@ -194,7 +190,7 @@ SENTRY_DSN = env('SENTRY_DSN')
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_ENABLE = False
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
@@ -206,3 +202,7 @@ VALIDATOR_TIMEOUT = 360
 ES_DEFAULT_NUM_SHARDS = 10
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
+RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
