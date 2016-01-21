@@ -173,11 +173,45 @@ class TestUserEditForm(UserFormBase):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         self.url = reverse('users.edit')
 
-    def test_no_names(self):
+    def test_no_username_or_display_name(self):
+        assert not self.user.has_anonymous_username()
         data = {'username': '',
-                'email': 'jbalogh@mozilla.com', }
-        r = self.client.post(self.url, data)
-        self.assertFormError(r, 'form', 'username', 'This field is required.')
+                'email': 'jbalogh@mozilla.com',
+                'lang': 'pt-BR'}
+        response = self.client.post(self.url, data)
+        self.assertNoFormErrors(response)
+        assert self.user.reload().has_anonymous_username()
+
+    def test_change_username(self):
+        assert self.user.username != 'new-username'
+        data = {'username': 'new-username',
+                'email': 'jbalogh@mozilla.com',
+                'lang': 'fr'}
+        response = self.client.post(self.url, data)
+        self.assertNoFormErrors(response)
+        assert self.user.reload().username == 'new-username'
+
+    def test_no_username_anonymous_does_not_change(self):
+        """Test that username isn't required with auto-generated usernames and
+        the auto-generated value does not change."""
+        username = self.user.anonymize_username()
+        self.user.save()
+        data = {'username': '',
+                'email': 'jbalogh@mozilla.com',
+                'lang': 'en-US'}
+        response = self.client.post(self.url, data)
+        self.assertNoFormErrors(response)
+        assert self.user.reload().username == username
+
+    def test_fxa_id_cannot_be_set(self):
+        assert self.user.fxa_id is None
+        data = {'username': 'blah',
+                'email': 'jbalogh@mozilla.com',
+                'fxa_id': 'yo',
+                'lang': 'en-US'}
+        response = self.client.post(self.url, data)
+        self.assertNoFormErrors(response)
+        assert self.user.reload().fxa_id is None
 
     def test_no_real_name(self):
         data = {'username': 'blah',
@@ -271,9 +305,9 @@ class TestUserEditForm(UserFormBase):
 
     def test_required_attrs(self):
         res = self.client.get(self.url)
-        username_input = pq(res.content.decode('utf-8'))('#id_username')
-        eq_(username_input.attr('required'), 'required')
-        eq_(username_input.attr('aria-required'), 'true')
+        email_input = pq(res.content.decode('utf-8'))('#id_email')
+        eq_(email_input.attr('required'), 'required')
+        eq_(email_input.attr('aria-required'), 'true')
 
     def test_existing_email(self):
         data = {'email': 'testo@example.com'}
@@ -455,7 +489,6 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         msg = "This field is required."
         self.assertFormError(r, 'form', 'email', msg)
-        self.assertFormError(r, 'form', 'username', msg)
 
     def test_register_existing_account(self):
         data = {'email': 'jbalogh@mozilla.com',
