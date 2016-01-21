@@ -12,7 +12,6 @@ def sharing_widget(context, obj, condensed=False):
 
     c.update({
         'condensed': condensed,
-        'base_url': obj.share_url(),
         'services': services,
         'obj': obj,
     })

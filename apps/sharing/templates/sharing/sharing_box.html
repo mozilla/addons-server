@@ -4,11 +4,9 @@
       {% for service in services %}
         <li class="{{ service.shortname }}">
           <span class="share-link">
-            <a class="uniquify" target="_self">
+            <a class="uniquify" target="_self" data-service-name="{{ service.shortname }}">
               {{ service.label }}
             </a>
-          </span>
-          <span class="share-count">
           </span>
         </li>
       {% endfor %}

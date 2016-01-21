@@ -759,8 +759,12 @@ $(document).ready(function () {
         callback: function(obj) {
             var ret = {};
             var el = $(obj.click_target);
-            var $popup = this;
             var base_url = el.attr('data-base-url');
+            var $popup = this;
+            $popup.find('a.uniquify').each(function(index, item) {
+                var $item = $(item);
+                $item.attr('href', base_url + $item.attr('data-service-name'));
+            });
             $popup.hideMe();
             ret.pointTo = obj.click_target;
             return ret;
