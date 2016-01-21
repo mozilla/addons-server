@@ -100,7 +100,8 @@ def sign_addons(addon_ids, force=False, **kw):
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
-        return Q(version__apps__max__application=amo.FIREFOX.id,
+        return Q(version__apps__max__application__in=[amo.FIREFOX.id,
+                                                      amo.ANDROID.id],
                  version__apps__max__version_int__gte=version_int(version))
 
     is_default_compatible = Q(binary_components=False,

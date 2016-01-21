@@ -389,17 +389,17 @@ class TestTasks(amo.tests.TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.PRELIMINARY_SIGNING_SERVER)
 
+    def assert_not_signed(self, mock_sign_file, file_hash):
+        assert not mock_sign_file.called
+        self.version.reload()
+        assert self.version.version == '1.3'
+        assert self.version.version_int == version_int('1.3')
+        assert file_hash == self.file_.generate_hash()
+        self.assert_no_backup()
+
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
         """Don't sign files which are too old, or not default to compatible."""
-        def not_signed():
-            assert not mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3'
-            assert self.version.version_int == version_int('1.3')
-            assert file_hash == self.file_.generate_hash()
-            self.assert_no_backup()
-
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
                                  self.file_.file_path):
             file_hash = self.file_.generate_hash()
@@ -409,19 +409,43 @@ class TestTasks(amo.tests.TestCase):
             # Too old, don't sign.
             self.set_max_appversion('1')  # Very very old.
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_not_signed(mock_sign_file, file_hash)
 
             # MIN_D2C_VERSION, but strict compat: don't sign.
             self.set_max_appversion(settings.MIN_D2C_VERSION)
             self.file_.update(strict_compatibility=True)
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_not_signed(mock_sign_file, file_hash)
 
             # MIN_D2C_VERSION, but binary component: don't sign.
             self.file_.update(strict_compatibility=False,
                               binary_components=True)
             tasks.sign_addons([self.addon.pk])
-            not_signed()
+            self.assert_not_signed(mock_sign_file, file_hash)
+
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_dont_sign_dont_bump_other_applications(self, mock_sign_file):
+        """Don't sign files which are for applications we don't sign for."""
+        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
+                                 self.file_.file_path):
+            file_hash = self.file_.generate_hash()
+            assert self.version.version == '1.3'
+            assert self.version.version_int == version_int('1.3')
+
+            # We don't sign for Seamonkey.
+            self.max_appversion.update(application=amo.SEAMONKEY.id)
+            tasks.sign_addons([self.addon.pk])
+            self.assert_not_signed(mock_sign_file, file_hash)
+
+            # Firefox for android? Sign.
+            self.max_appversion.update(application=amo.ANDROID.id)
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.called
+            self.version.reload()
+            assert self.version.version == '1.3.1-signed'
+            assert self.version.version_int == version_int('1.3.1-signed')
+            assert file_hash != self.file_.generate_hash()
+            self.assert_backup()
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
