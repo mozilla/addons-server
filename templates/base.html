@@ -46,7 +46,7 @@
 
     {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} {% if waffle.flag('restyle') %}restyle{% endif %}"
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}{% if waffle.flag('restyle') %} restyle{% endif %}"
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
