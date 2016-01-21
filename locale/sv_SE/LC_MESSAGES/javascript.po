@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2015-12-03 17:45+0000\n"
+"PO-Revision-Date: 2016-01-21 22:03+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -90,7 +90,8 @@ msgstr "Validering klar för {0}"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Ditt tilläggs validering gjorde timeout, det kommer att granskas manuellt."
+msgstr ""
+"Ditt tilläggs validering gjorde timeout, det kommer att granskas manuellt."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
@@ -114,39 +115,63 @@ msgstr "Ditt bidrag kommer att signeras automatiskt."
 
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Inkludera detaljerade versionsanteckningar (detta kan göras i nästa steg)."
+msgstr ""
+"Inkludera detaljerade versionsanteckningar (detta kan göras i nästa steg)."
 
 #: static/js/common/upload-addon.js:466
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt testat, inkludera ett test användarnamn och lösenord i meddelande till granskaren (detta kan göras i nästa steg)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
+msgstr ""
+"Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt "
+"testat, inkludera ett test användarnamn och lösenord i meddelande till "
+"granskaren (detta kan göras i nästa steg)."
 
 #: static/js/common/upload-addon.js:467
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Om ditt tillägg är avsedd för en begränsad publik bör du välja preliminär granskning istället för fullständig granskning."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
+msgstr ""
+"Om ditt tillägg är avsedd för en begränsad publik bör du välja preliminär "
+"granskning istället för fullständig granskning."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Checklista för att skicka in tillägg"
 
 #: static/js/common/upload-addon.js:481
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta kommer att minimera förseningar eller missförstånd under granskningsprocessen:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
+msgstr ""
+"Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta "
+"kommer att minimera förseningar eller missförstånd under "
+"granskningsprocessen:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
 msgstr ""
-"Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
-"källkoden för att undvika att ditt bidrag avvisas."
+"Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive"
+" kända bibliotek) måste skicka in sina källor separat för granskning. Se "
+"till att du använder uppladdningsfältet för källkoden för att undvika att "
+"ditt bidrag avvisas."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
 #: static/js/common/upload-addon.js:518
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
+msgstr ""
+"Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det "
+"här."
 
 #: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
@@ -289,11 +314,13 @@ msgstr "{0} återbetalningar"
 msgid "{0} installs"
 msgstr "{0} installationer"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Nedladdningar"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Dagliga användare"
 
@@ -350,11 +377,13 @@ msgstr "Prenumeranter"
 msgid "Ratings"
 msgstr "Betyg"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Försäljning"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Installationer"
 
@@ -386,7 +415,8 @@ msgstr "Sökförslag"
 msgid "Search Results"
 msgstr "Sökresultat"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Hemsida promo"
 
@@ -414,7 +444,8 @@ msgstr "Detaljsida (nederst)"
 msgid "Detail Page (Development Channel)"
 msgstr "Detaljsida (utvecklingskanal)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Används ofta med"
 
@@ -498,7 +529,8 @@ msgstr "Bläddringslista: Sorterad efter popularitet"
 msgid "Browse Listing Updated Sort"
 msgstr "Bläddringslista: Sorterad efter uppdaterad"
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Bläddringslista: Sorterad efter bubblare"
 
@@ -778,7 +810,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> de senaste {1} dagarna"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> mellan {1} och {2}"
 
@@ -799,15 +832,18 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Andra"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
+#: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Välj en applikation först"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Ställ in tillägget {0} till maxversion på {1} och mejla utvecklaren."
-msgstr[1] "Ställ in tillägget {0} till maxversion på {1} och mejla utvecklarna."
+msgstr[0] ""
+"Ställ in tillägget {0} till maxversion på {1} och mejla utvecklaren."
+msgstr[1] ""
+"Ställ in tillägget {0} till maxversion på {1} och mejla utvecklarna."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -837,8 +873,10 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Du måste använda Firefox 10.0 eller senare."
 
 #: static/js/zamboni/buttons.js:129
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla har markerat denna version som inkompatibel med din Firefox-version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla har markerat denna version som inkompatibel med din Firefox-version."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:210
@@ -871,8 +909,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Endast med Firefox — Hämta Firefox nu!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Tyvärr, du behöver en Mozillabaserad webbläsare (som Firefox) för att installera ett söktillägg."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Tyvärr, du behöver en Mozillabaserad webbläsare (som Firefox) för att "
+"installera ett söktillägg."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1024,11 +1066,11 @@ msgstr "Inga versionsanteckningar hittades"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr ""
+msgstr "Genomsnittliga omdömen"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Antal recensioner"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
@@ -1054,8 +1096,12 @@ msgstr[0] "<b>{0}</b> tecken kvar."
 msgstr[1] "<b>{0}</b> tecken kvar."
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll på webbplatsen. Vänligen kom tillbaka lite senare."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Den här funktionen är tillfälligt inaktiverad under tiden vi utför underhåll"
+" på webbplatsen. Vänligen kom tillbaka lite senare."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1093,19 +1139,19 @@ msgstr "Godkänd"
 
 #: static/js/zamboni/themes_review.js:424
 msgid "No results found"
-msgstr ""
+msgstr "Inga resultat hittades"
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
-msgstr ""
+msgstr "Granskare"
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1119,7 +1165,8 @@ msgstr "Dessa tester kördes inte."
 msgid "Tests"
 msgstr "Tester"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Fel"
 
@@ -1185,7 +1232,8 @@ msgstr "Ej granskad"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimentell <span>(Läs mer)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Inte tillgänglig för {0}"
 
