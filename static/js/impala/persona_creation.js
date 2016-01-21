@@ -281,7 +281,7 @@
         }).trigger('change');
 
         $color.minicolors({
-            dataUris: false,
+            dataUris: true,
             change: function() {
                 $color.trigger('change');
                 updatePersona();
