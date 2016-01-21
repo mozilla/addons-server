@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 from django.utils.safestring import mark_safe
 
-import captcha.fields
+from amo.fields import ReCaptchaField
 import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -70,13 +70,13 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
                                widget=PasswordMixin.widget(render_value=False,
                                                            required=True))
     rememberme = forms.BooleanField(required=False)
-    recaptcha = captcha.fields.ReCaptchaField()
+    recaptcha = ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
                                          required=False)
 
     def __init__(self, request=None, use_recaptcha=False, *args, **kw):
         super(AuthenticationForm, self).__init__(*args, **kw)
-        if not use_recaptcha or not settings.RECAPTCHA_PRIVATE_KEY:
+        if not use_recaptcha or not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
     def clean(self):
@@ -278,7 +278,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     password2 = forms.CharField(max_length=255,
                                 widget=PasswordMixin.widget(render_value=False,
                                                             required=True))
-    recaptcha = captcha.fields.ReCaptchaField()
+    recaptcha = ReCaptchaField()
     homepage = forms.URLField(label=_lazy(u'Homepage'), required=False)
 
     class Meta:
@@ -289,7 +289,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
 
-        if not settings.RECAPTCHA_PRIVATE_KEY:
+        if not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
         errors = {'invalid': _('This URL has an invalid format. '

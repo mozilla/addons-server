@@ -17,7 +17,8 @@
         {{ abuse_form.text.errors }}
       </li>
       {% if abuse_form.has_recaptcha %}
-        {{ recaptcha(abuse_form) }}
+        {{ abuse_form.recaptcha }}
+        {{ abuse_form.recaptcha.errors }}
       {% endif %}
       <li class="footer-submit">
         <button type="submit">{{ _('Send Report') }}</button>

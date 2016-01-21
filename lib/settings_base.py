@@ -1272,6 +1272,7 @@ CSP_FONT_SRC = (
 CSP_FRAME_SRC = (
     "'self'",
     'https://www.paypal.com',
+    'https://www.google.com/recaptcha/',
 )
 CSP_IMG_SRC = (
     "'self'",
@@ -1280,13 +1281,16 @@ CSP_IMG_SRC = (
     'https://www.paypal.com',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
+    'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (
     "'self'",
-    'https://www.google.com',  # Recaptcha
     'https://www.paypalobjects.com',
+    'https://apis.google.com',
+    'https://www.google.com/recaptcha/',
+    'https://www.gstatic.com/recaptcha/',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
@@ -1336,13 +1340,10 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA: overload all three statements to local_settings.py with your keys.
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
-RECAPTCHA_AJAX_URL = (
-    'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
+# RECAPTCHA: overload the following key setttings in local_settings.py
+# with your keys.
+NOBOT_RECAPTCHA_PUBLIC_KEY = ''
+NOBOT_RECAPTCHA_PRIVATE_KEY = ''
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True

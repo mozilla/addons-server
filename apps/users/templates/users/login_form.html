@@ -33,7 +33,8 @@
         </li>
         {% if form.recaptcha %}
           {{ form.recaptcha_shown }}
-          {{ recaptcha(form) }}
+          {{ form.recaptcha }}
+          {{ form.recaptcha.errors }}
         {% endif %}
       </ul>
       <div class="listing-footer footer c">

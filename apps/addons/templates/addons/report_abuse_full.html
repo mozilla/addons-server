@@ -3,7 +3,6 @@
 {% set title = 'Report abuse for {0}'|fe(addon.name) %}
 {% block bodyclass %}gutter abuse{% endblock %}
 {% block title %}{{ page_title(title) }}{% endblock %}
-{% block js %}{% include("amo/recaptcha_js.html") %}{% endblock %}
 {% block content %}
 <header>
   {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
