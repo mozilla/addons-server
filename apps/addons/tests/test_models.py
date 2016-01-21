@@ -515,12 +515,10 @@ class TestAddonModels(amo.tests.TestCase):
         guid = addon.guid
         addon.delete('bye')
         assert addon_count == Addon.unfiltered.count()  # Soft deletion.
-        if guid:  # Could be None: Personas don't have GUIDs.
-            assert BlacklistedGuid.objects.filter(guid=guid)
         assert addon.status == amo.STATUS_DELETED
         assert addon.slug is None
         assert addon.current_version is None
-        assert addon.guid is None
+        assert addon.guid == guid  # We don't clear it anymore.
         deleted_count = Addon.unfiltered.filter(
             status=amo.STATUS_DELETED).count()
         assert len(mail.outbox) == deleted_count
@@ -574,12 +572,10 @@ class TestAddonModels(amo.tests.TestCase):
         """
         count = Addon.objects.count()
         addon = Addon.objects.get(pk=3615)
-        guid = addon.guid  # Save for after add-on deletion.
         addon.status = amo.STATUS_UNREVIEWED
         addon.highest_status = 0
         addon.delete('bye')
         eq_(len(mail.outbox), 1)
-        assert BlacklistedGuid.objects.filter(guid=guid)
         assert count == Addon.unfiltered.count()
 
     def test_delete_incomplete(self):
@@ -591,7 +587,6 @@ class TestAddonModels(amo.tests.TestCase):
         a.save()
         a.delete(None)
         eq_(len(mail.outbox), 0)
-        assert not BlacklistedGuid.objects.filter(guid=a.guid)
         eq_(Addon.unfiltered.count(), count - 1)
 
     def test_delete_searchengine(self):
@@ -2033,11 +2028,45 @@ class TestAddonFromUpload(UploadTest):
                             'addons', basename)
 
     def test_blacklisted_guid(self):
+        """New deletions won't be added to BlacklistedGuid but legacy support
+        should still be tested."""
         BlacklistedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
             Addon.from_upload(self.get_upload('extension.xpi'),
                               [self.platform])
-        eq_(e.exception.messages, ['Duplicate add-on ID found.'])
+        assert e.exception.messages == ['Duplicate add-on ID found.']
+
+    def test_existing_guid(self):
+        # Upload addon so we can delete it.
+        deleted = Addon.from_upload(self.get_upload('extension.xpi'),
+                                    [self.platform])
+        deleted.update(status=amo.STATUS_PUBLIC)
+        deleted.delete()
+        assert deleted.guid == 'guid@xpi'
+
+        # Now upload the same add-on again (so same guid).
+        with self.assertRaises(forms.ValidationError) as e:
+            Addon.from_upload(self.get_upload('extension.xpi'),
+                              [self.platform])
+        assert e.exception.messages == ['Duplicate add-on ID found.']
+
+    def test_existing_guid_same_author(self):
+        # Upload addon so we can delete it.
+        deleted = Addon.from_upload(self.get_upload('extension.xpi'),
+                                    [self.platform])
+        # Claim the add-on.
+        AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
+        deleted.update(status=amo.STATUS_PUBLIC)
+        deleted.delete()
+        assert deleted.guid == 'guid@xpi'
+
+        # Now upload the same add-on again (so same guid), checking no
+        # validationError is raised this time.
+        addon = Addon.from_upload(self.get_upload('extension.xpi'),
+                                  [self.platform])
+        deleted.reload()
+        assert addon.guid == 'guid@xpi'
+        assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
 
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),

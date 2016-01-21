@@ -87,7 +87,7 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('#modal-delete p').eq(0).text(),
             'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted again, even by you.')
+            'and prevent its GUID from being submitted again by others.')
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
@@ -99,7 +99,7 @@ class TestVersion(amo.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('#modal-delete p').eq(0).text(),
             'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted again, even by you.')
+            'and prevent its GUID from being submitted again by others.')
 
     def test_delete_message_incomplete(self):
         """

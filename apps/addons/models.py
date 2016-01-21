@@ -427,9 +427,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # need to make sure that the logs created below aren't cascade
             # deleted!
 
-            if self.guid:
-                log.debug('Adding guid to blacklist: %s' % self.guid)
-                BlacklistedGuid(guid=self.guid, comments=msg).save()
             log.debug('Deleting add-on: %s' % self.id)
 
             to = [settings.FLIGTAR]
@@ -478,7 +475,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
             # The last parameter is needed to automagically create an AddonLog.
             amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
-                        _current_version=None, guid=None)
+                        _current_version=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
@@ -497,7 +494,14 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
     @classmethod
     def initialize_addon_from_upload(cls, data, is_listed=True):
         fields = cls._meta.get_all_field_names()
+        # Reclaim GUID from deleted add-on.
+        try:
+            old_guid_addon = Addon.unfiltered.get(guid=data['guid'])
+            old_guid_addon.update(guid=None)
+        except ObjectDoesNotExist:
+            old_guid_addon = None
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
+
         addon.status = amo.STATUS_NULL
         addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
@@ -508,12 +512,15 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
 
+        addon.save()
+        if old_guid_addon:
+            old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
+            old_guid_addon.save()
         return addon
 
     @classmethod
     def create_addon_from_upload_data(cls, data, user=None, **kwargs):
         addon = cls.initialize_addon_from_upload(data, **kwargs)
-        addon.save()
         AddonUser(addon=addon, user=user).save()
         return addon
 
@@ -528,8 +535,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
         addon = cls.initialize_addon_from_upload(
             is_listed=is_listed, data=data)
         if upload.validation_timeout:
-            addon.admin_review = True
-        addon.save()
+            addon.update(admin_review=True)
         Version.from_upload(upload, addon, platforms, source=source)
 
         amo.log(amo.LOG.CREATE_ADDON, addon)
