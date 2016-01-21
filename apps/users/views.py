@@ -576,6 +576,8 @@ def themes(request, user, category=None):
 
 @anonymous_csrf
 def register(request):
+    if waffle.switch_is_active('fxa-auth'):
+        return login(request)
 
     if request.user.is_authenticated():
         messages.info(request, _('You are already logged in to an account.'))

@@ -900,6 +900,12 @@ class TestRegistration(UserViewBase):
             user = UserProfile.objects.get(email='new@example.com')
             eq_(user.lang, 'fr')
 
+    def test_fxa_auth_enabled(self):
+        """When FxA is enabled it should render the login page."""
+        amo.tests.create_switch('fxa-auth', active=True)
+        response = self.client.get(reverse('users.register'))
+        self.assertContains(response, 'Enter your email')
+
 
 class TestProfileView(UserViewBase):
 

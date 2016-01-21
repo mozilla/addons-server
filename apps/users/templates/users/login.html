@@ -9,7 +9,11 @@
 <div class="primary">
   {% include "users/login_help.html" %}
   <section class="island hero primary grid prettyform">
-    <h1>{{ _('Log In') }}</h1>
+    {% if switch_is_active('fxa-auth') %}
+      <h1>{{ _('Enter your email') }}</h1>
+    {% else %}
+      <h1>{{ _('Log In') }}</h1>
+    {% endif %}
     {% include "users/login_form.html" %}
   </section>
 </div>
