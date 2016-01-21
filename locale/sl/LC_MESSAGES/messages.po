@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-21 14:17+0000\n"
+"PO-Revision-Date: 2016-01-21 14:58+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2176,11 +2176,11 @@ msgstr "Poročila o večji zlorabi"
 
 #: apps/amo/log.py:433
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} je recenzent eskaliral."
+msgstr "Dodatek {addon} je pregledovalec označil za dodatni pregled."
 
 #: apps/amo/log.py:434
 msgid "Reviewer escalation"
-msgstr "Eskalacija recenzenta"
+msgstr "Označeno za dodaten pregled"
 
 #: apps/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video."
@@ -2200,11 +2200,11 @@ msgstr "Dodane naprave"
 
 #: apps/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Recenzent je ročno spremenil podporo za naprave za {addon}."
+msgstr "Pregledovalec je ročno spremenil podporo za naprave za {addon}."
 
 #: apps/amo/log.py:458
 msgid "Device(s) Changed by Reviewer"
-msgstr "Recenzent spremenil napravo(e)"
+msgstr "Pregledovalec spremenil napravo(e)"
 
 #: apps/amo/log.py:475
 msgid "Created: {0}."
@@ -2253,11 +2253,11 @@ msgstr "Uporabnik {0.name} odstranil iz {group}."
 
 #: apps/amo/log.py:545
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Recenzent je ročno spremenil minimalne zahteve za {addon}."
+msgstr "Pregledovalec je ročno spremenil minimalne zahteve za {addon}."
 
 #: apps/amo/log.py:546
 msgid "Requirements Changed by Reviewer"
-msgstr "Recenzent je spremenil zahteve"
+msgstr "Pregledovalec je spremenil zahteve"
 
 #: apps/amo/log.py:553
 msgid "{addon} minimum requirements manually changed."
@@ -5013,19 +5013,19 @@ msgstr "Pošljite dodatek"
 
 #: apps/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
-msgstr "Recenzenti AMO"
+msgstr "Pregledovalci AMO"
 
 #: apps/devhub/templates/devhub/index.html:29
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
 "faster."
 msgstr ""
-"Prehitite vrsto! Postanite recenzent AMO še danes in poskrbite, da bodo vaši"
-" dodatki pregledani hitreje."
+"Prehitite vrsto! Postanite pregledovalec AMO še danes in poskrbite, da bodo "
+"vaši dodatki pregledani hitreje."
 
 #: apps/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
-msgstr "Postanite recenzent AMO"
+msgstr "Postanite pregledovalec AMO"
 
 #: apps/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
@@ -6155,7 +6155,7 @@ msgstr "Prehitite čakalno vrsto!"
 #: apps/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Postanite recenzent AMO še danes in poskrbite, da bodo vaši dodatki "
+"Postanite pregledovalec AMO še danes in poskrbite, da bodo vaši dodatki "
 "pregledani prej."
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:54
@@ -7288,11 +7288,11 @@ msgid ""
 "Developer Hub."
 msgstr ""
 "Če je dodatek vezan na določeno spletno stran, je priporočljivo, da "
-"recenzentu ponudite testni račun, ki ga bo lahko uporabil med postopkom "
+"pregledovalcu ponudite testni račun, ki ga bo lahko uporabil med postopkom "
 "pregleda. Dobro je tudi, da mu napišete podrobna navodila za testiranje, ki "
-"bodo omogočila recenzentu bolje razumeti, kako dodatek deluje, in tako "
+"bodo omogočila pregledovalcu bolje razumeti, kako dodatek deluje, in tako "
 "pospešila postopek testiranja. Te podatke lahko vnesete v polje Opombe za "
-"recenzenta, ko v razvojnem centru urejate različico."
+"pregledovalca, ko v razvojnem centru urejate različico."
 
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:134
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -8792,7 +8792,7 @@ msgstr "Stanje odobritve"
 #: apps/devhub/templates/devhub/versions/edit.html:113
 #: apps/editors/templates/editors/review.html:108
 msgid "Notes for Reviewers"
-msgstr "Pojasnila za recenzente"
+msgstr "Pojasnila za pregledovalce"
 
 #: apps/devhub/templates/devhub/versions/edit.html:114
 msgid ""
