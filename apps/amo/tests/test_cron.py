@@ -4,7 +4,7 @@ import amo.tests
 from amo.cron import gc
 from bandwagon.models import Collection
 from devhub.models import ActivityLog
-from stats.models import AddonShareCount, Contribution
+from stats.models import Contribution
 
 
 class GarbageTest(amo.tests.TestCase):
@@ -14,10 +14,8 @@ class GarbageTest(amo.tests.TestCase):
         "This fixture is expired data that should just get cleaned up."
         eq_(Collection.objects.all().count(), 1)
         eq_(ActivityLog.objects.all().count(), 1)
-        eq_(AddonShareCount.objects.all().count(), 1)
         eq_(Contribution.objects.all().count(), 1)
         gc(test_result=False)
         eq_(Collection.objects.all().count(), 0)
         eq_(ActivityLog.objects.all().count(), 0)
-        eq_(AddonShareCount.objects.all().count(), 0)
         eq_(Contribution.objects.all().count(), 0)

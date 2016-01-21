@@ -37,8 +37,6 @@ from amo.utils import (attach_trans_dict, cache_ns_key, chunked, find_language,
 from amo.urlresolvers import get_outgoing_url, reverse
 from files.models import File
 from reviews.models import Review
-import sharing.utils as sharing
-from stats.models import AddonShareCountTotal
 from tags.models import Tag
 from translations.fields import (LinkifiedField, PurifiedField, save_signal,
                                  TranslatedField, Translation)
@@ -264,8 +262,7 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
-    share_count = models.PositiveIntegerField(default=0, db_index=True,
-                                              db_column='sharecount')
+
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
@@ -332,9 +329,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
     mozilla_contact = models.EmailField(blank=True)
-
-    # This gets overwritten in the transformer.
-    share_counts = collections.defaultdict(int)
 
     whiteboard = models.TextField(blank=True)
 
@@ -1101,9 +1095,6 @@ class Addon(amo.models.OnChangeMixin, amo.models.ModelBase):
 
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
-
-        # Attach sharing stats.
-        sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
