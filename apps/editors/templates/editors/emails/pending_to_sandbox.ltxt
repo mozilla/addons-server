@@ -1,5 +1,5 @@
 {% extends "editors/emails/base.ltxt" %}{% block content %}
-Your {{ addon_type }}, {{ name }} {{ number }}, has been reviewed by an editor and did not meet the criteria for being hosted in our gallery.
+Your {{ addon_type }}, {{ name }} {{ number }}, has been reviewed and did not meet the criteria for being hosted in our gallery.
 {% include "editors/emails/files.ltxt" %}
 Reviewer:
 {{ reviewer }}
@@ -9,5 +9,5 @@ Comments:
 
 {{ tested }}
 
-This version of your {{ addon_type }} has been disabled. You may re-request review by addressing the editor's comments and uploading a new version. To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
+This version of your {{ addon_type }} has been disabled. You may re-request review by addressing the reviewer's comments and uploading a new version.
 {% endblock %}

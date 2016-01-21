@@ -1,5 +1,10 @@
-Your add-on, {{ name }} {{ number }}, has been flagged for Admin Review by an editor.
+Hello,
+
+Your add-on, {{ name }} {{ number }}, has been flagged for Admin Review.
 
 Your add-on is still in our review queue, but it will need to be checked by one of our admin reviewers. This means that your review will probably take longer than usual.
 
-If you have any questions or comments, please reply to this email or join #amo-editors on irc.mozilla.org.
+If you have any questions or comments, you can reply to this email or join #amo-editors on irc.mozilla.org. To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
+
+Mozilla Add-ons Team
+{{ SITE_URL }}
