@@ -446,6 +446,13 @@ class SafeUnzip(object):
     def close(self):
         self.zip_file.close()
 
+    @property
+    def filelist(self):
+        return self.zip_file.filelist
+
+    def read(self, filename):
+        return self.zip_file.read(filename)
+
 
 def extract_zip(source, remove=False, fatal=True):
     """Extracts the zip file. If remove is given, removes the source file."""

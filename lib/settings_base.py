@@ -1011,6 +1011,7 @@ CELERY_ROUTES = {
     'addons.tasks.unindex_addons': {'queue': 'priority'},
     'addons.tasks.save_theme': {'queue': 'priority'},
     'addons.tasks.save_theme_reupload': {'queue': 'priority'},
+
     'bandwagon.tasks.index_collections': {'queue': 'priority'},
     'bandwagon.tasks.unindex_collections': {'queue': 'priority'},
     'users.tasks.index_users': {'queue': 'priority'},
@@ -1066,8 +1067,8 @@ CELERY_ROUTES = {
     'addons.tasks.version_changed': {'queue': 'addons'},
 
     # API
-    'api.tasks.process_results': {'queue': 'api'},
-    'api.tasks.process_webhook': {'queue': 'api'},
+    'api.tasks.process_results': {'queue': 'devhub'},
+    'api.tasks.process_webhook': {'queue': 'devhub'},
 
     # Crons
     'addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
