@@ -510,6 +510,10 @@ REVIEWED_LEVELS = [
     {'name': _('Level 9'), 'points': 3000000},
 ]
 
+# Amount of hours to hide add-on reviews from users with permission
+# Addons:DelayedReviews
+REVIEW_LIMITED_DELAY_HOURS = 20
+
 # Signed state.
 UNSIGNED = 0
 SIGNED_FULL = 1

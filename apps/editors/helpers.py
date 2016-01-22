@@ -12,11 +12,13 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import amo
 from access import acl
+from access.models import GroupUser
 from addons.helpers import new_context
 from addons.models import Addon
 from amo.helpers import absolutify, breadcrumbs, page_title
 from amo.urlresolvers import reverse
 from amo.utils import send_mail as amo_send_mail
+from constants.base import REVIEW_LIMITED_DELAY_HOURS
 from editors.models import (ReviewerScore, ViewFastTrackQueue,
                             ViewFullReviewQueue, ViewPendingQueue,
                             ViewPreliminaryQueue,
@@ -476,8 +478,12 @@ class ReviewHelper:
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if not addon.admin_review or acl.action_allowed(
-                request, 'ReviewerAdminTools', 'View'):
+        if ((not addon.admin_review or acl.action_allowed(request,
+             'ReviewerAdminTools', 'View'))
+            and (not is_limited_reviewer(request)
+                 or (datetime.datetime.now() -
+                     addon.latest_version.nomination > datetime.timedelta(
+                     hours=REVIEW_LIMITED_DELAY_HOURS)))):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
                     label = _lazy('Push to public')
@@ -964,3 +970,12 @@ def queue_tabnav_themes_interactive(context):
 @jinja2.contextfunction
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
+
+
+def is_limited_reviewer(request):
+    if request:
+        return GroupUser.objects.filter(group__name='Limited Reviewers',
+                                        user=request.user).exists()
+    else:
+        # `request` could be None if coming from management command.
+        return False
