@@ -389,6 +389,19 @@ class TestTasks(amo.tests.TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.PRELIMINARY_SIGNING_SERVER)
 
+    @mock.patch('lib.crypto.tasks.sign_file')
+    def test_sign_supported_applications(self, mock_sign_file):
+        """Make sure we sign for all supported applications."""
+        with amo.tests.copy_file(
+                'apps/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            for app in packaged.SIGN_FOR_APPS:
+                self.max_appversion.update(application=app)
+                tasks.sign_addons([self.addon.pk])
+                mock_sign_file.assert_called_with(
+                    self.file_, settings.SIGNING_SERVER)
+                mock_sign_file.reset_mock()
+
     def assert_not_signed(self, mock_sign_file, file_hash):
         assert not mock_sign_file.called
         self.version.reload()
@@ -432,20 +445,13 @@ class TestTasks(amo.tests.TestCase):
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
 
-            # We don't sign for Seamonkey.
-            self.max_appversion.update(application=amo.SEAMONKEY.id)
-            tasks.sign_addons([self.addon.pk])
-            self.assert_not_signed(mock_sign_file, file_hash)
+            apps_without_signing = [app for app in amo.APPS_ALL.keys()
+                                    if app not in packaged.SIGN_FOR_APPS]
 
-            # Firefox for android? Sign.
-            self.max_appversion.update(application=amo.ANDROID.id)
-            tasks.sign_addons([self.addon.pk])
-            assert mock_sign_file.called
-            self.version.reload()
-            assert self.version.version == '1.3.1-signed'
-            assert self.version.version_int == version_int('1.3.1-signed')
-            assert file_hash != self.file_.generate_hash()
-            self.assert_backup()
+            for app in apps_without_signing:
+                self.max_appversion.update(application=app)
+                tasks.sign_addons([self.addon.pk])
+                self.assert_not_signed(mock_sign_file, file_hash)
 
     @mock.patch('lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
