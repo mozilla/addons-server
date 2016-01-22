@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2015-07-28 21:56+0000\n"
-"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
+"PO-Revision-Date: 2016-01-22 13:16+0000\n"
+"Last-Translator: samtelen <szep.annabella@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -92,63 +92,90 @@ msgstr "{0} ellenőrzése befejeződött"
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Időtúllépés történt a kiegészítő érvényesítése közben, kézi felülvizsgálatra"
+" kerül."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
+"Az ön kiegészítője hiba nélkül és {0} figyelmeztetéssel átment az "
+"ellenőrzésen."
 msgstr[1] ""
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] ""
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "A kiegészítő hiba és figyelmeztetés nélkül átment az ellenőrzésen."
 
 #: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "A benyújtása aláírására automatikusan sor kerül."
 
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."
+msgstr ""
+"Adjon meg részletes verzióinformációt (ezt a következő lépésben is "
+"megteheti)."
 
 #: static/js/common/upload-addon.js:466
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége "
+"a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a "
+"Megjegyzés a vizsgálatot végzőknek résznél (ezt a következő lépésben is "
+"megteheti)."
 
 #: static/js/common/upload-addon.js:467
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Ha a kiegészítő korlátozott közönség számára készült, válassza az Előzetes vizsgálatot a Teljes vizsgálat helyett."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
+msgstr ""
+"Ha a kiegészítő korlátozott közönség számára készült, válassza az Előzetes "
+"vizsgálatot a Teljes vizsgálat helyett."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
 #: static/js/common/upload-addon.js:481
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
+msgstr ""
+"Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez "
+"csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
 msgstr ""
-"A lefordított binárisoknak, mint ahogyan a minimalizált vagy olvashatatlanná tett parancsfájloknak is (kivéve az ismert könyvtárakat) külön kell beküldeni a forrását ellenőrzésre. Használja a "
-"forráskódfeltöltés mezőt, hogy elkerülje a beküldés visszautasítását."
+"A lefordított binárisoknak, mint ahogyan a minimalizált vagy olvashatatlanná"
+" tett parancsfájloknak is (kivéve az ismert könyvtárakat) külön kell "
+"beküldeni a forrását ellenőrzésre. Használja a forráskódfeltöltés mezőt, "
+"hogy elkerülje a beküldés visszautasítását."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
+msgstr ""
+"Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz "
+"vezethetnek:"
 
 #: static/js/common/upload-addon.js:518
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr "Ha nem ismeri a bővítmény-ellenőrzési folyamatot, itt olvashat róla."
 
 #: static/js/common/upload-addon.js:555
@@ -292,11 +319,13 @@ msgstr "{0} visszatérítés"
 msgid "{0} installs"
 msgstr "{0} telepítés"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Letöltések"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Napi felhasználók"
 
@@ -353,11 +382,13 @@ msgstr "Feliratkozók"
 msgid "Ratings"
 msgstr "Értékelések"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Eladások"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Telepítések"
 
@@ -389,7 +420,8 @@ msgstr ""
 msgid "Search Results"
 msgstr "Keresési eredmények"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Promo kezdőlap"
 
@@ -417,7 +449,8 @@ msgstr "Részletek oldal (alul)"
 msgid "Detail Page (Development Channel)"
 msgstr "Részletek oldal (Fejlesztői csatorna)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Gyakran használt ezzel:"
 
@@ -501,7 +534,8 @@ msgstr "„Népszerűség” böngészési lista rendezése"
 msgid "Browse Listing Updated Sort"
 msgstr "„Frissítve” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "„Ígéretes” böngészési lista rendezése"
 
@@ -781,7 +815,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> az utolsó {1} napban"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1} és {2} között"
 
@@ -802,21 +837,30 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Egyéb"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
+#: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Először válasszon ki alkalmazást"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőnek."
-msgstr[1] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőknek."
+msgstr[0] ""
+"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
+"szerzőnek."
+msgstr[1] ""
+"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
+"szerzőknek."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az ellenőrzésen."
-msgstr[1] "E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az ellenőrzésen."
+msgstr[0] ""
+"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
+"ellenőrzésen."
+msgstr[1] ""
+"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
+"ellenőrzésen."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:66
@@ -833,14 +877,17 @@ msgstr "Letöltés most"
 
 #: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett kompatibilitást."
+msgstr ""
+"A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett "
+"kompatibilitást."
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 vagy annál frissebb verziót kell használnia."
 
 #: static/js/zamboni/buttons.js:129
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "A Mozilla szerint ez a verzió nem működik a Firefox verziójával."
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -874,8 +921,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú "
+"böngészőre (pl. Firefox)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -1057,8 +1108,12 @@ msgstr[0] "<b>{0}</b> karakter maradt."
 msgstr[1] "<b>{0}</b> karakter maradt."
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. "
+"Kérjük, látogasson vissza kicsit később."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1122,7 +1177,8 @@ msgstr "Ezek a tesztek nem futottak le."
 msgid "Tests"
 msgstr "Tesztek"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Hiba"
 
@@ -1188,7 +1244,8 @@ msgstr "Ellenőrizetlen"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Kísérleti <span>(Tudjon meg többet)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Nem érhető el a {0} programhoz"
 
