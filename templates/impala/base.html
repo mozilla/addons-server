@@ -45,7 +45,7 @@
 
     {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} is-impala"
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} is-impala {% if waffle.flag('restyle') %} restyle{% endif %}"
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
@@ -59,9 +59,6 @@
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
         {% if switch_is_active('fxa-auth') %}
           data-fxa-config="{{ fxa_config()|json }}"
-        {% endif %}
-        {% if waffle.flag('restyle') %}
-          class="restyle"
         {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
