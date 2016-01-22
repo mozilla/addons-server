@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase
@@ -88,6 +91,9 @@ class TestCSPHeaders(TestCase):
         what is used for prod and thus are more readily testable.
 
         """
-        with open("sites/prod/settings.py") as f:
+        path = os.path.join(
+            settings.ROOT, 'src', 'olympia', 'conf', 'prod', 'settings.py')
+
+        with open(path) as f:
             data = f.read()
             assert 'CSP_' not in data
