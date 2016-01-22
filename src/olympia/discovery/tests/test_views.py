@@ -1,11 +1,7 @@
-import json
-
-from django import test
 from django.core.cache import cache
 from django.test.utils import override_settings
 
 import mock
-import waffle
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -14,170 +10,14 @@ from tower import strip_whitespace
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import addon_factory
-from olympia.addons.signals import version_changed
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
-from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import MonthlyPick
-from olympia.bandwagon.tests.test_models import TestRecommendations as Recs
 from olympia.discovery import views
 from olympia.discovery.forms import DiscoveryModuleForm
 from olympia.discovery.models import DiscoveryModule
 from olympia.discovery.modules import registry
-from olympia.files.models import File
-from olympia.versions.models import Version, ApplicationsVersions
-
-
-class TestRecs(TestCase):
-    fixtures = ['base/appversion', 'base/addon_3615',
-                'base/addon-recs', 'base/addon_5299_gcal', 'base/category',
-                'base/featured', 'addons/featured']
-
-    @classmethod
-    def setUpClass(cls):
-        super(TestRecs, cls).setUpClass()
-        test.Client().get('/')
-
-    def setUp(self):
-        super(TestRecs, self).setUp()
-        self.url = reverse('discovery.recs', args=['3.6', 'Darwin'])
-        self.guids = ('bettergcal@ginatrapani.org',
-                      'foxyproxy@eric.h.jung',
-                      'isreaditlater@ideashower.com',
-                      'not-a-real-guid',)
-        self.ids = Recs.ids
-        self.guids = [a.guid or 'bad-guid'
-                      for a in Addon.objects.filter(id__in=self.ids)]
-        self.json = json.dumps({'guids': self.guids})
-        # The view is limited to returning 9 add-ons.
-        self.expected_recs = Recs.expected_recs()[:9]
-
-        versions = AppVersion.objects.filter(application=amo.FIREFOX.id)
-        self.min_id = versions.order_by('version_int')[0].id
-        self.max_id = versions.order_by('-version_int')[0].id
-        for addon in Addon.objects.all():
-            v = Version.objects.create(addon=addon)
-            File.objects.create(version=v, status=amo.STATUS_PUBLIC)
-            ApplicationsVersions.objects.create(
-                version=v, application=amo.FIREFOX.id,
-                min_id=self.min_id, max_id=self.max_id)
-            addon.update(_current_version=v)
-            version_changed.send(sender=addon)
-        Addon.objects.update(status=amo.STATUS_PUBLIC, disabled_by_user=False)
-
-    def test_get(self):
-        """GET should find method not allowed."""
-        response = self.client.get(self.url)
-        eq_(response.status_code, 405)
-
-    def test_empty_post_data(self):
-        response = self.client.post(self.url)
-        eq_(response.status_code, 400)
-
-    def test_bad_post_data(self):
-        response = self.client.post(self.url, '{]{',
-                                    content_type='application/json')
-        eq_(response.status_code, 400)
-
-    def test_no_guids(self):
-        response = self.client.post(self.url, '{}',
-                                    content_type='application/json')
-        eq_(response.status_code, 400)
-
-    def test_get_addon_ids(self):
-        ids = set(views.get_addon_ids(self.guids))
-        eq_(ids, set(self.ids))
-
-    def test_success(self):
-        response = self.client.post(self.url, self.json,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-        eq_(response['Content-type'], 'application/json')
-        data = json.loads(response.content)
-
-        eq_(set(data.keys()), set(['token2', 'addons']))
-        eq_(len(data['addons']), 9)
-        ids = [a['id'] for a in data['addons']]
-        eq_(ids, self.expected_recs)
-
-    def test_only_show_public(self):
-        # Mark one add-on as non-public.
-        unpublic = self.expected_recs[0]
-        Addon.objects.filter(id=unpublic).update(status=amo.STATUS_LITE)
-        response = self.client.post(self.url, self.json,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-
-        data = json.loads(response.content)
-        eq_(len(data['addons']), 9)
-        ids = [a['id'] for a in data['addons']]
-        eq_(ids, Recs.expected_recs()[1:10])
-        assert unpublic not in ids
-
-    def test_app_support_filter(self):
-        # The fixture doesn't contain valid add-ons for the provided URL args.
-        url = reverse('discovery.recs', args=['5.0', 'Darwin'])
-        response = self.client.post(url, self.json,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-        eq_(response['Content-type'], 'application/json')
-        data = json.loads(response.content)
-        eq_(len(data['addons']), 0)
-
-    def test_app_support_filter_ignore(self):
-        # The fixture doesn't contain valid add-ons for the provided URL
-        # args, but with compat_mode=ignore, it should still find them.
-        url = reverse('discovery.recs', args=['5.0', 'Darwin', 'ignore'])
-        response = self.client.post(url, self.json,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-        eq_(response['Content-type'], 'application/json')
-        data = json.loads(response.content)
-        eq_(len(data['addons']), 9)
-        ids = [a['id'] for a in data['addons']]
-        eq_(ids, self.expected_recs)
-
-    def test_recs_bad_token(self):
-        post_data = json.dumps(dict(guids=self.guids, token='fake'))
-        response = self.client.post(self.url, post_data,
-                                    content_type='application/json')
-        data = json.loads(response.content)
-        ids = [a['id'] for a in data['addons']]
-        eq_(ids, self.expected_recs)
-
-    def test_update_same_index(self):
-        response = self.client.post(self.url, self.json,
-                                    content_type='application/json')
-        one = json.loads(response.content)
-
-        post_data = json.dumps(dict(guids=self.guids, token2=one['token2']))
-        response = self.client.post(self.url, post_data,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-        two = json.loads(response.content)
-
-        # We sent our existing token and the same ids, so the
-        # responses should be identical.
-        eq_(one, two)
-
-    def test_update_new_index(self):
-        waffle.models.Sample.objects.create(
-            name='disco-pane-store-collections', percent='100.0')
-        response = self.client.post(self.url, self.json,
-                                    content_type='application/json')
-        one = json.loads(response.content)
-
-        post_data = json.dumps(dict(guids=self.guids[:1],
-                                    token2=one['token2']))
-        response = self.client.post(self.url, post_data,
-                                    content_type='application/json')
-        eq_(response.status_code, 200)
-        two = json.loads(response.content)
-
-        # Tokens are based on guid list, so these should be different.
-        assert one['token2'] != two['token2']
-        assert one['addons'] != two['addons']
 
 
 class TestModuleAdmin(TestCase):

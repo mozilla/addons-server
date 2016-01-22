@@ -7,13 +7,11 @@ from mock import Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from olympia.addons.models import Addon
 from olympia import amo, sharing
 from olympia.sharing.views import share as share_view
 from olympia.amo.tests import BaseTestCase
 from olympia.sharing.forms import ShareForm
 from olympia.sharing.helpers import sharing_box
-from olympia.sharing import TWITTER, FACEBOOK
 from olympia.users.models import UserProfile
 
 
@@ -41,19 +39,6 @@ class SharingHelpersTestCase(BaseTestCase):
                               sharing.SERVICES_LIST[i].shortname)
             assert doc('li a').eq(i).attr('target') in ('_blank', '_self'), (
                 'Sharing link target must either be blank or self.')
-
-
-class SharingModelsTestCase(BaseTestCase):
-    fixtures = ['base/addon_3615', 'sharing/share_counts']
-
-    def test_share_count(self):
-        addon = Addon.objects.get(id=3615)
-
-        eq_(addon.share_counts[TWITTER.shortname], 29)
-
-        # total count with no shares
-        eq_(addon.share_counts[FACEBOOK.shortname], 0,
-            'Total count with no shares must be 0')
 
 
 def test_services_unicode():

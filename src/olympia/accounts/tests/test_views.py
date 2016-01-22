@@ -9,9 +9,11 @@ import mock
 from rest_framework.test import APITestCase
 
 from olympia.accounts import verify, views
+from olympia.amo.helpers import absolutify
 from olympia.amo.tests import create_switch, InitializeSessionMixin
 from olympia.api.tests.utils import APIAuthTestCase
 from olympia.users.models import UserProfile
+
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
 
@@ -339,7 +341,7 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username == 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
         self.login.assert_called_with(self.request, user)
@@ -352,8 +354,7 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username.startswith('me@yeahoo.com')
-        assert user.username != 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
 
@@ -518,7 +519,7 @@ class TestAuthorizeView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 302
-        assert response['location'] == 'http://testserver/'
+        assert response['location'] == absolutify(reverse('users.edit'))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
@@ -534,7 +535,7 @@ class TestAuthorizeView(BaseAuthenticationView):
                 next_path=base64.urlsafe_b64encode('/go/here')),
         })
         assert response.status_code == 302
-        assert response['location'] == 'http://testserver/go/here'
+        assert response['location'] == absolutify(reverse('users.edit'))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)

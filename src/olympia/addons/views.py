@@ -115,10 +115,6 @@ def extension_detail(request, addon):
         prefixer.app = comp_apps.keys()[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
-    # Addon recommendations.
-    recommended = Addon.objects.listed(request.APP).filter(
-        recommended_for__addon=addon)[:6]
-
     # Popular collections this addon is part of.
     collections = Collection.objects.listed().filter(
         addons=addon, application=request.APP.id)
@@ -129,7 +125,6 @@ def extension_detail(request, addon):
         'version_src': request.GET.get('src', 'dp-btn-version'),
         'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
-        'recommendations': recommended,
         'review_form': ReviewForm(),
         'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
         'get_replies': Review.get_replies,

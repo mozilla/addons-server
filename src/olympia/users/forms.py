@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 from django.utils.safestring import mark_safe
 
-import captcha.fields
+from amo.fields import ReCaptchaField
 import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
@@ -72,13 +72,13 @@ class AuthenticationForm(auth_forms.AuthenticationForm):
                                widget=PasswordMixin.widget(render_value=False,
                                                            required=True))
     rememberme = forms.BooleanField(required=False)
-    recaptcha = captcha.fields.ReCaptchaField()
+    recaptcha = ReCaptchaField()
     recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
                                          required=False)
 
     def __init__(self, request=None, use_recaptcha=False, *args, **kw):
         super(AuthenticationForm, self).__init__(*args, **kw)
-        if not use_recaptcha or not settings.RECAPTCHA_PRIVATE_KEY:
+        if not use_recaptcha or not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
     def clean(self):
@@ -238,11 +238,19 @@ class UsernameMixin:
 
     def clean_username(self):
         name = self.cleaned_data['username']
+
+        if not name:
+            if self.instance.has_anonymous_username():
+                name = self.instance.username
+            else:
+                name = self.instance.anonymize_username()
+
         # All-digits usernames are disallowed since they can be
         # confused for user IDs in URLs. (See bug 862121.)
         if name.isdigit():
             raise forms.ValidationError(
                 _('Usernames cannot contain only digits.'))
+
         slug_validator(
             name, lower=False,
             message=_('Enter a valid username consisting of letters, numbers, '
@@ -255,6 +263,7 @@ class UsernameMixin:
         if (UserProfile.objects.exclude(id=self.instance.id)
                        .filter(username__iexact=name).exists()):
             raise forms.ValidationError(_('This username is already in use.'))
+
         return name
 
 
@@ -264,7 +273,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
     details here, so we'd have to rewrite most of it anyway.
     """
-    username = forms.CharField(max_length=50, widget=RequiredTextInput)
+    username = forms.CharField(max_length=50, required=False)
     email = forms.EmailField(widget=RequiredEmailInput)
     display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
                                    required=False)
@@ -280,7 +289,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
     password2 = forms.CharField(max_length=255,
                                 widget=PasswordMixin.widget(render_value=False,
                                                             required=True))
-    recaptcha = captcha.fields.ReCaptchaField()
+    recaptcha = ReCaptchaField()
     homepage = forms.URLField(label=_lazy(u'Homepage'), required=False)
 
     class Meta:
@@ -289,9 +298,14 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
                   'password', 'password2', 'recaptcha', 'homepage', 'email')
 
     def __init__(self, *args, **kwargs):
+        instance = kwargs.get('instance')
+        if instance and instance.has_anonymous_username():
+            kwargs.setdefault('initial', {})
+            kwargs['initial']['username'] = ''
+
         super(UserRegisterForm, self).__init__(*args, **kwargs)
 
-        if not settings.RECAPTCHA_PRIVATE_KEY:
+        if not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
             del self.fields['recaptcha']
 
         errors = {'invalid': _('This URL has an invalid format. '
@@ -390,7 +404,8 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
     class Meta:
         model = UserProfile
-        exclude = ('password', 'picture_type', 'last_login')
+        exclude = ('password', 'picture_type', 'last_login', 'fxa_id',
+                   'read_dev_agreement')
 
     def clean(self):
         data = self.cleaned_data

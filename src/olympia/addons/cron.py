@@ -1,7 +1,4 @@
-import array
-import itertools
 import logging
-import operator
 import os
 import time
 from datetime import datetime, timedelta
@@ -26,7 +23,6 @@ from olympia.stats.models import ThemeUserCount, UpdateCount
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
-recs_log = logging.getLogger('z.recs')
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
@@ -364,25 +360,6 @@ def deliver_hotness():
                 addon.update(hotness=0)
         # Let the database catch its breath.
         time.sleep(10)
-
-
-def _group_addons(qs):
-    # qs is a list of (addon_id, collection_id) order by addon_id.
-    # Return a dict of {addon_id: [collection_id]}.
-    addons = {}
-    for addon, collections in itertools.groupby(qs, operator.itemgetter(0)):
-        # Skip addons in < 3 collections since we'll be overfitting
-        # recommendations to exactly what's in those collections.
-        cs = [c[1] for c in collections]
-        if len(cs) > 3:
-            # array.array() lets us calculate similarities much faster.
-            addons[addon] = array.array('l', cs)
-    # Don't generate recs for frozen add-ons.
-    for addon in FrozenAddon.objects.values_list('addon', flat=True):
-        if addon in addons:
-            recs_log.info('Skipping frozen addon %s.' % addon)
-            del addons[addon]
-    return addons
 
 
 @cronjobs.register

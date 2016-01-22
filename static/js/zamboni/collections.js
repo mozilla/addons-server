@@ -759,21 +759,13 @@ $(document).ready(function () {
         callback: function(obj) {
             var ret = {};
             var el = $(obj.click_target);
-            var $popup = this;
             var base_url = el.attr('data-base-url');
-            var counts = $.parseJSON(el.attr("data-share-counts"));
+            var $popup = this;
+            $popup.find('a.uniquify').each(function(index, item) {
+                var $item = $(item);
+                $item.attr('href', base_url + $item.attr('data-service-name'));
+            });
             $popup.hideMe();
-            if (counts) {
-                for (s in counts) {
-                    if (!counts.hasOwnProperty(s)) continue;
-                    var c = counts[s];
-                    var $li = $("li." + s, this);
-                    $(".share-count", $li).text(c);
-                    $(".uniquify", $li).attr("href", base_url + s);
-                }
-            } else {
-                return false;
-            }
             ret.pointTo = obj.click_target;
             return ret;
         }

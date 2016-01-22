@@ -104,17 +104,6 @@ section > section {
     margin-bottom: 20px;
 }
 
-.recs header {
-    float: right;
-    margin-top: -1px;
-    width: 24%;
-    width: -moz-calc(24% - 2px);
-}
-
-.html-rtl.recs header {
-    float: left;
-}
-
 /* @Clear floats *********/
 body:after,
 header:after,
@@ -142,10 +131,6 @@ header:after,
     float: right;
     border-right: 0;
     border-left: 1px inset rgba(0,0,0,0.25);
-}
-
-.recs #intro {
-    display: none;
 }
 
 #intro h1 {
@@ -183,52 +168,6 @@ header:after,
     left: 0;
 }
 
-/* @group Recommendations */
-#main #recs {
-    display: none;
-    min-height: 200px;
-    padding: 0;
-    position: relative;
-}
-.recs #main #recs {
-    display: block;
-}
-
-#recs .gallery-wrap {
-    background-color: #d4edea;
-    border-radius: 0 0 8px 8px;
-    position: relative;
-}
-
-#recs .msg {
-    display: table;
-    height: 160px;
-    width: 100%;
-}
-#recs .msg p {
-    display: table-cell;
-    font-size: 15px;
-    line-height: 1.3;
-    text-align: center;
-    vertical-align: middle;
-}
-#recs .loading p {
-    margin-bottom: 0;
-    padding-top: 78px;
-}
-#recs .loading p > span {
-    background: url(../../img/zamboni/discovery_pane/loading.gif) no-repeat;
-    display: inline-block;
-    opacity: 0.25;
-    height: 48px;
-    position: absolute;
-    top: 73px;
-    left: 50%;
-    left: -moz-calc(50% - 24px);
-    width: 48px;
-}
-/* @end */
-
 /* @Mission, @My-account *********/
 #mission, #my-account {
     margin: 0 0 0 -10px;
@@ -237,15 +176,6 @@ header:after,
     width: 22%;
     width: -moz-calc(24% - 22px);
     border-radius: 8px;
-}
-
-.recs #mission,
-.recs #my-account {
-    margin-bottom: 3px;
-}
-
-.recs #mission {
-    background: linear-gradient(#fff 0, #ecf1f7 100%);
 }
 
 #my-account {
@@ -263,26 +193,12 @@ header:after,
     background: none;
     padding-bottom: 0;
 }
-.recs #mission,
-.recs #my-account {
-    border-left-width: 0;
-    border-radius: 8px;
-    float: left;
-    margin-left: 0;
-    padding-left: 10px;
-    width: -moz-calc(100% - 20px);
-}
 
 .html-rtl #mission,
 .html-rtl #my-account {
     float: left;
     margin-left: 0;
     text-align: right;
-}
-
-.html-rtl.recs #mission,
-.html-rtl.recs #my-account {
-    float: right;
 }
 
 #mission p,
@@ -409,21 +325,18 @@ section#featured-addons {
     top: 0;
 }
 
-#nav-features,
-#nav-recs {
+#nav-features {
     height: 0;
     margin: 0;
     display: none;
     position: relative;
 }
 
-#promos.js #nav-features,
-.recs #recs #nav-recs.js {
+#promos.js #nav-features {
     display: block;
 }
 
-#nav-features a,
-#nav-recs a {
+#nav-features a {
     position: absolute;
     top: 0;
     margin: 1px;
@@ -448,15 +361,8 @@ section#featured-addons {
     border-radius: 0 5px 5px 0;
 }
 
-#nav-recs a {
-    margin: 0;
-    height: 183px;
-}
-
 #nav-features a:hover,
-#nav-features a:active,
-#nav-recs a:hover,
-#nav-recs a:active {
+#nav-features a:active {
     opacity: 1;
     width: 7%;
     -moz-transition-property: opacity, width, background-color;
@@ -464,8 +370,7 @@ section#featured-addons {
     -moz-transition-timing-function: ease-out;
 }
 
-#nav-features a:focus,
-#nav-recs a:focus {
+#nav-features a:focus {
     outline: 0;
 }
 
@@ -495,13 +400,6 @@ section#featured-addons {
     box-shadow: inset rgba(255,255,255,0.4) 0px 0px 6px, rgba(125,125,125,0.1) -2px 0px 3px;
 }
 
-#nav-recs .nav-prev a {
-    border-top-left-radius: 0;
-}
-#nav-recs .nav-next a {
-    border-top-right-radius: 0;
-}
-
 .nav-prev .disabled,
 .nav-next .disabled {
     visibility: hidden;
@@ -512,7 +410,6 @@ section#featured-addons {
     position: relative;
 }
 
-#recs .header,
 #sub .featured h2,
 #more-ways h2 {
     margin: -10px -10px 0;
@@ -522,12 +419,6 @@ section#featured-addons {
     border-radius: 8px 8px 0 0;
     border-bottom: 1px solid #a8b8d1;
     overflow: hidden;
-}
-
-#recs .header {
-    margin: 0;
-    padding: 0.45em 10%;
-    width: 80%;
 }
 
 #sub ul {
@@ -637,8 +528,7 @@ section#featured-addons {
 }
 
 
-#sub .all,
-#recs .header h2 a {
+#sub .all {
     line-height: 24px;
     font-size: 13px;
 }
@@ -646,17 +536,6 @@ section#featured-addons {
 #sub .all {
     display: block;
     float: right;
-}
-
-#recs .header h2 a {
-    display: inline-block;
-    margin-left: 10px;
-}
-.html-rtl #recs .header h2 a {
-    float: left;
-    height: 18px;
-    line-height: 25px;
-    margin: 0 10px 0 0;
 }
 
 /* @end */
@@ -675,22 +554,6 @@ section#featured-addons {
 .pane #main .persona-feature {
     position: relative;
     left: 4px;
-}
-
-#recs .persona-feature + .addon-feature {
-    left: -4px;
-}
-
-#recs .persona-feature + .persona-feature {
-    left: 0;
-}
-
-#recs .addon-feature + .persona-feature {
-    left: 0;
-}
-
-#recs .persona-feature:nth-child(3n) {
-    left: -4px;
 }
 
 .pane #main .persona-feature .persona {
@@ -786,8 +649,7 @@ section#featured-addons {
     }
 
     .no-recs header #mission,
-    .no-recs header #my-account,
-    .recs header {
+    .no-recs header #my-account {
         display: none;
     }
 
@@ -1418,16 +1280,6 @@ a#lightbox-secNav-btnClose {
     border-radius: 8px;
 }
 
-#recs .gallery {
-    overflow: hidden;
-    height: 183px;
-}
-
-#recs .gallery-addons {
-    margin: 0 auto;
-    width: 80%;
-}
-
 #images + .addon-info {
     margin-top: 158px;
 }
@@ -1450,17 +1302,6 @@ a#lightbox-secNav-btnClose {
     position: relative;
     overflow: hidden;
     box-shadow: none;
-}
-
-#recs .panel {
-    float: none;
-    margin: 20px 5% 20px 0;
-}
-#recs .panel:nth-child(3n) {
-    margin-right: 0;
-}
-.html-rtl #recs .gallery {
-    direction: ltr;
 }
 
 #screenshot img,

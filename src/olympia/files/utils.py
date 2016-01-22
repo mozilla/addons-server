@@ -542,6 +542,11 @@ def parse_xpi(xpi, addon=None, check=True):
 def check_xpi_info(xpi_info, addon=None):
     from olympia.addons.models import Addon, BlacklistedGuid
     guid = xpi_info['guid']
+    if amo.get_user():
+        deleted_guid_clashes = Addon.unfiltered.exclude(
+            authors__id=amo.get_user().id).filter(guid=guid)
+    else:
+        deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
     if not guid:
         raise forms.ValidationError(_("Could not find an add-on ID."))
     if not waffle.switch_is_active('allow-long-addon-guid') and len(guid) > 64:
@@ -550,8 +555,12 @@ def check_xpi_info(xpi_info, addon=None):
     if addon and addon.guid != guid:
         raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
     if (not addon and
-            (Addon.with_unlisted.filter(guid=guid).exists()
-             or BlacklistedGuid.objects.filter(guid=guid).exists())):
+            # Non-deleted add-ons.
+            (Addon.with_unlisted.filter(guid=guid).exists() or
+             # BlacklistedGuid objects for legacy deletions.
+             BlacklistedGuid.objects.filter(guid=guid).exists() or
+             # Deleted add-ons that don't belong to the uploader.
+             deleted_guid_clashes.exists())):
         raise forms.ValidationError(_('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(

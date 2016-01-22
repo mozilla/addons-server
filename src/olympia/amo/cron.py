@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
-from django.utils import translation
 from django.db import connection
 
 import cronjobs
@@ -17,8 +16,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_STATUSES
 from olympia.devhub.models import ActivityLog
 from olympia.lib.es.utils import raise_if_reindex_in_progress
-from olympia.sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
-from olympia.stats.models import AddonShareCount, Contribution
+from olympia.stats.models import Contribution
 
 from . import tasks
 
@@ -57,18 +55,6 @@ def gc(test_result=True):
         tasks.delete_anonymous_collections.delay(chunk)
     # Incomplete addons cannot be deleted here because when an addon is
     # rejected during a review it is marked as incomplete. See bug 670295.
-
-    log.debug('Cleaning up sharing services.')
-    service_names = [s.shortname for s in SERVICES_LIST]
-    # collect local service names
-    original_language = translation.get_language()
-    for language in settings.LANGUAGES:
-        translation.activate(language)
-        service_names.extend([unicode(s.shortname)
-                              for s in LOCAL_SERVICES_LIST])
-    translation.activate(original_language)
-
-    AddonShareCount.objects.exclude(service__in=set(service_names)).delete()
 
     log.debug('Cleaning up test results extraction cache.')
     # lol at check for '/'
@@ -190,23 +176,6 @@ def unconfirmed():
         AND addons_collections.user_id IS NULL
         AND collections_users.user_id IS NULL
     """)
-
-
-@cronjobs.register
-def share_count_totals():
-    """
-    Sum share counts for each addon & service.
-    """
-    cursor = connection.cursor()
-    cursor.execute("""
-            REPLACE INTO stats_share_counts_totals (addon_id, service, count)
-                (SELECT addon_id, service, SUM(count)
-                 FROM stats_share_counts
-                 RIGHT JOIN addons ON addon_id = addons.id
-                 WHERE service IN (%s)
-                 GROUP BY addon_id, service)
-            """ % ','.join(['%s'] * len(SERVICES_LIST)),
-                   [s.shortname for s in SERVICES_LIST])
 
 
 @cronjobs.register

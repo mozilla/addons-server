@@ -18,7 +18,6 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
-        data-show-recs="{{ waffle.flag('disco-pane-show-recs')|json }}"
         {% block bodyattrs %}{% endblock %}>
     {% block content %}{% endblock %}
     <script src="{{ cache_buster(url('jsi18n')) }}"></script>

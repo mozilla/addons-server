@@ -38,8 +38,6 @@ from olympia.amo.utils import (
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.files.models import File
 from olympia.reviews.models import Review
-from olympia.sharing import utils as sharing
-from olympia.stats.models import AddonShareCountTotal
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
@@ -265,8 +263,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     average_daily_downloads = models.PositiveIntegerField(default=0)
     average_daily_users = models.PositiveIntegerField(default=0)
-    share_count = models.PositiveIntegerField(default=0, db_index=True,
-                                              db_column='sharecount')
+
     last_updated = models.DateTimeField(
         db_index=True, null=True,
         help_text='Last time this add-on had a file/version update')
@@ -333,9 +330,6 @@ class Addon(OnChangeMixin, ModelBase):
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
     mozilla_contact = models.EmailField(blank=True)
-
-    # This gets overwritten in the transformer.
-    share_counts = collections.defaultdict(int)
 
     whiteboard = models.TextField(blank=True)
 
@@ -428,9 +422,6 @@ class Addon(OnChangeMixin, ModelBase):
             # need to make sure that the logs created below aren't cascade
             # deleted!
 
-            if self.guid:
-                log.debug('Adding guid to blacklist: %s' % self.guid)
-                BlacklistedGuid(guid=self.guid, comments=msg).save()
             log.debug('Deleting add-on: %s' % self.id)
 
             to = [settings.FLIGTAR]
@@ -479,7 +470,7 @@ class Addon(OnChangeMixin, ModelBase):
             # The last parameter is needed to automagically create an AddonLog.
             amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
-                        _current_version=None, guid=None)
+                        _current_version=None)
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
@@ -498,7 +489,14 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def initialize_addon_from_upload(cls, data, is_listed=True):
         fields = cls._meta.get_all_field_names()
+        # Reclaim GUID from deleted add-on.
+        try:
+            old_guid_addon = Addon.unfiltered.get(guid=data['guid'])
+            old_guid_addon.update(guid=None)
+        except ObjectDoesNotExist:
+            old_guid_addon = None
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
+
         addon.status = amo.STATUS_NULL
         addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
@@ -509,12 +507,15 @@ class Addon(OnChangeMixin, ModelBase):
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
 
+        addon.save()
+        if old_guid_addon:
+            old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
+            old_guid_addon.save()
         return addon
 
     @classmethod
     def create_addon_from_upload_data(cls, data, user=None, **kwargs):
         addon = cls.initialize_addon_from_upload(data, **kwargs)
-        addon.save()
         AddonUser(addon=addon, user=user).save()
         return addon
 
@@ -529,8 +530,7 @@ class Addon(OnChangeMixin, ModelBase):
         addon = cls.initialize_addon_from_upload(
             is_listed=is_listed, data=data)
         if upload.validation_timeout:
-            addon.admin_review = True
-        addon.save()
+            addon.update(admin_review=True)
         Version.from_upload(upload, addon, platforms, source=source)
 
         amo.log(amo.LOG.CREATE_ADDON, addon)
@@ -1102,9 +1102,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         # Personas need categories for the JSON dump.
         Category.transformer(personas)
-
-        # Attach sharing stats.
-        sharing.attach_share_counts(AddonShareCountTotal, 'addon', addon_dict)
 
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
@@ -1819,30 +1816,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
     @classmethod
     def creatured_random(cls, category, lang):
         return get_creatured_ids(category, lang)
-
-
-class AddonRecommendation(models.Model):
-    """
-    Add-on recommendations. For each `addon`, a group of `other_addon`s
-    is recommended with a score (= correlation coefficient).
-    """
-    addon = models.ForeignKey(Addon, related_name="addon_recommendations")
-    other_addon = models.ForeignKey(Addon, related_name="recommended_for")
-    score = models.FloatField()
-
-    class Meta:
-        db_table = 'addon_recommendations'
-        ordering = ('-score',)
-
-    @classmethod
-    def scores(cls, addon_ids):
-        """Get a mapping of {addon: {other_addon: score}} for each add-on."""
-        d = {}
-        q = (AddonRecommendation.objects.filter(addon__in=addon_ids)
-             .values('addon', 'other_addon', 'score'))
-        for addon, rows in sorted_groupby(q, key=lambda x: x['addon']):
-            d[addon] = dict((r['other_addon'], r['score']) for r in rows)
-        return d
 
 
 class AddonUser(caching.CachingMixin, models.Model):

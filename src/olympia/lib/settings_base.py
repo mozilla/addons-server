@@ -452,6 +452,9 @@ DOMAIN_METHODS = {
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'restyle/css': (
+            'css/restyle.less',
+        ),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -1267,7 +1270,7 @@ CEF_PRODUCT = "amo"
 PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://ssl.google-analytics.com'
 
-CSP_REPORT_URI = '/services/csp/report'
+CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = True
 CSP_EXCLUDE_URL_PREFIXES = ()
 
@@ -1287,20 +1290,25 @@ CSP_FONT_SRC = (
 CSP_FRAME_SRC = (
     "'self'",
     'https://www.paypal.com',
+    'https://www.google.com/recaptcha/',
 )
 CSP_IMG_SRC = (
     "'self'",
+    'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
     'https://www.paypal.com',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
+    'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (
     "'self'",
-    'https://www.google.com',  # Recaptcha
     'https://www.paypalobjects.com',
+    'https://apis.google.com',
+    'https://www.google.com/recaptcha/',
+    'https://www.gstatic.com/recaptcha/',
     ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
@@ -1350,13 +1358,10 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA: overload all three statements to local_settings.py with your keys.
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
-RECAPTCHA_AJAX_URL = (
-    'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
+# RECAPTCHA: overload the following key setttings in local_settings.py
+# with your keys.
+NOBOT_RECAPTCHA_PUBLIC_KEY = ''
+NOBOT_RECAPTCHA_PRIVATE_KEY = ''
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
@@ -1554,11 +1559,6 @@ BASKET_URL = 'https://basket.mozilla.com'
 
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
-
-# Monolith settings.
-MONOLITH_SERVER = None
-MONOLITH_INDEX = 'time_*'
-MONOLITH_MAX_DATE_RANGE = 365
 
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.

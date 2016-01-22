@@ -217,8 +217,6 @@ def _get_daily_jobs(date=None):
         'collection_count_total': Collection.objects.filter(
             created__lt=next_date).count,
         'collection_count_new': Collection.objects.extra(**extra).count,
-        'collection_count_autopublishers': Collection.objects.filter(
-            created__lt=next_date, type=amo.COLLECTION_SYNCHRONIZED).count,
 
         'collection_addon_downloads': (
             lambda: AddonCollectionCount.objects.filter(

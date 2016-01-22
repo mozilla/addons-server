@@ -4,21 +4,17 @@ from django import http
 from django.db.transaction import non_atomic_requests
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 
-from olympia import amo, api
-from olympia.amo.utils import JSONEncoder
+from olympia import amo
 from olympia.api import views as api_views
-from olympia.amo.decorators import post_required
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
-from olympia.bandwagon.models import Collection
 from olympia.discovery.modules import PromoVideoCollection
 from olympia.reviews.models import Review
 from olympia.stats.models import GlobalStat
@@ -176,55 +172,6 @@ def _sync_db_and_registry(qs, app_id):
         qs._result_cache = None
 
 
-@csrf_exempt
-@post_required
-@non_atomic_requests
-def recommendations(request, version, platform, limit=9, compat_mode=None):
-    """
-    Figure out recommended add-ons for an anonymous user based on POSTed guids.
-
-    POST body looks like {"guids": [...]} with an optional "token" key if
-    they've been here before.
-    """
-    if not compat_mode:
-        compat_mode = get_compat_mode(version)
-
-    try:
-        POST = json.loads(request.body)
-        guids = POST['guids']
-    except (ValueError, TypeError, KeyError), e:
-        # Errors: invalid json, didn't get a dict, didn't find "guids".
-        log.debug('Recommendations return 405 because: %s' % e)
-        return http.HttpResponseBadRequest()
-
-    addon_ids = get_addon_ids(guids)
-    index = Collection.make_index(addon_ids)
-    ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version,
-                                             compat_mode)
-    recs = _recommendations(request, version, platform, limit, index, ids,
-                            recs, compat_mode)
-    return recs
-
-
-def _recommendations(request, version, platform, limit, token, ids, qs,
-                     compat_mode='strict'):
-    """Return a JSON response for the recs view."""
-    addons = api_views.addon_filter(qs, 'ALL', 0, request.APP, platform,
-                                    version, compat_mode, shuffle=False)
-    addons = dict((a.id, a) for a in addons)
-    addons = [api.utils.addon_to_dict(addons[i], disco=True,
-                                      src='discovery-personalrec')
-              for i in ids if i in addons][:limit]
-    data = {'token2': token, 'addons': addons}
-    content = json.dumps(data, cls=JSONEncoder)
-    return http.HttpResponse(content, content_type='application/json')
-
-
-def get_addon_ids(guids):
-    return list(Addon.objects.filter(guid__in=guids)
-                             .values_list('id', flat=True))
-
-
 @addon_view
 @non_atomic_requests
 def addon_detail(request, addon):
@@ -248,11 +195,3 @@ def addon_eula(request, addon, file_id):
     src = request.GET.get('src', 'discovery-details')
     return render(request, 'discovery/addons/eula.html',
                   {'addon': addon, 'version': version, 'src': src})
-
-
-def recs_transform(recs):
-    ids = [r.addon_id for r in recs] + [r.other_addon_id for r in recs]
-    addons = dict((a.id, a) for a in Addon.objects.filter(id__in=ids))
-    for r in recs:
-        r.addon = addons[r.addon_id]
-        r.other_addon = addons[r.other_addon_id]

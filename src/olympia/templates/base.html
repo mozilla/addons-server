@@ -23,6 +23,9 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
+      {% if waffle.flag('restyle') %}
+        {{ css('restyle/css') }}
+      {% endif %}
       <!--[if IE]><link rel="stylesheet" href="{{ static('css/legacy/ie.css') }}"><![endif]-->
       <!--[if IE 7]><link rel="stylesheet" href="{{ static('css/legacy/ie7.css') }}"><![endif]-->
     {% endblock %}
@@ -54,9 +57,15 @@
         data-static-url="{{ STATIC_URL }}"
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
+        {% if waffle.flag('restyle') %}
+          class="restyle"
+        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
+      {% if waffle.flag('restyle') %}
+        <div id="background-wrapper"></div>
+      {% endif %}
       {% if ADMIN_MESSAGE or settings.READ_ONLY %}
         <div id="site-notice">
           {% if ADMIN_MESSAGE %}

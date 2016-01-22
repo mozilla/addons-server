@@ -33,7 +33,6 @@
             change: null,
             changeDelay: 0,
             control: 'hue',
-            dataUris: true,
             defaultValue: '',
             format: 'hex',
             hide: null,
@@ -162,8 +161,7 @@
         // The wrapper
         minicolors
             .addClass('minicolors-theme-' + settings.theme)
-            .toggleClass('minicolors-with-opacity', settings.opacity)
-            .toggleClass('minicolors-no-data-uris', settings.dataUris !== true);
+            .toggleClass('minicolors-with-opacity', settings.opacity);
 
         // Custom positioning
         if( settings.position !== undefined ) {

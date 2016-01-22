@@ -49,15 +49,8 @@
   {{ tags_box(addon=addon, tags=tags) }}
 </aside>
 
-{% if recommendations or collections or author_addons %}
+{% if collections or author_addons %}
   <section class="primary island c">
-    {% if recommendations %}
-      <section id="recommendations-grid">
-        <h2 class="compact-bottom">{{ _('Often used with&hellip;') }}</h2>
-        {{ recommendations|addon_grid(cols=3, src='dp-hc-oftenusedwith',
-                                      dl_src='dp-dl-oftenusedwith') }}
-      </section>
-    {% endif %}
     {% if collections %}
       <section id="collections-grid">
         <h2>{{ _('Part of these Collections') }}</h2>

@@ -577,14 +577,14 @@ class TestLogin(UserViewBase):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 302)
 
-    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
     @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
     def test_login_attempts_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
         eq_(res.status_code, 200)
         assert res.context['form'].fields.get('recaptcha')
 
-    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
     def test_login_shown_recaptcha(self):
         data = self.data.copy()
         data['recaptcha_shown'] = ''
@@ -592,9 +592,9 @@ class TestLogin(UserViewBase):
         eq_(res.status_code, 200)
         assert res.context['form'].fields.get('recaptcha')
 
-    @patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
     @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    @patch('captcha.fields.ReCaptchaField.clean')
+    @patch('amo.fields.ReCaptchaField.clean')
     def test_login_with_recaptcha(self, clean):
         clean.return_value = ''
         data = self.data.copy()
@@ -660,7 +660,7 @@ class TestLogin(UserViewBase):
         eq_(res2.status_code, 302)
 
 
-@patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', '')
+@patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', '')
 @patch('olympia.users.models.UserProfile.log_login_attempt')
 class TestFailedCount(UserViewBase):
     fixtures = ['users/test_backends', 'base/addon_3615']
@@ -897,6 +897,12 @@ class TestRegistration(UserViewBase):
                                         'password2': 'foobarbaz'})
             user = UserProfile.objects.get(email='new@example.com')
             eq_(user.lang, 'fr')
+
+    def test_fxa_auth_enabled(self):
+        """When FxA is enabled it should render the login page."""
+        amo.tests.create_switch('fxa-auth', active=True)
+        response = self.client.get(reverse('users.register'))
+        self.assertContains(response, 'Enter your email')
 
 
 class TestProfileView(UserViewBase):
@@ -1280,7 +1286,7 @@ class TestThemesProfile(TestCase):
         self._test_good(res)
 
 
-@patch.object(settings, 'RECAPTCHA_PRIVATE_KEY', 'something')
+@patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
 class TestReportAbuse(TestCase):
     fixtures = ['base/users']
 
@@ -1288,7 +1294,7 @@ class TestReportAbuse(TestCase):
         super(TestReportAbuse, self).setUp()
         self.full_page = reverse('users.abuse', args=[10482])
 
-    @patch('captcha.fields.ReCaptchaField.clean')
+    @patch('amo.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):
         clean.return_value = ""
         self.client.post(self.full_page, {'text': 'spammy'})

@@ -1,6 +1,5 @@
 from jingo import register
 import jinja2
-from django.utils import encoding
 
 from olympia import sharing
 
@@ -9,18 +8,10 @@ from olympia import sharing
 @jinja2.contextfunction
 def sharing_widget(context, obj, condensed=False):
     c = dict(context.items())
-
     services = sharing.get_services()
-
-    counts = {}
-    for service in services:
-        short = str(encoding.smart_str(service.shortname))
-        counts[short] = service.count_term(obj.share_counts[short])
 
     c.update({
         'condensed': condensed,
-        'base_url': obj.share_url(),
-        'counts': counts,
         'services': services,
         'obj': obj,
     })

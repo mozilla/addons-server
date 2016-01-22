@@ -41,7 +41,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.api.authentication import AMOOAuthAuthentication
-from olympia.addons.models import Addon, AddonUser, BlacklistedGuid
+from olympia.addons.models import Addon, AddonUser
 from olympia.devhub.models import ActivityLog, SubmitStep
 from olympia.files.models import File
 from olympia.translations.models import Translation
@@ -433,8 +433,7 @@ class TestAddon(BaseOAuth):
     def test_delete(self):
         data = self.create_addon()
         id = data['id']
-        guid = data['guid']
-        # Force it to be public so its guid gets blacklisted.
+        # Force it to be public so an email gets sent.
         Addon.objects.filter(id=id).update(highest_status=amo.STATUS_PUBLIC)
 
         r = oclient.delete(('api.addon', id), self.accepted_consumer,
@@ -442,7 +441,6 @@ class TestAddon(BaseOAuth):
         eq_(r.status_code, 204, r.content)
         eq_(Addon.objects.filter(pk=id).count(), 0, "Didn't delete.")
 
-        assert BlacklistedGuid.objects.filter(guid=guid)
         eq_(len(mail.outbox), 1)
 
     def test_update(self):

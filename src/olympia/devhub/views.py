@@ -427,7 +427,7 @@ def ownership(request, addon_id, addon):
         send_mail(title,
                   t.render(Context({'author': author, 'addon': addon,
                                     'site_url': settings.SITE_URL})),
-                  None, recipients, use_blacklist=False, real_email=True)
+                  None, recipients, use_blacklist=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -645,27 +645,6 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
 @dev_required
 def upload_for_addon(request, addon_id, addon):
     return upload(request, addon=addon)
-
-
-@login_required
-@post_required
-@json_view
-def upload_manifest(request):
-    form = forms.NewManifestForm(request.POST)
-    if form.is_valid():
-        upload = FileUpload.objects.create()
-        tasks.fetch_manifest.delay(form.cleaned_data['manifest'], upload.uuid)
-        return redirect('devhub.upload_detail', upload.uuid, 'json')
-    else:
-        error_text = _('There was an error with the submission.')
-        if 'manifest' in form.errors:
-            error_text = ' '.join(form.errors['manifest'])
-        error_message = {'type': 'error',
-                         'message': escape_all(error_text),
-                         'tier': 1}
-
-        v = {'errors': 1, 'success': False, 'messages': [error_message]}
-        return {'validation': v, 'error': error_text}
 
 
 @login_required
@@ -1727,7 +1706,6 @@ def docs(request, doc_name=None):
             'policies/submission': '/AMO/Policy/Submission',
             'policies/reviews': '/AMO/Policy/Reviews',
             'policies/maintenance': '/AMO/Policy/Maintenance',
-            'policies/recommended': '/AMO/Policy/Featured',
             'policies/contact': '/AMO/Policy/Contact',
         })
     if waffle.switch_is_active('mdn-agreement-docs'):
@@ -1741,7 +1719,6 @@ def docs(request, doc_name=None):
                 'policies/submission',
                 'policies/reviews',
                 'policies/maintenance',
-                'policies/recommended',
                 'policies/agreement',
                 'policies/contact')
 

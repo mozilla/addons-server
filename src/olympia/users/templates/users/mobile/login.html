@@ -4,12 +4,6 @@
 
 {% block aux_nav %}{% endblock %}
 
-{% block js %}
-  {% if form.recaptcha %}
-    {% include("amo/recaptcha_js.html") %}
-  {% endif %}
-{% endblock %}
-
 {% block page %}
 
 <div class="primary" role="main">
@@ -47,7 +41,8 @@
           </li>
           {% if form.recaptcha %}
             {{ form.recaptcha_shown }}
-            {{ recaptcha(form) }}
+            {{ form.recaptcha }}
+            {{ form.recaptcha.errors }}
           {% endif %}
         </ul>
       </fieldset>

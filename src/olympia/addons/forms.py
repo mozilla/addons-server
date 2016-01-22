@@ -11,11 +11,10 @@ import commonware.log
 import happyforms
 from quieter_formset.formset import BaseFormSet
 from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
-import captcha.fields
 
 from olympia import amo
 from olympia.access import acl
-from olympia.amo.fields import ColorField
+from olympia.amo.fields import ColorField, ReCaptchaField
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     slug_validator, slugify, sorted_groupby, remove_icons)
@@ -34,6 +33,7 @@ from olympia.translations.utils import transfield_changed
 from olympia.translations.widgets import TranslationTextInput
 from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
+
 
 log = commonware.log.getLogger('z.addons')
 
@@ -431,7 +431,7 @@ class AddonForm(happyforms.ModelForm):
 
 
 class AbuseForm(happyforms.Form):
-    recaptcha = captcha.fields.ReCaptchaField(label='')
+    recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
                            widget=forms.Textarea())
@@ -441,7 +441,7 @@ class AbuseForm(happyforms.Form):
         super(AbuseForm, self).__init__(*args, **kwargs)
 
         if (not self.request.user.is_anonymous() or
-                not settings.RECAPTCHA_PRIVATE_KEY):
+                not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
 
 

@@ -1,5 +1,5 @@
 -r compiled.txt
-amo-validator==1.10.7
+amo-validator==1.10.10
 amqp==1.4.6
 anyjson==0.3.3
 argparse==1.2.1
@@ -30,7 +30,6 @@ django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
 django-quieter-formset==0.4
 django-raven-heka==0.3
-django-recaptcha-mozilla==0.0.1
 djangorestframework==2.3.12
 djangorestframework-jwt==1.7.2
 django-statsd-mozilla==0.3.10
@@ -54,11 +53,11 @@ heka-py-cef==0.3.1
 heka-py-raven==0.6
 m2secret==0.1.1
 mock==1.0.1
-monolith.client==0.9
 moz-addon-packager==1.0.1
 mozilla-logger==0.2
 ndg-httpsclient==0.3.2
 newrelic==2.60.0.46
+nobot==0.4.1
 oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
@@ -76,7 +75,6 @@ python-memcached==1.53
 pytz==2013.8
 raven==4.2.3
 rdflib==3.0.0
-recaptcha-client==1.0.6
 redis==2.8.0
 requests==2.6.0
 sasl==0.1.3

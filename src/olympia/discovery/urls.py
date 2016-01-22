@@ -39,8 +39,6 @@ urlpatterns = patterns(
     url('^pane/(?P<section>featured|up-and-coming)/%s$' % (
         browser_re + compat_mode_re), views.pane_more_addons,
         name='discovery.pane.more_addons'),
-    url('^recs/%s$' % (browser_re + compat_mode_re),
-        views.recommendations, name='discovery.recs'),
     url('^%s$' % (browser_re + compat_mode_re), pane_redirect),
     url('^pane/%s$' % (browser_re + compat_mode_re), views.pane,
         name='discovery.pane'),

@@ -5,6 +5,7 @@ from collections import namedtuple
 
 from django.conf import settings
 from django.contrib.auth import login
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
@@ -157,9 +158,14 @@ class AuthorizeView(APIView):
     def get(self, request, user, identity, next_path):
         if user is None:
             register_user(request, identity)
+            path = reverse('users.edit')
+            log.info('Redirecting after register to: {}'.format(path))
+            return HttpResponseRedirect(path)
         else:
             login_user(request, user, identity)
-        return HttpResponseRedirect(next_path or '/')
+            next_path = next_path or '/'
+            log.info('Redirecting after login to: {}'.format(next_path))
+            return HttpResponseRedirect(next_path)
 
 
 class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
