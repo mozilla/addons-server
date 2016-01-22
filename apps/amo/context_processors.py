@@ -89,9 +89,6 @@ def global_settings(request):
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
-        if acl.action_allowed(request, 'L10nTools', 'View'):
-            tools_links.append({'text': _('Localizer Tools'),
-                                'href': '/localizers'})
         if (acl.action_allowed(request, 'Admin', '%') or
                 acl.action_allowed(request, 'AdminTools', 'View')):
             tools_links.append({'text': _('Admin Tools'),
