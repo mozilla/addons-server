@@ -15,12 +15,13 @@ from celery.task.sets import TaskSet
 from django_statsd.clients import statsd
 
 from amo.utils import chunked, utc_millesecs_from_epoch
+from post_request_task.task import PostRequestTask
 
 
 log = commonware.log.getLogger('z.task')
 
 
-app = Celery('olympia')
+app = Celery('olympia', task_cls=PostRequestTask)
 task = app.task
 
 app.config_from_object('django.conf:settings')
