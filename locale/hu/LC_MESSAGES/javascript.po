@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-22 13:16+0000\n"
+"PO-Revision-Date: 2016-01-22 13:21+0000\n"
 "Last-Translator: samtelen <szep.annabella@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -414,7 +414,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Keresési javaslatok"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
@@ -468,15 +468,15 @@ msgstr "Bővítés"
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Ismerje meg a fejlesztőt"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Felhasználói profil"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Verziótörténet"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
@@ -918,7 +918,7 @@ msgstr "További verziók megtekintése"
 
 #: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Csak a Firefox-al — szerezze be a Firefox-ot most!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid ""
@@ -1188,7 +1188,7 @@ msgstr "Figyelem"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Javaslatok az automatizált aláírás teljesítéséhez:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"

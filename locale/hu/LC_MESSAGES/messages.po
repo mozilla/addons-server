@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-22 13:07+0000\n"
+"PO-Revision-Date: 2016-01-22 14:03+0000\n"
 "Last-Translator: samtelen <szep.annabella@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1002,6 +1002,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above. Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Figyelmeztetés:</strong> Ezt a kiegészítőt a Mozilla nem vizsgálta "
+"meg és Firefox 43 és újabb verziókhoz nem telepíthető. Legyen óvatos, mikor "
+"harmadik féltől származó szoftvert telepít, mert ezek kárt okozhatnak "
+"számítógépében."
 
 #: apps/addons/templates/addons/popups.html:120
 msgid ""
@@ -1196,7 +1200,7 @@ msgstr "Címkék"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ikonja: {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1208,7 +1212,7 @@ msgstr "írta: %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Letöltés mégis"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1335,9 +1339,8 @@ msgstr "Info"
 
 #: apps/addons/templates/addons/impala/details.html:198
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
-#, fuzzy
 msgid "Last Updated:"
-msgstr "Utolsó frissítés:"
+msgstr "Legutóbbi frissítés:"
 
 #: apps/addons/templates/addons/impala/details.html:203
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
@@ -1390,10 +1393,12 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Figyelmeztetés:</strong> Ezen kiegészítő fejlesztői verzióit a "
+"Mozilla nem vizsgálta."
 
 #: apps/addons/templates/addons/impala/details.html:290
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Teljes verziótörténet megtekintése"
 
 #: apps/addons/templates/addons/impala/details.html:309
 #: apps/addons/templates/addons/impala/details.html:318
@@ -1796,7 +1801,7 @@ msgstr "Fejlesztőközpont"
 
 #: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API kulcsok kezelése"
 
 #: apps/amo/context_processors.py:90 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
@@ -2265,12 +2270,12 @@ msgstr "{addon} titkos."
 #: apps/amo/log.py:618 apps/amo/log.py:624 apps/amo/log.py:630
 #: apps/amo/log.py:636
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} aláírása megtörtént."
 
 #. L10n: {0} is the add-on GUID.
 #: apps/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "A {0} azonosítójú és GUID {1} kiegészítő törölve lett"
 
 #: apps/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -2420,6 +2425,11 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p> Kérjük, írja be <strong>mind</strong> az alábbi szavakat, szükség esetén"
+" <strong>szóközzel elválasztva</strong>. </p> <p>Ha ezt nehéz elolvasni, "
+"akkor <a href=\"#\" id=\"recaptcha_different\">próbálkozhat más "
+"szavakkal</a> vagy <a href=\"#\" id=\"recaptcha_audio\">próbáljon ki más "
+"típusú ellenőrzést</a> helyette. </p>"
 
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:12
@@ -2447,6 +2457,7 @@ msgstr "Bővítmények"
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
+"Még több testreszabhatóságot szeretne? Próbálja ki a <b>Teljes témákat</b>"
 
 #: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:93
 msgid "Most Followers"
