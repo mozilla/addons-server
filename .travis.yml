@@ -4,11 +4,6 @@ python:
   - "2.7"
 env:
   - TOX_ENV=flake8
-  - TOX_ENV=docs
-  - TOX_ENV=assets
-  - TOX_ENV=es
-  - TOX_ENV=addons-devhub-editors
-  - TOX_ENV=main
 services:
   - memcached
 before_install:
@@ -18,11 +13,7 @@ install:
   - pip install tox==1.8.1
 before_script:
   - mysql -e 'create database olympia;'
+after_script:
+  - locale/extract-l10n.sh
 script:
   - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
-notifications:
-  irc:
-    channels:
-      - "irc.mozilla.org#amo-bots"
-    on_success: change
-    on_failure: always
