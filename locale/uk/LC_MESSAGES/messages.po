@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-23 21:41+0000\n"
+"PO-Revision-Date: 2016-01-24 20:37+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -889,7 +889,7 @@ msgstr "%Y-%m-%d"
 
 #: apps/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr "оглянуто {0} {1}"
+msgstr "створено {0} {1}"
 
 #: apps/addons/templates/addons/persona_preview.html:75
 #: apps/reviews/helpers.py:16
@@ -2384,7 +2384,7 @@ msgid ""
 "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of "
 "<strong>%(count)s</strong>"
 msgstr ""
-"Результати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> із "
+"Результати <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> з "
 "<strong>%(count)s</strong>"
 
 #: apps/amo/templates/amo/read-only.html:3
