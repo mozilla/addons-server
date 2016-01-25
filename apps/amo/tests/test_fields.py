@@ -4,7 +4,6 @@ from django import forms
 from django.core import exceptions
 from django.db import models
 
-from nose.tools import eq_
 
 import amo
 from amo.fields import DecimalCharField, SeparatedValuesField

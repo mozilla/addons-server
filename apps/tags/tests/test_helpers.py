@@ -1,6 +1,5 @@
 from jingo import env
 from mock import Mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

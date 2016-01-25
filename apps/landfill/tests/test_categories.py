@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 import amo
 import amo.tests

@@ -1,5 +1,4 @@
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from lib.es.models import Reindexing

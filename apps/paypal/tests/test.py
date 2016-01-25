@@ -8,7 +8,6 @@ from django.conf import settings
 import mock
 import pytest
 from mock import Mock
-from nose.tools import eq_
 
 import amo.tests
 import paypal

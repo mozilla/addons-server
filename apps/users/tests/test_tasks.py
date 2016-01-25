@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import pytest
-from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path

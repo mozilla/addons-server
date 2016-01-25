@@ -13,7 +13,7 @@ from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
-from nose.tools import eq_, nottest
+from nose.tools import nottest
 from pyquery import PyQuery as pq
 
 import amo

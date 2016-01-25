@@ -5,7 +5,6 @@ import tempfile
 import pytest
 from mock import Mock, patch
 from nose import SkipTest
-from nose.tools import eq_
 
 from django.conf import settings
 

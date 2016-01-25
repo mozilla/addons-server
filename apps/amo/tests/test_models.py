@@ -1,7 +1,6 @@
 import mock
 import pytest
 from mock import Mock
-from nose.tools import eq_
 
 import amo.models
 from amo.models import manual_order

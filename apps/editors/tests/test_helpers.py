@@ -6,7 +6,6 @@ from django.core.files.storage import default_storage as storage
 
 import pytest
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

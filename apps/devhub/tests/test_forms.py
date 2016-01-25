@@ -7,7 +7,6 @@ from django.core.files.storage import default_storage as storage
 import mock
 import paypal
 from nose import SkipTest
-from nose.tools import eq_
 from PIL import Image
 
 import amo

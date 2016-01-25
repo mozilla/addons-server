@@ -1,7 +1,6 @@
 from django import http
 
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from addons import decorators as dec

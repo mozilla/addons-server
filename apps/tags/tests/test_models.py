@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon

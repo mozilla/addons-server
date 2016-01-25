@@ -3,7 +3,6 @@ import os
 import tempfile
 
 from mock import patch
-from nose.tools import eq_
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage

@@ -1,6 +1,5 @@
 import pytest
 from mock import Mock
-from nose.tools import eq_
 
 from amo.helpers import Paginator
 

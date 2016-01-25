@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 from nose.plugins.attrib import attr
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 from pyquery import PyQuery as pq
 import waffle
 

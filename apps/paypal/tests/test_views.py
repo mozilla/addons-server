@@ -6,7 +6,6 @@ from django.conf import settings
 from django.core import mail
 
 from mock import Mock, patch
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon

@@ -4,7 +4,6 @@ from email import utils
 
 from django.db import connection
 
-from nose.tools import eq_
 
 import amo
 import amo.tests

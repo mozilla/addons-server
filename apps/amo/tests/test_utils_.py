@@ -2,7 +2,7 @@ import collections
 import tempfile
 
 import pytest
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 
 import amo

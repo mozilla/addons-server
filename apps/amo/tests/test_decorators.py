@@ -6,7 +6,6 @@ from django.core.exceptions import PermissionDenied
 
 import mock
 import pytest
-from nose.tools import eq_
 
 import amo.tests
 from amo import decorators, get_user, set_user

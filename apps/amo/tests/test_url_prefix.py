@@ -4,7 +4,7 @@ from django.core.urlresolvers import set_script_prefix
 from django.test.client import Client, RequestFactory
 
 import pytest
-from nose.tools import eq_, assert_not_equal
+from nose.tools import assert_not_equal
 
 import amo.tests
 from amo import urlresolvers

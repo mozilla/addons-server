@@ -5,7 +5,6 @@ from tempfile import NamedTemporaryFile
 
 import mock
 import pytest
-from nose.tools import eq_
 
 from django import forms
 

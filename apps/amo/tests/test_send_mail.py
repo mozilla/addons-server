@@ -9,7 +9,6 @@ from django.template import Context as TemplateContext
 from django.utils import translation
 
 import mock
-from nose.tools import eq_
 
 from amo.models import FakeEmail
 from amo.tests import BaseTestCase

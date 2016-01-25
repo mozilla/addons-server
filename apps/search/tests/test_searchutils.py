@@ -1,5 +1,4 @@
 import pytest
-from nose.tools import eq_
 
 from search.utils import floor_version
 

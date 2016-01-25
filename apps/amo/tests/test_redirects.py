@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Check all our redirects from remora to zamboni."""
-from nose.tools import eq_
 
 import amo
 import amo.tests

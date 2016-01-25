@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import mock

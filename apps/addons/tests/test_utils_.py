@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 from addons.utils import get_featured_ids, get_creatured_ids
 

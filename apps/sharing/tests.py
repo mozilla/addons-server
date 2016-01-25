@@ -4,7 +4,6 @@ from django.utils import translation, encoding
 import pytest
 import tower
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

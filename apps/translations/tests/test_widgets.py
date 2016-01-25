@@ -1,5 +1,4 @@
 from pyquery import PyQuery as pq
-from nose.tools import eq_
 
 import amo.tests
 from translations import models, widgets

@@ -4,7 +4,6 @@ import mock
 from django.shortcuts import render
 
 import pytest
-from nose.tools import eq_
 
 
 pytestmark = pytest.mark.django_db

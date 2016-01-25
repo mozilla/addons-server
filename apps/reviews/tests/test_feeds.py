@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from reviews import feeds

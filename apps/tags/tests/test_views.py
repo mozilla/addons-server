@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse, NoReverseMatch
 
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests

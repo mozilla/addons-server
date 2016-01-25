@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.core import mail
 
-from nose.tools import eq_
 
 import amo.tests
 from abuse.models import AbuseReport

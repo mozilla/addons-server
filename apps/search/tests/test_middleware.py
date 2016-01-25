@@ -2,7 +2,6 @@ from django.test.client import RequestFactory
 
 import mock
 from elasticsearch import TransportError
-from nose.tools import eq_
 
 import amo.tests
 from search.middleware import ElasticsearchExceptionMiddleware as ESM

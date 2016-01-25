@@ -7,7 +7,6 @@ from django.utils.http import urlsafe_base64_encode
 
 from django.conf import settings
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

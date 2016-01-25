@@ -33,7 +33,6 @@ from django.test.client import (encode_multipart, Client, FakePayload,
 
 import oauth2 as oauth
 from mock import Mock, patch
-from nose.tools import eq_
 from piston.models import Consumer
 
 import amo

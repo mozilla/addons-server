@@ -2,7 +2,6 @@
 import re
 
 import pytest
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from addons.models import Addon

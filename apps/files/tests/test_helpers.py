@@ -10,7 +10,6 @@ from django.core.files.storage import default_storage as storage
 from django import forms
 
 from mock import Mock, patch
-from nose.tools import eq_
 
 import amo.tests
 from amo.urlresolvers import reverse

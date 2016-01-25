@@ -11,7 +11,8 @@ from django.utils import http as urllib
 import pytest
 from jingo.helpers import datetime as datetime_filter
 import mock
-from nose.tools import eq_, assert_raises, nottest
+from nose.tools import assert_raises
+from nose.tools import nottest
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 

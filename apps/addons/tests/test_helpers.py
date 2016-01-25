@@ -1,5 +1,4 @@
 from mock import Mock
-from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo

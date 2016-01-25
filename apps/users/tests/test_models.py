@@ -12,7 +12,6 @@ from django.core import mail
 from django.utils import encoding, translation
 
 from mock import patch
-from nose.tools import eq_
 
 import amo
 import amo.tests

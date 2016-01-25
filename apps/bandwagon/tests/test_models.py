@@ -2,7 +2,6 @@ import datetime
 import random
 
 import mock
-from nose.tools import eq_
 
 import amo
 import amo.tests

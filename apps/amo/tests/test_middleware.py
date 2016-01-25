@@ -6,7 +6,6 @@ from django.test.client import RequestFactory
 import pytest
 from commonware.middleware import ScrubRequestOnException
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests

@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
-from nose.tools import eq_
 from PIL import Image
 
 import amo

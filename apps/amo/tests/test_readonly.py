@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import importlib
 
 import MySQLdb as mysql
-from nose.tools import assert_raises, eq_
+from nose.tools import assert_raises
 from pyquery import PyQuery as pq
 
 import amo.tests

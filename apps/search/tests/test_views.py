@@ -8,7 +8,6 @@ from django.test.client import RequestFactory
 import mock
 import pytest
 from jingo.helpers import datetime as datetime_filter
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 from tower import strip_whitespace
 

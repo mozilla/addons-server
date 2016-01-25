@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import connection
 
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon

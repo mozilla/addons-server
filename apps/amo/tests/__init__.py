@@ -27,7 +27,7 @@ import mock
 import pytest
 import tower
 from dateutil.parser import parse as dateutil_parser
-from nose.tools import eq_, nottest
+from nose.tools import nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView

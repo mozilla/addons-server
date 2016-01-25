@@ -5,7 +5,6 @@ from django.utils import translation
 
 import pytest
 from mock import Mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

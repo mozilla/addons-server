@@ -10,7 +10,8 @@ from django.utils import translation
 import jingo
 import mock
 import pytest
-from nose.tools import eq_, assert_raises, raises
+from nose.tools import assert_raises
+from nose.tools import raises
 
 from amo.tests import BaseTestCase
 from amo.utils import (cache_ns_key, escape_all, find_language,

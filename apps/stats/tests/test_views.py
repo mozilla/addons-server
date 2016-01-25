@@ -7,7 +7,6 @@ from django.http import Http404
 from django.test.client import RequestFactory
 
 import mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests

@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 import jingo
 from pyquery import PyQuery as pq

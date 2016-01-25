@@ -4,7 +4,6 @@ from os import path
 from django.core.urlresolvers import reverse
 
 import jingo
-from nose.tools import eq_
 from mock import Mock
 from pyquery import PyQuery as pq
 

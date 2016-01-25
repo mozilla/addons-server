@@ -10,7 +10,6 @@ from django.utils import encoding
 
 import pytest
 from mock import patch, Mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

@@ -10,7 +10,6 @@ from django.utils.http import http_date
 
 from cache_nuggets.lib import Message
 from mock import patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 from waffle.models import Switch
 

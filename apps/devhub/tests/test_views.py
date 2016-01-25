@@ -15,7 +15,9 @@ import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from nose.plugins.attrib import attr
-from nose.tools import assert_not_equal, assert_raises, eq_, ok_
+from nose.tools import assert_not_equal
+from nose.tools import assert_raises
+from nose.tools import ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 from tower import strip_whitespace

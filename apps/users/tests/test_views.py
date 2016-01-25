@@ -10,7 +10,6 @@ from django.forms.models import model_to_dict
 from django.utils.http import urlsafe_base64_encode
 
 from mock import Mock, patch
-from nose.tools import eq_
 
 # Unused, but needed so that we can patch jingo.
 from waffle import helpers  # NOQA

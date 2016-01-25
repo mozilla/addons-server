@@ -9,7 +9,7 @@ from django.db.models import Q
 from django.test.utils import override_settings
 
 import mock
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 

@@ -4,7 +4,6 @@ import time
 
 from django.core import mail
 
-from nose.tools import eq_
 
 import amo
 import amo.tests

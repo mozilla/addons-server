@@ -13,7 +13,6 @@ import commonware.log
 from lxml import etree
 import mock
 from mock import patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests

@@ -15,7 +15,8 @@ from django.utils import translation
 
 import jingo
 from mock import Mock, patch
-from nose.tools import assert_not_equal, eq_, ok_
+from nose.tools import assert_not_equal
+from nose.tools import ok_
 
 import amo
 import amo.tests

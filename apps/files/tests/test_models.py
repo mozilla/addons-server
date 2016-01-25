@@ -15,7 +15,6 @@ from django.test.utils import override_settings
 import mock
 import pytest
 from mock import patch
-from nose.tools import eq_
 
 import amo
 import amo.tests

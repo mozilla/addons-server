@@ -1,5 +1,5 @@
 import mock
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 from django.utils.encoding import force_unicode
 

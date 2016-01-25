@@ -14,7 +14,6 @@ import multidb
 import pytest
 from mock import patch
 from nose import SkipTest
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from amo.tests import BaseTestCase

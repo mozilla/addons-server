@@ -9,7 +9,6 @@ from django.utils import translation
 import jingo
 import pytest
 from mock import patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

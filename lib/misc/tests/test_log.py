@@ -2,7 +2,6 @@ import logging
 
 from django.conf import settings
 
-from nose.tools import eq_
 from heka.config import client_from_dict_config
 
 import amo.tests

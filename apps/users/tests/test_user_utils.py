@@ -1,6 +1,5 @@
 import fudge
 import mock
-from nose.tools import eq_
 
 from django.conf import settings
 

@@ -2,7 +2,6 @@
 import json
 from datetime import datetime
 
-from nose.tools import eq_
 
 import amo
 import amo.tests

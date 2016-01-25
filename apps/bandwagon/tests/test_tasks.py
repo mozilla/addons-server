@@ -5,7 +5,6 @@ import tempfile
 from django.conf import settings
 
 import pytest
-from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path

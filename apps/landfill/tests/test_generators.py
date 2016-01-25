@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 import amo
 import amo.tests

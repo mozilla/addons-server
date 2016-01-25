@@ -4,7 +4,6 @@ from django.conf import settings
 from django.core.management import call_command
 
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon

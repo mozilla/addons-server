@@ -13,7 +13,7 @@ from django.utils import encoding
 import jingo
 import pytest
 from mock import Mock, patch
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 from pyquery import PyQuery
 
 import amo

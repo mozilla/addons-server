@@ -4,7 +4,6 @@ from django.utils import translation
 import jingo
 import pytest
 from mock import Mock, patch
-from nose.tools import eq_
 
 import amo
 import amo.tests

@@ -5,7 +5,6 @@ import json
 from django.conf import settings
 
 import mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo

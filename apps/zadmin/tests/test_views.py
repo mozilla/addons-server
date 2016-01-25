@@ -10,7 +10,6 @@ from django.core.cache import cache
 
 import mock
 from nose.plugins.attrib import attr
-from nose.tools import eq_
 from piston.models import Consumer
 from pyquery import PyQuery as pq
 
