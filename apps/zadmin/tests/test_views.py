@@ -102,19 +102,27 @@ class TestFlagged(amo.tests.TestCase):
         # 1. an addon should have latest version and approval attached
         addon = Addon.objects.get(id=1)
         assert addons[1] == addon
-        assert addons[1].version.id == Version.objects.filter(addon=addon).latest().id
-        assert addons[1].approval.id == Approval.objects.filter(addon=addon).latest().id
+        assert (
+            addons[1].version.id ==
+            Version.objects.filter(addon=addon).latest().id)
+        assert (
+            addons[1].approval.id ==
+            Approval.objects.filter(addon=addon).latest().id)
 
         # 2. missing approval is ok
         addon = Addon.objects.get(id=2)
         assert addons[2] == addon
-        assert addons[2].version.id == Version.objects.filter(addon=addon).latest().id
+        assert (
+            addons[2].version.id ==
+            Version.objects.filter(addon=addon).latest().id)
         assert addons[2].approval is None
 
         # 3. missing approval is ok
         addon = Addon.objects.get(id=3)
         assert addons[3] == addon
-        assert addons[3].approval.id == Approval.objects.filter(addon=addon).latest().id
+        assert (
+            addons[3].approval.id ==
+            Approval.objects.filter(addon=addon).latest().id)
         assert addons[3].version is None
 
     def test_post(self):
@@ -379,19 +387,22 @@ class TestBulkUpdate(BulkValidationTest):
         self.create_result(self.job, self.create_file(), **{})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        assert doc('table tr td a.set-max-version').text() == 'Notify and set max versions'
+        expected = 'Notify and set max versions'
+        assert doc('table tr td a.set-max-version').text() == expected
 
     def test_update_link(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        assert doc('table tr td a.set-max-version').text() == 'Notify and set max versions'
+        expected = 'Notify and set max versions'
+        assert doc('table tr td a.set-max-version').text() == expected
 
     def test_update_url(self):
         self.create_result(self.job, self.create_file(), **{'valid': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        assert doc('table tr td a.set-max-version').attr('data-job-url') == self.update_url
+        url = doc('table tr td a.set-max-version').attr('data-job-url')
+        assert url == self.update_url
 
     def test_update_anonymous(self):
         self.client.logout()
@@ -403,7 +414,9 @@ class TestBulkUpdate(BulkValidationTest):
             for x in range(0, 3):
                 self.create_result(self.job, self.create_file(version))
 
-        assert sorted(updated_versions(self.job)) == [self.version_one.pk, self.version_two.pk]
+        expected = [self.version_one.pk, self.version_two.pk]
+
+        assert sorted(updated_versions(self.job)) == expected
 
     def test_update_passing_only(self):
         self.create_result(self.job, self.create_file(self.version_one))
@@ -496,8 +509,18 @@ class TestBulkUpdate(BulkValidationTest):
         log.info = mock.Mock()
         self.create_result(self.job, self.create_file(self.version))
         self.client.post(self.update_url, self.data)
-        assert log.info.call_args_list[-8][0][0] == '[1@None] bulk update stats for job %s: ' '{bumped: 1, is_dry_run: 0, processed: 1}' % self.job.pk
-        assert log.info.call_args_list[-2][0][0] == '[1@None] bulk email stats for job %s: ' '{author_emailed: 1, is_dry_run: 0, processed: 1}' % self.job.pk
+
+        expected = (
+            '[1@None] bulk update stats for job %s: '
+            '{bumped: 1, is_dry_run: 0, processed: 1}' % self.job.pk
+        )
+        assert log.info.call_args_list[-8][0][0] == expected
+
+        expected = (
+            '[1@None] bulk email stats for job %s: '
+            '{author_emailed: 1, is_dry_run: 0, processed: 1}' % self.job.pk
+        )
+        assert log.info.call_args_list[-2][0][0] == expected
 
     def test_application_version(self):
         self.create_result(self.job, self.create_file(self.version))
@@ -555,13 +578,15 @@ class TestBulkNotify(BulkValidationTest):
         self.create_result(self.job, self.create_file(), **{'errors': 1})
         r = self.client.get(self.list_url)
         doc = pq(r.content)
-        assert doc('table tr td a.set-max-version').text() == 'Notify and set max versions'
+        text = doc('table tr td a.set-max-version').text()
+        assert text == 'Notify and set max versions'
 
     def test_notify_url(self):
         self.create_result(self.job, self.create_file(), **{'errors': 1})
         r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        assert doc('table tr td a.set-max-version').attr('data-job-url') == self.update_url
+        doc = qp(r.content)
+        url = doc('table tr td a.set-max-version').attr('data-job-url')
+        assert url  == self.update_url
 
     def test_notify_anonymous(self):
         self.client.logout()
@@ -673,7 +698,8 @@ class TestBulkNotify(BulkValidationTest):
     def test_notify_template(self):
         for text, res in (['some sample text', True],
                           ['{{ FAILING_ADDONS.0.name }}{% if %}', False]):
-            assert forms.NotifyForm({'text': text, 'subject': '...'}).is_valid() == res
+            assert forms.NotifyForm(
+                {'text': text, 'subject': '...'}).is_valid() == res
 
     def test_notify_syntax(self):
         for text, res in (['some sample text', True],
@@ -705,7 +731,9 @@ class TestBulkValidationTask(BulkValidationTest):
         assert res.validation_job.stats['failing'] == 1
         assert res.validation_job.stats['errors'] == 0
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == 'Behold! Validation results for Firefox %s->%s' % (self.curr_max.version, self.new_max.version)
+        expected = 'Behold! Validation results for Firefox %s->%s' % (
+            self.curr_max.version, self.new_max.version)
+        assert mail.outbox[0].subject == expected
         assert mail.outbox[0].to == ['fliggy@mozilla.com']
 
     @mock.patch('validator.validate.validate')
@@ -752,7 +780,8 @@ class TestBulkValidationTask(BulkValidationTest):
         run_validator.return_value = json.dumps(data)
         self.start_validation()
         assert run_validator.called
-        assert run_validator.call_args[1]['for_appversions'] == {amo.FIREFOX.guid: [self.new_max.version]}
+        assert run_validator.call_args[1]['for_appversions'] == {
+            amo.FIREFOX.guid: [self.new_max.version]}
 
     @mock.patch('zadmin.tasks.run_validator')
     def test_validate_all_tiers(self, run_validator):
@@ -805,9 +834,11 @@ class TestBulkValidationTask(BulkValidationTest):
         tasks.bulk_validate_file(res.id)
         assert run_validator.called
         res = ValidationResult.objects.get(pk=res.pk)
-        assert res.errors == data['errors'] + data['compatibility_summary']['errors']
-        assert res.warnings == data['warnings'] + data['compatibility_summary']['warnings']
-        assert res.notices == data['notices'] + data['compatibility_summary']['notices']
+
+        summary = data['compatibility_summary']
+        assert res.errors == data['errors'] + summary['errors']
+        assert res.warnings == data['warnings'] + summary['warnings']
+        assert res.notices == data['notices'] + summary['notices']
 
     @mock.patch('validator.validate.validate')
     def test_app_version_overrides(self, validate):
@@ -934,7 +965,10 @@ class TestBulkValidationTask(BulkValidationTest):
         new_version = self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
         ids = self.find_files()
         assert len(ids) == 2
-        assert sorted([old_version.files.all()[0].pk, new_version.files.all()[0].pk]) == sorted(ids)
+
+        file_pks = sorted(
+            [old_version.files.all()[0].pk, new_version.files.all()[0].pk])
+        assert file_pks == sorted(ids)
 
     def test_multiple_files(self):
         self.create_version(self.addon, [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC,
@@ -1051,9 +1085,19 @@ class TestTallyValidationErrors(BulkValidationTest):
         res = ValidationResult.objects.get()
         assert res.task_error is None
         header, rows = self.csv(res.validation_job.pk)
-        assert header == ['message_id', 'message', 'long_message', 'type', 'addons_affected']
-        assert rows.pop(0) == ['path.to.test_one', 'message one', 'message one long', 'error', '1']
-        assert rows.pop(0) == ['path.to.test_two', 'message two', 'message two long', 'error', '1']
+
+        expected = ['message_id', 'message', 'long_message', 'type', 'addons_affected']
+        assert header == expected
+
+        expected = [
+            'path.to.test_one', 'message one', 'message one long',
+            'error', '1']
+        assert rows.pop(0) == expected
+
+        expected = [
+            'path.to.test_two', 'message two', 'message two long',
+            'error', '1']
+        assert rows.pop(0) == expected
 
     def test_count_per_addon(self):
         job = self.create_job()
@@ -1061,8 +1105,16 @@ class TestTallyValidationErrors(BulkValidationTest):
         for i in range(3):
             tasks.tally_validation_results(job.pk, data_str)
         header, rows = self.csv(job.pk)
-        assert rows.pop(0) == ['path.to.test_one', 'message one', 'message one long', 'error', '3']
-        assert rows.pop(0) == ['path.to.test_two', 'message two', 'message two long', 'error', '3']
+
+        expected = [
+            'path.to.test_one', 'message one', 'message one long',
+            'error', '3']
+        assert rows.pop(0) == expected
+
+        expected = [
+            'path.to.test_two', 'message two', 'message two long',
+            'error', '3']
+        assert rows.pop(0) == expected
 
     def test_nested_list_messages(self):
         job = self.create_job()
@@ -1096,8 +1148,11 @@ class TestEmailPreview(amo.tests.TestCase):
                             args=[self.topic.topic]))
         assert r.status_code == 200
         rdr = csv.reader(StringIO(r.content))
-        assert rdr.next() == ['from_email', 'recipient_list', 'subject', 'body']
-        assert rdr.next() == ['admin@mozilla.org', 'funnyguy@mozilla.org', 'the subject', 'Hello Ivan Krsti\xc4\x87']
+        assert rdr.next() == [
+            'from_email', 'recipient_list', 'subject', 'body']
+        assert rdr.next() == [
+            'admin@mozilla.org', 'funnyguy@mozilla.org', 'the subject',
+            'Hello Ivan Krsti\xc4\x87']
 
 
 class TestMonthlyPick(amo.tests.TestCase):
@@ -1153,7 +1208,8 @@ class TestMonthlyPick(amo.tests.TestCase):
         dupe.update(id='', blurb='x' * 201, locale='en-US')
         data = formset(initial(self.f), dupe, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[1]['blurb'][0] == 'Ensure this value has at most 200 characters (it has 201).'
+        assert r.context['form'].errors[1]['blurb'][0] == (
+            'Ensure this value has at most 200 characters (it has 201).')
 
     def test_success_update(self):
         d = initial(self.f)
@@ -1198,7 +1254,9 @@ class TestFeatures(amo.tests.TestCase):
         doc = pq(r.content)
         assert doc('#features tr').attr('data-app') == str(amo.FIREFOX.id)
         assert doc('#features td.app').hasClass(amo.FIREFOX.short)
-        assert doc('#features td.collection.loading').attr('data-collection') == '80'
+
+        collid = doc('#features td.collection.loading').attr('data-collection')
+        assert collid == '80'
         assert doc('#features .collection-ac.js-hidden')
         assert not doc('#features .collection-ac[disabled]')
 
@@ -1215,20 +1273,24 @@ class TestFeatures(amo.tests.TestCase):
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
         assert r.status_code == 200
-        assert r.context['form'].errors[0]['application'] == ['This field is required.']
-        assert r.context['form'].errors[0]['collection'] == ['Invalid collection for this application.']
+        assert r.context['form'].errors[0]['application'] == [
+            'This field is required.']
+        assert r.context['form'].errors[0]['collection'] == [
+            'Invalid collection for this application.']
 
     def test_bad_app(self):
         d = dict(application=999, collection=80)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['application'] == ['Select a valid choice. 999 is not one of the available choices.']
+        assert r.context['form'].errors[0]['application'] == [
+            'Select a valid choice. 999 is not one of the available choices.']
 
     def test_bad_collection_for_app(self):
         d = dict(application=amo.THUNDERBIRD.id, collection=80)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == ['Invalid collection for this application.']
+        assert r.context['form'].errors[0]['collection'] == [
+            'Invalid collection for this application.']
 
     def test_optional_locale(self):
         d = dict(application=amo.FIREFOX.id, collection=80)
@@ -1240,19 +1302,23 @@ class TestFeatures(amo.tests.TestCase):
         d = dict(application=amo.FIREFOX.id, locale='klingon', collection=80)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['locale'] == ['Select a valid choice. klingon is not one of the available ' 'choices.']
+        assert r.context['form'].errors[0]['locale'] == (
+            'Select a valid choice. klingon is not one of the available '
+            'choices.')
 
     def test_required_collection(self):
         d = dict(application=amo.FIREFOX.id)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == ['This field is required.']
+        assert r.context['form'].errors[0]['collection'] == [
+            'This field is required.']
 
     def test_bad_collection(self):
         d = dict(application=amo.FIREFOX.id, collection=999)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == ['Invalid collection for this application.']
+        assert r.context['form'].errors[0]['collection'] == [
+            'Invalid collection for this application.']
 
     def test_success_insert(self):
         dupe = initial(self.f)
@@ -1511,8 +1577,14 @@ class TestCompat(amo.tests.ESTestCase):
         percentage += '%'
         assert percentage in incompat.text(), (
             'Expected incompatibility to be %r' % percentage)
-        assert tr.find('.version a').attr('href') == reverse('devhub.versions.edit', args=[addon.slug, addon.current_version.id])
-        assert tr.find('.reports a').attr('href') == reverse('compat.reporter_detail', args=[addon.guid])
+
+        expected = reverse(
+            'devhub.versions.edit',
+            args=[addon.slug, addon.current_version.id])
+        assert tr.find('.version a').attr('href') == expected
+
+        expected = reverse('compat.reporter_detail', args=[addon.guid])
+        assert tr.find('.reports a').attr('href') == expected
 
         form = tr.find('.overrides form')
         assert form.attr('action') == reverse('admin:addons_compatoverride_add')
@@ -1553,7 +1625,9 @@ class TestCompat(amo.tests.ESTestCase):
 
         # Check that there is an override for this current app version.
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.find('.overrides a').attr('href') == reverse('admin:addons_compatoverride_change', args=[compat.id])
+
+        url = reverse('admin:addons_compatoverride_change', args=[compat.id])
+        assert tr.find('.overrides a').attr('href') == url
 
     def test_non_default_version(self):
         app_version = amo.COMPAT[2]['main']
@@ -1583,7 +1657,8 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=11, bad=11, app=self.app,
                               app_version=self.app_version)
-        assert self.get_pq().find('tr[data-guid="%s"]' % addon.guid).length == 0
+        assert self.get_pq().find(
+            'tr[data-guid="%s"]' % addon.guid).length == 0
 
         # Should not show up for > 50%.
         tr = self.get_pq(ratio=.5).find('tr[data-guid="%s"]' % addon.guid)
@@ -1597,7 +1672,8 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=self.app,
                               app_version=self.app_version)
-        assert self.get_pq().find('tr[data-guid="%s"]' % addon.guid).length == 1
+        assert self.get_pq().find(
+            'tr[data-guid="%s"]' % addon.guid).length == 1
 
         # Should show up for >= 0.
         tr = self.get_pq(minimum=0).find('tr[data-guid="%s"]' % addon.guid)
