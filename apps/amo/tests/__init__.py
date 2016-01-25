@@ -138,7 +138,7 @@ def check_links(expected, elements, selected=None, verify=True):
                 assert Client().head(link, follow=True).status_code == 200
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
-            assert bool(e.length) == text == selected
+            assert bool(e.length) == (text == selected)
 
 
 def check_selected(expected, links, selected):
