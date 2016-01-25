@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import json
 import logging
 import os
@@ -22,11 +23,11 @@ import amo
 import validator
 from amo.celery import task
 from amo.decorators import atomic, set_modified_on, write
-from amo.utils import resize_image, send_html_mail_jinja
+from amo.utils import (resize_image, send_html_mail_jinja,
+                       utc_millesecs_from_epoch)
 from addons.models import Addon
 from applications.management.commands import dump_apps
 from applications.models import AppVersion
-from devhub import perf
 from files.helpers import copyfileobj
 from files.models import FileUpload, File, FileValidation
 from versions.models import Version
@@ -65,30 +66,30 @@ def validate_and_submit(addon, file_, listed=None):
 
 @task
 @write
-def submit_file(addon_pk, file_pk):
+def submit_file(addon_pk, upload_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
-    file_ = FileUpload.objects.get(pk=file_pk)
-    if file_.passed_all_validations:
-        create_version_for_upload(addon, file_)
+    upload = FileUpload.objects.get(pk=upload_pk)
+    if upload.passed_all_validations:
+        create_version_for_upload(addon, upload)
     else:
-        log.info('Skipping version creation for {file_id} that failed '
-                 'validation'.format(file_id=file_pk))
+        log.info('Skipping version creation for {upload_uuid} that failed '
+                 'validation'.format(upload_uuid=upload.uuid))
 
 
 @atomic
-def create_version_for_upload(addon, file_):
-    if (addon.fileupload_set.filter(created__gt=file_.created,
-                                    version=file_.version).exists()
-            or addon.versions.filter(version=file_.version).exists()):
-        log.info('Skipping Version creation for {file_id} that would cause '
-                 'duplicate version'.format(file_id=file_.pk))
+def create_version_for_upload(addon, upload):
+    if (addon.fileupload_set.filter(created__gt=upload.created,
+                                    version=upload.version).exists()
+            or addon.versions.filter(version=upload.version).exists()):
+        log.info('Skipping Version creation for {upload_uuid} that would '
+                 ' cause duplicate version'.format(upload_uuid=upload.uuid))
     else:
         # Import loop.
         from devhub.views import auto_sign_version
 
-        log.info('Creating version for {file_id} that passed '
-                 'validation'.format(file_id=file_.pk))
-        version = Version.from_upload(file_, addon, [amo.PLATFORM_ALL.id])
+        log.info('Creating version for {upload_uuid} that passed '
+                 'validation'.format(upload_uuid=upload.uuid))
+        version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id])
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
@@ -163,15 +164,29 @@ def validate_file(file_id, hash_, **kw):
 
 @task
 @write
-def handle_upload_validation_result(results, upload_id, annotate=True):
+def handle_upload_validation_result(results, upload_pk, annotate=True):
     """Annotates a set of validation results, unless `annotate` is false, and
     saves them to the given FileUpload instance."""
     if annotate:
         results = annotate_validation_results(results)
 
-    upload = FileUpload.objects.get(pk=upload_id)
+    upload = FileUpload.objects.get(pk=upload_pk)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
+
+    # Track the time it took from first upload through validation
+    # until the results were processed and saved.
+    upload_start = utc_millesecs_from_epoch(upload.created)
+    now = datetime.datetime.now()
+    now_ts = utc_millesecs_from_epoch(now)
+    delta = now_ts - upload_start
+
+    log.info('Time to process and save upload validation; '
+             'upload.pk={upload}; processing time={delta}; '
+             'created={created}; now={now}'
+             .format(delta=delta, upload=upload.pk,
+                     created=upload.created, now=now))
+    statsd.timing('devhub.validation_results_processed', delta)
 
 
 # We need to explicitly not ignore the result, for the sake of `views.py` code
@@ -244,10 +259,10 @@ def skip_signing_warning(result):
 
 @task(soft_time_limit=settings.VALIDATOR_TIMEOUT)
 @write
-def compatibility_check(upload_id, app_guid, appversion_str, **kw):
+def compatibility_check(upload_pk, app_guid, appversion_str, **kw):
     log.info('COMPAT CHECK for upload %s / app %s version %s'
-             % (upload_id, app_guid, appversion_str))
-    upload = FileUpload.objects.get(pk=upload_id)
+             % (upload_pk, app_guid, appversion_str))
+    upload = FileUpload.objects.get(pk=upload_pk)
     app = amo.APP_GUIDS.get(app_guid)
     appver = AppVersion.objects.get(application=app.id, version=appversion_str)
 
@@ -529,16 +544,6 @@ def get_content_and_check_size(response, max_size, error_message):
     if len(content) > max_size:
         raise Exception(error_message % max_size)
     return content
-
-
-@task
-def start_perf_test_for_file(file_id, os_name, app_name, **kw):
-    log.info('[@%s] Starting perf tests for file %s on %s / %s'
-             % (start_perf_test_for_file.rate_limit, file_id,
-                os_name, app_name))
-    file_ = File.objects.get(pk=file_id)
-    # TODO(Kumar) store token to retrieve results later?
-    perf.start_perf_test(file_, os_name, app_name)
 
 
 @task

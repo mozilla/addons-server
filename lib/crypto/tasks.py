@@ -10,7 +10,7 @@ from addons.models import AddonUser
 from amo.celery import task
 from files.models import File
 from files.utils import update_version_number
-from lib.crypto.packaged import sign_file
+from lib.crypto.packaged import sign_file, SIGN_FOR_APPS
 from versions.compare import version_int
 from versions.models import Version
 
@@ -100,7 +100,7 @@ def sign_addons(addon_ids, force=False, **kw):
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
-        return Q(version__apps__max__application=amo.FIREFOX.id,
+        return Q(version__apps__max__application__in=SIGN_FOR_APPS,
                  version__apps__max__version_int__gte=version_int(version))
 
     is_default_compatible = Q(binary_components=False,

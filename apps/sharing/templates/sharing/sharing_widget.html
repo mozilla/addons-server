@@ -7,7 +7,6 @@
 {% endif %}
 {% if listed %}
 <a class="share widget{{ ' condensed tooltip' if condensed }}"
-     data-share-counts="{{ counts|json }}"
      data-base-url="{{ obj.share_url() }}?service="
      title="{{ sharemsg }}"
      href="#">{{ sharemsg if not condensed }}</a>

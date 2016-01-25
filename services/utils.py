@@ -15,7 +15,6 @@ import posixpath
 import re
 import sys
 
-from cef import log_cef as _log_cef
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
@@ -31,9 +30,8 @@ from lib.log_settings_base import formatters, handlers, loggers
 # remove all this.
 from constants.applications import APPS_ALL
 from constants.platforms import PLATFORMS
-from constants.base import (ADDON_PREMIUM, STATUS_PUBLIC, STATUS_DISABLED,
-                            STATUS_BETA, STATUS_LITE,
-                            STATUS_LITE_AND_NOMINATED)
+from constants.base import (STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA,
+                            STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
@@ -139,25 +137,10 @@ def log_exception(data):
     # Note: although this logs exceptions, it logs at the info level so that
     # on prod, we log at the error level and result in no logs on prod.
     typ, value, discard = sys.exc_info()
-    error_log = logging.getLogger('z.receipt')
+    error_log = logging.getLogger('z.update')
     error_log.exception(u'Type: %s, %s. Data: %s' % (typ, value, data))
 
 
 def log_info(msg):
-    error_log = logging.getLogger('z.receipt')
+    error_log = logging.getLogger('z.update')
     error_log.info(msg)
-
-
-def log_cef(request, app, msg, longer):
-    """Log receipt transactions to the CEF library."""
-    c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
-         'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
-         'cef.version': getattr(settings, 'CEF_VERSION', '0'),
-         'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
-         'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
-
-    kwargs = {'username': getattr(request, 'user', ''),
-              'signature': 'RECEIPT%s' % msg.upper(),
-              'msg': longer, 'config': c,
-              'cs2': app, 'cs2Label': 'ReceiptTransaction'}
-    return _log_cef('Receipt %s' % msg, 5, request, **kwargs)

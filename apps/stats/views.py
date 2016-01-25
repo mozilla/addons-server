@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection
 from django.db.models import Avg, Count, Q, Sum
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
@@ -53,6 +54,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
 addon_view_with_unlisted = addon_view_factory(qs=Addon.with_unlisted.all)
 
 
+@non_atomic_requests
 def dashboard(request):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
@@ -145,6 +147,7 @@ def extract(dicts):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -190,6 +193,7 @@ def zip_overview(downloads, updates):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -204,6 +208,7 @@ def downloads_series(request, addon, group, start, end, format):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -221,6 +226,7 @@ def sources_series(request, addon, group, start, end, format):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -237,6 +243,7 @@ def usage_series(request, addon, group, start, end, format):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
     """Generate ADU breakdown of ``field``."""
@@ -335,6 +342,7 @@ def check_stats_permission(request, addon, for_contributions=False):
 
 
 @addon_view_factory(qs=Addon.with_unlisted.valid)
+@non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon,
                            for_contributions=(report == 'contributions'))
@@ -345,6 +353,7 @@ def stats_report(request, addon, report):
                    'stats_base_url': stats_base_url})
 
 
+@non_atomic_requests
 def site_stats_report(request, report):
     stats_base_url = reverse('stats.dashboard')
     view = get_report_view(request)
@@ -391,6 +400,7 @@ def get_daterange_or_404(start, end):
 
 
 @json_view
+@non_atomic_requests
 def site_events(request, start, end):
     """Return site events in the given timeframe."""
     start, end = get_daterange_or_404(start, end)
@@ -427,6 +437,7 @@ def site_event_format(request, events):
 
 
 @addon_view_with_unlisted
+@non_atomic_requests
 def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
@@ -450,28 +461,6 @@ def contributions_series(request, addon, group, start, end, format):
                           ['date', 'count', 'total', 'average'])
     elif format == 'json':
         return render_json(request, addon, series)
-
-
-# TODO: (dspasovski) - remove this once we know the indexed stats return JSON
-@json_view
-def fake_collection_stats(request, username, slug, group, start, end, format):
-    from time import strftime
-    from math import sin, floor
-    start, end = check_series_params_or_404(group, start, end, format)
-    faked = []
-    val = 0
-    for single_date in daterange(start, end):
-        isodate = strftime("%Y-%m-%d", single_date.timetuple())
-        faked.append({
-            'date': isodate,
-            'count': floor(200 + 50 * sin(val + 1)),
-            'data': {
-                'downloads': floor(200 + 50 * sin(2 * val + 2)),
-                'votes_up': floor(200 + 50 * sin(3 * val + 3)),
-                'votes_down': floor(200 + 50 * sin(4 * val + 4)),
-                'subscribers': floor(200 + 50 * sin(5 * val + 5))}})
-        val += .01
-    return faked
 
 
 def daterange(start_date, end_date):
@@ -525,6 +514,7 @@ def _site_query(period, start, end, field=None, request=None):
     return result.values(), _CACHED_KEYS
 
 
+@non_atomic_requests
 def site(request, format, group, start=None, end=None):
     """Site data from the global_stats table."""
     if not start and not end:
@@ -544,6 +534,7 @@ def site(request, format, group, start=None, end=None):
 
 
 @login_required
+@non_atomic_requests
 def collection_report(request, username, slug, report):
     c = get_collection(request, username, slug)
     stats_base_url = c.stats_url()
@@ -554,6 +545,7 @@ def collection_report(request, username, slug, report):
                    'slug': slug, 'stats_base_url': stats_base_url})
 
 
+@non_atomic_requests
 def site_series(request, format, group, start, end, field):
     """Pull a single field from the site_query data"""
     start, end = get_daterange_or_404(start, end)
@@ -577,6 +569,7 @@ def site_series(request, format, group, start, end, field):
     return render_json(request, None, series)
 
 
+@non_atomic_requests
 def collection_series(request, username, slug, format, group, start, end,
                       field):
     """Pull a single field from the collection_query data"""
@@ -594,6 +587,7 @@ def collection_series(request, username, slug, format, group, start, end,
     return render_json(request, None, series)
 
 
+@non_atomic_requests
 def collection_stats(request, username, slug, group, start, end, format):
     c = get_collection(request, username, slug)
     start, end = get_daterange_or_404(start, end)
@@ -620,6 +614,7 @@ def _collection_query(request, collection, start=None, end=None):
     return series
 
 
+@non_atomic_requests
 def collection(request, uuid, format, start=None, end=None):
     collection = get_object_or_404(Collection, uuid=uuid)
     series = _collection_query(request, collection, start, end)
@@ -670,6 +665,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
 
 
 @allow_cross_site_request
+@non_atomic_requests
 def render_csv(request, addon, stats, fields,
                title=None, show_disclaimer=None):
     """Render a stats series in CSV."""
@@ -690,6 +686,7 @@ def render_csv(request, addon, stats, fields,
 
 
 @allow_cross_site_request
+@non_atomic_requests
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
     response = http.HttpResponse(content_type='text/json')

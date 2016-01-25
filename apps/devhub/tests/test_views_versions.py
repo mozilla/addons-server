@@ -78,7 +78,12 @@ class TestVersion(amo.tests.TestCase):
         """Make sure we warn our users of the pain they will feel."""
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('#modal-delete p').eq(0).text() == 'Deleting your add-on will permanently remove it from the site ' 'and prevent its GUID from being submitted ever again, even by ' 'you. The existing users of your add-on will remain on this ' 'update channel and never receive updates again.'
+
+        expected = (
+            'Deleting your add-on will permanently remove it from the site '
+            'and prevent its GUID from being submitted again by others.'
+        )
+        assert doc('#modal-delete p').eq(0).text() == expected
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
@@ -88,7 +93,12 @@ class TestVersion(amo.tests.TestCase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('#modal-delete p').eq(0).text() == 'Deleting your add-on will permanently remove it from the site ' 'and prevent its GUID from being submitted ever again, even by ' 'you. The existing users of your add-on will remain on this ' 'update channel and never receive updates again.'
+
+        expected = (
+            'Deleting your add-on will permanently remove it from the site '
+            'and prevent its GUID from being submitted again by others.'
+        )
+        assert doc('#modal-delete p').eq(0).text() == expected
 
     def test_delete_message_incomplete(self):
         """

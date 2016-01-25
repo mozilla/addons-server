@@ -1,16 +1,16 @@
-from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 
 from tower import ugettext as _
 
 from amo import helpers
+from amo.feeds import NonAtomicFeed
 
 from addons.models import Addon, Review
 
 import urllib
 
 
-class ReviewsRss(Feed):
+class ReviewsRss(NonAtomicFeed):
 
     addon = None
 

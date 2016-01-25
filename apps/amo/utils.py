@@ -1,3 +1,4 @@
+import calendar
 import chardet
 import codecs
 import collections
@@ -993,3 +994,14 @@ def walkfiles(folder, suffix=''):
             for basename, dirnames, filenames in os.walk(folder)
             for filename in filenames
             if filename.endswith(suffix))
+
+
+def utc_millesecs_from_epoch(for_datetime=None):
+    """
+    Returns millesconds from the Unix epoch in UTC.
+
+    If `for_datetime` is None, the current datetime will be used.
+    """
+    if not for_datetime:
+        for_datetime = datetime.datetime.now()
+    return calendar.timegm(for_datetime.utctimetuple()) * 1000

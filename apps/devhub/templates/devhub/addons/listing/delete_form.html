@@ -10,12 +10,12 @@
       {% if addon.is_persona() %}
         {{ _('Deleting your theme will permanently remove it from the site.') }}
       {% else %}
-        {% trans %}
-          Deleting your add-on will permanently remove it from the site and
-          prevent its GUID from being submitted ever again, even by you.  The
-          existing users of your add-on will remain on this update channel and
-          never receive updates again.
-        {% endtrans %}
+        <b>
+          {% trans %}
+            Deleting your add-on will permanently remove it from the site and
+            prevent its GUID from being submitted again by others.
+          {% endtrans %}
+        </b>
       {% endif %}
     </p>
   {% endif %}

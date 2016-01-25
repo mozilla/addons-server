@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-12-07 22:48+0000\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"PO-Revision-Date: 2016-01-23 18:33+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -18,35 +18,35 @@ msgstr ""
 "X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1428463517.0\n"
 
-#: apps/addons/buttons.py:178
+#: apps/addons/buttons.py:179
 msgid "Download Now"
 msgstr "今すぐダウンロード"
 
-#: apps/addons/buttons.py:180
+#: apps/addons/buttons.py:181
 msgid "Download"
 msgstr "ダウンロード"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: apps/addons/buttons.py:184
+#: apps/addons/buttons.py:185
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "ダウンロードを続ける&nbsp;&rarr;"
 
-#: apps/addons/buttons.py:200
+#: apps/addons/buttons.py:201
 msgctxt "install_button"
 msgid "Featured"
 msgstr "おすすめ"
 
-#: apps/addons/buttons.py:205
+#: apps/addons/buttons.py:206
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "未審査"
 
-#: apps/addons/buttons.py:212
+#: apps/addons/buttons.py:213
 msgctxt "install_button"
 msgid "Experimental"
 msgstr "実験的"
 
-#: apps/addons/buttons.py:219
+#: apps/addons/buttons.py:220
 msgid "Add to {0}"
 msgstr "{0} へ追加"
 
@@ -134,58 +134,58 @@ msgid "Not Reviewed"
 msgstr "未審査"
 
 # いろいろな所で使われてるので注意
-#: apps/addons/helpers.py:34 apps/addons/views.py:315
+#: apps/addons/helpers.py:34 apps/addons/views.py:317
 #: apps/addons/templates/addons/impala/details.html:117
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:40
 #: apps/amo/templates/amo/side_nav.html:6
 #: apps/amo/templates/amo/side_nav.html:10
 #: apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:88
-#: apps/browse/views.py:54 apps/browse/views.py:68 apps/browse/views.py:231
+#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:92
+#: apps/browse/views.py:55 apps/browse/views.py:69 apps/browse/views.py:236
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "おすすめ"
 
-#: apps/addons/models.py:311
+#: apps/addons/models.py:305
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "ユーザには、この金額にとらわれない額の寄付をする選択肢があります。"
 
-#: apps/addons/models.py:320
+#: apps/addons/models.py:314
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "アドオンマネージャでは常に確認が求められます (Firefox 4 以降)"
 
 # Column name in a table.
-#: apps/addons/models.py:1902 apps/addons/templates/addons/details_box.html:59
+#: apps/addons/models.py:1828 apps/addons/templates/addons/details_box.html:55
 #: apps/devhub/templates/devhub/index.html:92
 #: apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "表示"
 
-#: apps/addons/views.py:316
+#: apps/addons/views.py:318
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
 msgstr "人気"
 
-#: apps/addons/views.py:317 apps/browse/views.py:234 apps/browse/views.py:274
-#: apps/browse/views.py:473
+#: apps/addons/views.py:319 apps/browse/views.py:239 apps/browse/views.py:281
+#: apps/browse/views.py:483
 msgid "Recently Added"
 msgstr "新着"
 
-#: apps/addons/views.py:318 apps/bandwagon/views.py:92 apps/browse/views.py:60
-#: apps/browse/views.py:71 apps/search/forms.py:16 apps/search/forms.py:91
+#: apps/addons/views.py:320 apps/bandwagon/views.py:96 apps/browse/views.py:61
+#: apps/browse/views.py:72 apps/search/forms.py:16 apps/search/forms.py:91
 msgid "Recently Updated"
 msgstr "最近更新"
 
 #. l10n: {0} is the addon name
 # {0} is an add-on name.
-#: apps/addons/views.py:506
+#: apps/addons/views.py:518
 msgid "Contribution for {0}"
 msgstr "{0} への寄付"
 
-#: apps/addons/views.py:594
+#: apps/addons/views.py:611
 msgid "Abuse reported."
 msgstr "不正報告が送信されました。"
 
@@ -217,13 +217,13 @@ msgid "for {0}"
 msgstr "({0} 用)"
 
 #: apps/addons/templates/addons/button.html:82
-#: apps/addons/templates/addons/mobile/button.html:28
+#: apps/addons/templates/addons/mobile/button.html:23
 msgid "View privacy policy"
 msgstr "プライバシーポリシーを表示"
 
 #: apps/addons/templates/addons/button.html:87
-#: apps/addons/templates/addons/details_box.html:137
-#: apps/addons/templates/addons/mobile/button.html:33
+#: apps/addons/templates/addons/details_box.html:133
+#: apps/addons/templates/addons/mobile/button.html:28
 #: apps/discovery/templates/discovery/addons/detail.html:34
 msgid "View End-User License Agreement"
 msgstr "エンドユーザ使用許諾契約書を表示"
@@ -288,10 +288,10 @@ msgstr "寄付"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:78
 #: apps/devhub/templates/devhub/versions/edit.html:139
-#: apps/devhub/templates/devhub/versions/list.html:256
-#: apps/devhub/templates/devhub/versions/list.html:290
-#: apps/devhub/templates/devhub/versions/list.html:331
-#: apps/devhub/templates/devhub/versions/list.html:365
+#: apps/devhub/templates/devhub/versions/list.html:242
+#: apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:317
+#: apps/devhub/templates/devhub/versions/list.html:351
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -426,121 +426,121 @@ msgid "No restart required"
 msgstr "再起動は不要です"
 
 #. This is a caption for a table. {0} is an add-on name.
-#: apps/addons/templates/addons/details_box.html:30
+#: apps/addons/templates/addons/details_box.html:26
 #: apps/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
 msgstr "{0} のアドオン情報"
 
-#: apps/addons/templates/addons/details_box.html:34
+#: apps/addons/templates/addons/details_box.html:30
 #: apps/addons/templates/addons/persona_detail_table.html:3
 #: apps/addons/templates/addons/mobile/details.html:63
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
-#: apps/browse/views.py:450 apps/devhub/views.py:75
+#: apps/browse/views.py:460 apps/devhub/views.py:75
 msgid "Updated"
 msgstr "更新日"
 
-#: apps/addons/templates/addons/details_box.html:42
+#: apps/addons/templates/addons/details_box.html:38
 #: apps/addons/templates/addons/mobile/details.html:71
 #: apps/devhub/templates/devhub/addons/edit/support.html:43
-#: apps/discovery/templates/discovery/addons/detail.html:87
+#: apps/discovery/templates/discovery/addons/detail.html:83
 msgid "Website"
 msgstr "Web サイト"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
-#: apps/addons/templates/addons/details_box.html:51
+#: apps/addons/templates/addons/details_box.html:47
 #: apps/addons/templates/addons/mobile/details.html:80
 #: apps/search/templates/search/results.html:72
 #: apps/versions/templates/versions/version.html:21
 msgid "Works with"
 msgstr "動作環境:"
 
-#: apps/addons/templates/addons/details_box.html:56
+#: apps/addons/templates/addons/details_box.html:52
 msgid "Visibility"
 msgstr "公開状態"
 
-#: apps/addons/templates/addons/details_box.html:61
+#: apps/addons/templates/addons/details_box.html:57
 #: apps/devhub/templates/devhub/index.html:94
 #: apps/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
 msgstr "非掲載"
 
-#: apps/addons/templates/addons/details_box.html:63
+#: apps/addons/templates/addons/details_box.html:59
 #: apps/devhub/templates/devhub/index.html:96
 #: apps/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
 msgstr "リスト掲載中止"
 
-#: apps/addons/templates/addons/details_box.html:71
+#: apps/addons/templates/addons/details_box.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
 msgstr "必要なアドオン"
 
-#: apps/addons/templates/addons/details_box.html:85
+#: apps/addons/templates/addons/details_box.html:81
 #: apps/addons/templates/addons/persona_detail_table.html:15
 msgctxt "advanced_search_form_rating"
 msgid "Rating"
 msgstr "評価"
 
-#: apps/addons/templates/addons/details_box.html:89
+#: apps/addons/templates/addons/details_box.html:85
 msgctxt "list_sortby_downloads"
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: apps/addons/templates/addons/details_box.html:95
-#: apps/addons/templates/addons/details_box.html:107
+#: apps/addons/templates/addons/details_box.html:91
+#: apps/addons/templates/addons/details_box.html:103
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: apps/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
 msgstr "統計情報を表示"
 
-#: apps/addons/templates/addons/details_box.html:101
+#: apps/addons/templates/addons/details_box.html:97
 msgid "Average Daily Users"
 msgstr "平均日別ユーザ数"
 
-#: apps/addons/templates/addons/details_box.html:113
+#: apps/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
 msgstr "不正報告"
 
 #. The Privacy Policy for this add-on.
-#: apps/addons/templates/addons/details_box.html:125
+#: apps/addons/templates/addons/details_box.html:121
 #: apps/addons/templates/addons/privacy.html:19
 #: apps/addons/templates/addons/privacy.html:23
 #: apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:314
+#: apps/addons/templates/addons/impala/details.html:310
 #: apps/devhub/templates/devhub/includes/policy_form.html:20
 #: templates/mobile/base_addons.html:81
 msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
 
-#: apps/addons/templates/addons/details_box.html:128
+#: apps/addons/templates/addons/details_box.html:124
 #: apps/discovery/templates/discovery/addons/detail.html:30
 msgid "View Privacy Policy"
 msgstr "プライバシーポリシーを表示"
 
-#: apps/addons/templates/addons/details_box.html:134
+#: apps/addons/templates/addons/details_box.html:130
 msgid "EULA"
 msgstr "エンドユーザ使用許諾契約書 (EULA)"
 
-#: apps/addons/templates/addons/details_box.html:175
-#: apps/addons/templates/addons/details_box.html:235
+#: apps/addons/templates/addons/details_box.html:171
+#: apps/addons/templates/addons/details_box.html:231
 msgid "More about this add-on"
 msgstr "このアドオンの詳細"
 
-#: apps/addons/templates/addons/details_box.html:184
+#: apps/addons/templates/addons/details_box.html:180
 msgid "Image Gallery"
 msgstr "イメージギャラリー"
 
-#: apps/addons/templates/addons/details_box.html:194
+#: apps/addons/templates/addons/details_box.html:190
 msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "作者のコメント"
 
-#: apps/addons/templates/addons/details_box.html:203
-#: apps/addons/templates/addons/impala/details.html:266
+#: apps/addons/templates/addons/details_box.html:199
+#: apps/addons/templates/addons/impala/details.html:262
 msgid "Development Channel"
 msgstr "開発チャンネル"
 
-#: apps/addons/templates/addons/details_box.html:206
+#: apps/addons/templates/addons/details_box.html:202
 #: apps/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
@@ -549,11 +549,11 @@ msgid ""
 msgstr ""
 "開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。"
 
-#: apps/addons/templates/addons/details_box.html:211
+#: apps/addons/templates/addons/details_box.html:207
 msgid "Install development version"
 msgstr "開発版をインストール"
 
-#: apps/addons/templates/addons/details_box.html:215
+#: apps/addons/templates/addons/details_box.html:211
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla. Once you install a development version you will "
@@ -564,16 +564,16 @@ msgstr ""
 "<strong>注意:</strong> このアドオンの開発版は Mozilla "
 "の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクから通常版を再インストールしてください。"
 
-#: apps/addons/templates/addons/details_box.html:224
-#: apps/addons/templates/addons/impala/details.html:285
+#: apps/addons/templates/addons/details_box.html:220
+#: apps/addons/templates/addons/impala/details.html:281
 msgid "Version {0}:"
 msgstr "バージョン {0}:"
 
-#: apps/addons/templates/addons/details_box.html:238
+#: apps/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here! The developer did not include any details."
 msgstr "ここに表示する情報はありません。作者が詳細を記載していません。"
 
-#: apps/addons/templates/addons/details_box.html:255
+#: apps/addons/templates/addons/details_box.html:251
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
 msgstr "リリースノート"
@@ -588,7 +588,7 @@ msgstr "{0} のエンドユーザ使用許諾契約書"
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
 #: apps/addons/templates/addons/impala/button.html:48
-#: apps/addons/templates/addons/impala/details.html:323
+#: apps/addons/templates/addons/impala/details.html:319
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
@@ -610,7 +610,7 @@ msgstr "{0} のページへ戻る…"
 # Firefox,
 # Sunbird
 #: apps/addons/templates/addons/home.html:3
-#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:234
+#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:235
 msgid "Add-ons for {0}"
 msgstr "Add-ons for {0}"
 
@@ -628,8 +628,8 @@ msgstr "人気の拡張機能"
 #: apps/amo/templates/amo/side_nav.html:3
 #: apps/amo/templates/amo/side_nav.html:11
 #: apps/amo/templates/amo/site_nav.html:3
-#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:232
-#: apps/browse/views.py:275 apps/browse/views.py:472
+#: apps/amo/templates/amo/site_nav.html:25 apps/browse/views.py:237
+#: apps/browse/views.py:282 apps/browse/views.py:482
 msgid "Most Popular"
 msgstr "最も人気"
 
@@ -651,7 +651,7 @@ msgstr "注目の拡張機能"
 
 #: apps/addons/templates/addons/home.html:69
 #: apps/browse/templates/browse/personas/category_landing.html:61
-#: apps/discovery/templates/discovery/pane.html:97
+#: apps/discovery/templates/discovery/pane.html:74
 msgid "Featured Themes"
 msgstr "おすすめのテーマ"
 
@@ -728,48 +728,12 @@ msgstr "購入が完了しました"
 msgid "Return to the addon."
 msgstr "アドオンのページへ戻る"
 
-#: apps/addons/templates/addons/performance_note.html:4
-#: apps/addons/templates/addons/performance_note.html:22
-#: apps/addons/templates/addons/impala/performance_note.html:4
-#: apps/addons/templates/addons/impala/performance_note.html:20
-msgid "This add-on can slow down Firefox."
-msgstr "このアドオンは Firefox の動作速度を低下させる可能性があります。"
-
-#: apps/addons/templates/addons/performance_note.html:5
-#: apps/amo/templates/amo/site_nav.html:76
-msgid "More&hellip;"
-msgstr "その他&hellip;"
-
-#: apps/addons/templates/addons/performance_note.html:8
-#: apps/addons/templates/addons/impala/performance_note.html:8
-msgid ""
-"<b>Performance warning:</b> Installing this add-on can slow down Firefox's "
-"start-up by <b>%(amount)s%%</b>."
-msgstr ""
-"<b>パフォーマンス警告:</b> このアドオンをインストールすると Firefox の起動速度が <b>%(amount)s%%</b> "
-"遅くなる可能性があります。"
-
-#: apps/addons/templates/addons/performance_note.html:14
-#: apps/addons/templates/addons/performance_note.html:27
-#: apps/addons/templates/addons/impala/performance_note.html:14
-#: apps/addons/templates/addons/impala/performance_note.html:26
-msgid "Learn more&hellip;"
-msgstr "詳細&hellip;"
-
-#: apps/addons/templates/addons/performance_note.html:23
-#: apps/addons/templates/addons/impala/performance_note.html:22
-msgid ""
-"Installing this add-on can slow down Firefox's start-up by "
-"<b>%(amount)s%%</b>."
-msgstr "このアドオンをインストールすると Firefox の起動速度が <b>%(amount)s%%</b> 遅くなる可能性があります。"
-
 #: apps/addons/templates/addons/persona_detail.html:19
 #: apps/addons/templates/addons/impala/details.html:109
 #: apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21
 #: apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31
-#: apps/perf/templates/perf/index.html:78
 msgid "by"
 msgstr "作者:"
 
@@ -1042,7 +1006,7 @@ msgstr ""
 #: apps/addons/templates/addons/report_abuse.html:6
 #: apps/addons/templates/addons/report_abuse_full.html:11
 #: apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:335
+#: apps/addons/templates/addons/impala/details.html:331
 msgid "Report Abuse"
 msgstr "不正報告"
 
@@ -1075,10 +1039,10 @@ msgstr "レポートを送信"
 #: apps/devhub/templates/devhub/personas/edit.html:222
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:79
 #: apps/devhub/templates/devhub/versions/edit.html:140
-#: apps/devhub/templates/devhub/versions/list.html:222
-#: apps/devhub/templates/devhub/versions/list.html:256
-#: apps/devhub/templates/devhub/versions/list.html:290
-#: apps/devhub/templates/devhub/versions/list.html:331
+#: apps/devhub/templates/devhub/versions/list.html:208
+#: apps/devhub/templates/devhub/versions/list.html:242
+#: apps/devhub/templates/devhub/versions/list.html:276
+#: apps/devhub/templates/devhub/versions/list.html:317
 #: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
@@ -1245,14 +1209,10 @@ msgid "Related Categories"
 msgstr "関連するカテゴリ"
 
 #: apps/addons/templates/addons/impala/details-more.html:56
-msgid "Often used with&hellip;"
-msgstr "以下のアドオンとよく一緒に利用されています"
-
-#: apps/addons/templates/addons/impala/details-more.html:63
 msgid "Part of these Collections"
 msgstr "このアドオンを含むコレクション"
 
-#: apps/addons/templates/addons/impala/details-more.html:72
+#: apps/addons/templates/addons/impala/details-more.html:65
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "%(author)s が公開している他のアドオン"
@@ -1280,80 +1240,80 @@ msgstr "{0} のアイコン"
 msgid "No Restart"
 msgstr "再起動不要"
 
-#: apps/addons/templates/addons/impala/details.html:134
+#: apps/addons/templates/addons/impala/details.html:130
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "作者紹介: <a href=\"%(url)s\">%(name)s</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:144
+#: apps/addons/templates/addons/impala/details.html:140
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "{0} が作られた経緯と、このアドオンの今後の開発計画について知りましょう。"
 
 #. {0} is an index.
-#: apps/addons/templates/addons/impala/details.html:163
+#: apps/addons/templates/addons/impala/details.html:159
 msgid "Add-on screenshot #{0}"
 msgstr "アドオンのスクリーンショット #{0}"
 
-#: apps/addons/templates/addons/impala/details.html:189
+#: apps/addons/templates/addons/impala/details.html:185
 msgid "Add-on home page"
 msgstr "アドオンのホームページ"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:188
 msgid "Support site"
 msgstr "サポートサイト"
 
-#: apps/addons/templates/addons/impala/details.html:196
+#: apps/addons/templates/addons/impala/details.html:192
 msgid "Support E-mail"
 msgstr "サポートメールアドレス"
 
-#: apps/addons/templates/addons/impala/details.html:201
-#: apps/devhub/models.py:381
+#: apps/addons/templates/addons/impala/details.html:197
+#: apps/devhub/models.py:377
 msgid "Version {0}"
 msgstr "バージョン {0}"
 
-#: apps/addons/templates/addons/impala/details.html:201
+#: apps/addons/templates/addons/impala/details.html:197
 msgid "Info"
 msgstr "情報"
 
-#: apps/addons/templates/addons/impala/details.html:202
+#: apps/addons/templates/addons/impala/details.html:198
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
 msgstr "最終更新日:"
 
-#: apps/addons/templates/addons/impala/details.html:207
+#: apps/addons/templates/addons/impala/details.html:203
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> の下で公開されています"
 
-#: apps/addons/templates/addons/impala/details.html:208
-#: apps/addons/templates/addons/impala/details.html:213
-#: apps/amo/helpers.py:383 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:204
+#: apps/addons/templates/addons/impala/details.html:209
+#: apps/amo/helpers.py:387 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "独自ライセンス"
 
-#: apps/addons/templates/addons/impala/details.html:212
+#: apps/addons/templates/addons/impala/details.html:208
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> の下で公開されています"
 
-#: apps/addons/templates/addons/impala/details.html:224
+#: apps/addons/templates/addons/impala/details.html:220
 msgid "About this Add-on"
 msgstr "このアドオンについて"
 
-#: apps/addons/templates/addons/impala/details.html:240
+#: apps/addons/templates/addons/impala/details.html:236
 msgid "Developer’s Comments"
 msgstr "作者のコメント"
 
-#: apps/addons/templates/addons/impala/details.html:250
+#: apps/addons/templates/addons/impala/details.html:246
 msgid "Version Information"
 msgstr "バージョン情報"
 
-#: apps/addons/templates/addons/impala/details.html:257
+#: apps/addons/templates/addons/impala/details.html:253
 msgid "See complete version history"
 msgstr "すべてのバージョン履歴を見る"
 
-#: apps/addons/templates/addons/impala/details.html:269
+#: apps/addons/templates/addons/impala/details.html:265
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
 "add-on before it's released to the general public. Once you install the "
@@ -1363,23 +1323,23 @@ msgid ""
 msgstr ""
 "開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリンクから通常版を再インストールしてください。"
 
-#: apps/addons/templates/addons/impala/details.html:279
+#: apps/addons/templates/addons/impala/details.html:275
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr "<strong>警告:</strong> このアドオンの開発版は Mozilla による審査を受けていません。"
 
-#: apps/addons/templates/addons/impala/details.html:294
+#: apps/addons/templates/addons/impala/details.html:290
 msgid "See complete development channel history"
 msgstr "開発チャンネルの完全な履歴を見る"
 
-#: apps/addons/templates/addons/impala/details.html:313
-#: apps/addons/templates/addons/impala/details.html:322
-#: apps/addons/templates/addons/impala/details.html:334
+#: apps/addons/templates/addons/impala/details.html:309
+#: apps/addons/templates/addons/impala/details.html:318
+#: apps/addons/templates/addons/impala/details.html:330
 #: apps/addons/templates/addons/impala/review_add_box.html:4
 #: apps/stats/templates/stats/popup.html:2
 #: apps/stats/templates/stats/popup.html:8
-#: apps/stats/templates/stats/stats.html:194
+#: apps/stats/templates/stats/stats.html:202
 #: apps/users/templates/users/profile.html:120
 msgid "close"
 msgstr "閉じる"
@@ -1417,7 +1377,7 @@ msgid_plural "About the Developers"
 msgstr[0] "作者について"
 
 #: apps/addons/templates/addons/impala/developers.html:96
-#: apps/users/templates/users/edit.html:109
+#: apps/users/templates/users/edit.html:118
 #: apps/users/templates/users/profile.html:27
 msgid "No Photo"
 msgstr "写真なし"
@@ -1442,10 +1402,6 @@ msgstr "{addon} のソースコードライセンス"
 #: apps/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
 msgstr "ソースコードライセンス"
-
-#: apps/addons/templates/addons/impala/performance_note.html:5
-msgid "Explain&hellip;"
-msgstr "説明&hellip;"
 
 #: apps/addons/templates/addons/impala/persona_grid.html:16
 #: apps/addons/templates/addons/impala/toplist.html:6
@@ -1494,7 +1450,7 @@ msgid "My Add-ons"
 msgstr "自分のアドオン"
 
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6
-#: apps/amo/context_processors.py:68
+#: apps/amo/context_processors.py:53
 msgid "My Themes"
 msgstr "自分のテーマ"
 
@@ -1523,7 +1479,7 @@ msgstr "申し訳ありませんが、このテーマは公開が保留されて
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "このテーマは公開が保留されています。あなた以外には誰も見ることはできません。"
 
-#: apps/addons/templates/addons/listing/items.html:31
+#: apps/addons/templates/addons/listing/items.html:29
 msgid "Collector's Note"
 msgstr "コレクターのメモ"
 
@@ -1539,10 +1495,6 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> 週間ダウンロード"
 
-#: apps/addons/templates/addons/mobile/button.html:23
-msgid "May Slow Down Your Browser"
-msgstr "ブラウザの動作が遅くなる可能性があります"
-
 #: apps/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
 msgstr "続きを読む"
@@ -1551,15 +1503,15 @@ msgstr "続きを読む"
 msgid "Users"
 msgstr "ユーザ"
 
-#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:59
-#: apps/browse/views.py:70 apps/search/forms.py:90
+#: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:60
+#: apps/browse/views.py:71 apps/search/forms.py:90
 msgid "Weekly Downloads"
 msgstr "週間ダウンロード数"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
-#: apps/devhub/forms.py:784
-#: apps/devhub/templates/devhub/versions/list.html:174
+#: apps/devhub/forms.py:785
+#: apps/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
 msgstr "バージョン"
 
@@ -1622,9 +1574,9 @@ msgstr ""
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} Add-ons のホームページへ戻る"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:236
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:237
 #: apps/bandwagon/templates/bandwagon/edit.html:34
-#: apps/discovery/templates/discovery/pane.html:115
+#: apps/discovery/templates/discovery/pane.html:92
 #: apps/editors/templates/editors/base.html:21
 #: apps/editors/templates/editors/performance.html:72
 #: templates/menu_links.html:4 templates/impala/header_title.html:9
@@ -1639,7 +1591,7 @@ msgstr "カスタマイズ自由自在。"
 
 #: apps/addons/templates/addons/mobile/home.html:24
 #: apps/devhub/templates/devhub/addons/submit/done.html:47
-#: apps/discovery/templates/discovery/pane.html:35
+#: apps/discovery/templates/discovery/pane.html:34
 #: apps/discovery/templates/discovery/addons/detail.html:22
 #: apps/discovery/templates/discovery/modules/featured.html:21
 #: apps/discovery/templates/discovery/modules/monthly.html:22
@@ -1669,7 +1621,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/grid.html:11
 #: apps/browse/templates/browse/personas/mobile/base.html:7
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:183
+#: apps/constants/base.py:180
 #: apps/devhub/templates/devhub/personas/submit.html:13
 #: apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73
@@ -1698,8 +1650,8 @@ msgstr "高評価"
 #: apps/addons/templates/addons/mobile/home.html:74
 #: apps/amo/templates/amo/side_nav.html:5
 #: apps/amo/templates/amo/site_nav.html:27
-#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:90
-#: apps/browse/views.py:57 apps/browse/views.py:67
+#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:94
+#: apps/browse/views.py:58 apps/browse/views.py:68
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
 #: apps/search/forms.py:15 apps/search/forms.py:87
 msgid "Newest"
@@ -1713,79 +1665,79 @@ msgstr "プレビュー"
 msgid "Theme Info &raquo;"
 msgstr "テーマの情報 &raquo;"
 
-#: apps/amo/context_processors.py:56 apps/devhub/templates/devhub/nav.html:43
+#: apps/amo/context_processors.py:41 apps/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "ツール"
 
-#: apps/amo/context_processors.py:65
+#: apps/amo/context_processors.py:50
 #: apps/discovery/templates/discovery/pane_account.html:8
 #: apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
 msgstr "自分のプロフィール"
 
-#: apps/amo/context_processors.py:71 apps/users/templates/users/edit.html:5
+#: apps/amo/context_processors.py:56 apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
 msgstr "アカウント設定"
 
-#: apps/amo/context_processors.py:74
+#: apps/amo/context_processors.py:59
 #: apps/discovery/templates/discovery/pane_account.html:11
 #: apps/users/templates/users/profile.html:84
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "自分のコレクション"
 
-#: apps/amo/context_processors.py:79
+#: apps/amo/context_processors.py:64
 #: apps/discovery/templates/discovery/pane_account.html:10
 #: apps/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
 msgstr "自分のお気に入り"
 
-#: apps/amo/context_processors.py:84
+#: apps/amo/context_processors.py:69
 #: apps/discovery/templates/discovery/pane_account.html:13
 #: templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "ログアウト"
 
-#: apps/amo/context_processors.py:89
+#: apps/amo/context_processors.py:74
 #: apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
 msgstr "自分の登録アイテムを管理"
 
-#: apps/amo/context_processors.py:92 apps/devhub/templates/devhub/nav.html:27
+#: apps/amo/context_processors.py:77 apps/devhub/templates/devhub/nav.html:27
 #: apps/devhub/templates/devhub/addons/dashboard.html:25
 #: apps/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
 msgstr "新しいアドオンを登録"
 
-#: apps/amo/context_processors.py:94
+#: apps/amo/context_processors.py:79
 #: apps/browse/templates/browse/personas/base.html:50
 #: apps/devhub/templates/devhub/index.html:24
 #: apps/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
 msgstr "新しいテーマを登録"
 
-#: apps/amo/context_processors.py:96 apps/amo/templates/amo/site_nav.html:85
+#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:85
 #: apps/devhub/helpers.py:36 apps/devhub/helpers.py:68
 #: apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "開発者センター"
 
-#: apps/amo/context_processors.py:100 apps/devhub/views.py:1812
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
 msgid "Manage API Keys"
 msgstr "API キーを管理"
 
-#: apps/amo/context_processors.py:105 apps/editors/helpers.py:81
+#: apps/amo/context_processors.py:90 apps/editors/helpers.py:81
 #: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "エディタ用ツール"
 
-#: apps/amo/context_processors.py:108
+#: apps/amo/context_processors.py:93
 msgid "Localizer Tools"
 msgstr "ローカライザ用ツール"
 
-#: apps/amo/context_processors.py:112
+#: apps/amo/context_processors.py:97
 msgid "Admin Tools"
 msgstr "管理者用ツール"
 
@@ -1797,7 +1749,7 @@ msgstr "#000000 のような 16 進数のカラーコードを入力してくだ
 msgid "Enter at least one value."
 msgstr "少なくともひとつ値を入力してください。"
 
-#: apps/amo/helpers.py:161 apps/amo/templates/amo/site_nav.html:59
+#: apps/amo/helpers.py:162 apps/amo/templates/amo/site_nav.html:59
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9
@@ -1814,13 +1766,13 @@ msgstr "少なくともひとつ値を入力してください。"
 msgid "Collections"
 msgstr "コレクション"
 
-#: apps/amo/helpers.py:170 apps/amo/templates/amo/site_nav.html:83
+#: apps/amo/helpers.py:171 apps/amo/templates/amo/site_nav.html:83
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "スペルチェック辞書と言語パック"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:413
+#: apps/amo/helpers.py:417
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -2306,7 +2258,6 @@ msgid "Some rights reserved"
 msgstr "Some rights reserved"
 
 #: apps/amo/templates/amo/no_results.html:1
-#: apps/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
 msgstr "該当するアイテムはありません"
 
@@ -2332,10 +2283,9 @@ msgstr "前へ"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:78
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
-#: apps/discovery/templates/discovery/pane.html:46
-#: apps/discovery/templates/discovery/pane.html:72
-#: apps/discovery/templates/discovery/addons/detail.html:49
-#: apps/stats/templates/stats/stats.html:159
+#: apps/discovery/templates/discovery/pane.html:45
+#: apps/discovery/templates/discovery/addons/detail.html:45
+#: apps/stats/templates/stats/stats.html:167
 msgid "Next"
 msgstr "次へ"
 
@@ -2385,8 +2335,8 @@ msgstr ""
 #: apps/amo/templates/amo/side_nav.html:4
 #: apps/amo/templates/amo/side_nav.html:12
 #: apps/amo/templates/amo/site_nav.html:4
-#: apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:56
-#: apps/browse/views.py:66 apps/browse/views.py:233 apps/browse/views.py:276
+#: apps/amo/templates/amo/site_nav.html:26 apps/browse/views.py:57
+#: apps/browse/views.py:67 apps/browse/views.py:238 apps/browse/views.py:283
 #: apps/search/forms.py:86
 msgid "Top Rated"
 msgstr "高評価"
@@ -2401,15 +2351,15 @@ msgstr "アドオンを探す"
 #: apps/browse/templates/browse/base_listing.html:7
 #: apps/browse/templates/browse/creatured.html:10
 #: apps/browse/templates/browse/impala/base_listing.html:37
-#: apps/constants/base.py:176 templates/menu_links.html:8
+#: apps/constants/base.py:173 templates/menu_links.html:8
 msgid "Extensions"
 msgstr "拡張機能"
 
 #: apps/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "もっとカスタマイズしたい？ それなら <b>完全テーマ</b> を試してみてください"
+msgstr "もっとカスタマイズしたいですか？ <b>完全テーマ</b> を試してください"
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:89
+#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:93
 msgid "Most Followers"
 msgstr "フォロー数上位"
 
@@ -2429,16 +2379,20 @@ msgstr "フォローしているコレクション"
 #: apps/amo/templates/amo/site_nav.html:71
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:492
+#: apps/users/models.py:501
 msgid "My Favorite Add-ons"
 msgstr "お気に入りのアドオン"
+
+#: apps/amo/templates/amo/site_nav.html:76
+msgid "More&hellip;"
+msgstr "その他&hellip;"
 
 #: apps/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
 msgstr "Add-ons for Mobile"
 
 #: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207
-#: apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:179
+#: apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176
 #: templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "検索ツール"
@@ -2460,10 +2414,9 @@ msgstr "最初のページへ移動"
 
 #: apps/amo/templates/amo/impala/paginator.html:22
 #: apps/amo/templates/amo/mobile/impala_paginator.html:12
-#: apps/discovery/templates/discovery/pane.html:45
-#: apps/discovery/templates/discovery/pane.html:71
-#: apps/discovery/templates/discovery/addons/detail.html:48
-#: apps/stats/templates/stats/stats.html:156
+#: apps/discovery/templates/discovery/pane.html:44
+#: apps/discovery/templates/discovery/addons/detail.html:44
+#: apps/stats/templates/stats/stats.html:164
 msgid "Previous"
 msgstr "前へ"
 
@@ -2520,7 +2473,7 @@ msgstr "不正なデータが入力されました: {0}"
 msgid "Add-on did not validate: %s"
 msgstr "アドオンが検証されませんでした: %s"
 
-#: apps/api/views.py:256
+#: apps/api/views.py:257
 msgid "Not implemented yet."
 msgstr "まだ実装されていません。"
 
@@ -2586,12 +2539,12 @@ msgstr "確認"
 msgid "OAuth required"
 msgstr "OAuth 認証が必要です"
 
-#: apps/applications/views.py:36
+#: apps/applications/views.py:38
 #: apps/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
 
-#: apps/applications/views.py:42
+#: apps/applications/views.py:44
 msgid "Acceptable versions for all applications on AMO."
 msgstr "AMO のすべての対応アプリケーションにおける利用可能なバージョンです。"
 
@@ -2691,11 +2644,11 @@ msgstr "リンクの使用は許可されていません。"
 msgid "This url is already in use by another collection"
 msgstr "この URL は他のコレクションですでに使われています"
 
-#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1066
+#: apps/bandwagon/forms.py:196 apps/devhub/views.py:1044
 msgid "Icons must be either PNG or JPG."
 msgstr "アイコンは PNG か JPG 形式でなければなりません。"
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1084
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
 #: apps/users/forms.py:423
 msgid "Please use images smaller than %dMB."
 msgstr "画像のサイズは %d MB 以下にしてください。"
@@ -2730,8 +2683,8 @@ msgstr "お気に入り"
 msgid "Remove from favorites"
 msgstr "お気に入りから削除"
 
-#: apps/bandwagon/views.py:91 apps/bandwagon/views.py:181
-#: apps/browse/views.py:58 apps/browse/views.py:69 apps/browse/views.py:449
+#: apps/bandwagon/views.py:95 apps/bandwagon/views.py:188
+#: apps/browse/views.py:59 apps/browse/views.py:70 apps/browse/views.py:459
 #: apps/devhub/views.py:74 apps/devhub/views.py:82
 #: apps/devhub/templates/devhub/addons/edit/basic.html:20
 #: apps/editors/templates/editors/leaderboard.html:24
@@ -2741,38 +2694,38 @@ msgstr "お気に入りから削除"
 msgid "Name"
 msgstr "タイトル"
 
-#: apps/bandwagon/views.py:93
+#: apps/bandwagon/views.py:97
 msgid "Recently Popular"
 msgstr "最近人気"
 
-#: apps/bandwagon/views.py:179
+#: apps/bandwagon/views.py:186
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
 msgstr "追加日"
 
-#: apps/bandwagon/views.py:180
+#: apps/bandwagon/views.py:187
 msgid "Popularity"
 msgstr "人気度"
 
-#: apps/bandwagon/views.py:303
+#: apps/bandwagon/views.py:312
 msgid "Collection created!"
 msgstr "コレクションが作成されました！"
 
-#: apps/bandwagon/views.py:304
+#: apps/bandwagon/views.py:313
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr "あなたの新しいコレクションは以下に表示されています。必要なら <a href=\"%(url)s\">追加の設定を編集</a> してください。"
 
-#: apps/bandwagon/views.py:308
+#: apps/bandwagon/views.py:317
 msgid "Collection updated!"
 msgstr "コレクションが更新されました！"
 
-#: apps/bandwagon/views.py:309
+#: apps/bandwagon/views.py:318
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">コレクションを表示</a> して変更を確認"
 
-#: apps/bandwagon/views.py:563
+#: apps/bandwagon/views.py:573
 msgid "Icon Deleted"
 msgstr "アイコンが削除されました"
 
@@ -2829,12 +2782,12 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr "コレクションを評価するには、当サイトのアカウントが必要です。"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18
-#: templates/base.html:135 templates/impala/base.html:180
+#: templates/base.html:136 templates/impala/base.html:191
 msgid "Create an Add-ons Account"
 msgstr "当サイトのアカウントを作成"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21
-#: templates/base.html:138 templates/impala/base.html:183
+#: templates/base.html:139 templates/impala/base.html:194
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "あるいは <a href=\"%(login)s\">既存のアカウントへログイン</a>"
 
@@ -2898,7 +2851,7 @@ msgstr[0] "このコレクションには %(num)s 個のアドオンが含まれ
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:125
 #: apps/compat/templates/compat/index.html:25
 #: apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:55
+#: apps/files/templates/files/viewer.html:29
 #: apps/localizers/templates/localizers/locale_switcher.html:9
 #: templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
@@ -3020,9 +2973,9 @@ msgstr "{0} を削除"
 #: apps/bandwagon/templates/bandwagon/delete.html:13
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:28
-#: apps/devhub/templates/devhub/versions/list.html:139
-#: apps/devhub/templates/devhub/versions/list.html:160
-#: apps/devhub/templates/devhub/versions/list.html:180
+#: apps/devhub/templates/devhub/versions/list.html:131
+#: apps/devhub/templates/devhub/versions/list.html:149
+#: apps/devhub/templates/devhub/versions/list.html:166
 msgid "Delete"
 msgstr "削除"
 
@@ -3091,7 +3044,7 @@ msgstr "変更を保存"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:12
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:17
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:58
-#: apps/constants/base.py:137
+#: apps/constants/base.py:134
 msgid "Owner"
 msgstr "オーナー"
 
@@ -3174,6 +3127,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/login_form.html:41
 msgid "Continue"
 msgstr "続ける"
 
@@ -3274,9 +3228,8 @@ msgstr ""
 "<strong>コレクションへ追加</strong> リンクをクリックして、後からでもアドオンを追加できます。"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:17
-#: apps/constants/base.py:445
+#: apps/constants/base.py:400
 #: apps/devhub/templates/devhub/addons/activity.html:62
-#: apps/perf/templates/perf/index.html:55
 msgid "Add-on"
 msgstr "アドオン"
 
@@ -3410,29 +3363,29 @@ msgstr "検索ツールと検索関連の拡張機能"
 msgid "Search tools"
 msgstr "検索ツール"
 
-#: apps/browse/views.py:55 apps/browse/views.py:65 apps/search/forms.py:85
+#: apps/browse/views.py:56 apps/browse/views.py:66 apps/search/forms.py:85
 msgid "Most Users"
 msgstr "人気"
 
-#: apps/browse/views.py:61 apps/browse/views.py:72 apps/browse/views.py:273
+#: apps/browse/views.py:62 apps/browse/views.py:73 apps/browse/views.py:280
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:63
-#: apps/discovery/templates/discovery/pane.html:90 apps/search/forms.py:92
+#: apps/discovery/templates/discovery/pane.html:67 apps/search/forms.py:92
 msgid "Up & Coming"
 msgstr "注目"
 
-#: apps/browse/views.py:451 apps/devhub/views.py:76 apps/devhub/views.py:83
-#: apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/browse/views.py:461 apps/devhub/views.py:76 apps/devhub/views.py:83
+#: apps/discovery/templates/discovery/addons/detail.html:72
 msgid "Created"
 msgstr "新着"
 
-#: apps/browse/views.py:452 apps/devhub/views.py:77 apps/devhub/views.py:84
+#: apps/browse/views.py:462 apps/devhub/views.py:77 apps/devhub/views.py:84
 #: apps/stats/templates/stats/addon_report_menu.html:8
 #: apps/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: apps/browse/views.py:453 apps/devhub/views.py:78 apps/devhub/views.py:85
-#: apps/discovery/templates/discovery/addons/detail.html:67
+#: apps/browse/views.py:463 apps/devhub/views.py:78 apps/devhub/views.py:85
+#: apps/discovery/templates/discovery/addons/detail.html:63
 #: apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
@@ -3454,7 +3407,7 @@ msgstr "{0}: おすすめのアドオン"
 #: apps/devhub/templates/devhub/docs/policies.html:21
 #: apps/devhub/templates/devhub/docs/policies.html:90
 #: apps/discovery/modules.py:341
-#: apps/discovery/templates/discovery/pane.html:53 templates/menu_links.html:7
+#: apps/discovery/templates/discovery/pane.html:52 templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "おすすめのアドオン"
 
@@ -3500,7 +3453,7 @@ msgstr "言語"
 
 #: apps/browse/templates/browse/language_tools.html:42
 #: apps/browse/templates/browse/language_tools.html:64
-#: apps/constants/base.py:165
+#: apps/constants/base.py:162
 msgid "Dictionary"
 msgstr "スペルチェック辞書"
 
@@ -3579,7 +3532,7 @@ msgstr ""
 "で学ぶ"
 
 #: apps/browse/templates/browse/themes.html:6
-#: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:177
+#: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
 msgstr "完全テーマ"
 
@@ -3654,7 +3607,6 @@ msgstr[0] "%(name)s カテゴリの %(cnt)s 個の拡張機能を見る &raquo;"
 #: apps/compat/templates/compat/index.html:82
 #: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
-#: apps/perf/templates/perf/index.html:109
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
@@ -3751,11 +3703,11 @@ msgstr "他のテーマ"
 msgid "&laquo; All Themes"
 msgstr "&laquo; すべてのテーマ"
 
-#: apps/compat/forms.py:17 apps/perf/templates/perf/index.html:43
+#: apps/compat/forms.py:17
 msgid "All"
 msgstr "すべて"
 
-#: apps/compat/forms.py:23 apps/search/views.py:521
+#: apps/compat/forms.py:23 apps/search/views.py:525
 msgid "All Add-ons"
 msgstr "すべてのアドオン"
 
@@ -3768,7 +3720,7 @@ msgid "Non-binary"
 msgstr "非バイナリ"
 
 #. Review points sources other than add-ons and themes.
-#: apps/compat/views.py:85 apps/constants/base.py:433 apps/devhub/forms.py:162
+#: apps/compat/views.py:87 apps/constants/base.py:388 apps/devhub/forms.py:162
 #: apps/editors/templates/editors/performance.html:75
 msgid "Other"
 msgstr "その他"
@@ -3793,7 +3745,7 @@ msgstr "すべてのアドオンの上位 95%"
 msgid "All active add-ons"
 msgstr "すべてのアクティブなアドオン"
 
-#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:446
+#: apps/compat/templates/compat/index.html:23 apps/constants/base.py:401
 msgid "App"
 msgstr "アプリ"
 
@@ -3872,7 +3824,7 @@ msgid "Report Type"
 msgstr "レポートの種類"
 
 #: apps/compat/templates/compat/reporter_detail.html:47
-#: apps/devhub/forms.py:781
+#: apps/devhub/forms.py:782
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: apps/editors/forms.py:108 apps/zadmin/forms.py:45
 msgid "Application"
@@ -3996,58 +3948,57 @@ msgstr "詳細審査待ち"
 msgid "Beta"
 msgstr "ベータ版"
 
-#: apps/constants/base.py:126
+#: apps/constants/base.py:123
 msgid "Full"
 msgstr "本審査"
 
-#: apps/constants/base.py:127
+#: apps/constants/base.py:124
 msgid "Preliminary"
 msgstr "事前審査"
 
-#: apps/constants/base.py:138 apps/users/notifications.py:157
+#: apps/constants/base.py:135 apps/users/notifications.py:157
 msgid "Developer"
 msgstr "開発者"
 
 # <option> text in a <select> for Author role in an add-on.
-#: apps/constants/base.py:139
+#: apps/constants/base.py:136
 msgid "Viewer"
 msgstr "閲覧者"
 
-#: apps/constants/base.py:140 templates/mobile/header.html:7
+#: apps/constants/base.py:137 templates/mobile/header.html:7
 msgid "Support"
 msgstr "サポート"
 
-#: apps/constants/base.py:162 apps/constants/base.py:175
+#: apps/constants/base.py:159 apps/constants/base.py:172
 #: apps/constants/platforms.py:11
 msgid "Any"
 msgstr "すべて"
 
-#: apps/constants/base.py:163
+#: apps/constants/base.py:160
 msgid "Extension"
 msgstr "拡張機能"
 
-#: apps/constants/base.py:164
+#: apps/constants/base.py:161
 msgid "Complete Theme"
 msgstr "完全テーマ"
 
-#: apps/constants/base.py:166
+#: apps/constants/base.py:163
 msgid "Search Engine"
 msgstr "検索エンジン"
 
-#: apps/constants/base.py:167
+#: apps/constants/base.py:164
 msgid "Language Pack (Application)"
 msgstr "言語パック (アプリケーション)"
 
-#: apps/constants/base.py:168
+#: apps/constants/base.py:165
 msgid "Language Pack (Add-on)"
 msgstr "言語パック (アドオン)"
 
-#: apps/constants/base.py:169
+#: apps/constants/base.py:166
 msgid "Plugin"
 msgstr "プラグイン"
 
-#: apps/constants/base.py:170
-#: apps/editors/templates/editors/includes/search_results_themes.html:5
+#: apps/constants/base.py:167
 #: apps/editors/templates/editors/themes/deleted.html:18
 #: apps/editors/templates/editors/themes/history_table.html:8
 #: apps/editors/templates/editors/themes/logs.html:17
@@ -4055,200 +4006,180 @@ msgid "Theme"
 msgstr "テーマ"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:178
+#: apps/constants/base.py:175
 msgid "Dictionaries"
 msgstr "スペルチェック辞書"
 
 # Plural in this context means many of the add-on type
-#: apps/constants/base.py:180
+#: apps/constants/base.py:177
 msgid "Language Packs (Application)"
 msgstr "言語パック (アプリケーション)"
 
-#: apps/constants/base.py:181
+#: apps/constants/base.py:178
 msgid "Language Packs (Add-on)"
 msgstr "言語パック (アドオン)"
 
-#: apps/constants/base.py:182
+#: apps/constants/base.py:179
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: apps/constants/base.py:247
-msgid "Free"
-msgstr "無料"
-
-#: apps/constants/base.py:248
-msgid "Premium"
-msgstr "有料"
-
-#: apps/constants/base.py:249
-msgid "Premium with in-app payments"
-msgstr "アプリ内課金のある有料版"
-
-#: apps/constants/base.py:250
-msgid "Free with in-app payments"
-msgstr "アプリ内課金のある無料版"
-
-#: apps/constants/base.py:251
-msgid "I'll use my own system for in-app payments"
-msgstr "アプリ内課金に独自システムを使う"
-
-#: apps/constants/base.py:307
+#: apps/constants/base.py:271
 msgid "Only ask on this add-on's page and developer profile"
 msgstr "このアドオンページと開発者プロフィールでのみ尋ねる"
 
-#: apps/constants/base.py:308
+#: apps/constants/base.py:272
 msgid "Ask after users start downloading this add-on"
 msgstr "ユーザがこのアドオンのダウンロードを開始した後に尋ねる"
 
-#: apps/constants/base.py:309
+#: apps/constants/base.py:273
 msgid "Ask before users can download this add-on"
 msgstr "ユーザがこのアドオンをダウンロードする前に尋ねる"
 
-#: apps/constants/base.py:434
+#: apps/constants/base.py:389
 msgid "Exception"
 msgstr "例外"
 
-#: apps/constants/base.py:435
+#: apps/constants/base.py:390
 msgid "Release"
 msgstr "リリース"
 
-#: apps/constants/base.py:436
+#: apps/constants/base.py:391
 msgid "Change"
 msgstr "変更"
 
-#: apps/constants/base.py:447
+#: apps/constants/base.py:402
 msgid "Persona"
 msgstr "Persona"
 
-#: apps/constants/base.py:480
+#: apps/constants/base.py:435
 msgid "Manual Reviewer Points"
 msgstr "審査担当者の手作業確認による指摘"
 
-#: apps/constants/base.py:481
+#: apps/constants/base.py:436
 msgid "Full Add-on Review"
 msgstr "アドオンの本審査"
 
-#: apps/constants/base.py:482
+#: apps/constants/base.py:437
 msgid "Preliminary Add-on Review"
 msgstr "アドオンの事前審査"
 
-#: apps/constants/base.py:483
+#: apps/constants/base.py:438
 msgid "Updated Add-on Review"
 msgstr "アドオンの更新審査"
 
-#: apps/constants/base.py:484
+#: apps/constants/base.py:439
 msgid "Full Dictionary Review"
 msgstr "スペルチェック辞書の本審査"
 
-#: apps/constants/base.py:485
+#: apps/constants/base.py:440
 msgid "Preliminary Dictionary Review"
 msgstr "スペルチェック事前の事前審査"
 
-#: apps/constants/base.py:486
+#: apps/constants/base.py:441
 msgid "Updated Dictionary Review"
 msgstr "スペルチェック事前の更新審査"
 
-#: apps/constants/base.py:487
+#: apps/constants/base.py:442
 msgid "Full Language Pack Review"
 msgstr "言語パックの本審査"
 
-#: apps/constants/base.py:488
+#: apps/constants/base.py:443
 msgid "Preliminary Language Pack Review"
 msgstr "言語パックの事前審査"
 
-#: apps/constants/base.py:489
+#: apps/constants/base.py:444
 msgid "Updated Language Pack Review"
 msgstr "言語パックの更新審査"
 
-#: apps/constants/base.py:490
+#: apps/constants/base.py:445
 msgid "Bonus for overdue reviews"
 msgstr "期限切れ審査のためのボーナス"
 
-#: apps/constants/base.py:491
+#: apps/constants/base.py:446
 msgid "Days Before Bonus Points Applied"
 msgstr "ボーナスポイント適用までの日数"
 
-#: apps/constants/base.py:492
+#: apps/constants/base.py:447
 msgid "Theme Review"
 msgstr "テーマの審査"
 
-#: apps/constants/base.py:493
+#: apps/constants/base.py:448
 msgid "Full Search Provider Review"
 msgstr "検索プロバイダの本審査"
 
-#: apps/constants/base.py:494
+#: apps/constants/base.py:449
 msgid "Preliminary Search Provider Review"
 msgstr "検索プロバイダの事前審査"
 
-#: apps/constants/base.py:495
+#: apps/constants/base.py:450
 msgid "Updated Search Provider Review"
 msgstr "検索プロバイダの更新審査"
 
-#: apps/constants/base.py:496
+#: apps/constants/base.py:451
 msgid "Complete Theme Review"
 msgstr "完全テーマの審査"
 
-#: apps/constants/base.py:497
+#: apps/constants/base.py:452
 msgid "Preliminary Complete Theme Review"
 msgstr "完全テーマの事前審査"
 
-#: apps/constants/base.py:498
+#: apps/constants/base.py:453
 msgid "Updated Complete Theme Review"
 msgstr "完全テーマの更新審査"
 
-#: apps/constants/base.py:499
+#: apps/constants/base.py:454
 msgid "Moderated Addon Review"
 msgstr "アドオンの管理者審査"
 
-#: apps/constants/base.py:500
+#: apps/constants/base.py:455
 msgid "Addon Review Moderation Reverted"
 msgstr "アドオンのレビューモデレーションを取り消しました"
 
-#: apps/constants/base.py:547
+#: apps/constants/base.py:502
 msgid "Level 1"
 msgstr "レベル 1"
 
-#: apps/constants/base.py:548
+#: apps/constants/base.py:503
 msgid "Level 2"
 msgstr "レベル 2"
 
-#: apps/constants/base.py:549
+#: apps/constants/base.py:504
 msgid "Level 3"
 msgstr "レベル 3"
 
-#: apps/constants/base.py:550
+#: apps/constants/base.py:505
 msgid "Level 4"
 msgstr "レベル 4"
 
-#: apps/constants/base.py:551
+#: apps/constants/base.py:506
 msgid "Level 5"
 msgstr "レベル 5"
 
-#: apps/constants/base.py:552
+#: apps/constants/base.py:507
 msgid "Level 6"
 msgstr "レベル 6"
 
-#: apps/constants/base.py:553
+#: apps/constants/base.py:508
 msgid "Level 7"
 msgstr "レベル 7"
 
-#: apps/constants/base.py:554
+#: apps/constants/base.py:509
 msgid "Level 8"
 msgstr "レベル 8"
 
-#: apps/constants/base.py:555
+#: apps/constants/base.py:510
 msgid "Level 9"
 msgstr "レベル 9"
 
-#: apps/constants/base.py:564
+#: apps/constants/base.py:519
 msgid "Not signed"
 msgstr "署名なし"
 
-#: apps/constants/base.py:565
+#: apps/constants/base.py:520
 msgid "Signed for a full review"
 msgstr "完全レビュー署名済み"
 
-#: apps/constants/base.py:566
+#: apps/constants/base.py:521
 msgid "Signed of a preliminary review"
 msgstr "事前レビュー署名済み"
 
@@ -4406,7 +4337,7 @@ msgid "Message not eligible for annotation"
 msgstr "メッセージが注釈に適していません"
 
 #: apps/devhub/forms.py:131 apps/devhub/templates/devhub/versions/edit.html:94
-#: apps/users/templates/users/edit.html:129
+#: apps/users/templates/users/edit.html:138
 msgid "Details"
 msgstr "詳細"
 
@@ -4490,108 +4421,108 @@ msgstr "不正なバージョン範囲です。"
 msgid "Need at least one compatible application."
 msgstr "対応アプリケーションが少なくともひとつは必要です。"
 
-#: apps/devhub/forms.py:498 apps/devhub/forms.py:519
+#: apps/devhub/forms.py:499 apps/devhub/forms.py:520
 msgid "There was an error with your upload. Please try again."
 msgstr "アップロードした内容にエラーがあります。もう一度やり直してください。"
 
-#: apps/devhub/forms.py:503
+#: apps/devhub/forms.py:504
 msgid "Override failed validation"
 msgstr "失敗した検証を上書き"
 
-#: apps/devhub/forms.py:507
+#: apps/devhub/forms.py:508
 msgid "Submit my add-on for manual review."
 msgstr "このアドオンの手作業による審査を申請します。"
 
-#: apps/devhub/forms.py:534
+#: apps/devhub/forms.py:535
 msgid "Do not list my add-on on this site (beta)"
 msgstr "このアドオンをサイト上に掲載しない (ベータ)"
 
-#: apps/devhub/forms.py:535
+#: apps/devhub/forms.py:536
 msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr "アドオンを自分自身で配布するつもりで、Mozilla による署名を受ける必要があるだけの場合は、このオプションにチェックを入れてください。"
 
-#: apps/devhub/forms.py:541
+#: apps/devhub/forms.py:542
 msgid "This add-on will be bundled with an application installer."
 msgstr "このアドオンはアプリケーションインストーラに同梱されます。"
 
-#: apps/devhub/forms.py:543
+#: apps/devhub/forms.py:544
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
 "アプリケーションインストーラに同梱されるアドオンは、署名前に Mozilla によるコード審査を受ける必要があり、同時により高い品質が求められます。"
 
-#: apps/devhub/forms.py:562
+#: apps/devhub/forms.py:563
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
 msgstr "本審査"
 
-#: apps/devhub/forms.py:563
+#: apps/devhub/forms.py:564
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:47
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
 msgstr "事前審査"
 
-#: apps/devhub/forms.py:567
+#: apps/devhub/forms.py:568
 msgid "Please choose a review nomination type"
 msgstr "審査方法を選択してください"
 
-#: apps/devhub/forms.py:571
+#: apps/devhub/forms.py:572
 msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
 
-#: apps/devhub/forms.py:589
+#: apps/devhub/forms.py:590
 msgid "Version %s already exists"
 msgstr "バージョン %s はすでに存在しています"
 
-#: apps/devhub/forms.py:601
+#: apps/devhub/forms.py:602
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
 msgstr "有効な項目を選択してください。それは利用可能な選択肢ではありません。"
 
-#: apps/devhub/forms.py:607
+#: apps/devhub/forms.py:608
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
 msgstr "バージョンが a、alpha、b、beta のいずれか（または任意でそれに続けて数字）で終わるファイルはベータ版として検出されます。"
 
-#: apps/devhub/forms.py:630
+#: apps/devhub/forms.py:631
 msgid "You cannot upload any more files for this version."
 msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
 
-#: apps/devhub/forms.py:636
+#: apps/devhub/forms.py:637
 msgid "Version doesn't match"
 msgstr "バージョンが一致しません"
 
-#: apps/devhub/forms.py:665
+#: apps/devhub/forms.py:666
 msgid ""
 "You cannot delete a file once the review process has started. You must "
 "delete the whole version."
 msgstr "審査が開始されたファイルは削除できません。バージョンそのものを削除する必要があります。"
 
-#: apps/devhub/forms.py:685
+#: apps/devhub/forms.py:686
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "「すべて」の OS は、特定の OS と組み合わせることができません。"
 
-#: apps/devhub/forms.py:690
+#: apps/devhub/forms.py:691
 msgid "A platform can only be chosen once."
 msgstr "OS は一度だけ選択することができます。"
 
-#: apps/devhub/forms.py:703
+#: apps/devhub/forms.py:704
 msgid "A review type must be selected."
 msgstr "審査形式を選択してください。"
 
-#: apps/devhub/forms.py:785 apps/editors/forms.py:114 apps/zadmin/forms.py:49
+#: apps/devhub/forms.py:786 apps/editors/forms.py:114 apps/zadmin/forms.py:49
 #: apps/zadmin/forms.py:52
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
 
-#: apps/devhub/forms.py:837
+#: apps/devhub/forms.py:838
 msgid "There cannot be more than 3 required add-ons."
 msgstr "依存アドオンを 3 つ以上指定することはできません。"
 
@@ -4621,19 +4552,19 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
-#: apps/devhub/models.py:378 apps/reviews/templates/reviews/add.html:58
+#: apps/devhub/models.py:374 apps/reviews/templates/reviews/add.html:58
 msgid "Review"
 msgstr "レビュー"
 
-#: apps/devhub/tasks.py:506
+#: apps/devhub/tasks.py:519
 msgid "%s responded with %s (%s)."
 msgstr "%s が %s (%s) を返しました。"
 
-#: apps/devhub/tasks.py:510
+#: apps/devhub/tasks.py:523
 msgid "Connection to \"%s\" timed out."
 msgstr "「%s」への接続がタイムアウトしました。"
 
-#: apps/devhub/tasks.py:512
+#: apps/devhub/tasks.py:525
 msgid "Could not contact host at \"%s\"."
 msgstr "ホスト「%s」へ接続できませんでした。"
 
@@ -4667,17 +4598,17 @@ msgstr "ユーザコレクション"
 
 #: apps/devhub/views.py:210
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:68
-#: apps/pages/templates/pages/dev_faq.html:39
-#: apps/pages/templates/pages/dev_faq.html:537
+#: apps/pages/templates/pages/dev_faq.html:38
+#: apps/pages/templates/pages/dev_faq.html:484
 msgid "User Reviews"
 msgstr "ユーザレビュー"
 
 #: apps/devhub/views.py:323 apps/devhub/views.py:327 apps/devhub/views.py:479
-#: apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1163
+#: apps/devhub/views.py:508 apps/devhub/views.py:559 apps/devhub/views.py:1141
 msgid "Changes successfully saved."
 msgstr "変更は正しく保存されました。"
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1644
+#: apps/devhub/views.py:330 apps/devhub/views.py:1623
 msgid "Please check the form for errors."
 msgstr "フォームの入力ミスを確認してください。"
 
@@ -4725,68 +4656,64 @@ msgstr "アドオンの検証"
 msgid "Check Add-on Compatibility"
 msgstr "アドオンの互換性を確認"
 
-#: apps/devhub/views.py:678
-msgid "There was an error with the submission."
-msgstr "送信内容にエラーがありました。"
-
-#: apps/devhub/views.py:836 apps/signing/views.py:64
+#: apps/devhub/views.py:803 apps/signing/views.py:90
 msgid "You cannot submit this type of add-on"
 msgstr "この種類のアドオンを送信することはできません"
 
-#: apps/devhub/views.py:1068 apps/users/forms.py:418
+#: apps/devhub/views.py:1046 apps/users/forms.py:418
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPG 形式でなければなりません。"
 
-#: apps/devhub/views.py:1072
+#: apps/devhub/views.py:1050
 msgid "Icons cannot be animated."
 msgstr "アニメーションするアイコンは使用できません。"
 
-#: apps/devhub/views.py:1074
+#: apps/devhub/views.py:1052
 msgid "Images cannot be animated."
 msgstr "アニメーションする画像は使用できません。"
 
-#: apps/devhub/views.py:1087
+#: apps/devhub/views.py:1065
 msgid "Images cannot be larger than %dKB."
 msgstr "画像は %d KB 未満でなければなりません。"
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: apps/devhub/views.py:1097
+#: apps/devhub/views.py:1075
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "画像は幅 {0} ピクセル、高さ {1} ピクセルでなければなりません。"
 
-#: apps/devhub/views.py:1104
+#: apps/devhub/views.py:1082
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
-#: apps/devhub/views.py:1202
+#: apps/devhub/views.py:1180
 msgid "Version %s disabled."
 msgstr "バージョン %s は削除されました。"
 
-#: apps/devhub/views.py:1206
+#: apps/devhub/views.py:1184
 msgid "Version %s deleted."
 msgstr "バージョン %s は削除されました。"
 
-#: apps/devhub/views.py:1216
+#: apps/devhub/views.py:1194
 msgid ""
 "This upload has failed validation, and may lack complete validation results."
 " Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
 
-#: apps/devhub/views.py:1690
+#: apps/devhub/views.py:1669
 msgid "Preliminary Review Requested."
 msgstr "事前審査が申請されました。"
 
-#: apps/devhub/views.py:1691
+#: apps/devhub/views.py:1670
 msgid "Full Review Requested."
 msgstr "本審査が申請されました。"
 
-#: apps/devhub/views.py:1799
+#: apps/devhub/views.py:1776
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr "あなたの古い認証情報は無効化されたため、使用できなくなりました。新しい認証情報ですべての API クライアントを更新してください。"
 
-#: apps/devhub/views.py:1817
+#: apps/devhub/views.py:1794
 msgid "New API key created"
 msgstr "新しい API キーが作成されました"
 
@@ -5053,7 +4980,7 @@ msgstr "このアドオンを当サイトで配布しますか？"
 #: apps/devhub/templates/devhub/addons/submit/upload.html:30
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:14
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
-#: apps/devhub/templates/devhub/versions/list.html:312
+#: apps/devhub/templates/devhub/versions/list.html:298
 msgid "Warning:"
 msgstr "警告:"
 
@@ -5174,10 +5101,10 @@ msgstr "別のアプリケーションを追加&hellip;"
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: apps/devhub/templates/devhub/addons/owner.html:86
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:365
-#: apps/devhub/templates/devhub/versions/list.html:367
-#: templates/impala/base.html:125 templates/impala/base.html:143
-#: templates/impala/base.html:153
+#: apps/devhub/templates/devhub/versions/list.html:351
+#: apps/devhub/templates/devhub/versions/list.html:353
+#: templates/impala/base.html:125 templates/impala/base.html:136
+#: templates/impala/base.html:154 templates/impala/base.html:164
 msgid "Close"
 msgstr "閉じる"
 
@@ -5386,7 +5313,7 @@ msgid ""
 msgstr "このアドオンに関する情報は、ロケール固有の翻訳で上書きしない限り、このロケールで表示されます。当該アドオンにのみ関係します。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:282 apps/users/templates/users/edit.html:101
+#: apps/users/forms.py:282 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:58
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5668,12 +5595,12 @@ msgid "Compatibility Tests"
 msgstr "互換性テスト"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:29
-#: apps/files/templates/files/viewer.html:168
+#: apps/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
 msgstr "自動署名に必要のないメッセージを表示しない"
 
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:35
-#: apps/files/templates/files/viewer.html:176
+#: apps/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
 msgstr "旧バージョンに存在し無視されたメッセージを表示しない"
 
@@ -5691,23 +5618,19 @@ msgid "Delete Theme"
 msgstr "テーマを削除"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
-#: apps/devhub/templates/devhub/versions/list.html:122
-msgid "Delete Add-on"
-msgstr "アドオンを削除"
+msgid "Delete Add-on and block GUID"
+msgstr "アドオンを削除し GUID をブロック"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "テーマの削除を実行すると、このテーマはサイトから完全に削除されます。"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:13
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:14
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
-"its GUID from being submitted ever again, even by you. The existing users of"
-" your add-on will remain on this update channel and never receive updates "
-"again."
+"its GUID from being submitted again, even by you."
 msgstr ""
-"アドオンの削除を実行すると、このアドオンはサイトから完全に削除され、このアドオンの GUID "
-"はあなたも含め誰も再登録できないよう制限されます。アドオンの既存ユーザはこの更新チャンネルに残りますが、今後一切更新通知を受け取らなくなります。"
+"アドオンを削除すると、そのアドオンはこのサイトから永久に取り除かれ、たとえあなた自身であっても同じ GUID を再度登録することはできなくなります。"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -5824,19 +5747,6 @@ msgstr "<b>審査待ちの順番:</b> %(total)s 個中 %(pos)s 個目"
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 人のアクティブユーザ"
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:6
-msgid "No test results."
-msgstr "テスト結果はありません。"
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:8
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-msgid "Start performance tests"
-msgstr "パフォーマンステストを開始"
-
-#: apps/devhub/templates/devhub/addons/listing/perf_file_listing.html:12
-msgid "This file is not eligible for performance testing."
-msgstr "このファイルはパフォーマンステストの対象にはなりません。"
 
 #: apps/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -6169,6 +6079,8 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"詳しい手順は <a href=\"%(docs_url)s\"><a href=\"%(docs_url)s\">API ドキュメント</a> "
+"を参照してください。"
 
 #: apps/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
@@ -6185,6 +6097,9 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"API リクエストを行うには、認証ヘッダとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> "
+"を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT "
+"を生成する必要があります。"
 
 #: apps/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -8196,102 +8111,97 @@ msgstr "未検証"
 msgid "Validate now."
 msgstr "今すぐ検証"
 
-#: apps/devhub/templates/devhub/versions/list.html:72
+#: apps/devhub/templates/devhub/versions/list.html:67
 msgid "Request Full Review"
 msgstr "本審査を申請"
 
-#: apps/devhub/templates/devhub/versions/list.html:73
+#: apps/devhub/templates/devhub/versions/list.html:68
 msgid "Request Preliminary Review"
 msgstr "事前審査を申請"
 
-#: apps/devhub/templates/devhub/versions/list.html:85
-#: apps/devhub/templates/devhub/versions/list.html:341
-#: apps/devhub/templates/devhub/versions/list.html:364
+#: apps/devhub/templates/devhub/versions/list.html:80
+#: apps/devhub/templates/devhub/versions/list.html:327
+#: apps/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
 msgstr "審査申請をキャンセル"
 
-#: apps/devhub/templates/devhub/versions/list.html:98
+#: apps/devhub/templates/devhub/versions/list.html:93
 msgid "Addon visibility"
 msgstr "アドオンの公開状態"
 
-#: apps/devhub/templates/devhub/versions/list.html:107
+#: apps/devhub/templates/devhub/versions/list.html:102
 msgid "Listed:"
 msgstr "掲載済み:"
 
-#: apps/devhub/templates/devhub/versions/list.html:107
+#: apps/devhub/templates/devhub/versions/list.html:102
 msgid ""
 "Visible to everyone on {0} and included in search results and listing pages"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:113
+#: apps/devhub/templates/devhub/versions/list.html:108
 msgid "Hidden:"
 msgstr "非表示:"
 
-#: apps/devhub/templates/devhub/versions/list.html:113
+#: apps/devhub/templates/devhub/versions/list.html:108
 msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:119
+#: apps/devhub/templates/devhub/versions/list.html:114
 msgid "Unlisted:"
 msgstr "非掲載:"
 
-#: apps/devhub/templates/devhub/versions/list.html:119
+#: apps/devhub/templates/devhub/versions/list.html:114
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:127
+#: apps/devhub/templates/devhub/versions/list.html:117
+msgid "Delete Add-on"
+msgstr "アドオンを削除"
+
+#: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
 msgstr "現在のバージョン"
 
-#: apps/devhub/templates/devhub/versions/list.html:133
+#: apps/devhub/templates/devhub/versions/list.html:128
 msgid "Currently on AMO"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:134
-#: apps/devhub/templates/devhub/versions/list.html:155
-#: apps/devhub/templates/devhub/versions/list.html:175
-#: apps/editors/templates/editors/includes/search_results_themes.html:7
+#: apps/devhub/templates/devhub/versions/list.html:129
+#: apps/devhub/templates/devhub/versions/list.html:147
+#: apps/devhub/templates/devhub/versions/list.html:164
 #: apps/editors/templates/editors/themes/queue_list.html:50
 msgid "Status"
 msgstr "ステータス"
 
 # Header for a column in a table
-#: apps/devhub/templates/devhub/versions/list.html:135
-#: apps/devhub/templates/devhub/versions/list.html:156
-#: apps/devhub/templates/devhub/versions/list.html:176
+#: apps/devhub/templates/devhub/versions/list.html:130
+#: apps/devhub/templates/devhub/versions/list.html:148
+#: apps/devhub/templates/devhub/versions/list.html:165
 #: apps/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
 msgstr "検証"
 
-#: apps/devhub/templates/devhub/versions/list.html:137
-#: apps/devhub/templates/devhub/versions/list.html:158
-#: apps/devhub/templates/devhub/versions/list.html:178
-#: apps/editors/templates/editors/base.html:72
-#: apps/editors/templates/editors/performance.html:6
-msgid "Performance"
-msgstr "パフォーマンス"
-
-#: apps/devhub/templates/devhub/versions/list.html:154
+#: apps/devhub/templates/devhub/versions/list.html:146
 msgid "Next version of this add-on"
 msgstr "このアドオンの次期バージョン"
 
-#: apps/devhub/templates/devhub/versions/list.html:168
+#: apps/devhub/templates/devhub/versions/list.html:157
 msgid "Older versions"
 msgstr "旧バージョン"
 
-#: apps/devhub/templates/devhub/versions/list.html:184
+#: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Upload a New Version"
 msgstr "新バージョンをアップロード"
 
-#: apps/devhub/templates/devhub/versions/list.html:214
+#: apps/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
 msgstr "本審査は必要ありません"
 
-#: apps/devhub/templates/devhub/versions/list.html:215
+#: apps/devhub/templates/devhub/versions/list.html:201
 msgid ""
 "Unlisted add-ons don't need Full Review unless they are distributed as part "
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
@@ -8300,78 +8210,78 @@ msgstr ""
 "アプリケーションインストーラの一部として配布される場合を除き、非掲載アドオンに完全審査は必要ありません。詳しくは <a href=\"{link}\" "
 "target=\"_blank\">このドキュメント</a> をご覧ください。"
 
-#: apps/devhub/templates/devhub/versions/list.html:223
+#: apps/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
 msgstr "本審査を申請"
 
-#: apps/devhub/templates/devhub/versions/list.html:231
+#: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
 msgstr "バージョン {version} を削除"
 
-#: apps/devhub/templates/devhub/versions/list.html:232
+#: apps/devhub/templates/devhub/versions/list.html:218
 msgid ""
 "You are about to delete the current version of your add-on. This may cause "
 "your add-on status to change, or your listing to lose public visibility, if "
 "this is the only public version of your add-on."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:233
+#: apps/devhub/templates/devhub/versions/list.html:219
 msgid "Deleting this version will permanently delete:"
 msgstr "このバージョンを削除すると、以下のものが完全に削除されます:"
 
-#: apps/devhub/templates/devhub/versions/list.html:239
+#: apps/devhub/templates/devhub/versions/list.html:225
 msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:244
+#: apps/devhub/templates/devhub/versions/list.html:230
 msgid ""
 "Deleting a version which has already been reviewed may also cause a "
 "significant delay in the review of your next update."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:247
+#: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
 msgstr "本当にこのバージョンを削除しますか？"
 
-#: apps/devhub/templates/devhub/versions/list.html:252
+#: apps/devhub/templates/devhub/versions/list.html:238
 msgid "Delete Version"
 msgstr "バージョンを削除"
 
-#: apps/devhub/templates/devhub/versions/list.html:254
+#: apps/devhub/templates/devhub/versions/list.html:240
 msgid "Disable Version"
-msgstr "バージョンを削除"
+msgstr "バージョンを無効化"
 
-#: apps/devhub/templates/devhub/versions/list.html:261
+#: apps/devhub/templates/devhub/versions/list.html:247
 msgid "Add a new Version"
 msgstr "新バージョンを追加"
 
-#: apps/devhub/templates/devhub/versions/list.html:263
+#: apps/devhub/templates/devhub/versions/list.html:249
 msgid "Add Version"
 msgstr "バージョンを追加"
 
-#: apps/devhub/templates/devhub/versions/list.html:270
-#: apps/devhub/templates/devhub/versions/list.html:288
+#: apps/devhub/templates/devhub/versions/list.html:256
+#: apps/devhub/templates/devhub/versions/list.html:274
 msgid "Hide Add-on"
 msgstr "アドオンを非公開にする"
 
-#: apps/devhub/templates/devhub/versions/list.html:273
+#: apps/devhub/templates/devhub/versions/list.html:259
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:279
+#: apps/devhub/templates/devhub/versions/list.html:265
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:300
-#: apps/devhub/templates/devhub/versions/list.html:329
+#: apps/devhub/templates/devhub/versions/list.html:286
+#: apps/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
 msgstr "アドオンを非掲載にする"
 
-#: apps/devhub/templates/devhub/versions/list.html:303
+#: apps/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) "
 "invisible on this website. It won't show up in searches, won't have a public"
@@ -8385,7 +8295,7 @@ msgstr ""
 " ファイルで独自の <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> "
 "を指定することを推奨します。"
 
-#: apps/devhub/templates/devhub/versions/list.html:313
+#: apps/devhub/templates/devhub/versions/list.html:299
 msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
@@ -8393,32 +8303,32 @@ msgstr ""
 "アドオンの非掲載への変更は現在オープンベータとなっています。何か問題に遭遇した場合は <a href=\"%(url)s\" "
 "target=\"_blank\">バグを報告してください</a>。"
 
-#: apps/devhub/templates/devhub/versions/list.html:319
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid "Unlisting an add-on is irreversible!"
 msgstr "アドオンの非掲載化は取り消せません！"
 
-#: apps/devhub/templates/devhub/versions/list.html:319
+#: apps/devhub/templates/devhub/versions/list.html:305
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr "非掲載アドオンを掲載アドオンに変更することはできません。"
 
-#: apps/devhub/templates/devhub/versions/list.html:321
+#: apps/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
 msgstr "本当にこのアドオンを非掲載にしますか？"
 
-#: apps/devhub/templates/devhub/versions/list.html:344
+#: apps/devhub/templates/devhub/versions/list.html:330
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:349
+#: apps/devhub/templates/devhub/versions/list.html:335
 msgid ""
 "Canceling your review request will mark your add-on incomplete. If you do "
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:357
+#: apps/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
@@ -8601,51 +8511,43 @@ msgstr ""
 msgid "Discover Add-ons"
 msgstr "アドオンを見つける"
 
-#: apps/discovery/templates/discovery/pane.html:24
+#: apps/discovery/templates/discovery/pane.html:23
 msgid "What are Add-ons?"
 msgstr "アドオンとは？"
 
-#: apps/discovery/templates/discovery/pane.html:29
+#: apps/discovery/templates/discovery/pane.html:28
 msgid ""
 "Add-ons are applications that let you personalize %(app)s with extra "
 "functionality or style. Try a time-saving sidebar, a weather notifier, or a "
 "themed look to make %(app)s your own."
 msgstr ""
 
-#: apps/discovery/templates/discovery/pane.html:63
-msgid "Recommended for You"
-msgstr "おすすめのアドオン"
-
-#: apps/discovery/templates/discovery/pane.html:66
-msgid "What is this?"
-msgstr "これは何？"
-
-#: apps/discovery/templates/discovery/pane.html:85
+#: apps/discovery/templates/discovery/pane.html:62
 msgid "Learn More About Add-ons"
 msgstr ""
 
-#: apps/discovery/templates/discovery/pane.html:89
-#: apps/discovery/templates/discovery/pane.html:96
+#: apps/discovery/templates/discovery/pane.html:66
+#: apps/discovery/templates/discovery/pane.html:73
 msgid "See all"
 msgstr "すべて見る"
 
-#: apps/discovery/templates/discovery/pane.html:102
+#: apps/discovery/templates/discovery/pane.html:79
 msgid "More ways to customize"
 msgstr "その他のカスタマイズ方法"
 
-#: apps/discovery/templates/discovery/pane.html:105
+#: apps/discovery/templates/discovery/pane.html:82
 msgid "Browse all add-ons"
 msgstr "すべてのアドオンを見る"
 
-#: apps/discovery/templates/discovery/pane.html:108
+#: apps/discovery/templates/discovery/pane.html:85
 msgid "See all complete themes"
 msgstr "すべての完全テーマを見る"
 
-#: apps/discovery/templates/discovery/pane.html:114
+#: apps/discovery/templates/discovery/pane.html:91
 msgid "Close Video"
 msgstr "動画を閉じる"
 
-#: apps/discovery/templates/discovery/pane.html:117
+#: apps/discovery/templates/discovery/pane.html:94
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr ""
 
@@ -8664,11 +8566,11 @@ msgstr ""
 msgid "Add-ons downloaded:"
 msgstr "アドオンのダウンロード数:"
 
-#: apps/discovery/templates/discovery/addons/detail.html:71
+#: apps/discovery/templates/discovery/addons/detail.html:67
 msgid "Active Users"
 msgstr "利用者数"
 
-#: apps/discovery/templates/discovery/addons/detail.html:80
+#: apps/discovery/templates/discovery/addons/detail.html:76
 msgid "Last Updated"
 msgstr "最終更新日"
 
@@ -9128,31 +9030,31 @@ msgstr "フラグ付き"
 msgid "Updates"
 msgstr "更新"
 
-#: apps/editors/models.py:184
+#: apps/editors/models.py:183
 msgid "Admin Review"
 msgstr "管理者審査"
 
-#: apps/editors/models.py:185
+#: apps/editors/models.py:184
 msgid "Jetpack Add-on"
 msgstr "Jetpack アドオン"
 
-#: apps/editors/models.py:187
+#: apps/editors/models.py:186
 msgid "Restartless Add-on"
 msgstr "再起動不要アドオン"
 
-#: apps/editors/models.py:188
+#: apps/editors/models.py:187
 msgid "More Information Requested"
 msgstr "詳しい情報が求められています"
 
-#: apps/editors/models.py:189
+#: apps/editors/models.py:188
 msgid "Contains Editor Comment"
 msgstr "エディタのコメントがあります"
 
-#: apps/editors/models.py:191
+#: apps/editors/models.py:190
 msgid "Sources provided"
 msgstr "ソース提供あり"
 
-#: apps/editors/models.py:192
+#: apps/editors/models.py:191
 msgid "WebExtension"
 msgstr ""
 
@@ -9273,6 +9175,11 @@ msgstr "審査待ち"
 #: apps/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
 msgstr "非掲載アドオンの審査待ち"
+
+#: apps/editors/templates/editors/base.html:72
+#: apps/editors/templates/editors/performance.html:6
+msgid "Performance"
+msgstr "パフォーマンス"
 
 #: apps/editors/templates/editors/base.html:75
 #: apps/editors/templates/editors/themes/base.html:19
@@ -9445,7 +9352,6 @@ msgid "No review points awarded yet."
 msgstr ""
 
 #: apps/editors/templates/editors/leaderboard.html:23
-#: apps/perf/templates/perf/index.html:54
 msgid "Rank"
 msgstr "ランク"
 
@@ -9626,7 +9532,7 @@ msgid "Insert canned response..."
 msgstr "定型文の返信を挿入..."
 
 #: apps/editors/templates/editors/review.html:167
-#: apps/files/templates/files/viewer.html:80
+#: apps/files/templates/files/viewer.html:54
 msgid "Files:"
 msgstr "ファイル:"
 
@@ -9763,15 +9669,6 @@ msgstr "全期間"
 msgid "You have <span>{0}</span> points."
 msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
 
-#: apps/editors/templates/editors/includes/search_results_themes.html:6
-#: apps/editors/templates/editors/themes/history_table.html:7
-#: apps/editors/templates/editors/themes/logs.html:19
-#: apps/editors/templates/editors/themes/queue_list.html:49
-#: apps/editors/templates/editors/themes/single.html:26
-#: apps/editors/templates/editors/themes/themes.html:45
-msgid "Reviewer"
-msgstr "審査担当者"
-
 #: apps/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
 msgstr "削除されたテーマ"
@@ -9791,6 +9688,14 @@ msgstr "{0} のテーマ審査履歴"
 #: apps/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
 msgstr "審査日時"
+
+#: apps/editors/templates/editors/themes/history_table.html:7
+#: apps/editors/templates/editors/themes/logs.html:19
+#: apps/editors/templates/editors/themes/queue_list.html:49
+#: apps/editors/templates/editors/themes/single.html:26
+#: apps/editors/templates/editors/themes/themes.html:45
+msgid "Reviewer"
+msgstr "審査担当者"
 
 #: apps/editors/templates/editors/themes/history_table.html:9
 #: apps/editors/templates/editors/themes/logs.html:18
@@ -10022,11 +9927,11 @@ msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> がアドオンと一致しません"
 
-#: apps/files/views.py:53
+#: apps/files/views.py:54
 msgid "Back to review"
 msgstr "レビューのページへ戻る"
 
-#: apps/files/views.py:57
+#: apps/files/views.py:58
 msgid "Back to addon"
 msgstr "アドオンのページへ戻る"
 
@@ -10054,88 +9959,88 @@ msgstr "ファイルビューア :: エディタ用ツール"
 msgid "Validation failed:"
 msgstr "検証失敗:"
 
-#: apps/files/templates/files/viewer.html:68
+#: apps/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
 msgstr "アドオンのファイルを処理しています。しばらくお待ちください。"
 
-#: apps/files/templates/files/viewer.html:72
+#: apps/files/templates/files/viewer.html:46
 msgid "Fetching validation results..."
 msgstr "検証結果を取得しています..."
 
-#: apps/files/templates/files/viewer.html:83
+#: apps/files/templates/files/viewer.html:57
 msgid "Deleted files:"
 msgstr "削除されたファイル:"
 
-#: apps/files/templates/files/viewer.html:92
+#: apps/files/templates/files/viewer.html:66
 msgid "Hide known files"
 msgstr "既知のファイルを隠す"
 
-#: apps/files/templates/files/viewer.html:95
+#: apps/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
 msgstr "Add-on SDK のバージョン:"
 
-#: apps/files/templates/files/viewer.html:99
+#: apps/files/templates/files/viewer.html:73
 msgid "Tab stops:"
 msgstr "タブストップ:"
 
-#: apps/files/templates/files/viewer.html:105
-#: apps/files/templates/files/viewer.html:106
+#: apps/files/templates/files/viewer.html:79
+#: apps/files/templates/files/viewer.html:80
 msgid "Up file"
 msgstr "ファイルを上へ移動"
 
-#: apps/files/templates/files/viewer.html:110
-#: apps/files/templates/files/viewer.html:111
+#: apps/files/templates/files/viewer.html:84
+#: apps/files/templates/files/viewer.html:85
 msgid "Down file"
 msgstr "ファイルを下へ移動"
 
-#: apps/files/templates/files/viewer.html:116
-#: apps/files/templates/files/viewer.html:117
+#: apps/files/templates/files/viewer.html:90
+#: apps/files/templates/files/viewer.html:91
 msgid "Previous diff"
 msgstr "前の差分"
 
-#: apps/files/templates/files/viewer.html:119
-#: apps/files/templates/files/viewer.html:120
+#: apps/files/templates/files/viewer.html:93
+#: apps/files/templates/files/viewer.html:94
 msgid "Previous note"
 msgstr "前のメモ"
 
-#: apps/files/templates/files/viewer.html:126
-#: apps/files/templates/files/viewer.html:127
+#: apps/files/templates/files/viewer.html:100
+#: apps/files/templates/files/viewer.html:101
 msgid "Next diff"
 msgstr "次の差分"
 
-#: apps/files/templates/files/viewer.html:129
-#: apps/files/templates/files/viewer.html:130
+#: apps/files/templates/files/viewer.html:103
+#: apps/files/templates/files/viewer.html:104
 msgid "Next note"
 msgstr "次のメモ"
 
-#: apps/files/templates/files/viewer.html:135
-#: apps/files/templates/files/viewer.html:136
+#: apps/files/templates/files/viewer.html:109
+#: apps/files/templates/files/viewer.html:110
 msgid "Expand all"
 msgstr "すべて展開"
 
-#: apps/files/templates/files/viewer.html:140
-#: apps/files/templates/files/viewer.html:141
+#: apps/files/templates/files/viewer.html:114
+#: apps/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
 msgstr "ツリーを広げる・折りたたむ"
 
-#: apps/files/templates/files/viewer.html:145
-#: apps/files/templates/files/viewer.html:146
+#: apps/files/templates/files/viewer.html:119
+#: apps/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
 msgstr "テキストを広げる・折りたたむ"
 
-#: apps/files/templates/files/viewer.html:154
+#: apps/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
 msgstr "アップロードされたファイルにはファイルが含まれていません。"
 
-#: apps/files/templates/files/viewer.html:160
+#: apps/files/templates/files/viewer.html:134
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
 
-#: apps/localizers/views.py:39
+#: apps/localizers/views.py:40
 msgid "An error occurred saving this message."
 msgstr "このメッセージを保存中に問題が発生しました。"
 
-#: apps/localizers/views.py:42
+#: apps/localizers/views.py:43
 msgid "Access Denied"
 msgstr "アクセスが拒否されました"
 
@@ -10525,81 +10430,76 @@ msgid "Sections"
 msgstr "セクション"
 
 #: apps/pages/templates/pages/dev_faq.html:33
-#: apps/pages/templates/pages/dev_faq.html:46
+#: apps/pages/templates/pages/dev_faq.html:45
 msgid "Developing an Add-on"
 msgstr "アドオンを開発"
 
 #. Heading for a list of resources for developers
 #: apps/pages/templates/pages/dev_faq.html:34
-#: apps/pages/templates/pages/dev_faq.html:209
+#: apps/pages/templates/pages/dev_faq.html:208
 msgid "Support Resources"
 msgstr "サポート情報"
 
 #: apps/pages/templates/pages/dev_faq.html:35
-#: apps/pages/templates/pages/dev_faq.html:262
+#: apps/pages/templates/pages/dev_faq.html:261
 msgid "Contributing your Add-on"
 msgstr ""
 
 #: apps/pages/templates/pages/dev_faq.html:36
-#: apps/pages/templates/pages/dev_faq.html:382
+#: apps/pages/templates/pages/dev_faq.html:381
 msgid "Add-on Review Process"
 msgstr "アドオンの審査プロセス"
 
 #: apps/pages/templates/pages/dev_faq.html:37
-#: apps/pages/templates/pages/dev_faq.html:445
+#: apps/pages/templates/pages/dev_faq.html:444
 msgid "Managing Your Add-on"
 msgstr "自分のアドオンを管理"
 
-#: apps/pages/templates/pages/dev_faq.html:38
-#: apps/pages/templates/pages/dev_faq.html:485
-msgid "Recommended Status"
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:40
-#: apps/pages/templates/pages/dev_faq.html:581
+#: apps/pages/templates/pages/dev_faq.html:39
+#: apps/pages/templates/pages/dev_faq.html:528
 msgid "References for Open Source Licenses"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:44
+#: apps/pages/templates/pages/dev_faq.html:43
 msgid "Add-on Developer FAQ"
 msgstr "アドオン開発者 FAQ"
 
-#: apps/pages/templates/pages/dev_faq.html:48
+#: apps/pages/templates/pages/dev_faq.html:47
 msgid ""
 "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how"
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:56
+#: apps/pages/templates/pages/dev_faq.html:55
 msgid "Other resources include:"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:60
+#: apps/pages/templates/pages/dev_faq.html:59
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:63
+#: apps/pages/templates/pages/dev_faq.html:62
 msgid "Mozilla Add-ons Blog"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:67
+#: apps/pages/templates/pages/dev_faq.html:66
 msgid "What tools do I need to be able to build an Add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:69
+#: apps/pages/templates/pages/dev_faq.html:68
 msgid ""
 "You will need to have a version of the Mozilla software that you're building"
 " the add-on for and a code editor of your choice. Add-ons can be built for "
 "almost all Mozilla software but are primarily targeted for:"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:83
+#: apps/pages/templates/pages/dev_faq.html:82
 msgid "Popular code editors include:"
 msgstr ""
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
-#: apps/pages/templates/pages/dev_faq.html:86
+#: apps/pages/templates/pages/dev_faq.html:85
 msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> "
 "<li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http"
@@ -10607,28 +10507,28 @@ msgid ""
 "href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:95
+#: apps/pages/templates/pages/dev_faq.html:94
 msgid ""
 "You can also learn more about setting up your development environment via "
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:101
+#: apps/pages/templates/pages/dev_faq.html:100
 msgid "What is a \".xpi\" file?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:103
+#: apps/pages/templates/pages/dev_faq.html:102
 msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:109
+#: apps/pages/templates/pages/dev_faq.html:108
 msgid "What is XUL?"
 msgstr "XUL とは？"
 
-#: apps/pages/templates/pages/dev_faq.html:111
+#: apps/pages/templates/pages/dev_faq.html:110
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets "
 "you build feature-rich cross platform applications. It provides user "
@@ -10636,11 +10536,11 @@ msgid ""
 " to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:120
+#: apps/pages/templates/pages/dev_faq.html:119
 msgid "What is the \"install.rdf\" file used for?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:122
+#: apps/pages/templates/pages/dev_faq.html:121
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by "
 "Add-on Manager-enabled XUL applications to determine information about an "
@@ -10651,36 +10551,36 @@ msgid ""
 "Manifest is RDF/XML."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:133
+#: apps/pages/templates/pages/dev_faq.html:132
 msgid "What does \"maxVersion\" mean?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:135
+#: apps/pages/templates/pages/dev_faq.html:134
 msgid ""
 "This determines the maximum version of Firefox you're saying this extension "
 "will work with. Set this to be no newer than the newest currently available "
 "version!"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:142
+#: apps/pages/templates/pages/dev_faq.html:141
 msgid "Can my add-on contain binary components?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:144
+#: apps/pages/templates/pages/dev_faq.html:143
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object "
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:151
+#: apps/pages/templates/pages/dev_faq.html:150
 msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
 "アドオンを作成するのに、jQuery や MooTools、Prototype.js などの JavaScript ライブラリを利用できますか？"
 
-#: apps/pages/templates/pages/dev_faq.html:153
+#: apps/pages/templates/pages/dev_faq.html:152
 msgid ""
 "Yes. It's possible, but some of the functionality provided by these "
 "libraries are available through XPCOM, XUL, and JavaScript. In addition, "
@@ -10692,20 +10592,20 @@ msgid ""
 "not offer documentation on using them to build add-ons."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:166
+#: apps/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:168
+#: apps/pages/templates/pages/dev_faq.html:167
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:173
+#: apps/pages/templates/pages/dev_faq.html:172
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:175
+#: apps/pages/templates/pages/dev_faq.html:174
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to "
 "download updates as they become available and test your add-on to ensure "
@@ -10717,11 +10617,11 @@ msgid ""
 "Mozilla software."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:186
+#: apps/pages/templates/pages/dev_faq.html:185
 msgid "How to improve the performance of my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:188
+#: apps/pages/templates/pages/dev_faq.html:187
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing "
 "experience, including on the overall performance of Firefox itself. The "
@@ -10730,11 +10630,11 @@ msgid ""
 "add-on."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:196
+#: apps/pages/templates/pages/dev_faq.html:195
 msgid "Can my add-on support multiple locales?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:198
+#: apps/pages/templates/pages/dev_faq.html:197
 msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a "
 "href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a "
@@ -10742,64 +10642,63 @@ msgid ""
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:211
+#: apps/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr ""
 
 #. #extdev is the name of the IRC channel.  do not change.
-#: apps/pages/templates/pages/dev_faq.html:217
+#: apps/pages/templates/pages/dev_faq.html:216
 msgid "#extdev (for add-on development discussions)"
 msgstr ""
 
 #. #amo is the name of the IRC channel.  do not change.
-#: apps/pages/templates/pages/dev_faq.html:219
+#: apps/pages/templates/pages/dev_faq.html:218
 msgid "#amo (for support relating to hosting your add-on on AMO)"
 msgstr ""
 
 #. #jetpack is the name of the IRC channel.  do not change.
-#: apps/pages/templates/pages/dev_faq.html:221
+#: apps/pages/templates/pages/dev_faq.html:220
 msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
 
 #. Label for a link to the extension developers mailing list
-#: apps/pages/templates/pages/dev_faq.html:226
+#: apps/pages/templates/pages/dev_faq.html:225
 msgid "Mailing List"
 msgstr "メーリングリスト"
 
 #. Label for a link to the extension developers newsgroup
-#: apps/pages/templates/pages/dev_faq.html:230
+#: apps/pages/templates/pages/dev_faq.html:229
 msgid "Newsgroup"
 msgstr "ニュースグループ"
 
 #. Label for a link to the extension developers Google Group
-#: apps/pages/templates/pages/dev_faq.html:234
+#: apps/pages/templates/pages/dev_faq.html:233
 msgid "Google Group"
 msgstr "Google グループ"
 
-#: apps/pages/templates/pages/dev_faq.html:237
+#: apps/pages/templates/pages/dev_faq.html:236
 msgid "Add-ons forum"
 msgstr "アドオンフォーラム"
 
-#: apps/pages/templates/pages/dev_faq.html:240
+#: apps/pages/templates/pages/dev_faq.html:239
 msgid "Stack Overflow"
 msgstr "Stack Overflow"
 
-#: apps/pages/templates/pages/dev_faq.html:244
+#: apps/pages/templates/pages/dev_faq.html:243
 msgid "Does Mozilla offer development services?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:245
-#: apps/pages/templates/pages/dev_faq.html:528
+#: apps/pages/templates/pages/dev_faq.html:244
 msgid "No."
 msgstr "いいえ。"
 
-#: apps/pages/templates/pages/dev_faq.html:247
+#: apps/pages/templates/pages/dev_faq.html:246
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:249
+#: apps/pages/templates/pages/dev_faq.html:248
 msgid ""
 "Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s"
 "\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a "
@@ -10808,11 +10707,11 @@ msgid ""
 "recommendations."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:264
+#: apps/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:266
+#: apps/pages/templates/pages/dev_faq.html:265
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your"
 " add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows"
@@ -10823,21 +10722,21 @@ msgid ""
 "documentation."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:278
+#: apps/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:280
+#: apps/pages/templates/pages/dev_faq.html:279
 msgid ""
 "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on "
 "website</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:285
+#: apps/pages/templates/pages/dev_faq.html:284
 msgid "What is AMO?"
 msgstr "AMO とは？"
 
-#: apps/pages/templates/pages/dev_faq.html:287
+#: apps/pages/templates/pages/dev_faq.html:286
 msgid ""
 "Mozilla's AMO (<a "
 "href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the "
@@ -10847,21 +10746,21 @@ msgid ""
 " base of Mozilla users."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:296
+#: apps/pages/templates/pages/dev_faq.html:295
 msgid "Does Mozilla keep my account information private?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:298
+#: apps/pages/templates/pages/dev_faq.html:297
 msgid ""
 "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your "
 "information is managed by Mozilla."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:303
+#: apps/pages/templates/pages/dev_faq.html:302
 msgid "What are the \"developer tools\" listed on AMO?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:305
+#: apps/pages/templates/pages/dev_faq.html:304
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to"
 " successfully manage your add-ons. It provides the functionality necessary "
@@ -10869,12 +10768,12 @@ msgid ""
 "statistics."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:313
+#: apps/pages/templates/pages/dev_faq.html:312
 msgid ""
 "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:315
+#: apps/pages/templates/pages/dev_faq.html:314
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an "
 "acceptable submission. This policy is subject to change without notice. In "
@@ -10883,11 +10782,11 @@ msgid ""
 " functionality and security."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:325
+#: apps/pages/templates/pages/dev_faq.html:324
 msgid "How do I submit my add-on for review?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:327
+#: apps/pages/templates/pages/dev_faq.html:326
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to"
 " AMO. You must be a registered AMO users before you can submit an add-on. "
@@ -10896,21 +10795,21 @@ msgid ""
 "met the guidelines used by editors to review add-ons."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:337
+#: apps/pages/templates/pages/dev_faq.html:336
 msgid "What operating system do I choose for my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:339
+#: apps/pages/templates/pages/dev_faq.html:338
 msgid ""
 "You must choose the operating systems on which your add-on will successfully"
 " function."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:345
+#: apps/pages/templates/pages/dev_faq.html:344
 msgid "What category do I choose for my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:347
+#: apps/pages/templates/pages/dev_faq.html:346
 msgid ""
 "The choice of category is dependent on what type of audience you are "
 "targeting and the functionality of your add-on. If you're unsure of which "
@@ -10919,43 +10818,43 @@ msgid ""
 "different category."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:356
+#: apps/pages/templates/pages/dev_faq.html:355
 msgid "What does \"nominating\" my add-on mean?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:358
+#: apps/pages/templates/pages/dev_faq.html:357
 msgid ""
 "Nominated add-ons are new add-ons that the author has nominated to become "
 "public via the Developer Tools."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:364
+#: apps/pages/templates/pages/dev_faq.html:363
 msgid "Can I specify a license agreement for using my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:366
+#: apps/pages/templates/pages/dev_faq.html:365
 msgid ""
 "Yes. You can specify a license agreement when submitting your add-on. You "
 "can also add or update a license agreement via the Developer Tools dashboard"
 " after your add-on has been submitted."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:373
+#: apps/pages/templates/pages/dev_faq.html:372
 msgid "Can I include a privacy policy for my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:375
+#: apps/pages/templates/pages/dev_faq.html:374
 msgid ""
 "Yes. You can specify a privacy policy when submitting your add-on. You can "
 "also add or update a privacy policy via the Developer Tools dashboard after "
 "your add-on has been submitted."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:384
+#: apps/pages/templates/pages/dev_faq.html:383
 msgid "Why must my add-on be reviewed?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:386
+#: apps/pages/templates/pages/dev_faq.html:385
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that "
 "Mozilla users have a stable and safe experience. All add-ons submissions are"
@@ -10963,11 +10862,11 @@ msgid ""
 "Reviewing Guide</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:394
+#: apps/pages/templates/pages/dev_faq.html:393
 msgid "Who reviews my add-on?"
 msgstr "誰がアドオンを審査するのですか？"
 
-#: apps/pages/templates/pages/dev_faq.html:396
+#: apps/pages/templates/pages/dev_faq.html:395
 msgid ""
 "Add-ons are reviewed by the AMO Editors, a group of talented developers that"
 " volunteer to help the Mozilla project by reviewing add-ons to ensure a "
@@ -10977,11 +10876,11 @@ msgid ""
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:407
+#: apps/pages/templates/pages/dev_faq.html:406
 msgid "What are the guidelines used to review my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:409
+#: apps/pages/templates/pages/dev_faq.html:408
 msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing"
 " Guide</a> when testing an add-on for acceptance onto AMO. It is important "
@@ -10990,32 +10889,32 @@ msgid ""
 "greatly assist in expediting the review process."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:419
+#: apps/pages/templates/pages/dev_faq.html:418
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:421
+#: apps/pages/templates/pages/dev_faq.html:420
 msgid ""
 "We cannot give a time estimate as to how long it will take before an add-on "
 "is reviewed. Many factors affect the time including the:"
 msgstr ""
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:428
+#: apps/pages/templates/pages/dev_faq.html:427
 msgid "number of add-on submissions"
 msgstr ""
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:430
+#: apps/pages/templates/pages/dev_faq.html:429
 msgid "complexity of an add-on’s code"
 msgstr "アドオンのソースコードの複雑さ"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:432
+#: apps/pages/templates/pages/dev_faq.html:431
 msgid "number of problem areas discovered"
 msgstr "発見した問題点の数"
 
-#: apps/pages/templates/pages/dev_faq.html:435
+#: apps/pages/templates/pages/dev_faq.html:434
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Editors "
 "Reviewing Guide</a> to ensure that your add-on is setup as expected. It's "
@@ -11024,44 +10923,44 @@ msgid ""
 "provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:447
+#: apps/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:449
+#: apps/pages/templates/pages/dev_faq.html:448
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides "
 "information that can help you determine your add-on downloads since you've "
 "submitted it to AMO."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:456
+#: apps/pages/templates/pages/dev_faq.html:455
 msgid "How can I see how many active users are using my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:458
+#: apps/pages/templates/pages/dev_faq.html:457
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides "
 "information that can help you determine how many users have been actively "
 "using your add-on since you've submitted it to AMO."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:465
+#: apps/pages/templates/pages/dev_faq.html:464
 msgid "How do I submit an update for my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:467
+#: apps/pages/templates/pages/dev_faq.html:466
 msgid ""
 "You can submit an update for your add-on via the Developer Tools dashboard "
 "by choosing the option \"Upload a new version\" and uploading a new .xpi "
 "file for your add-on."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:474
+#: apps/pages/templates/pages/dev_faq.html:473
 msgid "Does my update need to be reviewed by editors?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:476
+#: apps/pages/templates/pages/dev_faq.html:475
 msgid ""
 "That depends. If you are simply changing a description of your add-on or "
 "updating a \"maxVersion\" to ensure compatibility with a new Mozilla "
@@ -11070,120 +10969,66 @@ msgid ""
 " be reviewed by an editor."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:487
-msgid "What are the Recommended Lists?"
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:489
-msgid ""
-"The Recommended lists are an important part of exposing AMO visitors to "
-"useful and compelling add-ons within a small &amp; focused list. It allows "
-"us to feature add-ons that have done a good job of creating a unique and/or "
-"exciting enhancement to Mozilla software and increasing awareness of the "
-"thousands of add-ons hosted on AMO. The lists are broken down into two "
-"categories; Recommended and Category Recommended. The former is shown on the"
-" home page of AMO and is typically limited to 40 featured add-ons. The "
-"latter are lists of add-ons that are recommended at the category level. The "
-"only distinction between the two lists is that Category Recommended add-ons "
-"are not featured on the home page. Apart from that, both lists are meant to "
-"recognize the achievements of individual add-on authors and the work they’ve"
-" produced."
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:506
-msgid "What is a Featured add-on?"
-msgstr "おすすめのアドオンとは？"
-
-#: apps/pages/templates/pages/dev_faq.html:508
-msgid ""
-"The main page of AMO as well as the main page for each category contain "
-"three slots which are used to display a set of Featured Add-Ons. These add-"
-"ons are pulled from the Recommended and Category Recommended lists "
-"respectively and periodically rotated as described in the <a "
-"href=\"%(url)s\">Featured Add-ons FAQ</a> to allow recommended add-ons a "
-"chance for increased visibility to users. Featured add-ons are rotated "
-"regularly to prevent staleness."
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:520
-msgid "How can my add-on be listed as Recommended?"
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:522
-#: apps/pages/templates/pages/dev_faq.html:532
-msgid ""
-"<a href=\"%(url)s\">This page</a> describes the process by which the "
-"Recommended lists are managed."
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:527
-msgid "Can I pay to have my add-on listed as Recommended?"
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:530
-msgid "Why is my add-on no longer listed as Recommended?"
-msgstr ""
-
-#: apps/pages/templates/pages/dev_faq.html:539
+#: apps/pages/templates/pages/dev_faq.html:486
 msgid ""
 "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:541
+#: apps/pages/templates/pages/dev_faq.html:488
 msgid ""
 "A developer may reply to any review posted to their add-on as long as they "
 "are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:548 apps/reviews/models.py:159
+#: apps/pages/templates/pages/dev_faq.html:495 apps/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
 msgstr "スパムあるいはその他レビューと無関係の内容"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:550 apps/reviews/models.py:160
+#: apps/pages/templates/pages/dev_faq.html:497 apps/reviews/models.py:160
 msgid "Inappropriate language/dialog"
 msgstr "不適切な言葉・会話"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:552 apps/reviews/models.py:161
+#: apps/pages/templates/pages/dev_faq.html:499 apps/reviews/models.py:161
 msgid "Misplaced bug report or support request"
 msgstr "場違いなバグ報告またはサポートリクエスト"
 
 #. part of a list (<li>)
-#: apps/pages/templates/pages/dev_faq.html:554
+#: apps/pages/templates/pages/dev_faq.html:501
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:557
+#: apps/pages/templates/pages/dev_faq.html:504
 msgid ""
 "Currently, AMO does not provide a mechanism to directly communicate with a "
 "reviewer but this feature is being investigated and considered for a future "
 "update."
 msgstr "現在、AMO はレビュアと直接連絡を取る機能を提供していませんが、この機能は将来の実装が調査・検討されています。"
 
-#: apps/pages/templates/pages/dev_faq.html:564
+#: apps/pages/templates/pages/dev_faq.html:511
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:566
+#: apps/pages/templates/pages/dev_faq.html:513
 msgid ""
 "No. We do not remove negative reviews from add-ons unless they are found to "
 "be false."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:572
+#: apps/pages/templates/pages/dev_faq.html:519
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:574
+#: apps/pages/templates/pages/dev_faq.html:521
 msgid ""
 "If an author contacts us and asks for a review containing false or "
 "inaccurate information to be removed, we will review the post and consider "
 "removing it."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:583
+#: apps/pages/templates/pages/dev_faq.html:530
 msgid ""
 "Do you need more information about the various open source licenses? Are you"
 " confused as to which license you should select? What rights does a specific"
@@ -11197,7 +11042,7 @@ msgid ""
 "reliance on such content."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:598
+#: apps/pages/templates/pages/dev_faq.html:545
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this "
 "also provides an annotated version of the MPL and an <abbr "
@@ -11205,14 +11050,14 @@ msgid ""
 "use or distribute code licensed under it."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:612
+#: apps/pages/templates/pages/dev_faq.html:559
 msgid ""
 "A table summarizing and comparing how some of the key open source licenses "
 "treat distributions, proprietary software linking, and redistribution of "
 "code with changes."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:625
+#: apps/pages/templates/pages/dev_faq.html:572
 msgid ""
 "Free Software Foundation provides short summaries of the key open source "
 "licenses, including whether the license qualifies as a free software license"
@@ -11222,17 +11067,17 @@ msgid ""
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:642
+#: apps/pages/templates/pages/dev_faq.html:589
 msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:652
+#: apps/pages/templates/pages/dev_faq.html:599
 msgid "A comparison of known open source licenses on Wikipedia."
 msgstr ""
 
-#: apps/pages/templates/pages/dev_faq.html:658
+#: apps/pages/templates/pages/dev_faq.html:605
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
@@ -11418,17 +11263,16 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in "
 "%(app_name)s, though installing an excessive number may have adverse "
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
-"disabling it. Add-ons that cause large start-up performance issues will have"
-" warning messages on their details page."
+"disabling it."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:142
+#: apps/pages/templates/pages/faq.html:141
 msgid ""
 "%(app_name)s told me an add-on isn't compatible. Is there a way I can still "
 "use it?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:145
+#: apps/pages/templates/pages/faq.html:144
 msgid ""
 "If an add-on isn't compatible with your version of %(app_name)s, it is "
 "usually either because your version of %(app_name)s is outdated or the add-"
@@ -11440,11 +11284,11 @@ msgid ""
 "Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:157
+#: apps/pages/templates/pages/faq.html:156
 msgid "What if I have problems with an add-on?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:158
+#: apps/pages/templates/pages/faq.html:157
 msgid ""
 "Add-ons are usually created by third-party developers from around the world,"
 " so the best way to get help with an add-on is to look for support links on "
@@ -11454,15 +11298,15 @@ msgid ""
 "article</a> for troubleshooting tips."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:170
+#: apps/pages/templates/pages/faq.html:169
 msgid "Add-on Gallery"
 msgstr "アドオンギャラリー"
 
-#: apps/pages/templates/pages/faq.html:172
+#: apps/pages/templates/pages/faq.html:171
 msgid "How do I choose between add-ons that seem to do the same thing?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:174
+#: apps/pages/templates/pages/faq.html:173
 msgid ""
 "There are often several add-ons that have similar features. To figure out "
 "which is right for you, read the entire description of the add-on and view "
@@ -11472,11 +11316,11 @@ msgid ""
 "you like better."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:181
+#: apps/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:182
+#: apps/pages/templates/pages/faq.html:181
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if "
 "you're looking for a particular add-on and can't find it, you might try "
@@ -11484,13 +11328,13 @@ msgid ""
 "\">Add-ons </a>forum."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:188
+#: apps/pages/templates/pages/faq.html:187
 msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:189
+#: apps/pages/templates/pages/faq.html:188
 msgid ""
 "Experimental add-ons have been checked by our editors to make sure they "
 "don't have security problems, but they may still have bugs or not work "
@@ -11499,11 +11343,11 @@ msgid ""
 "about our review process</a></dd>"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:197
+#: apps/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:198
+#: apps/pages/templates/pages/faq.html:197
 msgid ""
 "While all add-ons publicly available in our gallery are reviewed by an "
 "editor, you may receive a direct link to an add-on that hasn't yet been "
@@ -11513,20 +11357,20 @@ msgid ""
 "process</a></dd>"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:207
+#: apps/pages/templates/pages/faq.html:206
 msgid "How much do add-ons cost to purchase?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:208
+#: apps/pages/templates/pages/faq.html:207
 msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked otherwise."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:211
+#: apps/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:212
+#: apps/pages/templates/pages/faq.html:211
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its "
 "development by making a monetary contribution. These contributions go "
@@ -11534,11 +11378,11 @@ msgid ""
 "non-profit Mozilla Foundation."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:217
+#: apps/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
 msgstr "ベータ版のアドオンとは？"
 
-#: apps/pages/templates/pages/faq.html:219
+#: apps/pages/templates/pages/faq.html:218
 msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an "
 "add-on author. While different authors have different standards for beta "
@@ -11546,7 +11390,7 @@ msgid ""
 "general add-on releases."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:223
+#: apps/pages/templates/pages/faq.html:222
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" "
 "section of an add-on's listing, you will continue to receive updates for "
@@ -11555,24 +11399,22 @@ msgid ""
 "computer."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:230
+#: apps/pages/templates/pages/faq.html:229
 msgid "What does it mean when an add-on is flagged as slow?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:232
+#: apps/pages/templates/pages/faq.html:231
 msgid ""
 "Most add-ons load code and resources at the same time Firefox is starting "
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
-"can cause a noticeable slowdown. We warn you about these add-ons to help you"
-" decide about installing them, and also to help you diagnose performance "
-"issues you may run into in the future."
+"can cause a noticeable slowdown."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:239
+#: apps/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:240
+#: apps/pages/templates/pages/faq.html:237
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the"
 " add-on's reviews page. Find the review you wish to report, click \"Report "
@@ -11580,19 +11422,19 @@ msgid ""
 "review and take appropriate action."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:245
+#: apps/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:246
+#: apps/pages/templates/pages/faq.html:243
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:249
+#: apps/pages/templates/pages/faq.html:246
 msgid "What is a Source Code License?"
 msgstr "ソースコードのライセンスとは？"
 
-#: apps/pages/templates/pages/faq.html:250
+#: apps/pages/templates/pages/faq.html:247
 msgid ""
 "The source code used to create an add-on is an exclusive copyright of the "
 "add-on author, unless otherwise declared in a source code license. Many add-"
@@ -11603,82 +11445,44 @@ msgid ""
 "their own."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:259
+#: apps/pages/templates/pages/faq.html:256
 msgid ""
 "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:267
+#: apps/pages/templates/pages/faq.html:264
 msgid "Collections and Favorites"
 msgstr "コレクションとお気に入り"
 
-#: apps/pages/templates/pages/faq.html:270
+#: apps/pages/templates/pages/faq.html:267
 msgid "What is a collection?"
 msgstr "コレクションとは？"
 
-#: apps/pages/templates/pages/faq.html:271
+#: apps/pages/templates/pages/faq.html:268
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:273
+#: apps/pages/templates/pages/faq.html:270
 msgid "What is the My Favorites collection?"
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:274
+#: apps/pages/templates/pages/faq.html:271
 msgid ""
 "Favorite add-ons are add-ons that you have bookmarked to easily get back to "
 "later. You can add an add-on to your favorites collection by clicking \"Add "
 "to favorites\" on its details page."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:279
-msgid "Personalized recommendations"
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:282
-msgid "What are personalized recommendations?"
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:283
-msgid ""
-"Firefox recommends add-ons for you based on the add-ons you already have "
-"installed. If you have at least 3 add-ons installed, just visit the Get Add-"
-"ons area of the Add-ons Manager to see the \"Recommended for You\" box."
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:288
-msgid "How are personalized recommendations determined?"
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:289
-msgid ""
-"Firefox sends information about the add-ons you have installed to Mozilla "
-"once a day in order to update the information displayed to you in the Add-"
-"ons Manager, as explained in our <a href=\"%(privacy_url)s\">Privacy "
-"Policy</a>. Add-ons that are often used together are determined from the "
-"aggregate data and displayed to you as personalized recommendations."
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:296
-msgid "How can I opt out of these recommendations?"
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:297
-msgid ""
-"Please see <a href=\"%(support_url)s\">this support article</a> for "
-"instructions on how to opt out."
-msgstr ""
-
-#: apps/pages/templates/pages/faq.html:303 templates/menu_links.html:13
+#: apps/pages/templates/pages/faq.html:275 templates/menu_links.html:13
 #: templates/impala/header_title.html:13
 msgid "Mobile Add-ons"
 msgstr "モバイル向けアドオン"
 
-#: apps/pages/templates/pages/faq.html:306
+#: apps/pages/templates/pages/faq.html:278
 msgid "What are mobile add-ons?"
 msgstr "モバイル向けアドオンとは？"
 
-#: apps/pages/templates/pages/faq.html:307
+#: apps/pages/templates/pages/faq.html:279
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> "
 "and add or modify functionality just like desktop add-ons. You can find add-"
@@ -11686,22 +11490,22 @@ msgid ""
 "href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:316
+#: apps/pages/templates/pages/faq.html:288
 msgid "Developer Topics"
 msgstr "開発者向けトピックス"
 
-#: apps/pages/templates/pages/faq.html:317
+#: apps/pages/templates/pages/faq.html:289
 msgid ""
 "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a "
 "href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-"
 "related questions."
 msgstr ""
 
-#: apps/pages/templates/pages/faq.html:322
+#: apps/pages/templates/pages/faq.html:294
 msgid "Still have questions?"
 msgstr "まだ質問がありますか？"
 
-#: apps/pages/templates/pages/faq.html:323
+#: apps/pages/templates/pages/faq.html:295
 msgid ""
 "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support "
 "website</a>. For general add-on and website questions, visit our <a "
@@ -11900,67 +11704,6 @@ msgstr "購入者と販売者は別の PayPal アカウントを持っている�
 msgid "The seller does not accept payments in %s."
 msgstr "この販売者は %s での決済を受け付けていません。"
 
-#: apps/perf/templates/perf/index.html:3
-msgid "Slow Performing Add-ons"
-msgstr "パフォーマンスの遅いアドオン"
-
-#: apps/perf/templates/perf/index.html:24
-msgid ""
-"Add-ons provide many useful features and functions, but they can also cause "
-"%(app)s to become slower. Some add-ons can even slow %(app)s to a crawl and "
-"make it difficult to use for regular web browsing. If you think add-ons "
-"might be the reason %(app)s is lethargic, check the list below for some of "
-"the biggest bottlenecks. And remember, for best performance you should "
-"disable add-ons that you no longer use regularly."
-msgstr ""
-
-#: apps/perf/templates/perf/index.html:33
-msgid "Add-ons with Slow Start-up"
-msgstr "起動時間を遅くするアドオン"
-
-#: apps/perf/templates/perf/index.html:34
-msgid ""
-"The following add-ons have a significant impact on how long it takes %(app)s"
-" to start up."
-msgstr "以下のアドオンは %(app)s の起動時間に重大な影響を与えています。"
-
-#. Show All, Windows, Mac, Linux. The other names are inserted after the
-#. colon.
-#: apps/perf/templates/perf/index.html:40
-msgid "Show:"
-msgstr "表示:"
-
-#: apps/perf/templates/perf/index.html:57
-msgid "Impact"
-msgstr "影響"
-
-#: apps/perf/templates/perf/index.html:58
-msgid "Longer lines are slower"
-msgstr "線が長いほど遅いことを意味します"
-
-#. {0} is an add-on's percentage of slowness
-#: apps/perf/templates/perf/index.html:92
-msgid "<b>{0}%</b> <span>slower</span>"
-msgstr ""
-
-#: apps/perf/templates/perf/index.html:104
-msgid "Show more add-ons"
-msgstr "その他のアドオンを見る"
-
-#: apps/perf/templates/perf/index.html:115
-msgid "For Add-on Developers"
-msgstr "アドオン開発者向け"
-
-#: apps/perf/templates/perf/index.html:116
-msgid ""
-"Don't let poor performance affect the experience of your users. Here are a "
-"few tips on how to keep your add-ons responsive and nimble."
-msgstr ""
-
-#: apps/perf/templates/perf/index.html:121
-msgid "Learn more about performance"
-msgstr "パフォーマンスに関する詳細"
-
 #: apps/reviews/feeds.py:25
 msgid "Reviews for %s"
 msgstr "%s のレビュー"
@@ -11991,7 +11734,7 @@ msgstr "レビューを削除"
 msgid "Other (please specify)"
 msgstr "その他 (具体的に書いてください)"
 
-#: apps/reviews/views.py:146
+#: apps/reviews/views.py:149
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr "ありがとうございます。このレビューはエディタに通知されました。"
 
@@ -12258,23 +12001,23 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "検索結果 {2} 件中 {0} から {1} 件までを表示しています"
 
 #. {0} is an application, like Firefox.
-#: apps/search/views.py:261 templates/base.html:17
+#: apps/search/views.py:264 templates/base.html:17
 #: templates/impala/base.html:17 templates/mobile/base_addons.html:17
 msgid "{0} Add-ons"
 msgstr "{0} アドオン"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
-#: apps/search/views.py:550
+#: apps/search/views.py:554
 msgid "Any {0}"
 msgstr "すべての {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
-#: apps/search/views.py:585
+#: apps/search/views.py:589
 msgid "All Systems"
 msgstr "すべてのシステム"
 
-#: apps/search/views.py:596
+#: apps/search/views.py:600
 msgid "All Tags"
 msgstr "すべてのタグ"
 
@@ -12441,27 +12184,34 @@ msgstr "このアドオンを共有"
 msgid "Share this Collection"
 msgstr "このコレクションを共有"
 
-#: apps/signing/views.py:37
+#: apps/signing/views.py:30 templates/base.html:66
+#: templates/impala/base.html:108
+msgid ""
+"Some features are temporarily disabled while we perform website maintenance."
+" We'll be back to full capacity shortly."
+msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
+
+#: apps/signing/views.py:53
 msgid "Could not find add-on with id \"{}\"."
 msgstr ""
 
-#: apps/signing/views.py:41
+#: apps/signing/views.py:67
 msgid "You do not own this addon."
 msgstr "このアドオンの所有者ではありません。"
 
-#: apps/signing/views.py:56
+#: apps/signing/views.py:82
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "マルチパートファイルデータに「upload」キーが含まれていません。"
 
-#: apps/signing/views.py:70
+#: apps/signing/views.py:96
 msgid "Version does not match install.rdf."
 msgstr "バージョンが install.rdf と一致しません。"
 
-#: apps/signing/views.py:74
+#: apps/signing/views.py:100
 msgid "Version already exists."
 msgstr "バージョンは既に存在します。"
 
-#: apps/signing/views.py:110
+#: apps/signing/views.py:136
 msgid "No uploaded file for that addon and version."
 msgstr "このアドオンとバージョンのファイルはまだアップロードされていません。"
 
@@ -12624,30 +12374,37 @@ msgstr "{0} の統計情報"
 msgid "Statistics Dashboard"
 msgstr "統計情報ダッシュボード"
 
-#: apps/stats/templates/stats/stats.html:102
+#: apps/stats/templates/stats/stats.html:104
+msgid ""
+"Statistics processing is currently disabled, so recent data is unavailable. "
+"The statistics are still being collected and this page will be updated soon "
+"with the missing data."
+msgstr ""
+
+#: apps/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
 msgstr "最新データを読み込み中&hellip;"
 
-#: apps/stats/templates/stats/stats.html:134
+#: apps/stats/templates/stats/stats.html:142
 #: apps/stats/templates/stats/reports/overview.html:25
 #: apps/stats/templates/stats/reports/overview.html:37
 #: apps/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
 msgstr "データがありません。"
 
-#: apps/stats/templates/stats/stats.html:169
+#: apps/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
 msgstr "このダッシュボードは現在 <b>公開中</b> です。"
 
-#: apps/stats/templates/stats/stats.html:171
+#: apps/stats/templates/stats/stats.html:179
 msgid "Contribution stats are currently <b>private</b>."
 msgstr "貢献状態は現在 <b>非公開</b> です。"
 
-#: apps/stats/templates/stats/stats.html:174
+#: apps/stats/templates/stats/stats.html:182
 msgid "This dashboard is currently <b>private</b>."
 msgstr "このダッシュボードは現在 <b>非公開</b> です。"
 
-#: apps/stats/templates/stats/stats.html:177
+#: apps/stats/templates/stats/stats.html:185
 msgid "Change settings."
 msgstr "設定を変更"
 
@@ -12906,16 +12663,16 @@ msgstr "このユーザ名は使用できません。"
 msgid "This username is already in use."
 msgstr "このユーザ名はすでに使われています。"
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:86
+#: apps/users/forms.py:267 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "表示名"
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:91
+#: apps/users/forms.py:269 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "所在地"
 
-#: apps/users/forms.py:271 apps/users/templates/users/edit.html:96
+#: apps/users/forms.py:271 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "職業"
@@ -12940,11 +12697,11 @@ msgstr "この表示名は使用できません。"
 msgid "The passwords did not match."
 msgstr "パスワードが一致しません。"
 
-#: apps/users/forms.py:343 apps/users/templates/users/edit.html:107
+#: apps/users/forms.py:343 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "プロフィール写真"
 
-#: apps/users/forms.py:351 apps/users/templates/users/edit.html:121
+#: apps/users/forms.py:351 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "既定のロケール"
 
@@ -12958,7 +12715,7 @@ msgstr "匿名化するには、他の項目は変更せずに、変更の理由
 msgid "Please enter at least one name to blacklist."
 msgstr "ブラックリストへ追加する名前を少なくともひとつ入力してください。"
 
-#: apps/users/helpers.py:51
+#: apps/users/helpers.py:53
 msgctxt "user_list_others"
 msgid "others"
 msgstr "その他"
@@ -12979,15 +12736,15 @@ msgstr "ハッシュ"
 msgid "No user with that email."
 msgstr "このメールアドレスを持つユーザは存在しません。"
 
-#: apps/users/models.py:390
+#: apps/users/models.py:399
 msgid "Your account has been restricted"
 msgstr "あなたのアカウントは制限されています"
 
-#: apps/users/models.py:460
+#: apps/users/models.py:469
 msgid "Please confirm your email address"
 msgstr "メールアドレスを確認してください"
 
-#: apps/users/models.py:486
+#: apps/users/models.py:495
 msgid "My Mobile Add-ons"
 msgstr "自分のモバイル向けアドオン"
 
@@ -13064,24 +12821,24 @@ msgstr "Marketplace へ新たに追加された地域に関する Mozilla から
 msgid "User Notifications"
 msgstr "ユーザ通知"
 
-#: apps/users/views.py:86
+#: apps/users/views.py:88
 msgid "An email address is required."
 msgstr "メールアドレスが必要です。"
 
-#: apps/users/views.py:91
+#: apps/users/views.py:93
 msgid "A user with that email address does not exist."
 msgstr "このメールアドレスを持つユーザは存在しません。"
 
-#: apps/users/views.py:108
+#: apps/users/views.py:110
 msgid "Invalid confirmation code!"
 msgstr "不正な確認コードです。"
 
-#: apps/users/views.py:113
+#: apps/users/views.py:115
 msgid "Successfully verified!"
 msgstr "認証が完了しました！"
 
 # %1 is the user's email address
-#: apps/users/views.py:129 apps/users/views.py:601
+#: apps/users/views.py:131 apps/users/views.py:607
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -13090,27 +12847,27 @@ msgstr ""
 "入力されたメールアドレス {0} "
 "にアカウント確認のメールを送信しました。ログインする前に、そのメールに書かれたリンクをクリックして認証手続きをしてください。"
 
-#: apps/users/views.py:133 apps/users/views.py:605
+#: apps/users/views.py:135 apps/users/views.py:611
 msgid "Confirmation Email Sent"
 msgstr "確認のためのメールが送信されました"
 
-#: apps/users/views.py:144
+#: apps/users/views.py:146
 msgid "Profile Deleted"
 msgstr "プロファイルが削除されました"
 
-#: apps/users/views.py:165
+#: apps/users/views.py:167
 msgid "Photo Deleted"
 msgstr "写真が削除されました"
 
-#: apps/users/views.py:184 apps/users/views.py:291
+#: apps/users/views.py:186 apps/users/views.py:293
 msgid "Profile Updated"
 msgstr "プロファイルが更新されました"
 
-#: apps/users/views.py:193
+#: apps/users/views.py:195
 msgid "Email Confirmation Sent"
 msgstr "確認メールが送信されました"
 
-#: apps/users/views.py:194
+#: apps/users/views.py:196
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
@@ -13119,37 +12876,37 @@ msgstr ""
 "新しいメールアドレスを確認するメールが {0} "
 "に送信されました。新しいメールアドレスを有効にするには、送信されたメールに書かれたリンクをクリックする必要があります。それまでは、現在のメールアドレスでログインできます。"
 
-#: apps/users/views.py:207
+#: apps/users/views.py:209
 msgid "Please confirm your email address change at %s"
 msgstr "メールアドレスの変更を %s で確認してください。"
 
-#: apps/users/views.py:221
+#: apps/users/views.py:223
 msgid "Errors Found"
 msgstr "エラーが見つかりました"
 
-#: apps/users/views.py:222
+#: apps/users/views.py:224
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "変更された内容にエラーがあります。確認の上、再度送信してください。"
 
-#: apps/users/views.py:270
+#: apps/users/views.py:272
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 
-#: apps/users/views.py:326
+#: apps/users/views.py:328
 msgid "Your email address was changed successfully"
 msgstr "メールアドレスの変更が完了しました"
 
-#: apps/users/views.py:327
+#: apps/users/views.py:329
 msgid "From now on, please use {0} to log in."
 msgstr "これからは {0} でログインしてください。"
 
-#: apps/users/views.py:412
+#: apps/users/views.py:416
 msgid "Wrong email address or password!"
 msgstr "メールアドレスまたはパスワードが違います！"
 
-#: apps/users/views.py:424
+#: apps/users/views.py:428
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -13157,7 +12914,7 @@ msgstr ""
 "あなたのユーザアカウントを有効にするリンクが書かれたメールが {0} "
 "に送信されました。ログインする前に、送信されたメールのリンクをクリックしてください。"
 
-#: apps/users/views.py:429
+#: apps/users/views.py:433
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -13167,31 +12924,31 @@ msgstr ""
 "確認のメールが届いていない場合は、あなたのメールサービスがこれを「迷惑メール」や「スパムメール」に分類していないか確認してください。必要であれば、上記のメールアドレスに"
 " <a href=\"%s\">確認メールを再送信</a> できます。"
 
-#: apps/users/views.py:434
+#: apps/users/views.py:438
 msgid "Activation Email Sent"
 msgstr "アクティベーションのためのメールが送信されました"
 
-#: apps/users/views.py:435
+#: apps/users/views.py:439
 msgid "Having Trouble?"
 msgstr "何かお困りですか？"
 
-#: apps/users/views.py:575
+#: apps/users/views.py:581
 msgid "You are already logged in to an account."
 msgstr "あなたはすでにアカウントへログインしています。"
 
-#: apps/users/views.py:597
+#: apps/users/views.py:603
 msgid "Congratulations! Your user account was successfully created."
 msgstr "ありがとうございます。ユーザアカウントの登録が完了しました。"
 
-#: apps/users/views.py:625
+#: apps/users/views.py:631
 msgid "There are errors in this form"
 msgstr "フォームの入力に誤りがあります"
 
-#: apps/users/views.py:626
+#: apps/users/views.py:632
 msgid "Please correct them and resubmit."
 msgstr "誤りを訂正して、もう一度送信してください。"
 
-#: apps/users/views.py:641
+#: apps/users/views.py:647
 msgid "User reported."
 msgstr "ユーザが報告されました。"
 
@@ -13235,8 +12992,8 @@ msgid "Confirm account deletion"
 msgstr "アカウントの削除を確認"
 
 #: apps/users/templates/users/delete.html:49
-#: apps/users/templates/users/edit.html:49
-#: apps/users/templates/users/login_form.html:21
+#: apps/users/templates/users/edit.html:56
+#: apps/users/templates/users/login_form.html:22
 #: apps/users/templates/users/register.html:68
 #: apps/users/templates/users/mobile/login.html:37
 msgid "Password"
@@ -13259,128 +13016,132 @@ msgstr "ユーザの写真を削除"
 msgid "Delete my user picture now"
 msgstr "今すぐユーザの写真を削除"
 
-#: apps/users/templates/users/edit.html:24
+#: apps/users/templates/users/edit.html:25
 #: apps/users/templates/users/includes/navigation.html:12
 #: templates/user_login.html:22
 msgid "My Account"
 msgstr "マイアカウント"
 
-#: apps/users/templates/users/edit.html:26
+#: apps/users/templates/users/edit.html:27
 msgid "Manage basic account information, such as username and email address."
 msgstr "ユーザ名やメールアドレスなど、基本的なアカウント情報を管理します。"
 
-#: apps/users/templates/users/edit.html:32
+#: apps/users/templates/users/edit.html:33
 #: apps/users/templates/users/register.html:48
 msgid "Username"
 msgstr "ユーザ名"
 
-#: apps/users/templates/users/edit.html:37
+#: apps/users/templates/users/edit.html:38
 #: apps/users/templates/users/pwreset_request.html:21
 #: apps/users/templates/users/register.html:63
 msgid "Email Address"
 msgstr "メールアドレス"
 
-#: apps/users/templates/users/edit.html:43
+#: apps/users/templates/users/edit.html:45
+msgid "Manage Firefox Account..."
+msgstr ""
+
+#: apps/users/templates/users/edit.html:48
 msgid "Change Password"
 msgstr "パスワードを変更"
 
-#: apps/users/templates/users/edit.html:51
+#: apps/users/templates/users/edit.html:58
 msgid ""
 "Change your password. If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr "パスワードを変更します。パスワードを忘れてしまった場合は、<a href=\"%(reset_url)s\">リセットしてください</a>。"
 
-#: apps/users/templates/users/edit.html:57
+#: apps/users/templates/users/edit.html:64
 msgid "Old Password"
 msgstr "現在のパスワード"
 
-#: apps/users/templates/users/edit.html:65
+#: apps/users/templates/users/edit.html:72
 msgid "New Password"
 msgstr "新しいパスワード"
 
-#: apps/users/templates/users/edit.html:70
+#: apps/users/templates/users/edit.html:77
 msgid "Confirm Password"
 msgstr "新しいパスワード (確認)"
 
-#: apps/users/templates/users/edit.html:77
+#: apps/users/templates/users/edit.html:86
 msgid "Profile"
 msgstr "プロフィール"
 
-#: apps/users/templates/users/edit.html:79
+#: apps/users/templates/users/edit.html:88
 msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr "あなたについてのもう少し詳しい情報を記入してください。すべての項目は任意ですが、他のユーザがあなたを知る手がかりになるでしょう。"
 
-#: apps/users/templates/users/edit.html:103
+#: apps/users/templates/users/edit.html:112
 msgid "This URL will only be visible if you are a developer."
 msgstr "この URL はあなたが開発者である場合のみ表示されます。"
 
-#: apps/users/templates/users/edit.html:112
+#: apps/users/templates/users/edit.html:121
 msgid "Choose Photo&hellip;"
 msgstr "写真を選択&hellip;"
 
-#: apps/users/templates/users/edit.html:116
+#: apps/users/templates/users/edit.html:125
 msgid "Delete current photo"
 msgstr "現在の写真を削除"
 
-#: apps/users/templates/users/edit.html:123
+#: apps/users/templates/users/edit.html:132
 msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr "これはあなたに関する情報 (説明など) を表示するのに使用される既定のロケールです。"
 
-#: apps/users/templates/users/edit.html:131
+#: apps/users/templates/users/edit.html:140
 msgid ""
 "Introduce yourself to the community, if you like! This text will appear "
 "publicly on your user info page."
 msgstr "もしよければ、コミュニティに向けて自己紹介してください！ ここに入力した文章はあなたのユーザ情報ページで公開されます。"
 
-#: apps/users/templates/users/edit.html:140
+#: apps/users/templates/users/edit.html:149
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "使用可能な HTML は {0} です。リンクの使用は許可されていません。"
 
-#: apps/users/templates/users/edit.html:147
+#: apps/users/templates/users/edit.html:156
 msgid "Miscellaneous"
 msgstr "備考"
 
-#: apps/users/templates/users/edit.html:149
+#: apps/users/templates/users/edit.html:158
 msgid "Decide what collections should be shown in your profile."
 msgstr "あなたのプロフィールに表示されるコレクションを選んでください。"
 
-#: apps/users/templates/users/edit.html:157
+#: apps/users/templates/users/edit.html:166
 msgid "Display the collections I have created"
 msgstr "自分が作成したコレクションを表示"
 
-#: apps/users/templates/users/edit.html:164
+#: apps/users/templates/users/edit.html:173
 msgid "Display collections I'm following"
 msgstr "フォローしているコレクションを表示"
 
-#: apps/users/templates/users/edit.html:172
+#: apps/users/templates/users/edit.html:181
 msgid "Notifications"
 msgstr "通知"
 
-#: apps/users/templates/users/edit.html:174
+#: apps/users/templates/users/edit.html:183
 msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr "Mozilla では時々、今後のリリースやアドオン関連のイベントに関するメールをお送りしています。興味のあるトピックを選択してください。"
 
-#: apps/users/templates/users/edit.html:184
+#: apps/users/templates/users/edit.html:193
 msgid ""
 "Mozilla reserves the right to contact you individually about specific "
 "concerns with your hosted add-ons."
 msgstr "Mozilla は、このサイトで登録されたアドオンに関する具体的な事柄について、あなたに個別に連絡を取る権利を留保します。"
 
-#: apps/users/templates/users/edit.html:194
+#: apps/users/templates/users/edit.html:203
 msgid "Admin"
 msgstr "管理者"
 
-#: apps/users/templates/users/edit.html:226
+#: apps/users/templates/users/edit.html:235
 msgid "Delete Account"
 msgstr "アカウントを削除"
 
-#: apps/users/templates/users/edit.html:228
+#: apps/users/templates/users/edit.html:237
 msgid "Update Account"
 msgstr "アカウントを更新"
 
@@ -13402,17 +13163,17 @@ msgstr "ログイン"
 msgid "Log In"
 msgstr "ログイン"
 
-#: apps/users/templates/users/login_form.html:16
+#: apps/users/templates/users/login_form.html:17
 #: apps/users/templates/users/mobile/login.html:32
 msgid "Email address"
 msgstr "メールアドレス"
 
-#: apps/users/templates/users/login_form.html:29
+#: apps/users/templates/users/login_form.html:30
 #: apps/users/templates/users/mobile/login.html:44
 msgid "Remember me on this device"
 msgstr "このブラウザにログイン情報を記憶"
 
-#: apps/users/templates/users/login_form.html:39
+#: apps/users/templates/users/login_form.html:40
 #: apps/users/templates/users/pwreset_complete.html:15
 #: apps/users/templates/users/mobile/login.html:55
 #: templates/mobile/header_auth.html:8
@@ -13820,15 +13581,15 @@ msgstr "%s のバージョン履歴"
 msgid "Version History with Changelogs"
 msgstr "バージョン履歴・変更点"
 
-#: apps/versions/models.py:302
+#: apps/versions/models.py:317
 msgid "Add-on uses binary components."
 msgstr "このアドオンはバイナリコンポーネントを含んでいます。"
 
-#: apps/versions/models.py:305
+#: apps/versions/models.py:320
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "このアドオンは厳密な互換性チェックを行うよう設定されています。"
 
-#: apps/versions/models.py:703
+#: apps/versions/models.py:718
 msgid "{app} {min} and later"
 msgstr "{app} {min} 以降"
 
@@ -13923,26 +13684,20 @@ msgstr "他の言語"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
 
-#: templates/base.html:65 templates/impala/base.html:108
-msgid ""
-"Some features are temporarily disabled while we perform website maintenance."
-" We'll be back to full capacity shortly."
-msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
-
-#: templates/base.html:81 templates/impala/base.html:74
+#: templates/base.html:82 templates/impala/base.html:74
 msgid "Find add-ons for other applications"
 msgstr "他のアプリケーション用のアドオンを探す"
 
-#: templates/base.html:82 templates/impala/base.html:74
+#: templates/base.html:83 templates/impala/base.html:74
 msgid "Other Applications"
 msgstr "他のアプリケーション"
 
-#: templates/base.html:131 templates/impala/base.html:176
+#: templates/base.html:132 templates/impala/base.html:187
 msgid ""
 "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "自分のコレクションを作成するには Mozilla Add-ons のアカウントが必要です。"
 
-#: templates/base.html:158 templates/impala/base.html:197
+#: templates/base.html:159 templates/impala/base.html:208
 msgid "Footer logo"
 msgstr "フッターロゴ"
 
@@ -14065,25 +13820,31 @@ msgstr ""
 "ここで公開されている数千ものアドオンを試すには、無料の高速 Web ブラウザ <a href=\"%(url)s\">Mozilla "
 "Firefox</a> をダウンロードしましょう！"
 
+#: templates/impala/base.html:131
+msgid ""
+"Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
+"class=\"fxa-login\">Sign in now to transfer your account.</a>"
+msgstr ""
+
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:130
+#: templates/impala/base.html:141
 msgid "Welcome to {0} Add-ons."
 msgstr "{0} Add-ons へようこそ。"
 
-#: templates/impala/base.html:133
+#: templates/impala/base.html:144
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
 
-#: templates/impala/base.html:138
+#: templates/impala/base.html:149
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "機能を追加したりデザインを変えたりして、%(app)s を自分のものにしましょう。"
 
-#: templates/impala/base.html:146
+#: templates/impala/base.html:157
 msgid "On the go?"
 msgstr "外出先ですか？"
 
-#: templates/impala/base.html:148
+#: templates/impala/base.html:159
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "<a class=\"mobile-link\" href=\"#\">Mobile Add-ons サイト</a> を見る"
 

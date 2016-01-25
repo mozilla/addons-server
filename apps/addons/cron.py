@@ -1,19 +1,14 @@
-import array
-import itertools
 import logging
-import operator
 import os
-import subprocess
 import time
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.db import connections, transaction
+from django.db import connections
 from django.db.models import Q, F, Avg
 
 import cronjobs
 import multidb
-from lib import recommend
 from celery.task.sets import TaskSet
 import waffle
 
@@ -28,7 +23,6 @@ from stats.models import ThemeUserCount, UpdateCount
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
-recs_log = logging.getLogger('z.recs')
 
 
 # TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
@@ -88,12 +82,14 @@ def _update_addons_current_version(data, **kw):
         except Addon.DoesNotExist:
             m = "Failed to update current_version. Missing add-on: %d" % (pk)
             task_log.debug(m)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT addon_id, AVG(`count`)
@@ -113,6 +109,9 @@ def update_addon_average_daily_users():
 @task
 def _update_addon_average_daily_users(data, **kw):
     task_log.info("[%s] Updating add-ons ADU totals." % (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
 
     for pk, count in data:
         try:
@@ -136,6 +135,9 @@ def _update_addon_average_daily_users(data, **kw):
 @cronjobs.register
 def update_daily_theme_user_counts():
     """Store the day's theme popularity counts into ThemeUserCount."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     d = Persona.objects.values_list('addon', 'popularity').order_by('id')
 
@@ -151,6 +153,9 @@ def _update_daily_theme_user_counts(data, **kw):
     task_log.info("[%s] Updating daily theme user counts for %s."
                   % (len(data), kw['date']))
 
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     for pk, count in data:
         ThemeUserCount.objects.create(addon_id=pk, count=count,
                                       date=datetime.now())
@@ -159,6 +164,9 @@ def _update_daily_theme_user_counts(data, **kw):
 @cronjobs.register
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     cursor = connections[multidb.get_slave()].cursor()
     # We need to use SQL for this until
     # http://code.djangoproject.com/ticket/11003 is resolved
@@ -182,6 +190,9 @@ def update_addon_download_totals():
 def _update_addon_download_totals(data, **kw):
     task_log.info('[%s] Updating add-ons download+average totals.' %
                   (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
 
     for pk, avg, sum in data:
         try:
@@ -281,8 +292,8 @@ def _update_appsupport(ids, **kw):
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
+    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
+         Q(version__addon__disabled_by_user=True))
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
@@ -297,25 +308,25 @@ def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
     log = logging.getLogger('z.files.disabled')
-    q = (Q(version__addon__status=amo.STATUS_DISABLED)
-         | Q(version__addon__disabled_by_user=True))
+    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
+         Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
-            log.warning('File that should not be guarded: %s.' % filepath)
+            log.warning(u'File that should not be guarded: %s.', filepath)
             try:
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
-                if (file_.version.addon.status in amo.MIRROR_STATUSES
-                        and file_.status in amo.MIRROR_STATUSES):
+                if (file_.version.addon.status in amo.MIRROR_STATUSES and
+                        file_.status in amo.MIRROR_STATUSES):
                     file_.copy_to_mirror()
             except File.DoesNotExist:
-                log.warning('File object does not exist for: %s.' % filepath)
+                log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:
-                log.error('Could not unhide file: %s.' % filepath,
+                log.error(u'Could not unhide file: %s.' % filepath,
                           exc_info=True)
 
 
@@ -349,104 +360,6 @@ def deliver_hotness():
                 addon.update(hotness=0)
         # Let the database catch its breath.
         time.sleep(10)
-
-
-@cronjobs.register
-def recs():
-    start = time.time()
-    cursor = connections[multidb.get_slave()].cursor()
-    cursor.execute("""
-        SELECT addon_id, collection_id
-        FROM synced_addons_collections ac
-        INNER JOIN addons ON
-            (ac.addon_id=addons.id AND inactive=0 AND status=4
-             AND addontype_id <> 9 AND current_version IS NOT NULL)
-        ORDER BY addon_id, collection_id
-    """)
-    qs = cursor.fetchall()
-    recs_log.info('%.2fs (query) : %s rows' % (time.time() - start, len(qs)))
-    addons = _group_addons(qs)
-    recs_log.info('%.2fs (groupby) : %s addons' %
-                  ((time.time() - start), len(addons)))
-
-    if not len(addons):
-        return
-
-    # Check our memory usage.
-    try:
-        p = subprocess.Popen('%s -p%s -o rss' % (settings.PS_BIN, os.getpid()),
-                             shell=True, stdout=subprocess.PIPE)
-        recs_log.info('%s bytes' % ' '.join(p.communicate()[0].split()))
-    except Exception:
-        log.error('Could not call ps', exc_info=True)
-
-    sim = recommend.similarity  # Locals are faster.
-    sims, start, timers = {}, [time.time()], {'calc': [], 'sql': []}
-
-    def write_recs():
-        calc = time.time()
-        timers['calc'].append(calc - start[0])
-        try:
-            _dump_recs(sims)
-        except Exception:
-            recs_log.error('Error dumping recommendations. SQL issue.',
-                           exc_info=True)
-        sims.clear()
-        timers['sql'].append(time.time() - calc)
-        start[0] = time.time()
-
-    for idx, (addon, collections) in enumerate(addons.iteritems(), 1):
-        xs = [(other, sim(collections, cs))
-              for other, cs in addons.iteritems()]
-        # Sort by similarity and keep the top N.
-        others = sorted(xs, key=operator.itemgetter(1), reverse=True)
-        sims[addon] = [(k, v) for k, v in others[:11] if k != addon]
-
-        if idx % 50 == 0:
-            write_recs()
-    else:
-        write_recs()
-
-    avg_len = sum(len(v) for v in addons.itervalues()) / float(len(addons))
-    recs_log.info('%s addons: average length: %.2f' % (len(addons), avg_len))
-    recs_log.info('Processing time: %.2fs' % sum(timers['calc']))
-    recs_log.info('SQL time: %.2fs' % sum(timers['sql']))
-
-
-def _dump_recs(sims):
-    # Dump a dictionary of {addon: (other_addon, score)} into the
-    # addon_recommendations table.
-    cursor = connections['default'].cursor()
-    addons = sims.keys()
-    vals = [(addon, other, score)
-            for addon, others in sims.items()
-            for other, score in others]
-    cursor.execute('BEGIN')
-    cursor.execute('DELETE FROM addon_recommendations WHERE addon_id IN %s',
-                   [addons])
-    cursor.executemany("""
-        INSERT INTO addon_recommendations (addon_id, other_addon_id, score)
-        VALUES (%s, %s, %s)""", vals)
-    cursor.execute('COMMIT')
-
-
-def _group_addons(qs):
-    # qs is a list of (addon_id, collection_id) order by addon_id.
-    # Return a dict of {addon_id: [collection_id]}.
-    addons = {}
-    for addon, collections in itertools.groupby(qs, operator.itemgetter(0)):
-        # Skip addons in < 3 collections since we'll be overfitting
-        # recommendations to exactly what's in those collections.
-        cs = [c[1] for c in collections]
-        if len(cs) > 3:
-            # array.array() lets us calculate similarities much faster.
-            addons[addon] = array.array('l', cs)
-    # Don't generate recs for frozen add-ons.
-    for addon in FrozenAddon.objects.values_list('addon', flat=True):
-        if addon in addons:
-            recs_log.info('Skipping frozen addon %s.' % addon)
-            del addons[addon]
-    return addons
 
 
 @cronjobs.register

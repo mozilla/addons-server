@@ -2,8 +2,8 @@
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
-{% block js %}{% include("amo/recaptcha_js.html") %}
-    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+{% block js %}
+  <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
 {% endblock %}
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 
@@ -11,9 +11,6 @@
   {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
     <meta name="robots" content="noindex">
   {% endif %}
-  {% for preview in addon.all_previews %}
-    <link rel="prefetch" href="{{ preview.image_url }}">
-  {% endfor %}
   <meta property="og:title" content="{{ addon.name }}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="{{ addon.get_icon_url(64)|absolutify }}">
@@ -92,7 +89,7 @@
 
 {# All this depends on the addon or version, and nothing needs the user,
    so we can cache it all against the addon. #}
-<section class="primary">
+<section class="primary" id="addon-description-header">
   <div id="addon" class="island c" role="main" data-id="{{ addon.id }}">
     <hgroup>
       {# L10n: {0} is an add-on name. #}
@@ -118,10 +115,6 @@
       </div>
     {% endif %}
   </div>
-
-  {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-    {{ impala_performance_note(amount=addon.ts_slowness) }}
-  {% endif %}
 
   {{ dependencies_note(addon) }}
 

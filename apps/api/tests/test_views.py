@@ -59,7 +59,7 @@ class DRFMixin(object):
     """
     def setUp(self):
         super(DRFMixin, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def test_drf_running(self):
         """
@@ -191,7 +191,7 @@ class StripHTMLTest(TestCase):
 
 class APITest(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_4664_twitterbar',
-                'base/addon_5299_gcal', 'perf/index']
+                'base/addon_5299_gcal']
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
@@ -539,35 +539,6 @@ class APITest(TestCase):
         self.assertContains(result, '<full type="">')
         self.assertContains(result,
                             '<thumbnail type="" width="200" height="150">')
-
-    def test_performance_data(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        assert doc('performance application').eq(0).attr('name') == 'fx'
-        assert doc('performance application').eq(0).attr('version') == '3.6'
-        assert doc('performance application platform').eq(0).attr('name') == 'mac'
-        assert doc('performance application platform').eq(0).attr('version') == '10.6'
-        result = doc('performance application platform result').eq(0)
-        assert result.attr('type') == 'ts'
-        assert result.attr('average') == '5.21'
-        assert result.attr('baseline') == '1.2'
-
-    @patch.object(settings, 'PERF_THRESHOLD', 335)
-    def test_performance_threshold_false(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        assert result.attr('above_threshold') == 'false'
-
-    @patch.object(settings, 'PERF_THRESHOLD', 332)
-    def test_performance_threshold_true(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        assert result.attr('above_threshold') == 'true'
 
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):

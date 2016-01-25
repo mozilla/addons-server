@@ -9,6 +9,7 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.db import IntegrityError
 from django.db.models import Q, Sum
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
 from django.template import Context, loader
@@ -72,6 +73,7 @@ def user_view(f):
 
 @login_required(redirect=False)
 @json_view
+@non_atomic_requests
 def ajax(request):
     """Query for a user matching a given email."""
 
@@ -126,10 +128,10 @@ def confirm_resend(request, user):
 
     user.email_confirmation_code()
 
-    msg = _(u'An email has been sent to your address {0} to confirm '
+    msg = _(u'An email has been sent to your address to confirm '
             u'your account. Before you can log in, you have to activate '
             u'your account by clicking on the link provided in this '
-            u'email.').format(user.email)
+            u'email.')
     messages.info(request, _('Confirmation Email Sent'), msg)
 
     return redirect('users.login')
@@ -370,6 +372,8 @@ def _login(request, template=None, data=None, dont_redirect=False):
         return http.HttpResponseRedirect(
             request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
+    data['login_source_form'] = (waffle.switch_is_active('fxa-auth') and
+                                 not request.POST)
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
     login_status = None
@@ -485,6 +489,7 @@ def logout(request):
 
 
 @user_view
+@non_atomic_requests
 def profile(request, user):
     # Get user's own and favorite collections, if they allowed that.
     own_coll = fav_coll = []
@@ -531,6 +536,7 @@ def profile(request, user):
 
 
 @user_view
+@non_atomic_requests
 def themes(request, user, category=None):
     cats = Category.objects.filter(type=amo.ADDON_PERSONA)
 
@@ -570,6 +576,8 @@ def themes(request, user, category=None):
 
 @anonymous_csrf
 def register(request):
+    if waffle.switch_is_active('fxa-auth'):
+        return login(request)
 
     if request.user.is_authenticated():
         messages.info(request, _('You are already logged in to an account.'))

@@ -154,8 +154,7 @@ class Update(object):
                 files.filename, versions.id as version_id,
                 files.datestatuschanged as datestatuschanged,
                 files.strict_compatibility as strict_compat,
-                versions.releasenotes, versions.version as version,
-                addons.premium_type
+                versions.releasenotes, versions.version as version
             FROM versions
             INNER JOIN addons
                 ON addons.id = versions.addon_id AND addons.id = %(id)s
@@ -288,7 +287,7 @@ class Update(object):
                 'guid', 'type', 'disabled_by_user', 'min', 'max',
                 'file_id', 'file_status', 'hash', 'filename', 'version_id',
                 'datestatuschanged', 'strict_compat', 'releasenotes',
-                'version', 'premium_type'],
+                'version'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
             row['url'] = get_mirror(data['addon_status'],

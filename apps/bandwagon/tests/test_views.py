@@ -236,6 +236,16 @@ class TestViews(amo.tests.TestCase):
         res = client.post(collection.delete_icon_url())
         assert res.status_code == 403  # The view is csrf protected.
 
+    def test_no_xss_in_collection_page(self):
+        coll = Collection.objects.get(slug='wut-slug')
+        name = '"><script>alert(/XSS/);</script>'
+        name_escaped = '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+        coll.name = name
+        coll.save()
+        resp = self.client.get(coll.get_url_path())
+        assert name not in resp.content
+        assert name_escaped in resp.content
+
 
 class TestPrivacy(amo.tests.TestCase):
     fixtures = ['users/test_backends']
@@ -676,14 +686,6 @@ class TestCRUD(amo.tests.TestCase):
 
         favorites_url = user.favorites_collection().edit_url()
         response = self.client.get(favorites_url)
-        doc = pq(response.content)
-        assert not doc('.tab-nav li a[href$=users-edit]').length
-        assert not doc('#users-edit').length
-
-        synchronized = Collection.objects.create(
-            name='synchronized', author=user, type=amo.COLLECTION_SYNCHRONIZED)
-        synchronized_url = synchronized.edit_url()
-        response = self.client.get(synchronized_url)
         doc = pq(response.content)
         assert not doc('.tab-nav li a[href$=users-edit]').length
         assert not doc('#users-edit').length

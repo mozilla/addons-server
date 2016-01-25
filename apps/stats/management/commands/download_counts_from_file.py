@@ -12,7 +12,7 @@ from addons.models import File
 from stats.models import update_inc, DownloadCount
 from zadmin.models import DownloadSource
 
-from . import get_date_from_file
+from . import get_date_from_file, save_stats_to_file
 
 
 log = commonware.log.getLogger('adi.downloadcountsfromfile')
@@ -134,6 +134,8 @@ class Command(BaseCommand):
 
         # Create in bulk: this is much faster.
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
+        for download_count in download_counts.values():
+            save_stats_to_file(download_count)
         log.info('Processed a total of %s lines' % (index + 1))
         log.debug('Total processing time: %s' % (datetime.now() - start))
 

@@ -4,7 +4,7 @@ from pyquery import PyQuery
 
 import amo
 import amo.tests
-from addons.helpers import (statusflags, flag, contribution, performance_note,
+from addons.helpers import (statusflags, flag, contribution,
                             mobile_persona_preview, mobile_persona_confirm)
 from addons.models import Addon
 
@@ -21,7 +21,7 @@ class TestHelpers(amo.tests.TestCase):
         a = Addon(status=amo.STATUS_UNREVIEWED)
         assert statusflags(ctx, a) == 'unreviewed'
 
-        # recommended
+        # featured
         featured = Addon.objects.get(pk=1003)
         assert statusflags(ctx, featured) == 'featuredaddon'
 
@@ -36,7 +36,7 @@ class TestHelpers(amo.tests.TestCase):
         a = Addon(status=amo.STATUS_UNREVIEWED)
         assert flag(ctx, a) == '<h5 class="flag">Not Reviewed</h5>'
 
-        # recommended
+        # featured
         featured = Addon.objects.get(pk=1003)
         assert flag(ctx, featured) == '<h5 class="flag">Featured</h5>'
 
@@ -119,27 +119,3 @@ class TestHelpers(amo.tests.TestCase):
         more = doc('.more')
         assert more
         assert more.attr('href') == persona.addon.get_url_path()
-
-
-class TestPerformanceNote(amo.tests.TestCase):
-    listing = '<div class="performance-note">'
-    not_listing = '<div class="notification performance-note">'
-
-    def setUp(self):
-        super(TestPerformanceNote, self).setUp()
-        request_mock = Mock()
-        request_mock.APP = amo.FIREFOX
-        self.ctx = {'request': request_mock, 'amo': amo}
-
-    def test_show_listing(self):
-        r = performance_note(self.ctx, 30, listing=True)
-        assert self.listing in r, r
-
-    def test_show_not_listing(self):
-        r = performance_note(self.ctx, 30)
-        assert self.not_listing in r, r
-
-    def test_only_fx(self):
-        self.ctx['request'].APP = amo.THUNDERBIRD
-        r = performance_note(self.ctx, 30)
-        assert r.strip() == ''

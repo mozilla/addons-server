@@ -1,17 +1,18 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
-"PO-Revision-Date: 2015-11-21 20:46+0300\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"PO-Revision-Date: 2015-12-16 15:06+0000\n"
+"Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1446905017.0\n"
 
 #: static/js/common/ratingwidget.js:31
@@ -25,118 +26,118 @@ msgstr[2] "{0} звёзд"
 msgid "There was a problem contacting the server."
 msgstr "Проблема связи с сервером."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "Выбрать файл..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ваше дополнение должно заканчиваться на .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "{0}% завершено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} из {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "Отмена"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "Загрузка {0}"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "Ошибка с {0}"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваше дополнение не смогло пройти валидацию, в нём найдена {0} ошибка."
 msgstr[1] "Ваше дополнение не смогло пройти валидацию, в нём найдено {0} ошибки."
 msgstr[2] "Ваше дополнение не смогло пройти валидацию, в нём найдено {0} ошибок."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и ещё {0}"
 msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "Валидация {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "При валидации произошла неожиданная ошибка сервера."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "Закончена валидация {0}"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Время ожидания валидации вашего дополнения истекло, оно будет проверено вручную."
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщением."
 msgstr[1] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 msgstr[2] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Ваш материал будет автоматически утвержден."
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включить подробные примечания к версии (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:466
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Если для полного тестирования дополнения неоходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:467
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "Если ваше дополнение предназначено для ограниченной аудитории, вам следует выбрать Предварительную проверку вместо Полной проверки."
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Контрольный перечень при представлении дополнения"
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:481
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Пожалуйста, проверьте выполнение следующих пунктов перед завершением вашего представления. Это позволит свести к минимуму задержки или недоразумения в процессе его проверки:"
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -144,19 +145,15 @@ msgstr ""
 "Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
 "вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
 
-#: static/js/common/upload-addon.js:508
+#: static/js/common/upload-addon.js:518
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Если вы не знакомы с процессом проверки дополнения, вы можете прочитать об этом здесь."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Для этого типа дополнения некоторые платформы недоступны."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr "К сожалению поддерживаемых платформ не найдено."
 
@@ -189,7 +186,7 @@ msgid "Following"
 msgstr "Следовать"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Эта тема несовместима с вашей версией {0}"
 
@@ -221,7 +218,7 @@ msgstr "Creative Commons Атрибуция — Без производных п
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
 
@@ -807,7 +804,7 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Другое"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Сначала выберите приложение"
 
@@ -825,94 +822,62 @@ msgstr[0] "Написать автору {2} дополнения, которо�
 msgstr[1] "Написать авторам {2} дополнений, которые не прошли валидацию."
 msgstr[2] "Написать авторам {2} дополнений, которые не прошли валидацию."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Установка приложения не разрешена."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Искажённый манифест приложения."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Не удалось связаться с хостом приложения."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Не удалось распарсить манифест приложения."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Некорректный манифест приложения."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Установка не удалась. Пожалуйста, повторите попытку позже."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Не удалось установить приложение."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Эта система не поддерживает установку приложений."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Принять и установить"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Добавить в {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Загрузить сейчас"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Дополнение не было обновлено для поддержки совместимости-по-умолчанию."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Вам необходимо использовать Firefox 10.0 или выше."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla отметила эту версию как несовместимую с вашей версией Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Всё равно установить для {0}"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Всё равно загрузить для {0}"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Недоступно для вашей платформы"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Недоступно для {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Работает с {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Просмотреть другие версии"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Только с Firefox — Получите Firefox!"
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Извините, для установки поискового плагина вам нужен браузер из семейства Mozilla (например, Firefox)."
 
@@ -984,15 +949,15 @@ msgstr "Удалить из избранного"
 msgid "Stop following"
 msgstr "Перестать следовать"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не поддерживает тег видео"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Изменения сохранены"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Введите новый адрес эл. почты автора"
 
@@ -1022,41 +987,17 @@ msgstr "Подробнее"
 msgid "Example"
 msgstr "Пример"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Начинаю тесты..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Жду результаты теста..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Внутренняя ошибка сервера"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "Должен быть корректным адресом эл. почты."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "Результаты не найдены."
-
-#: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Извините, но мы не можем найти для вас каких-либо рекомендаций.<br>Пожалуйста, посетите <a href=\"{0}\">сайт дополнений</a>, чтобы найти подходящее вам дополнение."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Поиск рекомендаций&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Обновление рекомендаций&hellip;"
 
 #: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
@@ -1092,30 +1033,30 @@ msgstr "Примечаний к версии не найдено"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr "Средние отзывы"
+msgstr ""
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr "Число отзывов"
+msgstr ""
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "Ошибка при загрузке перевода"
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Игнорировать это сообщение в будущих обновлениях"
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Критичность для автоматического подписания:"
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "Загрузка..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "остался <b>{0}</b> символ."
@@ -1141,10 +1082,6 @@ msgstr[0] "Остался по меньшей мере {0} символ."
 msgstr[1] "Осталось по меньшей мере {0} символа."
 msgstr[2] "Осталось по меньшей мере {0} символов."
 
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Все"
-
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "Требуемая информация"
@@ -1164,6 +1101,22 @@ msgstr "Отклонено"
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Одобрено"
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr ""
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1230,47 +1183,47 @@ msgstr "Валидация не смогла завершиться или за�
 msgid "Internal server error"
 msgstr "Внутренняя ошибка сервера"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "Не обновлено для {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Требует новой версии {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "Не проверено"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Экспериментальное <span>(Подробнее)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Недоступно для {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Экспериментальное"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "Для тем необходима более новая версия {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "Для тем необходим {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "Установка..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Это дополнение было предварительно проверено Mozilla."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Оставить их"
 

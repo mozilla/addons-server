@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-03 08:54-0700\n"
+"POT-Creation-Date: 2016-01-20 11:43-0700\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,119 +25,119 @@ msgstr[2] "{0} зведица"
 msgid "There was a problem contacting the server."
 msgstr "Дошло је до проблема при контактирању сервера."
 
-#: static/js/common/upload-addon.js:59
+#: static/js/common/upload-addon.js:69
 msgid "Select a file..."
 msgstr "Изаберите датотеку..."
 
-#: static/js/common/upload-addon.js:60
+#: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Ваш додатак се треба завршити са .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:94
+#: static/js/common/upload-addon.js:104
 msgid "{0}% complete"
 msgstr "{0}% завршено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:97
+#: static/js/common/upload-addon.js:107
 msgid "{0} of {1}"
 msgstr "{0} од {1}"
 
-#: static/js/common/upload-addon.js:130
+#: static/js/common/upload-addon.js:140
 msgid "Cancel"
 msgstr "Откажи"
 
-#: static/js/common/upload-addon.js:152
+#: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
 msgstr "Отпремам {0}"
 
-#: static/js/common/upload-addon.js:179
+#: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
 msgstr "Грешка са {0}"
 
-#: static/js/common/upload-addon.js:184
+#: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваш додатак није прошао проверу - {0} грешка."
 msgstr[1] "Ваш додатак није прошао проверу - {0} грешке."
 msgstr[2] "Ваш додатак није прошао проверу - {0} грешака."
 
-#: static/js/common/upload-addon.js:198
+#: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и још {0}"
 msgstr[1] "&hellip;и још {0}"
 msgstr[2] "&hellip;и још {0}"
 
-#: static/js/common/upload-addon.js:212 static/js/common/upload-addon.js:502
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Погледајте потпуни извештај прегледа"
 
-#: static/js/common/upload-addon.js:224
+#: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
 msgstr "Проверавам {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:263
+#: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Добијен је празан одговор од сервера; статус: {0}"
 
-#: static/js/common/upload-addon.js:363
+#: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
 msgstr "Неочекивана грешка на серверу током провере."
 
-#: static/js/common/upload-addon.js:402
+#: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
 msgstr "Завршена провера {0}"
 
-#: static/js/common/upload-addon.js:408
+#: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:411
+#: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:416
+#: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: static/js/common/upload-addon.js:421
+#: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:436
+#: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:455
+#: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Укључите детаљне белешке верзије (ово може бити урађено у следећем кораку)."
 
-#: static/js/common/upload-addon.js:456
+#: static/js/common/upload-addon.js:466
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Ако је Вашем додатку потребна лозинка до вeb странице како би била потпуно тестирана, укључите и корисничко име и лозинку за тест у Белешке рецезента (ово може бити учињено у следећем кораку)."
 
-#: static/js/common/upload-addon.js:457
+#: static/js/common/upload-addon.js:467
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:470
+#: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Списак поднесених додатака"
 
-#: static/js/common/upload-addon.js:471
+#: static/js/common/upload-addon.js:481
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Молимо Вас да верификујете наредне такче пре завршетка подношења. Ово ће минимизовати одлагања и неразумевања током процеса рецензије:"
 
-#: static/js/common/upload-addon.js:473
+#: static/js/common/upload-addon.js:483
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -145,19 +145,15 @@ msgstr ""
 "Компајлиране бинарне датотеке, као и умањене скрипте (не рачунајући познате библиотеке) треба одвојено поднети на рецензију. Користите поље за отпремање изворног кода да бисте избегли одбијање "
 "отпремљеног кода."
 
-#: static/js/common/upload-addon.js:491
+#: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процес валидације је нашао проблеме које могу довести до:"
 
-#: static/js/common/upload-addon.js:508
+#: static/js/common/upload-addon.js:518
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "Ако Вам није познат процес рецензије додатака, можете прочитати о томе овде."
 
-#: static/js/common/upload-addon.js:544
-msgid "Some platforms are not available for this type of add-on."
-msgstr "Неке платформе нису доступне за овај тип додатка."
-
-#: static/js/common/upload-addon.js:546
+#: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
 msgstr "Нажалост није нађена ни једна подржана платформа."
 
@@ -190,7 +186,7 @@ msgid "Following"
 msgstr "Праћење"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:17 static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
 
@@ -222,7 +218,7 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js:296
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "Назив Ваше теме"
 
@@ -808,7 +804,7 @@ msgstr "Датум"
 msgid "Other"
 msgstr "Остали"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1250 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
 
@@ -826,94 +822,62 @@ msgstr[0] "Аутор е-поште има {2} додатак који није 
 msgstr[1] "Аутор е-поште има {2} додатка који нису прошли проверу ваљаности."
 msgstr[2] "Аутор е-поште има {2} додатка који нису прошли проверу ваљаности."
 
-#: static/js/zamboni/apps.js:54
-msgid "App installation not allowed."
-msgstr "Није дозвољена инсталација апликације."
-
-#: static/js/zamboni/apps.js:57
-msgid "App manifest is malformed."
-msgstr "Манифест апликације је у погрешном формату."
-
-#: static/js/zamboni/apps.js:60
-msgid "App host could not be reached."
-msgstr "Host апликације није доступан."
-
-#: static/js/zamboni/apps.js:63
-msgid "App manifest is unparsable."
-msgstr "Манифест апликације се не може упоредити."
-
-#: static/js/zamboni/apps.js:66
-msgid "App manifest is invalid."
-msgstr "Манифест апликације је неисправан."
-
-#: static/js/zamboni/apps.js:69
-msgid "Install failed. Please try again later."
-msgstr "Инсталација неуспешна. Молимо Вас покушајте касније."
-
-#: static/js/zamboni/apps.js:80
-msgid "App installation failed."
-msgstr "Инсталација апликације није успела."
-
-#: static/js/zamboni/apps.js:81
-msgid "This system does not support installing apps."
-msgstr "Овај систем не подржава иснталације апликација."
-
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
 msgstr "Прихвати и инсталирај"
 
-#: static/js/zamboni/buttons.js:82
+#: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
 msgstr "Додај у {0}"
 
-#: static/js/zamboni/buttons.js:87
+#: static/js/zamboni/buttons.js:71
 msgid "Download Now"
 msgstr "Преузми одмах"
 
-#: static/js/zamboni/buttons.js:128
+#: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Додатак није ажуриран да подржава default-to-compatible."
 
-#: static/js/zamboni/buttons.js:133
+#: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Морате користити Firefox 10.0 или новије."
 
-#: static/js/zamboni/buttons.js:145
+#: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla је означила ову верзију као некомпатабилну са Вашом верзијом Firefox-а."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Install for {0} anyway"
 msgstr "Инсталирај за {0} у сваком случају"
 
-#: static/js/zamboni/buttons.js:227
+#: static/js/zamboni/buttons.js:210
 msgid "Download for {0} anyway"
 msgstr "Преузми за {0} у сваком случају"
 
-#: static/js/zamboni/buttons.js:284
+#: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
 msgstr "Није доступно за Вашу платформу"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:295 static/js/zamboni/buttons.js:332
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Није доступно за {0} {1}"
 
-#: static/js/zamboni/buttons.js:358
+#: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
 msgstr "Ради са {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js:360
+#: static/js/zamboni/buttons.js:343
 msgid "View other versions"
 msgstr "Погледај остале верзије"
 
-#: static/js/zamboni/buttons.js:411
+#: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:551 static/js/zamboni/mobile/buttons.js:41
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Жао нам је, треба Вам прегледач базиран на технологији Mozilla фондације (као што је Firefox) да бисте инсталирали прикључак за претраживање."
 
@@ -985,15 +949,15 @@ msgstr "Избриши из омиљених"
 msgid "Stop following"
 msgstr "Прекини праћење"
 
-#: static/js/zamboni/devhub.js:111
+#: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
 msgstr "Ваш прегледач не подржава ознаке видео снимака"
 
-#: static/js/zamboni/devhub.js:391
+#: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
 msgstr "Измене сачуване"
 
-#: static/js/zamboni/devhub.js:407
+#: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
 msgstr "Унесите адресу е-поште новог аутора"
 
@@ -1023,41 +987,17 @@ msgstr "Сазнајте више"
 msgid "Example"
 msgstr "Пример"
 
-#: static/js/zamboni/devhub.js:1151
+#: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
-#: static/js/zamboni/devhub.js:1278
-msgid "Starting tests..."
-msgstr "Покрећем тестова..."
-
-#: static/js/zamboni/devhub.js:1285
-msgid "Waiting for test results..."
-msgstr "Чекам резултате тестова..."
-
-#: static/js/zamboni/devhub.js:1287 static/js/zamboni/devhub.js:1292
-msgid "Internal Server Error"
-msgstr "Серверска грешка"
-
-#: static/js/zamboni/devhub.js:1327
+#: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
 msgstr "Адреса е-поште мора бити исправна."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
 msgstr "Нема резултата."
-
-#: static/js/zamboni/discovery_pane.js:217
-msgid "Sorry, we couldn't find any recommendations for you.<br>Please visit the <a href=\"{0}\">add-ons site</a> to find an add-on that's right for you."
-msgstr "Жао нам је, нисмо успели наћи препоруке за Вас.<br>Молимо посетите <a href=\"{0}\">страницу са додацима</a> да би пронашли додатке погодне за Вас."
-
-#: static/js/zamboni/discovery_pane.js:247
-msgid "Finding recommendations&hellip;"
-msgstr "Тражим препоруке&hellip;"
-
-#: static/js/zamboni/discovery_pane.js:249
-msgid "Updating recommendations&hellip;"
-msgstr "Ажурирам препоруке&hellip;"
 
 #: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
@@ -1093,30 +1033,30 @@ msgstr "Није нађена ни једна белешка о верзији"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr "Просечне рецензије"
+msgstr ""
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr "Број рецензија"
+msgstr ""
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "Грешка при учитавању превода"
 
-#: static/js/zamboni/files.js:421 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
-#: static/js/zamboni/files.js:427 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 
-#: static/js/zamboni/global.js:416
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "Учитавање..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js:489
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> карактер преостао."
@@ -1142,10 +1082,6 @@ msgstr[0] "Остао је још најмање {0} каратер."
 msgstr[1] "Остало је још најмање {0} каратера."
 msgstr[2] "Остало је још најмање {0} каратера."
 
-#: static/js/zamboni/perf.js:29 static/js/zamboni/perf.js:42
-msgid "All"
-msgstr "Све"
-
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "Захтеване информације"
@@ -1165,6 +1101,22 @@ msgstr "Одбијено"
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Одобрено"
+
+#: static/js/zamboni/themes_review.js:424
+msgid "No results found"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:31
+msgid "Theme"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:33
+msgid "Reviewer"
+msgstr ""
+
+#: static/js/zamboni/themes_review_templates.js:35
+msgid "Status"
+msgstr ""
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
@@ -1231,47 +1183,47 @@ msgstr "Задатак провере није могао бити заврше�
 msgid "Internal server error"
 msgstr "Грешка на серверу"
 
-#: static/js/zamboni/mobile/buttons.js:77
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "Није ажурирано за {0} {1}"
 
-#: static/js/zamboni/mobile/buttons.js:78
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Захтева верзију новију од {0}"
 
-#: static/js/zamboni/mobile/buttons.js:79
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "Неоцењено"
 
-#: static/js/zamboni/mobile/buttons.js:80
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Експериментално <span>(Сазнај више)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:81 static/js/zamboni/mobile/buttons.js:82
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Није доступно за {0}"
 
-#: static/js/zamboni/mobile/buttons.js:83
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Експериментално"
 
-#: static/js/zamboni/mobile/buttons.js:84
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "Теме захтевају новију верзију од {0}"
 
-#: static/js/zamboni/mobile/buttons.js:85
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "Теме захтевају {0}"
 
-#: static/js/zamboni/mobile/buttons.js:130
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "Инсталирам..."
 
-#: static/js/zamboni/mobile/buttons.js:150
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Овај додатак је прелиминарно прегледан од Mozilla-е."
 
-#: static/js/zamboni/mobile/buttons.js:277
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Задржи"
 

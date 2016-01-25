@@ -518,8 +518,8 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.gfx = BlocklistGfx.objects.create(
             guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
             feature='feature', feature_status='status', details=self.details,
-            driver_version='version', driver_version_comparator='compare',
-            hardware='giant_robot')
+            driver_version='version', driver_version_max='version max',
+            driver_version_comparator='compare', hardware='giant_robot')
 
     def test_no_gfx(self):
         dom = self.dom(self.mobile_url)
@@ -540,7 +540,9 @@ class BlocklistGfxTest(BlocklistViewTest):
         assert find('vendor') == self.gfx.vendor
         assert find('featureStatus') == self.gfx.feature_status
         assert find('driverVersion') == self.gfx.driver_version
-        assert find('driverVersionComparator') == self.gfx.driver_version_comparator
+        assert find('driverVersionMax') == self.gfx.driver_version_max
+        expected_version_comparator = self.gfx.driver_version_comparator
+        assert find('driverVersionComparator') == expected_version_comparator
         assert find('hardware') == self.gfx.hardware
         devices = gfx.getElementsByTagName('devices')[0]
         for device, val in zip(devices.getElementsByTagName('device'),
@@ -556,8 +558,8 @@ class BlocklistGfxTest(BlocklistViewTest):
     def test_no_empty_nodes(self):
         self.gfx.update(os=None, vendor=None, devices=None,
                         feature=None, feature_status=None,
-                        driver_version=None, driver_version_comparator=None,
-                        hardware=None)
+                        driver_version=None, driver_version_max=None,
+                        driver_version_comparator=None, hardware=None)
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<os>')
         self.assertNotContains(r, '<vendor>')
@@ -565,6 +567,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.assertNotContains(r, '<feature>')
         self.assertNotContains(r, '<featureStatus>')
         self.assertNotContains(r, '<driverVersion>')
+        self.assertNotContains(r, '<driverVersionMax>')
         self.assertNotContains(r, '<driverVersionComparator>')
         self.assertNotContains(r, '<hardware>')
 

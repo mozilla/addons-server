@@ -275,31 +275,6 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
         fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
         assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
 
-    def test_public_is_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_PUBLIC)
-        assert f.can_be_perf_tested() is True
-
-    def test_reviewed_is_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_LITE)
-        assert f.can_be_perf_tested() is True
-
-    def test_unreviewed_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_UNREVIEWED)
-        assert f.can_be_perf_tested() is False
-
-    def test_disabled_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.update(status=amo.STATUS_DISABLED)
-        assert f.can_be_perf_tested() is False
-
-    def test_deleted_addon_is_not_testable(self):
-        f = File.objects.get(pk=67442)
-        f.version.addon.update(disabled_by_user=True)
-        assert f.can_be_perf_tested() is False
-
     def test_file_is_mirrorable(self):
         f = File.objects.get(pk=67442)
         assert f.is_mirrorable() is True
@@ -576,61 +551,71 @@ class TestFileUpload(UploadTest):
         super(TestFileUpload, self).setUp()
         self.data = 'file contents'
 
-    def upload(self):
+    def upload(self, **params):
         # The data should be in chunks.
         data = [''.join(x) for x in amo.utils.chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
-                                    len(self.data))
+                                    len(self.data), **params)
 
     def test_from_post_write_file(self):
         assert storage.open(self.upload().path).read() == self.data
 
     def test_from_post_filename(self):
         upload = self.upload()
-        assert upload.name == '{0}_filename.xpi'.format(upload.pk)
+        assert upload.uuid
+        assert upload.name == '{0}_filename.xpi'.format(upload.uuid)
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
         assert self.upload().hash == 'sha256:%s' % hash
 
+    def test_from_post_extra_params(self):
+        upload = self.upload(automated_signing=True, addon_id=3615)
+        assert upload.addon_id == 3615
+        assert upload.automated_signing
+
+    def test_from_post_is_one_query(self):
+        with self.assertNumQueries(1):
+            self.upload(automated_signing=True, addon_id=3615)
+
     def test_save_without_validation(self):
-        f = FileUpload.objects.create()
-        assert not f.valid
+        upload = FileUpload.objects.create()
+        assert not upload.valid
 
     def test_save_with_validation(self):
-        f = FileUpload.objects.create(
+        upload = FileUpload.objects.create(
             validation='{"errors": 0, "metadata": {}}')
-        assert f.valid
+        assert upload.valid
 
-        f = FileUpload.objects.create(validation='{"errors": 1}')
-        assert not f.valid
+        upload = FileUpload.objects.create(validation='{"errors": 1}')
+        assert not upload.valid
 
         with pytest.raises(ValueError):
-            f = FileUpload.objects.create(validation='wtf')
+            FileUpload.objects.create(validation='wtf')
 
     def test_update_with_validation(self):
-        f = FileUpload.objects.create()
-        f.validation = '{"errors": 0, "metadata": {}}'
-        f.save()
-        assert f.valid
+        upload = FileUpload.objects.create()
+        upload.validation = '{"errors": 0, "metadata": {}}'
+        upload.save()
+        assert upload.valid
 
     def test_update_without_validation(self):
-        f = FileUpload.objects.create()
-        f.save()
-        assert not f.valid
+        upload = FileUpload.objects.create()
+        upload.save()
+        assert not upload.valid
 
     def test_ascii_names(self):
-        fu = FileUpload.from_post('', u'jétpack.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'jétpack.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
+        assert 'xpi' in upload.name
 
-        fu = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
-        assert 'xpi' in fu.name
+        upload = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        assert 'xpi' in upload.name
 
     def test_validator_sets_binary_via_extensions(self):
         validation = json.dumps({

@@ -11,6 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils import translation
 from django.utils.encoding import smart_unicode
+from django.utils.html import format_html
 from django.template import defaultfilters
 
 import caching.base as caching
@@ -236,18 +237,29 @@ def page_name(app=None):
         return _('Add-ons')
 
 
-@register.function
-@jinja2.contextfunction
-def login_link(context):
-    next = context['request'].path
+def link_with_final_destination(context, base):
+    next_path = context['request'].path
 
     qs = context['request'].GET.urlencode()
 
     if qs:
-        next += '?' + qs
+        next_path += '?' + qs
 
-    l = urlparams(urlresolvers.reverse('users.login'), to=next)
-    return l
+    return urlparams(base, to=next_path)
+
+
+@register.function
+@jinja2.contextfunction
+def login_link(context):
+    return link_with_final_destination(
+        context, urlresolvers.reverse('users.login'))
+
+
+@register.function
+@jinja2.contextfunction
+def register_link(context):
+    return link_with_final_destination(
+        context, urlresolvers.reverse('users.register'))
 
 
 @register.function
@@ -255,7 +267,10 @@ def login_link(context):
 def page_title(context, title):
     title = smart_unicode(title)
     base_title = page_name(context['request'].APP)
-    return u'%s :: %s' % (title, base_title)
+    # The following line doesn't use string formatting because we want to
+    # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
+    # escaped) object.
+    return format_html(u'{} :: {}', title, base_title)
 
 
 @register.function

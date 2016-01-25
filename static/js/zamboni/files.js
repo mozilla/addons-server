@@ -1,15 +1,5 @@
 "use strict";
 
-$(function() {
-    // Compile our templates.
-    Highlighter.templates = _.object(_.map(
-        $('script[type="text/x-template"]'),
-        function(node) {
-            return [$.camelCase(node.id),
-                    _.template($(node).text())];
-        }));
-});
-
 var Highlighter = {
     squash_space: function squash_space(str) {
         // Squash non-significant whitespace in a string, so it can be
@@ -175,10 +165,10 @@ var Highlighter = {
         // 1.2 ex width per digit, just to be safe, and an additional 4 for padding.
         var lines_width = 1.2 * line_order + 4;
 
-        var html = this.templates.syntaxTable({lines_width: lines_width,
-                                               lines: lines});
+        var html = syntaxhighlighter_template({lines: lines});
 
         $node.html(html);
+        $node.find('.highlighter-column-line-numbers').css('width', lines_width + 'ex');
     },
 };
 
@@ -1005,27 +995,23 @@ function bind_viewer(nodes) {
         buffer = '';
     });
 
-    var stylesheet = $('<style>').attr('type', 'text/css').appendTo($('head'))[0].sheet;
-    if (stylesheet && stylesheet.insertRule) {
-        stylesheet.insertRule('td.code, #diff, #content {}', 0);
+    var tabSizeDependentNodes = $('td.code, #diff, #content');
+    var tabstopsKey = 'apps/files/tabstops',
+        localTabstopsKey = tabstopsKey + ':' + $('#metadata').attr('data-slug');
 
-        var rule = stylesheet.cssRules[0],
-            tabstopsKey = 'apps/files/tabstops',
-            localTabstopsKey = tabstopsKey + ':' + $('#metadata').attr('data-slug');
+    $("#tab-stops-container").show();
 
-        $("#tab-stops-container").show();
-
-        var $tabstops = $('#tab-stops')
-            .numberInput(4)
-            .val(Number(storage.get(localTabstopsKey) || storage.get(tabstopsKey)) || 4)
-            .change(function(event, global) {
-                rule.style.tabSize = rule.style.MozTabSize = $(this).val();
-                if (!global)
-                    storage.set(localTabstopsKey, $(this).val());
-                storage.set(tabstopsKey, $(this).val());
-            })
-            .trigger('change', true);
-    }
+    var $tabstops = $('#tab-stops')
+        .numberInput(4)
+        .val(Number(storage.get(localTabstopsKey) || storage.get(tabstopsKey)) || 4)
+        .change(function(event, global) {
+            tabSizeDependentNodes.css('tab-size', $(this).val());
+            tabSizeDependentNodes.css('-moz-tab-size', $(this).val());
+            if (!global)
+                storage.set(localTabstopsKey, $(this).val());
+            storage.set(tabstopsKey, $(this).val());
+        })
+        .trigger('change', true);
 
     return viewer;
 }
@@ -1071,17 +1057,17 @@ $(document).ready(function() {
     var $left = $('#id_left'),
         $right = $('#id_right');
 
-    $left.find('option:not([value])').attr('disabled', true);
+    $left.find('option:not([value])').prop('disabled', true);
 
     var $left_options = $left.find('option:not([disabled])'),
         $right_options = $right.find('option:not([disabled])');
 
     $right.change(function(event) {
         var right = $right.val();
-        $left_options.attr('disabled', function() { return this.value == right; });
+        $left_options.prop('disabled', function() { return this.value == right; });
     }).change();
     $left.change(function(event) {
         var left = $left.val();
-        $right_options.attr('disabled', function() { return this.value == left; });
+        $right_options.prop('disabled', function() { return this.value == left; });
     }).change();
 });

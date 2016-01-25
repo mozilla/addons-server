@@ -133,9 +133,9 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
     def create_user(self, username, email, password=None, fxa_id=None):
         # We'll send username=None when registering through FxA to try and
         # generate a username from the email.
-        if username is None:
-            username = self._generate_username(email)
         user = self.model(username=username, email=email, fxa_id=fxa_id)
+        if username is None:
+            user.anonymize_username()
         # FxA won't set a password so don't let a user log in with one.
         if password is None:
             user.set_unusable_password()
@@ -154,25 +154,6 @@ class UserManager(BaseUserManager, amo.models.ManagerBase):
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
-
-    def _generate_username(self, seed):
-        """Generate a username from a seed which is intended to be an email
-        address. If the username is taken a single attempt will be made to
-        append a random number to it and get a unique username.
-        """
-        log.info('Generating username for {}'.format(seed))
-        if self.model.objects.filter(username=seed).exists():
-            # Only make one attempt at generating a new username. This isn't
-            # meant to be exhaustive but to make it difficult to maliciously
-            # prevent someone from signing up. See #967 for more discussion.
-            username = '{seed}-{num}'.format(
-                seed=seed, num=random.randint(1000, 9999))
-            log.warning('Username taken for {} trying {}'.format(
-                seed, username))
-            return username
-        else:
-            log.info('Using seeded username for {}'.format(seed))
-            return seed
 
 
 AbstractBaseUser._meta.get_field('password').max_length = 255
@@ -352,16 +333,35 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
 
     @property
     def source(self):
-        if self.fxa_id:
+        if not self.pk:
+            return None
+        elif self.fxa_id:
             return 'fxa'
         else:
             return 'amo'
 
     @property
     def name(self):
-        return smart_unicode(self.display_name or self.username)
+        if self.display_name:
+            return smart_unicode(self.display_name)
+        elif self.has_anonymous_username():
+            return _('Anonymous')
+        else:
+            return smart_unicode(self.username)
 
     welcome_name = name
+
+    def anonymize_username(self):
+        """Set an anonymous username."""
+        if self.pk:
+            log.info('Anonymizing username for {}'.format(self.pk))
+        else:
+            log.info('Generating username for {}'.format(self.email))
+        self.username = 'anonymous-{}'.format(os.urandom(16).encode('hex'))
+        return self.username
+
+    def has_anonymous_username(self):
+        return re.match('^anonymous-[0-9a-f]{32}$', self.username)
 
     @amo.cached_property
     def reviews(self):
@@ -383,7 +383,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         self.picture_type = ""
         self.save()
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def restrict(self):
         from amo.utils import send_mail
         log.info(u'User (%s: <%s>) is being restricted and '
@@ -396,7 +396,7 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
                   t.render(Context({})), None, [self.email],
-                  use_blacklist=False, real_email=True)
+                  use_blacklist=False)
 
     def unrestrict(self):
         log.info(u'User (%s: <%s>) is being unrestricted.' % (self,

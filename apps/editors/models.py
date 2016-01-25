@@ -96,7 +96,6 @@ class ViewQueue(RawSQLModel):
     external_software = models.BooleanField()
     binary = models.BooleanField()
     binary_components = models.BooleanField()
-    premium_type = models.IntegerField()
     is_restartless = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)

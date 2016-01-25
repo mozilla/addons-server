@@ -3,14 +3,15 @@ import os
 import shutil
 from datetime import date, timedelta
 
-from nose.tools import eq_
-
 from django.conf import settings
 from django.core import management
+
+import mock
 
 import amo.search
 import amo.tests
 from addons.models import Addon, Persona
+from stats.management.commands import save_stats_to_file, serialize_stats
 from stats.management.commands.download_counts_from_file import is_valid_source
 from stats.management.commands.update_counts_from_file import Command
 from stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
@@ -53,7 +54,9 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         super(TestADICommand, self).setUp()
         self.command = Command()
 
-    def test_update_counts_from_file(self):
+    @mock.patch(
+        'stats.management.commands.update_counts_from_file.save_stats_to_file')
+    def test_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('update_counts_from_file', hive_folder,
                                 date=self.date)
         assert UpdateCount.objects.all().count() == 1
@@ -164,7 +167,10 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         # Fits in the database, so no truncation.
         assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
-    def test_download_counts_from_file(self):
+    @mock.patch(
+        'stats.management.commands.download_counts_from_file.'
+        'save_stats_to_file')
+    def test_download_counts_from_file(self, mock_save_stats_to_file):
         # Create the necessary "valid download sources" entries.
         DownloadSource.objects.create(name='search', type='full')
         DownloadSource.objects.create(name='coll', type='prefix')
@@ -177,12 +183,30 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         assert download_count.date == date(2014, 7, 10)
         assert download_count.sources == {u'search': 1, u'collection': 1}
 
-    def test_theme_update_counts_from_file(self):
+        # save_stats_to_file is called with a non-saved model.
+        download_count.id = None
+        mock_save_stats_to_file.assert_called_once_with(download_count)
+
+    @mock.patch('stats.management.commands.save_stats_to_file')
+    def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('theme_update_counts_from_file', hive_folder,
                                 date=self.date)
         assert ThemeUpdateCount.objects.all().count() == 2
-        assert ThemeUpdateCount.objects.get(addon_id=3615).count == 2
-        assert ThemeUpdateCount.objects.get(addon_id=15663).count == 15
+
+        tuc1 = ThemeUpdateCount.objects.get(addon_id=3615)
+        assert tuc1.count == 2
+        # Persona 813 has addon id 15663: we need the count to be the sum of
+        # the "old" request on the persona_id 813 (only the one with the source
+        # "gp") and the "new" request on the addon_id 15663.
+        tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
+        assert tuc2.count == 15
+
+        assert mock_save_stats_to_file.call_count == 2
+        # save_stats_to_file is called with a non-saved model.
+        tuc1.id = None
+        tuc2.id = None
+        mock_save_stats_to_file.assert_has_calls(
+            [mock.call(tuc1), mock.call(tuc2)])
 
     def test_update_theme_popularity_movers(self):
         # Create ThemeUpdateCount entries for the persona 559 with addon_id
@@ -199,9 +223,21 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         management.call_command('update_theme_popularity_movers')
         p1 = Persona.objects.get(pk=559)
         p2 = Persona.objects.get(pk=575)
+
+        # The popularity is the average over the last 7 days, and as we created
+        # entries with one more user per day in the past (or 100 more), the
+        # calculation is "sum(range(7)) / 7" (or "sum(range(7)) * 100 / 7").
         assert p1.popularity == 3  # sum(range(7)) / 7
         assert p2.popularity == 300  # sum(range(7)) * 100 / 7
+
+        # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
+        # The movers is computed with the following formula:
+        # previous_3_weeks: the average over the 21 days before the last 7 days
+        # movers: (popularity - previous_3_weeks) / previous_3_weeks
+        # The calculation for the previous_3_weeks is:
+        # previous_3_weeks: (sum(range(28) - sum(range(7))) * 100 / 21 == 1700.
         assert p1.movers == 0.0  # Because the popularity is <= 100.
+        # We round the results to cope with floating point imprecision.
         assert round(p2.movers, 5) == round((300.0 - 1700) / 1700, 5)
 
     def test_is_valid_source(self):
@@ -224,7 +260,10 @@ class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
     fixtures = ['base/appversion.json']
     source_folder = '1093699'
 
-    def test_update_counts_from_file_bug_1093699(self):
+    @mock.patch(
+        'stats.management.commands.update_counts_from_file.save_stats_to_file')
+    def test_update_counts_from_file_bug_1093699(self,
+                                                 mock_save_stats_to_file):
         Addon.objects.create(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
                              type=amo.ADDON_THEME)
         management.call_command('update_counts_from_file', hive_folder,
@@ -233,8 +272,70 @@ class TestThemeADICommand(FixturesFolderMixin, amo.tests.TestCase):
         uc = UpdateCount.objects.last()
         assert uc.count == 1320
         assert uc.date == date(2014, 11, 06)
-        assert uc.versions == {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3, u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6}
-        assert uc.statuses == {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58}
+        assert (uc.versions ==
+                {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
+                 u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
+        assert (uc.statuses ==
+                {u'Unknown': 3, u'userEnabled': 1259, u'userDisabled': 58})
         assert uc.oses == {u'WINNT': 1122, u'Darwin': 114, u'Linux': 84}
         assert uc.locales[u'es-ES'] == 20
-        assert uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'] == {u'2.0': 3}
+        assert (uc.applications[u'{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'] ==
+                {u'2.0': 3})
+
+        uc.id = None  # save_stats_to_file is called with a non-saved model.
+        mock_save_stats_to_file.assert_called_once_with(uc)
+
+
+def test_stats_from_model_theme_update_count():
+    result = serialize_stats(
+        ThemeUpdateCount(addon_id=321, date='2016-01-18', count=123))
+    assert json.loads(result) == {
+        'date': '2016-01-18',
+        'addon': 321,
+        'count': 123}
+
+
+def test_stats_from_model_update_count():
+    result = serialize_stats(
+        UpdateCount(
+            addon_id=321, date='2016-01-18',
+            count=123,
+            versions={u'3.8': 2, u'3.7': 3},
+            statuses={u'userEnabled': 5},
+            applications={u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}':
+                          {u'3.6': 18}},
+            oses={u'WINNT': 5},
+            locales={u'en-us': 1, u'en-US': 4}))
+    assert json.loads(result) == {
+        'date': '2016-01-18',
+        'addon': 321,
+        'count': 123,
+        'versions': {'3.7': 3, '3.8': 2},
+        'oses': {'WINNT': 5},
+        'applications': {
+            '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'3.6': 18}},
+        'locales': {'en-US': 4, 'en-us': 1},
+        'statuses': {'userEnabled': 5}}
+
+
+def test_stats_from_model_download_count():
+    result = serialize_stats(
+        DownloadCount(
+            addon_id=321, date='2016-01-18', count=123,
+            sources={u'search': 1, u'collection': 1}))
+    assert json.loads(result) == {
+        'date': '2016-01-18',
+        'addon': 321,
+        'count': 123,
+        'sources': {'search': 1, 'collection': 1}}
+
+
+@mock.patch('stats.management.commands.storage.save')
+@mock.patch('stats.management.commands.ContentFile')
+def test_save_stats_to_file(mock_ContentFile, mock_storage):
+    mock_ContentFile.return_value = mock.sentinel.content
+    theme_update_count = ThemeUpdateCount(
+        addon_id=321, date='2016-01-18', count=123)
+    save_stats_to_file(theme_update_count)
+    mock_storage.assert_called_once_with(
+        '321/2016/01/2016_01_18_themeupdatecount.json', mock.sentinel.content)

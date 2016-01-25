@@ -99,6 +99,14 @@
 {% endblock %}
 
 {% block content %}
+  {% if not waffle.switch('local-statistics-processing') %}
+  <div class="notification-box warning">
+    {% trans %}
+      Statistics processing is currently disabled, so recent data is unavailable.
+      The statistics are still being collected and this page will be updated soon with the missing data.
+    {% endtrans %}
+  </div>
+  {% endif %}
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {% if addon %}
@@ -198,8 +206,5 @@
 {% endblock %}
 
 {% block js %}
-<!--[if IE]>
-   <script src="{{ static('js/lib/excanvas.compiled.js') }}"></script>
-<![endif]-->
 {{ js('zamboni/stats') }}
 {% endblock %}

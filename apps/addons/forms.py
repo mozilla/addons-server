@@ -14,8 +14,7 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from access import acl
 import amo
-import captcha.fields
-from amo.fields import ColorField
+from amo.fields import ColorField, ReCaptchaField
 from amo.urlresolvers import reverse
 from amo.utils import slug_validator, slugify, sorted_groupby, remove_icons
 from addons.models import (Addon, AddonCategory, BlacklistedSlug, Category,
@@ -429,7 +428,7 @@ class AddonForm(happyforms.ModelForm):
 
 
 class AbuseForm(happyforms.Form):
-    recaptcha = captcha.fields.ReCaptchaField(label='')
+    recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
                            widget=forms.Textarea())
@@ -439,7 +438,7 @@ class AbuseForm(happyforms.Form):
         super(AbuseForm, self).__init__(*args, **kwargs)
 
         if (not self.request.user.is_anonymous() or
-                not settings.RECAPTCHA_PRIVATE_KEY):
+                not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
 
 

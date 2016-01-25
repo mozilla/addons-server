@@ -1,3 +1,5 @@
+.. _debugging:
+
 =========
 Debugging
 =========
@@ -75,9 +77,7 @@ templates rendered and their context...
 To enable it add the following setting to your ``local_settings.py`` file (you
 may need to create it)::
 
-    DEBUG_TOOLBAR_CONFIG = {
-        "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_enabled",
-    }
+    from djdt_settings import *
 
 All being well it should look like this at the top-right of any web page on
 olympia:
@@ -87,6 +87,13 @@ olympia:
 If clicked, it looks like:
 
 .. image:: /screenshots/django-debug-toolbar-expanded.png
+
+You must know that using the Django Debug Toolbar will slow the website quite a
+lot. You can mitigate this by deselecting the checkbox next to the ``SQL``
+panel.
+
+Also, please note that you should only use the Django Debug Toolbar if you need
+it, as it makes CSP report only for your local dev.
 
 .. _ipdb: https://pypi.python.org/pypi/ipdb
 .. _docker-utils: https://pypi.python.org/pypi/docker-utils

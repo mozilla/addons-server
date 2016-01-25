@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, patterns, url
+from django.db.transaction import non_atomic_requests
 
 import waffle
 from piston.resource import Resource
@@ -64,6 +65,7 @@ class SwitchToDRF(object):
         self.with_viewset = with_viewset
         self.only_detail = only_detail
 
+    @non_atomic_requests
     def __call__(self, *args, **kwargs):
         if waffle.switch_is_active('drf'):
             if self.with_viewset:
@@ -138,13 +140,12 @@ urlpatterns = patterns(
 
     # Piston
     url(r'^2/', include(piston_patterns)),
-    url(r'^2/performance/add$', views.performance_add,
-        name='api.performance.add'),
     url(r'^1.5/search_suggestions/', views.search_suggestions),
     # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',
         views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
     url(r'^v3/accounts/', include('accounts.urls')),
+    url(r'^v3/addons/', include('addons.api.urls')),
     url(r'^v3/', include('signing.urls')),
 )

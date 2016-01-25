@@ -27,8 +27,7 @@ class AddonAdmin(admin.ModelAdmin):
         ('Stats', {
             'fields': ('average_rating', 'bayesian_rating', 'total_reviews',
                        'weekly_downloads', 'total_downloads',
-                       'average_daily_downloads', 'average_daily_users',
-                       'share_count'),
+                       'average_daily_downloads', 'average_daily_users'),
         }),
         ('Truthiness', {
             'fields': ('disabled_by_user', 'trusted', 'view_source',
@@ -45,7 +44,7 @@ class AddonAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         types = amo.ADDON_ADMIN_SEARCH_TYPES
-        return models.Addon.objects.filter(type__in=types)
+        return models.Addon.unfiltered.filter(type__in=types)
 
 
 class FeatureAdmin(admin.ModelAdmin):

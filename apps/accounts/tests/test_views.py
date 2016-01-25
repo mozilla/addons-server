@@ -1,3 +1,5 @@
+import base64
+
 from django.core.urlresolvers import resolve, reverse
 from django.test import RequestFactory, TestCase
 from django.test.utils import override_settings
@@ -7,7 +9,8 @@ import mock
 from rest_framework.test import APITestCase
 
 from accounts import verify, views
-from amo.tests import create_switch
+from amo.helpers import absolutify
+from amo.tests import create_switch, InitializeSessionMixin
 from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
 import pytest
@@ -20,6 +23,7 @@ class TestFxALoginWaffle(APITestCase):
     def setUp(self):
         self.login_url = reverse('accounts.login')
         self.register_url = reverse('accounts.register')
+        self.source_url = reverse('accounts.source')
 
     def test_login_404_when_waffle_is_off(self):
         create_switch('fxa-auth', active=False)
@@ -40,6 +44,16 @@ class TestFxALoginWaffle(APITestCase):
         create_switch('fxa-auth', active=True)
         response = self.client.post(self.register_url)
         assert response.status_code == 422
+
+    def test_source_404_when_waffle_is_off(self):
+        create_switch('fxa-auth', active=False)
+        response = self.client.get(self.source_url)
+        assert response.status_code == 404
+
+    def test_source_200_when_waffle_is_on(self):
+        create_switch('fxa-auth', active=True)
+        response = self.client.get(self.source_url)
+        assert response.status_code == 200
 
 
 class TestLoginUser(TestCase):
@@ -110,6 +124,7 @@ class TestWithUser(TestCase):
         self.user = mock.MagicMock(fxa_id=None)
         self.user.is_authenticated.return_value = True
         self.request.user = self.user
+        self.request.session = {'fxa_state': 'some-blob'}
 
     @views.with_user
     def fn(*args, **kwargs):
@@ -120,25 +135,122 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated.return_value = False
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
-        assert kwargs == {'user': self.user, 'identity': identity}
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
+
+    def test_profile_exists_with_user_and_path(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
+        self.request.DATA = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode("/a/path/?")),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': '/a/path/?',
+        }
+
+    def test_profile_exists_with_user_and_path_stripped_padding(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
+        self.request.DATA = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(next_path='L2Zvbw'),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': '/foo',
+        }
+
+    def test_profile_exists_with_user_and_path_bad_encoding(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {
+            'code': 'foo',
+            'state': u'some-blob:/raw/path',
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
+
+    def test_profile_exists_with_user_and_empty_path(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {
+            'code': 'foo',
+            'state': u'some-blob:',
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
+
+    def test_profile_exists_with_user_and_path_is_not_safe(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode("https://www.google.com")),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
 
     def test_profile_exists_no_user(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         self.user.is_authenticated.return_value = False
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
-        assert kwargs == {'user': None, 'identity': identity}
+        assert kwargs == {
+            'user': None,
+            'identity': identity,
+            'next_path': None,
+        }
 
     @mock.patch('accounts.views.Response')
     def test_profile_does_not_exist(self, Response):
         self.fxa_identify.side_effect = verify.IdentificationError
-        self.request.DATA = {'code': 'foo'}
+        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'Profile not found.'}, status=401)
@@ -146,7 +258,7 @@ class TestWithUser(TestCase):
 
     @mock.patch('accounts.views.Response')
     def test_code_not_provided(self, Response):
-        self.request.DATA = {'hey': 'hi'}
+        self.request.DATA = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'No code provided.'}, status=422)
@@ -158,20 +270,28 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
-        assert kwargs == {'user': self.user, 'identity': identity}
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
 
     def test_logged_in_does_not_match_identity_no_account(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
-        assert kwargs == {'user': self.user, 'identity': identity}
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
 
     @mock.patch('accounts.views.Response')
     def test_logged_in_does_not_match_identity_migrated(self, Response):
@@ -180,7 +300,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = None
         self.user.pk = 100
         self.user.fxa_id = '4321'
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with(
             {'error': 'User already migrated.'}, status=422)
@@ -191,9 +311,19 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = mock.MagicMock(pk=222)
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah'}
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
         Response.assert_called_with({'error': 'User mismatch.'}, status=422)
+
+    @mock.patch('accounts.views.Response')
+    def test_state_does_not_match(self, Response):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.user.is_authenticated.return_value = False
+        self.request.DATA = {'code': 'foo', 'state': 'other-blob'}
+        self.fn(self.request)
+        Response.assert_called_with({'error': 'State mismatch.'}, status=400)
 
 
 class TestRegisterUser(TestCase):
@@ -211,7 +341,7 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username == 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
         self.login.assert_called_with(self.request, user)
@@ -224,14 +354,13 @@ class TestRegisterUser(TestCase):
         views.register_user(self.request, self.identity)
         assert user_qs.exists()
         user = user_qs.get()
-        assert user.username.startswith('me@yeahoo.com')
-        assert user.username != 'me@yeahoo.com'
+        assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
         assert not user.has_usable_password()
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
-class BaseAuthenticationView(APITestCase):
+class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
 
     def setUp(self):
         self.url = reverse(self.view_name)
@@ -249,6 +378,7 @@ class TestLoginView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestLoginView, self).setUp()
+        self.initialize_session({'fxa_state': 'some-blob'})
         self.login_user = self.patch('accounts.views.login_user')
 
     def test_no_code_provided(self):
@@ -257,9 +387,17 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['error'] == 'No code provided.'
         assert not self.login_user.called
 
+    def test_wrong_state(self):
+        response = self.client.post(
+            self.url, {'code': 'foo', 'state': 'a-different-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.login_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -267,7 +405,8 @@ class TestLoginView(BaseAuthenticationView):
 
     def test_identify_success_no_account(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 422
         assert response.data['error'] == 'User does not exist.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -277,7 +416,8 @@ class TestLoginView(BaseAuthenticationView):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.post(self.url, {'code': 'code'})
+        response = self.client.post(
+            self.url, {'code': 'code', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
         self.login_user.assert_called_with(mock.ANY, user, identity)
@@ -289,7 +429,8 @@ class TestLoginView(BaseAuthenticationView):
         self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
                                           'uid': '9005'}
         with pytest.raises(UserProfile.MultipleObjectsReturned):
-            self.client.post(self.url, {'code': 'code'})
+            self.client.post(self.url, {'code': 'code', 'state': 'some-blob'})
+
         assert not self.login_user.called
 
 
@@ -298,6 +439,7 @@ class TestRegisterView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestRegisterView, self).setUp()
+        self.initialize_session({'fxa_state': 'some-blob'})
         self.register_user = self.patch('accounts.views.register_user')
 
     def test_no_code_provided(self):
@@ -306,9 +448,17 @@ class TestRegisterView(BaseAuthenticationView):
         assert response.data['error'] == 'No code provided.'
         assert not self.register_user.called
 
+    def test_wrong_state(self):
+        response = self.client.post(
+            self.url, {'code': 'foo', 'state': 'wrong-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.register_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -318,7 +468,8 @@ class TestRegisterView(BaseAuthenticationView):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.register_user.return_value = UserProfile(email=identity['email'])
         self.fxa_identify.return_value = identity
-        response = self.client.post(self.url, {'code': 'codes!!'})
+        response = self.client.post(
+            self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'me@yeahoo.com'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -330,6 +481,7 @@ class TestAuthorizeView(BaseAuthenticationView):
 
     def setUp(self):
         super(TestAuthorizeView, self).setUp()
+        self.initialize_session({'fxa_state': 'the-right-blob'})
         self.login_user = self.patch('accounts.views.login_user')
         self.register_user = self.patch('accounts.views.register_user')
 
@@ -340,9 +492,18 @@ class TestAuthorizeView(BaseAuthenticationView):
         assert not self.login_user.called
         assert not self.register_user.called
 
+    def test_wrong_state(self):
+        response = self.client.get(
+            self.url, {'code': 'foo', 'state': 'the-wrong-blob'})
+        assert response.status_code == 400
+        assert response.data['error'] == 'State mismatch.'
+        assert not self.login_user.called
+        assert not self.register_user.called
+
     def test_identify_no_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.client.get(self.url, {'code': 'codes!!'})
+        response = self.client.get(
+            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
@@ -354,8 +515,26 @@ class TestAuthorizeView(BaseAuthenticationView):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {'code': 'codes!!'})
+        response = self.client.get(
+            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
         assert response.status_code == 302
+        assert response['location'] == absolutify(reverse('users.edit'))
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert not self.login_user.called
+        self.register_user.assert_called_with(mock.ANY, identity)
+
+    def test_identify_success_no_account_with_path(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        self.fxa_identify.return_value = identity
+        response = self.client.get(self.url, {
+            'code': 'codes!!',
+            'state': 'the-right-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/go/here')),
+        })
+        assert response.status_code == 302
+        assert response['location'] == absolutify(reverse('users.edit'))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
@@ -364,8 +543,24 @@ class TestAuthorizeView(BaseAuthenticationView):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(self.url, {'code': 'code'})
+        response = self.client.get(
+            self.url, {'code': 'code', 'state': 'the-right-blob'})
         assert response.status_code == 302
+        assert response['location'] == 'http://testserver/'
+        self.login_user.assert_called_with(mock.ANY, user, identity)
+        assert not self.register_user.called
+
+    def test_identify_success_exists_logs_user_in_with_path(self):
+        user = UserProfile.objects.create(email='real@yeahoo.com')
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity
+        response = self.client.get(self.url, {
+            'code': 'code',
+            'state': 'the-right-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/some/path')),
+        })
+        assert response.status_code == 302
+        assert response['location'] == 'http://testserver/some/path'
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
@@ -388,3 +583,31 @@ class TestProfileView(APIAuthTestCase):
 
     def test_verbs_allowed(self):
         self.verbs_allowed(self.cls, ['get'])
+
+
+class TestAccountSourceView(APITestCase):
+
+    def setUp(self):
+        create_switch('fxa-auth', active=True)
+
+    def get(self, email):
+        return self.client.get(reverse('accounts.source'), {'email': email})
+
+    def test_user_has_migrated(self):
+        email = 'migrated@mozilla.org'
+        UserProfile.objects.create(email=email, fxa_id='ya')
+        response = self.get(email)
+        assert response.status_code == 200
+        assert response.data == {'source': 'fxa'}
+
+    def test_user_has_not_migrated(self):
+        email = 'not-migrated@mozilla.org'
+        UserProfile.objects.create(email=email, fxa_id=None)
+        response = self.get(email)
+        assert response.status_code == 200
+        assert response.data == {'source': 'amo'}
+
+    def test_user_does_not_exist(self):
+        response = self.get('no-user@mozilla.org')
+        assert response.status_code == 200
+        assert response.data == {'source': 'fxa'}

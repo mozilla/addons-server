@@ -9,6 +9,7 @@ import caching.base
 import elasticsearch
 import multidb.pinning
 import queryset_transform
+from django_statsd.clients import statsd
 
 from . import search
 # Needed to set up url prefix signals.
@@ -145,7 +146,7 @@ class UncachedManagerBase(models.Manager):
         gets fixed. It's probably fine, but this makes me happy for the moment
         and solved a get_or_create we've had in the past.
         """
-        with transaction.commit_on_success():
+        with transaction.atomic():
             try:
                 return self.get(**kw), False
             except self.model.DoesNotExist:
@@ -173,6 +174,16 @@ class ManagerBase(caching.base.CachingManager, UncachedManagerBase):
     def raw(self, raw_query, params=None, *args, **kwargs):
         return CachingRawQuerySet(raw_query, self.model, params=params,
                                   using=self._db, *args, **kwargs)
+
+    def post_save(self, *args, **kwargs):
+        # Measure cache invalidation after saving an object.
+        with statsd.timer('cache_machine.manager.post_save'):
+            return super(ManagerBase, self).post_save(*args, **kwargs)
+
+    def post_delete(self, *args, **kwargs):
+        # Measure cache invalidation after deleting an object.
+        with statsd.timer('cache_machine.manager.post_delete'):
+            return super(ManagerBase, self).post_delete(*args, **kwargs)
 
 
 class _NoChangeInstance(object):

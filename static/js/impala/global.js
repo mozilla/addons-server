@@ -181,12 +181,12 @@ function initBanners(delegate) {
 // AJAX form submit
 
 $(function() {
-  $('form.ajax-submit, .ajax-submit form').live('submit', function() {
+  $(document).on('submit', 'form.ajax-submit, .ajax-submit form', function() {
       var $form = $(this),
           $parent = $form.is('.ajax-submit') ? $form : $form.closest('.ajax-submit'),
           params = $form.serializeArray();
 
-      $form.find('.submit, button[type=submit], submit').attr('disabled', true).addClass('loading-submit');
+      $form.find('.submit, button[type=submit], submit').prop('disabled', true).addClass('loading-submit');
       $.post($form.attr('action'), params, function(d) {
           var $replacement = $(d);
           $parent.replaceWith($replacement);
@@ -195,12 +195,4 @@ $(function() {
       });
       return false;
   });
-});
-
-$(function() {
-    "use strict";
-
-    $(document).ready(function() {
-        stick.basic();
-    });
 });

@@ -81,6 +81,17 @@ def test_page_title():
                 'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
+def test_page_title_markup():
+    """If the title passed to page_title is a jinja2 Markup object, don't cast
+    it back to a string or it'll get double escaped. See issue #1062."""
+    request = Mock()
+    request.APP = amo.FIREFOX
+    # Markup isn't double escaped.
+    res = render(
+        '{{ page_title("{0}"|fe("It\'s all text")) }}', {'request': request})
+    assert res == 'It&#39;s all text :: Add-ons for Firefox'
+
+
 class TestBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):

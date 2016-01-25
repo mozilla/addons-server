@@ -1,11 +1,19 @@
+import json
 import os
 from datetime import datetime, timedelta
 from optparse import make_option
 
 from django.conf import settings
+from django.core.files.base import ContentFile
+from django.core.files.storage import get_storage_class
 from django.core.management.base import BaseCommand
+from django.forms.models import model_to_dict
 
 from .hive_connection import query_to_file
+
+
+storage = get_storage_class()()
+
 
 IP_BLACKLIST = """
     -- Mozilla Network
@@ -92,3 +100,22 @@ def get_date_from_file(filepath, sep):
             return line.split(sep)[0]
         except IndexError:
             return None
+
+
+def serialize_stats(model):
+    """Return the stats from the model ready to write to a file."""
+    data = model_to_dict(model)
+    del data['id']  # No need for the model's ID at all (eg: UpdateCount).
+    return json.dumps(data)
+
+
+def save_stats_to_file(model):
+    """Save the given model to a file on the disc."""
+    model_name = model._meta.model_name
+    date = datetime.strptime(model.date, '%Y-%m-%d')
+    path = u'{addon_id}/{date.year}/{date.month:02}/'.format(
+        addon_id=model.addon_id, date=date)
+    name_tpl = u'{date.year}_{date.month:02}_{date.day:02}_{model_name}.json'
+    name = name_tpl.format(date=date, model_name=model_name)
+    filepath = os.path.join(path, name)
+    storage.save(filepath, ContentFile(serialize_stats(model)))

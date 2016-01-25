@@ -129,35 +129,6 @@ class ThemeUpdateCountBulk(models.Model):
         db_table = 'theme_update_counts_bulk'
 
 
-class AddonShareCount(models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    service = models.CharField(max_length=255, null=True)
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'stats_share_counts'
-
-
-class AddonShareCountTotal(models.Model):
-    addon = models.ForeignKey('addons.Addon')
-    count = models.PositiveIntegerField()
-    service = models.CharField(max_length=255, null=True)
-
-    class Meta:
-        db_table = 'stats_share_counts_totals'
-
-
-# stats_collections_share_counts exists too, but we don't touch it.
-class CollectionShareCountTotal(models.Model):
-    collection = models.ForeignKey('bandwagon.Collection')
-    count = models.PositiveIntegerField()
-    service = models.CharField(max_length=255, null=True)
-
-    class Meta:
-        db_table = 'stats_collections_share_counts_totals'
-
-
 class ContributionError(Exception):
 
     def __init__(self, value):

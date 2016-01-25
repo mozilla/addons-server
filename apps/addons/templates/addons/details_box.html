@@ -16,10 +16,6 @@
             {{ big_install_button(addon, show_warning=False) }}
           {% endif %}
 
-          {% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-            {{ performance_note(amount=addon.ts_slowness) }}
-          {% endif %}
-
           {% if addon.takes_contributions %}
             {{ contribution(addon=addon, src='addon-detail') }}
           {% endif %}

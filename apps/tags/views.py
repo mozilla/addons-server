@@ -1,8 +1,10 @@
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 
 from tags.models import Tag
 
 
+@non_atomic_requests
 def top_cloud(request, num_tags=100):
     """Display 100 (or so) most used tags"""
     """TODO (skeen) Need to take request.APP.id into account, first

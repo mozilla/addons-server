@@ -11,6 +11,7 @@ from django.db import models
 import caching.base
 import commonware.log
 import jinja2
+from django_statsd.clients import statsd
 from tower import ugettext as _
 
 import addons.query
@@ -20,6 +21,7 @@ import amo.utils
 from amo.decorators import use_master
 from amo.urlresolvers import reverse
 from amo.helpers import user_media_path, id_to_path
+from amo.utils import utc_millesecs_from_epoch
 from applications.models import AppVersion
 from files import utils
 from files.models import File, cleanup_file
@@ -162,6 +164,19 @@ class Version(amo.models.OnChangeMixin, amo.models.ModelBase):
         storage.delete(upload.path)
         if send_signal:
             version_uploaded.send(sender=v)
+
+        # Track the time it took from first upload through validation
+        # (and whatever else) until a version was created.
+        upload_start = utc_millesecs_from_epoch(upload.created)
+        now = datetime.datetime.now()
+        now_ts = utc_millesecs_from_epoch(now)
+        upload_time = now_ts - upload_start
+
+        log.info('Time for version {version} creation from upload: {delta}; '
+                 'created={created}; now={now}'
+                 .format(delta=upload_time, version=v,
+                         created=upload.created, now=now))
+        statsd.timing('devhub.version_created_from_upload', upload_time)
 
         return v
 

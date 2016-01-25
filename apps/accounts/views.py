@@ -1,10 +1,14 @@
+import base64
 import functools
 import logging
+from collections import namedtuple
 
 from django.conf import settings
 from django.contrib.auth import login
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.utils.http import is_safe_url
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -14,9 +18,11 @@ from waffle.decorators import waffle_switch
 from . import verify
 from api.jwt_auth.views import JWTProtectedView
 from users.models import UserProfile
-from accounts.serializers import UserProfileSerializer
+from accounts.serializers import AccountSourceSerializer, UserProfileSerializer
 
 log = logging.getLogger('accounts')
+
+STUB_FXA_USER = namedtuple('FxAUser', ['source'])('fxa')
 
 
 def find_user(identity):
@@ -63,13 +69,24 @@ def with_user(fn):
     @functools.wraps(fn)
     def inner(self, request):
         data = request.GET if request.method == 'GET' else request.DATA
+        state_parts = data.get('state', '').split(':', 1)
+        state = state_parts[0]
         if 'code' not in data:
+            log.info('No code provided.')
             return Response({'error': 'No code provided.'}, status=422)
+        elif (not request.session.get('fxa_state') or
+                request.session['fxa_state'] != state):
+            log.info('State mismatch. URL: {url} Session: {session}'.format(
+                url=data.get('state'),
+                session=request.session.get('fxa_state'),
+            ))
+            return Response({'error': 'State mismatch.'}, status=400)
 
         try:
             identity = verify.fxa_identify(data['code'],
                                            config=settings.FXA_CONFIG)
         except verify.IdentificationError:
+            log.info('Profile not found. Code: {}'.format(data['code']))
             return Response({'error': 'Profile not found.'}, status=401)
         else:
             identity_user = find_user(identity)
@@ -80,13 +97,30 @@ def with_user(fn):
                                  request.user.pk, identity_user.pk))
                     return Response({'error': 'User mismatch.'}, status=422)
                 elif request.user.fxa_id is not None:
+                    log.info('User already migrated. '
+                             'request.user: {}, identity_user: {}'.format(
+                                 request.user, identity_user))
                     return Response(
                         {'error': 'User already migrated.'}, status=422)
                 else:
                     user = request.user
             else:
                 user = identity_user
-            return fn(self, request, user=user, identity=identity)
+            next_path = None
+            if len(state_parts) == 2:
+                # The = signs will be stripped off so we need to add them back
+                # but it only cares if there are too few so add 4 of them.
+                encoded_path = state_parts[1] + '===='
+                try:
+                    next_path = base64.urlsafe_b64decode(str(encoded_path))
+                except TypeError:
+                    log.info('Error decoding next_path {}'.format(
+                        encoded_path))
+                    pass
+            if not is_safe_url(next_path):
+                next_path = None
+            return fn(self, request, user=user, identity=identity,
+                      next_path=next_path)
     return inner
 
 
@@ -94,7 +128,7 @@ class LoginView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def post(self, request, user, identity):
+    def post(self, request, user, identity, next_path):
         if user is None:
             return Response({'error': 'User does not exist.'}, status=422)
         else:
@@ -106,7 +140,7 @@ class RegisterView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def post(self, request, user, identity):
+    def post(self, request, user, identity, next_path):
         if user is not None:
             return Response({'error': 'That account already exists.'},
                             status=422)
@@ -119,12 +153,17 @@ class AuthorizeView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
-    def get(self, request, user, identity):
+    def get(self, request, user, identity, next_path):
         if user is None:
             register_user(request, identity)
+            path = reverse('users.edit')
+            log.info('Redirecting after register to: {}'.format(path))
+            return HttpResponseRedirect(path)
         else:
             login_user(request, user, identity)
-        return HttpResponseRedirect('/')
+            next_path = next_path or '/'
+            log.info('Redirecting after login to: {}'.format(next_path))
+            return HttpResponseRedirect(next_path)
 
 
 class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
@@ -132,3 +171,19 @@ class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kw):
         return Response(self.get_serializer(request.user).data)
+
+
+class AccountSourceView(generics.RetrieveAPIView):
+    serializer_class = AccountSourceSerializer
+
+    @waffle_switch('fxa-auth')
+    def retrieve(self, request, *args, **kwargs):
+        email = request.GET.get('email')
+        try:
+            user = UserProfile.objects.get(email=email)
+        except UserProfile.DoesNotExist:
+            # Use the stub FxA user with source='fxa' when the account doesn't
+            # exist. This will make it more difficult to discover if an email
+            # address has an account associated with it.
+            user = STUB_FXA_USER
+        return Response(self.get_serializer(user).data)

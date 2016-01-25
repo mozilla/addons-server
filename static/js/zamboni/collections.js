@@ -255,7 +255,7 @@ collections.hijack_favorite_button = function() {
         /* We don't want the button to shrink when the contents
         * inside change. */
         fav_button.css('min-width', fav_button.outerWidth());
-        fav_button.addClass('loading-fav').attr('disabled', 'disabled');
+        fav_button.addClass('loading-fav').prop('disabled', true);
         button(is_fav ? 'removing' : 'adding');
         fav_button.css('min-width', fav_button.outerWidth());
 
@@ -279,7 +279,7 @@ collections.hijack_favorite_button = function() {
                 fav_button.html(previous);
             },
             complete: function(){
-                fav_button.attr('disabled', '');
+                fav_button.prop('disabled', false);
                 fav_button.removeClass('loading-fav');
             }
         });
@@ -759,21 +759,13 @@ $(document).ready(function () {
         callback: function(obj) {
             var ret = {};
             var el = $(obj.click_target);
-            var $popup = this;
             var base_url = el.attr('data-base-url');
-            var counts = $.parseJSON(el.attr("data-share-counts"));
+            var $popup = this;
+            $popup.find('a.uniquify').each(function(index, item) {
+                var $item = $(item);
+                $item.attr('href', base_url + $item.attr('data-service-name'));
+            });
             $popup.hideMe();
-            if (counts) {
-                for (s in counts) {
-                    if (!counts.hasOwnProperty(s)) continue;
-                    var c = counts[s];
-                    var $li = $("li." + s, this);
-                    $(".share-count", $li).text(c);
-                    $(".uniquify", $li).attr("href", base_url + s);
-                }
-            } else {
-                return false;
-            }
             ret.pointTo = obj.click_target;
             return ret;
         }

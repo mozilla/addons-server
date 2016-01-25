@@ -17,9 +17,6 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
-LOG_TABLE_SUFFIX = ''
-EVENT_TABLE_SUFFIX = ''
-
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
@@ -49,13 +46,6 @@ ROOT_PACKAGE = os.path.basename(ROOT)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
-
-# need to view JS errors on a remote device? (requires node)
-# > npm install now
-# > node media/js/debug/remote_debug_server.node.js
-# REMOTE_JS_DEBUG = 'localhost:37767'
-# then connect to http://localhost:37767/ to view
-REMOTE_JS_DEBUG = False
 
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
@@ -89,6 +79,8 @@ DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
+# Run all views in a transaction unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
@@ -199,9 +191,6 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 # Full URL to your API service. No trailing slash.
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
-
-# When True, the addon API should include performance data.
-API_SHOW_PERF_DATA = True
 
 # The domain of the mobile site.
 MOBILE_DOMAIN = 'm.%s' % DOMAIN
@@ -393,7 +382,6 @@ INSTALLED_APPS = (
     'lib.es',
     'moz_header',
     'pages',
-    'perf',
     'product_details',
     'reviews',
     'search',
@@ -460,6 +448,9 @@ DOMAIN_METHODS = {
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'restyle/css': (
+            'css/restyle.less',
+        ),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -515,7 +506,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/colorpicker.less',
+            'css/impala/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -596,6 +587,8 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -604,7 +597,6 @@ MINIFY_BUNDLES = {
             'js/lib/format.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
-            'js/zamboni/apps.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
             'js/common/keys.js',
@@ -643,11 +635,12 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
-
-            # Performance
-            'js/zamboni/perf.js',
 
             # Users
             'js/zamboni/users.js',
@@ -670,13 +663,15 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
+            'js/lib/raven.min.js',
+            'js/common/raven-config.js',
             'js/lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
@@ -686,7 +681,6 @@ MINIFY_BUNDLES = {
             'js/lib/format.js',
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
-            'js/zamboni/apps.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
             'js/impala/footer.js',
@@ -707,7 +701,6 @@ MINIFY_BUNDLES = {
             'js/impala/ajaxcache.js',
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
-            'js/lib/stick.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
             'js/lib/jquery-ui/jqModal.js',
@@ -738,12 +731,13 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
+            # Unicode: needs to be loaded after collections.js which listens to
+            # an event fired in this file.
+            'js/zamboni/unicode.js',
+
             # Collections
             'js/zamboni/collections.js',
             'js/impala/collections.js',
-
-            # Performance
-            'js/zamboni/perf.js',
 
             # Users
             'js/zamboni/users.js',
@@ -762,12 +756,13 @@ MINIFY_BUNDLES = {
             'js/zamboni/outgoing_links.js',
         ),
         'fxa': [
+            'js/lib/uri.js',
             'js/lib/fxa-relier-client.js',
             'js/common/fxa-login.js',
         ],
         'zamboni/discovery': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -814,6 +809,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/editors.js',
             'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
+            'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
         ),
         'zamboni/files': (
@@ -838,21 +834,22 @@ MINIFY_BUNDLES = {
             'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/storage.js',
+            'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
         ),
         'zamboni/localizers': (
             'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
-            'js/lib/jquery-1.9.1.js',
-            'js/lib/jquery-migrate-1.2.1.min.js',
+            'js/lib/jquery-1.12.0.js',
+            'js/lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/lib/jqmobile.js',
             'js/lib/jquery.cookie.js',
-            'js/zamboni/apps.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
+            'js/zamboni/analytics.js',
             'js/lib/format.js',
             'js/zamboni/mobile/buttons.js',
             'js/lib/truncate.js',
@@ -865,7 +862,6 @@ MINIFY_BUNDLES = {
             'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
-            'js/lib/jquery-datepicker.js',
             'js/lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
@@ -995,6 +991,7 @@ VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
 BROKER_URL = os.environ.get('BROKER_URL',
                             'amqp://olympia:olympia@localhost:5672/olympia')
 BROKER_CONNECTION_TIMEOUT = 0.1
+CELERY_DEFAULT_QUEUE = 'default'
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
@@ -1022,10 +1019,18 @@ CELERY_ROUTES = {
     # Other queues we prioritize below.
 
     # AMO Devhub.
+    'devhub.tasks.convert_purified': {'queue': 'devhub'},
+    'devhub.tasks.flag_binary': {'queue': 'devhub'},
+    'devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
+    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
+    'devhub.tasks.resize_icon': {'queue': 'devhub'},
+    'devhub.tasks.resize_preview': {'queue': 'devhub'},
+    'devhub.tasks.send_welcome_email': {'queue': 'devhub'},
+    'devhub.tasks.submit_file': {'queue': 'devhub'},
     'devhub.tasks.validate_file': {'queue': 'devhub'},
     'devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
-    'devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
+
     # This is currently used only by validation tasks.
     'celery.chord_unlock': {'queue': 'devhub'},
     'devhub.tasks.compatibility_check': {'queue': 'devhub'},
@@ -1042,7 +1047,110 @@ CELERY_ROUTES = {
 
     # AMO validator.
     'zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
+
+    # AMO
+    'amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
+    'amo.tasks.delete_incomplete_addons': {'queue': 'amo'},
+    'amo.tasks.delete_logs': {'queue': 'amo'},
+    'amo.tasks.delete_stale_contributions': {'queue': 'amo'},
+    'amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},
+    'amo.tasks.migrate_editor_eventlog': {'queue': 'amo'},
+    'amo.tasks.send_email': {'queue': 'amo'},
+    'amo.tasks.set_modified_on_object': {'queue': 'amo'},
+
+    # Addons
+    'addons.tasks.calc_checksum': {'queue': 'addons'},
+    'addons.tasks.delete_persona_image': {'queue': 'addons'},
+    'addons.tasks.delete_preview_files': {'queue': 'addons'},
+    'addons.tasks.update_incompatible_appversions': {'queue': 'addons'},
+    'addons.tasks.version_changed': {'queue': 'addons'},
+
+    # API
+    'api.tasks.process_results': {'queue': 'api'},
+    'api.tasks.process_webhook': {'queue': 'api'},
+
+    # Crons
+    'addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
+    'addons.cron._update_addon_download_totals': {'queue': 'cron'},
+    'addons.cron._update_addons_current_version': {'queue': 'cron'},
+    'addons.cron._update_appsupport': {'queue': 'cron'},
+    'addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
+    'bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
+    'bandwagon.cron._update_collections_subscribers': {'queue': 'cron'},
+    'bandwagon.cron._update_collections_votes': {'queue': 'cron'},
+
+    # Bandwagon
+    'bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
+    'bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
+    'bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
+    'bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
+    'bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
+
+    # Editors
+    'editors.tasks.add_commentlog': {'queue': 'editors'},
+    'editors.tasks.add_versionlog': {'queue': 'editors'},
+    'editors.tasks.approve_rereview': {'queue': 'editors'},
+    'editors.tasks.reject_rereview': {'queue': 'editors'},
+    'editors.tasks.send_mail': {'queue': 'editors'},
+
+    # Files
+    'files.tasks.extract_file': {'queue': 'files'},
+    'files.tasks.fix_let_scope_bustage_in_addons': {'queue': 'files'},
+
+    # Crypto
+    'lib.crypto.tasks.resign_files': {'queue': 'crypto'},
+    'lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
+    'lib.crypto.tasks.unsign_addons': {'queue': 'crypto'},
+
+    # Search
+    'lib.es.management.commands.reindex.create_new_index': {'queue': 'search'},
+    'lib.es.management.commands.reindex.delete_indexes': {'queue': 'search'},
+    'lib.es.management.commands.reindex.flag_database': {'queue': 'search'},
+    'lib.es.management.commands.reindex.index_data': {'queue': 'search'},
+    'lib.es.management.commands.reindex.unflag_database': {'queue': 'search'},
+    'lib.es.management.commands.reindex.update_aliases': {'queue': 'search'},
+
+    # Reviews
+    'reviews.models.check_spam': {'queue': 'reviews'},
+    'reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
+    'reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
+    'reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
+    'reviews.tasks.update_denorm': {'queue': 'reviews'},
+
+
+    # Stats
+    'stats.tasks.addon_total_contributions': {'queue': 'stats'},
+    'stats.tasks.index_collection_counts': {'queue': 'stats'},
+    'stats.tasks.index_download_counts': {'queue': 'stats'},
+    'stats.tasks.index_theme_user_counts': {'queue': 'stats'},
+    'stats.tasks.index_update_counts': {'queue': 'stats'},
+    'stats.tasks.update_addons_collections_downloads': {'queue': 'stats'},
+    'stats.tasks.update_collections_total': {'queue': 'stats'},
+    'stats.tasks.update_global_totals': {'queue': 'stats'},
+    'stats.tasks.update_google_analytics': {'queue': 'stats'},
+
+    # Tags
+    'tags.tasks.clean_tag': {'queue': 'tags'},
+    'tags.tasks.update_all_tag_stats': {'queue': 'tags'},
+    'tags.tasks.update_tag_stat': {'queue': 'tags'},
+
+    # Users
+    'users.tasks.delete_photo': {'queue': 'users'},
+    'users.tasks.resize_photo': {'queue': 'users'},
+    'users.tasks.update_user_ratings_task': {'queue': 'users'},
+
+    # Zadmin
+    'zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
+    'zadmin.tasks.admin_email': {'queue': 'zadmin'},
+    'zadmin.tasks.celery_error': {'queue': 'zadmin'},
+    'zadmin.tasks.fetch_langpack': {'queue': 'zadmin'},
+    'zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
+    'zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
+    'zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
+    'zadmin.tasks.tally_validation_results': {'queue': 'zadmin'},
+    'zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 }
+
 
 # This is just a place to store these values, you apply them in your
 # task decorator, for example:
@@ -1102,7 +1210,7 @@ LOGGING = {
         'amo.validator': {'level': logging.WARNING},
         'amqplib': {'handlers': ['null']},
         'caching.invalidation': {'handlers': ['null']},
-        'caching': {'level': logging.WARNING},
+        'caching': {'level': logging.ERROR},
         'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
         'suds': {'handlers': ['null']},
@@ -1140,19 +1248,57 @@ USE_HEKA_FOR_TASTYPIE = False
 CEF_PRODUCT = "amo"
 
 # CSP Settings
-CSP_REPORT_URI = '/services/csp/report'
+
+PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
+ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+
+CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = True
+CSP_EXCLUDE_URL_PREFIXES = ()
 
-CSP_DEFAULT_SRC = ("*", "data:")
-CSP_SCRIPT_SRC = ("'self'",
-                  "https://www.google.com",  # Recaptcha
-                  "https://www.paypalobjects.com",
-                  "https://ssl.google-analytics.com",
-                  )
-CSP_STYLE_SRC = ("*", "'unsafe-inline'")
+# NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
+# will default to being open to anything.
+CSP_DEFAULT_SRC = (
+    "'none'",
+)
+CSP_CONNECT_SRC = (
+    "'self'",
+    'https://sentry.prod.mozaws.net',
+)
+CSP_FONT_SRC = (
+    "'self'",
+    PROD_CDN_HOST,
+)
+CSP_FRAME_SRC = (
+    "'self'",
+    'https://www.paypal.com',
+    'https://www.google.com/recaptcha/',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'data:',  # Used in inlined mobile css.
+    'blob:',  # Needed for image uploads.
+    'https://www.paypal.com',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+    'https://ssl.gstatic.com/',
+    'https://sentry.prod.mozaws.net',
+)
 CSP_OBJECT_SRC = ("'none'",)
-CSP_FRAME_SRC = ("https://ssl.google-analytics.com",)
-
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'https://www.paypalobjects.com',
+    'https://apis.google.com',
+    'https://www.google.com/recaptcha/',
+    'https://www.gstatic.com/recaptcha/',
+    ANALYTICS_HOST,
+    PROD_CDN_HOST,
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    PROD_CDN_HOST,
+)
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we
 # don't want to be crawled?  Default is true, allow everything, toggled to
@@ -1194,23 +1340,13 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA: overload all three statements to local_settings.py with your keys.
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
-RECAPTCHA_AJAX_URL = (
-    'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js')
+# RECAPTCHA: overload the following key setttings in local_settings.py
+# with your keys.
+NOBOT_RECAPTCHA_PUBLIC_KEY = ''
+NOBOT_RECAPTCHA_PRIVATE_KEY = ''
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
-
-# Performance notes on add-ons
-PERFORMANCE_NOTES = False
-
-# Used to flag slow addons.
-# If slowness of addon is THRESHOLD percent slower, show a warning.
-PERF_THRESHOLD = 25
 
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
@@ -1299,10 +1435,6 @@ GRAPHITE_HOST = 'localhost'
 GRAPHITE_PORT = 2003
 GRAPHITE_PREFIX = 'amo'
 GRAPHITE_TIMEOUT = 1
-
-# URL to the service that triggers addon performance tests.  See devhub.perf.
-PERF_TEST_URL = 'http://areweperftestingyet.com/trigger.cgi'
-PERF_TEST_TIMEOUT = 5  # seconds
 
 # IP addresses of servers we use as proxies.
 KNOWN_PROXIES = []
@@ -1410,11 +1542,6 @@ BASKET_URL = 'https://basket.mozilla.com'
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
-# Monolith settings.
-MONOLITH_SERVER = None
-MONOLITH_INDEX = 'time_*'
-MONOLITH_MAX_DATE_RANGE = 365
-
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
 WHITELISTED_CLIENTS_EMAIL_API = []
@@ -1443,6 +1570,7 @@ STATICFILES_DIRS = (
     JINGO_MINIFY_ROOT
 )
 NETAPP_STORAGE = TMP_PATH
+GUARDED_ADDONS_PATH = ROOT + u'/guarded-addons'
 
 
 # These are key files that must be present on disk to encrypt/decrypt certain
@@ -1486,3 +1614,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
 }
+
+# This is the DSN to the local Sentry service. It might be overidden in
+# site-specific settings files as well.
+SENTRY_DSN = os.environ.get('SENTRY_DSN')

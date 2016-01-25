@@ -8,6 +8,15 @@ from lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+# Allow addons-dev CDN for CSP.
+DEV_CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+CSP_REPORT_ONLY = False
+CSP_FONT_SRC += (DEV_CDN_HOST,)
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_IMG_SRC += (DEV_CDN_HOST,)
+CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_STYLE_SRC += (DEV_CDN_HOST,)
+
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
@@ -38,9 +47,6 @@ SERVICES_URL = SITE_URL
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-dev-cdn.allizom.org/user-media/'
 
-CSP_FRAME_SRC = CSP_FRAME_SRC + ("https://sandbox.paypal.com",)
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (MEDIA_URL[:-1],)
-
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
 SYSLOG_TAG = "http_app_addons_dev"
@@ -50,8 +56,12 @@ SYSLOG_CSP = "http_app_addons_dev_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
+# Run all views in a transaction (on master) unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
+# Do not open a transaction for every view on the slave DB.
+DATABASES['slave']['ATOMIC_REQUESTS'] = False
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
@@ -86,10 +96,10 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
 
 # Must be forced in settings because name => path can't be dyncamically
 # computed: reviewer_attachmentS VS reviewer_attachment.
@@ -120,17 +130,17 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
+# Old recaptcha V1
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
+# New Recaptcha V2
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
 
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
-
-PERF_THRESHOLD = 20
+ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
@@ -155,7 +165,7 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-REDIRECT_URL = 'https://outgoing-mkt-dev.allizom.org/v1/'
+REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
@@ -215,7 +225,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_ENABLE = False
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
@@ -232,3 +242,7 @@ FXA_CONFIG = {
 }
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://5686e2a8f14446a3940c651c6a14dc73@sentry.prod.mozaws.net/75')
+RAVEN_WHITELIST = ['addons-dev.allizom.org', 'addons-dev-cdn.allizom.org']

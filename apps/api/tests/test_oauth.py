@@ -41,11 +41,9 @@ from amo.helpers import absolutify
 from amo.tests import TestCase
 from amo.urlresolvers import reverse
 from api.authentication import AMOOAuthAuthentication
-from addons.models import Addon, AddonUser, BlacklistedGuid
+from addons.models import Addon, AddonUser
 from devhub.models import ActivityLog, SubmitStep
 from files.models import File
-from perf.models import (Performance, PerformanceAppVersions,
-                         PerformanceOSVersion)
 from translations.models import Translation
 from users.models import UserProfile
 from versions.models import AppVersion, Version
@@ -300,7 +298,7 @@ class TestDRFUser(TestUser):
 
     def setUp(self):
         super(TestDRFUser, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def test_forbidden_user_lookup(self):
         super(TestDRFUser, self).test_forbidden_user_lookup(response_code=403)
@@ -434,8 +432,7 @@ class TestAddon(BaseOAuth):
     def test_delete(self):
         data = self.create_addon()
         id = data['id']
-        guid = data['guid']
-        # Force it to be public so its guid gets blacklisted.
+        # Force it to be public so an email gets sent.
         Addon.objects.filter(id=id).update(highest_status=amo.STATUS_PUBLIC)
 
         r = oclient.delete(('api.addon', id), self.accepted_consumer,
@@ -443,7 +440,6 @@ class TestAddon(BaseOAuth):
         assert r.status_code == 204
         assert Addon.objects.filter(pk=id).count() == 0
 
-        assert BlacklistedGuid.objects.filter(guid=guid)
         assert len(mail.outbox) == 1
 
     def test_update(self):
@@ -764,7 +760,7 @@ class TestDRFAddon(TestAddon):
 
     def setUp(self):
         super(TestDRFAddon, self).setUp()
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
 
     def _compare_dicts(self, drf_data, piston_data):
         """
@@ -815,100 +811,3 @@ class TestDRFAddon(TestAddon):
     def test_diff_addon(self):
         data = self.create_addon()
         self.compare_output(('api.addon', data['id']))
-
-
-class TestPerformanceAPI(BaseOAuth):
-    fixtures = ['base/users']
-
-    def get_data(self):
-        return {
-            'os': 'WINNT',
-            'version': '123',
-            'platform': 'x86',
-            'product': 'firefox',
-            'product_version': 'x.y.z',
-            'average': '1.25',
-            'test': 'ts'
-        }
-
-    def make_create_request(self, data):
-        return oclient.post('api.performance.add', self.accepted_consumer,
-                            self.token, data=data)
-
-    def test_form_fails(self):
-        res = self.make_create_request({})
-        assert res.status_code == 400
-
-    def test_not_allowed(self):
-        res = self.client.post(reverse('api.performance.add'), {})
-        assert res.status_code == 401
-
-    def test_form_incomplete(self):
-        data = self.get_data()
-        del data['test']
-        res = self.make_create_request(data)
-        assert res.status_code == 400
-        assert 'This field is required. (test)' in res.content
-
-    def test_form_validate(self):
-        data = self.get_data()
-        data['os'] = 'WebOS hotness'
-        res = self.make_create_request(data)
-        assert res.status_code == 400
-        assert 'WebOS hotness' in res.content
-
-    def test_no_addon(self):
-        data = self.get_data()
-        data['addon_id'] = '123'
-        res = self.make_create_request(data)
-        assert res.status_code == 400
-        assert 'Add-on not found' in res.content
-
-    def test_addon(self):
-        data = self.get_data()
-        data['addon_id'] = Addon.objects.create(type=amo.ADDON_EXTENSION).pk
-        res = self.make_create_request(data)
-        assert res.status_code == 200
-        perfs = Performance.objects.all()
-        assert perfs[0].addon_id == data['addon_id']
-
-    def test_form_data(self):
-        res = self.make_create_request(self.get_data())
-        assert res.status_code == 200
-        perfs = Performance.objects.all()
-        assert perfs.count() == 1
-        assert perfs[0].average == 1.25
-
-    def test_form_updates(self):
-        self.test_form_data()
-        data = self.get_data()
-        data['average'] = 1.3
-        self.make_create_request(data)
-        perfs = Performance.objects.all()
-        assert len(perfs) == 1
-        assert perfs[0].average == 1.3
-
-    def test_creates_app_version(self):
-        self.test_form_data()
-        apps = PerformanceAppVersions.objects.all()
-        assert len(apps) == 1
-        assert apps[0].app == 'firefox'
-        assert apps[0].version == 'x.y.z'
-
-    def test_gets_app_version(self):
-        self.test_form_data()
-        assert PerformanceAppVersions.objects.all().count() == 1
-        self.test_form_data()
-        assert PerformanceAppVersions.objects.all().count() == 1
-
-    def test_creates_os_version(self):
-        self.test_form_data()
-        apps = PerformanceOSVersion.objects.all()
-        assert apps.count() == 1
-        assert apps[0].os == 'WINNT'
-
-    def test_gets_os_version(self):
-        self.test_form_data()
-        assert PerformanceOSVersion.objects.all().count() == 1
-        self.test_form_data()
-        assert PerformanceOSVersion.objects.all().count() == 1

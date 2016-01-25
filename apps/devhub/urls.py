@@ -121,10 +121,6 @@ ajax_patterns = patterns(
     url('^versions/(?P<version_id>\d+)/compatibility$',
         views.ajax_compat_update, name='devhub.ajax.compat.update'),
     url('^image/status$', views.image_status, name='devhub.ajax.image.status'),
-
-    # Performance testing
-    url(r'^performance/file/(?P<file_id>\d+)/start-tests.json$',
-        views.file_perf_tests_start, name='devhub.file_perf_tests_start'),
 )
 
 redirect_patterns = patterns(
@@ -203,9 +199,6 @@ urlpatterns = decorate(write, patterns(
 
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
-
-    url('^upload-manifest$', views.upload_manifest,
-        name='devhub.upload_manifest'),
 
     # URLs for a single add-on.
     url('^addon/%s/' % ADDON_ID, include(detail_patterns)),

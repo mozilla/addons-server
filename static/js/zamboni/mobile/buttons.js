@@ -34,7 +34,9 @@
     z.installSearch = function(name, url, icon, hash, callback) {
         if (window.external && window.external.AddSearchProvider) {
             window.external.AddSearchProvider(url);
-            callback();
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
             _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
         } else {
             // Alert!  Deal with it.
@@ -45,33 +47,6 @@
     var data_purchases = $('body').attr('data-purchases') || "",
         addons_purchased = $.map(data_purchases.split(','),
                                  function(v) { return parseInt(v, 10); });
-
-    z.startPurchase = function(manifest_url, opt) {
-        $.ajax({
-            url: opt.url,
-            type: 'post',
-            dataType: 'json',
-            /* false so that the action is considered within bounds of
-             * user interaction and does not trigger the Firefox popup blocker.
-             */
-            async: false,
-            data: {'result_type': 'json'},
-            success: function(json) {
-                $('.modal').trigger('close'); // Hide all modals
-                if (json.status == 'COMPLETED') {
-                    // Bounce back to the details page.
-                    window.location = window.location.pathname + '?status=complete';
-                } else if (json.paykey) {
-                    /* This is supposed to be a global */
-                    //dgFlow = new PAYPAL.apps.DGFlow({expType:'mini'});
-                    dgFlow = new PAYPAL.apps.DGFlow({clicked: opt.el.id});
-                    dgFlow.startFlow(json.url);
-                } else {
-                    $('.apps-error-msg').text(json.error).show();
-                }
-            }
-        });
-    };
 
     var messages = {
         'tooNew': format(gettext("Not Updated for {0} {1}"), z.appName, z.browserVersion),
@@ -199,8 +174,7 @@
                 'icon'        : b.attr('data-icon'),
                 'after'       : b.attr('data-after'),
                 'search'      : b.hasattr('data-search'),
-                'accept_eula' : b.hasClass('accept'),
-                'manifest_url': b.attr('data-manifest-url')
+                'accept_eula' : b.hasClass('accept')
             };
 
             self.attr.purchased = $.inArray(parseInt(self.attr.addon, 10), addons_purchased) >= 0;
@@ -212,8 +186,7 @@
                 'persona'     : b.hasClass('persona'),
                 'contrib'     : b.hasClass('contrib'),
                 'search'      : b.hasattr('data-search'),
-                'eula'        : b.hasClass('eula'),
-                'premium'     : b.hasClass('premium')
+                'eula'        : b.hasClass('eula')
             };
 
             dom.buttons.each(function() {
@@ -303,11 +276,6 @@
                     this.removeAttribute("href");
                 });
             } else {
-                // If app has already been purchased the "Install" button
-                // should be green.
-                if (self.attr.purchased && classes.premium) {
-                    dom.buttons.removeClass('premium');
-                }
                 dom.buttons.click(startInstall);
             }
         }

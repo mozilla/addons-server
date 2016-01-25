@@ -65,6 +65,16 @@ class TestUserProfile(amo.tests.TestCase):
         assert u2.welcome_name == 'Sarah Connor'
         assert u3.welcome_name == ''
 
+    def test_welcome_name_anonymous(self):
+        user = UserProfile()
+        user.anonymize_username()
+        assert user.welcome_name == 'Anonymous'
+
+    def test_welcome_name_anonymous_with_display(self):
+        user = UserProfile(
+            username='anonymous-foo', display_name='John Connor')
+        assert user.welcome_name == 'John Connor'
+
     def test_add_admin_powers(self):
         u = UserProfile.objects.get(username='jbalogh')
 

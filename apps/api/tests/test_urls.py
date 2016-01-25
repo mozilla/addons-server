@@ -26,8 +26,10 @@ class TestDRFSwitch(TestCase):
         request.user = AnonymousUser()
         assert view(request, api_version=1.5).__module__ == 'django.http.response'
         piston_response = view(request, api_version=1.5).content
-        self.create_switch('drf', db=True)
+
+        self.create_switch('drf')
         assert view(request, api_version=1.5).__module__ == 'rest_framework.response'
+
         drf_response = view(request, api_version=1.5).render().content
         assert piston_response == drf_response
 
@@ -43,8 +45,9 @@ class TestDRFSwitch(TestCase):
 
         request.APP = App()
         request.user = AnonymousUser()
+
         assert view(request).__module__ == 'django.http.response'
-        self.create_switch('drf', db=True)
+        self.create_switch('drf')
         assert view(request).__module__ == 'rest_framework.response'
 
     def test_wrong_format_exceptions(self):
@@ -56,7 +59,8 @@ class TestDRFSwitch(TestCase):
         response = view(request, api_version=1.5)
         assert response.content == '{"msg": "Not implemented yet."}'
         assert response.status_code == 200
-        self.create_switch('drf', db=True)
+
+        self.create_switch('drf')
         response = view(request, api_version=1.5)
         assert '<error>Not found</error>' in response.render().content
         assert response.status_code == 404

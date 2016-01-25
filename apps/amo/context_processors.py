@@ -4,7 +4,6 @@ from django.utils import translation
 from django.utils.http import urlquote
 
 import waffle
-from cache_nuggets.lib import memoize
 from tower import ugettext as _
 
 import amo
@@ -28,20 +27,6 @@ def i18n(request):
                 or translation.get_language()),
             'DIR': 'rtl' if translation.get_language_bidi() else 'ltr',
             }
-
-
-@memoize('collect-timings')
-def get_collect_timings():
-    # The flag has to be enabled for everyone and then we'll use that
-    # percentage in the pages.
-    percent = 0
-    try:
-        flag = waffle.models.Flag.objects.get(name='collect-timings')
-        if flag.everyone and flag.percent:
-            percent = float(flag.percent) / 100.0
-    except waffle.models.Flag.DoesNotExist:
-        pass
-    return percent
 
 
 def global_settings(request):
@@ -104,9 +89,6 @@ def global_settings(request):
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
-        if acl.action_allowed(request, 'L10nTools', 'View'):
-            tools_links.append({'text': _('Localizer Tools'),
-                                'href': '/localizers'})
         if (acl.action_allowed(request, 'Admin', '%') or
                 acl.action_allowed(request, 'AdminTools', 'View')):
             tools_links.append({'text': _('Admin Tools'),
@@ -121,6 +103,5 @@ def global_settings(request):
                     'tools_links': tools_links,
                     'tools_title': tools_title,
                     'ADMIN_MESSAGE': get_config('site_notice'),
-                    'collect_timings_percent': get_collect_timings(),
                     'is_reviewer': is_reviewer})
     return context

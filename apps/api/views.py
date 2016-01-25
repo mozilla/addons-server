@@ -9,32 +9,28 @@ import urllib
 from datetime import date, timedelta
 
 from django.core.cache import cache
+from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import render
 from django.template.context import get_standard_processors
 from django.utils import encoding, translation
+from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_str
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 import jingo
 import waffle
 from caching.base import cached_with
-from piston.utils import rc
 from tower import ugettext as _, ugettext_lazy
 
 import amo
 import api
 from addons.models import Addon, CompatOverride
-from amo.decorators import post_required, allow_cross_site_request, json_view
+from amo.decorators import allow_cross_site_request, json_view
 from amo.models import manual_order
 from amo.urlresolvers import get_url_prefix
 from amo.utils import JSONEncoder
-from api.authentication import AMOOAuthAuthentication
-from api.forms import PerformanceForm
 from api.utils import addon_to_dict, extract_filters
-from perf.models import (Performance, PerformanceAppVersions,
-                         PerformanceOSVersion)
 from search.views import (AddonSuggestionsAjax, PersonaSuggestionsAjax,
                           name_query)
 from versions.compare import version_int
@@ -78,6 +74,7 @@ def render_xml_to_string(request, template, context={}):
     return template.render(context)
 
 
+@non_atomic_requests
 def render_xml(request, template, context={}, **kwargs):
     """Safely renders xml, stripping out nasty control characters."""
     rendered = render_xml_to_string(request, template, context)
@@ -88,16 +85,19 @@ def render_xml(request, template, context={}, **kwargs):
     return HttpResponse(rendered, **kwargs)
 
 
+@non_atomic_requests
 def handler403(request):
     context = {'error_level': ERROR, 'msg': 'Not allowed'}
     return render_xml(request, 'api/message.xml', context, status=403)
 
 
+@non_atomic_requests
 def handler404(request):
     context = {'error_level': ERROR, 'msg': 'Not Found'}
     return render_xml(request, 'api/message.xml', context, status=404)
 
 
+@non_atomic_requests
 def handler500(request):
     context = {'error_level': ERROR, 'msg': 'Server Error'}
     return render_xml(request, 'api/message.xml', context, status=500)
@@ -215,6 +215,7 @@ class APIView(object):
     Base view class for all API views.
     """
 
+    @method_decorator(non_atomic_requests)
     def __call__(self, request, api_version, *args, **kwargs):
 
         self.version = float(api_version)
@@ -280,6 +281,7 @@ class AddonDetailView(APIView):
         return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
 
 
+@non_atomic_requests
 def guid_search(request, api_version, guids):
     lang = request.LANG
 
@@ -405,6 +407,7 @@ class SearchView(APIView):
 
 
 @json_view
+@non_atomic_requests
 def search_suggestions(request):
     if waffle.sample_is_active('autosuggest-throttle'):
         return HttpResponse(status=503)
@@ -483,6 +486,7 @@ class LanguageView(APIView):
 
 
 # pylint: disable-msg=W0613
+@non_atomic_requests
 def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.
@@ -494,40 +498,8 @@ def redirect_view(request, url):
     return HttpResponsePermanentRedirect(dest)
 
 
+@non_atomic_requests
 def request_token_ready(request, token):
     error = request.GET.get('error', '')
     ctx = {'error': error, 'token': token}
     return render(request, 'piston/request_token_ready.html', ctx)
-
-
-@csrf_exempt
-@post_required
-def performance_add(request):
-    """
-    A wrapper around adding in performance data that is easier than
-    using the piston API.
-    """
-    # Trigger OAuth.
-    if not AMOOAuthAuthentication(two_legged=True).is_authenticated(request):
-        return rc.FORBIDDEN
-
-    form = PerformanceForm(request.POST)
-    if not form.is_valid():
-        return form.show_error()
-
-    os, created = (PerformanceOSVersion
-                   .objects.safer_get_or_create(**form.os_version))
-    app, created = (PerformanceAppVersions
-                    .objects.safer_get_or_create(**form.app_version))
-
-    data = form.performance
-    data.update({'osversion': os, 'appversion': app})
-
-    # Look up on everything except the average time.
-    result, created = Performance.objects.safer_get_or_create(**data)
-    result.average = form.cleaned_data['average']
-    result.save()
-
-    log.info('Performance created for add-on: %s, %s' %
-             (form.cleaned_data['addon_id'], form.cleaned_data['average']))
-    return rc.ALL_OK

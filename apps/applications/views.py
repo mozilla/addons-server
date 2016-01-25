@@ -1,10 +1,11 @@
-from django.contrib.syndication.views import Feed
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 
 import caching.base as caching
 from tower import ugettext as _
 
 import amo
+from amo.feeds import NonAtomicFeed
 from amo.helpers import url, absolutify
 from .models import AppVersion
 
@@ -22,13 +23,14 @@ def get_versions(order=('application', 'version_int')):
     return caching.cached(f, 'getv' + ''.join(order))
 
 
+@non_atomic_requests
 def appversions(request):
     apps, versions = get_versions()
     return render(request, 'applications/appversions.html',
                   dict(apps=apps, versions=versions))
 
 
-class AppversionsFeed(Feed):
+class AppversionsFeed(NonAtomicFeed):
     # appversions aren't getting a created date so the sorting is kind of
     # wanky.  I blame fligtar.
 

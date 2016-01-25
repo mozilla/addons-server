@@ -1,4 +1,5 @@
-<form method="post" action="{{ action }}" class="{% if is_ajax %}ajax-submit {% endif %}listing-footer">
+<form method="post" action="{{ action }}"
+      class="{% if is_ajax %}ajax-submit {% endif %}listing-footer{% if login_source_form %} login-source-form{% else %} login-form{% endif %}">
   {{ csrf() }}
   {% if form.non_field_errors() %}
       <div class="notification-box error">
@@ -17,13 +18,13 @@
         {{ form.username }}
         {{ form.username.errors }}
         </li>
-        <li{% if form.password.errors %} class="error"{% endif %}>
+        <li class="login-field {% if form.password.errors %} error{% endif %}">
         <label for="id_password">{{ _('Password') }}</label>
         {{ form.password }}
         {{ form.password.errors }}
         </li>
         <li id="remember-me"
-            {% if form.rememberme.errors %}class="error"{% endif %}>
+            class="login-field {% if form.rememberme.errors %}error{% endif %}">
         <label for="id_rememberme" class="check">
           {{ form.rememberme }}
           {{ _('Remember me on this device') }}
@@ -32,11 +33,13 @@
         </li>
         {% if form.recaptcha %}
           {{ form.recaptcha_shown }}
-          {{ recaptcha(form) }}
+          {{ form.recaptcha }}
+          {{ form.recaptcha.errors }}
         {% endif %}
       </ul>
       <div class="listing-footer footer c">
-        <button id="login-submit" type="submit">{{ _('Log in') }}</button>
+        <button id="login-submit" class="login-button" type="submit">{{ _('Log in') }}</button>
+        <button class="login-source-button" type="submit">{{ _('Continue') }}</button>
       </div>
     </fieldset>
   </div>

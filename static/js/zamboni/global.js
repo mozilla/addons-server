@@ -78,14 +78,8 @@ jQuery.fn.tooltip = function(tip_el) {
         }
     }
 
-    if (parseFloat(jQuery.fn.jquery) < 1.7) {
-        // TODO: Upgrade to jQuery 1.9 on AMO (bug 841819).
-        $targets.live('mouseover', mouseover)
-                .live('mouseout', mouseout);
-    } else {
-        $targets.on('mouseover', mouseover)
-                .on('mouseout', mouseout);
-    }
+    $targets.on('mouseover', mouseover)
+            .on('mouseout', mouseout);
 };
 
 // Setting up site tooltips.
@@ -437,11 +431,6 @@ function modalFromURL(url, settings) {
 // ..to..
 // http://mozilla.com/[editable slug name]
 
-function load_unicode() {
-    var $body = $(document.body);
-    $body.append("<script src='" + $body.attr('data-static-url') + "/js/zamboni/unicode.js'></script>");
-}
-
 function makeslug(s, delimiter) {
     if (!s) return "";
     var re = new RegExp("[^\\w" + z.unicode_letters + "\\s-]+","g");
@@ -458,20 +447,16 @@ function show_slug_edit(e) {
 }
 
 function slugify() {
-    if (z == null || z.unicode_letters) {
-        var slug = $('#id_slug');
-        url_customized = slug.attr('data-customized') == 0 ||
-                                   !slug.attr('data-customized');
-        if (url_customized || !slug.val()) {
-            var s = makeslug($('#id_name').val());
-            slug.val(s);
-            name_val = s;
-            $('#slug_value').text(s);
-        } else {
-            $('#slug_value').text($('#id_slug').val());
-        }
+    var slug = $('#id_slug');
+    url_customized = slug.attr('data-customized') == 0 ||
+                               !slug.attr('data-customized');
+    if (url_customized || !slug.val()) {
+        var s = makeslug($('#id_name').val());
+        slug.val(s);
+        name_val = s;
+        $('#slug_value').text(s);
     } else {
-        load_unicode();
+        $('#slug_value').text($('#id_slug').val());
     }
 }
 

@@ -1,15 +1,5 @@
 [
     {
-        "pk": 2567,
-        "model": "stats.addonsharecount",
-        "fields": {
-            "count": 1,
-            "date": "2009-07-27",
-            "service": "fakebook",
-            "addon": 59
-        }
-    },
-    {
         "pk": 1,
         "model": "stats.contribution",
         "fields": {
@@ -17,7 +7,6 @@
             "modified": "2009-07-27",
             "addon": 59
         }
-
     },
     {
         "pk": 1,

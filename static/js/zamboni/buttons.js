@@ -25,21 +25,6 @@ var D2C_MAX_VERSIONS = {
     thunderbird: '5.0'
 };
 
-var premiumButton = function() {
-    // Pass in the button wrapper and this will check to see if its been
-    // purchased and alter if appropriate. Will return the purchase state.
-    var $this = $(this),
-        addon = $this.attr('data-addon'),
-        $button = $this.find('.button');
-    if($.inArray(parseInt(addon, 10), addons_purchased) >= 0) {
-        purchases.reset($button);
-        return false;
-    } else {
-        $button.addPaypal();
-        return true;
-    }
-};
-
 /* Called by the jQuery plugin to set up a single button. */
 var installButton = function() {
     // Create a bunch of data and helper functions, then drive the buttons
@@ -72,7 +57,6 @@ var installButton = function() {
         icon = $this.attr('data-icon'),
         after = $this.attr('data-after'),
         search = $this.hasattr('data-search'),
-        premium = $this.hasClass('premium'),
         accept_eula = $this.hasClass('accept'),
         compatible = $this.attr('data-is-compatible') == 'true',
         compatible_app = $this.attr('data-is-compatible-app') == 'true',
@@ -208,7 +192,6 @@ var installButton = function() {
             $this.find('.button[data-hash]').each(function() {
                 hashes[$(this).attr('href')] = $(this).attr('data-hash');
             });
-            // For premium add-ons this will be undefined.
             var hash = hashes[installer.attr('href')];
 
             var f = _.haskey(z.button.after, after) ? z.button.after[after] : _.identity,
@@ -380,9 +363,6 @@ var installButton = function() {
     // Drive the install button based on its type.
     if (eula || contrib) {
         versionsAndPlatforms({addPopup: false});
-    } else if (premium) {
-        premiumButton.call($this);
-        versionsAndPlatforms({addPopup: false});
     } else if (persona) {
         $button.removeClass('download').addClass('add').find('span').text(addto);
         if ($.hasPersonas()) {
@@ -432,30 +412,6 @@ var data_purchases = $('body').attr('data-purchases') || "",
 
 jQuery.fn.installButton = function() {
     return this.each(installButton);
-};
-
-jQuery.fn.addPaypal = function(html, allowClick) {
-    function checkForAddon(el) {
-        var $this = $(el);
-        // Focus on the username field if it exists.
-        $('#id_username', $this).focus();
-        if ($('#addon_info').exists()) {
-            purchases.reset(purchases.find_button($this.closest('body')), $this);
-            purchases.trigger($this);
-        }
-    }
-    return this.click(_pd(function() {
-        var $install = $(this).closest('.install'),
-            url = $install.attr('data-start-purchase');
-
-        if (url) {
-            modalFromURL(url, {'callback': function() {
-                var $modal = $(this);
-                checkForAddon(this);
-
-            }, 'data': {'realurl': $install.find('a.premium').attr('data-realurl')}});
-        }
-    }));
 };
 
 // Create a popup box when the element is clicked.  html can be a function.

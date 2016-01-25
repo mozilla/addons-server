@@ -1,11 +1,5 @@
 {% extends "discovery/addons/base.html" %}
 
-{% block extrahead %}
-  {% for preview in addon.all_previews %}
-    <link rel="prefetch" href="{{ preview.image_url }}">
-  {% endfor %}
-{% endblock %}
-
 {% block main %}
 {% if addon.type == amo.ADDON_PERSONA %}
   {{ disco_persona_preview(addon.persona, linked=False, caption=True) }}
@@ -34,10 +28,6 @@
       {{ _('View End-User License Agreement') }}</a></li>
   {% endif %}
 </ul>
-
-{% if settings.PERF_THRESHOLD and addon.ts_slowness >= settings.PERF_THRESHOLD %}
-  {{ impala_performance_note(amount=addon.ts_slowness) }}
-{% endif %}
 
 {{ dependencies_note(addon, 'discovery') }}
 

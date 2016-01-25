@@ -82,31 +82,6 @@ TASK_USER_ID = 10968
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = False
 
-# Enable the Django Debug Toolbar for local dev.
-INSTALLED_APPS += (
-    'debug_toolbar',
-)
-DEBUG_TOOLBAR_PATCH_SETTINGS = False  # Prevent DDT from patching the settings.
-
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-
-
-def debug_toolbar_disabled(request):
-    """Callback used by the Django Debug Toolbar to decide when to display."""
-    return False
-
-
-def debug_toolbar_enabled(request):
-    """Callback used by the Django Debug Toolbar to decide when to display."""
-    # We want to make sure to have the DEBUG value at runtime, not the one we
-    # have in this specific settings file.
-    from django.conf import settings
-    return settings.DEBUG
-
-
-DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": "settings.debug_toolbar_disabled",
-}
 
 AES_KEYS = {
     'api_key:secret': os.path.join(ROOT, 'apps', 'api', 'tests', 'assets',
@@ -124,6 +99,16 @@ FXA_CONFIG = {
     'redirect_url': 'http://olympia.dev/api/v3/accounts/authorize/',
     'scope': 'profile',
 }
+
+# CSP report endpoint which returns a 204 from addons-nginx in local dev.
+CSP_REPORT_ONLY = False
+CSP_REPORT_URI = '/csp-report'
+
+# Allow GA over http + www subdomain in local development.
+HTTP_GA_SRC = 'http://www.google-analytics.com'
+CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_IMG_SRC += (HTTP_GA_SRC,)
+CSP_SCRIPT_SRC += (HTTP_GA_SRC,)
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

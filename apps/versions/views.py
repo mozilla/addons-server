@@ -2,6 +2,7 @@ import os
 import posixpath
 
 from django import http
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 
 import caching.base as caching
@@ -28,6 +29,7 @@ log = commonware.log.getLogger('z.versions')
 
 @addon_view
 @mobile_template('versions/{mobile/}version_list.html')
+@non_atomic_requests
 def version_list(request, addon, template, beta=False):
     status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
     qs = (addon.versions.filter(files__status__in=status_list)
@@ -40,6 +42,7 @@ def version_list(request, addon, template, beta=False):
 
 
 @addon_view
+@non_atomic_requests
 def version_detail(request, addon, version_num):
     qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
           .distinct().order_by('-created'))
@@ -63,6 +66,7 @@ def _find_version_page(qs, addon, version_num):
 
 
 @addon_view
+@non_atomic_requests
 def update_info(request, addon, version_num):
     qs = addon.versions.filter(version=version_num,
                                files__status__in=amo.VALID_STATUSES)
@@ -75,6 +79,7 @@ def update_info(request, addon, version_num):
                   content_type='application/xhtml+xml')
 
 
+@non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
     return redirect(reverse('addons.versions.update_info',
@@ -83,6 +88,7 @@ def update_info_redirect(request, version_id):
 
 
 # Should accept junk at the end for filename goodness.
+@non_atomic_requests
 def download_file(request, file_id, type=None):
     file = get_object_or_404(File.objects, pk=file_id)
     addon = get_object_or_404(Addon.with_unlisted, pk=file.version.addon_id)
@@ -118,6 +124,7 @@ def guard():
 
 
 @addon_view_factory(guard)
+@non_atomic_requests
 def download_latest(request, addon, beta=False, type='xpi', platform=None):
     platforms = [amo.PLATFORM_ALL.id]
     if platform is not None and int(platform) in amo.PLATFORMS:
@@ -142,6 +149,7 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
     return http.HttpResponseRedirect(url)
 
 
+@non_atomic_requests
 def download_source(request, version_id):
     version = get_object_or_404(Version, pk=version_id)
 

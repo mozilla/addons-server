@@ -1,27 +1,22 @@
 import json
 
 from django import http
-from django.db import IntegrityError
-from django.db.models import F
+from django.db.transaction import non_atomic_requests
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
-import waffle
 
 import amo
 import amo.utils
 import api.utils
 import api.views
-from amo.decorators import post_required
 from amo.models import manual_order
 from amo.urlresolvers import reverse
 from addons.decorators import addon_view_factory
 from addons.models import Addon
 from addons.utils import get_featured_ids
 from browse.views import personas_listing
-from bandwagon.models import Collection, SyncedCollection
 from discovery.modules import PromoVideoCollection
 from reviews.models import Review
 from stats.models import GlobalStat
@@ -44,6 +39,7 @@ def get_compat_mode(version):
     return 'ignore' if vint >= version_int('10.0') else 'strict'
 
 
+@non_atomic_requests
 def pane(request, version, platform, compat_mode=None):
 
     if not compat_mode:
@@ -63,6 +59,7 @@ def pane(request, version, platform, compat_mode=None):
                    'promovideo': promovideo, 'compat_mode': compat_mode})
 
 
+@non_atomic_requests
 def pane_account(request):
     try:
         qs = GlobalStat.objects.filter(name='addon_total_downloads')
@@ -74,6 +71,7 @@ def pane_account(request):
                   {'addon_downloads': addon_downloads})
 
 
+@non_atomic_requests
 def promos(request, context, version, platform, compat_mode='strict'):
     platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
     modules = get_modules(request, platform.api_name, version)
@@ -81,6 +79,7 @@ def promos(request, context, version, platform, compat_mode='strict'):
                   {'modules': modules, 'module_context': context})
 
 
+@non_atomic_requests
 def pane_promos(request, version, platform, compat_mode=None):
     if not compat_mode:
         compat_mode = get_compat_mode(version)
@@ -88,6 +87,7 @@ def pane_promos(request, version, platform, compat_mode=None):
     return promos(request, 'discovery', version, platform, compat_mode)
 
 
+@non_atomic_requests
 def pane_more_addons(request, section, version, platform, compat_mode=None):
 
     if not compat_mode:
@@ -126,6 +126,7 @@ def get_featured_personas(request, category=None, num_personas=6):
     return manual_order(base, ids, 'addons.id')[:num_personas]
 
 
+@non_atomic_requests
 def api_view(request, platform, version, list_type, api_version=1.5,
              format='json', content_type='application/json',
              compat_mode='strict'):
@@ -139,6 +140,7 @@ def api_view(request, platform, version, list_type, api_version=1.5,
 
 
 @admin_required
+@non_atomic_requests
 def module_admin(request):
     APP = request.APP
     # Custom sorting to drop ordering=NULL objects to the bottom.
@@ -172,88 +174,8 @@ def _sync_db_and_registry(qs, app_id):
         qs._result_cache = None
 
 
-@csrf_exempt
-@post_required
-def recommendations(request, version, platform, limit=9, compat_mode=None):
-    """
-    Figure out recommended add-ons for an anonymous user based on POSTed guids.
-
-    POST body looks like {"guids": [...]} with an optional "token" key if
-    they've been here before.
-    """
-    if not compat_mode:
-        compat_mode = get_compat_mode(version)
-
-    try:
-        POST = json.loads(request.body)
-        guids = POST['guids']
-    except (ValueError, TypeError, KeyError), e:
-        # Errors: invalid json, didn't get a dict, didn't find "guids".
-        log.debug('Recommendations return 405 because: %s' % e)
-        return http.HttpResponseBadRequest()
-
-    addon_ids = get_addon_ids(guids)
-    index = Collection.make_index(addon_ids)
-
-    ids, recs = Collection.get_recs_from_ids(addon_ids, request.APP, version,
-                                             compat_mode)
-    recs = _recommendations(request, version, platform, limit, index, ids,
-                            recs, compat_mode)
-
-    # We're only storing a percentage of the collections we see because the db
-    # can't keep up with 100%.
-    if not waffle.sample_is_active('disco-pane-store-collections'):
-        return recs
-
-    # Users have a token2 if they've been here before. The token matches
-    # addon_index in their SyncedCollection.
-    if 'token2' in POST:
-        token = POST['token2']
-        if token == index:
-            # We've seen them before and their add-ons have not changed.
-            return recs
-        elif token != index:
-            # We've seen them before and their add-ons changed. Remove the
-            # reference to their old synced collection.
-            (SyncedCollection.objects.filter(addon_index=index)
-             .update(count=F('count') - 1))
-
-    # Try to create the SyncedCollection. There's a unique constraint on
-    # addon_index so it will fail if this addon_index already exists. If we
-    # checked for existence first and then created a collection there would
-    # be a race condition between multiple users with the same addon_index.
-    try:
-        c = SyncedCollection.objects.create(addon_index=index, count=1)
-        c.set_addons(addon_ids)
-    except IntegrityError:
-        try:
-            (SyncedCollection.objects.filter(addon_index=index)
-             .update(count=F('count') + 1))
-        except Exception, e:
-            log.error(u'Could not count++ "%s" (%s).' % (index, e))
-    return recs
-
-
-def _recommendations(request, version, platform, limit, token, ids, qs,
-                     compat_mode='strict'):
-    """Return a JSON response for the recs view."""
-    addons = api.views.addon_filter(qs, 'ALL', 0, request.APP, platform,
-                                    version, compat_mode, shuffle=False)
-    addons = dict((a.id, a) for a in addons)
-    addons = [api.utils.addon_to_dict(addons[i], disco=True,
-                                      src='discovery-personalrec')
-              for i in ids if i in addons][:limit]
-    data = {'token2': token, 'addons': addons}
-    content = json.dumps(data, cls=amo.utils.JSONEncoder)
-    return http.HttpResponse(content, content_type='application/json')
-
-
-def get_addon_ids(guids):
-    return list(Addon.objects.filter(guid__in=guids)
-                             .values_list('id', flat=True))
-
-
 @addon_view
+@non_atomic_requests
 def addon_detail(request, addon):
     reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
@@ -263,6 +185,7 @@ def addon_detail(request, addon):
 
 
 @addon_view
+@non_atomic_requests
 def addon_eula(request, addon, file_id):
     if not addon.eula:
         return http.HttpResponseRedirect(reverse('discovery.addons.detail',
@@ -274,11 +197,3 @@ def addon_eula(request, addon, file_id):
     src = request.GET.get('src', 'discovery-details')
     return render(request, 'discovery/addons/eula.html',
                   {'addon': addon, 'version': version, 'src': src})
-
-
-def recs_transform(recs):
-    ids = [r.addon_id for r in recs] + [r.other_addon_id for r in recs]
-    addons = dict((a.id, a) for a in Addon.objects.filter(id__in=ids))
-    for r in recs:
-        r.addon = addons[r.addon_id]
-        r.other_addon = addons[r.other_addon_id]

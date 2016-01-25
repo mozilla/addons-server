@@ -28,7 +28,7 @@ def get_file(filename):
 
 def make_file(pk, file_path, **kwargs):
     obj = Mock()
-    obj.id = pk
+    obj.id = obj.pk = pk
     for k, v in kwargs.items():
         setattr(obj, k, v)
     obj.file_path = file_path
@@ -203,7 +203,18 @@ class TestFileHelper(amo.tests.TestCase):
             self.viewer.extract()
 
     def test_default(self):
+        self.viewer.extract()
         assert self.viewer.get_default(None) == 'install.rdf'
+
+    def test_default_webextension(self):
+        viewer = FileViewer(make_file(2, get_file('webextension.xpi')))
+        viewer.extract()
+        assert viewer.get_default(None) == 'manifest.json'
+
+    def test_default_package_json(self):
+        viewer = FileViewer(make_file(3, get_file('new-format-0.0.1.xpi')))
+        viewer.extract()
+        assert viewer.get_default(None) == 'package.json'
 
     def test_delete_mid_read(self):
         self.viewer.extract()

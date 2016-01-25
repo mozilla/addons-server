@@ -282,8 +282,7 @@ class SiteEvent(models.Model):
     more_info_url = models.URLField(max_length=255, blank=True, null=True)
 
     class Meta:
-        db_table = ('zadmin_siteevent' +
-                    settings.EVENT_TABLE_SUFFIX)
+        db_table = 'zadmin_siteevent'
 
 
 class DownloadSource(models.Model):

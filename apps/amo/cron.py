@@ -3,11 +3,11 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
-from django.utils import translation
-from django.db import connection, transaction
+from django.db import connection
 
 import cronjobs
 import commonware.log
+import waffle
 
 import amo
 from amo.utils import chunked
@@ -16,8 +16,7 @@ from bandwagon.models import Collection
 from constants.base import VALID_STATUSES
 from devhub.models import ActivityLog
 from lib.es.utils import raise_if_reindex_in_progress
-from sharing import SERVICES_LIST, LOCAL_SERVICES_LIST
-from stats.models import AddonShareCount, Contribution
+from stats.models import Contribution
 
 from . import tasks
 
@@ -56,18 +55,6 @@ def gc(test_result=True):
         tasks.delete_anonymous_collections.delay(chunk)
     # Incomplete addons cannot be deleted here because when an addon is
     # rejected during a review it is marked as incomplete. See bug 670295.
-
-    log.debug('Cleaning up sharing services.')
-    service_names = [s.shortname for s in SERVICES_LIST]
-    # collect local service names
-    original_language = translation.get_language()
-    for language in settings.LANGUAGES:
-        translation.activate(language)
-        service_names.extend([unicode(s.shortname)
-                              for s in LOCAL_SERVICES_LIST])
-    translation.activate(original_language)
-
-    AddonShareCount.objects.exclude(service__in=set(service_names)).delete()
 
     log.debug('Cleaning up test results extraction cache.')
     # lol at check for '/'
@@ -130,7 +117,6 @@ def category_totals():
     AS j ON (t.id = j.category_id)
     SET t.count = j.ct
     """ % (p, p), VALID_STATUSES * 2)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -139,6 +125,10 @@ def collection_subscribers():
     Collection weekly and monthly subscriber counts.
     """
     log.debug('Starting collection subscriber update...')
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     cursor = connection.cursor()
     cursor.execute("""
         UPDATE collections SET weekly_subscribers = 0, monthly_subscribers = 0
@@ -164,7 +154,6 @@ def collection_subscribers():
         SET c.weekly_subscribers = weekly.count,
             c.monthly_subscribers = monthly.count
     """)
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -187,25 +176,6 @@ def unconfirmed():
         AND addons_collections.user_id IS NULL
         AND collections_users.user_id IS NULL
     """)
-    transaction.commit_unless_managed()
-
-
-@cronjobs.register
-def share_count_totals():
-    """
-    Sum share counts for each addon & service.
-    """
-    cursor = connection.cursor()
-    cursor.execute("""
-            REPLACE INTO stats_share_counts_totals (addon_id, service, count)
-                (SELECT addon_id, service, SUM(count)
-                 FROM stats_share_counts
-                 RIGHT JOIN addons ON addon_id = addons.id
-                 WHERE service IN (%s)
-                 GROUP BY addon_id, service)
-            """ % ','.join(['%s'] * len(SERVICES_LIST)),
-                   [s.shortname for s in SERVICES_LIST])
-    transaction.commit_unless_managed()
 
 
 @cronjobs.register
@@ -213,6 +183,10 @@ def weekly_downloads():
     """
     Update 7-day add-on download counts.
     """
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
     raise_if_reindex_in_progress('amo')
     cursor = connection.cursor()
     cursor.execute("""
@@ -243,4 +217,3 @@ def weekly_downloads():
             ON addons.id = tmp_wd.addon_id
         SET weeklydownloads = tmp_wd.count""")
     cursor.execute("DROP TABLE IF EXISTS tmp_wd")
-    transaction.commit_unless_managed()

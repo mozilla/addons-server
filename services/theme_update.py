@@ -222,7 +222,7 @@ def application(environ, start_response):
                 return ['']
             start_response(status, update.get_headers(len(output)))
         except:
-            log_exception(data)
+            log_exception(environ['PATH_INFO'])
             raise
 
     return [output]

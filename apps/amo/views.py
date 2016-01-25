@@ -4,7 +4,7 @@ import re
 
 from django import http
 from django.conf import settings
-from django.core.exceptions import PermissionDenied
+from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.utils.encoding import iri_to_uri
@@ -14,14 +14,11 @@ from django.views.decorators.http import require_POST
 
 import commonware.log
 import waffle
-from django_statsd.views import record as django_statsd_record
 from django_statsd.clients import statsd
 
 import amo
 import api
-from amo.decorators import post_required
 from amo.utils import log_cef
-from amo.context_processors import get_collect_timings
 from . import monitors
 
 log = commonware.log.getLogger('z.amo')
@@ -45,6 +42,7 @@ wmp_re = re.compile(
 
 
 @never_cache
+@non_atomic_requests
 def monitor(request, format=None):
 
     # For each check, a boolean pass/fail status to show in the template
@@ -77,6 +75,7 @@ def monitor(request, format=None):
     return render(request, 'services/monitor.html', ctx, status=status_code)
 
 
+@non_atomic_requests
 def robots(request):
     """Generate a robots.txt"""
     _service = (request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN)
@@ -88,11 +87,13 @@ def robots(request):
     return HttpResponse(template, content_type="text/plain")
 
 
+@non_atomic_requests
 def contribute(request):
     path = os.path.join(settings.ROOT, 'contribute.json')
     return HttpResponse(open(path, 'rb'), content_type='application/json')
 
 
+@non_atomic_requests
 def handler403(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler403 view in api if api was targeted.
@@ -101,6 +102,7 @@ def handler403(request):
         return render(request, 'amo/403.html', status=403)
 
 
+@non_atomic_requests
 def handler404(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted.
@@ -109,6 +111,7 @@ def handler404(request):
         return render(request, 'amo/404.html', status=404)
 
 
+@non_atomic_requests
 def handler500(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler500 view in api if api was targeted.
@@ -117,11 +120,13 @@ def handler500(request):
         return render(request, 'amo/500.html', status=500)
 
 
+@non_atomic_requests
 def csrf_failure(request, reason=''):
     return render(request, 'amo/403.html',
                   {'because_csrf': 'CSRF' in reason}, status=403)
 
 
+@non_atomic_requests
 def loaded(request):
     return http.HttpResponse('%s' % request.META['wsgi.loaded'],
                              content_type='text/plain')
@@ -129,6 +134,7 @@ def loaded(request):
 
 @csrf_exempt
 @require_POST
+@non_atomic_requests
 def cspreport(request):
     """Accept CSP reports and log them."""
     report = ('blocked-uri', 'violated-directive', 'original-policy')
@@ -154,16 +160,7 @@ def cspreport(request):
     return HttpResponse()
 
 
-@csrf_exempt
-@post_required
-def record(request):
-    # The rate limiting is done up on the client, but if things go wrong
-    # we can just turn the percentage down to zero.
-    if get_collect_timings():
-        return django_statsd_record(request)
-    raise PermissionDenied
-
-
+@non_atomic_requests
 def plugin_check_redirect(request):
     return http.HttpResponseRedirect('%s?%s' % (
         settings.PFS_URL, iri_to_uri(request.META.get('QUERY_STRING', ''))))

@@ -197,7 +197,7 @@
         var $d = $('#persona-design'),
             upload_finished = function(e) {
                 $(this).closest('.row').find('.preview').removeClass('loading');
-                $('#submit-persona button').attr('disabled', false);
+                $('#submit-persona button').prop('disabled', false);
                 updatePersona();
             },
             upload_start = function(e, file) {
@@ -208,7 +208,7 @@
                 }
                 $p.find('.errorlist').html('');
                 $p.find('.preview').addClass('loading').removeClass('error-loading');
-                $('#submit-persona button').attr('disabled', true);
+                $('#submit-persona button').prop('disabled', true);
             },
             upload_success = function(e, file, upload_hash) {
                 var $p = $(this).closest('.row');
@@ -280,17 +280,13 @@
             updatePersona();
         }).trigger('change');
 
-        // Check for native `input[type=color]` support (i.e., WebKit).
-        if ($color[0].type === 'color') {
-            $('.miniColors-trigger').hide();
-        } else {
-            $color.miniColors({
-                change: function() {
-                    $color.trigger('change');
-                    updatePersona();
-                }
-            });
-        }
+        $color.minicolors({
+            dataUris: true,
+            change: function() {
+                $color.trigger('change');
+                updatePersona();
+            }
+        });
 
         $('#id_name').bind('change keyup paste blur', _.throttle(function() {
             $('#persona-preview-name').text($(this).val() || gettext("Your Theme's Name"));
@@ -317,7 +313,7 @@
 
     function checkValid(form) {
         if (form) {
-            $(form).find('button[type=submit]').attr('disabled', !form.checkValidity());
+            $(form).find('button[type=submit]').prop('disabled', !form.checkValidity());
         }
     }
 

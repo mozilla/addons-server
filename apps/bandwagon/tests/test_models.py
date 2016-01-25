@@ -1,5 +1,4 @@
 import datetime
-import itertools
 import random
 
 import mock
@@ -8,10 +7,9 @@ from nose.tools import eq_
 import amo
 import amo.tests
 from access.models import Group
-from addons.models import Addon, AddonRecommendation
+from addons.models import Addon
 from bandwagon.models import (Collection, CollectionAddon, CollectionUser,
-                              CollectionWatcher, RecommendedCollection,
-                              SyncedCollection)
+                              CollectionWatcher)
 from devhub.models import ActivityLog
 from bandwagon import tasks
 from users.models import UserProfile
@@ -93,11 +91,6 @@ class TestCollections(amo.tests.TestCase):
         ids = c.addons.values_list('id', flat=True)
         c.save()
         assert c.addon_index == Collection.make_index(ids)
-
-    def test_recommended_collection(self):
-        """RecommendedCollections automatically get type=rec."""
-        c = RecommendedCollection.objects.create(author=self.user)
-        assert c.type == amo.COLLECTION_RECOMMENDED
 
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
@@ -230,50 +223,3 @@ class TestCollectionQuerySet(amo.tests.TestCase):
         collection.add_addon(addon)
 
         assert qset.first().has_addon
-
-
-class TestRecommendations(amo.tests.TestCase):
-    fixtures = ['base/addon-recs']
-    ids = [5299, 1843, 2464, 7661, 5369]
-
-    @classmethod
-    def expected_recs(self):
-        scores, ranked = [], {}
-        # Get all the add-on => rank pairs.
-        for x in AddonRecommendation.scores(self.ids).values():
-            scores.extend(x.items())
-        # Sum up any dupes.
-        groups = itertools.groupby(sorted(scores), key=lambda x: x[0])
-        for addon, pairs in groups:
-            ranked[addon] = sum(x[1] for x in pairs)
-        addons = sorted(ranked.items(), key=lambda x: x[1], reverse=True)
-        return [x[0] for x in addons if x[0] not in self.ids]
-
-    def test_build_recs(self):
-        assert RecommendedCollection.build_recs(self.ids) == self.expected_recs()
-
-    @mock.patch('bandwagon.models.AddonRecommendation.scores')
-    def test_no_dups(self, scores):
-        # The inner dict is the recommended addons for addon 7.
-        scores.return_value = {7: {1: 5, 2: 3, 3: 4}}
-        recs = RecommendedCollection.build_recs([7, 3, 8])
-        assert recs == [1, 2]
-
-
-class TestSyncedCollection(amo.tests.TestCase):
-    fixtures = ['base/addon-recs']
-    ids = (5299, 1843, 2464, 7661, 5369)
-
-    def test_set_addons(self):
-        synced_collection = SyncedCollection.objects.create()
-        synced_collection.set_addons(self.ids)
-        synced_collection.reload()
-        assert tuple(
-            synced_collection.addons.values_list('id', flat=True)) == self.ids
-
-    def test_set_addons_empty_list(self):
-        """This is really to make sure it doesn't blow up: see bug 1197471."""
-        synced_collection = SyncedCollection.objects.create()
-        synced_collection.set_addons([])
-        synced_collection.reload()
-        assert synced_collection.addons.count() == 0

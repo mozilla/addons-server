@@ -38,8 +38,6 @@ SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = 'https://services.addons.mozilla.org'
 STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
 MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
-CSP_SCRIPT_SRC = CSP_SCRIPT_SRC + (STATIC_URL[:-1],)
-CSP_FRAME_SRC = ("'self'", "https://*.paypal.com",)
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -50,8 +48,12 @@ SYSLOG_CSP = "http_app_addons_csp"
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
 DATABASES['default']['ENGINE'] = 'mysql_pool'
+# Run all views in a transaction (on master) unless they are decorated not to.
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
+# Do not open a transaction for every view on the slave DB.
+DATABASES['slave']['ATOMIC_REQUESTS'] = False
 DATABASES['slave']['ENGINE'] = 'mysql_pool'
 DATABASES['slave']['sa_pool_key'] = 'slave'
 
@@ -85,10 +87,10 @@ CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 BROKER_CONNECTION_TIMEOUT = 0.5
 
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
 
 # Must be forced in settings because name => path can't be dyncamically
 # computed: reviewer_attachmentS VS reviewer_attachment.
@@ -123,17 +125,17 @@ REDIS_BACKENDS = {
 
 CACHE_MACHINE_USE_REDIS = True
 
+# Old recaptcha V1
 RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
-RECAPTCHA_URL = ('https://www.google.com/recaptcha/api/challenge?k=%s' %
-                 RECAPTCHA_PUBLIC_KEY)
+# New Recaptcha V2
+NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
+NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
 
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
 PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
-
-PERF_THRESHOLD = None
+ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 
@@ -192,7 +194,7 @@ SENTRY_DSN = env('SENTRY_DSN')
 
 GOOGLE_ANALYTICS_DOMAIN = 'addons.mozilla.org'
 
-NEWRELIC_ENABLE = False
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
@@ -204,3 +206,7 @@ VALIDATOR_TIMEOUT = 360
 ES_DEFAULT_NUM_SHARDS = 10
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
+
+RAVEN_DSN = (
+    'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
+RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']

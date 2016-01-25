@@ -115,9 +115,6 @@ FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_LITE_AND_NOMINATED,
 # Prelim reviewed of waiting for a prelim review.
 PRELIM_REVIEW_STATUSES = [STATUS_UNREVIEWED, STATUS_LITE]
 
-# An add-on in one of these statuses can become premium.
-PREMIUM_STATUSES = (STATUS_NULL,) + UNDER_REVIEW_STATUSES
-
 # Types of administrative review queues for an add-on:
 ADMIN_REVIEW_FULL = 1
 ADMIN_REVIEW_PRELIM = 2
@@ -236,39 +233,6 @@ ADDON_SEARCH_SLUGS = {
     'persona': ADDON_PERSONA,
 }
 
-ADDON_FREE = 0
-ADDON_PREMIUM = 1
-ADDON_PREMIUM_INAPP = 2
-ADDON_FREE_INAPP = 3
-# The addon will have payments, but they aren't using our payment system.
-ADDON_OTHER_INAPP = 4
-
-ADDON_PREMIUM_TYPES = {
-    ADDON_FREE: _('Free'),
-    ADDON_PREMIUM: _('Premium'),
-    ADDON_PREMIUM_INAPP: _('Premium with in-app payments'),
-    ADDON_FREE_INAPP: _('Free with in-app payments'),
-    ADDON_OTHER_INAPP: _("I'll use my own system for in-app payments")
-}
-
-# Non-locale versions for the API.
-ADDON_PREMIUM_API = {
-    ADDON_FREE: 'free',
-    ADDON_PREMIUM: 'premium',
-    ADDON_PREMIUM_INAPP: 'premium-inapp',
-    ADDON_FREE_INAPP: 'free-inapp',
-    ADDON_OTHER_INAPP: 'other',
-}
-ADDON_PREMIUM_API_LOOKUP = dict((v, k) for k, v in ADDON_PREMIUM_API.items())
-
-# Apps that require some sort of payment prior to installing.
-ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
-# Apps that do *not* require a payment prior to installing.
-ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP, ADDON_OTHER_INAPP)
-ADDON_INAPPS = (ADDON_PREMIUM_INAPP, ADDON_FREE_INAPP)
-ADDON_BECOME_PREMIUM = (ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_LPAPP)
-ADDON_HAS_PAYMENTS = (ADDON_FREE_INAPP, ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
-
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
@@ -356,15 +320,6 @@ COLLECTION_AUTHOR_CHOICES = {
     COLLECTION_ROLE_ADMIN: 'Admin',
 }
 
-FIREFOX_IOS_USER_AGENTS = [
-    ('Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) '
-     'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
-     'Safari/600.1.4'),
-    ('Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) '
-     'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
-     'Safari/600.1.4')
-]
-
 # Validation.
 
 # A skeleton set of passing validation results.
@@ -399,7 +354,7 @@ VALIDATOR_SKELETON_EXCEPTION = {
             "Validation was unable to complete successfully due to an "
             "unexpected error.",
             "The error has been logged, but please consider filing an issue "
-            "report here: http://mzl.la/1DG0sFd"],
+            "report here: http://bit.ly/1POrYYU"],
          "type": "error",
          "tier": 1,
          "for_appversions": None,

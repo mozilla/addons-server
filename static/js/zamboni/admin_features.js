@@ -30,11 +30,11 @@ $(document).ready(function(){
             $tr = $this.closest('tr'),
             val = $this.val();
         $tr.attr('data-app', val);
-        $tr.find('.collection-ac').attr('disabled', !val);
+        $tr.find('.collection-ac').prop('disabled', !val);
     });
     $('#features').delegate('.remove', 'click', _pd(function() {
         $(this).closest('tr').hide();
-        $(this).closest('td').find('input').attr('checked', true);
+        $(this).closest('td').find('input').prop('checked', true);
     }));
     $('#features').delegate('.replace', 'click', _pd(function() {
         var $td = $(this).closest('td');

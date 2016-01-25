@@ -111,7 +111,7 @@ $.zAutoFormset = function(o) {
         }
         var $visible = $forms.find(formSelector + ':visible').length;
         if ($visible >= maxItems) {
-            $input.attr('disabled', true).slideUp();
+            $input.prop('disabled', true).slideUp();
             $('.ui-autocomplete').hide();
         } else if ($visible < maxItems) {
             $input.filter(':disabled').removeAttr('disabled').slideDown();
@@ -156,7 +156,7 @@ $.zAutoFormset = function(o) {
     function removed(el) {
         el.slideUp(toggleInput);
         // Mark as deleted.
-        el.find('input[name$=-DELETE]').attr('checked', true);
+        el.find('input[name$=-DELETE]').prop('checked', true);
 
         if (removedCB) {
             removedCB(el);

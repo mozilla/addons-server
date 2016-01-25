@@ -15,7 +15,7 @@ register.function(buttons.mobile_install_button)
 @register.filter
 @jinja2.contextfilter
 def statusflags(context, addon):
-    """unreviewed/recommended status flags for use as CSS classes"""
+    """unreviewed/featuredaddon status flags for use as CSS classes"""
     app = context['APP']
     lang = context['LANG']
     if addon.is_unreviewed():
@@ -29,25 +29,13 @@ def statusflags(context, addon):
 @register.filter
 @jinja2.contextfilter
 def flag(context, addon):
-    """unreviewed/recommended flag heading."""
+    """unreviewed/featuredaddon flag heading."""
     status = statusflags(context, addon)
     msg = {'unreviewed': _('Not Reviewed'), 'featuredaddon': _('Featured')}
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:
         return ''
-
-
-@register.inclusion_tag('addons/performance_note.html')
-@jinja2.contextfunction
-def performance_note(context, amount, listing=False):
-    return new_context(**locals())
-
-
-@register.inclusion_tag('addons/impala/performance_note.html')
-@jinja2.contextfunction
-def impala_performance_note(context, amount, listing=False):
-    return new_context(**locals())
 
 
 @register.inclusion_tag('addons/impala/dependencies_note.html')
