@@ -10,7 +10,6 @@ from types import GeneratorType
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.core.serializers.json import DjangoJSONEncoder
 from django.db import connection
 from django.db.models import Avg, Count, Q, Sum
 from django.db.transaction import non_atomic_requests
@@ -23,6 +22,7 @@ from dateutil.parser import parse
 from product_details import product_details
 
 import amo
+from amo.utils import DecimalJSONEncoder
 from access import acl
 from addons.decorators import addon_view_factory
 from addons.models import Addon
@@ -697,5 +697,5 @@ def render_json(request, addon, stats):
 
     # Django's encoder supports date and datetime.
     fudge_headers(response, stats)
-    json.dump(stats, response, cls=DjangoJSONEncoder)
+    json.dump(stats, response, cls=DecimalJSONEncoder)
     return response

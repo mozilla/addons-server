@@ -13,7 +13,6 @@ from tower import ugettext as _
 
 import amo
 from amo.models import SearchMixin
-from amo.fields import DecimalCharField
 from amo.utils import get_locale_from_lang, send_mail_jinja
 from zadmin.models import DownloadSource
 
@@ -141,8 +140,7 @@ class ContributionError(Exception):
 class Contribution(amo.models.ModelBase):
     # TODO(addon): figure out what to do when we delete the add-on.
     addon = models.ForeignKey('addons.Addon')
-    amount = DecimalCharField(max_digits=9, decimal_places=2,
-                              nullify_invalid=True, null=True)
+    amount = models.DecimalField(max_digits=9, decimal_places=2, null=True)
     currency = models.CharField(max_length=3,
                                 choices=do_dictsort(amo.PAYPAL_CURRENCIES),
                                 default=amo.CURRENCY_DEFAULT)
@@ -163,8 +161,8 @@ class Contribution(amo.models.ModelBase):
     annoying = models.PositiveIntegerField(default=0,
                                            choices=amo.CONTRIB_CHOICES,)
     is_suggested = models.BooleanField(default=False)
-    suggested_amount = DecimalCharField(max_digits=254, decimal_places=2,
-                                        nullify_invalid=True, null=True)
+    suggested_amount = models.DecimalField(max_digits=9, decimal_places=2,
+                                           null=True)
 
     class Meta:
         db_table = 'stats_contributions'
