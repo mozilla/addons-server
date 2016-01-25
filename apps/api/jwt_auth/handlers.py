@@ -19,6 +19,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 import jwt
+from rest_framework import exceptions
 from rest_framework_jwt.settings import api_settings
 
 from apps.api.models import APIKey
@@ -27,6 +28,8 @@ log = logging.getLogger('z.jwt')
 
 
 def jwt_payload_handler(user, issuer):
+    # This creates a payload but at the time of this comment it is only used
+    # for testing.
     issued_at = datetime.utcnow()
     return {
         # The JWT issuer must match the 'key' field of APIKey
@@ -42,16 +45,22 @@ def jwt_encode_handler(payload, secret):
 
 
 def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
+    # If you raise AuthenticationFailed from this method, its value will
+    # be displayed to the client. Be careful not to reveal anything
+    # sensitive. When you raise other exceptions, the user will see
+    # a generic failure message.
     token_data = jwt.decode(token, verify=False)
     if 'iss' not in token_data:
         log.info('No issuer in JWT auth token: {}'.format(token_data))
-        raise jwt.DecodeError('invalid JWT')
+        raise exceptions.AuthenticationFailed(
+            detail='JWT iss (issuer) claim is missing')
 
     try:
         api_key = get_api_key(key=token_data['iss'])
     except ObjectDoesNotExist, exc:
         log.info('No API key for JWT issuer: {}'.format(token_data['iss']))
-        raise jwt.DecodeError('unknown JWT issuer')
+        raise exceptions.AuthenticationFailed(
+            detail='Unknown JWT iss (issuer)')
 
     # TODO: add nonce checking to prevent replays. bug 1213354.
 
@@ -74,14 +83,26 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             leeway=api_settings.JWT_LEEWAY,
             algorithms=[api_settings.JWT_ALGORITHM]
         )
-    except Exception, exc:
-        log.info(u'Exception during JWT authentication: '
+    except jwt.MissingRequiredClaimError, exc:
+        log.info(u'Missing required claim during JWT authentication: '
                  u'{e.__class__.__name__}: {e}'.format(e=exc))
+        raise exceptions.AuthenticationFailed(
+            detail=u'Invalid JWT: {}'.format(exc))
+    except jwt.InvalidIssuedAtError, exc:
+        log.info(u'Invalid iat during JWT authentication: '
+                 u'{e.__class__.__name__}: {e}'.format(e=exc))
+        raise exceptions.AuthenticationFailed(
+            detail='JWT iat (issued at time) is invalid. Make sure your '
+                   'system clock is synchronized with something like NTP.')
+    except Exception, exc:
+        log.warning(u'Unhandled exception during JWT authentication: '
+                    u'{e.__class__.__name__}: {e}'.format(e=exc))
         raise
 
     if payload['exp'] - payload['iat'] > settings.MAX_JWT_AUTH_TOKEN_LIFETIME:
         log.info('JWT auth: expiration is too long; '
                  'iss={iss}, iat={iat}, exp={exp}'.format(**payload))
-        raise jwt.DecodeError('Declared expiration was too long')
+        raise exceptions.AuthenticationFailed(
+            detail='JWT exp (expiration) is too long')
 
     return payload
