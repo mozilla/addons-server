@@ -4,7 +4,6 @@ from django.utils import translation
 import jingo
 import pytest
 from mock import Mock, patch
-from nose.tools import eq_
 
 import amo
 import amo.tests
@@ -35,13 +34,13 @@ def test_locale_html():
     # non-rtl language
     testfield.locale = 'de'
     s = helpers.locale_html(testfield)
-    eq_(s, ' lang="de" dir="ltr"')
+    assert s == ' lang="de" dir="ltr"'
 
     # rtl language
     for lang in settings.RTL_LANGUAGES:
         testfield.locale = lang
         s = helpers.locale_html(testfield)
-        eq_(s, ' lang="%s" dir="rtl"' % testfield.locale)
+        assert s == ' lang="%s" dir="rtl"' % testfield.locale
 
 
 def test_locale_html_xss():
@@ -65,7 +64,7 @@ def test_truncate_purified_field():
     s = '<i>one</i><i>two</i>'
     t = PurifiedTranslation(localized_string=s)
     actual = jingo.env.from_string('{{ s|truncate(6) }}').render({'s': t})
-    eq_(actual, s)
+    assert actual == s
 
 
 def test_truncate_purified_field_xss():
@@ -73,36 +72,33 @@ def test_truncate_purified_field_xss():
     s = 'safe <script>alert("omg")</script>'
     t = PurifiedTranslation(localized_string=s)
     actual = jingo.env.from_string('{{ s|truncate(100) }}').render({'s': t})
-    eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
+    assert actual == 'safe &lt;script&gt;alert("omg")&lt;/script&gt;'
     actual = jingo.env.from_string('{{ s|truncate(5) }}').render({'s': t})
-    eq_(actual, 'safe ...')
+    assert actual == 'safe ...'
 
 
 def test_clean():
     # Links are not mangled, bad HTML is escaped, newlines are slimmed.
     s = '<ul><li><a href="#woo">\n\nyeah</a></li>\n\n<li><script></li></ul>'
-    eq_(helpers.clean(s),
-        '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>')
+    assert helpers.clean(s) == '<ul><li><a href="#woo">\n\nyeah</a></li><li>&lt;script&gt;</li></ul>'
 
 
 def test_clean_in_template():
     s = '<a href="#woo">yeah</a>'
-    eq_(jingo.env.from_string('{{ s|clean }}').render({'s': s}), s)
+    assert jingo.env.from_string('{{ s|clean }}').render({'s': s}) == s
 
 
 def test_no_links():
     s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
-        'a http://example.com, http://text.link')
+    assert jingo.env.from_string('{{ s|no_links }}').render({'s': s}) == 'a http://example.com, http://text.link'
 
     # Bad markup.
     s = '<http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}), '')
+    assert jingo.env.from_string('{{ s|no_links }}').render({'s': s}) == ''
 
     # Bad markup.
     s = 'some text <http://bad.markup.com'
-    eq_(jingo.env.from_string('{{ s|no_links }}').render({'s': s}),
-        'some text')
+    assert jingo.env.from_string('{{ s|no_links }}').render({'s': s}) == 'some text'
 
 
 def test_l10n_menu():
@@ -125,12 +121,12 @@ class TestAllLocales(amo.tests.TestCase):
     def test_all_locales_none(self):
         addon = None
         field_name = 'description'
-        eq_(helpers.all_locales(addon, field_name), None)
+        assert helpers.all_locales(addon, field_name) is None
 
         addon = Mock()
         field_name = 'description'
         del addon.description
-        eq_(helpers.all_locales(addon, field_name), None)
+        assert helpers.all_locales(addon, field_name) is None
 
     def test_all_locales(self):
         obj = TranslatedModel()

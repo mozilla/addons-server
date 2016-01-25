@@ -5,7 +5,6 @@ from django.http import HttpRequest
 
 import pytest
 from jingo import env
-from nose.tools import eq_
 from tower import ugettext as _
 
 from amo.messages import _make_message, info
@@ -46,7 +45,7 @@ def test_no_dupes():
     info(request, 'Another Title', 'Another Body')
 
     storage = django_messages.get_messages(request)
-    eq_(len(storage), 2, 'Too few or too many messages recorded.')
+    assert len(storage) == 2
 
 
 def test_l10n_dups():
@@ -59,7 +58,7 @@ def test_l10n_dups():
     info(request, _('Another Title'), _('Another Body'))
 
     storage = django_messages.get_messages(request)
-    eq_(len(storage), 2, 'Too few or too many messages recorded.')
+    assert len(storage) == 2
 
 
 def test_unicode_dups():
@@ -72,7 +71,7 @@ def test_unicode_dups():
     info(request, u'Another Titlé', u'Another Body')
 
     storage = django_messages.get_messages(request)
-    eq_(len(storage), 2, 'Too few or too many messages recorded.')
+    assert len(storage) == 2
 
 
 def test_html_rendered_properly():

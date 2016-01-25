@@ -1,5 +1,4 @@
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from lib.es.models import Reindexing
@@ -12,11 +11,11 @@ class TestReindexManager(amo.tests.TestCase):
 
         # Flagging for the first time.
         res = Reindexing.objects._flag_reindexing('foo', 'bar', 'baz', 'quux')
-        eq_(Reindexing.objects.filter(site='foo').count(), 1)
-        eq_(res.site, 'foo')
-        eq_(res.new_index, 'bar')
-        eq_(res.old_index, 'baz')
-        eq_(res.alias, 'quux')
+        assert Reindexing.objects.filter(site='foo').count() == 1
+        assert res.site == 'foo'
+        assert res.new_index == 'bar'
+        assert res.old_index == 'baz'
+        assert res.alias == 'quux'
 
         # Flagging for the second time.
         res = Reindexing.objects._flag_reindexing('foo', 'bar', 'baz', 'quux')

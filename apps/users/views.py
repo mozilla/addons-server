@@ -389,7 +389,6 @@ def _login(request, template=None, data=None, dont_redirect=False):
                     username=request.POST['username'],
                     signature='AUTHFAIL',
                     msg='The username was invalid')
-            pass
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
     r = auth.views.login(request, template_name=template,
                          redirect_field_name='to',

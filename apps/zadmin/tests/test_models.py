@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 from amo.tests import TestCase
 from zadmin.models import DownloadSource
@@ -11,5 +10,5 @@ class TestDownloadSource(TestCase):
             name='home', type='full',
             description='This is obviously for the homepage')
         d = DownloadSource.objects.filter(id=created.id)
-        eq_(d.count(), 1)
-        eq_(d[0].__unicode__(), 'home (full)')
+        assert d.count() == 1
+        assert d[0].__unicode__() == 'home (full)'

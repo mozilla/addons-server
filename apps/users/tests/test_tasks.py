@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import pytest
-from nose.tools import eq_
 from PIL import Image
 
 from amo.tests.test_helpers import get_image_path
@@ -42,12 +41,12 @@ def test_resize_photo():
     shutil.copyfile(somepic, src.name)
 
     src_image = Image.open(src.name)
-    eq_(src_image.size, (64, 64))
+    assert src_image.size == (64, 64)
     resize_photo(src.name, dest.name, locally=True)
 
     # Image is smaller than 200x200 so it should stay the same.
     dest_image = Image.open(dest.name)
-    eq_(dest_image.size, (64, 64))
+    assert dest_image.size == (64, 64)
 
     assert not os.path.exists(src.name)
 
@@ -59,10 +58,10 @@ def test_resize_photo_poorly():
                                       delete=False, dir=settings.TMP_PATH)
     shutil.copyfile(somepic, src.name)
     src_image = Image.open(src.name)
-    eq_(src_image.size, (339, 128))
+    assert src_image.size == (339, 128)
 
     resize_photo(src.name, src.name)
 
     # assert nothing happenned
     src_image = Image.open(src.name)
-    eq_(src_image.size, (339, 128))
+    assert src_image.size == (339, 128)

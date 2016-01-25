@@ -4,7 +4,6 @@ from django.conf import settings
 from django.core.management import call_command
 
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
@@ -12,6 +11,7 @@ from bandwagon.models import Collection, CollectionAddon
 from stats import cron, tasks
 from stats.models import (AddonCollectionCount, Contribution, DownloadCount,
                           GlobalStat, ThemeUserCount, UpdateCount)
+import pytest
 
 
 class TestGlobalStats(amo.tests.TestCase):
@@ -21,18 +21,15 @@ class TestGlobalStats(amo.tests.TestCase):
 
         date = datetime.date(2009, 6, 1)
         job = 'addon_total_downloads'
-
-        eq_(GlobalStat.objects.no_cache().filter(date=date,
-                                                 name=job).count(), 0)
+        assert GlobalStat.objects.no_cache().filter(date=date, name=job).count() == 0
         tasks.update_global_totals(job, date)
-        eq_(len(GlobalStat.objects.no_cache().filter(date=date,
-                                                     name=job)), 1)
+        assert len(GlobalStat.objects.no_cache().filter(date=date, name=job)) == 1
 
     def test_input(self):
         for x in ['2009-1-1',
                   datetime.datetime(2009, 1, 1),
                   datetime.datetime(2009, 1, 1, 11, 0)]:
-            with self.assertRaises((TypeError, ValueError)):
+            with pytest.raises((TypeError, ValueError)):
                 tasks._get_daily_jobs(x)
 
 
@@ -53,8 +50,7 @@ class TestGoogleAnalytics(amo.tests.TestCase):
             start_date=d, end_date=d)
         get.execute.return_value = {'rows': [[49]]}
         cron.update_google_analytics(d)
-        eq_(GlobalStat.objects.get(name='webtrends_DailyVisitors',
-                                   date=d).count, 49)
+        assert GlobalStat.objects.get(name='webtrends_DailyVisitors', date=d).count == 49
 
 
 class TestTotalContributions(amo.tests.TestCase):
@@ -69,7 +65,7 @@ class TestTotalContributions(amo.tests.TestCase):
 
         tasks.addon_total_contributions(3615)
         a = Addon.objects.no_cache().get(pk=3615)
-        eq_(float(a.total_contributions), 9.99)
+        assert float(a.total_contributions) == 9.99
 
         c = Contribution()
         c.addon_id = 3615
@@ -78,7 +74,7 @@ class TestTotalContributions(amo.tests.TestCase):
 
         tasks.addon_total_contributions(3615)
         a = Addon.objects.no_cache().get(pk=3615)
-        eq_(float(a.total_contributions), 19.99)
+        assert float(a.total_contributions) == 19.99
 
 
 @mock.patch('stats.management.commands.index_stats.create_tasks')
@@ -98,62 +94,54 @@ class TestIndexStats(amo.tests.TestCase):
         call_command('index_stats', addons=None, date='2009-06-01')
         qs = self.downloads.filter(date='2009-06-01')
         download = tasks_mock.call_args_list[1][0]
-        eq_(download[0], tasks.index_download_counts)
-        eq_(download[1], list(qs))
+        assert download[0] == tasks.index_download_counts
+        assert download[1] == list(qs)
 
     def test_called_three(self, tasks_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
-        eq_(tasks_mock.call_count, 4)
+        assert tasks_mock.call_count == 4
 
     def test_called_two(self, tasks_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
-        eq_(tasks_mock.call_count, 3)
+        assert tasks_mock.call_count == 3
 
     def test_by_date_range(self, tasks_mock):
         call_command('index_stats', addons=None,
                      date='2009-06-01:2009-06-07')
         qs = self.downloads.filter(date__range=('2009-06-01', '2009-06-07'))
         download = tasks_mock.call_args_list[1][0]
-        eq_(download[0], tasks.index_download_counts)
-        eq_(download[1], list(qs))
+        assert download[0] == tasks.index_download_counts
+        assert download[1] == list(qs)
 
     def test_by_addon(self, tasks_mock):
         call_command('index_stats', addons='5', date=None)
         qs = self.downloads.filter(addon=5)
         download = tasks_mock.call_args_list[1][0]
-        eq_(download[0], tasks.index_download_counts)
-        eq_(download[1], list(qs))
+        assert download[0] == tasks.index_download_counts
+        assert download[1] == list(qs)
 
     def test_by_addon_and_date(self, tasks_mock):
         call_command('index_stats', addons='4', date='2009-06-01')
         qs = self.downloads.filter(addon=4, date='2009-06-01')
         download = tasks_mock.call_args_list[1][0]
-        eq_(download[0], tasks.index_download_counts)
-        eq_(download[1], list(qs))
+        assert download[0] == tasks.index_download_counts
+        assert download[1] == list(qs)
 
     def test_multiple_addons_and_date(self, tasks_mock):
         call_command('index_stats', addons='4, 5', date='2009-10-03')
         qs = self.downloads.filter(addon__in=[4, 5], date='2009-10-03')
         download = tasks_mock.call_args_list[1][0]
-        eq_(download[0], tasks.index_download_counts)
-        eq_(download[1], list(qs))
+        assert download[0] == tasks.index_download_counts
+        assert download[1] == list(qs)
 
     def test_no_addon_or_date(self, tasks_mock):
         call_command('index_stats', addons=None, date=None)
         calls = tasks_mock.call_args_list
         updates = list(self.updates.values_list('date', flat=True))
         downloads = list(self.downloads.values_list('date', flat=True))
-
-        # Check that we're calling the task in increments of 5 days.
-        # We add 1 because picking up 11 days means we have start/stop pairs at
-        # [0, 5], [5, 10], [10, 15]
-        eq_(len([c for c in calls if c[0][0] == tasks.index_update_counts]),
-            1 + (updates[0] - updates[-1]).days / 5)
-        eq_(len([c for c in calls
-                 if c[0][0] == tasks.index_theme_user_counts]),
-            1 + (updates[0] - updates[-1]).days / 5)
-        eq_(len([c for c in calls if c[0][0] == tasks.index_download_counts]),
-            1 + (downloads[0] - downloads[-1]).days / 5)
+        assert len([c for c in calls if c[0][0] == tasks.index_update_counts]) == 1 + (updates[0] - updates[-1]).days / 5
+        assert len([c for c in calls if c[0][0] == tasks.index_theme_user_counts]) == 1 + (updates[0] - updates[-1]).days / 5
+        assert len([c for c in calls if c[0][0] == tasks.index_download_counts]) == 1 + (downloads[0] - downloads[-1]).days / 5
 
 
 class TestIndexLatest(amo.tests.ESTestCase):
@@ -189,6 +177,4 @@ class TestUpdateDownloads(amo.tests.TestCase):
 
         with self.assertNumQueries(3):
             cron.update_addons_collections_downloads()
-        eq_(CollectionAddon.objects.get(addon_id=3615,
-                                        collection_id=80).downloads,
-            15)
+        assert CollectionAddon.objects.get(addon_id=3615, collection_id=80).downloads == 15

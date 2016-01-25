@@ -116,7 +116,6 @@ def with_user(fn):
                 except TypeError:
                     log.info('Error decoding next_path {}'.format(
                         encoded_path))
-                    pass
             if not is_safe_url(next_path):
                 next_path = None
             return fn(self, request, user=user, identity=identity,

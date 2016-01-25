@@ -1,10 +1,10 @@
 from django.core.urlresolvers import reverse, NoReverseMatch
 
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo.tests
 from addons.models import Addon
+import pytest
 
 
 class TestManagement(amo.tests.TestCase):
@@ -16,7 +16,7 @@ class TestManagement(amo.tests.TestCase):
         url = reverse('addons.detail_more', args=['a3615'])
         r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
-        eq_(len(doc('li.tag')), 4)
+        assert len(doc('li.tag')) == 4
         assert 'Tags' in [d.text for d in doc('h3')]
 
 
@@ -72,13 +72,13 @@ class TestXSSURLFail(amo.tests.TestCase):
 
     def test_tags_xss_home(self):
         """Test xss tag home."""
-        self.assertRaises(NoReverseMatch, reverse,
-                          'tags.detail', args=[self.xss])
+        with pytest.raises(NoReverseMatch):
+            reverse('tags.detail', args=[self.xss])
 
     def test_tags_xss_cloud(self):
         """Test xss tag cloud."""
-        self.assertRaises(NoReverseMatch, reverse,
-                          'tags.top_cloud', args=[self.xss])
+        with pytest.raises(NoReverseMatch):
+            reverse('tags.top_cloud', args=[self.xss])
 
     def test_no_reverse(self):
         assert not self.tag.can_reverse()

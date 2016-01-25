@@ -2,7 +2,6 @@
 import json
 from datetime import datetime
 
-from nose.tools import eq_
 
 import amo
 import amo.tests
@@ -25,14 +24,12 @@ class LogTest(amo.tests.TestCase):
                                  type=amo.ADDON_EXTENSION)
         magic = dict(title='no', body='way!')
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
-
-        eq_(al.details, magic)
-        eq_(al._details, json.dumps(magic))
+        assert al.details == magic
+        assert al._details == json.dumps(magic)
 
     def test_created(self):
         """
         Verify that we preserve the create date.
         """
         al = amo.log(amo.LOG.CUSTOM_TEXT, 'hi', created=datetime(2009, 1, 1))
-
-        eq_(al.created, datetime(2009, 1, 1))
+        assert al.created == datetime(2009, 1, 1)

@@ -15,7 +15,6 @@ from django.test.utils import override_settings
 import mock
 import pytest
 from mock import patch
-from nose.tools import eq_
 
 import amo
 import amo.tests
@@ -222,39 +221,39 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_eula_url(self):
         f = File.objects.get(id=67442)
-        eq_(f.eula_url(), '/en-US/firefox/addon/3615/eula/67442')
+        assert f.eula_url() == '/en-US/firefox/addon/3615/eula/67442'
 
     def test_generate_filename(self):
         f = File.objects.get(id=67442)
-        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
+        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_pretty_filename(self):
         f = File.objects.get(id=67442)
         f.generate_filename()
-        eq_(f.pretty_filename(), 'delicious_bookmarks-2.1.072-fx.xpi')
+        assert f.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_pretty_filename_short(self):
         f = File.objects.get(id=67442)
         f.version.addon.name = 'A Place Where The Sea Remembers Your Name'
         f.generate_filename()
-        eq_(f.pretty_filename(), 'a_place_where_the...-2.1.072-fx.xpi')
+        assert f.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
 
     def test_generate_filename_platform_specific(self):
         f = File.objects.get(id=67442)
         f.platform = amo.PLATFORM_MAC.id
-        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx-mac.xpi')
+        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx-mac.xpi'
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
         f.version.compatible_apps = (amo.FIREFOX, amo.THUNDERBIRD)
-        eq_(f.generate_filename(), 'delicious_bookmarks-2.1.072-fx+tb.xpi')
+        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx+tb.xpi'
 
     def test_generate_filename_ja(self):
         f = File()
         f.version = Version(version='0.1.7')
         f.version.compatible_apps = (amo.FIREFOX,)
         f.version.addon = Addon(name=u' フォクすけ  といっしょ')
-        eq_(f.generate_filename(), 'addon-0.1.7-fx.xpi')
+        assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
     def clean_files(self, f):
         if f.mirror_file_path and storage.exists(f.mirror_file_path):
@@ -277,17 +276,17 @@ class TestFile(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_file_is_mirrorable(self):
         f = File.objects.get(pk=67442)
-        eq_(f.is_mirrorable(), True)
+        assert f.is_mirrorable() is True
 
         f.update(status=amo.STATUS_DISABLED)
-        eq_(f.is_mirrorable(), False)
+        assert f.is_mirrorable() is False
 
     def test_addon(self):
         f = File.objects.get(pk=67442)
         addon_id = f.version.addon_id
         addon = Addon.objects.no_cache().get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
-        eq_(f.addon.id, addon_id)
+        assert f.addon.id == addon_id
 
 
 class TestTrackFileStatusChange(amo.tests.TestCase):
@@ -372,22 +371,22 @@ class TestParseXpi(amo.tests.TestCase):
                'type': 1}
         parsed = self.parse()
         for key, value in exp.items():
-            eq_(parsed[key], value)
+            assert parsed[key] == value
 
     def test_parse_apps(self):
         exp = (amo.FIREFOX,
                amo.FIREFOX.id,
                AppVersion.objects.get(version='3.0'),
                AppVersion.objects.get(version='3.6.*'))
-        eq_(self.parse()['apps'], [exp])
+        assert self.parse()['apps'] == [exp]
 
     def test_parse_apps_bad_appver(self):
         AppVersion.objects.all().delete()
-        eq_(self.parse()['apps'], [])
+        assert self.parse()['apps'] == []
 
     @mock.patch.object(amo.FIREFOX, 'guid', 'iamabadguid')
     def test_parse_apps_bad_guid(self):
-        eq_(self.parse()['apps'], [])
+        assert self.parse()['apps'] == []
 
     def test_guid_match(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
@@ -397,22 +396,21 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_guid_nomatch(self):
         addon = Addon.objects.create(guid='xxx', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon)
-        eq_(e.exception.messages, ["Add-on ID doesn't match add-on."])
+        assert exc.value.messages == ["Add-on ID doesn't match add-on."]
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='guid@xpi', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        eq_(e.exception.messages, ['Duplicate add-on ID found.'])
+        assert exc.value.messages == ['Duplicate add-on ID found.']
 
     def test_match_type(self):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon)
-        eq_(e.exception.messages,
-            ["<em:type> doesn't match add-on"])
+        assert exc.value.messages == ["<em:type> doesn't match add-on"]
 
     def test_match_type_extension_for_experiments(self):
         parsed = self.parse(filename='experiment.xpi')
@@ -428,78 +426,78 @@ class TestParseXpi(amo.tests.TestCase):
 
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(addon, filename='search.xml')
-        eq_(e.exception.messages, ["<em:type> doesn't match add-on"])
+        assert exc.value.messages == ["<em:type> doesn't match add-on"]
 
     def test_unknown_app(self):
         data = self.parse(filename='theme-invalid-app.jar')
-        eq_(data['apps'], [])
+        assert data['apps'] == []
 
     def test_bad_zipfile(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             parse_addon('baxmldzip.xpi', None)
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        assert exc.value.messages == ['Could not parse install.rdf.']
 
     def test_parse_dictionary(self):
         result = self.parse(filename='dictionary-test.xpi')
-        eq_(result['type'], amo.ADDON_DICT)
+        assert result['type'] == amo.ADDON_DICT
 
     def test_parse_dictionary_explicit_type(self):
         result = self.parse(filename='dictionary-explicit-type-test.xpi')
-        eq_(result['type'], amo.ADDON_DICT)
+        assert result['type'] == amo.ADDON_DICT
 
     def test_parse_dictionary_extension(self):
         result = self.parse(filename='dictionary-extension-test.xpi')
-        eq_(result['type'], amo.ADDON_EXTENSION)
+        assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_jar(self):
         result = self.parse(filename='theme.jar')
-        eq_(result['type'], amo.ADDON_THEME)
+        assert result['type'] == amo.ADDON_THEME
 
     def test_parse_theme_by_type(self):
         result = self.parse(filename='theme-type.xpi')
-        eq_(result['type'], amo.ADDON_THEME)
+        assert result['type'] == amo.ADDON_THEME
 
     def test_parse_theme_with_internal_name(self):
         result = self.parse(filename='theme-internal-name.xpi')
-        eq_(result['type'], amo.ADDON_THEME)
+        assert result['type'] == amo.ADDON_THEME
 
     def test_parse_no_type(self):
         result = self.parse(filename='no-type.xpi')
-        eq_(result['type'], amo.ADDON_EXTENSION)
+        assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_invalid_type(self):
         result = self.parse(filename='invalid-type.xpi')
-        eq_(result['type'], amo.ADDON_EXTENSION)
+        assert result['type'] == amo.ADDON_EXTENSION
 
     def test_parse_langpack(self):
         result = self.parse(filename='langpack.xpi')
-        eq_(result['type'], amo.ADDON_LPAPP)
+        assert result['type'] == amo.ADDON_LPAPP
 
     def test_good_version_number(self):
         check_xpi_info({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
         check_xpi_info({'guid': 'guid', 'version': '1' * 32})
 
     def test_bad_version_number(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             check_xpi_info({'guid': 'guid', 'version': 'bad #version'})
-        msg = e.exception.messages[0]
+        msg = exc.value.messages[0]
         assert msg.startswith('Version numbers should only contain'), msg
 
     def test_long_version_number(self):
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             check_xpi_info({'guid': 'guid', 'version': '1' * 33})
-        msg = e.exception.messages[0]
-        eq_(msg, 'Version numbers should have fewer than 32 characters.')
+        msg = exc.value.messages[0]
+        assert msg == 'Version numbers should have fewer than 32 characters.'
 
     def test_strict_compat_undefined(self):
         result = self.parse()
-        eq_(result['strict_compatibility'], False)
+        assert result['strict_compatibility'] is False
 
     def test_strict_compat_enabled(self):
         result = self.parse(filename='strict-compat.xpi')
-        eq_(result['strict_compatibility'], True)
+        assert result['strict_compatibility'] is True
 
 
 class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
@@ -525,14 +523,14 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
                'version': '2.1.106'}
         parsed = self.parse()
         for key, value in exp.items():
-            eq_(parsed[key], value)
+            assert parsed[key] == value
 
     def test_parse_apps(self):
         exp = (amo.FIREFOX,
                amo.FIREFOX.id,
                AppVersion.objects.get(version='3.0'),
                AppVersion.objects.get(version='4.0b3pre'))
-        eq_(self.parse()['apps'], [exp])
+        assert self.parse()['apps'] == [exp]
 
     @mock.patch('files.utils.rdflib.Graph')
     def test_no_manifest_node(self, graph_mock):
@@ -540,9 +538,9 @@ class TestParseAlternateXpi(amo.tests.TestCase, amo.tests.AMOPaths):
         graph_mock.return_value.parse.return_value = rdf_mock
         rdf_mock.triples.return_value = iter([])
         rdf_mock.subjects.return_value = iter([])
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        assert exc.value.messages == ['Could not parse install.rdf.']
 
 
 class TestFileUpload(UploadTest):
@@ -559,16 +557,16 @@ class TestFileUpload(UploadTest):
                                     len(self.data), **params)
 
     def test_from_post_write_file(self):
-        eq_(storage.open(self.upload().path).read(), self.data)
+        assert storage.open(self.upload().path).read() == self.data
 
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        eq_(upload.name, '{0}_filename.xpi'.format(upload.uuid))
+        assert upload.name == '{0}_filename.xpi'.format(upload.uuid)
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()
-        eq_(self.upload().hash, 'sha256:%s' % hash)
+        assert self.upload().hash == 'sha256:%s' % hash
 
     def test_from_post_extra_params(self):
         upload = self.upload(automated_signing=True, addon_id=3615)
@@ -591,8 +589,8 @@ class TestFileUpload(UploadTest):
         upload = FileUpload.objects.create(validation='{"errors": 1}')
         assert not upload.valid
 
-        with self.assertRaises(ValueError):
-            upload = FileUpload.objects.create(validation='wtf')
+        with pytest.raises(ValueError):
+            FileUpload.objects.create(validation='wtf')
 
     def test_update_with_validation(self):
         upload = FileUpload.objects.create()
@@ -638,7 +636,7 @@ class TestFileUpload(UploadTest):
         version = Version.objects.filter(addon__pk=3615)[0]
         plat = amo.PLATFORM_LINUX.id
         file_ = File.from_upload(upload, version, plat)
-        eq_(file_.binary, True)
+        assert file_.binary is True
 
     def test_validator_sets_binary_via_content(self):
         validation = json.dumps({
@@ -659,7 +657,7 @@ class TestFileUpload(UploadTest):
                                  validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
         file_ = File.from_upload(upload, version, amo.PLATFORM_LINUX.id)
-        eq_(file_.binary, True)
+        assert file_.binary is True
 
     def test_validator_sets_require_chrome(self):
         validation = json.dumps({
@@ -680,7 +678,7 @@ class TestFileUpload(UploadTest):
                                  validation=validation)
         version = Version.objects.filter(addon__pk=3615)[0]
         file_ = File.from_upload(upload, version, amo.PLATFORM_LINUX.id)
-        eq_(file_.requires_chrome, True)
+        assert file_.requires_chrome is True
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
@@ -883,37 +881,37 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
-        eq_(file_.jetpack_version, '1.0b4')
-        eq_(['jetpack'], [t.tag_text for t in self.addon.tags.all()])
+        assert file_.jetpack_version == '1.0b4'
+        assert ['jetpack'] == [t.tag_text for t in self.addon.tags.all()]
 
     def test_jetpack_with_invalid_json(self):
         upload = self.upload('jetpack_invalid')
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
-        eq_(file_.jetpack_version, None)
+        assert file_.jetpack_version is None
         assert not self.addon.tags.exists()
 
     def test_filename(self):
         upload = self.upload('jetpack')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename, 'xxx-0.1-mac.xpi')
+        assert f.filename == 'xxx-0.1-mac.xpi'
 
     def test_filename_no_extension(self):
         upload = self.upload('jetpack')
         # Remove the exension.
         upload.name = upload.name.rsplit('.', 1)[0]
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename, 'xxx-0.1-mac.xpi')
+        assert f.filename == 'xxx-0.1-mac.xpi'
 
     def test_file_validation(self):
         upload = self.upload('jetpack')
         file = File.from_upload(upload, self.version, self.platform)
         fv = FileValidation.objects.get(file=file)
-        eq_(json.loads(fv.validation), json.loads(upload.validation))
-        eq_(fv.valid, True)
-        eq_(fv.errors, 0)
-        eq_(fv.warnings, 1)
-        eq_(fv.notices, 2)
+        assert json.loads(fv.validation) == json.loads(upload.validation)
+        assert fv.valid is True
+        assert fv.errors == 0
+        assert fv.warnings == 1
+        assert fv.notices == 2
 
     def test_file_hash(self):
         upload = self.upload('jetpack')
@@ -943,76 +941,76 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload(u'jétpack')
         self.version.addon.name = u'jéts!'
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename, u'jets-0.1-mac.xpi')
+        assert f.filename == u'jets-0.1-mac.xpi'
 
     def test_size(self):
         upload = self.upload('extension')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.size, 2264)
+        assert f.size == 2264
 
     def test_size_small(self):
         upload = self.upload('alt-rdf')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.size, 675)
+        assert f.size == 675
 
     def test_beta_version_non_public(self):
         # Only public add-ons can get beta versions.
         upload = self.upload('beta-extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
-        eq_(self.addon.status, amo.STATUS_LITE)
+        assert self.addon.status == amo.STATUS_LITE
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_UNREVIEWED)
+        assert f.status == amo.STATUS_UNREVIEWED
 
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, is_beta=True,
                              parse_data=d)
-        eq_(f.status, amo.STATUS_BETA)
+        assert f.status == amo.STATUS_BETA
 
     def test_trusted_public_to_beta(self):
         upload = self.upload('beta-extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, is_beta=True,
                              parse_data=d)
-        eq_(f.status, amo.STATUS_BETA)
+        assert f.status == amo.STATUS_BETA
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_UNREVIEWED)
+        assert f.status == amo.STATUS_UNREVIEWED
 
     def test_trusted_public_to_public(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_PUBLIC)
+        assert f.status == amo.STATUS_PUBLIC
 
     def test_lite_to_unreviewed(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE)
-        eq_(self.addon.status, amo.STATUS_LITE)
+        assert self.addon.status == amo.STATUS_LITE
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_UNREVIEWED)
+        assert f.status == amo.STATUS_UNREVIEWED
 
     def test_trusted_lite_to_lite(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_LITE, trusted=True)
-        eq_(self.addon.status, amo.STATUS_LITE)
+        assert self.addon.status == amo.STATUS_LITE
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_LITE)
+        assert f.status == amo.STATUS_LITE
 
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
@@ -1020,9 +1018,9 @@ class TestFileFromUpload(UploadTest):
         with mock.patch('addons.models.Addon.update_status'):
             # mock update_status because it doesn't like Addons without files.
             self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        eq_(self.addon.status, amo.STATUS_LITE_AND_NOMINATED)
+        assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.status, amo.STATUS_UNREVIEWED)
+        assert f.status == amo.STATUS_UNREVIEWED
 
     def test_trusted_litenominated_to_litenominated(self):
         upload = self.upload('extension')
@@ -1045,28 +1043,28 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('strict-compat')
         d = parse_addon(upload.path)
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        eq_(f.strict_compatibility, True)
+        assert f.strict_compatibility is True
 
     def test_theme_extension(self):
         upload = self.upload('theme.jar')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename.endswith('.xpi'), True)
+        assert f.filename.endswith('.xpi') is True
 
     def test_extension_extension(self):
         upload = self.upload('extension.xpi')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename.endswith('.xpi'), True)
+        assert f.filename.endswith('.xpi') is True
         assert not self.addon.tags.exists()
 
     def test_langpack_extension(self):
         upload = self.upload('langpack.xpi')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename.endswith('.xpi'), True)
+        assert f.filename.endswith('.xpi') is True
 
     def test_search_extension(self):
         upload = self.upload('search.xml')
         f = File.from_upload(upload, self.version, self.platform)
-        eq_(f.filename.endswith('.xml'), True)
+        assert f.filename.endswith('.xml') is True
 
     def test_multi_package(self):
         upload = self.upload('multi-package')
@@ -1139,19 +1137,19 @@ class TestParseSearch(amo.tests.TestCase, amo.tests.AMOPaths):
 
     def test_basics(self):
         # This test breaks if the day changes. Have fun with that!
-        eq_(self.parse(), {
+        assert self.parse() == {
             'guid': None,
             'name': 'search tool',
             'version': datetime.now().strftime('%Y%m%d'),
             'summary': 'Search Engine for Firefox',
-            'type': amo.ADDON_SEARCH})
+            'type': amo.ADDON_SEARCH}
 
     @mock.patch('files.utils.extract_search')
     def test_extract_search_error(self, extract_mock):
         extract_mock.side_effect = Exception
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse()
-        assert e.exception.messages[0].startswith('Could not parse ')
+        assert exc.value.messages[0].startswith('Could not parse ')
 
 
 @mock.patch('files.utils.parse_xpi')
@@ -1172,7 +1170,7 @@ def test_parse_xpi():
     firefm = os.path.join(settings.ROOT,
                           'apps/files/fixtures/files/firefm.xpi')
     rdf = parse_xpi(open(firefm))
-    eq_(rdf['name'], 'Fire.fm')
+    assert rdf['name'] == 'Fire.fm'
 
 
 class LanguagePackBase(UploadTest):
@@ -1200,32 +1198,31 @@ class TestLanguagePack(LanguagePackBase):
 
     def test_extract_no_chrome_manifest(self):
         obj = self.file_create('langpack')
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
 
     def test_zip_invalid(self):
         obj = self.file_create('search.xml')
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
 
     @mock.patch('files.utils.SafeUnzip.extract_path')
     def test_no_locale_browser(self, extract_path):
         extract_path.return_value = 'some garbage'
         obj = self.file_create('langpack-localepicker')
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
 
     @mock.patch('files.utils.SafeUnzip.extract_path')
     def test_corrupt_locale_browser_path(self, extract_path):
         extract_path.return_value = 'locale browser de woot?!'
         obj = self.file_create('langpack-localepicker')
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
         extract_path.return_value = 'locale browser de woo:t?!as'
-        # Result should be 'locale browser de woo:t?!as', but we have caching.
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
 
     @mock.patch('files.utils.SafeUnzip.extract_path')
     def test_corrupt_locale_browser_data(self, extract_path):
         extract_path.return_value = 'locale browser de jar:install.rdf!foo'
         obj = self.file_create('langpack-localepicker')
-        eq_(obj.get_localepicker(), '')
+        assert obj.get_localepicker() == ''
 
     def test_hits_cache(self):
         obj = self.file_create('langpack-localepicker')

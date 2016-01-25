@@ -4,7 +4,6 @@ from django.utils import translation, encoding
 import pytest
 import tower
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
@@ -31,13 +30,14 @@ class SharingHelpersTestCase(BaseTestCase):
                'LANG': translation.get_language()}
 
         doc = pq(sharing_box(ctx))
-        self.assert_(doc.html())
-        self.assertEquals(doc('li').length, len(sharing.SERVICES_LIST))
+        assert doc.html()
+        assert doc('li').length == len(sharing.SERVICES_LIST)
 
         # Make sure services are in the right order.
         for i in range(len(sharing.SERVICES_LIST)):
-            self.assertEquals(doc('li').eq(i).attr('class'),
-                              sharing.SERVICES_LIST[i].shortname)
+            assert (
+                doc('li').eq(i).attr('class')
+                == sharing.SERVICES_LIST[i].shortname)
             assert doc('li a').eq(i).attr('target') in ('_blank', '_self'), (
                 'Sharing link target must either be blank or self.')
 
@@ -74,7 +74,7 @@ def test_share_form():
         'description': 'x' * 250 + 'abcdef',
     })
     form.full_clean()
-    eq_(form.cleaned_data['description'], 'x' * 250 + '...')
+    assert form.cleaned_data['description'] == 'x' * 250 + '...'
     assert form.cleaned_data['url'].startswith('http'), (
         "Unexpected: URL not absolute")
 

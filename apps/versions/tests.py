@@ -12,7 +12,6 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
-from nose.tools import eq_
 from pyquery import PyQuery
 
 import amo
@@ -45,53 +44,47 @@ pytestmark = pytest.mark.django_db
 
 def test_version_int():
     """Tests that version_int. Corrects our versions."""
-    eq_(version_int('3.5.0a1pre2'), 3050000001002)
-    eq_(version_int(''), 200100)
-    eq_(version_int('0'), 200100)
-    eq_(version_int('*'), 99000000200100)
-    eq_(version_int(MAXVERSION), MAXVERSION)
-    eq_(version_int(MAXVERSION + 1), MAXVERSION)
-    eq_(version_int('9999999'), MAXVERSION)
+    assert version_int('3.5.0a1pre2') == 3050000001002
+    assert version_int('') == 200100
+    assert version_int('0') == 200100
+    assert version_int('*') == 99000000200100
+    assert version_int(MAXVERSION) == MAXVERSION
+    assert version_int(MAXVERSION + 1) == MAXVERSION
+    assert version_int('9999999') == MAXVERSION
 
 
 def test_version_int_compare():
-    eq_(version_int('3.6.*'), version_int('3.6.99'))
+    assert version_int('3.6.*') == version_int('3.6.99')
     assert version_int('3.6.*') > version_int('3.6.8')
 
 
 def test_version_asterix_compare():
-    eq_(version_int('*'), version_int('99'))
+    assert version_int('*') == version_int('99')
     assert version_int('98.*') < version_int('*')
-    eq_(version_int('5.*'), version_int('5.99'))
+    assert version_int('5.*') == version_int('5.99')
     assert version_int('5.*') > version_int('5.0.*')
 
 
 def test_version_dict():
-    eq_(version_dict('5.0'),
-        {'major': 5,
-         'minor1': 0,
-         'minor2': None,
-         'minor3': None,
-         'alpha': None,
-         'alpha_ver': None,
-         'pre': None,
-         'pre_ver': None})
+    assert version_dict('5.0') == {
+        'major': 5, 'minor1': 0, 'minor2': None, 'minor3': None,
+        'alpha': None, 'alpha_ver': None, 'pre': None, 'pre_ver': None}
 
 
 def test_version_int_unicode():
-    eq_(version_int(u'\u2322 ugh stephend'), 200100)
+    assert version_int(u'\u2322 ugh stephend') == 200100
 
 
 def test_dict_from_int():
     d = dict_from_int(3050000001002)
-    eq_(d['major'], 3)
-    eq_(d['minor1'], 5)
-    eq_(d['minor2'], 0)
-    eq_(d['minor3'], 0)
-    eq_(d['alpha'], 'a')
-    eq_(d['alpha_ver'], 1)
-    eq_(d['pre'], 'pre')
-    eq_(d['pre_ver'], 2)
+    assert d['major'] == 3
+    assert d['minor1'] == 5
+    assert d['minor2'] == 0
+    assert d['minor3'] == 0
+    assert d['alpha'] == 'a'
+    assert d['alpha_ver'] == 1
+    assert d['pre'] == 'pre'
+    assert d['pre_ver'] == 2
 
 
 @pytest.mark.parametrize("addon_type", amo.GROUP_TYPE_ADDON)
@@ -139,41 +132,38 @@ class TestVersion(amo.tests.TestCase):
     def test_mobile_version_supports_only_mobile_platforms(self):
         self.version.apps.all().delete()
         self.target_mobile()
-        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            [u'android'])
+        assert sorted(self.named_plat(self.version.compatible_platforms())) == [u'android']
 
     def test_mixed_version_supports_all_platforms(self):
         self.target_mobile()
-        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['all', 'android', 'linux', 'mac', 'windows'])
+        assert sorted(self.named_plat(self.version.compatible_platforms())) == ['all', 'android', 'linux', 'mac', 'windows']
 
     def test_non_mobile_version_supports_non_mobile_platforms(self):
-        eq_(sorted(self.named_plat(self.version.compatible_platforms())),
-            ['all', 'linux', 'mac', 'windows'])
+        assert sorted(self.named_plat(self.version.compatible_platforms())) == ['all', 'linux', 'mac', 'windows']
 
     def test_major_minor(self):
         """Check that major/minor/alpha is getting set."""
         v = Version(version='3.0.12b2')
-        eq_(v.major, 3)
-        eq_(v.minor1, 0)
-        eq_(v.minor2, 12)
-        eq_(v.minor3, None)
-        eq_(v.alpha, 'b')
-        eq_(v.alpha_ver, 2)
+        assert v.major == 3
+        assert v.minor1 == 0
+        assert v.minor2 == 12
+        assert v.minor3 is None
+        assert v.alpha == 'b'
+        assert v.alpha_ver == 2
 
         v = Version(version='3.6.1apre2+')
-        eq_(v.major, 3)
-        eq_(v.minor1, 6)
-        eq_(v.minor2, 1)
-        eq_(v.alpha, 'a')
-        eq_(v.pre, 'pre')
-        eq_(v.pre_ver, 2)
+        assert v.major == 3
+        assert v.minor1 == 6
+        assert v.minor2 == 1
+        assert v.alpha == 'a'
+        assert v.pre == 'pre'
+        assert v.pre_ver == 2
 
         v = Version(version='')
-        eq_(v.major, None)
-        eq_(v.minor1, None)
-        eq_(v.minor2, None)
-        eq_(v.minor3, None)
+        assert v.major is None
+        assert v.minor1 is None
+        assert v.minor2 is None
+        assert v.minor3 is None
 
     def test_has_files(self):
         v = Version.objects.get(pk=81551)
@@ -204,18 +194,18 @@ class TestVersion(amo.tests.TestCase):
 
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
-        eq_(version.files.count(), 1)
+        assert version.files.count() == 1
         version.delete()
-        eq_(version.files.count(), 0)
+        assert version.files.count() == 0
 
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)
         amo.set_user(user)
         # The transform don't know bout my users.
         version = Version.objects.get(pk=81551)
-        eq_(ActivityLog.objects.count(), 0)
+        assert ActivityLog.objects.count() == 0
         version.delete()
-        eq_(ActivityLog.objects.count(), 2)
+        assert ActivityLog.objects.count() == 2
 
     def test_version_is_allowed_upload(self):
         version = Version.objects.get(pk=81551)
@@ -276,15 +266,15 @@ class TestVersion(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         # The status doesn't change for public files.
         qs = File.objects.filter(version=addon.current_version)
-        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        assert qs.all()[0].status == amo.STATUS_PUBLIC
         Version.objects.create(addon=addon)
-        eq_(qs.all()[0].status, amo.STATUS_PUBLIC)
+        assert qs.all()[0].status == amo.STATUS_PUBLIC
         assert not hide_mock.called
 
         qs.update(status=amo.STATUS_UNREVIEWED)
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
-        eq_(qs.all()[0].status, amo.STATUS_DISABLED)
+        assert qs.all()[0].status == amo.STATUS_DISABLED
         addon.current_version.all_files[0]
         assert hide_mock.called
 
@@ -296,12 +286,12 @@ class TestVersion(amo.tests.TestCase):
         version = Version.objects.create(addon=addon)
         File.objects.create(version=version, status=amo.STATUS_BETA)
         version.disable_old_files()
-        eq_(qs.all()[0].status, amo.STATUS_UNREVIEWED)
+        assert qs.all()[0].status == amo.STATUS_UNREVIEWED
 
     def test_version_int(self):
         version = Version.objects.get(pk=81551)
         version.save()
-        eq_(version.version_int, 2017200200100)
+        assert version.version_int == 2017200200100
 
     def test_large_version_int(self):
         # This version will fail to be written to the version_int
@@ -309,27 +299,26 @@ class TestVersion(amo.tests.TestCase):
         version = Version.objects.get(pk=81551)
         version.version = '1237.2319.32161734.2383290.34'
         version.save()
-        eq_(version.version_int, None)
+        assert version.version_int is None
 
     def test_version_update_info(self):
         addon = Addon.objects.get(pk=3615)
         r = self.client.get(reverse('addons.versions.update_info',
                                     args=(addon.slug, self.version.version)))
-        eq_(r.status_code, 200)
-        eq_(r['Content-Type'], 'application/xhtml+xml')
-        eq_(PyQuery(r.content)('p').html(), 'Fix for an important bug')
+        assert r.status_code == 200
+        assert r['Content-Type'] == 'application/xhtml+xml'
+        assert PyQuery(r.content)('p').html() == 'Fix for an important bug'
 
         # Test update info in another language.
         with self.activate(locale='fr'):
             r = self.client.get(reverse('addons.versions.update_info',
                                         args=(addon.slug,
                                               self.version.version)))
-            eq_(r.status_code, 200)
-            eq_(r['Content-Type'], 'application/xhtml+xml')
+            assert r.status_code == 200
+            assert r['Content-Type'] == 'application/xhtml+xml'
             assert '<br/>' in r.content, (
                 'Should be using XHTML self-closing tags!')
-            eq_(PyQuery(r.content)('p').html(),
-                u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
+            assert PyQuery(r.content)('p').html() == u"Quelque chose en français.<br/><br/>Quelque chose d'autre."
 
     def test_version_update_info_legacy_redirect(self):
         r = self.client.get('/versions/updateInfo/%s' % self.version.id,
@@ -345,40 +334,38 @@ class TestVersion(amo.tests.TestCase):
     def test_version_is_public(self):
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
-
-        # Base test. Everything is in order, the version should be public.
-        eq_(version.is_public(), True)
+        assert version.is_public() is True
 
         # Non-public file.
         self._reset_version(version)
         version.all_files[0].status = amo.STATUS_DISABLED
-        eq_(version.is_public(), False)
+        assert version.is_public() is False
 
         # Deleted version.
         self._reset_version(version)
         version.deleted = True
-        eq_(version.is_public(), False)
+        assert version.is_public() is False
 
         # Non-public addon.
         self._reset_version(version)
         with mock.patch('addons.models.Addon.is_public') as is_addon_public:
             is_addon_public.return_value = False
-            eq_(version.is_public(), False)
+            assert version.is_public() is False
 
     def test_is_compatible(self):
         # Base test for fixture before the rest.
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
-        eq_(version.is_compatible[0], True)
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
+        assert version.is_compatible[0] is True
+        assert version.is_compatible_app(amo.FIREFOX) is True
 
     def test_is_compatible_type(self):
         # Only ADDON_EXTENSIONs should be compatible.
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon)
         addon.update(type=amo.ADDON_PERSONA)
-        eq_(version.is_compatible[0], False)
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
+        assert version.is_compatible[0] is False
+        assert version.is_compatible_app(amo.FIREFOX) is True
 
     def test_is_compatible_strict_opt_in(self):
         # Add-ons opting into strict compatibility should not be compatible.
@@ -386,9 +373,9 @@ class TestVersion(amo.tests.TestCase):
         version = amo.tests.version_factory(addon=addon)
         file = version.all_files[0]
         file.update(strict_compatibility=True)
-        eq_(version.is_compatible[0], False)
+        assert version.is_compatible[0] is False
         assert 'strict compatibility' in ''.join(version.is_compatible[1])
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
+        assert version.is_compatible_app(amo.FIREFOX) is True
 
     def test_is_compatible_binary_components(self):
         # Add-ons using binary components should not be compatible.
@@ -396,19 +383,17 @@ class TestVersion(amo.tests.TestCase):
         version = amo.tests.version_factory(addon=addon)
         file = version.all_files[0]
         file.update(binary_components=True)
-        eq_(version.is_compatible[0], False)
+        assert version.is_compatible[0] is False
         assert 'binary components' in ''.join(version.is_compatible[1])
-        eq_(version.is_compatible_app(amo.FIREFOX), True)
+        assert version.is_compatible_app(amo.FIREFOX) is True
 
     def test_is_compatible_app_max_version(self):
         # Add-ons with max app version < 4.0 should not be compatible.
         addon = Addon.objects.get(id=3615)
         version = amo.tests.version_factory(addon=addon, max_app_version='3.5')
-        eq_(version.is_compatible_app(amo.FIREFOX), False)
-        # An app that isn't supported should also be False.
-        eq_(version.is_compatible_app(amo.THUNDERBIRD), False)
-        # An app that can't do d2c should also be False.
-        eq_(version.is_compatible_app(amo.UNKNOWN_APP), False)
+        assert version.is_compatible_app(amo.FIREFOX) is False
+        assert version.is_compatible_app(amo.THUNDERBIRD) is False
+        assert version.is_compatible_app(amo.UNKNOWN_APP) is False
 
     def test_compat_override_app_versions(self):
         addon = Addon.objects.get(id=3615)
@@ -418,7 +403,7 @@ class TestVersion(amo.tests.TestCase):
                                            max_version=version.version,
                                            min_app_version='10.0a1',
                                            max_app_version='10.*')
-        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
+        assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
     def test_compat_override_app_versions_wildcard(self):
         addon = Addon.objects.get(id=3615)
@@ -428,7 +413,7 @@ class TestVersion(amo.tests.TestCase):
                                            max_version='*',
                                            min_app_version='10.0a1',
                                            max_app_version='10.*')
-        eq_(version.compat_override_app_versions(), [('10.0a1', '10.*')])
+        assert version.compat_override_app_versions() == [('10.0a1', '10.*')]
 
     @mock.patch('addons.models.Addon.invalidate_d2c_versions')
     def test_invalidate_d2c_version_signals_on_delete(self, inv_mock):
@@ -467,12 +452,11 @@ class TestVersion(amo.tests.TestCase):
                 assert self.version.current_queue == queue
 
     def test_get_url_path(self):
-        eq_(self.version.get_url_path(),
-            '/en-US/firefox/addon/a3615/versions/2.1.072')
+        assert self.version.get_url_path() == '/en-US/firefox/addon/a3615/versions/2.1.072'
 
     def test_unlisted_addon_get_url_path(self):
         self.version.addon.update(is_listed=False)
-        eq_(self.version.get_url_path(), '')
+        assert self.version.get_url_path() == ''
 
     def test_source_upload_path(self):
         addon = Addon.objects.get(id=3615)
@@ -570,7 +554,7 @@ class TestViews(amo.tests.TestCase):
     def test_version_detail_404(self):
         r = self.client.get(reverse('addons.versions',
                                     args=[self.addon.slug, 2]))
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
 
     def get_content(self, beta=False):
         url = reverse('addons.beta-versions' if beta else 'addons.versions',
@@ -579,14 +563,14 @@ class TestViews(amo.tests.TestCase):
 
     def test_version_source(self):
         self.addon.update(view_source=True)
-        eq_(len(self.get_content()('a.source-code')), 1)
+        assert len(self.get_content()('a.source-code')) == 1
 
     def test_version_no_source_one(self):
-        eq_(len(self.get_content()('a.source-code')), 0)
+        assert len(self.get_content()('a.source-code')) == 0
 
     def test_version_no_source_two(self):
         self.addon.update(view_source=True, status=amo.STATUS_NULL)
-        eq_(len(self.get_content()('a.source-code')), 0)
+        assert len(self.get_content()('a.source-code')) == 0
 
     def test_version_link(self):
         addon = Addon.objects.get(id=11730)
@@ -594,8 +578,8 @@ class TestViews(amo.tests.TestCase):
         url = reverse('addons.versions', args=[addon.slug])
         doc = PyQuery(self.client.get(url).content)
         link = doc('.version h3 > a').attr('href')
-        eq_(link, reverse('addons.versions', args=[addon.slug, version]))
-        eq_(doc('.version').attr('id'), 'version-%s' % version)
+        assert link == reverse('addons.versions', args=[addon.slug, version])
+        assert doc('.version').attr('id') == 'version-%s' % version
 
     def test_beta_without_beta_builds(self):
         doc = self.get_content(beta=True)
@@ -636,8 +620,7 @@ class TestFeeds(amo.tests.TestCase):
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""
         doc = self.get_feed('a11730')
-        eq_(doc('rss channel title')[0].text,
-            'IPv6 Google Search Version History')
+        assert doc('rss channel title')[0].text == 'IPv6 Google Search Version History'
         assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
         # assert <description> is present
         assert len(doc('rss channel description')[0].text) > 0
@@ -672,8 +655,7 @@ class TestFeeds(amo.tests.TestCase):
         rel = doc[0].xpath('//channel/atom:link', namespaces=self.rel_ns)
         relations = dict((link.get('rel'), link.get('href')) for link in rel)
         assert relations.pop('first').endswith('format:rss')
-
-        eq_(len(relations), len(page_relations))
+        assert len(relations) == len(page_relations)
         for rel, href in relations.iteritems():
             page = page_relations[rel]
             assert href.endswith('format:rss' if page == 1 else
@@ -682,36 +664,31 @@ class TestFeeds(amo.tests.TestCase):
     def test_feed_first_page(self):
         """first page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=1)
-        eq_(doc('rss item title')[0].text,
-            'Addon for DTC 1.3 - December  5, 2011')
+        assert doc('rss item title')[0].text == 'Addon for DTC 1.3 - December  5, 2011'
         self.assert_page_relations(doc, {'self': 1, 'next': 2, 'last': 4})
 
     def test_feed_middle_page(self):
         """a middle page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=2)
-        eq_(doc('rss item title')[0].text,
-            'Addon for DTC 1.2 - December  5, 2011')
+        assert doc('rss item title')[0].text == 'Addon for DTC 1.2 - December  5, 2011'
         self.assert_page_relations(doc, {'previous': 1, 'self': 2, 'next': 3,
                                          'last': 4})
 
     def test_feed_last_page(self):
         """last page has the right elements and page relations"""
         doc = self.get_feed('addon-337203', page=4)
-        eq_(doc('rss item title')[0].text,
-            'Addon for DTC 1.0 - December  5, 2011')
+        assert doc('rss item title')[0].text == 'Addon for DTC 1.0 - December  5, 2011'
         self.assert_page_relations(doc, {'previous': 3, 'self': 4, 'last': 4})
 
     def test_feed_invalid_page(self):
         """an invalid page falls back to page 1"""
         doc = self.get_feed('addon-337203', page=5)
-        eq_(doc('rss item title')[0].text,
-            'Addon for DTC 1.3 - December  5, 2011')
+        assert doc('rss item title')[0].text == 'Addon for DTC 1.3 - December  5, 2011'
 
     def test_feed_no_page(self):
         """no page defaults to page 1"""
         doc = self.get_feed('addon-337203')
-        eq_(doc('rss item title')[0].text,
-            'Addon for DTC 1.3 - December  5, 2011')
+        assert doc('rss item title')[0].text == 'Addon for DTC 1.3 - December  5, 2011'
 
 
 class TestDownloadsBase(amo.tests.TestCase):
@@ -731,15 +708,13 @@ class TestDownloadsBase(amo.tests.TestCase):
     def assert_served_by_host(self, response, host, file_=None):
         if not file_:
             file_ = self.file
-        eq_(response.status_code, 302)
-        eq_(response.url,
-            urlparams('%s%s/%s' % (host, self.addon.id, file_.filename),
-                      filehash=file_.hash))
-        eq_(response['X-Target-Digest'], file_.hash)
+        assert response.status_code == 302
+        assert response.url == urlparams('%s%s/%s' % (host, self.addon.id, file_.filename), filehash=file_.hash)
+        assert response['X-Target-Digest'] == file_.hash
 
     def assert_served_internally(self, response):
-        eq_(response.status_code, 200)
-        eq_(response[settings.XSENDFILE_HEADER], self.file.guarded_file_path)
+        assert response.status_code == 200
+        assert response[settings.XSENDFILE_HEADER] == self.file.guarded_file_path
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         host = settings.SITE_URL + user_media_url('addons')
@@ -803,11 +778,11 @@ class TestDownloads(TestDownloadsBase):
 
     def test_file_404(self):
         r = self.client.get(reverse('downloads.file', args=[234]))
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
 
     def test_public(self):
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        eq_(self.file.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
         self.assert_served_by_mirror(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
@@ -857,21 +832,21 @@ class TestDisabledFileDownloads(TestDownloadsBase):
 
     def test_admin_disabled_404(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        eq_(self.client.get(self.file_url).status_code, 404)
+        assert self.client.get(self.file_url).status_code == 404
 
     def test_user_disabled_404(self):
         self.addon.update(disabled_by_user=True)
-        eq_(self.client.get(self.file_url).status_code, 404)
+        assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_anon_404(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        eq_(self.client.get(self.file_url).status_code, 404)
+        assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_unprivileged_404(self):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.file.update(status=amo.STATUS_DISABLED)
-        eq_(self.client.get(self.file_url).status_code, 404)
+        assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
@@ -937,11 +912,11 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_404(self):
         url = reverse('downloads.latest', args=[123])
-        eq_(self.client.get(url).status_code, 404)
+        assert self.client.get(url).status_code == 404
 
     def test_type_none(self):
         r = self.client.get(self.latest_url)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         url = self.file_url + '/' + self.file.filename
         assert r['Location'].endswith(url), r['Location']
 
@@ -979,7 +954,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         # But we can't match platform=3.
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 3})
-        eq_(self.client.get(url).status_code, 404)
+        assert self.client.get(url).status_code == 404
 
     def test_type(self):
         url = reverse('downloads.latest', kwargs={'addon_id': self.addon.slug,
@@ -1009,7 +984,7 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_query_params(self):
         url = self.latest_url + '?src=xxx'
         r = self.client.get(url)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
@@ -1040,7 +1015,7 @@ class TestDownloadSource(amo.tests.TestCase):
     def test_owner_should_be_allowed(self):
         self.client.login(username=self.user.email, password="password")
         response = self.client.get(self.url)
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
         filename = self.filename
@@ -1054,13 +1029,13 @@ class TestDownloadSource(amo.tests.TestCase):
 
     def test_anonymous_should_not_be_allowed(self):
         response = self.client.get(self.url)
-        eq_(response.status_code, 404)
+        assert response.status_code == 404
 
     def test_group_binarysource_should_be_allowed(self):
         GroupUser.objects.create(user=self.user, group=self.group)
         self.client.login(username=self.user.email, password="password")
         response = self.client.get(self.url)
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
         filename = self.filename
@@ -1076,7 +1051,7 @@ class TestDownloadSource(amo.tests.TestCase):
         self.version.source = None
         self.version.save()
         response = self.client.get(self.url)
-        eq_(response.status_code, 404)
+        assert response.status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -1134,52 +1109,51 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_carry_over_old_license(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
-        eq_(version.license_id, self.addon.current_version.license_id)
+        assert version.license_id == self.addon.current_version.license_id
 
     def test_carry_over_license_no_version(self):
         self.addon.versions.all().delete()
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
-        eq_(version.license_id, None)
+        assert version.license_id is None
 
     def test_app_versions(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
-        eq_(app.min.version, '3.0')
-        eq_(app.max.version, '3.6.*')
+        assert app.min.version == '3.0'
+        assert app.max.version == '3.6.*'
 
     def test_version_number(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
-        eq_(version.version, '0.1')
+        assert version.version == '0.1'
 
     def test_file_platform(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         files = version.all_files
-        eq_(len(files), 1)
-        eq_(files[0].platform, self.platform)
+        assert len(files) == 1
+        assert files[0].platform == self.platform
 
     def test_file_name(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         files = version.all_files
-        eq_(files[0].filename, u'delicious_bookmarks-0.1-fx-mac.xpi')
+        assert files[0].filename == u'delicious_bookmarks-0.1-fx-mac.xpi'
 
     def test_file_name_platform_all(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [amo.PLATFORM_ALL.id])
         files = version.all_files
-        eq_(files[0].filename, u'delicious_bookmarks-0.1-fx.xpi')
+        assert files[0].filename == u'delicious_bookmarks-0.1-fx.xpi'
 
     def test_android_creates_platform_files(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [amo.PLATFORM_ANDROID.id])
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['android'])
+        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == ['android']
 
     def test_desktop_all_android_creates_all(self):
         version = Version.from_upload(
@@ -1188,8 +1162,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             [amo.PLATFORM_ALL.id, amo.PLATFORM_ANDROID.id]
         )
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['all', 'android'])
+        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == ['all', 'android']
 
     def test_android_with_mixed_desktop_creates_platform_files(self):
         version = Version.from_upload(
@@ -1198,8 +1171,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             [amo.PLATFORM_LINUX.id, amo.PLATFORM_ANDROID.id]
         )
         files = version.all_files
-        eq_(sorted(amo.PLATFORMS[f.platform].shortname for f in files),
-            ['android', 'linux'])
+        assert sorted(amo.PLATFORMS[f.platform].shortname for f in files) == ['android', 'linux']
 
     def test_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
@@ -1210,20 +1182,18 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert not storage.exists(self.upload.path), (
             "Expected original upload to move but it still exists.")
         files = version.all_files
-        eq_(len(files), 2)
-        eq_(sorted([f.platform for f in files]),
-            sorted(platforms))
-        eq_(sorted([f.filename for f in files]),
-            [u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                amo.PLATFORM_LINUX.shortname),
-             u'delicious_bookmarks-0.1-fx-%s.xpi' % (
-                 amo.PLATFORM_MAC.shortname)])
+        assert len(files) == 2
+        assert sorted([f.platform for f in files]) == sorted(platforms)
+
+        expected = [
+            u'delicious_bookmarks-0.1-fx-%s.xpi' % amo.PLATFORM_LINUX.shortname,
+            u'delicious_bookmarks-0.1-fx-%s.xpi' % amo.PLATFORM_MAC.shortname
+        ]
+        assert sorted([f.filename for f in files]) == expected
+
         for file_ in files:
             with storage.open(file_.file_path) as f:
-                eq_(uploaded_hash,
-                    hashlib.md5(f.read()).hexdigest(),
-                    "md5 hash of %r does not match uploaded file" % (
-                        file_.file_path))
+                assert uploaded_hash == hashlib.md5(f.read()).hexdigest()
 
     def test_file_multi_package(self):
         version = Version.from_upload(self.get_upload('multi-package.xpi'),
@@ -1267,21 +1237,20 @@ class TestSearchVersionFromUpload(TestVersionFromUpload):
     def test_version_number(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
-        eq_(version.version, self.now)
+        assert version.version == self.now
 
     def test_file_name(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         files = version.all_files
-        eq_(files[0].filename,
-            u'delicious_bookmarks-%s.xml' % self.now)
+        assert files[0].filename == u'delicious_bookmarks-%s.xml' % self.now
 
     def test_file_platform_is_always_all(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
         files = version.all_files
-        eq_(len(files), 1)
-        eq_(files[0].platform, amo.PLATFORM_ALL.id)
+        assert len(files) == 1
+        assert files[0].platform == amo.PLATFORM_ALL.id
 
 
 class TestStatusFromUpload(TestVersionFromUpload):
@@ -1294,14 +1263,12 @@ class TestStatusFromUpload(TestVersionFromUpload):
     def test_status(self):
         self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
         Version.from_upload(self.upload, self.addon, [self.platform])
-        eq_(File.objects.filter(version=self.current)[0].status,
-            amo.STATUS_DISABLED)
+        assert File.objects.filter(version=self.current)[0].status == amo.STATUS_DISABLED
 
     def test_status_beta(self):
         # Check that the add-on + files are in the public status.
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        eq_(File.objects.filter(version=self.current)[0].status,
-            amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert File.objects.filter(version=self.current)[0].status == amo.STATUS_PUBLIC
         # Create a new under review version with a pending file.
         upload = self.get_upload('extension-0.2.xpi')
         new_version = Version.from_upload(upload, self.addon, [self.platform])
@@ -1310,23 +1277,17 @@ class TestStatusFromUpload(TestVersionFromUpload):
         upload = self.get_upload('extension-0.2b1.xpi')
         beta_version = Version.from_upload(upload, self.addon, [self.platform],
                                            is_beta=True)
-        # Check that it doesn't modify the public status.
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
-        eq_(File.objects.filter(version=self.current)[0].status,
-            amo.STATUS_PUBLIC)
-        # Check that the file created with the beta version is in beta status.
-        eq_(File.objects.filter(version=beta_version)[0].status,
-            amo.STATUS_BETA)
-        # Check that the previously uploaded version is still pending.
-        eq_(File.objects.filter(version=new_version)[0].status,
-            amo.STATUS_PENDING)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert File.objects.filter(version=self.current)[0].status == amo.STATUS_PUBLIC
+        assert File.objects.filter(version=beta_version)[0].status == amo.STATUS_BETA
+        assert File.objects.filter(version=new_version)[0].status == amo.STATUS_PENDING
 
 
 class TestMobileVersions(TestMobile):
 
     def test_versions(self):
         r = self.client.get(reverse('addons.versions', args=['a3615']))
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertTemplateUsed(r, 'versions/mobile/version_list.html')
 
 
@@ -1339,34 +1300,34 @@ class TestApplicationsVersions(amo.tests.TestCase):
     def test_repr_when_compatible(self):
         addon = addon_factory(version_kw=self.version_kw)
         version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 and later')
+        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 and later'
 
     def test_repr_when_strict(self):
         addon = addon_factory(version_kw=self.version_kw,
                               file_kw=dict(strict_compatibility=True))
         version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
     def test_repr_when_binary(self):
         addon = addon_factory(version_kw=self.version_kw,
                               file_kw=dict(binary_components=True))
         version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
     def test_repr_when_not_extension(self):
         addon = addon_factory(type=amo.ADDON_THEME,
                               version_kw=self.version_kw)
         version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 5.0 - 6.*')
+        assert version.apps.all()[0].__unicode__() == 'Firefox 5.0 - 6.*'
 
     def test_repr_when_low_app_support(self):
         addon = addon_factory(version_kw=dict(min_app_version='3.0',
                                               max_app_version='3.5'))
         version = addon.current_version
-        eq_(version.apps.all()[0].__unicode__(), 'Firefox 3.0 - 3.5')
+        assert version.apps.all()[0].__unicode__() == 'Firefox 3.0 - 3.5'
 
     def test_repr_when_unicode(self):
         addon = addon_factory(version_kw=dict(min_app_version=u'ك',
                                               max_app_version=u'ك'))
         version = addon.current_version
-        eq_(unicode(version.apps.all()[0]), u'Firefox ك - ك')
+        assert unicode(version.apps.all()[0]) == u'Firefox ك - ك'

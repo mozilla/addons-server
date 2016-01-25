@@ -14,6 +14,7 @@ from apps.api.jwt_auth import handlers
 from apps.api.jwt_auth.views import JWTKeyAuthentication, JWTProtectedView
 from apps.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from apps.users.models import UserProfile
+import pytest
 
 
 class ProtectedView(JWTProtectedView):
@@ -102,31 +103,31 @@ class TestJWTAuthHandlers(JWTAuthTester):
     def test_decode_unknown_issuer(self):
         token = self.create_auth_token(self.user, 'non-existant-issuer',
                                        'some-secret')
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'unknown JWT issuer'
+        assert exc.value.message == 'unknown JWT issuer'
 
     def test_decode_token_without_issuer(self):
         payload = self.auth_token_payload(self.user, 'some-issuer')
         del payload['iss']
         token = self.encode_token_payload(payload, 'some-secret')
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'invalid JWT'
+        assert exc.value.message == 'invalid JWT'
 
     def test_decode_garbage_token(self):
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler('}}garbage{{')
 
-        assert ctx.exception.message == 'Not enough segments'
+        assert exc.value.message == 'Not enough segments'
 
     def test_decode_invalid_non_ascii_token(self):
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler(u'Ivan Krsti\u0107')
 
-        assert ctx.exception.message == 'Not enough segments'
+        assert exc.value.message == 'Not enough segments'
 
     def test_incorrect_signature(self):
         api_key = self.create_api_key(self.user)
@@ -136,11 +137,11 @@ class TestJWTAuthHandlers(JWTAuthTester):
         decoy_api_key = self.create_api_key(
             self.user, key='another-issuer', secret='another-secret')
 
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler(
                 token, get_api_key=lambda **k: decoy_api_key)
 
-        assert ctx.exception.message == 'Signature verification failed'
+        assert exc.value.message == 'Signature verification failed'
 
     def test_expired_token(self):
         api_key = self.create_api_key(self.user)
@@ -150,7 +151,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
                           timedelta(seconds=10))
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.ExpiredSignatureError):
+        with pytest.raises(jwt.ExpiredSignatureError):
             handlers.jwt_decode_handler(token)
 
     def test_missing_issued_at_time(self):
@@ -159,7 +160,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
         del payload['iat']
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.MissingRequiredClaimError):
+        with pytest.raises(jwt.MissingRequiredClaimError):
             handlers.jwt_decode_handler(token)
 
     def test_missing_expiration(self):
@@ -168,7 +169,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
         del payload['exp']
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.MissingRequiredClaimError):
+        with pytest.raises(jwt.MissingRequiredClaimError):
             handlers.jwt_decode_handler(token)
 
     def test_disallow_long_expirations(self):
@@ -181,10 +182,10 @@ class TestJWTAuthHandlers(JWTAuthTester):
         )
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with pytest.raises(jwt.DecodeError) as exc:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'Declared expiration was too long'
+        assert exc.value.message == 'Declared expiration was too long'
 
 
 class TestJWTKeyAuthentication(JWTAuthTester):
@@ -214,15 +215,15 @@ class TestJWTKeyAuthentication(JWTAuthTester):
         payload['iss'] = 'non-existant-issuer'
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(AuthenticationFailed):
+        with pytest.raises(AuthenticationFailed):
             self.auth.authenticate(self.request(token))
 
     def test_deleted_user(self):
         self.user.update(deleted=True)
-        with self.assertRaises(AuthenticationFailed):
+        with pytest.raises(AuthenticationFailed):
             self.auth.authenticate(self.request(self._create_token()))
 
     def test_user_has_not_read_agreement(self):
         self.user.update(read_dev_agreement=None)
-        with self.assertRaises(AuthenticationFailed):
+        with pytest.raises(AuthenticationFailed):
             self.auth.authenticate(self.request(self._create_token()))

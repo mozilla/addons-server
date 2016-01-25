@@ -9,7 +9,6 @@ from django.utils import translation
 import jingo
 import pytest
 from mock import patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
@@ -45,7 +44,7 @@ def make_call(*args, **kwargs):
 
 
 def test_json_not_implemented():
-    eq_(api.views.APIView().render_json({}), '{"msg": "Not implemented yet."}')
+    assert api.views.APIView().render_json({}) == '{"msg": "Not implemented yet."}'
 
 
 class DRFMixin(object):
@@ -66,7 +65,7 @@ class DRFMixin(object):
         This test makes sure that is it DRF that is running in this test suite.
         """
         response = self.client.get(self.test_module_url, follow=True)
-        self.assertTrue('rest_framework' in response.__module__, response)
+        assert 'rest_framework' in response.__module__, response
 
 
 class UtilsTest(TestCase):
@@ -89,15 +88,15 @@ class UtilsTest(TestCase):
         u = '%s%s?src=discovery-personalrec' % (
             settings.SERVICES_URL,
             reverse('discovery.addons.detail', args=['a3615']))
-        eq_(d['learnmore'], u)
+        assert d['learnmore'] == u
 
     def test_sanitize(self):
         """Check that tags are stripped for summary and description."""
         self.a.summary = self.a.description = 'i <3 <a href="">amo</a>!'
         self.a.save()
         d = addon_to_dict(self.a)
-        eq_(d['summary'], 'i &lt;3 amo!')
-        eq_(d['description'], 'i &lt;3 amo!')
+        assert d['summary'] == 'i &lt;3 amo!'
+        assert d['description'] == 'i &lt;3 amo!'
 
     def test_contrib_info(self):
         self.a.wants_contributions = True
@@ -105,7 +104,7 @@ class UtilsTest(TestCase):
         self.a.paypal_id = 'alice@example.com'
         self.a.save()
         d = addon_to_dict(self.a)
-        eq_(d['contribution']['suggested_amount'], 5)
+        assert d['contribution']['suggested_amount'] == 5
 
     def test_no_contrib_info_until_approved(self):
         self.a.wants_contributions = True
@@ -179,14 +178,14 @@ class StripHTMLTest(TestCase):
         a.save()
         r = make_call('addon/3615', version=1.5)
         doc = pq(r.content)
-        eq_(doc('eula').html(), '<i>free</i> stock tips')
-        eq_(doc('summary').html(), '&lt;i&gt;xxx video&lt;/i&gt;s')
-        eq_(doc('description').html(), 'FFFF<b>UUUU</b>')
+        assert doc('eula').html() == '<i>free</i> stock tips'
+        assert doc('summary').html() == '&lt;i&gt;xxx video&lt;/i&gt;s'
+        assert doc('description').html() == 'FFFF<b>UUUU</b>'
         r = make_call('addon/3615')
         doc = pq(r.content)
-        eq_(doc('eula').html(), 'free stock tips')
-        eq_(doc('summary').html(), 'xxx videos')
-        eq_(doc('description').html(), 'FFFFUUUU')
+        assert doc('eula').html() == 'free stock tips'
+        assert doc('summary').html() == 'xxx videos'
+        assert doc('description').html() == 'FFFFUUUU'
 
 
 class APITest(TestCase):
@@ -195,12 +194,12 @@ class APITest(TestCase):
 
     def test_api_caching(self):
         response = self.client.get('/en-US/firefox/api/1.5/addon/3615')
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertContains(response, '<author id="')
 
         # Make sure we don't cache the 1.5 response for 1.2.
         response = self.client.get('/en-US/firefox/api/1.2/addon/3615')
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertContains(response, '<author>')
 
     def test_redirection(self):
@@ -241,11 +240,11 @@ class APITest(TestCase):
         """
         response = self.client.get('/en-US/firefox/api/nonsense')
         doc = pq(response.content)
-        eq_(response.status_code, 404)
+        assert response.status_code == 404
         d = doc('error')
         self.assertTemplateUsed(response, 'api/message.xml')
-        eq_(d.length, 1)
-        eq_(d.text(), 'Not Found')
+        assert d.length == 1
+        assert d.text() == 'Not Found'
 
     def test_handler500(self):
         """
@@ -256,11 +255,11 @@ class APITest(TestCase):
             raise NameError('an error')
         except NameError:
             r = handler500(req)
-            eq_(r.status_code, 500)
+            assert r.status_code == 500
             doc = pq(r.content)
             d = doc('error')
-            eq_(d.length, 1)
-            eq_(d.text(), 'Server Error')
+            assert d.length == 1
+            assert d.text() == 'Server Error'
 
     def test_addon_detail_appid(self):
         """
@@ -325,27 +324,18 @@ class APITest(TestCase):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
         data = json.loads(response.content)
-        eq_(data['name'], unicode(addon.name))
-        eq_(data['type'], 'extension')
-        eq_(data['guid'], addon.guid)
-        eq_(data['version'], '2.1.072')
-        eq_(data['status'], 'public')
-        eq_(data['authors'],
-            [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
-              'link': absolutify(u'/en-US/firefox/user/55021/?src=api')}])
-        eq_(data['summary'], unicode(addon.summary))
-        eq_(data['description'],
-            'This extension integrates your browser with Delicious '
-            '(http://delicious.com), the leading social bookmarking '
-            'service on the Web.')
-        eq_(data['icon'],
-            '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url(
-                'addon_icons'))
-        eq_(data['compatible_apps'],
-            [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
-        eq_(data['eula'], unicode(addon.eula))
-        eq_(data['learnmore'],
-            absolutify('/en-US/firefox/addon/a3615/?src=api'))
+        assert data['name'] == unicode(addon.name)
+        assert data['type'] == 'extension'
+        assert data['guid'] == addon.guid
+        assert data['version'] == '2.1.072'
+        assert data['status'] == 'public'
+        assert data['authors'] == [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628', 'link': absolutify(u'/en-US/firefox/user/55021/?src=api')}]
+        assert data['summary'] == unicode(addon.summary)
+        assert data['description'] == 'This extension integrates your browser with Delicious ' '(http://delicious.com), the leading social bookmarking ' 'service on the Web.'
+        assert data['icon'] == '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url( 'addon_icons')
+        assert data['compatible_apps'] == [{'Firefox': {'max': '4.0', 'min': '2.0'}}]
+        assert data['eula'] == unicode(addon.eula)
+        assert data['learnmore'] == absolutify('/en-US/firefox/addon/a3615/?src=api')
         assert 'theme' not in data
 
     def test_theme_detail(self):
@@ -355,9 +345,8 @@ class APITest(TestCase):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
         data = json.loads(response.content)
-        eq_(data['id'], 3615)
-        eq_(data['theme']['id'], '3615',
-            '`id` should be `addon_id`, not `persona_id`')
+        assert data['id'] == 3615
+        assert data['theme']['id'] == '3615'
 
     def test_addon_license(self):
         """Test for license information in response."""
@@ -369,11 +358,11 @@ class APITest(TestCase):
         api_url = '/en-US/firefox/api/%.1f/addon/3615' % api.CURRENT_VERSION
         response = self.client.get(api_url)
         doc = pq(response.content)
-        eq_(doc('license').length, 1)
-        eq_(doc('license name').length, 1)
-        eq_(doc('license url').length, 1)
-        eq_(doc('license name').text(), unicode(license.name))
-        eq_(doc('license url').text(), absolutify(license.url))
+        assert doc('license').length == 1
+        assert doc('license name').length == 1
+        assert doc('license url').length == 1
+        assert doc('license name').text() == unicode(license.name)
+        assert doc('license url').text() == absolutify(license.url)
 
         license.url = ''
         license.save()
@@ -381,22 +370,22 @@ class APITest(TestCase):
         response = self.client.get(api_url)
         doc = pq(response.content)
         license_url = addon.current_version.license_url()
-        eq_(doc('license url').text(), absolutify(license_url))
+        assert doc('license url').text() == absolutify(license_url)
 
         license.delete()
         response = self.client.get(api_url)
         doc = pq(response.content)
-        eq_(doc('license').length, 0)
+        assert doc('license').length == 0
 
     def test_whitespace(self):
         """Whitespace is apparently evil for learnmore and install."""
         r = make_call('addon/3615')
         doc = pq(r.content)
         learnmore = doc('learnmore')[0].text
-        eq_(learnmore, learnmore.strip())
+        assert learnmore == learnmore.strip()
 
         install = doc('install')[0].text
-        eq_(install, install.strip())
+        assert install == install.strip()
 
     def test_absolute_install_url(self):
         response = make_call('addon/4664', version=1.2)
@@ -475,9 +464,9 @@ class APITest(TestCase):
             attrs, text = v
             el = doc(tag)
             for attr, val in attrs.items():
-                eq_(el.attr(attr), val)
+                assert el.attr(attr) == val
 
-            eq_(el.text(), text)
+            assert el.text() == text
 
         for needle in needles:
             self.assertContains(response, needle)
@@ -555,23 +544,21 @@ class APITest(TestCase):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                    api.CURRENT_VERSION)
         doc = pq(response.content)
-        eq_(doc[0].tag, 'error')
-        eq_(response.status_code, 404)
+        assert doc[0].tag == 'error'
+        assert response.status_code == 404
 
     def test_cross_origin(self):
         # Add-on details should allow cross-origin requests.
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                    api.CURRENT_VERSION)
-
-        eq_(response['Access-Control-Allow-Origin'], '*')
-        eq_(response['Access-Control-Allow-Methods'], 'GET')
+        assert response['Access-Control-Allow-Origin'] == '*'
+        assert response['Access-Control-Allow-Methods'] == 'GET'
 
         # Even those that are not found.
         response = self.client.get('/en-US/firefox/api/%.1f/addon/999' %
                                    api.CURRENT_VERSION)
-
-        eq_(response['Access-Control-Allow-Origin'], '*')
-        eq_(response['Access-Control-Allow-Methods'], 'GET')
+        assert response['Access-Control-Allow-Origin'] == '*'
+        assert response['Access-Control-Allow-Methods'] == 'GET'
 
 
 class DRFAPITest(DRFMixin, APITest):
@@ -657,7 +644,7 @@ class ListTest(TestCase):
         doc = pq(r.content)
         vals = [int(a.text) for a in doc("average_daily_users")]
         sorted_vals = sorted(vals, reverse=True)
-        eq_(vals, sorted_vals)
+        assert vals == sorted_vals
 
     def test_adu_no_personas(self):
         """Verify that average daily users does not return Themes."""
@@ -716,17 +703,17 @@ class AddonFilterTest(TestCase):
 
     def test_basic(self):
         addons = addon_filter(**self._defaults())
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_limit(self):
         addons = addon_filter(**self._defaults(limit=1))
-        eq_(addons, [self.addon1])
+        assert addons == [self.addon1]
 
     def test_app_filter(self):
         self.addon1.update(type=amo.ADDON_DICT)
         addons = addon_filter(
             **self._defaults(addon_type=str(amo.ADDON_EXTENSION)))
-        eq_(addons, [self.addon2])
+        assert addons == [self.addon2]
 
     def test_platform_filter(self):
         file = self.addon1.current_version.files.all()[0]
@@ -735,16 +722,16 @@ class AddonFilterTest(TestCase):
         self.addons[0] = Addon.objects.get(pk=self.addons[0].pk)
         addons = addon_filter(
             **self._defaults(platform=amo.PLATFORM_LINUX.shortname))
-        eq_(addons, [self.addon2])
+        assert addons == [self.addon2]
 
     def test_version_filter_strict(self):
         addons = addon_filter(**self._defaults(version='6.0'))
-        eq_(addons, [self.addon2])
+        assert addons == [self.addon2]
 
     def test_version_filter_ignore(self):
         addons = addon_filter(**self._defaults(version='6.0',
                                                compat_mode='ignore'))
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_version_version_less_than_min(self):
         # Ensure we filter out addons with a higher min than our app.
@@ -753,7 +740,7 @@ class AddonFilterTest(TestCase):
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='ignore'))
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_version_filter_normal_strict_opt_in(self):
         # Ensure we filter out strict opt-in addons in normal mode.
@@ -762,7 +749,7 @@ class AddonFilterTest(TestCase):
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_version_filter_normal_binary_components(self):
         # Ensure we filter out strict opt-in addons in normal mode.
@@ -771,7 +758,7 @@ class AddonFilterTest(TestCase):
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_version_filter_normal_compat_override(self):
         # Ensure we filter out strict opt-in addons in normal mode.
@@ -786,7 +773,7 @@ class AddonFilterTest(TestCase):
 
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
-        eq_(addons, self.addons)
+        assert addons == self.addons
 
     def test_locale_preferencing(self):
         # Add-ons matching the current locale get prioritized.
@@ -798,7 +785,7 @@ class AddonFilterTest(TestCase):
 
         translation.activate('de')
         addons = addon_filter(**self._defaults(addons=addons))
-        eq_(addons, [addon3] + self.addons)
+        assert addons == [addon3] + self.addons
         translation.deactivate()
 
 
@@ -811,7 +798,7 @@ class SeamonkeyFeaturedTest(TestCase):
         This was making our filters crash.
         """
         response = make_call('/list/featured/all/10/all/1', app='seamonkey')
-        eq_(response.context['addons'], [])
+        assert response.context['addons'] == []
 
 
 class TestGuidSearch(TestCase):
@@ -830,11 +817,8 @@ class TestGuidSearch(TestCase):
     def test_success(self):
         r = make_call(self.good)
         dom = pq(r.content)
-        eq_(set(['3615', '6113']),
-            set([a.attrib['id'] for a in dom('addon')]))
-
-        # Make sure the <addon_compatibility> blocks are there.
-        eq_(['3615'], [a.attrib['id'] for a in dom('addon_compatibility')])
+        assert set(['3615', '6113']) == set([a.attrib['id'] for a in dom('addon')])
+        assert ['3615'] == [a.attrib['id'] for a in dom('addon_compatibility')]
 
     @patch('waffle.switch_is_active', lambda x: True)
     def test_api_caching_locale(self):
@@ -861,14 +845,12 @@ class TestGuidSearch(TestCase):
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
         r = make_call(self.good)
-        eq_(set(['3615']),
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+        assert set(['3615']) == set([a.attrib['id'] for a in pq(r.content)('addon')])
 
     def test_block_nonpublic(self):
         Addon.objects.filter(id=6113).update(status=amo.STATUS_UNREVIEWED)
         r = make_call(self.good)
-        eq_(set(['3615']),
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+        assert set(['3615']) == set([a.attrib['id'] for a in pq(r.content)('addon')])
 
     def test_empty(self):
         """
@@ -877,24 +859,18 @@ class TestGuidSearch(TestCase):
         """
         r = make_call('search/guid:koberger,')
         doc = pq(r.content)
-        # No addons should exist with guid koberger and the , should not
-        # indicate that we are searching for null guid.
-        eq_(len(doc('addon')), 0)
+        assert len(doc('addon')) == 0
 
     def test_addon_compatibility(self):
         addon = Addon.objects.get(id=3615)
         r = make_call('search/guid:%s' % addon.guid)
         dom = pq(r.content)
-        eq_(len(dom('addon_compatibility')), 1)
-        eq_(dom('addon_compatibility')[0].attrib['id'], '3615')
-        eq_(dom('addon_compatibility')[0].attrib['hosted'], 'true')
-
-        eq_(dom('addon_compatibility guid').text(), addon.guid)
-        eq_(dom('addon_compatibility > name').text(), '')
-
-        eq_(dom('addon_compatibility version_ranges version_range '
-                'compatible_applications application appID').text(),
-            amo.FIREFOX.guid)
+        assert len(dom('addon_compatibility')) == 1
+        assert dom('addon_compatibility')[0].attrib['id'] == '3615'
+        assert dom('addon_compatibility')[0].attrib['hosted'] == 'true'
+        assert dom('addon_compatibility guid').text() == addon.guid
+        assert dom('addon_compatibility > name').text() == ''
+        assert dom('addon_compatibility version_ranges version_range ' 'compatible_applications application appID').text() == amo.FIREFOX.guid
 
     def test_addon_compatibility_not_hosted(self):
         c = CompatOverride.objects.create(guid='yeah', name='ok')
@@ -905,22 +881,21 @@ class TestGuidSearch(TestCase):
 
         r = make_call('search/guid:%s' % c.guid)
         dom = pq(r.content)
-        eq_(len(dom('addon_compatibility')), 1)
-        eq_(dom('addon_compatibility')[0].attrib['hosted'], 'false')
+        assert len(dom('addon_compatibility')) == 1
+        assert dom('addon_compatibility')[0].attrib['hosted'] == 'false'
         assert 'id' not in dom('addon_compatibility')[0].attrib
-
-        eq_(dom('addon_compatibility guid').text(), c.guid)
-        eq_(dom('addon_compatibility > name').text(), c.name)
+        assert dom('addon_compatibility guid').text() == c.guid
+        assert dom('addon_compatibility > name').text() == c.name
 
         cr = c.compat_ranges[0]
-        eq_(dom('version_range')[0].attrib['type'], cr.override_type())
-        eq_(dom('version_range > min_version').text(), cr.min_version)
-        eq_(dom('version_range > max_version').text(), cr.max_version)
-        eq_(dom('application name').text(), amo.FIREFOX.pretty)
-        eq_(dom('application application_id').text(), str(amo.FIREFOX.id))
-        eq_(dom('application appID').text(), amo.FIREFOX.guid)
-        eq_(dom('application min_version').text(), cr.min_app_version)
-        eq_(dom('application max_version').text(), cr.max_app_version)
+        assert dom('version_range')[0].attrib['type'] == cr.override_type()
+        assert dom('version_range > min_version').text() == cr.min_version
+        assert dom('version_range > max_version').text() == cr.max_version
+        assert dom('application name').text() == amo.FIREFOX.pretty
+        assert dom('application application_id').text() == str(amo.FIREFOX.id)
+        assert dom('application appID').text() == amo.FIREFOX.guid
+        assert dom('application min_version').text() == cr.min_app_version
+        assert dom('application max_version').text() == cr.max_app_version
 
 
 class SearchTest(ESTestCase):
@@ -1022,7 +997,7 @@ class SearchTest(ESTestCase):
         """
         response = self.client.get(
             "/en-US/firefox/api/1.2/search/delicious/all/1")
-        eq_(response.content.count("<addon id"), 1)
+        assert response.content.count("<addon id") == 1
 
     def test_total_results(self):
         """
@@ -1040,11 +1015,11 @@ class SearchTest(ESTestCase):
         values of: strict, normal, and ignore.
         """
         base = '/en-US/firefox/api/1.5/search/firefox/all/1/Linux/3.0'
-        eq_(self.client.head(base).status_code, 200)
-        eq_(self.client.head(base + '/strict').status_code, 200)
-        eq_(self.client.head(base + '/normal').status_code, 200)
-        eq_(self.client.head(base + '/ignore').status_code, 200)
-        eq_(self.client.head(base + '/junk').status_code, 404)
+        assert self.client.head(base).status_code == 200
+        assert self.client.head(base + '/strict').status_code == 200
+        assert self.client.head(base + '/normal').status_code == 200
+        assert self.client.head(base + '/ignore').status_code == 200
+        assert self.client.head(base + '/junk').status_code == 404
 
     def test_compat_mode_ignore(self):
         # Delicious currently supports Firefox 2.0 - 3.7a1pre. Strict mode will
@@ -1071,7 +1046,7 @@ class SearchTest(ESTestCase):
         # Make add-on opt into strict compatibility.
         file = addon.current_version.files.all()[0]
         file.update(strict_compatibility=True)
-        eq_(File.objects.get(pk=file.id).strict_compatibility, True)
+        assert File.objects.get(pk=file.id).strict_compatibility is True
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
 
@@ -1098,7 +1073,7 @@ class SearchTest(ESTestCase):
         # Make add-on contain binary components.
         file = addon.current_version.files.all()[0]
         file.update(binary_components=True)
-        eq_(File.objects.get(pk=file.id).binary_components, True)
+        assert File.objects.get(pk=file.id).binary_components is True
         response = self.client.get(self.url % self.defaults)
         self.assertContains(response, self.no_results)
 
@@ -1243,22 +1218,22 @@ class SearchTest(ESTestCase):
             api.CURRENT_VERSION)
         data = json.loads(response.content)['suggestions'][0]
         a = Addon.objects.get(pk=3615)
-        eq_(data['id'], str(a.pk))
-        eq_(data['name'], a.name)
-        eq_(data['rating'], a.average_rating)
+        assert data['id'] == str(a.pk)
+        assert data['name'] == a.name
+        assert data['rating'] == a.average_rating
 
     def test_no_category_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
             api.CURRENT_VERSION)
-        eq_(json.loads(response.content)['suggestions'], [])
+        assert json.loads(response.content)['suggestions'] == []
 
     def test_suggestions_throttle(self):
         self.create_sample('autosuggest-throttle')
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
             api.CURRENT_VERSION)
-        eq_(response.status_code, 503)
+        assert response.status_code == 503
 
 
 class DRFSearchTest(DRFMixin, SearchTest):
@@ -1313,13 +1288,13 @@ class LanguagePacksTest(UploadTest):
 
     def test_search_wrong_platform(self):
         self.setup_localepicker(amo.PLATFORM_MAC.id)
-        eq_(self.addon.get_localepicker(), '')
+        assert self.addon.get_localepicker() == ''
 
     @patch('apps.files.models.File.get_localepicker')
     def test_search_right_platform(self, get_localepicker):
         get_localepicker.return_value = 'some data'
         self.setup_localepicker(amo.PLATFORM_ANDROID.id)
-        eq_(self.addon.get_localepicker(), 'some data')
+        assert self.addon.get_localepicker() == 'some data'
 
     @patch('apps.addons.models.Addon.get_localepicker')
     def test_localepicker(self, get_localepicker):

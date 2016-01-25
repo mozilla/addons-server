@@ -15,7 +15,8 @@ from django.utils import translation
 
 import jingo
 from mock import Mock, patch
-from nose.tools import assert_not_equal, eq_, ok_
+from nose.tools import assert_not_equal
+from nose.tools import ok_
 
 import amo
 import amo.tests
@@ -41,6 +42,7 @@ from translations.models import Translation, TranslationSequence
 from users.models import UserProfile
 from versions.models import ApplicationsVersions, Version
 from versions.compare import version_int
+import pytest
 
 
 class TestCleanSlug(amo.tests.TestCase):
@@ -49,20 +51,20 @@ class TestCleanSlug(amo.tests.TestCase):
         # Make sure there's at least an addon with the "addon" slug, subsequent
         # ones should be "addon-1", "addon-2" ...
         a = Addon.objects.create()
-        eq_(a.slug, "addon")
+        assert a.slug == "addon"
 
         # Start with a first clash. This should give us "addon-1".
         # We're not saving yet, we're testing the slug creation without an id.
         b = Addon()
         b.clean_slug()
-        eq_(b.slug, 'addon1')
+        assert b.slug == 'addon1'
         # Now save the instance to the database for future clashes.
         b.save()
 
         # Test on another object without an id.
         c = Addon()
         c.clean_slug()
-        eq_(c.slug, 'addon2')
+        assert c.slug == 'addon2'
 
         # Even if an addon is deleted, don't clash with its slug.
         c.status = amo.STATUS_DELETED
@@ -73,7 +75,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # assign the 'addon-2' slug from the deleted addon.
         d = Addon()
         d.clean_slug()
-        eq_(d.slug, 'addon3')
+        assert d.slug == 'addon3'
 
     def test_clean_slug_with_id(self):
         # Create an addon and save it to have an id.
@@ -81,9 +83,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # Start over: don't use the name nor the id to generate the slug.
         a.slug = a.name = ""
         a.clean_slug()
-        # Slugs created from an id are of the form "id~", eg "123~" to avoid
-        # clashing with URLs.
-        eq_(a.slug, "%s~" % a.id)
+        assert a.slug == "%s~" % a.id
 
         # And again, this time make it clash.
         b = Addon.objects.create()
@@ -94,27 +94,27 @@ class TestCleanSlug(amo.tests.TestCase):
         # Now start over for b.
         b.slug = b.name = ""
         b.clean_slug()
-        eq_(b.slug, "%s~1" % b.id)
+        assert b.slug == "%s~1" % b.id
 
     def test_clean_slug_with_name(self):
         # Make sure there's at least an addon with the "fooname" slug,
         # subsequent ones should be "fooname-1", "fooname-2" ...
         a = Addon.objects.create(name="fooname")
-        eq_(a.slug, "fooname")
+        assert a.slug == "fooname"
 
         b = Addon(name="fooname")
         b.clean_slug()
-        eq_(b.slug, "fooname1")
+        assert b.slug == "fooname1"
 
     def test_clean_slug_with_slug(self):
         # Make sure there's at least an addon with the "fooslug" slug,
         # subsequent ones should be "fooslug-1", "fooslug-2" ...
         a = Addon.objects.create(name="fooslug")
-        eq_(a.slug, "fooslug")
+        assert a.slug == "fooslug"
 
         b = Addon(name="fooslug")
         b.clean_slug()
-        eq_(b.slug, "fooslug1")
+        assert b.slug == "fooslug1"
 
     def test_clean_slug_blacklisted_slug(self):
         blacklisted_slug = 'fooblacklisted'
@@ -122,15 +122,13 @@ class TestCleanSlug(amo.tests.TestCase):
 
         a = Addon(slug=blacklisted_slug)
         a.clean_slug()
-        # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
-        # avoid clashing with URLs.
-        eq_(a.slug, "%s~" % blacklisted_slug)
+        assert a.slug == "%s~" % blacklisted_slug
         # Now save the instance to the database for future clashes.
         a.save()
 
         b = Addon(slug=blacklisted_slug)
         b.clean_slug()
-        eq_(b.slug, "%s~1" % blacklisted_slug)
+        assert b.slug == "%s~1" % blacklisted_slug
 
     def test_clean_slug_blacklisted_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
@@ -138,23 +136,23 @@ class TestCleanSlug(amo.tests.TestCase):
 
         # If there's no clashing slug, just append a "~".
         a = Addon.objects.create(slug=long_slug[:30])
-        eq_(a.slug, "%s~" % long_slug[:29])
+        assert a.slug == "%s~" % long_slug[:29]
 
         # If there's a clash, use the standard clash resolution.
         a = Addon.objects.create(slug=long_slug[:30])
-        eq_(a.slug, "%s1" % long_slug[:28])
+        assert a.slug == "%s1" % long_slug[:28]
 
     def test_clean_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
 
         # If there's no clashing slug, don't over-shorten it.
         a = Addon.objects.create(slug=long_slug)
-        eq_(a.slug, long_slug[:30])
+        assert a.slug == long_slug[:30]
 
         # Now that there is a clash, test the clash resolution.
         b = Addon(slug=long_slug)
         b.clean_slug()
-        eq_(b.slug, "%s1" % long_slug[:28])
+        assert b.slug == "%s1" % long_slug[:28]
 
     def test_clean_slug_always_slugify(self):
         illegal_chars = "some spaces and !?@"
@@ -178,7 +176,7 @@ class TestCleanSlug(amo.tests.TestCase):
         # part of the "for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Addon.objects.create(slug=long_slug)
-        with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
+        with pytest.raises(RuntimeError):  # Fail on the 100th clash.
             Addon.objects.create(slug=long_slug)
 
     def test_clean_slug_ends_with_dash(self):
@@ -232,7 +230,7 @@ class TestAddonManager(amo.tests.TestCase):
         assert self.addon in Addon.unfiltered.all()
 
     def test_featured(self):
-        eq_(Addon.objects.featured(amo.FIREFOX).count(), 3)
+        assert Addon.objects.featured(amo.FIREFOX).count() == 3
 
     def test_listed(self):
         # We need this for the fixtures, but it messes up the tests.
@@ -240,7 +238,7 @@ class TestAddonManager(amo.tests.TestCase):
         # Now continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
         q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
-        eq_(len(q.all()), 4)
+        assert len(q.all()) == 4
 
         # Pick one of the listed addons.
         addon = Addon.objects.get(pk=2464)
@@ -249,21 +247,18 @@ class TestAddonManager(amo.tests.TestCase):
         # Disabling hides it.
         addon.disabled_by_user = True
         addon.save()
-
-        # Should be 3 now, since the one is now disabled.
-        eq_(q.count(), 3)
+        assert q.count() == 3
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(q.count(), 3)
-        eq_(Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
-                                 amo.STATUS_UNREVIEWED).count(), 4)
+        assert q.count() == 3
+        assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED).count() == 4
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
-        eq_(q.count(), 3)
+        assert q.count() == 3
 
     def test_public(self):
         public = Addon.objects.public()
@@ -298,24 +293,24 @@ class TestAddonManager(amo.tests.TestCase):
         before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before
 
     def test_valid_disabled_by_admin(self):
         before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DISABLED)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before
 
     def test_invalid_deleted(self):
         before = Addon.objects.valid_and_disabled_and_pending().count()
         addon = Addon.objects.get(pk=5299)
         addon.update(status=amo.STATUS_DELETED)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before - 1)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before - 1
 
     def test_valid_disabled_pending(self):
         before = Addon.objects.valid_and_disabled_and_pending().count()
         amo.tests.addon_factory(status=amo.STATUS_PENDING)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before + 1
 
     def test_valid_disabled_version(self):
         before = Addon.objects.valid_and_disabled_and_pending().count()
@@ -323,18 +318,17 @@ class TestAddonManager(amo.tests.TestCase):
         # Add-on, no version. Doesn't count.
         addon = amo.tests.addon_factory()
         addon.update(_current_version=None, _signal=False)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before
 
         # Theme, no version. Counts.
         addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
         addon.update(_current_version=None, _signal=False)
-        eq_(Addon.objects.valid_and_disabled_and_pending().count(), before + 1)
+        assert Addon.objects.valid_and_disabled_and_pending().count() == before + 1
 
     def test_new_featured(self):
         f = Addon.objects.featured(amo.FIREFOX)
-        eq_(f.count(), 3)
-        eq_(sorted(x.id for x in f),
-            [2464, 7661, 15679])
+        assert f.count() == 3
+        assert sorted(x.id for x in f) == [2464, 7661, 15679]
         f = Addon.objects.featured(amo.THUNDERBIRD)
         assert not f.exists()
 
@@ -417,56 +411,56 @@ class TestAddonModels(amo.tests.TestCase):
         Tests that we get the current (latest public) version of an addon.
         """
         a = Addon.objects.get(pk=3615)
-        eq_(a.current_version.id, 81551)
+        assert a.current_version.id == 81551
 
     def test_current_version_listed(self):
         a = Addon.objects.get(pk=3723)
-        eq_(a.current_version.id, 89774)
+        assert a.current_version.id == 89774
 
     def test_current_version_listed_no_version(self):
         Addon.objects.filter(pk=3723).update(_current_version=None)
         Version.objects.filter(addon=3723).delete()
         a = Addon.objects.get(pk=3723)
-        eq_(a.current_version, None)
+        assert a.current_version is None
 
     def test_latest_version(self):
         """
         Tests that we get the latest version of an addon.
         """
         a = Addon.objects.get(pk=3615)
-        eq_(a.latest_version.id, Version.objects.filter(addon=a).latest().id)
+        assert a.latest_version.id == Version.objects.filter(addon=a).latest().id
 
     def test_latest_version_no_version(self):
         Addon.objects.filter(pk=3723).update(_current_version=None)
         Version.objects.filter(addon=3723).delete()
         a = Addon.objects.get(pk=3723)
-        eq_(a.latest_version, None)
+        assert a.latest_version is None
 
     def test_latest_version_ignore_beta(self):
         a = Addon.objects.get(pk=3615)
 
         v1 = Version.objects.create(addon=a, version='1.0')
         File.objects.create(version=v1)
-        eq_(a.latest_version.id, v1.id)
+        assert a.latest_version.id == v1.id
 
         v2 = Version.objects.create(addon=a, version='2.0beta')
         File.objects.create(version=v2, status=amo.STATUS_BETA)
         v2.save()
-        eq_(a.latest_version.id, v1.id)  # Still should be f1
+        assert a.latest_version.id == v1.id  # Still should be f1
 
     def test_current_version_unsaved(self):
         a = Addon()
         a._current_version = Version()
-        eq_(a.current_version, None)
+        assert a.current_version is None
 
     def test_latest_version_unsaved(self):
         a = Addon()
         a._latest_version = Version()
-        eq_(a.latest_version, None)
+        assert a.latest_version is None
 
     def test_current_beta_version(self):
         a = Addon.objects.get(pk=5299)
-        eq_(a.current_beta_version.id, 50000)
+        assert a.current_beta_version.id == 50000
 
     def _create_new_version(self, addon, status):
         av = addon.current_version.apps.all()[0]
@@ -480,11 +474,10 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_compatible_version(self):
         a = Addon.objects.get(pk=3615)
-        eq_(a.status, amo.STATUS_PUBLIC)
+        assert a.status == amo.STATUS_PUBLIC
 
         v = self._create_new_version(addon=a, status=amo.STATUS_PUBLIC)
-
-        eq_(a.compatible_version(amo.FIREFOX.id), v)
+        assert a.compatible_version(amo.FIREFOX.id) == v
 
     def test_compatible_version_status(self):
         """
@@ -492,12 +485,12 @@ class TestAddonModels(amo.tests.TestCase):
         fully-reviewed add-on.
         """
         a = Addon.objects.get(pk=3615)
-        eq_(a.status, amo.STATUS_PUBLIC)
+        assert a.status == amo.STATUS_PUBLIC
 
         v = self._create_new_version(addon=a, status=amo.STATUS_LITE)
 
         assert a.current_version != v
-        eq_(a.compatible_version(amo.FIREFOX.id), a.current_version)
+        assert a.compatible_version(amo.FIREFOX.id) == a.current_version
 
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
@@ -552,16 +545,16 @@ class TestAddonModels(amo.tests.TestCase):
     def test_delete_url(self):
         count = Addon.unfiltered.count()
         self._delete_url()
-        eq_(count, Addon.unfiltered.count())
+        assert count == Addon.unfiltered.count()
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
         reason = u'trêason'
         a = Addon.objects.get(pk=3615)
         a.name = u'é'
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
         a.delete(msg='bye', reason=reason)
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         assert reason in mail.outbox[0].body
 
     def test_delete_status_gone_wild(self):
@@ -574,7 +567,7 @@ class TestAddonModels(amo.tests.TestCase):
         addon.status = amo.STATUS_UNREVIEWED
         addon.highest_status = 0
         addon.delete('bye')
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         assert count == Addon.unfiltered.count()
 
     def test_delete_incomplete(self):
@@ -585,8 +578,8 @@ class TestAddonModels(amo.tests.TestCase):
         a.highest_status = 0
         a.save()
         a.delete(None)
-        eq_(len(mail.outbox), 0)
-        eq_(Addon.unfiltered.count(), count - 1)
+        assert len(mail.outbox) == 0
+        assert Addon.unfiltered.count() == count - 1
 
     def test_delete_searchengine(self):
         """
@@ -595,22 +588,22 @@ class TestAddonModels(amo.tests.TestCase):
         """
         a = Addon.objects.get(pk=4594)
         a.delete('bye')
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
-        eq_(a.incompatible_latest_apps(), [])
+        assert a.incompatible_latest_apps() == []
 
         av = ApplicationsVersions.objects.get(pk=47881)
         av.max = AppVersion.objects.get(pk=97)  # Firefox 2.0
         av.save()
 
         a = Addon.objects.get(pk=3615)
-        eq_(a.incompatible_latest_apps(), [amo.FIREFOX])
+        assert a.incompatible_latest_apps() == [amo.FIREFOX]
 
         # Check a search engine addon.
         a = Addon.objects.get(pk=4594)
-        eq_(a.incompatible_latest_apps(), [])
+        assert a.incompatible_latest_apps() == []
 
     def test_incompatible_asterix(self):
         av = ApplicationsVersions.objects.get(pk=47881)
@@ -619,7 +612,7 @@ class TestAddonModels(amo.tests.TestCase):
                                            version='5.*')
         av.save()
         a = Addon.objects.get(pk=3615)
-        eq_(a.incompatible_latest_apps(), [])
+        assert a.incompatible_latest_apps() == []
 
     def test_icon_url(self):
         """
@@ -643,10 +636,10 @@ class TestAddonModels(amo.tests.TestCase):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
         default = 'icons/default-32.png'
-        eq_(a.icon_url.endswith(default), True)
-        eq_(a.get_icon_url(32).endswith(default), True)
-        eq_(a.get_icon_url(32, use_default=True).endswith(default), True)
-        eq_(a.get_icon_url(32, use_default=False), None)
+        assert a.icon_url.endswith(default) is True
+        assert a.get_icon_url(32).endswith(default) is True
+        assert a.get_icon_url(32, use_default=True).endswith(default) is True
+        assert a.get_icon_url(32, use_default=False) is None
 
     def test_thumbnail_url(self):
         """
@@ -700,15 +693,15 @@ class TestAddonModels(amo.tests.TestCase):
     def test_is_no_restart(self):
         a = Addon.objects.get(pk=3615)
         f = a.current_version.all_files[0]
-        eq_(f.no_restart, False)
-        eq_(a.is_no_restart(), False)
+        assert f.no_restart is False
+        assert a.is_no_restart() is False
 
         f.update(no_restart=True)
-        eq_(Addon.objects.get(pk=3615).is_no_restart(), True)
+        assert Addon.objects.get(pk=3615).is_no_restart() is True
 
         a.versions.all().delete()
         a._current_version = None
-        eq_(a.is_no_restart(), False)
+        assert a.is_no_restart() is False
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
@@ -789,8 +782,7 @@ class TestAddonModels(amo.tests.TestCase):
                   "Should be four nl's before this line.")
 
         after = before  # Nothing special; this shouldn't change.
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_ul(self):
         before = ("<ul>\n\n"
@@ -804,8 +796,7 @@ class TestAddonModels(amo.tests.TestCase):
                  "<li>No nl's between li's.\n\n"
                  "But there should be two before this line.</li>"
                  "</ul>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_ul_tight(self):
         before = ("There should be one nl between this and the ul.\n"
@@ -815,8 +806,7 @@ class TestAddonModels(amo.tests.TestCase):
         after = ("There should be one nl between this and the ul.\n"
                  "<ul><li>test</li><li>test</li></ul>"
                  "There should be no nl's above this line.")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_ul_loose(self):
         before = ("There should be two nl's between this and the ul.\n\n"
@@ -826,8 +816,7 @@ class TestAddonModels(amo.tests.TestCase):
         after = ("There should be two nl's between this and the ul.\n\n"
                  "<ul><li>test</li><li>test</li></ul>\n"
                  "There should be one nl above this line.")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_blockquote_tight(self):
         before = ("There should be one nl below this.\n"
@@ -837,8 +826,7 @@ class TestAddonModels(amo.tests.TestCase):
         after = ("There should be one nl below this.\n"
                  "<blockquote>Hi</blockquote>"
                  "There should be no nl's above this.")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_blockquote_loose(self):
         before = ("There should be two nls below this.\n\n"
@@ -848,16 +836,14 @@ class TestAddonModels(amo.tests.TestCase):
         after = ("There should be two nls below this.\n\n"
                  "<blockquote>Hi</blockquote>\n"
                  "There should be one nl above this.")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_inline(self):
         before = ("If we end a paragraph w/ a <b>non-block-level tag</b>\n\n"
                   "<b>The newlines</b> should be kept")
 
         after = before  # Should stay the same
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_code_inline(self):
         before = ("Code tags aren't blocks.\n\n"
@@ -865,25 +851,24 @@ class TestAddonModels(amo.tests.TestCase):
                   "See?")
 
         after = before  # Should stay the same
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_li_newlines(self):
         before = ("<ul><li>\nxx</li></ul>")
         after = ("<ul><li>xx</li></ul>")
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
         before = ("<ul><li>xx\n</li></ul>")
         after = ("<ul><li>xx</li></ul>")
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
         before = ("<ul><li>xx\nxx</li></ul>")
         after = ("<ul><li>xx\nxx</li></ul>")
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
         before = ("<ul><li></li></ul>")
         after = ("<ul><li></li></ul>")
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
         # All together now
         before = ("<ul><li>\nxx</li> <li>xx\n</li> <li>xx\nxx</li> "
@@ -891,33 +876,28 @@ class TestAddonModels(amo.tests.TestCase):
 
         after = ("<ul><li>xx</li> <li>xx</li> <li>xx\nxx</li> "
                  "<li></li></ul>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag(self):
         before = ("This is a <b></b> test!")
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag_nested(self):
         before = ("This is a <b><i></i></b> test!")
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_empty_tag_block_nested(self):
         b = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>\ntest.")
         a = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
-
-        eq_(self.newlines_helper(b), a)
+        assert self.newlines_helper(b) == a
 
     def test_newlines_empty_tag_block_nested_spaced(self):
         before = ("Test.\n\n<blockquote>\n\n<ul>\n\n<li>"
                   "</li>\n\n</ul>\n\n</blockquote>\ntest.")
         after = ("Test.\n\n<blockquote><ul><li></li></ul></blockquote>test.")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_li_newlines_inline(self):
         before = ("<ul><li>\n<b>test\ntest\n\ntest</b>\n</li>"
@@ -925,48 +905,41 @@ class TestAddonModels(amo.tests.TestCase):
 
         after = ("<ul><li><b>test\ntest\n\ntest</b></li>"
                  "<li>Test <b>test</b> test.</li></ul>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_li_all_inline(self):
         before = ("Test with <b>no newlines</b> and <code>block level "
                   "stuff</code> to see what happens.")
 
         after = before  # Should stay the same
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_spaced_blocks(self):
         before = ("<blockquote>\n\n<ul>\n\n<li>\n\ntest\n\n</li>\n\n"
                   "</ul>\n\n</blockquote>")
 
         after = "<blockquote><ul><li>test</li></ul></blockquote>"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_spaced_inline(self):
         before = "Line.\n\n<b>\nThis line is bold.\n</b>\n\nThis isn't."
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_nested_inline(self):
         before = "<b>\nThis line is bold.\n\n<i>This is also italic</i></b>"
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_xss_script(self):
         before = "<script>\n\nalert('test');\n</script>"
         after = "&lt;script&gt;\n\nalert('test');\n&lt;/script&gt;"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_xss_inline(self):
         before = "<b onclick=\"alert('test');\">test</b>"
         after = "<b>test</b>"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     @patch('amo.helpers.urlresolvers.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
@@ -980,89 +953,77 @@ class TestAddonModels(amo.tests.TestCase):
     def test_newlines_attribute_singlequote(self):
         before = "<abbr title='laugh out loud'>lol</abbr>"
         after = '<abbr title="laugh out loud">lol</abbr>'
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_doublequote(self):
         before = '<abbr title="laugh out loud">lol</abbr>'
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_nestedquotes_doublesingle(self):
         before = '<abbr title="laugh \'out\' loud">lol</abbr>'
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_attribute_nestedquotes_singledouble(self):
         before = '<abbr title=\'laugh "out" loud\'>lol</abbr>'
         after = before
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_b(self):
         before = ("<b>test")
         after = ("<b>test</b>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_b_wrapped(self):
         before = ("This is a <b>test")
         after = ("This is a <b>test</b>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_unclosed_li(self):
         before = ("<ul><li>test</ul>")
         after = ("<ul><li>test</li></ul>")
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_faketag(self):
         before = "<madonna"
         after = ""
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_correct_faketag(self):
         before = "<madonna>"
         after = "&lt;madonna&gt;"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_tag(self):
         before = "<strong"
         after = ""
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_faketag_surrounded(self):
         before = "This is a <test of bleach"
         after = 'This is a'
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_tag_surrounded(self):
         before = "This is a <strong of bleach"
         after = "This is a"
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_less_than(self):
         before = "3 < 5"
         after = "3 &lt; 5"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_newlines_less_than_tight(self):
         before = "abc 3<5 def"
         after = "abc 3&lt;5 def"
-
-        eq_(self.newlines_helper(before), after)
+        assert self.newlines_helper(before) == after
 
     def test_app_numeric_slug(self):
         cat = Category.objects.get(id=22)
         cat.slug = 123
-        with self.assertRaises(ValidationError):
+        with pytest.raises(ValidationError):
             cat.full_clean()
 
     def test_app_categories(self):
@@ -1080,13 +1041,13 @@ class TestAddonModels(amo.tests.TestCase):
         c24.save()
 
         cats = addon().all_categories
-        eq_(cats, [c22, c23, c24])
+        assert cats == [c22, c23, c24]
         for cat in cats:
-            eq_(cat.application, amo.FIREFOX.id)
+            assert cat.application == amo.FIREFOX.id
 
         cats = [c24, c23, c22]
         app_cats = [(amo.FIREFOX, cats)]
-        eq_(addon().app_categories, app_cats)
+        assert addon().app_categories == app_cats
 
         c = Category(application=amo.THUNDERBIRD.id, name='XXX',
                      type=addon().type, count=1, weight=1)
@@ -1094,7 +1055,7 @@ class TestAddonModels(amo.tests.TestCase):
         AddonCategory.objects.create(addon=addon(), category=c)
         c24.save()  # Clear the app_categories cache.
         app_cats += [(amo.THUNDERBIRD, [c])]
-        eq_(addon().app_categories, app_cats)
+        assert addon().app_categories == app_cats
 
     def test_app_categories_sunbird(self):
         def get_addon():
@@ -1104,15 +1065,13 @@ class TestAddonModels(amo.tests.TestCase):
 
         # This add-on is already associated with three Firefox categories.
         cats = sorted(addon.categories.all(), key=lambda x: x.name)
-        eq_(addon.app_categories, [(amo.FIREFOX, cats)])
+        assert addon.app_categories == [(amo.FIREFOX, cats)]
 
         # Associate this add-on with a Sunbird category.
         c2 = Category.objects.create(application=amo.SUNBIRD.id,
                                      type=amo.ADDON_EXTENSION, name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=c2)
-
-        # Sunbird category should be excluded.
-        eq_(get_addon().app_categories, [(amo.FIREFOX, cats)])
+        assert get_addon().app_categories == [(amo.FIREFOX, cats)]
 
     def test_review_replies(self):
         """
@@ -1178,7 +1137,7 @@ class TestAddonModels(amo.tests.TestCase):
         addon.versions.all().delete()
 
         entries = ActivityLog.objects.all()
-        eq_(entries[0].action, amo.LOG.CHANGE_STATUS.id)
+        assert entries[0].action == amo.LOG.CHANGE_STATUS.id
 
     def setup_files(self, status):
         addon = Addon.objects.create(type=1)
@@ -1191,7 +1150,7 @@ class TestAddonModels(amo.tests.TestCase):
         addon.update(status=amo.STATUS_PUBLIC)
         addon.update(disabled_by_user=True)
         version.save()
-        eq_(addon.status, amo.STATUS_PUBLIC)
+        assert addon.status == amo.STATUS_PUBLIC
         assert addon.is_disabled
 
     def test_no_change_disabled(self):
@@ -1199,7 +1158,7 @@ class TestAddonModels(amo.tests.TestCase):
         version = Version.objects.create(addon=addon)
         addon.update(status=amo.STATUS_DISABLED)
         version.save()
-        eq_(addon.status, amo.STATUS_DISABLED)
+        assert addon.status == amo.STATUS_DISABLED
         assert addon.is_disabled
 
     def test_no_change_deleted(self):
@@ -1207,43 +1166,43 @@ class TestAddonModels(amo.tests.TestCase):
         version = Version.objects.create(addon=addon)
         addon.update(status=amo.STATUS_DELETED)
         version.save()
-        eq_(addon.status, amo.STATUS_DELETED)
+        assert addon.status == amo.STATUS_DELETED
         assert addon.is_deleted
 
     def test_can_alter_in_prelim(self):
         addon, version = self.setup_files(amo.STATUS_LITE)
         addon.update(status=amo.STATUS_LITE)
         version.save()
-        eq_(addon.status, amo.STATUS_LITE)
+        assert addon.status == amo.STATUS_LITE
 
     def test_removing_public(self):
         addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
         addon.update(status=amo.STATUS_PUBLIC)
         version.save()
-        eq_(addon.status, amo.STATUS_UNREVIEWED)
+        assert addon.status == amo.STATUS_UNREVIEWED
 
     def test_removing_public_with_prelim(self):
         addon, version = self.setup_files(amo.STATUS_LITE)
         addon.update(status=amo.STATUS_PUBLIC)
         version.save()
-        eq_(addon.status, amo.STATUS_LITE)
+        assert addon.status == amo.STATUS_LITE
 
     def test_can_request_review_no_files(self):
         addon = Addon.objects.get(pk=3615)
         addon.versions.all()[0].files.all().delete()
-        eq_(addon.can_request_review(), ())
+        assert addon.can_request_review() == ()
 
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
         addon.latest_version.files.update(status=amo.STATUS_DISABLED)
-        eq_(addon.can_request_review(), ())
+        assert addon.can_request_review() == ()
 
     def check(self, status, exp, kw={}):
         addon = Addon.objects.get(pk=3615)
         changes = {'status': status, 'disabled_by_user': False}
         changes.update(**kw)
         addon.update(**changes)
-        eq_(addon.can_request_review(), exp)
+        assert addon.can_request_review() == exp
 
     def test_can_request_review_null(self):
         self.check(amo.STATUS_NULL, (amo.STATUS_LITE, amo.STATUS_PUBLIC))
@@ -1281,31 +1240,31 @@ class TestAddonModels(amo.tests.TestCase):
 
     def test_slug_isdigit(self):
         a = Addon.objects.create(type=1, name='xx', slug='123')
-        eq_(a.slug, '123~')
+        assert a.slug == '123~'
 
         a.slug = '44'
         a.save()
-        eq_(a.slug, '44~')
+        assert a.slug == '44~'
 
     def test_slug_isblacklisted(self):
         # When an addon is uploaded, it doesn't use the form validation,
         # so we'll just mangle the slug if its blacklisted.
         a = Addon.objects.create(type=1, name='xx', slug='validate')
-        eq_(a.slug, 'validate~')
+        assert a.slug == 'validate~'
 
         a.slug = 'validate'
         a.save()
-        eq_(a.slug, 'validate~')
+        assert a.slug == 'validate~'
 
     def delete(self):
         addon = Addon.objects.get(id=3615)
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
         addon.delete('so long and thanks for all the fish')
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
     def test_delete_to(self):
         self.delete()
-        eq_(mail.outbox[0].to, [settings.FLIGTAR])
+        assert mail.outbox[0].to == [settings.FLIGTAR]
 
     def test_delete_by(self):
         try:
@@ -1367,13 +1326,13 @@ class TestAddonModels(amo.tests.TestCase):
         addon = Addon.objects.get(id=3615)
         file = addon.current_version.files.all()[0]
         file.update(binary=True)
-        eq_(addon.binary, True)
+        assert addon.binary is True
 
     def test_binary_components_property(self):
         addon = Addon.objects.get(id=3615)
         file = addon.current_version.files.all()[0]
         file.update(binary_components=True)
-        eq_(addon.binary_components, True)
+        assert addon.binary_components is True
 
     def test_is_incomplete(self):
         addon = Addon.objects.get(pk=3615)
@@ -1404,7 +1363,7 @@ class TestAddonNomination(amo.tests.TestCase):
             a.update(status=status)
             old_ver = a.versions.latest()
             v = Version.objects.create(addon=a, version=str(ver))
-            eq_(v.nomination, old_ver.nomination)
+            assert v.nomination == old_ver.nomination
             ver += 1
 
     def test_beta_version_does_not_inherit_nomination(self):
@@ -1418,13 +1377,13 @@ class TestAddonNomination(amo.tests.TestCase):
                             filename='foobar.xpi')
         v.version = '1.1'
         v.save()
-        eq_(v.nomination, None)
+        assert v.nomination is None
 
     def test_lone_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         Version.objects.all().delete()
         v = Version.objects.create(addon=a, version='1.0')
-        eq_(v.nomination, None)
+        assert v.nomination is None
 
     def test_reviewed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
@@ -1432,7 +1391,7 @@ class TestAddonNomination(amo.tests.TestCase):
         for st in (amo.STATUS_PUBLIC, amo.STATUS_BETA, amo.STATUS_NULL):
             a.update(status=st)
             v = Version.objects.create(addon=a, version=str(ver))
-            eq_(v.nomination, None)
+            assert v.nomination is None
             ver += 1
 
     def test_nomination_no_version(self):
@@ -1446,7 +1405,7 @@ class TestAddonNomination(amo.tests.TestCase):
         earlier = datetime.today() - timedelta(days=2)
         addon.versions.latest().update(nomination=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
-        eq_(addon.versions.latest().nomination.date(), earlier.date())
+        assert addon.versions.latest().nomination.date() == earlier.date()
 
     def setup_nomination(self, status=amo.STATUS_UNREVIEWED):
         addon = Addon.objects.create()
@@ -1465,7 +1424,7 @@ class TestAddonNomination(amo.tests.TestCase):
         addon, nomination = self.setup_nomination()
         version = Version.objects.create(addon=addon, version='0.2')
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
 
     def test_nomination_not_reset_if_changing_addon_status(self):
         """
@@ -1474,13 +1433,13 @@ class TestAddonNomination(amo.tests.TestCase):
         addon, nomination = self.setup_nomination()
         # Now switch to a full review.
         addon.update(status=amo.STATUS_NOMINATED)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
         # Then again to a preliminary.
         addon.update(status=amo.STATUS_UNREVIEWED)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
         # Finally back to a reviewed status.
         addon.update(status=amo.STATUS_PUBLIC)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
 
     def test_nomination_not_reset_if_adding_new_versions_and_files(self):
         """
@@ -1491,15 +1450,15 @@ class TestAddonNomination(amo.tests.TestCase):
         # Switching it to a public status.
         version = Version.objects.create(addon=addon, version="0.1")
         File.objects.create(status=amo.STATUS_PUBLIC, version=version)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version="0.2")
         File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version="0.3")
         File.objects.create(status=amo.STATUS_NOMINATED, version=version)
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
 
     def check_nomination_reset_with_new_version(self, addon, nomination):
         version = Version.objects.create(addon=addon, version="0.2")
@@ -1511,8 +1470,7 @@ class TestAddonNomination(amo.tests.TestCase):
         addon, nomination = self.setup_nomination(status=amo.STATUS_LITE)
         # Update again, but without a new version.
         addon.update(status=amo.STATUS_LITE)
-        # Check that nomination has been reset.
-        eq_(addon.versions.latest().nomination, nomination)
+        assert addon.versions.latest().nomination == nomination
         # Now create a new version with an attached file, and update status.
         self.check_nomination_reset_with_new_version(addon, nomination)
 
@@ -1561,10 +1519,9 @@ class TestAddonDelete(amo.tests.TestCase):
         flag = ReviewFlag(review=review)
 
         addon.delete()
-
-        eq_(Addon.unfiltered.filter(pk=addon.pk).exists(), True)
-        eq_(Review.objects.filter(pk=review.pk).exists(), False)
-        eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
+        assert Addon.unfiltered.filter(pk=addon.pk).exists() is True
+        assert Review.objects.filter(pk=review.pk).exists() is False
+        assert ReviewFlag.objects.filter(pk=flag.pk).exists() is False
 
 
 class TestUpdateStatus(amo.tests.TestCase):
@@ -1573,10 +1530,9 @@ class TestUpdateStatus(amo.tests.TestCase):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
-            amo.STATUS_UNREVIEWED)
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == amo.STATUS_UNREVIEWED
         Version.objects.create(addon=addon)
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == amo.STATUS_NULL
 
     def test_no_valid_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
@@ -1584,11 +1540,10 @@ class TestUpdateStatus(amo.tests.TestCase):
         f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
         addon.status = amo.STATUS_UNREVIEWED
         addon.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status,
-            amo.STATUS_UNREVIEWED)
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == amo.STATUS_UNREVIEWED
         f.status = amo.STATUS_DISABLED
         f.save()
-        eq_(Addon.objects.no_cache().get(pk=addon.pk).status, amo.STATUS_NULL)
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == amo.STATUS_NULL
 
 
 class TestGetVersion(amo.tests.TestCase):
@@ -1606,68 +1561,68 @@ class TestGetVersion(amo.tests.TestCase):
 
     def test_public_new_lite_version(self):
         self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), self.version)
+        assert self.addon.get_version() == self.version
 
     def test_public_new_nominated_version(self):
         self.new_version(amo.STATUS_NOMINATED)
-        eq_(self.addon.get_version(), self.version)
+        assert self.addon.get_version() == self.version
 
     def test_public_new_public_version(self):
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_public_new_unreviewed_version(self):
         self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_version(), self.version)
+        assert self.addon.get_version() == self.version
 
     def test_lite_new_unreviewed_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         self.new_version(amo.STATUS_UNREVIEWED)
-        eq_(self.addon.get_version(), self.version)
+        assert self.addon.get_version() == self.version
 
     def test_lite_new_lan_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_lite_new_lite_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_lite_new_full_version(self):
         self.addon.update(status=amo.STATUS_LITE)
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_lan_new_lite_version(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_LITE)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_lan_new_full_version(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         v = self.new_version(amo.STATUS_PUBLIC)
-        eq_(self.addon.get_version(), v)
+        assert self.addon.get_version() == v
 
     def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
         self.new_version(amo.STATUS_DISABLED)
-        eq_(self.addon.get_version(), self.version)
+        assert self.addon.get_version() == self.version
 
 
 class TestAddonGetURLPath(amo.tests.TestCase):
 
     def test_get_url_path(self):
         addon = Addon(slug='woo')
-        eq_(addon.get_url_path(), '/en-US/firefox/addon/woo/')
+        assert addon.get_url_path() == '/en-US/firefox/addon/woo/'
 
     def test_get_url_path_more(self):
         addon = Addon(slug='yeah')
-        eq_(addon.get_url_path(more=True), '/en-US/firefox/addon/yeah/more')
+        assert addon.get_url_path(more=True) == '/en-US/firefox/addon/yeah/more'
 
     def test_unlisted_addon_get_url_path(self):
         addon = Addon(slug='woo', is_listed=False)
-        eq_(addon.get_url_path(), '')
+        assert addon.get_url_path() == ''
 
     @patch.object(Addon, 'get_url_path', lambda self: '<script>xss</script>')
     def test_link_if_listed_else_text_xss(self):
@@ -1699,11 +1654,11 @@ class TestAddonModelsFeatured(amo.tests.TestCase):
 
     def _test_featured_random(self):
         f = Addon.featured_random(amo.FIREFOX, 'en-US')
-        eq_(sorted(f), [1001, 1003, 2464, 3481, 7661, 15679])
+        assert sorted(f) == [1001, 1003, 2464, 3481, 7661, 15679]
         f = Addon.featured_random(amo.FIREFOX, 'fr')
-        eq_(sorted(f), [1001, 1003, 2464, 7661, 15679])
+        assert sorted(f) == [1001, 1003, 2464, 7661, 15679]
         f = Addon.featured_random(amo.THUNDERBIRD, 'en-US')
-        eq_(f, [])
+        assert f == []
 
     def test_featured_random(self):
         self._test_featured_random()
@@ -1728,14 +1683,14 @@ class TestBackupVersion(amo.tests.TestCase):
         for v in Version.objects.all():
             v.delete()
         self.addon.update(_current_version=None)
-        eq_(self.addon.current_version, None)
+        assert self.addon.current_version is None
 
     def test_firefox_versions(self):
         self.setup_new_version()
         assert self.addon.update_version()
         current = self.addon.current_version.compatible_apps[amo.FIREFOX]
-        eq_(current.max.version, '4.0b8pre')
-        eq_(current.min.version, '3.0.12')
+        assert current.max.version == '4.0b8pre'
+        assert current.min.version == '3.0.12'
 
     def test_version_signals(self):
         self.addon.update(_current_version=None)
@@ -1828,14 +1783,13 @@ class TestPersonaModel(amo.tests.TestCase):
             data = self.persona.theme_data
 
             id_ = str(self.persona.addon.id)
-
-            eq_(data['id'], id_)
-            eq_(data['name'], unicode(self.persona.addon.name))
-            eq_(data['accentcolor'], '#8d8d97')
-            eq_(data['textcolor'], '#ffffff')
-            eq_(data['category'], 'Yolo Art')
-            eq_(data['author'], 'persona_author')
-            eq_(data['description'], unicode(self.addon.description))
+            assert data['id'] == id_
+            assert data['name'] == unicode(self.persona.addon.name)
+            assert data['accentcolor'] == '#8d8d97'
+            assert data['textcolor'] == '#ffffff'
+            assert data['category'] == 'Yolo Art'
+            assert data['author'] == 'persona_author'
+            assert data['description'] == unicode(self.addon.description)
 
             assert data['headerURL'].startswith(
                 '%s%s/header.png?' % (user_media_url('addons'), id_))
@@ -1845,12 +1799,9 @@ class TestPersonaModel(amo.tests.TestCase):
                 '%s%s/preview.jpg?' % (user_media_url('addons'), id_))
             assert data['iconURL'].startswith(
                 '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
-
-            eq_(data['detailURL'],
-                'https://omgsh.it%s' % self.persona.addon.get_url_path())
-            eq_(data['updateURL'],
-                'https://vamo/fr/themes/update-check/' + id_)
-            eq_(data['version'], '1.0')
+            assert data['detailURL'] == 'https://omgsh.it%s' % self.persona.addon.get_url_path()
+            assert data['updateURL'] == 'https://vamo/fr/themes/update-check/' + id_
+            assert data['version'] == '1.0'
 
     def test_image_urls_without_footer(self):
         self.persona.footer = ''
@@ -1871,15 +1822,15 @@ class TestPreviewModel(amo.tests.TestCase):
     def test_as_dict(self):
         expect = ['caption', 'full', 'thumbnail']
         reality = sorted(Preview.objects.all()[0].as_dict().keys())
-        eq_(expect, reality)
+        assert expect == reality
 
     def test_filename(self):
         preview = Preview.objects.get(pk=24)
-        eq_(preview.file_extension, 'png')
+        assert preview.file_extension == 'png'
         preview.update(filetype='')
-        eq_(preview.file_extension, 'png')
+        assert preview.file_extension == 'png'
         preview.update(filetype='video/webm')
-        eq_(preview.file_extension, 'webm')
+        assert preview.file_extension == 'webm'
 
     def test_filename_in_url(self):
         preview = Preview.objects.get(pk=24)
@@ -1929,15 +1880,15 @@ class TestAddonDependencies(amo.tests.TestCase):
                 addon=addon,
                 dependent_addon=Addon.objects.get(id=dependent_id)).save()
 
-        eq_(sorted([a.id for a in addon.dependencies.all()]), sorted(ids))
-        eq_(list(a.dependencies.all()), a.all_dependencies)
+        assert sorted([a.id for a in addon.dependencies.all()]) == sorted(ids)
+        assert list(a.dependencies.all()) == a.all_dependencies
 
     def test_unique_dependencies(self):
         a = Addon.objects.get(id=5299)
         b = Addon.objects.get(id=3615)
         AddonDependency.objects.create(addon=a, dependent_addon=b)
-        eq_(list(a.dependencies.values_list('id', flat=True)), [3615])
-        with self.assertRaises(IntegrityError):
+        assert list(a.dependencies.values_list('id', flat=True)) == [3615]
+        with pytest.raises(IntegrityError):
             AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
@@ -2016,10 +1967,11 @@ class TestAddonFromUpload(UploadTest):
         """New deletions won't be added to BlacklistedGuid but legacy support
         should still be tested."""
         BlacklistedGuid.objects.create(guid='guid@xpi')
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc:
             Addon.from_upload(self.get_upload('extension.xpi'),
                               [self.platform])
-        assert e.exception.messages == ['Duplicate add-on ID found.']
+
+        assert exc.value.messages == ['Duplicate add-on ID found.']
 
     def test_existing_guid(self):
         # Upload addon so we can delete it.
@@ -2056,66 +2008,65 @@ class TestAddonFromUpload(UploadTest):
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
-        eq_(addon.name, 'xpi name')
-        eq_(addon.guid, 'guid@xpi')
-        eq_(addon.type, amo.ADDON_EXTENSION)
-        eq_(addon.status, amo.STATUS_NULL)
-        eq_(addon.homepage, 'http://homepage.com')
-        eq_(addon.summary, 'xpi description')
-        eq_(addon.description, None)
-        eq_(addon.slug, 'xpi-name')
+        assert addon.name == 'xpi name'
+        assert addon.guid == 'guid@xpi'
+        assert addon.type == amo.ADDON_EXTENSION
+        assert addon.status == amo.STATUS_NULL
+        assert addon.homepage == 'http://homepage.com'
+        assert addon.summary == 'xpi description'
+        assert addon.description is None
+        assert addon.slug == 'xpi-name'
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
         v = addon.versions.get()
-        eq_(v.version, '0.1')
-        eq_(v.files.get().platform, self.platform)
-        eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
+        assert v.version == '0.1'
+        assert v.files.get().platform == self.platform
+        assert v.files.get().status == amo.STATUS_UNREVIEWED
 
     def test_xpi_for_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   platforms)
         v = addon.versions.get()
-        eq_(sorted([f.platform for f in v.all_files]),
-            sorted(platforms))
+        assert sorted([f.platform for f in v.all_files]) == sorted(platforms)
 
     def test_search_attributes(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
-        eq_(addon.name, 'search tool')
-        eq_(addon.guid, None)
-        eq_(addon.type, amo.ADDON_SEARCH)
-        eq_(addon.status, amo.STATUS_NULL)
-        eq_(addon.homepage, None)
-        eq_(addon.description, None)
-        eq_(addon.slug, 'search-tool')
-        eq_(addon.summary, 'Search Engine for Firefox')
+        assert addon.name == 'search tool'
+        assert addon.guid is None
+        assert addon.type == amo.ADDON_SEARCH
+        assert addon.status == amo.STATUS_NULL
+        assert addon.homepage is None
+        assert addon.description is None
+        assert addon.slug == 'search-tool'
+        assert addon.summary == 'Search Engine for Firefox'
 
     def test_search_version(self):
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
         v = addon.versions.get()
-        eq_(v.version, datetime.now().strftime('%Y%m%d'))
-        eq_(v.files.get().platform, amo.PLATFORM_ALL.id)
-        eq_(v.files.get().status, amo.STATUS_UNREVIEWED)
+        assert v.version == datetime.now().strftime('%Y%m%d')
+        assert v.files.get().platform == amo.PLATFORM_ALL.id
+        assert v.files.get().status == amo.STATUS_UNREVIEWED
 
     def test_no_homepage(self):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
                                   [self.platform])
-        eq_(addon.homepage, None)
+        assert addon.homepage is None
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
-        eq_(addon.default_locale, 'en-US')
+        assert addon.default_locale == 'en-US'
 
         translation.activate('es')
         addon = Addon.from_upload(self.get_upload('search.xml'),
                                   [self.platform])
-        eq_(addon.default_locale, 'es')
+        assert addon.default_locale == 'es'
 
     def test_is_listed(self):
         # By default, the addon is listed.
@@ -2171,7 +2122,7 @@ class TestFrozenAddons(amo.tests.TestCase):
         # Adding a FrozenAddon should immediately drop the addon's hotness.
         a = Addon.objects.create(type=1, hotness=22)
         FrozenAddon.objects.create(addon=a)
-        eq_(Addon.objects.get(id=a.id).hotness, 0)
+        assert Addon.objects.get(id=a.id).hotness == 0
 
 
 class TestRemoveLocale(amo.tests.TestCase):
@@ -2184,8 +2135,8 @@ class TestRemoveLocale(amo.tests.TestCase):
         a.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
-        eq_(sorted(qs.filter(id=a.name_id)), ['en-US'])
-        eq_(sorted(qs.filter(id=a.description_id)), ['en-US', 'he'])
+        assert sorted(qs.filter(id=a.name_id)) == ['en-US']
+        assert sorted(qs.filter(id=a.description_id)) == ['en-US', 'he']
 
     def test_remove_version_locale(self):
         addon = Addon.objects.create(type=amo.ADDON_THEME)
@@ -2212,8 +2163,7 @@ class TestUpdateNames(amo.tests.TestCase):
     def check_names(self, names):
         """`names` in {locale: name} format."""
         for locale, localized_string in names.iteritems():
-            eq_(self.get_name(self.addon, locale).localized_string,
-                localized_string)
+            assert self.get_name(self.addon, locale).localized_string == localized_string
 
     def test_new_name(self):
         names = dict(self.names, **{'de': u'frü'})
@@ -2269,7 +2219,7 @@ class TestUpdateNames(amo.tests.TestCase):
         self.addon.save()
         self.check_names(names)
         addon = self.addon.reload()
-        eq_(addon.default_locale, 'de')
+        assert addon.default_locale == 'de'
 
     def test_default_locale_change_remove_old(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso', 'en-US': None})
@@ -2277,7 +2227,7 @@ class TestUpdateNames(amo.tests.TestCase):
         self.addon.update_names(names)
         self.addon.save()
         self.check_names(names)
-        eq_(self.addon.reload().default_locale, 'de')
+        assert self.addon.reload().default_locale == 'de'
 
     def test_default_locale_removal_not_deleted(self):
         names = {'en-US': None}
@@ -2578,10 +2528,10 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
         File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack'),
                             status=amo.STATUS_PUBLIC)
-        eq_(self.addon.reload().get_localepicker(), '')
+        assert self.addon.reload().get_localepicker() == ''
 
     def test_extract_no_files(self):
-        eq_(self.addon.get_localepicker(), '')
+        assert self.addon.get_localepicker() == ''
 
     def test_extract_not_language_pack(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
@@ -2589,13 +2539,13 @@ class TestLanguagePack(amo.tests.TestCase, amo.tests.AMOPaths):
                             status=amo.STATUS_PUBLIC)
         assert self.addon.reload().get_localepicker()
         self.addon.update(type=amo.ADDON_EXTENSION)
-        eq_(self.addon.get_localepicker(), '')
+        assert self.addon.get_localepicker() == ''
 
     def test_extract_not_platform_mobile(self):
         File.objects.create(platform=self.platform_all, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'),
                             status=amo.STATUS_PUBLIC)
-        eq_(self.addon.reload().get_localepicker(), '')
+        assert self.addon.reload().get_localepicker() == ''
 
 
 class TestCompatOverride(amo.tests.TestCase):
@@ -2619,7 +2569,7 @@ class TestCompatOverride(amo.tests.TestCase):
         """Check that key/value pairs in kw match attributes of obj."""
         for key, expected in kw.items():
             actual = getattr(obj, key)
-            eq_(actual, expected, '[%s] %r != %r' % (key, actual, expected))
+            assert actual == expected
 
     def test_is_hosted(self):
         c = CompatOverride.objects.create(guid='a')
@@ -2634,16 +2584,16 @@ class TestCompatOverride(amo.tests.TestCase):
 
         # The default is incompatible.
         c = CompatOverrideRange.objects.create(compat=one, app=1)
-        eq_(c.override_type(), 'incompatible')
+        assert c.override_type() == 'incompatible'
 
         c = CompatOverrideRange.objects.create(compat=one, app=1, type=0)
-        eq_(c.override_type(), 'compatible')
+        assert c.override_type() == 'compatible'
 
     def test_guid_match(self):
         # We hook up the add-on automatically if we see a matching guid.
         addon = Addon.objects.create(id=1, guid='oh yeah', type=1)
         c = CompatOverride.objects.create(guid=addon.guid)
-        eq_(c.addon_id, addon.id)
+        assert c.addon_id == addon.id
 
         c = CompatOverride.objects.create(guid='something else')
         assert c.addon is None
@@ -2655,19 +2605,16 @@ class TestCompatOverride(amo.tests.TestCase):
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
             for c in compats:
-                eq_(c.compat_ranges,
-                    [r for r in ranges if r.compat_id == c.id])
+                assert c.compat_ranges == [r for r in ranges if r.compat_id == c.id]
 
     def test_collapsed_ranges(self):
         # Test that we get back the right structures from collapsed_ranges().
         c = CompatOverride.objects.get(guid='one')
         r = c.collapsed_ranges()
-
-        eq_(len(r), 1)
+        assert len(r) == 1
         compat_range = r[0]
         self.check(compat_range, type='incompatible', min='0', max='*')
-
-        eq_(len(compat_range.apps), 1)
+        assert len(compat_range.apps) == 1
         self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
 
     def test_collapsed_ranges_multiple_versions(self):
@@ -2677,15 +2624,14 @@ class TestCompatOverride(amo.tests.TestCase):
                                            min_app_version='3',
                                            max_app_version='3.*')
         r = c.collapsed_ranges()
-
-        eq_(len(r), 2)
+        assert len(r) == 2
 
         self.check(r[0], type='incompatible', min='0', max='*')
-        eq_(len(r[0].apps), 1)
+        assert len(r[0].apps) == 1
         self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
 
         self.check(r[1], type='incompatible', min='1', max='2')
-        eq_(len(r[1].apps), 1)
+        assert len(r[1].apps) == 1
         self.check(r[1].apps[0], app=amo.FIREFOX, min='3', max='3.*')
 
     def test_collapsed_ranges_different_types(self):
@@ -2696,26 +2642,23 @@ class TestCompatOverride(amo.tests.TestCase):
                                            min_app_version='3',
                                            max_app_version='3.*')
         r = c.collapsed_ranges()
-
-        eq_(len(r), 2)
+        assert len(r) == 2
 
         self.check(r[0], type='compatible', min='0', max='*')
-        eq_(len(r[0].apps), 1)
+        assert len(r[0].apps) == 1
         self.check(r[0].apps[0], app=amo.FIREFOX, min='3', max='3.*')
 
         self.check(r[1], type='incompatible', min='0', max='*')
-        eq_(len(r[1].apps), 1)
+        assert len(r[1].apps) == 1
         self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
 
     def test_collapsed_ranges_multiple_apps(self):
         c = CompatOverride.objects.get(guid='two')
         r = c.collapsed_ranges()
-
-        eq_(len(r), 1)
+        assert len(r) == 1
         compat_range = r[0]
         self.check(compat_range, type='incompatible', min='1', max='2')
-
-        eq_(len(compat_range.apps), 2)
+        assert len(compat_range.apps) == 2
         self.check(compat_range.apps[0], app=amo.FIREFOX, min='0', max='*')
         self.check(compat_range.apps[1], app=amo.FIREFOX, min='3', max='4')
 
@@ -2724,16 +2667,14 @@ class TestCompatOverride(amo.tests.TestCase):
         CompatOverrideRange.objects.create(min_version='5', max_version='6',
                                            compat=c, app=1)
         r = c.collapsed_ranges()
-
-        eq_(len(r), 2)
+        assert len(r) == 2
         self.check(r[0], type='incompatible', min='1', max='2')
-
-        eq_(len(r[0].apps), 2)
+        assert len(r[0].apps) == 2
         self.check(r[0].apps[0], app=amo.FIREFOX, min='0', max='*')
         self.check(r[0].apps[1], app=amo.FIREFOX, min='3', max='4')
 
         self.check(r[1], type='incompatible', min='5', max='6')
-        eq_(len(r[1].apps), 1)
+        assert len(r[1].apps) == 1
         self.check(r[1].apps[0], app=amo.FIREFOX, min='0', max='*')
 
 
@@ -2745,7 +2686,7 @@ class TestIncompatibleVersions(amo.tests.TestCase):
         self.addon = Addon.objects.create(guid='r@b', type=amo.ADDON_EXTENSION)
 
     def test_signals_min(self):
-        eq_(IncompatibleVersions.objects.count(), 0)
+        assert IncompatibleVersions.objects.count() == 0
 
         c = CompatOverride.objects.create(guid='r@b')
         CompatOverrideRange.objects.create(compat=c, app=self.app.id,
@@ -2755,24 +2696,24 @@ class TestIncompatibleVersions(amo.tests.TestCase):
         # Test the max version matched.
         version1 = Version.objects.create(id=2, addon=self.addon,
                                           version='1.0')
-        eq_(IncompatibleVersions.objects.filter(version=version1).count(), 1)
-        eq_(IncompatibleVersions.objects.count(), 1)
+        assert IncompatibleVersions.objects.filter(version=version1).count() == 1
+        assert IncompatibleVersions.objects.count() == 1
 
         # Test the lower range.
         version2 = Version.objects.create(id=1, addon=self.addon,
                                           version='0.5')
-        eq_(IncompatibleVersions.objects.filter(version=version2).count(), 1)
-        eq_(IncompatibleVersions.objects.count(), 2)
+        assert IncompatibleVersions.objects.filter(version=version2).count() == 1
+        assert IncompatibleVersions.objects.count() == 2
 
         # Test delete signals.
         version1.delete()
-        eq_(IncompatibleVersions.objects.count(), 1)
+        assert IncompatibleVersions.objects.count() == 1
 
         version2.delete()
-        eq_(IncompatibleVersions.objects.count(), 0)
+        assert IncompatibleVersions.objects.count() == 0
 
     def test_signals_max(self):
-        eq_(IncompatibleVersions.objects.count(), 0)
+        assert IncompatibleVersions.objects.count() == 0
 
         c = CompatOverride.objects.create(guid='r@b')
         CompatOverrideRange.objects.create(compat=c, app=self.app.id,
@@ -2781,20 +2722,20 @@ class TestIncompatibleVersions(amo.tests.TestCase):
 
         # Test the min_version matched.
         version1 = Version.objects.create(addon=self.addon, version='1.0')
-        eq_(IncompatibleVersions.objects.filter(version=version1).count(), 1)
-        eq_(IncompatibleVersions.objects.count(), 1)
+        assert IncompatibleVersions.objects.filter(version=version1).count() == 1
+        assert IncompatibleVersions.objects.count() == 1
 
         # Test the upper range.
         version2 = Version.objects.create(addon=self.addon, version='99.0')
-        eq_(IncompatibleVersions.objects.filter(version=version2).count(), 1)
-        eq_(IncompatibleVersions.objects.count(), 2)
+        assert IncompatibleVersions.objects.filter(version=version2).count() == 1
+        assert IncompatibleVersions.objects.count() == 2
 
         # Test delete signals.
         version1.delete()
-        eq_(IncompatibleVersions.objects.count(), 1)
+        assert IncompatibleVersions.objects.count() == 1
 
         version2.delete()
-        eq_(IncompatibleVersions.objects.count(), 0)
+        assert IncompatibleVersions.objects.count() == 0
 
 
 class TestQueue(amo.tests.TestCase):

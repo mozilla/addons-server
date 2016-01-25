@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import mock
-from nose.tools import eq_
 
 import amo.tests
 from reviews import feeds
@@ -28,18 +27,16 @@ class FeedTest(amo.tests.TestCase):
         self.review.user = self.user
 
     def test_title(self):
-        eq_(self.feed.title(self.addon),
-            u'Reviews for %s' % self.u)
+        assert self.feed.title(self.addon) == u'Reviews for %s' % self.u
 
     def test_item_title(self):
-        eq_(self.feed.item_title(self.review),
-            'Rated %s out of 5 stars : %s' % (self.review.rating, self.u))
+        assert self.feed.item_title(self.review) == 'Rated %s out of 5 stars : %s' % (self.review.rating, self.u)
 
         self.review.rating = None
-        eq_(self.feed.item_title(self.review), self.u)
+        assert self.feed.item_title(self.review) == self.u
 
     def test_item_author_name(self):
-        eq_(self.feed.item_author_name(self.review), self.u)
+        assert self.feed.item_author_name(self.review) == self.u
 
         self.user.username = self.u
-        eq_(self.feed.item_author_name(self.review), self.u)
+        assert self.feed.item_author_name(self.review) == self.u

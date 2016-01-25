@@ -5,7 +5,6 @@ from django.core import mail
 from django.test.client import RequestFactory
 
 import phpserialize as php
-from nose.tools import eq_
 
 import amo
 import amo.tests
@@ -19,18 +18,18 @@ from zadmin.models import DownloadSource
 class TestStatsDictField(amo.tests.TestCase):
 
     def test_to_python_none(self):
-        eq_(StatsDictField().to_python(None), None)
+        assert StatsDictField().to_python(None) is None
 
     def test_to_python_dict(self):
-        eq_(StatsDictField().to_python({'a': 1}), {'a': 1})
+        assert StatsDictField().to_python({'a': 1}) == {'a': 1}
 
     def test_to_python_php(self):
         val = {'a': 1}
-        eq_(StatsDictField().to_python(php.serialize(val)), val)
+        assert StatsDictField().to_python(php.serialize(val)) == val
 
     def test_to_python_json(self):
         val = {'a': 1}
-        eq_(StatsDictField().to_python(json.dumps(val)), val)
+        assert StatsDictField().to_python(json.dumps(val)) == val
 
 
 class TestEmail(amo.tests.TestCase):
@@ -55,9 +54,9 @@ class TestEmail(amo.tests.TestCase):
                     post_data={'payer_email': 'test@tester.com'})
 
         cont.mail_thankyou()
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
         email = mail.outbox[0]
-        eq_(email.to, ['test@tester.com'])
+        assert email.to == ['test@tester.com']
         assert '&quot;' not in email.body
         assert u'Thank "quoted".' in email.body
         assert '<script>' not in email.body
@@ -78,9 +77,9 @@ class TestClientData(amo.tests.TestCase):
                               **{'HTTP_USER_AGENT': user_agent})
 
         cli = ClientData.get_or_create(request)
-        eq_(cli.download_source, download_source)
-        eq_(cli.device_type, device_type)
-        eq_(cli.user_agent, user_agent)
-        eq_(cli.is_chromeless, False)
-        eq_(cli.language, 'en-us')
-        eq_(cli.region, None)
+        assert cli.download_source == download_source
+        assert cli.device_type == device_type
+        assert cli.user_agent == user_agent
+        assert cli.is_chromeless is False
+        assert cli.language == 'en-us'
+        assert cli.region is None

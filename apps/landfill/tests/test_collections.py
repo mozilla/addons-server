@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_, ok_
+from nose.tools import ok_
 
 import amo
 import amo.tests
@@ -17,9 +17,9 @@ class CollectionsTests(amo.tests.TestCase):
 
     def test_collections_themes_generation(self):
         generate_collection(self.addon)
-        eq_(Collection.objects.all().count(), 1)
-        eq_(CollectionAddon.objects.last().addon, self.addon)
-        eq_(FeaturedCollection.objects.all().count(), 0)
+        assert Collection.objects.all().count() == 1
+        assert CollectionAddon.objects.last().addon == self.addon
+        assert FeaturedCollection.objects.all().count() == 0
 
     def test_collections_themes_translations(self):
         generate_collection(self.addon)
@@ -29,9 +29,9 @@ class CollectionsTests(amo.tests.TestCase):
 
     def test_collections_addons_generation(self):
         generate_collection(self.addon, APPS['android'])
-        eq_(Collection.objects.all().count(), 1)
-        eq_(CollectionAddon.objects.last().addon, self.addon)
-        eq_(FeaturedCollection.objects.last().application, APPS['android'].id)
+        assert Collection.objects.all().count() == 1
+        assert CollectionAddon.objects.last().addon == self.addon
+        assert FeaturedCollection.objects.last().application == APPS['android'].id
 
     def test_collections_addons_translations(self):
         generate_collection(self.addon, APPS['android'])

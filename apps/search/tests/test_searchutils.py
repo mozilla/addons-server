@@ -1,5 +1,4 @@
 import pytest
-from nose.tools import eq_
 
 from search.utils import floor_version
 
@@ -10,7 +9,7 @@ pytestmark = pytest.mark.django_db
 def test_floor_version():
 
     def c(x, y):
-        eq_(floor_version(x), y)
+        assert floor_version(x) == y
 
     c(None, None)
     c('', '')

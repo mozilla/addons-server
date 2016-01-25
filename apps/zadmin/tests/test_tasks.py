@@ -11,6 +11,7 @@ from applications.models import AppVersion
 from files.utils import make_xpi
 from versions.compare import version_int
 from zadmin import tasks
+import pytest
 
 
 def RequestMock(response='', headers=None):
@@ -213,8 +214,8 @@ class TestLangpackFetcher(amo.tests.TestCase):
     def test_fetch_langpack_invalid_path_fails(self, mock_sign_file):
         self.mock_request.return_value = None
 
-        with self.assertRaises(ValueError) as exc:
+        with pytest.raises(ValueError) as exc:
             tasks.fetch_langpacks('../foo/')
-        assert str(exc.exception) == 'Invalid path'
+        assert exc.value.message == 'Invalid path'
 
         assert not mock_sign_file.called

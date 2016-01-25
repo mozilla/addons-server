@@ -27,7 +27,7 @@ import mock
 import pytest
 import tower
 from dateutil.parser import parse as dateutil_parser
-from nose.tools import eq_, nottest
+from nose.tools import nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView
@@ -99,7 +99,7 @@ def initial(form):
 
 
 def assert_required(error_msg):
-    eq_(error_msg, unicode(Field.default_error_messages['required']))
+    assert error_msg == unicode(Field.default_error_messages['required'])
 
 
 def check_links(expected, elements, selected=None, verify=True):
@@ -128,18 +128,17 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            eq_(e.text(), text)
+            assert e.text() == text
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
                 e = e.find('a')
             assert_url_equal(e.attr('href'), link)
             if verify and link != '#':
-                eq_(Client().head(link, follow=True).status_code, 200,
-                    '%r is dead' % link)
+                assert Client().head(link, follow=True).status_code == 200
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
-            eq_(bool(e.length), text == selected)
+            assert bool(e.length) == (text == selected)
 
 
 def check_selected(expected, links, selected):
@@ -150,11 +149,10 @@ def assert_url_equal(url, other, compare_host=False):
     """Compare url paths and query strings."""
     parsed = urlparse(url)
     parsed_other = urlparse(other)
-    eq_(parsed.path, parsed_other.path)  # Paths are equal.
-    eq_(parse_qs(parsed.path),
-        parse_qs(parsed_other.path))  # Params are equal.
+    assert parsed.path == parsed_other.path  # Paths are equal.
+    assert parse_qs(parsed.path) == parse_qs(parsed_other.path)  # Params are equal.
     if compare_host:
-        eq_(parsed.netloc, parsed_other.netloc)
+        assert parsed.netloc == parsed_other.netloc
 
 
 def create_sample(name=None, **kw):
@@ -384,9 +382,9 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
                         self.fail('form %r had the following error(s):\n%s'
                                   % (k, msg))
                     if hasattr(v, 'non_field_errors'):
-                        self.assertEquals(v.non_field_errors(), [])
+                        assert v.non_field_errors() == []
                     if hasattr(v, 'non_form_errors'):
-                        self.assertEquals(v.non_form_errors(), [])
+                        assert v.non_form_errors() == []
 
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
@@ -404,24 +402,21 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         """
         if hasattr(response, 'redirect_chain'):
             # The request was a followed redirect
-            self.assertTrue(
-                len(response.redirect_chain) > 0,
+            assert len(response.redirect_chain) > 0, (
                 "Response didn't redirect as expected: Response"
                 " code was %d (expected %d)" % (response.status_code,
                                                 status_code))
 
             url, status_code = response.redirect_chain[-1]
 
-            self.assertEqual(
-                response.status_code, target_status_code,
+            assert response.status_code == target_status_code, (
                 "Response didn't redirect as expected: Final"
                 " Response code was %d (expected %d)" % (response.status_code,
                                                          target_status_code))
 
         else:
             # Not a followed redirect
-            self.assertEqual(
-                response.status_code, status_code,
+            assert response.status_code == status_code, (
                 "Response didn't redirect as expected: Response"
                 " code was %d (expected %d)" % (response.status_code,
                                                 status_code))
@@ -434,8 +429,7 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
-        self.assertEqual(
-            url, expected_url,
+        assert url == expected_url, (
             "Response redirected to '%s', expected '%s'" % (url, expected_url))
 
     def assertLoginRequired(self, response, status_code=302):
@@ -459,8 +453,8 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         Oh, and Django's `assertSetEqual` is lame and requires actual sets:
         http://bit.ly/RO9sTr
         """
-        eq_(set(a), set(b), message)
-        eq_(len(a), len(b), message)
+        assert set(a) == set(b)
+        assert len(a) == len(b)
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -492,23 +486,23 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         """
         Assertion to check the equality of two querysets
         """
-        return self.assertSetEqual(qs1.values_list('id', flat=True),
-                                   qs2.values_list('id', flat=True))
+        assert (
+            qs1.values_list('id', flat=True)
+            == qs2.values_list('id', flat=True))
 
     def assertCORS(self, res, *verbs):
         """
         Determines if a response has suitable CORS headers. Appends 'OPTIONS'
         on to the list of verbs.
         """
-        eq_(res['Access-Control-Allow-Origin'], '*')
+        assert res['Access-Control-Allow-Origin'] == '*'
         assert 'API-Status' in res['Access-Control-Expose-Headers']
         assert 'API-Version' in res['Access-Control-Expose-Headers']
 
         verbs = map(str.upper, verbs) + ['OPTIONS']
         actual = res['Access-Control-Allow-Methods'].split(', ')
-        self.assertSetEqual(verbs, actual)
-        eq_(res['Access-Control-Allow-Headers'],
-            'X-HTTP-Method-Override, Content-Type')
+        assert verbs == actual
+        assert res['Access-Control-Allow-Headers'] == 'X-HTTP-Method-Override, Content-Type'
 
     def update_session(self, session):
         """
@@ -559,11 +553,10 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         """Compare url paths and query strings."""
         parsed = urlparse(url)
         parsed_other = urlparse(other)
-        eq_(parsed.path, parsed_other.path)  # Paths are equal.
-        eq_(parse_qs(parsed.path),
-            parse_qs(parsed_other.path))  # Params are equal.
+        assert parsed.path == parsed_other.path  # Paths are equal.
+        assert parse_qs(parsed.path) == parse_qs(parsed_other.path)  # Params are equal.
         if compare_host:
-            eq_(parsed.netloc, parsed_other.netloc)
+            assert parsed.netloc == parsed_other.netloc
 
 
 class AMOPaths(object):

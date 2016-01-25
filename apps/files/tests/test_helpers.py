@@ -10,13 +10,13 @@ from django.core.files.storage import default_storage as storage
 from django import forms
 
 from mock import Mock, patch
-from nose.tools import eq_
 
 import amo.tests
 from amo.urlresolvers import reverse
 from files.helpers import FileViewer, DiffHelper
 from files.models import File
 from files.utils import SafeUnzip
+import pytest
 
 root = os.path.join(settings.ROOT, 'apps/files/fixtures/files')
 
@@ -49,16 +49,16 @@ class TestFileHelper(amo.tests.TestCase):
         super(TestFileHelper, self).tearDown()
 
     def test_files_not_extracted(self):
-        eq_(self.viewer.is_extracted(), False)
+        assert self.viewer.is_extracted() is False
 
     def test_files_extracted(self):
         self.viewer.extract()
-        eq_(self.viewer.is_extracted(), True)
+        assert self.viewer.is_extracted() is True
 
     def test_recurse_extract(self):
         self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
-        eq_(self.viewer.is_extracted(), True)
+        assert self.viewer.is_extracted() is True
 
     def test_recurse_contents(self):
         self.viewer.src = get_file('recurse.xpi')
@@ -68,12 +68,12 @@ class TestFileHelper(amo.tests.TestCase):
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
         for name in nm:
-            eq_(name in files, True, 'File %r not extracted' % name)
+            assert name in files
 
     def test_cleanup(self):
         self.viewer.extract()
         self.viewer.cleanup()
-        eq_(self.viewer.is_extracted(), False)
+        assert self.viewer.is_extracted() is False
 
     def test_isbinary(self):
         binary = self.viewer._is_binary
@@ -107,7 +107,7 @@ class TestFileHelper(amo.tests.TestCase):
                      [u'unicodesomelong삮.txt', u'unicodesomelong...txt'],
                      ['somelongfilename.somelongextension',
                       'somelongfilenam...somelonge..'],):
-            eq_(truncate(x), y)
+            assert truncate(x) == y
 
     def test_get_files_not_extracted(self):
         assert not self.viewer.get_files()
@@ -115,15 +115,15 @@ class TestFileHelper(amo.tests.TestCase):
     def test_get_files_size(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        eq_(len(files), 14)
+        assert len(files) == 14
 
     def test_get_files_directory(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        eq_(files['install.js']['directory'], False)
-        eq_(files['install.js']['binary'], False)
-        eq_(files['__MACOSX']['directory'], True)
-        eq_(files['__MACOSX']['binary'], False)
+        assert files['install.js']['directory'] is False
+        assert files['install.js']['binary'] is False
+        assert files['__MACOSX']['directory'] is True
+        assert files['__MACOSX']['binary'] is False
 
     def test_url_file(self):
         self.viewer.extract()
@@ -147,14 +147,14 @@ class TestFileHelper(amo.tests.TestCase):
     def test_get_files_depth(self):
         self.viewer.extract()
         files = self.viewer.get_files()
-        eq_(files['dictionaries/license.txt']['depth'], 1)
+        assert files['dictionaries/license.txt']['depth'] == 1
 
     def test_bom(self):
         dest = os.path.join(settings.TMP_PATH, 'test_bom')
         open(dest, 'w').write('foo'.encode('utf-16'))
         self.viewer.select('foo')
         self.viewer.selected = {'full': dest, 'size': 1}
-        eq_(self.viewer.read_file(), u'foo')
+        assert self.viewer.read_file() == u'foo'
         os.remove(dest)
 
     def test_syntax(self):
@@ -163,7 +163,7 @@ class TestFileHelper(amo.tests.TestCase):
                                  ('foo.json', 'js'),
                                  ('foo.jsm', 'js'),
                                  ('foo.bar', 'plain')]:
-            eq_(self.viewer.get_syntax(filename), syntax)
+            assert self.viewer.get_syntax(filename) == syntax
 
     def test_file_order(self):
         self.viewer.extract()
@@ -175,7 +175,7 @@ class TestFileHelper(amo.tests.TestCase):
         cache.clear()
         files = self.viewer.get_files().keys()
         rt = files.index(u'chrome')
-        eq_(files[rt:rt + 3], [u'chrome', u'chrome/foo', u'dictionaries'])
+        assert files[rt:rt + 3] == [u'chrome', u'chrome/foo', u'dictionaries']
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
@@ -183,7 +183,7 @@ class TestFileHelper(amo.tests.TestCase):
         self.viewer.get_files()
         self.viewer.select('install.js')
         res = self.viewer.read_file()
-        eq_(res, '')
+        assert res == ''
         assert self.viewer.selected['msg'].startswith('File size is')
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
@@ -193,12 +193,13 @@ class TestFileHelper(amo.tests.TestCase):
             self.viewer.get_files()
             self.viewer.select('install.js')
             res = self.viewer.read_file()
-            eq_(res, '')
+            assert res == ''
             assert self.viewer.selected['msg'].startswith('File size is')
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
-        self.assertRaises(forms.ValidationError, self.viewer.extract)
+        with pytest.raises(forms.ValidationError):
+            self.viewer.extract()
 
     def test_default(self):
         self.viewer.extract()
@@ -219,14 +220,14 @@ class TestFileHelper(amo.tests.TestCase):
         self.viewer.select('install.js')
         os.remove(os.path.join(self.viewer.dest, 'install.js'))
         res = self.viewer.read_file()
-        eq_(res, '')
+        assert res == ''
         assert self.viewer.selected['msg'].startswith('That file no')
 
     @patch('files.helpers.get_md5')
     def test_delete_mid_tree(self, get_md5):
         get_md5.side_effect = IOError('ow')
         self.viewer.extract()
-        eq_({}, self.viewer.get_files())
+        assert {} == self.viewer.get_files()
 
 
 class TestSearchEngineHelper(amo.tests.TestCase):
@@ -255,12 +256,12 @@ class TestSearchEngineHelper(amo.tests.TestCase):
 
     def test_default(self):
         self.viewer.extract()
-        eq_(self.viewer.get_default(None), 'a9.xml')
+        assert self.viewer.get_default(None) == 'a9.xml'
 
     def test_default_no_files(self):
         self.viewer.extract()
         os.remove(os.path.join(self.viewer.dest, 'a9.xml'))
-        eq_(self.viewer.get_default(None), None)
+        assert self.viewer.get_default(None) is None
 
 
 class TestDiffSearchEngine(amo.tests.TestCase):
@@ -285,7 +286,7 @@ class TestDiffSearchEngine(amo.tests.TestCase):
         shutil.copyfile(os.path.join(self.helper.left.dest, 'search.xml'),
                         os.path.join(self.helper.right.dest, 's-20010101.xml'))
         assert self.helper.select('search.xml')
-        eq_(len(self.helper.get_deleted_files()), 0)
+        assert len(self.helper.get_deleted_files()) == 0
 
 
 class TestDiffHelper(amo.tests.TestCase):
@@ -300,15 +301,14 @@ class TestDiffHelper(amo.tests.TestCase):
         super(TestDiffHelper, self).tearDown()
 
     def test_files_not_extracted(self):
-        eq_(self.helper.is_extracted(), False)
+        assert self.helper.is_extracted() is False
 
     def test_files_extracted(self):
         self.helper.extract()
-        eq_(self.helper.is_extracted(), True)
+        assert self.helper.is_extracted() is True
 
     def test_get_files(self):
-        eq_(self.helper.left.get_files(),
-            self.helper.get_files())
+        assert self.helper.left.get_files() == self.helper.get_files()
 
     def test_diffable(self):
         self.helper.extract()
@@ -323,8 +323,9 @@ class TestDiffHelper(amo.tests.TestCase):
 
     def test_diffable_allow_empty(self):
         self.helper.extract()
-        self.assertRaises(AssertionError, self.helper.right.read_file)
-        eq_(self.helper.right.read_file(allow_empty=True), '')
+        with pytest.raises(AssertionError):
+            self.helper.right.read_file()
+        assert self.helper.right.read_file(allow_empty=True) == ''
 
     def test_diffable_both_missing(self):
         self.helper.extract()
@@ -334,7 +335,7 @@ class TestDiffHelper(amo.tests.TestCase):
     def test_diffable_deleted_files(self):
         self.helper.extract()
         os.remove(os.path.join(self.helper.left.dest, 'install.js'))
-        eq_('install.js' in self.helper.get_deleted_files(), True)
+        assert 'install.js' in self.helper.get_deleted_files()
 
     def test_diffable_one_binary_same(self):
         self.helper.extract()
@@ -373,8 +374,8 @@ class TestDiffHelper(amo.tests.TestCase):
                     filename='__MACOSX/._dictionaries')
         cache.clear()
         files = self.helper.get_files()
-        eq_(files['__MACOSX/._dictionaries']['diff'], True)
-        eq_(files['__MACOSX']['diff'], True)
+        assert files['__MACOSX/._dictionaries']['diff'] is True
+        assert files['__MACOSX']['diff'] is True
 
     def change(self, file, text, filename='install.js'):
         path = os.path.join(file, filename)
@@ -390,11 +391,13 @@ class TestSafeUnzipFile(amo.tests.TestCase, amo.tests.AMOPaths):
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_unzip_limit(self):
         zip_file = SafeUnzip(self.xpi_path('langpack-localepicker'))
-        self.assertRaises(forms.ValidationError, zip_file.is_valid)
+        with pytest.raises(forms.ValidationError):
+            zip_file.is_valid()
 
     def test_unzip_fatal(self):
         zip_file = SafeUnzip(self.xpi_path('search.xml'))
-        self.assertRaises(zipfile.BadZipfile, zip_file.is_valid)
+        with pytest.raises(zipfile.BadZipfile):
+            zip_file.is_valid()
 
     def test_unzip_not_fatal(self):
         zip_file = SafeUnzip(self.xpi_path('search.xml'))

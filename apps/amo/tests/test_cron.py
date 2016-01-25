@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 import amo.tests
 from amo.cron import gc
@@ -12,10 +11,10 @@ class GarbageTest(amo.tests.TestCase):
 
     def test_garbage_collection(self):
         "This fixture is expired data that should just get cleaned up."
-        eq_(Collection.objects.all().count(), 1)
-        eq_(ActivityLog.objects.all().count(), 1)
-        eq_(Contribution.objects.all().count(), 1)
+        assert Collection.objects.all().count() == 1
+        assert ActivityLog.objects.all().count() == 1
+        assert Contribution.objects.all().count() == 1
         gc(test_result=False)
-        eq_(Collection.objects.all().count(), 0)
-        eq_(ActivityLog.objects.all().count(), 0)
-        eq_(Contribution.objects.all().count(), 0)
+        assert Collection.objects.all().count() == 0
+        assert ActivityLog.objects.all().count() == 0
+        assert Contribution.objects.all().count() == 0

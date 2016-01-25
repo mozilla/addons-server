@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import mock
@@ -38,23 +37,23 @@ class TestViews(ReviewTest):
     def test_dev_reply(self):
         url = helpers.url('addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_dev_no_rss(self):
         url = helpers.url('addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('link[title=RSS]').length, 0)
+        assert doc('link[title=RSS]').length == 0
 
     def test_404_user_page(self):
         url = helpers.url('addons.reviews.user', self.addon.slug, 233452342)
         r = self.client.get(url)
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
 
     def test_feed(self):
         url = helpers.url('addons.reviews.list.rss', self.addon.slug)
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_abuse_form(self):
         r = self.client.get(helpers.url('addons.reviews.list',
@@ -75,46 +74,46 @@ class TestViews(ReviewTest):
     def test_list(self):
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
         reviews = doc('#reviews .item')
-        eq_(reviews.length, Review.objects.count())
-        eq_(Review.objects.count(), 2)
-        eq_(doc('.secondary .average-rating').length, 1)
-        eq_(doc('.secondary .no-rating').length, 0)
+        assert reviews.length == Review.objects.count()
+        assert Review.objects.count() == 2
+        assert doc('.secondary .average-rating').length == 1
+        assert doc('.secondary .no-rating').length == 0
 
         r = Review.objects.get(id=218207)
         item = reviews.filter('#review-218207')
-        eq_(r.reply_to_id, None)
-        eq_(item.hasClass('reply'), False)
-        eq_(item.length, 1)
-        eq_(item.attr('data-rating'), str(r.rating))
+        assert r.reply_to_id is None
+        assert item.hasClass('reply') is False
+        assert item.length == 1
+        assert item.attr('data-rating') == str(r.rating)
 
         r = Review.objects.get(id=218468)
         item = reviews.filter('#review-218468')
-        eq_(item.length, 1)
-        eq_(r.reply_to_id, 218207)
-        eq_(item.hasClass('reply'), True)
-        eq_(r.rating, None)
-        eq_(item.attr('data-rating'), '')
+        assert item.length == 1
+        assert r.reply_to_id == 218207
+        assert item.hasClass('reply') is True
+        assert r.rating is None
+        assert item.attr('data-rating') == ''
 
     def test_list_rss(self):
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
         doc = pq(r.content)
-        eq_(doc('link[title=RSS]').length, 1)
+        assert doc('link[title=RSS]').length == 1
 
     def test_empty_list(self):
         Review.objects.all().delete()
-        eq_(Review.objects.count(), 0)
+        assert Review.objects.count() == 0
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
-        eq_(doc('#reviews .item').length, 0)
-        eq_(doc('#add-first-review').length, 1)
-        eq_(doc('.secondary .average-rating').length, 0)
-        eq_(doc('.secondary .no-rating').length, 1)
+        assert doc('#reviews .item').length == 0
+        assert doc('#add-first-review').length == 1
+        assert doc('.secondary .average-rating').length == 0
+        assert doc('.secondary .no-rating').length == 1
 
     def test_list_item_actions(self):
         self.login_admin()
@@ -126,16 +125,16 @@ class TestViews(ReviewTest):
         r = Review.objects.get(id=218207)
         item = reviews.filter('#review-218207')
         actions = item.find('.item-actions')
-        eq_(actions.length, 1)
+        assert actions.length == 1
         classes = sorted(c.get('class') for c in actions.find('li a'))
-        eq_(classes, ['delete-review', 'flag-review'])
+        assert classes == ['delete-review', 'flag-review']
 
         r = Review.objects.get(id=218468)
         item = reviews.filter('#review-218468')
         actions = item.find('.item-actions')
-        eq_(actions.length, 1)
+        assert actions.length == 1
         classes = sorted(c.get('class') for c in actions.find('li a'))
-        eq_(classes, ['delete-review', 'review-reply-edit'])
+        assert classes == ['delete-review', 'review-reply-edit']
 
     def test_cant_view_unlisted_addon_reviews(self):
         """An unlisted addon doesn't have reviews."""
@@ -154,47 +153,45 @@ class TestFlag(ReviewTest):
     def test_no_login(self):
         self.client.logout()
         response = self.client.post(self.url)
-        eq_(response.status_code, 401)
+        assert response.status_code == 401
 
     def test_new_flag(self):
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
-        eq_(response.status_code, 200)
-        eq_(response.content, '{"msg": "Thanks; this review has been '
-                              'flagged for editor approval."}')
-        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
-        eq_(Review.objects.filter(editorreview=True).count(), 1)
+        assert response.status_code == 200
+        assert response.content == '{"msg": "Thanks; this review has been ' 'flagged for editor approval."}'
+        assert ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count() == 1
+        assert Review.objects.filter(editorreview=True).count() == 1
 
     def test_new_flag_mine(self):
         self.make_it_my_review()
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
-        eq_(response.status_code, 404)
+        assert response.status_code == 404
 
     def test_update_flag(self):
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
-        eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count(), 1)
-        eq_(Review.objects.filter(editorreview=True).count(), 1)
+        assert response.status_code == 200
+        assert ReviewFlag.objects.filter(flag=ReviewFlag.SPAM).count() == 1
+        assert Review.objects.filter(editorreview=True).count() == 1
 
         response = self.client.post(self.url, {'flag': ReviewFlag.LANGUAGE})
-        eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.LANGUAGE).count(), 1)
-        eq_(ReviewFlag.objects.count(), 1)
-        eq_(Review.objects.filter(editorreview=True).count(), 1)
+        assert response.status_code == 200
+        assert ReviewFlag.objects.filter(flag=ReviewFlag.LANGUAGE).count() == 1
+        assert ReviewFlag.objects.count() == 1
+        assert Review.objects.filter(editorreview=True).count() == 1
 
     def test_flag_with_note(self):
         response = self.client.post(self.url,
                                     {'flag': ReviewFlag.OTHER, 'note': 'xxx'})
-        eq_(response.status_code, 200)
-        eq_(ReviewFlag.objects.filter(flag=ReviewFlag.OTHER).count(),
-            1)
-        eq_(ReviewFlag.objects.count(), 1)
-        eq_(ReviewFlag.objects.get(flag=ReviewFlag.OTHER).note, 'xxx')
-        eq_(Review.objects.filter(editorreview=True).count(), 1)
+        assert response.status_code == 200
+        assert ReviewFlag.objects.filter(flag=ReviewFlag.OTHER).count() == 1
+        assert ReviewFlag.objects.count() == 1
+        assert ReviewFlag.objects.get(flag=ReviewFlag.OTHER).note == 'xxx'
+        assert Review.objects.filter(editorreview=True).count() == 1
 
     def test_bad_flag(self):
         response = self.client.post(self.url, {'flag': 'xxx'})
-        eq_(response.status_code, 400)
-        eq_(Review.objects.filter(editorreview=True).count(), 0)
+        assert response.status_code == 400
+        assert Review.objects.filter(editorreview=True).count() == 0
 
 
 class TestDelete(ReviewTest):
@@ -208,31 +205,30 @@ class TestDelete(ReviewTest):
     def test_no_login(self):
         self.client.logout()
         response = self.client.post(self.url)
-        eq_(response.status_code, 401)
+        assert response.status_code == 401
 
     def test_no_perms(self):
         GroupUser.objects.all().delete()
         response = self.client.post(self.url)
-        eq_(response.status_code, 403)
+        assert response.status_code == 403
 
     def test_404(self):
         url = helpers.url('addons.reviews.delete', self.addon.slug, 0)
         response = self.client.post(url)
-        eq_(response.status_code, 404)
+        assert response.status_code == 404
 
     def test_delete_review_with_dev_reply(self):
         cnt = Review.objects.count()
         response = self.client.post(self.url)
-        eq_(response.status_code, 200)
-        # Two are gone since we deleted a review with a reply.
-        eq_(Review.objects.count(), cnt - 2)
+        assert response.status_code == 200
+        assert Review.objects.count() == cnt - 2
 
     def test_delete_success(self):
         Review.objects.update(reply_to=None)
         cnt = Review.objects.count()
         response = self.client.post(self.url)
-        eq_(response.status_code, 200)
-        eq_(Review.objects.count(), cnt - 1)
+        assert response.status_code == 200
+        assert Review.objects.count() == cnt - 1
 
     def test_delete_own_review(self):
         self.client.logout()
@@ -240,9 +236,9 @@ class TestDelete(ReviewTest):
         url = helpers.url('addons.reviews.delete', self.addon.slug, 218468)
         cnt = Review.objects.count()
         response = self.client.post(url)
-        eq_(response.status_code, 200)
-        eq_(Review.objects.count(), cnt - 1)
-        eq_(Review.objects.filter(pk=218468).exists(), False)
+        assert response.status_code == 200
+        assert Review.objects.count() == cnt - 1
+        assert Review.objects.filter(pk=218468).exists() is False
 
     def test_reviewer_can_delete(self):
         # Test an editor can delete a review if not listed as an author.
@@ -258,10 +254,9 @@ class TestDelete(ReviewTest):
 
         cnt = Review.objects.count()
         response = self.client.post(self.url)
-        eq_(response.status_code, 200)
-        # Two are gone since we deleted a review with a reply.
-        eq_(Review.objects.count(), cnt - 2)
-        eq_(Review.objects.filter(pk=218207).exists(), False)
+        assert response.status_code == 200
+        assert Review.objects.count() == cnt - 2
+        assert Review.objects.filter(pk=218207).exists() is False
 
     def test_editor_own_addon_cannot_delete(self):
         # Test an editor cannot delete a review if listed as an author.
@@ -275,9 +270,9 @@ class TestDelete(ReviewTest):
 
         cnt = Review.objects.count()
         response = self.client.post(self.url)
-        eq_(response.status_code, 403)
-        eq_(Review.objects.count(), cnt)
-        eq_(Review.objects.filter(pk=218207).exists(), True)
+        assert response.status_code == 403
+        assert Review.objects.count() == cnt
+        assert Review.objects.filter(pk=218207).exists() is True
 
 
 class TestCreate(ReviewTest):
@@ -294,7 +289,7 @@ class TestCreate(ReviewTest):
 
     def test_add_logged(self):
         r = self.client.get(self.add)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/add.html')
 
     def test_add_admin(self):
@@ -307,32 +302,32 @@ class TestCreate(ReviewTest):
         """
         self.client.logout()
         r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 1)
+        assert pq(r.content)('#add-review').length == 1
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 0)
-        eq_(doc('#add-first-review').length, 0)
+        assert doc('#add-review').length == 0
+        assert doc('#add-first-review').length == 0
 
     def test_add_link_logged(self):
         """Ensure logged user can see Add Review links."""
         r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 1)
+        assert pq(r.content)('#add-review').length == 1
         r = self.client.get(self.list)
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 1)
-        eq_(doc('#add-first-review').length, 0)
+        assert doc('#add-review').length == 1
+        assert doc('#add-first-review').length == 0
 
     def test_add_link_dev(self):
         """Ensure developer cannot see Add Review links."""
         self.login_dev()
         r = self.client.get_ajax(self.more)
-        eq_(pq(r.content)('#add-review').length, 0)
+        assert pq(r.content)('#add-review').length == 0
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 0)
-        eq_(doc('#add-first-review').length, 0)
+        assert doc('#add-review').length == 0
+        assert doc('#add-first-review').length == 0
 
     def test_list_none_add_review_link_visitor(self):
         """If no reviews, ensure visitor user cannot see Add Review link."""
@@ -340,18 +335,18 @@ class TestCreate(ReviewTest):
         self.client.logout()
         r = self.client.get(self.list)
         doc = pq(r.content)('#reviews')
-        eq_(doc('#add-review').length, 0)
-        eq_(doc('#no-add-first-review').length, 0)
-        eq_(doc('#add-first-review').length, 1)
+        assert doc('#add-review').length == 0
+        assert doc('#no-add-first-review').length == 0
+        assert doc('#add-first-review').length == 1
 
     def test_list_none_add_review_link_logged(self):
         """If no reviews, ensure logged user can see Add Review link."""
         Review.objects.all().delete()
         r = self.client.get(self.list)
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 1)
-        eq_(doc('#no-add-first-review').length, 0)
-        eq_(doc('#add-first-review').length, 1)
+        assert doc('#add-review').length == 1
+        assert doc('#no-add-first-review').length == 0
+        assert doc('#add-first-review').length == 1
 
     def test_list_none_add_review_link_dev(self):
         """If no reviews, ensure developer can see Add Review link."""
@@ -359,9 +354,9 @@ class TestCreate(ReviewTest):
         self.login_dev()
         r = self.client.get(self.list)
         doc = pq(r.content)('#reviews')
-        eq_(doc('#add-review').length, 0)
-        eq_(doc('#no-add-first-review').length, 1)
-        eq_(doc('#add-first-review').length, 0)
+        assert doc('#add-review').length == 0
+        assert doc('#no-add-first-review').length == 1
+        assert doc('#add-first-review').length == 0
 
     def test_body_has_url(self):
         """ test that both the create and revise reviews segments properly
@@ -373,9 +368,9 @@ class TestCreate(ReviewTest):
             self.client.post(self.add, {'body': body, 'rating': 2})
             ff = Review.objects.filter(addon=self.addon)
             rf = ReviewFlag.objects.filter(review=ff[0])
-            eq_(ff[0].flag, True)
-            eq_(ff[0].editorreview, True)
-            eq_(rf[0].note, 'URLs')
+            assert ff[0].flag is True
+            assert ff[0].editorreview is True
+            assert rf[0].note == 'URLs'
 
     def test_cant_review_unlisted_addon(self):
         """Can't review an unlisted addon."""
@@ -406,7 +401,7 @@ class TestEdit(ReviewTest):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
         r = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
                              X_REQUESTED_WITH='XMLHttpRequest')
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_edit_reply(self):
         self.login_dev()
@@ -438,8 +433,8 @@ class TestTranslate(ReviewTest):
         url = helpers.url('addons.reviews.translate', review.addon.slug,
                           review.id, 'fr')
         r = self.client.get(url)
-        eq_(r.status_code, 302)
-        eq_(r.get('Location'), 'https://translate.google.com/#auto/fr/yes')
+        assert r.status_code == 302
+        assert r.get('Location') == 'https://translate.google.com/#auto/fr/yes'
 
     def test_unicode_call(self):
         review = Review.objects.create(addon=self.addon, user=self.user,
@@ -447,9 +442,8 @@ class TestTranslate(ReviewTest):
         url = helpers.url('addons.reviews.translate',
                           review.addon.slug, review.id, 'fr')
         r = self.client.get(url)
-        eq_(r.status_code, 302)
-        eq_(r.get('Location'),
-            'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9%203%25')
+        assert r.status_code == 302
+        assert r.get('Location') == 'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9%203%25'
 
     @mock.patch('reviews.views.requests')
     def test_ajax_call(self, requests):
@@ -467,8 +461,8 @@ class TestTranslate(ReviewTest):
         url = helpers.url('addons.reviews.translate', review.addon.slug,
                           review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        eq_(r.status_code, 200)
-        eq_(json.loads(r.content), {"body": "oui", "title": "oui"})
+        assert r.status_code == 200
+        assert json.loads(r.content) == {"body": "oui", "title": "oui"}
 
     @mock.patch('waffle.switch_is_active', lambda x: True)
     @mock.patch('reviews.views.requests')
@@ -486,7 +480,7 @@ class TestTranslate(ReviewTest):
         url = helpers.url('addons.reviews.translate', review.addon.slug,
                           review.id, 'fr')
         r = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        eq_(r.status_code, 400)
+        assert r.status_code == 400
 
 
 class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
@@ -513,55 +507,55 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
         self.client.logout()
         self.mobile_init()
         r = self.client.get(self.list)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
     def test_add_visitor(self):
         self.client.logout()
         self.mobile_init()
         r = self.client.get(self.add)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
 
     def test_add_logged(self):
         r = self.client.get(self.add)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/mobile/add.html')
 
     def test_add_admin(self):
         self.login_admin()
         r = self.client.get(self.add)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_add_dev(self):
         self.login_dev()
         r = self.client.get(self.add)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_add_link_visitor(self):
         self.client.logout()
         self.mobile_init()
         r = self.client.get(self.list)
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 1)
-        eq_(doc('.copy .login-button').length, 1)
-        eq_(doc('#review-form').length, 0)
+        assert doc('#add-review').length == 1
+        assert doc('.copy .login-button').length == 1
+        assert doc('#review-form').length == 0
 
     def test_add_link_logged(self):
         r = self.client.get(self.list)
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 1)
-        eq_(doc('#review-form').length, 1)
+        assert doc('#add-review').length == 1
+        assert doc('#review-form').length == 1
 
     def test_add_link_dev(self):
         self.login_dev()
         r = self.client.get(self.list)
         doc = pq(r.content)
-        eq_(doc('#add-review').length, 0)
-        eq_(doc('#review-form').length, 0)
+        assert doc('#add-review').length == 0
+        assert doc('#review-form').length == 0
 
     def test_add_submit(self):
         r = self.client.post(self.add, {'body': 'hi', 'rating': 3})
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
 
         r = self.client.get(self.list)
         doc = pq(r.content)
@@ -573,4 +567,4 @@ class TestMobileReviews(amo.tests.MobileTest, amo.tests.TestCase):
         self.client.logout()
         self.mobile_init()
         r = self.client.get(helpers.url('addons.reviews.add', self.addon.slug))
-        eq_(r.status_code, 302)
+        assert r.status_code == 302

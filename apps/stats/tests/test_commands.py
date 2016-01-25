@@ -70,10 +70,6 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         assert update_count.oses == {u'WINNT': 5}
         assert update_count.locales == {u'en-us': 1, u'en-US': 4}
 
-        # save_stats_to_file is called with a non-saved model.
-        update_count.id = None
-        mock_save_stats_to_file.assert_called_once_with(update_count)
-
     def test_update_version(self):
         # Initialize the known addons and their versions.
         self.command.addons_versions = {3615: ['3.5', '3.6']}
@@ -196,6 +192,7 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         management.call_command('theme_update_counts_from_file', hive_folder,
                                 date=self.date)
         assert ThemeUpdateCount.objects.all().count() == 2
+
         tuc1 = ThemeUpdateCount.objects.get(addon_id=3615)
         assert tuc1.count == 2
         # Persona 813 has addon id 15663: we need the count to be the sum of

@@ -1,6 +1,5 @@
 from jingo import env
 from mock import Mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
@@ -40,12 +39,12 @@ class TestHelpers(amo.tests.BaseTestCase):
 
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)
-        self.assertEqual(s.strip(), "")
+        assert s.strip() == ""
 
         s = render('{{ tag_list(addon, tags=tags) }}', ctx)
         assert s, "Non-empty tags must return tag list."
         doc = pq(s)
-        eq_(doc('li').length, len(tags))
+        assert doc('li').length == len(tags)
 
     def test_helper(self):
         addon = Addon.objects.get(pk=3615)

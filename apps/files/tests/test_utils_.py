@@ -5,7 +5,6 @@ from tempfile import NamedTemporaryFile
 
 import mock
 import pytest
-from nose.tools import eq_
 
 from django import forms
 
@@ -84,21 +83,21 @@ class TestFindJetpacks(amo.tests.TestCase):
 
     def test_success(self):
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file])
+        assert files == [self.file]
 
     def test_skip_autorepackage(self):
         Addon.objects.update(auto_repackage=False)
-        eq_(utils.find_jetpacks('1.0', '1.1'), [])
+        assert utils.find_jetpacks('1.0', '1.1') == []
 
     def test_minver(self):
         files = utils.find_jetpacks('1.1', '1.2')
-        eq_(files, [self.file])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file]
+        assert files[0].needs_upgrade is False
 
     def test_maxver(self):
         files = utils.find_jetpacks('.1', '1.0')
-        eq_(files, [self.file])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file]
+        assert files[0].needs_upgrade is False
 
     def test_unreviewed_files_plus_reviewed_file(self):
         # We upgrade unreviewed files up to the latest reviewed file.
@@ -106,18 +105,18 @@ class TestFindJetpacks(amo.tests.TestCase):
         new_file = File.objects.create(version=v, jetpack_version='1.0')
         Version.objects.create(addon_id=3615)
         new_file2 = File.objects.create(version=v, jetpack_version='1.0')
-        eq_(new_file.status, amo.STATUS_UNREVIEWED)
-        eq_(new_file2.status, amo.STATUS_UNREVIEWED)
+        assert new_file.status == amo.STATUS_UNREVIEWED
+        assert new_file2.status == amo.STATUS_UNREVIEWED
 
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file, new_file, new_file2])
+        assert files == [self.file, new_file, new_file2]
         assert all(f.needs_upgrade for f in files)
 
         # Now self.file will not need an upgrade since we skip old versions.
         new_file.update(status=amo.STATUS_PUBLIC)
         files = utils.find_jetpacks('1.0', '1.1')
-        eq_(files, [self.file, new_file, new_file2])
-        eq_(files[0].needs_upgrade, False)
+        assert files == [self.file, new_file, new_file2]
+        assert files[0].needs_upgrade is False
         assert all(f.needs_upgrade for f in files[1:])
 
 
@@ -132,9 +131,9 @@ class TestExtractor(amo.tests.TestCase):
         return lambda path: path.endswith(path_to_accept)
 
     def test_no_manifest(self):
-        with self.assertRaises(forms.ValidationError) as exc:
+        with pytest.raises(forms.ValidationError) as exc:
             utils.Extractor.parse('foobar')
-        assert exc.exception.message == (
+        assert exc.value.message == (
             "No install.rdf or package.json or manifest.json found")
 
     @mock.patch('files.utils.ManifestJSONExtractor')
@@ -186,9 +185,9 @@ class TestExtractor(amo.tests.TestCase):
                                            manifest_json_extractor):
         # Here we don't create the waffle switch to enable it.
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
-        with self.assertRaises(forms.ValidationError) as exc:
+        with pytest.raises(forms.ValidationError) as exc:
             utils.Extractor.parse('foobar')
-        assert exc.exception.message == "WebExtensions aren't allowed yet"
+        assert exc.value.message == "WebExtensions aren't allowed yet"
         assert not rdf_extractor.called
         assert not package_json_extractor.called
         assert not manifest_json_extractor.called
@@ -420,11 +419,11 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
 
 def test_zip_folder_content():
     extension_file = 'apps/files/fixtures/files/extension.xpi'
+    temp_filename = amo.tests.get_temp_filename()
     try:
         temp_folder = utils.extract_zip(extension_file)
-        assert os.listdir(temp_folder) == [
-            'install.rdf', 'chrome.manifest', 'chrome']
-        temp_filename = amo.tests.get_temp_filename()
+        assert sorted(os.listdir(temp_folder)) == [
+            'chrome', 'chrome.manifest', 'install.rdf']
         utils.zip_folder_content(temp_folder, temp_filename)
         # Make sure the zipped files contain the same files.
         with zipfile.ZipFile(temp_filename, mode='r') as new:
@@ -445,8 +444,8 @@ def test_repack():
         # This is where we're really testing the repack helper.
         with utils.repack(temp_filename) as folder_path:
             # Temporary folder contains the unzipped XPI.
-            assert os.listdir(folder_path) == [
-                'install.rdf', 'chrome.manifest', 'chrome']
+            assert sorted(os.listdir(folder_path)) == [
+                'chrome', 'chrome.manifest', 'install.rdf']
             # Add a file, which should end up in the repacked file.
             with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
                 file_.write('foobar')

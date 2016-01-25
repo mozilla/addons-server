@@ -1,6 +1,5 @@
 from urllib import urlencode
 
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 import amo
@@ -73,14 +72,13 @@ class TestActivity(HubTest):
         self.log_creates(10)
         r = self.client.get(reverse('devhub.addons'))
         doc = pq(r.content)
-        eq_(len(doc('li.item')), 4)
-        eq_(doc('.subscribe-feed').attr('href')[:-32],
-            reverse('devhub.feed_all') + '?privaterss=')
+        assert len(doc('li.item')) == 4
+        assert doc('.subscribe-feed').attr('href')[:-32] == reverse('devhub.feed_all') + '?privaterss='
 
     def test_items(self):
         self.log_creates(10)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 10)
+        assert len(doc('.item')) == 10
 
     def test_filter_persistence(self):
         doc = self.get_pq(action='status')
@@ -91,47 +89,43 @@ class TestActivity(HubTest):
         self.log_creates(10)
         self.log_updates(10)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
+        assert len(doc('.item')) == 20
         doc = self.get_pq(action='updates')
-        eq_(len(doc('.item')), 10)
+        assert len(doc('.item')) == 10
 
     def test_filter_status(self):
         self.log_creates(10)
         self.log_status(5)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 15)
+        assert len(doc('.item')) == 15
         doc = self.get_pq(action='status')
-        eq_(len(doc('.item')), 5)
+        assert len(doc('.item')) == 5
 
     def test_filter_collections(self):
         self.log_creates(10)
         self.log_collection(3)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 13)
+        assert len(doc('.item')) == 13
         doc = self.get_pq(action='collections')
-        eq_(len(doc('.item')), 3)
+        assert len(doc('.item')) == 3
 
     def test_filter_reviews(self):
         self.log_creates(10)
         self.log_review(10)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
+        assert len(doc('.item')) == 20
         doc = self.get_pq(action='reviews')
-        eq_(len(doc('.item')), 10)
+        assert len(doc('.item')) == 10
 
     def test_pagination(self):
         self.log_review(21)
         doc = self.get_pq()
-
-        # 20 items on page 1.
-        eq_(len(doc('.item')), 20)
+        assert len(doc('.item')) == 20
 
         # 1 item on page 2
         doc = self.get_pq(page=2)
-        eq_(len(doc('.item')), 1)
-
-        # we have a pagination thingy
-        eq_(len(doc('.pagination')), 1)
+        assert len(doc('.item')) == 1
+        assert len(doc('.pagination')) == 1
         assert doc('.listing-footer')
 
     def test_no_pagination(self):
@@ -144,15 +138,15 @@ class TestActivity(HubTest):
 
         # We show everything without filters
         doc = self.get_pq()
-        eq_(len(doc('.item')), 20)
+        assert len(doc('.item')) == 20
 
         # We just show addon1
         doc = self.get_pq(addon=self.addon.id)
-        eq_(len(doc('.item')), 10)
+        assert len(doc('.item')) == 10
 
         # we just show addon2
         doc = self.get_pq(addon=self.addon2.id)
-        eq_(len(doc('.item')), 13)
+        assert len(doc('.item')) == 13
 
     def test_filter_addon_admin(self):
         """Admins should be able to see specific pages."""
@@ -160,7 +154,7 @@ class TestActivity(HubTest):
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
         r = self.get_response(addon=self.addon.id)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_filter_addon_otherguy(self):
         """Make sure nobody else can see my precious add-on feed."""
@@ -168,7 +162,7 @@ class TestActivity(HubTest):
         assert self.client.login(username='clouserw@gmail.com',
                                  password='password')
         r = self.get_response(addon=self.addon.id)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_rss(self):
         self.log_creates(5)
@@ -176,7 +170,7 @@ class TestActivity(HubTest):
         r = self.get_response()
         key = RssKey.objects.get()
         r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
+        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
         assert '<title>Recent Changes for My Add-ons</title>' in r.content
 
     def test_rss_single(self):
@@ -187,8 +181,8 @@ class TestActivity(HubTest):
         r = self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         r = self.get_response(privaterss=key.key)
-        eq_(r['content-type'], 'application/rss+xml; charset=utf-8')
-        eq_(len(pq(r.content)('item')), 5)
+        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
+        assert len(pq(r.content)('item')) == 5
         assert '<title>Recent Changes for %s</title>' % self.addon in r.content
 
     def test_rss_unlisted_addon(self):
@@ -205,7 +199,7 @@ class TestActivity(HubTest):
     def test_logged_out(self):
         self.client.logout()
         r = self.get_response()
-        eq_(r.redirect_chain[0][1], 302)
+        assert r.redirect_chain[0][1] == 302
 
     def test_xss_addon(self):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
@@ -213,7 +207,7 @@ class TestActivity(HubTest):
         self.addon.save()
         self.log_creates(1)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
@@ -224,14 +218,14 @@ class TestActivity(HubTest):
         self.addon.save()
         self.log_creates(1)
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
     def test_xss_collections(self):
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
@@ -239,14 +233,14 @@ class TestActivity(HubTest):
         self.addon.update(is_listed=False)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
     def test_xss_tags(self):
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 
@@ -254,14 +248,14 @@ class TestActivity(HubTest):
         self.addon.update(is_listed=False)
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 1)
+        assert len(doc('.item')) == 1
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 
     def test_xss_versions(self):
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 2)
+        assert len(doc('.item')) == 2
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 
@@ -269,7 +263,7 @@ class TestActivity(HubTest):
         self.addon.update(is_listed=False)
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
-        eq_(len(doc('.item')), 2)
+        assert len(doc('.item')) == 2
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 

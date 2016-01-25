@@ -31,18 +31,18 @@ class InstallTests(TestCase):
     def test_redirect(self):
         url = reverse('api.install')
         r = self.client.get(urlparams(url, addon_id=424))
-        self.assertEqual(r.status_code, 301)
-        self.assertEqual(r['Location'], addons[424]['link'])
+        assert r.status_code == 301
+        assert r['Location'] == addons[424]['link']
 
     def test_bad_id(self):
         url = reverse('api.install')
         r = self.client.get(urlparams(url, addon_id='eleventy-one'))
-        self.assertEqual(r.status_code, 404)
+        assert r.status_code == 404
 
     def test_bad_key(self):
         url = reverse('api.install')
         r = self.client.get(urlparams(url, addon_key='unicorns'))
-        self.assertEqual(r.status_code, 404)
+        assert r.status_code == 404
 
     def test_xss(self):
         url = reverse('api.install')

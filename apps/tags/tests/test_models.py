@@ -1,4 +1,3 @@
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
@@ -14,10 +13,9 @@ class TestTagManager(amo.tests.TestCase):
         tag1.save()
         tag2 = Tag(tag_text='swearword', blacklisted=True)
         tag2.save()
-
-        eq_(Tag.objects.all().count(), 2)
-        eq_(Tag.objects.not_blacklisted().count(), 1)
-        eq_(Tag.objects.not_blacklisted()[0], tag1)
+        assert Tag.objects.all().count() == 2
+        assert Tag.objects.not_blacklisted().count() == 1
+        assert Tag.objects.not_blacklisted()[0] == tag1
 
 
 class TestManagement(amo.tests.TestCase):
@@ -38,10 +36,10 @@ class TestManagement(amo.tests.TestCase):
 
         clean_tag(caps.pk)
         clean_tag(space.pk)
-        eq_(Tag.objects.count(), start)
+        assert Tag.objects.count() == start
         # Just to check another run doesn't make more changes.
         clean_tag(space.pk)
-        eq_(Tag.objects.count(), start)
+        assert Tag.objects.count() == start
 
     def test_clean_addons_tags(self):
         space = Tag.objects.create(tag_text='  Sun')
@@ -49,32 +47,28 @@ class TestManagement(amo.tests.TestCase):
 
         AddonTag.objects.create(tag=space, addon=self.addon)
         AddonTag.objects.create(tag=space, addon=self.another)
-
-        eq_(self.another.tags.count(), 1)
-        eq_(self.addon.tags.count(), start + 1)
+        assert self.another.tags.count() == 1
+        assert self.addon.tags.count() == start + 1
 
         for tag in Tag.objects.all():
             clean_tag(tag.pk)
 
         # There is '  Sun' and 'sun' on addon, one gets deleted.
-        eq_(self.addon.tags.count(), start)
-        # There is 'sun' on another, should not be deleted.
-        eq_(self.another.tags.count(), 1)
+        assert self.addon.tags.count() == start
+        assert self.another.tags.count() == 1
 
     def test_clean_doesnt_delete(self):
         space = Tag.objects.create(tag_text=' Sun')
         start = self.addon.tags.count()
 
         AddonTag.objects.create(tag=space, addon=self.another)
-
-        eq_(self.another.tags.count(), 1)
+        assert self.another.tags.count() == 1
         for tag in Tag.objects.all():
             clean_tag(tag.pk)
 
         # The 'sun' doesn't get deleted.
-        eq_(self.addon.tags.count(), start)
-        # There is 'sun' on another, should not be deleted.
-        eq_(self.another.tags.count(), 1)
+        assert self.addon.tags.count() == start
+        assert self.another.tags.count() == 1
 
     def test_clean_multiple(self):
         for tag in ['sun', 'beach', 'sky']:
@@ -89,8 +83,8 @@ class TestManagement(amo.tests.TestCase):
         for tag in Tag.objects.all():
             clean_tag(tag.pk)
 
-        eq_(self.addon.tags.count(), 5)
-        eq_(self.another.tags.count(), 3)
+        assert self.addon.tags.count() == 5
+        assert self.another.tags.count() == 3
 
     def setup_blacklisted(self):
         self.new = Tag.objects.create(tag_text=' Sun', blacklisted=True)
@@ -122,35 +116,35 @@ class TestCount(amo.tests.TestCase):
 
     def test_count(self):
         self.tag.update_stat()
-        eq_(self.tag.num_addons, 1)
+        assert self.tag.num_addons == 1
 
     def test_blacklisted(self):
         self.tag.update(blacklisted=True, num_addons=0)
         AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
-        eq_(self.tag.reload().num_addons, 0)
+        assert self.tag.reload().num_addons == 0
 
     def test_save_tag(self):
         self.tag.save_tag(addon=Addon.objects.get(pk=5369))
-        eq_(self.tag.reload().num_addons, 2)
+        assert self.tag.reload().num_addons == 2
 
     def test_remove_tag(self):
         self.tag.remove_tag(addon=Addon.objects.get(pk=3615))
-        eq_(self.tag.reload().num_addons, 0)
+        assert self.tag.reload().num_addons == 0
 
     def test_add_addontag(self):
         AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
-        eq_(self.tag.reload().num_addons, 2)
+        assert self.tag.reload().num_addons == 2
 
     def test_delete_addontag(self):
         addontag = AddonTag.objects.all()[0]
         tag = addontag.tag
         tag.update_stat()
-        eq_(tag.reload().num_addons, 1)
+        assert tag.reload().num_addons == 1
         addontag.delete()
-        eq_(tag.reload().num_addons, 0)
+        assert tag.reload().num_addons == 0
 
     def test_delete_tag(self):
         pk = self.tag.pk
         self.tag.update_stat()
         self.tag.delete()
-        eq_(Tag.objects.filter(pk=pk).count(), 0)
+        assert Tag.objects.filter(pk=pk).count() == 0

@@ -553,7 +553,6 @@ def update_status(sender, instance, **kw):
         except models.ObjectDoesNotExist:
             log.info('Got ObjectDoesNotExist processing Version change signal',
                      exc_info=True)
-            pass
 
 
 def inherit_nomination(sender, instance, **kw):

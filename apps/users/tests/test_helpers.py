@@ -2,7 +2,6 @@
 import re
 
 import pytest
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from addons.models import Addon
@@ -28,50 +27,42 @@ def test_emaillink():
                  r'<span class="i">null</span>(.*)</span>', obfuscated)
     obfuscated = (''.join((m.group(1), m.group(2)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
-    eq_(email, obfuscated)
+    assert email == obfuscated
 
     title = 'E-mail your question'
     obfuscated = unicode(emaillink(email, title))
     m = re.match(r'<a href="#">(.*)</a>'
                  r'<span class="emaillink js-hidden">(.*?)'
                  r'<span class="i">null</span>(.*)</span>', obfuscated)
-    eq_(title, m.group(1))
+    assert title == m.group(1)
     obfuscated = (''.join((m.group(2), m.group(3)))
                   .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
-    eq_(email, obfuscated)
+    assert email == obfuscated
 
 
 def test_user_link():
     u = UserProfile(username='jconnor', display_name='John Connor', pk=1)
-    eq_(user_link(u),
-        '<a href="%s" title="%s">John Connor</a>' % (u.get_url_path(),
-                                                     u.name))
-
-    # handle None gracefully
-    eq_(user_link(None), '')
+    assert user_link(u) == '<a href="%s" title="%s">John Connor</a>' % (u.get_url_path(), u.name)
+    assert user_link(None) == ''
 
 
 def test_user_link_xss():
     u = UserProfile(username='jconnor',
                     display_name='<script>alert(1)</script>', pk=1)
     html = "&lt;script&gt;alert(1)&lt;/script&gt;"
-    eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
-                                                          html, html))
+    assert user_link(u) == '<a href="%s" title="%s">%s</a>' % (u.get_url_path(), html, html)
 
     u = UserProfile(username='jconnor',
                     display_name="""xss"'><iframe onload=alert(3)>""", pk=1)
     html = """xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;"""
-    eq_(user_link(u), '<a href="%s" title="%s">%s</a>' % (u.get_url_path(),
-                                                          html, html))
+    assert user_link(u) == '<a href="%s" title="%s">%s</a>' % (u.get_url_path(), html, html)
 
 
 def test_users_list():
     u1 = UserProfile(username='jconnor', display_name='John Connor', pk=1)
     u2 = UserProfile(username='sconnor', display_name='Sarah Connor', pk=2)
-    eq_(users_list([u1, u2]), ', '.join((user_link(u1), user_link(u2))))
-
-    # handle None gracefully
-    eq_(user_link(None), '')
+    assert users_list([u1, u2]) == ', '.join((user_link(u1), user_link(u2)))
+    assert user_link(None) == ''
 
 
 def test_short_users_list():
@@ -81,29 +72,23 @@ def test_short_users_list():
     u2 = UserProfile(username='grover', display_name='Grover', pk=2)
     u3 = UserProfile(username='cookies!', display_name='Cookie Monster', pk=3)
     shortlist = users_list([u1, u2, u3], size=2)
-    eq_(shortlist, ', '.join((user_link(u1), user_link(u2))) + ', others')
+    assert shortlist == ', '.join((user_link(u1), user_link(u2))) + ', others'
 
 
 def test_users_list_truncate_display_name():
     u = UserProfile(username='oscar',
                     display_name='Some Very Long Display Name', pk=1)
     truncated_list = users_list([u], None, 10)
-    eq_(truncated_list,
-        u'<a href="%s" title="%s">Some Very...</a>' % (u.get_url_path(),
-                                                       u.name))
+    assert truncated_list == u'<a href="%s" title="%s">Some Very...</a>' % (u.get_url_path(), u.name)
 
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
     u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
-    eq_(user_link(u),
-        u'<a href="%s" title="%s">Jürgen Müller</a>' % (
-            u.get_url_path(), u.name))
+    assert user_link(u) == u'<a href="%s" title="%s">Jürgen Müller</a>' % ( u.get_url_path(), u.name)
 
     u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
-    eq_(user_link(u),
-        u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name,
-                                             u.username))
+    assert user_link(u) == u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name, u.username)
 
 
 class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
@@ -117,9 +102,9 @@ class TestAddonUsersList(TestPersonas, amo.tests.TestCase):
     def test_by(self):
         """Test that the by... bit works."""
         content = addon_users_list({'amo': amo}, self.addon)
-        eq_(pq(content).text(), 'by %s' % self.addon.authors.all()[0].name)
+        assert pq(content).text() == 'by %s' % self.addon.authors.all()[0].name
 
 
 def test_user_data():
     u = user_data(UserProfile(username='foo', pk=1))
-    eq_(u['anonymous'], False)
+    assert u['anonymous'] is False

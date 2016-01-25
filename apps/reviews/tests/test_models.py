@@ -1,6 +1,5 @@
 from django.utils import translation
 
-from nose.tools import eq_
 
 import amo.tests
 from addons.models import Addon
@@ -34,18 +33,16 @@ class TestReviewModel(amo.tests.TestCase):
         self.trans_eq(r2.title, 'r2 title de', 'de')
 
     def test_soft_delete(self):
-        eq_(Review.objects.count(), 2)
-        eq_(Review.unfiltered.count(), 2)
+        assert Review.objects.count() == 2
+        assert Review.unfiltered.count() == 2
 
         Review.objects.get(id=1).delete()
-
-        eq_(Review.objects.count(), 1)
-        eq_(Review.unfiltered.count(), 2)
+        assert Review.objects.count() == 1
+        assert Review.unfiltered.count() == 2
 
         Review.objects.filter(id=2).delete()
-
-        eq_(Review.objects.count(), 0)
-        eq_(Review.unfiltered.count(), 2)
+        assert Review.objects.count() == 0
+        assert Review.unfiltered.count() == 2
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
@@ -76,21 +73,21 @@ class TestGroupedRating(amo.tests.TestCase):
     grouped_ratings = [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)]
 
     def test_get_none(self):
-        eq_(GroupedRating.get(3, update_none=False), None)
+        assert GroupedRating.get(3, update_none=False) is None
 
     def test_set(self):
-        eq_(GroupedRating.get(1865, update_none=False), None)
+        assert GroupedRating.get(1865, update_none=False) is None
         GroupedRating.set(1865)
-        eq_(GroupedRating.get(1865, update_none=False), self.grouped_ratings)
+        assert GroupedRating.get(1865, update_none=False) == self.grouped_ratings
 
     def test_cron(self):
-        eq_(GroupedRating.get(1865, update_none=False), None)
+        assert GroupedRating.get(1865, update_none=False) is None
         tasks.addon_grouped_rating(1865)
-        eq_(GroupedRating.get(1865, update_none=False), self.grouped_ratings)
+        assert GroupedRating.get(1865, update_none=False) == self.grouped_ratings
 
     def test_update_none(self):
-        eq_(GroupedRating.get(1865, update_none=False), None)
-        eq_(GroupedRating.get(1865, update_none=True), self.grouped_ratings)
+        assert GroupedRating.get(1865, update_none=False) is None
+        assert GroupedRating.get(1865, update_none=True) == self.grouped_ratings
 
 
 class TestSpamTest(amo.tests.TestCase):
@@ -98,7 +95,7 @@ class TestSpamTest(amo.tests.TestCase):
 
     def test_create_not_there(self):
         Review.objects.all().delete()
-        eq_(Review.objects.count(), 0)
+        assert Review.objects.count() == 0
         check_spam(1)
 
     def test_add(self):
@@ -113,18 +110,17 @@ class TestRefreshTest(amo.tests.ESTestCase):
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         self.user = UserProfile.objects.all()[0]
         self.refresh()
-
-        eq_(self.get_bayesian_rating(), 0.0)
+        assert self.get_bayesian_rating() == 0.0
 
     def get_bayesian_rating(self):
         q = Addon.search().filter(id=self.addon.id)
         return list(q.values_dict('bayesian_rating'))[0]['bayesian_rating'][0]
 
     def test_created(self):
-        eq_(self.get_bayesian_rating(), 0.0)
+        assert self.get_bayesian_rating() == 0.0
         Review.objects.create(addon=self.addon, user=self.user, rating=4)
         self.refresh()
-        eq_(self.get_bayesian_rating(), 4.0)
+        assert self.get_bayesian_rating() == 4.0
 
     def test_edited(self):
         self.test_created()
@@ -133,8 +129,7 @@ class TestRefreshTest(amo.tests.ESTestCase):
         r.rating = 1
         r.save()
         self.refresh()
-
-        eq_(self.get_bayesian_rating(), 2.5)
+        assert self.get_bayesian_rating() == 2.5
 
     def test_deleted(self):
         self.test_created()
@@ -142,5 +137,4 @@ class TestRefreshTest(amo.tests.ESTestCase):
         r = self.addon.reviews.all()[0]
         r.delete()
         self.refresh()
-
-        eq_(self.get_bayesian_rating(), 0.0)
+        assert self.get_bayesian_rating() == 0.0

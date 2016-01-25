@@ -4,7 +4,6 @@ import mock
 from django.shortcuts import render
 
 import pytest
-from nose.tools import eq_
 
 
 pytestmark = pytest.mark.django_db
@@ -26,5 +25,5 @@ def test_app_in_fragment_cache_key(cache_mock):
 def test_fragment_cache_key_no_app(cache_mock):
     cache_mock.return_value = 'xx'
     template = jingo.env.from_string('{% cache 1 %}{% endcache %}')
-    eq_(template.render(), 'xx')
+    assert template.render() == 'xx'
     assert cache_mock.called
