@@ -1302,7 +1302,7 @@ class TestFeatures(amo.tests.TestCase):
         d = dict(application=amo.FIREFOX.id, locale='klingon', collection=80)
         data = formset(self.initial, d, initial_count=1)
         r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['locale'] == (
+        assert r.context['form'].errors[0]['locale'][0] == (
             'Select a valid choice. klingon is not one of the available '
             'choices.')
 

@@ -68,7 +68,7 @@ class TestFileHelper(amo.tests.TestCase):
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
               'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
         for name in nm:
-            assert name in files is True
+            assert name in files
 
     def test_cleanup(self):
         self.viewer.extract()
@@ -335,7 +335,7 @@ class TestDiffHelper(amo.tests.TestCase):
     def test_diffable_deleted_files(self):
         self.helper.extract()
         os.remove(os.path.join(self.helper.left.dest, 'install.js'))
-        assert 'install.js' in self.helper.get_deleted_files() is True
+        assert 'install.js' in self.helper.get_deleted_files()
 
     def test_diffable_one_binary_same(self):
         self.helper.extract()

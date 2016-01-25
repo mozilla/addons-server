@@ -1160,12 +1160,12 @@ class TestCollectionListing(amo.tests.TestCase):
 
     def test_mostsubscribers_adu_unit(self):
         d = pq(self.client.get(urlparams(self.url, sort='followers')).content)
-        assert 'follower' in d('.items .item .followers').text() is True
-        assert 'weekly follower' in d('.items .item .followers').text() is False
+        assert 'follower' in d('.items .item .followers').text()
+        assert 'weekly follower' not in d('.items .item .followers').text()
 
     def test_popular_adu_unit(self):
         d = pq(self.client.get(urlparams(self.url, sort='popular')).content)
-        assert 'weekly follower' in d('.items .item .followers').text() is True
+        assert 'weekly follower' in d('.items .item .followers').text()
 
 
 class TestCollectionDetailFeed(amo.tests.TestCase):
