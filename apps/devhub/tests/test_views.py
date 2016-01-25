@@ -549,7 +549,7 @@ class TestEditPayments(amo.tests.TestCase):
         r = self.client.post(self.url, d)
         assert r.status_code == 302
         addon = self.get_addon()
-        assert addon.enable_thankyou is True
+        assert addon.enable_thankyou
         assert unicode(addon.thankyou_note) == 'woo'
 
     def test_enable_thankyou_unchecked_with_text(self):
@@ -558,7 +558,7 @@ class TestEditPayments(amo.tests.TestCase):
         r = self.client.post(self.url, d)
         assert r.status_code == 302
         addon = self.get_addon()
-        assert addon.enable_thankyou is False
+        assert not addon.enable_thankyou
         assert addon.thankyou_note is None
 
     def test_contribution_link(self):
@@ -581,14 +581,14 @@ class TestEditPayments(amo.tests.TestCase):
         r = self.client.post(self.url, d)
         assert r.status_code == 302
         addon = self.get_addon()
-        assert addon.enable_thankyou is False
+        assert not addon.enable_thankyou
         assert addon.thankyou_note is None
 
     def test_no_future(self):
         self.get_addon().update(the_future=None)
         res = self.client.get(self.url)
         err = pq(res.content)('p.error').text()
-        assert 'completed developer profile' in err is True
+        assert 'completed developer profile' in err
 
     def test_addon_public(self):
         self.get_addon().update(status=amo.STATUS_PUBLIC)
@@ -638,7 +638,7 @@ class TestDisablePayments(amo.tests.TestCase):
         r = self.client.post(self.disable_url)
         assert r.status_code == 302
         assert(r['Location'].endswith(self.pay_url))
-        assert Addon.objects.no_cache().get(id=3615).wants_contributions is False
+        assert not Addon.objects.no_cache().get(id=3615).wants_contributions
 
 
 class TestPaymentsProfile(amo.tests.TestCase):
@@ -693,7 +693,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         addon = self.get_addon()
         assert unicode(addon.the_reason) == 'xxx'
         assert unicode(addon.the_future) == 'yyy'
-        assert addon.wants_contributions is True
+        assert addon.wants_contributions
 
     def test_profile_required(self):
         def check_page(request):
@@ -713,7 +713,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         self.assertFormError(r, 'profile_form', 'the_future',
                              'This field is required.')
         check_page(r)
-        assert self.get_addon().wants_contributions is False
+        assert not self.get_addon().wants_contributions
 
         d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
                  annoying=amo.CONTRIB_ROADBLOCK, the_reason='xxx')
@@ -722,7 +722,7 @@ class TestPaymentsProfile(amo.tests.TestCase):
         self.assertFormError(r, 'profile_form', 'the_future',
                              'This field is required.')
         check_page(r)
-        assert self.get_addon().wants_contributions is False
+        assert not self.get_addon().wants_contributions
 
 
 class TestDelete(amo.tests.TestCase):
@@ -737,20 +737,20 @@ class TestDelete(amo.tests.TestCase):
     def test_post_not(self):
         r = self.client.post(self.get_url(), follow=True)
         assert pq(r.content)('.notification-box').text() == 'Password was incorrect. Add-on was not deleted.'
-        assert self.get_addon().exists() is True
+        assert self.get_addon().exists()
 
     def test_post(self):
         r = self.client.post(self.get_url(), {'password': 'password'},
                              follow=True)
         assert pq(r.content)('.notification-box').text() == 'Add-on deleted.'
-        assert self.get_addon().exists() is False
+        assert not self.get_addon().exists()
 
     def test_post_theme(self):
         Addon.objects.get(id=3615).update(type=amo.ADDON_PERSONA)
         r = self.client.post(self.get_url(), {'password': 'password'},
                              follow=True)
         assert pq(r.content)('.notification-box').text() == 'Theme deleted.'
-        assert self.get_addon().exists() is False
+        assert not self.get_addon().exists()
 
 
 class TestHome(amo.tests.TestCase):
@@ -986,8 +986,8 @@ class TestProfileStatusBar(TestProfileBase):
         addon = self.get_addon()
         assert addon.the_reason is None
         assert addon.the_future is None
-        assert addon.takes_contributions is False
-        assert addon.wants_contributions is False
+        assert not addon.takes_contributions
+        assert not addon.wants_contributions
 
     def test_remove_profile_without_content(self):
         # See bug 624852
@@ -1007,8 +1007,8 @@ class TestProfileStatusBar(TestProfileBase):
         addon = self.get_addon()
         assert addon.the_reason is None
         assert addon.the_future is None
-        assert addon.takes_contributions is False
-        assert addon.wants_contributions is False
+        assert not addon.takes_contributions
+        assert not addon.wants_contributions
 
 
 class TestProfile(TestProfileBase):
@@ -3069,7 +3069,7 @@ class TestAddVersionValidation(AddVersionTest):
 
         assert not self.addon.admin_review
         self.post(override_validation=True, expected_status=200)
-        assert self.addon.reload().admin_review is True
+        assert self.addon.reload().admin_review
 
     def test_admin_validation_sans_override(self):
         self.login_as_admin()

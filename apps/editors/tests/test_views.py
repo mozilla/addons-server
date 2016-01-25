@@ -1986,16 +1986,16 @@ class TestReview(ReviewBase):
         # Check the history for all versions.
         ths = table.children('tr > th')
         assert ths.length == 3  # The two with the same number will be coalesced
-        assert '0.1' in ths.eq(0).text() is True
-        assert '0.2' in ths.eq(1).text() is True
-        assert '0.3' in ths.eq(2).text() is True
+        assert '0.1' in ths.eq(0).text()
+        assert '0.2' in ths.eq(1).text()
+        assert '0.3' in ths.eq(2).text()
         for idx in xrange(2):
-            assert 'Deleted' in ths.eq(idx).text() is True
+            assert 'Deleted' in ths.eq(idx).text()
 
         bodies = table.children('.listing-body')
-        assert 'millenium hand and shrimp' in bodies.eq(0).text() is True
-        assert 'buggrit' in bodies.eq(0).text() is True
-        assert 'I told em' in bodies.eq(1).text() is True
+        assert 'millenium hand and shrimp' in bodies.eq(0).text()
+        assert 'buggrit' in bodies.eq(0).text()
+        assert 'I told em' in bodies.eq(1).text()
 
         assert mock_sign.called
 
@@ -2159,7 +2159,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
-        assert Addon.objects.get(pk=self.addon.pk).admin_review is False
+        assert not Addon.objects.get(pk=self.addon.pk).admin_review
 
     def test_unadmin_flag_as_editor(self):
         self.addon.update(admin_review=True)
@@ -2171,7 +2171,7 @@ class TestReview(ReviewBase):
         # Should silently fail to set adminflag but work otherwise.
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
-        assert Addon.objects.get(pk=self.addon.pk).admin_review is True
+        assert Addon.objects.get(pk=self.addon.pk).admin_review
 
     def test_no_public(self):
         s = amo.STATUS_PUBLIC
@@ -2253,14 +2253,14 @@ class TestReview(ReviewBase):
         assert deps.find('a').attr('href') == self.addon.get_url_path()
 
     def test_eula_displayed(self):
-        assert bool(self.addon.has_eula) is False
+        assert not bool(self.addon.has_eula)
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertNotContains(r, 'View End-User License Agreement')
 
         self.addon.eula = 'Test!'
         self.addon.save()
-        assert bool(self.addon.has_eula) is True
+        assert bool(self.addon.has_eula)
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertContains(r, 'View End-User License Agreement')

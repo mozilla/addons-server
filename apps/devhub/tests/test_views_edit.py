@@ -308,7 +308,7 @@ class TestEditBasic(TestEdit):
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert 'categories' in r.context['cat_form'].errors[0] is False
+        assert 'categories' not in r.context['cat_form'].errors[0]
         assert sorted(addon_cats) == [22, 23]
 
     def test_edit_categories_disable_creatured(self):
@@ -971,9 +971,9 @@ class TestEditTechnical(TestEdit):
         data = dict(developer_comments='Test comment!')
         r = self.client.post(self.technical_edit_url, self.formset(data))
         addon = self.get_addon()
-        assert addon.external_software is False
-        assert addon.site_specific is False
-        assert addon.view_source is False
+        assert not addon.external_software
+        assert not addon.site_specific
+        assert not addon.view_source
 
     def test_technical_devcomment_notrequired(self):
         data = dict(developer_comments='',
@@ -1035,11 +1035,11 @@ class TestEditTechnical(TestEdit):
     def test_dependencies_add(self):
         addon = Addon.objects.get(id=5299)
         assert addon.type == amo.ADDON_EXTENSION
-        assert addon in list(Addon.objects.reviewed()) is True
+        assert addon in list(Addon.objects.reviewed())
 
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
-        assert any(r.context['dependency_form'].errors) is False
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids([self.dependent_addon.id, addon.id])
 
         r = self.client.get(self.technical_edit_url)
@@ -1075,7 +1075,7 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset(*args)
         r = self.client.post(self.technical_edit_url, d)
-        assert any(r.context['dependency_form'].errors) is False
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids(deps.values_list('id', flat=True))
 
     def check_dep_ids(self, expected=[]):
@@ -1093,10 +1093,10 @@ class TestEditTechnical(TestEdit):
         addon = Addon.objects.get(id=40)
         for status in amo.REVIEWED_STATUSES:
             addon.update(status=status)
-            assert addon in list(Addon.objects.reviewed()) is True
+            assert addon in list(Addon.objects.reviewed())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
-            assert any(r.context['dependency_form'].errors) is False
+            assert not any(r.context['dependency_form'].errors)
             self.check_dep_ids([self.dependent_addon.id, addon.id])
 
             AddonDependency.objects.get(dependent_addon=addon).delete()
@@ -1106,7 +1106,7 @@ class TestEditTechnical(TestEdit):
         addon = Addon.objects.get(id=40)
         for status in amo.UNREVIEWED_STATUSES:
             addon.update(status=status)
-            assert addon in list(Addon.objects.reviewed()) is False
+            assert addon not in list(Addon.objects.reviewed())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
             self.check_bad_dep(r)
@@ -1115,7 +1115,7 @@ class TestEditTechnical(TestEdit):
         """Ensure that reviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         assert addon.type == amo.ADDON_PERSONA
-        assert addon in list(Addon.objects.reviewed()) is True
+        assert addon in list(Addon.objects.reviewed())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
@@ -1125,7 +1125,7 @@ class TestEditTechnical(TestEdit):
         addon = Addon.objects.get(id=15663)
         addon.update(status=amo.STATUS_UNREVIEWED)
         assert addon.status == amo.STATUS_UNREVIEWED
-        assert addon in list(Addon.objects.reviewed()) is False
+        assert addon not in list(Addon.objects.reviewed())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
@@ -1153,7 +1153,7 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset(total_count=1, initial_count=1)
         r = self.client.post(self.technical_edit_url, d)
-        assert any(r.context['dependency_form'].errors) is False
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids()
 
     def test_dependencies_add_delete(self):
@@ -1161,7 +1161,7 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset({'dependent_addon': 5299})
         r = self.client.post(self.technical_edit_url, d)
-        assert any(r.context['dependency_form'].errors) is False
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids([5299])
 
 
