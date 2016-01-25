@@ -1184,7 +1184,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         files = version.all_files
         assert len(files) == 2
         assert sorted([f.platform for f in files]) == sorted(platforms)
-        assert sorted([f.filename for f in files]) == [u'delicious_bookmarks-0.1-fx-%s.xpi' % ( amo.PLATFORM_LINUX.shortname), u'delicious_bookmarks-0.1-fx-%s.xpi' % ( amo.PLATFORM_MAC.shortname)]
+
+        expected = [
+            u'delicious_bookmarks-0.1-fx-%s.xpi' % amo.PLATFORM_LINUX.shortname,
+            u'delicious_bookmarks-0.1-fx-%s.xpi' % amo.PLATFORM_MAC.shortname
+        ]
+        assert sorted([f.filename for f in files]) == expected
+
         for file_ in files:
             with storage.open(file_.file_path) as f:
                 assert uploaded_hash == hashlib.md5(f.read()).hexdigest()

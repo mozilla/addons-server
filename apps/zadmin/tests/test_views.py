@@ -584,9 +584,9 @@ class TestBulkNotify(BulkValidationTest):
     def test_notify_url(self):
         self.create_result(self.job, self.create_file(), **{'errors': 1})
         r = self.client.get(self.list_url)
-        doc = qp(r.content)
+        doc = pq(r.content)
         url = doc('table tr td a.set-max-version').attr('data-job-url')
-        assert url  == self.update_url
+        assert url == self.update_url
 
     def test_notify_anonymous(self):
         self.client.logout()
