@@ -166,7 +166,6 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
-            ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))
@@ -191,7 +190,6 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
-            ('Localizer Tools', '/localizers'),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'))

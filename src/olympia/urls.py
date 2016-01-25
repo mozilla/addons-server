@@ -49,9 +49,6 @@ urlpatterns = patterns(
     # Downloads.
     ('^downloads/', include(download_patterns)),
 
-    # Localizer Pages
-    ('^localizers/', include('olympia.localizers.urls')),
-
     # Users
     ('', include('olympia.users.urls')),
 

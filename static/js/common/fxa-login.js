@@ -35,7 +35,7 @@
     function fxaLogin(opts) {
         opts = opts || {};
         var authConfig = {
-            email: opts.email,
+            email: opts.email || config.email,
             state: config.state + ':' + urlsafe(btoa(nextPath())),
             redirectUri: config.redirectUrl,
             scope: config.scope,
@@ -48,6 +48,11 @@
             return fxaClient.auth.signIn(authConfig);
         }
     }
+
+    $('body').on('click', '.fxa-login', function(e) {
+        e.preventDefault();
+        fxaLogin();
+    });
 
     function showLoginForm($form) {
         $form.removeClass('login-source-form')

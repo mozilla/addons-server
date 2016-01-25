@@ -10,9 +10,10 @@ from olympia.addons.models import AddonUser
 from olympia.amo.celery import task
 from olympia.files.models import File
 from olympia.files.utils import update_version_number
-from olympia.lib.crypto.packaged import sign_file
+from olympia.lib.crypto.packaged import sign_file, SIGN_FOR_APPS
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
+
 
 log = logging.getLogger('z.task')
 
@@ -100,7 +101,7 @@ def sign_addons(addon_ids, force=False, **kw):
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
-        return Q(version__apps__max__application=amo.FIREFOX.id,
+        return Q(version__apps__max__application__in=SIGN_FOR_APPS,
                  version__apps__max__version_int__gte=version_int(version))
 
     is_default_compatible = Q(binary_components=False,

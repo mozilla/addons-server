@@ -32,7 +32,7 @@ function initPromos($context, module_context, version, platform) {
             $('.persona-preview', $promos).previewPersona(true);
         }
         // Hide panel is we have no promos to show
-        if (resp !== '' && $('body#restyle').length === 1) {
+        if (resp !== '' && $('body.restyle').length === 1) {
             $('#page > .secondary').addClass('shift-secondary');
             $('#background-wrapper').addClass('carousel-header');
             $('#promos').addClass('show');
