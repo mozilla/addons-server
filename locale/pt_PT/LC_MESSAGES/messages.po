@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-23 21:11+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-01-26 18:44+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -929,7 +929,7 @@ msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
-"Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de e-mail "
+"Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de email "
 "gratuito e de código aberto da Mozilla, e instale o extra Personas Plus."
 
 #: apps/addons/templates/addons/popups.html:46
@@ -1143,8 +1143,8 @@ msgid ""
 "resolve your issue."
 msgstr ""
 "Por favor, não insira relatos de erro nos comentários. Não disponibilizamos "
-"o seu endereço de e-mail aos programadores de extras e eles poderão ter que "
-"o contactar para resolver o problema."
+"o seu endereço de email aos programadores de extras e eles poderão ter que o"
+" contactar para resolver o problema."
 
 #: apps/addons/templates/addons/review_add_box.html:32
 #: apps/addons/templates/addons/impala/review_add_box.html:35
@@ -2084,11 +2084,11 @@ msgstr "Versão máx. da aplicação atualizada para {version}."
 
 #: apps/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
-msgstr "E-mail enviado aos autores sobre a compatibilidade da {version}."
+msgstr "Email enviado aos autores sobre a compatibilidade de {version}."
 
 #: apps/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-mail enviado ao autor sobre a compatibilidade do extra."
+msgstr "Email enviado ao autor sobre a compatibilidade do extra."
 
 #: apps/amo/log.py:369
 msgid "Password changed."
@@ -2627,7 +2627,7 @@ msgstr ""
 "</p> <ul> <li>Carregar, alterar ou remover extras em seu nome.</li> "
 "<li>Carregar, alterar ou remover extras em seu nome.</li> <li> Obter "
 "informações pessoais sobre si, tais como o nome de utilizador e endereço de "
-"e-mail (mas não a sua palavra-passe). </li> </ul>"
+"email (mas não a sua palavra-passe). </li> </ul>"
 
 #: apps/api/templates/piston/oauth/authorize.html:29
 msgid "Confirm"
@@ -3206,7 +3206,7 @@ msgstr "Utilizador"
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:41
 #: apps/devhub/templates/devhub/addons/edit/support.html:20
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 # Column name in a table.
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:42
@@ -4678,12 +4678,12 @@ msgstr "Apenas pode escolher a plataforma uma vez."
 
 #: apps/devhub/forms.py:704
 msgid "A review type must be selected."
-msgstr "Tem de ser seleccionado um tipo de comentário."
+msgstr "Tem de ser selecionado um tipo de comentário."
 
 #: apps/devhub/forms.py:786 apps/editors/forms.py:114 apps/zadmin/forms.py:49
 #: apps/zadmin/forms.py:52
 msgid "Select an application first"
-msgstr "Primeiro seleccione uma aplicação"
+msgstr "Primeiro selecione uma aplicação"
 
 #: apps/devhub/forms.py:838
 msgid "There cannot be more than 3 required add-ons."
@@ -5447,7 +5447,7 @@ msgid ""
 "there is a reason you need to modify your categories."
 msgstr ""
 "As categorias não podem ser alteradas enquanto o seu extra estiver indicado "
-"para esta aplicação. Por favor, envie uma mensagem de correio <a "
+"para esta aplicação. Por favor, envie um email para <a "
 "href=\"mailto:%(email)s\">%(email)s</a> se houver uma razão em que necessite"
 " de modificar as suas categorias."
 
@@ -5754,7 +5754,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr "Seleccione um ícone para o seu extra:"
+msgstr "Selecione um ícone para o seu extra:"
 
 #. The size of the icon
 #: apps/devhub/templates/devhub/addons/forms_shared/media.html:37
@@ -6154,7 +6154,7 @@ msgstr "Passo 5"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
-msgstr "Passo 5. Seleccione uma licença"
+msgstr "Passo 5. Selecione uma licença"
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:9
 msgid ""
@@ -6163,12 +6163,12 @@ msgid ""
 "license."
 msgstr ""
 "Necessitamos que todos os extras indiquem os termos sobre qual o código "
-"fonte é licenciado. Por favor seleccione a licença da lista em baixo ou "
+"fonte é licenciado. Por favor selecione a licença da lista em baixo ou "
 "escreva a sua licença personalizada."
 
 #: apps/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
-msgstr "Seleccione uma licença para o seu extra:"
+msgstr "Selecione uma licença para o seu extra:"
 
 #: apps/devhub/templates/devhub/addons/submit/media.html:3
 msgid "Step 4"
@@ -6195,7 +6195,7 @@ msgstr "Passo 6"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
-msgstr "Passo 6. Seleccione um processo de revisão"
+msgstr "Passo 6. Selecione um processo de revisão"
 
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:10
 msgid ""
@@ -6287,11 +6287,11 @@ msgstr "Adicionar imagens"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
-msgstr "Seleccione uma licença"
+msgstr "Selecione uma licença"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
-msgstr "Seleccione um processo de revisão"
+msgstr "Selecione um processo de revisão"
 
 #: apps/devhub/templates/devhub/addons/submit/sidebar.html:18
 #: apps/devhub/templates/devhub/docs/policies-submission.html:3
@@ -6322,7 +6322,7 @@ msgid ""
 "restrictions. After upload, a series of automated validation tests will be "
 "run on your file."
 msgstr ""
-"Use os campos em baixo para carregar o pacote do seu extra e seleccionar "
+"Use os campos em baixo para carregar o pacote do seu extra e selecionar "
 "restrições de plataformas. Após carregar. uma série de testes automatizados "
 "irão ser executados no seu ficheiro."
 
@@ -6451,11 +6451,11 @@ msgid ""
 "question or comment."
 msgstr ""
 "Se tiver uma pergunta sobre um comentário do editor de um extra ou quer "
-"denunciar uma violação da política, por favor envie uma mensagem de "
-"correio%(mail_editors)s. <strong>Quase todos os relatórios de extra se "
-"enquadram nesta categoria.</strong> Por favor não se esqueça de incluir uma "
-"ligação para o extra em questão e uma descrição detalhada da sua pergunta ou"
-" comentário."
+"denunciar uma violação da política, por favor envie um email para "
+"%(mail_editors)s. <strong>Quase todos os relatórios de extra se enquadram "
+"nesta categoria.</strong> Por favor não se esqueça de incluir uma ligação "
+"para o extra em questão e uma descrição detalhada da sua pergunta ou "
+"comentário."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
@@ -6481,8 +6481,8 @@ msgstr ""
 "rapidamente possível. Problemas de segurança de extras podem ser reportados "
 "<a href=\"http://www.mozilla.org/projects/security/security-bugs-"
 "policy.html\">confidencialmente</a> no <a "
-"href=\"%(link_bugzilla)s\">Bugzilla</a> ou enviando uma mensagem de correio "
-"para %(mail_admins)s."
+"href=\"%(link_bugzilla)s\">Bugzilla</a> ou enviando um email para "
+"%(mail_admins)s."
 
 #: apps/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
@@ -6680,9 +6680,9 @@ msgid ""
 "via those mediums instead of in an add-on's review section."
 msgstr ""
 "Muitos programadores fornecem um mecanismo de suporte, tais como fóruns, "
-"grupos de discussão ou um endereço de correio eletrónico. É recomendável que"
-" questões de suporte sejam colocadas através destes canais em vez da secção "
-"de análises do extra."
+"grupos de discussão ou um endereço de email. É recomendável que questões de "
+"suporte sejam colocadas através destes canais em vez da secção de análises "
+"do extra."
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6856,7 +6856,7 @@ msgid ""
 "above, send an email to %(mail_featured)s with:"
 msgstr ""
 "Se deseja nomear um extra para ser apresentado e que atenda aos critérios "
-"acima, envie uma mensagem de correio para %(mail_featured)s com:"
+"acima, envie um email para %(mail_featured)s com:"
 
 #: apps/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
@@ -7810,12 +7810,12 @@ msgid ""
 "the need for such protection, and help us preserve some of the most valuable"
 " assets of the Mozilla Foundation."
 msgstr ""
-"Isso também se aplica a marcas registradas da Fundação Mozilla, incluindo "
+"Isto também se aplica a marcas registadas da Fundação Mozilla, incluindo "
 "\"Mozilla\", \"Firefox\" e \"Thunderbird\". A política sobre o uso de marca "
-"da Mozilla foi criada para nos proteger contra a confusão entre marcas e "
-"evitar que as marcas registradas sejam anuladas devido à falta de proteção; "
-"por favor, respeite a necessidade de tal proteção e nos ajude a preservar "
-"alguns dos bens mais valiosos da Fundação Mozilla."
+"da Mozilla foi criada para proteger contra a confusão, e evitar que as "
+"marcas registadas sejam anuladas devido à falta de proteção; por favor "
+"respeite a necessidade de tal proteção, e ajude-nos a preservar alguns dos "
+"bens mais valiosos da Fundação Mozilla."
 
 #: apps/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -7842,10 +7842,10 @@ msgid ""
 msgstr ""
 "Durante o processo de envio de extras, será apresentada uma lista de "
 "licenças populares para que você possa escolher entre uma delas, além de "
-"poder especificar sua própria licença. Recomendamos que você consulte um "
-"profissional de direito para aconselhá-lo sobre a melhor opção para você. "
-"Escolher a licença correta para o seu código irá ajudá-lo a evitar confusões"
-" e conflitos de código no futuro."
+"poder especificar sua própria licença. É melhor consultar um profissional de"
+" direito legal para aconselhá-lo sobre a melhor opção de licença para si. "
+"Escolher a licença correta para o seu código fonte irá ajudá-lo a evitar "
+"confusão e conflitos no futuro."
 
 #: apps/devhub/templates/devhub/docs/policies.html:12
 #: apps/devhub/templates/devhub/docs/policies.html:52
@@ -7940,9 +7940,9 @@ msgid ""
 "on is not listed in our gallery but can be accessed directly from its "
 "details page."
 msgstr ""
-"Você irá receber uma mensagem de correio quando a análise estiver concluída."
-" Até lá, o extra não estará listado na nossa galeria, mas pode ser acedido "
-"directamente da sua página de detalhes."
+"Você irá receber um email quando a análise estiver concluída. Até lá, o "
+"extra não estará listado na nossa galeria, mas pode ser acedido diretamente "
+"da sua página de detalhes."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:38
 #: apps/devhub/templates/devhub/includes/addon_details.html:48
@@ -7997,10 +7997,10 @@ msgid ""
 " add-on is displayed in our gallery as experimental and users are receiving "
 "automatic updates. Some features are unavailable to your add-on."
 msgstr ""
-"Irá receber uma mensagem de correio quando a revisão completa estiver "
-"terminada. Até aí, o extra é apresentado na nossa galeria como experimental "
-"e os utilizadores recebem as atualizações automáticas. Alguns recursos não "
-"estão disponíveis para o extra."
+"Irá receber um email quando a revisão completa estiver terminada. Até aí, o "
+"extra é apresentado na nossa galeria como experimental e os utilizadores "
+"recebem as atualizações automáticas. Alguns recursos não estão disponíveis "
+"para o extra."
 
 #: apps/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8164,8 +8164,8 @@ msgstr "Remover esta aplicação"
 #: apps/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Seleccione <b>até {0}</b> categoria do {1} para este extra:"
-msgstr[1] "Seleccione <b>até {0}</b> categorias do {1} para este extra:"
+msgstr[0] "Selecione <b>até {0}</b> categoria do {1} para este extra:"
+msgstr[1] "Selecione <b>até {0}</b> categorias do {1} para este extra:"
 
 #: apps/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
@@ -8350,8 +8350,8 @@ msgid ""
 "We'll automatically email users who contribute to your add-on with this "
 "message."
 msgstr ""
-"Iremos enviar uma mensagem de correio automaticamente aos utilizadores que "
-"contribuíram para o seu extra."
+"Iremos enviar um email automaticamente aos utilizadores que contribuíram "
+"para o seu extra."
 
 #: apps/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -8496,7 +8496,7 @@ msgstr "Teu tema será lançado sob a seguinte licença:"
 #: apps/devhub/templates/devhub/personas/edit.html:202
 #: apps/devhub/templates/devhub/personas/submit.html:148
 msgid "Select a different license."
-msgstr "Seleccione uma licença diferente."
+msgstr "Selecione uma licença diferente."
 
 #: apps/devhub/templates/devhub/personas/edit.html:207
 #: apps/devhub/templates/devhub/personas/submit.html:153
@@ -8673,7 +8673,7 @@ msgstr "Alinhado em cima à direita"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
-msgstr "Seleccione uma imagem de cabeçalho diferente"
+msgstr "Selecione uma imagem de cabeçalho diferente"
 
 # 82%
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:19
@@ -8690,7 +8690,7 @@ msgstr "Alinhado em baixo à esquerda"
 
 #: apps/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
-msgstr "Seleccione uma imagem de rodapé diferente"
+msgstr "Selecione uma imagem de rodapé diferente"
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:8
 msgid ""
@@ -8714,7 +8714,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
-msgstr "Seleccione a plataforma de destino para este ficheiro."
+msgstr "Selecione a plataforma de destino para este ficheiro."
 
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which review type would you like to nominate for?"
@@ -9464,7 +9464,7 @@ msgstr "e"
 
 #: apps/editors/forms.py:41
 msgid "Filter by type/action"
-msgstr "Filtro por tipo/acção"
+msgstr "Filtro por tipo/ação"
 
 #: apps/editors/forms.py:58
 msgid "Passed automatic validation"
@@ -9499,7 +9499,7 @@ msgstr "extra, editor ou comentário"
 
 #: apps/editors/forms.py:98
 msgid "Search by add-on name / author email"
-msgstr "Procurar por nome do extra / correio electrónico do autor"
+msgstr "Procurar por nome do extra / email do autor"
 
 #: apps/editors/forms.py:103
 msgid "yes"
@@ -9784,9 +9784,9 @@ msgid ""
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr ""
-"Utilize este formulário para solicitar mais informações do autor. Eles irão "
-"receber uma mensagem de correio e serão capazes de responder aqui. Você será"
-" notificado por correio electrónico quando responderem."
+"Utilize este formulário para solicitar mais informações do autor. Ele irá "
+"receber um email e será capaz de responder aqui. Você será notificado por "
+"email quando o mesmo responder."
 
 #: apps/editors/helpers.py:521
 msgid ""
@@ -10488,7 +10488,7 @@ msgstr "Nenhuma revisão encontrada para este período."
 
 #: apps/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr "Retirar este anúncio"
+msgstr "Dispensar este anúncio"
 
 #: apps/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
@@ -12612,8 +12612,8 @@ msgid ""
 "process</a></dd>"
 msgstr ""
 "Embora todos os extras disponíveis publicamente na nossa galeria são "
-"revistos por um editor, poderá recever uma ligação directa para um extra que"
-" ainda não foi revisto. Tenha cuidado ao instalar estes extras, pois eles "
+"revistos por um editor, poderá receber uma ligação direta para um extra que "
+"ainda não foi revisto. Tenha cuidado ao instalar estes extras, pois eles "
 "podem danificar o seu computador ou violar sua privacidade. Recomendamos que"
 " você instale apenas extras revistos. <a href=\"%(url)s\">Saiba mais sobre o"
 " nosso processo de revisão</a></dd>"
@@ -12703,8 +12703,8 @@ msgid ""
 msgstr ""
 "Para reportar uma revisão de um extra por um utilizador, inicie sessão na "
 "sua conta e visite a página de revisões do extra. Encontre a revisão que "
-"deseja reportar, clique \"Reportar esta revisão\" e seleccione a razão. A "
-"nossa equipa editorial irá investigar e tomar a acção apropriada."
+"deseja reportar, clique \"Reportar esta revisão\" e selecione a razão. A "
+"nossa equipa editorial irá investigar e tomar a ação apropriada."
 
 #: apps/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13151,7 +13151,7 @@ msgstr "ou <a href=\"%(url)s\">Cancele</a>"
 
 #: apps/reviews/templates/reviews/report_review.html:3
 msgid "Please select a reason:"
-msgstr "Por favor seleccione uma razão:"
+msgstr "Por favor selecione uma razão:"
 
 #: apps/reviews/templates/reviews/review.html:26
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -14130,8 +14130,8 @@ msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
-"Por favor use um endereço de correio de outro fornecedor para finalizar o "
-"seu registo."
+"Por favor use um endereço de email de outro fornecedor para finalizar o seu "
+"registo."
 
 #: apps/users/forms.py:311
 msgid "This display name cannot be used."
@@ -14180,7 +14180,7 @@ msgstr "hash"
 
 #: apps/users/models.py:123
 msgid "No user with that email."
-msgstr "Nenhum utilizador com esse correio electrónico."
+msgstr "Nenhum utilizador com esse email."
 
 #: apps/users/models.py:399
 msgid "Your account has been restricted"
@@ -14188,7 +14188,7 @@ msgstr "A sua conta foi restringida"
 
 #: apps/users/models.py:469
 msgid "Please confirm your email address"
-msgstr "Confirme o seu endereço de correio"
+msgstr "Confirme o seu endereço de email"
 
 #: apps/users/models.py:495
 msgid "My Mobile Add-ons"
@@ -14296,9 +14296,8 @@ msgid ""
 "you can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
-"Foi enviada uma mensagem de correio electrónico a {0} para confirmar a sua "
-"conta. Antes de poder entrar, tem de activar a sua conta clicando na ligação"
-" fornecida nesta mensagem de correio electrónico."
+"Foi enviado um email a {0} para confirmar a sua conta. Antes de poder "
+"entrar, tem de ativar a sua conta clicando na ligação fornecida neste email."
 
 #: apps/users/views.py:135 apps/users/views.py:611
 msgid "Confirmation Email Sent"
@@ -14326,14 +14325,13 @@ msgid ""
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
-"Foi enviada uma mensagem de correio para {0} para confirmar o seu novo "
-"endereço. Para a alteração ter efeito, tem de clicar na ligação incluída "
-"nessa mensagem de correio. Até lá, pode continuar a entrar com o seu "
-"endereço de correio atual."
+"Foi enviado um email para {0} para confirmar o seu novo endereço. Para a "
+"alteração ter efeito, tem de clicar na ligação incluída nesse email. Até lá,"
+" pode continuar a entrar com o seu endereço de email atual."
 
 #: apps/users/views.py:209
 msgid "Please confirm your email address change at %s"
-msgstr "Por favor, confirme a alteração do seu endereço de correio em %s"
+msgstr "Por favor, confirme a alteração do seu endereço de email em %s"
 
 #: apps/users/views.py:223
 msgid "Errors Found"
@@ -14353,7 +14351,7 @@ msgstr ""
 
 #: apps/users/views.py:328
 msgid "Your email address was changed successfully"
-msgstr "Seu endereço de correio foi alterado com sucesso"
+msgstr "Seu endereço de email foi alterado com sucesso"
 
 #: apps/users/views.py:329
 msgid "From now on, please use {0} to log in."
@@ -14361,15 +14359,15 @@ msgstr "A partir de agora, para iniciar sessão use {0}"
 
 #: apps/users/views.py:416
 msgid "Wrong email address or password!"
-msgstr "Senha ou endereço de correio errados!"
+msgstr "Senha ou endereço de email errados!"
 
 #: apps/users/views.py:428
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
-"Uma ligação para ativar a sua conta foi enviada por mensagem de correio para"
-" o endereço {0}. Tem de clicar nele antes de iniciar sessão."
+"Uma ligação para ativar a sua conta foi enviada por email para o endereço "
+"{0}. Tem de clicar nele antes de iniciar sessão."
 
 #: apps/users/views.py:433
 msgid ""
@@ -14378,14 +14376,14 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
-"Se você não recebeu uma mensagem de confirmação, tenha certeza de que seu "
-"serviço de correio não marcou a mensagem como \"Lixo\" ou \"Spam\". Se você "
-"precisar, nós podemos <a href=\"%s\">reenviar a mensagem de confirmação</a> "
-"para o seu endereço de correio mencionado acima."
+"Se não recebeu um email de confirmação, tenha certeza de que seu serviço de "
+"email não marcou a mensagem como \"Lixo\" ou \"Spam\". Se precisar, podemos "
+"<a href=\"%s\">reenviar a mensagem de confirmação</a> para o seu endereço de"
+" email mencionado acima."
 
 #: apps/users/views.py:438
 msgid "Activation Email Sent"
-msgstr "Enviada mensagem de correio de activação"
+msgstr "Email de ativação enviado"
 
 #: apps/users/views.py:439
 msgid "Having Trouble?"
@@ -14491,7 +14489,7 @@ msgstr "A Minha Conta"
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
 "Faça a gestão da informação da conta, como o nome de utilizador e o endereço"
-" de correio."
+" de email."
 
 #: apps/users/templates/users/edit.html:33
 #: apps/users/templates/users/register.html:48
@@ -14502,7 +14500,7 @@ msgstr "Nome de utilizador"
 #: apps/users/templates/users/pwreset_request.html:21
 #: apps/users/templates/users/register.html:63
 msgid "Email Address"
-msgstr "Endereço de correio"
+msgstr "Endereço de email"
 
 #: apps/users/templates/users/edit.html:45
 msgid "Manage Firefox Account..."
@@ -14601,9 +14599,9 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
-"De tempos a tempos, a Mozilla poderá enviar-lhe uma mensagem de correio "
-"sobre os próximos lançamentos e eventos sobre extras. Por favor, seleccione "
-"os tópicos de interesse."
+"De tempos a tempos, a Mozilla poderá enviar-lhe um email sobre os próximos "
+"lançamentos e eventos sobre extras. Por favor, selecione os tópicos de "
+"interesse."
 
 #: apps/users/templates/users/edit.html:193
 msgid ""
@@ -14646,7 +14644,7 @@ msgstr "Iniciar sessão"
 #: apps/users/templates/users/login_form.html:17
 #: apps/users/templates/users/mobile/login.html:32
 msgid "Email address"
-msgstr "Endereço de correio"
+msgstr "Endereço de email"
 
 #: apps/users/templates/users/login_form.html:30
 #: apps/users/templates/users/mobile/login.html:44
@@ -14790,8 +14788,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Esqueceu a sua senha? Escreva o seu endereço de correio em baixo e nós "
-"enviamos-lhe instrucções para criar uma senha nova."
+"Esqueceu a sua senha? Escreva o seu endereço de email em baixo e nós "
+"enviamos-lhe instruções para criar uma senha nova."
 
 #: apps/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
@@ -14803,9 +14801,9 @@ msgid ""
 " you do not receive an email then please confirm you have entered the same "
 "email address used during account registration."
 msgstr ""
-"Foi enviada uma mensagem de correio com mais informação. Se não receber a "
-"mensagem de correio por favor veja se escreveu o mesmo endereço de correio "
-"que usou durante a criação da conta."
+"Foi enviado um email com mais informação. Se não receber o email por favor "
+"veja se escreveu o mesmo endereço de email que usou durante a criação da "
+"conta."
 
 #: apps/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -14853,9 +14851,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
-"Após um registo bem sucedido, será enviada uma mensagem de correio "
-"eletrónico de confirmação para o endereço que forneceu. Por favor, siga as "
-"instruções dessa mensagem para confirmar a sua conta."
+"Após um registo bem sucedido, será enviado um email de confirmação para o "
+"endereço que forneceu. Por favor, siga as instruções dessa mensagem para "
+"confirmar a sua conta."
 
 #: apps/users/templates/users/register.html:31
 msgid ""
@@ -15386,7 +15384,7 @@ msgid ""
 "href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
 msgstr ""
 "<a href=\"%(reg)s\" class=\"fxa-register\">Registe-se</a> ou <a "
-"href=\"%(login)s\" class=\"fxa-login\">Entre</a>"
+"href=\"%(login)s\" class=\"fxa-login\">Inicie sessão</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
