@@ -648,7 +648,7 @@ class QueueTest(EditorTest):
                 'file_status': amo.STATUS_LITE,
             }),
         ])
-        results = {}
+        results = SortedDict()
         for name, attrs in files.iteritems():
             if not subset or name in subset:
                 results[name] = self.addon_file(name, **attrs)
@@ -668,22 +668,27 @@ class QueueTest(EditorTest):
         a = create_addon_file(*args, listed=self.listed, **kw)
         name = args[0]  # Add-on name.
         self.addons[name] = a['addon']
-        # If this is an add-on we expect to be in the queue, then add it.
-        if name in getattr(self, 'expected_names', []):
-            self.expected_addons.append(a['addon'])
         return a['addon']
 
     def get_queue(self, addon):
         version = addon.latest_version.reload()
         eq_(version.current_queue.objects.filter(id=addon.id).count(), 1)
 
+    def get_expected_addons_by_names(self, names):
+        expected_addons = []
+        files = self.generate_files()
+        for name in sorted(names):
+            if name in files:
+                    expected_addons.append(files[name])
+        # Make sure all elements have been added
+        assert len(expected_addons) == len(names)
+        return expected_addons
+
     def _test_get_queue(self):
-        self.generate_files()
         for addon in self.expected_addons:
             self.get_queue(addon)
 
     def _test_queue_count(self, eq, name, count):
-        self.generate_files()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         a = pq(r.content)('.tabnav li a:eq(%s)' % eq)
@@ -694,6 +699,8 @@ class QueueTest(EditorTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         expected = []
+        if not len(self.expected_addons):
+            raise AssertionError('self.expected_addons was an empty list')
         for idx, addon in enumerate(self.expected_addons):
             name = '%s %s' % (unicode(addon.name),
                               addon.current_version.version)
@@ -1009,23 +1016,21 @@ class TestPendingQueue(QueueTest):
 
     def setUp(self):
         super(TestPendingQueue, self).setUp()
-        # These should be the only ones present in the queue.
-        self.expected_names = ['Pending One', 'Pending Two']
+        # These should be the only ones present.
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two'])
         self.url = reverse('editors.queue_pending')
 
     def test_results(self):
-        # `generate_files` happens within this test.
         self._test_results()
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Pending Updates', None)])
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(2, 'Pending Updates', 2)
 
     def test_get_queue(self):
-        # `generate_files` happens within this test.
         self._test_get_queue()
 
 
@@ -1034,7 +1039,8 @@ class TestNominatedQueue(QueueTest):
     def setUp(self):
         super(TestNominatedQueue, self).setUp()
         # These should be the only ones present.
-        self.expected_names = ['Nominated One', 'Nominated Two']
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Nominated One', 'Nominated Two'])
         self.url = reverse('editors.queue_nominated')
 
     def test_results(self):
@@ -1044,8 +1050,6 @@ class TestNominatedQueue(QueueTest):
         self._test_breadcrumbs([('Full Reviews', None)])
 
     def test_results_two_versions(self):
-        self.generate_files()
-
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.files.get()
@@ -1080,11 +1084,9 @@ class TestNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(1, 'Full Reviews', 2)
 
     def test_get_queue(self):
-        # `generate_files` happens within this test.
         self._test_get_queue()
 
 
@@ -1093,7 +1095,8 @@ class TestPreliminaryQueue(QueueTest):
     def setUp(self):
         super(TestPreliminaryQueue, self).setUp()
         # These should be the only ones present.
-        self.expected_names = ['Prelim One', 'Prelim Two']
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Prelim One', 'Prelim Two'])
         self.url = reverse('editors.queue_prelim')
 
     def test_results(self):
@@ -1103,11 +1106,9 @@ class TestPreliminaryQueue(QueueTest):
         self._test_breadcrumbs([('Preliminary Reviews', None)])
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(3, 'Preliminary Reviews', 2)
 
     def test_get_queue(self):
-        # `generate_files` happens within this test.
         self._test_get_queue()
 
 
@@ -1246,7 +1247,6 @@ class TestModeratedQueue(QueueTest):
             1)
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(4, 'Moderated Review', 1)
 
     def test_breadcrumbs(self):
@@ -1288,15 +1288,14 @@ class TestUnlistedPendingQueue(TestPendingQueue):
 
     def setUp(self):
         super(TestUnlistedPendingQueue, self).setUp()
-        # These should be the only ones present in the queue.
-        self.expected_names = ['Pending One', 'Pending Two']
         self.url = reverse('editors.unlisted_queue_pending')
+        # Don't need to call get_expected_addons_by_name() again because
+        # we already called it in setUp() of the parent class
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Unlisted Pending Updates', None)])
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(1, 'Unlisted Pending Updates', 2)
 
 
@@ -1305,15 +1304,14 @@ class TestUnlistedNominatedQueue(TestNominatedQueue):
 
     def setUp(self):
         super(TestUnlistedNominatedQueue, self).setUp()
-        # These should be the only ones present.
-        self.expected_names = ['Nominated One', 'Nominated Two']
         self.url = reverse('editors.unlisted_queue_nominated')
+        # Don't need to call get_expected_addons_by_name() again because
+        # we already called it in setUp() of the parent class
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Unlisted Full Reviews', None)])
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(0, 'Unlisted Full Reviews', 2)
 
 
@@ -1322,15 +1320,14 @@ class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
 
     def setUp(self):
         super(TestUnlistedPreliminaryQueue, self).setUp()
-        # These should be the only ones present.
-        self.expected_names = ['Prelim One', 'Prelim Two']
         self.url = reverse('editors.unlisted_queue_prelim')
+        # Don't need to call get_expected_addons_by_name() again because
+        # we already called it in setUp() of the parent class
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Unlisted Preliminary Reviews', None)])
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(2, 'Unlisted Preliminary Reviews', 2)
 
 
@@ -2975,15 +2972,12 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         return results
 
     def test_results(self):
-        # `generate_files` happens within this test.
         self._test_results()
 
     def test_queue_count(self):
-        # `generate_files` happens within this test.
         self._test_queue_count(1, 'Full Review', 1)
 
     def test_get_queue(self):
-        # `generate_files` happens within this test.
         self._test_get_queue()
 
 
