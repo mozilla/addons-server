@@ -77,6 +77,7 @@ $(document).ready(function() {
 
         $('.upload-file-cancel').click(_pd($modalFile.hideMe));
         $('#upload-file').submit(_pd(function(e) {
+            $('#upload-file-finish').prop('disabled', true);
             $.ajax({
                 url: $(this).attr('action'),
                 type: 'post',
@@ -225,25 +226,6 @@ $(document).ready(function() {
         initInAppConfig($('#in-app-config'));
     }
 });
-
-function initUploadControls() {
-    /*
-    $('.upload-status').removeClass("hidden").hide();
-    $('.upload-status').bind('upload-start', function() {
-    }).bind('upload-finish', function() {
-        $(this).removeClass("ajax-loading");
-    });
-    $(".invisible-upload").delegate("#upload-file-input", "change", function(e) {
-        $('#upload-status-bar').attr('class', '');
-        $('#upload-status-text').text("");
-        $('#upload-status-results').text("").attr("class", "");
-        $('#upload-status-bar div').css('width', 0).show();
-        $('#upload-status-bar').removeClass('progress-idle');
-        fileUpload($(this), $(this).closest(".invisible-upload").attr('data-upload-url'));
-        $('.upload-status').show();
-    });
-    */
-}
 
 function initPlatformChooser() {
     $(document).on('change', 'input.platform', function(e) {
