@@ -594,7 +594,7 @@ class TestLogin(UserViewBase):
 
     @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
     @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    @patch('amo.fields.ReCaptchaField.clean')
+    @patch('olympia.amo.fields.ReCaptchaField.clean')
     def test_login_with_recaptcha(self, clean):
         clean.return_value = ''
         data = self.data.copy()
@@ -1294,7 +1294,7 @@ class TestReportAbuse(TestCase):
         super(TestReportAbuse, self).setUp()
         self.full_page = reverse('users.abuse', args=[10482])
 
-    @patch('amo.fields.ReCaptchaField.clean')
+    @patch('olympia.amo.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):
         clean.return_value = ""
         self.client.post(self.full_page, {'text': 'spammy'})

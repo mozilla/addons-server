@@ -1353,7 +1353,7 @@ class TestReportAbuse(TestCase):
         super(TestReportAbuse, self).setUp()
         self.full_page = reverse('addons.abuse', args=['a3615'])
 
-    @patch('amo.fields.ReCaptchaField.clean')
+    @patch('olympia.amo.fields.ReCaptchaField.clean')
     def test_abuse_anonymous(self, clean):
         clean.return_value = ""
         self.client.post(self.full_page, {'text': 'spammy'})

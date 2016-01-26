@@ -253,7 +253,7 @@ class TestValidator(TestCase):
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
         validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        with mock.patch('devhub.tasks.statsd.timing') as mock_timing:
+        with mock.patch('olympia.devhub.tasks.statsd.timing') as mock_timing:
             tasks.handle_upload_validation_result(validation, self.upload.pk)
         assert self.get_upload().validation
 

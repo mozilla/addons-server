@@ -601,7 +601,7 @@ class TestUserRegisterForm(UserFormBase):
             'homepage': ''
         }
 
-    @patch('amo.fields.ReCaptchaField.clean')
+    @patch('olympia.amo.fields.ReCaptchaField.clean')
     def test_success(self, clean):
         clean.return_value = ''
 
