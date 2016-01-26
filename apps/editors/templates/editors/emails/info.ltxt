@@ -1,5 +1,5 @@
 {% extends "editors/emails/base.ltxt" %}{% block content %}
-A Mozilla Add-ons Editor requested further information from you regarding version {{ number }} of your add-on {{ name }}.
+A reviewer requested further information from you regarding version {{ number }} of your add-on {{ name }}.
 
 {{ reviewer }} wrote:
 

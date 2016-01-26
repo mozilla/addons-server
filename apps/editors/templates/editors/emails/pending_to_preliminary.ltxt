@@ -1,5 +1,5 @@
 {% extends "editors/emails/base.ltxt" %}{% block content %}
-Your add-on, {{ name }} {{ number }}, has been preliminarily reviewed by an editor and is now available for download in our gallery at {{ addon_url }}
+Your add-on, {{ name }} {{ number }}, has been preliminarily reviewed and is now available for download in our gallery at {{ addon_url }}
 {% include "editors/emails/files.ltxt" %}
 Reviewer:
 {{ reviewer }}
@@ -9,5 +9,4 @@ Comments:
 
 {{ tested }}
 
-To learn more about the review process, please visit https://addons.mozilla.org/developers/docs/policies/reviews
 {% endblock %}
