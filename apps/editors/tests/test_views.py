@@ -24,6 +24,7 @@ from access.models import Group, GroupUser
 from addons.models import Addon, AddonDependency, AddonUser
 from amo.tests import check_links, formset, initial
 from amo.urlresolvers import reverse
+from constants.base import REVIEW_LIMITED_DELAY_HOURS
 from devhub.models import ActivityLog
 from editors.models import EditorSubscription, ReviewerScore
 from files.models import File, FileValidation
@@ -2942,8 +2943,12 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
 
     def setUp(self):
         super(TestLimitedReviewerQueue, self).setUp()
-        self.expected_names = ['Nominated old']
         self.url = reverse('editors.queue_nominated')
+
+        for addon in self.generate_files().values():
+            if addon.latest_version.nomination <= datetime.now() - timedelta(
+                    hours=REVIEW_LIMITED_DELAY_HOURS):
+                self.expected_addons.append(addon)
 
         self.create_limited_user()
         self.login_as_limited_reviewer()
@@ -2970,17 +2975,14 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         return results
 
     def test_results(self):
-        #import ipdb; ipdb.set_trace()
         # `generate_files` happens within this test.
         self._test_results()
 
     def test_queue_count(self):
-        #import ipdb; ipdb.set_trace()
         # `generate_files` happens within this test.
         self._test_queue_count(1, 'Full Review', 1)
 
     def test_get_queue(self):
-        #import ipdb; ipdb.set_trace()
         # `generate_files` happens within this test.
         self._test_get_queue()
 
@@ -2998,13 +3000,13 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
         self.version.update(nomination=datetime.now())
         self.version.files.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.get_dict(action='public'))
-        eq_(response.status_code, 200)  # Form error.
+        assert response.status_code == 200  # Form error.
         # The add-on status must not change as limited reviewers are not
         # allowed to review recently submitted add-ons.
-        eq_(self.get_addon().status, amo.STATUS_NOMINATED)
-        eq_(response.context['form'].errors['action'],
-            [u'Select a valid choice. public is not one of the available '
-             u'choices.'])
+        assert self.get_addon().status == amo.STATUS_NOMINATED
+        assert response.context['form'].errors['action'] == [
+            u'Select a valid choice. public is not one of the available '
+            u'choices.']
 
     @patch('editors.helpers.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
@@ -3013,6 +3015,6 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
         self.version.files.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
-        eq_(response.status_code, 200)
-        eq_(self.get_addon().status, amo.STATUS_PUBLIC)
+        assert response.status_code == 200
+        assert self.get_addon().status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
