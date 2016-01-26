@@ -141,7 +141,6 @@ SPIDERMONKEY = '/usr/bin/tracemonkey'
 
 # Remove DetectMobileMiddleware from middleware in production.
 detect = 'mobility.middleware.DetectMobileMiddleware'
-csp = 'csp.middleware.CSPMiddleware'
 
 RESPONSYS_ID = env('RESPONSYS_ID')
 
@@ -198,8 +197,6 @@ NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
-
-MIDDLEWARE_CLASSES = tuple(m for m in MIDDLEWARE_CLASSES if m not in (csp,))
 
 VALIDATOR_TIMEOUT = 360
 

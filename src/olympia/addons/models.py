@@ -30,7 +30,6 @@ from olympia.access import acl
 from olympia.addons.utils import get_creatured_ids, get_featured_ids
 from olympia.amo import helpers
 from olympia.amo.decorators import use_master, write
-from olympia.amo.fields import DecimalCharField
 from olympia.amo.utils import (
     attach_trans_dict, cache_ns_key, chunked, find_language, JSONEncoder,
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
@@ -297,15 +296,14 @@ class Addon(OnChangeMixin, ModelBase):
     wants_contributions = models.BooleanField(default=False)
     paypal_id = models.CharField(max_length=255, blank=True)
     charity = models.ForeignKey('Charity', null=True)
-    # TODO(jbalogh): remove nullify_invalid once remora dies.
-    suggested_amount = DecimalCharField(
-        max_digits=8, decimal_places=2, nullify_invalid=True, blank=True,
+
+    suggested_amount = models.DecimalField(
+        max_digits=9, decimal_places=2, blank=True,
         null=True, help_text=_(u'Users have the option of contributing more '
                                'or less than this amount.'))
 
-    total_contributions = DecimalCharField(max_digits=8, decimal_places=2,
-                                           nullify_invalid=True, blank=True,
-                                           null=True)
+    total_contributions = models.DecimalField(max_digits=9, decimal_places=2,
+                                              blank=True, null=True)
 
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,

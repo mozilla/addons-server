@@ -4,6 +4,7 @@ import codecs
 import collections
 import contextlib
 import datetime
+import decimal
 import errno
 import functools
 import itertools
@@ -326,6 +327,15 @@ class JSONEncoder(json.DjangoJSONEncoder):
                 'min': unicode(obj.min), 'max': unicode(obj.max)}}
 
         return super(JSONEncoder, self).default(obj)
+
+
+class DecimalJSONEncoder(json.DjangoJSONEncoder):
+
+    def default(self, obj):
+        if isinstance(obj, decimal.Decimal):
+            return float(obj)
+
+        return super(DecimalJSONEncoder, self).default(obj)
 
 
 def chunked(seq, n):

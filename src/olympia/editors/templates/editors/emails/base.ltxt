@@ -1,5 +1,7 @@
+Hello,
+
 {% block content %}{% endblock %}
-If you have any questions or comments on this review, please reply to this email or join #amo-editors on irc.mozilla.org
+If you want to respond to this review, or have any questions about it, please reply to this email or join #amo-editors on irc.mozilla.org. To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
 --
-Mozilla Add-ons
+Mozilla Add-ons Team
 {{ SITE_URL }}

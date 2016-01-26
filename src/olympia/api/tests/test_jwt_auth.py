@@ -99,22 +99,22 @@ class TestJWTAuthHandlers(JWTAuthTester):
         super(TestJWTAuthHandlers, self).setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
-    def test_decode_unknown_issuer(self):
+    def test_report_unknown_issuer(self):
         token = self.create_auth_token(self.user, 'non-existant-issuer',
                                        'some-secret')
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with self.assertRaises(AuthenticationFailed) as ctx:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'unknown JWT issuer'
+        assert ctx.exception.detail == 'Unknown JWT iss (issuer)'
 
-    def test_decode_token_without_issuer(self):
+    def test_report_token_without_issuer(self):
         payload = self.auth_token_payload(self.user, 'some-issuer')
         del payload['iss']
         token = self.encode_token_payload(payload, 'some-secret')
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with self.assertRaises(AuthenticationFailed) as ctx:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'invalid JWT'
+        assert ctx.exception.detail == 'JWT iss (issuer) claim is missing'
 
     def test_decode_garbage_token(self):
         with self.assertRaises(jwt.DecodeError) as ctx:
@@ -146,7 +146,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
         payload['exp'] = (datetime.utcnow() -
-                          api_settings.JWT_EXPIRATION_DELTA -
+                          settings.JWT_AUTH['JWT_EXPIRATION_DELTA'] -
                           timedelta(seconds=10))
         token = self.encode_token_payload(payload, api_key.secret)
 
@@ -159,8 +159,26 @@ class TestJWTAuthHandlers(JWTAuthTester):
         del payload['iat']
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.MissingRequiredClaimError):
+        with self.assertRaises(AuthenticationFailed) as ctx:
             handlers.jwt_decode_handler(token)
+
+        assert (ctx.exception.detail ==
+                'Invalid JWT: Token is missing the "iat" claim')
+
+    def test_invalid_issued_at_time(self):
+        api_key = self.create_api_key(self.user)
+        payload = self.auth_token_payload(self.user, api_key.key)
+        # Simulate clock skew:
+        payload['iat'] = (
+            datetime.utcnow() +
+            timedelta(seconds=settings.JWT_AUTH['JWT_LEEWAY'] + 10))
+        token = self.encode_token_payload(payload, api_key.secret)
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            handlers.jwt_decode_handler(token)
+
+        assert ctx.exception.detail.startswith(
+            'JWT iat (issued at time) is invalid')
 
     def test_missing_expiration(self):
         api_key = self.create_api_key(self.user)
@@ -168,8 +186,11 @@ class TestJWTAuthHandlers(JWTAuthTester):
         del payload['exp']
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.MissingRequiredClaimError):
+        with self.assertRaises(AuthenticationFailed) as ctx:
             handlers.jwt_decode_handler(token)
+
+        assert (ctx.exception.detail ==
+                'Invalid JWT: Token is missing the "exp" claim')
 
     def test_disallow_long_expirations(self):
         api_key = self.create_api_key(self.user)
@@ -181,10 +202,10 @@ class TestJWTAuthHandlers(JWTAuthTester):
         )
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(jwt.DecodeError) as ctx:
+        with self.assertRaises(AuthenticationFailed) as ctx:
             handlers.jwt_decode_handler(token)
 
-        assert ctx.exception.message == 'Declared expiration was too long'
+        assert ctx.exception.detail == 'JWT exp (expiration) is too long'
 
 
 class TestJWTKeyAuthentication(JWTAuthTester):

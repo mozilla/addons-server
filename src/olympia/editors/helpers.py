@@ -740,7 +740,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_sandbox' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Rejected'
+        subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         if not self.addon.is_listed:
             template = u'unlisted_to_sandbox'
             subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
@@ -848,7 +848,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_sandbox' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Rejected'
+        subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         if not self.addon.is_listed:
             template = u'unlisted_to_sandbox'
             subject = u'Mozilla Add-ons: %s %s didn\'t pass review'

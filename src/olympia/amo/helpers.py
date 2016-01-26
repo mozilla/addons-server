@@ -1,4 +1,5 @@
 import collections
+import decimal
 import json as jsonlib
 import os
 import random
@@ -226,7 +227,7 @@ def numberfmt(num, format=None):
 def currencyfmt(num, currency):
     if num is None:
         return ''
-    return _get_format().currency(num, currency)
+    return _get_format().currency(decimal.Decimal(num), currency)
 
 
 def page_name(app=None):

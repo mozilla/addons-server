@@ -1610,8 +1610,7 @@ JWT_AUTH = {
     # longer expiration.
     'JWT_ALLOW_REFRESH': False,
 
-    # JWTs are only valid for one minute. Note that this setting only applies
-    # to token creation which we don't do (yet?).
+    # JWTs are only valid for one minute.
     'JWT_EXPIRATION_DELTA': datetime.timedelta(
         seconds=MAX_JWT_AUTH_TOKEN_LIFETIME),
 

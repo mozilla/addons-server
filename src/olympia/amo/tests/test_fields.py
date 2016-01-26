@@ -1,48 +1,10 @@
-from decimal import Decimal
-
 from django import forms
 from django.core import exceptions
-from django.db import models
 
 from nose.tools import eq_
 
-from olympia.amo.fields import DecimalCharField, SeparatedValuesField
+from olympia.amo.fields import SeparatedValuesField
 from olympia.amo.tests import TestCase
-
-
-class DecimalCharFieldModel(models.Model):
-    strict = DecimalCharField(max_digits=10, decimal_places=2)
-    loose = DecimalCharField(max_digits=10, decimal_places=2,
-                             nullify_invalid=True, null=True)
-
-
-class DecimalCharFieldTestCase(TestCase):
-
-    def test_basic(self):
-        obj = DecimalCharFieldModel(strict='1.23', loose='foo')
-        eq_(obj.strict, Decimal('1.23'))
-        eq_(obj.loose, None)
-
-    def test_nullify_invalid_false(self):
-        val = Decimal('1.5')
-        o = DecimalCharFieldModel()
-        o.strict = val
-        try:
-            o.strict = 'not a decimal'
-        except exceptions.ValidationError:
-            pass
-        else:
-            assert False, 'invalid value did not raise an exception'
-        eq_(o.strict, val, 'unexpected Decimal value')
-
-    def test_nullify_invalid_true(self):
-        val = Decimal('1.5')
-        o = DecimalCharFieldModel()
-        o.loose = val
-        eq_(o.loose, val, 'unexpected Decimal value')
-
-        o.loose = 'not a decimal'
-        eq_(o.loose, None, 'expected None')
 
 
 class SeparatedValuesFieldTestCase(TestCase):

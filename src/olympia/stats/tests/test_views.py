@@ -241,7 +241,7 @@ class TestCSVs(ESStatsTest):
         eq_(response.status_code, 200, 'unexpected http status')
         self.csv_eq(response, """date,total,count,average
                                  2009-06-02,4.98,2,2.49
-                                 2009-06-01,5.0,1,5.0""")
+                                 2009-06-01,5.00,1,5.0""")
 
     def test_sources_series(self):
         response = self.get_view_response('stats.sources_series',
@@ -705,7 +705,7 @@ class TestResponses(ESStatsTest):
         eq_(r.status_code, 200)
         self.csv_eq(r, """date,count,total,average
                           2009-06-02,2,4.98,2.49
-                          2009-06-01,1,5.0,5.0""")
+                          2009-06-01,1,5.00,5.0""")
 
 
 # Test the SQL query by using known dates, for weeks and months etc.
