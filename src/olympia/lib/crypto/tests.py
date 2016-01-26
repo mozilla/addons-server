@@ -394,7 +394,7 @@ class TestTasks(TestCase):
     def test_sign_supported_applications(self, mock_sign_file):
         """Make sure we sign for all supported applications."""
         with amo.tests.copy_file(
-                'apps/files/fixtures/files/jetpack.xpi',
+                'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
             for app in packaged.SIGN_FOR_APPS:
                 self.max_appversion.update(application=app)
@@ -440,8 +440,8 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_other_applications(self, mock_sign_file):
         """Don't sign files which are for applications we don't sign for."""
-        with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',
-                                 self.file_.file_path):
+        path = 'src/olympia/files/fixtures/files/jetpack.xpi'
+        with amo.tests.copy_file(path, self.file_.file_path):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '1.3'
             assert self.version.version_int == version_int('1.3')
