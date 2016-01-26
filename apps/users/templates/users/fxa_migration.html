@@ -1,0 +1,29 @@
+{% extends "impala/base_shared.html" %}
+
+{% block title %}{{ page_title(_('Migrate to Firefox Accounts')) }}{% endblock %}
+
+{% block bodyclass %}fxa-migrate-page{% endblock %}
+
+{% block content %}
+
+<div class="primary">
+  <section class="island hero primary grid prettyform fxa-migration-prompt">
+    <h1>{{ _('Migrate to Firefox Accounts') }}</h1>
+    <img alt="{{ request.APP.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}" class="firefox-logo">
+    <p>
+      {% trans %}
+        Mozilla Add-ons has transitioned to Firefox Accounts for login.
+        Continue to complete the simple upgrade process.
+      {% endtrans %}
+    </p>
+    <div class="migrate-button">
+      <a href="{{ url('users.login') }}" class="fxa-login button prominent">
+        {{ _('Continue') }}
+      </a>
+    </div>
+    <div class="skip-migrate-link">
+      <a href="{{ to }}">{{ _('Skip') }}</a>
+    </a>
+  </section>
+</div>
+{% endblock content %}

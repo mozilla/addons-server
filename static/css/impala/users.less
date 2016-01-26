@@ -330,3 +330,33 @@ img.icon {
 #my-themes .view-all {
     float: right;
 }
+
+.fxa-migrate-page:after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(256, 256, 256, 0.75);
+    z-index: 65;
+}
+
+.fxa-migration-prompt {
+    font-family: "Trebuchet MS", sans-serif;
+    line-height: 1.25;
+    text-align: center;
+    z-index: 75;
+
+    p {
+        margin: 5px;
+    }
+    .migrate-button {
+        margin: 20px;
+    }
+    .firefox-logo {
+        height: 100px;
+        margin: 20px;
+        width: 100px;
+    }
+}
