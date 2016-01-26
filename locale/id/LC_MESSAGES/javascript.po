@@ -1,26 +1,27 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-01-26 15:28+0000\n"
+"Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Ada masalah menghubungi server."
 
 #: static/js/common/upload-addon.js:69
 msgid "Select a file..."
@@ -56,13 +57,11 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;dan {0} lagi"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
@@ -75,7 +74,7 @@ msgstr ""
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Menerima balasan kosong dari server; status: {0}"
 
 #: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
@@ -93,13 +92,11 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
@@ -114,11 +111,16 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:466
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:467
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
 msgstr ""
 
 #: static/js/common/upload-addon.js:480
@@ -126,13 +128,17 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 #: static/js/common/upload-addon.js:481
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgid ""
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
 msgstr ""
 
 #: static/js/common/upload-addon.js:501
@@ -140,7 +146,9 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 #: static/js/common/upload-addon.js:518
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr ""
 
 #: static/js/common/upload-addon.js:555
@@ -262,15 +270,15 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} pengaya"
 
 #: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} koleksi"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} ulasan"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
@@ -284,11 +292,13 @@ msgstr ""
 msgid "{0} installs"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
-msgstr ""
+msgstr "Unggahan"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr ""
 
@@ -298,11 +308,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Jumlah Kontribusi"
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr ""
+msgstr "Info Lebih Lanjut..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451
@@ -315,7 +325,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Pengaya yang Dipakai"
 
 #: static/js/impala/stats/csv_keys.js:15
 msgid "Add-ons Created"
@@ -339,23 +349,25 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Pelanggan"
 
 #: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:42
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
@@ -379,9 +391,10 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Pencarian"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr ""
 
@@ -409,9 +422,10 @@ msgstr ""
 msgid "Detail Page (Development Channel)"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
-msgstr ""
+msgstr "Sering Digunakan Dengan"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Others By Author"
@@ -427,19 +441,19 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Temui Pengembang"
 
 #: static/js/impala/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Profil Pengguna"
 
 #: static/js/impala/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Riwayat Versi"
 
 #: static/js/impala/stats/csv_keys.js:75
 msgid "Sharing"
-msgstr ""
+msgstr "Berbagi"
 
 #: static/js/impala/stats/csv_keys.js:76
 msgid "Category Pages"
@@ -447,7 +461,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:77
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 #: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
@@ -493,7 +507,8 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -503,23 +518,23 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:106
 msgid "Average Contribution"
-msgstr ""
+msgstr "Kontribusi Rata-rata"
 
 #: static/js/impala/stats/csv_keys.js:115
 msgid "Usage"
-msgstr ""
+msgstr "Penggunaan"
 
 #: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js:119
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js:120
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121
 msgid "Sunbird"
@@ -535,17 +550,17 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Unduhan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Unduhan dan Pengguna Harian dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
@@ -560,17 +575,17 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Unduhan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Unduhan dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:149
@@ -600,7 +615,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Bahasa, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
@@ -773,7 +788,8 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr ""
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr ""
 
@@ -784,31 +800,30 @@ msgstr ""
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Tidak tersedia tanggal."
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: static/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Lainnya"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
+#: static/js/zamboni/editors.js:295
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih aplikasi terlebih dulu"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:66
@@ -817,7 +832,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tambahkan ke {0}"
 
 #: static/js/zamboni/buttons.js:71
 msgid "Download Now"
@@ -829,10 +844,11 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Anda harus menggunakan Firefox 10.0 atau lebih baru."
 
 #: static/js/zamboni/buttons.js:129
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -866,7 +882,9 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr ""
 
 #: static/js/zamboni/collections.js:193
@@ -951,19 +969,17 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Ada kesalahan mengunggah berkas Anda."
 
 #: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} berkas"
 
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} ulasan pengguna"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
@@ -1046,10 +1062,11 @@ msgstr ""
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/init.js:28
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
 msgstr ""
 
 #: static/js/zamboni/l10n.js:45
@@ -1064,7 +1081,6 @@ msgstr ""
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1114,7 +1130,8 @@ msgstr ""
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr ""
 
@@ -1142,19 +1159,16 @@ msgstr ""
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
@@ -1180,7 +1194,8 @@ msgstr ""
 msgid "Experimental <span>(Learn More)</span>"
 msgstr ""
 
-#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr ""
 

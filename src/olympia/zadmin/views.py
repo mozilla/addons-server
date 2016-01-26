@@ -229,6 +229,8 @@ def find_files(job):
         # Exclude lang packs and themes.
         .exclude(type__in=[amo.ADDON_LPAPP,
                            amo.ADDON_THEME])
+        # Exclude WebExtensions (see #1499).
+        .exclude(versions__files__is_webextension=True)
         .no_transforms().values_list("pk", flat=True)
         .distinct())
     for pks in chunked(addons, 100):

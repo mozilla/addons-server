@@ -12,11 +12,13 @@ from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from olympia import amo
 from olympia.access import acl
+from olympia.access.models import GroupUser
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon
 from olympia.amo.helpers import absolutify, breadcrumbs, page_title
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail
+from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
     ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
@@ -474,8 +476,12 @@ class ReviewHelper:
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if not addon.admin_review or acl.action_allowed(
-                request, 'ReviewerAdminTools', 'View'):
+        if ((not addon.admin_review or acl.action_allowed(request,
+             'ReviewerAdminTools', 'View'))
+            and (not is_limited_reviewer(request)
+                 or (datetime.datetime.now() -
+                     addon.latest_version.nomination > datetime.timedelta(
+                     hours=REVIEW_LIMITED_DELAY_HOURS)))):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
                     label = _lazy('Push to public')
@@ -962,3 +968,12 @@ def queue_tabnav_themes_interactive(context):
 @jinja2.contextfunction
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
+
+
+def is_limited_reviewer(request):
+    if request:
+        return GroupUser.objects.filter(group__name='Limited Reviewers',
+                                        user=request.user).exists()
+    else:
+        # `request` could be None if coming from management command.
+        return False

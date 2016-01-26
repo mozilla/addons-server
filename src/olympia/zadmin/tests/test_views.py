@@ -1040,6 +1040,10 @@ class TestBulkValidationTask(BulkValidationTest):
         ids = self.find_files(job_kwargs=kw)
         eq_(len(ids), 0)
 
+    def test_version_webextension(self):
+        self.version.files.update(is_webextension=True)
+        assert not self.find_files()
+
 
 class TestTallyValidationErrors(BulkValidationTest):
 

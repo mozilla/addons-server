@@ -23,6 +23,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonDependency, AddonUser
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
+from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.devhub.models import ActivityLog
 from olympia.editors.models import EditorSubscription, ReviewerScore
 from olympia.files.models import File, FileValidation
@@ -2908,3 +2909,112 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_editors_review_page(self):
         url = reverse('editors.review', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+class LimitedReviewerBase:
+    def create_limited_user(self):
+        limited_user = UserProfile.objects.create(username='limited',
+                                                  email="limited@mozilla.com")
+        limited_user.set_password('password')
+        limited_user.save()
+
+        permissions = [
+            {
+                'name': 'Add-on Reviewers',
+                'rules': 'Addons:Review',
+            },
+            {
+                'name': 'Limited Reviewers',
+                'rules': 'Addons:DelayedReviews',
+            },
+        ]
+        for perm in permissions:
+            group = Group.objects.create(name=perm['name'],
+                                         rules=perm['rules'])
+            GroupUser.objects.create(group=group, user=limited_user)
+
+    def login_as_limited_reviewer(self):
+        self.client.logout()
+        assert self.client.login(username='limited@mozilla.com',
+                                 password='password')
+
+
+class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
+
+    def setUp(self):
+        super(TestLimitedReviewerQueue, self).setUp()
+        self.url = reverse('editors.queue_nominated')
+
+        for addon in self.generate_files().values():
+            if addon.latest_version.nomination <= datetime.now() - timedelta(
+                    hours=REVIEW_LIMITED_DELAY_HOURS):
+                self.expected_addons.append(addon)
+
+        self.create_limited_user()
+        self.login_as_limited_reviewer()
+
+    def generate_files(self, subset=[]):
+        files = SortedDict([
+            ('Nominated new', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_NOMINATED,
+                'file_status': amo.STATUS_UNREVIEWED,
+                'nomination': datetime.now()
+            }),
+            ('Nominated old', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_NOMINATED,
+                'file_status': amo.STATUS_UNREVIEWED,
+                'nomination': datetime.now() - timedelta(days=1)
+            }),
+        ])
+        results = {}
+        for name, attrs in files.iteritems():
+            if not subset or name in subset:
+                results[name] = self.addon_file(name, **attrs)
+        return results
+
+    def test_results(self):
+        # `generate_files` happens within this test.
+        self._test_results()
+
+    def test_queue_count(self):
+        # `generate_files` happens within this test.
+        self._test_queue_count(1, 'Full Review', 1)
+
+    def test_get_queue(self):
+        # `generate_files` happens within this test.
+        self._test_get_queue()
+
+
+class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
+
+    def setUp(self):
+        super(TestLimitedReviewerReview, self).setUp()
+
+        self.create_limited_user()
+        self.login_as_limited_reviewer()
+
+    def test_new_addon_review_action_as_limited_editor(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.update(nomination=datetime.now())
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.post(self.url, self.get_dict(action='public'))
+        assert response.status_code == 200  # Form error.
+        # The add-on status must not change as limited reviewers are not
+        # allowed to review recently submitted add-ons.
+        assert self.get_addon().status == amo.STATUS_NOMINATED
+        assert response.context['form'].errors['action'] == [
+            u'Select a valid choice. public is not one of the available '
+            u'choices.']
+
+    @patch('editors.helpers.sign_file')
+    def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.update(nomination=datetime.now() - timedelta(days=1))
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.post(self.url, self.get_dict(action='public'),
+                                    follow=True)
+        assert response.status_code == 200
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
