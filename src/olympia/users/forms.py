@@ -10,12 +10,12 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 from django.utils.safestring import mark_safe
 
-from amo.fields import ReCaptchaField
 import commonware.log
 import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from olympia import amo
+from olympia.amo.fields import ReCaptchaField
 from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import clean_nl, has_links, log_cef, slug_validator
