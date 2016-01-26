@@ -214,15 +214,18 @@ class File(amo.models.OnChangeMixin, amo.models.ModelBase):
         except (zipfile.BadZipfile, IOError):
             # This path is not an XPI. It's probably an app manifest.
             return data
-        name = 'harness-options.json'
-        if name in zip_.namelist():
-            try:
-                opts = json.load(zip_.open(name))
-            except ValueError, exc:
-                log.info('Could not parse harness-options.json in %r: %s' %
-                         (path, exc))
-            else:
-                data['sdkVersion'] = opts.get('sdkVersion')
+        if "package.json" in zip_.namelist():
+            data['sdkVersion'] = "jpm"
+        else:
+            name = 'harness-options.json'
+            if name in zip_.namelist():
+                try:
+                    opts = json.load(zip_.open(name))
+                except ValueError, exc:
+                    log.info('Could not parse harness-options.json in %r: %s' %
+                             (path, exc))
+                else:
+                    data['sdkVersion'] = opts.get('sdkVersion')
         return data
 
     def generate_hash(self, filename=None):

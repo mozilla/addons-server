@@ -343,6 +343,14 @@ class TestFastTrackQueue(TestQueue):
         ad.save()
         eq_(self.query(), ['full'])
 
+    def test_include_webextensions(self):
+        self.new_file(name='webext', file_params=dict(is_webextension=True))
+        eq_(self.query(), ['webext'])
+
+    def test_include_jpm_addons(self):
+        self.new_file(name='jpm', file_params=dict(jetpack_version='jpm'))
+        eq_(self.query(), ['jpm'])
+
 
 class TestUnlistedPendingQueue(TestPendingQueue):
     Queue = ViewUnlistedPendingQueue
