@@ -23,6 +23,7 @@ from addons.models import Addon, Version
 from amo.decorators import json_view, post_required
 from amo.utils import paginate
 from amo.urlresolvers import reverse
+from constants.base import REVIEW_LIMITED_DELAY_HOURS
 from devhub.models import ActivityLog, AddonLog, CommentLog
 from editors import forms
 from editors.models import (AddonCannedResponse, EditorSubscription, EventLog,
@@ -37,7 +38,8 @@ from editors.helpers import (ViewFastTrackQueueTable, ViewFullReviewQueueTable,
                              ViewPendingQueueTable, ViewPreliminaryQueueTable,
                              ViewUnlistedFullReviewQueueTable,
                              ViewUnlistedPendingQueueTable,
-                             ViewUnlistedPreliminaryQueueTable)
+                             ViewUnlistedPreliminaryQueueTable,
+                             is_limited_reviewer)
 from reviews.forms import ReviewFlagFormSet
 from reviews.models import Review, ReviewFlag
 from users.models import UserProfile
@@ -55,9 +57,12 @@ def base_context(**kw):
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
+    limited_reviewer = is_limited_reviewer(request)
+    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
+           limited_reviewer=limited_reviewer),
            'unlisted_queue_counts': queue_counts(
-               unlisted=True, admin_reviewer=admin_reviewer)}
+               unlisted=True, admin_reviewer=admin_reviewer,
+               limited_reviewer=limited_reviewer)}
     ctx.update(base_context(**kw))
     return ctx
 
@@ -144,8 +149,10 @@ def home(request):
                  ('med', _('Passable (5 to 10 days)')),
                  ('old', _('Overdue (Over 10 days)')))
 
-    progress, percentage = _editor_progress()
-    unlisted_progress, unlisted_percentage = _editor_progress(unlisted=True)
+    limited_reviewer = is_limited_reviewer(request)
+    progress, percentage = _editor_progress(limited_reviewer=limited_reviewer)
+    unlisted_progress, unlisted_percentage = _editor_progress(
+        unlisted=True, limited_reviewer=limited_reviewer)
     reviews_max_display = getattr(settings, 'EDITOR_REVIEWS_MAX_DISPLAY', 5)
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
@@ -166,6 +173,7 @@ def home(request):
         ActivityLog.objects.user_position(reviews_monthly, request.user)
         or ActivityLog.objects.monthly_reviews_user_position(request.user))
 
+    limited_reviewer = is_limited_reviewer(request)
     data = context(
         request,
         reviews_total=reviews_total,
@@ -183,25 +191,31 @@ def home(request):
         durations=durations,
         reviews_max_display=reviews_max_display,
         motd_editable=motd_editable,
-        queue_counts_total=queue_counts(admin_reviewer=True),
-        unlisted_queue_counts_total=queue_counts(admin_reviewer=True,
-                                                 unlisted=True),
+        queue_counts_total=queue_counts(admin_reviewer=True,
+                                        limited_reviewer=limited_reviewer),
+        unlisted_queue_counts_total=queue_counts(
+            admin_reviewer=True,
+            unlisted=True,
+            limited_reviewer=limited_reviewer),
     )
 
     return render(request, 'editors/home.html', data)
 
 
-def _editor_progress(unlisted=False):
+def _editor_progress(unlisted=False, limited_reviewer=False):
     """Return the progress (number of add-ons still unreviewed for a given
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'prelim', 'pending']
     progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted,
-                                    admin_reviewer=True),
+                                    admin_reviewer=True,
+                                    limited_reviewer=limited_reviewer),
                 'med': queue_counts(types, days_min=5, days_max=10,
-                                    unlisted=unlisted, admin_reviewer=True),
+                                    unlisted=unlisted, admin_reviewer=True,
+                                    limited_reviewer=limited_reviewer),
                 'old': queue_counts(types, days_min=11, unlisted=unlisted,
-                                    admin_reviewer=True)}
+                                    admin_reviewer=True,
+                                    limited_reviewer=limited_reviewer)}
 
     # Return the percent of (p)rogress out of (t)otal.
     def pct(p, t):
@@ -394,6 +408,10 @@ def exclude_admin_only_addons(queryset):
 def _queue(request, TableObj, tab, qs=None, unlisted=False):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
+
+    if is_limited_reviewer(request):
+        qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
+
     if request.GET:
         search_form = forms.QueueSearchForm(request.GET)
         if search_form.is_valid():
@@ -426,7 +444,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
                           motd_editable=motd_editable))
 
 
-def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
+def queue_counts(type=None, unlisted=False, admin_reviewer=False,
+                 limited_reviewer=False, **kw):
     def construct_query(query_type, days_min=None, days_max=None):
         query = query_type.objects
 
@@ -436,6 +455,9 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False, **kw):
             query = query.having('waiting_time_days >=', days_min)
         if days_max:
             query = query.having('waiting_time_days <=', days_max)
+        if limited_reviewer:
+            query = query.having('waiting_time_hours >=',
+                                 REVIEW_LIMITED_DELAY_HOURS)
 
         return query.count
 
