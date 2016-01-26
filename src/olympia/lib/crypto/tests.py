@@ -390,7 +390,7 @@ class TestTasks(TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.PRELIMINARY_SIGNING_SERVER)
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_supported_applications(self, mock_sign_file):
         """Make sure we sign for all supported applications."""
         with amo.tests.copy_file(
@@ -411,7 +411,7 @@ class TestTasks(TestCase):
         assert file_hash == self.file_.generate_hash()
         self.assert_no_backup()
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_old_versions(self, mock_sign_file):
         """Don't sign files which are too old, or not default to compatible."""
         fpath = fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
@@ -437,7 +437,7 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
             self.assert_not_signed(mock_sign_file, file_hash)
 
-    @mock.patch('lib.crypto.tasks.sign_file')
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_other_applications(self, mock_sign_file):
         """Don't sign files which are for applications we don't sign for."""
         with amo.tests.copy_file('apps/files/fixtures/files/jetpack.xpi',

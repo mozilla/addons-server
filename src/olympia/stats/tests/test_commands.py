@@ -55,7 +55,8 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         self.command = Command()
 
     @mock.patch(
-        'stats.management.commands.update_counts_from_file.save_stats_to_file')
+        'olympia.stats.management.commands.update_counts_from_file.'
+        'save_stats_to_file')
     def test_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('update_counts_from_file', hive_folder,
                                 date=self.date)
@@ -172,7 +173,7 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
     @mock.patch(
-        'stats.management.commands.download_counts_from_file.'
+        'olympia.stats.management.commands.download_counts_from_file.'
         'save_stats_to_file')
     def test_download_counts_from_file(self, mock_save_stats_to_file):
         # Create the necessary "valid download sources" entries.
@@ -191,7 +192,7 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         download_count.id = None
         mock_save_stats_to_file.assert_called_once_with(download_count)
 
-    @mock.patch('stats.management.commands.save_stats_to_file')
+    @mock.patch('olympia.stats.management.commands.save_stats_to_file')
     def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('theme_update_counts_from_file', hive_folder,
                                 date=self.date)
@@ -264,7 +265,8 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
     source_folder = '1093699'
 
     @mock.patch(
-        'stats.management.commands.update_counts_from_file.save_stats_to_file')
+        'olympia.stats.management.commands.update_counts_from_file.'
+        'save_stats_to_file')
     def test_update_counts_from_file_bug_1093699(self,
                                                  mock_save_stats_to_file):
         Addon.objects.create(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
@@ -333,8 +335,8 @@ def test_stats_from_model_download_count():
         'sources': {'search': 1, 'collection': 1}}
 
 
-@mock.patch('stats.management.commands.storage.save')
-@mock.patch('stats.management.commands.ContentFile')
+@mock.patch('olympia.stats.management.commands.storage.save')
+@mock.patch('olympia.stats.management.commands.ContentFile')
 def test_save_stats_to_file(mock_ContentFile, mock_storage):
     mock_ContentFile.return_value = mock.sentinel.content
     theme_update_count = ThemeUpdateCount(
