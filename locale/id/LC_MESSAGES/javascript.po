@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-26 12:53+0000\n"
+"PO-Revision-Date: 2016-01-26 15:28+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -518,23 +518,23 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:106
 msgid "Average Contribution"
-msgstr ""
+msgstr "Kontribusi Rata-rata"
 
 #: static/js/impala/stats/csv_keys.js:115
 msgid "Usage"
-msgstr ""
+msgstr "Penggunaan"
 
 #: static/js/impala/stats/csv_keys.js:118
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js:119
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js:120
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121
 msgid "Sunbird"
@@ -550,17 +550,17 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Unduhan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Unduhan dan Pengguna Harian dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
@@ -575,17 +575,17 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Unduhan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Unduhan dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:149
@@ -615,7 +615,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Bahasa, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
@@ -800,20 +800,20 @@ msgstr ""
 
 #: static/js/impala/stats/overview.js:19
 msgid "No data available."
-msgstr ""
+msgstr "Tidak tersedia tanggal."
 
 #: static/js/impala/stats/table.js:74
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: static/js/impala/stats/topchart.js:96
 msgid "Other"
-msgstr ""
+msgstr "Lainnya"
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
 #: static/js/zamboni/editors.js:295
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih aplikasi terlebih dulu"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
@@ -832,7 +832,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tambahkan ke {0}"
 
 #: static/js/zamboni/buttons.js:71
 msgid "Download Now"
@@ -844,7 +844,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Anda harus menggunakan Firefox 10.0 atau lebih baru."
 
 #: static/js/zamboni/buttons.js:129
 msgid ""
@@ -969,17 +969,17 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:554
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Ada kesalahan mengunggah berkas Anda."
 
 #: static/js/zamboni/devhub.js:699
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} berkas"
 
 #: static/js/zamboni/devhub.js:702
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} ulasan pengguna"
 
 #: static/js/zamboni/devhub.js:814
 msgid "Learn more"
