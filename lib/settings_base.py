@@ -325,6 +325,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
     'commonware.middleware.FrameOptionsHeader',
+    'commonware.middleware.XSSProtectionHeader',
+    'commonware.middleware.ContentTypeOptionsHeader',
     'commonware.middleware.StrictTransportMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
