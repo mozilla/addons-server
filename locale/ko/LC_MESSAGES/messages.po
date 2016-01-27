@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
 "PO-Revision-Date: 2014-05-12 07:59+0000\n"
 "Last-Translator: Channy <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
@@ -50,76 +50,76 @@ msgstr "시험용"
 msgid "Add to {0}"
 msgstr "{0}에 추가"
 
-#: apps/addons/forms.py:58
+#: apps/addons/forms.py:57
 msgid "This name is already in use. Please choose another."
 msgstr "이미 사용중인 이름입니다. 다른 이름을 골라주세요."
 
-#: apps/addons/forms.py:69
+#: apps/addons/forms.py:68
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
 
-#: apps/addons/forms.py:72
+#: apps/addons/forms.py:71
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "이 주화는 \"%s\"이(가) 될 수 없습니다. 다른걸 사용해 주세요."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:90
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "유효하지 않은 태그: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:101
+#: apps/addons/forms.py:100
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\"은(는) 금지 태그로 사용하실 수 없습니다."
 
-#: apps/addons/forms.py:109
+#: apps/addons/forms.py:108
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "{0}에 태그가 너무 많습니다."
 
-#: apps/addons/forms.py:115
+#: apps/addons/forms.py:114
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr "모든 태그는 유효하지 않은 글자 제거 후 %s자 이하여야 합니다."
 
-#: apps/addons/forms.py:119
+#: apps/addons/forms.py:118
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "태그는 최소한 {0} 글자 이상이어야 합니다."
 msgstr[1] "태그는 최소한 {0} 글자 이상이어야 합니다."
 
-#: apps/addons/forms.py:232
+#: apps/addons/forms.py:231
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:236
+#: apps/addons/forms.py:235
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "{0}개의 분류만 사용할 수 있습니다."
 
-#: apps/addons/forms.py:244
+#: apps/addons/forms.py:243
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "기타 카테고리는 다른 카테고리와 결합할 수 없습니다."
 
-#: apps/addons/forms.py:367
+#: apps/addons/forms.py:366
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "기본 언어를 변경하려면 먼저 이름, 요약 정보, 설명을 해당 언어로 작성해야 합니다. %s 정보가 현재 빠져 있습니다."
 
-#: apps/addons/forms.py:481 apps/addons/forms.py:572
+#: apps/addons/forms.py:480 apps/addons/forms.py:571
 msgid "A license must be selected."
 msgstr "라이선스를 선택해야 합니다."
 
-#: apps/addons/forms.py:553
+#: apps/addons/forms.py:552
 msgid "Give Your Theme a Name."
 msgstr "테마 이름을 입력하세요."
 
-#: apps/addons/forms.py:559 apps/devhub/templates/devhub/personas/submit.html:53
+#: apps/addons/forms.py:558 apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "테마에 대해 설명해 주세요."
 
-#: apps/addons/forms.py:700
+#: apps/addons/forms.py:699
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
@@ -127,23 +127,23 @@ msgstr "새 제작자의 이메일 주소를 입력하세요"
 msgid "Not Reviewed"
 msgstr "미심사"
 
-#: apps/addons/helpers.py:34 apps/addons/views.py:317 apps/addons/templates/addons/impala/details.html:117 apps/addons/templates/addons/impala/listing/items.html:17
+#: apps/addons/helpers.py:34 apps/addons/views.py:317 apps/addons/templates/addons/impala/details.html:114 apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:40 apps/amo/templates/amo/side_nav.html:6 apps/amo/templates/amo/side_nav.html:10 apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:92 apps/browse/views.py:55 apps/browse/views.py:69 apps/browse/views.py:236
+#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:92 apps/browse/views.py:55 apps/browse/views.py:69 apps/browse/views.py:236
 #: apps/browse/templates/browse/impala/category_landing.html:22 apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "추천"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:301
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "사용자는 이 금액보다 많거나 적게 기부할 수 있는 선택권을 가지고 있습니다."
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:309
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "사용자는 항상 부가 기능 관리자의 권유를 받게 됩니다 (Firefox 4 이상)"
 
 # Column name in a table.
-#: apps/addons/models.py:1828 apps/addons/templates/addons/details_box.html:55 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
+#: apps/addons/models.py:1823 apps/addons/templates/addons/details_box.html:55 apps/devhub/templates/devhub/index.html:92 apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "나열됨"
 
@@ -195,7 +195,7 @@ msgid "View privacy policy"
 msgstr "개인 정보 보호 정책 보기"
 
 #: apps/addons/templates/addons/button.html:87 apps/addons/templates/addons/details_box.html:133 apps/addons/templates/addons/mobile/button.html:28
-#: apps/discovery/templates/discovery/addons/detail.html:34
+#: apps/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
 msgstr "일반 사용자 계약서 보기"
 
@@ -226,7 +226,7 @@ msgstr "기부하기"
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. Click Contribute button OR Install button
-#: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/impala/contribution.html:32
+#: apps/addons/templates/addons/contribution.html:34 apps/addons/templates/addons/report_abuse.html:26 apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:101
 #: apps/devhub/templates/devhub/addons/edit/basic.html:152 apps/devhub/templates/devhub/addons/edit/details.html:85 apps/devhub/templates/devhub/addons/edit/support.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:166 apps/devhub/templates/devhub/addons/forms_shared/media.html:149 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
@@ -327,7 +327,7 @@ msgstr "사양하겠습니다"
 msgid "Contribution made, thank you."
 msgstr "기부가 되었습니다. 감사합니다."
 
-#: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:25
+#: apps/addons/templates/addons/details_box.html:10 apps/discovery/templates/discovery/addons/detail.html:19
 msgid "No restart required"
 msgstr "재시작 필요 없음"
 
@@ -342,7 +342,7 @@ msgid "Updated"
 msgstr "최근 업데이트"
 
 #: apps/addons/templates/addons/details_box.html:38 apps/addons/templates/addons/mobile/details.html:71 apps/devhub/templates/devhub/addons/edit/support.html:43
-#: apps/discovery/templates/discovery/addons/detail.html:83
+#: apps/discovery/templates/discovery/addons/detail.html:77
 msgid "Website"
 msgstr "웹사이트"
 
@@ -392,11 +392,11 @@ msgstr "정책 위반 신고"
 
 #. The Privacy Policy for this add-on.
 #: apps/addons/templates/addons/details_box.html:121 apps/addons/templates/addons/privacy.html:19 apps/addons/templates/addons/privacy.html:23 apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:310 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:81
+#: apps/addons/templates/addons/impala/details.html:307 apps/devhub/templates/devhub/includes/policy_form.html:20 templates/mobile/base_addons.html:81
 msgid "Privacy Policy"
 msgstr "개인 정보 보호 정책"
 
-#: apps/addons/templates/addons/details_box.html:124 apps/discovery/templates/discovery/addons/detail.html:30
+#: apps/addons/templates/addons/details_box.html:124 apps/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
 msgstr "개인 정보 보호 정책 보기"
 
@@ -417,7 +417,7 @@ msgctxt "addons_display_developer_comments"
 msgid "Developer Comments"
 msgstr "개발자 코멘트"
 
-#: apps/addons/templates/addons/details_box.html:199 apps/addons/templates/addons/impala/details.html:262
+#: apps/addons/templates/addons/details_box.html:199 apps/addons/templates/addons/impala/details.html:259
 msgid "Development Channel"
 msgstr "개발 채널"
 
@@ -439,7 +439,7 @@ msgstr ""
 "<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그"
 "만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
 
-#: apps/addons/templates/addons/details_box.html:220 apps/addons/templates/addons/impala/details.html:281
+#: apps/addons/templates/addons/details_box.html:220 apps/addons/templates/addons/impala/details.html:278
 msgid "Version {0}:"
 msgstr "버전 {0}:"
 
@@ -458,7 +458,7 @@ msgstr "버전 기록서"
 msgid "End-User License Agreement for {0}"
 msgstr "{0}의 최종 사용자 라이선스 동의서"
 
-#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:319
+#: apps/addons/templates/addons/eula.html:17 apps/addons/templates/addons/eula.html:21 apps/addons/templates/addons/impala/button.html:48 apps/addons/templates/addons/impala/details.html:316
 #: apps/devhub/templates/devhub/includes/policy_form.html:3 apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
 msgstr "최종 사용자 라이선스 동의서"
@@ -473,7 +473,7 @@ msgstr "{0}(으)로 돌아가기..."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:235
+#: apps/addons/templates/addons/home.html:3 apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:236
 msgid "Add-ons for {0}"
 msgstr "{0} 부가 기능"
 
@@ -542,14 +542,14 @@ msgid_plural "%(num)s users"
 msgstr[0] "사용자 %(num)s명"
 
 #. {0} is the number of downloads.
-#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:64
+#: apps/addons/templates/addons/macros.html:53 apps/addons/templates/addons/impala/details.html:61
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "주간 다운로드 {0}회"
 msgstr[1] "주간 다운로드 {0}회"
 
 #. {0} is the number of users.
-#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:57 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
+#: apps/addons/templates/addons/macros.html:61 apps/addons/templates/addons/impala/details.html:54 apps/compat/templates/compat/index.html:71 apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "사용자 {0}명"
@@ -566,32 +566,32 @@ msgstr "모금 계획이 완료되었습니다"
 msgid "Return to the addon."
 msgstr "부가 기능으로 돌아갑니다."
 
-#: apps/addons/templates/addons/persona_detail.html:19 apps/addons/templates/addons/impala/details.html:109 apps/addons/templates/addons/mobile/details.html:23
+#: apps/addons/templates/addons/persona_detail.html:17 apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21 apps/discovery/templates/discovery/addons/base.html:27 apps/editors/templates/editors/review.html:31
 msgid "by"
 msgstr "제작: "
 
 #. {0} is a category name, such as Nature
-#: apps/addons/templates/addons/persona_detail.html:34
+#: apps/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
 msgstr "더 많은 {0} 테마"
 
 #. {0} is a category name, such as Nature
-#: apps/addons/templates/addons/persona_detail.html:41 apps/addons/templates/addons/mobile/persona_detail.html:66
+#: apps/addons/templates/addons/persona_detail.html:39 apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
 msgstr "모든 {0} 테마 보기"
 
-#: apps/addons/templates/addons/persona_detail.html:47
+#: apps/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
 msgstr "이 아티스트의 다른 작품"
 
-#: apps/addons/templates/addons/persona_detail.html:54 apps/addons/templates/addons/mobile/persona_detail.html:49
+#: apps/addons/templates/addons/persona_detail.html:52 apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
 msgstr "아티스트별 모든 테마 보기"
 
-#: apps/addons/templates/addons/persona_detail.html:73 apps/addons/templates/addons/mobile/home.html:42 apps/amo/templates/amo/side_nav.html:22
+#: apps/addons/templates/addons/persona_detail.html:71 apps/addons/templates/addons/mobile/home.html:42 apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28 apps/devhub/templates/devhub/addons/edit/basic.html:72 apps/editors/templates/editors/review.html:277
-#: apps/editors/templates/editors/themes/themes.html:34 apps/localizers/templates/localizers/sidebar.html:24 templates/categories.html:7
+#: apps/editors/templates/editors/themes/themes.html:34 templates/categories.html:7
 msgid "Categories"
 msgstr "분류"
 
@@ -614,7 +614,7 @@ msgstr "라이선스"
 msgid "Awaiting Review"
 msgstr "심사 대기중"
 
-#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180 apps/constants/base.py:42 apps/editors/helpers.py:61
+#: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180 apps/constants/base.py:42 apps/editors/helpers.py:63
 msgid "Rejected"
 msgstr "심사 거부됨"
 
@@ -761,8 +761,8 @@ msgstr "부가 기능 QR 코드"
 msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr "모바일용 Firefox에 {0}을(를) 설치하고 싶으세요? 이 QR 코드를 스캔하면 바로 스마트폰에 설치하실 수 있습니다. (QR리더가 필요합니다. 없을 경우 보유하신 스마트폰의 앱스토어에서 찾아보세요.)"
 
-#: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:11 apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:331
+#: apps/addons/templates/addons/report_abuse.html:6 apps/addons/templates/addons/report_abuse_full.html:10 apps/addons/templates/addons/impala/details-more.html:23
+#: apps/addons/templates/addons/impala/details.html:328
 msgid "Report Abuse"
 msgstr "정책 위반 신고"
 
@@ -774,18 +774,18 @@ msgstr ""
 "이 부가 기능이 <a href=\"%(url)s\">저희의 정책</a>이나 보안 및 개인 정보 정책을 위반하고 있는 것 같으면 아래의 양식을 사용해 우려되는 점을 기입해 주세요. 다른 사유로는 이 기능을 사용하지 말아 주십시"
 "오."
 
-#: apps/addons/templates/addons/report_abuse.html:23 apps/users/templates/users/report_abuse.html:18
+#: apps/addons/templates/addons/report_abuse.html:24 apps/users/templates/users/report_abuse.html:19
 msgid "Send Report"
 msgstr "신고 접수"
 
-#: apps/addons/templates/addons/report_abuse.html:25 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
+#: apps/addons/templates/addons/report_abuse.html:26 apps/addons/templates/addons/mobile/eula.html:16 apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36 apps/devhub/templates/devhub/addons/profile.html:44 apps/devhub/templates/devhub/addons/edit/admin.html:104
 #: apps/devhub/templates/devhub/addons/edit/basic.html:155 apps/devhub/templates/devhub/addons/edit/details.html:88 apps/devhub/templates/devhub/addons/edit/support.html:70
 #: apps/devhub/templates/devhub/addons/edit/technical.html:169 apps/devhub/templates/devhub/addons/forms_shared/media.html:152 apps/devhub/templates/devhub/addons/listing/delete_form.html:43
 #: apps/devhub/templates/devhub/personas/edit.html:222 apps/devhub/templates/devhub/versions/add_file_modal.html:79 apps/devhub/templates/devhub/versions/edit.html:140
 #: apps/devhub/templates/devhub/versions/list.html:208 apps/devhub/templates/devhub/versions/list.html:242 apps/devhub/templates/devhub/versions/list.html:276
-#: apps/devhub/templates/devhub/versions/list.html:317 apps/localizers/templates/localizers/sidebar_motd.html:9 apps/reviews/templates/reviews/edit_review.html:16
-#: apps/translations/templates/translations/trans-menu.html:50 apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
+#: apps/devhub/templates/devhub/versions/list.html:317 apps/reviews/templates/reviews/edit_review.html:16 apps/translations/templates/translations/trans-menu.html:50
+#: apps/translations/templates/translations/trans-menu.html:62 apps/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
 msgstr "취소"
 
@@ -829,7 +829,7 @@ msgstr "이 부가 기능에 대한 지원은 <a href=\"%(support)s\">기술 지
 msgid "Review Guidelines"
 msgstr "평가 지침"
 
-#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:916 apps/reviews/templates/reviews/add.html:14
+#: apps/addons/templates/addons/review_list_box.html:5 apps/addons/templates/addons/impala/details-more.html:27 apps/editors/helpers.py:922 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14 apps/reviews/templates/reviews/review_list.html:19 apps/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
 msgstr "평가"
@@ -910,97 +910,97 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "이 제작자의 다른 부가 기능"
 
-#: apps/addons/templates/addons/impala/details.html:44
+#: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "사용자 평가 <span itemprop=\"ratingCount\">%(num)s</span>개"
 
-#: apps/addons/templates/addons/impala/details.html:72
+#: apps/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
 msgstr "통계 보기"
 
-#: apps/addons/templates/addons/impala/details.html:87
+#: apps/addons/templates/addons/impala/details.html:84
 msgid "Manage"
 msgstr "관리"
 
 #. {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:99
+#: apps/addons/templates/addons/impala/details.html:96
 msgid "Icon of {0}"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:106 apps/addons/templates/addons/impala/listing/items.html:14
+#: apps/addons/templates/addons/impala/details.html:103 apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "재시작 필요 없음"
 
-#: apps/addons/templates/addons/impala/details.html:130
+#: apps/addons/templates/addons/impala/details.html:127
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "<a href=\"%(url)s\">개발자 만나기</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:140
+#: apps/addons/templates/addons/impala/details.html:137
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "{0}을(를) 제작한 이유와 이 부가 기능의 향후 계획에 대해 알아봅시다."
 
 #. {0} is an index.
-#: apps/addons/templates/addons/impala/details.html:159
+#: apps/addons/templates/addons/impala/details.html:156
 msgid "Add-on screenshot #{0}"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:185
+#: apps/addons/templates/addons/impala/details.html:182
 msgid "Add-on home page"
 msgstr "부가 기능 홈페이지"
 
-#: apps/addons/templates/addons/impala/details.html:188
+#: apps/addons/templates/addons/impala/details.html:185
 msgid "Support site"
 msgstr "기술 지원 사이트"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
 msgstr "기술 지원 이메일"
 
-#: apps/addons/templates/addons/impala/details.html:197 apps/devhub/models.py:377
+#: apps/addons/templates/addons/impala/details.html:194 apps/devhub/models.py:377
 msgid "Version {0}"
 msgstr "버전 {0}"
 
-#: apps/addons/templates/addons/impala/details.html:197
+#: apps/addons/templates/addons/impala/details.html:194
 msgid "Info"
 msgstr "정보"
 
-#: apps/addons/templates/addons/impala/details.html:198 apps/devhub/templates/devhub/includes/addon_details.html:129
+#: apps/addons/templates/addons/impala/details.html:195 apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
 msgstr "마지막 업데이트:"
 
-#: apps/addons/templates/addons/impala/details.html:203
+#: apps/addons/templates/addons/impala/details.html:200
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 라이선스를 사용해서 출시"
 
-#: apps/addons/templates/addons/impala/details.html:204 apps/addons/templates/addons/impala/details.html:209 apps/amo/helpers.py:387 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:201 apps/addons/templates/addons/impala/details.html:206 apps/amo/helpers.py:399 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40 apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "사용자 정의 라이선스"
 
-#: apps/addons/templates/addons/impala/details.html:208
+#: apps/addons/templates/addons/impala/details.html:205
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 출시"
 
-#: apps/addons/templates/addons/impala/details.html:220
+#: apps/addons/templates/addons/impala/details.html:217
 msgid "About this Add-on"
 msgstr "부가 기능 정보"
 
-#: apps/addons/templates/addons/impala/details.html:236
+#: apps/addons/templates/addons/impala/details.html:233
 msgid "Developer’s Comments"
 msgstr "개발자 코멘트"
 
-#: apps/addons/templates/addons/impala/details.html:246
+#: apps/addons/templates/addons/impala/details.html:243
 msgid "Version Information"
 msgstr "버전 정보"
 
-#: apps/addons/templates/addons/impala/details.html:253
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
 msgstr "전체 버전 기록 보기"
 
-#: apps/addons/templates/addons/impala/details.html:265
+#: apps/addons/templates/addons/impala/details.html:262
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
@@ -1008,17 +1008,17 @@ msgstr ""
 "개발 채널에선 부가 기능의 최신 시험용 버전을 일반에 공개되기 전에 먼저 테스트해 볼 수 있습니다. 개발 버전을 설치하고 나면 이 채널을 통해 업데이트를 지속적으로 받아보실 수 있습니다. 개발 버전의 업데"
 "이트를 그만 받으시려면 위의 링크를 통해 기본 버전을 재설치 하시면 됩니다."
 
-#: apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/impala/details.html:272
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:290
+#: apps/addons/templates/addons/impala/details.html:287
 msgid "See complete development channel history"
 msgstr ""
 
-#: apps/addons/templates/addons/impala/details.html:309 apps/addons/templates/addons/impala/details.html:318 apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:306 apps/addons/templates/addons/impala/details.html:315 apps/addons/templates/addons/impala/details.html:327
 #: apps/addons/templates/addons/impala/review_add_box.html:4 apps/stats/templates/stats/popup.html:2 apps/stats/templates/stats/popup.html:8 apps/stats/templates/stats/stats.html:202
-#: apps/users/templates/users/profile.html:120
+#: apps/users/templates/users/profile.html:119
 msgid "close"
 msgstr "닫기"
 
@@ -1052,7 +1052,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "개발자 소개"
 
-#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:118 apps/users/templates/users/profile.html:27
+#: apps/addons/templates/addons/impala/developers.html:96 apps/users/templates/users/edit.html:118 apps/users/templates/users/profile.html:26
 msgid "No Photo"
 msgstr "사진 없음"
 
@@ -1222,9 +1222,9 @@ msgstr "부가 기능을 설치하려면 Firefox가 필요합니다. <a href=\"h
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} 부가 기능 대문으로 돌아가기"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:237 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:92
-#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:9 templates/impala/header_title.html:11
-#: templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:238 apps/bandwagon/templates/bandwagon/edit.html:34 apps/discovery/templates/discovery/pane.html:92
+#: apps/editors/templates/editors/base.html:21 apps/editors/templates/editors/performance.html:72 templates/menu_links.html:4 templates/impala/header_title.html:13
+#: templates/impala/header_title.html:15 templates/impala/header_title.html:19 templates/impala/header_title.html:23 templates/mobile/base_addons.html:43
 msgid "Add-ons"
 msgstr "부가 기능"
 
@@ -1233,7 +1233,7 @@ msgid "Easy ways to personalize."
 msgstr "개인화를 쉽게 하는 방법."
 
 #: apps/addons/templates/addons/mobile/home.html:24 apps/devhub/templates/devhub/addons/submit/done.html:47 apps/discovery/templates/discovery/pane.html:34
-#: apps/discovery/templates/discovery/addons/detail.html:22 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
+#: apps/discovery/templates/discovery/addons/detail.html:16 apps/discovery/templates/discovery/modules/featured.html:21 apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
 msgstr "더 알아보기"
 
@@ -1251,7 +1251,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/base.html:6 apps/browse/templates/browse/personas/base.html:42 apps/browse/templates/browse/personas/category_landing.html:21
 #: apps/browse/templates/browse/personas/category_landing.html:23 apps/browse/templates/browse/personas/category_landing.html:38 apps/browse/templates/browse/personas/grid.html:7
 #: apps/browse/templates/browse/personas/grid.html:11 apps/browse/templates/browse/personas/mobile/base.html:7 apps/browse/templates/browse/personas/mobile/category_landing.html:19
-#: apps/constants/base.py:180 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
+#: apps/constants/base.py:180 apps/devhub/templates/devhub/personas/submit.html:13 apps/editors/helpers.py:106 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73 apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
 msgstr "테마"
@@ -1272,7 +1272,7 @@ msgstr "그밖의 부가 기능"
 msgid "Highest Rated"
 msgstr "상위 평가도"
 
-#: apps/addons/templates/addons/mobile/home.html:74 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:94
+#: apps/addons/templates/addons/mobile/home.html:74 apps/amo/templates/amo/side_nav.html:5 apps/amo/templates/amo/site_nav.html:27 apps/amo/templates/amo/site_nav.html:57 apps/bandwagon/views.py:94
 #: apps/browse/views.py:58 apps/browse/views.py:68 apps/browse/templates/browse/personas/mobile/category_landing.html:65 apps/search/forms.py:15 apps/search/forms.py:87
 msgid "Newest"
 msgstr "신규 등록"
@@ -1297,7 +1297,7 @@ msgstr "내 프로필"
 msgid "Account Settings"
 msgstr "계정 설정"
 
-#: apps/amo/context_processors.py:59 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:84 apps/users/templates/users/includes/navigation.html:4
+#: apps/amo/context_processors.py:59 apps/discovery/templates/discovery/pane_account.html:11 apps/users/templates/users/profile.html:83 apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "내 모음집"
 
@@ -1321,7 +1321,7 @@ msgstr "새 부가 기능 등록"
 msgid "Submit a New Theme"
 msgstr "새로운 테마 올리기"
 
-#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:85 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
+#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:87 apps/devhub/helpers.py:36 apps/devhub/helpers.py:68 apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "개발자 허브"
@@ -1330,27 +1330,31 @@ msgstr "개발자 허브"
 msgid "Manage API Keys"
 msgstr ""
 
-#: apps/amo/context_processors.py:90 apps/editors/helpers.py:81 apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:90 apps/editors/helpers.py:83 apps/editors/helpers.py:103 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "편집자 도구"
 
-#: apps/amo/context_processors.py:93
-msgid "Localizer Tools"
-msgstr "번역 도구"
-
-#: apps/amo/context_processors.py:97
+#: apps/amo/context_processors.py:94
 msgid "Admin Tools"
 msgstr "관리자 도구"
 
-#: apps/amo/fields.py:72
+#: apps/amo/fields.py:15
+msgid "Incorrect, please try again."
+msgstr ""
+
+#: apps/amo/fields.py:16
+msgid "Error verifying input, please try again."
+msgstr ""
+
+#: apps/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "#000000 처럼 올바른 16진수 색상 코드를 입력해야 합니다."
 
-#: apps/amo/fields.py:98
+#: apps/amo/fields.py:58
 msgid "Enter at least one value."
 msgstr "한개 이상의 값을 입력해 주세요."
 
-#: apps/amo/helpers.py:162 apps/amo/templates/amo/site_nav.html:59 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
+#: apps/amo/helpers.py:163 apps/amo/templates/amo/site_nav.html:61 apps/bandwagon/templates/bandwagon/add.html:9 apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9 apps/bandwagon/templates/bandwagon/edit.html:15 apps/bandwagon/templates/bandwagon/user_listing.html:18
 #: apps/bandwagon/templates/bandwagon/user_listing.html:21 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:12 apps/bandwagon/templates/bandwagon/impala/collection_listing.html:20
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:24 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
@@ -1359,12 +1363,12 @@ msgstr "한개 이상의 값을 입력해 주세요."
 msgid "Collections"
 msgstr "모음집"
 
-#: apps/amo/helpers.py:171 apps/amo/templates/amo/site_nav.html:83 apps/browse/templates/browse/language_tools.html:3
+#: apps/amo/helpers.py:172 apps/amo/templates/amo/site_nav.html:85 apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "맞춤법 사전 및 언어팩"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:417
+#: apps/amo/helpers.py:429
 msgid "{0} ago"
 msgstr "{0} 전"
 
@@ -1513,7 +1517,7 @@ msgstr "상급 심사 요청됨"
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version}에 코멘트가 달렸습니다."
 
-#: apps/amo/log.py:236 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:506
+#: apps/amo/log.py:236 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19 apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47 apps/editors/helpers.py:512
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "코멘트"
@@ -1841,7 +1845,7 @@ msgstr "이전"
 #: apps/amo/templates/amo/mobile/paginator.html:16 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:51
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:65 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:78
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91 apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
-#: apps/discovery/templates/discovery/pane.html:45 apps/discovery/templates/discovery/addons/detail.html:45 apps/stats/templates/stats/stats.html:167
+#: apps/discovery/templates/discovery/pane.html:45 apps/discovery/templates/discovery/addons/detail.html:39 apps/stats/templates/stats/stats.html:167
 msgid "Next"
 msgstr "다음"
 
@@ -1886,37 +1890,37 @@ msgstr "열기"
 msgid "Extensions"
 msgstr "확장 기능"
 
-#: apps/amo/templates/amo/site_nav.html:44
+#: apps/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:93
+#: apps/amo/templates/amo/site_nav.html:56 apps/bandwagon/views.py:93
 msgid "Most Followers"
 msgstr "최대 팔로워 수"
 
-#: apps/amo/templates/amo/site_nav.html:66 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
+#: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
 msgstr "내가 만든 모음집"
 
-#: apps/amo/templates/amo/site_nav.html:68 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
+#: apps/amo/templates/amo/site_nav.html:70 apps/bandwagon/templates/bandwagon/user_listing.html:4 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
 msgstr "팔로우 중인 모음집"
 
-#: apps/amo/templates/amo/site_nav.html:71 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:501
+#: apps/amo/templates/amo/site_nav.html:73 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
+#: apps/users/models.py:499
 msgid "My Favorite Add-ons"
 msgstr "좋아하는 부가 기능"
 
-#: apps/amo/templates/amo/site_nav.html:76
+#: apps/amo/templates/amo/site_nav.html:78
 msgid "More&hellip;"
 msgstr "기타 메뉴&hellip;"
 
-#: apps/amo/templates/amo/site_nav.html:80
+#: apps/amo/templates/amo/site_nav.html:82
 msgid "Add-ons for Mobile"
 msgstr "모바일 부가 기능"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176 templates/menu_links.html:10
+#: apps/amo/templates/amo/site_nav.html:86 apps/browse/feeds.py:207 apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176 templates/menu_links.html:10
 msgid "Search Tools"
 msgstr "검색 도구"
 
@@ -1930,7 +1934,7 @@ msgid "Jump to first page"
 msgstr "첫 페이지로 이동"
 
 #: apps/amo/templates/amo/impala/paginator.html:22 apps/amo/templates/amo/mobile/impala_paginator.html:12 apps/discovery/templates/discovery/pane.html:44
-#: apps/discovery/templates/discovery/addons/detail.html:44 apps/stats/templates/stats/stats.html:164
+#: apps/discovery/templates/discovery/addons/detail.html:38 apps/stats/templates/stats/stats.html:164
 msgid "Previous"
 msgstr "이전"
 
@@ -2112,7 +2116,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr ""
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:432
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
 msgid "No links are allowed."
 msgstr "링크는 넣을 수 없습니다."
 
@@ -2124,7 +2128,7 @@ msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
 msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:423
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:438
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB보다 작은 이미지를 사용해 주세요."
 
@@ -2235,11 +2239,11 @@ msgstr "또는 <a id=\"collections-new-cancel\" href=\"#\">취소</a>"
 msgid "To rate collections, you must have an add-ons account."
 msgstr "모음집을 평가하려면 부가 기능 계정이 있어야 합니다."
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:136 templates/impala/base.html:191
+#: apps/bandwagon/templates/bandwagon/barometer.html:18 templates/base.html:145 templates/impala/base.html:197
 msgid "Create an Add-ons Account"
 msgstr "부가 기능 계정 만들기"
 
-#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:139 templates/impala/base.html:194
+#: apps/bandwagon/templates/bandwagon/barometer.html:21 templates/base.html:148 templates/impala/base.html:200
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "아니면 <a href=\"%(login)s\">현재 사용중인 계정으로 로그인</a> 하세요"
 
@@ -2301,7 +2305,7 @@ msgstr[0] "모음집에 포함된 부가 기능: %(num)s개"
 msgstr[1] "모음집에 포함된 부가 기능: %(num)s개"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:125 apps/compat/templates/compat/index.html:25 apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:29 apps/localizers/templates/localizers/locale_switcher.html:9 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
+#: apps/files/templates/files/viewer.html:29 templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "실행"
 
@@ -2514,7 +2518,7 @@ msgstr "<b>경고:</b> 이 모음집의 소유자를 변경하고 나면 더이�
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
-#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:41
+#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "계속"
 
@@ -2585,7 +2589,7 @@ msgstr "초기화"
 msgid "PNG and JPG supported. Image will be resized to 32x32."
 msgstr "PNG와 JPG 형식을 지원합니다. 이미지는 32x32 크기로 재조정될 것입니다."
 
-#: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3 apps/localizers/templates/localizers/categories.html:19
+#: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form. Please correct them below."
 msgstr "양식에 오류가 있습니다. 아래 사항을 정정해 주세요."
 
@@ -2610,7 +2614,7 @@ msgstr "추가하고자 하는 부가 기능의 이름을 입력하세요"
 msgid "Add to Collection"
 msgstr "모음집에 추가하기"
 
-#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:931 apps/editors/helpers.py:951
+#: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45 apps/editors/helpers.py:937 apps/editors/helpers.py:957
 msgid "Pending"
 msgstr "대기중"
 
@@ -2724,7 +2728,7 @@ msgstr "최고 사용자 수"
 msgid "Up & Coming"
 msgstr "인기 급상승"
 
-#: apps/browse/views.py:461 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:72
+#: apps/browse/views.py:461 apps/devhub/views.py:76 apps/devhub/views.py:83 apps/discovery/templates/discovery/addons/detail.html:66
 msgid "Created"
 msgstr "신규 등록"
 
@@ -2732,7 +2736,7 @@ msgstr "신규 등록"
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: apps/browse/views.py:463 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:63 apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
+#: apps/browse/views.py:463 apps/devhub/views.py:78 apps/devhub/views.py:85 apps/discovery/templates/discovery/addons/detail.html:57 apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "별점"
@@ -3095,7 +3099,7 @@ msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "문제 제보 {0}개"
 
-#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:71
+#: apps/compat/templates/compat/reporter_detail.html:21 apps/users/templates/users/profile.html:70
 msgid "View all"
 msgstr "모두 보기"
 
@@ -3211,7 +3215,7 @@ msgstr "예비 심사 통과"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "예비 심사 완료 및 전체 심사 대기중"
 
-#: apps/constants/base.py:33 apps/editors/helpers.py:919 apps/editors/templates/editors/themes/history_table.html:34
+#: apps/constants/base.py:33 apps/editors/helpers.py:925 apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "삭제됨"
 
@@ -3446,15 +3450,15 @@ msgstr ""
 msgid "Level 9"
 msgstr ""
 
-#: apps/constants/base.py:519
+#: apps/constants/base.py:523
 msgid "Not signed"
 msgstr ""
 
-#: apps/constants/base.py:520
+#: apps/constants/base.py:524
 msgid "Signed for a full review"
 msgstr ""
 
-#: apps/constants/base.py:521
+#: apps/constants/base.py:525
 msgid "Signed of a preliminary review"
 msgstr ""
 
@@ -3471,7 +3475,7 @@ msgstr "표시하기"
 msgid "Duplicate"
 msgstr "복사하기"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:497 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
+#: apps/constants/editors.py:17 apps/editors/helpers.py:503 apps/editors/templates/editors/themes/queue.html:71 apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "거부"
 
@@ -3906,7 +3910,7 @@ msgstr "부가 기능 호환성 검사"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:418
+#: apps/devhub/views.py:1046 apps/users/forms.py:433
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
 
@@ -4255,8 +4259,8 @@ msgid "Add Another Application&hellip;"
 msgstr "다른 애플리케이션 추가&hellip;"
 
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:38 apps/devhub/templates/devhub/addons/owner.html:86 apps/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:125 templates/impala/base.html:136 templates/impala/base.html:154
-#: templates/impala/base.html:164
+#: apps/devhub/templates/devhub/versions/list.html:351 apps/devhub/templates/devhub/versions/list.html:353 templates/impala/base.html:131 templates/impala/base.html:142 templates/impala/base.html:160
+#: templates/impala/base.html:170
 msgid "Close"
 msgstr "닫기"
 
@@ -4279,8 +4283,7 @@ msgstr[0] "<b>{0}</b> 테마"
 msgid "Edit Listing"
 msgstr "목록 표시 내역 편집하기"
 
-#: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:18 apps/localizers/templates/localizers/categories.html:27
-#: apps/translations/templates/translations/all-locales.html:6
+#: apps/devhub/templates/devhub/addons/edit.html:13 apps/devhub/templates/devhub/includes/macros.html:18 apps/translations/templates/translations/all-locales.html:6
 msgid "None"
 msgstr "없음"
 
@@ -4412,7 +4415,7 @@ msgstr "기본 언어"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:282 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:58
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:291 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "홈페이지"
@@ -4673,16 +4676,16 @@ msgstr "최상위"
 msgid "Delete Theme"
 msgstr "테마 삭제"
 
-#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
-msgid "Delete Add-on and block GUID"
-msgstr ""
+#: apps/devhub/templates/devhub/addons/listing/delete_form.html:2 apps/devhub/templates/devhub/versions/list.html:117
+msgid "Delete Add-on"
+msgstr "부가 기능 삭제"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "테마를 삭제하면 사이트에서도 영원히 삭제됩니다."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:14
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again, even by you."
+msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
@@ -6746,10 +6749,6 @@ msgstr ""
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)"
 msgstr ""
 
-#: apps/devhub/templates/devhub/versions/list.html:117
-msgid "Delete Add-on"
-msgstr "부가 기능 삭제"
-
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
 msgstr ""
@@ -7103,11 +7102,11 @@ msgstr "%(app)s를 사용하시고 <a href=\"%(url)s\">Mozilla의 사명</a> 구
 msgid "Add-ons downloaded:"
 msgstr "다운로드된 부가 기능:"
 
-#: apps/discovery/templates/discovery/addons/detail.html:67
+#: apps/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
 msgstr "현재 사용자"
 
-#: apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/discovery/templates/discovery/addons/detail.html:70
 msgid "Last Updated"
 msgstr "최신 업데이트"
 
@@ -7244,7 +7243,7 @@ msgstr "부가 기능 제출 시기"
 msgid "Add-on Types"
 msgstr "부가 기능 종류"
 
-#: apps/editors/forms.py:126 apps/editors/helpers.py:266
+#: apps/editors/forms.py:126 apps/editors/helpers.py:268
 msgid "Platforms"
 msgstr "플랫폼"
 
@@ -7295,248 +7294,248 @@ msgstr "다른 사람이 이 테마를 심사중입니다."
 msgid "app, reviewer, or comment"
 msgstr "앱, 심사원, 코멘트"
 
-#: apps/editors/helpers.py:50 apps/editors/helpers.py:58
+#: apps/editors/helpers.py:52 apps/editors/helpers.py:60
 msgid "Pending Full Review"
 msgstr "전체 심사 대기중"
 
-#: apps/editors/helpers.py:52
+#: apps/editors/helpers.py:54
 msgid "Pending Preliminary Review"
 msgstr "예비 심사 대기중"
 
-#: apps/editors/helpers.py:65
+#: apps/editors/helpers.py:67
 msgid "Rejected or Unreviewed"
 msgstr "거부 또는 미심사"
 
-#: apps/editors/helpers.py:122 apps/editors/helpers.py:135
+#: apps/editors/helpers.py:124 apps/editors/helpers.py:137
 msgid "Queue"
 msgstr "대기열"
 
-#: apps/editors/helpers.py:123 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:50 apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "업데이트 대기"
 
-#: apps/editors/helpers.py:124 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
+#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:48 apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "전체 심사"
 
-#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
+#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:52 apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "예비 심사"
 
-#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:128 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "심사 조정중"
 
-#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:129 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "고속 심사"
 
-#: apps/editors/helpers.py:129
+#: apps/editors/helpers.py:131
 msgid "Pending Themes"
 msgstr "대기중인 테마"
 
-#: apps/editors/helpers.py:130 apps/editors/templates/editors/themes/queue.html:4
+#: apps/editors/helpers.py:132 apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "표시된 테마"
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:133
 msgid "Update Themes"
 msgstr "테마 업데이트"
 
-#: apps/editors/helpers.py:136
+#: apps/editors/helpers.py:138
 msgid "Unlisted Pending Updates"
 msgstr ""
 
-#: apps/editors/helpers.py:137
+#: apps/editors/helpers.py:139
 msgid "Unlisted Full Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:138
+#: apps/editors/helpers.py:140
 msgid "Unlisted Preliminary Reviews"
 msgstr ""
 
-#: apps/editors/helpers.py:169
+#: apps/editors/helpers.py:171
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "고속 심사 ({0})"
 
-#: apps/editors/helpers.py:174
+#: apps/editors/helpers.py:176
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "전체 심사 ({0})"
 
-#: apps/editors/helpers.py:179
+#: apps/editors/helpers.py:181
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "업데이트 대기 ({0})"
 
-#: apps/editors/helpers.py:184
+#: apps/editors/helpers.py:186
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "예비 심사 ({0})"
 
-#: apps/editors/helpers.py:189
+#: apps/editors/helpers.py:191
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "심사 조정 ({0})"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:197
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] ""
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:202
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] ""
 
-#: apps/editors/helpers.py:205
+#: apps/editors/helpers.py:207
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] ""
 
-#: apps/editors/helpers.py:260
+#: apps/editors/helpers.py:262
 msgid "Addon"
 msgstr "부가 기능"
 
-#: apps/editors/helpers.py:261 apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:263
 msgid "Type"
 msgstr "종류"
 
-#: apps/editors/helpers.py:262
+#: apps/editors/helpers.py:264
 msgid "Waiting Time"
 msgstr "대기 시간"
 
-#: apps/editors/helpers.py:263 apps/editors/templates/editors/review.html:285
+#: apps/editors/helpers.py:265 apps/editors/templates/editors/review.html:285
 msgid "Flags"
 msgstr "표시"
 
-#: apps/editors/helpers.py:264
+#: apps/editors/helpers.py:266
 msgid "Applications"
 msgstr "애플리케이션"
 
-#: apps/editors/helpers.py:269
+#: apps/editors/helpers.py:271
 msgid "Additional"
 msgstr "추가 사항"
 
-#: apps/editors/helpers.py:284
+#: apps/editors/helpers.py:286
 msgid "Site Specific"
 msgstr "사이트 기반"
 
-#: apps/editors/helpers.py:286
+#: apps/editors/helpers.py:288
 msgid "Requires External Software"
 msgstr "외부 소프트웨어 필요"
 
-#: apps/editors/helpers.py:288
+#: apps/editors/helpers.py:290
 msgid "Binary Components"
 msgstr "이진 컴포넌트"
 
-#: apps/editors/helpers.py:312
+#: apps/editors/helpers.py:314
 msgid "moments ago"
 msgstr "방금"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:315
+#: apps/editors/helpers.py:317
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 분"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:319
+#: apps/editors/helpers.py:321
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 시간"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:323
+#: apps/editors/helpers.py:325
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 일"
 
-#: apps/editors/helpers.py:483
+#: apps/editors/helpers.py:489
 msgid "Push to public"
 msgstr "공개로 전환"
 
-#: apps/editors/helpers.py:485
+#: apps/editors/helpers.py:491
 msgid "Grant full review"
 msgstr ""
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:506
 msgid "Request more information"
 msgstr "추가 정보 요구"
 
-#: apps/editors/helpers.py:503
+#: apps/editors/helpers.py:509
 msgid "Request super-review"
 msgstr "상급 심사 요구"
 
-#: apps/editors/helpers.py:514
+#: apps/editors/helpers.py:520
 msgid "Grant preliminary review"
 msgstr "예비 심사 등급 부여"
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:521
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "이 작업은 파일에 예비 심사 등급을 부여하게 됩니다."
 
-#: apps/editors/helpers.py:517
+#: apps/editors/helpers.py:523
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr "제작자에게 추가 정보를 요청하려면 다음의 양식을 기입해 주세요. 제작자들은 이메일을 받은 후 이곳에 답변을 적을 수 있게 됩니다. 제작자의 답변이 오면 이메일로 알림 메시지를 받게 됩니다."
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:527
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr "이 부가 기능이 보안, 저작권 등 관리자가 검토해야 한다고 생각되시면 아래에 코멘트를 입력해 주세요. 이 코멘트는 제작자가 아닌, 관리자에게만 전송될 것입니다."
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:533
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "부가 기능 심사를 거부하며 심사 대기열에서 삭제합니다."
 
-#: apps/editors/helpers.py:529
+#: apps/editors/helpers.py:535
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "이 버전에 코멘트를 남겨주세요. 제작자는 코멘트를 볼 수 없습니다."
 
-#: apps/editors/helpers.py:533
+#: apps/editors/helpers.py:539
 msgid "This will reject the files and remove them from the review queue."
 msgstr "파일들의 심사를 거부하며 심사 대기열에서 삭제합니다."
 
-#: apps/editors/helpers.py:537
+#: apps/editors/helpers.py:543
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "부가 기능을 예비 심사 완료로 표시합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:542
+#: apps/editors/helpers.py:548
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "파일들을 예비 심사 완료로 표시합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:547
+#: apps/editors/helpers.py:553
 msgid "Retain preliminary review"
 msgstr "예비 심사 등급 유지"
 
-#: apps/editors/helpers.py:548
+#: apps/editors/helpers.py:554
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr "부가 기능을 예비 심사 완료 상태로 유지합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
-#: apps/editors/helpers.py:553
+#: apps/editors/helpers.py:559
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr "공개 이전 샌드박스 버전의 부가 기능을 공개 상태로 승인합니다."
 
-#: apps/editors/helpers.py:556
+#: apps/editors/helpers.py:562
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr "공개 부가 기능 버전을 거부하고 대기열에서 해당 부가 기능을 삭제합니다."
 
-#: apps/editors/helpers.py:559
+#: apps/editors/helpers.py:565
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "이 명령을 사용하면 부가 기능의 최신 버전과 파일을 공개 버전으로 승급하게 됩니다. 이후 등록되는 버전의 경우 편집자의 심사가 있기 전까진 샌드박스로 보내지게 될 것입니다."
 
-#: apps/editors/helpers.py:632
+#: apps/editors/helpers.py:638
 msgid "add-on"
 msgstr "부가 기능"
 
-#: apps/editors/helpers.py:935 apps/editors/helpers.py:955
+#: apps/editors/helpers.py:941 apps/editors/helpers.py:961
 msgid "Flagged"
 msgstr "표시됨"
 
 # 85%
-#: apps/editors/helpers.py:939 apps/editors/helpers.py:958
+#: apps/editors/helpers.py:945 apps/editors/helpers.py:964
 msgid "Updates"
 msgstr "업데이트"
 
@@ -7588,58 +7587,58 @@ msgstr "제출된 테마가 심사 상태로 표시됐습니다"
 msgid "A question about your Theme submission"
 msgstr "제출된 테마에 대한 질문사항"
 
-#: apps/editors/views.py:143
+#: apps/editors/views.py:148
 msgid "New Add-ons (Under 5 days)"
 msgstr "신규 부가 기능 (최근 5일 이내)"
 
-#: apps/editors/views.py:144
+#: apps/editors/views.py:149
 msgid "Passable (5 to 10 days)"
 msgstr "통과 가능 (5~10일 이내)"
 
-#: apps/editors/views.py:145
+#: apps/editors/views.py:150
 msgid "Overdue (Over 10 days)"
 msgstr "기한 초과 (10일 초과)"
 
-#: apps/editors/views.py:514
+#: apps/editors/views.py:536
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
-#: apps/editors/views.py:567
+#: apps/editors/views.py:589
 msgid "Self-reviews are not allowed."
 msgstr "자신의 부가 기능은 심사할 수 없습니다."
 
-#: apps/editors/views.py:589
+#: apps/editors/views.py:611
 msgid "Review successfully processed."
 msgstr "심사 작업을 진행 합니다."
 
-#: apps/editors/views.py:787
+#: apps/editors/views.py:809
 msgid "was approved"
 msgstr "이(가) 승인되었습니다"
 
-#: apps/editors/views.py:788
+#: apps/editors/views.py:810
 msgid "given preliminary review"
 msgstr "이(가) 예비 심사 등급이 주어졌습니다"
 
-#: apps/editors/views.py:789
+#: apps/editors/views.py:811
 msgid "rejected"
 msgstr "이(가) 심사 거부되었습니다"
 
-#: apps/editors/views.py:790
+#: apps/editors/views.py:812
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "이(가) 검토 대상이 되었습니다"
 
 # 79%
 # 100%
-#: apps/editors/views.py:792
+#: apps/editors/views.py:814
 msgid "needs more information"
 msgstr "추가 정보 요구"
 
-#: apps/editors/views.py:793
+#: apps/editors/views.py:815
 msgid "needs super review"
 msgstr "상급 심사 필요"
 
-#: apps/editors/views.py:794
+#: apps/editors/views.py:816
 msgid "commented"
 msgstr ""
 
@@ -8364,31 +8363,31 @@ msgstr "잘못된 압축 파일입니다."
 msgid "Could not parse install.rdf."
 msgstr "install.rdf를 읽어들이지 못했습니다."
 
-#: apps/files/utils.py:546
+#: apps/files/utils.py:551
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: apps/files/utils.py:549
+#: apps/files/utils.py:554
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: apps/files/utils.py:551
+#: apps/files/utils.py:556
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: apps/files/utils.py:555
+#: apps/files/utils.py:564
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: apps/files/utils.py:558
+#: apps/files/utils.py:567
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "버전 번호는 32 글자 미만이어야 합니다."
 
-#: apps/files/utils.py:561
+#: apps/files/utils.py:570
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
 
-#: apps/files/utils.py:578
+#: apps/files/utils.py:587
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type>이(가) 부가 기능과 일치하지 않습니다"
 
@@ -8493,119 +8492,6 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 #: apps/files/templates/files/viewer.html:134
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
-
-#: apps/localizers/views.py:40
-msgid "An error occurred saving this message."
-msgstr "메시지 저장중 오류가 발생했습니다."
-
-#: apps/localizers/views.py:43
-msgid "Access Denied"
-msgstr "접근이 거부됨"
-
-#: apps/localizers/templates/localizers/base.html:3 apps/localizers/templates/localizers/summary.html:3
-msgid "Localizer Dashboard"
-msgstr "번역자 대시보드"
-
-#. %s is a locale name or code ('German' or 'de')
-#: apps/localizers/templates/localizers/categories.html:5 apps/localizers/templates/localizers/dashboard.html:5 apps/localizers/templates/localizers/dashboard.html:13
-msgid "Localization Summary for {0}"
-msgstr "{0} 번역 작업 개요"
-
-#: apps/localizers/templates/localizers/categories.html:11 apps/localizers/templates/localizers/dashboard.html:11 apps/localizers/templates/localizers/summary.html:8
-msgid "Localization Dashboard"
-msgstr "번역 작업 대시보드"
-
-#: apps/localizers/templates/localizers/categories.html:12
-msgid "Category Localization for {0}"
-msgstr "{0}용 분류 번역"
-
-#: apps/localizers/templates/localizers/categories.html:58 apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
-msgid "Update"
-msgstr "업데이트"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:24
-msgid "Want to get in touch with the {0} L10n team?"
-msgstr "{0} L10n 팀과 연락하며 지내고 싶습니까?"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:28
-msgid "Visit the {0} L10n Homepage"
-msgstr "{0} L10n 홈페이지 방문"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:33
-msgid "Current Localizers for {0}:"
-msgstr "현재 {0} 번역자:"
-
-#: apps/localizers/templates/localizers/locale_switcher.html:3
-msgid "Change Locale:"
-msgstr "언어 변경:"
-
-#. Header to an info box in the sidebar
-#: apps/localizers/templates/localizers/sidebar.html:4
-msgid "Good to know"
-msgstr "알아두면 좋은 정보"
-
-#: apps/localizers/templates/localizers/sidebar.html:13
-msgid "Want the bigger picture?"
-msgstr "보다 전체적인 상황이 보고 싶으세요?"
-
-#: apps/localizers/templates/localizers/sidebar.html:15
-msgid "Visit localize.mozilla.org"
-msgstr "localize.mozilla.org 방문하기"
-
-#: apps/localizers/templates/localizers/sidebar.html:21
-msgid "Options"
-msgstr "옵션"
-
-#: apps/localizers/templates/localizers/sidebar.html:31
-msgid "Need Help?"
-msgstr "도움이 필요하세요?"
-
-#: apps/localizers/templates/localizers/sidebar.html:34
-msgid "Visit the Newsgroup"
-msgstr "뉴스그룹 방문"
-
-#: apps/localizers/templates/localizers/sidebar.html:39
-msgid "E-Mail Your Team:"
-msgstr "팀에 이메일 전송:"
-
-#: apps/localizers/templates/localizers/sidebar_motd.html:8 apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12
-msgid "Submit"
-msgstr "입력하기"
-
-#: apps/localizers/templates/localizers/sidebar_motd.html:16
-msgid "(edit)"
-msgstr "(편집)"
-
-#: apps/localizers/templates/localizers/summary.html:9
-msgid "Mozilla Add-ons Localization"
-msgstr "Mozilla 부가 기능 번역"
-
-#: apps/localizers/templates/localizers/summary.html:16
-msgid "Want to help?"
-msgstr "도움이 필요하세요?"
-
-#: apps/localizers/templates/localizers/summary.html:17
-msgid "AMO is available in so many languages thanks to the help of people like you!"
-msgstr "AMO는 여러 언어로 사용이 가능하며 이렇게 만들어주신 분들께 감사하고 있습니다!"
-
-#: apps/localizers/templates/localizers/summary.html:19
-msgid "Get started with AMO L10n"
-msgstr "AMO L10n으로 시작하기"
-
-#: apps/localizers/templates/localizers/summary.html:23
-msgid "Existing AMO locales"
-msgstr "AMO 번역판들"
-
-#: apps/localizers/templates/localizers/summary.html:27
-msgid "Locale code"
-msgstr "지역 코드"
-
-#: apps/localizers/templates/localizers/summary.html:28
-msgid "Locale name"
-msgstr "지역명"
 
 #: apps/pages/templates/pages/about.lhtml:3 apps/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
@@ -9701,7 +9587,7 @@ msgstr "내가 좋아하는 모음집이 뭔가요?"
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr "부가 기능을 선호 목록에 추가하면 나중에 쉽게 찾아볼 수 있습니다. 이곳 세부 내역 페이지에 있는 \"선호 목록에 추가하기\"를 클릭해서 선호 목록에 부가 기능을 추가할 수 있습니다."
 
-#: apps/pages/templates/pages/faq.html:275 templates/menu_links.html:13 templates/impala/header_title.html:13
+#: apps/pages/templates/pages/faq.html:275 templates/menu_links.html:13 templates/impala/header_title.html:17
 msgid "Mobile Add-ons"
 msgstr "모바일 부가 기능"
 
@@ -9964,6 +9850,10 @@ msgstr "댓글"
 #: apps/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
 msgstr "댓글 작성하기"
+
+#: apps/reviews/templates/reviews/reply.html:36 apps/reviews/templates/reviews/report_review.html:12
+msgid "Submit"
+msgstr "입력하기"
 
 #. this string is following a <button>.
 #: apps/reviews/templates/reviews/reply.html:38
@@ -10362,7 +10252,7 @@ msgstr "이 부가 기능 공유하기"
 msgid "Share this Collection"
 msgstr "이 모음집 공유하기"
 
-#: apps/signing/views.py:30 templates/base.html:66 templates/impala/base.html:108
+#: apps/signing/views.py:30 templates/base.html:75 templates/impala/base.html:114
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
 
@@ -10390,7 +10280,7 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
-#: apps/stats/models.py:271
+#: apps/stats/models.py:240
 msgid "Thanks for contributing to {addon_name}"
 msgstr "{addon_name}에 기부해 주셔서 감사합니다"
 
@@ -10473,6 +10363,10 @@ msgstr "시작일"
 #: apps/stats/templates/stats/popup.html:19
 msgid "To"
 msgstr "종료일"
+
+#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
+msgid "Update"
+msgstr "업데이트"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
@@ -10810,67 +10704,67 @@ msgstr ""
 msgid "New password"
 msgstr "새 비밀번호"
 
-#: apps/users/forms.py:223 apps/users/forms.py:403
+#: apps/users/forms.py:223 apps/users/forms.py:418
 msgid "Wrong password entered!"
 msgstr "잘못된 비밀번호입니다!"
 
-#: apps/users/forms.py:243
+#: apps/users/forms.py:250
 msgid "Usernames cannot contain only digits."
 msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
 
-#: apps/users/forms.py:246
+#: apps/users/forms.py:254
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "문자, 숫자, 밑줄, 하이픈으로 이루어진 올바른 사용자 이름을 입력하세요."
 
-#: apps/users/forms.py:249
+#: apps/users/forms.py:257
 msgid "This username cannot be used."
 msgstr "이 사용자 이름은 사용할 수 없습니다."
 
-#: apps/users/forms.py:255
+#: apps/users/forms.py:263
 msgid "This username is already in use."
 msgstr "이 사용자 이름은 이미 사용되고 있습니다."
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "별명"
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "사는 곳"
 
-#: apps/users/forms.py:271 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "직업"
 
-#: apps/users/forms.py:295
+#: apps/users/forms.py:309
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 것이 올바른 URL입니다."
 
-#: apps/users/forms.py:303
+#: apps/users/forms.py:317
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "등록 절차를 완료하시려면 다른 이메일을 사용해 주세요."
 
-#: apps/users/forms.py:311
+#: apps/users/forms.py:325
 msgid "This display name cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:339
 msgid "The passwords did not match."
 msgstr "비밀번호가 일치하지 않습니다."
 
-#: apps/users/forms.py:343 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "프로필 사진"
 
-#: apps/users/forms.py:351 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:488
+#: apps/users/forms.py:503
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "익명으로 표시하려면 변경 사유를 입력하시고 그 외 다른 항목은 변경하지 마세요."
 
-#: apps/users/forms.py:534
+#: apps/users/forms.py:549
 msgid "Please enter at least one name to blacklist."
 msgstr ""
 
@@ -10895,15 +10789,19 @@ msgstr "hash 값"
 msgid "No user with that email."
 msgstr "해당 이메일로 등록된 사용자가 없습니다"
 
-#: apps/users/models.py:399
+#: apps/users/models.py:348
+msgid "Anonymous"
+msgstr ""
+
+#: apps/users/models.py:397
 msgid "Your account has been restricted"
 msgstr "당신의 계정은 권한이 제한되어 있습니다."
 
-#: apps/users/models.py:469
+#: apps/users/models.py:467
 msgid "Please confirm your email address"
 msgstr "이메일 주소를 확인해 주세요"
 
-#: apps/users/models.py:495
+#: apps/users/models.py:493
 msgid "My Mobile Add-ons"
 msgstr "내 모바일 부가 기능"
 
@@ -10995,12 +10893,11 @@ msgstr "유효하지 않는 확인 코드!"
 msgid "Successfully verified!"
 msgstr "검증 완료!"
 
-# %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:607
-msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr "이메일 정보가 정확한지 {0}로 확인 이메일을 보냈습니다. 로그인 전에 메일을 확인하고 제공된 링크를 클릭해 계정을 먼저 활성화 시켜야 합니다."
+#: apps/users/views.py:131
+msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
+msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:611
+#: apps/users/views.py:135 apps/users/views.py:613
 msgid "Confirmation Email Sent"
 msgstr "확인 이메일이 전송되었습니다"
 
@@ -11074,23 +10971,28 @@ msgstr "계정 활성화 이메일이 전송되었습니다"
 msgid "Having Trouble?"
 msgstr "문제가 있으신가요?"
 
-#: apps/users/views.py:581
+#: apps/users/views.py:583
 msgid "You are already logged in to an account."
 msgstr "이미 이 계정으로 로그인 한 상태입니다."
 
-#: apps/users/views.py:603
+#: apps/users/views.py:605
 msgid "Congratulations! Your user account was successfully created."
 msgstr "축하합니다! 계정 등록이 완료 되었습니다."
 
-#: apps/users/views.py:631
+# %1 is the user's email address
+#: apps/users/views.py:609
+msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
+msgstr "이메일 정보가 정확한지 {0}로 확인 이메일을 보냈습니다. 로그인 전에 메일을 확인하고 제공된 링크를 클릭해 계정을 먼저 활성화 시켜야 합니다."
+
+#: apps/users/views.py:633
 msgid "There are errors in this form"
 msgstr "이 양식에 오류가 있습니다"
 
-#: apps/users/views.py:632
+#: apps/users/views.py:634
 msgid "Please correct them and resubmit."
 msgstr "올바르게 수정 후 다시 제출해 주세요."
 
-#: apps/users/views.py:647
+#: apps/users/views.py:649
 msgid "User reported."
 msgstr "사용자가 신고되었습니다."
 
@@ -11126,8 +11028,8 @@ msgstr "당신이 작성한 평가와 별점은 삭제되지는 않지만 권한
 msgid "Confirm account deletion"
 msgstr "계정 삭제 확인"
 
-#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:22 apps/users/templates/users/register.html:68
-#: apps/users/templates/users/mobile/login.html:37
+#: apps/users/templates/users/delete.html:49 apps/users/templates/users/edit.html:56 apps/users/templates/users/login_form.html:22 apps/users/templates/users/register.html:67
+#: apps/users/templates/users/mobile/login.html:31
 msgid "Password"
 msgstr "비밀번호"
 
@@ -11155,11 +11057,11 @@ msgstr "내 계정"
 msgid "Manage basic account information, such as username and email address."
 msgstr "사용자 이름이나 이메일 주소와 같은 기본 계정 정보를 관리합니다."
 
-#: apps/users/templates/users/edit.html:33 apps/users/templates/users/register.html:48
+#: apps/users/templates/users/edit.html:33 apps/users/templates/users/register.html:47
 msgid "Username"
 msgstr "사용자 이름"
 
-#: apps/users/templates/users/edit.html:38 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:63
+#: apps/users/templates/users/edit.html:38 apps/users/templates/users/pwreset_request.html:21 apps/users/templates/users/register.html:62
 msgid "Email Address"
 msgstr "이메일 주소"
 
@@ -11271,32 +11173,36 @@ msgstr "전부"
 msgid "User Login"
 msgstr "사용자 로그인"
 
-#: apps/users/templates/users/login.html:18 apps/users/templates/users/mobile/login.html:25
+#: apps/users/templates/users/login.html:13
+msgid "Enter your email"
+msgstr ""
+
+#: apps/users/templates/users/login.html:15 apps/users/templates/users/mobile/login.html:19
 msgid "Log In"
 msgstr "로그인"
 
-#: apps/users/templates/users/login_form.html:17 apps/users/templates/users/mobile/login.html:32
+#: apps/users/templates/users/login_form.html:17 apps/users/templates/users/mobile/login.html:26
 msgid "Email address"
 msgstr "이메일 주소"
 
-#: apps/users/templates/users/login_form.html:30 apps/users/templates/users/mobile/login.html:44
+#: apps/users/templates/users/login_form.html:30 apps/users/templates/users/mobile/login.html:38
 msgid "Remember me on this device"
 msgstr "이 장치에서 계정 이름 저장"
 
-#: apps/users/templates/users/login_form.html:40 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:55 templates/mobile/header_auth.html:8
+#: apps/users/templates/users/login_form.html:41 apps/users/templates/users/pwreset_complete.html:15 apps/users/templates/users/mobile/login.html:50 templates/mobile/header_auth.html:8
 msgid "Log in"
 msgstr "로그인"
 
 # This is a header for additional help options
-#: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:61
+#: apps/users/templates/users/login_help.html:3 apps/users/templates/users/mobile/login.html:56
 msgid "Login Problems?"
 msgstr "로그인에 문제가 있나요?"
 
-#: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:63
+#: apps/users/templates/users/login_help.html:5 apps/users/templates/users/mobile/login.html:58
 msgid "I don't have an account."
 msgstr "계정이 없습니다."
 
-#: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:64
+#: apps/users/templates/users/login_help.html:6 apps/users/templates/users/mobile/login.html:59
 msgid "I forgot my password."
 msgstr "비밀번호가 기억나지 않습니다."
 
@@ -11314,66 +11220,66 @@ msgstr "비밀번호 초기화"
 msgid "User Info for {0}"
 msgstr "{0}님의 사용자 정보"
 
-#: apps/users/templates/users/profile.html:12
+#: apps/users/templates/users/profile.html:11
 msgid "Edit profile"
 msgstr "프로필 수정"
 
-#: apps/users/templates/users/profile.html:15
+#: apps/users/templates/users/profile.html:14
 msgid "Manage user"
 msgstr "사용자 관리"
 
-#: apps/users/templates/users/profile.html:19 apps/users/templates/users/report_abuse_full.html:10
+#: apps/users/templates/users/profile.html:18 apps/users/templates/users/report_abuse_full.html:9
 msgid "Report user"
 msgstr "사용자 신고"
 
 # The title for a user if they are a developer
-#: apps/users/templates/users/profile.html:30
+#: apps/users/templates/users/profile.html:29
 msgid "Add-ons Developer"
 msgstr "부가 기능 개발자"
 
-#: apps/users/templates/users/profile.html:35
+#: apps/users/templates/users/profile.html:34
 msgid "Themes Artist"
 msgstr "테마 제작자"
 
-#: apps/users/templates/users/profile.html:40
+#: apps/users/templates/users/profile.html:39
 msgid "About me"
 msgstr "내 정보"
 
-#: apps/users/templates/users/profile.html:46
+#: apps/users/templates/users/profile.html:45
 msgid "In a little more detail..."
 msgstr "좀 더 자세하게 말해볼까요..."
 
-#: apps/users/templates/users/profile.html:60
+#: apps/users/templates/users/profile.html:59
 msgid "Add-ons I've created"
 msgstr "제작한 부가 기능"
 
-#: apps/users/templates/users/profile.html:73
+#: apps/users/templates/users/profile.html:72
 msgid "My Most Popular Themes"
 msgstr "나의 가장 인기있는 테마"
 
-#: apps/users/templates/users/profile.html:75
+#: apps/users/templates/users/profile.html:74
 msgid "Themes I've created"
 msgstr "제작한 테마"
 
-#: apps/users/templates/users/profile.html:85
+#: apps/users/templates/users/profile.html:84
 msgid "Followed by Me"
 msgstr "현재 팔로우 중"
 
 # "Me" in this context is the user shown on the User Info page
-#: apps/users/templates/users/profile.html:87
+#: apps/users/templates/users/profile.html:86
 msgid "Created by Me"
 msgstr "나의 저작물"
 
 # "My" in this context is the logged in user who is reading the page
-#: apps/users/templates/users/profile.html:95
+#: apps/users/templates/users/profile.html:94
 msgid "My Reviews"
 msgstr "내가 쓴 평가"
 
-#: apps/users/templates/users/profile.html:108
+#: apps/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
 msgstr "작성한 부가 기능 평가가 없습니다."
 
-#: apps/users/templates/users/profile.html:121
+#: apps/users/templates/users/profile.html:120
 msgid "Report User"
 msgstr "사용자 신고"
 
@@ -11385,7 +11291,7 @@ msgstr "성공했습니다!"
 msgid "Password successfully reset."
 msgstr "비밀번호를 성공적으로 초기화 하였습니다."
 
-#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:73
+#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "비밀번호 확인"
 
@@ -11414,43 +11320,43 @@ msgstr "입력하신 계정으로 자세한 정보가 첨부된 이메일이 전
 msgid "New User Registration"
 msgstr "신규 사용자 계정 등록 신청"
 
-#: apps/users/templates/users/register.html:13
+#: apps/users/templates/users/register.html:12
 msgid "Why register?"
 msgstr "계정을 만들어야 하는 이유가 있나요?"
 
-#: apps/users/templates/users/register.html:15
+#: apps/users/templates/users/register.html:14
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
 msgstr "단순히 공개 부가 기능을 다운받고 설치하는 정도라면 AMO에 <strong>가입할 필요는 없습니다</strong>."
 
-#: apps/users/templates/users/register.html:17
+#: apps/users/templates/users/register.html:16
 msgid "You only need to register if:"
 msgstr "다음의 경우에만 가입이 필요합니다:"
 
-#: apps/users/templates/users/register.html:19
+#: apps/users/templates/users/register.html:18
 msgid "You want to submit reviews for add-ons"
 msgstr "부가 기능 평가를 쓰고 싶을 경우"
 
-#: apps/users/templates/users/register.html:20
+#: apps/users/templates/users/register.html:19
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
 msgstr "부가 기능 모음집을 즐겨찾기 하거나 나만의 모음집을 만들고 싶을 때"
 
-#: apps/users/templates/users/register.html:21
+#: apps/users/templates/users/register.html:20
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
 msgstr "부가 기능 개발자로 AMO에 부가 기능을 올려서 호스팅을 받길 원할 때"
 
-#: apps/users/templates/users/register.html:24
+#: apps/users/templates/users/register.html:23
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
 msgstr "가입이 완료되면 입력한 이메일 주소로 확인용 메일을 받게 됩니다. 메일에 적힌 절차에 따라 계정을 확인해 주세요."
 
-#: apps/users/templates/users/register.html:31
+#: apps/users/templates/users/register.html:30
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
 msgstr "원하신다면 저희의 <a href=\"%(legal)s\" title=\"법적 고지\">법적 고지</a>와 <a href=\"%(privacy)s\" title=\"개인 정보 보호 정책\">개인 정보 보호 정책</a>을 읽어보실 수 있습니다."
 
-#: apps/users/templates/users/register.html:42 apps/users/templates/users/register.html:89 templates/mobile/header_auth.html:7
+#: apps/users/templates/users/register.html:41 apps/users/templates/users/register.html:89 templates/mobile/header_auth.html:7
 msgid "Register"
 msgstr "등록"
 
-#: apps/users/templates/users/register.html:53
+#: apps/users/templates/users/register.html:52
 msgid "Display name"
 msgstr "별명"
 
@@ -11725,19 +11631,19 @@ msgstr "다른 언어 보기"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla 부가 기능"
 
-#: templates/base.html:82 templates/impala/base.html:74
+#: templates/base.html:91 templates/impala/base.html:80
 msgid "Find add-ons for other applications"
 msgstr "다른 애플리케이션의 부가 기능도 찾아보세요"
 
-#: templates/base.html:83 templates/impala/base.html:74
+#: templates/base.html:92 templates/impala/base.html:80
 msgid "Other Applications"
 msgstr "다른 애플리케이션"
 
-#: templates/base.html:132 templates/impala/base.html:187
+#: templates/base.html:141 templates/impala/base.html:193
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "모음집을 제작하시려면 Mozilla 부가 기능 계정이 있어야 합니다."
 
-#: templates/base.html:159 templates/impala/base.html:208
+#: templates/base.html:168 templates/impala/base.html:214
 msgid "Footer logo"
 msgstr ""
 
@@ -11847,46 +11753,42 @@ msgstr "연락처"
 msgid "Welcome, {0}"
 msgstr "{0}님, 어서오세요"
 
-#: templates/user_login.html:41
+#: templates/user_login.html:41 templates/impala/user_login.html:20
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">계정 등록</a> 또는 <a href=\"%(login)s\">로그인</a>"
 
-#: templates/impala/base.html:119
+#: templates/impala/base.html:125
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "웹사이트를 빠르고 자유롭게 누빌 수 있는 <a href=\"%(url)s\">Mozilla Firefox</a>를 다운로드하면 이곳에서 수천가지 부가 기능을 사용하실 수 있습니다!"
 
-#: templates/impala/base.html:131
+#: templates/impala/base.html:137
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
 
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:141
+#: templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
 msgstr "{0} 부가 기능에 오신것을 환영합니다."
 
-#: templates/impala/base.html:144
+#: templates/impala/base.html:150
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "수천가지 다양한 기능과 스타일을 선택해서 Firefox를 원하는 대로 만들어 보세요."
 
-#: templates/impala/base.html:149
+#: templates/impala/base.html:155
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "수천가지 다양한 기능과 스타일을 추가해서 %(app)s을(를) 원하는 대로 만들어 보세요."
 
-#: templates/impala/base.html:157
+#: templates/impala/base.html:163
 msgid "On the go?"
 msgstr "시작해 볼까요?"
 
-#: templates/impala/base.html:159
+#: templates/impala/base.html:165
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "<a class=\"mobile-link\" href=\"#\">모바일 부가 기능 사이트</a>를 방문해 보세요."
 
-#: templates/impala/header_title.html:17
+#: templates/impala/header_title.html:21
 msgid "Android Add-ons"
 msgstr "안드로이드용 부가 기능"
-
-#: templates/impala/user_login.html:20
-msgid "<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
-msgstr ""
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
