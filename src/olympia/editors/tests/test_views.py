@@ -3008,7 +3008,7 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
             u'Select a valid choice. public is not one of the available '
             u'choices.']
 
-    @patch('editors.helpers.sign_file')
+    @patch('olympia.editors.helpers.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.update(nomination=datetime.now() - timedelta(days=1))
