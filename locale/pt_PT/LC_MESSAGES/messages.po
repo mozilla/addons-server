@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-26 18:44+0000\n"
+"PO-Revision-Date: 2016-01-27 15:44+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3196,7 +3196,7 @@ msgid ""
 msgstr ""
 "Pode adicionar múltiplos contribuintes a esta coleção. Um contribuinte pode "
 "adicionar ou remover extras desta coleção, mas não pode alterar o nome ou a "
-"descrição. Para adicionar um contribuinte, escreva o endereço de e-mail na "
+"descrição. Para adicionar um contribuinte, escreva o endereço de email na "
 "caixa em baixo. Os contribuintes devem ter uma conta nos extras da Mozilla."
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:40
@@ -3215,7 +3215,7 @@ msgstr "Papel"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr "Escreva o endereço de e-mail do contribuinte a adicionar"
+msgstr "Escreva o endereço de email do contribuinte a adicionar"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
@@ -5557,8 +5557,8 @@ msgid ""
 "translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Se deseja apresentar um endereço de email para pedidos de apoio, introduza o"
-" mesmo aqui. Se tiver endereços diferentes para cada idioma, podem ser "
+"Se deseja apresentar um endereço de e-mail para pedidos de apoio, introduza "
+"o mesmo aqui. Se tiver endereços diferentes para cada idioma, podem ser "
 "adicionadas múltiplas traduções para este campo. Isto apenas é relevante "
 "para extras listados."
 
@@ -9552,7 +9552,7 @@ msgid ""
 " generate an email)"
 msgstr ""
 "Notificar-me da próxima vez que este extra for atualizado. (As atualizações "
-"seguintes não vão gerar um e-mail)"
+"seguintes não vão gerar um email)"
 
 #: apps/editors/forms.py:265
 msgid "Clear Admin Review Flag"
@@ -10996,7 +10996,7 @@ msgstr "Visite o grupo de discussão"
 
 #: apps/localizers/templates/localizers/sidebar.html:39
 msgid "E-Mail Your Team:"
-msgstr "Envie uma mensagem para a sua equipa:"
+msgstr "Envie um e-mail para a sua equipa:"
 
 #: apps/localizers/templates/localizers/sidebar_motd.html:8
 #: apps/reviews/templates/reviews/reply.html:36
@@ -12939,7 +12939,7 @@ msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
-"Incluir o seu e-mail, número de telefone ou quaisquer outros dados ou os de "
+"Incluir o seu email, número de telefone ou quaisquer outros dados ou os de "
 "qualquer outra pessoa."
 
 #: apps/pages/templates/pages/review_guide.html:119
@@ -14788,7 +14788,7 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Esqueceu a sua senha? Escreva o seu endereço de email em baixo e nós "
+"Esqueceu a sua senha? Escreva o seu endereço de e-mail em baixo e nós "
 "enviamos-lhe instruções para criar uma senha nova."
 
 #: apps/users/templates/users/pwreset_request.html:25
@@ -15185,11 +15185,11 @@ msgstr "Versão de destino"
 
 #: apps/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr "Envie um e-mail quando terminar"
+msgstr "Envie um email quando terminar"
 
 #: apps/zadmin/forms.py:105
 msgid "Log emails instead of sending"
-msgstr "Registar e-mails em vez de enviar"
+msgstr "Registar emails em vez de enviar"
 
 #: templates/amo_footer.html:6 templates/includes/lang_switcher.html:2
 msgid "Other languages"
