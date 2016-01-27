@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-27 08:32+0000\n"
+"PO-Revision-Date: 2016-01-27 12:48+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -906,11 +906,11 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:371
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Tambah ke Favorit"
 
 #: static/js/zamboni/collections.js:374
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Hapus dari Favorit"
 
 #: static/js/zamboni/collections.js:437
 msgid "Pending"
@@ -926,7 +926,7 @@ msgstr "Komentar"
 
 #: static/js/zamboni/collections.js:439
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Hapus pengaya ini dari koleksi"
 
 #: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
 msgid "Remove"
@@ -934,7 +934,7 @@ msgstr "Hapus"
 
 #: static/js/zamboni/collections.js:468
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Hapus pengguna ini sebagai kontributor"
 
 #: static/js/zamboni/collections.js:480
 msgid "An email address is required."
@@ -942,7 +942,7 @@ msgstr "Dibutuhkan alamat email."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Anda tidak dapat menambahkan diri sendiri sebagai kontributor."
 
 #: static/js/zamboni/collections.js:500
 msgid "You have already added that user."
@@ -950,15 +950,15 @@ msgstr "Anda telah menambahkan pengguna tersebut."
 
 #: static/js/zamboni/collections.js:707
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tambah ke favorit"
 
 #: static/js/zamboni/collections.js:711
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Hapus dari favorit"
 
 #: static/js/zamboni/collections.js:738
 msgid "Stop following"
-msgstr ""
+msgstr "Berhenti mengikuti"
 
 #: static/js/zamboni/devhub.js:109
 msgid "Your browser does not support the video tag"
@@ -966,7 +966,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:389
 msgid "Changes Saved"
-msgstr ""
+msgstr "Perubahan Disimpan"
 
 #: static/js/zamboni/devhub.js:405
 msgid "Enter a new author's email address"
@@ -992,7 +992,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:818
 msgid "Example"
-msgstr ""
+msgstr "Contoh"
 
 #: static/js/zamboni/devhub.js:1148
 msgid "Image changes being processed"
@@ -1000,7 +1000,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub.js:1298
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Harus alamat e-mail sah."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1008,7 +1008,7 @@ msgstr ""
 
 #: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} melihat laman ini terlebih dahulu."
 
 #: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
@@ -1024,19 +1024,19 @@ msgstr ""
 
 #: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Memuat&hellip;"
 
 #: static/js/zamboni/editors.js:260
 msgid "Version Notes"
-msgstr ""
+msgstr "Catatan Versi"
 
 #: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Catatan untuk Pengulas"
 
 #: static/js/zamboni/editors.js:270
 msgid "No version notes found"
-msgstr ""
+msgstr "Tidak ditemukan catatan versi"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
@@ -1044,11 +1044,11 @@ msgstr ""
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Jumlah Ulasan"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
-msgstr ""
+msgstr "Ada masalah memuat terjemahan"
 
 #: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
@@ -1060,13 +1060,13 @@ msgstr ""
 
 #: static/js/zamboni/global.js:410
 msgid "Loading..."
-msgstr ""
+msgstr "Memuat..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
+msgstr[0] "Sisa <b>{0}</b> karakter."
 
 #: static/js/zamboni/init.js:28
 msgid ""
@@ -1085,7 +1085,7 @@ msgstr "Kekuatan kata sandi:"
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
+msgstr[0] "Paling sedikit sisa {0} karakter."
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
@@ -1138,7 +1138,7 @@ msgstr ""
 #: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
 msgid "Error"
-msgstr ""
+msgstr "Masalah"
 
 #: static/js/zamboni/validator.js:247
 msgid "Warning"
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Tes Kompatibilitas"
 
 #: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
@@ -1163,12 +1163,12 @@ msgstr ""
 #: static/js/zamboni/validator.js:481
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} masalah"
 
 #: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} peringatan"
 
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
@@ -1189,11 +1189,11 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Membutuhkan {0} Yang Lebih Baru"
 
 #: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
-msgstr ""
+msgstr "Belum diulas"
 
 #: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
