@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-27 23:51+0000\n"
+"PO-Revision-Date: 2016-01-28 02:00+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -87,25 +87,27 @@ msgstr "{0}-ის გადამოწმება დასრულდა"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "დამატების გადამოწმების დრო ამოიწურა, ის ხელით იქნება განხილული."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
+"დამატების გადამოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
+"დამატების გადამოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "დამატების გადამოწმება დასრულდა შეცდომის და გაფრთხილებების გარეშე."
 
 #: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "თქვენი შენატანი ავტომატურად იქნება ხელმოწერილი."
 
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
