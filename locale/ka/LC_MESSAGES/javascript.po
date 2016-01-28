@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-27 21:18+0000\n"
+"PO-Revision-Date: 2016-01-27 23:51+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -79,11 +79,11 @@ msgstr "სერვერისგან მოვიდა უშინაა�
 
 #: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "გადამოწმებისას დაფიქსირდა სერვერის მოულოდნელი შეცდომა."
 
 #: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "{0}-ის გადამოწმება დასრულდა"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
