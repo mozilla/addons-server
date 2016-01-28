@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-28 08:22+0000\n"
-"Last-Translator: djanticisco <djanticisco@gmail.com>\n"
+"PO-Revision-Date: 2016-01-28 13:52+0000\n"
+"Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1094,7 +1094,7 @@ msgstr "Примечаний к версии не найдено"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr ""
+msgstr "Средняя оценка"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
@@ -1177,7 +1177,7 @@ msgstr "Тема"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
-msgstr ""
+msgstr "Редактор"
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"

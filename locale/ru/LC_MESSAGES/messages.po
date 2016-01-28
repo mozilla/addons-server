@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-28 13:38+0000\n"
+"PO-Revision-Date: 2016-01-28 13:44+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1837,7 +1837,7 @@ msgstr "Некорректно, пожалуйста, попробуйте сн�
 
 #: apps/amo/fields.py:16
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Ошибка проверки ввода, пожалуйста, попробуйте снова."
 
 #: apps/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
@@ -13764,6 +13764,9 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"Обработка статистики в настоящее время отключена, поэтому последние данные "
+"недоступны. Статистические данные по-прежнему собираются, и эта страница с "
+"отсутствующими данными скоро обновится."
 
 #: apps/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
@@ -14165,7 +14168,7 @@ msgstr "Нет пользователя с таким почтовым адре�
 
 #: apps/users/models.py:348
 msgid "Anonymous"
-msgstr ""
+msgstr "Анонимный"
 
 #: apps/users/models.py:397
 msgid "Your account has been restricted"
@@ -14279,6 +14282,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"Для подтверждения создания аккаунта на вашу электронную почту было "
+"отправлено письмо. Перед тем как войти, вы должны активировать учётную "
+"запись, щёлкнув по ссылке, находящейся в этом письме."
 
 #: apps/users/views.py:135 apps/users/views.py:613
 msgid "Confirmation Email Sent"
@@ -14500,7 +14506,7 @@ msgstr "Адрес эл. почты"
 
 #: apps/users/templates/users/edit.html:45
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Управление аккаунтом Firefox..."
 
 #: apps/users/templates/users/edit.html:48
 msgid "Change Password"
@@ -14634,7 +14640,7 @@ msgstr "Вход пользователя"
 
 #: apps/users/templates/users/login.html:13
 msgid "Enter your email"
-msgstr ""
+msgstr "Введите ваш адрес электронной почты"
 
 #: apps/users/templates/users/login.html:15
 #: apps/users/templates/users/mobile/login.html:19
