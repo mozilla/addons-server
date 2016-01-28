@@ -25,6 +25,13 @@ log = logging.getLogger('accounts')
 STUB_FXA_USER = namedtuple('FxAUser', ['source'])('fxa')
 
 
+def safe_redirect(url, action):
+    if not is_safe_url(url):
+        url = reverse('home')
+    log.info('Redirecting after {} to: {}'.format(action, url))
+    return HttpResponseRedirect(url)
+
+
 def find_user(identity):
     """Try to find a user for a Firefox Accounts profile. If the account
     hasn't been migrated we'll need to do the lookup by email but we should
@@ -149,21 +156,17 @@ class RegisterView(APIView):
             return Response({'email': user.email})
 
 
-class AuthorizeView(APIView):
+class AuthenticateView(APIView):
 
     @waffle_switch('fxa-auth')
     @with_user
     def get(self, request, user, identity, next_path):
         if user is None:
             register_user(request, identity)
-            path = reverse('users.edit')
-            log.info('Redirecting after register to: {}'.format(path))
-            return HttpResponseRedirect(path)
+            return safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
-            next_path = next_path or '/'
-            log.info('Redirecting after login to: {}'.format(next_path))
-            return HttpResponseRedirect(next_path)
+            return safe_redirect(next_path, 'login')
 
 
 class ProfileView(JWTProtectedView, generics.RetrieveAPIView):

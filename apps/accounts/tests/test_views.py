@@ -9,7 +9,6 @@ import mock
 from rest_framework.test import APITestCase
 
 from accounts import verify, views
-from amo.helpers import absolutify
 from amo.tests import create_switch, InitializeSessionMixin
 from api.tests.utils import APIAuthTestCase
 from users.models import UserProfile
@@ -69,14 +68,14 @@ class TestLoginUser(TestCase):
         views.login_user(self.request, self.user, self.identity)
         self.login.assert_called_with(self.request, self.user)
 
-    def test_identify_success_sets_fxa_data(self):
+    def test_fxa_data_gets_set(self):
         assert self.user.fxa_id is None
         views.login_user(self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert not user.has_usable_password()
 
-    def test_identify_success_account_exists_migrated_different_email(self):
+    def test_email_address_can_change(self):
         self.user.update(email='different@yeahoo.com')
         views.login_user(self.request, self.user, self.identity)
         user = self.user.reload()
@@ -152,7 +151,7 @@ class TestWithUser(TestCase):
         self.request.DATA = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=base64.urlsafe_b64encode("/a/path/?")),
+                next_path=base64.urlsafe_b64encode('/a/path/?')),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -222,7 +221,7 @@ class TestWithUser(TestCase):
         self.request.DATA = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
-                next_path=base64.urlsafe_b64encode("https://www.google.com")),
+                next_path=base64.urlsafe_b64encode('https://www.google.com')),
         }
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -393,7 +392,7 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['error'] == 'State mismatch.'
         assert not self.login_user.called
 
-    def test_identify_no_profile(self):
+    def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
@@ -402,7 +401,7 @@ class TestLoginView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
 
-    def test_identify_success_no_account(self):
+    def test_no_amo_account_cant_login(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
@@ -411,7 +410,7 @@ class TestLoginView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
 
-    def test_identify_success_account_exists(self):
+    def test_login_success(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
@@ -421,7 +420,9 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['email'] == 'real@yeahoo.com'
         self.login_user.assert_called_with(mock.ANY, user, identity)
 
-    def test_identify_success_account_exists_migrated_multiple(self):
+    def test_account_exists_migrated_multiple(self):
+        """Test that login fails if the user is logged in but the fxa_id is
+        set on a different UserProfile."""
         UserProfile.objects.create(email='real@yeahoo.com', username='foo')
         UserProfile.objects.create(
             email='different@yeahoo.com', fxa_id='9005', username='bar')
@@ -454,7 +455,7 @@ class TestRegisterView(BaseAuthenticationView):
         assert response.data['error'] == 'State mismatch.'
         assert not self.register_user.called
 
-    def test_identify_no_profile(self):
+    def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
@@ -463,7 +464,7 @@ class TestRegisterView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.register_user.called
 
-    def test_identify_success_no_account(self):
+    def test_register_success(self):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.register_user.return_value = UserProfile(email=identity['email'])
         self.fxa_identify.return_value = identity
@@ -475,12 +476,13 @@ class TestRegisterView(BaseAuthenticationView):
         self.register_user.assert_called_with(mock.ANY, identity)
 
 
-class TestAuthorizeView(BaseAuthenticationView):
-    view_name = 'accounts.authorize'
+class TestAuthenticateView(BaseAuthenticationView):
+    view_name = 'accounts.authenticate'
 
     def setUp(self):
-        super(TestAuthorizeView, self).setUp()
-        self.initialize_session({'fxa_state': 'the-right-blob'})
+        super(TestAuthenticateView, self).setUp()
+        self.fxa_state = '1cd2ae9d'
+        self.initialize_session({'fxa_state': self.fxa_state})
         self.login_user = self.patch('accounts.views.login_user')
         self.register_user = self.patch('accounts.views.register_user')
 
@@ -493,73 +495,90 @@ class TestAuthorizeView(BaseAuthenticationView):
 
     def test_wrong_state(self):
         response = self.client.get(
-            self.url, {'code': 'foo', 'state': 'the-wrong-blob'})
+            self.url, {'code': 'foo', 'state': '9f865be0'})
         assert response.status_code == 400
         assert response.data['error'] == 'State mismatch.'
         assert not self.login_user.called
         assert not self.register_user.called
 
-    def test_identify_no_profile(self):
+    def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.get(
-            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
+            self.url, {'code': 'codes!!', 'state': self.fxa_state})
         assert response.status_code == 401
         assert response.data['error'] == 'Profile not found.'
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called
 
-    def test_identify_success_no_account(self):
+    def test_success_no_account_registers(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         response = self.client.get(
-            self.url, {'code': 'codes!!', 'state': 'the-right-blob'})
-        assert response.status_code == 302
-        assert response['location'] == absolutify(reverse('users.edit'))
+            self.url, {'code': 'codes!!', 'state': self.fxa_state})
+        # This 302s because the user isn't logged in due to mocking.
+        self.assertRedirects(
+            response, reverse('users.edit'), target_status_code=302)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
 
-    def test_identify_success_no_account_with_path(self):
+    def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         response = self.client.get(self.url, {
             'code': 'codes!!',
-            'state': 'the-right-blob:{next_path}'.format(
-                next_path=base64.urlsafe_b64encode('/go/here')),
+            'state': ':'.join(
+                [self.fxa_state, base64.urlsafe_b64encode('/go/here')]),
         })
-        assert response.status_code == 302
-        assert response['location'] == absolutify(reverse('users.edit'))
+        # This 302s because the user isn't logged in due to mocking.
+        self.assertRedirects(
+            response, reverse('users.edit'), target_status_code=302)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
 
-    def test_identify_success_exists_logs_user_in(self):
-        user = UserProfile.objects.create(email='real@yeahoo.com')
+    def test_success_with_account_logs_in(self):
+        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.get(
-            self.url, {'code': 'code', 'state': 'the-right-blob'})
-        assert response.status_code == 302
-        assert response['location'] == 'http://testserver/'
+            self.url, {'code': 'code', 'state': self.fxa_state})
+        self.assertRedirects(response, reverse('home'))
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
-    def test_identify_success_exists_logs_user_in_with_path(self):
+    def test_log_in_redirects_to_next_path(self):
+        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity
+        response = self.client.get(self.url, {
+            'code': 'code',
+            'state': ':'.join([
+                self.fxa_state,
+                base64.urlsafe_b64encode('/en-US/firefox/a/path')]),
+        })
+        self.assertRedirects(
+            response, '/en-US/firefox/a/path', target_status_code=404)
+        self.login_user.assert_called_with(mock.ANY, user, identity)
+        assert not self.register_user.called
+
+    def test_log_in_sets_fxa_data_and_redirects(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.get(self.url, {
             'code': 'code',
-            'state': 'the-right-blob:{next_path}'.format(
-                next_path=base64.urlsafe_b64encode('/some/path')),
+            'state': ':'.join([
+                self.fxa_state,
+                base64.urlsafe_b64encode('/en-US/firefox/a/path')]),
         })
-        assert response.status_code == 302
-        assert response['location'] == 'http://testserver/some/path'
+        self.assertRedirects(
+            response, '/en-US/firefox/a/path', target_status_code=404)
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 

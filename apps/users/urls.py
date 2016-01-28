@@ -36,6 +36,7 @@ users_patterns = patterns(
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$', views.register, name='users.register'),
+    url('^migrate', views.migrate, name='users.migrate'),
     url(r'^pwreset/?$', anonymous_csrf(auth_views.password_reset),
         {'template_name': 'users/pwreset_request.html',
          'email_template_name': 'users/email/pwreset.ltxt',
