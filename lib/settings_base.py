@@ -1255,7 +1255,7 @@ PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://ssl.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
-CSP_REPORT_ONLY = True
+CSP_REPORT_ONLY = False
 CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
