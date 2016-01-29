@@ -240,10 +240,10 @@ class TestADICommand(FixturesFolderMixin, amo.tests.TestCase):
         # today's date and the Persona popularity.
         t1 = ThemeUserCount.objects.get(addon_id=15663)
         t2 = ThemeUserCount.objects.get(addon_id=15679)
-        eq_(t1.date, today)
-        eq_(t1.count, p1.popularity)
-        eq_(t2.date, today)
-        eq_(t2.count, p2.popularity)
+        assert t1.date == today
+        assert t1.count == p1.popularity
+        assert t2.date == today
+        assert t2.count == p2.popularity
 
         # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
         # The movers is computed with the following formula:
