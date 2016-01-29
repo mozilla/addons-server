@@ -3,19 +3,23 @@ import csv
 import itertools
 import json
 import logging
+import os
 import time
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from types import GeneratorType
 
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.core.files.storage import get_storage_class
 from django.db import connection
 from django.db.models import Avg, Count, Q, Sum
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
+from rest_framework import status
+from rest_framework.response import Response
 
 from cache_nuggets.lib import memoize
 from dateutil.parser import parse
@@ -28,6 +32,7 @@ from addons.decorators import addon_view_factory
 from addons.models import Addon
 from amo.decorators import allow_cross_site_request, json_view, login_required
 from amo.urlresolvers import reverse
+from api.jwt_auth.views import JWTProtectedView
 from bandwagon.models import Collection
 from bandwagon.views import get_collection
 from stats.forms import DateForm
@@ -52,6 +57,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
 
 
 addon_view_with_unlisted = addon_view_factory(qs=Addon.with_unlisted.all)
+storage = get_storage_class()()
 
 
 @non_atomic_requests
@@ -699,3 +705,69 @@ def render_json(request, addon, stats):
     fudge_headers(response, stats)
     json.dump(stats, response, cls=DecimalJSONEncoder)
     return response
+
+
+class ArchiveMixin(object):
+    """Provides common helper methods for all archive views."""
+    def get_addon(self, request, slug):
+        """Fetches an addon by `slug`"""
+        qset = Addon.with_unlisted.all()
+
+        addon = get_object_or_404(qset, slug=slug)
+
+        if not addon.is_listed:
+            raise http.Http404
+        return addon
+
+
+class ArchiveListView(ArchiveMixin, JWTProtectedView):
+
+    def get(self, request, slug, year, month):
+        addon = self.get_addon(request, slug)
+        check_stats_permission(request, addon)
+
+        data = []
+        path = u'{id}/{year}/{month}/'.format(
+            id=addon.id, year=year, month=month)
+
+        try:
+            files = storage.listdir(path)
+        except OSError:
+            return Response({
+                'error': 'No archived data for addon "%s" found.' % addon.slug,
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        for file_ in files[1]:
+            file_name, _ = os.path.splitext(file_)
+            date_str, model_name = file_name.rsplit('_', 1)
+            day = datetime.strptime(date_str, '%Y_%m_%d').date()
+
+            data.append({
+                'addon_id': addon.id,
+                'date': day,
+                'model_name': model_name
+            })
+
+        return Response(data)
+
+
+class ArchiveView(ArchiveMixin, JWTProtectedView):
+
+    def get(self, request, slug, year, month, day, model_name):
+        addon = self.get_addon(request, slug)
+        check_stats_permission(request, addon)
+
+        tm = '{id}/{year}/{month}/{year}_{month}_{day}_{model_name}.json'
+        path = tm.format(
+            id=addon.id, year=year, month=month, day=day,
+            model_name=model_name)
+
+        try:
+            with storage.open(path) as fobj:
+                data = json.load(fobj)
+        except (OSError, IOError):
+            return Response({
+                'error': 'No archived data for addon "%s" found.' % addon.slug,
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        return Response(data)

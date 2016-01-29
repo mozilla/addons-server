@@ -30,3 +30,4 @@ get started using the API.
    auth
    accounts
    signing
+   stats
