@@ -1,4 +1,5 @@
 import collections
+import datetime
 import functools
 import json
 import os
@@ -15,7 +16,6 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import urlquote
-from django.utils.timezone import now
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -1746,7 +1746,7 @@ def api_key_agreement(request):
 
 def render_agreement(request, template, next_step, step=None):
     if request.method == 'POST':
-        request.user.update(read_dev_agreement=now())
+        request.user.update(read_dev_agreement=datetime.datetime.now())
         return redirect(next_step)
 
     if request.user.read_dev_agreement is None:

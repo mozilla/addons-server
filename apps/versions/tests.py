@@ -653,7 +653,7 @@ class TestFeeds(amo.tests.TestCase):
         assert len(doc('rss channel item guid')[0].text) > 0
         # proper date format for item
         item_pubdate = doc('rss channel item pubDate')[0]
-        assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 -0700'
+        assert item_pubdate.text == 'Thu, 21 May 2009 05:37:15 +0000'
 
     def test_status_beta_without_beta_builds(self):
         doc = self.get_feed('a11730', beta=True)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import re
@@ -1503,9 +1503,8 @@ class TestMobileDetails(TestPersonas, TestMobile):
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)
-        fmt = '%a, %d %b %Y %H:%M:%S GMT'
-        expires = datetime.strptime(response['Expires'], fmt)
-        assert (expires - datetime.now()).days >= 365
+        self.assertCloseToNow(response['Expires'],
+                              now=datetime.now() + timedelta(days=365))
 
     def test_unicode_redirect(self):
         url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
