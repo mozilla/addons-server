@@ -28,7 +28,7 @@ django-extensions==1.2.5
 django-filter==0.7
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
-django-post-request-task==0.0.2
+django-post-request-task==0.0.3
 django-quieter-formset==0.4
 django-raven-heka==0.3
 djangorestframework==2.3.12
