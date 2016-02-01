@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-01 09:43+0000\n"
+"PO-Revision-Date: 2016-02-01 16:46+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -132,6 +132,8 @@ msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini "
+"mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
@@ -964,7 +966,7 @@ msgstr "Berhenti mengikuti"
 
 #: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Peramban Anda tidak mendukung tag video"
 
 #: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
@@ -1150,7 +1152,7 @@ msgstr "Peringatan"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Saran untuk lulus tanda tangan otomatis:"
 
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
@@ -1185,7 +1187,7 @@ msgstr "Tugas pengsahan tidak selesai atau selesai dengan masalah"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
-msgstr ""
+msgstr "Masalah server internal"
 
 #: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
@@ -1226,7 +1228,7 @@ msgstr "Memasang..."
 
 #: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Pengaya ini telah diulas lebih dulu oleh Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
