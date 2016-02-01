@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-29 10:03+0000\n"
+"PO-Revision-Date: 2016-02-01 06:29+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -193,7 +193,7 @@ msgstr "Tema ini tidak kompatibel dengan versi {0} anda"
 
 #: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Dilindungi Hak Cipta"
 
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
@@ -289,7 +289,7 @@ msgstr "{0} penjualan"
 
 #: static/js/impala/stats/chart.js:276
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} pembayaran kembali"
 
 #: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
@@ -419,11 +419,11 @@ msgstr "Detail Laman"
 
 #: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Detail Laman (bawah)"
 
 #: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Detail Laman (Kanal Pengembangan)"
 
 #: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64
@@ -648,7 +648,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Sumber Unggahan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
@@ -788,7 +788,7 @@ msgstr ""
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:269
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> dalam {1} hari terakhir"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:271
@@ -896,7 +896,7 @@ msgstr ""
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
-msgstr ""
+msgstr "bersihkan yang baru saja dilihat"
 
 #: static/js/zamboni/collections.js:365
 msgid "Adding to Favorites&hellip;"
@@ -1022,7 +1022,7 @@ msgstr "Tanda konfirmasi tidak diperiksa oleh aplikasi."
 
 #: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} melihat pengaya ini terlebih dulu."
 
 #: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
@@ -1042,7 +1042,7 @@ msgstr "Tidak ditemukan catatan versi"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr ""
+msgstr "Ulasan Rata-rata"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
@@ -1075,6 +1075,8 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
+"Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. "
+"Periksa kembali nanti."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1091,7 +1093,7 @@ msgstr[0] "Paling sedikit sisa {0} karakter."
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "Info yang Diminta"
 
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
@@ -1127,15 +1129,15 @@ msgstr "Status"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Semua tes lulus dengan sukses."
 
 #: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
 msgid "These tests were not run."
-msgstr ""
+msgstr "Tes tersebut tidak dijalankan."
 
 #: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
-msgstr ""
+msgstr "Tes"
 
 #: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
@@ -1175,7 +1177,7 @@ msgstr[0] "{0} peringatan"
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} pernyataan"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
