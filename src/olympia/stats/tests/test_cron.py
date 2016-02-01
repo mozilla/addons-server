@@ -83,7 +83,7 @@ class TestTotalContributions(TestCase):
         eq_(float(a.total_contributions), 19.99)
 
 
-@mock.patch('olympia.stats.management.commands.index_stats.create_tasks')
+@mock.patch('olympia.stats.management.commands.index_stats.create_subtasks')
 class TestIndexStats(TestCase):
     fixtures = ['stats/test_models']
 

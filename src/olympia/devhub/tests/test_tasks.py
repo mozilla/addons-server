@@ -2,7 +2,9 @@ import json
 import os
 import shutil
 import tempfile
+from contextlib import contextmanager
 from datetime import datetime, timedelta
+from decimal import Decimal
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -24,6 +26,7 @@ from olympia.files.models import FileUpload
 from olympia.versions.models import Version
 
 
+ADDON_TEST_FILES = os.path.join(os.path.dirname(__file__), 'addons')
 pytestmark = pytest.mark.django_db
 
 
@@ -127,7 +130,8 @@ class TestValidator(TestCase):
 
     def setUp(self):
         super(TestValidator, self).setUp()
-        self.upload = FileUpload.objects.create()
+        self.upload = FileUpload.objects.create(
+            path=os.path.join(ADDON_TEST_FILES, 'desktop.xpi'))
         assert not self.upload.valid
 
     def get_upload(self):
@@ -149,9 +153,7 @@ class TestValidator(TestCase):
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
 
-        self.upload.update(
-            path=os.path.join(settings.ROOT,
-                              'src/olympia/devhub/tests/addons/desktop.xpi'))
+        self.upload.update(path=os.path.join(ADDON_TEST_FILES, 'desktop.xpi'))
 
         assert self.upload.validation is None
 
@@ -247,24 +249,104 @@ class TestValidator(TestCase):
         tasks.validate(self.upload)
         mock_track.assert_called_with(mock_validate.return_value)
 
-    def test_track_upload_validation_results_time(self):
+
+class TestMeasureValidationTime(TestValidator):
+
+    def setUp(self):
+        super(TestMeasureValidationTime, self).setUp()
         # Set created time back (just for sanity) otherwise the delta
         # would be in the microsecond range.
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
-        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        with mock.patch('olympia.devhub.tasks.statsd.timing') as mock_timing:
-            tasks.handle_upload_validation_result(validation, self.upload.pk)
-        assert self.get_upload().validation
+    @contextmanager
+    def statsd_timing_mock(self):
+        statsd_calls = {}
 
+        def capture_timing_call(metric, value):
+            statsd_calls[metric] = value
+
+        with mock.patch('olympia.devhub.tasks.statsd.timing') as mock_timing:
+            mock_timing.side_effect = capture_timing_call
+            yield statsd_calls
+
+    def approximate_upload_time(self):
         upload_start = utc_millesecs_from_epoch(self.upload.created)
         now = utc_millesecs_from_epoch()
-        rough_delta = now - upload_start
-        actual_delta = mock_timing.call_args[0][1]
+        return now - upload_start
 
-        fuzz = 2000  # 2 seconds
-        assert (actual_delta >= (rough_delta - fuzz) and
-                actual_delta <= (rough_delta + fuzz))
+    def assert_milleseconds_are_close(self, actual_ms, calculated_ms,
+                                      fuzz=Decimal(300)):
+        assert (actual_ms >= (calculated_ms - fuzz) and
+                actual_ms <= (calculated_ms + fuzz))
+
+    def handle_upload_validation_result(self):
+        validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        tasks.handle_upload_validation_result(validation, self.upload.pk)
+
+    def test_track_upload_validation_results_time(self):
+        with self.statsd_timing_mock() as statsd_calls:
+            self.handle_upload_validation_result()
+
+        rough_delta = self.approximate_upload_time()
+        actual_delta = statsd_calls['devhub.validation_results_processed']
+        self.assert_milleseconds_are_close(actual_delta, rough_delta)
+
+    def test_track_upload_validation_results_with_file_size(self):
+        with self.statsd_timing_mock() as statsd_calls:
+            self.handle_upload_validation_result()
+
+        # This test makes sure storage.size() works on a real file.
+        rough_delta = self.approximate_upload_time()
+        actual_delta = statsd_calls[
+            'devhub.validation_results_processed_per_mb']
+        # This value should not be scaled because this package is under 1MB.
+        self.assert_milleseconds_are_close(actual_delta, rough_delta)
+
+    def test_scale_large_xpi_times_per_megabyte(self):
+        megabyte = Decimal(1024 * 1024)
+        file_size_in_mb = Decimal(5)
+        with mock.patch('olympia.devhub.tasks.storage.size') as mock_size:
+            mock_size.return_value = file_size_in_mb * megabyte
+            with self.statsd_timing_mock() as statsd_calls:
+                self.handle_upload_validation_result()
+
+        # Validation times for files larger than 1MB should be scaled.
+        rough_delta = self.approximate_upload_time()
+        rough_scaled_delta = Decimal(rough_delta) / file_size_in_mb
+        actual_scaled_delta = statsd_calls[
+            'devhub.validation_results_processed_per_mb']
+        self.assert_milleseconds_are_close(actual_scaled_delta,
+                                           rough_scaled_delta)
+
+    def test_measure_small_files_in_separate_bucket(self):
+        with mock.patch('olympia.devhub.tasks.storage.size') as mock_size:
+            mock_size.return_value = 500  # less than 1MB
+            with self.statsd_timing_mock() as statsd_calls:
+                self.handle_upload_validation_result()
+
+        rough_delta = self.approximate_upload_time()
+        actual_delta = statsd_calls[
+            'devhub.validation_results_processed_under_1mb']
+        self.assert_milleseconds_are_close(actual_delta, rough_delta)
+
+    def test_measure_large_files_in_separate_bucket(self):
+        with mock.patch('olympia.devhub.tasks.storage.size') as mock_size:
+            mock_size.return_value = (2014 * 1024) * 5  # 5MB
+            with self.statsd_timing_mock() as statsd_calls:
+                self.handle_upload_validation_result()
+
+        rough_delta = self.approximate_upload_time()
+        actual_delta = statsd_calls[
+            'devhub.validation_results_processed_over_1mb']
+        self.assert_milleseconds_are_close(actual_delta, rough_delta)
+
+    def test_do_not_calculate_scaled_time_for_empty_files(self):
+        with mock.patch('olympia.devhub.tasks.storage.size') as mock_size:
+            mock_size.return_value = 0
+            with self.statsd_timing_mock() as statsd_calls:
+                self.handle_upload_validation_result()
+
+        assert 'devhub.validation_results_processed_per_mb' not in statsd_calls
 
 
 class TestTrackValidatorStats(TestCase):

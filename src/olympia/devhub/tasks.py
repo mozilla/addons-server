@@ -6,6 +6,7 @@ import os
 import socket
 import urllib2
 from copy import deepcopy
+from decimal import Decimal
 from functools import wraps
 from tempfile import NamedTemporaryFile
 
@@ -178,13 +179,35 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
     now = datetime.datetime.now()
     now_ts = utc_millesecs_from_epoch(now)
     delta = now_ts - upload_start
+    statsd.timing('devhub.validation_results_processed', delta)
+
+    size = Decimal(storage.size(upload.path))
+    megabyte = Decimal(1024 * 1024)
+
+    # Stash separate metrics for small / large files.
+    quantifier = 'over' if size > megabyte else 'under'
+    statsd.timing(
+        'devhub.validation_results_processed_{}_1mb'.format(quantifier), delta)
+
+    # Scale the upload / processing time by package size (in MB)
+    # so we can normalize large XPIs which naturally take longer to validate.
+    scaled_delta = None
+    size_in_mb = size / megabyte
+    if size > 0:
+        # If the package is smaller than 1MB, don't scale it. This should
+        # help account for validator setup time.
+        unit = size_in_mb if size > megabyte else Decimal(1)
+        scaled_delta = Decimal(delta) / unit
+        statsd.timing('devhub.validation_results_processed_per_mb',
+                      scaled_delta)
 
     log.info('Time to process and save upload validation; '
-             'upload.pk={upload}; processing time={delta}; '
+             'upload.pk={upload}; processing_time={delta}; '
+             'scaled_per_mb={scaled}; upload_size_in_mb={size_in_mb}; '
              'created={created}; now={now}'
              .format(delta=delta, upload=upload.pk,
-                     created=upload.created, now=now))
-    statsd.timing('devhub.validation_results_processed', delta)
+                     created=upload.created, now=now,
+                     scaled=scaled_delta, size_in_mb=size_in_mb))
 
 
 # We need to explicitly not ignore the result, for the sake of `views.py` code

@@ -5,26 +5,29 @@ from __future__ import absolute_import
 
 import datetime
 
+from django.conf import settings
+from django.core.cache import cache
+
 import commonware.log
 from celery import Celery
 from celery.signals import task_failure, task_postrun, task_prerun
-from django.conf import settings
-from django.core.cache import cache
+from celery.task.sets import TaskSet
 from django_statsd.clients import statsd
+from post_request_task.task import PostRequestTask
 
-from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 
 
 log = commonware.log.getLogger('z.task')
 
 
-app = Celery('olympia')
+app = Celery('olympia', task_cls=PostRequestTask)
 task = app.task
 
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(settings.INSTALLED_APPS)
 
-# See olympia.py::init_celery() for more configuration.
+# See olympia.startup::init_celery() for more configuration.
 
 
 @task_failure.connect
@@ -91,3 +94,13 @@ class TaskTimer(object):
 
     def cache_key(self, task_id):
         return 'task_start_time.{}'.format(task_id)
+
+
+def create_subtasks(task, qs, chunk_size, *args):
+    """
+    Splits a task depending on a queryset into a bunch of subtasks of the
+    specified chunk_size, passing a chunked queryset and optional additional
+    arguments to each."""
+    ts = [task.subtask(args=(chunk,) + args)
+          for chunk in chunked(qs, chunk_size)]
+    TaskSet(ts).apply_async()

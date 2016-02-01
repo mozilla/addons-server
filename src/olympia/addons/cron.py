@@ -16,10 +16,11 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.utils import chunked, walkfiles
-from olympia.addons.models import Addon, AppSupport, FrozenAddon, Persona
+from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
-from olympia.stats.models import ThemeUserCount, UpdateCount
+from olympia.stats.models import UpdateCount
+
 
 log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
@@ -130,35 +131,6 @@ def _update_addon_average_daily_users(data, **kw):
             addon.update(average_daily_users=addon.total_downloads)
         else:
             addon.update(average_daily_users=count)
-
-
-@cronjobs.register
-def update_daily_theme_user_counts():
-    """Store the day's theme popularity counts into ThemeUserCount."""
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    raise_if_reindex_in_progress('amo')
-    d = Persona.objects.values_list('addon', 'popularity').order_by('id')
-
-    date = datetime.now().strftime('%M-%d-%y')
-    ts = [_update_daily_theme_user_counts.subtask(args=[chunk],
-                                                  kwargs={'date': date})
-          for chunk in chunked(d, 250)]
-    TaskSet(ts).apply_async()
-
-
-@task
-def _update_daily_theme_user_counts(data, **kw):
-    task_log.info("[%s] Updating daily theme user counts for %s."
-                  % (len(data), kw['date']))
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    for pk, count in data:
-        ThemeUserCount.objects.create(addon_id=pk, count=count,
-                                      date=datetime.now())
 
 
 @cronjobs.register

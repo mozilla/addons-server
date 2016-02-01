@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -798,7 +798,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Selecione primeiro uma aplicação"
 
@@ -941,47 +941,47 @@ msgstr "Remover dos favoritos"
 msgid "Stop following"
 msgstr "Parar de seguir"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "O seu navegador não suporta a tag video"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "Introduza um novo endereço de email do autor"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "Ocorreu um erro ao enviar o seu ficheiro."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ficheiro"
 msgstr[1] "{files} ficheiros"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} análise de utilizador"
 msgstr[1] "{reviews} análises de utilizadores"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "Saber mais"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "Exemplo"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "As alterações à imagem estão a ser processadas"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "Tem de ser um endereço de email válido."
 

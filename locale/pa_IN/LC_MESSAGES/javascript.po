@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -798,7 +798,7 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
 
@@ -941,47 +941,47 @@ msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
 msgid "Stop following"
 msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
 msgstr[1] "{files} ਫਾਈਲਾਂ"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆ"
 msgstr[1] "{reviews} ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "ਉਦਾਹਰਨ"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "ਈ-ਮੇਲ ਐਡਰੈੱਸ ਸਹੀ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 

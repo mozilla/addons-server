@@ -21,6 +21,7 @@ import waffle
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
+from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -35,7 +36,7 @@ from olympia.amo.decorators import (
     post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
-from olympia.amo.utils import escape_all, log_cef, send_mail
+from olympia.amo.utils import escape_all, log_cef, send_mail, urlparams
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
 from olympia.translations.query import order_by_translation
@@ -402,10 +403,14 @@ def _login(request, template=None, data=None, dont_redirect=False):
         # certain cases, we have to make a new response object here to replace
         # the above.
 
-        if 'domain' in request.GET:
-            request.GET = get_copy
-            request = _clean_next_url(request)
-            r = http.HttpResponseRedirect(request.GET['to'])
+        request.GET = get_copy
+        request = _clean_next_url(request)
+        next_path = request.GET['to']
+        if waffle.switch_is_active('fxa-auth'):
+            if next_path == '/':
+                next_path = None
+            next_path = urlparams(reverse('users.migrate'), to=next_path)
+        r = http.HttpResponseRedirect(next_path)
 
         # Succsesful log in according to django.  Now we do our checks.  I do
         # the checks here instead of the form's clean() because I want to use
@@ -736,3 +741,14 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
     return render(request, 'users/unsubscribe.html',
                   {'unsubscribed': unsubscribed, 'email': email,
                    'perm_settings': perm_settings})
+
+
+@waffle_switch('fxa-auth')
+def migrate(request):
+    next_path = request.GET.get('to')
+    if not next_path or not is_safe_url(next_path):
+        next_path = reverse('home')
+    if not request.user.is_authenticated() or request.user.fxa_id:
+        return redirect(next_path)
+    else:
+        return render(request, 'users/fxa_migration.html', {'to': next_path})

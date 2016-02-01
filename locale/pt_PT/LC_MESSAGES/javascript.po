@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-23 21:09+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"PO-Revision-Date: 2016-01-27 15:45+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -831,7 +831,7 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
 #: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Primeiro selecione uma aplicação"
@@ -848,7 +848,7 @@ msgstr[1] ""
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "E-mail do autor do extra {2} que falhou a validação."
+msgstr[0] "Email do autor do extra {2} que falhou a validação."
 msgstr[1] "E-mail dos autores do extra {2} que falhou a validação."
 
 #. L10n: {0} is an app name like Firefox.
@@ -963,7 +963,7 @@ msgstr "Remover este utilizador como colaborador"
 
 #: static/js/zamboni/collections.js:480
 msgid "An email address is required."
-msgstr "É necessário um endereço de e-mail."
+msgstr "É necessário um endereço de email."
 
 #: static/js/zamboni/collections.js:498
 msgid "You cannot add yourself as a contributor."
@@ -985,47 +985,47 @@ msgstr "Remover dos favoritos"
 msgid "Stop following"
 msgstr "Parar o seguimento"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "O seu navegador não suporta a etiqueta de vídeo"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
-msgstr "Escreva o novo endereço de e-mail do autor"
+msgstr "Escreva o novo endereço de email do autor"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "Houve um erro ao carregar o seu ficheiro."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ficheiro"
 msgstr[1] "{files} ficheiros"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} análise do utilizador"
 msgstr[1] "{reviews} análises do utilizador"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "Saber mais"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "Exemplo"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "Alterações de imagens em processamento"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "É necessário um endereço de e-mail válido."
 

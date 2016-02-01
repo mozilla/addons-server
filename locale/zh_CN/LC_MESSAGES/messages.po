@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-21 00:50+0000\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"PO-Revision-Date: 2016-01-28 00:57+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -47,82 +47,82 @@ msgstr "实验性"
 msgid "Add to {0}"
 msgstr "添加到 {0}"
 
-#: apps/addons/forms.py:58
+#: apps/addons/forms.py:57
 msgid "This name is already in use. Please choose another."
 msgstr "这个名字已被使用，请另选一个。"
 
-#: apps/addons/forms.py:69
+#: apps/addons/forms.py:68
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
 
-#: apps/addons/forms.py:72
+#: apps/addons/forms.py:71
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "短网址不能是“%s”。请另选一个。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:91
+#: apps/addons/forms.py:90
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "无效的标签：{0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: apps/addons/forms.py:101
+#: apps/addons/forms.py:100
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "“{0}”为保留标签，不能使用。"
 
-#: apps/addons/forms.py:109
+#: apps/addons/forms.py:108
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "您的标签多出了 {0} 个。"
 
-#: apps/addons/forms.py:115
+#: apps/addons/forms.py:114
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符。"
 
-#: apps/addons/forms.py:119
+#: apps/addons/forms.py:118
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
 
-#: apps/addons/forms.py:232
+#: apps/addons/forms.py:231
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
 
 #. L10n: {0} is the number of categories.
-#: apps/addons/forms.py:236
+#: apps/addons/forms.py:235
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您只能选择 {0} 个分类。"
 
-#: apps/addons/forms.py:244
+#: apps/addons/forms.py:243
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
 msgstr "这个杂项分类不能与其他分类混用。"
 
-#: apps/addons/forms.py:367
+#: apps/addons/forms.py:366
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr "在您更改您的默认语言之前，您必须为那个语言环境输入名称、概述及描述。您目前没有输入 %s。"
 
-#: apps/addons/forms.py:481 apps/addons/forms.py:572
+#: apps/addons/forms.py:480 apps/addons/forms.py:571
 msgid "A license must be selected."
 msgstr "必须选择一种许可协议。"
 
-#: apps/addons/forms.py:553
+#: apps/addons/forms.py:552
 msgid "Give Your Theme a Name."
 msgstr "为您的主题取个名字吧。"
 
-#: apps/addons/forms.py:559
+#: apps/addons/forms.py:558
 #: apps/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
 msgstr "描述您的主题。"
 
-#: apps/addons/forms.py:700
+#: apps/addons/forms.py:699
 msgid "Enter a new author's email address"
 msgstr "输入新的作者电子邮件地址"
 
@@ -131,30 +131,30 @@ msgid "Not Reviewed"
 msgstr "尚未审核"
 
 #: apps/addons/helpers.py:34 apps/addons/views.py:317
-#: apps/addons/templates/addons/impala/details.html:117
+#: apps/addons/templates/addons/impala/details.html:114
 #: apps/addons/templates/addons/impala/listing/items.html:17
 #: apps/addons/templates/addons/mobile/home.html:40
 #: apps/amo/templates/amo/side_nav.html:6
 #: apps/amo/templates/amo/side_nav.html:10
 #: apps/amo/templates/amo/site_nav.html:2
-#: apps/amo/templates/amo/site_nav.html:53 apps/bandwagon/views.py:92
+#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:92
 #: apps/browse/views.py:55 apps/browse/views.py:69 apps/browse/views.py:236
 #: apps/browse/templates/browse/impala/category_landing.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:26
 msgid "Featured"
 msgstr "精选"
 
-#: apps/addons/models.py:305
+#: apps/addons/models.py:301
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "用户可以选择捐助多于或少于这个金额。"
 
-#: apps/addons/models.py:314
+#: apps/addons/models.py:309
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问"
 
 # Column name in a table.
-#: apps/addons/models.py:1828 apps/addons/templates/addons/details_box.html:55
+#: apps/addons/models.py:1823 apps/addons/templates/addons/details_box.html:55
 #: apps/devhub/templates/devhub/index.html:92
 #: apps/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
@@ -219,7 +219,7 @@ msgstr "查看隐私政策"
 #: apps/addons/templates/addons/button.html:87
 #: apps/addons/templates/addons/details_box.html:133
 #: apps/addons/templates/addons/mobile/button.html:28
-#: apps/discovery/templates/discovery/addons/detail.html:34
+#: apps/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
 msgstr "查看最终用户许可协议"
 
@@ -269,7 +269,7 @@ msgstr "捐助"
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #: apps/addons/templates/addons/contribution.html:34
-#: apps/addons/templates/addons/report_abuse.html:25
+#: apps/addons/templates/addons/report_abuse.html:26
 #: apps/addons/templates/addons/impala/contribution.html:32
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36
 #: apps/devhub/templates/devhub/addons/profile.html:44
@@ -413,7 +413,7 @@ msgid "Contribution made, thank you."
 msgstr "已完成捐款，谢谢您。"
 
 #: apps/addons/templates/addons/details_box.html:10
-#: apps/discovery/templates/discovery/addons/detail.html:25
+#: apps/discovery/templates/discovery/addons/detail.html:19
 msgid "No restart required"
 msgstr "无需重启"
 
@@ -434,7 +434,7 @@ msgstr "更新日期"
 #: apps/addons/templates/addons/details_box.html:38
 #: apps/addons/templates/addons/mobile/details.html:71
 #: apps/devhub/templates/devhub/addons/edit/support.html:43
-#: apps/discovery/templates/discovery/addons/detail.html:83
+#: apps/discovery/templates/discovery/addons/detail.html:77
 msgid "Website"
 msgstr "网站"
 
@@ -498,14 +498,14 @@ msgstr "报告滥用行为"
 #: apps/addons/templates/addons/privacy.html:19
 #: apps/addons/templates/addons/privacy.html:23
 #: apps/addons/templates/addons/impala/button.html:43
-#: apps/addons/templates/addons/impala/details.html:310
+#: apps/addons/templates/addons/impala/details.html:307
 #: apps/devhub/templates/devhub/includes/policy_form.html:20
 #: templates/mobile/base_addons.html:81
 msgid "Privacy Policy"
 msgstr "隐私政策"
 
 #: apps/addons/templates/addons/details_box.html:124
-#: apps/discovery/templates/discovery/addons/detail.html:30
+#: apps/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
 msgstr "查看隐私政策"
 
@@ -528,7 +528,7 @@ msgid "Developer Comments"
 msgstr "开发者注释"
 
 #: apps/addons/templates/addons/details_box.html:199
-#: apps/addons/templates/addons/impala/details.html:262
+#: apps/addons/templates/addons/impala/details.html:259
 msgid "Development Channel"
 msgstr "开发通道"
 
@@ -556,7 +556,7 @@ msgstr ""
 "审核。一旦您安装此开发版本，您将持续收到来自此开发者的开发版本的更新。如果您不想再收到此更新，请从上面的链接重新安装默认版本。"
 
 #: apps/addons/templates/addons/details_box.html:220
-#: apps/addons/templates/addons/impala/details.html:281
+#: apps/addons/templates/addons/impala/details.html:278
 msgid "Version {0}:"
 msgstr "版本 {0}："
 
@@ -579,7 +579,7 @@ msgstr "{0} 的最终用户许可协议"
 #: apps/addons/templates/addons/eula.html:17
 #: apps/addons/templates/addons/eula.html:21
 #: apps/addons/templates/addons/impala/button.html:48
-#: apps/addons/templates/addons/impala/details.html:319
+#: apps/addons/templates/addons/impala/details.html:316
 #: apps/devhub/templates/devhub/includes/policy_form.html:3
 #: apps/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
@@ -601,7 +601,7 @@ msgstr "返回 {0}…"
 # Firefox,
 # Sunbird
 #: apps/addons/templates/addons/home.html:3
-#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:235
+#: apps/addons/templates/addons/mobile/home.html:3 apps/amo/helpers.py:236
 msgid "Add-ons for {0}"
 msgstr "{0} 附加组件"
 
@@ -693,14 +693,14 @@ msgstr[0] "%(num)s 位用户"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
-#: apps/addons/templates/addons/impala/details.html:64
+#: apps/addons/templates/addons/impala/details.html:61
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} 次周下载量"
 
 #. {0} is the number of users.
 #: apps/addons/templates/addons/macros.html:61
-#: apps/addons/templates/addons/impala/details.html:57
+#: apps/addons/templates/addons/impala/details.html:54
 #: apps/compat/templates/compat/index.html:71
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
@@ -719,8 +719,8 @@ msgstr "已完成付款"
 msgid "Return to the addon."
 msgstr "返回附加组件。"
 
-#: apps/addons/templates/addons/persona_detail.html:19
-#: apps/addons/templates/addons/impala/details.html:109
+#: apps/addons/templates/addons/persona_detail.html:17
+#: apps/addons/templates/addons/impala/details.html:106
 #: apps/addons/templates/addons/mobile/details.html:23
 #: apps/addons/templates/addons/mobile/persona_detail.html:21
 #: apps/discovery/templates/discovery/addons/base.html:27
@@ -729,33 +729,32 @@ msgid "by"
 msgstr "作者："
 
 #. {0} is a category name, such as Nature
-#: apps/addons/templates/addons/persona_detail.html:34
+#: apps/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
 msgstr "其他 {0} 主题"
 
 #. {0} is a category name, such as Nature
-#: apps/addons/templates/addons/persona_detail.html:41
+#: apps/addons/templates/addons/persona_detail.html:39
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
 msgstr "查看全部 {0} 主题"
 
-#: apps/addons/templates/addons/persona_detail.html:47
+#: apps/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
 msgstr "此艺术家的更多作品"
 
-#: apps/addons/templates/addons/persona_detail.html:54
+#: apps/addons/templates/addons/persona_detail.html:52
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
 msgstr "查看本作者的全部主题"
 
-#: apps/addons/templates/addons/persona_detail.html:73
+#: apps/addons/templates/addons/persona_detail.html:71
 #: apps/addons/templates/addons/mobile/home.html:42
 #: apps/amo/templates/amo/side_nav.html:22
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:28
 #: apps/devhub/templates/devhub/addons/edit/basic.html:72
 #: apps/editors/templates/editors/review.html:277
 #: apps/editors/templates/editors/themes/themes.html:34
-#: apps/localizers/templates/localizers/sidebar.html:24
 #: templates/categories.html:7
 msgid "Categories"
 msgstr "类别"
@@ -789,7 +788,7 @@ msgid "Awaiting Review"
 msgstr "等待审核"
 
 #: apps/addons/templates/addons/persona_preview.html:14 apps/amo/log.py:180
-#: apps/constants/base.py:42 apps/editors/helpers.py:61
+#: apps/constants/base.py:42 apps/editors/helpers.py:63
 msgid "Rejected"
 msgstr "已被退回"
 
@@ -988,9 +987,9 @@ msgstr ""
 "码扫描器。如果您的手机上没有，请在您的手机的应用市场里搜索。）"
 
 #: apps/addons/templates/addons/report_abuse.html:6
-#: apps/addons/templates/addons/report_abuse_full.html:11
+#: apps/addons/templates/addons/report_abuse_full.html:10
 #: apps/addons/templates/addons/impala/details-more.html:23
-#: apps/addons/templates/addons/impala/details.html:331
+#: apps/addons/templates/addons/impala/details.html:328
 msgid "Report Abuse"
 msgstr "报告滥用"
 
@@ -1003,12 +1002,12 @@ msgstr ""
 "如果您怀疑此附加组件违反<a "
 "href=\"%(url)s\">我们的政策</a>或有安全、隐私方面的问题，请在下面的表单中叙述您的疑虑。请不要将此表单用作其他用途。"
 
-#: apps/addons/templates/addons/report_abuse.html:23
-#: apps/users/templates/users/report_abuse.html:18
+#: apps/addons/templates/addons/report_abuse.html:24
+#: apps/users/templates/users/report_abuse.html:19
 msgid "Send Report"
 msgstr "发送报告"
 
-#: apps/addons/templates/addons/report_abuse.html:25
+#: apps/addons/templates/addons/report_abuse.html:26
 #: apps/addons/templates/addons/mobile/eula.html:16
 #: apps/addons/templates/addons/mobile/persona_confirm.html:7
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:36
@@ -1027,7 +1026,6 @@ msgstr "发送报告"
 #: apps/devhub/templates/devhub/versions/list.html:242
 #: apps/devhub/templates/devhub/versions/list.html:276
 #: apps/devhub/templates/devhub/versions/list.html:317
-#: apps/localizers/templates/localizers/sidebar_motd.html:9
 #: apps/reviews/templates/reviews/edit_review.html:16
 #: apps/translations/templates/translations/trans-menu.html:50
 #: apps/translations/templates/translations/trans-menu.html:62
@@ -1095,7 +1093,7 @@ msgstr "评价撰写指南"
 
 #: apps/addons/templates/addons/review_list_box.html:5
 #: apps/addons/templates/addons/impala/details-more.html:27
-#: apps/editors/helpers.py:916 apps/reviews/templates/reviews/add.html:14
+#: apps/editors/helpers.py:922 apps/reviews/templates/reviews/add.html:14
 #: apps/reviews/templates/reviews/reply.html:14
 #: apps/reviews/templates/reviews/review_list.html:19
 #: apps/reviews/templates/reviews/mobile/review_list.html:26
@@ -1197,104 +1195,104 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "%(author)s 的其他附加组件"
 
-#: apps/addons/templates/addons/impala/details.html:44
+#: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> 条用户评价"
 
-#: apps/addons/templates/addons/impala/details.html:72
+#: apps/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
 msgstr "查看统计数据"
 
-#: apps/addons/templates/addons/impala/details.html:87
+#: apps/addons/templates/addons/impala/details.html:84
 msgid "Manage"
 msgstr "管理"
 
 #. {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:99
+#: apps/addons/templates/addons/impala/details.html:96
 msgid "Icon of {0}"
 msgstr "{0} 的图标"
 
-#: apps/addons/templates/addons/impala/details.html:106
+#: apps/addons/templates/addons/impala/details.html:103
 #: apps/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
 msgstr "无需重启"
 
-#: apps/addons/templates/addons/impala/details.html:130
+#: apps/addons/templates/addons/impala/details.html:127
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "结识开发者：<a href=\"%(url)s\">%(name)s</a>"
 
 # {0} is an add-on name.
-#: apps/addons/templates/addons/impala/details.html:140
+#: apps/addons/templates/addons/impala/details.html:137
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr "了解开发 {0} 的缘由和这个附加组件的下一步计划。"
 
 #. {0} is an index.
-#: apps/addons/templates/addons/impala/details.html:159
+#: apps/addons/templates/addons/impala/details.html:156
 msgid "Add-on screenshot #{0}"
 msgstr "附加组件截图 #{0}"
 
-#: apps/addons/templates/addons/impala/details.html:185
+#: apps/addons/templates/addons/impala/details.html:182
 msgid "Add-on home page"
 msgstr "附加组件主页"
 
-#: apps/addons/templates/addons/impala/details.html:188
+#: apps/addons/templates/addons/impala/details.html:185
 msgid "Support site"
 msgstr "用户支持网站"
 
-#: apps/addons/templates/addons/impala/details.html:192
+#: apps/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
 msgstr "用户支持邮箱"
 
-#: apps/addons/templates/addons/impala/details.html:197
+#: apps/addons/templates/addons/impala/details.html:194
 #: apps/devhub/models.py:377
 msgid "Version {0}"
 msgstr "版本 {0}"
 
-#: apps/addons/templates/addons/impala/details.html:197
+#: apps/addons/templates/addons/impala/details.html:194
 msgid "Info"
 msgstr "信息"
 
-#: apps/addons/templates/addons/impala/details.html:198
+#: apps/addons/templates/addons/impala/details.html:195
 #: apps/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
 msgstr "最近更新："
 
-#: apps/addons/templates/addons/impala/details.html:203
+#: apps/addons/templates/addons/impala/details.html:200
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr "在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
 
-#: apps/addons/templates/addons/impala/details.html:204
-#: apps/addons/templates/addons/impala/details.html:209
-#: apps/amo/helpers.py:387 apps/devhub/forms.py:142 apps/devhub/forms.py:173
+#: apps/addons/templates/addons/impala/details.html:201
+#: apps/addons/templates/addons/impala/details.html:206
+#: apps/amo/helpers.py:399 apps/devhub/forms.py:142 apps/devhub/forms.py:173
 #: apps/versions/templates/versions/version.html:40
 #: apps/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "自定义许可协议"
 
-#: apps/addons/templates/addons/impala/details.html:208
+#: apps/addons/templates/addons/impala/details.html:205
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "在 <a href=\"%(url)s\">%(name)s</a> 下发布"
 
-#: apps/addons/templates/addons/impala/details.html:220
+#: apps/addons/templates/addons/impala/details.html:217
 msgid "About this Add-on"
 msgstr "关于这个附加组件"
 
-#: apps/addons/templates/addons/impala/details.html:236
+#: apps/addons/templates/addons/impala/details.html:233
 msgid "Developer’s Comments"
 msgstr "开发者的注明"
 
-#: apps/addons/templates/addons/impala/details.html:246
+#: apps/addons/templates/addons/impala/details.html:243
 msgid "Version Information"
 msgstr "版本信息"
 
-#: apps/addons/templates/addons/impala/details.html:253
+#: apps/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
 msgstr "查看完整的版本历史"
 
 # 本项译文为用户“wenke”提交，因操作方面的原因导致用户名记录为我的名下，致歉。
-#: apps/addons/templates/addons/impala/details.html:265
+#: apps/addons/templates/addons/impala/details.html:262
 msgid ""
 "The Development Channel lets you test an experimental new version of this "
 "add-on before it's released to the general public. Once you install the "
@@ -1304,24 +1302,24 @@ msgid ""
 msgstr ""
 "在此附加组件发布给所有公众之前，您可以通过开发通道测试此附加组件的实验性新版本。一旦您安装开发版，您就会持续得到来自这个通道的更新。要停止接受开发版的更新，请从上面的链接重新安装默认版。"
 
-#: apps/addons/templates/addons/impala/details.html:275
+#: apps/addons/templates/addons/impala/details.html:272
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr "<strong>注意：</strong>此附加组件的开发版本尚未经过 Mozilla 审核。"
 
-#: apps/addons/templates/addons/impala/details.html:290
+#: apps/addons/templates/addons/impala/details.html:287
 msgid "See complete development channel history"
 msgstr "查看完整的开发通道历史记录"
 
-#: apps/addons/templates/addons/impala/details.html:309
-#: apps/addons/templates/addons/impala/details.html:318
-#: apps/addons/templates/addons/impala/details.html:330
+#: apps/addons/templates/addons/impala/details.html:306
+#: apps/addons/templates/addons/impala/details.html:315
+#: apps/addons/templates/addons/impala/details.html:327
 #: apps/addons/templates/addons/impala/review_add_box.html:4
 #: apps/stats/templates/stats/popup.html:2
 #: apps/stats/templates/stats/popup.html:8
 #: apps/stats/templates/stats/stats.html:202
-#: apps/users/templates/users/profile.html:120
+#: apps/users/templates/users/profile.html:119
 msgid "close"
 msgstr "关闭"
 
@@ -1359,7 +1357,7 @@ msgstr[0] "关于开发者"
 
 #: apps/addons/templates/addons/impala/developers.html:96
 #: apps/users/templates/users/edit.html:118
-#: apps/users/templates/users/profile.html:27
+#: apps/users/templates/users/profile.html:26
 msgid "No Photo"
 msgstr "无照片"
 
@@ -1555,14 +1553,14 @@ msgstr ""
 msgid "Return to the {0} Add-ons homepage"
 msgstr "返回 {0} 附加组件主页"
 
-#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:237
+#: apps/addons/templates/addons/mobile/home.html:21 apps/amo/helpers.py:238
 #: apps/bandwagon/templates/bandwagon/edit.html:34
 #: apps/discovery/templates/discovery/pane.html:92
 #: apps/editors/templates/editors/base.html:21
 #: apps/editors/templates/editors/performance.html:72
-#: templates/menu_links.html:4 templates/impala/header_title.html:9
-#: templates/impala/header_title.html:11 templates/impala/header_title.html:15
-#: templates/impala/header_title.html:19 templates/mobile/base_addons.html:43
+#: templates/menu_links.html:4 templates/impala/header_title.html:13
+#: templates/impala/header_title.html:15 templates/impala/header_title.html:19
+#: templates/impala/header_title.html:23 templates/mobile/base_addons.html:43
 msgid "Add-ons"
 msgstr "附加组件"
 
@@ -1573,7 +1571,7 @@ msgstr "简单的个性化方式。"
 #: apps/addons/templates/addons/mobile/home.html:24
 #: apps/devhub/templates/devhub/addons/submit/done.html:47
 #: apps/discovery/templates/discovery/pane.html:34
-#: apps/discovery/templates/discovery/addons/detail.html:22
+#: apps/discovery/templates/discovery/addons/detail.html:16
 #: apps/discovery/templates/discovery/modules/featured.html:21
 #: apps/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
@@ -1603,7 +1601,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:19
 #: apps/constants/base.py:180
 #: apps/devhub/templates/devhub/personas/submit.html:13
-#: apps/editors/helpers.py:104 apps/editors/templates/editors/base.html:26
+#: apps/editors/helpers.py:106 apps/editors/templates/editors/base.html:26
 #: apps/editors/templates/editors/performance.html:73
 #: apps/search/templates/search/personas.html:39 templates/menu_links.html:9
 msgid "Themes"
@@ -1630,7 +1628,7 @@ msgstr "最受好评"
 #: apps/addons/templates/addons/mobile/home.html:74
 #: apps/amo/templates/amo/side_nav.html:5
 #: apps/amo/templates/amo/site_nav.html:27
-#: apps/amo/templates/amo/site_nav.html:55 apps/bandwagon/views.py:94
+#: apps/amo/templates/amo/site_nav.html:57 apps/bandwagon/views.py:94
 #: apps/browse/views.py:58 apps/browse/views.py:68
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:65
 #: apps/search/forms.py:15 apps/search/forms.py:87
@@ -1662,7 +1660,7 @@ msgstr "账户设置"
 
 #: apps/amo/context_processors.py:59
 #: apps/discovery/templates/discovery/pane_account.html:11
-#: apps/users/templates/users/profile.html:84
+#: apps/users/templates/users/profile.html:83
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
 msgstr "我的收藏集"
@@ -1697,7 +1695,7 @@ msgstr "提交新的附加组件"
 msgid "Submit a New Theme"
 msgstr "提交一个新主题"
 
-#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:85
+#: apps/amo/context_processors.py:81 apps/amo/templates/amo/site_nav.html:87
 #: apps/devhub/helpers.py:36 apps/devhub/helpers.py:68
 #: apps/devhub/helpers.py:102 templates/footer.html:6
 #: templates/menu_links.html:14
@@ -1708,28 +1706,32 @@ msgstr "开发者中心"
 msgid "Manage API Keys"
 msgstr "管理 API 密钥"
 
-#: apps/amo/context_processors.py:90 apps/editors/helpers.py:81
-#: apps/editors/helpers.py:101 apps/editors/templates/editors/base.html:10
+#: apps/amo/context_processors.py:90 apps/editors/helpers.py:83
+#: apps/editors/helpers.py:103 apps/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "审核员工具"
 
-#: apps/amo/context_processors.py:93
-msgid "Localizer Tools"
-msgstr "本地化人员工具"
-
-#: apps/amo/context_processors.py:97
+#: apps/amo/context_processors.py:94
 msgid "Admin Tools"
 msgstr "管理工具"
 
-#: apps/amo/fields.py:72
+#: apps/amo/fields.py:15
+msgid "Incorrect, please try again."
+msgstr "不正确，请重试。"
+
+#: apps/amo/fields.py:16
+msgid "Error verifying input, please try again."
+msgstr "验证输入出错，请重试。"
+
+#: apps/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "这里必须是一个有效的十六进制颜色代码，例如 #000000。"
 
-#: apps/amo/fields.py:98
+#: apps/amo/fields.py:58
 msgid "Enter at least one value."
 msgstr "至少输入一个值。"
 
-#: apps/amo/helpers.py:162 apps/amo/templates/amo/site_nav.html:59
+#: apps/amo/helpers.py:163 apps/amo/templates/amo/site_nav.html:61
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:15
 #: apps/bandwagon/templates/bandwagon/delete.html:9
@@ -1746,13 +1748,13 @@ msgstr "至少输入一个值。"
 msgid "Collections"
 msgstr "收藏集"
 
-#: apps/amo/helpers.py:171 apps/amo/templates/amo/site_nav.html:83
+#: apps/amo/helpers.py:172 apps/amo/templates/amo/site_nav.html:85
 #: apps/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
 msgstr "字典及语言包"
 
 #. L10n: relative time in the past, like '4 days ago'
-#: apps/amo/helpers.py:417
+#: apps/amo/helpers.py:429
 msgid "{0} ago"
 msgstr "{0} 前"
 
@@ -1902,7 +1904,7 @@ msgstr "对 {addon} {version} 的评论。"
 #: apps/amo/log.py:236
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:47
-#: apps/editors/helpers.py:506
+#: apps/editors/helpers.py:512
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "评论"
@@ -2263,7 +2265,7 @@ msgstr "上一页"
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:91
 #: apps/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: apps/discovery/templates/discovery/pane.html:45
-#: apps/discovery/templates/discovery/addons/detail.html:45
+#: apps/discovery/templates/discovery/addons/detail.html:39
 #: apps/stats/templates/stats/stats.html:167
 msgid "Next"
 msgstr "下一页"
@@ -2333,43 +2335,43 @@ msgstr "浏览"
 msgid "Extensions"
 msgstr "扩展"
 
-#: apps/amo/templates/amo/site_nav.html:44
+#: apps/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "想要更强定制性？尝试<b>完整主题</b>"
 
-#: apps/amo/templates/amo/site_nav.html:54 apps/bandwagon/views.py:93
+#: apps/amo/templates/amo/site_nav.html:56 apps/bandwagon/views.py:93
 msgid "Most Followers"
 msgstr "最多关注者"
 
-#: apps/amo/templates/amo/site_nav.html:66
+#: apps/amo/templates/amo/site_nav.html:68
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
 msgstr "我建立的收藏集"
 
-#: apps/amo/templates/amo/site_nav.html:68
+#: apps/amo/templates/amo/site_nav.html:70
 #: apps/bandwagon/templates/bandwagon/user_listing.html:4
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
 msgstr "我关注的收藏集"
 
-#: apps/amo/templates/amo/site_nav.html:71
+#: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:501
+#: apps/users/models.py:499
 msgid "My Favorite Add-ons"
 msgstr "我收藏的附加组件"
 
-#: apps/amo/templates/amo/site_nav.html:76
+#: apps/amo/templates/amo/site_nav.html:78
 msgid "More&hellip;"
 msgstr "更多 &hellip;"
 
-#: apps/amo/templates/amo/site_nav.html:80
+#: apps/amo/templates/amo/site_nav.html:82
 msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
 
-#: apps/amo/templates/amo/site_nav.html:84 apps/browse/feeds.py:207
+#: apps/amo/templates/amo/site_nav.html:86 apps/browse/feeds.py:207
 #: apps/browse/templates/browse/search_tools.html:3 apps/constants/base.py:176
 #: templates/menu_links.html:10
 msgid "Search Tools"
@@ -2393,7 +2395,7 @@ msgstr "转到第一页"
 #: apps/amo/templates/amo/impala/paginator.html:22
 #: apps/amo/templates/amo/mobile/impala_paginator.html:12
 #: apps/discovery/templates/discovery/pane.html:44
-#: apps/discovery/templates/discovery/addons/detail.html:44
+#: apps/discovery/templates/discovery/addons/detail.html:38
 #: apps/stats/templates/stats/stats.html:164
 msgid "Previous"
 msgstr "上一页"
@@ -2606,7 +2608,7 @@ msgstr "请不要填写此字段，它用于抓捕机器人"
 msgid "This name cannot be used."
 msgstr "不能使用这个名字。"
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:432
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
 
@@ -2619,7 +2621,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:423
+#: apps/users/forms.py:438
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
 
@@ -2750,12 +2752,12 @@ msgid "To rate collections, you must have an add-ons account."
 msgstr "您必须有一个附加组件账户才能对收藏集评分。"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:18
-#: templates/base.html:136 templates/impala/base.html:191
+#: templates/base.html:145 templates/impala/base.html:197
 msgid "Create an Add-ons Account"
 msgstr "创建附加组件账户"
 
 #: apps/bandwagon/templates/bandwagon/barometer.html:21
-#: templates/base.html:139 templates/impala/base.html:194
+#: templates/base.html:148 templates/impala/base.html:200
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "或者<a href=\"%(login)s\">登录您已有的账户</a>"
 
@@ -2819,9 +2821,8 @@ msgstr[0] "此收藏集中有 %(num)s 个附加组件"
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:125
 #: apps/compat/templates/compat/index.html:25
 #: apps/compat/templates/compat/reporter_detail.html:29
-#: apps/files/templates/files/viewer.html:29
-#: apps/localizers/templates/localizers/locale_switcher.html:9
-#: templates/amo_footer.html:17 templates/includes/lang_switcher.html:10
+#: apps/files/templates/files/viewer.html:29 templates/amo_footer.html:17
+#: templates/includes/lang_switcher.html:10
 msgid "Go"
 msgstr "转到"
 
@@ -3091,7 +3092,7 @@ msgstr "<b>警告：</b>改变此收藏集的所有者后您就不能再编辑�
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
-#: apps/users/templates/users/login_form.html:41
+#: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "继续"
 
@@ -3173,7 +3174,6 @@ msgid "PNG and JPG supported. Image will be resized to 32x32."
 msgstr "支持 PNG 和 JPG。图像将被缩放为 32x32。"
 
 #: apps/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-#: apps/localizers/templates/localizers/categories.html:19
 msgid "There are errors in this form. Please correct them below."
 msgstr "此表单中有错误，请更正以下内容。"
 
@@ -3204,7 +3204,7 @@ msgid "Add to Collection"
 msgstr "添加到收藏集"
 
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: apps/editors/helpers.py:931 apps/editors/helpers.py:951
+#: apps/editors/helpers.py:937 apps/editors/helpers.py:957
 msgid "Pending"
 msgstr "等待中"
 
@@ -3334,7 +3334,7 @@ msgid "Up & Coming"
 msgstr "崭露头角"
 
 #: apps/browse/views.py:461 apps/devhub/views.py:76 apps/devhub/views.py:83
-#: apps/discovery/templates/discovery/addons/detail.html:72
+#: apps/discovery/templates/discovery/addons/detail.html:66
 msgid "Created"
 msgstr "创建日期"
 
@@ -3345,7 +3345,7 @@ msgid "Downloads"
 msgstr "下载次数"
 
 #: apps/browse/views.py:463 apps/devhub/views.py:78 apps/devhub/views.py:85
-#: apps/discovery/templates/discovery/addons/detail.html:63
+#: apps/discovery/templates/discovery/addons/detail.html:57
 #: apps/reviews/forms.py:62 apps/reviews/templates/reviews/add.html:57
 #: apps/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
@@ -3766,7 +3766,7 @@ msgid_plural "{0} problem reports"
 msgstr[0] "{0} 个问题报告"
 
 #: apps/compat/templates/compat/reporter_detail.html:21
-#: apps/users/templates/users/profile.html:71
+#: apps/users/templates/users/profile.html:70
 msgid "View all"
 msgstr "查看所有"
 
@@ -3886,7 +3886,7 @@ msgstr "已初步审核"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "已初步审核并等待全面审核"
 
-#: apps/constants/base.py:33 apps/editors/helpers.py:919
+#: apps/constants/base.py:33 apps/editors/helpers.py:925
 #: apps/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "已删除"
@@ -4126,15 +4126,15 @@ msgstr "第8级"
 msgid "Level 9"
 msgstr "第9级"
 
-#: apps/constants/base.py:519
+#: apps/constants/base.py:523
 msgid "Not signed"
 msgstr "未签名"
 
-#: apps/constants/base.py:520
+#: apps/constants/base.py:524
 msgid "Signed for a full review"
 msgstr "已签名为全面审核"
 
-#: apps/constants/base.py:521
+#: apps/constants/base.py:525
 msgid "Signed of a preliminary review"
 msgstr "已签名为初步审核"
 
@@ -4156,7 +4156,7 @@ msgstr "标记"
 msgid "Duplicate"
 msgstr "重复"
 
-#: apps/constants/editors.py:17 apps/editors/helpers.py:497
+#: apps/constants/editors.py:17 apps/editors/helpers.py:503
 #: apps/editors/templates/editors/themes/queue.html:71
 #: apps/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
@@ -4612,7 +4612,7 @@ msgstr "检查附加组件兼容性"
 msgid "You cannot submit this type of add-on"
 msgstr "您不能提交此类型的附加组件"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:418
+#: apps/devhub/views.py:1046 apps/users/forms.py:433
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
@@ -5049,8 +5049,8 @@ msgstr "添加其他应用程序&hellip;"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:45
 #: apps/devhub/templates/devhub/versions/list.html:351
 #: apps/devhub/templates/devhub/versions/list.html:353
-#: templates/impala/base.html:125 templates/impala/base.html:136
-#: templates/impala/base.html:154 templates/impala/base.html:164
+#: templates/impala/base.html:131 templates/impala/base.html:142
+#: templates/impala/base.html:160 templates/impala/base.html:170
 msgid "Close"
 msgstr "关闭"
 
@@ -5080,7 +5080,6 @@ msgstr "编辑信息"
 
 #: apps/devhub/templates/devhub/addons/edit.html:13
 #: apps/devhub/templates/devhub/includes/macros.html:18
-#: apps/localizers/templates/localizers/categories.html:27
 #: apps/translations/templates/translations/all-locales.html:6
 msgid "None"
 msgstr "无"
@@ -5257,8 +5256,8 @@ msgid ""
 msgstr "您的附加组件的相关信息将以此语系的内容显示，并且您可以对其他特定语系填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:282 apps/users/templates/users/edit.html:110
-#: apps/users/templates/users/register.html:58
+#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "主页"
@@ -5559,8 +5558,9 @@ msgid "Delete Theme"
 msgstr "删除主题"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:2
-msgid "Delete Add-on and block GUID"
-msgstr "删除附加组件并屏蔽 GUID"
+#: apps/devhub/templates/devhub/versions/list.html:117
+msgid "Delete Add-on"
+msgstr "删除附加组件"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
@@ -5569,8 +5569,8 @@ msgstr "删除主题将会从网站上永久移除他。"
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:14
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
-"its GUID from being submitted again, even by you."
-msgstr "删除您的附加组件将使其永久从本网站上移除，并且阻止其 GUID 被再次提交，包括您的重新提交。"
+"its GUID from being submitted again by others."
+msgstr "删除您的附加组件将使其永久从本网站上移除，并且阻止其 GUID 被其他人重新提交。"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter your password to confirm your decision:"
@@ -8108,10 +8108,6 @@ msgid ""
 "distribute the add-ons on their own. (beta)"
 msgstr "不在 {0} 上发行。开发者将上传新的版本进行签名，然后自行在自己的渠道分发该附加组件。（测试版功能）"
 
-#: apps/devhub/templates/devhub/versions/list.html:117
-msgid "Delete Add-on"
-msgstr "删除附加组件"
-
 #: apps/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
 msgstr "当前版本"
@@ -8516,11 +8512,11 @@ msgstr "感谢您使用 %(app)s 并支持 <a href=\"%(url)s\">Mozilla 的使命<
 msgid "Add-ons downloaded:"
 msgstr "附加组件总下载次数："
 
-#: apps/discovery/templates/discovery/addons/detail.html:67
+#: apps/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
 msgstr "活跃用户"
 
-#: apps/discovery/templates/discovery/addons/detail.html:76
+#: apps/discovery/templates/discovery/addons/detail.html:70
 msgid "Last Updated"
 msgstr "最后更新"
 
@@ -8664,7 +8660,7 @@ msgstr "已等待天数"
 msgid "Add-on Types"
 msgstr "附加组件类型"
 
-#: apps/editors/forms.py:126 apps/editors/helpers.py:266
+#: apps/editors/forms.py:126 apps/editors/helpers.py:268
 msgid "Platforms"
 msgstr "平台"
 
@@ -8717,201 +8713,200 @@ msgstr "其他人正在审核这个主题。"
 msgid "app, reviewer, or comment"
 msgstr "应用，审核者或评论"
 
-#: apps/editors/helpers.py:50 apps/editors/helpers.py:58
+#: apps/editors/helpers.py:52 apps/editors/helpers.py:60
 msgid "Pending Full Review"
 msgstr "等待全面审核"
 
-#: apps/editors/helpers.py:52
+#: apps/editors/helpers.py:54
 msgid "Pending Preliminary Review"
 msgstr "等待初步审核"
 
-#: apps/editors/helpers.py:65
+#: apps/editors/helpers.py:67
 msgid "Rejected or Unreviewed"
 msgstr "已拒绝或未审核"
 
-#: apps/editors/helpers.py:122 apps/editors/helpers.py:135
+#: apps/editors/helpers.py:124 apps/editors/helpers.py:137
 msgid "Queue"
 msgstr "队列"
 
-#: apps/editors/helpers.py:123 apps/editors/templates/editors/base.html:50
+#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:50
 #: apps/editors/templates/editors/base.html:65
 msgid "Pending Updates"
 msgstr "等待更新"
 
-#: apps/editors/helpers.py:124 apps/editors/templates/editors/base.html:48
+#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:48
 #: apps/editors/templates/editors/base.html:63
 msgid "Full Reviews"
 msgstr "全面审核"
 
-#: apps/editors/helpers.py:125 apps/editors/templates/editors/base.html:52
+#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:52
 #: apps/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
 msgstr "初步审核"
 
-#: apps/editors/helpers.py:126 apps/editors/templates/editors/base.html:54
+#: apps/editors/helpers.py:128 apps/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
 msgstr "提请仲裁的评论"
 
-#: apps/editors/helpers.py:127 apps/editors/templates/editors/base.html:46
+#: apps/editors/helpers.py:129 apps/editors/templates/editors/base.html:46
 msgid "Fast Track"
 msgstr "快速审核"
 
-#: apps/editors/helpers.py:129
+#: apps/editors/helpers.py:131
 msgid "Pending Themes"
 msgstr "待定主题"
 
-#: apps/editors/helpers.py:130
+#: apps/editors/helpers.py:132
 #: apps/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
 msgstr "已标记的主题"
 
-#: apps/editors/helpers.py:131
+#: apps/editors/helpers.py:133
 msgid "Update Themes"
 msgstr "更新主题"
 
-#: apps/editors/helpers.py:136
+#: apps/editors/helpers.py:138
 msgid "Unlisted Pending Updates"
 msgstr "未上架的待定更新"
 
-#: apps/editors/helpers.py:137
+#: apps/editors/helpers.py:139
 msgid "Unlisted Full Reviews"
 msgstr "未上架的全面审核"
 
-#: apps/editors/helpers.py:138
+#: apps/editors/helpers.py:140
 msgid "Unlisted Preliminary Reviews"
 msgstr "未上架的初步审核"
 
-#: apps/editors/helpers.py:169
+#: apps/editors/helpers.py:171
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "快速审核（{0}）"
 
-#: apps/editors/helpers.py:174
+#: apps/editors/helpers.py:176
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "全面审核（{0}）"
 
-#: apps/editors/helpers.py:179
+#: apps/editors/helpers.py:181
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "等待更新（{0}）"
 
-#: apps/editors/helpers.py:184
+#: apps/editors/helpers.py:186
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "初步审核（{0}）"
 
-#: apps/editors/helpers.py:189
+#: apps/editors/helpers.py:191
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "提请仲裁的评论（{0}）"
 
-#: apps/editors/helpers.py:195
+#: apps/editors/helpers.py:197
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "未上架的全面审核 ({0})"
 
-#: apps/editors/helpers.py:200
+#: apps/editors/helpers.py:202
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "未上架的待定更新 ({0})"
 
-#: apps/editors/helpers.py:205
+#: apps/editors/helpers.py:207
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "未上架的初步审核 ({0})"
 
-#: apps/editors/helpers.py:260
+#: apps/editors/helpers.py:262
 msgid "Addon"
 msgstr "附加组件"
 
-#: apps/editors/helpers.py:261
-#: apps/localizers/templates/localizers/categories.html:35
+#: apps/editors/helpers.py:263
 msgid "Type"
 msgstr "类型"
 
-#: apps/editors/helpers.py:262
+#: apps/editors/helpers.py:264
 msgid "Waiting Time"
 msgstr "等待时间"
 
-#: apps/editors/helpers.py:263 apps/editors/templates/editors/review.html:285
+#: apps/editors/helpers.py:265 apps/editors/templates/editors/review.html:285
 msgid "Flags"
 msgstr "标记"
 
-#: apps/editors/helpers.py:264
+#: apps/editors/helpers.py:266
 msgid "Applications"
 msgstr "应用程序"
 
-#: apps/editors/helpers.py:269
+#: apps/editors/helpers.py:271
 msgid "Additional"
 msgstr "额外信息"
 
-#: apps/editors/helpers.py:284
+#: apps/editors/helpers.py:286
 msgid "Site Specific"
 msgstr "特定网站"
 
-#: apps/editors/helpers.py:286
+#: apps/editors/helpers.py:288
 msgid "Requires External Software"
 msgstr "需要外部软件"
 
-#: apps/editors/helpers.py:288
+#: apps/editors/helpers.py:290
 msgid "Binary Components"
 msgstr "二进制组件"
 
-#: apps/editors/helpers.py:312
+#: apps/editors/helpers.py:314
 msgid "moments ago"
 msgstr "刚刚"
 
 #. L10n: first argument is number of minutes
-#: apps/editors/helpers.py:315
+#: apps/editors/helpers.py:317
 msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} 分钟"
 
 #. L10n: first argument is number of hours
-#: apps/editors/helpers.py:319
+#: apps/editors/helpers.py:321
 msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} 小时"
 
 #. L10n: first argument is number of days
-#: apps/editors/helpers.py:323
+#: apps/editors/helpers.py:325
 msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#: apps/editors/helpers.py:483
+#: apps/editors/helpers.py:489
 msgid "Push to public"
 msgstr "发布为公开"
 
-#: apps/editors/helpers.py:485
+#: apps/editors/helpers.py:491
 msgid "Grant full review"
 msgstr "通过全面审核"
 
-#: apps/editors/helpers.py:500
+#: apps/editors/helpers.py:506
 msgid "Request more information"
 msgstr "要求更多信息"
 
-#: apps/editors/helpers.py:503
+#: apps/editors/helpers.py:509
 msgid "Request super-review"
 msgstr "要求超级审核"
 
-#: apps/editors/helpers.py:514
+#: apps/editors/helpers.py:520
 msgid "Grant preliminary review"
 msgstr "批准通过初步审核"
 
-#: apps/editors/helpers.py:515
+#: apps/editors/helpers.py:521
 msgid "This will mark the files as preliminarily reviewed."
 msgstr "这将会把该文件标记为“已通过初步审核”。"
 
-#: apps/editors/helpers.py:517
+#: apps/editors/helpers.py:523
 msgid ""
 "Use this form to request more information from the author. They will receive"
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr "使用此表单向作者要求更多信息。他们会收到电子邮件通知，而且可以在此回复。当他们回复时您会收到通知。"
 
-#: apps/editors/helpers.py:521
+#: apps/editors/helpers.py:527
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or "
 "other concerns that an administrator should look into, enter your comments "
@@ -8919,67 +8914,67 @@ msgid ""
 msgstr ""
 "如果您担心此附加组件可能有安全隐患、著作权争议或者有其他需要管理员深入调查的事项，请在下方输入您的意见。意见将会发送给管理员，而不会发送给作者。"
 
-#: apps/editors/helpers.py:527
+#: apps/editors/helpers.py:533
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr "这将会退回附加组件并从审核队列中移除。"
 
-#: apps/editors/helpers.py:529
+#: apps/editors/helpers.py:535
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr "对此版本提出意见。作者不会看到。"
 
-#: apps/editors/helpers.py:533
+#: apps/editors/helpers.py:539
 msgid "This will reject the files and remove them from the review queue."
 msgstr "这将会退回文件并从审核队列中移除。"
 
-#: apps/editors/helpers.py:537
+#: apps/editors/helpers.py:543
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr "这将会标记附加组件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:542
+#: apps/editors/helpers.py:548
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr "这将会标记文件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:547
+#: apps/editors/helpers.py:553
 msgid "Retain preliminary review"
 msgstr "保留初步审核"
 
-#: apps/editors/helpers.py:548
+#: apps/editors/helpers.py:554
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr "这将会保留附加组件为已通过初步审核。未来的版本仍需要进行初步审核。"
 
-#: apps/editors/helpers.py:553
+#: apps/editors/helpers.py:559
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr "这将会批准一个公开附加组件的沙盒版本并显示在公开区域。"
 
-#: apps/editors/helpers.py:556
+#: apps/editors/helpers.py:562
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr "这将退回一个公开附加组件的一个版本并从审核队列中移除。"
 
-#: apps/editors/helpers.py:559
+#: apps/editors/helpers.py:565
 msgid ""
 "This will mark the add-on and its most recent version and files as public. "
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr "这将会标记附加组件及其最新版本和文件为公开。未来的版本将会放入沙盒中等待审核员审核。"
 
-#: apps/editors/helpers.py:632
+#: apps/editors/helpers.py:638
 msgid "add-on"
 msgstr "附加组件"
 
-#: apps/editors/helpers.py:935 apps/editors/helpers.py:955
+#: apps/editors/helpers.py:941 apps/editors/helpers.py:961
 msgid "Flagged"
 msgstr "已标记"
 
-#: apps/editors/helpers.py:939 apps/editors/helpers.py:958
+#: apps/editors/helpers.py:945 apps/editors/helpers.py:964
 msgid "Updates"
 msgstr "更新"
 
@@ -9031,56 +9026,56 @@ msgstr "主题提交标记供审核"
 msgid "A question about your Theme submission"
 msgstr "您提交的主题的一个问题"
 
-#: apps/editors/views.py:143
+#: apps/editors/views.py:148
 msgid "New Add-ons (Under 5 days)"
 msgstr "新附加组件（五天内）"
 
-#: apps/editors/views.py:144
+#: apps/editors/views.py:149
 msgid "Passable (5 to 10 days)"
 msgstr "可通过（五至十天）"
 
-#: apps/editors/views.py:145
+#: apps/editors/views.py:150
 msgid "Overdue (Over 10 days)"
 msgstr "逾期（超过十天）"
 
-#: apps/editors/views.py:514
+#: apps/editors/views.py:536
 msgid "An unknown error occurred"
 msgstr "发生未知错误"
 
-#: apps/editors/views.py:567
+#: apps/editors/views.py:589
 msgid "Self-reviews are not allowed."
 msgstr "不允许自我审核。"
 
-#: apps/editors/views.py:589
+#: apps/editors/views.py:611
 msgid "Review successfully processed."
 msgstr "审核处理成功。"
 
-#: apps/editors/views.py:787
+#: apps/editors/views.py:809
 msgid "was approved"
 msgstr "已通过审核"
 
-#: apps/editors/views.py:788
+#: apps/editors/views.py:810
 msgid "given preliminary review"
 msgstr "已给予初步审核"
 
-#: apps/editors/views.py:789
+#: apps/editors/views.py:811
 msgid "rejected"
 msgstr "已拒绝"
 
-#: apps/editors/views.py:790
+#: apps/editors/views.py:812
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "已向上呈报"
 
-#: apps/editors/views.py:792
+#: apps/editors/views.py:814
 msgid "needs more information"
 msgstr "需要更多信息"
 
-#: apps/editors/views.py:793
+#: apps/editors/views.py:815
 msgid "needs super review"
 msgstr "需要超级审核"
 
-#: apps/editors/views.py:794
+#: apps/editors/views.py:816
 msgid "commented"
 msgstr "已留言"
 
@@ -9853,33 +9848,33 @@ msgstr "无效的压缩文件。"
 msgid "Could not parse install.rdf."
 msgstr "无法解析 install.rdf。"
 
-#: apps/files/utils.py:546
+#: apps/files/utils.py:551
 msgid "Could not find an add-on ID."
 msgstr "无法找到附加组件 ID。"
 
-#: apps/files/utils.py:549
+#: apps/files/utils.py:554
 msgid "Add-on ID must be 64 characters or less."
 msgstr "附加组件 ID 必须少于或等于 64 个字符。"
 
-#: apps/files/utils.py:551
+#: apps/files/utils.py:556
 msgid "Add-on ID doesn't match add-on."
 msgstr "附加组件 ID 与附加组件不匹配。"
 
-#: apps/files/utils.py:555
+#: apps/files/utils.py:564
 msgid "Duplicate add-on ID found."
 msgstr "发现重复的附加组件 ID。"
 
-#: apps/files/utils.py:558
+#: apps/files/utils.py:567
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "版本号应少于 32 个字符。"
 
-#: apps/files/utils.py:561
+#: apps/files/utils.py:570
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.-_。"
 
-#: apps/files/utils.py:578
+#: apps/files/utils.py:587
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> 与附加组件不匹配"
 
@@ -9991,129 +9986,6 @@ msgstr "上传的文件中没有文件。"
 #: apps/files/templates/files/viewer.html:134
 msgid "Fetching file."
 msgstr "正在获取文件。"
-
-#: apps/localizers/views.py:40
-msgid "An error occurred saving this message."
-msgstr "保存此消息时发生错误。"
-
-#: apps/localizers/views.py:43
-msgid "Access Denied"
-msgstr "拒绝访问"
-
-#: apps/localizers/templates/localizers/base.html:3
-#: apps/localizers/templates/localizers/summary.html:3
-msgid "Localizer Dashboard"
-msgstr "本地化人员仪表盘"
-
-#. %s is a locale name or code ('German' or 'de')
-#: apps/localizers/templates/localizers/categories.html:5
-#: apps/localizers/templates/localizers/dashboard.html:5
-#: apps/localizers/templates/localizers/dashboard.html:13
-msgid "Localization Summary for {0}"
-msgstr "{0} 的本地化概要"
-
-#: apps/localizers/templates/localizers/categories.html:11
-#: apps/localizers/templates/localizers/dashboard.html:11
-#: apps/localizers/templates/localizers/summary.html:8
-msgid "Localization Dashboard"
-msgstr "本地化仪表盘"
-
-#: apps/localizers/templates/localizers/categories.html:12
-msgid "Category Localization for {0}"
-msgstr "{0} 分类本地化"
-
-#: apps/localizers/templates/localizers/categories.html:58
-#: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
-msgid "Update"
-msgstr "更新"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:24
-msgid "Want to get in touch with the {0} L10n team?"
-msgstr "要联系 {0} 本地化团队吗？"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:28
-msgid "Visit the {0} L10n Homepage"
-msgstr "访问 {0} 本地化主页"
-
-#. {0} is a language name, e.g. 'Deutsch'
-#: apps/localizers/templates/localizers/dashboard.html:33
-msgid "Current Localizers for {0}:"
-msgstr "目前 {0} 的本地化人员："
-
-#: apps/localizers/templates/localizers/locale_switcher.html:3
-msgid "Change Locale:"
-msgstr "更改语言："
-
-#. Header to an info box in the sidebar
-#: apps/localizers/templates/localizers/sidebar.html:4
-msgid "Good to know"
-msgstr "有用的信息"
-
-#: apps/localizers/templates/localizers/sidebar.html:13
-msgid "Want the bigger picture?"
-msgstr "想要更大的图片吗？"
-
-#: apps/localizers/templates/localizers/sidebar.html:15
-msgid "Visit localize.mozilla.org"
-msgstr "访问 localize.mozilla.org"
-
-#: apps/localizers/templates/localizers/sidebar.html:21
-msgid "Options"
-msgstr "选项"
-
-#: apps/localizers/templates/localizers/sidebar.html:31
-msgid "Need Help?"
-msgstr "需要帮助吗？"
-
-#: apps/localizers/templates/localizers/sidebar.html:34
-msgid "Visit the Newsgroup"
-msgstr "访问新闻组"
-
-#: apps/localizers/templates/localizers/sidebar.html:39
-msgid "E-Mail Your Team:"
-msgstr "给您的团队发送电子邮件："
-
-#: apps/localizers/templates/localizers/sidebar_motd.html:8
-#: apps/reviews/templates/reviews/reply.html:36
-#: apps/reviews/templates/reviews/report_review.html:12
-msgid "Submit"
-msgstr "提交"
-
-#: apps/localizers/templates/localizers/sidebar_motd.html:16
-msgid "(edit)"
-msgstr "（编辑）"
-
-#: apps/localizers/templates/localizers/summary.html:9
-msgid "Mozilla Add-ons Localization"
-msgstr "Mozilla 附加组件本地化"
-
-#: apps/localizers/templates/localizers/summary.html:16
-msgid "Want to help?"
-msgstr "想要帮忙吗？"
-
-#: apps/localizers/templates/localizers/summary.html:17
-msgid ""
-"AMO is available in so many languages thanks to the help of people like you!"
-msgstr "AMO 感谢有您这样的热心人帮助，让它能以如此多的语言呈现于世！"
-
-#: apps/localizers/templates/localizers/summary.html:19
-msgid "Get started with AMO L10n"
-msgstr "AMO L10n 入门"
-
-#: apps/localizers/templates/localizers/summary.html:23
-msgid "Existing AMO locales"
-msgstr "现有的 AMO 语言"
-
-#: apps/localizers/templates/localizers/summary.html:27
-msgid "Locale code"
-msgstr "语言代码"
-
-#: apps/localizers/templates/localizers/summary.html:28
-msgid "Locale name"
-msgstr "语言名称"
 
 #: apps/pages/templates/pages/about.lhtml:3
 #: apps/pages/templates/pages/about.lhtml:10
@@ -11561,7 +11433,7 @@ msgstr ""
 "喜爱的附加组件使您已经标记了书签的附加组件，让您在以后可以轻易地找到它。您可以在其详细信息页面通过点击“加入收藏”来添加一个附加组件到您的收藏。"
 
 #: apps/pages/templates/pages/faq.html:275 templates/menu_links.html:13
-#: templates/impala/header_title.html:13
+#: templates/impala/header_title.html:17
 msgid "Mobile Add-ons"
 msgstr "移动版附加组件"
 
@@ -11880,6 +11752,11 @@ msgstr "回复"
 #: apps/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
 msgstr "撰写回复"
+
+#: apps/reviews/templates/reviews/reply.html:36
+#: apps/reviews/templates/reviews/report_review.html:12
+msgid "Submit"
+msgstr "提交"
 
 #. this string is following a <button>.
 #: apps/reviews/templates/reviews/reply.html:38
@@ -12290,8 +12167,8 @@ msgstr "分享这个附加组件"
 msgid "Share this Collection"
 msgstr "分享收藏集"
 
-#: apps/signing/views.py:30 templates/base.html:66
-#: templates/impala/base.html:108
+#: apps/signing/views.py:30 templates/base.html:75
+#: templates/impala/base.html:114
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance."
 " We'll be back to full capacity shortly."
@@ -12321,7 +12198,7 @@ msgstr "版本已经存在。"
 msgid "No uploaded file for that addon and version."
 msgstr "没有适合该附加组件及版本的已上传文件。"
 
-#: apps/stats/models.py:271
+#: apps/stats/models.py:240
 msgid "Thanks for contributing to {addon_name}"
 msgstr "感谢您捐款给 {addon_name}"
 
@@ -12404,6 +12281,11 @@ msgstr "从"
 #: apps/stats/templates/stats/popup.html:19
 msgid "To"
 msgstr "到"
+
+#: apps/stats/templates/stats/popup.html:27
+#: apps/users/templates/users/pwreset_confirm.html:33
+msgid "Update"
+msgstr "更新"
 
 #: apps/stats/templates/stats/report.html:7
 msgid "Export"
@@ -12762,77 +12644,77 @@ msgstr "作为我们新的密码政策之一，您必须使用 %s 个字符以�
 msgid "New password"
 msgstr "新密码"
 
-#: apps/users/forms.py:223 apps/users/forms.py:403
+#: apps/users/forms.py:223 apps/users/forms.py:418
 msgid "Wrong password entered!"
 msgstr "输入了错误的密码！"
 
-#: apps/users/forms.py:243
+#: apps/users/forms.py:250
 msgid "Usernames cannot contain only digits."
 msgstr "用户名不能仅包含数字。"
 
-#: apps/users/forms.py:246
+#: apps/users/forms.py:254
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr "请输入一个有效的用户名，只能由字母、数字、下划线及连字符构成。"
 
-#: apps/users/forms.py:249
+#: apps/users/forms.py:257
 msgid "This username cannot be used."
 msgstr "不能使用该用户名。"
 
-#: apps/users/forms.py:255
+#: apps/users/forms.py:263
 msgid "This username is already in use."
 msgstr "这个用户名已经被使用。"
 
-#: apps/users/forms.py:267 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "显示名"
 
-#: apps/users/forms.py:269 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "位置"
 
-#: apps/users/forms.py:271 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "职业"
 
-#: apps/users/forms.py:295
+#: apps/users/forms.py:309
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr "网址格式无效。有效的网址看上去应该类似于 http://example.com/my_page。"
 
-#: apps/users/forms.py:303
+#: apps/users/forms.py:317
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr "请使用一个来自不同提供者的电子邮件地址完成您的注册。"
 
-#: apps/users/forms.py:311
+#: apps/users/forms.py:325
 msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:339
 msgid "The passwords did not match."
 msgstr "密码不匹配。"
 
-#: apps/users/forms.py:343 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "个人资料照片"
 
-#: apps/users/forms.py:351 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "默认语种"
 
-#: apps/users/forms.py:488
+#: apps/users/forms.py:503
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字段。"
 
-#: apps/users/forms.py:534
+#: apps/users/forms.py:549
 msgid "Please enter at least one name to blacklist."
 msgstr "请在黑名单中至少输入一个名称。"
 
@@ -12857,15 +12739,19 @@ msgstr "哈希"
 msgid "No user with that email."
 msgstr "那个邮件地址没有用户。"
 
-#: apps/users/models.py:399
+#: apps/users/models.py:348
+msgid "Anonymous"
+msgstr "匿名"
+
+#: apps/users/models.py:397
 msgid "Your account has been restricted"
 msgstr "您的帐号已经被限制"
 
-#: apps/users/models.py:469
+#: apps/users/models.py:467
 msgid "Please confirm your email address"
 msgstr "请确认您的电子邮件地址"
 
-#: apps/users/models.py:495
+#: apps/users/models.py:493
 msgid "My Mobile Add-ons"
 msgstr "我的移动版附加组件"
 
@@ -12958,15 +12844,14 @@ msgstr "无效的确认码！"
 msgid "Successfully verified!"
 msgstr "验证成功！"
 
-# %1 is the user's email address
-#: apps/users/views.py:131 apps/users/views.py:607
+#: apps/users/views.py:131
 msgid ""
-"An email has been sent to your address {0} to confirm your account. Before "
-"you can log in, you have to activate your account by clicking on the link "
+"An email has been sent to your address to confirm your account. Before you "
+"can log in, you have to activate your account by clicking on the link "
 "provided in this email."
-msgstr "向您的邮箱 {0} 发送了一封确认邮件。通过点击邮件中提供的链接激活您的帐户，之后才能登录。"
+msgstr "一封邮件已发送到您的电子邮件地址以确认您的账号。您必须先点击邮件中的链接以激活账号，然后才能登录。"
 
-#: apps/users/views.py:135 apps/users/views.py:611
+#: apps/users/views.py:135 apps/users/views.py:613
 msgid "Confirmation Email Sent"
 msgstr "确认邮件已发送"
 
@@ -13048,23 +12933,31 @@ msgstr "激活邮件已发送"
 msgid "Having Trouble?"
 msgstr "有问题？"
 
-#: apps/users/views.py:581
+#: apps/users/views.py:583
 msgid "You are already logged in to an account."
 msgstr "您已经登录到了一个账户。"
 
-#: apps/users/views.py:603
+#: apps/users/views.py:605
 msgid "Congratulations! Your user account was successfully created."
 msgstr "祝贺您！您的用户帐号已经成功建立。"
 
-#: apps/users/views.py:631
+# %1 is the user's email address
+#: apps/users/views.py:609
+msgid ""
+"An email has been sent to your address {0} to confirm your account. Before "
+"you can log in, you have to activate your account by clicking on the link "
+"provided in this email."
+msgstr "向您的邮箱 {0} 发送了一封确认邮件。通过点击邮件中提供的链接激活您的帐户，之后才能登录。"
+
+#: apps/users/views.py:633
 msgid "There are errors in this form"
 msgstr "表单中有错误"
 
-#: apps/users/views.py:632
+#: apps/users/views.py:634
 msgid "Please correct them and resubmit."
 msgstr "请修订他们并重新提交。"
 
-#: apps/users/views.py:647
+#: apps/users/views.py:649
 msgid "User reported."
 msgstr "用户已报告。"
 
@@ -13110,8 +13003,8 @@ msgstr "确认账户删除"
 #: apps/users/templates/users/delete.html:49
 #: apps/users/templates/users/edit.html:56
 #: apps/users/templates/users/login_form.html:22
-#: apps/users/templates/users/register.html:68
-#: apps/users/templates/users/mobile/login.html:37
+#: apps/users/templates/users/register.html:67
+#: apps/users/templates/users/mobile/login.html:31
 msgid "Password"
 msgstr "密码"
 
@@ -13143,13 +13036,13 @@ msgid "Manage basic account information, such as username and email address."
 msgstr "管理基本的账户信息，例如用户名和电子邮件地址。"
 
 #: apps/users/templates/users/edit.html:33
-#: apps/users/templates/users/register.html:48
+#: apps/users/templates/users/register.html:47
 msgid "Username"
 msgstr "用户名"
 
 #: apps/users/templates/users/edit.html:38
 #: apps/users/templates/users/pwreset_request.html:21
-#: apps/users/templates/users/register.html:63
+#: apps/users/templates/users/register.html:62
 msgid "Email Address"
 msgstr "电子邮件地址"
 
@@ -13274,41 +13167,45 @@ msgstr "所有"
 msgid "User Login"
 msgstr "用户登录"
 
-#: apps/users/templates/users/login.html:18
-#: apps/users/templates/users/mobile/login.html:25
+#: apps/users/templates/users/login.html:13
+msgid "Enter your email"
+msgstr "请输入您的电子邮件地址"
+
+#: apps/users/templates/users/login.html:15
+#: apps/users/templates/users/mobile/login.html:19
 msgid "Log In"
 msgstr "登录"
 
 #: apps/users/templates/users/login_form.html:17
-#: apps/users/templates/users/mobile/login.html:32
+#: apps/users/templates/users/mobile/login.html:26
 msgid "Email address"
 msgstr "电子邮件地址"
 
 #: apps/users/templates/users/login_form.html:30
-#: apps/users/templates/users/mobile/login.html:44
+#: apps/users/templates/users/mobile/login.html:38
 msgid "Remember me on this device"
 msgstr "在这台设备上记住我"
 
-#: apps/users/templates/users/login_form.html:40
+#: apps/users/templates/users/login_form.html:41
 #: apps/users/templates/users/pwreset_complete.html:15
-#: apps/users/templates/users/mobile/login.html:55
+#: apps/users/templates/users/mobile/login.html:50
 #: templates/mobile/header_auth.html:8
 msgid "Log in"
 msgstr "登录"
 
 # This is a header for additional help options
 #: apps/users/templates/users/login_help.html:3
-#: apps/users/templates/users/mobile/login.html:61
+#: apps/users/templates/users/mobile/login.html:56
 msgid "Login Problems?"
 msgstr "登录碰到问题？"
 
 #: apps/users/templates/users/login_help.html:5
-#: apps/users/templates/users/mobile/login.html:63
+#: apps/users/templates/users/mobile/login.html:58
 msgid "I don't have an account."
 msgstr "我还没有帐号。"
 
 #: apps/users/templates/users/login_help.html:6
-#: apps/users/templates/users/mobile/login.html:64
+#: apps/users/templates/users/mobile/login.html:59
 msgid "I forgot my password."
 msgstr "我忘记密码了。"
 
@@ -13332,67 +13229,67 @@ msgstr "密码重置"
 msgid "User Info for {0}"
 msgstr "{0} 的用户信息"
 
-#: apps/users/templates/users/profile.html:12
+#: apps/users/templates/users/profile.html:11
 msgid "Edit profile"
 msgstr "编辑个人资料"
 
-#: apps/users/templates/users/profile.html:15
+#: apps/users/templates/users/profile.html:14
 msgid "Manage user"
 msgstr "管理用户"
 
-#: apps/users/templates/users/profile.html:19
-#: apps/users/templates/users/report_abuse_full.html:10
+#: apps/users/templates/users/profile.html:18
+#: apps/users/templates/users/report_abuse_full.html:9
 msgid "Report user"
 msgstr "举报用户"
 
 # The title for a user if they are a developer
-#: apps/users/templates/users/profile.html:30
+#: apps/users/templates/users/profile.html:29
 msgid "Add-ons Developer"
 msgstr "附加组件开发者"
 
-#: apps/users/templates/users/profile.html:35
+#: apps/users/templates/users/profile.html:34
 msgid "Themes Artist"
 msgstr "主题作者"
 
-#: apps/users/templates/users/profile.html:40
+#: apps/users/templates/users/profile.html:39
 msgid "About me"
 msgstr "关于我"
 
-#: apps/users/templates/users/profile.html:46
+#: apps/users/templates/users/profile.html:45
 msgid "In a little more detail..."
 msgstr "在一些更详细的情况中..."
 
-#: apps/users/templates/users/profile.html:60
+#: apps/users/templates/users/profile.html:59
 msgid "Add-ons I've created"
 msgstr "我创建的附加组件"
 
-#: apps/users/templates/users/profile.html:73
+#: apps/users/templates/users/profile.html:72
 msgid "My Most Popular Themes"
 msgstr "我的最热门的主题"
 
-#: apps/users/templates/users/profile.html:75
+#: apps/users/templates/users/profile.html:74
 msgid "Themes I've created"
 msgstr "我创建的主题"
 
-#: apps/users/templates/users/profile.html:85
+#: apps/users/templates/users/profile.html:84
 msgid "Followed by Me"
 msgstr "我关注的"
 
 # "Me" in this context is the user shown on the User Info page
-#: apps/users/templates/users/profile.html:87
+#: apps/users/templates/users/profile.html:86
 msgid "Created by Me"
 msgstr "由我建立"
 
 # "My" in this context is the logged in user who is reading the page
-#: apps/users/templates/users/profile.html:95
+#: apps/users/templates/users/profile.html:94
 msgid "My Reviews"
 msgstr "我所发表的评论"
 
-#: apps/users/templates/users/profile.html:108
+#: apps/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
 msgstr "还没有附加组件评论。"
 
-#: apps/users/templates/users/profile.html:121
+#: apps/users/templates/users/profile.html:120
 msgid "Report User"
 msgstr "报告用户"
 
@@ -13405,7 +13302,7 @@ msgid "Password successfully reset."
 msgstr "密码重置成功。"
 
 #: apps/users/templates/users/pwreset_confirm.html:26
-#: apps/users/templates/users/register.html:73
+#: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "确认密码"
 
@@ -13440,44 +13337,44 @@ msgstr "更多信息已通过电子邮件发送到了提出请求的帐号。如
 msgid "New User Registration"
 msgstr "注册新用户"
 
-#: apps/users/templates/users/register.html:13
+#: apps/users/templates/users/register.html:12
 msgid "Why register?"
 msgstr "为什么要注册？"
 
-#: apps/users/templates/users/register.html:15
+#: apps/users/templates/users/register.html:14
 msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr "如果您只是简单地需要下载安装公开发布的附加组件，则 AMO <strong>并不</strong>强制用户注册。"
 
-#: apps/users/templates/users/register.html:17
+#: apps/users/templates/users/register.html:16
 msgid "You only need to register if:"
 msgstr "只有下列情况需要注册："
 
-#: apps/users/templates/users/register.html:19
+#: apps/users/templates/users/register.html:18
 msgid "You want to submit reviews for add-ons"
 msgstr "您想提交附加组件的评论"
 
-#: apps/users/templates/users/register.html:20
+#: apps/users/templates/users/register.html:19
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr "您想追踪喜爱的附加组件收藏集或者创建自己的收藏集"
 
-#: apps/users/templates/users/register.html:21
+#: apps/users/templates/users/register.html:20
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr "您是附加组件开发者并想要将自己的附加组件上传托管在 AMO"
 
-#: apps/users/templates/users/register.html:24
+#: apps/users/templates/users/register.html:23
 msgid ""
 "Upon successful registration, you will be sent a confirmation email to the "
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr "注册成功后，会有一封确认邮件发送到您提供的邮件地址，请按照其中的说明确认您的账户。"
 
-#: apps/users/templates/users/register.html:31
+#: apps/users/templates/users/register.html:30
 msgid ""
 "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal "
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
@@ -13486,13 +13383,13 @@ msgstr ""
 "如果有兴趣，可以阅读我们的 <a href=\"%(legal)s\" title=\"Legal Notices\">法律声明</a>和<a "
 "href=\"%(privacy)s\" title=\"Privacy Policy\">隐私政策</a>。"
 
-#: apps/users/templates/users/register.html:42
+#: apps/users/templates/users/register.html:41
 #: apps/users/templates/users/register.html:89
 #: templates/mobile/header_auth.html:7
 msgid "Register"
 msgstr "注册"
 
-#: apps/users/templates/users/register.html:53
+#: apps/users/templates/users/register.html:52
 msgid "Display name"
 msgstr "显示名"
 
@@ -13792,20 +13689,20 @@ msgstr "其他语言"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla 附加组件"
 
-#: templates/base.html:82 templates/impala/base.html:74
+#: templates/base.html:91 templates/impala/base.html:80
 msgid "Find add-ons for other applications"
 msgstr "查找其他应用程序的附加组件"
 
-#: templates/base.html:83 templates/impala/base.html:74
+#: templates/base.html:92 templates/impala/base.html:80
 msgid "Other Applications"
 msgstr "其他应用程序"
 
-#: templates/base.html:132 templates/impala/base.html:187
+#: templates/base.html:141 templates/impala/base.html:193
 msgid ""
 "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "创建您自已的收藏集，您必须一个 Mozilla 附加组件账户。"
 
-#: templates/base.html:159 templates/impala/base.html:208
+#: templates/base.html:168 templates/impala/base.html:214
 msgid "Footer logo"
 msgstr "页脚标志"
 
@@ -13915,17 +13812,17 @@ msgstr "联系我们"
 msgid "Welcome, {0}"
 msgstr "欢迎，{0}"
 
-#: templates/user_login.html:41
+#: templates/user_login.html:41 templates/impala/user_login.html:20
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">注册</a> 或 <a href=\"%(login)s\">登录</a>"
 
-#: templates/impala/base.html:119
+#: templates/impala/base.html:125
 msgid ""
 "To try the thousands of add-ons available here, download <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "要尝试这里成千上万的附加组件，下载 <a href=\"%(url)s\">Mozilla Firefox</a>，一个快速、自由的上网工具！"
 
-#: templates/impala/base.html:131
+#: templates/impala/base.html:137
 msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
@@ -13934,38 +13831,30 @@ msgstr ""
 "login\">现在登录以转移您的账户。</a>"
 
 #. {0} is an application, such as Firefox.
-#: templates/impala/base.html:141
+#: templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
 msgstr "欢迎访问 {0} 附加组件。"
 
-#: templates/impala/base.html:144
+#: templates/impala/base.html:150
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "从数以千计的额外功能和样式里选择打造您的专属 Firefox。"
 
-#: templates/impala/base.html:149
+#: templates/impala/base.html:155
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "添加额外的功能和样式打造您的专属 %(app)s。"
 
-#: templates/impala/base.html:157
+#: templates/impala/base.html:163
 msgid "On the go?"
 msgstr "随身查看？"
 
-#: templates/impala/base.html:159
+#: templates/impala/base.html:165
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "查看我们的<a class=\"mobile-link\" href=\"#\">移动版附加组件网站</a>。"
 
-#: templates/impala/header_title.html:17
+#: templates/impala/header_title.html:21
 msgid "Android Add-ons"
 msgstr "Android 附加组件"
-
-#: templates/impala/user_login.html:20
-msgid ""
-"<a href=\"%(reg)s\" class=\"fxa-register\">Register</a> or <a "
-"href=\"%(login)s\" class=\"fxa-login\">Log in</a>"
-msgstr ""
-"<a href=\"%(reg)s\" class=\"fxa-register\">注册</a>或<a href=\"%(login)s\" "
-"class=\"fxa-login\">登录</a>"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"

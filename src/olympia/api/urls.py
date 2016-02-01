@@ -148,4 +148,5 @@ urlpatterns = patterns(
     url(r'^v3/accounts/', include('olympia.accounts.urls')),
     url(r'^v3/addons/', include('olympia.addons.api.urls')),
     url(r'^v3/', include('olympia.signing.urls')),
+    url(r'^v3/statistics/', include('olympia.stats.api_urls')),
 )

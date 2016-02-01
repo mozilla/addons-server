@@ -14,7 +14,8 @@ from olympia.stats.management.commands import (
     save_stats_to_file, serialize_stats)
 from olympia.stats.management.commands.download_counts_from_file import is_valid_source  # noqa
 from olympia.stats.management.commands.update_counts_from_file import Command
-from olympia.stats.models import DownloadCount, ThemeUpdateCount, UpdateCount
+from olympia.stats.models import (
+    DownloadCount, ThemeUpdateCount, UpdateCount, ThemeUserCount)
 from olympia.zadmin.models import DownloadSource
 
 
@@ -217,7 +218,8 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         # 15663 and the persona 575 with addon_id 15679 for the last 28 days.
         # We start from the previous day, as the theme_update_counts_from_*
         # scripts are gathering data for the day before.
-        yesterday = date.today() - timedelta(days=1)
+        today = date.today()
+        yesterday = today - timedelta(days=1)
         for i in range(28):
             d = yesterday - timedelta(days=i)
             ThemeUpdateCount.objects.create(addon_id=15663, count=i, date=d)
@@ -225,6 +227,7 @@ class TestADICommand(FixturesFolderMixin, TestCase):
                                             count=i * 100, date=d)
         # Compute the popularity and movers.
         management.call_command('update_theme_popularity_movers')
+
         p1 = Persona.objects.get(pk=559)
         p2 = Persona.objects.get(pk=575)
 
@@ -233,6 +236,15 @@ class TestADICommand(FixturesFolderMixin, TestCase):
         # calculation is "sum(range(7)) / 7" (or "sum(range(7)) * 100 / 7").
         assert p1.popularity == 3  # sum(range(7)) / 7
         assert p2.popularity == 300  # sum(range(7)) * 100 / 7
+
+        # A ThemeUserCount row should have been created for each Persona with
+        # today's date and the Persona popularity.
+        t1 = ThemeUserCount.objects.get(addon_id=15663)
+        t2 = ThemeUserCount.objects.get(addon_id=15679)
+        assert t1.date == today
+        assert t1.count == p1.popularity
+        assert t2.date == today
+        assert t2.count == p2.popularity
 
         # Three weeks avg (sum(range(21)) / 21) = 10 so (3 - 10) / 10.
         # The movers is computed with the following formula:

@@ -10,6 +10,14 @@ from olympia.stats.models import (
     CollectionCount, DownloadCount, StatsSearchMixin, UpdateCount)
 
 
+# Number of elements to index at once in ES. The size of a dict to send to ES
+# should be less than 1000 bytes, and the max size of messages to send to ES
+# can be retrieved with the following command (look for
+# "max_content_length_in_bytes"):
+#  curl http://HOST:PORT/_nodes/?pretty
+CHUNK_SIZE = 10000
+
+
 def es_dict(items):
     if not items:
         return {}

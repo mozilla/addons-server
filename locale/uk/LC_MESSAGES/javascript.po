@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
 "PO-Revision-Date: 2016-01-23 21:37+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,7 @@ msgstr "Завершена перевірка {0}"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
-"Час очікування затвердження вашого додатку завершився, він буде розглянутий "
-"вручну."
+msgstr "Час очікування затвердження вашого додатку завершився, він буде розглянутий вручну."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
@@ -121,65 +119,39 @@ msgstr "Ваше подання буде автоматично підписан
 
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Включити детальні примітки до випуску (це може бути зроблено в наступному "
-"кроці)."
+msgstr "Включити детальні примітки до випуску (це може бути зроблено в наступному кроці)."
 
 #: static/js/common/upload-addon.js:466
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові "
-"ім'я користувача та пароль у примітках до випуску (це може бути зроблено в "
-"наступному кроці)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
 #: static/js/common/upload-addon.js:467
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні "
-"вибрати Попередній Перегляд замість Повного Перегляду."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні вибрати Попередній Перегляд замість Повного Перегляду."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Контрольний перелік при представленні додатку"
 
 #: static/js/common/upload-addon.js:481
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Перевірте наступні пункти перед завершенням вашого представлення. Це "
-"зменшить затримку чи нерозуміння під час процесу розгляду:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи "
-"обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для"
-" перевірки окремо. Переконайтеся, що ви використовуєте поле завантаження "
-"програмного коду, щоб запобігти відхиленню вашого запиту."
+"Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для перевірки окремо. Переконайтеся, що ви "
+"використовуєте поле завантаження програмного коду, щоб запобігти відхиленню вашого запиту."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Під час процесу перевірки було знайдено наступні проблеми, які можуть "
-"призвести до відхилення:"
+msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
 
 #: static/js/common/upload-addon.js:518
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це "
-"тут."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це тут."
 
 #: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
@@ -322,13 +294,11 @@ msgstr "{0} повернень"
 msgid "{0} installs"
 msgstr "{0} встановлень"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Завантажень"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Щоденних користувачів"
 
@@ -385,13 +355,11 @@ msgstr "Користувачі"
 msgid "Ratings"
 msgstr "Рейтинги"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Продажі"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Встановлення"
 
@@ -423,8 +391,7 @@ msgstr "Пошукові пропозиції"
 msgid "Search Results"
 msgstr "Результати пошуку"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Промо"
 
@@ -452,8 +419,7 @@ msgstr "Сторінка з подробицями (низ)"
 msgid "Detail Page (Development Channel)"
 msgstr "Сторінка з подробицями (Канал розробників)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Часто викор. з"
 
@@ -537,8 +503,7 @@ msgstr "Огляд з сортуванням за популярністю"
 msgid "Browse Listing Updated Sort"
 msgstr "Огляд з сортуванням за датою оновлення"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Огляд з сортуванням за очікуванням виходу"
 
@@ -818,8 +783,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> за останні {1} днів"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> з {1} по {2}"
 
@@ -840,20 +804,16 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Спочатку виберіть програму"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Встановити для додатку {0} максимальну версію {1} та надіслати лист автору."
-msgstr[1] ""
-"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
-msgstr[2] ""
-"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
+msgstr[0] "Встановити для додатку {0} максимальну версію {1} та надіслати лист автору."
+msgstr[1] "Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
+msgstr[2] "Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -884,8 +844,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Вам необхідно використовувати Firefox 10.0 або новіший."
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla відмітила цю версію, як несумісну з вашою версією Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -919,12 +878,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Лише з Firefox — Отримайте Firefox зараз!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі "
-"Mozilla (наприклад, Firefox)."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
 
 #: static/js/zamboni/collections.js:193
 msgid "clear recently viewed"
@@ -994,49 +949,49 @@ msgstr "Вилучити з вподобань"
 msgid "Stop following"
 msgstr "Більше не стежити"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "Ваш браузер не підтримує тег відео"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "Введіть нову адресу ел. пошти автора"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "Сталась помилка при вивантаженні вашого файлу."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файли"
 msgstr[2] "{files} файлів"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} відгук користувача"
 msgstr[1] "{reviews} відгуки користувача"
 msgstr[2] "{reviews} відгуків користувача"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "Дізнатись більше"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "Приклад"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "Повинна бути дійсна адреса ел. пошти."
 
@@ -1109,12 +1064,8 @@ msgstr[1] "залишилось <b>{0}</b> символи."
 msgstr[2] "залишилось <b>{0}</b> символів."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Дана функція тимчасово вимкнута доки ми проводимо технічне обслуговування "
-"веб-сайту. Будь ласка, спробуйте пізніше."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Дана функція тимчасово вимкнута доки ми проводимо технічне обслуговування веб-сайту. Будь ласка, спробуйте пізніше."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1179,8 +1130,7 @@ msgstr "Ці тести не запускались."
 msgid "Tests"
 msgstr "Тести"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Помилка"
 
@@ -1227,8 +1177,7 @@ msgstr[2] "{0} повідомлень"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
-"Завдання з перевірки не змогло завершитись або завершилось з помилками"
+msgstr "Завдання з перевірки не змогло завершитись або завершилось з помилками"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
@@ -1250,8 +1199,7 @@ msgstr "Не перевірено"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Експериментальне <span>(дізнатись більше)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Недоступно для {0}"
 

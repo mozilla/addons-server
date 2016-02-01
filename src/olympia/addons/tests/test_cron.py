@@ -208,7 +208,7 @@ class TestHideDisabledFiles(TestCase):
         eq_(m_storage.delete.call_count, 1)
 
 
-class TestUnhideDisabledFiles(amo.tests.TestCase):
+class TestUnhideDisabledFiles(TestCase):
 
     def setUp(self):
         super(TestUnhideDisabledFiles, self).setUp()

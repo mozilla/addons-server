@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
-"PO-Revision-Date: 2016-01-22 13:21+0000\n"
-"Last-Translator: samtelen <szep.annabella@gmail.com>\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"PO-Revision-Date: 2016-01-31 10:29+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -99,15 +99,15 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-"Az ön kiegészítője hiba nélkül és {0} figyelmeztetéssel átment az "
-"ellenőrzésen."
+"A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 msgstr[1] ""
+"A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
-msgstr[1] ""
+msgstr[1] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
@@ -221,27 +221,27 @@ msgstr "Minden jog fenntartva"
 
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons – Nevezd meg! 3.0"
 
 #: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! 3.0"
 
 #: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Ne változtasd! 3.0"
 
 #: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne add el! – Így add tovább! 3.0"
 
 #: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons – Nevezd meg! – Ne változtasd! 3.0"
 
 #: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons – Nevezd meg! – Így add tovább! 3.0"
 
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
@@ -289,7 +289,7 @@ msgstr "{0}. hét"
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " letöltés"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -339,7 +339,7 @@ msgstr "Hozzájárulások száma"
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr "Tovább..."
+msgstr "Tovább…"
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451
@@ -402,15 +402,15 @@ msgstr "Kiegészítőkezelő"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Kiegészítőkezelő – bemutató"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Kiegészítőkezelő – kiemelt kiegészítők"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Kiegészítőkezelő – tudjon meg többet"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
@@ -528,7 +528,7 @@ msgstr "„Név” böngészési lista rendezése"
 
 #: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
-msgstr "„Népszerűség” böngészési lista rendezése"
+msgstr "„Legnépszerűbb” böngészési lista rendezése"
 
 #: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
@@ -837,7 +837,7 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Egyéb"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
 #: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Először válasszon ki alkalmazást"
@@ -849,17 +849,17 @@ msgstr[0] ""
 "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
 "szerzőnek."
 msgstr[1] ""
-"{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a "
+"{0} kiegészítők beállítása {1} legmagasabb verzióra, és levélküldés a "
 "szerzőknek."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
+"E-mail küldése a(z) {2} kiegészítő szerzőjének, amely nem mentek át az "
 "ellenőrzésen."
 msgstr[1] ""
-"E-mail küldése {2} kiegészítő szerzőjének, amelyek nem mentek át az "
+"E-mail küldése a(z) {2} kiegészítők szerzőjének, amelyek nem mentek át az "
 "ellenőrzésen."
 
 #. L10n: {0} is an app name like Firefox.
@@ -906,11 +906,11 @@ msgstr "Nem érhető el ezen a platformon"
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
-msgstr "Nem érhető el a {0} {1} verzióhoz"
+msgstr "Nem érhető el a(z) {0} {1} verzióhoz"
 
 #: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
-msgstr "Ezzel működik {app} {min} - {max}"
+msgstr "Ezzel működik: {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js:343
 msgid "View other versions"
@@ -918,7 +918,7 @@ msgstr "További verziók megtekintése"
 
 #: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Csak a Firefox-al — szerezze be a Firefox-ot most!"
+msgstr "Csak a Firefox-al – szerezze be a Firefox-ot most!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid ""
@@ -996,47 +996,47 @@ msgstr "Eltávolítás a kedvencekből"
 msgid "Stop following"
 msgstr "Követés megszüntetése"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "A böngésző nem támogatja a video elemet"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "Adja meg az új szerző e-mailcímét"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fájl"
 msgstr[1] "{files} fájl"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} felhasználói értékelés"
 msgstr[1] "{reviews} felhasználói értékelés"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "Példa"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "Érvényes e-mail címnek kell lennie."
 
@@ -1078,11 +1078,11 @@ msgstr "Nincsenek megjegyzések a verzióhoz"
 
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr ""
+msgstr "Átlagos értékelések"
 
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Értékelések száma"
 
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
@@ -1090,11 +1090,11 @@ msgstr "Hiba a fordítás betöltésekor"
 
 #: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Ezt az üzenetet a jövőbeli frissítéseknél hagyja figyelmen kívül"
 
 #: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Súlyosság (az automatikus aláíráshoz):"
 
 #: static/js/zamboni/global.js:410
 msgid "Loading..."
@@ -1117,7 +1117,7 @@ msgstr ""
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr "Lokalizáció eltávolítása"
+msgstr "Honosítás eltávolítása"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
@@ -1139,7 +1139,7 @@ msgstr "Megjelölt"
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr "Másolás"
+msgstr "Másolat"
 
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
@@ -1151,23 +1151,23 @@ msgstr "Jóváhagyott"
 
 #: static/js/zamboni/themes_review.js:424
 msgid "No results found"
-msgstr ""
+msgstr "Nincs találat"
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Téma"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
-msgstr ""
+msgstr "Véleményező"
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
-msgstr "Az összes teszten sikeren átment."
+msgstr "Az összes teszten sikeresen átment."
 
 #: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
 msgid "These tests were not run."
@@ -1184,7 +1184,7 @@ msgstr "Hiba"
 
 #: static/js/zamboni/validator.js:247
 msgid "Warning"
-msgstr "Figyelem"
+msgstr "Figyelmeztetés"
 
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
@@ -1230,7 +1230,7 @@ msgstr "Belső kiszolgálóhiba"
 
 #: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
-msgstr "Nincs frissítve a {0} {1} alkalmazáshoz"
+msgstr "Nincs frissítve a(z) {0} {1} alkalmazáshoz"
 
 #: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
@@ -1247,7 +1247,7 @@ msgstr "Kísérleti <span>(Tudjon meg többet)</span>"
 #: static/js/zamboni/mobile/buttons.js:56
 #: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
-msgstr "Nem érhető el a {0} programhoz"
+msgstr "Nem érhető el a(z) {0} programhoz"
 
 #: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
@@ -1271,7 +1271,7 @@ msgstr "Ezt a kiegészítőt előzetesen nem vizsgálta meg a Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
-msgstr "Megtart"
+msgstr "Megtartás"
 
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"

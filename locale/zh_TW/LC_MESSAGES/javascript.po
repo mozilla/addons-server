@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-20 11:43-0700\n"
+"POT-Creation-Date: 2016-01-27 12:18-0700\n"
 "PO-Revision-Date: 2016-01-26 01:48+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -112,16 +112,11 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
 #: static/js/common/upload-addon.js:466
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
 #: static/js/common/upload-addon.js:467
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
 msgstr "若您的附加元件只打算給少部分的使用者使用，您應該選擇初步審查，而不需選擇完整審查。"
 
 #: static/js/common/upload-addon.js:480
@@ -129,28 +124,21 @@ msgid "Add-on submission checklist"
 msgstr "附加元件送出前檢查清單"
 
 #: static/js/common/upload-addon.js:481
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "送出前，請確認下列幾項是否已完成。這樣將可以降低審查時間:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
-msgstr ""
-"若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被退回。"
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
+msgstr "若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被退回。"
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
 #: static/js/common/upload-addon.js:518
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "若您不熟悉附加元件的審查過程，可以在此處閱讀。"
 
 #: static/js/common/upload-addon.js:555
@@ -294,13 +282,11 @@ msgstr "{0} 筆退費"
 msgid "{0} installs"
 msgstr "{0} 個安裝數"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "下載數"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "每日使用者"
 
@@ -357,13 +343,11 @@ msgstr "訂閱者"
 msgid "Ratings"
 msgstr "評分"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "銷售"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "安裝數"
 
@@ -395,8 +379,7 @@ msgstr "搜尋建議"
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "首頁促銷"
 
@@ -424,8 +407,7 @@ msgstr "詳細資訊頁面 (底端)"
 msgid "Detail Page (Development Channel)"
 msgstr "詳細資訊頁面 (開發頻道)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "常與以下元件混用"
 
@@ -509,8 +491,7 @@ msgstr "瀏覽頁面熱門類別"
 msgid "Browse Listing Updated Sort"
 msgstr "瀏覽頁面已更新類別"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "瀏覽頁面嶄露頭角類別"
 
@@ -790,8 +771,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 天有 <b>{0}</b> 個"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 
@@ -812,8 +792,7 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1247
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
@@ -849,8 +828,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您必須使用 Firefox 10.0 或更新版本。"
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已將此版本標示為與您的 Firefox 版本不相容。"
 
 #. L10n: {0} is an platform like Windows or Linux.
@@ -884,9 +862,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只在 Firefox 上才有，快來安裝！"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
 #: static/js/zamboni/collections.js:193
@@ -957,45 +933,45 @@ msgstr "從我的最愛移除"
 msgid "Stop following"
 msgstr "停止追蹤"
 
-#: static/js/zamboni/devhub.js:109
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "您的瀏覽器不支援此視訊標籤"
 
-#: static/js/zamboni/devhub.js:389
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: static/js/zamboni/devhub.js:405
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: static/js/zamboni/devhub.js:554
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: static/js/zamboni/devhub.js:699
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: static/js/zamboni/devhub.js:702
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 筆使用者評論"
 
-#: static/js/zamboni/devhub.js:814
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: static/js/zamboni/devhub.js:818
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "範例"
 
-#: static/js/zamboni/devhub.js:1148
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
-#: static/js/zamboni/devhub.js:1298
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "必須為有效的電子郵件地址。"
 
@@ -1066,9 +1042,7 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
 
 #: static/js/zamboni/l10n.js:45
@@ -1132,8 +1106,7 @@ msgstr "這些測試沒有執行。"
 msgid "Tests"
 msgstr "測試"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "錯誤"
 
@@ -1198,8 +1171,7 @@ msgstr "實驗中 <span>(更多資訊)</span>"
 
 # 80%
 # 100%
-#: static/js/zamboni/mobile/buttons.js:56
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "無法使用於 {0}"
 

@@ -2,6 +2,8 @@ import collections
 import json
 from urlparse import urlparse
 
+from waffle import Switch
+
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -28,6 +30,10 @@ from olympia.users.models import (
     BlacklistedPassword, UserProfile, UserNotification)
 from olympia.users.utils import EmailResetCode, UnsubscribeCode
 from olympia.users.views import tshirt_eligible
+
+
+def migrate_path(next_path=None):
+    return urlparams(reverse('users.migrate'), to=next_path)
 
 
 def fake_request():
@@ -502,30 +508,71 @@ class TestLogin(UserViewBase):
 
     def test_double_login(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, '/en-US/firefox/')
+        self.assert3xx(r, reverse('home'))
 
         # If you go to the login page when you're already logged in we bounce
         # you.
         r = self.client.get(self.url, follow=True)
-        self.assert3xx(r, '/en-US/firefox/')
+        self.assert3xx(r, reverse('home'))
 
     def test_ok_redirects(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, '/en-US/firefox/')
+        self.assert3xx(r, reverse('home'))
 
         r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
         self.assert3xx(r, '/de/firefox/')
 
-    def test_bad_redirects(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, '/en-US/firefox/')
+    def test_bad_redirect_other_domain(self):
+        r = self.client.get(reverse('home'))
+        assert 'Log out' not in r.content
+        r = self.client.post(
+            self.url + '?to=https://example.com/this/is/bad',
+            self.data, follow=True)
+        self.assert3xx(r, reverse('home'))
+        assert 'Log out' in r.content
 
-        for redirect in ['http://xx.com',
-                         'data:text/html,<script>window.alert("xss")</script>',
-                         'mailto:test@example.com',
-                         'file:///etc/passwd',
-                         'javascript:window.alert("xss");']:
-            self.assert3xx(r, '/en-US/firefox/')
+    def test_bad_redirect_js(self):
+        r = self.client.get(reverse('home'))
+        assert 'Log out' not in r.content
+        r = self.client.post(
+            self.url + '?to=javascript:window.alert("xss");',
+            self.data, follow=True)
+        self.assert3xx(r, reverse('home'))
+        assert 'Log out' in r.content
+
+    def test_double_login_fxa_enabled(self):
+        self.create_switch('fxa-auth', active=True)
+        r = self.client.post(self.url, self.data, follow=True)
+        self.assert3xx(r, migrate_path())
+
+        # If you go to the login page when you're already logged in we bounce
+        # you.
+        r = self.client.get(self.url, follow=True)
+        self.assert3xx(r, reverse('home'))
+
+    def test_ok_redirects_fxa_enabled(self):
+        self.create_switch('fxa-auth', active=True)
+        r = self.client.post(
+            self.url + '?to=/de/firefox/here/', self.data, follow=True)
+        self.assert3xx(r, migrate_path('/de/firefox/here/'))
+
+        r = self.client.get(
+            self.url + '?to=/de/firefox/extensions/', follow=True)
+        self.assert3xx(r, '/de/firefox/extensions/')
+
+    def test_bad_redirect_other_domain_fxa_enabled(self):
+        self.create_switch('fxa-auth', active=True)
+        r = self.client.post(
+            self.url + '?to=https://example.com/this/is/bad',
+            self.data, follow=True)
+        self.assert3xx(r, migrate_path())
+
+    def test_bad_redirect_js_fxa_enabled(self):
+        self.create_switch('fxa-auth', active=True)
+        r = self.client.post(
+            self.url + '?to=javascript:window.alert("xss");',
+            self.data, follow=True)
+        self.assert3xx(r, migrate_path())
 
     def test_login_link(self):
         r = self.client.get(self.url)
@@ -1319,3 +1366,91 @@ class TestReportAbuse(TestCase):
 
         r = self.client.get(self.full_page)
         eq_(pq(r.content)('.notification-box h2').length, 1)
+
+
+class BaseTestMigrateView(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(BaseTestMigrateView, self).setUp()
+        self.create_switch('fxa-auth', active=True)
+
+    def login(self):
+        username = 'regular@mozilla.com'
+        self.client.login(username=username, password='password')
+        return UserProfile.objects.get(email=username)
+
+    def login_migrated(self):
+        self.login().update(fxa_id='99')
+
+
+class TestMigrateViewUnauthenticated(BaseTestMigrateView):
+
+    def test_404_without_waffle(self):
+        switch = Switch.objects.get(name='fxa-auth')
+        switch.active = False
+        switch.save()
+        response = self.client.get(migrate_path())
+        assert response.status_code == 404
+
+    def test_redirects_to_root_without_next_path(self):
+        response = self.client.get(migrate_path())
+        self.assertRedirects(response, reverse('home'))
+
+    def test_redirects_to_root_with_unsafe_next_path(self):
+        response = self.client.get(migrate_path('https://example.com/wat'))
+        self.assertRedirects(response, reverse('home'))
+
+    def test_redirects_to_next_with_safe_next_path(self):
+        response = self.client.get(migrate_path('/en-US/firefox/a/place'))
+        self.assertRedirects(
+            response, '/en-US/firefox/a/place', target_status_code=404)
+
+
+class TestMigrateViewNotMigrated(BaseTestMigrateView):
+
+    def setUp(self):
+        super(TestMigrateViewNotMigrated, self).setUp()
+        self.login()
+
+    def test_renders_the_prompt(self):
+        response = self.client.get(migrate_path())
+        assert response.status_code == 200
+        assert 'Migrate to Firefox Accounts' in response.content
+        doc = pq(response.content)
+        assert doc('.skip-migrate-link a')[0].get('href') == reverse('home')
+
+    def test_skip_link_goes_to_next_path_when_next_path_is_safe(self):
+        response = self.client.get(migrate_path('/some/path'))
+        assert response.status_code == 200
+        assert 'Migrate to Firefox Accounts' in response.content
+        doc = pq(response.content)
+        assert doc('.skip-migrate-link a')[0].get('href') == '/some/path'
+
+    def test_skip_link_goes_to_root_when_next_path_is_unsafe(self):
+        response = self.client.get(
+            migrate_path('https://example.com/some/path'))
+        assert response.status_code == 200
+        assert 'Migrate to Firefox Accounts' in response.content
+        doc = pq(response.content)
+        assert doc('.skip-migrate-link a')[0].get('href') == reverse('home')
+
+
+class TestMigrateViewMigratedUser(BaseTestMigrateView):
+
+    def setUp(self):
+        super(TestMigrateViewMigratedUser, self).setUp()
+        self.login_migrated()
+
+    def test_redirects_to_root_when_migrated(self):
+        response = self.client.get(migrate_path())
+        self.assertRedirects(response, reverse('home'))
+
+    def test_redirects_to_next_when_migrated_safe_next(self):
+        response = self.client.get(migrate_path('/en-US/firefox/go/here'))
+        self.assertRedirects(
+            response, '/en-US/firefox/go/here', target_status_code=404)
+
+    def test_redirects_to_root_when_migrated_unsafe_next(self):
+        response = self.client.get(migrate_path('https://example.com/uh/oh'))
+        self.assertRedirects(response, reverse('home'))

@@ -1,5 +1,5 @@
 -r compiled.txt
-amo-validator==1.10.14
+amo-validator==1.10.15
 amqp==1.4.6
 anyjson==0.3.3
 argparse==1.2.1
@@ -28,6 +28,7 @@ django-extensions==1.2.5
 django-filter==0.7
 django-multidb-router==0.5.1
 django-mysql-pymysql==0.1
+django-post-request-task==0.0.3
 django-quieter-formset==0.4
 django-raven-heka==0.3
 djangorestframework==2.3.12

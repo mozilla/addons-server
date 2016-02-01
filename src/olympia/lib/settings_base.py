@@ -327,6 +327,8 @@ MIDDLEWARE_CLASSES = (
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
     'commonware.middleware.FrameOptionsHeader',
+    'commonware.middleware.XSSProtectionHeader',
+    'commonware.middleware.ContentTypeOptionsHeader',
     'commonware.middleware.StrictTransportMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
@@ -1271,7 +1273,7 @@ PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://ssl.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
-CSP_REPORT_ONLY = True
+CSP_REPORT_ONLY = False
 CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
@@ -1303,8 +1305,13 @@ CSP_IMG_SRC = (
     'https://sentry.prod.mozaws.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
+
+# https://addons.mozilla.org is needed for about:addons because
+# the discovery pane's origin is https://services.addons.mozilla.org
+# and as a result 'self' doesn't match requests to addons.mozilla.org.
 CSP_SCRIPT_SRC = (
     "'self'",
+    'https://addons.mozilla.org',
     'https://www.paypalobjects.com',
     'https://apis.google.com',
     'https://www.google.com/recaptcha/',
