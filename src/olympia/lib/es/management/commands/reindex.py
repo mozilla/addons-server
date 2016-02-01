@@ -20,7 +20,8 @@ from olympia.lib.es.utils import (
     timestamp_index)
 
 logger = logging.getLogger('z.elasticsearch')
-time_limits = settings.CELERY_TIME_LIMITS['lib.es.management.commands.reindex']
+time_limits = settings.CELERY_TIME_LIMITS[
+    'olympia.lib.es.management.commands.reindex']
 
 
 ES = get_es()
@@ -231,9 +232,10 @@ class Command(BaseCommand):
         # the soft and hard time limits on the @task decorator. But we're not
         # using the @task decorator here, but a decorator from celery_tasktree.
         if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
-            control.time_limit('lib.es.management.commands.reindex.index_data',
-                               soft=time_limits['soft'],
-                               hard=time_limits['hard'])
+            control.time_limit(
+                'olympia.lib.es.management.commands.reindex.index_data',
+                soft=time_limits['soft'],
+                hard=time_limits['hard'])
 
         try:
             tree.apply_async()

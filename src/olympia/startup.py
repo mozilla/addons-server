@@ -71,35 +71,6 @@ def init_amo():
     amo = __import__('olympia.amo')
 
 
-def init_celery():
-    """
-    Initialize Celery, and make our app instance available as `celery_app`
-    for use by the `celery` command.
-    """
-    from django.conf import settings
-    from raven import Client
-    from raven.contrib.celery import register_signal, register_logger_signal
-    from olympia.amo import celery
-
-    # I think `manage.py celery` relies on this global? We typically don't run
-    # celery like that anymore though.
-    global celery_app
-    celery_app = celery.app
-
-    # Hook up Sentry in celery.
-    client = Client(settings.SENTRY_DSN)
-
-    # register a custom filter to filter out duplicate logs
-    register_logger_signal(client)
-
-    # hook into the Celery error handler
-    register_signal(client)
-
-    # After upgrading raven we can specify loglevel=logging.INFO to override
-    # the default (which is ERROR).
-    register_logger_signal(client)
-
-
 def configure_logging():
     """Configure the `logging` module to route logging based on settings
     in our various settings modules and defaults in `lib.log_settings_base`."""
@@ -126,5 +97,4 @@ init_jinja2()
 init_amo()
 configure_logging()
 init_jingo()
-init_celery()
 load_product_details()
