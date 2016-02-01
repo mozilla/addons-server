@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-01 06:29+0000\n"
+"PO-Revision-Date: 2016-02-01 09:43+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -1162,7 +1162,7 @@ msgstr "Pengaya gagal pengsahan."
 
 #: static/js/zamboni/validator.js:468
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Pengaya lulus pengseahan."
 
 #: static/js/zamboni/validator.js:481
 msgid "{0} error"
@@ -1181,7 +1181,7 @@ msgstr[0] "{0} pernyataan"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Tugas pengsahan tidak selesai atau selesai dengan masalah"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
