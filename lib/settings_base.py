@@ -1287,8 +1287,13 @@ CSP_IMG_SRC = (
     'https://sentry.prod.mozaws.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
+
+# https://addons.mozilla.org is needed for about:addons because
+# the discovery pane's origin is https://services.addons.mozilla.org
+# and as a result 'self' doesn't match requests to addons.mozilla.org.
 CSP_SCRIPT_SRC = (
     "'self'",
+    'https://addons.mozilla.org',
     'https://www.paypalobjects.com',
     'https://apis.google.com',
     'https://www.google.com/recaptcha/',
