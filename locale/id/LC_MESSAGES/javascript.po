@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-02 11:10+0000\n"
+"PO-Revision-Date: 2016-02-02 13:12+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -702,7 +702,7 @@ msgstr "Pengaya yang Diunduh, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Pengaya yang Diunduh dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213
@@ -712,7 +712,7 @@ msgstr "Pengaya yang Dibuat, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:215
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Pengaya yang Dibuat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:219
@@ -722,7 +722,7 @@ msgstr "Pengaya yang Diperbarui, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:221
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Pengaya yang Diperbarui dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
@@ -732,7 +732,7 @@ msgstr "Ulasan yang Ditulis, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Ulasan yang Ditulis dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
@@ -742,7 +742,7 @@ msgstr "Pendaftaran Pengguna, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:233
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Pendaftaran Pengguna dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237
@@ -752,7 +752,7 @@ msgstr "Koleksi yang Dibuat, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:239
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Koleksi yang Dibuat dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243
@@ -762,7 +762,7 @@ msgstr "Pelanggan, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:245
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Pelanggan dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249
@@ -772,7 +772,7 @@ msgstr "Nilai, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Nilai dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255
@@ -782,7 +782,7 @@ msgstr "Penjualan, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:257
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Penjualan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261
@@ -792,7 +792,7 @@ msgstr "Pemasangan, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Pemasangan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:269
@@ -803,7 +803,7 @@ msgstr "<b>{0}</b> dalam {1} hari terakhir"
 #: static/js/impala/stats/csv_keys.js:271
 #: static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> dari tanggal {1} hingga tanggal {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:275
@@ -853,7 +853,7 @@ msgstr "Unduh Sekarang"
 
 #: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Pengaya belum diperbarui untuk mendukung kompatibel bawaan."
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
@@ -1210,7 +1210,7 @@ msgstr "Belum diulas"
 
 #: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperimental<span>(Pelajari Lebih Lanjut)</span>"
 
 #: static/js/zamboni/mobile/buttons.js:56
 #: static/js/zamboni/mobile/buttons.js:57
@@ -1239,11 +1239,11 @@ msgstr "Pengaya ini telah diulas lebih dulu oleh Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
-msgstr ""
+msgstr "Pertahankan"
 
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Anda mencobanya!"
 
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
