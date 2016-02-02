@@ -220,7 +220,4 @@ urlpatterns = decorate(write, patterns(
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$',
         views.docs, name='devhub.docs'),
-
-    # Search
-    url(r'^search$', views.search, name='devhub.search'),
 ))

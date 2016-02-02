@@ -3554,24 +3554,6 @@ class TestRemoveLocale(amo.tests.TestCase):
         eq_(len(doc('div.trans textarea')), 2)
 
 
-class TestSearch(amo.tests.TestCase):
-
-    def test_search_titles(self):
-        r = self.client.get(reverse('devhub.search'), {'q': 'davor'})
-        self.assertContains(r, '"davor"</h1>')
-        self.assertContains(r, '<title>davor :: Search ::')
-
-        # Prevent XSS.
-        r = self.client.get(reverse('devhub.search'), {'q': '<script>'})
-        self.assertContains(r, '"&lt;script&gt;"</h1>')
-        self.assertContains(r, '<title>&amp;lt;script&amp;gt; :: Search ::')
-
-    def test_search_titles_default(self):
-        r = self.client.get(reverse('devhub.search'))
-        self.assertContains(r, '<title>Search ::')
-        self.assertContains(r, '<h1>Search Results</h1>')
-
-
 class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_devhub_feed_page(self):
