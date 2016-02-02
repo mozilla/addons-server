@@ -1732,11 +1732,6 @@ def docs(request, doc_name=None):
     raise http.Http404()
 
 
-def search(request):
-    query = request.GET.get('q', '')
-    return render(request, 'devhub/devhub_search.html', {'query': query})
-
-
 @login_required
 @waffle_switch('signing-api')
 def api_key_agreement(request):
