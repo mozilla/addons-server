@@ -266,6 +266,18 @@ class TestUserProfile(amo.tests.TestCase):
         assert tuple(user.watching) == (watched_collection1.pk,
                                         watched_collection2.pk)
 
+    def test_fxa_migrated_not_migrated(self):
+        user = UserProfile(fxa_id=None)
+        assert user.fxa_migrated() is False
+
+    def test_fxa_migrated_not_migrated_empty_string(self):
+        user = UserProfile(fxa_id='')
+        assert user.fxa_migrated() is False
+
+    def test_fxa_migrated_migrated(self):
+        user = UserProfile(fxa_id='db27f8')
+        assert user.fxa_migrated() is True
+
 
 class TestPasswords(amo.tests.TestCase):
     utf = u'\u0627\u0644\u062a\u0637\u0628'
