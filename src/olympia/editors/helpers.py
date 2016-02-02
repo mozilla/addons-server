@@ -480,7 +480,7 @@ class ReviewHelper:
              'ReviewerAdminTools', 'View'))
             and (not is_limited_reviewer(request)
                  or (datetime.datetime.now() -
-                     addon.latest_version.nomination > datetime.timedelta(
+                     addon.latest_version.nomination >= datetime.timedelta(
                      hours=REVIEW_LIMITED_DELAY_HOURS)))):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
