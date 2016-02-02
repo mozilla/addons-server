@@ -8,4 +8,5 @@ py==1.4.30
 pytest==2.7.0
 pytest-cache==1.0
 pytest-django==2.8.0
+pytest-instafail==0.3.0
 pytest-xdist==1.13.1
