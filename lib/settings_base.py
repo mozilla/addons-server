@@ -1273,8 +1273,10 @@ CSP_FONT_SRC = (
 )
 CSP_FRAME_SRC = (
     "'self'",
-    'https://www.paypal.com',
+    'https://ic.paypal.com',
+    'https://paypal.com',
     'https://www.google.com/recaptcha/',
+    'https://www.paypal.com',
 )
 CSP_IMG_SRC = (
     "'self'",
