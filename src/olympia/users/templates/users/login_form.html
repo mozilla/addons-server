@@ -1,12 +1,15 @@
 <form method="post" action="{{ action }}"
       class="{% if is_ajax %}ajax-submit {% endif %}listing-footer{% if login_source_form %} login-source-form{% else %} login-form{% endif %}">
   {{ csrf() }}
-  {% if form.non_field_errors() %}
+  {% if form.non_field_errors() or login_error %}
       <div class="notification-box error">
         <ul>
         {% for error in form.non_field_errors() %}
         <li>{{ error }}</li>
         {% endfor %}
+        {% if login_error %}
+        <li>{{ login_error }} <a href="{{ fxa_login_help_url }}" target="_blank">{{ _('Need help?') }}</a></li>
+        {% endif %}
         </ul>
       </div>
   {% endif %}

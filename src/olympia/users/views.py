@@ -28,6 +28,7 @@ from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
 from olympia.access.middleware import ACLMiddleware
+from olympia.accounts.views import LOGIN_ERROR_MESSAGES
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo import messages
@@ -375,6 +376,12 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     data['login_source_form'] = (waffle.switch_is_active('fxa-auth') and
                                  not request.POST)
+    login_error = request.GET.get('error')
+    if login_error in LOGIN_ERROR_MESSAGES:
+        data['login_error'] = LOGIN_ERROR_MESSAGES[login_error]
+        data['fxa_login_help_url'] = ('https://support.mozilla.org/kb/'
+                                      'access-your-add-ons-firefox-accounts')
+
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
     login_status = None

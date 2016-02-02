@@ -17,16 +17,42 @@ from tower import ugettext_lazy as _
 from waffle.decorators import waffle_switch
 
 from olympia.amo import messages
+from olympia.amo.utils import urlparams
 from olympia.api.jwt_auth.views import JWTProtectedView
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
-    UserProfileSerializer, AccountSourceSerializer)
+    AccountSourceSerializer, UserProfileSerializer)
 
 from . import verify
 
 log = logging.getLogger('accounts')
 
 STUB_FXA_USER = namedtuple('FxAUser', ['source'])('fxa')
+
+ERROR_NO_CODE = 'no-code'
+ERROR_NO_PROFILE = 'no-profile'
+ERROR_NO_USER = 'no-user'
+ERROR_STATE_MISMATCH = 'state-mismatch'
+ERROR_USER_MISMATCH = 'user-mismatch'
+ERROR_USER_MIGRATED = 'user-migrated'
+ERROR_STATUSES = {
+    ERROR_NO_CODE: 422,
+    ERROR_NO_PROFILE: 401,
+    ERROR_STATE_MISMATCH: 400,
+    ERROR_USER_MISMATCH: 422,
+    ERROR_USER_MIGRATED: 422,
+}
+LOGIN_ERROR_MESSAGES = {
+    ERROR_NO_CODE:
+        _('Your log in attempt could not be parsed. Please try again.'),
+    ERROR_NO_PROFILE:
+        _('Your Firefox Account could not be found. Please try again.'),
+    ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
+    ERROR_USER_MIGRATED:
+        _('Your account has already been migrated to Firefox Accounts.'),
+    ERROR_USER_MISMATCH:
+        _('Your Firefox Account already exists on this site.'),
+}
 
 
 def safe_redirect(url, action):
@@ -82,72 +108,100 @@ def login_user(request, user, identity):
     login(request, user)
 
 
-def with_user(fn):
-    @functools.wraps(fn)
-    def inner(self, request):
-        data = request.GET if request.method == 'GET' else request.DATA
-        state_parts = data.get('state', '').split(':', 1)
-        state = state_parts[0]
-        if 'code' not in data:
-            log.info('No code provided.')
-            return Response({'error': 'No code provided.'}, status=422)
-        elif (not request.session.get('fxa_state') or
-                request.session['fxa_state'] != state):
-            log.info('State mismatch. URL: {url} Session: {session}'.format(
-                url=data.get('state'),
-                session=request.session.get('fxa_state'),
-            ))
-            return Response({'error': 'State mismatch.'}, status=400)
-
-        try:
-            identity = verify.fxa_identify(data['code'],
-                                           config=settings.FXA_CONFIG)
-        except verify.IdentificationError:
-            log.info('Profile not found. Code: {}'.format(data['code']))
-            return Response({'error': 'Profile not found.'}, status=401)
-        else:
-            identity_user = find_user(identity)
-            if request.user.is_authenticated():
-                if identity_user is not None and identity_user != request.user:
-                    log.info('Conflict finding user during FxA login. '
-                             'request.user: {}, identity_user: {}'.format(
-                                 request.user.pk, identity_user.pk))
-                    return Response({'error': 'User mismatch.'}, status=422)
-                elif request.user.fxa_migrated():
-                    log.info('User already migrated. '
-                             'request.user: {}, identity_user: {}'.format(
-                                 request.user, identity_user))
-                    return Response(
-                        {'error': 'User already migrated.'}, status=422)
-                else:
-                    user = request.user
-            else:
-                user = identity_user
+def render_error(request, error, next_path=None, format=None):
+    if format == 'json':
+        status = ERROR_STATUSES.get(error, 422)
+        return Response({'error': error}, status=status)
+    else:
+        if not is_safe_url(next_path):
             next_path = None
-            if len(state_parts) == 2:
-                # The = signs will be stripped off so we need to add them back
-                # but it only cares if there are too few so add 4 of them.
-                encoded_path = state_parts[1] + '===='
-                try:
-                    next_path = base64.urlsafe_b64decode(str(encoded_path))
-                except TypeError:
-                    log.info('Error decoding next_path {}'.format(
-                        encoded_path))
-                    pass
-            if not is_safe_url(next_path):
-                next_path = None
-            return fn(self, request, user=user, identity=identity,
-                      next_path=next_path)
-    return inner
+        return HttpResponseRedirect(
+            urlparams(reverse('users.login'), error=error, to=next_path))
+
+
+def parse_next_path(state_parts):
+    next_path = None
+    if len(state_parts) == 2:
+        # The = signs will be stripped off so we need to add them back
+        # but it only cares if there are too few so add 4 of them.
+        encoded_path = state_parts[1] + '===='
+        try:
+            next_path = base64.urlsafe_b64decode(str(encoded_path))
+        except TypeError:
+            log.info('Error decoding next_path {}'.format(
+                encoded_path))
+            pass
+    if not is_safe_url(next_path):
+        next_path = None
+    return next_path
+
+
+def with_user(format):
+    def outer(fn):
+        @functools.wraps(fn)
+        def inner(self, request):
+            data = request.GET if request.method == 'GET' else request.DATA
+            state_parts = data.get('state', '').split(':', 1)
+            state = state_parts[0]
+            next_path = parse_next_path(state_parts)
+            if 'code' not in data:
+                log.info('No code provided.')
+                return render_error(
+                    request, ERROR_NO_CODE, next_path=next_path, format=format)
+            elif (not request.session.get('fxa_state') or
+                    request.session['fxa_state'] != state):
+                log.info(
+                    'State mismatch. URL: {url} Session: {session}'.format(
+                        url=data.get('state'),
+                        session=request.session.get('fxa_state'),
+                    ))
+                return render_error(
+                    request, ERROR_STATE_MISMATCH, next_path=next_path,
+                    format=format)
+
+            try:
+                identity = verify.fxa_identify(
+                    data['code'], config=settings.FXA_CONFIG)
+            except verify.IdentificationError:
+                log.info('Profile not found. Code: {}'.format(data['code']))
+                return render_error(
+                    request, ERROR_NO_PROFILE, next_path=next_path,
+                    format=format)
+            else:
+                identity_user = find_user(identity)
+                if request.user.is_authenticated():
+                    if (identity_user is not None
+                            and identity_user != request.user):
+                        log.info('Conflict finding user during FxA login. '
+                                 'request.user: {}, identity_user: {}'.format(
+                                     request.user.pk, identity_user.pk))
+                        return render_error(
+                            request, ERROR_USER_MISMATCH, next_path=next_path,
+                            format=format)
+                    elif request.user.fxa_migrated():
+                        log.info('User already migrated. '
+                                 'request.user: {}, identity_user: {}'.format(
+                                     request.user, identity_user))
+                        return render_error(
+                            request, ERROR_USER_MIGRATED, next_path=next_path,
+                            format=format)
+                    else:
+                        user = request.user
+                else:
+                    user = identity_user
+                return fn(self, request, user=user, identity=identity,
+                          next_path=next_path)
+        return inner
+    return outer
 
 
 class LoginView(APIView):
 
     @waffle_switch('fxa-auth')
-    @with_user
+    @with_user(format='json')
     def post(self, request, user, identity, next_path):
         if user is None:
-            return Response({'error': 'User does not exist.'}, status=422)
+            return Response({'error': ERROR_NO_USER}, status=422)
         else:
             login_user(request, user, identity)
             return Response({'email': identity['email']})
@@ -156,7 +210,7 @@ class LoginView(APIView):
 class RegisterView(APIView):
 
     @waffle_switch('fxa-auth')
-    @with_user
+    @with_user(format='json')
     def post(self, request, user, identity, next_path):
         if user is not None:
             return Response({'error': 'That account already exists.'},
@@ -169,7 +223,7 @@ class RegisterView(APIView):
 class AuthenticateView(APIView):
 
     @waffle_switch('fxa-auth')
-    @with_user
+    @with_user(format='html')
     def get(self, request, user, identity, next_path):
         if user is None:
             register_user(request, identity)

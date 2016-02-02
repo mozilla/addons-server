@@ -3,18 +3,19 @@ import base64
 from django.contrib.messages import get_messages
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.urlresolvers import resolve, reverse
-from django.test import RequestFactory, TestCase
+from django.test import TestCase
 from django.test.utils import override_settings
 
 import mock
 
-from rest_framework.test import APITestCase
+from rest_framework.test import APIRequestFactory, APITestCase
 
 from olympia.accounts import verify, views
-from olympia.amo.tests import create_switch, InitializeSessionMixin
+from olympia.amo.helpers import absolutify, urlparams
+from olympia.amo.tests import (
+    assert_url_equal, create_switch, InitializeSessionMixin)
 from olympia.api.tests.utils import APIAuthTestCase
 from olympia.users.models import UserProfile
-
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
 
@@ -60,7 +61,7 @@ class TestFxALoginWaffle(APITestCase):
 class TestLoginUser(TestCase):
 
     def setUp(self):
-        self.request = RequestFactory().get('/login')
+        self.request = APIRequestFactory().get('/login')
         setattr(self.request, 'session', 'session')
         messages = FallbackStorage(self.request)
         setattr(self.request, '_messages', messages)
@@ -122,6 +123,71 @@ class TestFindUser(TestCase):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
 
 
+class TestRenderErrorHTML(TestCase):
+
+    def make_request(self):
+        return APIRequestFactory().get(reverse('accounts.authenticate'))
+
+    def login_error_url(self, **params):
+        return urlparams(reverse('users.login'), **params)
+
+    def render_error(self, error, next_path=None):
+        return views.render_error(
+            self.make_request(), error, format='html', next_path=next_path)
+
+    def test_error_no_code_with_safe_path(self):
+        response = self.render_error(
+            views.ERROR_NO_CODE, next_path='/over/here')
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(to='/over/here', error=views.ERROR_NO_CODE))
+
+    def test_error_no_profile_with_no_path(self):
+        response = self.render_error(views.ERROR_NO_PROFILE)
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(error=views.ERROR_NO_PROFILE))
+
+    def test_error_state_mismatch_with_unsafe_path(self):
+        response = self.render_error(
+            views.ERROR_STATE_MISMATCH,
+            next_path='https://www.google.com/')
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(error=views.ERROR_STATE_MISMATCH))
+
+
+class TestRenderErrorJSON(TestCase):
+
+    def setUp(self):
+        patcher = mock.patch('olympia.accounts.views.Response')
+        self.Response = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def make_request(self):
+        return APIRequestFactory().post(reverse('accounts.login'))
+
+    def render_error(self, error):
+        views.render_error(self.make_request(), error, format='json')
+
+    def test_unknown_error(self):
+        self.render_error('not-an-error')
+        self.Response.assert_called_with({'error': 'not-an-error'}, status=422)
+
+    def test_error_no_profile(self):
+        self.render_error(views.ERROR_NO_PROFILE)
+        self.Response.assert_called_with(
+            {'error': views.ERROR_NO_PROFILE}, status=401)
+
+    def test_error_state_mismatch(self):
+        self.render_error(views.ERROR_STATE_MISMATCH)
+        self.Response.assert_called_with(
+            {'error': views.ERROR_STATE_MISMATCH}, status=400)
+
+
 class TestWithUser(TestCase):
 
     def setUp(self):
@@ -131,12 +197,15 @@ class TestWithUser(TestCase):
         patcher = mock.patch('olympia.accounts.views.find_user')
         self.find_user = patcher.start()
         self.addCleanup(patcher.stop)
+        patcher = mock.patch('olympia.accounts.views.render_error')
+        self.render_error = patcher.start()
+        self.addCleanup(patcher.stop)
         self.request = mock.MagicMock()
         self.user = UserProfile()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
 
-    @views.with_user
+    @views.with_user(format='json')
     def fn(*args, **kwargs):
         return args, kwargs
 
@@ -257,21 +326,20 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
-    @mock.patch('olympia.accounts.views.Response')
-    def test_profile_does_not_exist(self, Response):
+    def test_profile_does_not_exist(self):
         self.fxa_identify.side_effect = verify.IdentificationError
         self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         self.fn(self.request)
-        Response.assert_called_with(
-            {'error': 'Profile not found.'}, status=401)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_NO_PROFILE, next_path=None,
+            format='json')
         assert not self.find_user.called
 
-    @mock.patch('olympia.accounts.views.Response')
-    def test_code_not_provided(self, Response):
+    def test_code_not_provided(self):
         self.request.DATA = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
-        Response.assert_called_with(
-            {'error': 'No code provided.'}, status=422)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_NO_CODE, next_path=None, format='json')
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
@@ -318,8 +386,7 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
-    @mock.patch('olympia.accounts.views.Response')
-    def test_logged_in_does_not_match_identity_migrated(self, Response):
+    def test_logged_in_does_not_match_identity_migrated(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
@@ -327,34 +394,44 @@ class TestWithUser(TestCase):
         self.user.fxa_id = '4321'
         self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
-        Response.assert_called_with(
-            {'error': 'User already migrated.'}, status=422)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_USER_MIGRATED, next_path=None,
+            format='json')
 
-    @mock.patch('olympia.accounts.views.Response')
-    def test_logged_in_does_not_match_conflict(self, Response):
+    def test_logged_in_does_not_match_conflict(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = mock.MagicMock(pk=222)
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        self.request.DATA = {
+            'code': 'woah',
+            'state': 'some-blob:{}'.format(
+                base64.urlsafe_b64encode('https://www.google.com/')),
+        }
         self.fn(self.request)
-        Response.assert_called_with({'error': 'User mismatch.'}, status=422)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_USER_MISMATCH, next_path=None,
+            format='json')
 
-    @mock.patch('olympia.accounts.views.Response')
-    def test_state_does_not_match(self, Response):
+    def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {'code': 'foo', 'state': 'other-blob'}
+        self.request.DATA = {
+            'code': 'foo',
+            'state': 'other-blob:{}'.format(base64.urlsafe_b64encode('/next')),
+        }
         self.fn(self.request)
-        Response.assert_called_with({'error': 'State mismatch.'}, status=400)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_STATE_MISMATCH, next_path='/next',
+            format='json')
 
 
 class TestRegisterUser(TestCase):
 
     def setUp(self):
-        self.request = RequestFactory().get('/register')
+        self.request = APIRequestFactory().get('/register')
         self.identity = {'email': 'me@yeahoo.com', 'uid': '9005'}
         patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
@@ -410,14 +487,14 @@ class TestLoginView(BaseAuthenticationView):
     def test_no_code_provided(self):
         response = self.client.post(self.url)
         assert response.status_code == 422
-        assert response.data['error'] == 'No code provided.'
+        assert response.data['error'] == views.ERROR_NO_CODE
         assert not self.login_user.called
 
     def test_wrong_state(self):
         response = self.client.post(
             self.url, {'code': 'foo', 'state': 'a-different-blob'})
         assert response.status_code == 400
-        assert response.data['error'] == 'State mismatch.'
+        assert response.data['error'] == views.ERROR_STATE_MISMATCH
         assert not self.login_user.called
 
     def test_no_fxa_profile(self):
@@ -425,7 +502,7 @@ class TestLoginView(BaseAuthenticationView):
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
-        assert response.data['error'] == 'Profile not found.'
+        assert response.data['error'] == views.ERROR_NO_PROFILE
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
 
@@ -434,7 +511,7 @@ class TestLoginView(BaseAuthenticationView):
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 422
-        assert response.data['error'] == 'User does not exist.'
+        assert response.data['error'] == views.ERROR_NO_USER
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
 
@@ -473,14 +550,14 @@ class TestRegisterView(BaseAuthenticationView):
     def test_no_code_provided(self):
         response = self.client.post(self.url)
         assert response.status_code == 422
-        assert response.data['error'] == 'No code provided.'
+        assert response.data['error'] == views.ERROR_NO_CODE
         assert not self.register_user.called
 
     def test_wrong_state(self):
         response = self.client.post(
             self.url, {'code': 'foo', 'state': 'wrong-blob'})
         assert response.status_code == 400
-        assert response.data['error'] == 'State mismatch.'
+        assert response.data['error'] == views.ERROR_STATE_MISMATCH
         assert not self.register_user.called
 
     def test_no_fxa_profile(self):
@@ -488,7 +565,7 @@ class TestRegisterView(BaseAuthenticationView):
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 401
-        assert response.data['error'] == 'Profile not found.'
+        assert response.data['error'] == views.ERROR_NO_PROFILE
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.register_user.called
 
@@ -514,18 +591,25 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.login_user = self.patch('olympia.accounts.views.login_user')
         self.register_user = self.patch('olympia.accounts.views.register_user')
 
+    def login_error_url(self, **params):
+        return absolutify(urlparams(reverse('users.login'), **params))
+
     def test_no_code_provided(self):
         response = self.client.get(self.url)
-        assert response.status_code == 422
-        assert response.data['error'] == 'No code provided.'
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(error=views.ERROR_NO_CODE))
         assert not self.login_user.called
         assert not self.register_user.called
 
     def test_wrong_state(self):
         response = self.client.get(
             self.url, {'code': 'foo', 'state': '9f865be0'})
-        assert response.status_code == 400
-        assert response.data['error'] == 'State mismatch.'
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(error=views.ERROR_STATE_MISMATCH))
         assert not self.login_user.called
         assert not self.register_user.called
 
@@ -533,8 +617,10 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.fxa_identify.side_effect = verify.IdentificationError
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
-        assert response.status_code == 401
-        assert response.data['error'] == 'Profile not found.'
+        assert response.status_code == 302
+        assert_url_equal(
+            response['location'],
+            self.login_error_url(error=views.ERROR_NO_PROFILE))
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called
