@@ -1,5 +1,5 @@
+import datetime
 from django.db import models
-from django.utils import timezone
 
 
 class ReindexingManager(models.Manager):
@@ -54,7 +54,7 @@ class Reindexing(models.Model):
     SITE_CHOICES = (
         ('amo', 'AMO'),
     )
-    start_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateTimeField(default=datetime.datetime.now())
     old_index = models.CharField(max_length=255, null=True)
     new_index = models.CharField(max_length=255)
     alias = models.CharField(max_length=255)

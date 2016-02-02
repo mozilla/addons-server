@@ -339,7 +339,7 @@ class APITest(TestCase):
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         eq_(data['icon'],
-            '%s3/3615-32.png?modified=1275062517' % helpers.user_media_url(
+            '%s3/3615-32.png?modified=1275037317' % helpers.user_media_url(
                 'addon_icons'))
         eq_(data['compatible_apps'],
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
@@ -468,8 +468,8 @@ class APITest(TestCase):
         tags = {
             'suggested_amount': (
                 {'currency': 'USD', 'amount': '5.00'}, '$5.00'),
-            'created': ({'epoch': '1174134235'}, '2007-03-17T12:23:55Z'),
-            'last_updated': ({'epoch': '1272326983'}, '2010-04-27T00:09:43Z')}
+            'created': ({'epoch': '1174109035'}, '2007-03-17T05:23:55Z'),
+            'last_updated': ({'epoch': '1272301783'}, '2010-04-26T17:09:43Z')}
 
         for tag, v in tags.items():
             attrs, text = v

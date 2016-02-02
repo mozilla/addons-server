@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import random
 import urllib
@@ -282,9 +282,8 @@ class TestOtherStuff(amo.tests.TestCase):
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
         response = client.get(url_with_build, follow=True)
-        fmt = '%a, %d %b %Y %H:%M:%S GMT'
-        expires = datetime.strptime(response['Expires'], fmt)
-        assert (expires - datetime.now()).days >= 7
+        self.assertCloseToNow(response['Expires'],
+                              now=datetime.now() + timedelta(days=7))
 
     def test_jsi18n(self):
         """Test that the jsi18n library has an actual catalog of translations
