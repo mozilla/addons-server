@@ -23,7 +23,7 @@ from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 log = commonware.log.getLogger('z.task')
 
 
-app = Celery('olympia', task_cls=PostRequestTask)
+app = Celery('olympia')
 task = app.task
 
 app.config_from_object('django.conf:settings')
