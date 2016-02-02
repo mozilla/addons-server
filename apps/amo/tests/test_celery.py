@@ -5,8 +5,9 @@ from datetime import timedelta
 from django.core.signals import request_finished, request_started
 
 import mock
+import pytest
 
-from amo.celery import task
+from amo.celery import app, task
 from amo.utils import utc_millesecs_from_epoch
 
 
@@ -58,6 +59,8 @@ class TestTaskTiming(unittest.TestCase):
         assert not self.statsd.timing.called
 
 
+@pytest.mark.skipif('PostRequestTask' not in unicode(app.task_cls),
+                    reason='requires PostRequestTask to be active')
 class TestTaskQueued(unittest.TestCase):
     """Test that our celery tasks are queued to be triggered only when the
     request is finished, thanks to django-post-request-task."""
