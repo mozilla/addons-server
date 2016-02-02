@@ -107,7 +107,7 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
         email = self.cleaned_data['email']
         self.users_cache = UserProfile.objects.filter(email__iexact=email)
         try:
-            if self.users_cache.get().fxa_id:
+            if self.users_cache.get().fxa_migrated():
                 raise forms.ValidationError(
                     _('You must recover your password through Firefox '
                       'Accounts. Try logging in instead.'))

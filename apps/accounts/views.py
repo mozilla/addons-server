@@ -103,7 +103,7 @@ def with_user(fn):
                              'request.user: {}, identity_user: {}'.format(
                                  request.user.pk, identity_user.pk))
                     return Response({'error': 'User mismatch.'}, status=422)
-                elif request.user.fxa_id is not None:
+                elif request.user.fxa_migrated():
                     log.info('User already migrated. '
                              'request.user: {}, identity_user: {}'.format(
                                  request.user, identity_user))

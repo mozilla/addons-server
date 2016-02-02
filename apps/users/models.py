@@ -335,10 +335,15 @@ class UserProfile(amo.models.OnChangeMixin, amo.models.ModelBase,
     def source(self):
         if not self.pk:
             return None
-        elif self.fxa_id:
+        elif self.fxa_migrated():
             return 'fxa'
         else:
             return 'amo'
+
+    def fxa_migrated(self):
+        """Return whether the user has a Firefox Accounts id set or not. When
+        this is True the user must log in through Firefox Accounts."""
+        return bool(self.fxa_id)
 
     @property
     def name(self):
