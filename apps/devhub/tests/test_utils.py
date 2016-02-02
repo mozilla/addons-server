@@ -648,7 +648,6 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         """Tests that only a single validation task is run for a given file."""
         task = mock.Mock()
         chain.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
 
         assert isinstance(tasks.validate(self.file), mock.Mock)
         assert task.delay.call_count == 1
@@ -665,7 +664,6 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         upload."""
         task = mock.Mock()
         chain.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
 
         assert isinstance(tasks.validate(self.file_upload), mock.Mock)
         assert task.delay.call_count == 1

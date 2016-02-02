@@ -16,7 +16,6 @@ from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 
 from celery.exceptions import SoftTimeLimitExceeded
-from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from tower import ugettext as _
 
@@ -48,16 +47,13 @@ def validate(file_, listed=None, subtask=None):
     from .utils import ValidationAnnotator
     annotator = ValidationAnnotator(file_, listed=listed)
 
-    task_id = cache.get(annotator.cache_key)
-    if task_id:
-        return AsyncResult(task_id)
-    else:
+    is_validator_already_running_for_this = cache.get(annotator.cache_key)
+    if not is_validator_already_running_for_this:
         chain = annotator.task
         if subtask is not None:
             chain |= subtask
-        result = chain.delay()
-        cache.set(annotator.cache_key, result.task_id, 5 * 60)
-        return result
+        chain.delay()
+        cache.set(annotator.cache_key, True, 5 * 60)
 
 
 def validate_and_submit(addon, file_, listed=None):
