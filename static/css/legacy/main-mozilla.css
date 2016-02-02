@@ -393,14 +393,6 @@ span.emaillink .i {
     display: inline-block;
 }
 
-
-/* Recently Viewed Collections */
-
-#add-to-recents, #recently-viewed {
-    /* Placeholders for js content, hidden until needed. */
-    display: none;
-}
-
 /** END collections pages */
 
 /* Search Pages */
