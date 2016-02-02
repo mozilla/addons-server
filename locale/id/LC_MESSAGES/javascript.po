@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-01 16:46+0000\n"
+"PO-Revision-Date: 2016-02-02 11:10+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -56,7 +56,7 @@ msgstr ""
 #: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "Pengaya anda gagal validasi dengan {0} kesalahan."
 
 #: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
@@ -65,11 +65,11 @@ msgstr[0] "&hellip;dan {0} lagi"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
-msgstr ""
+msgstr "Lihat laporan validasi lengkap"
 
 #: static/js/common/upload-addon.js:234
 msgid "Validating {0}"
-msgstr ""
+msgstr "Mengvalidasi {0}"
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:273
@@ -82,25 +82,28 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Selesai validasi {0}"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Waktu validasi pengaya anda habis, akan ditinjau secara manual."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
+"Pengaya anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
+"Pengaya anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
+"Pengaya anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
 
 #: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
@@ -142,6 +145,10 @@ msgid ""
 " Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
+"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan "
+"(tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk "
+"diulas. Pastikan anda menggunakan bidang pengunggah kode sumber untuk "
+"menghindari penolakan pengiriman Anda."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
@@ -547,7 +554,7 @@ msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js:122
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js:123
 msgid "Fennec"
@@ -565,7 +572,7 @@ msgstr "Unduhan dan Pengguna Harian, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Unduhan dan Pengguna Harian dari {0} hingga {1}"
+msgstr "Unduhan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135
@@ -575,7 +582,7 @@ msgstr "Pemasangan dan Pengguna Harian, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:137
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Pemasangan dan Pengguna Harian dari {0} hingga {1}"
+msgstr "Pemasangan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141
@@ -585,7 +592,7 @@ msgstr "Unduhan, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143
 msgid "Downloads from {0} to {1}"
-msgstr "Unduhan dari {0} hingga {1}"
+msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147
@@ -595,7 +602,7 @@ msgstr "Pengguna Harian, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:149
 msgid "Daily Users from {0} to {1}"
-msgstr "Pengguna Harian dari {0} hingga {1}"
+msgstr "Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:153
@@ -605,7 +612,7 @@ msgstr "Aplikasi, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:155
 msgid "Applications from {0} to {1}"
-msgstr "Aplikasi dari {0} hingga {1}"
+msgstr "Aplikasi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:159
@@ -615,7 +622,7 @@ msgstr "Platform, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:161
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platform dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165
@@ -625,7 +632,7 @@ msgstr "Bahasa, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Bahasa dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:171
@@ -635,7 +642,7 @@ msgstr "Versi Pengaya, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:173
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versi Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:177
@@ -645,7 +652,7 @@ msgstr "Status Pengaya, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:179
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Status Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183
@@ -655,7 +662,7 @@ msgstr "Sumber Unggahan, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sumber Unggahan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:189
@@ -665,7 +672,7 @@ msgstr "Kontribusi, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:191
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Kontribusi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195
@@ -685,7 +692,7 @@ msgstr "Pengaya yang dipakai, {0} hari terakhir"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:203
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Pengaya yang dipakai dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207
