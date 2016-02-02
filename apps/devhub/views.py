@@ -343,7 +343,7 @@ def delete(request, addon_id, addon, theme=False):
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
-    form = forms.DeleteForm(request)
+    form = forms.DeleteForm(request.POST, addon=addon)
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
         addon.delete(msg='Removed via devhub', reason=reason)
@@ -355,12 +355,12 @@ def delete(request, addon_id, addon, theme=False):
         if theme:
             messages.error(
                 request,
-                _('Password was incorrect. Theme was not deleted.'))
+                _('URL name was incorrect. Theme was not deleted.'))
             return redirect(addon.get_dev_url())
         else:
             messages.error(
                 request,
-                _('Password was incorrect. Add-on was not deleted.'))
+                _('URL name was incorrect. Add-on was not deleted.'))
             return redirect(addon.get_dev_url('versions'))
 
 
@@ -1329,7 +1329,6 @@ def version_list(request, addon_id, addon):
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
-            'timestamp': int(time.time()),
             'is_admin': is_admin}
     return render(request, 'devhub/versions/list.html', data)
 

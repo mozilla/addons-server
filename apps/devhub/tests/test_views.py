@@ -756,26 +756,50 @@ class TestDelete(amo.tests.TestCase):
         super(TestDelete, self).setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
         assert self.client.login(username='del@icio.us', password='password')
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
+
+    def make_theme(self):
+        theme = addon_factory(
+            name='xpi name', type=amo.ADDON_PERSONA, slug='theme-slug')
+        theme.authors.through.objects.create(addon=theme, user=self.user)
+        return theme
 
     def test_post_not(self):
         r = self.client.post(self.get_url(), follow=True)
         eq_(pq(r.content)('.notification-box').text(),
-            'Password was incorrect. Add-on was not deleted.')
+            'URL name was incorrect. Add-on was not deleted.')
         eq_(self.get_addon().exists(), True)
 
     def test_post(self):
-        r = self.client.post(self.get_url(), {'password': 'password'},
+        self.get_addon().get().update(slug='addon-slug')
+        r = self.client.post(self.get_url(), {'slug': 'addon-slug'},
                              follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'Add-on deleted.')
         eq_(self.get_addon().exists(), False)
 
-    def test_post_theme(self):
-        Addon.objects.get(id=3615).update(type=amo.ADDON_PERSONA)
-        r = self.client.post(self.get_url(), {'password': 'password'},
+    def test_post_wrong_slug(self):
+        self.get_addon().get().update(slug='addon-slug')
+        r = self.client.post(self.get_url(), {'slug': 'theme-slug'},
                              follow=True)
+        eq_(pq(r.content)('.notification-box').text(),
+            'URL name was incorrect. Add-on was not deleted.')
+        eq_(self.get_addon().exists(), True)
+
+    def test_post_theme(self):
+        theme = self.make_theme()
+        r = self.client.post(
+            theme.get_dev_url('delete'), {'slug': 'theme-slug'}, follow=True)
         eq_(pq(r.content)('.notification-box').text(), 'Theme deleted.')
-        eq_(self.get_addon().exists(), False)
+        eq_(Addon.objects.filter(id=theme.id).exists(), False)
+
+    def test_post_theme_wrong_slug(self):
+        theme = self.make_theme()
+        r = self.client.post(
+            theme.get_dev_url('delete'), {'slug': 'addon-slug'}, follow=True)
+        eq_(pq(r.content)('.notification-box').text(),
+            'URL name was incorrect. Theme was not deleted.')
+        eq_(Addon.objects.filter(id=theme.id).exists(), True)
 
 
 class TestHome(amo.tests.TestCase):
@@ -3341,14 +3365,14 @@ class TestDeleteAddon(amo.tests.TestCase):
         self.client.login(username='admin@mozilla.com', password='password')
 
     def test_bad_password(self):
-        r = self.client.post(self.url, dict(password='turd'))
+        r = self.client.post(self.url, dict(slug='nope'))
         self.assert3xx(r, self.addon.get_dev_url('versions'))
         eq_(r.context['title'],
-            'Password was incorrect. Add-on was not deleted.')
+            'URL name was incorrect. Add-on was not deleted.')
         eq_(Addon.objects.count(), 1)
 
     def test_success(self):
-        r = self.client.post(self.url, dict(password='password'))
+        r = self.client.post(self.url, dict(slug='a3615'))
         self.assert3xx(r, reverse('devhub.addons'))
         eq_(r.context['title'], 'Add-on deleted.')
         eq_(Addon.objects.count(), 0)

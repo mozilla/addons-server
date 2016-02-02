@@ -80,17 +80,17 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
 
 
 class DeleteForm(happyforms.Form):
-    password = forms.CharField()
+    slug = forms.CharField()
     reason = forms.CharField(required=False)
 
-    def __init__(self, request):
-        self.user = request.user
-        super(DeleteForm, self).__init__(request.POST)
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon')
+        super(DeleteForm, self).__init__(*args, **kwargs)
 
-    def clean_password(self):
+    def clean_slug(self):
         data = self.cleaned_data
-        if not self.user.check_password(data['password']):
-            raise forms.ValidationError(_('Password incorrect.'))
+        if not data['slug'] == self.addon.slug:
+            raise forms.ValidationError(_('Slug incorrect.'))
 
 
 class AnnotateFileForm(happyforms.Form):
