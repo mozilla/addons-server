@@ -378,7 +378,7 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
         firefox_min_version = self.create_appversion('firefox', '30.0')
         firefox_max_version = self.create_appversion('firefox', '30.*')
         self.create_appversion('firefox', '42.0')  # Default AppVersions.
-        self.create_appversion('firefox', '42.*')
+        self.create_appversion('firefox', '*')
         data = {
             'applications': {
                 'gecko': {
@@ -395,7 +395,7 @@ class TestManifestJSONExtractor(amo.tests.TestCase):
         """Use the default min and max versions if none provided."""
         # Default AppVersions.
         firefox_min_version = self.create_appversion('firefox', '42.0')
-        firefox_max_version = self.create_appversion('firefox', '42.*')
+        firefox_max_version = self.create_appversion('firefox', '*')
         data = {'applications': {'gecko': {'id': 'some-id'}}}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.

@@ -297,7 +297,7 @@ class ManifestJSONExtractor(JSONExtractor):
             get_simple_version(self.gecko.get('strict_min_version')) or '42.0')
         strict_max_version = (
             # Not sure what we should default to here.
-            get_simple_version(self.gecko.get('strict_max_version')) or '42.*')
+            get_simple_version(self.gecko.get('strict_max_version')) or '*')
         try:
             min_appver, max_appver = get_appversions(
                 app, strict_min_version, strict_max_version)
