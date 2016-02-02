@@ -8,7 +8,12 @@
 {% block content %}
 <div class="primary" role="main">
 
-  {% if validlink %}
+  {% if migrated %}
+    <div class="notification-box error">
+      <h2>{{ _('Password reset unsuccessful') }}</h2>
+      <div>{{ _('You have migrated to Firefox Accounts. You can no longer change your password here.') }}</div>
+    </div>
+  {% elif validlink %}
     <div class="primary island hero">
       <h1>{{ _('Password Reset') }}</h1>
       <form method="post" class="object-lead user-input prettyform grid">

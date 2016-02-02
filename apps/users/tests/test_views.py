@@ -826,9 +826,9 @@ class TestReset(UserViewBase):
 
     def setUp(self):
         super(TestReset, self).setUp()
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.token = [urlsafe_base64_encode(str(user.id)),
-                      default_token_generator.make_token(user)]
+        self.user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.token = [urlsafe_base64_encode(str(self.user.id)),
+                      default_token_generator.make_token(self.user)]
 
     def test_reset_msg(self):
         res = self.client.get(reverse('users.pwreset_confirm',
@@ -849,10 +849,12 @@ class TestReset(UserViewBase):
             'Letters and numbers required.')
 
     def test_reset_succeeds(self):
+        assert not self.user.check_password('password1')
         res = self.client.post(reverse('users.pwreset_confirm',
                                        args=self.token),
                                data={'new_password1': 'password1',
                                      'new_password2': 'password1'})
+        assert self.user.reload().check_password('password1')
         eq_(res.status_code, 302)
 
     def test_reset_incorrect_padding(self):
@@ -860,6 +862,40 @@ class TestReset(UserViewBase):
         token = ["1kql8", "2xg-9f90e30ba5bda600910d"]
         res = self.client.get(reverse('users.pwreset_confirm', args=token))
         assert not res.context['validlink']
+
+    def test_reset_msg_migrated_waffle_off(self):
+        self.user.update(fxa_id='123')
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                      args=self.token))
+        assert 'You can no longer change your password' not in res.content
+
+    def test_reset_attempt_migrated_waffle_off(self):
+        self.user.update(fxa_id='123')
+        assert not self.user.check_password('password1')
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
+                               data={'new_password1': 'password1',
+                                     'new_password2': 'password1'})
+        assert self.user.reload().check_password('password1')
+        assert 'You can no longer change your password' not in res.content
+
+    def test_reset_msg_migrated_waffle_on(self):
+        self.create_switch('fxa-auth', active=True)
+        self.user.update(fxa_id='123')
+        res = self.client.get(reverse('users.pwreset_confirm',
+                                      args=self.token))
+        assert 'You can no longer change your password' in res.content
+
+    def test_reset_attempt_migrated_waffle_on(self):
+        self.create_switch('fxa-auth', active=True)
+        self.user.update(fxa_id='123')
+        assert not self.user.check_password('password1')
+        res = self.client.post(reverse('users.pwreset_confirm',
+                                       args=self.token),
+                               data={'new_password1': 'password1',
+                                     'new_password2': 'password1'})
+        assert not self.user.reload().check_password('password1')
+        assert 'You can no longer change your password' in res.content
 
 
 class TestLogout(UserViewBase):
