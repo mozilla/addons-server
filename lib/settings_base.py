@@ -1288,6 +1288,9 @@ CSP_IMG_SRC = (
     'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
 )
+CSP_MEDIA_SRC = (
+    'https://videos.cdn.mozilla.net',
+)
 CSP_OBJECT_SRC = ("'none'",)
 
 # https://addons.mozilla.org is needed for about:addons because
