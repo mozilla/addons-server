@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-02 13:12+0000\n"
+"PO-Revision-Date: 2016-02-03 01:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Pengaya Anda harus berakhir dengan .xpi, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
@@ -56,7 +56,7 @@ msgstr ""
 #: static/js/common/upload-addon.js:194
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Pengaya anda gagal validasi dengan {0} kesalahan."
+msgstr[0] "Pengaya Anda gagal validasi dengan {0} kesalahan."
 
 #: static/js/common/upload-addon.js:208
 msgid "&hellip;and {0} more"
@@ -86,24 +86,24 @@ msgstr "Selesai validasi {0}"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Waktu validasi pengaya anda habis, akan ditinjau secara manual."
+msgstr "Waktu validasi pengaya Anda habis, akan ditinjau secara manual."
 
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-"Pengaya anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-"Pengaya anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
-"Pengaya anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
 
 #: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
@@ -119,12 +119,17 @@ msgid ""
 " include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
+"Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh,"
+" masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk "
+"Pengulas (dapat dilakukan di langkah berikutnya)."
 
 #: static/js/common/upload-addon.js:467
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih "
+"Ulasan Lebih Dulu bukan Ulasan Penuh."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
@@ -160,7 +165,7 @@ msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it"
 " here."
 msgstr ""
-"Jika anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya"
+"Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya"
 " disini."
 
 #: static/js/common/upload-addon.js:555
@@ -169,7 +174,7 @@ msgstr "Maaf, tidak ditemukan platform yang didukung."
 
 #: static/js/common/upload-base.js:57
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Tipe berkas yang Anda unggah tidak dikenal."
 
 #: static/js/common/upload-base.js:79
 msgid "You cancelled the upload."
@@ -177,7 +182,7 @@ msgstr ""
 
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Gambar harus dalam PNG atau JPG."
 
 #: static/js/common/upload-image.js:101
 msgid "Videos must be in WebM."
@@ -198,7 +203,7 @@ msgstr ""
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema ini tidak kompatibel dengan versi {0} anda"
+msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
 
 #: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
@@ -206,31 +211,31 @@ msgstr "Dilindungi Hak Cipta"
 
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Nama tema Anda"
 
 #: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -365,7 +370,7 @@ msgstr "Pelanggan"
 
 #: static/js/impala/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr "Nilai"
+msgstr "Peringkat"
 
 #: static/js/impala/stats/csv_keys.js:36
 #: static/js/impala/stats/csv_keys.js:114
@@ -767,12 +772,12 @@ msgstr "Pelanggan dari tanggal {0} sampai tanggal {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249
 msgid "Ratings, last {0} days"
-msgstr "Nilai, {0} hari terakhir"
+msgstr "Peringkat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251
 msgid "Ratings from {0} to {1}"
-msgstr "Nilai dari tanggal {0} hingga tanggal {1}"
+msgstr "Peringkat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255
@@ -836,7 +841,7 @@ msgstr[0] ""
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Kirim email ke penyusun dari {2} pengaya yang gagal pengsahan."
+msgstr[0] "Kirim email ke penyusun dari {2} pengaya yang gagal validasi."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:66
@@ -1011,7 +1016,7 @@ msgstr "Perubahan gambar sedang diproses"
 
 #: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
-msgstr "Harus alamat e-mail sah."
+msgstr "Harus alamat e-mail valid."
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
@@ -1167,11 +1172,11 @@ msgstr "Tes Kompatibilitas"
 
 #: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
-msgstr "Pengaya gagal pengsahan."
+msgstr "Pengaya gagal validasi."
 
 #: static/js/zamboni/validator.js:468
 msgid "Add-on passed validation."
-msgstr "Pengaya lulus pengseahan."
+msgstr "Pengaya lulus validasi."
 
 #: static/js/zamboni/validator.js:481
 msgid "{0} error"
@@ -1190,7 +1195,7 @@ msgstr[0] "{0} pernyataan"
 
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr "Tugas pengsahan tidak selesai atau selesai dengan masalah"
+msgstr "Tugas validasi tidak selesai atau selesai dengan masalah"
 
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
