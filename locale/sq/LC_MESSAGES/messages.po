@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-23 11:32+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1349,7 +1349,7 @@ msgstr "Parashtroni Temë të Re"
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Administroni Kyçe API"
 
@@ -1932,7 +1932,7 @@ msgid "Collections I'm Following"
 msgstr "Koleksionet që Ndjek"
 
 #: apps/amo/templates/amo/site_nav.html:73 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Shtesat e Mia të Parapëlqyera"
 
@@ -2143,7 +2143,7 @@ msgstr "Ju lutemi, mos e plotësoni këtë fushë, ajo përdoret për të kapur 
 msgid "This name cannot be used."
 msgstr "Ky emër s’përdoret dot."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "S’lejohen lidhje."
 
@@ -2155,7 +2155,7 @@ msgstr "Kjo url përdoret tashmë nga një tjetër koleksion"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:438
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Ju lutemi, përdorni figura më të vogla se %dMB."
 
@@ -2358,12 +2358,7 @@ msgstr "Më tepër nga ky Përdorues"
 msgid "See all collections by this user"
 msgstr "Shihni krejt koleksionet nga ky përdorues"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Parë Së fundmi"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -2371,7 +2366,7 @@ msgstr ""
 "Shtesat që i shënoni si të parapëlqyera duke përdorur funksionin <b>Shtoje te Të parapëlqyerat</b> shfaqen më poshtë. Ky koleksion tani është <b>publik</b>, që do të thotë se mund ta shohë kushdo. "
 "Nëse do të donit ta fshihni nga sytë e publikut, klikoni mbi butonin më poshtë, që ta bëni privat."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
@@ -2379,7 +2374,7 @@ msgstr ""
 "Shtesat që i shënoni si të parapëlqyera duke përdorur funksionin <b>Shtoje te Të parapëlqyerat</b> shfaqen më poshtë. Ky koleksion tani është <b>privat</b>, që do të thotë se mund ta shihni vetëm "
 "ju. Nëse do të donit që gjithkush të ishte në gjendje të shihte të parapëlqyerat tuaja, klikoni mbi butonin më poshtë, që ta bëni publik."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Shtesat e mia të parapëlqyera"
 
@@ -2552,7 +2547,7 @@ msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, s’do të 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
-#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:42
+#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/fxa_migration.html:21 apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Vazhdo"
 
@@ -2885,9 +2880,8 @@ msgid "Browse through even more search providers at <a href=\"http://mycroft.moz
 msgstr "Shfletoni nëpër më tepër mundësues kërkimesh te <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
+msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
-"<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ndërtoni një të tuajën</a> te <a href=\"https://developer.mozilla.org/\">Qendra e Mozilla-s për Zhvillime</a>"
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
@@ -2960,8 +2954,8 @@ msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Shihni zgjatimin %(cnt)s te %(name)s &raquo;"
 msgstr[1] "Shihni krejt zgjatimet %(cnt)s te %(name)s &raquo;"
 
-#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
-#: apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
+#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4
+#: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
 msgstr "S’u gjetën përfundime."
 
@@ -3637,8 +3631,8 @@ msgid "An author can only be listed once."
 msgstr "Autori mund të tregohet vetëm një herë."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Fjalëkalim i pasaktë."
+msgid "Slug incorrect."
+msgstr ""
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -3852,15 +3846,15 @@ msgstr[1] "{0} sinjalizime"
 msgid "Review"
 msgstr "Shqyrtim"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s u përgjigj me %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Lidhjes me \"%s\" i mbaroi koha."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "S’u lidh dot me strehën te \"%s\"."
 
@@ -3896,7 +3890,7 @@ msgstr "Shqyrtime Përdoruesi"
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Ju lutemi, kontrolloni formularin për gabime."
 
@@ -3913,12 +3907,12 @@ msgid "Add-on deleted."
 msgstr "Shtesa u fshi."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Fjalëkalimi qe i pasaktë. Tema s’u fshi."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Fjalëkalimi qe i pasaktë. Shtesa s’u fshi."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -3948,7 +3942,7 @@ msgstr "Kontrolloni Përputhshmëri Shtese"
 msgid "You cannot submit this type of add-on"
 msgstr "S’mund të parashtroni këtë lloj shtojce"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Figurat duhet të jenë ose PNG, ose JPG."
 
@@ -3986,19 +3980,19 @@ msgstr "Versioni %s u fshi."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ky ngarkim s’arriti të vleftësohej, dhe mund t’i mungojnë përfundimet e plota të vleftësimit. Ju lutemi, tregoni kujdesin e duhur, teksa e shqyrtoni."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "U kërkua Shqyrtim Paraprak."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "U kërkua Shqyrtim i Plotë."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "Kredencialet tuaja të vjetra janë shfuqizuar dhe s’janë më të vlefshme. Sigurohumi të përditësoni me kredencialet e reja krejt klientët tuaj për API."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "U prodhua kyç i ri API"
 
@@ -4023,35 +4017,6 @@ msgstr "ose <a href=\"{0}\">Anulojeni</a>"
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Mbrapsht te Shtesat"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Kërkim"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
-msgid "Search"
-msgstr "Kërkoni"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Përfundime Kërkimi"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Përfundime Kërkimi për \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Ju lutemi, jepni ndonjë term kërkimi."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Po ngarkohen përfundimet&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -4188,9 +4153,15 @@ msgstr "Forum Shtesash"
 msgid "More Resources"
 msgstr "Më Tepër Burime"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Kërkoni te Dokumentime për Zhvillues"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27 apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8
+#: templates/search.html:14 templates/impala/search.html:18
+msgid "Search"
+msgstr "Kërkoni"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -4470,7 +4441,7 @@ msgstr "Gjuhë Parazgjedhje"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Të dhënat rreth shtesës suaj shfaqen në këtë gjuhë, veç në e anashkalofshi këtë gjë me një përkthim në një gjuhë të caktuar. Kjo vlen vetëm për shtesat e paraqitura."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:291 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:298 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Faqe Hyrëse"
@@ -4754,8 +4725,8 @@ msgid "Deleting your add-on will permanently remove it from the site and prevent
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Jepni fjalëkalimin tuaj që të ripohoni vendimin:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -10311,6 +10282,10 @@ msgstr "Përfundime Kërkimi Koleksionesh për {0}"
 msgid "Collection Search Results"
 msgstr "Përfundime Kërkimi Koleksionesh"
 
+#: apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Përfundime Kërkimi"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Kërkim Jo i Mundshëm"
@@ -10327,6 +10302,17 @@ msgstr "Përfundime Kërkimi Temash për {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Përfundime Kërkimi Temash"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Kërkim"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Përfundime Kërkimi për \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -10500,7 +10486,7 @@ msgstr "Versioni ekziston."
 msgid "No uploaded file for that addon and version."
 msgstr "S’ka kartelë të ngarkuar për atë shtesë dhe version."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Faleminderit që dhatë ndihmesë te {addon_name}"
 
@@ -10572,6 +10558,10 @@ msgstr "Shqyrtime të Shkruara"
 msgid "User Signups"
 msgstr "Regjistrime Përdoruesish"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Format Vetjak Date"
@@ -10584,7 +10574,7 @@ msgstr "Prej"
 msgid "To"
 msgstr "Për"
 
-#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
+#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Përditësoje"
 
@@ -10910,71 +10900,75 @@ msgstr ""
 "Si pjesë e rregullave tona të reja për fjalëkalimet, fjalëkalimi juaj duhet të jetë %s ose më tepër shenja. Ju lutemi, përditësoni fjalëkalimin tuaj përmes <a href=\"%s\">kërkesës për ricaktim "
 "fjalëkalimi</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid "You must recover your password through Firefox Accounts. Try logging in instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Fjalëkalim i ri"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "U dha fjalëkalim i gabuar!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Emri i përdoruesit s’mundet të përmbajë vetëm shifra."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Jepni një emër të vlefshëm përdoruesi, të përbërë nga shkronja, numra, nënvija ose vija ndarëse."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Ky emër përdoruesi s’përdoret dot."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Ky emër përdoruesi është tashmë në përdorim."
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Emër në Ekran"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Vend"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Punësim"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Ju lutemi, që të plotësohet regjistrimi juaj, përdorni një adresë email nga një tjetër mundësues."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "S’mund të përdoren ky emër ekrani."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Fjalëkalimet s’u përputhën."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Foto Profili"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Vendore parazgjedhje"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Për anonimizim, jepni një arsye për ndryshimin, por mos ndryshoni ndonjë fushë tjetër."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Ju lutemi, jepni të paktën një emër për ta kaluar te lista e zezë."
 
@@ -10999,19 +10993,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "S’ka përdorues me këtë email."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr ""
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Llogaria juaj u kufizua"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Ju lutemi, ripohoni adresën tuaj email"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Shtesat e Mia për Celular"
 
@@ -11087,47 +11081,47 @@ msgstr "Mozilla dëshiron të më kontaktojë lidhur me rajone të reja të shtu
 msgid "User Notifications"
 msgstr "Njoftime Përdoruesish"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "Lypset një adresë email."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "S’ka përdorues me atë adresë email."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Kod i pavlefshëm ripohimi!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Verifikuar me sukses!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "Email-i Për Ripohim u Dërgua"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Profili u Fshi"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Fotoja u Fshi"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Profili u Përditësua"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Ripohimi Me Email u Dërgua"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11135,39 +11129,39 @@ msgstr ""
 "Është dërguar një email te {0} që të ripohoni adresën tuaj të re email. Që ndryshimi të hyjë në fuqi, lypset të klikoni mbi lidhjen e dhënë te ky email. Sa pa bërë këtë, mund të vazhdoni të hyni me "
 "adresën tuaj të tanishme email."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Ju lutemi, ripohoni ndryshimin e adresës suaj email te %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "U gjetën Gabime"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Pati gabime në ndryshimet që bëtë. Ndreqini, ju lutemi, dhe riparashtrojini."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "Na ndjeni, por këtë radhë s’i plotësoni kushtet për të kërkuar një bluzë."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Adresa juaj email u ndryshua me sukses"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Tani e tutje, ju lutemi, përdorni {0} për të bërë hyrjen."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Adresë email ose fjalëkalim i gabuar!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Te adresa juaj {0} është dërguar me email një lidhje për aktivizimin e llogarisë suaj të përdoruesit. Duhet ta klikoni, përpara se të mund të hyni."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -11175,37 +11169,37 @@ msgstr ""
 "Nëse s’e morët email-in e ripohimit, kontrolloni se mos shërbimi juaj email service e ka shënur si \"postë e pavlerë\" ose \"hedhurinë\". Nëse ju duhet, mund të na kërkoni <a href=\"%s\">të "
 "ridërgojmë mesazhin e ripohimit</a> te adresa juaj email e përmendur më sipër."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Email-i i Aktivizimit u Dërgua"
 
 # This is a header for additional help options
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Po keni Probleme?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Jeni i futur tashmë te një llogari."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Përgëzime! Llogaria juaj e përdoruesit u krijua me sukses."
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Ju është dërguar email te adresa juaj {0} që të ripohoni llogarinë tuaj. Përpara se të hyni, duhet ta aktivizoni llogarinë tuaj, duke klikuar mbi lidhjen e dhënë në këtë email."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "Në këtë formular ka gabime"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Ju lutemi, ndreqini dhe riparashtrojeni."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Përdoruesi u raportua."
 
@@ -11382,6 +11376,18 @@ msgstr "asnjë"
 msgid "all"
 msgstr "krejt"
 
+#: apps/users/templates/users/fxa_migration.html:3 apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr ""
+
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
 msgstr "Hyrje Përdoruesi"
@@ -11424,7 +11430,7 @@ msgid "You are now logged in as <strong>%(user_email)s</strong>!"
 msgstr "Tani jeni i futur si <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
+#: apps/users/templates/users/pwreset_confirm.html:18 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3 apps/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
 msgstr "Ricaktim Fjalëkalimi"
@@ -11504,15 +11510,19 @@ msgstr "Sukses!"
 msgid "Password successfully reset."
 msgstr "Fjalëkalim i ricaktuar me sukses."
 
-#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:72
-msgid "Confirm password"
-msgstr "Ripohoni fjalëkalimin"
-
-#: apps/users/templates/users/pwreset_confirm.html:41
+#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_confirm.html:46
 msgid "Password reset unsuccessful"
 msgstr "Fjalëkalimi s’u ricaktua me sukses"
 
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31 apps/users/templates/users/register.html:72
+msgid "Confirm password"
+msgstr "Ripohoni fjalëkalimin"
+
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
 msgstr "Lidhja për ricaktimin e fjalëkalimit qe e pavlefshme, ndoshta ngaqë është përdorur tashmë një herë. Ju lutemi, kërkoni një ricaktim të ri fjalëkalimi."
 

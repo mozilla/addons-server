@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-02-03 01:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,19 +91,16 @@ msgstr "Waktu validasi pengaya Anda habis, akan ditinjau secara manual."
 #: static/js/common/upload-addon.js:421
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
+msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
 
 #: static/js/common/upload-addon.js:426
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
+msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
 
 #: static/js/common/upload-addon.js:431
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
-"Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
+msgstr "Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
 
 #: static/js/common/upload-addon.js:446
 msgid "Your submission will be automatically signed."
@@ -114,59 +111,37 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:466
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh,"
-" masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk "
-"Pengulas (dapat dilakukan di langkah berikutnya)."
+"Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh, masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk Pengulas (dapat dilakukan di langkah berikutnya)."
 
 #: static/js/common/upload-addon.js:467
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih "
-"Ulasan Lebih Dulu bukan Ulasan Penuh."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih Ulasan Lebih Dulu bukan Ulasan Penuh."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr ""
 
 #: static/js/common/upload-addon.js:481
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini "
-"mengurangi penundaan atau salah pengertian dalam proses ulasan:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan "
-"(tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk "
-"diulas. Pastikan anda menggunakan bidang pengunggah kode sumber untuk "
-"menghindari penolakan pengiriman Anda."
+"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk diulas. Pastikan anda menggunakan bidang "
+"pengunggah kode sumber untuk menghindari penolakan pengiriman Anda."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
+msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
 
 #: static/js/common/upload-addon.js:518
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya"
-" disini."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya disini."
 
 #: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
@@ -188,7 +163,7 @@ msgstr "Gambar harus dalam PNG atau JPG."
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "Ikuti Koleksi"
 
@@ -309,13 +284,11 @@ msgstr "{0} pembayaran kembali"
 msgid "{0} installs"
 msgstr "{0} pemasangan"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Unggahan"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr ""
 
@@ -372,13 +345,11 @@ msgstr "Pelanggan"
 msgid "Ratings"
 msgstr "Peringkat"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Penjualan"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Pemasangan"
 
@@ -410,8 +381,7 @@ msgstr "Saran Pencarian"
 msgid "Search Results"
 msgstr "Hasil Pencarian"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Promo Beranda"
 
@@ -439,8 +409,7 @@ msgstr "Detail Laman (bawah)"
 msgid "Detail Page (Development Channel)"
 msgstr "Detail Laman (Kanal Pengembangan)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Sering Digunakan Dengan"
 
@@ -524,8 +493,7 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -805,8 +773,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> dalam {1} hari terakhir"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> dari tanggal {1} hingga tanggal {2}"
 
@@ -827,16 +794,14 @@ msgstr "Tanggal"
 msgid "Other"
 msgstr "Lainnya"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Pilih aplikasi terlebih dulu"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke penyusun."
+msgstr[0] "Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke penyusun."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -865,10 +830,8 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Anda harus menggunakan Firefox 10.0 atau lebih baru."
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Mozilla telah menandai versi ini tidak kompatibel dengan versi Firefox anda."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla telah menandai versi ini tidak kompatibel dengan versi Firefox anda."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:210
@@ -901,78 +864,70 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk "
-"memasang plugin pencari."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk memasang plugin pencari."
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "bersihkan yang baru saja dilihat"
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "Tambahkan ke Favorit&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "Hapus Favorit&hellip;"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Tambah ke Favorit"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Hapus dari Favorit"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "Tertunda"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "Tambahkan komentar"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "Komentar"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "Hapus pengaya ini dari koleksi"
 
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "Hapus"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "Hapus pengguna ini sebagai kontributor"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr "Dibutuhkan alamat email."
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr "Anda tidak dapat menambahkan diri sendiri sebagai kontributor."
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "Anda telah menambahkan pengguna tersebut."
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "Tambah ke favorit"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "Hapus dari favorit"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "Berhenti mengikuti"
 
@@ -1085,12 +1040,8 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Sisa <b>{0}</b> karakter."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. "
-"Periksa kembali nanti."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. Periksa kembali nanti."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1153,8 +1104,7 @@ msgstr "Tes tersebut tidak dijalankan."
 msgid "Tests"
 msgstr "Tes"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Masalah"
 
@@ -1217,8 +1167,7 @@ msgstr "Belum diulas"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperimental<span>(Pelajari Lebih Lanjut)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "{0} Tidak Tersedia"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgid "Videos must be in WebM."
 msgstr "Ṽīḓḗǿş ḿŭşŧ ƀḗ īƞ ẆḗƀḾ."
 
 #: static/js/impala/collections.js:10
-#: static/js/zamboni/collections.js:729
+#: static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
@@ -942,72 +942,68 @@ msgstr ""
 "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ "
 "şḗȧřƈħ ƥŀŭɠīƞ."
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "ƈŀḗȧř řḗƈḗƞŧŀẏ ṽīḗẇḗḓ"
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "Ȧḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&hellip;"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Ȧḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ Ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "Ƥḗƞḓīƞɠ"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "Ȧḓḓ ȧ ƈǿḿḿḗƞŧ"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
-#: static/js/zamboni/collections.js:439
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "Řḗḿǿṽḗ"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "Řḗḿǿṽḗ ŧħīş ŭşḗř ȧş ȧ ƈǿƞŧřīƀŭŧǿř"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ȧḓḓ ẏǿŭřşḗŀƒ ȧş ȧ ƈǿƞŧřīƀŭŧǿř."
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ȧḓḓḗḓ ŧħȧŧ ŭşḗř."
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "Ȧḓḓ ŧǿ ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 

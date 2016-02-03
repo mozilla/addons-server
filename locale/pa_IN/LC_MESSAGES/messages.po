@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1323,7 +1323,7 @@ msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1903,7 +1903,7 @@ msgid "Collections I'm Following"
 msgstr "ਸੰਗ੍ਰਹਿ ਜਿਹਨਾਂ ਦਾ ਮੈਂ ਸਮਰਥਕ ਹਾਂ"
 
 #: apps/amo/templates/amo/site_nav.html:73 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 
@@ -2112,7 +2112,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
 
@@ -2124,7 +2124,7 @@ msgstr "ਇਹ url ਪਹਿਲਾਂ ਹੀ ਕਿਸੇ ਹੋਰ ਸੰਗ੍
 msgid "Icons must be either PNG or JPG."
 msgstr "ਆਈਕਾਨ PNG ਜਾਂJPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:438
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ %dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ।"
 
@@ -2326,12 +2326,7 @@ msgstr "ਇਸ ਉਪਭੋਗੀ ਵੱਲੋਂ ਹੋਰ"
 msgid "See all collections by this user"
 msgstr "ਇਸ ਉਪਭੋਗੀ ਦੇ ਸਾਰੇ ਸੰਗ੍ਰਹਿ ਵੇਖੋ"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "ਹੁਣੇ ਵੇਖਿਆ।"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -2339,7 +2334,7 @@ msgstr ""
 "ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ<b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਜਨਤਕ</b> ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਹਰ ਕੋਈ ਇਸ ਨੂੰ ਵੇਖ ਸਕਦਾ ਹੈ। ਜੇਕਰ ਤੁਸੀਂ ਇਸ ਨੂੰ ਜਨਤਕ ਝਲਕ ਤੋਂ ਲੁਕਾਉਣਾ ਪਸੰਦ ਹੋਵੇ, ਇਸ ਨੂੰ "
 "ਨਿੱਜੀ ਬਣਾਉਣ ਲਈ ਹੇਠ ਦਿੱਤੇ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
@@ -2347,7 +2342,7 @@ msgstr ""
 "ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ <b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਨਿੱਜੀ</b>ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਇਸ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਵੇਖ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਪਸੰਦ ਹੋਵੇ ਕਿ ਹਰ ਕੋਈ ਤੁਹਾਡੇ ਪਸੰਦੀਦਾ ਨੂੰ "
 "ਵੇਖ ਸਕੇ, ਇਸ ਨੂੰ ਜਨਤਕ ਬਣਾਉਣ ਲਈ ਹੇਠ ਦਿੱਤੇ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰੋ।"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 
@@ -2518,7 +2513,7 @@ msgstr "<b>ਚੇਤਾਵਨੀ:</b> ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਮਾ
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
-#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:42
+#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/fxa_migration.html:21 apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "ਜਾਰੀ"
 
@@ -2847,8 +2842,8 @@ msgid "Browse through even more search providers at <a href=\"http://mycroft.moz
 msgstr " <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>ਤੇ ਹੋਰ ਵੀ ਖੋਜ ਪ੍ਰਦਾਤਿਆਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #: apps/browse/templates/browse/search_tools.html:95
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "<a href=\"https://developer.mozilla.org/\">ਮੌਜੀਲਾ ਡਿਵੈਲਪਰ ਕੇਂਦਰ</a>ਤੇ <a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\"> ਆਪਣੇ ਆਪ ਬਣਾਓ"
+msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
@@ -2921,8 +2916,8 @@ msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "%(name)s &raquo ਵਿੱਚ %(cnt)s ਇਕਸਟੈਨਸ਼ਨ ਵੇਖੋ; "
 msgstr[1] "%(name)s &raquo ਵਿੱਚ %(cnt)s ਇਕਸਟੈਨਸ਼ਨਾਂ ਵੇਖੋ; "
 
-#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
-#: apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
+#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4
+#: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
@@ -3594,8 +3589,8 @@ msgid "An author can only be listed once."
 msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "ਗਲਤ ਪਾਸਵਰਡ।"
+msgid "Slug incorrect."
+msgstr ""
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -3807,15 +3802,15 @@ msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋਇਆ।"
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -3851,7 +3846,7 @@ msgstr "ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 msgid "Changes successfully saved."
 msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
 
@@ -3868,12 +3863,12 @@ msgid "Add-on deleted."
 msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ।"
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "ਪਾਸਵਰਡ ਗਲਤ ਸੀ। ਥੀਮ ਨਹੀਂ ਹਟਾਇਆ ਗਿਆ।"
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "ਪਾਸਵਰਡ ਗਲਤ ਸੀ। ਐਡ-ਆਨ ਨਹੀਂਂ ਹਟਾਇਆ ਗਿਆ।"
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -3903,7 +3898,7 @@ msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
 
@@ -3940,19 +3935,19 @@ msgstr "ਵਰਜਨ %s ਹਟਾਇਆ।"
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr ""
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr ""
 
@@ -3975,35 +3970,6 @@ msgstr "ਜਾਂ <a href=\"{0}\">ਰੱਦ</a>"
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: ਖੋਜ"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
-msgid "Search"
-msgstr "ਖੋਜ"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "ਖੋਜ ਨਤੀਜੇ"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "\"{0}\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਖੋਜ ਸ਼ਬਦ ਦਰਜ ਕਰੋ।"
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "ਨਤੀਜੇ&hellip ਲੋਡ ਕਰ ਰਿਹਾ;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -4139,9 +4105,15 @@ msgstr "ਐਡ-ਆਨ ਫ਼ੋਰਮ"
 msgid "More Resources"
 msgstr "ਹੋਰ ਵਸੀਲੇ"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "ਡਿਵੈਲਪਰ ਦਸਤਾਵੇਜ਼ ਖੋਜੋ"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27 apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8
+#: templates/search.html:14 templates/impala/search.html:18
+msgid "Search"
+msgstr "ਖੋਜ"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -4412,7 +4384,7 @@ msgstr "ਮੂਲ ਲੋਕੇਲ"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਬਾਰੇ ਜਾਣਕਾਰੀ ਇਸ ਲੋਕੇਲ ਵਿੱਚ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ ਜਦ ਤੱਕ ਤੁਸੀਂ ਇਸ ਨੂੰ ਇੱਕ ਖ਼ਾਸ-ਲੋਕੇਲ ਤਰਜਮੇ ਨਾਲ ਮੁੜ ਨਹੀਂ ਲਿੱਖਦੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:291 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:298 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "ਮੁੱਖ ਸਫ਼ਾ"
@@ -4688,8 +4660,8 @@ msgid "Deleting your add-on will permanently remove it from the site and prevent
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "ਆਪਣੇ ਫ਼ੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -10067,6 +10039,10 @@ msgstr "{0} ਲਈ ਸੰਗ੍ਰਹਿ ਖੋਜ ਨਤੀਜੇ"
 msgid "Collection Search Results"
 msgstr "ਸੰਗ੍ਰਹਿ ਖੋਜ ਨਤੀਜੇ"
 
+#: apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "ਖੋਜ ਨਤੀਜੇ"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "ਖੋਜ ਉੱਪਲਬਧ ਨਹੀਂ"
@@ -10083,6 +10059,17 @@ msgstr "{0} ਲਈ ਥੀਮ ਖੋਜ ਨਤੀਜੇ"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "ਥੀਮ ਖੋਜ ਨਤੀਜੇ"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: ਖੋਜ"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "\"{0}\" ਲਈ ਖੋਜ ਨਤੀਜੇ"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -10256,7 +10243,7 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "{addon_name} ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਉਣ ਲਈ ਧੰਨਵਾਦ"
 
@@ -10328,6 +10315,10 @@ msgstr "ਲਿਖੀਆਂ ਗਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 msgid "User Signups"
 msgstr "ਉਪਭੋਗੀ ਸਾਇਨ-ਅਪ"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "ਪਸੰਦੀਦਾ ਮਿਤੀ ਸੀਮਾ"
@@ -10340,7 +10331,7 @@ msgstr "ਤੋਂ"
 msgid "To"
 msgstr "ਤੱਕ"
 
-#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
+#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
 
@@ -10661,71 +10652,75 @@ msgstr "ਇਸ ਪਾਸਵਰਡ ਦੀ ਪ੍ਰਵਾਨਗੀ ਨਹੀਂ �
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr "ਸਾਡੀ ਨਵੀਂ ਪਾਸਵਰਡ ਨੀਤੀ ਦੇ ਹਿੱਸੇ ਦੇ ਰੂਪ ਵਿੱਚ, ਤੁਹਾਡਾ ਪਾਸਵਰਡ %s ਅੱਖਰਾਂ ਜਾਂ ਜਿਆਦਾ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਪਾਸਵਰਡ ਨੂੰ <a href=\"%s\">ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਜਾਰੀ ਕਰਨ</a>ਦੁਆਰਾ ਅੱਪਡੇਟ ਕਰੋ।"
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid "You must recover your password through Firefox Accounts. Try logging in instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "ਨਵਾਂ ਪਾਸਵਰਡ"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "ਗਲਤ ਪਾਸਵਰਡ ਦਰਜ ਕੀਤਾ!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "ਉਪਭੋਗੀ ਨਾਂ ਵਿੱਚ ਕੇਵਲ ਅੰਕ ਨਾ ਸ਼ਾਮਲ ਹੋਣ।"
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "ਅੱਖਰਾਂ, ਨੰਬਰਾਂ, ਅੰਡਰਸਕੋਰਾਂ ਜਾਂ ਹਾਈਫ਼ਨ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ ਇੱਕ ਸਹੀ ਉਪਭੋਗੀ ਨਾਂ ਦਰਜ ਕਰੋ।"
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਵਿੱਚ ਹੈ।"
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "ਨਾਂ ਵਿਖਾਓ"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "ਸਥਿਤੀ"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "ਕਿੱਤਾ"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "ਇਸ URL ਦਾ ਫ਼ਾਰਮੈਟ ਗਲਤ ਹੈ। ਸਹੀ URLs http://example.com/my_page ਦੀ ਤਰ੍ਹਾਂ ਵਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ।"
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਰਜਿਸਟਰੇਸ਼ਨ ਮੁਕੰਮਲ ਕਰਨ ਲਈ ਇੱਕ ਵੱਖਰੇ ਪ੍ਰਦਾਤੇ ਤੋਂ ਇੱਕ ਈਮੇਲ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "ਪਾਸਵਰਡਾਂ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ।"
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "ਮੂਲ ਲੋਕੇਲ"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "ਅਣਪਛਾਤਾ ਰੱਖਣ ਲਈ, ਬਦਲਾਅ ਲਈ ਇੱਕ ਕਾਰਨ ਦਿਓ ਪਰ ਕਿਸੇ ਵੀ ਹੋਰ ਖੇਤਰ ਨੂੰ ਨਾ ਬਦਲੋ।"
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਬਲੈਕਲਿਸਟ ਕਰਨ ਲਈ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨਾਂ ਦਿਓ।"
 
@@ -10750,19 +10745,19 @@ msgstr "ਹੈਸ਼"
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr ""
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "ਤੁਹਾਡਾ ਖਾਤਾ ਸੀਮਿਤ ਕੀਤਾ ਗਿਆ"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਈਮੇਲ ਖਾਤੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "ਮੇਰੇ ਮੋਬਾਈਲ ਐਡ-ਆਨ"
 
@@ -10838,85 +10833,85 @@ msgstr "ਮੌਜੀਲਾ ਮੇਰੇ ਨਾਲ ਮੰਡੀ ਵਿੱਚ ਸ�
 msgid "User Notifications"
 msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "ਇੱਕ ਈਮੇਲ ਪਤੇ ਦੀ ਲੋੜ ਹੈ।"
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "ਇਸ ਈਮੇਲ ਪਤੇ ਵਾਲਾ ਉਪਭੋਗੀ ਮੌਜੂਦ ਨਹੀਂ।"
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "ਗਲਤ ਪੁਸ਼ਟੀ ਕੋਡ!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "ਸਫ਼ਲਤਾਪੂਰਨ ਤਸਦੀਕ ਹੋਇਆ!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "ਪੁਸ਼ਟੀ ਈਮੇਲ ਭੇਜਿਆ"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਹਟਾਈ"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "ਫ਼ੋਟੋ ਹਟਾਈ"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਅੱਪਡੇਟ ਹੋਈ"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "ਈਮੇਲ ਪੁਸ਼ਟੀ ਭੇਜੀ ਗਈ"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr "ਤੁਹਾਡੇ ਨਵੇਂ ਈਮੇਲ ਪਤੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ {0} ਤੇ ਇੱਕ ਈਮੇਲ ਭੇਜੀ ਗਈ। ਬਦਲਾਅਾਂ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ, ਤੁਹਾਨੂੰ ਇਸ ਈਮੇਲ ਵਿੱਚ ਦਿੱਤੇ ਲਿੰਕ ਤੇ ਕਲਿੱਕ ਕਰਨ ਦੀ ਲੋੜ ਹੈ। ਤਦ ਤੱਕ, ਤੁਸੀਂ ਆਪਣੇ ਮੌਜੂਦਾ ਈਮੇਲ ਪਤੇ ਨਾਲ ਲਾਗਇਨ ਰਹਿ ਸਕਦੇ ਹੋ।"
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "ਕਿਰਪਾ ਕਰਕੇ %s ਤੇ ਆਪਣੇ ਈਮੇਲ ਪਤੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "ਖਾਮੀਆਂ ਮਿਲੀਆਂ"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "ਤੁਹਾਡੇ ਕੀਤੇ ਬਦਲਾਅਾਂ ਵਿੱਚ ਖਾਮੀਆਂ ਸਨ। ਕਿਰਪਾ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਠੀਕ ਕਰੋ ਅਤੇ ਮੁੜ-ਭੇਜੋ।"
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "ਸਾਨੂੰ ਅਫਸੋਸ ਹੈ, ਤੁਸੀਂ ਇਸ ਸਮੇਂ ਇੱਕ ਟੀ-ਸ਼ਰਟ ਦੀ ਬੇਨਤੀ ਕਰਨ ਲਈ ਮੁਨਾਸਬ ਨਹੀਂ ਹੋ।"
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ ਸਫ਼ਲਤਾਪੂਰਨ ਬਦਲਿਆ ਗਿਆ"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "ਹੁਣ ਤੋਂ, ਕਿਰਪਾ ਕਰਕੇ ਲਾਗਇਨ ਲਈ {0} ਵਰਤੋਂ।"
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "ਗਲਤ ਈਮੇਲ ਪਤਾ ਜਾਂ ਪਾਸਵਰਡ!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "ਤੁਹਾਡੇ ਉਪਭੋਗੀ ਖਾਤੇ ਨੂੰ ਸਰਗਰਮ ਕਰਨ ਲਈ ਈਮੇਲ ਦੁਆਰਾ ਤੁਹਾਡੇ ਪਤੇ {0} ਤੇ ਇੰਕ ਲਿੰਕ ਭੇਜਿਆ ਗਿਆ। ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਲਿੰਕ ਤੇ ਕਲਿੱਕ ਕਰਨਾ ਪਵੇਗਾ।"
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -10924,35 +10919,35 @@ msgstr ""
 "ਜੇਕਰ ਤੁਹਾਨੂੰ ਪੁਸ਼ਟੀ ਈਮੇਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਈ, ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਹਾਡੀ ਈਮੇਲ ਸੇਵਾ ਉਸ ਤੇ \"ਜੰਕ ਮੇਲ\" ਜਾਂ \"ਸਪੈਮ\" ਦਾ ਨਿਸ਼ਾਨ ਨਾ ਲਗਾ ਦੇਵੇ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਲੋੜ ਪਵੇ, ਤਾਂ ਤੁਸੀਂ ਸਾਨੂੰ ਉੱਪਰ ਦਿੱਤੇ ਆਪਣੇ ਈਮੇਲ ਪਤੇ ਤੇ <a href=\"%s\">ਪੁਸ਼ਟੀ ਸੁਨੇਹਾ ਮੁੜ-ਭੇਜਣ</a> ਬਾਰੇ ਕਹਿ "
 "ਸਕਦੇ ਹੋ।"
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "ਸਰਗਰਮ ਈਮੇਲ ਭੇਜੀ"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "ਸਮੱਸਿਆ ਹੈ?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਆਪਣੇ ਖਾਤੇ ਤੇ ਲਾਗਇਨ ਹੋ।"
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "ਵਧਾਈਆਂ! ਤੁਹਾਡਾ ਉਪਭੋਗੀ ਖਾਤਾ ਸਫ਼ਲਤਾਪੂਰਨ ਰਚਿਆ ਗਿਆ।"
 
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "ਤੁਹਾਡੇ ਖਾਤੇ ਦੀ ਪੁਸ਼ਟੀ ਲਈ ਤੁਹਾਡੇ ਪਤੇ {0} ਤੇ ਈਮੇਲ ਭੇਜ ਦਿੱਤਾ ਗਿਆ। ਤੁਹਾਨੂੰ ਲਾਗ ਇਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਇਸ ਈਮੇਲ ਵਿੱਚ ਦਿੱਤੇ ਲਿੰਕ ਤੇ ਕਲਿੱਕ ਕਰਨ ਦੁਆਰਾ ਆਪਣਾ ਖਾਤਾ ਸਰਗਰਮ ਕਰਨਾ ਪਵੇਗਾ।"
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "ਇਸ ਫ਼ਾਰਮ ਵਿੱਚ ਗਲਤੀਆਂ ਹਨ"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਠੀਕ ਕਰੋ ਅਤੇ ਮੁੜ ਭੇਜੋ।"
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਮਿਲੀ।"
 
@@ -11129,6 +11124,18 @@ msgstr "ਕੁੱਝ ਨਹੀਂ"
 msgid "all"
 msgstr "ਸਾਰੇ"
 
+#: apps/users/templates/users/fxa_migration.html:3 apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr ""
+
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
@@ -11170,7 +11177,7 @@ msgid "You are now logged in as <strong>%(user_email)s</strong>!"
 msgstr "ਤੁਸੀਂ ਹੁਣ <strong>%(user_email)s</strong>ਦੇ ਤੌਰ ਤੇ ਲਾਗਇਨ ਹੋਏ!"
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
+#: apps/users/templates/users/pwreset_confirm.html:18 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3 apps/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ"
@@ -11247,15 +11254,19 @@ msgstr "ਸਫ਼ਲਤਾ!"
 msgid "Password successfully reset."
 msgstr "ਪਾਸਵਰਡ ਸਫ਼ਲਤਾਪੂਰਨ ਰੀਸੈੱਟ ਹੋਇਆ।"
 
-#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:72
-msgid "Confirm password"
-msgstr "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ"
-
-#: apps/users/templates/users/pwreset_confirm.html:41
+#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_confirm.html:46
 msgid "Password reset unsuccessful"
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਅਸਫ਼ਲ ਰਿਹਾ"
 
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31 apps/users/templates/users/register.html:72
+msgid "Confirm password"
+msgstr "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ"
+
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਲਿੰਕ ਗਲਤ ਸੀ, ਕਿਉਂਕਿ ਇਹ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਚੁੱਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਨਵੇਂ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਦੀ ਬੇਨਤੀ ਕਰੋ।"
 

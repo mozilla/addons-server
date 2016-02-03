@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-24 20:37+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
@@ -1358,7 +1358,7 @@ msgstr "Відправити нову тему"
 msgid "Developer Hub"
 msgstr "Центр розробника"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Керувати API Ключами"
 
@@ -1939,7 +1939,7 @@ msgid "Collections I'm Following"
 msgstr "Збірки, за якими я слідкую"
 
 #: apps/amo/templates/amo/site_nav.html:73 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Мої улюблені додатки"
 
@@ -2149,7 +2149,7 @@ msgstr "Будь ласка, не заповнюйте це поле, воно �
 msgid "This name cannot be used."
 msgstr "Ця назва не може бути використана."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Посилання не дозволені."
 
@@ -2161,7 +2161,7 @@ msgstr "Ця адреса URL вже використовується в інш�
 msgid "Icons must be either PNG or JPG."
 msgstr "Іконки повинні мати формат PNG або JPG."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:438
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Будь ласка, використовуйте зображення розміром до %dMB."
 
@@ -2366,12 +2366,7 @@ msgstr "Більше від цього користувача"
 msgid "See all collections by this user"
 msgstr "Дивитися всі збірки цього користувача"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Недавно переглянуті"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -2379,7 +2374,7 @@ msgstr ""
 "Додатки, які Ви відзначите як обрані, використовуючи функцію <b>Додати в Обране</b>, з'являться у розташованому нижче полі. Нині ця добірка є <b>публічною</b>, що означає, що будь-хто може її "
 "побачити. Якщо Ви хочете приховати її від публічного перегляду, натисніть розташовану нижче кнопку, щоб зробити її приватною."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
@@ -2387,7 +2382,7 @@ msgstr ""
 "Додатки, які Ви позначите як обрані, використовуючи функцію <b>Додати в Обране</b>, з'являться у полі розташованому нижче. Ця добірка наразі є <b>приватною</b>, що означає, що лише Ви зможете її "
 "побачити. Якщо Ви хочете, щоб будь-хто інший міг бачити обрані Вами додатки, натисніть розташовану нижче кнопку, щоб зробити її публічною."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Мої улюблені додатки"
 
@@ -2563,7 +2558,7 @@ msgstr "<b>Увага:</b> Змінивши власника цієї збірк
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
-#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:42
+#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/fxa_migration.html:21 apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Продовжити"
 
@@ -2894,8 +2889,8 @@ msgid "Browse through even more search providers at <a href=\"http://mycroft.moz
 msgstr "Знайдіть ще більше провайдерів пошуку на сайті <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Зробіть Ваш власний</a> в <a href=\"https://developer.mozilla.org/\">Центрі розробника Mozilla</a>"
+msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
@@ -2969,8 +2964,8 @@ msgstr[0] "Показати %(cnt)s розширення в %(name)s &raquo;"
 msgstr[1] "Показати всі %(cnt)s розширення в %(name)s &raquo;"
 msgstr[2] "Показати всі %(cnt)s розширень в %(name)s &raquo;"
 
-#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
-#: apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
+#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4
+#: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
 msgstr "Результатів не знайдено."
 
@@ -3644,8 +3639,8 @@ msgid "An author can only be listed once."
 msgstr "Автора можна зазначити лише один раз."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Неправильний пароль."
+msgid "Slug incorrect."
+msgstr ""
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -3859,15 +3854,15 @@ msgstr[2] "{0} попереджень"
 msgid "Review"
 msgstr "Відгук"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s відповів з %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Час очікування з'єднання з \"%s\" завершився."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "Не вдалося зв'язатись з хостом на \"%s\"."
 
@@ -3903,7 +3898,7 @@ msgstr "Відгуки користувачів"
 msgid "Changes successfully saved."
 msgstr "Зміни успішно збережені."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Перевірте форму на наявність помилок."
 
@@ -3920,12 +3915,12 @@ msgid "Add-on deleted."
 msgstr "Додаток видалений."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Було введено невірний пароль. Тема не була видалена."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Було введено невірний пароль. Додаток не був видалений."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -3955,7 +3950,7 @@ msgstr "Перевірка сумісності додатку"
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
 
@@ -3992,19 +3987,19 @@ msgstr "Версію %s видалено."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Це завантаження не пройшло валідацію і у ньому можуть бути відсутніми деякі результати повної валідації. Будь ласка, будьте уважні при його перевірці."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Запитана попередня перевірка."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Запитана повна перевірка."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "Ваші старі облікові дані були відкликані й більше недійсні. Переконайтеся, що всі клієнти API мають нові облікові дані."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Новий ключ API створено"
 
@@ -4029,35 +4024,6 @@ msgstr "чи<a href=\"{0}\">Скасувати</a>"
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Назад до додатків"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Пошук"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
-msgid "Search"
-msgstr "Пошук"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Результати пошуку"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Результати пошуку для \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Будь ласка, введіть запит для пошуку."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Завантаження результатів&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -4194,9 +4160,15 @@ msgstr "Форум додатків"
 msgid "More Resources"
 msgstr "Додаткові ресурси"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Пошук документації для розробників"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27 apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8
+#: templates/search.html:14 templates/impala/search.html:18
+msgid "Search"
+msgstr "Пошук"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -4483,7 +4455,7 @@ msgstr "Типова Локаль"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Інформація про ваш додаток відображається цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується тільки додатків, що знаходяться в списку."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:291 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:298 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Домашня сторінка"
@@ -4767,8 +4739,8 @@ msgid "Deleting your add-on will permanently remove it from the site and prevent
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Введіть свій пароль для підтвердження свого рішення:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -10310,6 +10282,10 @@ msgstr "Результати пошуку підбору для {0}"
 msgid "Collection Search Results"
 msgstr "Результати пошуку підбору"
 
+#: apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Результати пошуку"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Пошук недоступний"
@@ -10326,6 +10302,17 @@ msgstr "Результати пошуку тем для {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Результати пошуку тем"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Пошук"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Результати пошуку для \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -10506,7 +10493,7 @@ msgstr "Версія вже існує."
 msgid "No uploaded file for that addon and version."
 msgstr "Немає завантаженого файлу для цього додатка і версії."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Дякуємо за внесок у {addon_name}"
 
@@ -10578,6 +10565,10 @@ msgstr "Написано відгуків"
 msgid "User Signups"
 msgstr "Реєстрації користувачів"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Власний діапазон дат"
@@ -10590,7 +10581,7 @@ msgstr "Від"
 msgid "To"
 msgstr "До"
 
-#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
+#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Оновити"
 
@@ -10915,71 +10906,75 @@ msgstr "Такий пароль не дозволений."
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr "У рамках нашої нової політики паролів, ваш пароль повинен містити %s чи більше символів. Будь ласка, оновіть свій пароль, <a href=\"%s\">виконавши відновлення паролю</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid "You must recover your password through Firefox Accounts. Try logging in instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Новий пароль"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Введено невірний пароль!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Імена користувачів не можуть містити лише цифри."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Введіть дійсне ім'я користувача, що складається з літер, цифр, підкреслень або дефісів."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Це ім'я користувача не може використовуватися."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Це ім’я користувача вже використовується."
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Ім'я для показу"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Місцезнаходження"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Заняття"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Цей URL має недійсний формат. Дійсні URLи виглядають http://example.com/my_page."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Для завершення реєстрації, використайте адресу електронної пошти іншого провайдера."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "Це ім'я для показу не можна використати."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Паролі не співпали."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Світлина профілю"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Типова локаль"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Задля анонімності, зазначте причину зміни, але не змінюйте інші поля."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Будь ласка, введіть принаймні одне ім'я в чорний список."
 
@@ -11004,19 +10999,19 @@ msgstr "хеш"
 msgid "No user with that email."
 msgstr "Немає користувача з цією адресою ел. пошти."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr ""
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Ваш обліковий запис було обмежено"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Будь ласка підтвердіть вашу ел.адресу"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Мої мобільні додатки"
 
@@ -11092,47 +11087,47 @@ msgstr "Mozilla хоче зв'язатися зі мною з приводу н�
 msgid "User Notifications"
 msgstr "Сповіщення користувача"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "Адреса електронної пошти обов'язкова."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "Користувача з такою адресою електронної пошти не існує."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Недійсний код підтвердження!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Успішно перевірено!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "Лист для підтвердження надіслано"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Профіль видалено"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Світлина вилучена"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Профіль оновлено"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Лист з підтвердженням надіслано"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11140,39 +11135,39 @@ msgstr ""
 "Лист був надісланий на {0} для підтвердження нової адреси електронної пошти. Щоб зміни набули чинності, вам потрібно перейти за посиланням в цьому листі. А поки що, ви можете продовжувати вхід зі "
 "своєю поточною адресою."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Будь ласка, підтвердіть зміну своєї адреси електронної пошти на %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Знайдено помилки"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "У зроблених вами змінах є помилки. Будь ласка, виправте їх та відправте заново."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "Нам шкода, але в даний момент ви не маєте права давати запит на футболку."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Ваша адреса електронної пошти успішно змінена"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Відтепер використовуйте для входу {0}."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Неправильна адреса електронної пошти чи пароль!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Посилання для активації облікового запису відправлено на вашу адресу електронної пошти {0}. Ви повинні перейти за цим посиланням для можливості увійти."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -11180,35 +11175,35 @@ msgstr ""
 "Якщо ви не отримали повідомлення для підтвердження, переконайтесь чи ваш сервіс електронної пошти не позначив його, як \"спам\". При необхідності ви можете <a href=\"%s\">відправити повідомлення "
 "для підтвердження ще раз</a> на свою адресу ел. пошти, зазначену вгорі."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Повідомлення для активації відправлено"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Виникли проблеми?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Ви вже увійшли в обліковий запис."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Вітаємо! Ваш користувацький рахунок успішно створено."
 
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Надіслано електронного листа на вашу адресу {0} для підтвердження вашого рахунку. Перед тим, як увійти, ви повинні активувати ваш рахунок, натиснувши на наведеному у листі посиланні."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "В цій формі є помилки"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Будь ласка, виправте їх і відправте ще раз."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Відправлено користувачем."
 
@@ -11385,6 +11380,18 @@ msgstr "нічого"
 msgid "all"
 msgstr "все"
 
+#: apps/users/templates/users/fxa_migration.html:3 apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr ""
+
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
 msgstr "Вхід до аккаунту"
@@ -11426,7 +11433,7 @@ msgid "You are now logged in as <strong>%(user_email)s</strong>!"
 msgstr "Вхід виконано <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
+#: apps/users/templates/users/pwreset_confirm.html:18 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3 apps/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
 msgstr "Скидання пароля"
@@ -11503,15 +11510,19 @@ msgstr "Успішно!"
 msgid "Password successfully reset."
 msgstr "Пароль успішно скинуто."
 
-#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:72
-msgid "Confirm password"
-msgstr "Підтвердіть пароль"
-
-#: apps/users/templates/users/pwreset_confirm.html:41
+#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_confirm.html:46
 msgid "Password reset unsuccessful"
 msgstr "Скидання пароля не вдалося"
 
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31 apps/users/templates/users/register.html:72
+msgid "Confirm password"
+msgstr "Підтвердіть пароль"
+
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
 msgstr "Посилання для скидання паролю недійсне, можливо тому, що ним вже скористались. Створіть новий запит на скидання паролю."
 
