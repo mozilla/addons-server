@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-02-03 04:50+0000\n"
+"PO-Revision-Date: 2016-02-03 16:08+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -386,7 +386,7 @@ msgstr "Jumlah terkecil kontribusi adalah {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Jumlah kontribusi haruslah dalam angka."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
@@ -664,7 +664,7 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:77
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr "Відібрані збірки"
+msgstr "Koleksi Unggulan"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
@@ -699,12 +699,12 @@ msgstr "Ditambahkan ada {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s unduhan mingguan"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s pengguna"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
@@ -720,15 +720,15 @@ msgstr[0] "{0} unduhan mingguan"
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} pengguna"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Pembayaran dibatalkan"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Pembayaran selesai"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
@@ -746,13 +746,13 @@ msgstr "oleh"
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Lebih Banyak Tema {0}"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:39
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Lihat semua Tema {0}"
 
 #: apps/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
@@ -1158,7 +1158,7 @@ msgstr "oleh %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Unduh Saja"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -2716,7 +2716,7 @@ msgstr "Koleksi diperbarui!"
 
 #: apps/bandwagon/views.py:318
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Lihat koleksi Anda</a>untuk melihat pergantian."
 
 #: apps/bandwagon/views.py:573
 msgid "Icon Deleted"
@@ -2731,7 +2731,7 @@ msgstr "Buat Koleksi Baru"
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Buat"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -2980,7 +2980,7 @@ msgstr "Yakin?"
 #: apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:22
 #: apps/devhub/templates/devhub/personas/edit.html:140
@@ -2990,13 +2990,13 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5
 #: apps/bandwagon/templates/bandwagon/edit.html:21
 msgid "Edit {0}"
-msgstr ""
+msgstr "Edit {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29
 #: apps/devhub/templates/devhub/addons/edit/details.html:20
@@ -3051,7 +3051,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
@@ -3301,7 +3301,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Diblokir pada tanggal %(date)s."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid ""
@@ -4421,7 +4421,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
-msgstr ""
+msgstr "Ulasan Penuh"
 
 #: apps/devhub/forms.py:564
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:47
@@ -4441,7 +4441,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:590
 msgid "Version %s already exists"
-msgstr ""
+msgstr "Versi %s sudah ada"
 
 #: apps/devhub/forms.py:602
 msgid ""
@@ -4931,7 +4931,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 #: apps/devhub/templates/devhub/versions/list.html:298
 msgid "Warning:"
-msgstr ""
+msgstr "Peringatan:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:50
 #: apps/devhub/templates/devhub/addons/submit/upload.html:31
@@ -4944,7 +4944,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Hasil Validasi untuk {0}"
 
 #: apps/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
@@ -7882,17 +7882,17 @@ msgstr ""
 #: apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
 msgid "Version {0}"
-msgstr ""
+msgstr "Versi {0}"
 
 #. {0} is the number of files
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
+msgstr[0] "{0} berkas"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
-msgstr ""
+msgstr "0 berkas"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
@@ -8351,7 +8351,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr "Pengaya diunduh:"
+msgstr "Pengaya yang diunduh:"
 
 #: apps/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
@@ -8497,7 +8497,7 @@ msgstr ""
 
 #: apps/editors/forms.py:122
 msgid "Add-on Types"
-msgstr ""
+msgstr "Tipe Pengaya"
 
 #: apps/editors/forms.py:126 apps/editors/helpers.py:268
 msgid "Platforms"
@@ -8510,15 +8510,15 @@ msgstr ""
 
 #: apps/editors/forms.py:252
 msgid "Comments:"
-msgstr ""
+msgstr "Komentar:"
 
 #: apps/editors/forms.py:256
 msgid "Operating systems:"
-msgstr ""
+msgstr "Sistem operasi:"
 
 #: apps/editors/forms.py:258
 msgid "Applications:"
-msgstr ""
+msgstr "Aplikasi:"
 
 #: apps/editors/forms.py:260
 msgid ""
@@ -9256,7 +9256,7 @@ msgstr ""
 #: apps/editors/templates/editors/queue.html:181
 #: apps/editors/templates/editors/themes/queue_list.html:85
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Tautan yang Berguna:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
@@ -9278,7 +9278,7 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
 msgid "Add-on History"
-msgstr ""
+msgstr "Riwayat Pengaya"
 
 #: apps/editors/templates/editors/review.html:64
 msgid ""
@@ -9296,7 +9296,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Unduh berkas"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
