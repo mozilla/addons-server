@@ -12,7 +12,11 @@ STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_FONT_SRC += (STAGE_CDN_HOST,)
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (STAGE_CDN_HOST,)
-CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
+CSP_SCRIPT_SRC += (
+    # Fix for discovery pane when using services subdomain.
+    'https://addons.allizom.org',
+    STAGE_CDN_HOST,
+)
 CSP_STYLE_SRC += (STAGE_CDN_HOST,)
 
 ENGAGE_ROBOTS = False

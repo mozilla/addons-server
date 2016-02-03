@@ -14,7 +14,11 @@ CSP_REPORT_ONLY = False
 CSP_FONT_SRC += (DEV_CDN_HOST,)
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (DEV_CDN_HOST,)
-CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_SCRIPT_SRC += (
+    # Fix for discovery pane when using services subdomain.
+    'https://addons-dev.allizom.org',
+    DEV_CDN_HOST,
+)
 CSP_STYLE_SRC += (DEV_CDN_HOST,)
 
 ENGAGE_ROBOTS = False
