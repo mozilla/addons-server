@@ -1261,7 +1261,7 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
 CSP_DEFAULT_SRC = (
-    "'none'",
+    "'self'",
 )
 CSP_CONNECT_SRC = (
     "'self'",

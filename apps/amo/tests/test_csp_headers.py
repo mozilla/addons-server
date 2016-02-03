@@ -11,8 +11,8 @@ class TestCSPHeaders(amo.tests.TestCase):
         """Test that required settings are provided as headers."""
         response = self.client.get('/en-US/firefox/')
         assert response.status_code == 200
-        # Make sure a default-src is locked down.
-        assert "default-src 'none'" in response['content-security-policy']
+        # Make sure a default-src is set.
+        assert "default-src 'self'" in response['content-security-policy']
         # Make sure a object-src is locked down.
         assert "object-src 'none'" in response['content-security-policy']
         # The report-uri should be set.
