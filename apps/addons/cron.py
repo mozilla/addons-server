@@ -25,65 +25,6 @@ log = logging.getLogger('z.cron')
 task_log = logging.getLogger('z.task')
 
 
-# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
-# delete it.
-@cronjobs.register
-def fast_current_version():
-
-    # Candidate for deletion - Bug 750510
-    if not waffle.switch_is_active('current_version_crons'):
-        return
-    # Only find the really recent versions; this is called a lot.
-    t = datetime.now() - timedelta(minutes=5)
-    qs = Addon.objects.values_list('id')
-    q1 = qs.filter(status=amo.STATUS_PUBLIC,
-                   versions__files__datestatuschanged__gte=t)
-    q2 = qs.filter(status__in=amo.UNREVIEWED_STATUSES,
-                   versions__files__created__gte=t)
-    addons = set(q1) | set(q2)
-    if addons:
-        _update_addons_current_version(addons)
-
-
-# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
-# delete it.
-@cronjobs.register
-def update_addons_current_version():
-    """Update the current_version field of the addons."""
-
-    # Candidate for deletion - Bug 750510
-    if not waffle.switch_is_active('current_version_crons'):
-        return
-
-    d = (Addon.objects.filter(disabled_by_user=False,
-                              status__in=amo.VALID_STATUSES)
-         .exclude(type=amo.ADDON_PERSONA).values_list('id'))
-
-    ts = [_update_addons_current_version.subtask(args=[chunk])
-          for chunk in chunked(d, 100)]
-    TaskSet(ts).apply_async()
-
-
-# TODO(jbalogh): removed from cron on 6/27/11. If the site doesn't break,
-# delete it.
-@task(rate_limit='20/m')
-def _update_addons_current_version(data, **kw):
-
-    # Candidate for deletion - Bug 750510
-    if not waffle.switch_is_active('current_version_crons'):
-        return
-
-    task_log.info('[%s@%s] Updating addons current_versions.' %
-                  (len(data), _update_addons_current_version.rate_limit))
-    for pk in data:
-        try:
-            addon = Addon.objects.get(pk=pk[0])
-            addon.update_version()
-        except Addon.DoesNotExist:
-            m = "Failed to update current_version. Missing add-on: %d" % (pk)
-            task_log.debug(m)
-
-
 @cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
