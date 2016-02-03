@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-29 11:08+0000\n"
+"PO-Revision-Date: 2016-02-03 04:13+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -231,7 +231,7 @@ msgstr "Tampilkan kebijakan privasi"
 #: apps/addons/templates/addons/mobile/button.html:28
 #: apps/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Lihat Hak Pengguna Akhir"
 
 #: apps/addons/templates/addons/button.html:92
 #: apps/addons/templates/addons/impala/button.html:54
@@ -382,7 +382,7 @@ msgstr "Jumlah terbesar sumbangan adalah {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Jumlah terkecil kontribusi adalah {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
@@ -1430,7 +1430,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "Jadilah yang pertama!"
 
 #: apps/addons/templates/addons/impala/listing/sorter.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:49
