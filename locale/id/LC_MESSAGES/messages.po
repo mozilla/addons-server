@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 05:41+0000\n"
+"PO-Revision-Date: 2016-02-04 12:04+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -12080,7 +12080,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Bagaimana unduhan dihitung?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -12095,7 +12095,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Penggunaan Platform berdasarkan Tanggal"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -12104,7 +12104,7 @@ msgstr ""
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
-msgstr ""
+msgstr "Memuat..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
@@ -12365,7 +12365,7 @@ msgstr ""
 #: apps/users/helpers.py:53
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "lainnya"
 
 #: apps/users/models.py:63
 msgid "algorithm"
@@ -12385,7 +12385,7 @@ msgstr ""
 
 #: apps/users/models.py:353
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonim"
 
 #: apps/users/models.py:402
 msgid "Your account has been restricted"
@@ -12474,7 +12474,7 @@ msgstr ""
 
 #: apps/users/views.py:89
 msgid "An email address is required."
-msgstr ""
+msgstr "Dibutuhkan alamat email."
 
 #: apps/users/views.py:94
 msgid "A user with that email address does not exist."
@@ -12482,7 +12482,7 @@ msgstr ""
 
 #: apps/users/views.py:111
 msgid "Invalid confirmation code!"
-msgstr "Kode konfirmasi tidak sah!"
+msgstr "Kode konfirmasi tidak valid!"
 
 #: apps/users/views.py:116
 msgid "Successfully verified!"
@@ -12497,15 +12497,15 @@ msgstr ""
 
 #: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "Email Konfirmasi Dikirim"
 
 #: apps/users/views.py:147
 msgid "Profile Deleted"
-msgstr "Профіль видалено"
+msgstr "Profil Dihapus"
 
 #: apps/users/views.py:168
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto Dihapus"
 
 #: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
@@ -12544,11 +12544,11 @@ msgstr ""
 
 #: apps/users/views.py:329
 msgid "Your email address was changed successfully"
-msgstr ""
+msgstr "Alamat email Anda sukses diganti"
 
 #: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
-msgstr ""
+msgstr "Mulai sekarang, gunakan {0} untuk masuk."
 
 #: apps/users/views.py:421
 msgid "Wrong email address or password!"
@@ -12800,7 +12800,7 @@ msgstr "Hapus Akun"
 
 #: apps/users/templates/users/edit.html:237
 msgid "Update Account"
-msgstr ""
+msgstr "Perbarui Akun"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
@@ -12894,11 +12894,11 @@ msgstr "Info Pengguna untuk {0}"
 
 #: apps/users/templates/users/profile.html:11
 msgid "Edit profile"
-msgstr ""
+msgstr "Edit profil"
 
 #: apps/users/templates/users/profile.html:14
 msgid "Manage user"
-msgstr ""
+msgstr "Kelola pengguna"
 
 #: apps/users/templates/users/profile.html:18
 #: apps/users/templates/users/report_abuse_full.html:9
@@ -12916,7 +12916,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:39
 msgid "About me"
-msgstr ""
+msgstr "Tentang saya"
 
 #: apps/users/templates/users/profile.html:45
 msgid "In a little more detail..."
@@ -12928,15 +12928,15 @@ msgstr "Pengaya buatan saya"
 
 #: apps/users/templates/users/profile.html:72
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Tema Paling Populer Saya"
 
 #: apps/users/templates/users/profile.html:74
 msgid "Themes I've created"
-msgstr ""
+msgstr "Tema yang Saya Buat"
 
 #: apps/users/templates/users/profile.html:84
 msgid "Followed by Me"
-msgstr ""
+msgstr "Diikuti oleh Saya"
 
 # "Me" in this context is the user shown on the User Info page
 #: apps/users/templates/users/profile.html:86
@@ -13115,7 +13115,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Nama Lengkap"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
@@ -13234,17 +13234,17 @@ msgstr ""
 
 #: apps/users/templates/users/vcard.html:52
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} pengaya"
 
 #: apps/users/templates/users/vcard.html:56
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s tema"
 
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s pengaya"
 
 #: apps/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
@@ -13394,7 +13394,7 @@ msgstr ""
 
 #: templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "Status Situs"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -13505,7 +13505,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Selamat datang ke Pengaya {0}."
 
 #: templates/impala/base.html:150
 msgid ""
@@ -13526,7 +13526,7 @@ msgstr ""
 
 #: templates/impala/header_title.html:21
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Pengaya Android"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -13558,7 +13558,7 @@ msgstr "Fitur"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "Pengaya"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"
