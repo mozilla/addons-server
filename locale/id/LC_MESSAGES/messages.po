@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 05:22+0000\n"
+"PO-Revision-Date: 2016-02-04 05:41+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -979,7 +979,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Lihat versi lain"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -1405,7 +1405,7 @@ msgstr "Lisensi Kode Sumber"
 #: apps/addons/templates/addons/impala/persona_grid.html:16
 #: apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} pengguna"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19
 #: apps/reviews/templates/reviews/review.html:40
@@ -1416,7 +1416,7 @@ msgstr ""
 #: apps/editors/templates/editors/queue.html:98
 #: apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "terjemahkan"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1426,7 +1426,7 @@ msgstr[0] ""
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Pengaya ini belum diulas."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
@@ -1451,15 +1451,15 @@ msgstr "Pengayaku"
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6
 #: apps/amo/context_processors.py:53
 msgid "My Themes"
-msgstr ""
+msgstr "Tema Saya"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Tambahkan ke Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Edit Tema"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
@@ -1468,7 +1468,7 @@ msgstr ""
 #: apps/addons/templates/addons/includes/persona.html:25
 #: apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Riwayat Ulasan"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1500,7 +1500,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Pengguna"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:90
@@ -1640,7 +1640,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:64
 #: apps/search/forms.py:14
 msgid "Highest Rated"
-msgstr "Найпопулярніші"
+msgstr "Peringkat Tertinggi"
 
 #: apps/addons/templates/addons/mobile/home.html:74
 #: apps/amo/templates/amo/side_nav.html:5
@@ -1668,7 +1668,7 @@ msgstr "Perangkat"
 #: apps/discovery/templates/discovery/pane_account.html:8
 #: apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Profil Saya"
 
 #: apps/amo/context_processors.py:56 apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
