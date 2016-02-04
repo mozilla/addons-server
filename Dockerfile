@@ -67,7 +67,7 @@ RUN npm install
 COPY . /code
 WORKDIR /code
 
-RUN pip install -e . /code
+RUN pip install -e /code
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
