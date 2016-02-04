@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 13:47+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-02-04 14:50+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -3705,6 +3705,9 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a "
+"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Crea"
+" un plugin di ricerca</a> personalizzato"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -5919,7 +5922,7 @@ msgstr "Impossibile verificare i dati inseriti, riprova."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter the URL name to confirm your decision ({slug}):"
-msgstr ""
+msgstr "Inserisci il nome dell’URL per confermare l’operazione ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -14187,6 +14190,8 @@ msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
 msgstr ""
+"Per recuperare la password è necessario autenticarsi tramite l'account "
+"Firefox."
 
 #: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
@@ -14935,6 +14940,8 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Hai effettuato il passaggio all'account Firefox. Non ti sarà più possibile "
+"modificare la password attraverso Mozilla Add-ons."
 
 #: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
