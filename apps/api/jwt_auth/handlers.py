@@ -93,7 +93,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
                  u'{e.__class__.__name__}: {e}'.format(e=exc))
         raise exceptions.AuthenticationFailed(
             detail='JWT iat (issued at time) is invalid. Make sure your '
-                   'system clock is synchronized with something like NTP.')
+                   'system clock is synchronized with something like TLSdate.')
     except Exception, exc:
         log.warning(u'Unhandled exception during JWT authentication: '
                     u'{e.__class__.__name__}: {e}'.format(e=exc))
