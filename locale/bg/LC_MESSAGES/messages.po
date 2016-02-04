@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 11:11+0000\n"
+"PO-Revision-Date: 2016-02-04 11:28+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -257,7 +257,7 @@ msgid ""
 "href=\"%(url)s\">Learn more</a>"
 msgstr ""
 "Тази добавка беше предварително прегледана от Mozilla. <a "
-"href=\"%(url)s\">Научи още</a>"
+"href=\"%(url)s\">Научете повече</a>"
 
 #: apps/addons/templates/addons/contribution.html:11
 #: apps/addons/templates/addons/impala/developers.html:44
@@ -1712,12 +1712,12 @@ msgstr "Моите любими"
 #: apps/discovery/templates/discovery/pane_account.html:13
 #: templates/impala/user_login.html:14 templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr "Излез"
+msgstr "Изход"
 
 #: apps/amo/context_processors.py:74
 #: apps/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Управление на моите творения"
 
 #: apps/amo/context_processors.py:77 apps/devhub/templates/devhub/nav.html:27
 #: apps/devhub/templates/devhub/addons/dashboard.html:25
@@ -3974,11 +3974,11 @@ msgstr "Спряно от Mozilla"
 
 #: apps/constants/base.py:30 apps/constants/base.py:52
 msgid "Preliminarily Reviewed"
-msgstr "Предварително прегледан"
+msgstr "Предварителен преглед"
 
 #: apps/constants/base.py:31
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Предварително прегледани и очакващи пълен преглед"
+msgstr "Предварителен преглед, очакващ пълен преглед"
 
 #: apps/constants/base.py:33 apps/editors/helpers.py:925
 #: apps/editors/templates/editors/themes/history_table.html:34
@@ -7977,7 +7977,7 @@ msgstr "Състояние и версии"
 # {0} is the name of the collection
 #: apps/devhub/templates/devhub/versions/edit.html:16
 msgid "Manage {0}"
-msgstr "Управлявай {0}"
+msgstr "Управление на {0}"
 
 #: apps/devhub/templates/devhub/versions/edit.html:26
 msgid "Files"
@@ -13317,7 +13317,7 @@ msgstr ""
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
-msgstr "Потребителски вход"
+msgstr "Потребителско вписване"
 
 #: apps/users/templates/users/login.html:13
 msgid "Enter your email"
@@ -13326,7 +13326,7 @@ msgstr ""
 #: apps/users/templates/users/login.html:15
 #: apps/users/templates/users/mobile/login.html:19
 msgid "Log In"
-msgstr "Вход"
+msgstr "Вписване"
 
 #: apps/users/templates/users/login_form.html:17
 #: apps/users/templates/users/mobile/login.html:26
@@ -13336,7 +13336,7 @@ msgstr "Имейл адрес"
 #: apps/users/templates/users/login_form.html:30
 #: apps/users/templates/users/mobile/login.html:38
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Запомняне на данните за вписване"
 
 #: apps/users/templates/users/login_form.html:41
 #: apps/users/templates/users/pwreset_complete.html:15
