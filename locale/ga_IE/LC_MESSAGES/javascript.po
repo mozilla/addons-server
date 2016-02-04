@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -178,7 +178,7 @@ msgstr ""
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "Lean an Bailiúchán seo"
 
@@ -890,71 +890,67 @@ msgstr ""
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort chun breiseán cuardaigh a shuiteáil."
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr ""
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "Á chur leis na Ceanáin&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "Ceanán á bhaint&hellip;"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Cuir leis na Ceanáin"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Bain ó na Ceanáin"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "Ar Feitheamh"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "Cuir nóta leis"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "Nóta"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "Bain an breiseán seo ón bhailiúchán"
 
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "Bain"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "Bain an t-úsáideoir seo ó na rannpháirtithe"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr ""
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr ""
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "Tá an t-úsáideoir sin ann cheana."
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "Cuir leis na ceanáin"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "Bain ó na ceanáin"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "Ná bí dá leanúint"
 

@@ -684,7 +684,13 @@ def password_reset_confirm(request, uidb64=None, token=None):
     except (ValueError, UserProfile.DoesNotExist, TypeError):
         pass
 
-    if user is not None and default_token_generator.check_token(user, token):
+    if (user is not None and user.fxa_migrated()
+            and waffle.switch_is_active('fxa-auth')):
+        migrated = True
+        validlink = False
+        form = None
+    elif user is not None and default_token_generator.check_token(user, token):
+        migrated = False
         validlink = True
         if request.method == 'POST':
             form = forms.SetPasswordForm(user, request.POST)
@@ -699,11 +705,12 @@ def password_reset_confirm(request, uidb64=None, token=None):
         else:
             form = forms.SetPasswordForm(user)
     else:
+        migrated = False
         validlink = False
         form = None
 
     return render(request, 'users/pwreset_confirm.html',
-                  {'form': form, 'validlink': validlink})
+                  {'form': form, 'validlink': validlink, 'migrated': migrated})
 
 
 @never_cache
@@ -748,7 +755,7 @@ def migrate(request):
     next_path = request.GET.get('to')
     if not next_path or not is_safe_url(next_path):
         next_path = reverse('home')
-    if not request.user.is_authenticated() or request.user.fxa_id:
+    if not request.user.is_authenticated() or request.user.fxa_migrated():
         return redirect(next_path)
     else:
         return render(request, 'users/fxa_migration.html', {'to': next_path})

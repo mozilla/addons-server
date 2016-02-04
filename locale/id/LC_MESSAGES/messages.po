@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-29 11:08+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 12:04+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -231,7 +231,7 @@ msgstr "Tampilkan kebijakan privasi"
 #: apps/addons/templates/addons/mobile/button.html:28
 #: apps/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Lihat Hak Pengguna Akhir"
 
 #: apps/addons/templates/addons/button.html:92
 #: apps/addons/templates/addons/impala/button.html:54
@@ -382,11 +382,11 @@ msgstr "Jumlah terbesar sumbangan adalah {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Jumlah terkecil kontribusi adalah {0}."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Jumlah kontribusi haruslah dalam angka."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: apps/addons/templates/addons/contributions_lightbox.html:52
@@ -664,7 +664,7 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:77
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr "Відібрані збірки"
+msgstr "Koleksi Unggulan"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
@@ -699,12 +699,12 @@ msgstr "Ditambahkan ada {0}"
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s unduhan mingguan"
 
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s pengguna"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
@@ -720,15 +720,15 @@ msgstr[0] "{0} unduhan mingguan"
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} pengguna"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Pembayaran dibatalkan"
 
 #: apps/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Pembayaran selesai"
 
 #: apps/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
@@ -746,13 +746,13 @@ msgstr "oleh"
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Lebih Banyak Tema {0}"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:39
 #: apps/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Lihat semua Tema {0}"
 
 #: apps/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
@@ -979,7 +979,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Lihat versi lain"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -1158,7 +1158,7 @@ msgstr "oleh %(users)s"
 
 #: apps/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Unduh Saja"
 
 #: apps/addons/templates/addons/impala/contribution.html:24
 msgid "<b>%(amt)s</b> suggested"
@@ -1405,7 +1405,7 @@ msgstr "Lisensi Kode Sumber"
 #: apps/addons/templates/addons/impala/persona_grid.html:16
 #: apps/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} pengguna"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:19
 #: apps/reviews/templates/reviews/review.html:40
@@ -1416,7 +1416,7 @@ msgstr ""
 #: apps/editors/templates/editors/queue.html:98
 #: apps/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "terjemahkan"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
@@ -1426,11 +1426,11 @@ msgstr[0] ""
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Pengaya ini belum diulas."
 
 #: apps/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "Jadilah yang pertama!"
 
 #: apps/addons/templates/addons/impala/listing/sorter.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:49
@@ -1451,15 +1451,15 @@ msgstr "Pengayaku"
 #: apps/addons/templates/addons/includes/dashboard_tabs.html:6
 #: apps/amo/context_processors.py:53
 msgid "My Themes"
-msgstr ""
+msgstr "Tema Saya"
 
 #: apps/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Tambahkan ke Firefox"
 
 #: apps/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Edit Tema"
 
 #: apps/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
@@ -1468,7 +1468,7 @@ msgstr ""
 #: apps/addons/templates/addons/includes/persona.html:25
 #: apps/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Riwayat Ulasan"
 
 #: apps/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1500,7 +1500,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Pengguna"
 
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:90
@@ -1551,7 +1551,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Terima"
 
 #: apps/addons/templates/addons/mobile/home.html:10
 #: templates/mobile/base_addons.html:49
@@ -1640,7 +1640,7 @@ msgstr ""
 #: apps/browse/templates/browse/personas/mobile/category_landing.html:64
 #: apps/search/forms.py:14
 msgid "Highest Rated"
-msgstr "Найпопулярніші"
+msgstr "Peringkat Tertinggi"
 
 #: apps/addons/templates/addons/mobile/home.html:74
 #: apps/amo/templates/amo/side_nav.html:5
@@ -1668,7 +1668,7 @@ msgstr "Perangkat"
 #: apps/discovery/templates/discovery/pane_account.html:8
 #: apps/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Profil Saya"
 
 #: apps/amo/context_processors.py:56 apps/users/templates/users/edit.html:5
 #: apps/users/templates/users/includes/navigation.html:3
@@ -1719,7 +1719,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr "Pusat Pengembang"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2381,7 +2381,7 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -2627,7 +2627,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr "Nama ini tidak dapat digunakan."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Tautan tidak diperbolehkan."
 
@@ -2640,7 +2640,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Ikon harus dalam PNG atau JPG."
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr ""
 
@@ -2716,7 +2716,7 @@ msgstr "Koleksi diperbarui!"
 
 #: apps/bandwagon/views.py:318
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Lihat koleksi Anda</a>untuk melihat pergantian."
 
 #: apps/bandwagon/views.py:573
 msgid "Icon Deleted"
@@ -2731,7 +2731,7 @@ msgstr "Buat Koleksi Baru"
 #: apps/bandwagon/templates/bandwagon/add.html:9
 #: apps/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Buat"
 
 #: apps/bandwagon/templates/bandwagon/add.html:24
 #: apps/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -2870,13 +2870,7 @@ msgstr "Yang Lain dari Pengguna Ini"
 msgid "See all collections by this user"
 msgstr "Lihat semua koleksi dari pengguna ini"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Baru Saja Dilihat"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -2884,7 +2878,7 @@ msgid ""
 "the button below to make it private."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -2892,7 +2886,7 @@ msgid ""
 "favorites, click the button below to make it public."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr ""
 
@@ -2980,7 +2974,7 @@ msgstr "Yakin?"
 #: apps/devhub/templates/devhub/personas/submit.html:98
 #: apps/devhub/templates/devhub/personas/submit.html:119
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: apps/bandwagon/templates/bandwagon/delete.html:22
 #: apps/devhub/templates/devhub/personas/edit.html:140
@@ -2990,13 +2984,13 @@ msgstr ""
 #: apps/devhub/templates/devhub/personas/submit.html:107
 #: apps/devhub/templates/devhub/personas/submit.html:137
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #. {0} is the name of the collection.
 #: apps/bandwagon/templates/bandwagon/edit.html:5
 #: apps/bandwagon/templates/bandwagon/edit.html:21
 msgid "Edit {0}"
-msgstr ""
+msgstr "Edit {0}"
 
 #: apps/bandwagon/templates/bandwagon/edit.html:29
 #: apps/devhub/templates/devhub/addons/edit/details.html:20
@@ -3051,7 +3045,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 #: apps/devhub/templates/devhub/addons/ajax_compat_update.html:19
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
@@ -3112,6 +3106,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Lanjut"
@@ -3301,7 +3296,7 @@ msgstr ""
 
 #: apps/blocklist/templates/blocklist/blocked_detail.html:48
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Diblokir pada tanggal %(date)s."
 
 #: apps/blocklist/templates/blocklist/blocked_list.html:11
 msgid ""
@@ -3498,8 +3493,7 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6
@@ -3576,7 +3570,6 @@ msgstr[0] ""
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4289,7 +4282,7 @@ msgid "An author can only be listed once."
 msgstr ""
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
+msgid "Slug incorrect."
 msgstr ""
 
 #: apps/devhub/forms.py:105
@@ -4421,7 +4414,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:24
 #: apps/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
-msgstr ""
+msgstr "Ulasan Penuh"
 
 #: apps/devhub/forms.py:564
 #: apps/devhub/templates/devhub/addons/submit/select-review.html:47
@@ -4441,7 +4434,7 @@ msgstr ""
 
 #: apps/devhub/forms.py:590
 msgid "Version %s already exists"
-msgstr ""
+msgstr "Versi %s sudah ada"
 
 #: apps/devhub/forms.py:602
 msgid ""
@@ -4519,15 +4512,15 @@ msgstr[0] "{0} pesan peringatan"
 msgid "Review"
 msgstr "Ulasan"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
@@ -4569,7 +4562,7 @@ msgstr ""
 msgid "Changes successfully saved."
 msgstr ""
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4586,11 +4579,11 @@ msgid "Add-on deleted."
 msgstr ""
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
+msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
+msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 #: apps/devhub/views.py:445
@@ -4621,7 +4614,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
@@ -4660,21 +4653,21 @@ msgid ""
 " Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr ""
 
@@ -4701,47 +4694,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/base_impala.html:20
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "Cari"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:22
@@ -4900,9 +4852,20 @@ msgstr "Форум додатків"
 msgid "More Resources"
 msgstr ""
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr ""
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "Cari"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -4931,7 +4894,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/add_file_modal.html:53
 #: apps/devhub/templates/devhub/versions/list.html:298
 msgid "Warning:"
-msgstr ""
+msgstr "Peringatan:"
 
 #: apps/devhub/templates/devhub/validate_addon.html:50
 #: apps/devhub/templates/devhub/addons/submit/upload.html:31
@@ -4944,7 +4907,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: apps/devhub/templates/devhub/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Hasil Validasi untuk {0}"
 
 #: apps/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
@@ -5241,7 +5204,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5550,7 +5513,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
@@ -5559,7 +5522,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Beritahu kami mengapa Anda menghapus pengaya Anda:"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: apps/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
@@ -5573,7 +5536,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
-msgstr ""
+msgstr "Lanjutkan"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
@@ -5607,7 +5570,7 @@ msgstr "Statistik"
 #: apps/devhub/templates/devhub/payments/payments.html:3
 #: apps/devhub/templates/devhub/payments/tier.html:4
 msgid "Manage Payments"
-msgstr ""
+msgstr "Kelola Pembayaran"
 
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:55
 #: apps/devhub/templates/devhub/includes/addons_edit_nav.html:6
@@ -5737,7 +5700,7 @@ msgstr ""
 #: apps/devhub/templates/devhub/addons/submit/done.html:77
 #: apps/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
-msgstr ""
+msgstr "Langkah berikutnya:"
 
 #: apps/devhub/templates/devhub/addons/submit/done.html:32
 #: apps/devhub/templates/devhub/addons/submit/done.html:82
@@ -6169,7 +6132,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
-msgstr ""
+msgstr "Pembaruan yang Dibutuhkan"
 
 #: apps/devhub/templates/devhub/docs/policies-maintenance.html:50
 msgid ""
@@ -7847,11 +7810,11 @@ msgstr ""
 #: apps/devhub/templates/devhub/versions/edit.html:145
 #: apps/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
-msgstr ""
+msgstr "Unggah berkas baru"
 
 #: apps/devhub/templates/devhub/versions/edit.html:147
 msgid "Add File"
-msgstr ""
+msgstr "Tambah Berkas"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
@@ -7867,32 +7830,32 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
-msgstr ""
+msgstr "Lihat Riwayat Berkas"
 
 #: apps/devhub/templates/devhub/versions/file_status_message.html:28
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "Oleh %(user_name)s pada tanggal %(date)s"
 
 #: apps/devhub/templates/devhub/versions/list.html:11
 msgid "Edit this version"
-msgstr ""
+msgstr "Edit versi ini"
 
 #: apps/devhub/templates/devhub/versions/list.html:12
 #: apps/versions/templates/versions/version.html:6
 #: apps/versions/templates/versions/mobile/version.html:6
 msgctxt "addon_display_header_version"
 msgid "Version {0}"
-msgstr ""
+msgstr "Versi {0}"
 
 #. {0} is the number of files
 #: apps/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
+msgstr[0] "{0} berkas"
 
 #: apps/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
-msgstr ""
+msgstr "0 berkas"
 
 #: apps/devhub/templates/devhub/versions/list.html:31
 msgid "Queue position: %(pos)s of %(total)s"
@@ -7986,7 +7949,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:170
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Unggah Versi Baru"
 
 #: apps/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
@@ -8005,7 +7968,7 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Hapus Versi {version}"
 
 #: apps/devhub/templates/devhub/versions/list.html:218
 msgid ""
@@ -8032,11 +7995,11 @@ msgstr ""
 
 #: apps/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Yakin Anda ingin menghapus versi ini?"
 
 #: apps/devhub/templates/devhub/versions/list.html:238
 msgid "Delete Version"
-msgstr ""
+msgstr "Hapus Versi"
 
 #: apps/devhub/templates/devhub/versions/list.html:240
 msgid "Disable Version"
@@ -8164,7 +8127,7 @@ msgstr ""
 
 #: apps/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Tema Hari St. Patrick"
 
 #: apps/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -8351,7 +8314,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
-msgstr "Pengaya diunduh:"
+msgstr "Pengaya yang diunduh:"
 
 #: apps/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
@@ -8477,11 +8440,11 @@ msgstr ""
 
 #: apps/editors/forms.py:103
 msgid "yes"
-msgstr ""
+msgstr "ya"
 
 #: apps/editors/forms.py:104
 msgid "no"
-msgstr ""
+msgstr "tidak"
 
 #: apps/editors/forms.py:105
 msgid "Admin Flag"
@@ -8497,7 +8460,7 @@ msgstr ""
 
 #: apps/editors/forms.py:122
 msgid "Add-on Types"
-msgstr ""
+msgstr "Tipe Pengaya"
 
 #: apps/editors/forms.py:126 apps/editors/helpers.py:268
 msgid "Platforms"
@@ -8510,15 +8473,15 @@ msgstr ""
 
 #: apps/editors/forms.py:252
 msgid "Comments:"
-msgstr ""
+msgstr "Komentar:"
 
 #: apps/editors/forms.py:256
 msgid "Operating systems:"
-msgstr ""
+msgstr "Sistem operasi:"
 
 #: apps/editors/forms.py:258
 msgid "Applications:"
-msgstr ""
+msgstr "Aplikasi:"
 
 #: apps/editors/forms.py:260
 msgid ""
@@ -8700,19 +8663,19 @@ msgstr ""
 #: apps/editors/helpers.py:317
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} menit"
 
 #. L10n: first argument is number of hours
 #: apps/editors/helpers.py:321
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} jam"
 
 #. L10n: first argument is number of days
 #: apps/editors/helpers.py:325
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} hari"
 
 #: apps/editors/helpers.py:489
 msgid "Push to public"
@@ -8944,7 +8907,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>anonim</i> pada tanggal %(date)s [%(ip_address)s]"
 
 #: apps/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
@@ -9109,7 +9072,7 @@ msgstr "Ulasan Total"
 #: apps/editors/templates/editors/home.html:110
 #: apps/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Ulasan Bulan Ini"
 
 #: apps/editors/templates/editors/home.html:111
 msgid "New Editors"
@@ -9256,7 +9219,7 @@ msgstr ""
 #: apps/editors/templates/editors/queue.html:181
 #: apps/editors/templates/editors/themes/queue_list.html:85
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Tautan yang Berguna:"
 
 #: apps/editors/templates/editors/queue.html:182
 msgid "Add-on Policy"
@@ -9278,7 +9241,7 @@ msgstr ""
 #: apps/editors/templates/editors/review.html:52
 #: apps/editors/templates/editors/review.html:266
 msgid "Add-on History"
-msgstr ""
+msgstr "Riwayat Pengaya"
 
 #: apps/editors/templates/editors/review.html:64
 msgid ""
@@ -9296,7 +9259,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Unduh berkas"
 
 #: apps/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
@@ -11097,7 +11060,7 @@ msgstr ""
 
 #: apps/pages/templates/pages/faq.html:267
 msgid "What is a collection?"
-msgstr ""
+msgstr "Apa itu koleksi?"
 
 #: apps/pages/templates/pages/faq.html:268
 msgid "Collections are groups of related add-ons created by users to share."
@@ -11677,6 +11640,11 @@ msgstr ""
 msgid "Collection Search Results"
 msgstr ""
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr ""
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr ""
@@ -11692,6 +11660,18 @@ msgstr ""
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
 msgstr ""
 
 #. {0} is a tag, such as jetpack.
@@ -11864,7 +11844,7 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
@@ -11936,6 +11916,10 @@ msgstr ""
 msgid "User Signups"
 msgstr ""
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr ""
@@ -11949,7 +11933,7 @@ msgid "To"
 msgstr ""
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Perbarui"
 
@@ -12096,7 +12080,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Bagaimana unduhan dihitung?"
 
 #: apps/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -12111,7 +12095,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Penggunaan Platform berdasarkan Tanggal"
 
 #: apps/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -12120,7 +12104,7 @@ msgstr ""
 #: apps/stats/templates/stats/reports/overview.html:9
 #: apps/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
-msgstr ""
+msgstr "Memuat..."
 
 #: apps/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
@@ -12292,47 +12276,53 @@ msgid ""
 "reset</a>."
 msgstr ""
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Sandi baru"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Kata sandi yang dimasukkan salah!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr ""
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Nama Tampilan"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Lokasi"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Pekerjaan"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -12340,42 +12330,42 @@ msgstr ""
 "URL ini formatnya tidak valid. Contoh URL yang valid adalah "
 "http://example.com/namahalaman."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Kata sandi tidak sama."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Foto Profil"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr ""
 
 #: apps/users/helpers.py:53
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "lainnya"
 
 #: apps/users/models.py:63
 msgid "algorithm"
@@ -12393,19 +12383,19 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonim"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr ""
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Будь ласка підтвердіть вашу ел.адресу"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr ""
 
@@ -12482,95 +12472,95 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
-msgstr ""
+msgstr "Dibutuhkan alamat email."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
-msgstr "Kode konfirmasi tidak sah!"
+msgstr "Kode konfirmasi tidak valid!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Sukses Diverifikasi!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "Email Konfirmasi Dikirim"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
-msgstr "Профіль видалено"
+msgstr "Profil Dihapus"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto Dihapus"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Profil Diperbarui"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr ""
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr ""
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr ""
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Terjadi galat pada perubahan yang telah Anda lakukan. Silakan diperbaiki dan"
 " kirimkan ulang."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 
-#: apps/users/views.py:328
-msgid "Your email address was changed successfully"
-msgstr ""
-
 #: apps/users/views.py:329
-msgid "From now on, please use {0} to log in."
-msgstr ""
+msgid "Your email address was changed successfully"
+msgstr "Alamat email Anda sukses diganti"
 
-#: apps/users/views.py:416
+#: apps/users/views.py:330
+msgid "From now on, please use {0} to log in."
+msgstr "Mulai sekarang, gunakan {0} untuk masuk."
+
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Alamat email atau sandinya salah!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -12578,24 +12568,24 @@ msgid ""
 "mentioned above."
 msgstr ""
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr ""
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr ""
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Anda sudah masuk dengan sebuah akun."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Selamat! Akun pengguna Anda sukses dibuat."
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -12605,15 +12595,15 @@ msgstr ""
 "Anda. Sebelum Anda dapat masuk, Anda harus mengaktifkan akun Anda dengan "
 "mengklik tautan yang dikirimkan pada email tersebut."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr ""
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr ""
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr ""
 
@@ -12810,7 +12800,7 @@ msgstr "Hapus Akun"
 
 #: apps/users/templates/users/edit.html:237
 msgid "Update Account"
-msgstr ""
+msgstr "Perbarui Akun"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
@@ -12818,6 +12808,21 @@ msgstr ""
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
 msgstr ""
 
 #: apps/users/templates/users/login.html:3
@@ -12875,7 +12880,7 @@ msgstr ""
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -12889,11 +12894,11 @@ msgstr "Info Pengguna untuk {0}"
 
 #: apps/users/templates/users/profile.html:11
 msgid "Edit profile"
-msgstr ""
+msgstr "Edit profil"
 
 #: apps/users/templates/users/profile.html:14
 msgid "Manage user"
-msgstr ""
+msgstr "Kelola pengguna"
 
 #: apps/users/templates/users/profile.html:18
 #: apps/users/templates/users/report_abuse_full.html:9
@@ -12911,7 +12916,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:39
 msgid "About me"
-msgstr ""
+msgstr "Tentang saya"
 
 #: apps/users/templates/users/profile.html:45
 msgid "In a little more detail..."
@@ -12923,15 +12928,15 @@ msgstr "Pengaya buatan saya"
 
 #: apps/users/templates/users/profile.html:72
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Tema Paling Populer Saya"
 
 #: apps/users/templates/users/profile.html:74
 msgid "Themes I've created"
-msgstr ""
+msgstr "Tema yang Saya Buat"
 
 #: apps/users/templates/users/profile.html:84
 msgid "Followed by Me"
-msgstr ""
+msgstr "Diikuti oleh Saya"
 
 # "Me" in this context is the user shown on the User Info page
 #: apps/users/templates/users/profile.html:86
@@ -12959,16 +12964,23 @@ msgstr ""
 msgid "Password successfully reset."
 msgstr "Sandi sukses disetel ulang."
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "Скидання пароля не вдалося"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "Konfirmasi sandi"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "Скидання пароля не вдалося"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -13103,7 +13115,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Nama Lengkap"
 
 #: apps/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
@@ -13222,17 +13234,17 @@ msgstr ""
 
 #: apps/users/templates/users/vcard.html:52
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} pengaya"
 
 #: apps/users/templates/users/vcard.html:56
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s tema"
 
 #: apps/users/templates/users/vcard.html:62
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s pengaya"
 
 #: apps/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
@@ -13382,7 +13394,7 @@ msgstr ""
 
 #: templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "Status Situs"
 
 #: templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -13493,7 +13505,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Selamat datang ke Pengaya {0}."
 
 #: templates/impala/base.html:150
 msgid ""
@@ -13514,7 +13526,7 @@ msgstr ""
 
 #: templates/impala/header_title.html:21
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Pengaya Android"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -13546,7 +13558,7 @@ msgstr "Fitur"
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "Pengaya"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"

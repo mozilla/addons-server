@@ -115,7 +115,7 @@ PASSWORD_HASHERS = (
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -1273,13 +1273,13 @@ PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://ssl.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
-CSP_REPORT_ONLY = False
+CSP_REPORT_ONLY = True
 CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
 CSP_DEFAULT_SRC = (
-    "'none'",
+    "'self'",
 )
 CSP_CONNECT_SRC = (
     "'self'",
@@ -1291,8 +1291,10 @@ CSP_FONT_SRC = (
 )
 CSP_FRAME_SRC = (
     "'self'",
-    'https://www.paypal.com',
+    'https://ic.paypal.com',
+    'https://paypal.com',
     'https://www.google.com/recaptcha/',
+    'https://www.paypal.com',
 )
 CSP_IMG_SRC = (
     "'self'",
@@ -1303,6 +1305,9 @@ CSP_IMG_SRC = (
     PROD_CDN_HOST,
     'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
+)
+CSP_MEDIA_SRC = (
+    'https://videos.cdn.mozilla.net',
 )
 CSP_OBJECT_SRC = ("'none'",)
 

@@ -227,7 +227,7 @@ def test_urlparams_unicode():
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
-    eq_(s, '2009-12-25T18:11:12Z')
+    eq_(s, '2009-12-25T10:11:12Z')
     s = render('{{ d|isotime }}', {'d': None})
     eq_(s, '')
 
@@ -235,7 +235,7 @@ def test_isotime():
 def test_epoch():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|epoch }}', {'d': time})
-    eq_(s, '1261764672')
+    eq_(s, '1261735872')
     s = render('{{ d|epoch }}', {'d': None})
     eq_(s, '')
 

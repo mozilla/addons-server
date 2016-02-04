@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-28 02:50+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 05:43+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1696,7 +1696,7 @@ msgstr "提交一個新的佈景主題"
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "管理 API 金鑰"
 
@@ -2354,7 +2354,7 @@ msgstr "我訂閱的收藏集"
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "我最愛的附加元件"
 
@@ -2602,7 +2602,7 @@ msgstr "請不要填寫此欄位。此欄位用於判別您是否是機器人"
 msgid "This name cannot be used."
 msgstr "無法使用此名稱。"
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
 
@@ -2615,7 +2615,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
@@ -2842,13 +2842,7 @@ msgstr "更多"
 msgid "See all collections by this user"
 msgstr "瀏覽這個使用者的所有收藏集"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "最近檢視過的"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -2858,7 +2852,7 @@ msgstr ""
 "以下這些附加元件已被您使用 <b>加入至我的最愛</b> 功能標示為您的最愛。目前此收藏集為 "
 "<b>公開的</b>，每個人都可以看到它。如果您不想讓別人看到這些收藏，請按下底下的按鈕隱藏您的收藏集。"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -2867,7 +2861,7 @@ msgid ""
 msgstr ""
 "以下這些附加元件已被您使用<b>加入至我的最愛</b>功能標示為您的最愛。目前此收藏集的狀態為<b>私人</b>，代表只有您能看到它。如果您想讓任何人都能看到您的最愛，請按下方的按鈕以公開您的收藏集。"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "我最愛的附加元件"
 
@@ -3089,6 +3083,7 @@ msgstr "<b>警告：</b>改變此收藏集的擁有者，您將無法再編輯�
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "繼續"
@@ -3480,12 +3475,10 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
-"在 <a "
-"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Mozilla"
-" 開發者交流中心</a><a href=\"https://developer.mozilla.org/\">製作您自己的搜尋引擎</a>"
+"<a href=\"https://developer.mozilla.org/zh-"
+"TW/docs/%E8%A3%BD%E4%BD%9C_OpenSearch_%E6%90%9C%E5%B0%8B%E6%A8%A1%E7%B5%84\">建立您自己的搜尋工具</a>"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -3561,7 +3554,6 @@ msgstr[0] "瀏覽 %(name)s 裡的 %(cnt)s 套件 &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4286,8 +4278,8 @@ msgid "An author can only be listed once."
 msgstr "每位作者只可被列出一次。"
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "密碼不正確。"
+msgid "Slug incorrect."
+msgstr "Slug 不正確。"
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4516,15 +4508,15 @@ msgstr[0] "{0} 個警告"
 msgid "Review"
 msgstr "意見"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s 回應了 %s (%s)。"
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "至「%s」的連線已經逾時。"
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "無法連線至主機「%s」。"
 
@@ -4566,7 +4558,7 @@ msgstr "使用者意見"
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "請檢查表格是否有錯誤。"
 
@@ -4583,12 +4575,12 @@ msgid "Add-on deleted."
 msgstr "已刪除附加元件。"
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "密碼錯誤。佈景主題無法刪除。"
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr "網址不正確，並未刪除佈景主題。"
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "密碼錯誤。附加元件無法刪除。"
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr "網址不正確，並未刪除附加元件。"
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -4618,7 +4610,7 @@ msgstr "檢查附加元件的相容性"
 msgid "You cannot submit this type of add-on"
 msgstr "您無法送出此類型的附加元件。"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
@@ -4657,21 +4649,21 @@ msgid ""
 " Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "已要求初步審核。"
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "已要求完整審核。"
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr "您的舊金鑰已被撤銷，不再有效。請記得更新所有 API 客戶端上使用的金鑰。"
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "已建立新 API 金鑰"
 
@@ -4699,47 +4691,6 @@ msgstr "或<a href=\"{0}\">取消</a>"
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "返回附加元件網站"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: 搜尋"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "搜尋"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "搜尋結果"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "\"{0}\" 的搜尋結果"
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "請輸入搜尋關鍵字。"
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "正在載入結果&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -4904,9 +4855,20 @@ msgstr "附加元件討論區"
 msgid "More Resources"
 msgstr "更多資源"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "搜尋開發者文件"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "搜尋"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5259,7 +5221,7 @@ msgid ""
 msgstr "您的附加元件的資訊將預設使用此語系顯示，並可使用不同語系的翻譯蓋過預設內容。此欄位僅與公開上架的附加元件有關。"
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5578,8 +5540,8 @@ msgid ""
 msgstr "刪除附加元件後將會將其自網站永久移除，並防止相容 GUID 的附加元件被其他人再次上架。"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "輸入您的密碼來確認您的動作:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr "輸入網址以確認您的意願 ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -12046,6 +12008,11 @@ msgstr "{0} 的收藏集搜尋結果"
 msgid "Collection Search Results"
 msgstr "收藏集搜尋結果"
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "搜尋結果"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "無法搜尋"
@@ -12062,6 +12029,18 @@ msgstr "{0} 的主題搜尋結果"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "主題搜尋結果"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: 搜尋"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "\"{0}\" 的搜尋結果"
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -12232,7 +12211,7 @@ msgstr "版本已存在。"
 msgid "No uploaded file for that addon and version."
 msgstr "該附加元件與版本沒有已上傳的檔案。"
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "感謝您對 {addon_name} 的捐助"
 
@@ -12304,6 +12283,10 @@ msgstr "撰寫的評論"
 msgid "User Signups"
 msgstr "新註冊的使用者"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr "已封存的資料"
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "自定日期範圍"
@@ -12317,7 +12300,7 @@ msgid "To"
 msgstr "至"
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "更新"
 
@@ -12670,81 +12653,87 @@ msgid ""
 "reset</a>."
 msgstr "我們新的密碼政策要求您的密碼必須超過 %s 字元長，請 <a href=\"%s\">要求重設密碼</a> 來更新您的密碼。"
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr "您必須透過 Firefox 帳號重設密碼，請嘗試登入。"
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "新密碼"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "輸入的密碼錯誤！"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "使用者名稱不能只有數字。"
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "無法使用此使用者名稱。"
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "這個使用者名稱已經有人使用。"
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "顯示名稱"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "地點"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "職業"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page。"
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr "請使用一個來自不同提供者的電子郵件地址完成你的註冊。"
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "密碼不符。"
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "個人檔案照片"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "預設語系"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他欄位。"
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "請在黑名單中至少輸入一個名稱。"
 
@@ -12769,19 +12758,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr "匿名"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "您的帳號已被限制"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "請確認您的電子郵件"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "我的 Mobile 附加元件"
 
@@ -12858,50 +12847,50 @@ msgstr "Moizlla 想要傳給我關於 Marketplace 的新分類"
 msgid "User Notifications"
 msgstr "使用者通知"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "需要輸入電子郵件地址。"
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "使用該電子郵件地址的使用者不存在。"
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "確認碼無效！"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "驗證成功！"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr "已寄出電子郵件到您的信箱來確認帳號。您需要點擊信上的鏈結啟用帳號後才可以登入。"
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "確認信已寄出"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "刪除個人檔案"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "相片已刪除"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "更新個人檔案"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "確認信已送出"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
@@ -12910,43 +12899,43 @@ msgstr ""
 "我們已經傳送新電子郵件帳號確認信至 "
 "{0}。您必須點選此電子郵件附上的連結，新的電子郵件帳號才能生效。在您完成此動作前，您可以繼續使用舊的電子郵件帳號來登入。"
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "請確認您 %s 的 email 地址修改"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "發生錯誤"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "您所作的變更有錯誤，請更正後再重新送出一次。"
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "很抱歉，您目前不符合申請 T 恤的資格。"
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "您的電子郵件信箱已成功變更"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "從現在開始，請使用 {0} 登入。"
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "錯誤的電子郵件地址或密碼！"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr "啟用您帳號的連結已經寄到您的電子信箱 {0} 了。您必須啟用帳號才能登入。"
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -12956,39 +12945,39 @@ msgstr ""
 "如果您仍未收到確認信，請您確定郵件服務提供者並未將其標為「垃圾郵件」。您可以要求我們 <a href=\"%s\">再次重新傳送確認信</a> "
 "至您剛剛所提及之電子郵件信箱。"
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "確認信已寄出"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "遇到麻煩了？"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "您已經使用帳號登入。"
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "恭喜您！您的使用者帳號已成功建立。"
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr "我們已經寄出一封信到您的 Email 位址 {0} 以確認帳號。在您登入前必須按下該鏈結啟用您的帳號。"
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "這個表單發生了錯誤"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "請更正並重新送出。"
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "使用者回報。"
 
@@ -13193,6 +13182,21 @@ msgstr "全不勾選"
 msgid "all"
 msgstr "全部勾選"
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr "移轉至 Firefox 帳號"
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr "Mozilla 附加元件站已改用 Firefox 帳號登入。請繼續完成簡單的升級流程。"
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr "忽略"
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -13248,7 +13252,7 @@ msgstr "您現在已使用<strong>%(user_email)s</strong> 登入！"
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -13332,16 +13336,23 @@ msgstr "成功！"
 msgid "Password successfully reset."
 msgstr "重設密碼成功。"
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "密碼重設失敗"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr "您已移轉至 Firefox 帳號，將無法再於此處修改密碼。"
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "請再次輸入密碼"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "密碼重設失敗"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

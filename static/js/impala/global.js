@@ -119,10 +119,11 @@ $(function() {
         $(this).closest('.expando').toggleClass('expanded');
     }));
 
-    if (window.location.hash) {
+    var fragment = window.location.hash;
+    if (fragment && /^#[\w.-]+$/.test(fragment)) {
         // If the page URL is pointing directly to an expando section (e.g.
         // external link to that section), make sure the contents are visible.
-        var $target = $(window.location.hash);
+        var $target = $(fragment);
         if ($target.hasClass('expando'))
             $target.addClass('expanded');
     }

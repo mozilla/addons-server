@@ -1,4 +1,5 @@
 import collections
+import datetime
 import functools
 import json
 import os
@@ -15,7 +16,6 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import urlquote
-from django.utils.timezone import now
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -344,7 +344,7 @@ def delete(request, addon_id, addon, theme=False):
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
-    form = forms.DeleteForm(request)
+    form = forms.DeleteForm(request.POST, addon=addon)
     if form.is_valid():
         reason = form.cleaned_data.get('reason', '')
         addon.delete(msg='Removed via devhub', reason=reason)
@@ -356,12 +356,12 @@ def delete(request, addon_id, addon, theme=False):
         if theme:
             messages.error(
                 request,
-                _('Password was incorrect. Theme was not deleted.'))
+                _('URL name was incorrect. Theme was not deleted.'))
             return redirect(addon.get_dev_url())
         else:
             messages.error(
                 request,
-                _('Password was incorrect. Add-on was not deleted.'))
+                _('URL name was incorrect. Add-on was not deleted.'))
             return redirect(addon.get_dev_url('versions'))
 
 
@@ -1330,7 +1330,6 @@ def version_list(request, addon_id, addon):
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
-            'timestamp': int(time.time()),
             'is_admin': is_admin}
     return render(request, 'devhub/versions/list.html', data)
 
@@ -1733,11 +1732,6 @@ def docs(request, doc_name=None):
     raise http.Http404()
 
 
-def search(request):
-    query = request.GET.get('q', '')
-    return render(request, 'devhub/devhub_search.html', {'query': query})
-
-
 @login_required
 @waffle_switch('signing-api')
 def api_key_agreement(request):
@@ -1747,7 +1741,7 @@ def api_key_agreement(request):
 
 def render_agreement(request, template, next_step, step=None):
     if request.method == 'POST':
-        request.user.update(read_dev_agreement=now())
+        request.user.update(read_dev_agreement=datetime.datetime.now())
         return redirect(next_step)
 
     if request.user.read_dev_agreement is None:

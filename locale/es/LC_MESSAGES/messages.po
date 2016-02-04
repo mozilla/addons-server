@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-28 15:34+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 08:05+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -1816,7 +1816,7 @@ msgstr "Enviar un nuevo tema"
 msgid "Developer Hub"
 msgstr "Centro de Desarrolladores"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Administrar llaves API"
 
@@ -2504,7 +2504,7 @@ msgstr "Colecciones que sigo"
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Mis complementos favoritos"
 
@@ -2769,7 +2769,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr "No se puede utilizar este nombre."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "No se permiten enlaces."
 
@@ -2782,7 +2782,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Los iconos deben ser PNG o JPG."
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Usa imágenes más pequeñas que %dMB."
 
@@ -3016,13 +3016,7 @@ msgstr "Más de este usuario"
 msgid "See all collections by this user"
 msgstr "Ver todos las colecciones de este usuario"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Visto recientemente"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -3035,7 +3029,7 @@ msgstr ""
 "ver. Si deseas ocultarlos de la vista pública, haz clic sobre el botón de "
 "abajo para hacerla privada."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -3048,7 +3042,7 @@ msgstr ""
 "ver. Si quieres que todos puedan ver tus favoritos, haz clic sobre el botón "
 "de abajo para hacerla pública."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Mis complementos favoritos"
 
@@ -3282,6 +3276,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Continuar"
@@ -3695,13 +3690,11 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Crea"
-" el tuyo propio</a> en el <a href=\"https://developer.mozilla.org/\">Mozilla"
-" Developer Center</a>"
+" tu propia</a> herramienta de búsqueda"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -3778,7 +3771,6 @@ msgstr[1] "Ver las %(cnt)s extensiones en %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4508,8 +4500,8 @@ msgid "An author can only be listed once."
 msgstr "Un autor sólo puede ser listado una vez."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Contraseña incorrecta."
+msgid "Slug incorrect."
+msgstr "Slug incorrecto."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4753,15 +4745,15 @@ msgstr[1] "{0} avisos"
 msgid "Review"
 msgstr "Revisión"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s ha respondido con %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "La conexión a \"%s\" ha caducado."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "No se ha podido contactar con el servidor en \"%s\"."
 
@@ -4806,7 +4798,7 @@ msgstr "Valoraciones de los usuarios"
 msgid "Changes successfully saved."
 msgstr "Los cambios se han guardado correctamente."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Por favor, comprueba el formulario en busca de errores."
 
@@ -4825,12 +4817,12 @@ msgid "Add-on deleted."
 msgstr "Complemento borrado."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "La contraseña era incorrecta. El tema no se ha eliminado."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr "El nombre de la URL es incorrecto. No se eliminó el tema."
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "La contraseña era incorrecta. El complemento no se ha borrado."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr "El nombre de la URL es incorrecto. No se eliminó el complemento."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -4860,7 +4852,7 @@ msgstr "Comprobar la compatibilidad del complemento"
 msgid "You cannot submit this type of add-on"
 msgstr "No puedes enviar este tipo de complemento"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Las imágenes deben estar en formato PNG o JPG."
 
@@ -4903,15 +4895,15 @@ msgstr ""
 "Esta subida ha fallado la validación y puede carecer de resultados de "
 "validación completos. Revísala con atención."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Revisión preliminar solicitada."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Revisión completa solicitada."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
@@ -4919,7 +4911,7 @@ msgstr ""
 "Tus antiguas credenciales fueron revocadas y ya no son válidas. Asegúrate de"
 " actualizar todos los clientes API con las nuevas credenciales."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Nueva clave API creada"
 
@@ -4950,47 +4942,6 @@ msgstr "o <a href=\"{0}\">Cancelar</a>"
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Volver a complementos"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Búsqueda"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "Buscar"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Resultados de la búsqueda"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Resultados de la búsqueda de \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Introduce algunos términos de búsqueda."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Cargando resultados&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -5161,9 +5112,20 @@ msgstr "Foro de complementos"
 msgid "More Resources"
 msgstr "Más recursos"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Buscar documentos para desarrolladores"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "Buscar"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5555,7 +5517,7 @@ msgstr ""
 " relevante para complementos listados."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5911,8 +5873,8 @@ msgstr ""
 "impedirá que cualquiera pueda volver a enviar el GUID."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Introduce tu contraseña para confirmar tu decisión:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr "Introduce el nombre de la URL para confirmar tu decisión ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -13412,6 +13374,11 @@ msgstr "Resultados de la búsqueda de colecciones para {0}"
 msgid "Collection Search Results"
 msgstr "Resultados de la búsqueda de colecciones"
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Resultados de la búsqueda"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Búsqueda no disponible"
@@ -13430,6 +13397,18 @@ msgstr "Resultados de búsqueda en temas para {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Resultados de búsqueda en temas"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Búsqueda"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Resultados de la búsqueda de \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -13609,7 +13588,7 @@ msgstr "Esta versión ya existe."
 msgid "No uploaded file for that addon and version."
 msgstr "Ningún archivo subido para ese complemento o esa versión."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Gracias por colaborar con {addon_name}"
 
@@ -13681,6 +13660,10 @@ msgstr "Valoraciones escritas"
 msgid "User Signups"
 msgstr "Registros de usuarios"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr "Información archivada"
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Rango de fechas personalizado"
@@ -13694,7 +13677,7 @@ msgid "To"
 msgstr "Para"
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Actualizar"
 
@@ -14074,19 +14057,27 @@ msgstr ""
 "tener al menos %s caracteres. Por favor, actualiza tu contraseña <a "
 "href=\"%s\"> mediante un restablecimiento de contraseña</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr ""
+"Tienes que recuperar tu contraseña a través de la cuenta de Firefox. Prueba "
+"a iniciar sesión."
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Nueva contraseña"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "¡Se ha introducido una contraseña errónea!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Los nombres de usuario no pueden contener solo dígitos."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -14094,29 +14085,29 @@ msgstr ""
 "Escribe un nombre de usuario válido que contenga letras, números, guiones o "
 "guiones bajos."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "No se puede usar este nombre de usuario."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Este nombre de usuario/a ya se utiliza."
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Ubicación"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ocupación"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -14124,7 +14115,7 @@ msgstr ""
 "Esta URL tiene un formato no válido. Las URLs válidas tienen un aspecto como"
 " este http://example.com/my_page."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -14132,23 +14123,23 @@ msgstr ""
 "Por favor, usa una dirección de correo de un proveedor diferente para "
 "completar tu registro."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "No se puede utilizar el nombre mostrado."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Las contraseñas no coinciden."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Foto del perfil"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Idioma por defecto"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -14156,7 +14147,7 @@ msgstr ""
 "Para ocultarte en el anonimato, aduce una razón para el cambio pero no "
 "modifiques ningún otro campo."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Por favor, introduce al menos un nombre en la lista negra."
 
@@ -14181,19 +14172,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "No se ha encontrado un usuario con ese correo electrónico."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr "Anónimo"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Tu cuenta ha sido restringida"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Por favor, confirma tu dirección de correo"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Mis complementos para móviles"
 
@@ -14275,23 +14266,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Notificaciones de usuario"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "Se requiere una dirección de correo electrónico."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "No existe un usuario con esa dirección de correo electrónico."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "¡Código de confirmación no válido!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "¡Verificado con éxito!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
@@ -14301,27 +14292,27 @@ msgstr ""
 "iniciar sesión, tienes que activar tu cuenta haciendo clic en el enlace que "
 "aparece en el correo."
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "Correo de confirmación enviado"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Perfil borrado"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Foto borrada"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Perfil actualizado"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Correo de confirmación enviado"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
@@ -14332,40 +14323,40 @@ msgstr ""
 "enlace proporcionado en ese mensaje. Hasta entonces, puedes seguir "
 "conectándote con tu dirección de correo electrónico actual."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Por favor, confirma tu cambio de dirección de correo en %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Errores encontrados"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Hay errores en los cambios que ha hecho. Por favor, corrígelos y vuelva a "
 "enviarlos."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 "Lo sentimos, pero en este momento no calificas para solicitar una camiseta."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Tu dirección de correo se ha cambiado correctamente"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "A partir de ahora, usa {0} para conectarte."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "¡Dirección de correo o contraseña incorrecta!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14374,7 +14365,7 @@ msgstr ""
 "activar tu cuenta de usuario. Tienes que hacer clic en él antes de que "
 "puedas conectarte."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14387,24 +14378,24 @@ msgstr ""
 "confirmación</a> a tu dirección de correo electrónico mencionada "
 "anteriormente."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Correo de activación enviado"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "¿Tienes problemas?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Ya te has conectado con una cuenta."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "¡Enhorabuena! Tu cuenta de usuario se ha creado con éxito."
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14414,15 +14405,15 @@ msgstr ""
 "de que puedas conectar, debes activar tu cuenta haciendo clic en el enlace "
 "que hay en dicho correo."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "Hay errores en este formulario"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Por favor, corrígelos y vuelve a enviarlo."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Usuarios con informes."
 
@@ -14648,6 +14639,23 @@ msgstr "ninguno"
 msgid "all"
 msgstr "todos"
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr "Migrar a la cuenta de Firefox"
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+"Ahora se accede a los complementos de Mozilla con las cuentas de Firefox. "
+"Continúa para completar el proceso de actualización."
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr "Saltar"
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -14703,7 +14711,7 @@ msgstr "¡Ahora estás conectado como <strong>%(user_email)s</strong>!"
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -14787,16 +14795,25 @@ msgstr "¡Éxito!"
 msgid "Password successfully reset."
 msgstr "Contraseña reiniciada con éxito."
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "Contraseña no reiniciada correctamente"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+"Ya has migrado a la cuenta de Firefox. Ya no podrás cambiar tu contraseña "
+"aquí."
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "Confirmar contraseña"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "Contraseña no reiniciada correctamente"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

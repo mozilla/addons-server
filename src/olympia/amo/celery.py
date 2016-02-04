@@ -13,7 +13,6 @@ from celery import Celery
 from celery.signals import task_failure, task_postrun, task_prerun
 from celery.task.sets import TaskSet
 from django_statsd.clients import statsd
-from post_request_task.task import PostRequestTask
 from raven import Client
 from raven.contrib.celery import register_signal, register_logger_signal
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-05 12:35+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,7 +163,7 @@ msgstr "Resimler PNG veya JPG olmalıdır."
 msgid "Videos must be in WebM."
 msgstr "Videolar WebM olmalıdır."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "Bu Koleksiyonu İzle"
 
@@ -867,71 +867,67 @@ msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "Son bakılanları temizle"
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "Favorilere ekleniyor&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "Favorilerden kaldırılıyor&hellip;"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Favorilere Ekle"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Favorilerden Kaldır"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "Beklemede"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "Yorum ekle"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "Yorum"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "Bu eklentiyi koleksiyondan kaldır"
 
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "Kaldır"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "Bu kullanıcıyı katkıda bulunanlardan çıkar"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr "Bir e-posta adresi gereklidir."
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr "Kendinizi katkıda bulunan olarak ekleyemezsiniz."
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "Bu kullanıcıyı zaten eklediniz."
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "Favorilerime ekle"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "Favorilerimden kaldır"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "İzlemeyi durdur"
 

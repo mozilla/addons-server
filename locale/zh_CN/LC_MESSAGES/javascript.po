@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-21 00:45+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgstr "图像必须为 PNG 或 JPG 格式。"
 msgid "Videos must be in WebM."
 msgstr "视频必须是 WebM 格式。"
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "关注这个收藏集"
 
@@ -865,71 +865,67 @@ msgstr "只能用于 Firefox — 获取 Firefox！"
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "清除最近浏览记录"
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "正在添加到收藏夹&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "正在从收藏夹中移除&hellip;"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "添加到收藏夹"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "从收藏夹中移除"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "等待中"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "添加评论"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "评论"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "从收藏集中移除此附加组件"
 
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "移除"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "从贡献者中移除此用户"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr "必须输入电子邮件地址。"
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr "您不能添加自己为贡献者。"
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "您已经添加了该用户。"
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "添加到收藏夹"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "从收藏夹中移除"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "停止关注"
 

@@ -10,10 +10,15 @@ env = environ.Env()
 
 # Allow addons-dev CDN for CSP.
 DEV_CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+CSP_REPORT_ONLY = False
 CSP_FONT_SRC += (DEV_CDN_HOST,)
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (DEV_CDN_HOST,)
-CSP_SCRIPT_SRC += (DEV_CDN_HOST,)
+CSP_SCRIPT_SRC += (
+    # Fix for discovery pane when using services subdomain.
+    'https://addons-dev.allizom.org',
+    DEV_CDN_HOST,
+)
 CSP_STYLE_SRC += (DEV_CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -42,7 +47,7 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = SITE_URL
+SERVICES_URL = 'https://addons-dev-services.allizom.org'
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-dev-cdn.allizom.org/user-media/'
 

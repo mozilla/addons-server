@@ -101,6 +101,7 @@ FXA_CONFIG = {
 }
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
+CSP_REPORT_ONLY = False
 CSP_REPORT_URI = '/csp-report'
 
 # Allow GA over http + www subdomain in local development.

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-27 21:10+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 14:14+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: apps/addons/buttons.py:179
 msgid "Download Now"
-msgstr "ჩამოტვირთვა"
+msgstr "ჩამოტვირთეთ ახლავე"
 
 #: apps/addons/buttons.py:181
 msgid "Download"
@@ -26,7 +26,7 @@ msgstr "ჩამოტვირთვა"
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: apps/addons/buttons.py:185
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ""
+msgstr "&nbsp;&rarr;-ის ჩამოტვირთვის გაგრძელება"
 
 #: apps/addons/buttons.py:201
 msgctxt "install_button"
@@ -411,7 +411,7 @@ msgstr ""
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:7
 #: apps/browse/views.py:460 apps/devhub/views.py:75
 msgid "Updated"
-msgstr ""
+msgstr "განახლებული"
 
 #: apps/addons/templates/addons/details_box.html:38
 #: apps/addons/templates/addons/mobile/details.html:71
@@ -498,7 +498,7 @@ msgstr ""
 #: apps/addons/templates/addons/details_box.html:171
 #: apps/addons/templates/addons/details_box.html:231
 msgid "More about this add-on"
-msgstr ""
+msgstr "მეტი ამ დამატების შესახებ"
 
 #: apps/addons/templates/addons/details_box.html:180
 msgid "Image Gallery"
@@ -547,7 +547,7 @@ msgstr ""
 #: apps/addons/templates/addons/details_box.html:251
 msgctxt "addons_display_release_notes"
 msgid "Version Notes"
-msgstr ""
+msgstr "ვერსიის შენიშვნები"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -626,7 +626,7 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:77
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "რეკლამირებული კოლექციები"
 
 #: apps/addons/templates/addons/listing_header.html:3
 #: apps/addons/templates/addons/impala/listing/sorter.html:2
@@ -645,7 +645,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "განახლებული {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10
@@ -666,7 +666,7 @@ msgstr[0] ""
 #: apps/addons/templates/addons/macros.html:28
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
+msgstr[0] "%(num)s მომხმარებელი"
 
 #. {0} is the number of downloads.
 #: apps/addons/templates/addons/macros.html:53
@@ -682,7 +682,7 @@ msgstr[0] ""
 #: apps/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
+msgstr[0] "{0} მომხმარებელი"
 
 #: apps/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -703,7 +703,7 @@ msgstr ""
 #: apps/discovery/templates/discovery/addons/base.html:27
 #: apps/editors/templates/editors/review.html:31
 msgid "by"
-msgstr ""
+msgstr "ავტორი"
 
 #. {0} is a category name, such as Nature
 #: apps/addons/templates/addons/persona_detail.html:32
@@ -718,12 +718,12 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
-msgstr ""
+msgstr "მეტი ამ მხატვრისგან"
 
 #: apps/addons/templates/addons/persona_detail.html:52
 #: apps/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "ნახეთ ამ მხატვრის ყველა თემა"
 
 #: apps/addons/templates/addons/persona_detail.html:71
 #: apps/addons/templates/addons/mobile/home.html:42
@@ -741,7 +741,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/deleted.html:19
 #: apps/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "მხატვარი"
 
 #: apps/addons/templates/addons/persona_detail_table.html:19
 #: apps/addons/templates/addons/mobile/persona_detail_table.html:14
@@ -826,7 +826,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> მომხმარებელი"
 
 #: apps/addons/templates/addons/popups.html:17
 msgid ""
@@ -932,7 +932,7 @@ msgstr ""
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "სხვა ვერსიების ნახვა"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -1150,7 +1150,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
-msgstr ""
+msgstr "ამ კოლექციების ნაწილი"
 
 #: apps/addons/templates/addons/impala/details-more.html:65
 msgid "Other add-ons by %(author)s"
@@ -1209,7 +1209,7 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:194
 #: apps/devhub/models.py:377
 msgid "Version {0}"
-msgstr ""
+msgstr "ვერსია {0}"
 
 #: apps/addons/templates/addons/impala/details.html:194
 msgid "Info"
@@ -1238,7 +1238,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:217
 msgid "About this Add-on"
-msgstr ""
+msgstr "ამ დამატების შესახებ"
 
 #: apps/addons/templates/addons/impala/details.html:233
 msgid "Developer’s Comments"
@@ -1246,7 +1246,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:243
 msgid "Version Information"
-msgstr ""
+msgstr "ვერსიის ინფორმაცია"
 
 #: apps/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
@@ -1448,7 +1448,7 @@ msgstr ""
 #: apps/devhub/forms.py:785
 #: apps/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
-msgstr ""
+msgstr "ვერსია"
 
 #. {0} is a version number.
 #: apps/addons/templates/addons/mobile/details.html:105
@@ -1615,7 +1615,7 @@ msgstr ""
 #: apps/users/templates/users/profile.html:83
 #: apps/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr ""
+msgstr "ჩემი კოლექციები"
 
 #: apps/amo/context_processors.py:64
 #: apps/discovery/templates/discovery/pane_account.html:10
@@ -1654,7 +1654,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr ""
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1698,7 +1698,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
 #: apps/stats/templates/stats/stats.html:77 templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "კოლექციები"
 
 #: apps/amo/helpers.py:172 apps/amo/templates/amo/site_nav.html:85
 #: apps/browse/templates/browse/language_tools.html:3
@@ -2259,7 +2259,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "დათვალიერება"
 
 #: apps/amo/templates/amo/site_nav.html:23 apps/browse/feeds.py:65
 #: apps/browse/feeds.py:78 apps/browse/feeds.py:92 apps/browse/feeds.py:100
@@ -2268,7 +2268,7 @@ msgstr ""
 #: apps/browse/templates/browse/impala/base_listing.html:37
 #: apps/constants/base.py:173 templates/menu_links.html:8
 msgid "Extensions"
-msgstr ""
+msgstr "გაფართოებები"
 
 #: apps/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -2276,7 +2276,7 @@ msgstr ""
 
 #: apps/amo/templates/amo/site_nav.html:56 apps/bandwagon/views.py:93
 msgid "Most Followers"
-msgstr ""
+msgstr "ყველაზე მეტი მიმდევარი"
 
 #: apps/amo/templates/amo/site_nav.html:68
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
@@ -2294,7 +2294,7 @@ msgstr ""
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -2535,7 +2535,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr ""
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr ""
 
@@ -2548,7 +2548,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr ""
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr ""
 
@@ -2700,7 +2700,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(num)s</span> მიმდევარი"
 
 #: apps/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
@@ -2773,13 +2773,7 @@ msgstr ""
 msgid "See all collections by this user"
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr ""
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -2787,7 +2781,7 @@ msgid ""
 "the button below to make it private."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -2795,7 +2789,7 @@ msgid ""
 "favorites, click the button below to make it public."
 msgstr ""
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr ""
 
@@ -2807,7 +2801,7 @@ msgstr[0] ""
 #: apps/bandwagon/templates/bandwagon/collection_grid.html:32
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> მიმდევარი"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2816,14 +2810,14 @@ msgstr[0] ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s ყოველკვირეული მიმდევარი"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:18
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s ყოველთვიური მიმდევარი"
 
 #. People "follow" collections to get notified of updates.
 #.                    Like Twitter followers.
@@ -2832,7 +2826,7 @@ msgstr[0] ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
+msgstr[0] "%(num)s მიმდევარი"
 
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3013,6 +3007,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr ""
@@ -3071,7 +3066,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "შექმენით კოლექცია"
 
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
@@ -3394,8 +3389,7 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6
@@ -3472,7 +3466,6 @@ msgstr[0] ""
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4182,7 +4175,7 @@ msgid "An author can only be listed once."
 msgstr ""
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
+msgid "Slug incorrect."
 msgstr ""
 
 #: apps/devhub/forms.py:105
@@ -4410,15 +4403,15 @@ msgstr[0] ""
 msgid "Review"
 msgstr ""
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr ""
 
@@ -4460,7 +4453,7 @@ msgstr ""
 msgid "Changes successfully saved."
 msgstr ""
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4477,11 +4470,11 @@ msgid "Add-on deleted."
 msgstr ""
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
+msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
+msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 #: apps/devhub/views.py:445
@@ -4512,7 +4505,7 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
@@ -4551,21 +4544,21 @@ msgid ""
 " Please take due care when reviewing it."
 msgstr ""
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr ""
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr ""
 
@@ -4592,47 +4585,6 @@ msgstr ""
 #: apps/devhub/templates/devhub/base_impala.html:20
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr ""
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
 msgstr ""
 
 #: apps/devhub/templates/devhub/index.html:22
@@ -4791,8 +4743,19 @@ msgstr ""
 msgid "More Resources"
 msgstr ""
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
+msgstr ""
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
 msgstr ""
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
@@ -5132,7 +5095,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5441,7 +5404,7 @@ msgid ""
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
@@ -8022,11 +7985,11 @@ msgstr ""
 
 #: apps/discovery/modules.py:164
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "პირველად იყენებთ დამატებებს?"
 
 #: apps/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "არ ინერვიულოთ, დაიწყეთ ამ სამი დამატებით."
 
 #: apps/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
@@ -8291,7 +8254,7 @@ msgstr ""
 
 #: apps/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla — თვის დამატება!"
 
 #: apps/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
@@ -9506,7 +9469,7 @@ msgstr ""
 
 #: apps/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "მხატვრისთვვის შეკითხვის დასმა"
 
 #: apps/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
@@ -11534,6 +11497,11 @@ msgstr ""
 msgid "Collection Search Results"
 msgstr ""
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr ""
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr ""
@@ -11549,6 +11517,18 @@ msgstr ""
 
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr ""
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
 msgstr ""
 
 #. {0} is a tag, such as jetpack.
@@ -11719,7 +11699,7 @@ msgstr ""
 msgid "No uploaded file for that addon and version."
 msgstr ""
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr ""
 
@@ -11791,6 +11771,10 @@ msgstr ""
 msgid "User Signups"
 msgstr ""
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr ""
@@ -11804,7 +11788,7 @@ msgid "To"
 msgstr ""
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr ""
 
@@ -12146,81 +12130,87 @@ msgid ""
 "reset</a>."
 msgstr ""
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr ""
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr ""
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr ""
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr ""
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr ""
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr ""
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr ""
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr ""
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr ""
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr ""
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr ""
 
@@ -12245,19 +12235,19 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr ""
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr ""
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr ""
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr ""
 
@@ -12334,93 +12324,93 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr ""
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr ""
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr ""
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr ""
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr ""
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr ""
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr ""
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr ""
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr ""
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr ""
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr ""
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr ""
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr ""
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr ""
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -12428,38 +12418,38 @@ msgid ""
 "mentioned above."
 msgstr ""
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr ""
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr ""
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr ""
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr ""
 
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr ""
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr ""
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr ""
 
@@ -12662,6 +12652,21 @@ msgstr ""
 msgid "all"
 msgstr ""
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr ""
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -12716,7 +12721,7 @@ msgstr ""
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -12747,7 +12752,7 @@ msgstr ""
 
 #: apps/users/templates/users/profile.html:34
 msgid "Themes Artist"
-msgstr ""
+msgstr "თემების მხატვარი"
 
 #: apps/users/templates/users/profile.html:39
 msgid "About me"
@@ -12797,16 +12802,23 @@ msgstr ""
 msgid "Password successfully reset."
 msgstr ""
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr ""
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr ""
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
@@ -13256,7 +13268,7 @@ msgstr ""
 
 #: templates/menu_links.html:6
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Firefox დამატებები"
 
 #: templates/menu_links.html:11
 msgid "Language Support"
@@ -13311,6 +13323,9 @@ msgid ""
 "To try the thousands of add-ons available here, download <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
+"აქ ხელმისაწვდომი ათასობით დამატების გამოსაცდელად, ჩამოტვირთეთ <a "
+"href=\"%(url)s\">Mozilla Firefox</a>, სწრაფი, უფაზო საშუალება ვებ-"
+"სერფინგისთვის!"
 
 #: templates/impala/base.html:137
 msgid ""
@@ -13342,7 +13357,7 @@ msgstr ""
 
 #: templates/impala/header_title.html:21
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Android დამატებები"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
@@ -13374,7 +13389,7 @@ msgstr ""
 
 #: templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "დამატებები"
 
 #: templates/mobile/header.html:8
 msgid "Visit Mozilla"

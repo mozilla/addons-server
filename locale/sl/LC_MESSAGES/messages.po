@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-31 13:39+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 09:03+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1823,7 +1823,7 @@ msgstr "Pošlji novo temo"
 msgid "Developer Hub"
 msgstr "Razvojni center"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Upravljaj ključe API"
 
@@ -2502,7 +2502,7 @@ msgstr "Zbirke, ki jim sledim"
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Moji najljubši dodatki"
 
@@ -2769,7 +2769,7 @@ msgstr "Ne izpolnite tega polja, uporablja se za lovljenje robotov"
 msgid "This name cannot be used."
 msgstr "Tega imena ne morete uporabiti."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Povezave niso dovoljene."
 
@@ -2782,7 +2782,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Ikone morajo biti bodisi PNG ali JPG."
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Uporabljajte slike, ki so manjše kot %dMB."
 
@@ -3020,13 +3020,7 @@ msgstr "Več od tega uporabnika"
 msgid "See all collections by this user"
 msgstr "Oglejte si vse zbirke tega uporabnika"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Nedavno ogledano"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -3038,7 +3032,7 @@ msgstr ""
 "kar pomeni, da jo lahko vsakdo vidi. Če jo želite skriti pred javnostjo, "
 "kliknite na gumb spodaj, da jo naredite zasebno."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -3051,7 +3045,7 @@ msgstr ""
 "vaše priljubljene dodatke videli vsi, kliknite na gumb spodaj, da jo "
 "naredite javno."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Moj najljubši dodatki"
 
@@ -3292,6 +3286,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Nadaljuj"
@@ -3706,13 +3701,11 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
 "<a "
-"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Naredite"
-" si svojega</a> v <a href=\"https://developer.mozilla.org/\">Razvojnem "
-"centru Mozilla</a>"
+"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Ustvarite"
+" svoj</a> iskalnik"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -3791,7 +3784,6 @@ msgstr[3] "Glej vse razširitve - %(cnt)s - v %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4525,8 +4517,8 @@ msgid "An author can only be listed once."
 msgstr "Avtor je lahko naveden le enkrat."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Geslo napačno."
+msgid "Slug incorrect."
+msgstr "Nepravilna rekleta."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4771,15 +4763,15 @@ msgstr[3] "{0} opozoril"
 msgid "Review"
 msgstr "Pregled"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s odgovoril %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Povezava z \"%s\" je pretekla."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "Ni prišlo do stika z gostiteljem na \"%s\"."
 
@@ -4824,7 +4816,7 @@ msgstr "Ocene uporabnikov"
 msgid "Changes successfully saved."
 msgstr "Spremembe uspešno shranjene."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Prosimo, poiščite napake v obrazcu."
 
@@ -4841,12 +4833,12 @@ msgid "Add-on deleted."
 msgstr "Dodatek izbrisan."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Geslo je bilo nepravilno. Teme se ni zbrisalo."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr "Ime URL-ja je nepravilno. Tema ni bila izbrisana."
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Geslo je bilo nepravilno. Teme se ni zbrisalo."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr "Ime URL-ja je nepravilno. Dodatek ni bil izbrisan."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -4876,7 +4868,7 @@ msgstr "Preveri združljivost dodatka"
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Slike morajo biti bodisi PNG ali JPG."
 
@@ -4918,15 +4910,15 @@ msgstr ""
 "veljavnosti ne bodo v celoti na razpolago. Bodite pozorni, ko ga boste "
 "pregledovali."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Zahteva se predhodni pregled."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Zahteva se popoln pregled."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
@@ -4934,7 +4926,7 @@ msgstr ""
 "Vaša stara poverila so bila preklicana in niso več veljavna. Prepričajte se,"
 " da posodobite vse odjemalce API z novimi poverili."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Nov ključ API ustvarjen"
 
@@ -4965,47 +4957,6 @@ msgstr "ali <a href=\"{0}\">Prekliči</a>"
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Nazaj na dodatke"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Išči"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "Iskanje"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Rezultati iskanja"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Rezultati iskanja za: \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Prosimo, vnesite nekaj izrazov za iskanje."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Nalaganje rezultatov ..."
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -5176,9 +5127,20 @@ msgstr "Forum dodatkov"
 msgid "More Resources"
 msgstr "Viri - dalje"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Iskanje po Dokumentaciji za razvijalce"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "Iskanje"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5571,7 +5533,7 @@ msgstr ""
 " s prevodom v določen jezik. To velja samo za navedene dodatke."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5918,8 +5880,8 @@ msgstr ""
 "njegovega GUID-ja ne boste več mogli uporabiti."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Vnesite svoje geslo, da potrdite svojo odločitev:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr "Vnesite ime URL-ja za potrditev svoje odločitve ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -13325,6 +13287,11 @@ msgstr "Rezultat iskanja po zbirkah za {0}"
 msgid "Collection Search Results"
 msgstr "Rezultati iskanja zbirke"
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Rezultati iskanja"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Iskanje ni na voljo"
@@ -13341,6 +13308,18 @@ msgstr "Rezultati iskanja po Temah za {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Rezultati iskanja po Temah"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Išči"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Rezultati iskanja za: \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -13533,7 +13512,7 @@ msgstr "Različica že obstaja."
 msgid "No uploaded file for that addon and version."
 msgstr "Ni poslane datoteke za ta dodatek in različico."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Hvala za prispevek za {addon_name}"
 
@@ -13605,6 +13584,10 @@ msgstr "Pregledi spisani"
 msgid "User Signups"
 msgstr "Prijave uporabnikov"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr "Arhivirani podatki"
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Obdobje datumov po želji"
@@ -13618,7 +13601,7 @@ msgid "To"
 msgstr "do"
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Obnovi"
 
@@ -14008,19 +13991,25 @@ msgstr ""
 "več. Prosimo, posodobite svoje geslo z <a href=\"%s\">izdajo ponastavitve "
 "gesla</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr "Geslo morate obnoviti preko Firefox Računov. Poskusite s prijavo."
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Novo geslo"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Vneseno geslo je napačno!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Uporabniška imena ne morejo vsebovati samo številk."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -14028,29 +14017,29 @@ msgstr ""
 "Vnesite veljavno uporabniško ime sestavljeno iz črk, števk, podčrtajev in "
 "vezajev."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Tega uporabniškega imena ni mogoče uporabiti."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "To uporabniško ime je že v uporabi."
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Prikazno ime"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Lokacija"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Poklic"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -14058,7 +14047,7 @@ msgstr ""
 "Oblika tega spletnega naslova je neveljavna. Veljaven URL je videti takole: "
 "http://primer.com/moja_stran."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -14066,23 +14055,23 @@ msgstr ""
 "Uporabite prosim e-poštni naslov kakega drugega ponudnika, da dokončate "
 "svojo registracijo."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "Tega prikaznega imena ni mogoče uporabljati."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Gesli se nista ujemali."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Slika za profil"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Privzeta območna nastavitev"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -14090,7 +14079,7 @@ msgstr ""
 "Za anonimizacijo vnesite razlog za spremembo, vendar ne spreminjajte ostalih"
 " polj."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Za dodajanje na črno listo vnesite vsaj eno ime."
 
@@ -14115,19 +14104,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Ni uporabnika s tem e-naslovom."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr "Anonimno"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Vaš račun se je omejilo"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Potrdite prosim svoj e-naslov"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Moji mobilni dodatki"
 
@@ -14210,23 +14199,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Uporabniška obvestila"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "Zahteva se e-naslov."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "Uporabnik s tem e-poštnim naslovom ne obstaja."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Neveljavna potrditvena koda!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Uspešno preverjeno!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
@@ -14236,27 +14225,27 @@ msgstr ""
 "se lahko prijavite, morate aktivirati svoj račun s klikom na povezavo v tej "
 "e-pošti."
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "E-pošta za potrdilo poslana"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Profil izbrisan"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Slika izbrisana"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Profil posodobljen"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Poštno potrdilo poslano po E-pošti"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
@@ -14266,39 +14255,39 @@ msgstr ""
 " prijavite, morate aktivirati svoj račun s klikom na povezavo v tej e-pošti."
 "  Do nadaljnjega se lahko prijavljate s svojim sedanjim e-poštnim naslovom."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Potrdite prosim spremembo svojega e-naslova na %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Najdene napake"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "V spremembah, ki ste jih naredili, so bile napake. Prosimo, da jih popravite"
 " in ponovno pošljete."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "Trenutni niste upravičeni za zahtevo po majici."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Vaš e-poštni naslov je bil uspešno spremenjen."
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Odslej uporabljajte za prijavo {0}."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Napačen e-poštni naslov ali geslo!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14306,7 +14295,7 @@ msgstr ""
 "Povezavo za aktiviranje vašega uporabniškega računa se je po elektronski "
 "pošti poslalo na vaš naslov {0}. Preden se prijavite, morate klikniti nanjo."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14318,24 +14307,24 @@ msgstr ""
 "href=\"%s\">sporočilo za potrditev ponovno pošljemo</a> na vaš zgoraj "
 "omenjeni e-poštni naslov."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "E-pošta za aktivacijo poslana"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Imate težave?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Ste že prijavljeni na račun."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Čestitamo! Vaš uporabniški račun je bil uspešno ustvarjen."
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14344,15 +14333,15 @@ msgstr ""
 "Poslali smo vam e-pošto na {0}, da potrdite svoj novi račun. Preden se lahko"
 " prijavite, morate aktivirati svoj račun s klikom na povezavo v tej e-pošti."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "Ta obrazec vsebuje napake."
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Prosimo, da jih popravite in ponovno pošljete."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Uporabnik sporočen."
 
@@ -14577,6 +14566,23 @@ msgstr "nič"
 msgid "all"
 msgstr "vse"
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr "Preklopi na Firefox Račune"
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+"Dodatki Mozilla so se za prijavljanje preselili na Firefox Račune. "
+"Nadaljujte za dokončanje preprostega postopa nadgradnje."
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr "Preskoči"
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -14631,7 +14637,7 @@ msgstr "Prijavljeni ste zdaj kot <strong>%(user_email)s</strong>!"
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -14715,16 +14721,24 @@ msgstr "Uspeh!"
 msgid "Password successfully reset."
 msgstr "Geslo je uspešno ponastavljeno."
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "Ponastavitev gesla neuspešna"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+"Preklopili ste na Firefox Račune. Tukaj ne morete več spreminjati gesla."
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "Potrdite geslo"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "Ponastavitev gesla neuspešna"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

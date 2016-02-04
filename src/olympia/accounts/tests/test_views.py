@@ -120,8 +120,7 @@ class TestWithUser(TestCase):
         self.find_user = patcher.start()
         self.addCleanup(patcher.stop)
         self.request = mock.MagicMock()
-        self.user = mock.MagicMock(fxa_id=None)
-        self.user.is_authenticated.return_value = True
+        self.user = UserProfile()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
 
@@ -133,7 +132,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -147,7 +146,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
         self.request.DATA = {
             'code': 'foo',
@@ -166,7 +165,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
         self.request.DATA = {
             'code': 'foo',
@@ -184,7 +183,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         self.request.DATA = {
             'code': 'foo',
             'state': u'some-blob:/raw/path',
@@ -201,7 +200,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         self.request.DATA = {
             'code': 'foo',
             'state': u'some-blob:',
@@ -218,7 +217,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         self.request.DATA = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
@@ -237,7 +236,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
         self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -292,6 +291,21 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
+    def test_logged_in_does_not_match_identity_fxa_id_blank(self):
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = None
+        self.user.pk = 100
+        self.user.fxa_id = ''
+        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': None,
+        }
+
     @mock.patch('olympia.accounts.views.Response')
     def test_logged_in_does_not_match_identity_migrated(self, Response):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -319,7 +333,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated.return_value = False
+        self.user.is_authenticated = lambda: False
         self.request.DATA = {'code': 'foo', 'state': 'other-blob'}
         self.fn(self.request)
         Response.assert_called_with({'error': 'State mismatch.'}, status=400)

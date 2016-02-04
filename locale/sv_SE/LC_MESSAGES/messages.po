@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
-"PO-Revision-Date: 2016-01-28 00:57+0000\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"PO-Revision-Date: 2016-02-04 04:40+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1780,7 +1780,7 @@ msgstr "Skicka in ett nytt tema"
 msgid "Developer Hub"
 msgstr "Utvecklarcenter"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Hantera API-nycklar"
 
@@ -2452,7 +2452,7 @@ msgstr "Samlingar jag följer"
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Mina favorittillägg"
 
@@ -2713,7 +2713,7 @@ msgstr "Fyll inte i fältet, det används för att fånga robotar"
 msgid "This name cannot be used."
 msgstr "Detta namn kan inte användas."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Inga länkar är tillåtna."
 
@@ -2726,7 +2726,7 @@ msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner måste vara antingen PNG eller JPG."
 
 #: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Använd bilder mindre än %dMB."
 
@@ -2958,13 +2958,7 @@ msgstr "Mer av denna användare"
 msgid "See all collections by this user"
 msgstr "Se alla samlingar denne användare gjort"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Nyligen visade"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>public</b>, which means "
@@ -2976,7 +2970,7 @@ msgstr ""
 "<b>publik</b>, vilket innebär att alla kan se den. Om du vill dölja den från"
 " offentligheten, klicka på knappen nedan för att göra den privat."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature"
 " appear below. This collection is currently <b>private</b>, which means only"
@@ -2989,7 +2983,7 @@ msgstr ""
 "ska kunna se dina favoriter, klicka på knappen nedan för att göra den "
 "publik."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Mina favorittillägg"
 
@@ -3220,6 +3214,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Fortsätt"
@@ -3630,13 +3625,11 @@ msgstr ""
 msgid ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
-" your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla "
-"Developer Center</a>"
+" your own</a> search tool"
 msgstr ""
 "<a "
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Gör"
-" din egen</a> på <a href=\"https://developer.mozilla.org/\">Mozillas "
-"utvecklingscenter</a>"
+" din eget</a> sökverktyg"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -3713,7 +3706,6 @@ msgstr[1] "Visa alla %(cnt)s utökningar i %(name)s &raquo;"
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4436,8 +4428,8 @@ msgid "An author can only be listed once."
 msgstr "En utvecklare kan endast listas en gång."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Felaktigt lösenord."
+msgid "Slug incorrect."
+msgstr "Felaktig slugg."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4677,15 +4669,15 @@ msgstr[1] "{0} varningar"
 msgid "Review"
 msgstr "Recensera"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s svarade med %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Anslutning till \"%s\" gjorde timeout."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "Det gick inte att kontakta värd på \"%s\"."
 
@@ -4730,7 +4722,7 @@ msgstr "Användarrecensioner"
 msgid "Changes successfully saved."
 msgstr "Ändringar sparade."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Kontrollera formuläret efter fel."
 
@@ -4747,12 +4739,12 @@ msgid "Add-on deleted."
 msgstr "Tillägg borttaget."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Felaktigt lösenord. Tema togs inte bort."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr "URL-namn var felaktig. Tema togs inte bort."
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Felaktigt lösenord. Tillägg togs inte bort."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr "URL-namn var felaktig. Tillägg togs inte bort."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -4782,7 +4774,7 @@ msgstr "Kontrollera tilläggets kompatibilitet"
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder måste vara antingen PNG eller JPG."
 
@@ -4823,15 +4815,15 @@ msgstr ""
 "Denna uppladdning har misslyckats med validering och kan sakna fullständigt "
 "valideringsresultat. Ta hänsyn till detta vid granskning."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Preliminär granskning begärd."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Fullständig granskning begärd."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
@@ -4839,7 +4831,7 @@ msgstr ""
 "Dina gamla autentiseringsuppgifter har återkallats och är inte längre "
 "giltiga. Var noga med att uppdatera alla API-klienter med nya uppgifter."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Nya API-nyckel skapad"
 
@@ -4870,47 +4862,6 @@ msgstr "eller <a href=\"{0}\">Avbryt</a>"
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Tillbaka till tillägg"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Sök"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435
-#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "Sök"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Sökresultat"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Sökresultat för \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Ange några sökord."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Laddar resultat&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -5079,9 +5030,20 @@ msgstr "Tilläggsforum"
 msgid "More Resources"
 msgstr "Fler resurser"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Sök i utvecklardokument"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435
+#: apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "Sök"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5469,7 +5431,7 @@ msgstr ""
 "tillägg."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291 apps/users/templates/users/edit.html:110
+#: apps/users/forms.py:298 apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
@@ -5815,8 +5777,8 @@ msgstr ""
 "webbplats och hindrar att dess GUID skickas in igen av andra."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Ange ditt lösenord för att bekräfta ditt beslut:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr "Ange URL-namn för att bekräfta ditt beslut ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -13124,6 +13086,11 @@ msgstr "Samlingssökresultat för {0}"
 msgid "Collection Search Results"
 msgstr "Sökresultat för samlingar"
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Sökresultat"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Sökning ej tillgänglig"
@@ -13141,6 +13108,18 @@ msgstr "Teman sökresultat för {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Teman sökresultat"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Sök"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Sökresultat för \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -13319,7 +13298,7 @@ msgstr "Versionen finns redan."
 msgid "No uploaded file for that addon and version."
 msgstr "Ingen uppladdad fil för detta tillägg och version."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Tack för att du bidragit till {addon_name}"
 
@@ -13391,6 +13370,10 @@ msgstr "Skrivna recensioner"
 msgid "User Signups"
 msgstr "Användarregistreringar"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr "Arkiverad data"
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Anpassat datumintervall"
@@ -13404,7 +13387,7 @@ msgid "To"
 msgstr "Till"
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Uppdatera"
 
@@ -13782,19 +13765,27 @@ msgstr ""
 "eller mer. Vänligen uppdatera ditt lösenord genom att <a href=\"%s\">utfärda"
 " en lösenordsåterställning</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr ""
+"Du måste återställa ditt lösenord via Firefox-konton. Försök logga in "
+"istället."
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Nytt lösenord"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Fel lösenord har angetts!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Användarnamn kan inte endast innehålla siffror."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -13802,29 +13793,29 @@ msgstr ""
 "Ange ett giltigt användarnamn som består av bokstäver, siffror, understreck "
 "eller bindestreck."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Det här användarnamnet kan inte användas."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Användarnamnet används redan"
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Visningsnamn"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Plats"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Yrke"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -13832,7 +13823,7 @@ msgstr ""
 "URLen har ett ogiltigt format. Giltiga URLer ser ut som "
 "http://example.com/my_page."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -13840,23 +13831,23 @@ msgstr ""
 "Använd en e-postadress från en annan leverantör för att slutföra din "
 "registrering."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "Detta visningsnamn kan inte användas."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Lösenorden stämmer inte överens."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Profilfoto"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Standardspråk"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -13864,7 +13855,7 @@ msgstr ""
 "För att anonymisera, ange en orsak till förändringen men ändra inte något "
 "annat textfält."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Ange minst ett namn till svartlistan."
 
@@ -13889,19 +13880,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Ingen användare med den e-postadressen."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Ditt konto har begränsats"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Bekräfta din e-postadress"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Mina Mobile-tillägg"
 
@@ -13981,23 +13972,23 @@ msgstr ""
 msgid "User Notifications"
 msgstr "Användaraviseringar"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "En e-postadress krävs."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "En användare med den e-postadressen existerar inte."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Felaktig bekräftelsekod!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Verifierad!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
@@ -14007,27 +13998,27 @@ msgstr ""
 "konto. Innan du kan logga in, måste du aktivera ditt konto genom att klicka "
 "på länken i detta mail."
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "E-postbekräftelse har skickats"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Profil borttagen"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Foto borttaget"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Profilen uppdaterad."
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "E-postbekräftelse har skickats"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email."
@@ -14037,39 +14028,39 @@ msgstr ""
 "att ändringen ska träda i kraft, måste du klicka på länken i detta mejl. "
 "Tills dess kan du logga in med din nuvarande e-postadress."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Vänligen bekräfta din ändring av e-postadress på %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Fel hittades"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Det fanns fel i dina ändringar. Vänligen korrigera och skicka in igen."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 "Vi beklagar, men du har inte rätt att begära en t-shirt för tillfället."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Din e-postadress har ändrats"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Från och med nu kan du använda {0} för att logga in."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Felaktig e-postadress eller lösenord!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14077,7 +14068,7 @@ msgstr ""
 "En länk för att aktivera ditt användarkonto skickades via e-post till din "
 "adress {0}. Du måste klicka på den innan du kan logga in."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14089,23 +14080,23 @@ msgstr ""
 "href=\"%s\">skicka bekräftelsemeddelandet igen</a> till din e-postadress som"
 " nämns ovan."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Aktiveringsmejl skickat"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Har du problem?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Du är redan inloggad på ett konto."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Grattis! Ditt konto skapades."
 
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14115,15 +14106,15 @@ msgstr ""
 "du kan logga in måste du aktivera ditt konto genom att klicka på länken i "
 "detta brev."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "Det finns fel i detta formulär"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Vänligen rätta till dem och skicka in igen."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Användare rapporterad."
 
@@ -14348,6 +14339,23 @@ msgstr "Inga"
 msgid "all"
 msgstr "Alla"
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr "Migrera till Firefox-konton"
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+"Mozilla tillägg har övergått till Firefox-konton för att logga in. Fortsätt "
+"för att slutföra den enkla uppgraderingsprocessen."
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr "Hoppa över"
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -14402,7 +14410,7 @@ msgstr "Du är inloggad som <strong>%(user_email)s</strong>!"
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -14483,16 +14491,25 @@ msgstr "Succé!"
 msgid "Password successfully reset."
 msgstr "Lösenordet återställt."
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "Lösenordsåterställning misslyckades"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+"Du har migrerat till Firefox-konton. Du kan inte längre ändra ditt lösenord "
+"här."
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "Bekräfta lösenord"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "Lösenordsåterställning misslyckades"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

@@ -107,6 +107,17 @@ class TestPasswordResetForm(UserFormBase):
         assert mail.outbox[0].subject.find('Password reset') == 0
         assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
 
+    def test_request_success_migrated(self):
+        self.user.update(fxa_id='555')
+        response = self.client.post(
+            reverse('password_reset_form'),
+            {'email': self.user.email})
+
+        assert len(mail.outbox) == 0
+        assert response.status_code == 200
+        assert ('You must recover your password through Firefox Accounts' in
+                response.content)
+
     def test_request_success_getpersona_password(self):
         """Email is sent even if the user has no password and the profile has
         an "unusable" password according to django's AbstractBaseUser."""

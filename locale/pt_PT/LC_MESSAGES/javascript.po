@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-27 15:45+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -113,64 +113,40 @@ msgstr "A sua submissão será assinada automaticamente."
 
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
+msgstr "Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:466
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Se para ser completamente testado, o seu extra requer uma conta para um "
-"website, inclua um nome de utilizador e palavra-passe de teste nas Notas ao "
-"Revisor (isto pode ser feito no próximo passo)."
+"Se para ser completamente testado, o seu extra requer uma conta para um website, inclua um nome de utilizador e palavra-passe de teste nas Notas ao Revisor (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js:467
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Se o seu extra está direcionado para uma audiência limitada, deve escolher "
-"Revisão Preliminar em vez de Revisão Completa."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Se o seu extra está direcionado para uma audiência limitada, deve escolher Revisão Preliminar em vez de Revisão Completa."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Lista de controlo de submissão de extras"
 
 #: static/js/common/upload-addon.js:481
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Por favor, confirme os pontos seguintes antes de finalizar a sua submissão. "
-"Isto irá minimizar atrasos ou lapsos durante o processo de revisão:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Por favor, confirme os pontos seguintes antes de finalizar a sua submissão. Isto irá minimizar atrasos ou lapsos durante o processo de revisão:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Os binários compilados, bem como os scripts reduzidos ou ofuscados "
-"(excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas "
-"separadamente para revisão. Certifique-se que utiliza o campo de envio do "
-"código fonte para evitar que a sua submissão seja rejeitada."
+"Os binários compilados, bem como os scripts reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que utiliza o "
+"campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"O processo de validação encontrou estes problemas que podem levar a "
-"rejeições:"
+msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
 
 #: static/js/common/upload-addon.js:518
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Se não está familiarizado com o processo de revisão de extras, pode ler mais"
-" aqui sobre este processo."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Se não está familiarizado com o processo de revisão de extras, pode ler mais aqui sobre este processo."
 
 #: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
@@ -192,7 +168,7 @@ msgstr "As imagens têm de ser PNG ou JPG."
 msgid "Videos must be in WebM."
 msgstr "Os vídeos devem estar no formato WebM."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:729
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
 msgid "Follow this Collection"
 msgstr "Seguir esta coleção"
 
@@ -313,13 +289,11 @@ msgstr "{0} devoluções"
 msgid "{0} installs"
 msgstr "{0} instalações"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Descargas"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Utilizadores diários"
 
@@ -376,13 +350,11 @@ msgstr "Subscritores"
 msgid "Ratings"
 msgstr "Avaliações"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Vendas"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Instalações"
 
@@ -414,8 +386,7 @@ msgstr "Sugestões de Pesquisa"
 msgid "Search Results"
 msgstr "Resultados da pesquisa"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Promo da página inicial"
 
@@ -443,8 +414,7 @@ msgstr "Página de detalhes (fundo)"
 msgid "Detail Page (Development Channel)"
 msgstr "Página de detalhes (Canal de desenvolvimento)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Normalmente usado com"
 
@@ -528,8 +498,7 @@ msgstr "Navegar na listagem ordenada por popularidade"
 msgid "Browse Listing Updated Sort"
 msgstr "Navegar na listagem ordenada por popularidade"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Navegar na listagem deos próximos lançamentos"
 
@@ -809,8 +778,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> nos últimos {1} dias"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> de {1} a {2}"
 
@@ -831,19 +799,15 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Primeiro selecione uma aplicação"
 
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
-msgstr[1] ""
-"Definir os extras {0} para a versão máxima {1} e enviar mensagens aos "
-"autores."
+msgstr[0] "Definir o extra {0} para a versão máxima {1} e enviar mensagem ao autor."
+msgstr[1] "Definir os extras {0} para a versão máxima {1} e enviar mensagens aos autores."
 
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
@@ -866,18 +830,15 @@ msgstr "Descarregar agora"
 
 #: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-"O extra não foi atualizado para suportar a compatibilidade por predefinição."
+msgstr "O extra não foi atualizado para suportar a compatibilidade por predefinição."
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Precisa de estar a utilizar o Firefox 10.0 ou superior."
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "A Mozilla marcou esta versão como incompatível com a sua versão do Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:210
@@ -910,78 +871,70 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Apenas com o Firefox — Obter o Firefox agora!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) "
-"para instalar um plugin de pesquisa."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
 
-#: static/js/zamboni/collections.js:193
-msgid "clear recently viewed"
-msgstr "limpar visualizados recentemente"
-
-#: static/js/zamboni/collections.js:365
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "A adicionar aos favoritos&hellip;"
 
-#: static/js/zamboni/collections.js:368
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "A remover favoritos"
 
-#: static/js/zamboni/collections.js:371
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Adicionar aos favoritos"
 
-#: static/js/zamboni/collections.js:374
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Remover dos favoritos"
 
-#: static/js/zamboni/collections.js:437
+#: static/js/zamboni/collections.js:301
 msgid "Pending"
 msgstr "Em espera"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Add a comment"
 msgstr "Adicionar um comentário"
 
-#: static/js/zamboni/collections.js:438
+#: static/js/zamboni/collections.js:302
 msgid "Comment"
 msgstr "Comentário"
 
-#: static/js/zamboni/collections.js:439
+#: static/js/zamboni/collections.js:303
 msgid "Remove this add-on from the collection"
 msgstr "Remover este extra da coleção"
 
-#: static/js/zamboni/collections.js:439 static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
 msgid "Remove"
 msgstr "Remover"
 
-#: static/js/zamboni/collections.js:468
+#: static/js/zamboni/collections.js:332
 msgid "Remove this user as a contributor"
 msgstr "Remover este utilizador como colaborador"
 
-#: static/js/zamboni/collections.js:480
+#: static/js/zamboni/collections.js:344
 msgid "An email address is required."
 msgstr "É necessário um endereço de email."
 
-#: static/js/zamboni/collections.js:498
+#: static/js/zamboni/collections.js:362
 msgid "You cannot add yourself as a contributor."
 msgstr "Não se pode adicionar a si próprio como um colaborador."
 
-#: static/js/zamboni/collections.js:500
+#: static/js/zamboni/collections.js:364
 msgid "You have already added that user."
 msgstr "Já adicionou este utilizador."
 
-#: static/js/zamboni/collections.js:707
+#: static/js/zamboni/collections.js:571
 msgid "Add to favorites"
 msgstr "Adicionar aos favoritos"
 
-#: static/js/zamboni/collections.js:711
+#: static/js/zamboni/collections.js:575
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
-#: static/js/zamboni/collections.js:738
+#: static/js/zamboni/collections.js:602
 msgid "Stop following"
 msgstr "Parar o seguimento"
 
@@ -1097,12 +1050,8 @@ msgstr[0] "Falta <b>{0}</b> caráter."
 msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Esta funcionalidade está temporariamente desativada enquanto procedemos à "
-"manutenção do website. Por favor, volte mais tarde."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Esta funcionalidade está temporariamente desativada enquanto procedemos à manutenção do website. Por favor, volte mais tarde."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1166,8 +1115,7 @@ msgstr "Estes testes não foram executados."
 msgid "Tests"
 msgstr "Testes"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Erro"
 
@@ -1233,8 +1181,7 @@ msgstr "Não revisto"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Experimental <span>(Saber mais)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Não disponível para {0}"
 

@@ -12,7 +12,11 @@ STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_FONT_SRC += (STAGE_CDN_HOST,)
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (STAGE_CDN_HOST,)
-CSP_SCRIPT_SRC += (STAGE_CDN_HOST,)
+CSP_SCRIPT_SRC += (
+    # Fix for discovery pane when using services subdomain.
+    'https://addons.allizom.org',
+    STAGE_CDN_HOST,
+)
 CSP_STYLE_SRC += (STAGE_CDN_HOST,)
 
 ENGAGE_ROBOTS = False
@@ -40,7 +44,7 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = SITE_URL
+SERVICES_URL = 'https://addons-services.allizom.org'
 STATIC_URL = 'https://addons-stage-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-stage-cdn.allizom.org/user-media/'
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1808,7 +1808,7 @@ msgid "Developer Hub"
 msgstr "Ḓḗṽḗŀǿƥḗř Ħŭƀ"
 
 #: apps/amo/context_processors.py:85
-#: apps/devhub/views.py:1789
+#: apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Ḿȧƞȧɠḗ ȦƤĪ Ķḗẏş"
 
@@ -2492,7 +2492,7 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞş Ī'ḿ Ƒǿŀŀǿẇīƞɠ"
 #: apps/amo/templates/amo/site_nav.html:73
 #: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Ȧḓḓ-ǿƞş"
 
@@ -2760,7 +2760,7 @@ msgid "This name cannot be used."
 msgstr "Ŧħīş ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
 #: apps/bandwagon/forms.py:174
-#: apps/users/forms.py:447
+#: apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
 
@@ -2775,7 +2775,7 @@ msgstr "Īƈǿƞş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
 #: apps/bandwagon/forms.py:201
 #: apps/devhub/views.py:1062
-#: apps/users/forms.py:438
+#: apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Ƥŀḗȧşḗ ŭşḗ īḿȧɠḗş şḿȧŀŀḗř ŧħȧƞ %dḾƁ."
 
@@ -3016,13 +3016,7 @@ msgstr "Ḿǿřḗ ƀẏ ŧħīş Ŭşḗř"
 msgid "See all collections by this user"
 msgstr "Şḗḗ ȧŀŀ ƈǿŀŀḗƈŧīǿƞş ƀẏ ŧħīş ŭşḗř"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174
-#: apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Řḗƈḗƞŧŀẏ Ṽīḗẇḗḓ"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
 "appear below. This collection is currently <b>public</b>, which means "
@@ -3034,7 +3028,7 @@ msgstr ""
 "ḗṽḗřẏǿƞḗ ƈȧƞ şḗḗ īŧ. Īƒ ẏǿŭ ẇǿŭŀḓ ŀīķḗ ŧǿ ħīḓḗ īŧ ƒřǿḿ ƥŭƀŀīƈ ṽīḗẇ, ƈŀīƈķ "
 "ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ ŧǿ ḿȧķḗ īŧ ƥřīṽȧŧḗ."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
 "appear below. This collection is currently <b>private</b>, which means only "
@@ -3046,7 +3040,7 @@ msgstr ""
 "ẏǿŭ ƈȧƞ şḗḗ īŧ. Īƒ ẏǿŭ ẇǿŭŀḓ ŀīķḗ ḗṽḗřẏǿƞḗ ŧǿ ƀḗ ȧƀŀḗ ŧǿ şḗḗ ẏǿŭř ƒȧṽǿřīŧḗş, "
 "ƈŀīƈķ ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ ŧǿ ḿȧķḗ īŧ ƥŭƀŀīƈ."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Ḿẏ ƒȧṽǿřīŧḗ ȧḓḓ-ǿƞş"
 
@@ -3274,6 +3268,7 @@ msgstr ""
 #: apps/editors/templates/editors/themes/themes.html:128
 #: apps/editors/templates/editors/themes/themes.html:134
 #: apps/editors/templates/editors/themes/themes.html:141
+#: apps/users/templates/users/fxa_migration.html:21
 #: apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Ƈǿƞŧīƞŭḗ"
@@ -3696,12 +3691,10 @@ msgstr ""
 #: apps/browse/templates/browse/search_tools.html:95
 msgid ""
 "<a href=\"https://developer.mozilla.org/en/"
-"Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\""
-"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
+"Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr ""
 "<a href=\"https://developer.mozilla.org/en/"
-"Creating_OpenSearch_plugins_for_Firefox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> ȧŧ ŧħḗ <a href=\""
-"https://developer.mozilla.org/\">Ḿǿzīŀŀȧ Ḓḗṽḗŀǿƥḗř Ƈḗƞŧḗř</a>"
+"Creating_OpenSearch_plugins_for_Firefox\">Ḿȧķḗ ẏǿŭř ǿẇƞ</a> şḗȧřƈħ ŧǿǿŀ"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9
@@ -3778,7 +3771,6 @@ msgstr[1] "Şḗḗ ȧŀŀ %(cnt)s ḗẋŧḗƞşīǿƞş īƞ %(name)s &raquo;
 
 #: apps/browse/templates/browse/mobile/extensions.html:13
 #: apps/compat/templates/compat/index.html:82
-#: apps/devhub/templates/devhub/devhub_search.html:24
 #: apps/devhub/templates/devhub/addons/activity.html:47
 #: apps/search/templates/search/no_results.html:4
 #: apps/search/templates/search/mobile/results.html:36
@@ -4514,8 +4506,8 @@ msgid "An author can only be listed once."
 msgstr "Ȧƞ ȧŭŧħǿř ƈȧƞ ǿƞŀẏ ƀḗ ŀīşŧḗḓ ǿƞƈḗ."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Ƥȧşşẇǿřḓ īƞƈǿřřḗƈŧ."
+msgid "Slug incorrect."
+msgstr "Şŀŭɠ īƞƈǿřřḗƈŧ."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4758,15 +4750,15 @@ msgstr[1] "{0} ẇȧřƞīƞɠş"
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s řḗşƥǿƞḓḗḓ ẇīŧħ %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
 
@@ -4815,7 +4807,7 @@ msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
 #: apps/devhub/views.py:330
-#: apps/devhub/views.py:1623
+#: apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Ƥŀḗȧşḗ ƈħḗƈķ ŧħḗ ƒǿřḿ ƒǿř ḗřřǿřş."
 
@@ -4832,12 +4824,12 @@ msgid "Add-on deleted."
 msgstr "Ȧḓḓ-ǿƞ ḓḗŀḗŧḗḓ."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr "ŬŘĿ ƞȧḿḗ ẇȧş īƞƈǿřřḗƈŧ. Ŧħḗḿḗ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr "ŬŘĿ ƞȧḿḗ ẇȧş īƞƈǿřřḗƈŧ. Ȧḓḓ-ǿƞ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -4869,7 +4861,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ"
 
 #: apps/devhub/views.py:1046
-#: apps/users/forms.py:433
+#: apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
@@ -4910,15 +4902,15 @@ msgstr ""
 "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. "
 "Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Ƒŭŀŀ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
@@ -4926,7 +4918,7 @@ msgstr ""
 "Ẏǿŭř ǿŀḓ ƈřḗḓḗƞŧīȧŀş ẇḗřḗ řḗṽǿķḗḓ ȧƞḓ ȧřḗ ƞǿ ŀǿƞɠḗř ṽȧŀīḓ. Ɓḗ şŭřḗ ŧǿ ŭƥḓȧŧḗ "
 "ȧŀŀ ȦƤĪ ƈŀīḗƞŧş ẇīŧħ ŧħḗ ƞḗẇ ƈřḗḓḗƞŧīȧŀş."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ƈřḗȧŧḗḓ"
 
@@ -4957,50 +4949,6 @@ msgstr "ǿř <a href=\"{0}\">Ƈȧƞƈḗŀ</a>"
 #: apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Ɓȧƈķ ŧǿ Ȧḓḓ-ǿƞş"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4
-#: apps/search/templates/search/results.html:9
-#: apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Şḗȧřƈħ"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6
-#: apps/devhub/templates/devhub/search.html:9
-#: apps/editors/forms.py:435
-#: apps/editors/forms.py:437
-#: apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14
-#: apps/search/templates/search/collections.html:17
-#: apps/search/templates/search/personas.html:18
-#: apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8
-#: templates/search.html:14
-#: templates/impala/search.html:18
-msgid "Search"
-msgstr "Şḗȧřƈħ"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11
-#: apps/devhub/templates/devhub/devhub_search.html:15
-#: apps/search/templates/search/collections.html:18
-#: apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13
-#: apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş ƒǿř \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Ƥŀḗȧşḗ ḗƞŧḗř şǿḿḗ şḗȧřƈħ ŧḗřḿş."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Ŀǿȧḓīƞɠ řḗşŭŀŧş&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -5168,9 +5116,23 @@ msgstr "Ȧḓḓ-ǿƞş Ƒǿřŭḿ"
 msgid "More Resources"
 msgstr "Ḿǿřḗ Řḗşǿŭřƈḗş"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Şḗȧřƈħ Ḓḗṽḗŀǿƥḗř Ḓǿƈş"
+
+#: apps/devhub/templates/devhub/search.html:8
+#: apps/editors/forms.py:435
+#: apps/editors/forms.py:437
+#: apps/editors/templates/editors/queue.html:27
+#: apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17
+#: apps/search/templates/search/personas.html:18
+#: apps/search/templates/search/results.html:18
+#: apps/search/templates/search/mobile/results.html:8
+#: templates/search.html:14
+#: templates/impala/search.html:18
+msgid "Search"
+msgstr "Şḗȧřƈħ"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -5559,7 +5521,7 @@ msgstr ""
 "ŀīşŧḗḓ ȧḓḓ-ǿƞş."
 
 #: apps/devhub/templates/devhub/addons/edit/details.html:61
-#: apps/users/forms.py:291
+#: apps/users/forms.py:298
 #: apps/users/templates/users/edit.html:110
 #: apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
@@ -5903,8 +5865,8 @@ msgstr ""
 "īŧş ƓŬĪḒ ƒřǿḿ ƀḗīƞɠ şŭƀḿīŧŧḗḓ ȧɠȧīƞ ƀẏ ǿŧħḗřş."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Ḗƞŧḗř ẏǿŭř ƥȧşşẇǿřḓ ŧǿ ƈǿƞƒīřḿ ẏǿŭř ḓḗƈīşīǿƞ:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr "Ḗƞŧḗř ŧħḗ ŬŘĿ ƞȧḿḗ ŧǿ ƈǿƞƒīřḿ ẏǿŭř ḓḗƈīşīǿƞ ({şŀŭɠ}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -13123,6 +13085,11 @@ msgstr "Ƈǿŀŀḗƈŧīǿƞ Şḗȧřƈħ Řḗşŭŀŧş ƒǿř {0}"
 msgid "Collection Search Results"
 msgstr "Ƈǿŀŀḗƈŧīǿƞ Şḗȧřƈħ Řḗşŭŀŧş"
 
+#: apps/search/templates/search/collections.html:18
+#: apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Şḗȧřƈħ Ŭƞȧṽȧīŀȧƀŀḗ"
@@ -13139,6 +13106,18 @@ msgstr "Ŧħḗḿḗş Şḗȧřƈħ Řḗşŭŀŧş ƒǿř {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Ŧħḗḿḗş Şḗȧřƈħ Řḗşŭŀŧş"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9
+#: apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Şḗȧřƈħ"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Şḗȧřƈħ Řḗşŭŀŧş ƒǿř \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -13318,7 +13297,7 @@ msgstr "Ṽḗřşīǿƞ ȧŀřḗȧḓẏ ḗẋīşŧş."
 msgid "No uploaded file for that addon and version."
 msgstr "Ƞǿ ŭƥŀǿȧḓḗḓ ƒīŀḗ ƒǿř ŧħȧŧ ȧḓḓǿƞ ȧƞḓ ṽḗřşīǿƞ."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Ŧħȧƞķş ƒǿř ƈǿƞŧřīƀŭŧīƞɠ ŧǿ {ȧḓḓǿƞ_ƞȧḿḗ}"
 
@@ -13390,6 +13369,10 @@ msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ"
 msgid "User Signups"
 msgstr "Ŭşḗř Şīɠƞŭƥş"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr "Ȧřƈħīṽḗḓ Ḓȧŧȧ"
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Ƈŭşŧǿḿ Ḓȧŧḗ Řȧƞɠḗ"
@@ -13403,7 +13386,7 @@ msgid "To"
 msgstr "Ŧǿ"
 
 #: apps/stats/templates/stats/popup.html:27
-#: apps/users/templates/users/pwreset_confirm.html:33
+#: apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Ŭƥḓȧŧḗ"
 
@@ -13779,21 +13762,29 @@ msgstr ""
 "ḿǿřḗ. Ƥŀḗȧşḗ ŭƥḓȧŧḗ ẏǿŭř ƥȧşşẇǿřḓ ƀẏ <a href=\"%s\">īşşŭīƞɠ ȧ ƥȧşşẇǿřḓ "
 "řḗşḗŧ</a>."
 
-#: apps/users/forms.py:188
-#: apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid ""
+"You must recover your password through Firefox Accounts. Try logging in "
+"instead."
+msgstr ""
+"Ẏǿŭ ḿŭşŧ řḗƈǿṽḗř ẏǿŭř ƥȧşşẇǿřḓ ŧħřǿŭɠħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş. Ŧřẏ ŀǿɠɠīƞɠ īƞ "
+"īƞşŧḗȧḓ."
+
+#: apps/users/forms.py:195
+#: apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Ƞḗẇ ƥȧşşẇǿřḓ"
 
-#: apps/users/forms.py:223
-#: apps/users/forms.py:418
+#: apps/users/forms.py:230
+#: apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Ẇřǿƞɠ ƥȧşşẇǿřḓ ḗƞŧḗřḗḓ!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Ŭşḗřƞȧḿḗş ƈȧƞƞǿŧ ƈǿƞŧȧīƞ ǿƞŀẏ ḓīɠīŧş."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
@@ -13801,32 +13792,32 @@ msgstr ""
 "Ḗƞŧḗř ȧ ṽȧŀīḓ ŭşḗřƞȧḿḗ ƈǿƞşīşŧīƞɠ ǿƒ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş ǿř "
 "ħẏƥħḗƞş."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: apps/users/forms.py:276
+#: apps/users/forms.py:283
 #: apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
 
-#: apps/users/forms.py:278
+#: apps/users/forms.py:285
 #: apps/users/templates/users/edit.html:100
 #: apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Ŀǿƈȧŧīǿƞ"
 
-#: apps/users/forms.py:280
+#: apps/users/forms.py:287
 #: apps/users/templates/users/edit.html:105
 #: apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ǿƈƈŭƥȧŧīǿƞ"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
@@ -13834,7 +13825,7 @@ msgstr ""
 "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ "
 "http://example.com/my_page."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
@@ -13842,25 +13833,25 @@ msgstr ""
 "Ƥŀḗȧşḗ ŭşḗ ȧƞ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ȧ ḓīƒƒḗřḗƞŧ ƥřǿṽīḓḗř ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř "
 "řḗɠīşŧřȧŧīǿƞ."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "Ŧħīş ḓīşƥŀȧẏ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Ŧħḗ ƥȧşşẇǿřḓş ḓīḓ ƞǿŧ ḿȧŧƈħ."
 
-#: apps/users/forms.py:357
+#: apps/users/forms.py:364
 #: apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
 
-#: apps/users/forms.py:365
+#: apps/users/forms.py:372
 #: apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
@@ -13868,7 +13859,7 @@ msgstr ""
 "Ŧǿ ȧƞǿƞẏḿīzḗ, ḗƞŧḗř ȧ řḗȧşǿƞ ƒǿř ŧħḗ ƈħȧƞɠḗ ƀŭŧ ḓǿ ƞǿŧ ƈħȧƞɠḗ ȧƞẏ ǿŧħḗř "
 "ƒīḗŀḓ."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ƞȧḿḗ ŧǿ ƀŀȧƈķŀīşŧ."
 
@@ -13893,19 +13884,19 @@ msgstr "ħȧşħ"
 msgid "No user with that email."
 msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr "Ȧƞǿƞẏḿǿŭş"
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Ẏǿŭř ȧƈƈǿŭƞŧ ħȧş ƀḗḗƞ řḗşŧřīƈŧḗḓ"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Ḿẏ Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
 
@@ -13983,23 +13974,23 @@ msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ƞḗ�
 msgid "User Notifications"
 msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Īƞṽȧŀīḓ ƈǿƞƒīřḿȧŧīǿƞ ƈǿḓḗ!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Şŭƈƈḗşşƒŭŀŀẏ ṽḗřīƒīḗḓ!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid ""
 "An email has been sent to your address to confirm your account. Before you "
 "can log in, you have to activate your account by clicking on the link "
@@ -14009,29 +14000,29 @@ msgstr ""
 "ƈȧƞ ŀǿɠ īƞ, ẏǿŭ ħȧṽḗ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ȧƈƈǿŭƞŧ ƀẏ ƈŀīƈķīƞɠ ǿƞ ŧħḗ ŀīƞķ "
 "ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
 
-#: apps/users/views.py:135
-#: apps/users/views.py:613
+#: apps/users/views.py:136
+#: apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "Ƈǿƞƒīřḿȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Ƥřǿƒīŀḗ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Ƥħǿŧǿ Ḓḗŀḗŧḗḓ"
 
-#: apps/users/views.py:186
-#: apps/users/views.py:293
+#: apps/users/views.py:187
+#: apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Ƥřǿƒīŀḗ Ŭƥḓȧŧḗḓ"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Ḗḿȧīŀ Ƈǿƞƒīřḿȧŧīǿƞ Şḗƞŧ"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the "
 "change to take effect, you need to click on the link provided in this email. "
@@ -14041,39 +14032,39 @@ msgstr ""
 "ƈħȧƞɠḗ ŧǿ ŧȧķḗ ḗƒƒḗƈŧ, ẏǿŭ ƞḗḗḓ ŧǿ ƈŀīƈķ ǿƞ ŧħḗ ŀīƞķ ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ. "
 "Ŭƞŧīŀ ŧħḗƞ, ẏǿŭ ƈȧƞ ķḗḗƥ ŀǿɠɠīƞɠ īƞ ẇīŧħ ẏǿŭř ƈŭřřḗƞŧ ḗḿȧīŀ ȧḓḓřḗşş."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ƈħȧƞɠḗ ȧŧ %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Ḗřřǿřş Ƒǿŭƞḓ"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
 "Ŧħḗřḗ ẇḗřḗ ḗřřǿřş īƞ ŧħḗ ƈħȧƞɠḗş ẏǿŭ ḿȧḓḗ. Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr ""
 "Ẇḗ'řḗ şǿřřẏ, ƀŭŧ ẏǿŭ ȧřḗ ƞǿŧ ḗŀīɠīƀŀḗ ŧǿ řḗɋŭḗşŧ ȧ ŧ-şħīřŧ ȧŧ ŧħīş ŧīḿḗ."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ẇȧş ƈħȧƞɠḗḓ şŭƈƈḗşşƒŭŀŀẏ"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Ƒřǿḿ ƞǿẇ ǿƞ, ƥŀḗȧşḗ ŭşḗ {0} ŧǿ ŀǿɠ īƞ."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Ẇřǿƞɠ ḗḿȧīŀ ȧḓḓřḗşş ǿř ƥȧşşẇǿřḓ!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
@@ -14081,7 +14072,7 @@ msgstr ""
 "Ȧ ŀīƞķ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şḗƞŧ ƀẏ ḗḿȧīŀ ŧǿ ẏǿŭř ȧḓḓřḗşş {0}. "
 "Ẏǿŭ ħȧṽḗ ŧǿ ƈŀīƈķ īŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŀǿɠ īƞ."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service "
 "did not mark it as \"junk mail\" or \"spam\". If you need to, you can have "
@@ -14093,23 +14084,23 @@ msgstr ""
 "ŭş <a href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş "
 "ḿḗƞŧīǿƞḗḓ ȧƀǿṽḗ."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Ȧƈŧīṽȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Ħȧṽīƞɠ Ŧřǿŭƀŀḗ?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Ẏǿŭ ȧřḗ ȧŀřḗȧḓẏ ŀǿɠɠḗḓ īƞ ŧǿ ȧƞ ȧƈƈǿŭƞŧ."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş! Ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şŭƈƈḗşşƒŭŀŀẏ ƈřḗȧŧḗḓ."
 
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid ""
 "An email has been sent to your address {0} to confirm your account. Before "
 "you can log in, you have to activate your account by clicking on the link "
@@ -14119,15 +14110,15 @@ msgstr ""
 "ẏǿŭ ƈȧƞ ŀǿɠ īƞ, ẏǿŭ ħȧṽḗ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ȧƈƈǿŭƞŧ ƀẏ ƈŀīƈķīƞɠ ǿƞ ŧħḗ ŀīƞķ "
 "ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "Ŧħḗřḗ ȧřḗ ḗřřǿřş īƞ ŧħīş ƒǿřḿ"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Ƥŀḗȧşḗ ƈǿřřḗƈŧ ŧħḗḿ ȧƞḓ řḗşŭƀḿīŧ."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
@@ -14350,6 +14341,23 @@ msgstr "ƞǿƞḗ"
 msgid "all"
 msgstr "ȧŀŀ"
 
+#: apps/users/templates/users/fxa_migration.html:3
+#: apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr "Ḿīɠřȧŧḗ ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple upgrade process."
+msgstr ""
+"Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş ħȧş ŧřȧƞşīŧīǿƞḗḓ ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ƒǿř ŀǿɠīƞ. Ƈǿƞŧīƞŭḗ ŧǿ "
+"ƈǿḿƥŀḗŧḗ ŧħḗ şīḿƥŀḗ ŭƥɠřȧḓḗ ƥřǿƈḗşş."
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr "Şķīƥ"
+
 #: apps/users/templates/users/login.html:3
 #: apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
@@ -14404,7 +14412,7 @@ msgstr "Ẏǿŭ ȧřḗ ƞǿẇ ŀǿɠɠḗḓ īƞ ȧş <strong>%(user_email)s<
 #: apps/users/templates/users/newpw_sent.html:8
 #: apps/users/templates/users/pwreset_complete.html:3
 #: apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:18
 #: apps/users/templates/users/pwreset_request.html:4
 #: apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3
@@ -14485,16 +14493,25 @@ msgstr "Şŭƈƈḗşş!"
 msgid "Password successfully reset."
 msgstr "Ƥȧşşẇǿřḓ şŭƈƈḗşşƒŭŀŀẏ řḗşḗŧ."
 
-#: apps/users/templates/users/pwreset_confirm.html:26
+#: apps/users/templates/users/pwreset_confirm.html:13
+#: apps/users/templates/users/pwreset_confirm.html:46
+msgid "Password reset unsuccessful"
+msgstr "Ƥȧşşẇǿřḓ řḗşḗŧ ŭƞşŭƈƈḗşşƒŭŀ"
+
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid ""
+"You have migrated to Firefox Accounts. You can no longer change your "
+"password here."
+msgstr ""
+"Ẏǿŭ ħȧṽḗ ḿīɠřȧŧḗḓ ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş. Ẏǿŭ ƈȧƞ ƞǿ ŀǿƞɠḗř ƈħȧƞɠḗ ẏǿŭř "
+"ƥȧşşẇǿřḓ ħḗřḗ."
+
+#: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
 msgid "Confirm password"
 msgstr "Ƈǿƞƒīřḿ ƥȧşşẇǿřḓ"
 
-#: apps/users/templates/users/pwreset_confirm.html:41
-msgid "Password reset unsuccessful"
-msgstr "Ƥȧşşẇǿřḓ řḗşḗŧ ŭƞşŭƈƈḗşşƒŭŀ"
-
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

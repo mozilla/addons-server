@@ -2,7 +2,14 @@
 Statistics
 ==========
 
-.. note:: This API requires :doc:`authentication <auth>`.
+.. note::
+
+    This API requires :doc:`authentication <auth>`.
+
+    However this does not affect the permission model for addons.
+    If you enabled public stats the data is accessible to everyone
+    otherwise only authors are allowed to access the data.
+
 
 The following API endpoints help you get your archived addon statistics.
 

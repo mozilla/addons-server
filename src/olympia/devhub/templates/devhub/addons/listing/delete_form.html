@@ -21,10 +21,10 @@
   {% endif %}
   <p>
     <label>
-      {{ _('Enter your password to confirm your decision:') }}
-      {# see bug 630126 for why this is called 'password-timestamp' #}
-      <input type="password" name="password-{{ timestamp }}" data-name="password" autocomplete="off" required>
+      {{ _('Enter the URL name to confirm your decision ({slug}):')|fe(slug=addon.slug) }}
     </label>
+    <input class="full-width" type="text" name="slug" autocomplete="off"
+           placeholder="{{ addon.slug }}" pattern="{{ addon.slug }}" required>
   </p>
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
   <p>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 12:18-0700\n"
+"POT-Creation-Date: 2016-02-03 23:15+0000\n"
 "PO-Revision-Date: 2016-01-14 16:02+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1366,7 +1366,7 @@ msgstr "Přidání nového motivu"
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
-#: apps/amo/context_processors.py:85 apps/devhub/views.py:1789
+#: apps/amo/context_processors.py:85 apps/devhub/views.py:1783
 msgid "Manage API Keys"
 msgstr "Spravovat API klíče"
 
@@ -1947,7 +1947,7 @@ msgid "Collections I'm Following"
 msgstr "Sbírky, které sleduji"
 
 #: apps/amo/templates/amo/site_nav.html:73 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: apps/users/models.py:499
+#: apps/users/models.py:504
 msgid "My Favorite Add-ons"
 msgstr "Mé oblíbené doplňky"
 
@@ -2157,7 +2157,7 @@ msgstr "Nevyplňujte prosím toto pole, slouží pouze k odchytávání robotů"
 msgid "This name cannot be used."
 msgstr "Tento název nemůže být použit."
 
-#: apps/bandwagon/forms.py:174 apps/users/forms.py:447
+#: apps/bandwagon/forms.py:174 apps/users/forms.py:454
 msgid "No links are allowed."
 msgstr "Odkazy nejsou povoleny."
 
@@ -2169,7 +2169,7 @@ msgstr "Tato URL je používána jinou sbírkou"
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musí být ve formátu PNG či JPG."
 
-#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:438
+#: apps/bandwagon/forms.py:201 apps/devhub/views.py:1062 apps/users/forms.py:445
 msgid "Please use images smaller than %dMB."
 msgstr "Používejte prosím obrázky menší než %dMB."
 
@@ -2374,12 +2374,7 @@ msgstr "Více od tohoto uživatele"
 msgid "See all collections by this user"
 msgstr "Zobrazit všechny sbírky tohoto uživatele"
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:174 apps/bandwagon/templates/bandwagon/impala/collection_sidebar.html:31
-#: apps/bandwagon/templates/bandwagon/includes/collection_sidebar.html:37
-msgid "Recently Viewed"
-msgstr "Nedávno zobrazené"
-
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:188
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:179
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -2387,7 +2382,7 @@ msgstr ""
 "Doplňky, které jste označili jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> jsou zobrazeny níže. Tato sbírka je aktuálně <b>veřejná</b>, což znamená, že ji každý může vidět. Pokud byste ji "
 "rádi skryli, klepněte na tlačítko níže a učiňte ji soukromou."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:195
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
@@ -2395,7 +2390,7 @@ msgstr ""
 "Doplňky, které jste označili jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> jsou zobrazeny níže. Tato sbírka je aktuálně <b>soukromá</b>, což znamená, že ji můžete vidět pouze vy. Pokud "
 "byste ji rádi zpřístupnili všem, klepněte na tlačítko níže a učiňte ji veřejnou."
 
-#: apps/bandwagon/templates/bandwagon/collection_detail.html:205
+#: apps/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
 msgstr "Mé oblíbené doplňky"
 
@@ -2573,7 +2568,7 @@ msgstr "<b>Varování:</b> Změnou vlastníka této sbírky, ztratíte možnost 
 #: apps/bandwagon/templates/bandwagon/edit_contributors.html:83 apps/devhub/templates/devhub/addons/forms_shared/media.html:157 apps/devhub/templates/devhub/addons/submit/describe.html:69
 #: apps/devhub/templates/devhub/addons/submit/license.html:60 apps/devhub/templates/devhub/addons/submit/upload.html:78 apps/devhub/templates/devhub/payments/tier.html:17
 #: apps/editors/templates/editors/themes/themes.html:111 apps/editors/templates/editors/themes/themes.html:128 apps/editors/templates/editors/themes/themes.html:134
-#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/login_form.html:42
+#: apps/editors/templates/editors/themes/themes.html:141 apps/users/templates/users/fxa_migration.html:21 apps/users/templates/users/login_form.html:42
 msgid "Continue"
 msgstr "Pokračovat"
 
@@ -2904,8 +2899,8 @@ msgid "Browse through even more search providers at <a href=\"http://mycroft.moz
 msgstr "Projděte si další vyhledávací moduly, které naleznete na <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: apps/browse/templates/browse/search_tools.html:95
-msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> at the <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
-msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Vytvořte si vlastní</a> na <a href=\"https://developer.mozilla.org/\">Mozilla Developer Center</a>"
+msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
+msgstr ""
 
 #: apps/browse/templates/browse/themes.html:6 apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
 msgid "Complete Themes"
@@ -2979,8 +2974,8 @@ msgstr[0] "Zobrazit %(cnt)s rozšíření v %(name)s &raquo;"
 msgstr[1] "Zobrazit %(cnt)s rozšíření v %(name)s &raquo;"
 msgstr[2] "Zobrazit všechna %(cnt)s rozšíření v %(name)s &raquo;"
 
-#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/devhub_search.html:24
-#: apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4 apps/search/templates/search/mobile/results.html:36
+#: apps/browse/templates/browse/mobile/extensions.html:13 apps/compat/templates/compat/index.html:82 apps/devhub/templates/devhub/addons/activity.html:47 apps/search/templates/search/no_results.html:4
+#: apps/search/templates/search/mobile/results.html:36
 msgid "No results found."
 msgstr "Nic nebylo nalezeno."
 
@@ -3657,8 +3652,8 @@ msgid "An author can only be listed once."
 msgstr "Autor smí být v seznamu pouze jednou."
 
 #: apps/devhub/forms.py:93
-msgid "Password incorrect."
-msgstr "Neplatné heslo."
+msgid "Slug incorrect."
+msgstr ""
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -3874,15 +3869,15 @@ msgstr[2] "{0} varování"
 msgid "Review"
 msgstr "Recenze"
 
-#: apps/devhub/tasks.py:519
+#: apps/devhub/tasks.py:542
 msgid "%s responded with %s (%s)."
 msgstr "%s odpověděl(a) %s (%s)."
 
-#: apps/devhub/tasks.py:523
+#: apps/devhub/tasks.py:546
 msgid "Connection to \"%s\" timed out."
 msgstr "Při připojování k \"%s\" vypršel čas spojení."
 
-#: apps/devhub/tasks.py:525
+#: apps/devhub/tasks.py:548
 msgid "Could not contact host at \"%s\"."
 msgstr "Nepodařilo se kontaktovat host \"%s\"."
 
@@ -3918,7 +3913,7 @@ msgstr "Recenze uživatelů"
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
 
-#: apps/devhub/views.py:330 apps/devhub/views.py:1623
+#: apps/devhub/views.py:330 apps/devhub/views.py:1622
 msgid "Please check the form for errors."
 msgstr "Zkontrolujte prosím chyby ve formuláři."
 
@@ -3935,12 +3930,12 @@ msgid "Add-on deleted."
 msgstr "Doplněk smazán."
 
 #: apps/devhub/views.py:358
-msgid "Password was incorrect. Theme was not deleted."
-msgstr "Heslo je neplatné. Motiv nebyl smazán."
+msgid "URL name was incorrect. Theme was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:363
-msgid "Password was incorrect. Add-on was not deleted."
-msgstr "Heslo bylo neplatné. Doplněk nebyl smazán."
+msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -3970,7 +3965,7 @@ msgstr "Kontrola kompatibility doplňku"
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
 
-#: apps/devhub/views.py:1046 apps/users/forms.py:433
+#: apps/devhub/views.py:1046 apps/users/forms.py:440
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
 
@@ -4007,19 +4002,19 @@ msgstr "Verze %s byla smazána."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
-#: apps/devhub/views.py:1669
+#: apps/devhub/views.py:1668
 msgid "Preliminary Review Requested."
 msgstr "Vyžádána předběžná kontrola."
 
-#: apps/devhub/views.py:1670
+#: apps/devhub/views.py:1669
 msgid "Full Review Requested."
 msgstr "Vyžádána plná kontrola."
 
-#: apps/devhub/views.py:1776
+#: apps/devhub/views.py:1770
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
 msgstr "Vaše stará pověření byla revokována a již nejsou nadále platné. Aktualizujte prosím všechny API klienty novými pověřeními."
 
-#: apps/devhub/views.py:1794
+#: apps/devhub/views.py:1788
 msgid "New API key created"
 msgstr "Nový API klíč byl vytvořen"
 
@@ -4042,35 +4037,6 @@ msgstr "nebo <a href=\"{0}\">Zrušit</a>"
 #: apps/devhub/templates/devhub/base.html:23 apps/devhub/templates/devhub/base_impala.html:20 apps/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
 msgstr "Zpět na doplňky"
-
-#. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: apps/devhub/templates/devhub/devhub_search.html:4 apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
-msgid "{0} :: Search"
-msgstr "{0} :: Vyhledávání"
-
-#: apps/devhub/templates/devhub/devhub_search.html:6 apps/devhub/templates/devhub/search.html:9 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27
-#: apps/editors/templates/editors/themes/queue_list.html:14 apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18
-#: apps/search/templates/search/mobile/results.html:8 templates/search.html:14 templates/impala/search.html:18
-msgid "Search"
-msgstr "Hledat"
-
-#: apps/devhub/templates/devhub/devhub_search.html:11 apps/devhub/templates/devhub/devhub_search.html:15 apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
-msgid "Search Results"
-msgstr "Výsledky vyhledávání"
-
-#. {0} is a search term, such as Firebug.
-#: apps/devhub/templates/devhub/devhub_search.html:13 apps/search/templates/search/results.html:11
-msgid "Search Results for \"{0}\""
-msgstr "Výsledky vyhledávání pro \"{0}\""
-
-#: apps/devhub/templates/devhub/devhub_search.html:19
-msgid "Please enter some search terms."
-msgstr "Vložte prosím frázi pro vyhledání."
-
-#: apps/devhub/templates/devhub/devhub_search.html:21
-msgid "Loading results&hellip;"
-msgstr "Načítání výsledků&hellip;"
 
 #: apps/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -4207,9 +4173,15 @@ msgstr "Fórum pro vývojáře"
 msgid "More Resources"
 msgstr "Více zdrojů"
 
-#: apps/devhub/templates/devhub/search.html:7
+#: apps/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
 msgstr "Prohledat dokumentaci"
+
+#: apps/devhub/templates/devhub/search.html:8 apps/editors/forms.py:435 apps/editors/forms.py:437 apps/editors/templates/editors/queue.html:27 apps/editors/templates/editors/themes/queue_list.html:14
+#: apps/search/templates/search/collections.html:17 apps/search/templates/search/personas.html:18 apps/search/templates/search/results.html:18 apps/search/templates/search/mobile/results.html:8
+#: templates/search.html:14 templates/impala/search.html:18
+msgid "Search"
+msgstr "Hledat"
 
 #: apps/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
@@ -4490,7 +4462,7 @@ msgstr "Výchozí lokalizace"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Nebude-li k dispozici překlad, informace o vašem doplňku budou zobrazeny v tomto jazyce. Relevantní pouze pro zveřejněné doplňky."
 
-#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:291 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
+#: apps/devhub/templates/devhub/addons/edit/details.html:61 apps/users/forms.py:298 apps/users/templates/users/edit.html:110 apps/users/templates/users/register.html:57
 #: apps/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Domovská stránka"
@@ -4772,8 +4744,8 @@ msgid "Deleting your add-on will permanently remove it from the site and prevent
 msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
-msgid "Enter your password to confirm your decision:"
-msgstr "Vložte své heslo, kterým potvrdíte své rozhodnutí:"
+msgid "Enter the URL name to confirm your decision ({slug}):"
+msgstr ""
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -10292,6 +10264,10 @@ msgstr "Výsledky vyhledávání výrazu {0} ve sbírkách"
 msgid "Collection Search Results"
 msgstr "Výsledky vyhledávání ve sbírkách"
 
+#: apps/search/templates/search/collections.html:18 apps/search/templates/search/personas.html:20
+msgid "Search Results"
+msgstr "Výsledky vyhledávání"
+
 #: apps/search/templates/search/down.html:5
 msgid "Search Unavailable"
 msgstr "Vyhledávání není dostupné"
@@ -10308,6 +10284,17 @@ msgstr "Výsledky vyhledávání motivů dle {0}"
 #: apps/search/templates/search/personas.html:11
 msgid "Themes Search Results"
 msgstr "Výsledky vyhledávání motivů"
+
+#. {0} is a search term, such as Firebug.
+#. {0} is a search query.
+#: apps/search/templates/search/results.html:9 apps/search/templates/search/mobile/results.html:6
+msgid "{0} :: Search"
+msgstr "{0} :: Vyhledávání"
+
+#. {0} is a search term, such as Firebug.
+#: apps/search/templates/search/results.html:11
+msgid "Search Results for \"{0}\""
+msgstr "Výsledky vyhledávání pro \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 #: apps/search/templates/search/results.html:14
@@ -10488,7 +10475,7 @@ msgstr "Tato verze již existuje."
 msgid "No uploaded file for that addon and version."
 msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
 
-#: apps/stats/models.py:240
+#: apps/stats/models.py:239
 msgid "Thanks for contributing to {addon_name}"
 msgstr "Děkujeme za příspěvek na doplněk {addon_name}"
 
@@ -10560,6 +10547,10 @@ msgstr "Napsané recenze"
 msgid "User Signups"
 msgstr "Přihlášení uživatelé"
 
+#: apps/stats/templates/stats/global_report_menu.html:34
+msgid "Archived Data"
+msgstr ""
+
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
 msgstr "Vlastní rozsah dat"
@@ -10572,7 +10563,7 @@ msgstr "Od"
 msgid "To"
 msgstr "Do"
 
-#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:33
+#: apps/stats/templates/stats/popup.html:27 apps/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Aktualizovat"
 
@@ -10896,71 +10887,75 @@ msgstr "Heslo není povoleno."
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr "Jako součást naší nové politiky hesel vyžadujeme, aby vaše heslo bylo dlouhé %s znaků či více. Aktualizujte své heslo pomocí <a href=\"%s\">jeho obnovy</a>."
 
-#: apps/users/forms.py:188 apps/users/templates/users/pwreset_confirm.html:19
+#: apps/users/forms.py:112
+msgid "You must recover your password through Firefox Accounts. Try logging in instead."
+msgstr ""
+
+#: apps/users/forms.py:195 apps/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Nové heslo"
 
-#: apps/users/forms.py:223 apps/users/forms.py:418
+#: apps/users/forms.py:230 apps/users/forms.py:425
 msgid "Wrong password entered!"
 msgstr "Vloženo chybné heslo!"
 
-#: apps/users/forms.py:250
+#: apps/users/forms.py:257
 msgid "Usernames cannot contain only digits."
 msgstr "Uživatelské jméno nesmí obsahovat pouze číslice."
 
-#: apps/users/forms.py:254
+#: apps/users/forms.py:261
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Vložte platné uživatelské jméno, které obsahuje znaky abecedy, čísla, podtržítka či pomlčky."
 
-#: apps/users/forms.py:257
+#: apps/users/forms.py:264
 msgid "This username cannot be used."
 msgstr "Toto uživatelské jméno nemůže být použito."
 
-#: apps/users/forms.py:263
+#: apps/users/forms.py:270
 msgid "This username is already in use."
 msgstr "Toto uživatelské jméno je již použito."
 
-#: apps/users/forms.py:276 apps/users/templates/users/edit.html:95
+#: apps/users/forms.py:283 apps/users/templates/users/edit.html:95
 msgid "Display Name"
 msgstr "Zobrazené jméno"
 
-#: apps/users/forms.py:278 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
+#: apps/users/forms.py:285 apps/users/templates/users/edit.html:100 apps/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Umístění"
 
-#: apps/users/forms.py:280 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
+#: apps/users/forms.py:287 apps/users/templates/users/edit.html:105 apps/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Zaměstnání"
 
-#: apps/users/forms.py:309
+#: apps/users/forms.py:316
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Tato URL adresa nemá platný formát. Platné adresy mají tvar http://moje.domena.cz/moje-stranka/."
 
-#: apps/users/forms.py:317
+#: apps/users/forms.py:324
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Pro dokončení registrace prosím vložte e-mailovou adresu od jiného poskytovatele."
 
-#: apps/users/forms.py:325
+#: apps/users/forms.py:332
 msgid "This display name cannot be used."
 msgstr "Toto zobrazené jméno nemůže být použito."
 
-#: apps/users/forms.py:339
+#: apps/users/forms.py:346
 msgid "The passwords did not match."
 msgstr "Hesla nesouhlasí."
 
-#: apps/users/forms.py:357 apps/users/templates/users/edit.html:116
+#: apps/users/forms.py:364 apps/users/templates/users/edit.html:116
 msgid "Profile Photo"
 msgstr "Profilové foto"
 
-#: apps/users/forms.py:365 apps/users/templates/users/edit.html:130
+#: apps/users/forms.py:372 apps/users/templates/users/edit.html:130
 msgid "Default locale"
 msgstr "Výchozí jazyk"
 
-#: apps/users/forms.py:503
+#: apps/users/forms.py:510
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Pro anonymizaci vložte důvod pro změnu, ale neměňte žádné jiné pole."
 
-#: apps/users/forms.py:549
+#: apps/users/forms.py:556
 msgid "Please enter at least one name to blacklist."
 msgstr "Vložte prosím alespoň jeden název do blacklistu."
 
@@ -10985,19 +10980,19 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 
-#: apps/users/models.py:348
+#: apps/users/models.py:353
 msgid "Anonymous"
 msgstr ""
 
-#: apps/users/models.py:397
+#: apps/users/models.py:402
 msgid "Your account has been restricted"
 msgstr "Váš účet byl omezen"
 
-#: apps/users/models.py:467
+#: apps/users/models.py:472
 msgid "Please confirm your email address"
 msgstr "Potvrďte prosím svou e-mailovou adresu"
 
-#: apps/users/models.py:493
+#: apps/users/models.py:498
 msgid "My Mobile Add-ons"
 msgstr "Mé mobilní doplňky"
 
@@ -11073,47 +11068,47 @@ msgstr "Mozilla mě chce kontaktovat o přidání nových regionů do Marketplac
 msgid "User Notifications"
 msgstr "Uživatelská upozornění"
 
-#: apps/users/views.py:88
+#: apps/users/views.py:89
 msgid "An email address is required."
 msgstr "E-mailová adresa je vyžadována."
 
-#: apps/users/views.py:93
+#: apps/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "Uživatel s touto e-mailovou adresou neexistuje."
 
-#: apps/users/views.py:110
+#: apps/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Špatný aktivační kód!"
 
-#: apps/users/views.py:115
+#: apps/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Úspěšně ověřeno!"
 
-#: apps/users/views.py:131
+#: apps/users/views.py:132
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 
-#: apps/users/views.py:135 apps/users/views.py:613
+#: apps/users/views.py:136 apps/users/views.py:618
 msgid "Confirmation Email Sent"
 msgstr "Zaslání potvrzujícího e-mailu"
 
-#: apps/users/views.py:146
+#: apps/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Profil byl smazán"
 
-#: apps/users/views.py:167
+#: apps/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Fotografie byla smazána"
 
-#: apps/users/views.py:186 apps/users/views.py:293
+#: apps/users/views.py:187 apps/users/views.py:294
 msgid "Profile Updated"
 msgstr "Profil byl aktualizován"
 
-#: apps/users/views.py:195
+#: apps/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Zaslání potvrzujícího e-mailu"
 
-#: apps/users/views.py:196
+#: apps/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11121,39 +11116,39 @@ msgstr ""
 "Na vaši e-mailovou adresu {0} byl zaslán e-mail pro potvrzení vaší nové e-mailové adresy. Pro její nastavení musíte klepnout na odkaz, který je v e-mailu uveden. Do té doby se stále přihlašujte "
 "pomocí vaší aktuální e-mailové adresy."
 
-#: apps/users/views.py:209
+#: apps/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Potvrďte prosím změnu vaší e-mailové adresy na %s"
 
-#: apps/users/views.py:223
+#: apps/users/views.py:224
 msgid "Errors Found"
 msgstr "Byly nalezeny chyby"
 
-#: apps/users/views.py:224
+#: apps/users/views.py:225
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Změněné údaje obsahují chyby. Opravte je prosím a formulář znova odešlete."
 
-#: apps/users/views.py:272
+#: apps/users/views.py:273
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "Omlouváme se, ale aktuálně nemůžete o tričko požádat."
 
-#: apps/users/views.py:328
+#: apps/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "Vaše e-mailová adresa byla úspěšně změněna"
 
-#: apps/users/views.py:329
+#: apps/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "Odteď prosím použijte pro přihlášení {0}."
 
-#: apps/users/views.py:416
+#: apps/users/views.py:421
 msgid "Wrong email address or password!"
 msgstr "Chybný e-mail či heslo!"
 
-#: apps/users/views.py:428
+#: apps/users/views.py:433
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Na vaši e-mailovou adresu {0} byl zaslán odkaz na aktivaci účtu. Musíte na něj klepnout dříve, než se budete moci přihlásit."
 
-#: apps/users/views.py:433
+#: apps/users/views.py:438
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -11161,36 +11156,36 @@ msgstr ""
 "Pokud neobdržíte e-mail pro potvrzení, ujistěte se, že váš poskytovatel pošty jej neoznačil jako \"nevyžádanou poštu\" či \"spam\". Pokud to budete potřebovat, můžete si e-mail pro potvrzení <a "
 "href=\"%s\">nechat znovu poslat</a>."
 
-#: apps/users/views.py:438
+#: apps/users/views.py:443
 msgid "Activation Email Sent"
 msgstr "Aktivační e-mail byl odeslán"
 
-#: apps/users/views.py:439
+#: apps/users/views.py:444
 msgid "Having Trouble?"
 msgstr "Máte problémy?"
 
-#: apps/users/views.py:583
+#: apps/users/views.py:588
 msgid "You are already logged in to an account."
 msgstr "Již jste se ke svému účtu přihlášení."
 
-#: apps/users/views.py:605
+#: apps/users/views.py:610
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Gratulujeme! Váš účet byl úspěšně vytvořen."
 
 # %1 is the user's email address
-#: apps/users/views.py:609
+#: apps/users/views.py:614
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr "Na vaši adresu {0} byl odeslán e-mail obsahující odkaz k aktivaci účtu. Před tím než se budete moci přihlásit, si musíte svůj účet aktivovat klepnutím na tento odkaz."
 
-#: apps/users/views.py:633
+#: apps/users/views.py:638
 msgid "There are errors in this form"
 msgstr "V tomto formuláři jsou chyby"
 
-#: apps/users/views.py:634
+#: apps/users/views.py:639
 msgid "Please correct them and resubmit."
 msgstr "Opravte je prosím a znovu jej odešlete."
 
-#: apps/users/views.py:649
+#: apps/users/views.py:654
 msgid "User reported."
 msgstr "Reportováno uživatelem."
 
@@ -11367,6 +11362,18 @@ msgstr "nic"
 msgid "all"
 msgstr "vše"
 
+#: apps/users/templates/users/fxa_migration.html:3 apps/users/templates/users/fxa_migration.html:11
+msgid "Migrate to Firefox Accounts"
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:14
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
+msgstr ""
+
+#: apps/users/templates/users/fxa_migration.html:25
+msgid "Skip"
+msgstr ""
+
 #: apps/users/templates/users/login.html:3 apps/users/templates/users/mobile/login.html:3
 msgid "User Login"
 msgstr "Přihlášení uživatele"
@@ -11409,7 +11416,7 @@ msgid "You are now logged in as <strong>%(user_email)s</strong>!"
 msgstr "Jste přihlášeni jako <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3 apps/users/templates/users/newpw_sent.html:8 apps/users/templates/users/pwreset_complete.html:3 apps/users/templates/users/pwreset_confirm.html:4
-#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
+#: apps/users/templates/users/pwreset_confirm.html:18 apps/users/templates/users/pwreset_request.html:4 apps/users/templates/users/pwreset_request.html:10
 #: apps/users/templates/users/pwreset_sent.html:3 apps/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
 msgstr "Obnovení hesla"
@@ -11489,15 +11496,19 @@ msgstr "Úspěch!"
 msgid "Password successfully reset."
 msgstr "Heslo úspěšně obnoveno."
 
-#: apps/users/templates/users/pwreset_confirm.html:26 apps/users/templates/users/register.html:72
-msgid "Confirm password"
-msgstr "Heslo znova"
-
-#: apps/users/templates/users/pwreset_confirm.html:41
+#: apps/users/templates/users/pwreset_confirm.html:13 apps/users/templates/users/pwreset_confirm.html:46
 msgid "Password reset unsuccessful"
 msgstr "Zrušení hesla se nezdařilo"
 
-#: apps/users/templates/users/pwreset_confirm.html:42
+#: apps/users/templates/users/pwreset_confirm.html:14
+msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
+msgstr ""
+
+#: apps/users/templates/users/pwreset_confirm.html:31 apps/users/templates/users/register.html:72
+msgid "Confirm password"
+msgstr "Heslo znova"
+
+#: apps/users/templates/users/pwreset_confirm.html:47
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
 msgstr "Odkaz na vymazání hesla je neplatný. Pravděpodobně byl již jednou použit. Vyžádejte si vymazání hesla opětovně."
 

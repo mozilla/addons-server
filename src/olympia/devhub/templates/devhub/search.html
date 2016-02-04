@@ -1,9 +1,8 @@
-{% set search_form = SimpleSearchForm(request, None) %}
-<form action="{{ url('devhub.search') }}" method="get">
+<form action="https://developer.mozilla.org/{% if LANG %}{{ LANG }}/{% endif %}search" method="get" target="_blank">
   <span class="wrap">
+    <input type="hidden" name="topic" value="addons" />
     <input type="text" name="q"
-           class="text {% if not search_form.q.data %}placeholder{% endif %}"
-           value="{{ search_form.q.data or '' }}"
+           class="text placeholder"
            placeholder="{{ _('Search Developer Docs') }}">
   </span>
   <button type="submit" class="search-button" src="{{ static('img/zamboni/global/btn-search.png') }}" title="{{ _('Search') }}"></button>
