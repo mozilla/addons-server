@@ -58,7 +58,7 @@ initialize_db:
 	python manage.py syncdb --noinput
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
-	schematic --fake migrations/
+	schematic --fake src/olympia/migrations/
 	python manage.py createsuperuser
 	python manage.py loaddata zadmin/users
 
@@ -74,10 +74,11 @@ update_code:
 	git checkout master && git pull
 
 update_deps:
+	pip install -e .
 	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/olympia/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
 
 update_db:
-	schematic migrations
+	schematic src/olympia/migrations
 
 update_assets:
 	python manage.py compress_assets
@@ -96,7 +97,7 @@ reindex:
 	python manage.py reindex $(ARGS)
 
 flake8:
-	flake8 .
+	flake8 src/
 
 initialize_docker:
 	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner

@@ -40,7 +40,7 @@ TMP_PATH = _polite_tmpdir()
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (
-    'users.backends.AmoUserBackend',
+    'olympia.users.backends.AmoUserBackend',
 )
 
 CELERY_ALWAYS_EAGER = True
@@ -82,9 +82,9 @@ CACHES = {
 }
 
 # Overrides whatever storage you might have put in local settings.
-DEFAULT_FILE_STORAGE = 'amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-VIDEO_LIBRARIES = ['lib.video.dummy']
+VIDEO_LIBRARIES = ['olympia.lib.video.dummy']
 
 ALLOW_SELF_REVIEWS = True
 
@@ -109,7 +109,7 @@ TASK_USER_ID = 4043307
 
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
-    'users.models.SHA512PasswordHasher',
+    'olympia.users.models.SHA512PasswordHasher',
 )
 
 SQL_RESET_SEQUENCES = False

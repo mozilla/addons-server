@@ -19,11 +19,12 @@ import sqlalchemy.pool as pool
 try:
     from compare import version_int
 except ImportError:
-    from apps.versions.compare import version_int
+    from olympia.versions.compare import version_int
 
-from constants import applications, base
-from utils import (APP_GUIDS, get_mirror, log_configure, PLATFORMS,
-                   STATUSES_PUBLIC)
+from olympia.constants import applications, base
+
+from utils import (
+    APP_GUIDS, get_mirror, log_configure, PLATFORMS, STATUSES_PUBLIC)
 
 # Go configure the log.
 log_configure()

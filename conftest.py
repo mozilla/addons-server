@@ -7,10 +7,10 @@ import caching
 import pytest
 from multidb import pinning
 
-import amo
-from access.models import Group, GroupUser
-from translations.hold import clean_translations
-from users.models import UserProfile
+from olympia import amo
+from olympia.access.models import Group, GroupUser
+from olympia.translations.hold import clean_translations
+from olympia.users.models import UserProfile
 
 
 @pytest.fixture(autouse=True)
@@ -35,8 +35,8 @@ def mock_inline_css(monkeypatch):
     bundle the css.
 
     """
-    import amo.helpers
-    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: True)
+    from olympia.amo import helpers
+    monkeypatch.setattr(helpers, 'is_external', lambda css: True)
 
 
 def prefix_indexes(config):
