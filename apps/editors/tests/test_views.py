@@ -2312,6 +2312,20 @@ class TestReview(ReviewBase):
         eq_(ths.length, 2)
         assert '0.1' in ths.text()
 
+    def test_no_versions(self):
+        """A 404 should be returned if there's no version."""
+        assert self.client.get(self.url).status_code == 200
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor'})
+        assert response.status_code == 302
+
+        self.version.delete()
+
+        assert self.client.get(self.url).status_code == 404
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor'})
+        assert response.status_code == 404
+
     @patch('editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
