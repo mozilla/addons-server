@@ -321,7 +321,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         See bug 615426 for discussion on this default.
 
     *overrides=None*
-        Normally the validator gets info from install.rdf but there are a
+        Normally the validator gets info from the manifest but there are a
         few things we need to override. See validator for supported overrides.
         Example: {'targetapp_maxVersion': {'<app guid>': '<version>'}}
 

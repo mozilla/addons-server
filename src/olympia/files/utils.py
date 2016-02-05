@@ -86,7 +86,7 @@ def is_beta(version):
 
 
 class Extractor(object):
-    """Extract adon info from an install.rdf or package.json"""
+    """Extract adon info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
 
     @classmethod
@@ -526,10 +526,10 @@ def parse_xpi(xpi, addon=None, check=True):
         else:
             errno, strerror = e
         log.error('I/O error({0}): {1}'.format(errno, strerror))
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
+        raise forms.ValidationError(_('Could not parse the manifest file.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
+        raise forms.ValidationError(_('Could not parse the manifest file.'))
     finally:
         rm_local_tmp_dir(path)
 

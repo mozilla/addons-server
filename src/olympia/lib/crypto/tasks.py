@@ -146,7 +146,7 @@ def sign_addons(addon_ids, force=False, **kw):
             backup_path = u'{0}.backup_signature'.format(file_obj.file_path)
             shutil.copy(file_obj.file_path, backup_path)
             try:
-                # Need to bump the version (modify install.rdf or package.json)
+                # Need to bump the version (modify manifest file)
                 # before the file is signed.
                 update_version_number(file_obj, bumped_version_number)
                 if file_obj.status == amo.STATUS_PUBLIC:
@@ -320,7 +320,7 @@ def resign_files(file_ids, **kw):
         backup_path = u'{0}.backup_signature'.format(file_.file_path)
         shutil.copy(file_.file_path, backup_path)
         try:
-            # Need to bump the version (modify install.rdf or package.json)
+            # Need to bump the version (modify manifest file)
             # before the file is signed.
             update_version_number(file_, bumped_version_number)
             if file_.status == amo.STATUS_PUBLIC:

@@ -93,7 +93,7 @@ class VersionView(JWTProtectedView):
                             status=status.HTTP_400_BAD_REQUEST)
         if pkg['version'] != version_string:
             return Response(
-                {'error': _('Version does not match install.rdf.')},
+                {'error': _('Version does not match the manifest file.')},
                 status=status.HTTP_400_BAD_REQUEST)
         elif (addon is not None and
                 addon.versions.filter(version=version_string).exists()):

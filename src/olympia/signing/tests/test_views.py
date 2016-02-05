@@ -111,10 +111,11 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 403
         assert response.data['error'] == 'You do not own this addon.'
 
-    def test_version_does_not_match_install_rdf(self):
+    def test_version_does_not_match_manifest_file(self):
         response = self.put(self.url(self.guid, '2.5'))
         assert response.status_code == 400
-        assert response.data['error'] == 'Version does not match install.rdf.'
+        assert response.data['error'] == (
+            'Version does not match the manifest file.')
 
     def test_version_already_exists(self):
         response = self.put(self.url(self.guid, '2.1.072'), version='2.1.072')
