@@ -3,7 +3,7 @@ Welcome to Olympia's documentation!
 ===================================
 
 Olympia is the codebase for https://addons.mozilla.org/ ;
-the source lives at https://github.com/mozilla/olympia
+the source lives at https://github.com/mozilla/addons-server
 
 Contents
 --------

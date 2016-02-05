@@ -1,9 +1,9 @@
-=====================
-Olympia Documentation
-=====================
+===========================
+Addons Server Documentation
+===========================
 
-This is the documentation for the use of Olympia and its services. All the
-documentation here is contained in plain text files using
+This is the documentation for the use of the addons-server and its services. All
+the documentation here is contained in plain text files using
 `reStructuredText <http://docutils.sourceforge.net/rst.html>`_ and
 `Sphinx <http://sphinx-doc.org/>`_.
 
@@ -21,12 +21,14 @@ Or simply::
     make update_deps
 
 The documentation is viewable at http://olympia.readthedocs.org/, and covers
-development using Olympia, the source code for `Add-ons
+development using Addons Server, the source code for `Add-ons
 <https://addons.mozilla.org/>`_.
 
 Its source location is in the `/docs
-<https://github.com/mozilla/olympia/tree/master/docs>`_ folder.
+<https://github.com/mozilla/addons-server/tree/master/docs>`_ folder.
 
+Note: this project was once called *olympia*, this documentation often uses
+that term.
 
 Build the documentation
 -----------------------
