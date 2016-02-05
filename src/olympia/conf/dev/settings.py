@@ -235,7 +235,7 @@ if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 FXA_CONFIG = {
-    'client_id': '1e5a77cf09e5b4b5',
+    'client_id': env('FXA_CLIENT_ID'),
     'client_secret': env('FXA_CLIENT_SECRET'),
     'content_host': 'https://stable.dev.lcip.org',
     'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
