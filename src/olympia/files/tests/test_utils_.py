@@ -10,7 +10,7 @@ from nose.tools import eq_
 from django import forms
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import create_switch, TestCase
 from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -486,6 +486,16 @@ def test_bump_version_in_alt_install_rdf(file_obj):
 def test_bump_version_in_package_json(file_obj):
     with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/new-format-0.0.1.xpi',
+            file_obj.file_path):
+        utils.update_version_number(file_obj, '0.0.1.1-signed')
+        parsed = utils.parse_xpi(file_obj.file_path)
+        assert parsed['version'] == '0.0.1.1-signed'
+
+
+def test_bump_version_in_manifest_json(file_obj):
+    create_switch('webextensions')
+    with amo.tests.copy_file(
+            'src/olympia/files/fixtures/files/webextension.xpi',
             file_obj.file_path):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
