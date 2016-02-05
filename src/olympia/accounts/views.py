@@ -74,8 +74,8 @@ def login_user(request, user, identity):
         if not user.fxa_migrated():
             messages.success(
                 request,
-                _(u'Great job! You can now log in to Add-ons with your '
-                  'Firefox Account.'),
+                _(u'Great job!'),
+                _(u'You can now log in to Add-ons with your Firefox Account.'),
                 extra_tags='fxa')
         user.update(fxa_id=identity['uid'], email=identity['email'])
     log.info('Logging in user {} from FxA'.format(user))
