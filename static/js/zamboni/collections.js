@@ -268,6 +268,8 @@ if (addon_ac.length) {
                 .data('item.autocomplete', item)
                 .append('<a><img src="' + item.icons['32'] + '" alt="">' + _.escape(item.name) + '</a>')
                 .appendTo(ul);
+        } else {
+            return $('<li>');
         }
     };
 }
