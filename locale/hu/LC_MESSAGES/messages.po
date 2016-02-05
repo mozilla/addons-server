@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-03 22:15+0000\n"
+"PO-Revision-Date: 2016-02-05 14:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1812,11 +1812,11 @@ msgstr "Admin eszközök"
 
 #: apps/amo/fields.py:15
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Helytelen, kérjük próbálja meg újra."
 
 #: apps/amo/fields.py:16
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Hiba a bemenet ellenőrzésekor, kérjük próbálja meg újra."
 
 #: apps/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
@@ -3673,6 +3673,9 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a "
+"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Készítse"
+" el saját</a> keresőjét"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -4790,11 +4793,11 @@ msgstr "A kiegészítő letörölve."
 
 #: apps/devhub/views.py:358
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Az URL név helytelen volt. A téma nem törlődött."
 
 #: apps/devhub/views.py:363
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Az URL név helytelen volt. A kiegészítő nem törlődött."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -5526,6 +5529,9 @@ msgid ""
 "translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Ha szeretne megjeleníteni egy e-mail címet a támogatási kérdések fogadására,"
+" azt itt adja meg. Ha különböző címek tartoznak egyes nyelvekhez, ezen mező "
+"többszöri fordítása hozzáadható. Ez csak listázott kiegészítőkre érvényes."
 
 #: apps/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
