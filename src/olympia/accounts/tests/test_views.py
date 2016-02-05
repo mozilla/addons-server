@@ -1,5 +1,7 @@
 import base64
 
+from django.contrib.messages import get_messages
+from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.urlresolvers import resolve, reverse
 from django.test import RequestFactory, TestCase
 from django.test.utils import override_settings
@@ -59,37 +61,39 @@ class TestLoginUser(TestCase):
 
     def setUp(self):
         self.request = RequestFactory().get('/login')
+        setattr(self.request, 'session', 'session')
+        messages = FallbackStorage(self.request)
+        setattr(self.request, '_messages', messages)
         self.user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='9001')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = mock.patch('olympia.accounts.views.messages')
-        self.messages = patcher.start()
-        self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):
+        assert len(get_messages(self.request)) == 0
         views.login_user(self.request, self.user, self.identity)
         self.login.assert_called_with(self.request, self.user)
-        assert not self.messages.success.called
+        assert len(get_messages(self.request)) == 0
 
     def test_fxa_data_gets_set(self):
+        assert len(get_messages(self.request)) == 0
         self.user.update(fxa_id=None)
         views.login_user(self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert not user.has_usable_password()
-        self.messages.success.assert_called_with(
-            self.request, mock.ANY, extra_tags='fxa')
+        assert len(get_messages(self.request)) == 1
 
     def test_email_address_can_change(self):
+        assert len(get_messages(self.request)) == 0
         self.user.update(email='different@yeahoo.com')
         views.login_user(self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
-        assert not self.messages.success.called
+        assert len(get_messages(self.request)) == 0
 
 
 class TestFindUser(TestCase):
