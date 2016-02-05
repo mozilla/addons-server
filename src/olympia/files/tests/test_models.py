@@ -437,7 +437,7 @@ class TestParseXpi(TestCase):
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
             parse_addon('baxmldzip.xpi', None)
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        eq_(e.exception.messages, ['Could not parse the manifest file.'])
 
     def test_parse_dictionary(self):
         result = self.parse(filename='dictionary-test.xpi')
@@ -540,7 +540,7 @@ class TestParseAlternateXpi(TestCase, amo.tests.AMOPaths):
         rdf_mock.subjects.return_value = iter([])
         with self.assertRaises(forms.ValidationError) as e:
             self.parse()
-        eq_(e.exception.messages, ['Could not parse install.rdf.'])
+        eq_(e.exception.messages, ['Could not parse the manifest file.'])
 
 
 class TestFileUpload(UploadTest):

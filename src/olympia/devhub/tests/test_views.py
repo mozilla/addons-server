@@ -2240,7 +2240,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(r.content)
         eq_([(m['message'], m.get('fatal', False))
              for m in data['validation']['messages']],
-            [(u'Could not parse install.rdf.', True)])
+            [(u'Could not parse the manifest file.', True)])
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_experiment_xpi_allowed(self, mock_validator):

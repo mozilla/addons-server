@@ -133,7 +133,7 @@ def fix_let_scope_bustage_in_addons(addon_ids):
                 # Revert the fix by restoring the backup.
                 shutil.move(backup_path, file_obj.file_path)
                 continue  # We move to the next file.
-            # Need to bump the version (modify install.rdf or package.json)
+            # Need to bump the version (modify the manifest file)
             # before the file is signed.
             update_version_number(file_obj, bumped_version_number)
             if file_obj.is_signed:  # Only sign if it was already signed.

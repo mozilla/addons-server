@@ -86,7 +86,7 @@ def is_beta(version):
 
 
 class Extractor(object):
-    """Extract adon info from an install.rdf or package.json"""
+    """Extract adon info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
 
     @classmethod
@@ -526,10 +526,10 @@ def parse_xpi(xpi, addon=None, check=True):
         else:
             errno, strerror = e
         log.error('I/O error({0}): {1}'.format(errno, strerror))
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
+        raise forms.ValidationError(_('Could not parse the manifest file.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse install.rdf.'))
+        raise forms.ValidationError(_('Could not parse the manifest file.'))
     finally:
         rm_local_tmp_dir(path)
 
@@ -745,8 +745,8 @@ def update_version_number(file_obj, new_version_number):
                 if file_.filename == 'install.rdf':
                     content = _update_version_in_install_rdf(
                         content, new_version_number)
-                if file_.filename == 'package.json':
-                    content = _update_version_in_package_json(
+                if file_.filename in ['package.json', 'manifest.json']:
+                    content = _update_version_in_json_manifest(
                         content, new_version_number)
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
@@ -779,8 +779,8 @@ def _update_version_in_install_rdf(content, new_version_number):
     return etree.tostring(tree, xml_declaration=True, encoding='utf-8')
 
 
-def _update_version_in_package_json(content, new_version_number):
-    """Change the version number in the package.json provided."""
+def _update_version_in_json_manifest(content, new_version_number):
+    """Change the version number in the json manifest file provided."""
     updated = json.loads(content)
     if 'version' in updated:
         updated['version'] = new_version_number
