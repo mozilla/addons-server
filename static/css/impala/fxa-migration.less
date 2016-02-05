@@ -1,3 +1,5 @@
+@import './lib';
+
 .show-fxa-migration-banner #fxa-migration-banner {
     display: block;
 }
@@ -10,4 +12,14 @@
 
 .login-form .login-source-button {
     display: none;
+}
+
+.notification-box.fxa {
+    background: lighten(@button-green-light, 7.5%);
+    border-color: @button-green-light;
+
+    h2 {
+        color: white;
+        font-family: @head-sans;
+    }
 }

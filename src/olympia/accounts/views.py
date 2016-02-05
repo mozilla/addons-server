@@ -13,8 +13,10 @@ from django.utils.http import is_safe_url
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from tower import ugettext_lazy as _
 from waffle.decorators import waffle_switch
 
+from olympia.amo import messages
 from olympia.api.jwt_auth.views import JWTProtectedView
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
@@ -69,6 +71,12 @@ def login_user(request, user, identity):
             'New {new_email} {new_uid}'.format(
                 pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
+        if not user.fxa_migrated():
+            messages.success(
+                request,
+                _('Great job! You can now log in to Add-ons with your '
+                  'Firefox Account.'),
+                extra_tags='fxa')
         user.update(fxa_id=identity['uid'], email=identity['email'])
     log.info('Logging in user {} from FxA'.format(user))
     login(request, user)
