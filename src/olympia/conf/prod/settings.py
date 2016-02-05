@@ -203,7 +203,7 @@ FXA_CONFIG = {
     'client_secret': env('FXA_CLIENT_SECRET'),
     'content_host': 'https://accounts.firefox.com',
     'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-    'profile_host': 'https://profile.accounts.firefox.com/v1/profile',
+    'profile_host': 'https://profile.accounts.firefox.com/v1',
     'redirect_url':
         'https://addons.mozilla.org/api/v3/accounts/authorize/',
     'scope': 'profile',
