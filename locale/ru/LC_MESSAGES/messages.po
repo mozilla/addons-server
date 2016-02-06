@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 20:38+0000\n"
-"Last-Translator: bychek.ru <a@bychek.ru>\n"
+"PO-Revision-Date: 2016-02-06 15:48+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4510,7 +4510,7 @@ msgstr "Автор может только быть указан только о
 
 #: apps/devhub/forms.py:93
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Некорректный адрес."
 
 #: apps/devhub/forms.py:105
 msgid "Invalid JSON object"
@@ -4832,11 +4832,11 @@ msgstr "Дополнение удалено."
 
 #: apps/devhub/views.py:358
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL имя некорректно. Тема не была удалена."
 
 #: apps/devhub/views.py:363
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL имя некорректно. Дополнение не было удалено."
 
 #: apps/devhub/views.py:445
 msgid "An author has been added to your add-on"
@@ -5885,10 +5885,12 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again by others."
 msgstr ""
+"Удаление вашего дополнения навсегда удалит его с сайта и предотвратит в "
+"будущем загрузку другими его GUID."
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter the URL name to confirm your decision ({slug}):"
-msgstr ""
+msgstr "Введите имя URL для потверждения вашего решения ({slug}):"
 
 #: apps/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
