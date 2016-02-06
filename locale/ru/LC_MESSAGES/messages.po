@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2015-12-01 12:49+0000\n"
+"PO-Revision-Date: 2016-02-04 20:38+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3696,6 +3696,9 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a "
+"href=\"https://developer.mozilla.org/ru/docs/Creating_OpenSearch_plugins_for_Firefox\">Создайте"
+" свой</a> поисковый инструмент"
 
 #: apps/browse/templates/browse/themes.html:6
 #: apps/browse/templates/browse/themes.html:9 apps/constants/base.py:174
@@ -13644,7 +13647,7 @@ msgstr "Пользователей зарегистрировано"
 
 #: apps/stats/templates/stats/global_report_menu.html:34
 msgid "Archived Data"
-msgstr ""
+msgstr "Архивированные данные"
 
 #: apps/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
@@ -14624,13 +14627,15 @@ msgstr "все"
 #: apps/users/templates/users/fxa_migration.html:3
 #: apps/users/templates/users/fxa_migration.html:11
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "Переход на Firefox аккаунты"
 
 #: apps/users/templates/users/fxa_migration.html:14
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Сайт дополнений Mozilla теперь использует для входа учетную запись Firefox. "
+"Продолжите для завершения этого простого процесса обновления."
 
 #: apps/users/templates/users/fxa_migration.html:25
 msgid "Skip"
@@ -14785,6 +14790,8 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Вы перешли на аккаунты Firefox. Вы больше не сможете менять свой пароль "
+"здесь."
 
 #: apps/users/templates/users/pwreset_confirm.html:31
 #: apps/users/templates/users/register.html:72
