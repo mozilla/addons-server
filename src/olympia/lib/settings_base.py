@@ -231,13 +231,14 @@ SUPPORTED_NONAPPS = (
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'localizers', 'review_guide', 'google1f3e37b7351799a5.html',
     'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
+    '__version__',
 )
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
 SUPPORTED_NONLOCALES = (
     'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
-    'downloads', 'blocklist', 'static', 'user-media',
+    'downloads', 'blocklist', 'static', 'user-media', '__version__',
 )
 
 # Make this unique, and don't share it with anybody.

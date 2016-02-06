@@ -424,3 +424,11 @@ class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
             assert qs.count() == 0
         finally:
             qs.all().delete()
+
+
+class TestVersion(TestCase):
+
+    def test_version_json(self):
+        res = self.client.get('/__version__')
+        eq_(res.status_code, 200)
+        eq_(res._headers['content-type'], ('Content-Type', 'application/json'))

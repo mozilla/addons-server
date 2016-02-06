@@ -22,6 +22,7 @@ urlpatterns = patterns(
     url('^contribute.json$', views.contribute, name='contribute.json'),
     url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
+    url('^__version__$', views.version, name='version.json'),
 
     url('^opensearch.xml$', 'olympia.api.views.render_xml',
                             {'template': 'amo/opensearch.xml'},
