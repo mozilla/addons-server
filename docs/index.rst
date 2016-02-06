@@ -1,9 +1,12 @@
-===================================
-Welcome to Olympia's documentation!
-===================================
+=======================================
+Welcome to Addon Servers documentation!
+=======================================
 
-Olympia is the codebase for https://addons.mozilla.org/ ;
+Addon server is the codebase for https://addons.mozilla.org/ ;
 the source lives at https://github.com/mozilla/addons-server
+
+This project was called *olympia* so a lot of this documentation may
+refer to that.
 
 Contents
 --------
