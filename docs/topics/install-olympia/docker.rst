@@ -1,5 +1,5 @@
 ====================
-Install Olympia
+Install via Docker
 ====================
 
 .. _install-with-docker:
@@ -40,7 +40,7 @@ Setting up the containers
 Next once you have docker up and running follow these steps
 on your host machine::
 
-    git clone git://github.com/mozilla/olympia.git
+    git clone git://github.com/mozilla/addons-server.git
     cd olympia
     pip install docker-compose
     docker-compose pull  # Can take a while depending on your internet bandwidth.
