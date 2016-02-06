@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-04 12:04+0000\n"
+"PO-Revision-Date: 2016-02-06 04:27+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -356,6 +356,8 @@ msgid ""
 "Help support the continued development of <strong>%(addon_name)s</strong> by"
 " making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Bantu dukung pengembangan berlanjut <strong>%(addon_name)s</strong> dengan "
+"berkontribusi sedikit melalui <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: apps/addons/templates/addons/contributions_lightbox.html:15
 msgid ""
@@ -610,7 +612,7 @@ msgstr ""
 #: apps/addons/templates/addons/eula.html:34
 #: apps/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Balik ke {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -628,7 +630,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Ekstensi Populer"
 
 #: apps/addons/templates/addons/home.html:42
 #: apps/amo/templates/amo/side_nav.html:3
@@ -641,7 +643,7 @@ msgstr "Paling Populer"
 
 #: apps/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "Semua »"
 
 #: apps/addons/templates/addons/home.html:52
 #: apps/addons/templates/addons/home.html:61
@@ -649,7 +651,7 @@ msgstr ""
 #: apps/addons/templates/addons/home.html:78
 #: apps/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Lihat semua »"
 
 #: apps/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -1058,7 +1060,7 @@ msgstr "Pendapat Anda?"
 #: apps/addons/templates/addons/review_add_box.html:7
 #: apps/addons/templates/addons/impala/review_add_box.html:9
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Tolong <a href=\"%(login)s\">masuk</a> untuk mengirim ulasan"
 
 #: apps/addons/templates/addons/review_add_box.html:16
 #: apps/addons/templates/addons/impala/review_add_box.html:18
@@ -1263,7 +1265,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
-msgstr ""
+msgstr "E-mail dukungan"
 
 #: apps/addons/templates/addons/impala/details.html:194
 #: apps/devhub/models.py:377
@@ -1421,7 +1423,7 @@ msgstr "terjemahkan"
 #: apps/addons/templates/addons/impala/review_list_box.html:36
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
+msgstr[0] "Lihat semua %(cnt)s ulasan pengguna"
 
 #: apps/addons/templates/addons/impala/review_list_box.html:47
 #: apps/reviews/templates/reviews/review_list.html:84
@@ -1435,7 +1437,7 @@ msgstr "Jadilah yang pertama!"
 #: apps/addons/templates/addons/impala/listing/sorter.html:14
 #: apps/devhub/templates/devhub/addons/listing/item_actions.html:49
 msgid "More"
-msgstr ""
+msgstr "Lebih banyak"
 
 #: apps/addons/templates/addons/includes/collection_add_widget.html:7
 #: apps/addons/templates/addons/includes/collection_add_widget.html:10
