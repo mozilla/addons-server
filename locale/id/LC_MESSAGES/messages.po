@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-07 13:28+0000\n"
+"PO-Revision-Date: 2016-02-07 17:46+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -12182,11 +12182,11 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Pelanggan berdasarkan Tanggal"
 
 #: apps/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Pengguna Harian berdasarkan Tanggal"
 
 #: apps/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
@@ -12210,7 +12210,7 @@ msgstr ""
 
 #: apps/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Pendaftaran Pengguna berdasarkan Tanggal"
 
 #: apps/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -12229,7 +12229,7 @@ msgstr "Найпопулярніші мітки {0}"
 #. {0} is a language name, like 'French'
 #: apps/translations/templates/translations/trans-menu.html:7
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Lokalisasi untuk <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: apps/translations/templates/translations/trans-menu.html:16
 #: apps/translations/templates/translations/trans-menu.html:29
@@ -12268,15 +12268,15 @@ msgstr ""
 
 #: apps/users/forms.py:38
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "Harus %s karakter atau lebih banyak."
 
 #: apps/users/forms.py:58
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "Dibutuhkan huruf dan angka."
 
 #: apps/users/forms.py:61
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Kata sandi ini tidak diperbolehkan."
 
 #: apps/users/forms.py:87
 msgid ""
@@ -12311,7 +12311,7 @@ msgstr ""
 
 #: apps/users/forms.py:264
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Nama pengguna ini tidak dapat digunakan."
 
 #: apps/users/forms.py:270
 msgid "This username is already in use."
@@ -12347,7 +12347,7 @@ msgstr ""
 
 #: apps/users/forms.py:332
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Nama tampilan ini tidak dapat digunakan."
 
 #: apps/users/forms.py:346
 msgid "The passwords did not match."
@@ -12378,7 +12378,7 @@ msgstr "lainnya"
 
 #: apps/users/models.py:63
 msgid "algorithm"
-msgstr ""
+msgstr "algoritma"
 
 #: apps/users/models.py:64
 msgid "salt"
@@ -12390,7 +12390,7 @@ msgstr ""
 
 #: apps/users/models.py:123
 msgid "No user with that email."
-msgstr ""
+msgstr "Tidak ada pengguna dengan email tersebut."
 
 #: apps/users/models.py:353
 msgid "Anonymous"
@@ -12414,11 +12414,11 @@ msgstr ""
 
 #: apps/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "pengembang pengaya membalas ulasan saya"
 
 #: apps/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "pengembang aplikasi membalas ulasan saya"
 
 #: apps/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -12434,11 +12434,11 @@ msgstr ""
 
 #: apps/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "seseorang menulis ulasan pengaya saya"
 
 #: apps/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "seseorang menulis ulasan tentang aplikasi saya"
 
 #: apps/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -12487,7 +12487,7 @@ msgstr "Dibutuhkan alamat email."
 
 #: apps/users/views.py:94
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Pengguna dengan alamat email tersebut tidak ada."
 
 #: apps/users/views.py:111
 msgid "Invalid confirmation code!"
@@ -12537,7 +12537,7 @@ msgstr ""
 
 #: apps/users/views.py:224
 msgid "Errors Found"
-msgstr ""
+msgstr "Masalah Ditemukan"
 
 #: apps/users/views.py:225
 msgid ""
@@ -12579,7 +12579,7 @@ msgstr ""
 
 #: apps/users/views.py:443
 msgid "Activation Email Sent"
-msgstr ""
+msgstr "Email Aktivasi Dikirim"
 
 #: apps/users/views.py:444
 msgid "Having Trouble?"
@@ -12614,11 +12614,11 @@ msgstr ""
 
 #: apps/users/views.py:654
 msgid "User reported."
-msgstr ""
+msgstr "Pengguna dilaporkan."
 
 #: apps/users/widgets.py:37
 msgid "new"
-msgstr ""
+msgstr "baru"
 
 #: apps/users/templates/users/delete.html:4
 #: apps/users/templates/users/delete.html:10
@@ -12641,7 +12641,7 @@ msgstr ""
 
 #: apps/users/templates/users/delete.html:35
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Anda tidak akan dapat masuk ke %(site)s lagi."
 
 #: apps/users/templates/users/delete.html:40
 msgid ""
@@ -12701,11 +12701,11 @@ msgstr "Alamat Email"
 
 #: apps/users/templates/users/edit.html:45
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Kelola Akun Firefox..."
 
 #: apps/users/templates/users/edit.html:48
 msgid "Change Password"
-msgstr ""
+msgstr "Ganti Kata Sandi"
 
 #: apps/users/templates/users/edit.html:58
 msgid ""
@@ -12727,7 +12727,7 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:86
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: apps/users/templates/users/edit.html:88
 msgid ""
@@ -12737,15 +12737,15 @@ msgstr ""
 
 #: apps/users/templates/users/edit.html:112
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "URL ini hanya akan terlihat jika Anda pengembang."
 
 #: apps/users/templates/users/edit.html:121
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Pilih Foto&hellip;"
 
 #: apps/users/templates/users/edit.html:125
 msgid "Delete current photo"
-msgstr ""
+msgstr "Hapus foto sekarang ini"
 
 #: apps/users/templates/users/edit.html:132
 msgid ""
@@ -12813,11 +12813,11 @@ msgstr "Perbarui Akun"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "tidak ada"
 
 #: apps/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "semua"
 
 #: apps/users/templates/users/fxa_migration.html:3
 #: apps/users/templates/users/fxa_migration.html:11
@@ -12856,7 +12856,7 @@ msgstr "Alamat email"
 #: apps/users/templates/users/login_form.html:30
 #: apps/users/templates/users/mobile/login.html:38
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Ingat saya untuk perangkat ini"
 
 #: apps/users/templates/users/login_form.html:41
 #: apps/users/templates/users/pwreset_complete.html:15
@@ -12883,7 +12883,7 @@ msgstr "Lupa sandi."
 
 #: apps/users/templates/users/login_modal.html:3
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Anda sekarang masuk sebagai <strong>%(user_email)s</strong>!"
 
 #: apps/users/templates/users/newpw_sent.html:3
 #: apps/users/templates/users/newpw_sent.html:8
@@ -12963,11 +12963,11 @@ msgstr "Belum pernah mengulas pengaya."
 
 #: apps/users/templates/users/profile.html:120
 msgid "Report User"
-msgstr ""
+msgstr "Laporkan Pengguna"
 
 #: apps/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
-msgstr ""
+msgstr "Sukses!"
 
 #: apps/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
@@ -12994,6 +12994,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Tautan untuk menyetel ulang kata sandi tidak valid, mungkin karena sudah "
+"terpakai. Mintalah setel ulang kata sandi yang baru."
 
 #: apps/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -13028,11 +13030,11 @@ msgstr ""
 
 #: apps/users/templates/users/register.html:16
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Anda hanya perlu mendaftar bila:"
 
 #: apps/users/templates/users/register.html:18
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Anda ingin mengirim ulasan untuk pengaya"
 
 #: apps/users/templates/users/register.html:19
 msgid ""
@@ -13120,7 +13122,7 @@ msgstr ""
 
 #: apps/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Alamat Pengiriman"
 
 #: apps/users/templates/users/t-shirt.html:63
 msgid "Full Name"
@@ -13559,7 +13561,7 @@ msgstr "Pernyataan Hukum"
 
 #: templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "Mozilla Firefox"
 
 #: templates/mobile/header.html:4
 msgid "Features"
