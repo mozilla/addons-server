@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-06 04:27+0000\n"
+"PO-Revision-Date: 2016-02-07 13:28+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -419,7 +419,7 @@ msgstr "Kirim Sumbangan"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Menghubungi PayPal"
 
 #: apps/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
@@ -482,7 +482,7 @@ msgstr ""
 #: apps/addons/templates/addons/details_box.html:67
 #: apps/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Pengaya yang Dibutuhkan"
 
 #: apps/addons/templates/addons/details_box.html:81
 #: apps/addons/templates/addons/persona_detail_table.html:15
@@ -504,7 +504,7 @@ msgstr "Tampilkan Statistik"
 
 #: apps/addons/templates/addons/details_box.html:97
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Rata-rata Pengguna Harian"
 
 #: apps/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
@@ -547,7 +547,7 @@ msgstr "Komentar Pengembang"
 #: apps/addons/templates/addons/details_box.html:199
 #: apps/addons/templates/addons/impala/details.html:259
 msgid "Development Channel"
-msgstr ""
+msgstr "Kanal Pengembangan"
 
 #: apps/addons/templates/addons/details_box.html:202
 #: apps/addons/templates/addons/mobile/details.html:124
@@ -559,7 +559,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/details_box.html:207
 msgid "Install development version"
-msgstr ""
+msgstr "Pasang versi pengembangan"
 
 #: apps/addons/templates/addons/details_box.html:211
 msgid ""
@@ -626,7 +626,7 @@ msgstr "Pengaya untuk {0}"
 #: apps/addons/templates/addons/home.html:51
 #: apps/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Ekstensi Unggulan"
 
 #: apps/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
@@ -685,7 +685,7 @@ msgstr "Urut berdasarkan:"
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "Diperbarui pada tanggal {0}"
 
 #. {0} is a date.
 #: apps/addons/templates/addons/macros.html:10
@@ -696,7 +696,7 @@ msgstr ""
 #: apps/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: apps/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr "Ditambahkan ada {0}"
+msgstr "Ditambahkan pada tanggal {0}"
 
 #: apps/addons/templates/addons/macros.html:18
 msgid "%(num)s weekly download"
@@ -819,11 +819,11 @@ msgstr ""
 #: apps/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> pengguna"
 
 #: apps/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Layangkan untuk Pratinjau"
 
 #: apps/addons/templates/addons/persona_preview.html:46
 #: apps/addons/templates/addons/persona_preview.html:48
@@ -909,6 +909,8 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Untuk memasang tema ini dan yang ribuan lainnya, <b>dapatkan Firefox</b>, "
+"peramban gratis dan terbuka dari Mozilla."
 
 #: apps/addons/templates/addons/popups.html:60
 msgid "This add-on has not been updated to work with your version of %(app)s."
@@ -985,7 +987,7 @@ msgstr "Lihat versi lain"
 
 #: apps/addons/templates/addons/popups.html:148
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Pengaya ini tidak kompatibel dengan versi %(app)s Anda."
 
 #. {0} is the name of the add-on.
 #: apps/addons/templates/addons/privacy.html:6
@@ -1175,6 +1177,8 @@ msgid ""
 "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help"
 " support its continued development by making a small contribution."
 msgstr ""
+"<a href=\"%(meet_url)s\">Pengembang pengaya ini</a> meminta Anda membantu "
+"mendukung pengembangan berlanjut dengan berkontribusi sedikit."
 
 #: apps/addons/templates/addons/impala/contribution.html:48
 msgid ""
@@ -1189,18 +1193,21 @@ msgid ""
 " your support by making a small contribution to <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"<a href=\"%(meet_url)s\">Pengembang pengaya ini</a> meminta Anda "
+"memperlihatkan dukungan Anda dengan berkontribusi sedikit ke <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: apps/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Pengaya ini membutuhkan pengaya berikut untuk berjalan secara benar:"
 
 #: apps/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Rata-rata"
 
 #: apps/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "Tulis ulasan"
 
 #: apps/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
@@ -1218,7 +1225,7 @@ msgstr[0] "Pengaya lain oleh %(author)s"
 #: apps/addons/templates/addons/impala/details.html:41
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ulasan pengguna"
 
 #: apps/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
@@ -1226,12 +1233,12 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:84
 msgid "Manage"
-msgstr ""
+msgstr "Kelola"
 
 #. {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:96
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Ikon {0}"
 
 #: apps/addons/templates/addons/impala/details.html:103
 #: apps/addons/templates/addons/impala/listing/items.html:14
@@ -1241,7 +1248,7 @@ msgstr ""
 #: apps/addons/templates/addons/impala/details.html:127
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
+msgstr[0] "<a href=\"%(url)s\">Bertemu dengan Pengembang</a>"
 
 # {0} is an add-on name.
 #: apps/addons/templates/addons/impala/details.html:137
@@ -1261,7 +1268,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details.html:185
 msgid "Support site"
-msgstr ""
+msgstr "Situs dukungan"
 
 #: apps/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
@@ -1507,7 +1514,7 @@ msgstr "Pengguna"
 #: apps/addons/templates/addons/mobile/details.html:92 apps/browse/views.py:60
 #: apps/browse/views.py:71 apps/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Unduhan Mingguan"
 
 #: apps/addons/templates/addons/mobile/details.html:99
 #: apps/compat/templates/compat/reporter_detail.html:46
@@ -1736,7 +1743,7 @@ msgstr "Адміністративні інструменти"
 
 #: apps/amo/fields.py:15
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Salah, coba lagi."
 
 #: apps/amo/fields.py:16
 msgid "Error verifying input, please try again."
@@ -1775,11 +1782,11 @@ msgstr "Kamus & Paket Bahasa"
 #. L10n: relative time in the past, like '4 days ago'
 #: apps/amo/helpers.py:429
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} yang lalu"
 
 #: apps/amo/log.py:21
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} dibuat."
 
 #: apps/amo/log.py:29
 msgid "{addon} properties edited."
