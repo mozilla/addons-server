@@ -144,22 +144,22 @@ class TestPasswordResetForm(UserFormBase):
 
 class TestUserDeleteForm(UserFormBase):
 
-    def test_bad_password(self):
+    def test_bad_email(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        data = {'password': 'wrongpassword', 'confirm': True, }
+        data = {'email': 'wrong@example.com', 'confirm': True}
         r = self.client.post('/en-US/firefox/users/delete', data)
-        msg = "Wrong password entered!"
-        self.assertFormError(r, 'form', 'password', msg)
+        msg = "Email must be jbalogh@mozilla.com."
+        self.assertFormError(r, 'form', 'email', msg)
 
     def test_not_confirmed(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        data = {'password': 'password'}
+        data = {'email': 'jbalogh@mozilla.com'}
         r = self.client.post('/en-US/firefox/users/delete', data)
         self.assertFormError(r, 'form', 'confirm', 'This field is required.')
 
     def test_success(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        data = {'password': 'password', 'confirm': True, }
+        data = {'email': 'jbalogh@mozilla.com', 'confirm': True}
         self.client.post('/en-US/firefox/users/delete', data, follow=True)
         # TODO XXX: Bug 593055
         #self.assertContains(r, "Profile Deleted")
@@ -172,7 +172,7 @@ class TestUserDeleteForm(UserFormBase):
         """A developer's attempt to delete one's self must be thwarted."""
         f.return_value = True
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        data = {'password': 'password', 'confirm': True, }
+        data = {'email': 'jbalogh@mozilla.com', 'confirm': True}
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, 'You cannot delete your account')
 

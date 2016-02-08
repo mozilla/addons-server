@@ -45,10 +45,10 @@
           <fieldset>
             <legend>{{ _('Confirm account deletion') }}</legend>
             <ul>
-              <li{% if form.password.errors %} class="error"{% endif %}>
-                <label for="id_password">{{ _('Password') }} {{ required() }}</label>
-                {{ form.password }}
-                {{ form.password.errors }}
+              <li{% if form.email.errors %} class="error"{% endif %}>
+                <label for="id_email">{{ _('Email') }} {{ required() }}</label>
+                {{ form.email }}
+                {{ form.email.errors }}
               </li>
               <li{% if form.confirm.errors %} class="error"{% endif %}>
                 <label for="id_confirm" class="check">
