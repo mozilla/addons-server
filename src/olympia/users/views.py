@@ -151,7 +151,7 @@ def delete(request):
             form = None
             return http.HttpResponseRedirect(reverse('users.login'))
     else:
-        form = forms.UserDeleteForm()
+        form = forms.UserDeleteForm(request=request)
 
     return render(request, 'users/delete.html',
                   {'form': form, 'amouser': amouser})
