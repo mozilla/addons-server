@@ -1490,24 +1490,6 @@ dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
 
 
-class AddonDeviceType(ModelBase):
-    addon = models.ForeignKey(Addon, db_constraint=False)
-    device_type = models.PositiveIntegerField(
-        default=amo.DEVICE_DESKTOP, choices=do_dictsort(amo.DEVICE_TYPES),
-        db_index=True)
-
-    class Meta:
-        db_table = 'addons_devicetypes'
-        unique_together = ('addon', 'device_type')
-
-    def __unicode__(self):
-        return u'%s: %s' % (self.addon.name, self.device.name)
-
-    @property
-    def device(self):
-        return amo.DEVICE_TYPES[self.device_type]
-
-
 @receiver(signals.version_changed, dispatch_uid='version_changed')
 def version_changed(sender, **kw):
     from . import tasks
