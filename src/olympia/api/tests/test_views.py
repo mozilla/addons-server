@@ -451,15 +451,17 @@ class APITest(TestCase):
 
         # For urls with several parameters, we need to use self.assertUrlEqual,
         # as the parameters could be in random order. Dicts aren't ordered!
+        # We need to subtract 7 hours from the modified time since May 3, 2008
+        # is during daylight savings time.
         url_needles = {
             "full": urlparams(
                 '{previews}full/20/20397.png'.format(
                     previews=helpers.user_media_url('previews')),
-                src='api', modified=1209834208),
+                src='api', modified=1209834208 - 7 * 3600),
             "thumbnail": urlparams(
                 '{previews}thumbs/20/20397.png'.format(
                     previews=helpers.user_media_url('previews')),
-                src='api', modified=1209834208),
+                src='api', modified=1209834208 - 7 * 3600),
         }
 
         response = make_call('addon/4664', version=1.5)

@@ -149,8 +149,8 @@ def check_selected(expected, links, selected):
 
 def assert_url_equal(url, other, compare_host=False):
     """Compare url paths and query strings."""
-    parsed = urlparse(url)
-    parsed_other = urlparse(other)
+    parsed = urlparse(unicode(url))
+    parsed_other = urlparse(unicode(other))
     eq_(parsed.path, parsed_other.path)  # Paths are equal.
     eq_(parse_qs(parsed.query),
         parse_qs(parsed_other.query))  # Params are equal.
