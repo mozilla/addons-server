@@ -18,7 +18,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.views import ERROR_NO_CODE
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
 from olympia.amo.pyquery_wrapper import PyQuery as pq
@@ -620,11 +619,6 @@ class TestLogin(UserViewBase):
         res = self.client.post(url, data=self.data)
         text = 'Please enter a correct username and password.'
         assert res.context['form'].errors['__all__'][0].startswith(text)
-
-    def test_login_fxa_error(self):
-        response = self.client.get(urlparams(self.url, error=ERROR_NO_CODE))
-        assert response.status_code == 200
-        assert 'could not be parsed' in response.content
 
     def test_login_no_recaptcha(self):
         res = self.client.post(self.url, data=self.data)
