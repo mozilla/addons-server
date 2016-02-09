@@ -27,7 +27,7 @@ from .models import (
     BlacklistedPassword)
 from .widgets import (
     NotificationsSelectMultiple, RequiredEmailInput, RequiredInputMixin,
-    RequiredTextarea, RequiredTextInput)
+    RequiredTextarea)
 
 
 log = commonware.log.getLogger('z.users')
@@ -65,7 +65,7 @@ class PasswordMixin:
 
 
 class AuthenticationForm(auth_forms.AuthenticationForm):
-    username = forms.CharField(max_length=75, widget=RequiredTextInput)
+    username = forms.CharField(max_length=75, widget=RequiredEmailInput)
     password = forms.CharField(max_length=255,
                                min_length=PasswordMixin.min_length,
                                error_messages=PasswordMixin.error_msg,
