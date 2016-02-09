@@ -2,8 +2,8 @@ import re
 
 from django.core import exceptions
 from django.forms import fields
+from django.utils.translation import ugettext as _
 
-from tower import ugettext as _
 from nobot.fields import HumanCaptchaField
 
 from olympia.amo.widgets import ColorWidget
