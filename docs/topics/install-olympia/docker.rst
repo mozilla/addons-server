@@ -41,7 +41,7 @@ Next once you have docker up and running follow these steps
 on your host machine::
 
     git clone git://github.com/mozilla/addons-server.git
-    cd olympia
+    cd addons-server
     pip install docker-compose
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     docker-compose up -d
