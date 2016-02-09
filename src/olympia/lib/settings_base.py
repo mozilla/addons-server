@@ -294,6 +294,7 @@ def JINJA_CONFIG():
             'olympia.amo.ext.cache',
             'jinja2.ext.i18n',
             'puente.ext.i18n',
+            'waffle.jinja.WaffleExtension',
             'jinja2.ext.do',
             'jinja2.ext.with_',
             'jinja2.ext.loopcontrols'
