@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
+from django.utils.html import format_html
 
 from rest_framework import generics
 from rest_framework.response import Response
@@ -108,6 +109,15 @@ def login_user(request, user, identity):
     login(request, user)
 
 
+def fxa_error_message(message):
+    login_help_url = (
+        'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
+    return format_html(
+        u'{error} <a href="{url}" target="_blank">{help_text}</a>',
+        url=login_help_url, help_text=_(u'Need help?'),
+        error=message)
+
+
 def render_error(request, error, next_path=None, format=None):
     if format == 'json':
         status = ERROR_STATUSES.get(error, 422)
@@ -115,8 +125,15 @@ def render_error(request, error, next_path=None, format=None):
     else:
         if not is_safe_url(next_path):
             next_path = None
+        messages.error(
+            request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
+            extra_tags='fxa')
+        if request.user.is_authenticated():
+            redirect_view = 'users.migrate'
+        else:
+            redirect_view = 'users.login'
         return HttpResponseRedirect(
-            urlparams(reverse('users.login'), error=error, to=next_path))
+            urlparams(reverse(redirect_view), to=next_path))
 
 
 def parse_next_path(state_parts):

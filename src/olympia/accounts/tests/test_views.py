@@ -1,9 +1,8 @@
 import base64
 
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
-from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.urlresolvers import resolve, reverse
-from django.test import TestCase
 from django.test.utils import override_settings
 
 import mock
@@ -13,7 +12,7 @@ from rest_framework.test import APIRequestFactory, APITestCase
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, InitializeSessionMixin)
+    assert_url_equal, create_switch, InitializeSessionMixin, TestCase)
 from olympia.api.tests.utils import APIAuthTestCase
 from olympia.users.models import UserProfile
 
@@ -62,9 +61,7 @@ class TestLoginUser(TestCase):
 
     def setUp(self):
         self.request = APIRequestFactory().get('/login')
-        setattr(self.request, 'session', 'session')
-        messages = FallbackStorage(self.request)
-        setattr(self.request, '_messages', messages)
+        self.enable_messages(self.request)
         self.user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='9001')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
@@ -126,38 +123,67 @@ class TestFindUser(TestCase):
 class TestRenderErrorHTML(TestCase):
 
     def make_request(self):
-        return APIRequestFactory().get(reverse('accounts.authenticate'))
+        request = APIRequestFactory().get(reverse('accounts.authenticate'))
+        request.user = AnonymousUser()
+        return self.enable_messages(request)
 
-    def login_error_url(self, **params):
+    def login_url(self, **params):
         return urlparams(reverse('users.login'), **params)
 
-    def render_error(self, error, next_path=None):
+    def migrate_url(self, **params):
+        return absolutify(urlparams(reverse('users.migrate'), **params))
+
+    def render_error(self, request, error, next_path=None):
         return views.render_error(
-            self.make_request(), error, format='html', next_path=next_path)
+            request, error, format='html', next_path=next_path)
 
     def test_error_no_code_with_safe_path(self):
+        request = self.make_request()
+        assert len(get_messages(request)) == 0
         response = self.render_error(
-            views.ERROR_NO_CODE, next_path='/over/here')
+            request, views.ERROR_NO_CODE, next_path='/over/here')
         assert response.status_code == 302
-        assert_url_equal(
-            response['location'],
-            self.login_error_url(to='/over/here', error=views.ERROR_NO_CODE))
+        messages = get_messages(request)
+        assert len(messages) == 1
+        assert 'could not be parsed' in next(iter(messages)).message
+        assert_url_equal(response['location'], self.login_url(to='/over/here'))
 
     def test_error_no_profile_with_no_path(self):
-        response = self.render_error(views.ERROR_NO_PROFILE)
+        request = self.make_request()
+        assert len(get_messages(request)) == 0
+        response = self.render_error(request, views.ERROR_NO_PROFILE)
         assert response.status_code == 302
-        assert_url_equal(
-            response['location'],
-            self.login_error_url(error=views.ERROR_NO_PROFILE))
+        messages = get_messages(request)
+        assert len(messages) == 1
+        assert ('Firefox Account could not be found'
+                in next(iter(messages)).message)
+        assert_url_equal(response['location'], self.login_url())
 
     def test_error_state_mismatch_with_unsafe_path(self):
+        request = self.make_request()
+        assert len(get_messages(request)) == 0
         response = self.render_error(
-            views.ERROR_STATE_MISMATCH,
+            request, views.ERROR_STATE_MISMATCH,
             next_path='https://www.google.com/')
         assert response.status_code == 302
+        messages = get_messages(request)
+        assert len(messages) == 1
+        assert 'could not be logged in' in next(iter(messages)).message
+        assert_url_equal(response['location'], self.login_url())
+
+    def test_error_no_code_with_safe_path_logged_in(self):
+        request = self.make_request()
+        request.user = UserProfile()
+        assert len(get_messages(request)) == 0
+        response = self.render_error(
+            request, views.ERROR_NO_CODE, next_path='/over/here')
+        assert response.status_code == 302
+        messages = get_messages(request)
+        assert len(messages) == 1
+        assert 'could not be parsed' in next(iter(messages)).message
         assert_url_equal(
             response['location'],
-            self.login_error_url(error=views.ERROR_STATE_MISMATCH))
+            self.migrate_url(to='/over/here'))
 
 
 class TestRenderErrorJSON(TestCase):
@@ -591,15 +617,15 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.login_user = self.patch('olympia.accounts.views.login_user')
         self.register_user = self.patch('olympia.accounts.views.register_user')
 
-    def login_error_url(self, **params):
+    def login_url(self, **params):
         return absolutify(urlparams(reverse('users.login'), **params))
 
     def test_no_code_provided(self):
         response = self.client.get(self.url)
         assert response.status_code == 302
-        assert_url_equal(
-            response['location'],
-            self.login_error_url(error=views.ERROR_NO_CODE))
+        # Messages seem to appear in the context for some reason.
+        assert 'could not be parsed' in response.context['title']
+        assert_url_equal(response['location'], self.login_url())
         assert not self.login_user.called
         assert not self.register_user.called
 
@@ -607,9 +633,8 @@ class TestAuthenticateView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'foo', 'state': '9f865be0'})
         assert response.status_code == 302
-        assert_url_equal(
-            response['location'],
-            self.login_error_url(error=views.ERROR_STATE_MISMATCH))
+        assert 'could not be logged in' in response.context['title']
+        assert_url_equal(response['location'], self.login_url())
         assert not self.login_user.called
         assert not self.register_user.called
 
@@ -618,9 +643,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         assert response.status_code == 302
-        assert_url_equal(
-            response['location'],
-            self.login_error_url(error=views.ERROR_NO_PROFILE))
+        assert ('Your Firefox Account could not be found'
+                in response.context['title'])
+        assert_url_equal(response['location'], self.login_url())
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called
