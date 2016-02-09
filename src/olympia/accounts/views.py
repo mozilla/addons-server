@@ -44,14 +44,14 @@ ERROR_STATUSES = {
 }
 LOGIN_ERROR_MESSAGES = {
     ERROR_NO_CODE:
-        _('Your log in attempt could not be parsed. Please try again.'),
+        _(u'Your log in attempt could not be parsed. Please try again.'),
     ERROR_NO_PROFILE:
-        _('Your Firefox Account could not be found. Please try again.'),
-    ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
+        _(u'Your Firefox Account could not be found. Please try again.'),
+    ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
     ERROR_USER_MIGRATED:
-        _('Your account has already been migrated to Firefox Accounts.'),
+        _(u'Your account has already been migrated to Firefox Accounts.'),
     ERROR_USER_MISMATCH:
-        _('Your Firefox Account already exists on this site.'),
+        _(u'Your Firefox Account already exists on this site.'),
 }
 
 
