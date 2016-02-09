@@ -67,9 +67,9 @@ class TestUserProfile(TestCase):
         eq_(u3.welcome_name, '')
 
     def test_welcome_name_anonymous(self):
-        user = UserProfile()
-        user.anonymize_username()
-        assert user.welcome_name == 'Anonymous'
+        user = UserProfile(
+            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0')
+        assert user.welcome_name == 'Anonymous user bb4f3c'
 
     def test_welcome_name_anonymous_with_display(self):
         user = UserProfile(display_name='John Connor')
