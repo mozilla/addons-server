@@ -368,6 +368,9 @@ class UserProfile(OnChangeMixin, ModelBase,
     def has_anonymous_username(self):
         return re.match('^anonymous-[0-9a-f]{32}$', self.username)
 
+    def has_anonymous_display_name(self):
+        return not self.display_name and self.has_anonymous_username()
+
     @amo.cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
