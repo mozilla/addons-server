@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-07 17:46+0000\n"
+"PO-Revision-Date: 2016-02-09 16:21+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -979,6 +979,8 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
+"Pengaya ini tidak kompatibel dengan versi %(app)s Anda karena hal berikut "
+"ini:"
 
 #: apps/addons/templates/addons/popups.html:141
 #: apps/addons/templates/addons/popups.html:151
@@ -1150,7 +1152,7 @@ msgstr "Tag"
 #: apps/addons/templates/addons/impala/addon_hovercard.html:7
 #: apps/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Ikon untuk {0}"
 
 #: apps/addons/templates/addons/impala/addon_hovercard.html:34
 #: apps/addons/templates/addons/impala/featured_grid.html:26
@@ -1215,7 +1217,7 @@ msgstr ""
 
 #: apps/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Bagian dari Koleksi"
 
 #: apps/addons/templates/addons/impala/details-more.html:65
 msgid "Other add-ons by %(author)s"
@@ -1534,7 +1536,7 @@ msgstr "Tampilkan Semua Versi"
 
 #: apps/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "Lihat Versi Pengembangan"
 
 #: apps/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
@@ -1794,11 +1796,11 @@ msgstr ""
 
 #: apps/amo/log.py:35
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Deskripsi {addon} diedit."
 
 #: apps/amo/log.py:41
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategori diedit untuk {addon}."
 
 #: apps/amo/log.py:47
 msgid "{0.name} ({1}) added to {addon}."
@@ -1811,15 +1813,15 @@ msgstr ""
 
 #: apps/amo/log.py:62
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Kontribusi untuk {addon}."
 
 #: apps/amo/log.py:67 apps/amo/log.py:417
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} dinonaktifkan."
 
 #: apps/amo/log.py:73
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} diaktifkan."
 
 #: apps/amo/log.py:80
 msgid "Stats set public for {addon}."
@@ -1836,15 +1838,15 @@ msgstr ""
 
 #: apps/amo/log.py:101
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Pratinjau ditambahkan ke {addon}."
 
 #: apps/amo/log.py:107
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Pratinjau diedit untuk {addon}."
 
 #: apps/amo/log.py:113
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Pratinjau dihapus dari {addon}."
 
 #: apps/amo/log.py:119
 msgid "{version} added to {addon}."
@@ -1881,7 +1883,7 @@ msgstr ""
 
 #: apps/amo/log.py:179
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} ditolak."
 
 #: apps/amo/log.py:189
 msgid "{addon} {version} retained."
@@ -1905,7 +1907,7 @@ msgstr ""
 
 #: apps/amo/log.py:210
 msgid "Review requested"
-msgstr ""
+msgstr "Ulasan diminta"
 
 #: apps/amo/log.py:218
 msgid "{addon} {version} more information requested."
@@ -1925,7 +1927,7 @@ msgstr ""
 
 #: apps/amo/log.py:235
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komentar untuk {addon} {version}."
 
 #: apps/amo/log.py:236
 #: apps/bandwagon/templates/bandwagon/includes/addon_selector.html:19
@@ -1933,15 +1935,15 @@ msgstr ""
 #: apps/editors/helpers.py:512
 #: apps/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: apps/amo/log.py:245
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} ditambahkan ke {addon}."
 
 #: apps/amo/log.py:251
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} dihapus dari {addon}."
 
 #: apps/amo/log.py:257
 msgid "{addon} added to {collection}."
@@ -1949,25 +1951,25 @@ msgstr "{addon} ditambahkan ke {collection}."
 
 #: apps/amo/log.py:263
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} dihapus dari {collection}."
 
 #: apps/amo/log.py:269
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} untuk {addon} ditulis."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:277
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} diunggulkan di {0}."
 
 #. L10n: {0} is a category name.
 #: apps/amo/log.py:284
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} tidak lagi diunggulkan di {0}."
 
 #: apps/amo/log.py:289
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} sekarang diunggulkan."
 
 #: apps/amo/log.py:295
 msgid "{addon} is no longer featured."
@@ -1993,7 +1995,7 @@ msgstr ""
 
 #: apps/amo/log.py:330
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Ikon {addon} diganti."
 
 #: apps/amo/log.py:336
 msgid "{review} for {addon} approved."
@@ -2025,7 +2027,7 @@ msgstr ""
 
 #: apps/amo/log.py:369
 msgid "Password changed."
-msgstr ""
+msgstr "Kata sandi diganti."
 
 #: apps/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
@@ -2045,15 +2047,15 @@ msgstr ""
 
 #: apps/amo/log.py:394
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} dibeli."
 
 #: apps/amo/log.py:399
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} dipasang."
 
 #: apps/amo/log.py:404
 msgid "Account updated."
-msgstr ""
+msgstr "Akun diperbarui."
 
 #: apps/amo/log.py:409
 msgid "Escalation cleared for {addon}."
@@ -2065,7 +2067,7 @@ msgstr ""
 
 #: apps/amo/log.py:418
 msgid "App disabled"
-msgstr ""
+msgstr "Aplikasi dinonaktifkan"
 
 #: apps/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2117,11 +2119,11 @@ msgstr ""
 
 #: apps/amo/log.py:487
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Dihapus: {1}."
 
 #: apps/amo/log.py:493
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Pengguna {user} diedit, alasan: {1}"
 
 #: apps/amo/log.py:499
 msgid "User {user} anonymized."
@@ -2141,7 +2143,7 @@ msgstr ""
 
 #: apps/amo/log.py:524
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} diulas."
 
 #: apps/amo/log.py:530
 msgid "User {0.name} added to {group}."
