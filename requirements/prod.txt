@@ -1,15 +1,15 @@
 -r compiled.txt
 amo-validator==1.10.17
-amqp==1.4.6
+amqp==1.4.9
 anyjson==0.3.3
 argparse==1.2.1
 babel==0.9.6
 basket-client==0.3.7
-billiard==3.3.0.20
+billiard==3.3.0.22
 bleach==1.4
 boto==2.20.0
 cef==0.5
-celery==3.1.18
+celery==3.1.20
 celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==2.1.1
@@ -48,7 +48,7 @@ html5lib==0.999
 httplib2==0.8.0
 importlib-no-failure==1.0.2
 jingo==0.7
-kombu==3.0.26
+kombu==3.0.33
 heka-py==0.30.3
 heka-py-cef==0.3.1
 heka-py-raven==0.6
