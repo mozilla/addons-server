@@ -350,11 +350,18 @@ class UserProfile(OnChangeMixin, ModelBase,
         if self.display_name:
             return smart_unicode(self.display_name)
         elif self.has_anonymous_username():
-            return _('Anonymous')
+            # L10n: {id} will be something like "13ad6a", just a random number
+            # to differentiate this user from other anonymous users.
+            return _('Anonymous user {id}').format(
+                id=self._anonymous_username_id())
         else:
             return smart_unicode(self.username)
 
     welcome_name = name
+
+    def _anonymous_username_id(self):
+        if self.has_anonymous_username():
+            return self.username.split('-')[1][:6]
 
     def anonymize_username(self):
         """Set an anonymous username."""
