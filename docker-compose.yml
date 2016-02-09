@@ -1,5 +1,5 @@
 worker: &worker
-  image: addons/olympia
+  image: addons/addons-server
   command: supervisord -n -c /code/docker/supervisor-celery.conf
   entrypoint: ./scripts/start-docker.sh
   volumes:
