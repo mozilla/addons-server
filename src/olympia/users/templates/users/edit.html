@@ -17,7 +17,7 @@ data-default-locale="{{ request.LANG|lower }}"
 <div id="user_edit" class="primary prettyform grid" role="main">
   <form method="post" class="user-input island"
         enctype="multipart/form-data">
-    {% set is_fxa_user = switch_is_active('fxa-auth') and user.source == 'fxa' %}
+    {% set is_fxa_user = switch_is_active('fxa-auth') and user.fxa_migrated() %}
     {{ csrf() }}
     <div id="user-edit" class="tab-wrapper">
       <div id="user-account" class="tab-panel">
@@ -35,8 +35,14 @@ data-default-locale="{{ request.LANG|lower }}"
               {{ form.username.errors }}
             </li>
             <li{% if form.email.errors %} class="error"{% endif %}>
-              <label for="id_email">{{ _('Email Address') }} {{ required() }}</label>
+              <label for="id_email">
+                {{ _('Email Address') }}
+                {% if not is_fxa_user %}{{ required() }}{% endif %}
+              </label>
               {{ form.email }}
+              {% if form.email.help_text %}
+                <small class="note">{{ form.email.help_text }}</small>
+              {% endif %}
               {{ form.email.errors }}
             </li>
             <li>

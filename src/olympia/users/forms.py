@@ -15,6 +15,7 @@ import happyforms
 from tower import ugettext as _, ugettext_lazy as _lazy
 
 from olympia import amo
+from olympia.accounts.views import fxa_error_message
 from olympia.amo.fields import ReCaptchaField
 from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
@@ -395,6 +396,14 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             if not self.instance.is_developer:
                 choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
 
+            if self.instance.fxa_migrated():
+                self.fields['email'].required = False
+                self.fields['email'].widget = forms.EmailInput(
+                    attrs={'readonly': 'readonly'})
+                self.fields['email'].help_text = fxa_error_message(
+                    _(u'Firefox Accounts users cannot currently change their '
+                      u'email address.'))
+
             # Append a "NEW" message to new notification options.
             saved = self.instance.notifications.values_list('notification_id',
                                                             flat=True)
@@ -432,6 +441,16 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         super(UserEditForm, self).clean()
         return data
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if self.instance.fxa_migrated():
+            if not email or email == self.instance.email:
+                return self.instance.email
+            else:
+                raise forms.ValidationError(_(u'Email cannot be changed.'))
+        else:
+            return email
 
     def clean_photo(self):
         photo = self.cleaned_data['photo']
