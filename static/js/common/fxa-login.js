@@ -1,9 +1,5 @@
 (function() {
     var config = $('body').data('fxa-config');
-    var fxaClient = new FxaRelierClient(config.clientId, {
-        contentHost: config.contentHost,
-        oauthHost: config.oauthHost,
-    });
 
     function nextPath() {
         var to = new Uri(location).getQueryParamValue('to');
@@ -35,23 +31,24 @@
     function fxaLogin(opts) {
         opts = opts || {};
         var authConfig = {
+            action:  'signin',
+            client_id: config.clientId,
             email: opts.email || config.email,
             state: config.state + ':' + urlsafe(btoa(nextPath())),
             redirectUri: config.redirectUrl,
             scope: config.scope,
         };
-        if (opts.signUp) {
-            console.log('[FxA] Starting register');
-            return fxaClient.auth.signUp(authConfig);
-        } else {
-            console.log('[FxA] Starting login');
-            return fxaClient.auth.signIn(authConfig);
+        if (opts.migration) {
+            authConfig.migration = 'amo';
         }
+        var url = config.oauthHost + '/authorization?' + $.param(authConfig);
+        console.log('[FxA] Starting login', url);
+        location.href = url;
     }
 
     $('body').on('click', '.fxa-login', function(e) {
         e.preventDefault();
-        fxaLogin();
+        fxaLogin({migration: true});
     });
 
     function showLoginForm($form) {
