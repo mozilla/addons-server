@@ -26,8 +26,8 @@ from .models import (
     UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain,
     BlacklistedPassword)
 from .widgets import (
-    NotificationsSelectMultiple, RequiredEmailInput, RequiredInputMixin,
-    RequiredTextarea)
+    NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
+    RequiredInputMixin, RequiredTextarea)
 
 
 log = commonware.log.getLogger('z.users')
@@ -217,19 +217,21 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
 
 
 class UserDeleteForm(forms.Form):
-    password = forms.CharField(max_length=255, required=True,
-                               widget=forms.PasswordInput(render_value=False))
-    confirm = forms.BooleanField(required=True)
+    email = forms.CharField(max_length=255, required=True,
+                            widget=RequiredEmailInput)
+    confirm = forms.BooleanField(required=True, widget=RequiredCheckboxInput)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(UserDeleteForm, self).__init__(*args, **kwargs)
+        self.fields['email'].widget.attrs['placeholder'] = (
+            self.request.user.email)
 
-    def clean_password(self):
-        data = self.cleaned_data
-        amouser = self.request.user
-        if not amouser.check_password(data["password"]):
-            raise forms.ValidationError(_("Wrong password entered!"))
+    def clean_email(self):
+        user_email = self.request.user.email
+        if not user_email == self.cleaned_data['email']:
+            raise forms.ValidationError(_('Email must be {email}.').format(
+                email=user_email))
 
     def clean(self):
         amouser = self.request.user
