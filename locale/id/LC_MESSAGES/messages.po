@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-03 23:15+0000\n"
-"PO-Revision-Date: 2016-02-09 16:21+0000\n"
+"PO-Revision-Date: 2016-02-10 03:22+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2111,7 +2111,7 @@ msgstr ""
 
 #: apps/amo/log.py:475
 msgid "Created: {0}."
-msgstr ""
+msgstr "Dibuat: {0}."
 
 #: apps/amo/log.py:481
 msgid "Edited field: {2} set to: {0}."
@@ -2139,7 +2139,7 @@ msgstr ""
 
 #: apps/amo/log.py:518
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} untuk {addon} diperbarui."
 
 #: apps/amo/log.py:524
 msgid "{addon} reviewed."
