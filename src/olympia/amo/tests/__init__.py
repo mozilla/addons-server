@@ -13,6 +13,7 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
 from django.conf import settings
+from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.forms.fields import Field
@@ -558,6 +559,12 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
     def assertUrlEqual(self, url, other, compare_host=False):
         """Compare url paths and query strings."""
         assert_url_equal(url, other, compare_host)
+
+    def enable_messages(self, request):
+        setattr(request, 'session', 'session')
+        messages = FallbackStorage(request)
+        setattr(request, '_messages', messages)
+        return request
 
 
 class AMOPaths(object):
