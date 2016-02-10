@@ -2,16 +2,16 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-COMPOSE_PROJECT_NAME?=olympia
+COMPOSE_PROJECT_NAME?=addonsserver
 DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
 UNAME_S := $(shell uname -s)
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
-	@echo "  shell             to connect to a running olympia docker shell"
-	@echo "  debug             to connect to a running olympia docker for debugging"
-	@echo "  make              to connect to a running olympia docker and run make ARGS"
+	@echo "  shell             to connect to a running addons-server docker shell"
+	@echo "  debug             to connect to a running addons-server docker for debugging"
+	@echo "  make              to connect to a running addons-server docker and run make ARGS"
 	@echo "  docs              to builds the docs for Zamboni"
 	@echo "  test              to run all the test suite"
 	@echo "  test_force_db     to run all the test suite with a new database"
