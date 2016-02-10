@@ -348,6 +348,17 @@ class TestMeasureValidationTime(TestValidator):
 
         assert 'devhub.validation_results_processed_per_mb' not in statsd_calls
 
+    def test_ignore_missing_upload_paths_for_now(self):
+        with mock.patch('olympia.devhub.tasks.storage.exists') as mock_exists:
+            mock_exists.return_value = False
+            with self.statsd_timing_mock() as statsd_calls:
+                self.handle_upload_validation_result()
+
+        assert 'devhub.validation_results_processed' in statsd_calls
+        assert 'devhub.validation_results_processed_per_mb' not in statsd_calls
+        assert ('devhub.validation_results_processed_under_1mb' not in
+                statsd_calls)
+
 
 class TestTrackValidatorStats(TestCase):
 
