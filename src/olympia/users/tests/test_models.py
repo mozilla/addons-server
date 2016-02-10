@@ -67,14 +67,50 @@ class TestUserProfile(TestCase):
         eq_(u3.welcome_name, '')
 
     def test_welcome_name_anonymous(self):
-        user = UserProfile()
-        user.anonymize_username()
-        assert user.welcome_name == 'Anonymous'
+        user = UserProfile(
+            username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0')
+        assert user.welcome_name == 'Anonymous user bb4f3c'
 
     def test_welcome_name_anonymous_with_display(self):
-        user = UserProfile(
-            username='anonymous-foo', display_name='John Connor')
+        user = UserProfile(display_name='John Connor')
+        user.anonymize_username()
         assert user.welcome_name == 'John Connor'
+
+    def test_has_anonymous_username_no_names(self):
+        user = UserProfile(display_name=None)
+        user.anonymize_username()
+        assert user.has_anonymous_username()
+
+    def test_has_anonymous_username_username_set(self):
+        user = UserProfile(username='bob', display_name=None)
+        assert not user.has_anonymous_username()
+
+    def test_has_anonymous_username_display_name_set(self):
+        user = UserProfile(display_name='Bob Bobbertson')
+        user.anonymize_username()
+        assert user.has_anonymous_username()
+
+    def test_has_anonymous_username_both_names_set(self):
+        user = UserProfile(username='bob', display_name='Bob Bobbertson')
+        assert not user.has_anonymous_username()
+
+    def test_has_anonymous_display_name_no_names(self):
+        user = UserProfile(display_name=None)
+        user.anonymize_username()
+        assert user.has_anonymous_display_name()
+
+    def test_has_anonymous_display_name_username_set(self):
+        user = UserProfile(username='bob', display_name=None)
+        assert not user.has_anonymous_display_name()
+
+    def test_has_anonymous_display_name_display_name_set(self):
+        user = UserProfile(display_name='Bob Bobbertson')
+        user.anonymize_username()
+        assert not user.has_anonymous_display_name()
+
+    def test_has_anonymous_display_name_both_names_set(self):
+        user = UserProfile(username='bob', display_name='Bob Bobbertson')
+        assert not user.has_anonymous_display_name()
 
     def test_add_admin_powers(self):
         u = UserProfile.objects.get(username='jbalogh')
