@@ -18,7 +18,7 @@
   {% endif %}
   <h2>{{ _('Log In') }}</h2>
   <section id="content">
-    <form method="post" class="form-mobile featured-inner object-lead user-input">
+    <form method="post" class="form-mobile featured-inner object-lead user-input {% if login_source_form %}login-source-form{% else %}login-form{% endif %}">
       {{ csrf() }}
       <fieldset>
         <ul>
@@ -27,12 +27,12 @@
             {{ form.username }}
             {{ form.username.errors }}
           </li>
-          <li>
+          <li class="login-field">
             <label for="id_password">{{ _('Password') }}</label>
             {{ form.password }}
             {{ form.password.errors }}
           </li>
-          <li>
+          <li class="login-field">
             <label for="id_rememberme" class="check">
               {{ form.rememberme }}
               {{ _('Remember me on this device') }}
@@ -47,7 +47,8 @@
         </ul>
       </fieldset>
       <div class="fm-control">
-        <button id="login-submit" class="button">{{ _('Log in') }}</button>
+        <button id="login-submit" class="button login-button">{{ _('Log in') }}</button>
+        <button class="login-source-button" type="submit">{{ _('Continue') }}</button>
       </div>
     </form>
   </section>

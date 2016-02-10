@@ -1,5 +1,5 @@
 <form method="post" action="{{ action }}"
-      class="{% if is_ajax %}ajax-submit {% endif %}listing-footer{% if login_source_form %} login-source-form{% else %} login-form{% endif %}">
+      class="{% if is_ajax %}ajax-submit {% endif %}listing-footer {% if login_source_form %}login-source-form{% else %}login-form{% endif %}">
   {{ csrf() }}
   {% if form.non_field_errors() %}
       <div class="notification-box error">

@@ -1,4 +1,8 @@
-(function() {
+if ($('body').data('fxa-auth')) {
+    enableFxALogin();
+}
+
+function enableFxALogin() {
     var config = $('body').data('fxa-config');
 
     function nextPath() {
@@ -84,4 +88,4 @@
             showLoginSourceForm($form);
         }
     });
-})();
+}

@@ -1,0 +1,11 @@
+{% extends "mobile/base.html" %}
+
+{% block title %}{{ page_title(_('Migrate to Firefox Accounts')) }}{% endblock %}
+
+{% block page %}
+
+<div class="primary fxa-migration-prompt" role="main">
+  <h2>{{ _('Migrate to Firefox Accounts') }}</h2>
+  {% include 'users/fxa_migration_prompt_content.html' %}
+</div>
+{% endblock page %}
