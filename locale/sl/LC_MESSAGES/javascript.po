@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"POT-Creation-Date: 2016-02-10 17:04+0000\n"
 "PO-Revision-Date: 2016-01-21 14:13+0000\n"
 "Last-Translator: Marko <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -178,7 +178,7 @@ msgstr "Slike morajo biti PNG ali JPG."
 msgid "Videos must be in WebM."
 msgstr "Videoposnetki morajo biti WebM."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Sledi tej zbirki"
 
@@ -904,51 +904,51 @@ msgstr "Dodaj med priljubljene"
 msgid "Remove from Favorites"
 msgstr "Odstrani iz priljubljenih"
 
-#: static/js/zamboni/collections.js:301
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "V čakanju"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "Dodaj komentar"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "Komentar"
 
-#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "Odstrani ta dodatek iz zbirke"
 
-#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Odstrani"
 
-#: static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "Odstrani tega uporabnika kot sodelavca"
 
-#: static/js/zamboni/collections.js:344
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "Potreben je elektronski naslov."
 
-#: static/js/zamboni/collections.js:362
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "Samega sebe ne morete dodati kot sodelavca."
 
-#: static/js/zamboni/collections.js:364
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "Tega uporabnika ste že dodali."
 
-#: static/js/zamboni/collections.js:571
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "Dodaj med priljubljene"
 
-#: static/js/zamboni/collections.js:575
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "Odstrani iz priljubljenih"
 
-#: static/js/zamboni/collections.js:602
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "Nehaj slediti"
 

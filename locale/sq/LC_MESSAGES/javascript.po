@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"POT-Creation-Date: 2016-02-10 17:04+0000\n"
 "PO-Revision-Date: 2016-01-23 11:33+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -171,7 +171,7 @@ msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Ndiqe këtë Koleksion"
 
@@ -893,51 +893,51 @@ msgstr "Shtoje te Të parapëlqyerit"
 msgid "Remove from Favorites"
 msgstr "Hiqe prej Të parapëlqyerve"
 
-#: static/js/zamboni/collections.js:301
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "Në pritje"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "Shtoni një koment"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "Koment"
 
-#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "Hiqe këtë shtesë prej koleksionit"
 
-#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Hiqe"
 
-#: static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "Hiqe këtë përdorues si kontribues"
 
-#: static/js/zamboni/collections.js:344
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "Lypset një adresë email."
 
-#: static/js/zamboni/collections.js:362
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "Nuk mund të shtoni vetveten si kontribues."
 
-#: static/js/zamboni/collections.js:364
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "E keni shtuar një herë atë përdorues."
 
-#: static/js/zamboni/collections.js:571
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "Shtojeni te të parapëlqyerit"
 
-#: static/js/zamboni/collections.js:575
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "Hiqe prej të parapëlqyerve"
 
-#: static/js/zamboni/collections.js:602
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "Resht së ndjekuri"
 

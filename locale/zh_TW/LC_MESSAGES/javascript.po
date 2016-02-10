@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"POT-Creation-Date: 2016-02-10 17:04+0000\n"
 "PO-Revision-Date: 2016-01-26 01:48+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgstr "圖片必須是 PNG 或 JPG 格式。"
 msgid "Videos must be in WebM."
 msgstr "影片必須為 WebM 格式。"
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "追蹤這個收藏集"
 
@@ -881,51 +881,51 @@ msgstr "加入至我的最愛"
 msgid "Remove from Favorites"
 msgstr "從我的最愛中移除"
 
-#: static/js/zamboni/collections.js:301
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "擱置"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "新增一個意見"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "意見"
 
-#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "從收藏集中移除此附加元件"
 
-#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "移除"
 
-#: static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "剝奪這位使用者的貢獻者資格"
 
-#: static/js/zamboni/collections.js:344
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "必須輸入電子郵件地址。"
 
-#: static/js/zamboni/collections.js:362
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "您不能新增自己為貢獻者。"
 
-#: static/js/zamboni/collections.js:364
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "您已經新增該使用者。"
 
-#: static/js/zamboni/collections.js:571
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "加入至我的最愛"
 
-#: static/js/zamboni/collections.js:575
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "從我的最愛移除"
 
-#: static/js/zamboni/collections.js:602
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "停止追蹤"
 

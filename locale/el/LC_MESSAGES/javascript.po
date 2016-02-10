@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"POT-Creation-Date: 2016-02-10 17:04+0000\n"
 "PO-Revision-Date: 2015-09-21 10:44+0000\n"
 "Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -169,7 +169,7 @@ msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε J
 msgid "Videos must be in WebM."
 msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Παρακολούθηση της συλλογής"
 
@@ -891,51 +891,51 @@ msgstr "Προσθήκη στις αγαπημένες"
 msgid "Remove from Favorites"
 msgstr "Αφαίρεση απ' τις αγαπημένες"
 
-#: static/js/zamboni/collections.js:301
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "Σε αναμονή"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "Προσθήκη σχολίου"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "Αφαίρεση αυτού του πρόσθετου από τη συλλογή"
 
-#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "Αφαίρεση χρήστη από τους συντελεστές"
 
-#: static/js/zamboni/collections.js:344
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "Απαιτείται διεύθυνση email."
 
-#: static/js/zamboni/collections.js:362
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "Δε μπορείτε να προσθέσετε τον εαυτό σας στους συνεισφέροντες."
 
-#: static/js/zamboni/collections.js:364
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "Έχετε ήδη προσθέσει αυτόν τον χρήστη."
 
-#: static/js/zamboni/collections.js:571
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "Προσθήκη στα αγαπημένα"
 
-#: static/js/zamboni/collections.js:575
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "Αφαίρεση απ' τα αγαπημένα"
 
-#: static/js/zamboni/collections.js:602
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "Διακοπή παρακολούθησης"
 

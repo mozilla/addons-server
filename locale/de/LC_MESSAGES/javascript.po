@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 23:15+0000\n"
+"POT-Creation-Date: 2016-02-10 17:04+0000\n"
 "PO-Revision-Date: 2016-01-20 20:13+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -170,7 +170,7 @@ msgstr "Grafiken müssen entweder PNG oder JPG sein."
 msgid "Videos must be in WebM."
 msgstr "Videos müssen im WebM-Format sein."
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:593
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Dieser Sammlung folgen"
 
@@ -892,51 +892,51 @@ msgstr "Zu Favoriten hinzufügen"
 msgid "Remove from Favorites"
 msgstr "Aus Favoriten entfernen"
 
-#: static/js/zamboni/collections.js:301
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "Ausstehend"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "Einen Kommentar hinzufügen"
 
-#: static/js/zamboni/collections.js:302
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "Kommentar"
 
-#: static/js/zamboni/collections.js:303
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "Dieses Add-on aus der Sammlung entfernen"
 
-#: static/js/zamboni/collections.js:303 static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Entfernen"
 
-#: static/js/zamboni/collections.js:332
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "Diesen Benutzer als Mitwirkenden entfernen"
 
-#: static/js/zamboni/collections.js:344
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "Eine E-Mail-Adresse ist erforderlich."
 
-#: static/js/zamboni/collections.js:362
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "Sie können sich nicht selbst als Mitwirkenden hinzufügen."
 
-#: static/js/zamboni/collections.js:364
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "Sie haben diesen Benutzer bereits hinzugefügt."
 
-#: static/js/zamboni/collections.js:571
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "Zu Favoriten hinzufügen"
 
-#: static/js/zamboni/collections.js:575
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "Aus Favoriten entfernen"
 
-#: static/js/zamboni/collections.js:602
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "Nicht mehr folgen"
 
