@@ -752,11 +752,12 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
 
 
 @waffle_switch('fxa-auth')
-def migrate(request):
+@mobile_template('users/{mobile/}fxa_migration.html')
+def migrate(request, template=None):
     next_path = request.GET.get('to')
     if not next_path or not is_safe_url(next_path):
         next_path = reverse('home')
     if not request.user.is_authenticated() or request.user.fxa_migrated():
         return redirect(next_path)
     else:
-        return render(request, 'users/fxa_migration.html', {'to': next_path})
+        return render(request, template, {'to': next_path})

@@ -58,6 +58,7 @@
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
         {% if switch_is_active('fxa-auth') %}
+          data-fxa-auth="true"
           data-fxa-config="{{ fxa_config()|json }}"
         {% endif %}
         {% block bodyattrs %}{% endblock %}>
@@ -222,9 +223,6 @@
     {# js #}
     {% block site_js %}
       <script src="{{ cache_buster(url('jsi18n')) }}"></script>
-      {% if switch_is_active('fxa-auth') %}
-        {{ js('fxa') }}
-      {% endif %}
       {{ js('impala') }}
       <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
