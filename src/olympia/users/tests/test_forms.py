@@ -326,6 +326,34 @@ class TestUserEditForm(UserFormBase):
         self.assertFormError(r, 'form', 'email',
                              [u'User profile with this Email already exists.'])
 
+    def test_change_email_fxa_migrated(self):
+        self.user.update(fxa_id='1a2b3c', email='me@example.com')
+        assert self.user.fxa_migrated()
+        response = self.client.post(self.url, {'email': 'noway@example.com'})
+        self.assertFormError(
+            response, 'form', 'email',
+            ['Email cannot be changed.'])
+
+    def test_email_matches_fxa_migrated(self):
+        self.user.update(fxa_id='1a2b3c', email='me@example.com')
+        assert self.user.fxa_migrated()
+        response = self.client.post(self.url, {
+            'email': 'me@example.com',
+            'lang': 'en-US',
+        })
+        assert self.user.reload().email == 'me@example.com'
+        self.assertNoFormErrors(response)
+
+    def test_no_change_email_fxa_migrated(self):
+        self.user.update(fxa_id='1a2b3c', email='me@example.com')
+        assert self.user.fxa_migrated()
+        response = self.client.post(self.url, {
+            'username': 'wat',
+            'lang': 'en-US',
+        })
+        assert self.user.reload().email == 'me@example.com'
+        self.assertNoFormErrors(response)
+
 
 class TestAdminUserEditForm(UserFormBase):
     fixtures = ['base/users']
