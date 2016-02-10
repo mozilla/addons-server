@@ -181,6 +181,13 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
     delta = now_ts - upload_start
     statsd.timing('devhub.validation_results_processed', delta)
 
+    if not storage.exists(upload.path):
+        # TODO: actually fix this so we can get stats. It seems that
+        # the file maybe gets moved but it needs more investigation.
+        log.warning('Scaled upload stats were not tracked. File is '
+                    'missing: {}'.format(upload.path))
+        return
+
     size = Decimal(storage.size(upload.path))
     megabyte = Decimal(1024 * 1024)
 
