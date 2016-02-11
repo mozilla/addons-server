@@ -1171,6 +1171,16 @@ CELERY_ROUTES = {
 }
 
 
+# TODO: once we have a fix for chord_unlock errors (redis result
+# backend?) then we can remove the retries maybe.
+# See https://github.com/mozilla/addons-server/issues/1653
+CELERY_ANNOTATIONS = {
+    'celery.chord_unlock': {
+        'max_retries': 10,
+    }
+}
+
+
 # This is just a place to store these values, you apply them in your
 # task decorator, for example:
 #   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
