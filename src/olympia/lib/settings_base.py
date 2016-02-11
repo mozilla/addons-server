@@ -1048,7 +1048,10 @@ CELERY_ROUTES = {
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
 
     # This is currently used only by validation tasks.
-    'olympia.celery.chord_unlock': {'queue': 'devhub'},
+    # This puts the chord_unlock task on the devhub queue. Which means anything
+    # that uses chord() or group() must also be running in this queue or must
+    # be on a worker that listens to the same queue.
+    'celery.chord_unlock': {'queue': 'devhub'},
     'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
 
     # Videos.
