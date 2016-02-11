@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-10 20:02+0000\n"
+"PO-Revision-Date: 2016-02-11 01:05+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: src/olympia/accounts/views.py:47
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr ""
-"A sua tentativa de iniciar sessão pôde ser analisada. Por favor, tente "
+"A sua tentativa de iniciar sessão não pôde ser analisada. Por favor, tente "
 "novamente."
 
 #: src/olympia/accounts/views.py:49
@@ -1409,7 +1409,7 @@ msgstr "Informação da versão"
 
 #: src/olympia/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
-msgstr "Ver o histórico completo da versão"
+msgstr "Ver o histórico de versões completo"
 
 #: src/olympia/addons/templates/addons/impala/details.html:262
 msgid ""
@@ -1577,7 +1577,7 @@ msgstr "Aprovar / Rejeitar"
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 #: src/olympia/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr "Histórico da análise"
+msgstr "Histórico de revisões"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -7538,7 +7538,7 @@ msgid ""
 "experiences post-install."
 msgstr ""
 "As surpresas podem ser agradáveis em muitas situações, mas elas não são bem-"
-"vindas quando se trata do controle, segurança e privacidade dos "
+"vindas quando se trata do controlo, segurança e privacidade dos "
 "utilizadores. É extremamente importante ser o mais transparente possível ao "
 "enviar um extra para ser alojado neste site. Um utilizador da Mozilla deve "
 "ser capaz de discernir facilmente qual é função do extra e não deve ter "
@@ -10989,43 +10989,43 @@ msgstr "A procurar ficheiro."
 
 #: src/olympia/lib/constants.py:5
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Dirham Emirados Árabes Unidos"
 
 #: src/olympia/lib/constants.py:6
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afegani do Afeganistão"
 
 #: src/olympia/lib/constants.py:7
 msgid "Albania Lek"
-msgstr ""
+msgstr "Lek Albanês"
 
 #: src/olympia/lib/constants.py:8
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Dram Arménio"
 
 #: src/olympia/lib/constants.py:9
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Florim das Antilhas Holandesas"
 
 #: src/olympia/lib/constants.py:10
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Kuanza Angolano"
 
 #: src/olympia/lib/constants.py:11
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Peso Argentino"
 
 #: src/olympia/lib/constants.py:12
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Dólar Australiano"
 
 #: src/olympia/lib/constants.py:13
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Florim de Aruba"
 
 #: src/olympia/lib/constants.py:14
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Novo Manat do Azerbaijão"
 
 #: src/olympia/lib/constants.py:15
 msgid "Bosnia and Herzegovina Convertible Marka"
@@ -12373,12 +12373,12 @@ msgid ""
 "documentation."
 msgstr ""
 "Sim. Muitos programadores preferem alojar os seus próprios extras. No "
-"entanto, alojar os extras nos <a href=\"%(amo_url)s\">Extras da Mozilla</a> "
-"oferece uma exposição muito maior do seu extra devido ao grande volume de "
-"visitantes do site. O <a href=\"%(md_url)s\">mozdev.org</a> oferece "
-"alojamento gratuito de projetos para aplicações e extensões da Mozilla, "
-"oferecendo aos programadores ferramentas de gestão de código-fonte, controle"
-" de versões acompanhamento de bugs e documentação."
+"entanto, alojar os extras no <a href=\"%(amo_url)s\">site de extras da "
+"Mozilla</a> oferece uma exposição muito maior do seu extra devido ao grande "
+"volume de visitantes do site. O <a href=\"%(md_url)s\">mozdev.org</a> "
+"oferece alojamento gratuito de projetos para aplicações e extensões da "
+"Mozilla, oferecendo aos programadores ferramentas de gestão de código-fonte,"
+" controlo de versões acompanhamento de bugs e documentação."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
@@ -14259,7 +14259,7 @@ msgstr "por idioma"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr "por Plataforma"
+msgstr "por plataforma"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
@@ -14349,7 +14349,7 @@ msgstr "Painel de estatísticas :: Extras para {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:30
 msgid "Controls:"
-msgstr "Controles:"
+msgstr "Controlos:"
 
 #: src/olympia/stats/templates/stats/stats.html:33
 msgid "reset zoom"
@@ -14495,7 +14495,7 @@ msgstr "Idiomas de utilizador por data"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr "Uso da plataforma por data"
+msgstr "Utilização da plataforma por data"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -14544,7 +14544,7 @@ msgstr "Análise criadas por data"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr "Descarregar fontes por data"
+msgstr "Fonte das descargas por data"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
@@ -14583,7 +14583,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "EStado do extra por data"
+msgstr "Estado do extra por data"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
@@ -16023,7 +16023,7 @@ msgstr "Avaliação média dos extras do programador"
 
 #: src/olympia/versions/feeds.py:62
 msgid "%s Version History"
-msgstr "%s Histórico da versão"
+msgstr "Histórico de versões de %s"
 
 #: src/olympia/versions/feeds.py:70
 msgid "Version History with Changelogs"
@@ -16109,7 +16109,7 @@ msgstr "Funciona com:"
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html:12
 msgid "Version History"
-msgstr "Histórico da versão"
+msgstr "Histórico de versões"
 
 #: src/olympia/zadmin/forms.py:49
 msgid "Current Max. Version"
