@@ -161,7 +161,10 @@ def validate_file(file_id, hash_, **kw):
                              listed=file_.version.addon.is_listed)
 
 
-@task
+# TODO: the max_retries here is just to mitigate the chord_unlock
+# errors. If we move to a redis result backend then maybe we can
+# go back to default retries.
+@task(max_retries=2)
 @write
 def handle_upload_validation_result(results, upload_pk, annotate=True):
     """Annotates a set of validation results, unless `annotate` is false, and
