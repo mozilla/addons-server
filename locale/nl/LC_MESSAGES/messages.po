@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-11 08:13+0000\n"
+"PO-Revision-Date: 2016-02-11 08:37+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -11150,11 +11150,11 @@ msgstr "Fiji-dollar"
 
 #: src/olympia/lib/constants.py:50
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Falkland-eilanden (Malvinas) Pond"
+msgstr "Falkland-eilanden (Malvinas) pond"
 
 #: src/olympia/lib/constants.py:51
 msgid "United Kingdom Pound"
-msgstr "Britse Pond"
+msgstr "Britse pond"
 
 #: src/olympia/lib/constants.py:52
 msgid "Georgia Lari"
@@ -11482,151 +11482,151 @@ msgstr "Sint-Helena-Pond"
 
 #: src/olympia/lib/constants.py:133
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierra Leone Leone"
 
 #: src/olympia/lib/constants.py:134
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somalische Shilling"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Seborgese Luigino"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Surinaamse Dollar"
 
 #: src/olympia/lib/constants.py:137
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "São Tomé en Príncipese Dobra"
 
 #: src/olympia/lib/constants.py:138
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "El Salvadoraanse Colon"
 
 #: src/olympia/lib/constants.py:139
 msgid "Syria Pound"
-msgstr ""
+msgstr "Syrische Pond"
 
 #: src/olympia/lib/constants.py:140
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Swaziland-Lilangeni"
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Thaise Baht"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Tadzjiekse Somoni"
 
 #: src/olympia/lib/constants.py:143
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Turkmeense Manat"
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Tunesische Dinar"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Tongaanse Pa’anga"
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Turkse Lira"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Trinidad en Tobago-dollar"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvaluaanse Dollar"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Taiwanese Nieuwe Dollar"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tanzaniaanse Shilling"
 
 #: src/olympia/lib/constants.py:151
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Oekraïense Hryvna"
 
 #: src/olympia/lib/constants.py:152
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Oegandese Shilling"
 
 #: src/olympia/lib/constants.py:153
 msgid "United States Dollar"
-msgstr ""
+msgstr "Amerikaanse Dollar"
 
 #: src/olympia/lib/constants.py:154
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Uruguayaanse Peso"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Oezbeekse Som"
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezolaanse Bolivar"
 
 #: src/olympia/lib/constants.py:157
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnamese Dong"
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vanuatuaanse vatu"
 
 #: src/olympia/lib/constants.py:159
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samoaanse tala"
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "CFA-frank (BEAC)"
 
 #: src/olympia/lib/constants.py:161
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Oost-Caribische dollar"
 
 #: src/olympia/lib/constants.py:162
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Speciale trekkingsrechten IMF"
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "CFA-frank (BEACO)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "CFP-frank"
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenitische Rial"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Zuid-Afrikaanse Rand"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Zambiaanse Kwacha"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Zimbabwaanse dollar"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video’s dienen in WebM te zijn."
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -14195,7 +14195,7 @@ msgstr "‘upload’-sleutel in multipart-bestandsgegevens ontbreekt."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versie komt niet overeen met het manifest-bestand."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
@@ -14950,7 +14950,7 @@ msgstr "Nieuw wachtwoord"
 
 #: src/olympia/users/forms.py:233
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mailadres dient {email} te zijn."
 
 #: src/olympia/users/forms.py:261
 msgid "Usernames cannot contain only digits."
@@ -15549,7 +15549,7 @@ msgstr "Aanmelden"
 
 #: src/olympia/users/templates/users/login_form.html:11
 msgid "Need help?"
-msgstr ""
+msgstr "Hulp nodig?"
 
 #: src/olympia/users/templates/users/login_form.html:20
 #: src/olympia/users/templates/users/mobile/login.html:26
