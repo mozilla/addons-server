@@ -2,7 +2,11 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-COMPOSE_PROJECT_NAME?=addonsserver
+# Get the name of the Makefile's directory for the docker container base name.
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
+
+COMPOSE_PROJECT_NAME?=$(shell echo "${current_dir}" | tr -d '-' | tr -d '_')
 DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
 UNAME_S := $(shell uname -s)

@@ -15,5 +15,5 @@ Contents
    :maxdepth: 2
 
    topics/api/index
-   topics/install-olympia/index
+   topics/install/index
    topics/development/index
