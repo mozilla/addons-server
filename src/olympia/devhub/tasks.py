@@ -53,7 +53,10 @@ def validate(file_, listed=None, subtask=None):
         chain = annotator.task
         if subtask is not None:
             chain |= subtask
-        result = chain.delay()
+        # TODO: once we have a fix for chord_unlock errors (redis result
+        # backend?) then we can remove the retries maybe.
+        # See https://github.com/mozilla/addons-server/issues/1653
+        result = chain.apply_async(max_retries=1)
         cache.set(annotator.cache_key, result.task_id, 5 * 60)
         return result
 

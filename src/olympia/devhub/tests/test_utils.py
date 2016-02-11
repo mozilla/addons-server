@@ -649,16 +649,16 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         """Tests that only a single validation task is run for a given file."""
         task = mock.Mock()
         chain.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
+        task.apply_async.return_value = mock.Mock(task_id='42')
 
         assert isinstance(tasks.validate(self.file), mock.Mock)
-        assert task.delay.call_count == 1
+        assert task.apply_async.call_count == 1
 
         assert isinstance(tasks.validate(self.file), AsyncResult)
-        assert task.delay.call_count == 1
+        assert task.apply_async.call_count == 1
 
         assert isinstance(tasks.validate(self.file_1_1), mock.Mock)
-        assert task.delay.call_count == 2
+        assert task.apply_async.call_count == 2
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_run_once_file_upload(self, chain):
@@ -666,13 +666,13 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         upload."""
         task = mock.Mock()
         chain.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
+        task.apply_async.return_value = mock.Mock(task_id='42')
 
         assert isinstance(tasks.validate(self.file_upload), mock.Mock)
-        assert task.delay.call_count == 1
+        assert task.apply_async.call_count == 1
 
         assert isinstance(tasks.validate(self.file_upload), AsyncResult)
-        assert task.delay.call_count == 1
+        assert task.apply_async.call_count == 1
 
     def test_cache_key(self):
         """Tests that the correct cache key is generated for a given object."""
