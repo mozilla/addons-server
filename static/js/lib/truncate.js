@@ -7,7 +7,7 @@ var truncate = (function() {
                 t += text(cn[i]);
             }
         } else {
-            t = node.textContent;
+            t = _.escape(node.textContent);
         }
         if (trim) {
             return t.replace(/^\s+|\s+$/g, "");
