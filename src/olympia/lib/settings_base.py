@@ -1182,7 +1182,7 @@ CELERY_ROUTES = {
 # See https://github.com/mozilla/addons-server/issues/1653
 CELERY_ANNOTATIONS = {
     'celery.chord_unlock': {
-        'max_retries': 10,
+        'max_retries': 3,
     }
 }
 
