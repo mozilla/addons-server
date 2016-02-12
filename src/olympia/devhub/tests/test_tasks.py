@@ -581,7 +581,7 @@ class TestCreateVersionForUpload(TestCase):
         # But the newer one will.
         self.create_version_for_upload(self.addon, newer_upload)
         self.version__from_upload.assert_called_with(
-            newer_upload, self.addon, [amo.PLATFORM_ALL.id])
+            newer_upload, self.addon, [amo.PLATFORM_ALL.id], is_beta=False)
 
     def test_file_passed_all_validations_version_exists(self):
         upload = self.create_upload()
@@ -610,4 +610,16 @@ class TestCreateVersionForUpload(TestCase):
         # version_string.
         self.create_version_for_upload(self.addon, upload)
         self.version__from_upload.assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id])
+            upload, self.addon, [amo.PLATFORM_ALL.id], is_beta=False)
+
+    def test_file_passed_all_validations_beta(self):
+        upload = self.create_upload(version='1.0-beta1')
+        self.create_version_for_upload(self.addon, upload)
+        self.version__from_upload.assert_called_with(
+            upload, self.addon, [amo.PLATFORM_ALL.id], is_beta=True)
+
+    def test_file_passed_all_validations_no_version(self):
+        upload = self.create_upload(version=None)
+        self.create_version_for_upload(self.addon, upload)
+        self.version__from_upload.assert_called_with(
+            upload, self.addon, [amo.PLATFORM_ALL.id], is_beta=False)

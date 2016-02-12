@@ -406,7 +406,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_beta(self):
-        return filter(lambda f: f.status == amo.STATUS_BETA, self.all_files)
+        return any(f for f in self.all_files if f.status == amo.STATUS_BETA)
 
     @property
     def is_lite(self):
