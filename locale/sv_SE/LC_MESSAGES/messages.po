@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-12 07:28+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2016-02-12 16:05+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -11370,11 +11370,11 @@ msgstr "Sudanesiskt Pund"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sweden Krona"
-msgstr "Svenska kronor"
+msgstr "Svensk Krona"
 
 #: src/olympia/lib/constants.py:131
 msgid "Singapore Dollar"
-msgstr "Singaporianska dollar"
+msgstr "Singaporiansk Dollar"
 
 #: src/olympia/lib/constants.py:132
 msgid "Saint Helena Pound"
@@ -11390,7 +11390,7 @@ msgstr "Somalisk Shilling"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Seborga Luigino"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
@@ -11506,7 +11506,7 @@ msgstr "Afrikanska finansiella gemenskapen (BCEAO) Franc"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Comptoirs Français du Pacifique (CFP) Franc"
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
