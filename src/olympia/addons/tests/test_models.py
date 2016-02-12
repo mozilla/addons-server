@@ -2049,6 +2049,31 @@ class TestAddonFromUpload(UploadTest):
         assert addon.guid == 'guid@xpi'
         assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
 
+    def test_old_soft_deleted_addons_and_upload_non_extension(self):
+        """We used to just null out GUIDs on soft deleted addons. This test
+        makes sure we don't fail badly when uploading an add-on which isn't an
+        extension (has no GUID).
+        See https://github.com/mozilla/addons-server/issues/1659."""
+        # Upload a couple of addons so we can pretend they were soft deleted.
+        deleted1 = Addon.from_upload(
+            self.get_upload('extension.xpi'), [self.platform])
+        deleted2 = Addon.from_upload(
+            self.get_upload('alt-rdf.xpi'), [self.platform])
+        AddonUser(addon=deleted1, user=UserProfile.objects.get(pk=999)).save()
+        AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
+
+        # Soft delete them like they were before, by nullifying their GUIDs.
+        deleted1.update(status=amo.STATUS_PUBLIC, guid=None)
+        deleted2.update(status=amo.STATUS_PUBLIC, guid=None)
+
+        # Now upload a new add-on which isn't an extension, and has no GUID.
+        # This fails if we try to reclaim the GUID from deleted add-ons: the
+        # GUID is None, so it'll try to get the add-on that has a GUID which is
+        # None, but many are returned. So make sure we're not trying to reclaim
+        # the GUID.
+        Addon.from_upload(
+            self.get_upload('search.xml'), [self.platform])
+
     def test_xpi_attributes(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform])
