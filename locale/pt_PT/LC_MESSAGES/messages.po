@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-11 01:05+0000\n"
+"PO-Revision-Date: 2016-02-12 04:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1344,7 +1344,7 @@ msgstr[1] "<a href=\"%(url)s\">Conheça os programadores</a>"
 #: src/olympia/addons/templates/addons/impala/details.html:137
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr ""
-"Saiba porque é que {0} foi criado e saiba o próximo desenvolvimento para "
+"Saiba porque é que {0} foi criado e descubra o próximo desenvolvimento para "
 "este extra."
 
 #. {0} is an index.
