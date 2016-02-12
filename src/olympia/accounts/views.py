@@ -1,6 +1,7 @@
 import base64
 import functools
 import logging
+import os
 from collections import namedtuple
 
 from django.conf import settings
@@ -11,18 +12,20 @@ from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
 
-from rest_framework import generics
+from rest_framework import exceptions, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from tower import ugettext_lazy as _
 from waffle.decorators import waffle_switch
 
+from olympia.access import acl
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
 from olympia.api.jwt_auth.views import JWTProtectedView
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
-    AccountSourceSerializer, UserProfileSerializer)
+    AccountSourceSerializer, AccountSuperCreateSerializer,
+    UserProfileSerializer)
 
 from . import verify
 
@@ -271,3 +274,58 @@ class AccountSourceView(generics.RetrieveAPIView):
             # address has an account associated with it.
             user = STUB_FXA_USER
         return Response(self.get_serializer(user).data)
+
+
+class AccountSuperCreate(JWTProtectedView):
+
+    @waffle_switch('super-create-accounts')
+    def post(self, request):
+        if not acl.action_allowed_user(request.user,
+                                       'Accounts', 'SuperCreate'):
+            log.info(
+                u'Access denied for super-create; user {} is not in the '
+                u'right group'.format(request.user))
+            raise exceptions.AuthenticationFailed('insufficient access group')
+
+        serializer = AccountSuperCreateSerializer(data=request.DATA)
+        if not serializer.is_valid():
+            return Response({'errors': serializer.errors},
+                            status=422)
+
+        user_token = os.urandom(4).encode('hex')
+        username = 'super-created-{}'.format(user_token)
+        email = serializer.data['email']
+        if not email:
+            email = '{}@addons.mozilla.org'.format(username)
+        password = os.urandom(16).encode('hex')
+
+        user = UserProfile.objects.create(
+            username=username,
+            email=email,
+            display_name='Super Created {}'.format(user_token),
+            is_verified=True,
+            confirmationcode='',
+            notes='auto-generated from API')
+        user.set_password(password)
+        user.save()
+
+        login(request, user)
+        request.session.save()
+
+        log.info(u'API user {api_user} created and logged in a user from '
+                 u'the super-create API: user_id: {user.pk}; '
+                 u'user_name: {user.username}'
+                 .format(user=user, api_user=request.user))
+
+        cookie = {
+            'name': settings.SESSION_COOKIE_NAME,
+            'value': request.session.session_key,
+        }
+        cookie['encoded'] = '{name}={value}'.format(**cookie)
+
+        return Response({
+            'user_id': user.pk,
+            'username': user.username,
+            'email': user.email,
+            'session_cookie': cookie,
+        }, status=201)

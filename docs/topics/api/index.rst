@@ -5,6 +5,8 @@ External API
 This shows you how to use the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_
 API at ``/api/v3/`` which is hosted at the following URLs:
 
+.. _api-environments:
+
 ===========  =========================================
 Environment  URL
 ===========  =========================================

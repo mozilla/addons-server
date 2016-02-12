@@ -4,11 +4,12 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
 from django.core.urlresolvers import resolve, reverse
 from django.test.utils import override_settings
-
 import mock
+from waffle.models import Switch
 
 from rest_framework.test import APIRequestFactory, APITestCase
 
+from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
@@ -768,3 +769,70 @@ class TestAccountSourceView(APITestCase):
         response = self.get('no-user@mozilla.org')
         assert response.status_code == 200
         assert response.data == {'source': 'fxa'}
+
+
+class TestAccountSuperCreate(APIAuthTestCase):
+
+    def setUp(self):
+        super(TestAccountSuperCreate, self).setUp()
+        create_switch('super-create-accounts', active=True)
+        self.create_api_user()
+        self.url = reverse('accounts.super-create')
+        group = Group.objects.create(
+            name='Account Super Creators',
+            rules='Accounts:SuperCreate')
+        GroupUser.objects.create(group=group, user=self.user)
+
+    def test_require_auth(self):
+        self.auth_required(views.AccountSuperCreate)
+
+    def test_require_a_waffle_switch(self):
+        Switch.objects.all().delete()
+        res = self.post(self.url, {})
+        assert res.status_code == 404, res
+
+    def test_requesting_user_must_have_access(self):
+        self.user.groups.all().delete()
+        res = self.post(self.url, {})
+        assert res.status_code == 401, res
+        assert res.data['detail'] == 'insufficient access group'
+
+    def test_a_new_user_is_created_and_logged_in(self):
+        res = self.post(self.url, {})
+        assert res.status_code == 201, res
+        data = res.data
+
+        user = UserProfile.objects.get(pk=res.data['user_id'])
+        assert user.username == data['username']
+        assert user.email == data['email']
+        assert user.email.endswith('@addons.mozilla.org')
+        assert data['session_cookie']['name']
+        assert data['session_cookie']['value']
+        encoded = '{name}={value}'.format(**data['session_cookie'])
+        assert data['session_cookie']['encoded'] == encoded
+
+    def test_requires_a_valid_email(self):
+        res = self.post(self.url, {'email': 'not.a.valid.email'})
+        assert res.status_code == 422, res
+        assert res.data['errors'] == {
+            'email': ['Enter a valid email address.'],
+        }
+
+    def test_create_a_user_with_custom_email(self):
+        email = 'shanghaibotnet8000@hotmail.zh'
+        res = self.post(self.url, {'email': email})
+        assert res.status_code == 201, res
+        user = UserProfile.objects.get(pk=res.data['user_id'])
+        assert user.email == email
+
+    def test_cannot_create_user_with_duplicate_email(self):
+        email = 'shanghaibotnet8000@hotmail.zh'
+        user = UserProfile.objects.all()[0]
+        user.email = email
+        user.save()
+
+        res = self.post(self.url, {'email': email})
+        assert res.status_code == 422, res
+        assert res.data['errors'] == {
+            'email': ['User with this email already exists in the system'],
+        }
