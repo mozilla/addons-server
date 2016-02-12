@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-11 19:23+0000\n"
+"PO-Revision-Date: 2016-02-12 12:19+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -24,6 +24,7 @@ msgstr ""
 #: src/olympia/accounts/views.py:47
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr ""
+"Ваша попытка входа не может быть обработана. Пожалуйста, попробуйте снова."
 
 #: src/olympia/accounts/views.py:49
 msgid "Your Firefox Account could not be found. Please try again."
