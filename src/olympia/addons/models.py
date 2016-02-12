@@ -487,12 +487,15 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def initialize_addon_from_upload(cls, data, is_listed=True):
         fields = cls._meta.get_all_field_names()
-        # Reclaim GUID from deleted add-on.
-        try:
-            old_guid_addon = Addon.unfiltered.get(guid=data['guid'])
-            old_guid_addon.update(guid=None)
-        except ObjectDoesNotExist:
-            old_guid_addon = None
+        guid = data.get('guid')
+        old_guid_addon = None
+        if guid:  # It's an extension.
+            # Reclaim GUID from deleted add-on.
+            try:
+                old_guid_addon = Addon.unfiltered.get(guid=guid)
+                old_guid_addon.update(guid=None)
+            except ObjectDoesNotExist:
+                pass
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
