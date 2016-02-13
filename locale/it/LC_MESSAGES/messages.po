@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-13 12:43+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-02-13 17:56+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -11277,7 +11277,7 @@ msgstr "Peso cileno"
 
 #: src/olympia/lib/constants.py:34
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Yuan Renminbi cinese"
 
 #: src/olympia/lib/constants.py:35
 msgid "Colombia Peso"
@@ -11625,7 +11625,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:121
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Riyal del Qatar"
 
 #: src/olympia/lib/constants.py:122
 msgid "Romania New Leu"
@@ -11633,11 +11633,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:123
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Dinaro serbo"
 
 #: src/olympia/lib/constants.py:124
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Rublo russo"
 
 #: src/olympia/lib/constants.py:125
 msgid "Rwanda Franc"
@@ -11645,51 +11645,51 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:126
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Riyal saudita"
 
 #: src/olympia/lib/constants.py:127
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dollaro delle Isole Salomone"
 
 #: src/olympia/lib/constants.py:128
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Rupia delle Seychelles"
 
 #: src/olympia/lib/constants.py:129
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Sterlina sudanese"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Corona svedese"
 
 #: src/olympia/lib/constants.py:131
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Dollaro di Singapore"
 
 #: src/olympia/lib/constants.py:132
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Sterlina di Sant’Elena"
 
 #: src/olympia/lib/constants.py:133
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Leone della Sierra Leone"
 
 #: src/olympia/lib/constants.py:134
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Scellino somalo"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Luigino di Seborga"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Dollaro surinamese"
 
 #: src/olympia/lib/constants.py:137
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Dobra di São Tomé e Príncipe"
 
 #: src/olympia/lib/constants.py:138
 msgid "El Salvador Colon"
@@ -11697,15 +11697,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:139
 msgid "Syria Pound"
-msgstr ""
+msgstr "Lira siriana"
 
 #: src/olympia/lib/constants.py:140
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Lilangeni dello Swaziland"
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Baht tailandese"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
@@ -11717,7 +11717,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Dinaro tunisino"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
@@ -11725,19 +11725,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Lira turca"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dollaro di Trinidad e Tobago"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Dollaro di Tuvalu"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Nuovo dollaro taiwanese"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
@@ -11765,11 +11765,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Bolivar venezuelano"
 
 #: src/olympia/lib/constants.py:157
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Dong vietnamita"
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
@@ -11782,14 +11782,15 @@ msgstr ""
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
 msgstr ""
+"Franco CFA della cooperazione finanziaria  dell’Africa centrale (BEAC)"
 
 #: src/olympia/lib/constants.py:161
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Dollaro dei Caraibi orientali"
 
 #: src/olympia/lib/constants.py:162
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Diritti speciali di prelievo dal Fondo Monetario Internazionale (FMI)"
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
@@ -11801,19 +11802,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Rial yemenita"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Rand sudafricano"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Kwacha zambiano"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dollaro dello Zimbabwe"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
