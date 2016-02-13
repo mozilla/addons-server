@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-12 12:19+0000\n"
+"PO-Revision-Date: 2016-02-12 12:27+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -11157,7 +11157,7 @@ msgstr "Канадский доллар"
 
 #: src/olympia/lib/constants.py:31
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Франк Конго/Киншаса"
 
 #: src/olympia/lib/constants.py:32
 msgid "Switzerland Franc"
@@ -11573,7 +11573,7 @@ msgstr "Сомалийский шиллинг"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Себорга Луиджино"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
@@ -15074,7 +15074,7 @@ msgstr "Новый пароль"
 
 #: src/olympia/users/forms.py:233
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Адрес электронной почты должен быть {email}."
 
 #: src/olympia/users/forms.py:261
 msgid "Usernames cannot contain only digits."
