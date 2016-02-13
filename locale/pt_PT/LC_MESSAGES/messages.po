@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-12 04:43+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2016-02-13 18:16+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -11029,75 +11029,75 @@ msgstr "Novo Manat do Azerbaijão"
 
 #: src/olympia/lib/constants.py:15
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Marco Convertível da Bósnia e Herzegovina"
 
 #: src/olympia/lib/constants.py:16
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Dólar de Barbados"
 
 #: src/olympia/lib/constants.py:17
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Taka do Bangladeche"
 
 #: src/olympia/lib/constants.py:18
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Lev da Bulgária"
 
 #: src/olympia/lib/constants.py:19
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Dinar do Bahrain"
 
 #: src/olympia/lib/constants.py:20
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Franco do Burúndi"
 
 #: src/olympia/lib/constants.py:21
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Dólar das Bermudas"
 
 #: src/olympia/lib/constants.py:22
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Dólar de Brunei Darussalam"
 
 #: src/olympia/lib/constants.py:23
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Boliviano da Bolívia"
 
 #: src/olympia/lib/constants.py:24
 msgid "Brazil Real"
-msgstr ""
+msgstr "Real do Brasil"
 
 #: src/olympia/lib/constants.py:25
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Dólar das Bahamas"
 
 #: src/olympia/lib/constants.py:26
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Ngultrum do Butão"
 
 #: src/olympia/lib/constants.py:27
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Pula do Botswana"
 
 #: src/olympia/lib/constants.py:28
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Rublo da Bielorrússia"
 
 #: src/olympia/lib/constants.py:29
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Dólar de Belize"
 
 #: src/olympia/lib/constants.py:30
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Dólar Canadiano"
 
 #: src/olympia/lib/constants.py:31
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Franco do Congo/Kinshasa"
 
 #: src/olympia/lib/constants.py:32
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Franco da Suíça"
 
 #: src/olympia/lib/constants.py:33
 msgid "Chile Peso"
