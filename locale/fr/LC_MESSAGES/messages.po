@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 16:53+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"PO-Revision-Date: 2016-02-14 17:39+0000\n"
+"Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -11207,7 +11207,7 @@ msgstr "Peso chilien"
 
 #: src/olympia/lib/constants.py:34
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Yuan"
 
 #: src/olympia/lib/constants.py:35
 msgid "Colombia Peso"
@@ -11215,7 +11215,7 @@ msgstr "Peso colombien"
 
 #: src/olympia/lib/constants.py:36
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Colon costaricien"
 
 #: src/olympia/lib/constants.py:37
 msgid "Cuba Convertible Peso"
@@ -11271,7 +11271,7 @@ msgstr "Dollar fidjien"
 
 #: src/olympia/lib/constants.py:50
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Livre des Îles Malouines"
 
 #: src/olympia/lib/constants.py:51
 msgid "United Kingdom Pound"
@@ -11471,7 +11471,7 @@ msgstr "Pataca de Macao"
 
 #: src/olympia/lib/constants.py:100
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Ouguiya"
 
 #: src/olympia/lib/constants.py:101
 msgid "Mauritius Rupee"
@@ -11479,11 +11479,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:102
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Rufiyaa"
 
 #: src/olympia/lib/constants.py:103
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Kwacha malawien"
 
 #: src/olympia/lib/constants.py:104
 msgid "Mexico Peso"
@@ -11491,11 +11491,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:105
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Ringgit"
 
 #: src/olympia/lib/constants.py:106
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Metical"
 
 #: src/olympia/lib/constants.py:107
 msgid "Namibia Dollar"
@@ -11503,11 +11503,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:108
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Naira"
 
 #: src/olympia/lib/constants.py:109
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Cordoba"
 
 #: src/olympia/lib/constants.py:110
 msgid "Norway Krone"
@@ -11523,19 +11523,19 @@ msgstr "Dollar néo-zélandais"
 
 #: src/olympia/lib/constants.py:113
 msgid "Oman Rial"
-msgstr ""
+msgstr "Rial omanais"
 
 #: src/olympia/lib/constants.py:114
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Balboa"
 
 #: src/olympia/lib/constants.py:115
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Nouveau sol"
 
 #: src/olympia/lib/constants.py:116
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Kina"
 
 #: src/olympia/lib/constants.py:117
 msgid "Philippines Peso"
@@ -11547,11 +11547,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:119
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Zloty polonais"
 
 #: src/olympia/lib/constants.py:120
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Guaraní"
 
 #: src/olympia/lib/constants.py:121
 msgid "Qatar Riyal"
@@ -11567,7 +11567,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:124
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Rouble russe"
 
 #: src/olympia/lib/constants.py:125
 msgid "Rwanda Franc"
@@ -11611,7 +11611,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Luigino"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
@@ -11635,11 +11635,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Baht"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Somoni"
 
 #: src/olympia/lib/constants.py:143
 msgid "Turkmenistan Manat"
@@ -11703,11 +11703,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vatu"
 
 #: src/olympia/lib/constants.py:159
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Tala"
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
@@ -11719,7 +11719,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:162
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Droits de tirage spéciaux (FMI)"
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
@@ -11739,7 +11739,7 @@ msgstr "Rand sud-africain"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Kwacha zambien"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zimbabwe Dollar"
