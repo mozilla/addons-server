@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 09:27+0000\n"
+"PO-Revision-Date: 2016-02-14 10:03+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -11518,199 +11518,199 @@ msgstr "Paragvajski gvarani"
 
 #: src/olympia/lib/constants.py:121
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Katarski rial"
 
 #: src/olympia/lib/constants.py:122
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Romunski novi leu"
 
 #: src/olympia/lib/constants.py:123
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Srbski dinar"
 
 #: src/olympia/lib/constants.py:124
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ruski rubelj"
 
 #: src/olympia/lib/constants.py:125
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Ruandski frank"
 
 #: src/olympia/lib/constants.py:126
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Savdski rial"
 
 #: src/olympia/lib/constants.py:127
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dolar Salomonovih otokov"
 
 #: src/olympia/lib/constants.py:128
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Sejšelska rupija"
 
 #: src/olympia/lib/constants.py:129
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Sudanski funt"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Švedska krona"
 
 #: src/olympia/lib/constants.py:131
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapurski dolar"
 
 #: src/olympia/lib/constants.py:132
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Funt Svete Helene"
 
 #: src/olympia/lib/constants.py:133
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Leone Sierre Leone"
 
 #: src/olympia/lib/constants.py:134
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somalski šiling"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Seborški luigino"
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Surinamski dolar"
 
 #: src/olympia/lib/constants.py:137
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Dobra Svetega Tomaža in Princa"
 
 #: src/olympia/lib/constants.py:138
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Salvadorski kolon"
 
 #: src/olympia/lib/constants.py:139
 msgid "Syria Pound"
-msgstr ""
+msgstr "Sirski funt"
 
 #: src/olympia/lib/constants.py:140
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Svazijski lilangeni"
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Tajski baht"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Tadžikistanski somoni"
 
 #: src/olympia/lib/constants.py:143
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Turkmenski manat"
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Tunizijski dinar"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Tongovska paanga"
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Turška lira"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dolar Trinidada in Tobaga"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvalujski dolar"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Tajvanski novi dolar"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tanzanijski šiling"
 
 #: src/olympia/lib/constants.py:151
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Ukrajinska hrivnija"
 
 #: src/olympia/lib/constants.py:152
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Ugandski šiling"
 
 #: src/olympia/lib/constants.py:153
 msgid "United States Dollar"
-msgstr ""
+msgstr "Ameriški dolar"
 
 #: src/olympia/lib/constants.py:154
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Urugvajski peso"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Uzbekistanski sum"
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezuelski bolivar"
 
 #: src/olympia/lib/constants.py:157
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnamski dong"
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vanuatujski vatu"
 
 #: src/olympia/lib/constants.py:159
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samojska tala"
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Frank CFA (BEAC)"
 
 #: src/olympia/lib/constants.py:161
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Vzhodnokaribski dolar"
 
 #: src/olympia/lib/constants.py:162
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Posebne pravice črpanja Mednarodnega denarnega sklada"
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Frank CFA (BCEAO)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Frank CFP"
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenski rial"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Južnoafriški rand"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Zambijska kvača"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Zimbabvejski dolar"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoposnetki morajo biti v obliki WebM."
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -14266,7 +14266,7 @@ msgstr "Manjkajoč ključ \"pošlji\" v večdelnih podatkih datoteke."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Različica se ne ujema z datoteko manifesta."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
@@ -15024,7 +15024,7 @@ msgstr "Novo geslo"
 
 #: src/olympia/users/forms.py:233
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-pošta mora biti {email}."
 
 #: src/olympia/users/forms.py:261
 msgid "Usernames cannot contain only digits."
@@ -15622,7 +15622,7 @@ msgstr "Prijava"
 
 #: src/olympia/users/templates/users/login_form.html:11
 msgid "Need help?"
-msgstr ""
+msgstr "Potrebujete pomoč?"
 
 #: src/olympia/users/templates/users/login_form.html:20
 #: src/olympia/users/templates/users/mobile/login.html:26
