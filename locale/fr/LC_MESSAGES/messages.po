@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 11:16+0000\n"
+"PO-Revision-Date: 2016-02-14 11:30+0000\n"
 "Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -11655,7 +11655,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Livre turque"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
@@ -11663,7 +11663,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Dollar tuvaluan"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
@@ -11735,7 +11735,7 @@ msgstr "Riyal yéménite"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Rand sud-africain"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
