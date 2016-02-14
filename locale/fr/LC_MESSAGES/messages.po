@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 11:30+0000\n"
+"PO-Revision-Date: 2016-02-14 13:20+0000\n"
 "Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -11091,79 +11091,79 @@ msgstr "Récupération du fichier."
 
 #: src/olympia/lib/constants.py:5
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Dirham des Émirats arabes unis"
 
 #: src/olympia/lib/constants.py:6
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afghani"
 
 #: src/olympia/lib/constants.py:7
 msgid "Albania Lek"
-msgstr ""
+msgstr "Lek"
 
 #: src/olympia/lib/constants.py:8
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Dram"
 
 #: src/olympia/lib/constants.py:9
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Florin des Antilles néerlandaises"
 
 #: src/olympia/lib/constants.py:10
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Kwanza"
 
 #: src/olympia/lib/constants.py:11
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Peso argentin"
 
 #: src/olympia/lib/constants.py:12
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Dollar australien"
 
 #: src/olympia/lib/constants.py:13
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Florin arubais"
 
 #: src/olympia/lib/constants.py:14
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Manat azerbaïdjanais"
 
 #: src/olympia/lib/constants.py:15
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Mark convertible de Bosnie-Herzégovine"
 
 #: src/olympia/lib/constants.py:16
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Dollar barbadien"
 
 #: src/olympia/lib/constants.py:17
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Taka"
 
 #: src/olympia/lib/constants.py:18
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Lev bulgare"
 
 #: src/olympia/lib/constants.py:19
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Dinar bahreïni"
 
 #: src/olympia/lib/constants.py:20
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Franc burundais"
 
 #: src/olympia/lib/constants.py:21
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Dollar bermudien"
 
 #: src/olympia/lib/constants.py:22
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Dollar du Brunei"
 
 #: src/olympia/lib/constants.py:23
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Boliviano"
 
 #: src/olympia/lib/constants.py:24
 msgid "Brazil Real"
@@ -11659,7 +11659,7 @@ msgstr "Livre turque"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dollar de Trinité-et-Tobago"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
@@ -11667,31 +11667,31 @@ msgstr "Dollar tuvaluan"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Nouveau dollar de Taïwan"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Shilling tanzanien"
 
 #: src/olympia/lib/constants.py:151
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Hryvnia ukrainienne"
 
 #: src/olympia/lib/constants.py:152
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Shilling ougandais"
 
 #: src/olympia/lib/constants.py:153
 msgid "United States Dollar"
-msgstr ""
+msgstr "Dollar américain"
 
 #: src/olympia/lib/constants.py:154
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Peso uruguayen"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Sum ouzbek"
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
@@ -11711,7 +11711,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Franc CFA (BEAC)"
 
 #: src/olympia/lib/constants.py:161
 msgid "East Caribbean Dollar"
@@ -11723,11 +11723,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franc CFA (BCEAO)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franc CFP (collectivités françaises du Pacifique)"
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
