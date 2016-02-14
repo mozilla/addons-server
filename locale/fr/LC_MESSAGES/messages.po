@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-13 18:11+0000\n"
+"PO-Revision-Date: 2016-02-14 11:16+0000\n"
 "Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -25,18 +25,19 @@ msgstr ""
 #: src/olympia/accounts/views.py:47
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr ""
+"Votre tentative de connexion n'a pas pu être analysée. Veuillez recommencer."
 
 #: src/olympia/accounts/views.py:49
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Votre compte Firefox n'a pas pu être trouvé. Veuillez réessayer."
 
 #: src/olympia/accounts/views.py:50
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Votre connexion a échoué. Veuillez recommencer."
 
 #: src/olympia/accounts/views.py:52
 msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
+msgstr "Votre compte a déjà été migré vers les comptes Firefox."
 
 #: src/olympia/accounts/views.py:54
 msgid "Your Firefox Account already exists on this site."
@@ -44,7 +45,7 @@ msgstr "Votre compte Firefox existe déjà sur ce site."
 
 #: src/olympia/accounts/views.py:103
 msgid "Great job!"
-msgstr ""
+msgstr "C'est fait !"
 
 #: src/olympia/accounts/views.py:104
 msgid "You can now log in to Add-ons with your Firefox Account."
@@ -2746,6 +2747,9 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Les modules soumis au site Mozilla Add-ons doivent être accompagnés d'un "
+"fichier manifeste qui contient au moins un des logiciels listés ci-dessous. "
+"Seules les versions listées ci-dessous sont autorisées."
 
 #: src/olympia/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2767,6 +2771,9 @@ msgid ""
 "must include one with the required properties as specified <a "
 "href=\"%(url)s\">here</a>."
 msgstr ""
+"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez "
+"toujours en inclure un avec les propriétés idoines comme spécifié <a "
+"href=\"%(url)s\">ici</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:45
@@ -5051,11 +5058,11 @@ msgstr "Résultats de recherche pour « {0} »"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Saisissez un terme de recherche."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Chargement des résultats&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -9221,6 +9228,13 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Retirer votre module de la liste le rendra invisible sur ce site web (de "
+"même que ses autres versions ou fichiers). Il n'apparaitra pas lors des "
+"recherches, n'aura pas une page publique et ne sera pas mis à jour pour les "
+"utilisateurs actuels. Il est recommandé pour les modules non listés de "
+"prévoir une URL de mise à jour personnalisée <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> dans leur fichier manifeste pour les mises à"
+" jour automatiques."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 msgid ""
@@ -10932,7 +10946,7 @@ msgstr "Archive invalide."
 
 #: src/olympia/files/utils.py:529 src/olympia/files/utils.py:532
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Impossible d'analyser le fichier manifeste."
 
 #: src/olympia/files/utils.py:551
 msgid "Could not find an add-on ID."
@@ -11177,7 +11191,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:30
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Dollar canadien"
 
 #: src/olympia/lib/constants.py:31
 msgid "Congo/Kinshasa Franc"
@@ -11233,7 +11247,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:44
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Dinar algérien"
 
 #: src/olympia/lib/constants.py:45
 msgid "Egypt Pound"
@@ -11349,7 +11363,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:73
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Dollar jamaïcain"
 
 #: src/olympia/lib/constants.py:74
 msgid "Jordan Dinar"
@@ -11429,7 +11443,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:93
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Dirham marocain"
 
 #: src/olympia/lib/constants.py:94
 msgid "Moldova Leu"
@@ -11505,7 +11519,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:112
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Dollar néo-zélandais"
 
 #: src/olympia/lib/constants.py:113
 msgid "Oman Rial"
@@ -11541,7 +11555,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:121
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Riyal qatari"
 
 #: src/olympia/lib/constants.py:122
 msgid "Romania New Leu"
@@ -11561,7 +11575,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:126
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Riyal saoudien"
 
 #: src/olympia/lib/constants.py:127
 msgid "Solomon Islands Dollar"
@@ -11633,7 +11647,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Dinar tunisien"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
@@ -11717,7 +11731,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Riyal yéménite"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
@@ -11733,7 +11747,7 @@ msgstr ""
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Les vidéos doivent être au format WebM."
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -14338,7 +14352,7 @@ msgstr "La clé « upload » est absente du fichier de données multipart."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "La version ne correspond pas au fichier manifeste."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
@@ -15094,7 +15108,7 @@ msgstr "Nouveau mot de passe"
 
 #: src/olympia/users/forms.py:233
 msgid "Email must be {email}."
-msgstr ""
+msgstr "L'adresse électronique doit être {email}."
 
 #: src/olympia/users/forms.py:261
 msgid "Usernames cannot contain only digits."
@@ -15701,7 +15715,7 @@ msgstr "Connexion"
 
 #: src/olympia/users/templates/users/login_form.html:11
 msgid "Need help?"
-msgstr ""
+msgstr "Besoin d'aide ?"
 
 #: src/olympia/users/templates/users/login_form.html:20
 #: src/olympia/users/templates/users/mobile/login.html:26
