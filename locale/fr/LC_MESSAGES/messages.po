@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 13:20+0000\n"
+"PO-Revision-Date: 2016-02-14 13:25+0000\n"
 "Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -11167,19 +11167,19 @@ msgstr "Boliviano"
 
 #: src/olympia/lib/constants.py:24
 msgid "Brazil Real"
-msgstr ""
+msgstr "Réal brésilien"
 
 #: src/olympia/lib/constants.py:25
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Dollar bahaméen"
 
 #: src/olympia/lib/constants.py:26
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Ngultrum"
 
 #: src/olympia/lib/constants.py:27
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Pula"
 
 #: src/olympia/lib/constants.py:28
 msgid "Belarus Ruble"
