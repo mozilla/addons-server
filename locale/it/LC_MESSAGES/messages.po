@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-14 14:20+0000\n"
+"PO-Revision-Date: 2016-02-13 12:35+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -11489,7 +11489,7 @@ msgstr "Kip di Laos"
 
 #: src/olympia/lib/constants.py:86
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Lira libanese"
 
 #: src/olympia/lib/constants.py:87
 msgid "Sri Lanka Rupee"
@@ -11529,7 +11529,7 @@ msgstr "Ariary del Madagascar"
 
 #: src/olympia/lib/constants.py:96
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Denaro macedone"
 
 #: src/olympia/lib/constants.py:97
 msgid "Myanmar (Burma) Kyat"
