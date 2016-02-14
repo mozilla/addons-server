@@ -14475,6 +14475,7 @@ msgstr ""
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
 msgstr ""
+"Il numero di versione non corrisponde a quello indicato nel file manifesto."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
