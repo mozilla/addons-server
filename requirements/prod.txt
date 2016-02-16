@@ -1,5 +1,5 @@
 -r compiled.txt
-amo-validator==1.10.17
+amo-validator==1.10.18
 amqp==1.4.9
 anyjson==0.3.3
 argparse==1.2.1
@@ -14,7 +14,7 @@ celery-tasktree==0.3.2
 certifi==0.0.8
 chardet==2.1.1
 commonware==0.4.2
-cssutils==0.9.7b3
+cssutils==1.0.1
 defusedxml==0.4.1
 dennis==0.4.2
 Django==1.6.11
