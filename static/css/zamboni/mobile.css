@@ -580,7 +580,6 @@ ul.license li.copyr { background-position: 0 -260px; }
 .persona-large [data-browsertheme] {
     background: transparent no-repeat right top;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    display: table;
     height: 64px;
     width: 100%;
 }
@@ -595,15 +594,21 @@ ul.license li.copyr { background-position: 0 -260px; }
     color: #fff;
     display: none;
     font: 18px Georgia, serif;
+    line-height: 64px;
     pointer-events: none;
+    margin: 0 !important;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
-    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .persona-hover [data-browsertheme] p {
     background-color: rgba(0, 0, 0, 0.4);
-    display: table-cell;
+    display: inline-block;
 }
 
 .persona-previewing p,
