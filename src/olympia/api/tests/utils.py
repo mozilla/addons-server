@@ -24,8 +24,14 @@ class APIAuthTestCase(APITestCase, JWTAuthTester):
                                        self.api_key.secret)
         return 'JWT {}'.format(token)
 
-    def get(self, url):
-        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization())
+    def get(self, url, **client_kwargs):
+        return self.client.get(url, HTTP_AUTHORIZATION=self.authorization(),
+                               **client_kwargs)
+
+    def post(self, url, data, **client_kwargs):
+        return self.client.post(
+            url, data, HTTP_AUTHORIZATION=self.authorization(),
+            **client_kwargs)
 
     def auth_required(self, cls):
         """

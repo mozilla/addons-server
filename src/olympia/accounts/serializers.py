@@ -24,3 +24,14 @@ class AccountSourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = ['source']
+
+
+class AccountSuperCreateSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=False)
+
+    def validate_email(self, attrs, source):
+        email = attrs.get(source)
+        if UserProfile.objects.filter(email=email).exists():
+            raise serializers.ValidationError(
+                'User with this email already exists in the system')
+        return attrs

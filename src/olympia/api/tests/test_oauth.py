@@ -668,7 +668,7 @@ class TestAddon(BaseOAuth):
     @patch(
         'olympia.api.authorization.AllowRelatedAppOwner.has_object_permission')
     @patch('olympia.api.authorization.AllowAppOwner.has_object_permission')
-    @patch('olympia.access.acl.action_allowed')
+    @patch('olympia.access.acl.action_allowed_user')
     @patch('olympia.access.acl.check_addon_ownership')
     def test_not_my_addon(self, addon_ownership, action_allowed,
                           app_owner, related_app_owner):

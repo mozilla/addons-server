@@ -12,7 +12,9 @@ class GroupPermission(BasePermission):
         self.action = action
 
     def has_permission(self, request, view):
-        return acl.action_allowed(request, self.app, self.action)
+        if not request.user.is_authenticated():
+            return False
+        return acl.action_allowed_user(request.user, self.app, self.action)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)

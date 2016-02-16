@@ -14,4 +14,6 @@ urlpatterns = [
         name='accounts.register'),
     url(r'^source/$', views.AccountSourceView.as_view(),
         name='accounts.source'),
+    url(r'^super-create/$', views.AccountSuperCreate.as_view(),
+        name='accounts.super-create'),
 ]
