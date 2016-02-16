@@ -19,5 +19,5 @@ You can access the AMO stage environment at https://addons.allizom.org/
 You can join our mailing list at: https://mail.mozilla.org/listinfo/dev-addons
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
-.. _`install docs`: https://addons-server.readthedocs.org/en/latest/topics/install-olympia/docker.html
+.. _`install docs`: https://addons-server.readthedocs.org/en/latest/topics/install/docker.html
 .. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo

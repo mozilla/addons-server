@@ -103,6 +103,13 @@ on each container. Here is an example of running the ``py.test`` command on the
 If you'd like to use a python debugger to interactively
 debug Django view code, check out the :ref:`debugging` section.
 
+.. note::
+    If you see an error like ``No such container: addonsserver_web_1`` and
+    your containers are running you can overwrite the base name for docker
+    containers with the ``COMPOSE_PROJECT_NAME`` environment variable. If your
+    container is named ``localaddons_web_1`` you would set
+    ``COMPOSE_PROJECT_NAME=localaddons``.
+
 Updating your containers
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
