@@ -42,8 +42,9 @@ def get_fxa_token(code, config):
             raise IdentificationError(
                 'No access token returned for {code}'.format(code=code))
     else:
-        log.info('Token returned non-200 status {status} [{code}]'.format(
-            code=code, status=response.status_code))
+        log.info(
+            'Token returned non-200 status {status} {body} [{code}]'.format(
+                code=code, status=response.status_code, body=response.content))
         raise IdentificationError(
             'Could not get access token for {code}'.format(code=code))
 
@@ -66,7 +67,10 @@ def get_fxa_profile(token, config):
             raise IdentificationError('Profile incomplete for {token}'.format(
                 token=token))
     else:
-        log.info('Profile returned non-200 status {status} [{token}]'.format(
-            token=token, status=response.status_code))
+        log.info(
+            'Profile returned non-200 status {status} {body} '
+            '[{token}]'.format(
+                token=token, status=response.status_code,
+                body=response.content))
         raise IdentificationError('Could not find profile for {token}'.format(
             token=token))
