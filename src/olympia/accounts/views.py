@@ -12,16 +12,17 @@ from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
 
-from rest_framework import exceptions, generics
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from tower import ugettext_lazy as _
 from waffle.decorators import waffle_switch
 
-from olympia.access import acl
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
 from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
     AccountSourceSerializer, AccountSuperCreateSerializer,
@@ -277,16 +278,11 @@ class AccountSourceView(generics.RetrieveAPIView):
 
 
 class AccountSuperCreate(JWTProtectedView):
+    permission_classes = [
+        IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
-        if not acl.action_allowed_user(request.user,
-                                       'Accounts', 'SuperCreate'):
-            log.info(
-                u'Access denied for super-create; user {} is not in the '
-                u'right group'.format(request.user))
-            raise exceptions.AuthenticationFailed('insufficient access group')
-
         serializer = AccountSuperCreateSerializer(data=request.DATA)
         if not serializer.is_valid():
             return Response({'errors': serializer.errors},

@@ -789,17 +789,18 @@ class TestAccountSuperCreate(APIAuthTestCase):
     def test_require_a_waffle_switch(self):
         Switch.objects.all().delete()
         res = self.post(self.url, {})
-        assert res.status_code == 404, res
+        assert res.status_code == 404, res.content
 
     def test_requesting_user_must_have_access(self):
         self.user.groups.all().delete()
         res = self.post(self.url, {})
-        assert res.status_code == 401, res
-        assert res.data['detail'] == 'insufficient access group'
+        assert res.status_code == 403, res.content
+        assert res.data['detail'] == (
+            'You do not have permission to perform this action.')
 
     def test_a_new_user_is_created_and_logged_in(self):
         res = self.post(self.url, {})
-        assert res.status_code == 201, res
+        assert res.status_code == 201, res.content
         data = res.data
 
         user = UserProfile.objects.get(pk=res.data['user_id'])
@@ -813,7 +814,7 @@ class TestAccountSuperCreate(APIAuthTestCase):
 
     def test_requires_a_valid_email(self):
         res = self.post(self.url, {'email': 'not.a.valid.email'})
-        assert res.status_code == 422, res
+        assert res.status_code == 422, res.content
         assert res.data['errors'] == {
             'email': ['Enter a valid email address.'],
         }
@@ -821,7 +822,7 @@ class TestAccountSuperCreate(APIAuthTestCase):
     def test_create_a_user_with_custom_email(self):
         email = 'shanghaibotnet8000@hotmail.zh'
         res = self.post(self.url, {'email': email})
-        assert res.status_code == 201, res
+        assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert user.email == email
 
@@ -832,7 +833,7 @@ class TestAccountSuperCreate(APIAuthTestCase):
         user.save()
 
         res = self.post(self.url, {'email': email})
-        assert res.status_code == 422, res
+        assert res.status_code == 422, res.content
         assert res.data['errors'] == {
             'email': ['User with this email already exists in the system'],
         }
