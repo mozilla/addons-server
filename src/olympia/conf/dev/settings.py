@@ -46,7 +46,7 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = 'https://addons-dev-services.allizom.org'
+SERVICES_URL = 'https://services.addons-dev.allizom.org'
 STATIC_URL = 'https://addons-dev-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-dev-cdn.allizom.org/user-media/'
 
