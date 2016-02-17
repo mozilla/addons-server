@@ -70,6 +70,10 @@ This allows you to generate a new user account and sign in as that user.
 
     :param email: assign the user a specific email address.
         A fake email will be assigned by default.
+    :param email: assign the user a specific username.
+        A random username will be assigned by default.
+    :param password: assign the user a specific password.
+        A random password will be assigned by default.
 
     .. sourcecode:: bash
 
