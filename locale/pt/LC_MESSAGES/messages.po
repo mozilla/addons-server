@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"POT-Creation-Date: 2016-02-17 17:10+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,32 +14,36 @@ msgstr ""
 "X-Generator: Pootle 2.5.0\n"
 "X-POOTLE-MTIME: 1444870897.0\n"
 
-#: src/olympia/accounts/views.py:47
+#: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:49
+#: src/olympia/accounts/views.py:54
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:50
+#: src/olympia/accounts/views.py:55
 msgid "You could not be logged in. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:52
+#: src/olympia/accounts/views.py:57
 msgid "Your account has already been migrated to Firefox Accounts."
 msgstr ""
 
-#: src/olympia/accounts/views.py:54
+#: src/olympia/accounts/views.py:59
 msgid "Your Firefox Account already exists on this site."
 msgstr ""
 
-#: src/olympia/accounts/views.py:103
+#: src/olympia/accounts/views.py:108
 msgid "Great job!"
 msgstr ""
 
-#: src/olympia/accounts/views.py:104
+#: src/olympia/accounts/views.py:109
 msgid "You can now log in to Add-ons with your Firefox Account."
+msgstr ""
+
+#: src/olympia/accounts/views.py:121
+msgid "Need help?"
 msgstr ""
 
 #: src/olympia/addons/buttons.py:179
@@ -170,7 +174,7 @@ msgstr "Os utilizadores têm a opção de contribuir com mais ou menos do que es
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above)"
 msgstr "Os utilizadores serão sempre questionados no Gestor de Extras (Firefox 4 e superiores)"
 
-#: src/olympia/addons/models.py:1806 src/olympia/addons/templates/addons/details_box.html:55 src/olympia/devhub/templates/devhub/index.html:92
+#: src/olympia/addons/models.py:1809 src/olympia/addons/templates/addons/details_box.html:55 src/olympia/devhub/templates/devhub/index.html:92
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
 msgstr "Listado"
@@ -423,7 +427,7 @@ msgstr "Denúncias de abuso"
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html:121 src/olympia/addons/templates/addons/privacy.html:19 src/olympia/addons/templates/addons/privacy.html:23
 #: src/olympia/addons/templates/addons/impala/button.html:43 src/olympia/addons/templates/addons/impala/details.html:307 src/olympia/devhub/templates/devhub/includes/policy_form.html:20
-#: src/olympia/templates/mobile/base_addons.html:81
+#: src/olympia/templates/mobile/base_addons.html:87
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
@@ -1094,7 +1098,7 @@ msgid_plural "About the Developers"
 msgstr[0] "Sobre o programador"
 msgstr[1] "Sobre os programadores"
 
-#: src/olympia/addons/templates/addons/impala/developers.html:96 src/olympia/users/templates/users/edit.html:118 src/olympia/users/templates/users/profile.html:26
+#: src/olympia/addons/templates/addons/impala/developers.html:96 src/olympia/users/templates/users/edit.html:130 src/olympia/users/templates/users/profile.html:26
 msgid "No Photo"
 msgstr "Sem fotografia"
 
@@ -1253,11 +1257,11 @@ msgstr "%(name)s necessita que aceite o seguinte acordo de licenciamento para o 
 msgid "Accept"
 msgstr "Aceitar"
 
-#: src/olympia/addons/templates/addons/mobile/home.html:10 src/olympia/templates/mobile/base_addons.html:49
+#: src/olympia/addons/templates/addons/mobile/home.html:10 src/olympia/templates/mobile/base_addons.html:53
 msgid "Add-ons are not currently available on Firefox for iOS."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/mobile/home.html:12 src/olympia/templates/mobile/base_addons.html:51
+#: src/olympia/addons/templates/addons/mobile/home.html:12 src/olympia/templates/mobile/base_addons.html:55
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr "Precisa do Firefox para instalar extras. <a href=\"http://mozilla.com/mobile\">Saber mais&nbsp;&raquo;</a>"
 
@@ -1268,7 +1272,7 @@ msgstr "Voltar à página inicial dos extras de {0}"
 #: src/olympia/addons/templates/addons/mobile/home.html:21 src/olympia/amo/helpers.py:238 src/olympia/bandwagon/templates/bandwagon/edit.html:34 src/olympia/discovery/templates/discovery/pane.html:92
 #: src/olympia/editors/templates/editors/base.html:21 src/olympia/editors/templates/editors/performance.html:72 src/olympia/templates/menu_links.html:4
 #: src/olympia/templates/impala/header_title.html:13 src/olympia/templates/impala/header_title.html:15 src/olympia/templates/impala/header_title.html:19
-#: src/olympia/templates/impala/header_title.html:23 src/olympia/templates/mobile/base_addons.html:43
+#: src/olympia/templates/impala/header_title.html:23 src/olympia/templates/mobile/base_addons.html:47
 msgid "Add-ons"
 msgstr "Extras"
 
@@ -1959,7 +1963,7 @@ msgid "Collections I'm Following"
 msgstr "Coleções que acompanho"
 
 #: src/olympia/amo/templates/amo/site_nav.html:73 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20 src/olympia/users/models.py:504
+#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20 src/olympia/users/models.py:514
 msgid "My Favorite Add-ons"
 msgstr "Os meus extras favoritos"
 
@@ -2169,7 +2173,7 @@ msgstr ""
 msgid "This name cannot be used."
 msgstr "Este nome não pode ser utilizado."
 
-#: src/olympia/bandwagon/forms.py:175 src/olympia/users/forms.py:458
+#: src/olympia/bandwagon/forms.py:175 src/olympia/users/forms.py:477
 msgid "No links are allowed."
 msgstr "Não são permitidas ligações."
 
@@ -2181,7 +2185,7 @@ msgstr "Esta url já está a ser utilizada por outra coleção"
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser PNG ou JPG."
 
-#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1063 src/olympia/users/forms.py:449
+#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1063 src/olympia/users/forms.py:468
 msgid "Please use images smaller than %dMB."
 msgstr "Por favor utilize imagens menores que %dMB."
 
@@ -2292,11 +2296,11 @@ msgstr "ou <a id=\"collections-new-cancel\" href=\"#\">Cancele</a>"
 msgid "To rate collections, you must have an add-ons account."
 msgstr "Para avaliar extras, tem de ter uma conta nos extras."
 
-#: src/olympia/bandwagon/templates/bandwagon/barometer.html:18 src/olympia/templates/base.html:145 src/olympia/templates/impala/base.html:197
+#: src/olympia/bandwagon/templates/bandwagon/barometer.html:18 src/olympia/templates/base.html:145 src/olympia/templates/impala/base.html:198
 msgid "Create an Add-ons Account"
 msgstr "Criar uma conta nos extras"
 
-#: src/olympia/bandwagon/templates/bandwagon/barometer.html:21 src/olympia/templates/base.html:148 src/olympia/templates/impala/base.html:200
+#: src/olympia/bandwagon/templates/bandwagon/barometer.html:21 src/olympia/templates/base.html:148 src/olympia/templates/impala/base.html:201
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "ou <a href=\"%(login)s\">inicie sessão na sua conta atual</a>"
 
@@ -2575,8 +2579,8 @@ msgstr "<b>Aviso:</b> Ao alterar o dono desta coleção, já não a poderá edit
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:83 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:157
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:69 src/olympia/devhub/templates/devhub/addons/submit/license.html:60 src/olympia/devhub/templates/devhub/addons/submit/upload.html:78
 #: src/olympia/devhub/templates/devhub/payments/tier.html:17 src/olympia/editors/templates/editors/themes/themes.html:111 src/olympia/editors/templates/editors/themes/themes.html:128
-#: src/olympia/editors/templates/editors/themes/themes.html:134 src/olympia/editors/templates/editors/themes/themes.html:141 src/olympia/users/templates/users/fxa_migration.html:21
-#: src/olympia/users/templates/users/login_form.html:45
+#: src/olympia/editors/templates/editors/themes/themes.html:134 src/olympia/editors/templates/editors/themes/themes.html:141 src/olympia/users/templates/users/fxa_migration_prompt_content.html:10
+#: src/olympia/users/templates/users/login_form.html:42 src/olympia/users/templates/users/mobile/login.html:51
 msgid "Continue"
 msgstr "Continuar"
 
@@ -3654,7 +3658,7 @@ msgstr "Objeto JSON inválido"
 msgid "Message not eligible for annotation"
 msgstr "Mensagem não elegível para anotação"
 
-#: src/olympia/devhub/forms.py:132 src/olympia/devhub/templates/devhub/versions/edit.html:94 src/olympia/users/templates/users/edit.html:138
+#: src/olympia/devhub/forms.py:132 src/olympia/devhub/templates/devhub/versions/edit.html:94 src/olympia/users/templates/users/edit.html:150
 msgid "Details"
 msgstr "Detalhes"
 
@@ -3856,15 +3860,15 @@ msgstr[1] "{0} avisos"
 msgid "Review"
 msgstr "Revisão"
 
-#: src/olympia/devhub/tasks.py:540
+#: src/olympia/devhub/tasks.py:547
 msgid "%s responded with %s (%s)."
 msgstr "%s respondeu com %s (%s)."
 
-#: src/olympia/devhub/tasks.py:544
+#: src/olympia/devhub/tasks.py:551
 msgid "Connection to \"%s\" timed out."
 msgstr "A ligação a \"%s\" expirou."
 
-#: src/olympia/devhub/tasks.py:546
+#: src/olympia/devhub/tasks.py:553
 msgid "Could not contact host at \"%s\"."
 msgstr "Não foi possível contactar o servidor em  \"%s\"."
 
@@ -3953,7 +3957,7 @@ msgstr "Verifique a compatibilidade do extra"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1047 src/olympia/users/forms.py:444
+#: src/olympia/devhub/views.py:1047 src/olympia/users/forms.py:463
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
 
@@ -4309,8 +4313,8 @@ msgid "Add Another Application&hellip;"
 msgstr "Adicionar outra aplicação&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:38 src/olympia/devhub/templates/devhub/addons/owner.html:86 src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/devhub/templates/devhub/versions/list.html:353 src/olympia/templates/impala/base.html:131
-#: src/olympia/templates/impala/base.html:142 src/olympia/templates/impala/base.html:160 src/olympia/templates/impala/base.html:170
+#: src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/devhub/templates/devhub/versions/list.html:353 src/olympia/templates/impala/base.html:132
+#: src/olympia/templates/impala/base.html:143 src/olympia/templates/impala/base.html:161 src/olympia/templates/impala/base.html:171
 msgid "Close"
 msgstr "Fechar"
 
@@ -4477,7 +4481,7 @@ msgstr "Idioma por omissão"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Informação sobre o seu extra é apresentada no seu idioma a menos que a tenha sobreposto com uma tradução específica para um idioma. Isto apenas é relevante para extras listados."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html:61 src/olympia/users/forms.py:302 src/olympia/users/templates/users/edit.html:110 src/olympia/users/templates/users/register.html:57
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html:61 src/olympia/users/forms.py:303 src/olympia/users/templates/users/edit.html:122 src/olympia/users/templates/users/register.html:57
 #: src/olympia/users/templates/users/vcard.html:22
 msgid "Homepage"
 msgstr "Página inicial"
@@ -11097,7 +11101,7 @@ msgstr "Partilhar este extra"
 msgid "Share this Collection"
 msgstr "Partilhar esta coleção"
 
-#: src/olympia/signing/views.py:30 src/olympia/templates/base.html:75 src/olympia/templates/impala/base.html:114
+#: src/olympia/signing/views.py:30 src/olympia/templates/base.html:75 src/olympia/templates/impala/base.html:115
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao sítio web. Voltamos em breve com todas as funcionalidades."
 
@@ -11496,19 +11500,19 @@ msgstr "Outros idiomas"
 msgid "Mozilla Add-ons"
 msgstr "Extras da Mozilla"
 
-#: src/olympia/templates/base.html:91 src/olympia/templates/impala/base.html:80
+#: src/olympia/templates/base.html:91 src/olympia/templates/impala/base.html:81
 msgid "Find add-ons for other applications"
 msgstr "Procure extras para outras aplicações"
 
-#: src/olympia/templates/base.html:92 src/olympia/templates/impala/base.html:80
+#: src/olympia/templates/base.html:92 src/olympia/templates/impala/base.html:81
 msgid "Other Applications"
 msgstr "Outras aplicações"
 
-#: src/olympia/templates/base.html:141 src/olympia/templates/impala/base.html:193
+#: src/olympia/templates/base.html:141 src/olympia/templates/impala/base.html:194
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para criar as suas próprias coleções, tem de ter uma conta nos extras da Mozilla."
 
-#: src/olympia/templates/base.html:168 src/olympia/templates/impala/base.html:214
+#: src/olympia/templates/base.html:168 src/olympia/templates/impala/base.html:215
 msgid "Footer logo"
 msgstr "Logótipo do rodapé"
 
@@ -11612,7 +11616,7 @@ msgstr "Jurídico"
 msgid "Contact Us"
 msgstr "Contacte-nos"
 
-#: src/olympia/templates/user_login.html:22 src/olympia/users/templates/users/edit.html:25 src/olympia/users/templates/users/includes/navigation.html:12
+#: src/olympia/templates/user_login.html:22 src/olympia/users/templates/users/edit.html:31 src/olympia/users/templates/users/includes/navigation.html:12
 msgid "My Account"
 msgstr "A minha conta"
 
@@ -11624,32 +11628,32 @@ msgstr "Bem vindo, {0}"
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registe-se</a> ou <a href=\"%(login)s\">Inicie sessão</a>"
 
-#: src/olympia/templates/impala/base.html:125
+#: src/olympia/templates/impala/base.html:126
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "Para experimentar as centenas de extras disponíveis aqui, transfira o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira rápida e gratuita de navegar na Web!"
 
-#: src/olympia/templates/impala/base.html:137
+#: src/olympia/templates/impala/base.html:138
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
 
 #. {0} is an application, such as Firefox.
-#: src/olympia/templates/impala/base.html:147
+#: src/olympia/templates/impala/base.html:148
 msgid "Welcome to {0} Add-ons."
 msgstr "Bem-vindo aos extras do {0}."
 
-#: src/olympia/templates/impala/base.html:150
+#: src/olympia/templates/impala/base.html:151
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "Escolha a partir de centenas de funcionalidades e estilos adicionais para tornar o Firefox só seu."
 
-#: src/olympia/templates/impala/base.html:155
+#: src/olympia/templates/impala/base.html:156
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "Adicione funcionalidades e estilos adicionais para tornar o %(app)s só seu."
 
-#: src/olympia/templates/impala/base.html:163
+#: src/olympia/templates/impala/base.html:164
 msgid "On the go?"
 msgstr "Em qualquer lugar?"
 
-#: src/olympia/templates/impala/base.html:165
+#: src/olympia/templates/impala/base.html:166
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "Consulte o nosso <a class=\"mobile-link\" href=\"#\">sítio de extras para dispositivos móveis</a>."
 
@@ -11665,15 +11669,15 @@ msgstr "necessário"
 msgid "Required fields"
 msgstr "Campos necessários"
 
-#: src/olympia/templates/mobile/base_addons.html:60
+#: src/olympia/templates/mobile/base_addons.html:64
 msgid "Mobile Home"
 msgstr "Início do móvel"
 
-#: src/olympia/templates/mobile/base_addons.html:79
+#: src/olympia/templates/mobile/base_addons.html:85
 msgid "View full site"
 msgstr "Ver sítio completo"
 
-#: src/olympia/templates/mobile/base_addons.html:82
+#: src/olympia/templates/mobile/base_addons.html:88
 msgid "Legal Notices"
 msgstr "Informações legais"
 
@@ -11706,7 +11710,7 @@ msgstr "menu"
 msgid "Register"
 msgstr "Registo"
 
-#: src/olympia/templates/mobile/header_auth.html:8 src/olympia/users/templates/users/login_form.html:44 src/olympia/users/templates/users/pwreset_complete.html:15
+#: src/olympia/templates/mobile/header_auth.html:8 src/olympia/users/templates/users/login_form.html:41 src/olympia/users/templates/users/pwreset_complete.html:15
 #: src/olympia/users/templates/users/mobile/login.html:50
 msgid "Log in"
 msgstr "Iniciar sessão"
@@ -11746,95 +11750,103 @@ msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto n
 msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
-#: src/olympia/users/forms.py:40
+#: src/olympia/users/forms.py:41
 msgid "Must be %s characters or more."
 msgstr "Tem de ter %s caracteres ou mais."
 
-#: src/olympia/users/forms.py:60
+#: src/olympia/users/forms.py:61
 msgid "Letters and numbers required."
 msgstr "São necessárias letras e números."
 
-#: src/olympia/users/forms.py:63
+#: src/olympia/users/forms.py:64
 msgid "That password is not allowed."
 msgstr "Essa palavra-passe não é permitida."
 
-#: src/olympia/users/forms.py:89
+#: src/olympia/users/forms.py:90
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
 msgstr "Como parte da nossa nova política de senhas, a sua senha deve ter pelo menos %s caracteres. Por favor atualize a sua senha <a href=\"%s\">solicitando uma reposição de senha</a>."
 
-#: src/olympia/users/forms.py:114
+#: src/olympia/users/forms.py:115
 msgid "You must recover your password through Firefox Accounts. Try logging in instead."
 msgstr ""
 
-#: src/olympia/users/forms.py:197 src/olympia/users/templates/users/pwreset_confirm.html:24
+#: src/olympia/users/forms.py:198 src/olympia/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
 msgstr "Nova palavra-passe"
 
-#: src/olympia/users/forms.py:233
+#: src/olympia/users/forms.py:234
 msgid "Email must be {email}."
 msgstr ""
 
-#: src/olympia/users/forms.py:261
+#: src/olympia/users/forms.py:262
 msgid "Usernames cannot contain only digits."
 msgstr "Os nomes de utilizador não podem conter apenas dígitos."
 
-#: src/olympia/users/forms.py:265
+#: src/olympia/users/forms.py:266
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr "Digite um nome de utilizador válido constituído por letras, números, traços inferiores ou hífenes."
 
-#: src/olympia/users/forms.py:268
+#: src/olympia/users/forms.py:269
 msgid "This username cannot be used."
 msgstr "Este nome de utilizador não pode ser utilizado."
 
-#: src/olympia/users/forms.py:274
+#: src/olympia/users/forms.py:275
 msgid "This username is already in use."
 msgstr "Este nome de utilizador já está a ser utilizado."
 
-#: src/olympia/users/forms.py:287 src/olympia/users/templates/users/edit.html:95
+#: src/olympia/users/forms.py:288 src/olympia/users/templates/users/edit.html:107
 msgid "Display Name"
 msgstr "Nome a apresentar"
 
-#: src/olympia/users/forms.py:289 src/olympia/users/templates/users/edit.html:100 src/olympia/users/templates/users/vcard.html:10
+#: src/olympia/users/forms.py:290 src/olympia/users/templates/users/edit.html:112 src/olympia/users/templates/users/vcard.html:10
 msgid "Location"
 msgstr "Localização"
 
-#: src/olympia/users/forms.py:291 src/olympia/users/templates/users/edit.html:105 src/olympia/users/templates/users/vcard.html:16
+#: src/olympia/users/forms.py:292 src/olympia/users/templates/users/edit.html:117 src/olympia/users/templates/users/vcard.html:16
 msgid "Occupation"
 msgstr "Ocupação"
 
-#: src/olympia/users/forms.py:320
+#: src/olympia/users/forms.py:321
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Esta URL tem um formato inválido. URLs válidos são do tipo http://exemplo.com/minha_pagina."
 
-#: src/olympia/users/forms.py:328
+#: src/olympia/users/forms.py:329
 msgid "Please use an email address from a different provider to complete your registration."
 msgstr "Por favor utilize um endereço de correio de outro fornecedor para concluir o seu registo."
 
-#: src/olympia/users/forms.py:336
+#: src/olympia/users/forms.py:337
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
 
-#: src/olympia/users/forms.py:350
+#: src/olympia/users/forms.py:351
 msgid "The passwords did not match."
 msgstr "As palavras-passe não correspondem."
 
-#: src/olympia/users/forms.py:368 src/olympia/users/templates/users/edit.html:116
+#: src/olympia/users/forms.py:369 src/olympia/users/templates/users/edit.html:128
 msgid "Profile Photo"
 msgstr "Fotografia do perfil"
 
-#: src/olympia/users/forms.py:376 src/olympia/users/templates/users/edit.html:130
+#: src/olympia/users/forms.py:377 src/olympia/users/templates/users/edit.html:142
 msgid "Default locale"
 msgstr "Idioma por omissão"
 
-#: src/olympia/users/forms.py:429
+#: src/olympia/users/forms.py:404
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr ""
+
+#: src/olympia/users/forms.py:438
 msgid "Wrong password entered!"
 msgstr "Foi digitada uma palavra-passe errada!"
 
-#: src/olympia/users/forms.py:514
+#: src/olympia/users/forms.py:451
+msgid "Email cannot be changed."
+msgstr ""
+
+#: src/olympia/users/forms.py:533
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Para ficar anónimo, escreva uma razão para a alteração mas não altere nenhum outro campo."
 
-#: src/olympia/users/forms.py:560
+#: src/olympia/users/forms.py:579
 msgid "Please enter at least one name to blacklist."
 msgstr "Por favor introduza pelo menos um nome a bloquear."
 
@@ -11859,19 +11871,21 @@ msgstr "hash"
 msgid "No user with that email."
 msgstr "Nenhum utilizador com esse email."
 
-#: src/olympia/users/models.py:353
-msgid "Anonymous"
+#. L10n: {id} will be something like "13ad6a", just a random number
+#. to differentiate this user from other anonymous users.
+#: src/olympia/users/models.py:355
+msgid "Anonymous user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:402
+#: src/olympia/users/models.py:412
 msgid "Your account has been restricted"
 msgstr "A sua conta foi restringida"
 
-#: src/olympia/users/models.py:472
+#: src/olympia/users/models.py:482
 msgid "Please confirm your email address"
 msgstr "Confirme o seu endereço de email"
 
-#: src/olympia/users/models.py:498
+#: src/olympia/users/models.py:508
 msgid "My Mobile Add-ons"
 msgstr "Os meus extras do móvel"
 
@@ -11947,47 +11961,47 @@ msgstr "A Mozilla quer contactar-me sobre novas regiões adicionadas ao Marketpl
 msgid "User Notifications"
 msgstr "Notificações do utilizador"
 
-#: src/olympia/users/views.py:90
+#: src/olympia/users/views.py:89
 msgid "An email address is required."
 msgstr "É necessário um endereço de email."
 
-#: src/olympia/users/views.py:95
+#: src/olympia/users/views.py:94
 msgid "A user with that email address does not exist."
 msgstr "Não existe nenhum utilizador com esse endereço de email."
 
-#: src/olympia/users/views.py:112
+#: src/olympia/users/views.py:111
 msgid "Invalid confirmation code!"
 msgstr "Código de confirmação inválido!"
 
-#: src/olympia/users/views.py:117
+#: src/olympia/users/views.py:116
 msgid "Successfully verified!"
 msgstr "Verificado com sucesso!"
 
-#: src/olympia/users/views.py:133
+#: src/olympia/users/views.py:132
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 
-#: src/olympia/users/views.py:137 src/olympia/users/views.py:625
+#: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
 msgstr "Mensagem de confirmação enviada"
 
-#: src/olympia/users/views.py:148
+#: src/olympia/users/views.py:147
 msgid "Profile Deleted"
 msgstr "Perfil eliminado"
 
-#: src/olympia/users/views.py:169
+#: src/olympia/users/views.py:168
 msgid "Photo Deleted"
 msgstr "Fotografia eliminada"
 
-#: src/olympia/users/views.py:188 src/olympia/users/views.py:295
+#: src/olympia/users/views.py:187 src/olympia/users/views.py:294
 msgid "Profile Updated"
 msgstr "Perfil atualizado"
 
-#: src/olympia/users/views.py:197
+#: src/olympia/users/views.py:196
 msgid "Email Confirmation Sent"
 msgstr "Mensagem de confirmação enviada"
 
-#: src/olympia/users/views.py:198
+#: src/olympia/users/views.py:197
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
@@ -11995,39 +12009,39 @@ msgstr ""
 "Foi enviada uma mensagem de correio para {0} para confirmar o seu novo endereço. Para a alteração surtir efeito, tem de clicar na ligação incluída nessa mensagem de correio. Até lá, pode continuar "
 "a entrar com o seu endereço de correio atual."
 
-#: src/olympia/users/views.py:211
+#: src/olympia/users/views.py:210
 msgid "Please confirm your email address change at %s"
 msgstr "Por favor, confirme a alteração do seu endereço de correio em %s"
 
-#: src/olympia/users/views.py:225
+#: src/olympia/users/views.py:224
 msgid "Errors Found"
 msgstr "Erros encontrados"
 
-#: src/olympia/users/views.py:226
+#: src/olympia/users/views.py:225
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Ocorreram erros nas alterações que efetuou. Corrija-os e volte a submeter."
 
-#: src/olympia/users/views.py:274
+#: src/olympia/users/views.py:273
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
 msgstr "Pedimos desculpa, mas não é elegível a solicitar uma t-shirt neste momento."
 
-#: src/olympia/users/views.py:330
+#: src/olympia/users/views.py:329
 msgid "Your email address was changed successfully"
 msgstr "O seu endereço de correio foi alterado com sucesso"
 
-#: src/olympia/users/views.py:331
+#: src/olympia/users/views.py:330
 msgid "From now on, please use {0} to log in."
 msgstr "A partir de agora, para iniciar sessão utilize {0}"
 
-#: src/olympia/users/views.py:428
+#: src/olympia/users/views.py:422
 msgid "Wrong email address or password!"
 msgstr "Palavra-passe ou endereço de e-mail incorreto!"
 
-#: src/olympia/users/views.py:440
+#: src/olympia/users/views.py:434
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
 msgstr "Uma ligação para ativar a sua conta foi enviada por mensagem de correio para o seu endereço {0}. Tem de clicar no mesmo antes de iniciar sessão."
 
-#: src/olympia/users/views.py:445
+#: src/olympia/users/views.py:439
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
@@ -12035,37 +12049,37 @@ msgstr ""
 "Se não recebeu uma mensagem de confirmação, confirme se o seu serviço de correio não marcou a mensagem como \"Lixo\" ou \"Spam\". Se precisar, nós podemos <a href=\"%s\">reenviar a mensagem de "
 "confirmação</a> para o seu endereço de correio mencionado acima."
 
-#: src/olympia/users/views.py:450
+#: src/olympia/users/views.py:444
 msgid "Activation Email Sent"
 msgstr "Enviada mensagem de correio de ativação"
 
-#: src/olympia/users/views.py:451
+#: src/olympia/users/views.py:445
 msgid "Having Trouble?"
 msgstr "Está a ter problemas?"
 
-#: src/olympia/users/views.py:595
+#: src/olympia/users/views.py:589
 msgid "You are already logged in to an account."
 msgstr "Já tem uma sessão iniciada para uma conta."
 
-#: src/olympia/users/views.py:617
+#: src/olympia/users/views.py:611
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Parabéns! A sua conta de utilizador foi criada com sucesso."
 
-#: src/olympia/users/views.py:621
+#: src/olympia/users/views.py:615
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
 msgstr ""
 "Foi enviada uma mensagem de correio eletrónico para o seu endereço {0} para confirmar a sua conta. Antes de poder iniciar sessão, tem de ativar a sua conta clicando na ligação fornecida nesta "
 "mensagem de correio eletrónico."
 
-#: src/olympia/users/views.py:645
+#: src/olympia/users/views.py:639
 msgid "There are errors in this form"
 msgstr "Existem erros neste formulário"
 
-#: src/olympia/users/views.py:646
+#: src/olympia/users/views.py:640
 msgid "Please correct them and resubmit."
 msgstr "Por favor corrigia-os e volte a submeter."
 
-#: src/olympia/users/views.py:661
+#: src/olympia/users/views.py:655
 msgid "User reported."
 msgstr "Utilizador reportado."
 
@@ -12117,116 +12131,124 @@ msgstr "Eliminar fotografia do utilizador"
 msgid "Delete my user picture now"
 msgstr "Eliminar a minha fotografia de utilizador agora"
 
-#: src/olympia/users/templates/users/edit.html:27
+#: src/olympia/users/templates/users/edit.html:20
+msgid "Please set your display name"
+msgstr ""
+
+#: src/olympia/users/templates/users/edit.html:21
+msgid "Please set your display name or username to complete the registration process."
+msgstr ""
+
+#: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
 msgstr "Faça a gestão da informação da conta, como o nome de utilizador e o endereço de correio."
 
-#: src/olympia/users/templates/users/edit.html:33 src/olympia/users/templates/users/register.html:47
+#: src/olympia/users/templates/users/edit.html:39 src/olympia/users/templates/users/register.html:47
 msgid "Username"
 msgstr "Nome de utilizador"
 
-#: src/olympia/users/templates/users/edit.html:38 src/olympia/users/templates/users/pwreset_request.html:21 src/olympia/users/templates/users/register.html:62
+#: src/olympia/users/templates/users/edit.html:45 src/olympia/users/templates/users/pwreset_request.html:21 src/olympia/users/templates/users/register.html:62
 msgid "Email Address"
 msgstr "Endereço de email"
 
-#: src/olympia/users/templates/users/edit.html:45
+#: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
 msgstr ""
 
-#: src/olympia/users/templates/users/edit.html:48
+#: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
 msgstr "Alterar palavra-passe"
 
-#: src/olympia/users/templates/users/edit.html:56 src/olympia/users/templates/users/login_form.html:25 src/olympia/users/templates/users/register.html:67
+#: src/olympia/users/templates/users/edit.html:68 src/olympia/users/templates/users/login_form.html:22 src/olympia/users/templates/users/register.html:67
 #: src/olympia/users/templates/users/mobile/login.html:31
 msgid "Password"
 msgstr "Palavra-passe"
 
-#: src/olympia/users/templates/users/edit.html:58
+#: src/olympia/users/templates/users/edit.html:70
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
 msgstr "Altere a sua palavra-passe. Se se esquecer da sua palavra-passe, pode <a href=\"%(reset_url)s\">usar o formulário de reposição da palavra-passe</a>."
 
-#: src/olympia/users/templates/users/edit.html:64
+#: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
 msgstr "Palavra-passe antiga"
 
-#: src/olympia/users/templates/users/edit.html:72
+#: src/olympia/users/templates/users/edit.html:84
 msgid "New Password"
 msgstr "Palavra-passe nova"
 
-#: src/olympia/users/templates/users/edit.html:77
+#: src/olympia/users/templates/users/edit.html:89
 msgid "Confirm Password"
 msgstr "Confirme a palavra-passe"
 
-#: src/olympia/users/templates/users/edit.html:86
+#: src/olympia/users/templates/users/edit.html:98
 msgid "Profile"
 msgstr "Perfil"
 
-#: src/olympia/users/templates/users/edit.html:88
+#: src/olympia/users/templates/users/edit.html:100
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "Dê-nos mais alguma informação sobre si. Todos estes campos são opcionais, mas ajudam outros a conhecê-lo melhor."
 
-#: src/olympia/users/templates/users/edit.html:112
+#: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
 msgstr "Este endereço só será visível se for um programador."
 
-#: src/olympia/users/templates/users/edit.html:121
+#: src/olympia/users/templates/users/edit.html:133
 msgid "Choose Photo&hellip;"
 msgstr "Escolher foto&hellip;"
 
-#: src/olympia/users/templates/users/edit.html:125
+#: src/olympia/users/templates/users/edit.html:137
 msgid "Delete current photo"
 msgstr "Eliminar foto atual"
 
-#: src/olympia/users/templates/users/edit.html:132
+#: src/olympia/users/templates/users/edit.html:144
 msgid "This is the default locale used to display information about you (like your description)."
 msgstr "Este é o idioma por omissão utilizado para apresentar informações sobre si (como por exemplo, a descrição)."
 
-#: src/olympia/users/templates/users/edit.html:140
+#: src/olympia/users/templates/users/edit.html:152
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Se quiser, apresente-se à comunidade! Este texto irá aparecer publicamente na informação da sua página de utilizador."
 
-#: src/olympia/users/templates/users/edit.html:149
+#: src/olympia/users/templates/users/edit.html:161
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "HTML permitido: {0}. Ligações são proibidas."
 
-#: src/olympia/users/templates/users/edit.html:156
+#: src/olympia/users/templates/users/edit.html:168
 msgid "Miscellaneous"
 msgstr "Diversos"
 
-#: src/olympia/users/templates/users/edit.html:158
+#: src/olympia/users/templates/users/edit.html:170
 msgid "Decide what collections should be shown in your profile."
 msgstr "Decida que coleções são apresentadas no seu perfil."
 
-#: src/olympia/users/templates/users/edit.html:166
+#: src/olympia/users/templates/users/edit.html:178
 msgid "Display the collections I have created"
 msgstr "Apresentar as coleções que criei"
 
-#: src/olympia/users/templates/users/edit.html:173
+#: src/olympia/users/templates/users/edit.html:185
 msgid "Display collections I'm following"
 msgstr "Apresentar as coleções que sigo"
 
-#: src/olympia/users/templates/users/edit.html:181
+#: src/olympia/users/templates/users/edit.html:193
 msgid "Notifications"
 msgstr "Notificações"
 
-#: src/olympia/users/templates/users/edit.html:183
+#: src/olympia/users/templates/users/edit.html:195
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
 msgstr "De tempos a tempos, a Mozilla poderá enviar-lhe uma mensagem de correio sobre os próximos lançamentos e eventos sobre extras. Por favor, selecione os tópicos em que está interessado."
 
-#: src/olympia/users/templates/users/edit.html:193
+#: src/olympia/users/templates/users/edit.html:205
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr "A Mozilla reserva o direito de o contactar individualmente sobre preocupações específicas sobre os seus extras alojados."
 
-#: src/olympia/users/templates/users/edit.html:203
+#: src/olympia/users/templates/users/edit.html:215
 msgid "Admin"
 msgstr "Administração"
 
-#: src/olympia/users/templates/users/edit.html:235
+#: src/olympia/users/templates/users/edit.html:247
 msgid "Delete Account"
 msgstr "Eliminar conta"
 
-#: src/olympia/users/templates/users/edit.html:237
+#: src/olympia/users/templates/users/edit.html:249
 msgid "Update Account"
 msgstr "Atualizar conta"
 
@@ -12238,15 +12260,16 @@ msgstr "nenhum"
 msgid "all"
 msgstr "tudo"
 
-#: src/olympia/users/templates/users/fxa_migration.html:3 src/olympia/users/templates/users/fxa_migration.html:11
+#: src/olympia/users/templates/users/fxa_migration.html:3 src/olympia/users/templates/users/fxa_migration.html:11 src/olympia/users/templates/users/mobile/fxa_migration.html:3
+#: src/olympia/users/templates/users/mobile/fxa_migration.html:8
 msgid "Migrate to Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/fxa_migration.html:14
+#: src/olympia/users/templates/users/fxa_migration_prompt_content.html:3
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
 msgstr ""
 
-#: src/olympia/users/templates/users/fxa_migration.html:25
+#: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
 msgstr ""
 
@@ -12262,27 +12285,23 @@ msgstr ""
 msgid "Log In"
 msgstr "Iniciar sessão"
 
-#: src/olympia/users/templates/users/login_form.html:11
-msgid "Need help?"
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html:20 src/olympia/users/templates/users/mobile/login.html:26
+#: src/olympia/users/templates/users/login_form.html:17 src/olympia/users/templates/users/mobile/login.html:26
 msgid "Email address"
 msgstr "Endereço de correio"
 
-#: src/olympia/users/templates/users/login_form.html:33 src/olympia/users/templates/users/mobile/login.html:38
+#: src/olympia/users/templates/users/login_form.html:30 src/olympia/users/templates/users/mobile/login.html:38
 msgid "Remember me on this device"
 msgstr "Memorizar-me neste dispositivo"
 
-#: src/olympia/users/templates/users/login_help.html:3 src/olympia/users/templates/users/mobile/login.html:56
+#: src/olympia/users/templates/users/login_help.html:3 src/olympia/users/templates/users/mobile/login.html:57
 msgid "Login Problems?"
 msgstr "Problemas de autenticação?"
 
-#: src/olympia/users/templates/users/login_help.html:5 src/olympia/users/templates/users/mobile/login.html:58
+#: src/olympia/users/templates/users/login_help.html:5 src/olympia/users/templates/users/mobile/login.html:59
 msgid "I don't have an account."
 msgstr "Não tenho uma conta."
 
-#: src/olympia/users/templates/users/login_help.html:6 src/olympia/users/templates/users/mobile/login.html:59
+#: src/olympia/users/templates/users/login_help.html:6 src/olympia/users/templates/users/mobile/login.html:60
 msgid "I forgot my password."
 msgstr "Esqueci-me da palavra-passe"
 
