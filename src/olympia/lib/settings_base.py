@@ -932,7 +932,7 @@ NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 
 # Outgoing URL bouncer
-REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
+REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
 
 PFS_URL = 'https://pfs.mozilla.org/plugins/PluginFinderService.php'
