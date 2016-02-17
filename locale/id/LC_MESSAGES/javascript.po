@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-10 17:04+0000\n"
-"PO-Revision-Date: 2016-02-17 01:12+0000\n"
-"Last-Translator: alamanda <dian.ina@gmail.com>\n"
+"PO-Revision-Date: 2016-01-17 14:49+0000\n"
+"Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -43,11 +43,11 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:140
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 #: static/js/common/upload-addon.js:162
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Mengunggah {0}"
 
 #: static/js/common/upload-addon.js:189
 msgid "Error with {0}"
@@ -255,7 +255,7 @@ msgstr "Memperbarui hasil &hellip;"
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
