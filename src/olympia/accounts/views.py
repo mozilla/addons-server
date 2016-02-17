@@ -288,12 +288,11 @@ class AccountSuperCreate(JWTProtectedView):
             return Response({'errors': serializer.errors},
                             status=422)
 
+        data = serializer.data
         user_token = os.urandom(4).encode('hex')
-        username = 'super-created-{}'.format(user_token)
-        email = serializer.data['email']
-        if not email:
-            email = '{}@addons.mozilla.org'.format(username)
-        password = os.urandom(16).encode('hex')
+        username = data['username'] or 'super-created-{}'.format(user_token)
+        email = data['email'] or '{}@addons.mozilla.org'.format(username)
+        password = data['password'] or os.urandom(16).encode('hex')
 
         user = UserProfile.objects.create(
             username=username,

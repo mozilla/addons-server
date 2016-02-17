@@ -27,11 +27,20 @@ class AccountSourceSerializer(serializers.ModelSerializer):
 
 
 class AccountSuperCreateSerializer(serializers.Serializer):
+    username = serializers.CharField(required=False)
+    password = serializers.CharField(required=False)
     email = serializers.EmailField(required=False)
 
     def validate_email(self, attrs, source):
         email = attrs.get(source)
-        if UserProfile.objects.filter(email=email).exists():
+        if email and UserProfile.objects.filter(email=email).exists():
             raise serializers.ValidationError(
-                'User with this email already exists in the system')
+                'Someone with this email already exists in the system')
+        return attrs
+
+    def validate_username(self, attrs, source):
+        username = attrs.get(source)
+        if username and UserProfile.objects.filter(username=username).exists():
+            raise serializers.ValidationError(
+                'Someone with this username already exists in the system')
         return attrs
