@@ -2168,7 +2168,7 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(upload, [self.platform])
         assert addon.admin_review
 
-REDIRECT_URL = 'http://outgoing.mozilla.org/v1/'
+REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
 
 
 class TestCharity(TestCase):
