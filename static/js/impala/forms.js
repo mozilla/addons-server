@@ -10,7 +10,7 @@ function populateErrors(context, o) {
     $.each(o, function(i, v) {
         var $row = $('[name=' + i + ']', context).closest('.row');
         $row.addClass('error');
-        $row.append($list.append($(format('<li>{0}</li>', v))));
+        $row.append($list.append($(format('<li>{0}</li>', _.escape(v)))));
     });
 }
 
