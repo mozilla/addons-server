@@ -807,6 +807,7 @@ class TestAccountSuperCreate(APIAuthTestCase):
         assert user.username == data['username']
         assert user.email == data['email']
         assert user.email.endswith('@addons.mozilla.org')
+        assert user.fxa_id == data['fxa_id']
         assert data['session_cookie']['name']
         assert data['session_cookie']['value']
         encoded = '{name}={value}'.format(**data['session_cookie'])
@@ -825,6 +826,13 @@ class TestAccountSuperCreate(APIAuthTestCase):
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert user.email == email
+
+    def test_create_a_user_with_custom_fxa_id(self):
+        fxa_id = '6d940dd41e636cc156074109b8092f96'
+        res = self.post(self.url, {'fxa_id': fxa_id})
+        assert res.status_code == 201, res.content
+        user = UserProfile.objects.get(pk=res.data['user_id'])
+        assert user.fxa_id == fxa_id
 
     def test_create_a_user_with_custom_username(self):
         username = 'shanghaibotnet8000'
