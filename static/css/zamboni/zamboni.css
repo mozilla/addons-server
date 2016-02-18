@@ -1082,18 +1082,19 @@ ul.license li.copyr { background-position: 0 -260px; }
 .persona-hover .persona-inner {
     background: #c8e8f2;
 }
+.persona-preview > a,
+.persona-preview > div {
+    position: relative;
+}
 .persona-install {
     border: 0.25em solid #C8E8F2;
     bottom: -3px;
     display: none;
-    left: 0;
+    left: -3px;
     position: absolute;
 }
 .addons-column .persona-install {
     left: -3px;
-}
-.with-details .persona-install {
-    bottom: 53px;
 }
 .persona-preview:hover .incompat-browser {
     display: block;
