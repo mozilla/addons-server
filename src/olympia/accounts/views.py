@@ -291,12 +291,14 @@ class AccountSuperCreate(JWTProtectedView):
         data = serializer.data
         user_token = os.urandom(4).encode('hex')
         username = data['username'] or 'super-created-{}'.format(user_token)
+        fxa_id = data['fxa_id'] or None
         email = data['email'] or '{}@addons.mozilla.org'.format(username)
         password = data['password'] or os.urandom(16).encode('hex')
 
         user = UserProfile.objects.create(
             username=username,
             email=email,
+            fxa_id=fxa_id,
             display_name='Super Created {}'.format(user_token),
             is_verified=True,
             confirmationcode='',
@@ -309,7 +311,7 @@ class AccountSuperCreate(JWTProtectedView):
 
         log.info(u'API user {api_user} created and logged in a user from '
                  u'the super-create API: user_id: {user.pk}; '
-                 u'user_name: {user.username}'
+                 u'user_name: {user.username}; fxa_id: {user.fxa_id}'
                  .format(user=user, api_user=request.user))
 
         cookie = {
@@ -322,5 +324,6 @@ class AccountSuperCreate(JWTProtectedView):
             'user_id': user.pk,
             'username': user.username,
             'email': user.email,
+            'fxa_id': user.fxa_id,
             'session_cookie': cookie,
         }, status=201)

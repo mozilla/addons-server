@@ -30,6 +30,7 @@ class AccountSuperCreateSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
     password = serializers.CharField(required=False)
     email = serializers.EmailField(required=False)
+    fxa_id = serializers.CharField(required=False)
 
     def validate_email(self, attrs, source):
         email = attrs.get(source)

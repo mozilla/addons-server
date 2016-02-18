@@ -74,6 +74,13 @@ This allows you to generate a new user account and sign in as that user.
         A random username will be assigned by default.
     :param password: assign the user a specific password.
         A random password will be assigned by default.
+    :param fxa_id:
+        assign the user a Firefox Accounts ID, like one
+        returned in the ``uuid`` parameter of a
+        `profile request <https://github.com/mozilla/fxa-profile-server/blob/master/docs/API.md#get-v1profile>`_.
+        This is empty by default, meaning the user's account will
+        need to be migrated to a Firefox Account.
+
 
     .. sourcecode:: bash
 
@@ -88,6 +95,7 @@ This allows you to generate a new user account and sign in as that user.
             "username": "super-created-7ee304ce",
             "user_id": 10985,
             "email": "super-created-7ee304ce@addons.mozilla.org",
+            "fxa_id": null,
             "session_cookie": {
                 "encoded": "sessionid=.eJyrVopPLC3JiC8tTi2KT...",
                 "name": "sessionid",
