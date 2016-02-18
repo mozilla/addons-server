@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-18 18:31+0000\n"
-"Last-Translator: fabricio <fabricio@fabricio.org>\n"
+"PO-Revision-Date: 2016-02-18 21:27+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -11301,31 +11301,31 @@ msgstr "Coroa Tcheca"
 
 #: src/olympia/lib/constants.py:41
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Franco Jibutiano"
 
 #: src/olympia/lib/constants.py:42
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Coroa Dinamarquesa"
 
 #: src/olympia/lib/constants.py:43
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Peso Dominicano"
 
 #: src/olympia/lib/constants.py:44
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Dinar Argelino"
 
 #: src/olympia/lib/constants.py:45
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Libra Egípcia"
 
 #: src/olympia/lib/constants.py:46
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Nakfa Eritreia"
 
 #: src/olympia/lib/constants.py:47
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Birr Etíope"
 
 #: src/olympia/lib/constants.py:48
 msgid "Euro Member Countries"
@@ -11333,27 +11333,27 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:49
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Dólar Fijiano"
 
 #: src/olympia/lib/constants.py:50
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Libra das Ilhas Malvinas (Falkland)"
 
 #: src/olympia/lib/constants.py:51
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Libra Esterlina"
 
 #: src/olympia/lib/constants.py:52
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Lari Georgiano"
 
 #: src/olympia/lib/constants.py:53
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Libra de Guernesei"
 
 #: src/olympia/lib/constants.py:54
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Cedi Ganense"
 
 #: src/olympia/lib/constants.py:55
 msgid "Gibraltar Pound"
@@ -15266,6 +15266,8 @@ msgstr "Local padrão"
 #: src/olympia/users/forms.py:404
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Usuários da Conta Firefox no momento não podem modificar o endereço de "
+"e-mail."
 
 #: src/olympia/users/forms.py:438
 msgid "Wrong password entered!"
@@ -15799,6 +15801,8 @@ msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Complementos da Mozilla fizeram a transição para as Contas Firefox para o "
+"login. Continue para completar o processo de atualização."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
