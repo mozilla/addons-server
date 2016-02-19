@@ -200,8 +200,6 @@ MOBILE_DOMAIN = 'm.%s' % DOMAIN
 # The full url of the mobile site.
 MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
 
-OAUTH_CALLBACK_VIEW = 'olympia.api.views.request_token_ready'
-
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path('user-media')
@@ -344,8 +342,6 @@ MIDDLEWARE_CLASSES = (
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
-    'olympia.api.middleware.RestOAuthMiddleware',
-
     # This should come after authentication middleware
     'olympia.access.middleware.ACLMiddleware',
 
@@ -404,7 +400,6 @@ INSTALLED_APPS = (
     'aesfield',
     'django_extensions',
     'raven.contrib.django',
-    'piston',
     'waffle',
     'jingo_minify',
 

@@ -165,16 +165,6 @@ urlpatterns = patterns(
 
 )
 
-urlpatterns += patterns(
-    'piston.authentication.oauth.views',
-    url(r'^oauth/request_token/$', 'get_request_token',
-        name='oauth.request_token'),
-    url(r'^oauth/authorize/$', 'authorize_request_token',
-        name='oauth.authorize'),
-    url(r'^oauth/access_token/$', 'get_access_token',
-        name='oauth.access_token'),
-)
-
 if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')

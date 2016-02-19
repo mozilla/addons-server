@@ -33,7 +33,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def transform_resource_uri(self, obj, value):
         """
-        Maintain backward-compatibility with piston.
+        Maintain backward-compatibility with old implementation.
         """
         return absolutify(reverse('addons.detail', args=[obj.slug]))
 

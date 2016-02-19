@@ -561,10 +561,6 @@ class Addon(OnChangeMixin, ModelBase):
         view = 'addons.detail_more' if more else 'addons.detail'
         return reverse(view, args=[self.slug], add_prefix=add_prefix)
 
-    def get_api_url(self):
-        # Used by Piston in output.
-        return helpers.absolutify(self.get_url_path())
-
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         args = args or []
         prefix = 'devhub'

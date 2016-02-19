@@ -3,10 +3,9 @@ from django.conf.urls import include, patterns, url
 from django.db.transaction import non_atomic_requests
 
 import waffle
-from piston.resource import Resource
 
 from olympia.addons.urls import ADDON_ID
-from olympia.api import authentication, handlers, views, views_drf
+from olympia.api import views, views_drf
 
 API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
 
@@ -51,49 +50,24 @@ search_regexps = build_urls(base_search_regexp, appendages)
 base_list_regexp = r'list'
 appendages.insert(0, '/(?P<list_type>[^/]+)')
 list_regexps = build_urls(base_list_regexp, appendages)
-ad = {'authentication': authentication.AMOOAuthAuthentication(two_legged=True)}
 
 
 class SwitchToDRF(object):
     """
-    Waffle switch to move from Piston to DRF.
+    Waffle switch to move the legacy API from the old custom implementation to
+    the newer one that uses DRF.
     """
-    def __init__(self, resource_name, with_handler=False, with_viewset=False,
-                 only_detail=False):
+    def __init__(self, resource_name):
         self.resource_name = resource_name
-        self.with_handler = with_handler
-        self.with_viewset = with_viewset
-        self.only_detail = only_detail
 
     @non_atomic_requests
     def __call__(self, *args, **kwargs):
         if waffle.switch_is_active('drf'):
-            if self.with_viewset:
-                actions = {}
-                view_name = self.resource_name + 'ViewSet'
-                if self.only_detail:
-                    actions = {
-                        'get': 'retrieve',
-                        'put': 'update',
-                        'delete': 'delete',
-                    }
-                else:
-                    actions = {
-                        'get': 'retrieve',
-                        'post': 'create',
-                    }
-                return (getattr(views_drf, view_name).as_view(actions)
-                        (*args, **kwargs))
-            else:
-                view_name = self.resource_name + 'View'
-                return getattr(views_drf, view_name).as_view()(*args, **kwargs)
+            view_name = self.resource_name + 'View'
+            return getattr(views_drf, view_name).as_view()(*args, **kwargs)
         else:
-            if self.with_handler:
-                handler = getattr(handlers, self.resource_name + 'Handler')
-                return Resource(handler=handler, **ad)(*args, **kwargs)
-            else:
-                return (class_view(getattr(views, self.resource_name + 'View'))
-                        (*args, **kwargs))
+            return (class_view(getattr(views, self.resource_name + 'View'))
+                    (*args, **kwargs))
 
 
 api_patterns = patterns(
@@ -114,37 +88,18 @@ for regexp in list_regexps:
         '',
         url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
 
-piston_patterns = patterns(
-    '',
-    url(r'^user/$', SwitchToDRF('User', with_handler=True), name='api.user'),
-    url(r'^addons/$',
-        SwitchToDRF('Addons', with_handler=True, with_viewset=True),
-        name='api.addons'),
-    url(r'^addon/%s$' % ADDON_ID,
-        SwitchToDRF('Addons', with_handler=True, with_viewset=True,
-                    only_detail=True),
-        name='api.addon'),
-    url(r'^addon/%s/versions$' % ADDON_ID,
-        SwitchToDRF('Versions', with_handler=True, with_viewset=True),
-        name='api.versions'),
-    url(r'^addon/%s/version/(?P<version_id>\d+)$' % ADDON_ID,
-        SwitchToDRF('Versions', with_handler=True, with_viewset=True,
-                    only_detail=True),
-        name='api.version'),
-)
-
 urlpatterns = patterns(
     '',
     # Redirect api requests without versions
     url('^((?:addon|search|list)/.*)$', views.redirect_view),
 
-    # Piston
-    url(r'^2/', include(piston_patterns)),
+    # Legacy API.
     url(r'^1.5/search_suggestions/', views.search_suggestions),
-    # Append api_version to the real api views
     url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',
         views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(api_patterns)),
+
+    # Newer APIs.
     url(r'^v3/accounts/', include('olympia.accounts.urls')),
     url(r'^v3/', include('olympia.signing.urls')),
     url(r'^v3/statistics/', include('olympia.stats.api_urls')),
