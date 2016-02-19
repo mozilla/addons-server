@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-17 12:30+0000\n"
-"Last-Translator: siparon <siparon@gmail.com>\n"
+"PO-Revision-Date: 2016-02-19 20:56+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -5949,10 +5949,12 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again by others."
 msgstr ""
+"Kiegészítőjének törlésével véglegesen eltávolítja azt az oldalról, és "
+"megakadályozza, hogy GUID-ját mások ismét benyújtsák."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter the URL name to confirm your decision ({slug}):"
-msgstr ""
+msgstr "Erősítse meg döntését az URL név megadásával ({slug}):"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -6452,6 +6454,8 @@ msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Ez a funkció aktív fejlesztés alatt áll. Ha problémát talál, kérjük tegyen "
+"<a target=\"_blank\" href=\"%(bug_link)s\">hibabejelentést</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:61
 msgid "Revoke and regenerate credentials"
@@ -6482,6 +6486,9 @@ msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Köszönjük, hogy kapcsolatba lépett a Mozilla Kiegészítők csapatával. Kérjük,"
+" olvassa el ezt az oldalt figyelmesen, hogy biztosítsa kérése megfelelő "
+"helyre irányul."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
@@ -6494,14 +6501,18 @@ msgid ""
 "that add-on's author through the support channels listed on the add-on's "
 "listing page."
 msgstr ""
+"Ha olyan támogatási kérdése van egy adott bővítménnyel kapcsolatban, mint a "
+"\"hogyan használhatom ezt a kiegészítőt?\" vagy \"miért nem működik "
+"rendesen?\", kérjük, hogy keresse a kiegészítő szerzőjét a kiegészítő "
+"oldalán megadott támogatási csatornákon keresztül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Kiegészítő szerkesztői megjegyzései"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors kukac mozilla pont org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 msgid ""
@@ -6511,14 +6522,20 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
+"Ha egy szerkesztői értékeléssel kapcsolatban kérdése van vagy házirend "
+"megszegését jelentené, küldjön egy emailt ide: %(mail_editors)s. "
+"<strong>Szinte minden kiegészítő-jelentés ebbe a kategóriába "
+"tartozik.</strong> Kérjük, bizonyosodjon meg afelől, hogy kérdése vagy "
+"megjegyzése a részletes leírás mellett tartalmazza a kiegészítő hivatkozását"
+" is."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Kiegészítő biztonsági sebezhetőségei"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins kukac mozilla pont org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 msgid ""
@@ -6530,10 +6547,17 @@ msgid ""
 "policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Ha biztonsági sebezhetőséget fedez fel egy kiegészítőben, akkor is ha nem "
+"itt tárolják, a Mozillát érdekli az Ön találata és a kiegészítő "
+"fejlesztőjével mihamarabb a hiba javításán fogunk dolgozni. Kiegészítőkkel "
+"kapcsolatos biztonsági problémákat <a "
+"href=\"http://www.mozilla.org/projects/security/security-bugs-"
+"policy.html\">bizalmasan</a> a <a href=\"%(link_bugzilla)s\">Bugzilla</a> "
+"oldalon, vagy az %(mail_admins)s e-mailcímen jelenthet."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Honlap funkcionalitása és fejlesztése"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
@@ -6541,6 +6565,10 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Ha hibát talált ezen a honlapon hibát, szeretnénk kijavítani. Kérjük, <a "
+"href=\"https://github.com/mozilla/olympia/issues\">tegyen "
+"hibabejelentést</a> a GitHubon, leírva a probléma helyét, és hogy hogyan "
+"találkozott vele."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
