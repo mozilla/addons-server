@@ -2,6 +2,7 @@ import smtplib
 import sys
 import traceback
 
+from django.utils.encoding import force_bytes
 from email.Utils import formatdate
 from email.mime.text import MIMEText
 from time import time
@@ -365,7 +366,7 @@ def application(environ, start_response):
         compat_mode = data.pop('compatMode', 'strict')
         try:
             update = Update(data, compat_mode)
-            output = update.get_rdf()
+            output = force_bytes(update.get_rdf())
             start_response(status, update.get_headers(len(output)))
         except:
             #mail_exception(data)
