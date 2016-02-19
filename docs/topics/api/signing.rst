@@ -36,7 +36,7 @@ validation or review fails.
 If the upload succeeded then it will be submitted for
 validation and you will be able to check its status.
 
-.. http:put:: /api/v3/addons/[string:add-on-id]/versions/[string:version]/
+.. http:put:: /api/v3/addons/[string:addon-id]/versions/[string:version]/
 
     **Request:**
 
@@ -46,9 +46,11 @@ validation and you will be able to check its status.
             -g -XPUT --form 'upload=@build/my-addon.xpi'
             -H 'Authorization: JWT <jwt-token>'
 
-    :param addon-id the id for the add-on.
-    :param version: the version of the add-on.
-    :form upload: the add-on being uploaded.
+    :param addon-id: The id for the add-on.
+    :param version: The version of the add-on. A version ending with
+        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
+        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :form upload: The add-on file being uploaded.
     :reqheader Content-Type: multipart/form-data
 
     **Response:**
@@ -93,7 +95,7 @@ automatically or after a manual review. Once review is complete then the
 ``reviewed`` property will be set and you can check the results with the
 ``passed_review`` property.
 
-.. http:get:: /api/v3/addons/[string:add-on-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
+.. http:get:: /api/v3/addons/[string:addon-id]/versions/[string:version]/(uploads/[string:upload-pk]/)
 
     **Request:**
 
@@ -102,7 +104,7 @@ automatically or after a manual review. Once review is complete then the
         curl https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/
             -g -H 'Authorization: JWT <jwt-token>'
 
-    :param addon-id the id for the add-on.
+    :param addon-id: the id for the add-on.
     :param version: the version of the add-on.
     :param upload-pk: (optional) the pk for a specific upload.
 

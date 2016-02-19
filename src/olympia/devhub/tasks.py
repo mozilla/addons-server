@@ -31,6 +31,7 @@ from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
 from olympia.files.helpers import copyfileobj
 from olympia.files.models import FileUpload, File, FileValidation
+from olympia.files.utils import is_beta
 from olympia.versions.models import Version
 
 
@@ -88,7 +89,9 @@ def create_version_for_upload(addon, upload):
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
-        version = Version.from_upload(upload, addon, [amo.PLATFORM_ALL.id])
+        beta = bool(upload.version) and is_beta(upload.version)
+        version = Version.from_upload(
+            upload, addon, [amo.PLATFORM_ALL.id], is_beta=beta)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
@@ -96,7 +99,7 @@ def create_version_for_upload(addon, upload):
         # review since listed and sideload aren't supported for creation yet.
         if addon.status == amo.STATUS_NULL:
             addon.update(status=amo.STATUS_LITE)
-        auto_sign_version(version)
+        auto_sign_version(version, is_beta=version.is_beta)
 
 
 # Override the validator's stock timeout exception so that it can

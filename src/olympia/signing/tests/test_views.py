@@ -92,7 +92,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE
-        sign_version.assert_called_with(addon.latest_version)
+        sign_version.assert_called_with(addon.latest_version, is_beta=False)
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
@@ -147,7 +147,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.version == '3.0'
         assert version.statuses[0][1] == amo.STATUS_PUBLIC
         assert version.addon.status == amo.STATUS_PUBLIC
-        sign_version.assert_called_with(version)
+        sign_version.assert_called_with(version, is_beta=False)
 
     def test_version_already_uploaded(self):
         response = self.put(self.url(self.guid, '3.0'))
@@ -189,7 +189,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE
-        sign_version.assert_called_with(addon.latest_version)
+        sign_version.assert_called_with(addon.latest_version, is_beta=False)
 
     @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_added_is_experiment_reject_no_perm(self, sign_version):
@@ -202,6 +202,49 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
+
+    @mock.patch('olympia.devhub.views.auto_sign_version')
+    def test_version_is_beta_unlisted(self, sign_version):
+        Addon.objects.get(guid=self.guid).update(
+            status=amo.STATUS_LITE, is_listed=False)
+        version_string = '4.0-beta1'
+        qs = Version.objects.filter(
+            addon__guid=self.guid, version=version_string)
+        assert not qs.exists()
+
+        response = self.put(
+            self.url(self.guid, version_string), version=version_string)
+        assert response.status_code == 202
+        assert 'processed' in response.data
+
+        version = qs.get()
+        assert version.addon.guid == self.guid
+        assert version.version == version_string
+        assert version.statuses[0][1] == amo.STATUS_LITE
+        assert version.addon.status == amo.STATUS_LITE
+        assert not version.is_beta
+        sign_version.assert_called_with(version, is_beta=False)
+
+    @mock.patch('olympia.devhub.views.auto_sign_version')
+    def test_version_is_beta(self, sign_version):
+        assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
+        version_string = '4.0-beta1'
+        qs = Version.objects.filter(
+            addon__guid=self.guid, version=version_string)
+        assert not qs.exists()
+
+        response = self.put(
+            self.url(self.guid, version_string), version=version_string)
+        assert response.status_code == 202
+        assert 'processed' in response.data
+
+        version = qs.get()
+        assert version.addon.guid == self.guid
+        assert version.version == version_string
+        assert version.statuses[0][1] == amo.STATUS_BETA
+        assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.is_beta
+        sign_version.assert_called_with(version, is_beta=True)
 
 
 class TestCheckVersion(BaseUploadVersionCase):
