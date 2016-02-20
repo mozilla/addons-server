@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-19 20:56+0000\n"
+"PO-Revision-Date: 2016-02-20 10:43+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4554,7 +4554,7 @@ msgstr "Egy szerző csak egyszer szerepelhet."
 
 #: src/olympia/devhub/forms.py:94
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Helytelen SEO URL."
 
 #: src/olympia/devhub/forms.py:106
 msgid "Invalid JSON object"
@@ -6444,6 +6444,9 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"API kéréshez küldjön egy <a href=\"%(jwt_url)s\">JSON Web Tokent (JWT),</a> "
+"az autorizációs fejlécben. Egy JWT-t kell generálnia minden egyes kéréshez, "
+"ahogy azt az <a href=\"%(docs_url)s\">API dokumentáció</a> elmagyarázza."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
@@ -6605,14 +6608,17 @@ msgid ""
 "versions submitted before the review is completed will move that version to "
 "the end of the queue."
 msgstr ""
+"Az új verziók a függőben lévő értékelések sorához adódnak. Ha az értékelés "
+"befejezése előtt új verziót nyújt be, akkor az a verzió a sor végére fog "
+"kerülni."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Hogyan lehet Béta kiegészítőt benyújtani?"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr ""
+msgstr "A béta csatorna csak teljesen értékelt kiegészítőkhöz elérhető."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6622,6 +6628,12 @@ msgid ""
 "version string. If you understand regex format, here's what we look for in "
 "the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
+"A béta csatorna létrehozásához töltsön fel egy egyedi verziószámmal ellátott"
+" fájlt, amely a következő karakterláncok egyikét tartalmazza: "
+"<code>a,b,alpha,beta,pre,rc</code>, választhatóan egy számmal a végén. Ez a "
+"szöveg a verzió karakterlánc végén kell legyen. Ha ismeri a regex "
+"formátumot, erre keresünk a verziószámban: "
+"<code>\"(a|alpha|beta|pre|rc)\\d*$\"</code>."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:37
 msgid ""
@@ -6629,6 +6641,10 @@ msgid ""
 "be marked as a beta version. Users of add-ons with these unique version "
 "numbers will automatically be served the newest beta updates."
 msgstr ""
+"Amint az ezt a feltételt teljesítő fájl feltöltésre került az AMO-ba, "
+"automatikusan béta verzióként lesz megjelölve. Az ezen egyedi verziószámmal "
+"rendelkező kiegészítők felhasználói automatikusan megkapják a legújabb béta "
+"frissítéseket."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:43
 msgid ""
@@ -6642,6 +6658,16 @@ msgid ""
 "and not version number, so users will always get the most recent channel "
 "update regardless of any kind of alphabetical sorting."
 msgstr ""
+"Ugyan mi ezeket \"béta verzióknak\" nevezzük, használhatja ezt a csatornát "
+"éjszakai kiadásokhoz, alfa vagy előzetes kiadási verziókhoz is. Jegyezze meg"
+" hogy csak egy csatorna van erre a célra és a csatorna minden felhasználója "
+"megkapja a legfrissebb beküldött kiegészítőt. Például, ha feltölti az "
+"<code>1.0beta1</code> verziót a kiadási csatornába és felölti az "
+"<code>1.1alpha1</code> verziót, akkor minden <code>1.0beta1</code> "
+"felhasználónak felajánlja a frissítést az <code>1.1alpha1</code> verzióra. A"
+" frissítésék kiküldése beküldési dátum, és nem verziószám alapján történik, "
+"így a felhasználók mindig a legújabb frissítést kapják meg, bármilyen "
+"ábécésorrendtől függetlenül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:48
 msgid "Required Updates"
@@ -8702,8 +8728,8 @@ msgid ""
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
-"Az ellenőrzési kérelem megszakításával a kiegészítő \"nem teljes\" állapotba"
-" kerül. Amennyiben néhány napon belül nem egészíti ki az ellenőrzési "
+"Az ellenőrzési kérelem megszakításával a kiegészítő „nem teljes” állapotba "
+"kerül. Amennyiben néhány napon belül nem egészíti ki az ellenőrzési "
 "kérelmét, abban az esetben törlésre kerül."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
