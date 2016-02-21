@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-20 10:43+0000\n"
+"PO-Revision-Date: 2016-02-21 15:50+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6192,7 +6192,7 @@ msgstr "Kerüljön előre a vizsgálati sorban!"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Váljon AMO értékelővé még ma, és gyorsítsa fel kiegészítőinek értékelését."
+"Váljon AMO átvizsgálóvá még ma, és gyorsítsa fel kiegészítőinek vizsgálatát."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
@@ -6202,11 +6202,11 @@ msgstr "A kiegészítő aláírva és használatra kész. Itt tudja letölteni:"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "A kiegészítője benyújtásra került a Titkos előzetes vizsgálat sorba."
+msgstr "A kiegészítője benyújtásra került a Titkos előzetes vizsgálati sorba."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr "A kiegészítője benyújtásra került a Titkos teljes értékelés sorba."
+msgstr "A kiegészítője benyújtásra került a Titkos teljes értékelési sorba."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
@@ -6525,7 +6525,7 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
-"Ha egy szerkesztői értékeléssel kapcsolatban kérdése van vagy házirend "
+"Ha egy szerkesztői vizsgálattal kapcsolatban kérdése van vagy házirend "
 "megszegését jelentené, küldjön egy emailt ide: %(mail_editors)s. "
 "<strong>Szinte minden kiegészítő-jelentés ebbe a kategóriába "
 "tartozik.</strong> Kérjük, bizonyosodjon meg afelől, hogy kérdése vagy "
@@ -6598,7 +6598,7 @@ msgstr ""
 "más módon fejlesztik kiegészítőjüket. Az új verzióknak <a "
 "href=\"https://developer.mozilla.org/en/Toolkit_version_format\">magasabb "
 "verziószámmal</a> kell rendelkeznie, amelyet a fejlesztői eszközökön "
-"keresztül kell beküldeni. Nincs korlátozott a beküldhető verziók száma, "
+"keresztül kell beküldeni. Nincs korlátozás a beküldhető verziók számára, "
 "azonban érdemes figyelembe venni, hogy minden verziót a szerkesztők "
 "valamelyikének ellenőriznie kell."
 
@@ -6608,7 +6608,7 @@ msgid ""
 "versions submitted before the review is completed will move that version to "
 "the end of the queue."
 msgstr ""
-"Az új verziók a függőben lévő értékelések sorához adódnak. Ha az értékelés "
+"Az új verziók a függőben lévő vizsgálatok sorához adódnak. Ha a vizsgálat "
 "befejezése előtt új verziót nyújt be, akkor az a verzió a sor végére fog "
 "kerülni."
 
@@ -6618,7 +6618,7 @@ msgstr "Hogyan lehet Béta kiegészítőt benyújtani?"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr "A béta csatorna csak teljesen értékelt kiegészítőkhöz elérhető."
+msgstr "A béta csatorna csak teljesen átvizsgált kiegészítőkhöz elérhető."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6789,6 +6789,9 @@ msgid ""
 "month, and <a href=\"%(link_themes)s\">featured complete themes</a> are "
 "chosen every quarter."
 msgstr ""
+"A <a href=\"%(link_featured)s\">kiemelt kiegészítők</a> havonta kerülnek "
+"kiválasztásra, a <a href=\"%(link_themes)s\">kiemelt teljes témák</a> pedig "
+"negyedévente."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -6799,11 +6802,15 @@ msgid ""
 "Before nominating an add-on to be featured, please ensure it meets the "
 "following criteria:"
 msgstr ""
+"Mielőtt kiemeltnek jelöl egy kiegészítőt, kérjük győződjön meg róla, hogy "
+"teljesíti ezeket a feltételeket:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid ""
 "The add-on must have a complete and informative listing on AMO. This means:"
 msgstr ""
+"A kiegészítőnek teljes és informatív AMO jegyzékkel kell rendelkeznie. Ez "
+"ezeket jelenti:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
@@ -6811,40 +6818,47 @@ msgstr "egy 64 képpontos egyéni ikon"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:42
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr ""
+msgstr "egy pontos és tömör név (nincsenek hosszú kulcsszavak)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr ""
+msgstr "egy pontés és tömör összegzés a kiegészítő funkcióiról"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:44
 msgid "detailed description and privacy policy, if applicable"
-msgstr ""
+msgstr "részletes leírás és adatvédelmi nyilatkozat, ha van értelme"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
-msgstr ""
+msgstr "frissített képernyőképek a kiegészítő funkcióiról"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid ""
 "must be fully approved by AMO editors (no preliminarily reviewed entries)"
 msgstr ""
+"az AMO szerkesztőinek teljesen el kell fogadniuk (nem lehet előzetesen "
+"átvizsgált)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid ""
 "The add-on must have excellent user reviews and any problems or support "
 "requests must be promptly addressed by the developer."
 msgstr ""
+"A kiegészítőnek kiváló felhasználói értékelésekkel kell rendelkeznie, és "
+"bármilyen problémát időben kell kezelnie a fejlesztőnek."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "A kiegészítőnek legalább 2.000 felhasználóval kell rendelkeznie."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid ""
 "The add-on must be compatible with the latest release of Firefox and must be"
 " compatible with beta versions 4 weeks before their final release."
 msgstr ""
+"A kiegészítőnek kompatibilisnek kell lennie a legfrissebb Firefox kiadással,"
+" és kompatibilisnek kell lennie a béta verziókkal 4 héttel a végső "
+"megjelenésük előtt."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
@@ -6853,6 +6867,11 @@ msgid ""
 " performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
+"<strong>A legfontosabb</strong>, a kiegészítőnek széleskörű fogyasztói "
+"vonzereje legyen a Firefox felhasználóinak, és kiemelkedő legyen szinte "
+"mindenben: felhasználói élmény, teljesítmény, biztonság, valamint hasznosság"
+" vagy szórakoztatási érték. A kiemelt teljes témáknak megjelenésükben is "
+"vonzónak kell lenniük."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6860,27 +6879,34 @@ msgstr "Kiegészítő jelölése"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid "amo-featured at mozilla dot org"
-msgstr ""
+msgstr "amo-featured kukac mozilla pont org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:57
 msgid ""
 "If you wish to nominate an add-on to be featured and it meets the criteria "
 "above, send an email to %(mail_featured)s with:"
 msgstr ""
+"Ha kiemeltnek szeretne jelölni egy kiegészítőt, és megfelel a fenti "
+"követelményeknek, akkor küldjön egy e-mailt az $(mail-featured)s címre a "
+"következőkkel:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "a kiegészítő neve, URL-je, és hogy Ön-e a fejlesztője"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid ""
 "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"egy rövid magyarázat, hogy miért van széleskörű vonzereje és miért kellene "
+"kiemelni"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
 "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
+"választhatóan, hivatkozások külső értékelésekre és cikkekre, amelyek említik"
+" a kiegészítők"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -6893,7 +6919,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "Kiemelt kiegészítők forgatása"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid ""
@@ -6901,6 +6927,9 @@ msgid ""
 "rotate out featured add-ons. Some of the most common reasons for add-ons "
 "being removed from the featured list are:"
 msgstr ""
+"A Mozilla és a Kiemelt Kiegészítők Tanácsadói Testület rendszeresen értékeli"
+" és forgatja a kiemelt kiegészítőket. A leggyakoribb okai a kiegészítők "
+"eltávolításának a kiemeltek közül a következőek:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid ""
@@ -6909,12 +6938,20 @@ msgid ""
 "demonstrating growth in any substantial way, that's a good indicator the "
 "add-on may not be very useful to our users."
 msgstr ""
+"Növekedés hiánya &mdash; A kiemelt kiegészítők jellemzően jelentősen nőnek "
+"mind letöltésekben, mind aktív felhasználókban. Ha egy kiegészítő nem "
+"növekszik lényeges mértékeben, az egy jó jelzése annak, hogy a kiegészítő "
+"nem nagyon hasznos a felhasználóinknak."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid ""
 "Negative reviews &mdash; Featured add-ons should have a great experience and"
 " very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
+"Negatív értékelések &mdash; A kiemelt kiegészítőnek nagyszerű felhasználói "
+"élménnyel kell rendelkezniük, és kevés hibával, így a sok negatív "
+"értékeléssel rendelkező kiegészítők esetén megfontolhatjuk az "
+"eltávolításukat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
@@ -6923,34 +6960,47 @@ msgid ""
 "not yet compatible with a Beta version of Firefox four weeks before its "
 "expected release will lose their featured status."
 msgstr ""
+"Inkompatibilitás a Firefox következő verzióival &mdash; A kiemelt "
+"kiegészítőktől elvárt a Firefox stabil és béta verzióival való "
+"kompatibilitás. Azok a kiegészítők, melyek nem kompatibilisek a Firefox Béta"
+" verziójával a várt kiadás előtt négy héttel, elveszítik a kiemelt "
+"státuszukat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Csatlakozás a Kiemelt Kiegészítők Tanácsadói Testülethez"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid ""
 "Every six months a new Advisory Board is chosen based on applications from "
 "the add-ons community. Members must:"
 msgstr ""
+"Hat hónaponta új tanácsadói testület kerül kiválasztásra a közösségéből. A "
+"tagoknak:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid ""
 "be active members of the add-ons community, whether as a developer, "
 "evangelist, or fan"
 msgstr ""
+"aktív tagoknak kell lenniük a közösségben, fejlesztőként, evangelistaként "
+"vagy rajongóként"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid ""
 "commit to trying all the nominations submitted, giving their feedback, and "
 "casting their votes every month"
 msgstr ""
+"ki kell próbálniuk minden beküldött jelöltet, visszajelzést adniuk, és "
+"szavazni minden hónapban"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid ""
 "abstain from voting on add-ons that they have any business or personal "
 "affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
+"nem szabad szavazniuk olyan kiegészítőkre, melyekkel üzleti vagy személyes "
+"kapcsolódásuk van, valamint közvetlen versenytársakra sem"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -6958,6 +7008,10 @@ msgid ""
 "of security, privacy, compatibility, or any other reason, but in general it "
 "is up to the Board to select add-ons to feature."
 msgstr ""
+"A Mozilla Kiegészítők csapat megvétózhatja bármelyik kiegészítő "
+"kiválasztását, biztonsági, magánszféra, kompatibilitási vagy bármilyen más "
+"okból, de általánosságban a testület választja ki a kiemelendő "
+"kiegészítőket."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -6975,6 +7029,9 @@ msgid ""
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
+"Kövesse a <a href=\"%(link_blog)s\">Kiegészítők Blogot</a> vagy a <a "
+"href=\"%(link_twitter)s\">@mozamo</a>-t a Twitteren, hogy értesüljön róla, "
+"mikor nyit a következő jelölési időszak."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -6986,7 +7043,7 @@ msgstr "Utolsó frissítés: 2013. január 31."
 #: src/olympia/devhub/templates/devhub/docs/policies.html:15
 #: src/olympia/devhub/templates/devhub/docs/policies.html:64
 msgid "Review Process"
-msgstr "Értékelési folyamat"
+msgstr "Ellenőrzési folyamat"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid ""
@@ -7047,38 +7104,46 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
-msgstr ""
+msgstr "Tesztelési módszerek &amp; Gyakori problémák"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Teljes ellenőrzéskor a szerkesztők a következőket teszik:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid ""
 "install the add-on, making sure it functions as described and is free of "
 "major defects"
 msgstr ""
+"feltelepítik a kiegészítőt, meggyőződve arról hogy a leírás szerint működik,"
+" és nagyobb hibáktól mentes"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid ""
 "perform a source code review, looking for performance and security best "
 "practices"
 msgstr ""
+"felülvizsgálják a forráskódot, teljesítmény és biztonsági megfontolások "
+"alapj"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
 msgstr ""
+"meggyőződnek arról, hogy a kiegészítő adatvédelmi nyilatkozata összhangban "
+"van a funkcionalitással"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid ""
 "look for compliance with all of Mozilla's policies, detailed in these "
 "documents"
 msgstr ""
+"ellenőrzik a megfelelést a Mozilla házirendjeivel, amelyek ezekben a "
+"dokumentumokban vannak részletezve"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid ""
 "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
+msgstr "A néhány leggyakoribb probléma amit ezen ellenőrzések alatt látunk:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
@@ -7087,16 +7152,22 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap"
 " your loose variables</a>"
 msgstr ""
+"<strong>JavaScript névtér szennyezés</strong> &mdash; a leggyakoribb "
+"kihágás. Győződjön meg arról, hogy <a "
+"href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">becsomagolja"
+" a laza változóit</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid ""
 "proper preference naming - all preference names should begin with "
 "\"extensions.\", followed by the add-on name or some other unique identifier"
 msgstr ""
+"helyes beállításelnevezés – minden beállítás név „extension.”-tal kell "
+"kezdődjön, a kiegészítő nevével vagy más egyedi azonosítóval követve"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "távoli JavaScript végrehajtás vagy befecskendezés"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
@@ -7104,7 +7175,7 @@ msgstr "távoli XUL"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
-msgstr "szinkron XMLHttpRequest-ek"
+msgstr "szinkron XMLHttpRequestek"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:106
 msgid "obfuscated code"
@@ -7116,11 +7187,11 @@ msgstr "bináris komponensek vagy végrehajtható fájlok"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "harmadik féltől származó szoftver tartalmazása"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "generált hibák a Hibakonzolban"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
@@ -7132,7 +7203,7 @@ msgstr "esetleges ütközések más kiegészítőkkel"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "alkalmazás indítási vagy oldalbetöltési teljesítmény csökkenés"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:117
 msgid ""
@@ -7163,7 +7234,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:134
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
-msgstr ""
+msgstr "A vizsgálat után"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:136
 msgid ""
@@ -7200,7 +7271,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
-msgstr ""
+msgstr "Tesztelési módszerek"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:162
 msgid ""
@@ -7238,15 +7309,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
-msgstr ""
+msgstr "Irányelvek bizonyos kiegészítői gyakorlatokhoz"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
-msgstr ""
+msgstr "Tiltott kiegészítők"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:190
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "A következő kiegészítők minden formában tiltottak:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid ""
@@ -7254,6 +7325,10 @@ msgid ""
 "href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a "
 "href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Kiegészítők, melyek ismert <a "
+"href=\"http://en.wikipedia.org/wiki/Spyware\">kémprogramokat</a> vagy <a "
+"href=\"http://en.wikipedia.org/wiki/Malware\">ártalmas kódot</a> "
+"tartalmaznak"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -7262,41 +7337,55 @@ msgid ""
 "generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> "
 "download and directory assistants, child pornography finders, etc."
 msgstr ""
+"Illegális és bűnöző kiegészítők, például <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">kattintási csalás</a> "
+"generátorok, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> "
+"letöltések és keresők, gyermekpornográfia keresők, stb."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid ""
 "Add-ons whose main purpose is to facilitate access to pornographic material,"
 " or include references to this material in their descriptions"
 msgstr ""
+"Kiegészítők, melyek fő célja pornográf tartalomhoz hozzáférés, vagy utalás "
+"ilyen tartalomra a leírásban"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid ""
 "Add-ons that, upon installation, auto-install or launch installers of non-"
 "Firefox software"
 msgstr ""
+"Kiegészítők, melyek telepítéskor, automatikusan, vagy varázslón keresztül "
+"telepítenek nem-Firefox szoftvert."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid ""
 "Add-ons that provide their own update mechanism for code or search engines"
 msgstr ""
+"Kiegészítők, melyek saját kód- vagy keresőmotor frissítési mechanizmust "
+"tartalmaznak"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:220
 msgid ""
 "Add-ons that make changes to web content in ways that are non-obvious or "
 "difficult to trace by their users"
 msgstr ""
+"Kiegészítők, melyek oly módon módosítják a webes tartalmat, amely nem "
+"egyértelmű vagy nehezen követhető a felhasználó által"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
 msgstr ""
+"Kiegészítők, melyek követik vagy elfogják más felhasználók hálózati "
+"forgalmát"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr ""
+msgstr "Conduit-alapú eszköztárak, közvetlen előzetes engedély nélkül"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Alapértelmezések módosítása vagy váratlan funkciók"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -7307,6 +7396,12 @@ msgid ""
 "the functionality of an add-on is and not be presented with unexpected "
 "experiences post-install."
 msgstr ""
+"A meglepetések sokszor megfelelőek lehetnek, de nem szívesen látottak, ha "
+"felhasználó biztonsága, magánszférája vagy irányítása forog kockán. "
+"Rendkívül fontos hogy olyan transzparens legyen, amennyire csak lehetséges a"
+" kiegészítő benyújtásakor erre az oldalra. Egy Mozilla felhasználónak "
+"könnyen el kell tudnia döntenie, hogy mi a kiegészítő funkciója, és nem "
+"szabad telepítés után váratlan tapasztalatokkal szembesülnie."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:243
 msgid ""
@@ -7339,7 +7434,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:279
 msgid "Private Browsing Mode"
-msgstr ""
+msgstr "Privát böngészés"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid ""
@@ -7570,7 +7665,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
-msgstr ""
+msgstr "Licencelés"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:86
 msgid ""
@@ -7591,12 +7686,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:12
 #: src/olympia/devhub/templates/devhub/docs/policies.html:52
 msgid "Add-on Submission"
-msgstr ""
+msgstr "Kiegészítő beküldés"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:18
 #: src/olympia/devhub/templates/devhub/docs/policies.html:78
 msgid "Maintaining Your Add-on"
-msgstr ""
+msgstr "Kiegészítője karbantartása"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:43
 msgid ""
@@ -7655,7 +7750,7 @@ msgstr "Egészítse ki a kiegészítőjét."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Az ellenőrzés befejeztével kapni fog egy e-mailt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
@@ -7823,11 +7918,11 @@ msgstr "Statisztika áttekintése"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Kompatibilitási jelentések"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:45
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} jelentés hibáról"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "{0} success reports"
@@ -7835,11 +7930,11 @@ msgstr "{0} jelentés sikerről"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
-msgstr ""
+msgstr "Fejlesztői hírek"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "A blog megtekintése &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid ""
@@ -7850,11 +7945,11 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 msgid "Allowed HTML: {0}"
-msgstr "Engedélyezett HTML formátumok: {0}"
+msgstr "Engedélyezett HTML tagok: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
-msgstr "Néhány HTML támogatása."
+msgstr "Némi HTML támogatva."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:59
 msgid "Remove this application"
@@ -7892,13 +7987,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Olvasson többet a forráskód-ellenőrzési házirendről."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
 msgstr ""
+"Nem távolíthat el különálló fájlokat az átvizsgálási folyamat befejezte "
+"előtt. Az egész verziót törölnie kell."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -7914,7 +8011,7 @@ msgstr "Jelenleg <b>támogatást kér</b> a felhasználóktól"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:24
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "A közreműködői oldala: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -7922,7 +8019,7 @@ msgstr "Adományok letiltása"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:37
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Önkéntes adományok"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:38
 msgid ""
@@ -7940,29 +8037,31 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Válassza ki, hogy a felhasználók mikor és hogyan járuljanak hozzá"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:42
 msgid ""
 "Receive contributions in your PayPal account or send them to an organization"
 " of your choice"
 msgstr ""
-"Adományokat kaphat a PayPal számlájára vagy elküldheti egy kiválasztott "
+"Adományokat kaphat a PayPal számlájára, vagy elküldheti egy kiválasztott "
 "szervezetnek."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Az adományozás csak a listázott kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:53
 msgid ""
 "Contributions are only available for add-ons with a <a "
 "href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
+"Az adományozás csak a <a href=\"%(url)s\">teljes fejlesztői profillal</a> "
+"rendelkező kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr ""
+msgstr "Az adományozás csak a teljesen ellenőrzött kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:65
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:2
@@ -8012,7 +8111,7 @@ msgstr "Mi a PayPal azonosítója?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:29
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Regisztráció a PayPalra"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
@@ -8058,7 +8157,7 @@ msgstr "vagy <a id=\"setup-cancel\" href=\"#\">Mégsem</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Tulajdonjog átadása"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:77
 #: src/olympia/devhub/templates/devhub/personas/submit.html:31
@@ -8068,17 +8167,17 @@ msgstr "Téma részletei"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:87
 #: src/olympia/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Adjon meg egy szép URL-t a részletek oldalához."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:92
 #: src/olympia/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Válassza ki a kategóriát, amely legjobban jellemzi a témáját."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:95
 #: src/olympia/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Adjon meg néhány címkét, amely jellemzi a témáját."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:106
 #: src/olympia/devhub/templates/devhub/personas/submit.html:54
@@ -8087,6 +8186,9 @@ msgid ""
 " search and browse listings, as well as at the top of your theme's details "
 "page."
 msgstr ""
+"Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a "
+"keresésekben és a böngészi listázásokban, valamint a témája részletező "
+"oldalának tetején."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8096,7 +8198,7 @@ msgstr "Téma licence"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:126
 #: src/olympia/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Megoszthatják mások a témáját, ha megjelölik Önt forrásként?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:153
@@ -8124,12 +8226,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:147
 #: src/olympia/devhub/templates/devhub/personas/submit.html:93
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Használhatják-e mások kereskedelmi célokra a témáját?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:168
 #: src/olympia/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Készíthetnek-e a mások származékos munkákat a témájából?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:174
 #: src/olympia/devhub/templates/devhub/personas/submit.html:120
@@ -8169,7 +8271,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:199
 #: src/olympia/devhub/templates/devhub/personas/submit.html:145
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "A témája a következő licenc alatt kerül kiadásra:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:202
 #: src/olympia/devhub/templates/devhub/personas/submit.html:148
@@ -8179,17 +8281,17 @@ msgstr "Másik licenc kiválasztása."
 #: src/olympia/devhub/templates/devhub/personas/edit.html:207
 #: src/olympia/devhub/templates/devhub/personas/submit.html:153
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Válasszon licencet a témájához."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:217
 #: src/olympia/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Téma dizájn"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:221
 #: src/olympia/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Új dizájn feltöltése"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:226
 msgid ""
@@ -8224,7 +8326,7 @@ msgstr "Lábléc"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:274
 #: src/olympia/devhub/templates/devhub/personas/submit.html:167
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Válasszon színeket a témájához."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:276
 #: src/olympia/devhub/templates/devhub/personas/submit.html:169
@@ -8465,15 +8567,17 @@ msgstr "Fájl hozzáadása"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fájl {file_id} ({platform})"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
 msgstr ""
+"Létrehozva ekkor: %(created)s, módosítva %(status)s állapotra ekkor: "
+"%(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Létrehozva ekkor: %(created)s és módosítva %(status)s állapotra"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
@@ -8511,7 +8615,7 @@ msgstr "Sorbeli pozíció: %(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
-msgstr "Nem érvényesített."
+msgstr "Nem ellenőrzött."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:50
 msgid "Validate now."
@@ -8555,7 +8659,7 @@ msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
-"Megjelenítve itt: {0}, de a szerzőkön kívül mindenki számára rejtett. A "
+"Kiszolgálva itt: {0}, de a szerzőkön kívül mindenki számára rejtett. A "
 "listázások ideiglenes elrejtésére vagy megszüntetésére használható."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:114
@@ -8567,6 +8671,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Nem terjesztett itt: {0}. A fejlesztők feltöltik az új verziókat aláírásra, "
+"és maguk terjesztik a kiegészítőt. (béta)"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
@@ -8606,7 +8712,7 @@ msgstr "Új verzió feltöltése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
-msgstr ""
+msgstr "A teljes ellenőrzés nem biztos hogy szükséges"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:201
 msgid ""
@@ -8617,7 +8723,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
-msgstr ""
+msgstr "Teljes ellenőrzés kérése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
@@ -8656,7 +8762,7 @@ msgstr "Verzió törlése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
 msgid "Disable Version"
-msgstr ""
+msgstr "Verzió letiltása"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:247
 msgid "Add a new Version"
@@ -8684,7 +8790,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html:286
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Kiegészítő listázásának megszüntetése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -8728,8 +8834,8 @@ msgid ""
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
-"Az ellenőrzési kérelem megszakításával a kiegészítő „nem teljes” állapotba "
-"kerül. Amennyiben néhány napon belül nem egészíti ki az ellenőrzési "
+"Az ellenőrzési kérelem megszakításával a kiegészítő \"nem teljes\" állapotba"
+" kerül. Amennyiben néhány napon belül nem egészíti ki az ellenőrzési "
 "kérelmét, abban az esetben törlésre kerül."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
@@ -8738,11 +8844,11 @@ msgstr "Biztosan megszakítja az ellenőrzési kérést?"
 
 #: src/olympia/discovery/modules.py:140
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Könnyűvé tett vásárlás"
 
 #: src/olympia/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Takarítson meg pénzt a kedvenc tárgyain, a böngészője kényelméből."
 
 #: src/olympia/discovery/modules.py:149
 msgid "Build the perfect website"
@@ -8789,15 +8895,15 @@ msgstr "Itt van néhány nagyszerű Firefox 4 kiegészítő."
 
 #: src/olympia/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Szt. Patrik napi témák"
 
 #: src/olympia/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Ünnepelje a St. Patrick&rsquo;s Day-t a böngésző dekorálásával."
+msgstr "Ünnepelje a Szent Patrik napot a böngészője dekorálásával."
 
 #: src/olympia/discovery/modules.py:203
 msgid "Firefox Summer Collection"
-msgstr ""
+msgstr "Firefox nyári gyűjtemény"
 
 #: src/olympia/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
@@ -8809,7 +8915,7 @@ msgstr "Thunderbird gyűjtemény"
 
 #: src/olympia/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
-msgstr ""
+msgstr "Íme néhány nagyszerű Thunderbird kiegészítő."
 
 #: src/olympia/discovery/modules.py:221
 msgid "Sit Back and Relax"
@@ -8817,7 +8923,7 @@ msgstr "Dőljön hátra és lazítson"
 
 #: src/olympia/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Kiegészítők, melyek segítik az utazásaiban!"
 
 #: src/olympia/discovery/modules.py:226
 msgid ""
@@ -8843,79 +8949,87 @@ msgstr "Csillagos 5-ös kiegészítők a sulihoz"
 
 #: src/olympia/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Kiegészítők tanároknak, szülőknek és iskolásoknak."
 
 #: src/olympia/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Szeretné tudni mely weboldalakban bízhat meg?"
 
 #: src/olympia/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Az Xmarks az első számú könyvjelző kiegészítő."
 
 #: src/olympia/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Weboldal és szövegfordító, szótár és még több!"
 
 #: src/olympia/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
-msgstr ""
+msgstr "Kiegészítők, melyek segítik az útján 2012-ben"
 
 #: src/olympia/discovery/modules.py:272
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Szerelem van a levegőben"
 
 #: src/olympia/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Adjon egy kis romantikát a Firefoxához."
 
 #: src/olympia/discovery/modules.py:280
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "Tegyen rá egy témát!"
 
 #: src/olympia/discovery/modules.py:281
 msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
 msgstr ""
+"Látogassa meg az addons.mozilla.org oldalt a Firefox for Androidból, és "
+"öltöztesse fel böngészőjét, hogy az illeszkedjen a stílusához, hangulatához "
+"vagy az évszakhoz."
 
 #: src/olympia/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Álljon fel és mozogjon!"
 
 #: src/olympia/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
+"Telepítse ezeket a fitnesz kiegészítőket, hogy aktív és egészséges maradjon."
 
 #: src/olympia/discovery/modules.py:299
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Új és azonnal"
 
 #: src/olympia/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Szerezze be a legújabb, kihagyhatatlan kiegészítőket."
 
 #: src/olympia/discovery/modules.py:332
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Aggodalommentes böngészés"
 
 #: src/olympia/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
+"Védje meg az online magánszféráját az ebben a gyűjteményben található "
+"kiegészítőkkel."
 
 #: src/olympia/discovery/modules.py:342
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
+"Nagyszerű kiegészítők munkához, szórakozáshoz, magánszférához, "
+"produktivitáshoz&hellip; majdnem bármihez!"
 
 #: src/olympia/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "A Kiegészítők az Australishoz verseny győztesei"
 
 #: src/olympia/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Mik az érdeklődési körei?"
 
 #: src/olympia/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
@@ -8938,7 +9052,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/pane.html:62
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Tudjon meg többet a kiegészítőkről"
 
 #: src/olympia/discovery/templates/discovery/pane.html:66
 #: src/olympia/discovery/templates/discovery/pane.html:73
@@ -8955,7 +9069,7 @@ msgstr "Összes kiegészítő tallózása"
 
 #: src/olympia/discovery/templates/discovery/pane.html:85
 msgid "See all complete themes"
-msgstr ""
+msgstr "Összes teljes téma"
 
 #: src/olympia/discovery/templates/discovery/pane.html:91
 msgid "Close Video"
@@ -8963,7 +9077,7 @@ msgstr "Videó bezárása"
 
 #: src/olympia/discovery/templates/discovery/pane.html:94
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Amíg a videó megy, az említett kiegészítők itt fognak megjelenni."
 
 #. {0} is the user's login name.
 #: src/olympia/discovery/templates/discovery/pane_account.html:6
@@ -9011,7 +9125,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr "Mobile kiegészítők letöltése"
+msgstr "Mobil kiegészítők letöltése"
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
@@ -9043,7 +9157,7 @@ msgstr "A Mozilla havi ajánlata!"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr ""
+msgstr "Tegye egyedivé a Firefoxát<br>a nemzeti zászlójával"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
@@ -9051,7 +9165,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Fejezze ki támogatását"
 
 #: src/olympia/editors/forms.py:28
 msgid "Approved reviews"
@@ -9075,19 +9189,19 @@ msgstr "Szűrés típus/művelet szerint"
 
 #: src/olympia/editors/forms.py:58
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Átment az automatikus ellenőrzésen"
 
 #: src/olympia/editors/forms.py:60
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Megbukott az automatikus ellenőrzésen"
 
 #: src/olympia/editors/forms.py:62
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Szűrés automatikus ellenőrzés szerint"
 
 #: src/olympia/editors/forms.py:69
 msgid "containing"
-msgstr ""
+msgstr "tartalmazza"
 
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py:75
@@ -9102,7 +9216,7 @@ msgstr "vége"
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py:82
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "kiegészítő, szerkesztő vagy megjegyzés"
 
 #: src/olympia/editors/forms.py:98
 msgid "Search by add-on name / author email"
@@ -9163,11 +9277,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:265
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Adminisztrátori vizsgálat jelző törlése"
 
 #: src/olympia/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Több információ kérése jelző törlése"
 
 #: src/olympia/editors/forms.py:281
 msgid "Choose a canned response..."
@@ -9180,12 +9294,12 @@ msgstr "téma neve"
 
 #: src/olympia/editors/forms.py:350
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Valaki más vizsgálja ezt a témát."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:447
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "app, vizsgáló vagy megjegyzés"
 
 #: src/olympia/editors/helpers.py:50 src/olympia/editors/helpers.py:58
 msgid "Pending Full Review"
@@ -9197,7 +9311,7 @@ msgstr "Előzetes vizsgálatra vár"
 
 #: src/olympia/editors/helpers.py:65
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Visszautasított vagy nem ellenőrzött"
 
 #: src/olympia/editors/helpers.py:122 src/olympia/editors/helpers.py:135
 msgid "Queue"
@@ -9213,36 +9327,36 @@ msgstr "Függő frissítések"
 #: src/olympia/editors/templates/editors/base.html:48
 #: src/olympia/editors/templates/editors/base.html:63
 msgid "Full Reviews"
-msgstr "Teljes értékelés"
+msgstr "Teljes vizsgálatok"
 
 #: src/olympia/editors/helpers.py:125
 #: src/olympia/editors/templates/editors/base.html:52
 #: src/olympia/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
-msgstr "Előzetes értékelések"
+msgstr "Előzetes vizsgálatok"
 
 #: src/olympia/editors/helpers.py:126
 #: src/olympia/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
-msgstr "Moderált értékelések"
+msgstr "Moderált vizsgálatok"
 
 #: src/olympia/editors/helpers.py:127
 #: src/olympia/editors/templates/editors/base.html:46
 msgid "Fast Track"
-msgstr ""
+msgstr "Gyorsító sáv"
 
 #: src/olympia/editors/helpers.py:129
 msgid "Pending Themes"
-msgstr ""
+msgstr "Függő témák"
 
 #: src/olympia/editors/helpers.py:130
 #: src/olympia/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Megjelölt témák"
 
 #: src/olympia/editors/helpers.py:131
 msgid "Update Themes"
-msgstr ""
+msgstr "Frissített témák"
 
 #: src/olympia/editors/helpers.py:136
 msgid "Unlisted Pending Updates"
@@ -9259,8 +9373,8 @@ msgstr "Titkos előzetes értékelések"
 #: src/olympia/editors/helpers.py:169
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gyorsító sáv ({0})"
+msgstr[1] "Gyorsító sáv ({0})"
 
 #: src/olympia/editors/helpers.py:174
 msgid "Full Review ({0})"
@@ -9372,7 +9486,7 @@ msgstr "Publikálás"
 
 #: src/olympia/editors/helpers.py:489
 msgid "Grant full review"
-msgstr ""
+msgstr "Teljes vizsgálat engedélyezése"
 
 #: src/olympia/editors/helpers.py:504
 msgid "Request more information"
@@ -9388,7 +9502,7 @@ msgstr "Előzetes vizsgálat megadása"
 
 #: src/olympia/editors/helpers.py:519
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Ez megjelöli a fájlokat, mint előzetesen átvizsgált."
 
 #: src/olympia/editors/helpers.py:521
 msgid ""
@@ -9420,6 +9534,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py:533
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
+"Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
 
 #: src/olympia/editors/helpers.py:537
 msgid "This will reject the files and remove them from the review queue."
@@ -9451,7 +9566,7 @@ msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
-"Ez a kiegészítő előzetesen vizsgálatát megtartja. A későbbi verzióknak is "
+"Ez a kiegészítő előzetesen átvizsgált marad. A későbbi verzióknak is "
 "felülvizsgálaton kell átesniük."
 
 #: src/olympia/editors/helpers.py:557
@@ -9493,15 +9608,15 @@ msgstr "Frissítések"
 
 #: src/olympia/editors/models.py:183
 msgid "Admin Review"
-msgstr "Adminisztrátori értékelés"
+msgstr "Adminisztrátori vizsgálat"
 
 #: src/olympia/editors/models.py:184
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack kiegészítők"
 
 #: src/olympia/editors/models.py:186
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Újraindításmentes kiegészítők"
 
 #: src/olympia/editors/models.py:187
 msgid "More Information Requested"
@@ -9513,31 +9628,31 @@ msgstr "Szerkesztői hozzászólást tartalmaz"
 
 #: src/olympia/editors/models.py:190
 msgid "Sources provided"
-msgstr ""
+msgstr "Megadott források"
 
 #: src/olympia/editors/models.py:191
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py:70
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Ismételt beküldés"
 
 #: src/olympia/editors/tasks.py:82
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Köszönjük, hogy beküldte témáját"
 
 #: src/olympia/editors/tasks.py:86
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Probléma a téma beküldésével"
 
 #: src/olympia/editors/tasks.py:90
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Téma beküldés megjelölve vizsgálatra"
 
 #: src/olympia/editors/tasks.py:97
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Kérdés a téma beküldéséhez"
 
 #: src/olympia/editors/views.py:145
 msgid "New Add-ons (Under 5 days)"
@@ -9557,11 +9672,11 @@ msgstr "Ismeretlen hiba történt"
 
 #: src/olympia/editors/views.py:588
 msgid "Self-reviews are not allowed."
-msgstr "Saját átvizsgálás nem engedélyezett."
+msgstr "Az önvizsgálat nem engedélyezett."
 
 #: src/olympia/editors/views.py:610
 msgid "Review successfully processed."
-msgstr "Az átvizsgálás sikeresen megtörtént."
+msgstr "Az vizsgálat sikeresen megtörtént."
 
 #: src/olympia/editors/views.py:808
 msgid "was approved"
@@ -9590,14 +9705,16 @@ msgstr "teljes vizsgálat szükséges"
 
 #: src/olympia/editors/views.py:815
 msgid "commented"
-msgstr ""
+msgstr "hozzászólva"
 
 #: src/olympia/editors/views_themes.py:327
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
+"{0} téma vizsgálat sikeresen feldolgozva (+{1} pont, összesen {2})."
 msgstr[1] ""
+"{0} téma vizsgálat sikeresen feldolgozva (+{1} pont, összesen {2})."
 
 #: src/olympia/editors/views_themes.py:342
 msgid ""
@@ -9608,19 +9725,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Visszaélési jelentések"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz ({num})"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:18
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s ekkor: %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:22
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>ismeretlen</i> ekkor: %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
@@ -9651,7 +9768,7 @@ msgstr "Naplók"
 #: src/olympia/editors/templates/editors/base.html:78
 #: src/olympia/editors/templates/editors/reviewlog.html:4
 msgid "Add-on Review Log"
-msgstr "Kiegészítő értékelési naplója"
+msgstr "Kiegészítő vizsgálati naplója"
 
 # 80%
 # 100%
@@ -9660,13 +9777,13 @@ msgstr "Kiegészítő értékelési naplója"
 #: src/olympia/editors/templates/editors/eventlog.html:8
 #: src/olympia/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr "Moderált értékelések naplója"
+msgstr "Moderált vizsgálatok naplója"
 
 #: src/olympia/editors/templates/editors/base.html:82
 #: src/olympia/editors/templates/editors/beta_signed_log.html:4
 #: src/olympia/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Aláírt béta fájlok naplója"
 
 #: src/olympia/editors/templates/editors/base.html:87
 #: src/olympia/editors/templates/editors/includes/daily-message.html:4
@@ -9718,15 +9835,15 @@ msgstr "Kiegészítő címe"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr "Értékelés címe"
+msgstr "Vizsgálat címe"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr "Értékelés szövege"
+msgstr "Vizsgálat szövege"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "A vizsgálat meg lett jelölve törlés előtt."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
@@ -9778,31 +9895,31 @@ msgstr "{0}%"
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Titkos teljes értékelés ({num})"
-msgstr[1] "Titkos teljes értékelések ({num})"
+msgstr[0] "Titkos teljes vizsgálat ({num})"
+msgstr[1] "Titkos teljes vizsgálatok ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titkos függő frissítés ({num})"
+msgstr[1] "Titkos függő frissítések ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titkos előzetes vizsgálat ({num})"
+msgstr[1] "Titkos előzetes vizsgálatok ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:109
 #: src/olympia/editors/templates/editors/performance.html:37
 #: src/olympia/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
-msgstr "Összes értékelés"
+msgstr "Összes vizsgálat"
 
 #: src/olympia/editors/templates/editors/home.html:110
 #: src/olympia/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
-msgstr "A hónap értékeléseit"
+msgstr "A hónap vizsgálatai"
 
 #: src/olympia/editors/templates/editors/home.html:111
 msgid "New Editors"
@@ -9811,7 +9928,7 @@ msgstr "Új szerkesztők"
 #: src/olympia/editors/templates/editors/home.html:126
 #: src/olympia/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Ön #{0}, {1} vizsgálattal"
 
 #. num = number of reviews in the queue
 # 87%
@@ -9819,18 +9936,18 @@ msgstr ""
 #: src/olympia/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "({num}) moderált értékelés"
-msgstr[1] "({num}) moderált értékelés"
+msgstr[0] "({num}) moderált vizsgálat"
+msgstr[1] "({num}) moderált vizsgálat"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:3
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Átvizsgáló ranglista"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:18
 #: src/olympia/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Nincsenek még vizsgálati pontok."
 
 #: src/olympia/editors/templates/editors/leaderboard.html:23
 msgid "Rank"
@@ -9894,7 +10011,7 @@ msgstr "Havi teljesítmény"
 
 #: src/olympia/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Örökös pontok típus szerint lebontva"
 
 #: src/olympia/editors/templates/editors/performance.html:76
 msgid "Total"
@@ -9923,7 +10040,7 @@ msgstr "keresés törlése"
 #: src/olympia/editors/templates/editors/queue.html:72
 #: src/olympia/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr "Értékelések feldolgozása"
+msgstr "Vizsgálatok feldolgozása"
 
 #: src/olympia/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
@@ -9943,15 +10060,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated. Good work!"
-msgstr "Minden értékelés moderálva. Szép munka!"
+msgstr "Minden vizsgálat moderálva. Szép munka!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Verzió megjegyzések / Megjegyzések az átvizsgálónak"
 
 #: src/olympia/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr "Jelenleg nincsenek értékelendő kiegészítők ebből a típusból."
+msgstr "Jelenleg nincsenek átvizsgálandó kiegészítők ebből a típusból."
 
 #: src/olympia/editors/templates/editors/queue.html:181
 #: src/olympia/editors/templates/editors/themes/queue_list.html:85
@@ -9969,11 +10086,11 @@ msgstr "Útmutató szerkesztőknek"
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr "Értékelés {0}"
+msgstr "{0} vizsgálata"
 
 #: src/olympia/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Kiegészítő felhasználóváltozásának előzményei"
 
 #: src/olympia/editors/templates/editors/review.html:52
 #: src/olympia/editors/templates/editors/review.html:266
@@ -9994,15 +10111,15 @@ msgstr "Kompatibilitás:"
 
 #: src/olympia/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "További források:"
 
 #: src/olympia/editors/templates/editors/review.html:87
 msgid "Download files"
-msgstr ""
+msgstr "Fájlok letöltése"
 
 #: src/olympia/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "A fejlesztő biztosított forráskódot."
 
 #: src/olympia/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
@@ -10042,10 +10159,13 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"A tábla a kiegészítőhöz kapcsolódó releváns információk, fejlesztő és "
+"szerkesztő közti, megosztásának helye (bármely verzióról is legyen szó). Ezt"
+" mindketten látják és szerkeszthetik."
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "A tábla frissítése"
 
 #: src/olympia/editors/templates/editors/review.html:257
 #: src/olympia/editors/templates/editors/review.html:258
@@ -10117,7 +10237,7 @@ msgstr "Fájlok ebben a verzióban:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr "Tartalmak"
+msgstr "Tartalom"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
@@ -10137,19 +10257,19 @@ msgstr "Újabb"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Legutóbbi pontok"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Nincsenek még pontok."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Legjobb átvizsgálók (elmúlt 7 nap)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Nincsenek még legjobb átvizsgálók."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -10158,7 +10278,7 @@ msgstr "Bármikor"
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Önnek <span>{0}</span> pontja van."
 
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:6
 #: src/olympia/editors/templates/editors/themes/history_table.html:7
@@ -10167,27 +10287,27 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/single.html:26
 #: src/olympia/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr "Véleményező"
+msgstr "Átvizsgáló"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Törölt témák"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Törlés ideje"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Nem találhatóak törölt témák ebben az időszakban."
 
 #: src/olympia/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Téma vizsgálat előzményei ehhez: {0}"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Vizsgálat időpontja"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:9
 #: src/olympia/editors/templates/editors/themes/logs.html:18
@@ -10200,45 +10320,45 @@ msgstr "Ok"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Jelenleg nincsenek vizsgálatok."
 
 #: src/olympia/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} függő téma vizsgálat"
+msgstr[1] "{num} függő téma vizsgálat"
 
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} megjelölt vizsgálat"
+msgstr[1] "{num} megjelölt vizsgálat"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} frissítés"
+msgstr[1] "{num} frissítés"
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Téma vizsgálati napló"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Téma vizsgálati sor"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Vizsgálati beállítások"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Automatikus továbbhaladás vizsgálat után"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Gyorsbillentyűk engedélyezése"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
@@ -10246,31 +10366,31 @@ msgstr "Gyorsbillentyűk"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Következő téma"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Előző téma"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Vizsgálati előzményei"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Vizsgálat véglegesítése"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Vizsgálatok véglegesítése"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} / {1} átvizsgálva"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Jelenleg nincsenek átvizsgálandó témák."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
@@ -10278,32 +10398,32 @@ msgstr "Keresés törlése"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Téma zárolások elengedése"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interaktív téma sor"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Átvizsgálók útmutatója"
 
 #: src/olympia/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Téma átvizsgálás ehhez: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Lehetséges ismételt benyújtások)"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Múltbeli vizsgálati megjegyzések"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: src/olympia/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "További információk kérve: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
@@ -10311,23 +10431,23 @@ msgstr "Megjelölve: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
-msgstr ""
+msgstr "Téma elfogadása"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
-msgstr ""
+msgstr "Mező szükséges"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Adja meg az ismétlődő elem azonosítóját vagy URL-ét"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Válassza ki a visszautasítás okát"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Írja le a visszautasítás okát"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
@@ -10335,11 +10455,11 @@ msgstr "Kérdés az alkotóhoz"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Írja le a megjelölés okát"
 
 #: src/olympia/files/forms.py:88
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Nem hasonlítható össze egy verzió saját magával"
 
 #: src/olympia/files/helpers.py:154
 msgid "That file no longer exists."
@@ -10348,11 +10468,11 @@ msgstr "Ez fájl már nem érhető el."
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py:163
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "A fájlméret a(z) {0} korlát felett van."
 
 #: src/olympia/files/helpers.py:177
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problémák a(z) %s dekódolása során."
 
 #: src/olympia/files/helpers.py:187
 msgid ""
@@ -10376,39 +10496,39 @@ msgstr "Hiba történt a(z) %s fájl elérésekor."
 
 #: src/olympia/files/utils.py:343
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Nem sikerült feldolgozni a feltöltött fájlt."
 
 #: src/olympia/files/utils.py:380
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Érvénytelen fájlnév az archívumban: {0}"
 
 #: src/olympia/files/utils.py:388
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "A méretkorlátnál nagyobb fájl archívumban: {0}"
 
 #: src/olympia/files/utils.py:439
 msgid "Invalid archive."
-msgstr "Érvénytelen archív."
+msgstr "Érvénytelen archívum."
 
 #: src/olympia/files/utils.py:529 src/olympia/files/utils.py:532
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
 
 #: src/olympia/files/utils.py:551
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Nem található a kiegészítő azonosítója."
 
 #: src/olympia/files/utils.py:554
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "A kiegészítő azonosító 64 karakter vagy rövidebb lehet."
 
 #: src/olympia/files/utils.py:556
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "A kiegészítő azonosító nem egyezik a kiegészítővel."
 
 #: src/olympia/files/utils.py:564
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Kettőzött kiegészítő azonosító található."
 
 #: src/olympia/files/utils.py:567
 msgid "Version numbers should have fewer than 32 characters."
@@ -10460,15 +10580,15 @@ msgstr "Fájlnézegető :: Szerkesztői eszközök"
 
 #: src/olympia/files/templates/files/viewer.html:19
 msgid "Validation failed:"
-msgstr ""
+msgstr "Ellenőrzés sikertelen:"
 
 #: src/olympia/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
-msgstr "A kiegészítő fájl feldolgozás alatt, kérem, várjon."
+msgstr "A kiegészítő fájl feldolgozás alatt, kérem várjon."
 
 #: src/olympia/files/templates/files/viewer.html:46
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Ellenőrzése eredményének lekérése…"
 
 #: src/olympia/files/templates/files/viewer.html:57
 msgid "Deleted files:"
@@ -10476,11 +10596,11 @@ msgstr "Törölt fájlok:"
 
 #: src/olympia/files/templates/files/viewer.html:66
 msgid "Hide known files"
-msgstr ""
+msgstr "Ismert fájlok elrejtése"
 
 #: src/olympia/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Kiegészítő SDK verzió:"
 
 #: src/olympia/files/templates/files/viewer.html:73
 msgid "Tab stops:"
@@ -10499,7 +10619,7 @@ msgstr ""
 #: src/olympia/files/templates/files/viewer.html:90
 #: src/olympia/files/templates/files/viewer.html:91
 msgid "Previous diff"
-msgstr ""
+msgstr "Előző diff"
 
 #: src/olympia/files/templates/files/viewer.html:93
 #: src/olympia/files/templates/files/viewer.html:94
@@ -10509,7 +10629,7 @@ msgstr "Előző jegyzet"
 #: src/olympia/files/templates/files/viewer.html:100
 #: src/olympia/files/templates/files/viewer.html:101
 msgid "Next diff"
-msgstr ""
+msgstr "Következő diff"
 
 #: src/olympia/files/templates/files/viewer.html:103
 #: src/olympia/files/templates/files/viewer.html:104
@@ -10925,139 +11045,139 @@ msgstr "mauritániai ouguiya"
 
 #: src/olympia/lib/constants.py:101
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "mauritiusi rúpia"
 
 #: src/olympia/lib/constants.py:102
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "maldív-szigeteki rúfia"
 
 #: src/olympia/lib/constants.py:103
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "malawi kwacha"
 
 #: src/olympia/lib/constants.py:104
 msgid "Mexico Peso"
-msgstr ""
+msgstr "mexikói peso"
 
 #: src/olympia/lib/constants.py:105
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "maláj ringgit"
 
 #: src/olympia/lib/constants.py:106
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "mozambiki metical"
 
 #: src/olympia/lib/constants.py:107
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "namíbiai dollár"
 
 #: src/olympia/lib/constants.py:108
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "nigéria naira"
 
 #: src/olympia/lib/constants.py:109
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "nicaraguai córdoba"
 
 #: src/olympia/lib/constants.py:110
 msgid "Norway Krone"
-msgstr ""
+msgstr "norvég korona"
 
 #: src/olympia/lib/constants.py:111
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "nepáli rúpia"
 
 #: src/olympia/lib/constants.py:112
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "új-zélandi dollár"
 
 #: src/olympia/lib/constants.py:113
 msgid "Oman Rial"
-msgstr ""
+msgstr "ománi riál"
 
 #: src/olympia/lib/constants.py:114
 msgid "Panama Balboa"
-msgstr ""
+msgstr "panamai balboa"
 
 #: src/olympia/lib/constants.py:115
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "perui sol"
 
 #: src/olympia/lib/constants.py:116
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "pápua új-guineai kina"
 
 #: src/olympia/lib/constants.py:117
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Fülöp-szigeteki peso"
 
 #: src/olympia/lib/constants.py:118
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "pakisztáni rúpia"
 
 #: src/olympia/lib/constants.py:119
 msgid "Poland Zloty"
-msgstr ""
+msgstr "lengyel złoty"
 
 #: src/olympia/lib/constants.py:120
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "paraguayi guaraní"
 
 #: src/olympia/lib/constants.py:121
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "katari riál"
 
 #: src/olympia/lib/constants.py:122
 msgid "Romania New Leu"
-msgstr ""
+msgstr "román lej"
 
 #: src/olympia/lib/constants.py:123
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "szerb dinár"
 
 #: src/olympia/lib/constants.py:124
 msgid "Russia Ruble"
-msgstr ""
+msgstr "orosz rubel"
 
 #: src/olympia/lib/constants.py:125
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "ruandai frank"
 
 #: src/olympia/lib/constants.py:126
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "szaúdi riál"
 
 #: src/olympia/lib/constants.py:127
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Salamon-szigeteki dollár"
 
 #: src/olympia/lib/constants.py:128
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "seychelle-i rúpia"
 
 #: src/olympia/lib/constants.py:129
 msgid "Sudan Pound"
-msgstr ""
+msgstr "szudáni font"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sweden Krona"
-msgstr ""
+msgstr "svéd korona"
 
 #: src/olympia/lib/constants.py:131
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "szingapúri dollár"
 
 #: src/olympia/lib/constants.py:132
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Szent Ilona-i font"
 
 #: src/olympia/lib/constants.py:133
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierra Leone-i leone"
 
 #: src/olympia/lib/constants.py:134
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "szomáliai shilling"
 
 #: src/olympia/lib/constants.py:135
 msgid "Seborga Luigino"
@@ -11065,99 +11185,99 @@ msgstr ""
 
 #: src/olympia/lib/constants.py:136
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "suriname-i dollár"
 
 #: src/olympia/lib/constants.py:137
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "São Tomé és Príncipe-i dobra"
 
 #: src/olympia/lib/constants.py:138
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "salvadori colón"
 
 #: src/olympia/lib/constants.py:139
 msgid "Syria Pound"
-msgstr ""
+msgstr "szír font"
 
 #: src/olympia/lib/constants.py:140
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "szváziföldi lilangeni"
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "thai bát"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "tádzsik szomoni"
 
 #: src/olympia/lib/constants.py:143
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "türkmén manat"
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "tunéziai dinár"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "tongai paʻanga"
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "török líra"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Trinidad és Tobagó-i dollár"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "tuvalui dollár"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "tajvani új dollár"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "tanzániai shilling"
 
 #: src/olympia/lib/constants.py:151
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "ukrán hrivnya"
 
 #: src/olympia/lib/constants.py:152
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "ugandai shilling"
 
 #: src/olympia/lib/constants.py:153
 msgid "United States Dollar"
-msgstr ""
+msgstr "amerikai dollár"
 
 #: src/olympia/lib/constants.py:154
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "uruguayi peso"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "üzbég szom"
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "venezuelai bolívar"
 
 #: src/olympia/lib/constants.py:157
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "vietnami đồng"
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "vanatui vatu"
 
 #: src/olympia/lib/constants.py:159
 msgid "Samoa Tala"
-msgstr ""
+msgstr "szamoai tala"
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
@@ -12419,7 +12539,8 @@ msgstr ""
 msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
-msgstr "Mit jelent, ha egy kiegészítő \"kísérleti\" vagy \"előzetese átvizsgált\"?"
+msgstr ""
+"Mit jelent, ha egy kiegészítő „kísérleti” vagy „előzetesen átvizsgált”?"
 
 #: src/olympia/pages/templates/pages/faq.html:188
 msgid ""
@@ -12437,7 +12558,9 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Mit jelent ha a kiegészítő \"nincs vizsgálva\"?"
+msgstr ""
+"Mit jelent ha a kiegészítő „nincs vizsgálva”?\n"
+"?"
 
 #: src/olympia/pages/templates/pages/faq.html:197
 msgid ""
