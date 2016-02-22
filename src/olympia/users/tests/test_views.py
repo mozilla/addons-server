@@ -522,6 +522,18 @@ class TestLogin(UserViewBase):
         r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
         self.assert3xx(r, '/de/firefox/')
 
+    def test_absolute_redirect_url(self):
+        # We should always be using relative paths so don't allow absolute
+        # URLs even if they're on the same domain.
+        r = self.client.get(reverse('home'))
+        assert 'Log out' not in r.content
+        r = self.client.post(self.url, self.data, follow=True)
+        self.assert3xx(r, reverse('home'))
+        assert 'Log out' in r.content
+        r = self.client.get(
+            self.url + '?to=http://testserver/en-US/firefox/users/edit')
+        self.assert3xx(r, '/')
+
     def test_bad_redirect_other_domain(self):
         r = self.client.get(reverse('home'))
         assert 'Log out' not in r.content

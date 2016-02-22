@@ -336,7 +336,7 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets.get('to', settings.LOGIN_REDIRECT_URL)
 
-    if not is_safe_url(url, host=request.get_host()):
+    if not is_safe_url(url):
         log.info(u'Unsafe redirect to %s' % url)
         url = settings.LOGIN_REDIRECT_URL
 
