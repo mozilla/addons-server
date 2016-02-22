@@ -50,7 +50,7 @@ def test_json_not_implemented():
 
 class DRFMixin(object):
     """
-    Tests should be run with Piston and DRF.
+    Tests should be run with both the old and the new DRF-based implementation.
     Inheriting this class will waffle switch the tests to DRF views.
 
     A `test_module_url` property must be set. It should point to any URL

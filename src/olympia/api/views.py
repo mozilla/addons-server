@@ -11,7 +11,6 @@ from datetime import date, timedelta
 from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
-from django.shortcuts import render
 from django.template.context import get_standard_processors
 from django.utils import encoding, translation
 from django.utils.decorators import method_decorator
@@ -496,10 +495,3 @@ def redirect_view(request, url):
     dest = get_url_prefix().fix(dest)
 
     return HttpResponsePermanentRedirect(dest)
-
-
-@non_atomic_requests
-def request_token_ready(request, token):
-    error = request.GET.get('error', '')
-    ctx = {'error': error, 'token': token}
-    return render(request, 'piston/request_token_ready.html', ctx)

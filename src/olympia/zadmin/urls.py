@@ -59,8 +59,6 @@ urlpatterns = patterns(
     url('^mail$', views.mail, name='zadmin.mail'),
     url('^email-devs$', views.email_devs, name='zadmin.email_devs'),
     url('^addon-search$', views.addon_search, name='zadmin.addon-search'),
-    url('^oauth-consumer-create$', views.oauth_consumer_create,
-        name='zadmin.oauth-consumer-create'),
     url('^generate-error$', views.generate_error,
         name='zadmin.generate-error'),
 

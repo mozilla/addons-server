@@ -1,60 +1,28 @@
 """
-This view is a port of the views.py file (using Piston) to DRF.
-It is a work in progress that is supposed to replace the views.py completely.
+This view is a port of the views.py file to DRF.
 """
 import urllib
 from datetime import date, timedelta
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.http import Http404
 
 import commonware.log
-from rest_framework.generics import RetrieveAPIView, get_object_or_404
-from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from olympia import amo, api
-from olympia.addons.forms import AddonForm
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.models import manual_order
-from olympia.amo.utils import paginate
-from olympia.devhub.forms import LicenseForm
 from olympia.search.views import name_query
-from olympia.users.models import UserProfile
-from olympia.versions.forms import XPIForm
-from olympia.versions.models import Version
 
-from .authentication import RestOAuthAuthentication
-from .authorization import (
-    AllowAppOwner, AllowReadOnlyIfPublic, AllowRelatedAppOwner, AnyOf,
-    ByHttpMethod)
-from .handlers import _form_error, _xpi_form_error
-from .permissions import GroupPermission
 from .renderers import JSONRenderer, XMLTemplateRenderer
-from .serializers import AddonSerializer, UserSerializer, VersionSerializer
 from .utils import addon_to_dict, extract_filters
 from .views import (
     BUFFER, ERROR, MAX_LIMIT, NEW_DAYS, OUT_OF_DATE, addon_filter)
 
 
 log = commonware.log.getLogger('z.api')
-
-
-class CORSMixin(object):
-    """
-    Mixin to enable CORS for DRF API.
-    TODO: externalize that mixin (see 984865).
-    """
-    def finalize_response(self, request, response, *args, **kwargs):
-        if not hasattr(request._request, 'CORS'):
-            request._request.CORS = self.cors_allowed_methods
-        return super(CORSMixin, self).finalize_response(
-            request, response, *args, **kwargs)
 
 
 class DRFView(APIView):
@@ -88,6 +56,13 @@ class DRFView(APIView):
         else:
             return Response(self.serialize_to_json(results), **kwargs)
 
+    def finalize_response(self, request, response, *args, **kwargs):
+        if (not hasattr(request._request, 'CORS') and
+                hasattr(self, 'cors_allowed_methods')):
+            request._request.CORS = self.cors_allowed_methods
+        return super(DRFView, self).finalize_response(
+            request, response, *args, **kwargs)
+
     def serialize_to_xml(self, results):
         return {'addons': results}
 
@@ -104,8 +79,8 @@ class AddonDetailView(DRFView):
     @allow_cross_site_request
     def get(self, request, addon_id, api_version, format=None):
         # Check valid version.
-        if (self.api_version < api.MIN_VERSION
-                or self.api_version > api.MAX_VERSION):
+        if (self.api_version < api.MIN_VERSION or
+                self.api_version > api.MAX_VERSION):
             msg = OUT_OF_DATE.format(self.api_version, api.CURRENT_VERSION)
             return Response({'msg': msg},
                             template_name=self.error_template_name, status=403)
@@ -155,7 +130,7 @@ class SearchView(DRFView):
     def get_renderer_context(self):
         context = super(SearchView, self).get_renderer_context()
         context.update({
-            # For caching
+            # For caching.
             'version': self.version,
             'compat_mode': self.compat_mode,
         })
@@ -281,197 +256,3 @@ class ListView(DRFView):
 
     def serialize_to_json(self, results):
         return [addon_to_dict(a) for a in results]
-
-
-class UserView(RetrieveAPIView, DRFView):
-
-    serializer_class = UserSerializer
-    lookup_param = 'email'
-    model = UserProfile
-    permission_classes = [GroupPermission('API.Users', 'View')]
-    authentication_classes = [RestOAuthAuthentication]
-
-    def check_permissions(self, request):
-        """
-        Do not check permissions in case the user requests his own information.
-        """
-        lookup = self.kwargs.get(self.lookup_field, None)
-        if lookup:
-            return super(UserView, self).check_permissions(request)
-        else:
-            return True
-
-    def get_object(self, queryset=None):
-        lookup = self.request.QUERY_PARAMS.get(self.lookup_param, None)
-        if lookup:
-            queryset = self.filter_queryset(self.get_queryset())
-            # Not worth a dedicated DRF filter class given that it's only
-            # used for UserProfiles.
-            queryset = queryset.filter(deleted=False)
-            filter_kwargs = {self.lookup_param: lookup}
-            obj = get_object_or_404(queryset, **filter_kwargs)
-            self.check_object_permissions(self.request, obj)
-            return obj
-        else:
-            return self.request.user
-
-
-class AddonsViewSet(DRFView, ModelViewSet):
-    serializer_class = AddonSerializer
-    queryset = Addon.objects.all()
-    authentication_classes = [RestOAuthAuthentication]
-    permission_classes = [ByHttpMethod({
-        'options': AllowAny,  # Needed for CORS.
-        'get': AllowAny,
-        'post': IsAuthenticated,
-        'put': AnyOf(AllowAppOwner,
-                     GroupPermission('Addons', 'Edit')),
-        'delete': AnyOf(AllowAppOwner,
-                        GroupPermission('Addons', 'Edit')),
-    })]
-    lookup_url_kwarg = 'addon_id'
-
-    def create(self, request):
-        new_file_form = XPIForm(request, request.POST, request.FILES)
-
-        if not new_file_form.is_valid():
-            return _xpi_form_error(new_file_form, request)
-
-        # License can be optional.
-        license = None
-        if 'builtin' in request.POST:
-            license_form = LicenseForm(request.POST)
-            if not license_form.is_valid():
-                return _form_error(license_form)
-            license = license_form.save()
-
-        addon = new_file_form.create_addon(license=license)
-        if not license:
-            # If there is no license, we push you to step
-            # 5 so that you can pick one.
-            addon.submitstep_set.create(step=5)
-
-        serializer = self.serializer_class(addon)
-        return Response(serializer.data, **{
-            'status': 201,
-            'headers': {
-                'Location': reverse('api.addon', kwargs={'addon_id': addon.id})
-            }
-        })
-
-    def retrieve(self, request, addon_id=None):
-        """
-        Returns authors who can update an addon (not Viewer role) for addons
-        that have not been admin disabled. Optionally provide an addon id.
-        """
-        if request.user.is_authenticated():
-            ids = (AddonUser.objects.values_list('addon_id', flat=True)
-                                    .filter(user=request.user,
-                                            role__in=[amo.AUTHOR_ROLE_DEV,
-                                                      amo.AUTHOR_ROLE_OWNER]))
-            qs = (Addon.objects.filter(id__in=ids)
-                               .exclude(status=amo.STATUS_DISABLED)
-                               .no_transforms())
-        else:
-            qs = Addon.objects.none()
-        if addon_id:
-            try:
-                addon = qs.get(id=addon_id)
-            except Addon.DoesNotExist:
-                return Response(status=404)
-            serializer = self.serializer_class(addon)
-            return Response(serializer.data)
-
-        paginator = paginate(request, qs)
-        serializer = self.serializer_class(paginator.object_list, many=True)
-        return Response({
-            'objects': serializer.data,
-            'num_pages': paginator.paginator.num_pages,
-            'count': paginator.paginator.count
-        })
-
-    def update(self, request, addon_id):
-        addon = self.get_object_or_none()
-        if addon is None:
-            return Response(status=410)
-
-        form = AddonForm(request.DATA, instance=addon)
-        if not form.is_valid():
-            return _form_error(form)
-
-        serializer = self.serializer_class(form.save())
-        return Response(serializer.data)
-
-    def delete(self, request, addon_id):
-        addon = self.get_object()
-        addon.delete(msg='Deleted via API')
-        return Response(status=204)
-
-
-class VersionsViewSet(CORSMixin, RetrieveModelMixin, UpdateModelMixin,
-                      GenericViewSet):
-    queryset = Version.objects.exclude(addon__status=amo.STATUS_DELETED)
-    serializer_class = VersionSerializer
-    authorization_classes = []
-    permission_classes = [AnyOf(AllowRelatedAppOwner,
-                                GroupPermission('Apps', 'Review'),
-                                AllowReadOnlyIfPublic)]
-    cors_allowed_methods = ['get', 'patch', 'put']
-    lookup_url_kwarg = 'version_id'
-
-    def create(self, request, addon_id):
-        addon = get_object_or_404(Addon, id=addon_id)
-        new_file_form = XPIForm(request, request.POST, request.FILES,
-                                addon=addon)
-
-        if not new_file_form.is_valid():
-            return _xpi_form_error(new_file_form, request)
-
-        license = None
-        if 'builtin' in request.POST:
-            license_form = LicenseForm(request.POST)
-            if not license_form.is_valid():
-                return _form_error(license_form)
-            license = license_form.save()
-
-        v = new_file_form.create_version(license=license)
-        serializer = self.serializer_class(v)
-        return Response(serializer.data)
-
-    def retrieve(self, request, addon_id, version_id=None):
-        if version_id:
-            version = self.get_object()
-            serializer = self.serializer_class(version)
-        else:
-            addon = get_object_or_404(Addon, id=addon_id)
-            versions = addon.versions.all()
-            serializer = self.serializer_class(versions)
-        return Response(serializer.data)
-
-    def update(self, request, addon_id, version_id):
-        try:
-            version = self.get_object()
-        except Http404:
-            return Response(status=410)
-
-        new_file_form = XPIForm(request, request.DATA, request.FILES,
-                                version=version)
-
-        if not new_file_form.is_valid():
-            return _xpi_form_error(new_file_form, request)
-
-        license = None
-        if 'builtin' in request.DATA:
-            license_form = LicenseForm(request.DATA)
-            if not license_form.is_valid():
-                return _form_error(license_form)
-            license = license_form.save()
-
-        v = new_file_form.update_version(license)
-        serializer = self.serializer_class(v)
-        return Response(serializer.data)
-
-    def delete(self, request, addon_id, version_id):
-        version = self.get_object()
-        version.delete()
-        return Response(status=204)

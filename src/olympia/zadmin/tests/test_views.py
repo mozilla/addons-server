@@ -11,7 +11,6 @@ from django.core.cache import cache
 import mock
 from nose.plugins.attrib import attr
 from nose.tools import eq_
-from piston.models import Consumer
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -1329,22 +1328,6 @@ class TestFeatures(TestCase):
         eq_(FeaturedCollection.objects.count(), 0)
 
 
-class TestOAuth(TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestOAuth, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
-
-    def test_create_consumer(self):
-        self.client.post(reverse('zadmin.oauth-consumer-create'),
-                         data={'name': 'Test',
-                               'description': 'Test description',
-                               'status': 'accepted'})
-        eq_(Consumer.objects.count(), 1)
-
-
 class TestLookup(TestCase):
     fixtures = ['base/users']
 
@@ -1834,7 +1817,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
         self.assert_status('discovery.module_admin', 200)
-        self.assert_status('zadmin.oauth-consumer-create', 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -1852,7 +1834,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
         self.assert_status('discovery.module_admin', 200)
-        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_sr_reviewers_user(self):
         # Sr Reviewers users have only a few privileges.
@@ -1868,7 +1849,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_bulk_compat_user(self):
         # Bulk Compatibility Updaters only have access to /admin/validation/*.
@@ -1885,7 +1865,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.oauth-consumer-create', 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
@@ -1900,7 +1879,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)
         self.assert_status('discovery.module_admin', 403)
-        self.assert_status('zadmin.oauth-consumer-create', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assert3xx(self.client.get(reverse('zadmin.index')),

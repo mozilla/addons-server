@@ -47,7 +47,7 @@ from .decorators import admin_required
 from .forms import (
     AddonStatusForm, BulkValidationForm, CompatForm, DevMailerForm,
     FeaturedCollectionFormSet, FileFormSet, MonthlyPickFormSet, NotifyForm,
-    OAuthConsumerForm, YesImSure)
+    YesImSure)
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
@@ -556,18 +556,6 @@ def addon_search(request):
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs
     return render(request, 'zadmin/addon-search.html', ctx)
-
-
-@admin.site.admin_view
-def oauth_consumer_create(request):
-    form = OAuthConsumerForm(request.POST or None)
-    if form.is_valid():
-        # Generate random codes and save.
-        form.instance.user = request.user
-        form.instance.generate_random_codes()
-        return redirect('admin:piston_consumer_changelist')
-
-    return render(request, 'zadmin/oauth-consumer-create.html', {'form': form})
 
 
 @never_cache
