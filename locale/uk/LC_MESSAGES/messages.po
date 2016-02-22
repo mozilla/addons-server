@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-22 08:39+0000\n"
+"PO-Revision-Date: 2016-02-22 11:51+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11152,107 +11152,107 @@ msgstr "Фолклендський фунт"
 
 #: src/olympia/lib/constants.py:51
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Фунт стерлінгів"
 
 #: src/olympia/lib/constants.py:52
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Грузинський ларі"
 
 #: src/olympia/lib/constants.py:53
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Гернсійський фунт"
 
 #: src/olympia/lib/constants.py:54
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Ганський седі"
 
 #: src/olympia/lib/constants.py:55
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Гібралтарський фунт"
 
 #: src/olympia/lib/constants.py:56
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Даласі"
 
 #: src/olympia/lib/constants.py:57
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Гвінейський франк"
 
 #: src/olympia/lib/constants.py:58
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Гватемальський кецаль"
 
 #: src/olympia/lib/constants.py:59
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Гайанський долар"
 
 #: src/olympia/lib/constants.py:60
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Гонконгівський долар"
 
 #: src/olympia/lib/constants.py:61
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Гондураська лемпіра"
 
 #: src/olympia/lib/constants.py:62
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Хорватська куна"
 
 #: src/olympia/lib/constants.py:63
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Гаїтянський гурд"
 
 #: src/olympia/lib/constants.py:64
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Угорський форинт"
 
 #: src/olympia/lib/constants.py:65
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Індонезійська рупія"
 
 #: src/olympia/lib/constants.py:66
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Шекель"
 
 #: src/olympia/lib/constants.py:67
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Фунт острова Мен"
 
 #: src/olympia/lib/constants.py:68
 msgid "India Rupee"
-msgstr ""
+msgstr "Індійська рупія"
 
 #: src/olympia/lib/constants.py:69
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Іракський динар"
 
 #: src/olympia/lib/constants.py:70
 msgid "Iran Rial"
-msgstr ""
+msgstr "Іранський ріал"
 
 #: src/olympia/lib/constants.py:71
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Ісландська крона"
 
 #: src/olympia/lib/constants.py:72
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Джерсійський фунт"
 
 #: src/olympia/lib/constants.py:73
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Ямайський долар"
 
 #: src/olympia/lib/constants.py:74
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Йорданський динар"
 
 #: src/olympia/lib/constants.py:75
 msgid "Japan Yen"
-msgstr ""
+msgstr "Єна"
 
 #: src/olympia/lib/constants.py:76
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Кенійський шилінг"
 
 #: src/olympia/lib/constants.py:77
 msgid "Kyrgyzstan Som"
