@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-23 09:17+0000\n"
+"PO-Revision-Date: 2016-02-23 12:37+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -11724,23 +11724,23 @@ msgstr "Franco de la comunidad financiera africana (FCFA)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franco de la comunidad financiera africana (FCFA)"
 
 #: src/olympia/lib/constants.py:165
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Rial yemení"
 
 #: src/olympia/lib/constants.py:166
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Rand sudafricano"
 
 #: src/olympia/lib/constants.py:167
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Kwacha zambiano"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dólar zimbabuense"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
@@ -15174,6 +15174,8 @@ msgstr "Idioma por defecto"
 #: src/olympia/users/forms.py:404
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Los usuarios de Firefox Accounts no pueden modificar su dirección de correo "
+"electrónico."
 
 #: src/olympia/users/forms.py:438
 msgid "Wrong password entered!"
@@ -15181,7 +15183,7 @@ msgstr "¡Se ha introducido una contraseña errónea!"
 
 #: src/olympia/users/forms.py:451
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "No se puede modificar la dirección de correo electrónico."
 
 #: src/olympia/users/forms.py:533
 msgid ""
@@ -15220,7 +15222,7 @@ msgstr "No se ha encontrado un usuario con ese correo electrónico."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:355
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Usuario anónimo {id}"
 
 #: src/olympia/users/models.py:412
 msgid "Your account has been restricted"
@@ -15527,13 +15529,15 @@ msgstr "Borrar mi imagen de usuario ahora"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "Por favor, indique su nombre"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
 msgstr ""
+"Por favor, indique su nombre o usuario para completar el proceso de "
+"registro."
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
