@@ -2,12 +2,13 @@ import smtplib
 import sys
 import traceback
 
+from django.utils.encoding import force_bytes
 from email.Utils import formatdate
 from email.mime.text import MIMEText
 from time import time
 from urlparse import parse_qsl
 
-from services.utils import settings
+from services.utils import mypool, settings
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -76,15 +77,6 @@ no_updates_rdf = """<?xml version="1.0"?>
 
 timing_log = commonware.log.getLogger('z.timer')
 error_log = commonware.log.getLogger('z.services')
-
-
-def getconn():
-    db = settings.SERVICES_DATABASE
-    return mysql.connect(host=db['HOST'], user=db['USER'],
-                         passwd=db['PASSWORD'], db=db['NAME'])
-
-
-mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 
 class Update(object):
@@ -374,7 +366,7 @@ def application(environ, start_response):
         compat_mode = data.pop('compatMode', 'strict')
         try:
             update = Update(data, compat_mode)
-            output = update.get_rdf()
+            output = force_bytes(update.get_rdf())
             start_response(status, update.get_headers(len(output)))
         except:
             #mail_exception(data)
