@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-22 16:49+0000\n"
+"PO-Revision-Date: 2016-02-23 09:17+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -11632,95 +11632,95 @@ msgstr "Lilangeni de Suazilandia"
 
 #: src/olympia/lib/constants.py:141
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Baht tailandés"
 
 #: src/olympia/lib/constants.py:142
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Somoni tayiko"
 
 #: src/olympia/lib/constants.py:143
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Manat turcomano"
 
 #: src/olympia/lib/constants.py:144
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Dinar tunecino"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Dólar tongano"
 
 #: src/olympia/lib/constants.py:146
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Lira turca"
 
 #: src/olympia/lib/constants.py:147
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dólar trinitense"
 
 #: src/olympia/lib/constants.py:148
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Dólar tuvaluano"
 
 #: src/olympia/lib/constants.py:149
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Nuevo dólar taiwanés"
 
 #: src/olympia/lib/constants.py:150
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Chelín tanzano"
 
 #: src/olympia/lib/constants.py:151
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Grivna de Ucrania"
 
 #: src/olympia/lib/constants.py:152
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Chelín ugandés"
 
 #: src/olympia/lib/constants.py:153
 msgid "United States Dollar"
-msgstr ""
+msgstr "Dólar estadounidense"
 
 #: src/olympia/lib/constants.py:154
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Peso uruguayo"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Som uzbeko"
 
 #: src/olympia/lib/constants.py:156
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Bolívar de Venezuela"
 
 #: src/olympia/lib/constants.py:157
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Đồng vietnamita"
 
 #: src/olympia/lib/constants.py:158
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vatu de Vanuatu"
 
 #: src/olympia/lib/constants.py:159
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Tālā de Samoa"
 
 #: src/olympia/lib/constants.py:160
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Franco de la comunidad financiera africana CFA"
 
 #: src/olympia/lib/constants.py:161
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Dólar del Caribe Oriental"
 
 #: src/olympia/lib/constants.py:162
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Derechos especiales de giro del Fondo Monetario Internacional (IFM)"
 
 #: src/olympia/lib/constants.py:163
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franco de la comunidad financiera africana (FCFA)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
