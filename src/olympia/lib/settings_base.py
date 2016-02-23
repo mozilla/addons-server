@@ -227,7 +227,7 @@ SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
-    'jsi18n', 'localizers', 'review_guide', 'google1f3e37b7351799a5.html',
+    'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
     'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
     '__version__',
 )
@@ -377,7 +377,6 @@ INSTALLED_APPS = (
     'olympia.discovery',
     'olympia.editors',
     'olympia.files',
-    'olympia.localizers',
     'olympia.lib.es',
     'olympia.pages',
     'olympia.perf',
@@ -516,7 +515,6 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
             'css/impala/compat.less',
-            'css/impala/localizers.less',
             'css/impala/fxa-migration.less',
         ),
         'zamboni/stats': (
@@ -839,9 +837,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/storage.js',
             'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
-        ),
-        'zamboni/localizers': (
-            'js/zamboni/localizers.js',
         ),
         'zamboni/mobile': (
             'js/lib/jquery-1.12.0.js',
