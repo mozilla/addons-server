@@ -1,8 +1,8 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
-.. image:: https://requires.io/github/mozilla/olympia/requirements.svg?branch=master
-    :target: https://requires.io/github/mozilla/olympia/requirements/?branch=master
+.. image:: https://requires.io/github/mozilla/addons-server/requirements.svg?branch=master
+    :target: https://requires.io/github/mozilla/addons-server/requirements/?branch=master
 
 Welcome to the Addons Server!  This is `addons.mozilla.org`_.
 
