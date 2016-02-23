@@ -1388,19 +1388,32 @@ ASYNC_SIGNALS = True
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
-REDIS_BACKENDS = {
-    'master': 'redis://{location}?socket_timeout=0.5'.format(
-        location=REDIS_LOCATION)}
+REDIS_LOCATION = os.environ.get(
+    'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5')
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost')
-REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
 
-REDIS_BACKENDS = {
-    'master': {
-        'HOST': REDIS_LOCATION,
-        'OPTIONS': {'socket_timeout': 0.5},
+def _get_redis_settings(uri):
+    import urlparse
+    urlparse.uses_netloc.append('redis')
+
+    result = urlparse.urlparse(uri)
+
+    options = dict(urlparse.parse_qsl(result.query))
+
+    if 'socket_timeout' in options:
+        options['socket_timeout'] = float(options['socket_timeout'])
+
+    return {
+        'HOST': result.hostname,
+        'PORT': result.port,
+        'PASSWORD': result.password,
+        'DB': int((result.path or '0').lstrip('/')),
+        'OPTIONS': options
     }
+
+
+REDIS_BACKENDS = {
+    'master': _get_redis_settings(REDIS_LOCATION)
 }
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
