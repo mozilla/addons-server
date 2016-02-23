@@ -294,7 +294,8 @@ def JINJA_CONFIG():
             'jinja2.ext.with_',
             'jinja2.ext.loopcontrols'
         ],
-        'finalize': lambda x: x if x is not None else ''
+        'finalize': lambda x: x if x is not None else '',
+        'autoescape': True,
     }
 
     if False and not settings.DEBUG:
