@@ -48,27 +48,6 @@ def test_json_not_implemented():
     eq_(api.views.APIView().render_json({}), '{"msg": "Not implemented yet."}')
 
 
-class DRFMixin(object):
-    """
-    Tests should be run with both the old and the new DRF-based implementation.
-    Inheriting this class will waffle switch the tests to DRF views.
-
-    A `test_module_url` property must be set. It should point to any URL
-    referring to the testing view (a 404 is fine). The goal of this property
-    is to ensure that the test collection does use DRF.
-    """
-    def setUp(self):
-        super(DRFMixin, self).setUp()
-        self.create_switch('drf')
-
-    def test_drf_running(self):
-        """
-        This test makes sure that is it DRF that is running in this test suite.
-        """
-        response = self.client.get(self.test_module_url, follow=True)
-        self.assertTrue('rest_framework' in response.__module__, response)
-
-
 class UtilsTest(TestCase):
     fixtures = ['base/addon_3615']
 
@@ -576,17 +555,6 @@ class APITest(TestCase):
         eq_(response['Access-Control-Allow-Methods'], 'GET')
 
 
-class DRFAPITest(DRFMixin, APITest):
-    """
-    Run all APITest tests with DRF.
-    """
-
-    def setUp(self):
-        super(DRFAPITest, self).setUp()
-        self.test_module_url = reverse('api.addon_detail',
-                                       args=['1.5', 999999])
-
-
 class ListTest(TestCase):
     """Tests the list view with various urls."""
     fixtures = ['base/users', 'base/addon_3615', 'base/featured',
@@ -678,16 +646,6 @@ class ListTest(TestCase):
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
-
-
-class DRFListTest(DRFMixin, ListTest):
-    """
-    Run all ListTest tests with DRF.
-    """
-
-    def setUp(self):
-        super(DRFListTest, self).setUp()
-        self.test_module_url = reverse('api.list', args=['1.5', 'featured'])
 
 
 class AddonFilterTest(TestCase):
@@ -1263,16 +1221,6 @@ class SearchTest(ESTestCase):
         eq_(response.status_code, 503)
 
 
-class DRFSearchTest(DRFMixin, SearchTest):
-    """
-    Run all SearchTest tests with DRF.
-    """
-
-    def setUp(self):
-        super(DRFSearchTest, self).setUp()
-        self.test_module_url = reverse('api.search', args=['1.5', 'delicious'])
-
-
 class LanguagePacksTest(UploadTest):
     fixtures = ['addons/listed']
 
@@ -1332,13 +1280,3 @@ class LanguagePacksTest(UploadTest):
                                                 <strings><![CDATA[
                                             title=اختر لغة
                                                 ]]></strings>"""))
-
-
-class DRFLanguagePacksTest(DRFMixin, LanguagePacksTest):
-    """
-    Run all LanguagePack tests with DRF.
-    """
-
-    def setUp(self):
-        super(DRFLanguagePacksTest, self).setUp()
-        self.test_module_url = reverse('api.language', args=['1.5'])

@@ -1,18 +1,14 @@
-from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.db.transaction import non_atomic_requests
 
-import waffle
-
 from olympia.addons.urls import ADDON_ID
-from olympia.api import views, views_drf
-
-API_CACHE_TIMEOUT = getattr(settings, 'API_CACHE_TIMEOUT', 500)
+from olympia.api import views
 
 
 # Wrap class views in a lambda call so we get an fresh instance of the class
 # for thread-safety.
-def class_view(cls):
+@non_atomic_requests
+def api_view(cls):
     return lambda *args, **kw: cls()(*args, **kw)
 
 
@@ -51,42 +47,23 @@ base_list_regexp = r'list'
 appendages.insert(0, '/(?P<list_type>[^/]+)')
 list_regexps = build_urls(base_list_regexp, appendages)
 
-
-class SwitchToDRF(object):
-    """
-    Waffle switch to move the legacy API from the old custom implementation to
-    the newer one that uses DRF.
-    """
-    def __init__(self, resource_name):
-        self.resource_name = resource_name
-
-    @non_atomic_requests
-    def __call__(self, *args, **kwargs):
-        if waffle.switch_is_active('drf'):
-            view_name = self.resource_name + 'View'
-            return getattr(views_drf, view_name).as_view()(*args, **kwargs)
-        else:
-            return (class_view(getattr(views, self.resource_name + 'View'))
-                    (*args, **kwargs))
-
-
 api_patterns = patterns(
     '',
     # Addon_details
-    url('addon/%s$' % ADDON_ID, SwitchToDRF('AddonDetail'),
+    url('addon/%s$' % ADDON_ID, api_view(views.AddonDetailView),
         name='api.addon_detail'),
-    url(r'^get_language_packs$', SwitchToDRF('Language'),
+    url(r'^get_language_packs$', api_view(views.LanguageView),
         name='api.language'),)
 
 for regexp in search_regexps:
     api_patterns += patterns(
         '',
-        url(regexp + '/?$', SwitchToDRF('Search'), name='api.search'))
+        url(regexp + '/?$', api_view(views.SearchView), name='api.search'))
 
 for regexp in list_regexps:
     api_patterns += patterns(
         '',
-        url(regexp + '/?$', SwitchToDRF('List'), name='api.list'))
+        url(regexp + '/?$', api_view(views.ListView), name='api.list'))
 
 urlpatterns = patterns(
     '',
