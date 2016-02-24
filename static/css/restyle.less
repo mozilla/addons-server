@@ -3,6 +3,7 @@
 @primary-link: #6AC3E2;
 @primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
 
+// Fonts
 @font-face {
     font-family: 'Open Sans';
     font-style: normal;
@@ -28,6 +29,7 @@
     src: local('Open Sans Italic'), local('OpenSans-Italic'), url('../../css/impala/fonts/OpenSans-Italic.ttf') format('ttf');
 }
 
+// Styles
 #tabzilla:before {
     background: none;
 }
@@ -204,6 +206,7 @@ blue-pattern, blue-gradient, white overlay
 
             /* Menu Panel triangle */
             &:after {
+                box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
                 content: "";
                 display: block;
                 position: absolute;
@@ -213,7 +216,6 @@ blue-pattern, blue-gradient, white overlay
                 background-color: #fff;
                 width: 12px;
                 height: 12px;
-                box-shadow: -1px -2px 1px rgba(0, 0, 0, 0.2);
             }
         }
 
@@ -673,8 +675,9 @@ button.good {
 
 .install-button > .button.add.installer {
     background: #57BD35;
-    box-shadow: 0 2px 0 0 rgba(0,0,0,0.10), inset 0 -2px 0 0 rgba(56,136,30,0.50);
     border-radius: 3px;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, .10),
+                inset 0 -2px 0 0 rgba(56, 136, 30, .50);
     font-size: 14px;
     color: #FFFFFF;
     line-height: 16px;
