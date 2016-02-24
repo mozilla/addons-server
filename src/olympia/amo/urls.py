@@ -3,7 +3,7 @@ from waffle.views import wafflejs
 from django.conf.urls import include, patterns, url
 from django.views.decorators.cache import never_cache
 
-from . import install, views
+from . import views
 
 
 services_patterns = patterns(
@@ -12,7 +12,6 @@ services_patterns = patterns(
         name='amo.monitor'),
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
     url('^csp/report$', views.cspreport, name='amo.csp.report'),
-    url('^install.php$', install.install, name='api.install'),
 )
 
 urlpatterns = patterns(
