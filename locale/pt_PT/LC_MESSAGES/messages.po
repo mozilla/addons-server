@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-17 17:10+0000\n"
-"PO-Revision-Date: 2016-02-18 19:43+0000\n"
+"PO-Revision-Date: 2016-02-24 07:52+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1414,7 +1414,7 @@ msgstr "Informação da versão"
 
 #: src/olympia/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
-msgstr "Ver o histórico de versões completo"
+msgstr "Ver o histórico completo de versões"
 
 #: src/olympia/addons/templates/addons/impala/details.html:262
 msgid ""
@@ -14663,7 +14663,7 @@ msgstr "Procure extras para outras aplicações"
 #: src/olympia/templates/base.html:92
 #: src/olympia/templates/impala/base.html:81
 msgid "Other Applications"
-msgstr "Outras Aplicações"
+msgstr "Outras aplicações"
 
 #: src/olympia/templates/base.html:141
 #: src/olympia/templates/impala/base.html:194
@@ -16055,7 +16055,7 @@ msgstr "Histórico de versões de %s"
 
 #: src/olympia/versions/feeds.py:70
 msgid "Version History with Changelogs"
-msgstr "Histórico da Versão com Registo de alterações"
+msgstr "Histórico de versões com registo de alterações"
 
 #: src/olympia/versions/models.py:314
 msgid "Add-on uses binary components."
@@ -16103,7 +16103,7 @@ msgstr "Ver a fonte"
 # {0} is the add-on name
 #: src/olympia/versions/templates/versions/version_list.html:26
 msgid "{0} Version History"
-msgstr "{0} Histórico da versão"
+msgstr "Histórico de versões de {0}"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html:29
