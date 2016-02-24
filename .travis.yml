@@ -7,15 +7,35 @@ env:
   - TOX_ENV=docs
   - TOX_ENV=assets
   - TOX_ENV=es
-  - TOX_ENV=addons-devhub-editors
-  - TOX_ENV=main
+  - TOX_ENV=abuse
+  - TOX_ENV=accounts
+  - TOX_ENV=addons
+  - TOX_ENV=amo
+  - TOX_ENV=api
+  - TOX_ENV=bandwagon
+  - TOX_ENV=blocklist
+  - TOX_ENV=devhub
+  - TOX_ENV=discovery
+  - TOX_ENV=editors
+  - TOX_ENV=files
+  - TOX_ENV=landfill
+  - TOX_ENV=lib
+  - TOX_ENV=paypal
+  - TOX_ENV=reviews
+  - TOX_ENV=search
+  - TOX_ENV=signing
+  - TOX_ENV=stats
+  - TOX_ENV=tags
+  - TOX_ENV=translations
+  - TOX_ENV=users
+  - TOX_ENV=zadmin
 services:
   - memcached
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.3.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
 install:
-  - pip install tox==1.8.1
+  - pip install tox==2.3.1
 before_script:
   - mysql -e 'create database olympia;'
 script:
