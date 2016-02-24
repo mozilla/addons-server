@@ -20,6 +20,7 @@ class TranslatedField(models.ForeignKey):
     with any translation matching the foreign key.
     """
     to = Translation
+    requires_unique_target = False
 
     def __init__(self, **kwargs):
         # to_field: The field on the related object that the relation is to.
@@ -204,10 +205,14 @@ class _TransField(object):
 
     def __init__(self, *args, **kwargs):
         self.default_locale = settings.LANGUAGE_CODE
-        for k in ('queryset', 'to_field_name'):
+        for k in ('queryset', 'to_field_name', 'limit_choices_to'):
             if k in kwargs:
                 del kwargs[k]
         self.widget = kwargs.pop('widget', TransInput)
+
+        # XXX: Figure out why this is being forwarded here (cgrebs)
+        # It's empty and not supported by CharField (-> TransField)
+        kwargs.pop('limit_choices_to', None)
         super(_TransField, self).__init__(*args, **kwargs)
 
     def clean(self, value):

@@ -305,8 +305,8 @@ def test_no_jinja_autoescape():
     val = 'some double quote: " and a <'
     tpl = '{{ val }}'
     ctx = {'val': val}
-    template = jingo.env.from_string(tpl)
+    template = jingo.get_env().from_string(tpl)
     eq_(template.render(ctx), 'some double quote: &#34; and a &lt;')
     with no_jinja_autoescape():
-        template = jingo.env.from_string(tpl)
+        template = jingo.get_env().from_string(tpl)
         eq_(template.render(ctx), 'some double quote: " and a <')

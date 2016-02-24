@@ -1,7 +1,6 @@
-from django.utils.translation import trans_real
+from django.utils.translation import trans_real, activate
 
 import pytest
-import tower
 
 
 pytestmark = pytest.mark.django_db
@@ -11,7 +10,7 @@ def test_amo_locale_not_in_django():
     """
     We load gettext catalogs in this order:
         django/locale/django.po
-        amo/locale/messages.po
+        amo/locale/django.po
 
     If Django doesn't have a locale, it returns the en-us catalog as a
     fallback.  But then we take that catalog and merge in our z-messages.po.
@@ -19,7 +18,7 @@ def test_amo_locale_not_in_django():
 
     This test will be invalid once Django gets an mn locale.
     """
-    tower.activate('mn')
+    activate('mn')
     en = trans_real._translations['en-US']
     mn = trans_real._translations['mn']
     assert en != mn

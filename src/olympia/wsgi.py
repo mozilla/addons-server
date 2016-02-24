@@ -11,7 +11,7 @@ wsgi_loaded = datetime.now()
 os.environ['CELERY_LOADER'] = 'django'
 
 import django.conf
-import django.core.handlers.wsgi
+from django.core.wsgi import get_wsgi_application
 import django.core.management
 import django.utils
 
@@ -23,7 +23,7 @@ command = utility.fetch_command('runserver')
 command.validate()
 
 # This is what mod_wsgi runs.
-django_app = django.core.handlers.wsgi.WSGIHandler()
+django_app = get_wsgi_application()
 
 
 # Normally we could let WSGIHandler run directly, but while we're dark
@@ -47,3 +47,5 @@ if newrelic_ini:
         newrelic.agent.initialize(newrelic_ini)
     except Exception:
         log.exception('Failed to load new relic config.')
+
+    application = newrelic.agent.wsgi_application()(application)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from contextlib import nested
 
 import django
@@ -265,6 +266,15 @@ class TranslationTestCase(BaseTestCase):
         eq_(ids(order_by_translation(q, 'name')), expected)
         eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
 
+    def test_order_by_translations_query_uses_left_outer_join(self):
+        translation.activate('de')
+        qs = TranslatedModel.objects.all()
+        query = unicode(order_by_translation(qs, 'name').query)
+        # There should be 2 LEFT OUTER JOIN to find translations matching
+        # current language and fallback.
+        joins = re.findall('LEFT OUTER JOIN `translations`', query)
+        eq_(len(joins), 2)
+
     def test_sorting_mixed(self):
         translation.activate('de')
         q = TranslatedModel.objects.all()
@@ -275,16 +285,16 @@ class TranslationTestCase(BaseTestCase):
 
     def test_sorting_by_field(self):
         field = TranslatedModel._meta.get_field('default_locale')
-        TranslatedModel.get_fallback = classmethod(lambda cls: field)
+        fallback = classmethod(lambda cls: field)
+        with patch.object(TranslatedModel, 'get_fallback',
+                          fallback, create=True):
+            translation.activate('de')
+            qs = TranslatedModel.objects.all()
+            expected = [3, 1, 4]
 
-        translation.activate('de')
-        q = TranslatedModel.objects.all()
-        expected = [3, 1, 4]
-
-        eq_(ids(order_by_translation(q, 'name')), expected)
-        eq_(ids(order_by_translation(q, '-name')), list(reversed(expected)))
-
-        del TranslatedModel.get_fallback
+            eq_(ids(order_by_translation(qs, 'name')), expected)
+            eq_(ids(order_by_translation(qs, '-name')),
+                list(reversed(expected)))
 
     def test_new_purified_field(self):
         # This is not a full test of the html sanitizing.  We expect the
@@ -452,6 +462,15 @@ class TranslationMultiDbTests(TransactionTestCase):
         self.cleanup_fake_connections()
         super(TranslationMultiDbTests, self).tearDown()
 
+    def reset_queries(self):
+        # Django does a separate SQL query once per connection on MySQL, see
+        # https://code.djangoproject.com/ticket/16809 ; This pollutes the
+        # queries counts, so we initialize a connection cursor early ourselves
+        # before resetting queries to avoid this.
+        for con in django.db.connections:
+            connections[con].cursor()
+        reset_queries()
+
     @property
     def mocked_dbs(self):
         return {
@@ -468,7 +487,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     @override_settings(DEBUG=True)
     def test_translations_queries(self):
         # Make sure we are in a clean environnement.
-        reset_queries()
+        self.reset_queries()
         TranslatedModel.objects.get(pk=1)
         eq_(len(connections['default'].queries), 3)
 
@@ -476,7 +495,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     def test_translations_reading_from_multiple_db(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
                 TranslatedModel.objects.get(pk=1)
@@ -489,7 +508,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         raise SkipTest('Will need a django-queryset-transform patch to work')
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with patch('multidb.get_slave', lambda: 'slave-2'):
                 TranslatedModel.objects.using('slave-1').get(pk=1)
@@ -501,7 +520,7 @@ class TranslationMultiDbTests(TransactionTestCase):
     def test_translations_reading_from_multiple_db_pinning(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
-            reset_queries()
+            self.reset_queries()
 
             with nested(patch('multidb.get_slave', lambda: 'slave-2'),
                         multidb.pinning.use_master):

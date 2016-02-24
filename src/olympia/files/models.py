@@ -13,8 +13,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_str
-from django.utils.translation import force_text
+from django.utils.encoding import smart_str, force_text
 
 import commonware
 from cache_nuggets.lib import memoize

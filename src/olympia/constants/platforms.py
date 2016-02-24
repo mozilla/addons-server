@@ -1,6 +1,5 @@
 from django.utils.datastructures import SortedDict
-
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from . import applications
 

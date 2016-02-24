@@ -4,9 +4,9 @@ from json.decoder import JSONArray
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
+from django.utils.translation import ugettext as _
 
 from celery import chain, group
-from tower import ugettext as _
 from validator.constants import SIGNING_SEVERITIES
 from validator.version import Version
 import commonware.log

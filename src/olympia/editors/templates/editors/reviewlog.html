@@ -18,20 +18,20 @@
 
         {# L10n: "Filter" is a button label (verb) #}
         <button type="submit">
-          {{ _('Filter', 'editorcp_reviewlog_page_heading') }}
+          {{ _('Filter') }}
         </button>
       </div>
     </form>
   </div><!-- #log-filter -->
 
-  <h2>{{ _('Add-on Review Log', 'editorcp_reviewlog_page_heading') }}</h2>
+  <h2>{{ _('Add-on Review Log') }}</h2>
 
   <div class="listing results"><div class="results-inner controls">
     {% if pager.object_list %}
       <table id="log-listing" class="data-grid">
         <thead>
           <tr class="listing-header">
-            <th>{{ _('Date', 'editorcp_reviewlog_column_date') }}</th>
+            <th>{{ _('Date') }}</th>
             <th>{{ _('Event') }}</th>
             <th>{{ _('Editor') }}</th>
             <th>&nbsp;</th>

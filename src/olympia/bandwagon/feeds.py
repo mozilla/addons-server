@@ -1,6 +1,5 @@
 from django import http
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.amo.helpers import absolutify, page_name
 from olympia.amo.urlresolvers import reverse

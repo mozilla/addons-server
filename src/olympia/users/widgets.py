@@ -1,8 +1,7 @@
 from django import forms
 from django.template import Context, loader
 from django.utils.safestring import mark_safe
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from olympia.users import notifications as email
 

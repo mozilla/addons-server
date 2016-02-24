@@ -420,20 +420,21 @@ class TestManifestJSONExtractor(TestCase):
 
 def test_zip_folder_content():
     extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
+    temp_filename, temp_folder = None, None
     try:
         temp_folder = utils.extract_zip(extension_file)
-        assert os.listdir(temp_folder) == [
-            'install.rdf', 'chrome.manifest', 'chrome']
+        assert sorted(os.listdir(temp_folder)) == [
+            'chrome', 'chrome.manifest', 'install.rdf']
         temp_filename = amo.tests.get_temp_filename()
         utils.zip_folder_content(temp_folder, temp_filename)
         # Make sure the zipped files contain the same files.
         with zipfile.ZipFile(temp_filename, mode='r') as new:
             with zipfile.ZipFile(extension_file, mode='r') as orig:
-                assert new.namelist() == orig.namelist()
+                assert sorted(new.namelist()) == sorted(orig.namelist())
     finally:
-        if os.path.exists(temp_folder):
+        if temp_folder is not None and os.path.exists(temp_folder):
             amo.utils.rm_local_tmp_dir(temp_folder)
-        if os.path.exists(temp_filename):
+        if temp_filename is not None and os.path.exists(temp_filename):
             os.unlink(temp_filename)
 
 
@@ -445,8 +446,8 @@ def test_repack():
         # This is where we're really testing the repack helper.
         with utils.repack(temp_filename) as folder_path:
             # Temporary folder contains the unzipped XPI.
-            assert os.listdir(folder_path) == [
-                'install.rdf', 'chrome.manifest', 'chrome']
+            assert sorted(os.listdir(folder_path)) == [
+                'chrome', 'chrome.manifest', 'install.rdf']
             # Add a file, which should end up in the repacked file.
             with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
                 file_.write('foobar')

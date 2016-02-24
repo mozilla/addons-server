@@ -2,10 +2,11 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
+from django.utils.translation import (
+    ugettext as _, ugettext_lazy as _lazy, pgettext_lazy)
 
 import jingo
 import jinja2
-from tower import ugettext as _, ugettext_lazy as _lazy
 
 from olympia import amo
 from olympia.amo.helpers import urlparams
@@ -198,19 +199,19 @@ class InstallButton(object):
 
 class FeaturedInstallButton(InstallButton):
     install_class = ['featuredaddon']
-    install_text = _lazy(u'Featured', 'install_button')
+    install_text = _lazy(u'Featured')
 
 
 class UnreviewedInstallButton(InstallButton):
     install_class = ['unreviewed']
-    install_text = _lazy(u'Not Reviewed', 'install_button')
+    install_text = pgettext_lazy('install_button', u'Not Reviewed')
     button_class = 'download caution'.split()
 
 
 class LiteInstallButton(InstallButton):
     install_class = ['lite']
     button_class = ['caution']
-    install_text = _lazy(u'Experimental', 'install_button')
+    install_text = pgettext_lazy('install_button', u'Experimental')
 
 
 class PersonaInstallButton(InstallButton):

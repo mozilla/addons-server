@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 
 # Add-on and File statuses.

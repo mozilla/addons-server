@@ -62,8 +62,8 @@ class CollectionQuerySet(caching.CachingQuerySet):
 
 class CollectionManager(ManagerBase):
 
-    def get_query_set(self):
-        qs = super(CollectionManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(CollectionManager, self).get_queryset()
         qs = qs._clone(klass=CollectionQuerySet)
         return qs.transform(Collection.transformer)
 

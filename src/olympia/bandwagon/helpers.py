@@ -1,8 +1,8 @@
 import math
 
 import jinja2
-from jingo import register, env
-from tower import ugettext as _
+from jingo import register, get_env
+from django.utils.translation import ugettext as _
 
 from olympia.addons.helpers import new_context
 from olympia.amo.helpers import login_link
@@ -31,8 +31,8 @@ def user_collection_list(collections=[], heading='', id='', link=None):
     """list of collections, as used on the user profile page"""
     c = {'collections': collections, 'heading': heading, 'link': link,
          'id': id}
-    t = env.get_template('bandwagon/users/collection_list.html').render(c)
-    return jinja2.Markup(t)
+    template = get_env().get_template('bandwagon/users/collection_list.html')
+    return jinja2.Markup(template.render(c))
 
 
 @register.inclusion_tag('bandwagon/barometer.html')
@@ -130,7 +130,7 @@ def favorites_widget(context, addon, condensed=False):
                                    'favorites', 'remove'])
 
         c.update(locals())
-        t = env.get_template('bandwagon/favorites_widget.html').render(c)
+        t = get_env().get_template('bandwagon/favorites_widget.html').render(c)
         return jinja2.Markup(t)
 
 
@@ -142,8 +142,8 @@ def collection_widgets(context, collection, condensed=False):
     if collection:
         c.update({'condensed': condensed,
                   'c': collection})
-        t = env.get_template('bandwagon/collection_widgets.html').render(c)
-        return jinja2.Markup(t)
+        template = get_env().get_template('bandwagon/collection_widgets.html')
+        return jinja2.Markup(template.render(c))
 
 
 @register.inclusion_tag('bandwagon/mobile/listing_items.html')

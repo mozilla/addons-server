@@ -11,12 +11,12 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
+from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from tower import ugettext_lazy as _
 from waffle.decorators import waffle_switch
 
 from olympia.amo import messages

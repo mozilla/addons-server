@@ -1,5 +1,6 @@
 import itertools
 
+from django.apps import apps
 from django.core.management.base import BaseCommand
 from django.db import models, connection
 
@@ -31,10 +32,10 @@ class Command(BaseCommand):
     def handle(self, *app_labels, **options):
         if app_labels:
             modules = [models.loading.get_app(app) for app in app_labels]
-            models_ = itertools.chain(*[models.loading.get_models(mod)
+            models_ = itertools.chain(*[apps.get_models(mod)
                                         for mod in modules])
         else:
-            models_ = models.loading.get_models()
+            models_ = apps.get_models()
 
         updates, alters = [], []
         for model in models_:

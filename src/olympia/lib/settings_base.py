@@ -8,6 +8,7 @@ import socket
 
 import dj_database_url
 from django.utils.functional import lazy
+from django.core.urlresolvers import reverse_lazy
 from heka.config import client_from_dict_config
 
 ALLOWED_HOSTS = [
@@ -61,11 +62,6 @@ CLEANCSS_BIN = 'cleancss'
 
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
-
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-MANAGERS = ADMINS
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 EDITORS_EMAIL = 'amo-editors@mozilla.org'
@@ -161,13 +157,6 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 LOCALE_PATHS = (
     path('locale'),
 )
-
-# Tower / L10n
-STANDALONE_DOMAINS = ['messages', 'javascript']
-TOWER_KEYWORDS = {
-    '_lazy': None,
-}
-TOWER_ADD_HEADERS = True
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -296,10 +285,19 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from django.core.cache import cache
-    config = {'extensions': ['tower.template.i18n', 'olympia.amo.ext.cache',
-                             'jinja2.ext.do',
-                             'jinja2.ext.with_', 'jinja2.ext.loopcontrols'],
-              'finalize': lambda x: x if x is not None else ''}
+    config = {
+        'extensions': [
+            'olympia.amo.ext.cache',
+            'puente.ext.i18n',
+            'waffle.jinja.WaffleExtension',
+            'jinja2.ext.do',
+            'jinja2.ext.with_',
+            'jinja2.ext.loopcontrols'
+        ],
+        'finalize': lambda x: x if x is not None else '',
+        'autoescape': True,
+    }
+
     if False and not settings.DEBUG:
         # We're passing the _cache object directly to jinja because
         # Django can't store binary directly; it enforces unicode on it.
@@ -358,10 +356,7 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
-    # This the monkey-patching required to load the rest,
-    # so it must come first.
-    'olympia.startup',
-
+    'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
     'olympia.access',
@@ -391,7 +386,6 @@ INSTALLED_APPS = (
     'olympia.zadmin',
 
     # Third party apps
-    'tower',  # for ./manage.py extract
     'product_details',
     'moz_header',
     'cronjobs',
@@ -401,6 +395,7 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'waffle',
     'jingo_minify',
+    'puente',
 
     # Django contrib apps
     'django.contrib.admin',
@@ -415,34 +410,44 @@ INSTALLED_APPS = (
 )
 
 # These apps are only needed in a testing environment. They are added to
-# INSTALLED_APPS by the amo.runner.TestRunner test runner.
+# INSTALLED_APPS by settings_test.py (which is itself loaded by setup.cfg by
+# py.test)
 TEST_INSTALLED_APPS = (
     'olympia.translations.tests.testapp',
 )
 
 # Tells the extract script what files to look for l10n in and what function
-# handles the extraction.  The Tower library expects this.
-DOMAIN_METHODS = {
-    'messages': [
-        ('src/olympia/**.py',
-            'tower.management.commands.extract.extract_tower_python'),
-        ('src/olympia/**/templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('src/olympia/templates/**.html',
-            'tower.management.commands.extract.extract_tower_template'),
-        ('**/templates/**.lhtml',
-            'tower.management.commands.extract.extract_tower_template'),
-    ],
-    'javascript': [
-        # We can't say **.js because that would dive into mochikit and timeplot
-        # and all the other baggage we're carrying.  Timeplot, in particular,
-        # crashes the extractor with bad unicode data.
-        ('static/js/*.js', 'javascript'),
-        ('static/js/amo2009/**.js', 'javascript'),
-        ('static/js/common/**.js', 'javascript'),
-        ('static/js/impala/**.js', 'javascript'),
-        ('static/js/zamboni/**.js', 'javascript'),
-    ],
+# handles the extraction. The puente library expects this.
+PUENTE = {
+    'BASE_DIR': ROOT,
+    # Tells the extract script what files to look for l10n in and what function
+    # handles the extraction.
+    'DOMAIN_METHODS': {
+        'django': [
+            ('src/olympia/**.py', 'python'),
+
+            # Make sure we're parsing django-admin templates with the django
+            # template extractor
+            (
+                'src/olympia/zadmin/templates/admin/*.html',
+                'django_babel.extract.extract_django'
+            ),
+
+            ('src/olympia/**/templates/**.html', 'jinja2'),
+            ('**/templates/**.lhtml', 'jinja2'),
+        ],
+        'djangojs': [
+            # We can't say **.js because that would dive into mochikit
+            # and timeplot and all the other baggage we're carrying.
+            # Timeplot, in particular, crashes the extractor with bad
+            # unicode data.
+            ('static/js/*.js', 'javascript'),
+            ('static/js/amo2009/**.js', 'javascript'),
+            ('static/js/common/**.js', 'javascript'),
+            ('static/js/impala/**.js', 'javascript'),
+            ('static/js/zamboni/**.js', 'javascript'),
+        ],
+    },
 }
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
@@ -939,10 +944,10 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
-LOGIN_URL = "/users/login"
-LOGOUT_URL = "/users/logout"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = reverse_lazy('users.login')
+LOGOUT_URL = reverse_lazy('users.logout')
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 # When logging in with browser ID, a username is created automatically.
 # In the case of duplicates, the process is recursive up to this number
 # of times.
@@ -1383,10 +1388,33 @@ ASYNC_SIGNALS = True
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
+REDIS_LOCATION = os.environ.get(
+    'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5')
+
+
+def _get_redis_settings(uri):
+    import urlparse
+    urlparse.uses_netloc.append('redis')
+
+    result = urlparse.urlparse(uri)
+
+    options = dict(urlparse.parse_qsl(result.query))
+
+    if 'socket_timeout' in options:
+        options['socket_timeout'] = float(options['socket_timeout'])
+
+    return {
+        'HOST': result.hostname,
+        'PORT': result.port,
+        'PASSWORD': result.password,
+        'DB': int((result.path or '0').lstrip('/')),
+        'OPTIONS': options
+    }
+
+
 REDIS_BACKENDS = {
-    'master': 'redis://{location}?socket_timeout=0.5'.format(
-        location=REDIS_LOCATION)}
+    'master': _get_redis_settings(REDIS_LOCATION)
+}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator.

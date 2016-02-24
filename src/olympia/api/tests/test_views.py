@@ -395,7 +395,7 @@ class APITest(TestCase):
         # Link to the developer's profile
         # File size
         """
-        e = jingo.env.filters['e']
+        e = jingo.get_env().filters['e']
 
         def urlparams(x, *args, **kwargs):
             return e(helpers.urlparams(x, *args, **kwargs))

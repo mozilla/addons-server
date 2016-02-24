@@ -35,14 +35,18 @@ def order_by_translation(qs, fieldname):
     if not qs.query.tables:
         qs.query.get_initial_alias()
 
-    # Force two new (reuse is an empty set) LEFT OUTER JOINs against the
-    # translation table, without reusing any aliases. We'll hook up the
-    # language fallbacks later.
+    # Force two new joins against the translation table, without reusing any
+    # aliases. We'll hook up the language fallbacks later.
+    # Passing `reuse=set()` force new joins, and passing `nullable=True`
+    # forces django to make LEFT OUTER JOINs (otherwise django, because we are
+    # building the query manually, does not detect that an inner join would
+    # remove results and happily simplifies the LEFT OUTER JOINs to
+    # INNER JOINs)
     qs.query = qs.query.clone(TranslationQuery)
-    t1 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
-    t2 = qs.query.join(connection, join_field=field,
-                       outer_if_first=True, reuse=set())
+    t1 = qs.query.join(connection, join_field=field, reuse=set(),
+                       nullable=True)
+    t2 = qs.query.join(connection, join_field=field, reuse=set(),
+                       nullable=True)
     qs.query.translation_aliases = {field: (t1, t2)}
 
     f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2

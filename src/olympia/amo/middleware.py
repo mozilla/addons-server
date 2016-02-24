@@ -15,12 +15,11 @@ from django.middleware import common
 from django.shortcuts import render
 from django.utils.cache import patch_vary_headers, patch_cache_control
 from django.utils.encoding import iri_to_uri, smart_str
+from django.utils.translation import activate
 
 import MySQLdb as mysql
-import tower
 
 from olympia import amo
-
 from . import urlresolvers
 from .helpers import urlparams
 
@@ -83,7 +82,7 @@ class LocaleAndAppURLMiddleware(object):
             return response
 
         request.path_info = '/' + prefixer.shortened_path
-        tower.activate(prefixer.locale)
+        activate(prefixer.locale)
         request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
         request.LANG = prefixer.locale
 

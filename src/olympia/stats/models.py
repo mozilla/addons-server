@@ -2,14 +2,13 @@ import datetime
 
 from django.conf import settings
 from django.db import models
-from django.utils import translation
+from django.utils.translation import (
+    activate, to_locale, get_language, ugettext as _)
 
 import bleach
 import caching.base
-import tower
 from babel import Locale, numbers
 from jinja2.filters import do_dictsort
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.models import SearchMixin
@@ -200,8 +199,8 @@ class Contribution(amo.models.ModelBase):
             lang = self.source_locale
         else:
             lang = self.addon.default_locale
-        tower.activate(lang)
-        return Locale(translation.to_locale(lang))
+        activate(lang)
+        return Locale(to_locale(lang))
 
     def mail_thankyou(self, request=None):
         """
@@ -259,7 +258,7 @@ class Contribution(amo.models.ModelBase):
     def get_amount_locale(self, locale=None):
         """Localise the amount paid into the current locale."""
         if not locale:
-            lang = translation.get_language()
+            lang = get_language()
             locale = get_locale_from_lang(lang)
         return numbers.format_currency(self.amount or 0,
                                        self.currency or 'USD',
@@ -305,7 +304,7 @@ class ClientData(models.Model):
         if hasattr(request, 'LANG'):
             lang = request.LANG
         else:
-            lang = translation.get_language()
+            lang = get_language()
         client_data, c = cls.objects.get_or_create(
             download_source=download_source,
             device_type=request.POST.get('device_type', ''),

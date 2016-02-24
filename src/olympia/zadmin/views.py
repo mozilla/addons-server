@@ -3,13 +3,13 @@ import json
 from decimal import Decimal
 from urlparse import urlparse
 
+from django.apps import apps
 from django import http
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
-from django.db.models.loading import cache as app_cache
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
 from django.views import debug
@@ -444,6 +444,10 @@ def features(request):
     form = FeaturedCollectionFormSet(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save(commit=False)
+
+        for obj in form.deleted_objects:
+            obj.delete()
+
         messages.success(request, 'Changes successfully saved.')
         return redirect('zadmin.features')
     return render(request, 'zadmin/features.html', dict(form=form))
@@ -459,7 +463,7 @@ def monthly_pick(request):
     return render(request, 'zadmin/monthly_pick.html', dict(form=form))
 
 
-@admin.site.admin_view
+@admin_required
 def elastic(request):
     INDEX = settings.ES_INDEXES['default']
     es = search.get_es()
@@ -564,8 +568,9 @@ def general_search(request, app_id, model_id):
     if not admin.site.has_permission(request):
         raise PermissionDenied
 
-    model = app_cache.get_model(app_id, model_id)
-    if not model:
+    try:
+        model = apps.get_model(app_id, model_id)
+    except LookupError:
         raise http.Http404
 
     limit = 10
@@ -576,7 +581,7 @@ def general_search(request, app_id, model_id):
     # too much sleep about it.
     cl = ChangeList(request, obj.model, [], [], [], [], obj.search_fields, [],
                     obj.list_max_show_all, limit, [], obj)
-    qs = cl.get_query_set(request)
+    qs = cl.get_queryset(request)
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
     lookup = getattr(obj, 'search_fields_response', None)

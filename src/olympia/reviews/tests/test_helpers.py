@@ -13,7 +13,7 @@ from olympia.reviews.forms import ReviewForm
 class HelpersTest(TestCase):
 
     def render(self, s, context={}):
-        t = jingo.env.from_string(s)
+        t = jingo.get_env().from_string(s)
         return t.render(context)
 
     def test_stars(self):

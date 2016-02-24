@@ -14,14 +14,13 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
-from django.utils.translation import trans_real
+from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
 import commonware.log
 import json_field
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
-from tower import ugettext_lazy as _
 
 from olympia import amo
 from olympia.amo.models import (
@@ -136,8 +135,8 @@ class AddonManager(ManagerBase):
         self.include_deleted = include_deleted
         self.include_unlisted = include_unlisted
 
-    def get_query_set(self):
-        qs = super(AddonManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(AddonManager, self).get_queryset()
         qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)

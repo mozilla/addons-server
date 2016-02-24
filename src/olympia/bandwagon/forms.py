@@ -3,9 +3,9 @@ import os
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
-from tower import ugettext as _, ugettext_lazy as _lazy
 from django_statsd.clients import statsd
 from happyforms import Form, ModelForm
 

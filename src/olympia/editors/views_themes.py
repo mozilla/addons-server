@@ -7,8 +7,7 @@ from django.db.models import Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import MultiValueDictKeyError
-
-from tower import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext as _, ungettext as ngettext
 
 from olympia import amo
 from olympia.constants import editors as rvw

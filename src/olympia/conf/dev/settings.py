@@ -37,7 +37,6 @@ DEBUG_PROPAGATE_EXCEPTIONS = False
 SESSION_COOKIE_SECURE = True
 CRONJOB_LOCK_PREFIX = DOMAIN
 RAISE_ON_SIGNAL_ERROR = True
-ADMINS = ()
 
 API_THROTTLE = False
 
@@ -123,12 +122,11 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
 })
 
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
 REDIS_BACKENDS = {
-    'cache': env('REDIS_BACKENDS_CACHE'),
-    'cache_slave': env('REDIS_BACKENDS_CACHE_SLAVE'),
-    'master': env('REDIS_BACKENDS_MASTER'),
-    'slave': env('REDIS_BACKENDS_SLAVE')
+    'cache': _get_redis_settings(env('REDIS_BACKENDS_CACHE')),
+    'cache_slave': _get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
+    'master': _get_redis_settings(env('REDIS_BACKENDS_MASTER')),
+    'slave': _get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
 }
 
 CACHE_MACHINE_USE_REDIS = True

@@ -6,9 +6,10 @@ import jinja2
 from django.conf import settings
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-from django.utils.translation import force_text
+from django.utils.encoding import force_text
+from django.utils.translation import (
+    ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 from jingo import register
-from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from olympia import amo
 from olympia.access import acl

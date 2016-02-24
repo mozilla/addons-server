@@ -5,7 +5,7 @@ import chardet
 import jinja2
 from jingo import register
 from jingo.helpers import datetime
-from tower import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext as _, ungettext as ngettext
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse

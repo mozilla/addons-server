@@ -6,10 +6,10 @@ from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
+from django.utils.translation import ugettext_lazy as _lazy
 
 from product_details import product_details
 from mobility.decorators import mobile_template
-from tower import ugettext_lazy as _lazy
 
 from olympia import amo
 from olympia.amo.models import manual_order

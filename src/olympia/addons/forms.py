@@ -6,11 +6,12 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms.formsets import formset_factory
+from django.utils.translation import (
+    ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 
 import commonware.log
 import happyforms
 from quieter_formset.formset import BaseFormSet
-from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 from olympia import amo
 from olympia.access import acl

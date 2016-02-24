@@ -3,10 +3,10 @@ import logging
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from rest_framework import status
 from rest_framework.response import Response
-from tower import ugettext as _
 
 from olympia.access import acl
 from olympia.addons.models import Addon

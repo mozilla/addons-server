@@ -78,11 +78,11 @@
               {% endif %}
               {# XXX future feature: 'Localizations' ... #}
               <tr>
-                <th>{{ _('Rating', 'advanced_search_form_rating') }}</th>
+                <th>{{ _('Rating') }}</th>
                 <td>{{ reviews_link(addon) }}</td>
               </tr>
               <tr class="meta-stats">
-                <th>{{ _('Downloads', 'list_sortby_downloads') }}</th>
+                <th>{{ _('Downloads') }}</th>
                 <td>
                   <strong class="downloads">{{
                     addon.total_downloads|numberfmt }}</strong>
@@ -187,7 +187,7 @@
       {% endif %}
 
       {% if addon.developer_comments %}
-      <h4>{{ _('Developer Comments', 'addons_display_developer_comments') }}</h4>
+      <h4>{{ _('Developer Comments') }}</h4>
         <div class="prose userinput">
           <p{{ addon.developer_comments|locale_html }}>{{
             addon.developer_comments|nl2br }}</p>
@@ -248,7 +248,7 @@
 
 
   {% if version and show_actions %}
-  <h3 id="releasenotes">{{ _('Version Notes', 'addons_display_release_notes') }}</h3>
+  <h3 id="releasenotes">{{ _('Version Notes') }}</h3>
   {{ version_detail(addon, version, src="addon-detail-version") }}
   {% endif %}
 

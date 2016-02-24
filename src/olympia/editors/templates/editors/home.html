@@ -42,7 +42,7 @@
                      style="width:{{ percentage[type][d] }}%"
                      title="{{ duration }} ::
                             {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
-                            &bull; {{ _('{0}%')|f(percentage[type][d]|round|int) }}"></div>
+                            &bull; {{ _('{0}%%')|f(percentage[type][d]|round|int) }}"></div>
                 {% endfor %}
               </div>
             </div>
@@ -92,7 +92,7 @@
                      style="width:{{ unlisted_percentage[type][d] }}%"
                      title="{{ duration }} ::
                             {{ ngettext('{0} add-on', '{0} add-ons', total)|f(total) }}
-                            &bull; {{ _('{0}%')|f(unlisted_percentage[type][d]|round|int) }}"></div>
+                            &bull; {{ _('{0}%%')|f(unlisted_percentage[type][d]|round|int) }}"></div>
                 {% endfor %}
               </div>
             </div>

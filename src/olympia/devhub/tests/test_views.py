@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
+from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
@@ -18,7 +19,6 @@ from nose.plugins.attrib import attr
 from nose.tools import assert_not_equal, assert_raises, eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 
 from olympia import amo, paypal, files
 from olympia.amo.tests import TestCase
@@ -255,8 +255,8 @@ class TestDashboard(HubTest):
         d = doc('.item-details .date-updated')
         eq_(d.length, 1)
         eq_(d.remove('strong').text(),
-            strip_whitespace(datetime_filter(self.addon.last_updated,
-                                             '%b %e, %Y')))
+            trim_whitespace(
+                datetime_filter(self.addon.last_updated, '%b %e, %Y')))
 
     def test_no_sort_updated_filter_for_themes(self):
         # Create a theme.
@@ -274,7 +274,7 @@ class TestDashboard(HubTest):
         eq_(doc('.item-details .date-updated'), [])  # No "updated" in details.
         d = doc('.item-details .date-created')
         eq_(d.remove('strong').text(),
-            strip_whitespace(datetime_filter(addon.created)))
+            trim_whitespace(datetime_filter(addon.created)))
 
 
 class TestUpdateCompatibility(TestCase):

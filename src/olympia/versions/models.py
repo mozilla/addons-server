@@ -7,12 +7,12 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.utils.translation import ugettext as _
 
 import caching.base
 import commonware.log
 import jinja2
 from django_statsd.clients import statsd
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
@@ -44,8 +44,8 @@ class VersionManager(ManagerBase):
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
-    def get_query_set(self):
-        qs = super(VersionManager, self).get_query_set()
+    def get_queryset(self):
+        qs = super(VersionManager, self).get_queryset()
         qs = qs._clone(klass=IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)

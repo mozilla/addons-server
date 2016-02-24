@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import smart_unicode
-from django.utils.translation import get_language
+from django.utils.translation import get_language, ugettext as _
 from django.template.defaultfilters import filesizeformat
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
@@ -15,8 +15,7 @@ from validator.testcases.packagelayout import (
 import jinja2
 import commonware.log
 from cache_nuggets.lib import memoize, Message
-from jingo import register, env
-from tower import ugettext as _
+from jingo import register, get_env
 
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
@@ -49,7 +48,7 @@ def file_viewer_class(value, key):
 def file_tree(files, selected):
     depth = 0
     output = ['<ul class="root">']
-    t = env.get_template('files/node.html')
+    t = get_env().get_template('files/node.html')
     for k, v in files.items():
         if v['depth'] > depth:
             output.append('<ul class="js-hidden">')

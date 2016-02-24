@@ -10,10 +10,10 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
+from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
 import commonware.log
-from tower import ugettext_lazy as _lazy, ugettext as _
 from django_statsd.clients import statsd
 
 from olympia import amo
@@ -313,13 +313,16 @@ def initial_data_from_request(request):
 def collection_message(request, collection, option):
     if option == 'add':
         title = _('Collection created!')
-        msg = _("""Your new collection is shown below. You can <a
-                   href="%(url)s">edit additional settings</a> if you'd
-                   like.""") % {'url': collection.edit_url()}
+        msg = _(
+            'Your new collection is shown below. You can <a'
+            'href="%(url)s">edit additional settings</a> if you\'d'
+            'like.'
+        ) % {'url': collection.edit_url()}
     elif option == 'update':
         title = _('Collection updated!')
-        msg = _("""<a href="%(url)s">View your collection</a> to see the
-                   changes.""") % {'url': collection.get_url_path()}
+        msg = _(
+            '<a href="%(url)s">View your collection</a> to see the changes.'
+        ) % {'url': collection.get_url_path()}
     else:
         raise ValueError('Incorrect option "%s", '
                          'takes only "add" or "update".' % option)

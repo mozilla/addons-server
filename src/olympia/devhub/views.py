@@ -16,6 +16,7 @@ from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template import Context, loader
 from django.utils.http import urlquote
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -23,8 +24,6 @@ import commonware.log
 import waffle
 from django_statsd.clients import statsd
 from PIL import Image
-from tower import ugettext as _
-from tower import ugettext_lazy as _lazy
 from waffle.decorators import waffle_switch
 
 from olympia import amo
@@ -163,6 +162,10 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         for compat in compat_form.save(commit=False):
             compat.version = version
             compat.save()
+
+        for compat in compat_form.deleted_objects:
+            compat.delete()
+
         for form in compat_form.forms:
             if (isinstance(form, forms.CompatForm) and
                     'max' in form.changed_data):
@@ -464,6 +467,7 @@ def ownership(request, addon_id, addon):
                         author.get_role_display(), addon)
 
         for author in user_form.deleted_objects:
+            author.delete()
             amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
                     author.get_role_display(), addon)
             authors_emails.add(author.user.email)
@@ -1135,6 +1139,10 @@ def version_edit(request, addon_id, addon, version_id):
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
                 compat.save()
+
+            for compat in data['compat_form'].deleted_objects:
+                compat.delete()
+
             for form in data['compat_form'].forms:
                 if (isinstance(form, forms.CompatForm) and
                         'max' in form.changed_data):

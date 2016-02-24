@@ -3,7 +3,7 @@
     {% if version.is_beta %}
       <h3>{{ _('Beta Version {0}')|f(version.version) }}</h3>
     {% else %}
-      <h3>{{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</h3>
+      <h3>{{ _('Version {0}')|f(version.version) }}</h3>
     {% endif %}
     <time datetime="{{ version.created|isotime }}">
       {{ version.created|datetime }}</time>

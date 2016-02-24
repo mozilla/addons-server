@@ -24,4 +24,4 @@ class TestTranslationFormMixin(TestCase):
         f = TestForm(instance=obj)
         eq_(f.fields['name'].default_locale, 'pl')
         eq_(f.fields['name'].widget.default_locale, 'pl')
-        eq_(pq(f.as_p())('input:not([lang=init])').attr('lang'), 'pl')
+        eq_(pq(f.as_p())('#id_name_0').attr('lang'), 'pl')

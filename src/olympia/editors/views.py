@@ -11,8 +11,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
-
-from tower import ugettext as _
+from django.utils.translation import ugettext as _, pgettext
 
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
@@ -808,8 +807,8 @@ def reviewlog(request):
         amo.LOG.APPROVE_VERSION.id: _('was approved'),
         amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
         amo.LOG.REJECT_VERSION.id: _('rejected'),
-        amo.LOG.ESCALATE_VERSION.id: _(
-            'escalated', 'editors_review_history_nominated_adminreview'),
+        amo.LOG.ESCALATE_VERSION.id: pgettext(
+            'editors_review_history_nominated_adminreview', 'escalated'),
         amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
         amo.LOG.COMMENT_VERSION.id: _('commented'),

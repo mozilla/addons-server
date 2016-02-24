@@ -3,7 +3,7 @@
   <div class="info">
     <h3><a href="{{ version.get_url_path() }}"
            title="{{ _('Permanent link to this version') }}">
-      {{ _('Version {0}', 'addon_display_header_version')|f(version.version) }}</a>
+      {{ _('Version {0}')|f(version.version) }}</a>
       <span class="meta">
         <time datetime="{{ version.created|isotime }}">
           {# L10n: {0} is a timestamp, such as September 28, 2011. #}
@@ -49,7 +49,7 @@
         </li>
         <li>
           <a class="license-faq" href="{{ url('pages.faq')|urlparams('license') }}">
-            {{ _("What's this?", 'addons_display_a_license_what') }}</a>
+            {{ _("What's this?") }}</a>
         </li>
     {% endif %}
     {% if addon.view_source and version.has_files and

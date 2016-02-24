@@ -19,7 +19,7 @@ from olympia.versions.models import Version
 
 
 class SigningAPITestCase(APIAuthTestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ['base/addon_3615', 'base/user_4043307']
 
     def setUp(self):
         self.user = UserProfile.objects.get(email='del@icio.us')
@@ -307,8 +307,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         assert response.data['pk'] == upload.uuid
         assert 'processed' in response.data
 
-    @mock.patch('olympia.devhub.tasks.submit_file')
-    def test_version_exists_with_pk_not_owner(self, submit_file):
+    def test_version_exists_with_pk_not_owner(self):
         orig_user, orig_api_key = self.user, self.api_key
 
         # This will create a version for the add-on with guid @create-version

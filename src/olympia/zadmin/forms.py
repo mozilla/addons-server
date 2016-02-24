@@ -6,11 +6,11 @@ from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.template import Context, Template, TemplateSyntaxError
+from django.utils.translation import ugettext_lazy as _lazy
 
 import commonware.log
 import happyforms
 from product_details import product_details
-from tower import ugettext_lazy as _lazy
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia import amo

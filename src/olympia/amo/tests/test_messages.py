@@ -2,11 +2,11 @@
 import django.contrib.messages as django_messages
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
+from django.utils.translation import ugettext as _
 
 import pytest
-from jingo import env
+from jingo import get_env
 from nose.tools import eq_
-from tower import ugettext as _
 
 from olympia.amo.messages import _make_message, info
 
@@ -87,6 +87,6 @@ def test_html_rendered_properly():
 
     messages = django_messages.get_messages(request)
 
-    template = env.get_template('messages.html')
+    template = get_env().get_template('messages.html')
     html = template.render({'messages': messages})
     assert "<h2>" in html  # The html from _make_message is not escaped.

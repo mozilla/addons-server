@@ -3,10 +3,10 @@ import os
 import shutil
 
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 import spidermonkey
 from cache_nuggets.lib import Message
-from tower import ugettext as _
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser

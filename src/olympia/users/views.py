@@ -15,12 +15,12 @@ from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
 from django.template import Context, loader
 from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
+from django.utils.translation import ugettext as _
 
 import commonware.log
 import waffle
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from tower import ugettext as _
 from waffle.decorators import waffle_switch
 
 from olympia import amo

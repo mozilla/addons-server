@@ -5,10 +5,10 @@
 
 echo "Printing number of untranslated strings found in locales:"
 
-for lang in $(find $1 -type f -name "messages.po" | sort); do
+for lang in $(find $1 -type f -name "django.po" | sort); do
     dir=$(dirname $lang)
     stem=$(basename $lang .po)
-    js="$dir/javascript.po"
+    js="$dir/djangojs.po"
     count=$(msgattrib $lang --untranslated --no-obsolete --no-fuzzy | grep -c 'msgid ')
     if [ $count -gt 0 ]; then
         count=$(($count-1))

@@ -290,6 +290,7 @@ class TestOtherStuff(TestCase):
         rather than just identity functions."""
 
         en = self.client.get(reverse('jsi18n')).content
+
         with self.activate('fr'):
             fr = self.client.get(reverse('jsi18n')).content
 

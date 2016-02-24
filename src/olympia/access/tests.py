@@ -74,8 +74,8 @@ class ACLTestCase(TestCase):
 
     def test_admin_login_anon(self):
         # Login form for anonymous user on the admin page.
-        url = '/en-US/admin/models/'
-        r = self.client.get(url)
+        url = '/en-US/admin/'
+        r = self.client.get(url, follow=True)
         self.assert3xx(r, '%s?to=%s' % (reverse('users.login'), url))
 
 

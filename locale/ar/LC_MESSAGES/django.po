@@ -1,4 +1,4 @@
-# translation of messages.po to Arabic
+# translation of django.po to Arabic
 # Remora Preliminary Language File
 # Copyright (C) 2006 Mozilla Corporation
 # This file is distributed under the same license as the REMORA package.

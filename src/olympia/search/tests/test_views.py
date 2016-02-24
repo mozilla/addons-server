@@ -4,13 +4,13 @@ import urlparse
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
+from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
 from jingo.helpers import datetime as datetime_filter
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from tower import strip_whitespace
 
 from olympia import amo
 from olympia.amo.tests import ESTestCaseWithAddons
@@ -849,16 +849,16 @@ class TestCollectionSearch(SearchBase):
         r = self.client.get(urlparams(self.url, sort='created'))
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
-            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
-                'Added %s' % strip_whitespace(datetime_filter(c.created)))
+            eq_(trim_whitespace(items.eq(idx).find('.modified').text()),
+                'Added %s' % trim_whitespace(datetime_filter(c.created)))
 
     def test_updated_timestamp(self):
         self._generate()
         r = self.client.get(urlparams(self.url, sort='updated'))
         items = pq(r.content)('.primary .item')
         for idx, c in enumerate(r.context['pager'].object_list):
-            eq_(strip_whitespace(items.eq(idx).find('.modified').text()),
-                'Updated %s' % strip_whitespace(datetime_filter(c.modified)))
+            eq_(trim_whitespace(items.eq(idx).find('.modified').text()),
+                'Updated %s' % trim_whitespace(datetime_filter(c.modified)))
 
     def check_followers_count(self, sort, column):
         # Checks that we show the correct type/number of followers.
