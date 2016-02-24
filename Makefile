@@ -9,9 +9,6 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 COMPOSE_PROJECT_NAME?=$(shell echo "${current_dir}" | tr -d '-' | tr -d '_')
 DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
-export PYTHONPATH=src
-export DJANGO_SETTINGS_MODULE=settings
-
 UNAME_S := $(shell uname -s)
 
 help:
