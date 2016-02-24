@@ -208,6 +208,10 @@ class _TransField(object):
             if k in kwargs:
                 del kwargs[k]
         self.widget = kwargs.pop('widget', TransInput)
+
+        # XXX: Figure out why this is being forwarded here (cgrebs)
+        # It's empty and not supported by CharField (-> TransField)
+        kwargs.pop('limit_choices_to', None)
         super(_TransField, self).__init__(*args, **kwargs)
 
     def clean(self, value):

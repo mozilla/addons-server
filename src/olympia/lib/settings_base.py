@@ -414,6 +414,14 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
+### Here be dragons.
+# Django decided to require that ForeignKeys be unique. That's generally
+# reasonable, but Translations break that in their quest for all things unholy.
+# This is why we disable related system checks.
+# TODO: Errors (such as fields.E311) will still be printed
+# -> figure out a way to filter them too. (cgrebs)
+SILENCED_SYSTEM_CHECKS = ['fields.E311']
+
 # These apps are only needed in a testing environment. They are added to
 # INSTALLED_APPS by the amo.runner.TestRunner test runner.
 TEST_INSTALLED_APPS = (
@@ -1383,10 +1391,15 @@ ASYNC_SIGNALS = True
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
 
-REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost:6379')
+REDIS_LOCATION = os.environ.get('REDIS_LOCATION', 'localhost')
+REDIS_PORT = os.environ.get('REDIS_PORT', '6379')
+
 REDIS_BACKENDS = {
-    'master': 'redis://{location}?socket_timeout=0.5'.format(
-        location=REDIS_LOCATION)}
+    'master': {
+        'HOST': REDIS_LOCATION,
+        'OPTIONS': {'socket_timeout': 0.5},
+    }
+}
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator.

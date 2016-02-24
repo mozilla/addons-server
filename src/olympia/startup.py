@@ -54,13 +54,6 @@ def init_jinja2():
     Markup.__mod__ = new
 
 
-def init_jingo():
-    """Load Jingo and trigger its Django monkey patches, so it supports the
-    `__html__` protocol used by Jinja2 and MarkupSafe."""
-    import jingo.monkey
-    jingo.monkey.patch()
-
-
 def init_amo():
     """Load the `amo` module.
 
@@ -96,5 +89,4 @@ init_session_csrf()
 init_jinja2()
 init_amo()
 configure_logging()
-init_jingo()
 load_product_details()

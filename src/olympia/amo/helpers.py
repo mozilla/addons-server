@@ -20,7 +20,7 @@ import jinja2
 import six
 import waffle
 from babel.support import Format
-from jingo import register, env
+from jingo import register, get_env
 # Needed to make sure our own |f filter overrides jingo's one.
 from jingo import helpers  # noqa
 from jingo_minify.helpers import (_build_html, _get_compiled_css_url, get_path,
@@ -123,20 +123,20 @@ def paginator(pager):
 
 @register.filter
 def impala_paginator(pager):
-    t = env.get_template('amo/impala/paginator.html')
+    t = get_env().get_template('amo/impala/paginator.html')
     return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.filter
 def mobile_paginator(pager):
-    t = env.get_template('amo/mobile/paginator.html')
+    t = get_env().get_template('amo/mobile/paginator.html')
     return jinja2.Markup(t.render({'pager': pager}))
 
 
 @register.filter
 def mobile_impala_paginator(pager):
     # Impala-style paginator that is easier to mobilefy.
-    t = env.get_template('amo/mobile/impala_paginator.html')
+    t = get_env().get_template('amo/mobile/impala_paginator.html')
     return jinja2.Markup(t.render({'pager': pager}))
 
 
@@ -209,7 +209,7 @@ class Paginator(object):
     def render(self):
         c = {'pager': self.pager, 'num_pages': self.num_pages,
              'count': self.count}
-        t = env.get_template('amo/paginator.html').render(c)
+        t = get_env().get_template('amo/paginator.html').render(c)
         return jinja2.Markup(t)
 
 
@@ -296,7 +296,7 @@ def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
 
     crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
     c = {'breadcrumbs': crumbs}
-    t = env.get_template('amo/breadcrumbs.html').render(c)
+    t = get_env().get_template('amo/breadcrumbs.html').render(c)
     return jinja2.Markup(t)
 
 
@@ -322,7 +322,7 @@ def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
 
     crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
     c = {'breadcrumbs': crumbs, 'has_home': add_default}
-    t = env.get_template('amo/impala/breadcrumbs.html').render(c)
+    t = get_env().get_template('amo/impala/breadcrumbs.html').render(c)
     return jinja2.Markup(t)
 
 
@@ -398,7 +398,7 @@ def license_link(license):
     if not getattr(license, 'builtin', True):
         return _('Custom License')
 
-    t = env.get_template('amo/license_link.html').render({'license': license})
+    t = get_env().get_template('amo/license_link.html').render({'license': license})
     return jinja2.Markup(t)
 
 
@@ -523,7 +523,7 @@ def _side_nav(context, addon_type, cat):
         base_url = Addon.get_type_url(addon_type)
     ctx = dict(request=request, base_url=base_url, categories=categories,
                addon_type=addon_type, amo=amo)
-    return jinja2.Markup(env.get_template('amo/side_nav.html').render(ctx))
+    return jinja2.Markup(get_env().get_template('amo/side_nav.html').render(ctx))
 
 
 @register.function
@@ -548,7 +548,7 @@ def _site_nav(context):
     ctx = dict(request=request, amo=amo,
                extensions=sorted_cats(extensions),
                personas=sorted_cats(personas))
-    return jinja2.Markup(env.get_template('amo/site_nav.html').render(ctx))
+    return jinja2.Markup(get_env().get_template('amo/site_nav.html').render(ctx))
 
 
 @register.function
@@ -575,7 +575,7 @@ def hasOneToOne(context, obj, attr):
 @register.function
 def no_results_amo():
     # This prints a "No results found" message. That's all. Carry on.
-    t = env.get_template('amo/no_results.html').render()
+    t = get_env().get_template('amo/no_results.html').render()
     return jinja2.Markup(t)
 
 

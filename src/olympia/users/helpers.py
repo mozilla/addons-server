@@ -4,7 +4,7 @@ from django.conf import settings
 from django.utils.encoding import smart_unicode
 
 import jinja2
-from jingo import register, env
+from jingo import register, get_env
 from tower import ugettext as _
 
 from olympia import amo
@@ -90,7 +90,7 @@ def user_vcard(context, user, table_class='person-info', is_profile=False):
         'table_class': table_class,
         'is_profile': is_profile
     })
-    t = env.get_template('users/vcard.html').render(c)
+    t = get_env().get_template('users/vcard.html').render(c)
     return jinja2.Markup(t)
 
 

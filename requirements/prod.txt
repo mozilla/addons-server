@@ -17,7 +17,7 @@ commonware==0.4.2
 cssutils==1.0.1
 defusedxml==0.4.1
 dennis==0.4.2
-Django==1.6.11
+Django==1.7.10
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-cache-nuggets==0.1.1
@@ -35,7 +35,7 @@ djangorestframework==2.3.12
 djangorestframework-jwt==1.7.2
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8
-django-waffle==0.10
+django-waffle==0.11
 easy-thumbnails==1.4
 elasticsearch==1.1.1
 fastchardet==0.2.0
@@ -47,7 +47,6 @@ hera==0.1.2
 html5lib==0.999
 httplib2==0.8.0
 importlib-no-failure==1.0.2
-jingo==0.7
 kombu==3.0.33
 heka-py==0.30.3
 heka-py-cef==0.3.1
@@ -88,6 +87,7 @@ suds==0.4
 thrift==0.9.1
 tower==0.4.1
 urllib3==1.9
+django-cache-machine==0.9.1
 
 ## Not on pypi.
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
@@ -98,11 +98,12 @@ urllib3==1.9
 -e git+https://github.com/mozilla/schematic.git@a3adf69738a2d99b718be35eef58addd5857e11c#egg=schematic
 -e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
 -e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
--e git+https://github.com/washort/nuggets.git@02798dfce84030fca64775eaf56e92400f394e4f#egg=nuggets
+-e git+https://github.com/mozilla/nuggets.git@9c4344a802b07d95c0dd6256570a4facddf54784#egg=nuggets
 -e git+https://github.com/fwenzel/django-mozilla-product-details@f5a3c3c846fb75e12ad890b22ed5375d5b85ccb4#egg=django-mozilla-product-details
 -e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
--e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
+
 ## Forked.
+-e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
 -e git+https://github.com/EnTeQuAk/django-piston-oauth2@b205d6c091ffd3b22f28f1852c15e5588175b38a#egg=django-piston-oauth2
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 -e git+https://github.com/washort/django-mysql-pool.git@76ed372bb9888d46833345ae6c40a39d41b5ba62#egg=django-mysql-pool

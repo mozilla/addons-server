@@ -46,7 +46,7 @@ from cef import log_cef as _log_cef
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
-from jingo import env
+from jingo import get_env
 from PIL import Image
 
 from olympia import amo
@@ -60,6 +60,9 @@ from olympia.users.utils import UnsubscribeCode
 from . import logger_log as log
 
 heka = settings.HEKA
+
+# We are (temporary) patching the environment, thus requiring a global object :(
+jingo_env = get_env()
 
 
 def days_ago(n):
@@ -282,10 +285,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 @contextlib.contextmanager
 def no_jinja_autoescape():
     """Disable Jinja2 autoescape."""
-    autoescape_orig = env.autoescape
-    env.autoescape = False
+    autoescape_orig = jingo_env.autoescape
+    jingo_env.autoescape = False
     yield
-    env.autoescape = autoescape_orig
+    jingo_env.autoescape = autoescape_orig
 
 
 def send_mail_jinja(subject, template, context, *args, **kwargs):
@@ -295,7 +298,7 @@ def send_mail_jinja(subject, template, context, *args, **kwargs):
     control.
     """
     with no_jinja_autoescape():
-        template = env.get_template(template)
+        template = jingo_env.get_template(template)
     msg = send_mail(subject, template.render(context), *args, **kwargs)
     return msg
 
@@ -305,8 +308,8 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     """Sends HTML mail using a Jinja template with autoescaping turned off."""
     # Get a jinja environment so we can override autoescaping for text emails.
     with no_jinja_autoescape():
-        html_template = env.get_template(html_template)
-        text_template = env.get_template(text_template)
+        html_template = jingo_env.get_template(html_template)
+        text_template = jingo_env.get_template(text_template)
     msg = send_mail(subject, text_template.render(context),
                     html_message=html_template.render(context), *args,
                     **kwargs)

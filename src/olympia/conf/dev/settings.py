@@ -123,6 +123,7 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
 })
 
+# TODO 1.7: Update to dictionary-config
 REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
 REDIS_BACKENDS = {
     'cache': env('REDIS_BACKENDS_CACHE'),
