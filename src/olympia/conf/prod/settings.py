@@ -115,10 +115,10 @@ LOGGING['loggers'].update({
 })
 
 REDIS_BACKENDS = {
-    'cache': _get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': _get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': _get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': _get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
+    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
+    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
+    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
+    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
 }
 
 CACHE_MACHINE_USE_REDIS = True

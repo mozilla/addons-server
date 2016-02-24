@@ -1392,7 +1392,7 @@ REDIS_LOCATION = os.environ.get(
     'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5')
 
 
-def _get_redis_settings(uri):
+def get_redis_settings(uri):
     import urlparse
     urlparse.uses_netloc.append('redis')
 
@@ -1413,7 +1413,7 @@ def _get_redis_settings(uri):
 
 
 REDIS_BACKENDS = {
-    'master': _get_redis_settings(REDIS_LOCATION)
+    'master': get_redis_settings(REDIS_LOCATION)
 }
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
