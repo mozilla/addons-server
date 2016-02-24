@@ -341,6 +341,33 @@ class TestReviewHelper(TestCase):
             eq_(len(mail.outbox), 1)
             assert mail.outbox[0].body, 'Expected a message'
 
+    def test_email_links(self):
+        expected = {
+            'nominated_to_nominated': 'addon_url',
+            'nominated_to_preliminary': 'addon_url',
+            'nominated_to_public': 'addon_url',
+            'nominated_to_sandbox': 'dev_versions_url',
+
+            'pending_to_preliminary': 'addon_url',
+            'pending_to_public': 'addon_url',
+            'pending_to_sandbox': 'dev_versions_url',
+
+            'preliminary_to_preliminary': 'addon_url',
+
+            'unlisted_to_reviewed': 'dev_versions_url',
+            'unlisted_to_reviewed_auto': 'dev_versions_url',
+            'unlisted_to_sandbox': 'dev_versions_url'
+        }
+
+        self.helper.set_data(self.get_data())
+        context_data = self.helper.handler.get_context_data()
+        for template, context_key in expected.iteritems():
+            mail.outbox = []
+            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+            eq_(len(mail.outbox), 1)
+            assert context_key in context_data
+            assert context_data.get(context_key) in mail.outbox[0].body
+
     def setup_data(self, status, delete=[], is_listed=True):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
