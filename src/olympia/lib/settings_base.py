@@ -78,6 +78,8 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+# Pool our database connections up for 300 seconds
+DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
@@ -91,13 +93,6 @@ SERVICES_DATABASE = {
 }
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
-
-# For use django-mysql-pool backend.
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 5,
-    'recycle': 300
-}
 
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []

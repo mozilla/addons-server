@@ -57,21 +57,18 @@ SYSLOG_CSP = "http_app_addons_dev_csp"
 
 DATABASES = {}
 DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
-DATABASES['default']['ENGINE'] = 'mysql_pool'
+DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 # Run all views in a transaction (on master) unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+# Pool our database connections up for 300 seconds
+DATABASES['default']['CONN_MAX_AGE'] = 300
 
 DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
 # Do not open a transaction for every view on the slave DB.
 DATABASES['slave']['ATOMIC_REQUESTS'] = False
-DATABASES['slave']['ENGINE'] = 'mysql_pool'
-DATABASES['slave']['sa_pool_key'] = 'slave'
-
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 5,
-    'recycle': 30
-}
+DATABASES['slave']['ENGINE'] = 'django.db.backends.mysql'
+# Pool our database connections up for 300 seconds
+DATABASES['slave']['CONN_MAX_AGE'] = 300
 
 SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
 
