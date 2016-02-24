@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2016-02-11 00:58+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -34,6 +34,7 @@ msgstr "O seu extra deve terminar com .xpi, .jar, .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% completo"
 

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2016-01-21 18:33+0000\n"
 "Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
@@ -38,6 +38,7 @@ msgstr "Le nom de votre module doit se finir par .xpi, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "{0}% terminé"
 

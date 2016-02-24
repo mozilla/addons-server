@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2016-01-20 21:21+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -36,6 +36,7 @@ msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "{0}% dokončeno"
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2011-12-24 11:49+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,7 @@ msgstr "התוספת שלך צריכה להסתיים ב־‎.xpi‏, ‎.jar א
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "אחוזי השלמה: {0}%"
 

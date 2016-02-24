@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2013-11-08 06:01+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,6 +33,7 @@ msgstr "ส่วนเสริมของคุณควรลงท้าย
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "เสร็จสิ้น {0}%"
 

@@ -1,16 +1,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-17 17:10+0000\n"
+"Project-Id-Version: PROJECT 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.13.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -18,8 +18,7 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} şŧȧř"
 msgstr[1] "{0} şŧȧřş"
 
-#: static/js/common/upload-addon.js:41
-#: static/js/common/upload-image.js:128
+#: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 msgid "There was a problem contacting the server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ şḗřṽḗř."
 
@@ -33,6 +32,7 @@ msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .ẋƥī, .ĵȧ
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% cǿḿƥŀḗŧḗ"
 
@@ -65,8 +65,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
-#: static/js/common/upload-addon.js:222
-#: static/js/common/upload-addon.js:512
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:512
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
@@ -147,9 +146,9 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review. "
-"Make sure that you use the source code upload field to avoid having your "
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known"
+" libraries) need to have their sources submitted separately for review. Make "
+"sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
 "Ƈǿḿƥīŀḗḓ ƀīƞȧřīḗş, ȧş ẇḗŀŀ ȧş ḿīƞīƒīḗḓ ǿř ǿƀƒŭşƈȧŧḗḓ şƈřīƥŧş (ḗẋƈŀŭḓīƞɠ "
@@ -181,8 +180,7 @@ msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗ�
 msgid "You cancelled the upload."
 msgstr "Ẏǿŭ ƈȧƞƈḗŀŀḗḓ ŧħḗ ŭƥŀǿȧḓ."
 
-#: static/js/common/upload-image.js:97
-#: static/js/impala/users.js:51
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
@@ -190,8 +188,7 @@ msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 msgid "Videos must be in WebM."
 msgstr "Ṽīḓḗǿş ḿŭşŧ ƀḗ īƞ ẆḗƀḾ."
 
-#: static/js/impala/collections.js:10
-#: static/js/zamboni/collections.js:595
+#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
@@ -204,8 +201,7 @@ msgid "Following"
 msgstr "Ƒǿŀŀǿẇīƞɠ"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js:11
-#: static/js/zamboni/themes.js:13
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
 
@@ -241,18 +237,15 @@ msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-Şħȧřḗ�
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 
-#: static/js/impala/reviews.js:23
-#: static/js/zamboni/reviews.js:18
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
 
-#: static/js/impala/reviews.js:40
-#: static/js/zamboni/reviews.js:34
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Ẏǿŭř īƞƥŭŧ īş řḗɋŭīřḗḓ"
 
-#: static/js/impala/reviews.js:152
-#: static/js/zamboni/reviews.js:103
+#: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Ḿȧřķḗḓ ƒǿř ḓḗŀḗŧīǿƞ"
 
@@ -316,14 +309,12 @@ msgstr "{0} řḗƒŭƞḓş"
 msgid "{0} installs"
 msgstr "{0} īƞşŧȧŀŀş"
 
-#: static/js/impala/stats/chart.js:369
-#: static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
 #: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
-#: static/js/impala/stats/chart.js:379
-#: static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
@@ -332,8 +323,7 @@ msgstr "Ḓȧīŀẏ Ŭşḗřş"
 msgid "Amount, in USD"
 msgstr "Ȧḿǿŭƞŧ, īƞ ŬŞḒ"
 
-#: static/js/impala/stats/chart.js:421
-#: static/js/impala/stats/csv_keys.js:104
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Ƞŭḿƀḗř ǿƒ Ƈǿƞŧřīƀŭŧīǿƞş"
 
@@ -382,13 +372,11 @@ msgstr "Şŭƀşƈřīƀḗřş"
 msgid "Ratings"
 msgstr "Řȧŧīƞɠş"
 
-#: static/js/impala/stats/csv_keys.js:36
-#: static/js/impala/stats/csv_keys.js:114
+#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Şȧŀḗş"
 
-#: static/js/impala/stats/csv_keys.js:39
-#: static/js/impala/stats/csv_keys.js:113
+#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Īƞşŧȧŀŀş"
 
@@ -420,19 +408,16 @@ msgstr "Şḗȧřƈħ Şŭɠɠḗşŧīǿƞş"
 msgid "Search Results"
 msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
-#: static/js/impala/stats/csv_keys.js:49
-#: static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
 #: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Ħǿḿḗƥȧɠḗ Ƥřǿḿǿ"
 
-#: static/js/impala/stats/csv_keys.js:52
-#: static/js/impala/stats/csv_keys.js:53
+#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Ħǿḿḗƥȧɠḗ Ƒḗȧŧŭřḗḓ"
 
-#: static/js/impala/stats/csv_keys.js:54
-#: static/js/impala/stats/csv_keys.js:55
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Ħǿḿḗƥȧɠḗ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ"
 
@@ -440,13 +425,11 @@ msgstr "Ħǿḿḗƥȧɠḗ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ"
 msgid "Homepage Most Popular"
 msgstr "Ħǿḿḗƥȧɠḗ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
-#: static/js/impala/stats/csv_keys.js:57
-#: static/js/impala/stats/csv_keys.js:59
+#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ"
 
-#: static/js/impala/stats/csv_keys.js:58
-#: static/js/impala/stats/csv_keys.js:60
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
 
@@ -454,24 +437,20 @@ msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
 msgid "Detail Page (Development Channel)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ)"
 
-#: static/js/impala/stats/csv_keys.js:62
-#: static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
 
-#: static/js/impala/stats/csv_keys.js:65
-#: static/js/impala/stats/csv_keys.js:66
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "Ǿŧħḗřş Ɓẏ Ȧŭŧħǿř"
 
-#: static/js/impala/stats/csv_keys.js:67
-#: static/js/impala/stats/csv_keys.js:68
+#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Ḓḗƥḗƞḓḗƞƈīḗş"
 
-#: static/js/impala/stats/csv_keys.js:69
-#: static/js/impala/stats/csv_keys.js:70
+#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Ŭƥşḗŀŀ"
 
@@ -499,63 +478,51 @@ msgstr "Ƈȧŧḗɠǿřẏ Ƥȧɠḗş"
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
-#: static/js/impala/stats/csv_keys.js:78
-#: static/js/impala/stats/csv_keys.js:79
+#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ƒḗȧŧŭřḗḓ Ƈȧřǿŭşḗŀ"
 
-#: static/js/impala/stats/csv_keys.js:80
-#: static/js/impala/stats/csv_keys.js:81
+#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ŧǿƥ Řȧŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js:82
-#: static/js/impala/stats/csv_keys.js:83
+#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
-#: static/js/impala/stats/csv_keys.js:84
-#: static/js/impala/stats/csv_keys.js:85
+#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
-#: static/js/impala/stats/csv_keys.js:86
-#: static/js/impala/stats/csv_keys.js:87
+#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƒḗȧŧŭřḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:88
-#: static/js/impala/stats/csv_keys.js:89
+#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭşḗřş Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:90
-#: static/js/impala/stats/csv_keys.js:91
+#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Řȧŧīƞɠ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:92
-#: static/js/impala/stats/csv_keys.js:93
+#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƈřḗȧŧḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:94
-#: static/js/impala/stats/csv_keys.js:95
+#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƞȧḿḗ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:96
-#: static/js/impala/stats/csv_keys.js:97
+#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƥǿƥŭŀȧř Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:98
-#: static/js/impala/stats/csv_keys.js:99
+#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥḓȧŧḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js:100
-#: static/js/impala/stats/csv_keys.js:101
+#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ Şǿřŧ"
 
@@ -835,8 +802,7 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> īƞ ŀȧşŧ {1} ḓȧẏş"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271
-#: static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ƒřǿḿ {1} ŧǿ {2}"
 
@@ -857,8 +823,7 @@ msgstr "Ḓȧŧḗ"
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
-#: static/js/zamboni/admin_validation.js:24
-#: static/js/zamboni/devhub.js:1229
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
 #: static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
@@ -897,8 +862,7 @@ msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
 #: static/js/zamboni/buttons.js:129
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
@@ -916,8 +880,7 @@ msgid "Not available for your platform"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js:278
-#: static/js/zamboni/buttons.js:315
+#: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
 msgid "Not available for {0} {1}"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 
@@ -933,11 +896,10 @@ msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
 
-#: static/js/zamboni/buttons.js:507
-#: static/js/zamboni/mobile/buttons.js:43
+#: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
+" plugin."
 msgstr ""
 "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ "
 "şḗȧřƈħ ƥŀŭɠīƞ."
@@ -974,8 +936,7 @@ msgstr "Ƈǿḿḿḗƞŧ"
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
-#: static/js/zamboni/collections.js:305
-#: static/js/zamboni/collections.js:334
+#: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Řḗḿǿṽḗ"
 
@@ -1099,13 +1060,11 @@ msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
 msgid "Error loading translation"
 msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 
-#: static/js/zamboni/files.js:411
-#: static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Īɠƞǿřḗ ŧħīş ḿḗşşȧɠḗ īƞ ƒŭŧŭřḗ ŭƥḓȧŧḗş"
 
-#: static/js/zamboni/files.js:417
-#: static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Şḗṽḗřīŧẏ ƒǿř ȧŭŧǿḿȧŧḗḓ şīɠƞīƞɠ:"
 
@@ -1182,18 +1141,15 @@ msgstr "Şŧȧŧŭş"
 msgid "All tests passed successfully."
 msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
-#: static/js/zamboni/validator.js:83
-#: static/js/zamboni/validator.js:478
+#: static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
 msgid "These tests were not run."
 msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
 
-#: static/js/zamboni/validator.js:131
-#: static/js/zamboni/validator.js:144
+#: static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
 msgid "Tests"
 msgstr "Ŧḗşŧş"
 
-#: static/js/zamboni/validator.js:246
-#: static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Ḗřřǿř"
@@ -1260,8 +1216,7 @@ msgstr "Ŭƞřḗṽīḗẇḗḓ"
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ <span>(Ŀḗȧřƞ Ḿǿřḗ)</span>"
 
-#: static/js/zamboni/mobile/buttons.js:56
-#: static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "Ƞǿŧ Ȧṽȧīŀȧƀŀḗ ƒǿř {0}"
 

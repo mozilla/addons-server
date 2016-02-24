@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-10 17:04+0000\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2016-01-21 13:40+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -35,6 +35,7 @@ msgstr "L’estensione del componente aggiuntivo deve essere .xpi, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% completato"
 
