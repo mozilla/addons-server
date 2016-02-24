@@ -10472,7 +10472,7 @@ msgstr "A fájlméret a(z) {0} korlát felett van."
 
 #: src/olympia/files/helpers.py:177
 msgid "Problems decoding {0}."
-msgstr "Problémák a(z) %s dekódolása során."
+msgstr "Problémák a(z) {0} dekódolása során."
 
 #: src/olympia/files/helpers.py:187
 msgid ""
