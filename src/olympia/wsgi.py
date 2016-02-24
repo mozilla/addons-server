@@ -10,6 +10,7 @@ wsgi_loaded = datetime.now()
 # Tell celery that we're using Django.
 os.environ['CELERY_LOADER'] = 'django'
 
+import django
 import django.conf
 from django.core.wsgi import get_wsgi_application
 import django.core.management
@@ -17,6 +18,7 @@ import django.utils
 
 # Do validate and activate translations like using `./manage.py runserver`.
 # http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html
+django.setup()
 django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
 utility = django.core.management.ManagementUtility()
 command = utility.fetch_command('runserver')
