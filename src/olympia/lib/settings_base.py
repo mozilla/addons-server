@@ -1389,7 +1389,8 @@ ASYNC_SIGNALS = True
 PERSONA_DEFAULT_PAGES = 10
 
 REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5')
+    'REDIS_LOCATION',
+    'redis://localhost:6379/0?socket_timeout=0.5')
 
 
 def get_redis_settings(uri):
@@ -1411,6 +1412,8 @@ def get_redis_settings(uri):
         'OPTIONS': options
     }
 
+# This is used for `django-cache-machine`
+REDIS_BACKEND = REDIS_LOCATION
 
 REDIS_BACKENDS = {
     'master': get_redis_settings(REDIS_LOCATION)

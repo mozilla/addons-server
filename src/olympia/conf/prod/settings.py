@@ -114,6 +114,9 @@ LOGGING['loggers'].update({
     'z.pool': {'level': logging.ERROR},
 })
 
+# This is used for `django-cache-machine`
+REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
+
 REDIS_BACKENDS = {
     'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
     'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
