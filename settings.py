@@ -60,9 +60,9 @@ CLEANCSS_BIN = os.getenv(
 UGLIFY_BIN = os.getenv(
     'UGLIFY_BIN',
     path('node_modules/uglify-js/bin/uglifyjs'))
-VALIDATOR_BIN = os.getenv(
-    'VALIDATOR_BIN',
-    path('node_modules/addons-validator/bin/addons-validator'))
+ADDONS_LINTER_BIN = os.getenv(
+    'ADDONS_LINTER_BIN',
+    path('node_modules/addons-linter/bin/addons-linter'))
 
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
