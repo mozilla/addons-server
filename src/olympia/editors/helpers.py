@@ -640,14 +640,13 @@ class ReviewBase(object):
                   emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
-        if self.addon.is_listed:
-            url = self.addon.get_url_path(add_prefix=False)
-        else:
-            url = self.addon.get_dev_url('versions')
+        addon_url = self.addon.get_url_path(add_prefix=False)
+        dev_ver_url = self.addon.get_dev_url('versions')
         return {'name': self.addon.name,
                 'number': self.version.version,
                 'reviewer': self.user.display_name,
-                'addon_url': absolutify(url),
+                'addon_url': absolutify(addon_url),
+                'dev_versions_url': absolutify(dev_ver_url),
                 'review_url': absolutify(reverse('editors.review',
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
