@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 13:22+0000\n"
+"PO-Revision-Date: 2016-02-25 14:01+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1598,7 +1598,7 @@ msgstr "Edit Tema"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Setujui / Tolak"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 #: src/olympia/editors/templates/editors/themes/single.html:43
@@ -1607,15 +1607,15 @@ msgstr "Riwayat Ulasan"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Maaf, tema ini ditunda. Silakan datang kembali nanti."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Tema ini ditunda. Ini tidak terlihat untuk semua orang kecuali anda."
 
 #: src/olympia/addons/templates/addons/listing/items.html:29
 msgid "Collector's Note"
-msgstr ""
+msgstr "Catatan Kolektor"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
@@ -1631,7 +1631,7 @@ msgstr[0] "<strong>{0}</strong> unduhan mingguan"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "Baca Selengkapnya"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:86
 msgid "Users"
@@ -1653,7 +1653,7 @@ msgstr "Versi"
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Catatan Versi)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
@@ -1677,7 +1677,7 @@ msgstr "Kirim Pertanyaan untuk Pembuat"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "Kesepakatan Lisensi"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:5
 #, python-format
@@ -1685,6 +1685,8 @@ msgid ""
 "%(name)s requires that you accept the following End-User License Agreement "
 "before installation can proceed:"
 msgstr ""
+"%(name)s meminta anda menerima Kesepakatan Lisensi Pengguna sebelum "
+"pemasangan bisa dilanjutkan:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
@@ -1693,7 +1695,7 @@ msgstr "Terima"
 #: src/olympia/addons/templates/addons/mobile/home.html:10
 #: src/olympia/templates/mobile/base_addons.html:53
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Pengaya berikut saat ini belum tersedia di Firefox untuk iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:12
 #: src/olympia/templates/mobile/base_addons.html:55
@@ -1701,6 +1703,8 @@ msgid ""
 "You need Firefox to install add-ons. <a "
 "href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"Anda perlu Firefox untuk memasang pengaya. <a "
+"href=\"http://mozilla.com/mobile\">Pelajari Lebih Lanjut&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: src/olympia/addons/templates/addons/mobile/home.html:19
@@ -1726,7 +1730,7 @@ msgstr "Pengaya"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:23
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Cara mudah untuk personalisasi."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:24
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
@@ -1743,6 +1747,10 @@ msgid ""
 "functionality and style. Whether you mistype the name of a website or can't "
 "read a busy page, there's an add-on to improve your on-the-go browsing."
 msgstr ""
+"Pengaya adalah aplikasi yang memungkinkan anda mempersonifikasi Firefox "
+"dengan fungsi-fungsi dan gaya ekstra. Apakah anda salah mengetik nama situs "
+"atau tidak bisa membaca laman yang sibuk, tersedia pengaya untuk memperbaiki"
+" penjelajahan anda."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1804,7 +1812,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Info Tema &raquo;"
 
 #: src/olympia/amo/context_processors.py:39
 #: src/olympia/devhub/templates/devhub/nav.html:43
@@ -1846,21 +1854,21 @@ msgstr "Keluar"
 #: src/olympia/amo/context_processors.py:72
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Mengelola Pendaftaran Saya"
 
 #: src/olympia/amo/context_processors.py:75
 #: src/olympia/devhub/templates/devhub/nav.html:27
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:25
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Memasukkan Pengaya Baru"
 
 #: src/olympia/amo/context_processors.py:77
 #: src/olympia/browse/templates/browse/personas/base.html:50
 #: src/olympia/devhub/templates/devhub/index.html:24
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Memasukkan Tema Baru"
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/amo/templates/amo/site_nav.html:87
@@ -1872,7 +1880,7 @@ msgstr "Pusat Pengembang"
 
 #: src/olympia/amo/context_processors.py:83 src/olympia/devhub/views.py:1792
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Mengelola Kunci API"
 
 #: src/olympia/amo/context_processors.py:88 src/olympia/editors/helpers.py:82
 #: src/olympia/editors/helpers.py:102
@@ -1890,15 +1898,15 @@ msgstr "Salah, coba lagi."
 
 #: src/olympia/amo/fields.py:16
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Salah memverifikasi pendaftaran, silakan coba lagi."
 
 #: src/olympia/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Ini harus menjadi kode warna hex, seperti #000000."
 
 #: src/olympia/amo/fields.py:58
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Masukkan paling sedikit satu nilai."
 
 #: src/olympia/amo/helpers.py:162
 #: src/olympia/amo/templates/amo/site_nav.html:61
@@ -1936,7 +1944,7 @@ msgstr "{addon} dibuat."
 
 #: src/olympia/amo/log.py:29
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} properti disunting."
 
 #: src/olympia/amo/log.py:35
 msgid "{addon} description edited."
@@ -1948,12 +1956,12 @@ msgstr "Kategori diedit untuk {addon}."
 
 #: src/olympia/amo/log.py:47
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) ditambahkan ke {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py:55
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) dihapus dari {addon}."
 
 #: src/olympia/amo/log.py:62
 msgid "Contributions for {addon}."
@@ -1969,11 +1977,11 @@ msgstr "{addon} diaktifkan."
 
 #: src/olympia/amo/log.py:80
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Hitungan ditetapkan untuk umum {addon}."
 
 #: src/olympia/amo/log.py:87
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} penghitungan diatur untuk pribadi."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py:94
