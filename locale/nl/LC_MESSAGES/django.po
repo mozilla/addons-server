@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 08:27+0000\n"
+"PO-Revision-Date: 2016-02-25 08:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -8067,18 +8067,25 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"U ontvangt een e-mailbericht als de beoordeling is voltooid. Tot dat moment "
+"wordt uw add-on niet in onze galerij weergegeven maar kan wel rechtstreeks "
+"van de detailpagina worden benaderd."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Uw add-on wordt weergegeven in onze galerij en gebruikers ontvangen "
+"automatische updates."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Uw add-on is ondertekend en kan worden gebundeld met een "
+"toepassingsinstallatie."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8086,6 +8093,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Uw add-on is uitgeschakeld door een websitebeheerder en wordt niet meer "
+"weergegeven in onze galerij. Als u vragen heeft, stuur ze dan naar amo-"
+"admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8093,6 +8103,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Uw add-on wordt in onze galerij als experimenteel weergegeven en gebruikers "
+"ontvangen automatische updates. Sommige functies zijn voor uw add-on niet "
+"beschikbaar."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -8105,6 +8118,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"U ontvangt een e-mailbericht wanneer de volledige beoordeling is voltooid. "
+"Tot dat moment wordt uw add-on als experimenteel in onze galerij weergegeven"
+" en ontvangen gebruikers automatische updates. Sommige functies zijn voor uw"
+" add-on niet beschikbaar."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8112,6 +8129,8 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
+"U ontvangt een e-mailbericht wanneer de volledige beoordeling is voltooid, "
+"waarna u uw add-on kunt bundelen met een toepassingsinstallatie."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -8119,6 +8138,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Alle add-ons in onze galerij dienen voortaan door een editor te worden "
+"beoordeeld. Als u uw add-on verder wilt laten hosten, klik dan om een "
+"beoordelingsproces te selecteren."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8131,6 +8153,9 @@ msgid ""
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
 msgstr ""
+"Dit is de versie van uw add-on die wordt geïnstalleerd als iemand op de knop"
+" Installeren klikt op addons.mozilla.org. Alleen relevant voor vermelde add-"
+"ons."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -8141,7 +8166,7 @@ msgstr "Gemaakt:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%d %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -8152,6 +8177,8 @@ msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
 msgstr ""
+"Dit is de nieuwste geüploade versie, echter deze is op de website nog niet "
+"live."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -8240,6 +8267,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Kies een licentie die toepasselijk is voor de rechten die u op uw broncode "
+"wilt geven. Alleen relevant voor vermelde add-ons."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8268,12 +8297,20 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Gebruikers zijn verplicht de volgende Gebruikersovereenkomst (EULA) te "
+"accepteren voordat ze uw add-on kunnen installeren.  De aanwezigheid van een"
+" EULA beïnvloedt het aantal downloads van een add-on significant. Merk op "
+"dat een EULA niet hetzelfde is als een codelicentie, zoals de GPL of MPL. "
+"Alleen relevant voor vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker is een "
+"privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden"
+" gebruikt verplicht. Alleen relevant voor vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8487,6 +8524,8 @@ msgid ""
 "                                search and browse listings, as well as at\n"
 "                                the top of your theme's details page."
 msgstr ""
+"Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in "
+"zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8600,6 +8639,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
 msgstr ""
+"Uw eerder opnieuw ingediende ontwerp, dat momenteel op beoordeling wacht."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -8689,6 +8729,8 @@ msgid ""
 "                                      search and browse listings, as well as at\n"
 "                                      the top of your theme's details page."
 msgstr ""
+"Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in "
+"zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
@@ -9889,7 +9931,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Lever commentaar op deze versie. De schrijver kan dit niet zien."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10244,7 +10286,7 @@ msgstr[1] "{0} add-ons"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10324,7 +10366,7 @@ msgstr "Opslaan"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Prestaties add-on-editor"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10411,7 +10453,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Alle beoordelingen zijn verwerkt. Goed werk!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13278,7 +13320,7 @@ msgstr ""
 msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
-msgstr ""
+msgstr "Wat betekent het als een add-on als langzaam is gemarkeerd?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -14675,7 +14717,7 @@ msgstr "Mobiel-website bekijken"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Websitestatus"
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -16000,6 +16042,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"We kunnen u helaas niet afmelden. De door u aangeklikte koppeling is niet "
+"geldig. U kunt zich echter nog steeds afmelden op uw <a "
+"href=\"%(edit_url)s\">profielpagina</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
