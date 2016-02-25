@@ -69,7 +69,7 @@
                {1} is the application name. #}
       {{ ngettext('Select <b>up to {0}</b> {1} category for this add-on:',
                   'Select <b>up to {0}</b> {1} categories for this add-on:',
-                  max)|f(max, form.app.pretty if form.app else '')|safe }}
+                  max)|fe(max, form.app.pretty if form.app else '') }}
     </label>
     {{ form.application }}
     {{ form.categories }}
