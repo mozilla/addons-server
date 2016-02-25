@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 10:14+0000\n"
+"PO-Revision-Date: 2016-02-25 10:26+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -605,7 +605,7 @@ msgstr "版本 {0}："
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "这里什么也没有。开发者没有包含任何详细信息。"
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -3230,11 +3230,11 @@ msgstr "重置"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "支持 PNG 和 JPG。图像尺寸将被调整为 32x32。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "此表单存在错误。请在下面进行更正。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -4312,7 +4312,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "核心"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -7415,7 +7415,7 @@ msgid ""
 "                                           be installed if someone clicks the Install\n"
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
-msgstr ""
+msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。它只与已上架的附加组件相关。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -7517,7 +7517,7 @@ msgstr "查看博客 &#9658;"
 msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
-msgstr ""
+msgstr "请选择一个许可协议，标明您对您的源代码授予的权利。它只与已上架的附加组件相关。"
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
