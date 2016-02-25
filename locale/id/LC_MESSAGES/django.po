@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 03:28+0000\n"
+"PO-Revision-Date: 2016-02-25 13:22+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -401,6 +401,10 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang "
+"meminta anda menyumbang pada <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:21
 #, python-format
@@ -410,6 +414,10 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang "
+"meminta anda menyumbang dalam jumlah kecil pada <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -602,6 +610,9 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
+"Saluran Pengembang memungkinkan anda mengetes versi baru yang eksperimental "
+"dari pengaya ini sebelum diluncurkan kepada publik. Sekali anda memasang "
+"versi pengembangan, anda akan terus mendapatkan pembaruan dari saluran ini."
 
 #: src/olympia/addons/templates/addons/details_box.html:207
 msgid "Install development version"
@@ -615,6 +626,10 @@ msgid ""
 "receiving development updates, reinstall the default version from the link "
 "above."
 msgstr ""
+"<strong>Awas:</strong> Versi pengembangan pengaya ini belum diulas oleh "
+"Mozilla. Sekali anda memasang versi pengembangan anda akan terus menerima "
+"pembaruan pengembangan dari pengembang ini. Untuk berhenti menerimanya, "
+"pasang kembali versi tetap dari tautan di atas."
 
 #: src/olympia/addons/templates/addons/details_box.html:220
 #: src/olympia/addons/templates/addons/impala/details.html:278
@@ -624,6 +639,8 @@ msgstr "Versi {0}:"
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
+"Tidak ada yang bisa dilihat di sini!  Pengembang tidak menyertakan rincian "
+"apapun."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -705,7 +722,7 @@ msgstr "Lihat semua »"
 
 #: src/olympia/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Ekstensi &amp; yang Akan Datang"
 
 #: src/olympia/addons/templates/addons/home.html:69
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
@@ -948,12 +965,20 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Bagaimana cara Memasang Thunderbird</strong> <ol> <li>Unduh dan "
+"simpan berkas ke cakram keras anda.</li> <li>Di Mozilla Thunderbird, Pengaya"
+" terbuka dari menu Perangkat.</li> <li>Dari tombol pilihan hingga bidang "
+"pencarian pengaya, pilih \"Pasang Pengaya dari Berkas...\" dan temukan "
+"pengaya yang telah diunduh.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html:41
 msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"Untuk memasang Tema ini, <b>dapatkan Thunderbird</b>, klien surel yang bebas"
+" dan sumbernya terbuka dari Mozilla Messaging dan pasang Persona Plus "
+"pengaya."
 
 #: src/olympia/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
@@ -1023,6 +1048,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Awas:</strong> Pengaya ini belum diulas oleh Mozilla dan tidak bisa "
+"dipasang pada Firefox versi rilis 43 dan selanjutnya.  Berhati-hatilah saat "
+"memasang perangkat lunak dari pihak ketiga yang bisa membahayakan komputer "
+"anda."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
@@ -1059,7 +1088,7 @@ msgstr "Kebijakan Privasi untuk {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "Kode QR untuk pengaya"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
 msgid ""
@@ -1067,6 +1096,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Ingin {0} di Firefox bergerak anda?  Pindai kode QR ini untuk memasang secara langsung \n"
+"  di ponsel anda.  (Anda memerlukan pembaca QR.  Carilah di marketplace ponsel jika anda tidak memilikinya \n"
+"  .)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -1237,11 +1269,11 @@ msgstr "Unduh Saja"
 #: src/olympia/addons/templates/addons/impala/contribution.html:24
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> disarankan"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Menyukai pengaya ini?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:43
 #, python-format
@@ -1259,6 +1291,9 @@ msgid ""
 " your support by making a donation to the <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Pengembang <a href=\"%(meet_url)s\">pengaya ini </a> meminta anda "
+"menunjukkan dukungan dengan menyumbang pada <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:53
 #, python-format
@@ -1285,7 +1320,7 @@ msgstr "Tulis ulasan"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Kategori Terkait"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
@@ -1305,7 +1340,7 @@ msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ulasan pengguna"
 
 #: src/olympia/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
-msgstr ""
+msgstr "Tampilkan statistik"
 
 #: src/olympia/addons/templates/addons/impala/details.html:84
 msgid "Manage"
@@ -1319,7 +1354,7 @@ msgstr "Ikon {0}"
 #: src/olympia/addons/templates/addons/impala/details.html:103
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "Tidak bisa Mulai Ulang"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
 #, python-format
@@ -1337,11 +1372,11 @@ msgstr ""
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html:156
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Gambar layar pengaya #{0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:182
 msgid "Add-on home page"
-msgstr ""
+msgstr "Beranda pengaya"
 
 #: src/olympia/addons/templates/addons/impala/details.html:185
 msgid "Support site"
@@ -1361,7 +1396,7 @@ msgstr "Versi {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:194
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: src/olympia/addons/templates/addons/impala/details.html:195
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:129
@@ -1371,7 +1406,7 @@ msgstr "Terakhir Diperbarui:"
 #: src/olympia/addons/templates/addons/impala/details.html:200
 #, python-format
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Dirilis di bawah <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:201
 #: src/olympia/addons/templates/addons/impala/details.html:206
@@ -1385,7 +1420,7 @@ msgstr "Lisensi Khusus"
 #: src/olympia/addons/templates/addons/impala/details.html:205
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Dirilis di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:217
 msgid "About this Add-on"
@@ -1397,11 +1432,11 @@ msgstr "Komentar Pengembang"
 
 #: src/olympia/addons/templates/addons/impala/details.html:243
 msgid "Version Information"
-msgstr ""
+msgstr "Informasi Versi"
 
 #: src/olympia/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
-msgstr ""
+msgstr "Tampilkan riwayat versi selengkapnya"
 
 #: src/olympia/addons/templates/addons/impala/details.html:262
 msgid ""
@@ -1411,12 +1446,19 @@ msgid ""
 "stop receiving development updates, reinstall the default version from the "
 "link above."
 msgstr ""
+"Saluran Pengembangan memungkinkan anda mengetes versi baru yang "
+"eksperimental dari pengaya ini sebelum dirilis ke publik. Sekali anda "
+"memasang versi pengembangan, anda akan terus mendapatkan pembaruan dari "
+"saluran ini. Untuk berhenti mendapatkan pembaruan tersebut, pasang kembali "
+"versi tetap dari tautan di atas."
 
 #: src/olympia/addons/templates/addons/impala/details.html:272
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Awas:</strong> Versi pengembangan dari pengaya ini belum diulas oleh"
+" Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html:287
 msgid "See complete development channel history"
@@ -1483,7 +1525,7 @@ msgstr "Pengaya ini telah dihapus oleh penyusunnya."
 
 #: src/olympia/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Pengaya ini telah dimatikan oleh administrator."
 
 #: src/olympia/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
@@ -1502,7 +1544,7 @@ msgstr "{0} pengguna"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:19
 #: src/olympia/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "tautan permanen"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:23
 #: src/olympia/editors/templates/editors/queue.html:98
