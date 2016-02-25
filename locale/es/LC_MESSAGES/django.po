@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 15:47+0000\n"
+"PO-Revision-Date: 2016-02-25 16:30+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -9248,6 +9248,12 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Si eliminas tu complemento de la lista, se volverá invisible en la página (y"
+" todos sus archivos y versiones). No aparecerá en las búsquedas, no tendrá "
+"una página pública de presentación ni se actualizará automáticamente.  Se "
+"recomienda que los complementos no listados proporcionen una <a "
+"href=\"%(update_url)s\" target=\"_blank\">updateURL</a> en su manifiesto "
+"para actualizaciones automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -10000,7 +10006,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Haz un comentario de esta versión.  El autor no podrá verlo."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10358,7 +10364,7 @@ msgstr[1] "{0} complementos"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10438,7 +10444,7 @@ msgstr "Guardar"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Editor de rendimiento del complemento"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10527,7 +10533,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Todas las revisiones completadas.  ¡Buen trabajo!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -10627,6 +10633,9 @@ msgid ""
 "               this addon (whatever the version), between the developer and the\n"
 "               editor. This is visible and editable by both."
 msgstr ""
+"La pizarra es el lugar donde intercambiar información sobre el\n"
+"               complemento entre el desarrollador y el editor (cualquier\n"
+"               versión). Es editable y visible por ambos."
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
@@ -11787,6 +11796,11 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, conocida como \"AMO\", es la página oficial de Mozilla "
+"para los complementos de su software, como Firefox, Thunderbird y SeaMonkey."
+" Los complementos te permiten agregar nuevas funciones y cambian el "
+"funcionamiento de tu navegador o aplicación. Échale un vistazo y explora las"
+" miles de formas de personalizar tu comportamiento en línea."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -12340,6 +12354,15 @@ msgid ""
 "on. Developers need to be very, very careful with using them.  Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Sí. Es posible, pero parte de la funcionalidad que proporcionan estas "
+"librerías están disponibles a través de XPCOM, XUL y JavaScript. Además, los"
+" autores deberían considerar si las librerías modifican los prototipos de "
+"los objetos primitivos (String.prototype, Date.prototype, etc.) y/o si "
+"definen funciones globales (la función $), que tienden a provocar conflictos"
+" con otros complementos; sobre todo, si los complementos utilizan diferentes"
+" versiones de las librerías. Los desarrolladores tienen que tener mucho "
+"cuidado. Mozilla no ofrece documentación sobre su uso para crear "
+"complementos."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
