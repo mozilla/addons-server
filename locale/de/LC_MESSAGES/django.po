@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 08:28+0000\n"
+"PO-Revision-Date: 2016-02-25 08:37+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1354,7 +1354,7 @@ msgstr "Teile dieser Sammlungen"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
+msgstr[0] "Weitere Add-ons von %(author)s"
 msgstr[1] "Weitere Add-ons von diesen Autoren"
 
 #: src/olympia/addons/templates/addons/impala/details.html:41
@@ -1386,7 +1386,7 @@ msgstr "Kein Neustart"
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
+msgstr[0] "Lernen Sie den Entwickler kennen: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Lernen Sie die Entwickler kennen</a>"
 
 # {0} is an add-on name.
@@ -14006,6 +14006,20 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Denken Sie daran:</h2> <ul> <li> Schreiben Sie so, als würden Sie einem "
+"Freund Ihre Erfahrung mit diesem Add-on schildern. Seien Sie genau und geben"
+" Sie hilfreiche Details an, wie Funktionen, die Sie mochten und/oder nicht "
+"mochten, wie einfach es sich verwenden lässt und welche Nachteile es hat. "
+"Schreiben Sie nicht allgemein, dass Sie es „gut“ oder „schlecht“ finden, "
+"solange Sie keine Begründung angeben können. </li> <li>Bitte melden Sie "
+"keine Fehler in den Bewertungen. Ihre E-Mail-Adresse ist für Add-on-"
+"Entwickler nicht sichtbar, sie brauchen aber zur Lösung womöglich Kontakt zu"
+" Ihnen. Im Abschnitt <a href=\"%(support)s\">Hilfe</a> erfahren Sie, wo Sie "
+"Hilfe zu diesem Add-on erhalten. </li> <li> Schreiben Sie gut lesbare "
+"Bewertungen, vermeiden Sie unpassende Sprache und veröffentlichen Sie keine "
+"persönlichen Daten. </li> </ul> <p>Bitte lesen Sie die <a href=\"%(guide)s\""
+" target=\"_blank\">Bewertungsrichtlinien</a>, in denen Sie weitere Details "
+"zu Add-on-Bewertungen durch Nutzer erfahren.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -14953,7 +14967,7 @@ msgstr "Zur mobilen Version"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Status der Website"
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15734,6 +15748,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Ändern Sie Ihr Passwort. Wenn Sie Ihr Passwort vergessen haben, <a "
+"href=\"%(reset_url)s\">verwenden Sie das Formular zum Zurücksetzen.</a>"
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15756,6 +15772,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Erzählen Sie uns etwas mehr über Sie. Diese Felder sind optional, helfen "
+"anderen Nutzern aber, Sie besser kennenzulernen."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -16023,6 +16041,9 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Der Link zum Zurücksetzen des Passworts war ungültig, womöglich wurde er "
+"bereits verwendet. Bitte fordern Sie das Zurücksetzen des Passworts erneut "
+"an."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -16280,6 +16301,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Leider funktionierte das Abbestellen des Abonnements nicht. Der angeklickte "
+"Link war ungültig. Sie können sich über Ihre <a href=\"%(edit_url)s"
+"\">Profil-bearbeiten-Seite</a> aber ebenfalls abmelden."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
