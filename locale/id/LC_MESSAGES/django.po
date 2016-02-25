@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 03:22+0000\n"
+"PO-Revision-Date: 2016-02-25 03:28+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -107,7 +107,7 @@ msgstr[0] "Tag tidak valid: {0}"
 #: src/olympia/addons/forms.py:103
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
+msgstr[0] "\"{0}\" adalah tag yang sudah dicadangkan dan tidak bisa digunakan."
 
 #: src/olympia/addons/forms.py:111
 msgid "You have {0} too many tags."
@@ -119,6 +119,8 @@ msgstr[0] "Tagnya terlalu banyak {0} buah."
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Seluruh tag harus berjumlah %s karakter atau kurang setelah karakter yang "
+"tidak valid dibuang."
 
 #: src/olympia/addons/forms.py:121
 msgid "All tags must be at least {0} character."
@@ -130,6 +132,7 @@ msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
 msgstr ""
+"Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/addons/forms.py:238
@@ -153,20 +156,20 @@ msgstr ""
 
 #: src/olympia/addons/forms.py:484 src/olympia/addons/forms.py:575
 msgid "A license must be selected."
-msgstr ""
+msgstr "Sebuah lisensi harus dipilih."
 
 #: src/olympia/addons/forms.py:556
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Beri Tema Anda Nama."
 
 #: src/olympia/addons/forms.py:562
 #: src/olympia/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Jelaskan Tema anda."
 
 #: src/olympia/addons/forms.py:704
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Masukkan alamat surel penulis baru"
 
 #: src/olympia/addons/helpers.py:35
 msgid "Not Reviewed"
@@ -462,7 +465,7 @@ msgstr "Terima Kasih, Kapan-Kapan"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Kontribusi telah dibuat, terima kasih."
 
 #: src/olympia/addons/templates/addons/details_box.html:10
 #: src/olympia/discovery/templates/discovery/addons/detail.html:19
@@ -500,19 +503,19 @@ msgstr "Bekerja pada"
 
 #: src/olympia/addons/templates/addons/details_box.html:52
 msgid "Visibility"
-msgstr ""
+msgstr "Visibilitas"
 
 #: src/olympia/addons/templates/addons/details_box.html:57
 #: src/olympia/devhub/templates/devhub/index.html:94
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "Tersembunyi"
 
 #: src/olympia/addons/templates/addons/details_box.html:59
 #: src/olympia/devhub/templates/devhub/index.html:96
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "Tidak terdaftar"
 
 #: src/olympia/addons/templates/addons/details_box.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
@@ -551,7 +554,7 @@ msgstr "Rata-rata Pengguna Harian"
 
 #: src/olympia/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Laporan Penyalahgunaan"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html:121
@@ -585,7 +588,7 @@ msgstr "Galeri Gambar"
 #: src/olympia/addons/templates/addons/details_box.html:190
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "Komentar Pengembang"
 
 #: src/olympia/addons/templates/addons/details_box.html:199
 #: src/olympia/addons/templates/addons/impala/details.html:259
@@ -626,7 +629,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
 #: src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
-msgstr ""
+msgstr "Catatan Versi"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -862,7 +865,7 @@ msgstr "Ditolak"
 #: src/olympia/addons/templates/addons/persona_preview.html:16
 #: src/olympia/amo/log.py:159
 msgid "Approved"
-msgstr ""
+msgstr "Disetujui"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/persona_preview.html:26
@@ -902,7 +905,7 @@ msgstr "Sunting"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
