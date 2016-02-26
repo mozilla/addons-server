@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-22 11:51+0000\n"
+"PO-Revision-Date: 2016-02-26 21:13+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1244,7 +1244,7 @@ msgid "Show the developer's reply to this review"
 msgstr "Показати відповідь розробника на цей відгук"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Дивитися всі відгуки для цього додатку"
@@ -1335,7 +1335,7 @@ msgid "Part of these Collections"
 msgstr "Є частиною таких збірок"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Інші додатки від %(author)s"
@@ -1369,12 +1369,12 @@ msgid "No Restart"
 msgstr "Без перезапуску"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Познайомитись з розробником: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Познайомитись з розробниками</a>"
-msgstr[2] "<a href=\"%(url)s\">Познайомитись з розробниками</a>"
+msgstr[0] "Познайомитися з розробником: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Познайомитися з розробниками</a>"
+msgstr[2] "<a href=\"%(url)s\">Познайомитися з розробниками</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:137
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -1563,7 +1563,7 @@ msgid "translate"
 msgstr "перекласти"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Дивитися всі відгуки користувачів"
@@ -11192,27 +11192,27 @@ msgstr "Кенійський шилінг"
 
 #: src/olympia/lib/constants.py:78
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Киргизький сом"
 
 #: src/olympia/lib/constants.py:79
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Камбоджійський рієль"
 
 #: src/olympia/lib/constants.py:80
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Коморський франк"
 
 #: src/olympia/lib/constants.py:81
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Північнокорейська вона"
 
 #: src/olympia/lib/constants.py:82
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Південнокорейська вона"
 
 #: src/olympia/lib/constants.py:83
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Кувейтський динар"
 
 #: src/olympia/lib/constants.py:84
 msgid "Cayman Islands Dollar"
@@ -11224,11 +11224,11 @@ msgstr "Казахстанський теньге"
 
 #: src/olympia/lib/constants.py:86
 msgid "Laos Kip"
-msgstr ""
+msgstr "Кіп"
 
 #: src/olympia/lib/constants.py:87
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Ліванський фунт"
 
 #: src/olympia/lib/constants.py:88
 msgid "Sri Lanka Rupee"
@@ -11236,75 +11236,75 @@ msgstr "Рупія Шрі-Ланки"
 
 #: src/olympia/lib/constants.py:89
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Ліберійський долар"
 
 #: src/olympia/lib/constants.py:90
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Лоті"
 
 #: src/olympia/lib/constants.py:91
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Литовський лит"
 
 #: src/olympia/lib/constants.py:92
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Латвійський лат"
 
 #: src/olympia/lib/constants.py:93
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Лівійський динар"
 
 #: src/olympia/lib/constants.py:94
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Марокканський дирхам"
 
 #: src/olympia/lib/constants.py:95
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Молдовський лей"
 
 #: src/olympia/lib/constants.py:96
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Малагасійський аріарі"
 
 #: src/olympia/lib/constants.py:97
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Македонський денар"
 
 #: src/olympia/lib/constants.py:98
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "М'янмський к'ят"
 
 #: src/olympia/lib/constants.py:99
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Монгольський тугрик"
 
 #: src/olympia/lib/constants.py:100
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Аоминська патака"
 
 #: src/olympia/lib/constants.py:101
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Мавританська угія"
 
 #: src/olympia/lib/constants.py:102
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Маврикійська рупія"
 
 #: src/olympia/lib/constants.py:103
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Мальдівська руфія"
 
 #: src/olympia/lib/constants.py:104
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Малавійська квача"
 
 #: src/olympia/lib/constants.py:105
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Мексиканський песо"
 
 #: src/olympia/lib/constants.py:106
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Малайзійський рингіт"
 
 #: src/olympia/lib/constants.py:107
 msgid "Mozambique Metical"
@@ -13659,7 +13659,7 @@ msgid "This review is for a previous version of the add-on ({0})."
 msgstr "Цей відгук для попередньої версії додатку ({0})."
 
 #: src/olympia/reviews/templates/reviews/review.html:56
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
 "add-on."
@@ -13806,7 +13806,7 @@ msgid "Read More&nbsp;&raquo;"
 msgstr "Детальніше&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html:7
-#, fuzzy, python-format
+#, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Подивитися всі відгуки"
