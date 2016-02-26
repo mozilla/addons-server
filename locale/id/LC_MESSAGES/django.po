@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 14:01+0000\n"
+"PO-Revision-Date: 2016-02-26 00:52+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1986,7 +1986,7 @@ msgstr "{addon} penghitungan diatur untuk pribadi."
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py:94
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon} status diubah menjadi {0}."
 
 #: src/olympia/amo/log.py:101
 msgid "Preview added to {addon}."
@@ -2002,36 +2002,36 @@ msgstr "Pratinjau dihapus dari {addon}."
 
 #: src/olympia/amo/log.py:119
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} ditambahkan ke {addon}."
 
 #: src/olympia/amo/log.py:126
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} disunting untuk {addon}."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py:134
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Versi {0} dihapus dari {addon}."
 
 #: src/olympia/amo/log.py:141
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Berkas {0.name} ditambahkan ke {version} dari {addon}."
 
 #: src/olympia/amo/log.py:152
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Berkas {0} dihapus dari {version} dari {addon}."
 
 #: src/olympia/amo/log.py:158
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} disetujui."
 
 #: src/olympia/amo/log.py:168
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} diberikan ulasan awal."
 
 #: src/olympia/amo/log.py:169
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Disetujui sebelumnya"
 
 #: src/olympia/amo/log.py:179
 msgid "{addon} {version} rejected."
@@ -2039,23 +2039,23 @@ msgstr "{addon} {version} ditolak."
 
 #: src/olympia/amo/log.py:189
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} dipertahankan."
 
 #: src/olympia/amo/log.py:190
 msgid "Retained"
-msgstr ""
+msgstr "Dipertahankan"
 
 #: src/olympia/amo/log.py:199
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} dieskalasi."
 
 #: src/olympia/amo/log.py:200
 msgid "Escalated"
-msgstr ""
+msgstr "Dieskalasi"
 
 #: src/olympia/amo/log.py:209
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} ulasan dimintakan."
 
 #: src/olympia/amo/log.py:210
 msgid "Review requested"
@@ -2063,7 +2063,7 @@ msgstr "Ulasan diminta"
 
 #: src/olympia/amo/log.py:218
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} tambahan informasi dimintakan."
 
 #: src/olympia/amo/log.py:219
 msgid "More information requested"
