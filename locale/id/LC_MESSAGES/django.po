@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 00:52+0000\n"
+"PO-Revision-Date: 2016-02-26 01:55+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2067,15 +2067,15 @@ msgstr "{addon} {version} tambahan informasi dimintakan."
 
 #: src/olympia/amo/log.py:219
 msgid "More information requested"
-msgstr ""
+msgstr "Diperlukan lebih banyak informasi"
 
 #: src/olympia/amo/log.py:227
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} ulasan super dimintakan."
 
 #: src/olympia/amo/log.py:228
 msgid "Super review requested"
-msgstr ""
+msgstr "Ulasan super dimintakan"
 
 #: src/olympia/amo/log.py:235
 msgid "Comment on {addon} {version}."
@@ -2125,25 +2125,25 @@ msgstr "{addon} sekarang diunggulkan."
 
 #: src/olympia/amo/log.py:295
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} tidak lagi diunggulkan."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py:303
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} ditambahkan."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py:310
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
 
 #: src/olympia/amo/log.py:318
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} sekarang berlisensi di bawah {0.name}."
 
 #: src/olympia/amo/log.py:324
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} kebijakan diubah."
 
 #: src/olympia/amo/log.py:330
 msgid "{addon} icon changed."
@@ -2151,31 +2151,31 @@ msgstr "Ikon {addon} diganti."
 
 #: src/olympia/amo/log.py:336
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} untuk {addon} disetujui."
 
 #: src/olympia/amo/log.py:337
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} menyetujui {review} untuk {addon}."
 
 #: src/olympia/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Ulasan {review} untuk {addon} dihapus."
 
 #: src/olympia/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} menghapus {review} untuk {addon}."
 
 #: src/olympia/amo/log.py:354
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Versi aplikasi maksimal untuk {version} diperbarui."
 
 #: src/olympia/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Penulis mengirim surel tentang kompatibilitas {version}."
 
 #: src/olympia/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Surel dikirimkan pada Penulis tentang kompatibilitas pengaya."
 
 #: src/olympia/amo/log.py:369
 msgid "Password changed."
@@ -2183,19 +2183,19 @@ msgstr "Kata sandi diganti."
 
 #: src/olympia/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "{addon} gagal memeriksa dengan PayPal."
 
 #: src/olympia/amo/log.py:379
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "{addon} manifesto diperbarui."
 
 #: src/olympia/amo/log.py:385
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} disetuji namun menunggu dipublikasikan."
 
 #: src/olympia/amo/log.py:386
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Disetujui tapi menunggu"
 
 #: src/olympia/amo/log.py:394
 msgid "{addon} purchased."
@@ -2211,11 +2211,11 @@ msgstr "Akun diperbarui."
 
 #: src/olympia/amo/log.py:409
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Eskalasi dibereskan untuk {addon}."
 
 #: src/olympia/amo/log.py:410
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Eskalasi dibereskan"
 
 #: src/olympia/amo/log.py:418
 msgid "App disabled"
@@ -2223,7 +2223,7 @@ msgstr "Aplikasi dinonaktifkan"
 
 #: src/olympia/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} dieskalasi karena tingginya jumlah laporan penyalahgunaan."
 
 #: src/olympia/amo/log.py:426
 msgid "High Abuse Reports"
