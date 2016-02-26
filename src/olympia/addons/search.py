@@ -133,6 +133,7 @@ def get_mappings():
         'properties': {
             'boost': {'type': 'float', 'null_value': 1.0},
             'default_locale': {'type': 'string', 'index': 'no'},
+            'last_updated': {'type': 'date'},
             # Turn off analysis on name so we can sort by it.
             'name_sort': {'type': 'string', 'index': 'not_analyzed'},
             # Don't index *_translations fields, they are only there to be

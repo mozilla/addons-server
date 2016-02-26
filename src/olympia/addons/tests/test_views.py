@@ -1527,6 +1527,7 @@ class TestAddonSearchView(ESTestCase):
     def test_basic(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        assert addon.last_updated  # Just in case.
         self.refresh()
 
         response = self.client.get(self.url)
@@ -1539,6 +1540,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == addon.last_updated.isoformat()
 
         result = data['results'][1]
         assert result['id'] == addon2.pk

@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import datetime
 
 from rest_framework.serializers import ModelSerializer
 
@@ -15,7 +15,7 @@ class BaseESSerializer(ModelSerializer):
 
     """
     # In base classes add the field names we want converted to Python
-    # date/datetime from the Elasticsearch date strings.
+    # datetime from the Elasticsearch datetime strings.
     datetime_fields = ()
 
     def __init__(self, *args, **kwargs):
@@ -55,8 +55,8 @@ class BaseESSerializer(ModelSerializer):
         """Attach fields to fake instance."""
         for field_name in field_names:
             value = getattr(data, field_name, None)
-            if field_name in self.datetime_fields:
-                value = self.to_datetime(value)
+            if field_name in self.datetime_fields and value:
+                value = datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
             setattr(obj, field_name, value)
         return obj
 
@@ -66,28 +66,3 @@ class BaseESSerializer(ModelSerializer):
             ESTranslationSerializerField.attach_translations(
                 obj, data, field_name)
         return obj
-
-    def to_datetime(self, value):
-        """
-        Returns a datetime given an Elasticsearch date/datetime field.
-        """
-        if not value or isinstance(value, (date, datetime)):
-            return
-
-        if len(value) == 26:
-            try:
-                return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
-            except (TypeError, ValueError):
-                pass
-        elif len(value) == 19:
-            try:
-                return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
-            except (TypeError, ValueError):
-                pass
-        elif len(value) == 10:
-            try:
-                return datetime.strptime(value, '%Y-%m-%d')
-            except (TypeError, ValueError):
-                pass
-
-        return value

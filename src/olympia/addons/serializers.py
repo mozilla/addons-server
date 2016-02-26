@@ -11,17 +11,21 @@ class AddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'default_locale', 'name', 'slug')
+        fields = ('id', 'default_locale', 'name', 'last_updated', 'slug')
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
+    datetime_fields = ('last_updated',)
+
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
         obj = Addon(id=data.id, slug=data.slug)
 
         # Set base attributes that have the same name/format in ES and in the
         # model.
-        self._attach_fields(obj, data, ('created', 'default_locale', 'status'))
+        self._attach_fields(
+            obj, data,
+            ('default_locale', 'last_updated', 'status'))
 
         # Attach translations (they require special treatment).
         self._attach_translations(obj, data, ('name', 'description'))
