@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 17:49+0000\n"
+"PO-Revision-Date: 2016-02-26 01:02+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3358,7 +3358,7 @@ msgstr "Återställ"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG och JPG stöds.  Bilder skalas om till 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
@@ -3374,6 +3374,9 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Om du vill inkludera ett tillägg i denna samling, anger du dess namn i rutan"
+" nedan och trycker enter.  Du kan också använda <strong>Lägg till "
+"samling</strong> länkar hela webbplatsen för att inkludera tillägg senare."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
@@ -3464,6 +3467,12 @@ msgid ""
 "software may be blocked from general use.  For more information, please read"
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"När Mozilla får kännedom om tillägg, insticksmoduler eller andra program "
+"från tredje part som allvarligt äventyrar %(app)s säkerhet och stabilitet, "
+"eller prestanda och som uppfyller <a href=\"%(criteria)s\">vissa "
+"kriterier</a>, kan programvaran blockeras från allmän användning.  För mer "
+"information, vänligen läs <a href=\"%(support)s\">den här "
+"supportartikeln</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -3898,12 +3907,12 @@ msgstr "{app} {version} Kompatibilitet"
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "Topp 95%% kompatibla med tidigare version"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "Topp 95%% av alla tillägg"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -4460,7 +4469,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Kärna"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -4673,6 +4682,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Du kan inte ta bort en fil när granskningsprocessen har startat.  Du måste "
+"ta bort hela versionen."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -7981,7 +7992,7 @@ msgstr "Skapad:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
