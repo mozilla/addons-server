@@ -35,6 +35,7 @@ help:
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "  flake8            to run the flake8 linter"
+	@echo "  flake8_dev        to run the flake8 linter only on changed files"
 	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
 	@echo "target using something like $$(SETTINGS), you can make it use another value:"
 	@echo "  make SETTINGS=settings_mine docs"
@@ -105,6 +106,9 @@ reindex:
 
 flake8:
 	flake8 src/
+
+flake8-dev:
+	(git diff --cached --name-only; git diff --name-only) | sort -u | grep '.py$$' | xargs flake8
 
 initialize_docker:
 	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner
