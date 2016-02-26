@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 12:02+0000\n"
+"PO-Revision-Date: 2016-02-26 23:17+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4238,27 +4238,27 @@ msgstr "Poin Pengulas Manual"
 
 #: src/olympia/constants/base.py:436
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Ulasan Lengkap Pengaya"
 
 #: src/olympia/constants/base.py:437
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Pengaya"
 
 #: src/olympia/constants/base.py:438
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Ulasan Pengaya yang Diperbarui"
 
 #: src/olympia/constants/base.py:439
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Ulasan Lengkap Kamus"
 
 #: src/olympia/constants/base.py:440
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Kamus"
 
 #: src/olympia/constants/base.py:441
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Ulasan Kamus yang Diperbarui"
 
 #: src/olympia/constants/base.py:442
 msgid "Full Language Pack Review"
