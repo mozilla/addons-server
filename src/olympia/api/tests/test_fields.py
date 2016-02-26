@@ -9,24 +9,24 @@ from rest_framework.test import APIRequestFactory
 from olympia.addons.models import Addon
 from olympia.api.fields import (
     ESTranslationSerializerField, TranslationSerializerField)
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.translations.models import Translation
 
 
-class _TestTranslationSerializerField(object):
+class TestTranslationSerializerField(TestCase):
     """
-    Base parent class for translation fields tests.
+    Base test class for translation fields tests.
 
     This allows the same tests to be applied to TranslationSerializerField
     (MySQL) and ESTranslationSerializerField (ElasticSearch) since everything
-    should work transparently.
+    should work transparently regardless of where the data is coming from.
     """
     field_class = TranslationSerializerField
 
     def setUp(self):
-        super(_TestTranslationSerializerField, self).setUp()
+        super(TestTranslationSerializerField, self).setUp()
         self.factory = APIRequestFactory()
-        self.addon = Addon.objects.get(pk=3615)
+        self.addon = addon_factory(description=u'Descrîption...')
         Translation.objects.create(id=self.addon.name.id, locale='es',
                                    localized_string=u'Name in Español')
 
@@ -168,8 +168,7 @@ class _TestTranslationSerializerField(object):
         assert result is None
 
 
-class TestESTranslationSerializerField(_TestTranslationSerializerField,
-                                       TestCase):
+class TestESTranslationSerializerField(TestTranslationSerializerField):
     field_class = ESTranslationSerializerField
 
     def setUp(self):
