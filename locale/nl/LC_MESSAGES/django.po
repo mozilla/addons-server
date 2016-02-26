@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 07:51+0000\n"
+"PO-Revision-Date: 2016-02-26 10:34+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1336,7 +1336,7 @@ msgid "Part of these Collections"
 msgstr "Onderdeel van deze collecties"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Overige add-ons door %(author)s"
@@ -1368,7 +1368,7 @@ msgid "No Restart"
 msgstr "Geen herstart"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Maak kennis met de ontwikkelaar: <a href=\"%(url)s\">%(name)s</a>"
@@ -12922,6 +12922,12 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"De Free Software Foundation biedt korte samenvattingen van de voornaamste "
+"opensourcelicenties, inclusief of de licentie als gratis software-licentie "
+"of als een zogenaamde ‘copyleft’-licentie kan worden beschouwd (een "
+"‘copyleft’-licentie is bijvoorbeeld een algemene methode om een programma of"
+" ander werk gratis te maken, en tevens alle aangepaste en uitgebreide "
+"versies van het programma ook verplicht gratis te zijn.)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:589
 msgid ""
@@ -13248,7 +13254,7 @@ msgstr "Add-ongalerij"
 msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
-msgstr ""
+msgstr "Hoe kies ik tussen add-ons die hetzelfde lijken te doen?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13259,6 +13265,13 @@ msgid ""
 "    which is most liked by other users. Remember that you can also just try\n"
 "    out both and see which you like better."
 msgstr ""
+"Er zijn vaak diverse add-ons met vergelijkbare functies. Lees om te "
+"ontdekken welke passend is voor u de volledige beschrijving van de add-on en"
+" bekijk de schermafdrukken. Als er dan nog steeds meerdere "
+"keuzemogelijkheden zijn, lees dan door de waarderingen van de add-ons, de "
+"gebruikersbeoordelingen en de statistieken om te ontdekken welke het meest "
+"in de smaak valt bij andere gebruikers. Onthoud dat u ook gewoon beide kunt "
+"proberen en dan kunt beslissen welke u het beste bevalt."
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -13331,6 +13344,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"In onze galerij gehoste add-ons zijn gratis, tenzij duidelijk anderszins "
+"aangeduid."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13343,6 +13358,10 @@ msgid ""
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Sommige add-onschrijvers vragen tevreden gebruikers van een add-on om een "
+"geldelijke bijdrage aan de ontwikkeling. Deze bijdragen gaan rechtstreeks "
+"naar de ontwikkelaar, tenzij een derde partij wordt aangeduid, zoals de "
+"nonprofit Mozilla Foundation."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -13355,6 +13374,10 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Bèta-add-ons zijn niet beoordeelde versies die het laatste werk van een add-"
+"on-schrijver weergeven. Hoewel verschillende schrijvers verschillende normen"
+" hanteren voor de kwaliteit van bètacode, dient u aan te nemen dat deze add-"
+"ons minder stabiel zijn dan normale uitgegeven versies."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -13382,6 +13405,10 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"De meeste add-ons laden code en hulpbronnen tijdens het opstarten van "
+"Firefox. In de meeste gevallen is de invloed op de opstarttijd "
+"verwaarloosbaar, maar sommige add-ons kunnen een waarneembare vertraging "
+"veroorzaken."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -13396,6 +13423,11 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"Meld u aan met uw account en bezoek de beoordelingspagina van de add-on om "
+"een gebruikersbeoordeling van een add-on te melden. Zoek de beoordeling die "
+"u wilt melden, klik op ‘Deze beoordeling rapporteren’ en selecteer een "
+"reden. Ons editorteam onderzoekt de beoordeling en neemt toepasselijke "
+"actie."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13722,6 +13754,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"De ontwikkeling van het Sunbird-project is gestopt en de laatste versie "
+"dateert van 30 maart 2010. We zijn er trots op dat we op deze website add-"
+"ons voor Sunbird hebben mogen hosten, maar aangezien het project niet meer "
+"wordt onderhouden hebben we de ondersteuning voor de add-ons uitgeschakeld."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -13821,6 +13857,20 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Houd deze tips in gedachten:</h2> <ul> <li>Schrijf alsof u een vriend "
+"vertelt over uw ervaring met de add-on. Geef specifieke en nuttige details, "
+"zoals welke functies u bevielen en/of tegenvielen, hoe eenvoudig het gebruik"
+" is, en eventuele nadelen. Vermijd algemene woorden zoals “Geweldig” of "
+"“Slecht” tenzij u redenen kunt geven waarom u dit vindt. </li> <li>Plaats "
+"geen bugrapporten in beoordelingen. We stellen uw e-mailadres niet "
+"beschikbaar aan add-onontwikkelaars en ze willen mogelijk contact met u "
+"opnemen om u te helpen uw probleem op te lossen. Kijk in de <a "
+"href=\"%(support)s\">ondersteuningssectie</a> om te ontdekken waar u "
+"ondersteuning voor deze add-on kunt krijgen. </li> <li>Houd beoordelingen "
+"netjes, vermijd onjuist taalgebruik en plaats geen persoonlijke informatie. "
+"</li> </ul> <p>Lees de <a href=\"%(guide)s\" "
+"target=\"_blank\">Beoordelingsrichtlijnen</a> voor meer details over "
+"gebruikersbeoordelingen van add-ons.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -15553,6 +15603,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Wijzig uw wachtwoord. Als u uw wachtwoord bent vergeten, dan kunt u <a "
+"href=\"%(reset_url)s\">het formulier voor opnieuw instellen gebruiken</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15575,6 +15627,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Geef ons wat meer informatie over uzelf. Al deze velden zijn optioneel, maar"
+" ze helpen andere gebruikers om u wat beter te leren kennen."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -15840,6 +15894,9 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"De koppeling voor opnieuw instellen van het wachtwoord was ongeldig, "
+"mogelijk omdat deze al eens is gebruikt. Vraag een nieuwe instelkoppeling "
+"aan."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
