@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 11:21+0000\n"
+"PO-Revision-Date: 2016-02-26 16:36+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5715,6 +5715,11 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"Cualquier información que quieran conocer los usuarios y que no esté en\n"
+"                          el sumario o la descripción del complemento.\n"
+"                          Los usos más comunes son la lista de errores conocidos, información\n"
+"                          sobre cómo enviar errores, fecha anticipada de futuras versiones,\n"
+"                          etc. Solo es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5729,6 +5734,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Estas marcas se utilizan para clasificar los complementos. Solo\n"
+"                        es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5747,6 +5754,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Si podemos mostrar la fuente de tu complemento en nuestro visor\n"
+"                        online. Solo es válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5767,6 +5776,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Si podemos mostrar la descarga y el estado de uso de tu\n"
+"                        complemento en nuestro visor online.\n"
+"                        Solo es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5787,6 +5799,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Si aceptas, intentaremos actualizar automáticamente tu\n"
+"                        complemento cuando haya una nueva versión de SDK.\n"
+"                        Solo es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5857,6 +5872,10 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Sube un icono para tu complemento o elige uno de los nuestros. El icono\n"
+"                      aparecerá donde aparezca tu complemento. Las imágenes que subas\n"
+"                      deben tener uno de estos formatos: .png, .jpg.\n"
+"                      Solo es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5872,6 +5891,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Se utiliza en los listados de complementos, como resultados de\n"
+"                            búsqueda y complementos patrocinados."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -8095,6 +8116,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
 msgstr ""
+"Recibirás un correo cuando se finalice la revisión. Hasta entonces,\n"
+"                             tu complemento no aparecerá en la galería pero se podrá\n"
+"                             acceder a él desde la página de detalles."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
@@ -8102,6 +8126,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Recibirás un correo cuando se finalice la revisión y\n"
+"                             tu complemento esté firmado."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -8109,12 +8135,17 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"Recibirás un correo cuando se finalice la revisión. Hasta entonces,\n"
+"                             tu complemento no aparecerá en la galería pero se podrá\n"
+"                             acceder a él desde la página de detalles."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Tu complemento aparece en nuestra galería y los usuarios\n"
+"                             reciben actualizaciones automáticas."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
@@ -8128,6 +8159,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Un administrador ha desactivado tu complemento y ya no aparece\n"
+"                             en nuestra galería. Si tienes alguna duda, por favor\n"
+"                             escribe a amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8135,6 +8169,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Tu complemento aparece en la galería como experimental y\n"
+"                             los usuarios reciben actualizaciones automáticas. Algunas funciones\n"
+"                             aún no están disponibles."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -8147,6 +8184,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"Recibirás un correo cuando se finalice la revisión completa.\n"
+"                             Hasta entonces, se mostrará en la galería como\n"
+"                             experimental y los usuarios reciben actualizaciones automáticas.\n"
+"                             Algunas funciones aún no están disponibles."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8161,6 +8202,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Ahora, un editor tiene que revisar todos los complementos alojados en la\n"
+"                             galería. Si quieres seguir alojándolo, haz clic para\n"
+"                             seleccionar el proceso de revisión."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -13466,6 +13510,10 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Los complementos beta son versiones no revisadas de los últimos\n"
+"        avances del autor. Aunque los autores tienen distintos estándares \n"
+"        para medir la calidad del código beta, deberías asumir que es una \n"
+"        versión menos estable que las generales."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -13843,6 +13891,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"El desarrollo del proyecto Sunbird se detuvo y el último lanzamiento fue el "
+"30 de Marzo 2010.  Nos enorgullece haber alojado los complementos de Sunbird"
+" en la página, para como el proyecto ya no se mantiene, no ofrecemos más "
+"asistencia a los complementos."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -13940,6 +13992,18 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Ten en cuenta:</h2> <ul> <li> Escribe como si le contaras a un amigo tu "
+"experiencia con el complemento. Da detalles específicos y útiles, como lo "
+"que te gustó y lo que no, si es fácil usarlo y cualquier desventaja.  Evita "
+"el lenguaje genérico como \"Genial\" o \"Malo\", a menos que lo expliques "
+"bien. </li> <li> Te pedimos que no utilices informes de fallos. Los "
+"desarrolladores no podrán ver tu dirección de correo y puede que necesiten "
+"contactar contigo para ayudarte. Consulta la <a href=\"%(support)s\">sección"
+" de ayuda</a> para ver cómo obtener asistencia con el complemento. </li> "
+"<li>Las revisiones deben ser limpias, evita un lenguaje inapropiado y no "
+"publiques información personal. </li> </ul> <p>Consulta la <a "
+"href=\"%(guide)s\" target=\"_blank\">Guía de revisión</a> para saber más "
+"sobe las revisiones de los usuarios del complemento.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -14884,7 +14948,7 @@ msgstr "Ver sitio para dispositivos móviles"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Estado del sitio"
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15667,6 +15731,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Cambia la contraseña.  Si la has olvidado, puedes <a "
+"href=\"%(reset_url)s\">usar el formulario para restablecerla</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15689,6 +15755,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Cuéntanos un poco más sobre ti.  Todos los campos son opcionales, pero "
+"ayudarán a otros usuarios a conocerte mejor."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -15955,6 +16023,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"El enlace para restablecer la contraseña es inválido, quizás porque ya se ha"
+" usado.  Solicita uno nuevo, por favor."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -16212,6 +16282,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Lo sentimos, no se ha cancelado la suspcripción.  El enlace que "
+"seleccionaste es inválido. Pero puedes cancelar la suscripción en tu <a "
+"href=\"%(edit_url)s\">página de edición de perfil</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
