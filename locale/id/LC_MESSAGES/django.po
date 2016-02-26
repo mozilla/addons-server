@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 08:05+0000\n"
+"PO-Revision-Date: 2016-02-26 09:18+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1327,10 +1327,10 @@ msgid "Part of these Collections"
 msgstr "Bagian dari Koleksi"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Pengaya lain oleh %(author)s"
+msgstr[0] "Pengaya lain oleh penulis berikut"
 
 #: src/olympia/addons/templates/addons/impala/details.html:41
 #, python-format
@@ -2337,39 +2337,42 @@ msgstr "{addon} peringkat konten diubah menjadi Dewasa."
 
 #: src/olympia/amo/log.py:581
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "{addon} peringkat konten diubah."
 
 #: src/olympia/amo/log.py:586
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} tidak terdaftar."
 
 #: src/olympia/amo/log.py:592 src/olympia/amo/log.py:598
 #: src/olympia/amo/log.py:612 src/olympia/amo/log.py:618
 #: src/olympia/amo/log.py:624 src/olympia/amo/log.py:630
 #: src/olympia/amo/log.py:636
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} telah ditandatangani."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py:606
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Tidak diizinkan"
 
 #: src/olympia/amo/templates/amo/403.html:7
 msgid ""
 "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't "
 "allowed to.</p>"
 msgstr ""
+"<h1>Ups! Tidak diijinkan.</h1> <p>Anda mencoba melakukan sesuatu yang tidak "
+"diijinkan.</p>"
 
 #: src/olympia/amo/templates/amo/403.html:12
 msgid ""
 "<p>Try going back to the previous page, refreshing and then trying "
 "again.</p>"
 msgstr ""
+"<p>Cobalah kembali ke laman sebelumnya, segarkan dan kemudian coba lagi.</p>"
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -2421,15 +2424,18 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Ups!  Terjadi kesalahan.</h1> <p>Kami akan memperbaikinya segera.</p> "
+"<p> Anda bisa mencoba menyegarkan laman, atau kembali ke <a "
+"href=\"%(home)s\">beranda Pengaya</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Sebagian hak cipta dilindungi"
 
 #: src/olympia/amo/templates/amo/no_results.html:1
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:26
 msgid "No results found"
-msgstr ""
+msgstr "Tak ada hasil yang ditemukan"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:6
@@ -2472,19 +2478,23 @@ msgstr ""
 #: src/olympia/amo/templates/amo/read-only.html:3
 #: src/olympia/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Pemeliharaan sedang berlangsung"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please use your browser's Back button and try again a little later."
 msgstr ""
+"Fitur ini dimatikan sementara kami melakukan pemeliharaan situs. Gunakan "
+"tombol Kembali pada peramban anda dan coba lagi nanti."
 
 #: src/olympia/amo/templates/amo/read-only.html:14
 msgid ""
 "Some features on this page are temporarily disabled while we perform website"
 " maintenance. Please try again a little later."
 msgstr ""
+"Sejumlah fitur pada laman ini dimatikan sementara saat kami melakukan "
+"pemeliharaan. Silakan coba lagi nanti."
 
 #: src/olympia/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
@@ -2498,6 +2508,11 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p> Silakan masukkan <strong>semua kata</strong> di bawah, "
+"<strong>dipisahkan dengan spasi </strong>. </p> <p> Jika ini sulit dibaca, "
+"anda bisa <a href=\"#\" id=\"recaptcha_different\">mencoba kata lain</a> "
+"atau <a href=\"#\" id=\"recaptcha_audio\">dapat pula</a> mencoba tipe "
+"tantangan lain. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html:4
 #: src/olympia/amo/templates/amo/side_nav.html:12
@@ -2511,7 +2526,7 @@ msgstr "Peringkat Teratas"
 
 #: src/olympia/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "Jelajahi"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html:23
@@ -2526,7 +2541,7 @@ msgstr "Ekstensi"
 
 #: src/olympia/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Ingin lebih banyak penyesuaian? ? Cobalah <b>Tema Komplet</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html:56
 #: src/olympia/bandwagon/views.py:96
@@ -2537,7 +2552,7 @@ msgstr "Pengikut Terbanyak"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Koleksi yang Saya Buat"
 
 #: src/olympia/amo/templates/amo/site_nav.html:70
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:4
