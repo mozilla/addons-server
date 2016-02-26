@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 10:26+0000\n"
+"PO-Revision-Date: 2016-02-26 04:34+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2154,7 +2154,7 @@ msgstr "审核者向上呈报"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "视频存在问题，已从 {addon} 中移除。"
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
