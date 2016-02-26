@@ -16,7 +16,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     def fake_object(self, data):
-        """Create a fake instance of Webapp and related models from ES data."""
+        """Create a fake instance of Addon and related models from ES data."""
         obj = Addon(id=data.id, slug=data.slug)
 
         # Set base attributes that have the same name/format in ES and in the
