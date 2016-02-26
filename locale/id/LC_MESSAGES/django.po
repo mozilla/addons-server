@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 11:09+0000\n"
+"PO-Revision-Date: 2016-02-26 12:02+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3756,33 +3756,33 @@ msgstr "Tema Komplet Paling Populer"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Tema Komplet Berperingkat Tinggi"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Tema Komplet Terbaru"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Tema Komplet berdasarkan Nama"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Tema Komplet berdasarkan Unduhan Mingguan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Tema Komplet yang Baru-baru Ini Diperbarui"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Tema Komplet Yang Akan Datang"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html:44
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "Lihat seluruh %(cnt)s ekstensi di %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html:13
 #: src/olympia/compat/templates/compat/index.html:82
@@ -3796,26 +3796,26 @@ msgstr "Tidak ada hasil yang ditemukan."
 #: src/olympia/browse/templates/browse/personas/base.html:6
 #: src/olympia/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Tema"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html:15
 #: src/olympia/browse/templates/browse/personas/base.html:40
 #: src/olympia/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} Tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Lihat Profil"
 
 #: src/olympia/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Buatlah Tema Anda Sendiri"
 
 #: src/olympia/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Peramban anda, gaya anda! Hiaslah dengan desain kreasi anda!"
 
 #: src/olympia/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
@@ -3843,10 +3843,13 @@ msgid ""
 "Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start"
 " exploring</a>"
 msgstr ""
+"Lebih dari 300,000 desain untuk membuat peramban anda jadi personal! "
+"Gerakkan tetikus anda di atas Latar Tema untuk mencobanya. <a "
+"href=\"%(url)s\" class=\"more-info\">Mulailah menjelajah</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Ingin personalisasi lebih?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3857,10 +3860,13 @@ msgid ""
 "window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" "
 "class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Tema Komplet mentransformasi tampilan peramban anda dengan berbagai gaya "
+"untuk bingkai jendela, batang alamat, tombol, tab, dan menu. <a "
+"href=\"%(url)s\" class=\"more-info\">Mulailah menjelajah</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Tema Yang Akan Datang"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
@@ -3868,19 +3874,19 @@ msgstr "Tampilkan yang Akan Datang"
 
 #: src/olympia/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Tak ada tema yang ditemukan"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Tema yang mudah digunakan untuk Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Tema Lainnya"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Seluruh Tema"
 
 #: src/olympia/compat/forms.py:16
 msgid "All"
@@ -3888,15 +3894,15 @@ msgstr "Всі"
 
 #: src/olympia/compat/forms.py:22 src/olympia/search/views.py:525
 msgid "All Add-ons"
-msgstr ""
+msgstr "Semua Pengaya"
 
 #: src/olympia/compat/forms.py:23
 msgid "Binary"
-msgstr ""
+msgstr "Biner"
 
 #: src/olympia/compat/forms.py:24
 msgid "Non-binary"
-msgstr ""
+msgstr "Non-biner"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/compat/views.py:87 src/olympia/constants/base.py:388
@@ -3907,50 +3913,50 @@ msgstr "Lainnya"
 
 #: src/olympia/compat/templates/compat/index.html:4
 msgid "Add-on Compatibility Report for {app} {version}"
-msgstr ""
+msgstr "Laporan Kompatibilitas Pengaya untuk {app} {version}"
 
 #: src/olympia/compat/templates/compat/index.html:11
 msgid "{app} {version} Compatibility"
-msgstr ""
+msgstr "Kompatibilitas {app} {version}"
 
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "Kompatibilitas tertinggi 95%% dengan versi sebelumnya"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "Sebanyak 95%% dari seluruh pengaya"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
-msgstr ""
+msgstr "Seluruh pengaya yang aktif"
 
 #: src/olympia/compat/templates/compat/index.html:23
 #: src/olympia/constants/base.py:401
 msgid "App"
-msgstr ""
+msgstr "Aplikasi"
 
 #: src/olympia/compat/templates/compat/index.html:55
 msgid "Details for add-ons compatible with previous version:"
-msgstr ""
+msgstr "Rincian untuk pengaya yang kompatibel dengan versi sebelumnya:"
 
 #: src/olympia/compat/templates/compat/index.html:57
 msgid "Show all versions"
-msgstr ""
+msgstr "Tunjukkan semua versi"
 
 #: src/olympia/compat/templates/compat/index.html:59
 msgid "Details for add-ons compatible with all versions:"
-msgstr ""
+msgstr "Rincian untuk pengaya yang kompatibel dengan seluruh versi:"
 
 #: src/olympia/compat/templates/compat/index.html:61
 msgid "Show previous version only"
-msgstr ""
+msgstr "Tampilkan versi sebelumnya saja"
 
 #: src/olympia/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Laporan Kompatibilitas Pengaya"
 
 #: src/olympia/compat/templates/compat/reporter.html:11
 #: src/olympia/compat/templates/compat/reporter_detail.html:35
@@ -3961,48 +3967,55 @@ msgid ""
 "reports help us determine which add-ons will need help supporting an "
 "upcoming Firefox version. </p>"
 msgstr ""
+"<p> Laporan yang dikirimkan pada kami melalui <a href=\"%(url_)s\">Pelapor "
+"Kompatibilitas Pengaya</a> are dikumpulkan di sini oleh para pengembang "
+"untuk dilihat. Laporan-laporan ini membantu kami menentukan pengaya mana "
+"yang akan memerlukan bantuan dalam mendukung versi Firefox yang akan datang."
+" </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Laporan untuk Pengaya anda"
 
 #: src/olympia/compat/templates/compat/reporter.html:30
 #: src/olympia/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Pusat Kompatibilitas Pengaya"
 
 #: src/olympia/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
+"Masukkan GUID dari pengaya di bawah ini untuk menampilkan laporan manapun "
+"yang kami terima."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:3
 #: src/olympia/compat/templates/compat/reporter_detail.html:10
 #: src/olympia/compat/templates/compat/reporter_detail.html:25
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} Laporan Kompatibilitas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan keberhasilan"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} laporan persoalan"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:21
 #: src/olympia/users/templates/users/profile.html:70
 msgid "View all"
-msgstr ""
+msgstr "Tampilkan semua"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Sortir berdasarkan Aplikasi"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
-msgstr ""
+msgstr "Tipe Laporan"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:47
 #: src/olympia/devhub/forms.py:784
@@ -4013,7 +4026,7 @@ msgstr "Програма"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr ""
+msgstr "Membangun Aplikasi"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
@@ -4022,19 +4035,19 @@ msgstr "Платформа"
 #: src/olympia/compat/templates/compat/reporter_detail.html:50
 #: src/olympia/editors/templates/editors/themes/themes.html:40
 msgid "Submitted"
-msgstr ""
+msgstr "Dikirim"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
 msgid "Success"
-msgstr ""
+msgstr "Berhasil"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
-msgstr ""
+msgstr "Masalah"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
-msgstr ""
+msgstr "Tak ada laporan ditemukan."
 
 #: src/olympia/constants/applications.py:19
 msgid "Firefox"
@@ -4059,7 +4072,7 @@ msgstr "Seluler"
 
 #: src/olympia/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox untuk Android"
 
 #: src/olympia/constants/applications.py:139
 msgid "Mozilla"
@@ -4067,60 +4080,60 @@ msgstr "Mozilla"
 
 #: src/olympia/constants/applications.py:149
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: src/olympia/constants/base.py:25
 msgid "Incomplete"
-msgstr ""
+msgstr "Tidak lengkap"
 
 #: src/olympia/constants/base.py:26
 msgid "Awaiting Preliminary Review"
-msgstr ""
+msgstr "Menunggu Ulasan Pendahuluan"
 
 #: src/olympia/constants/base.py:27
 msgid "Awaiting Full Review"
-msgstr ""
+msgstr "Menunggu Ulasan Lengkap"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:49
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "Diulas Lengkap"
 
 #: src/olympia/constants/base.py:29 src/olympia/constants/base.py:50
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Dimatikan oleh Mozilla"
 
 #: src/olympia/constants/base.py:30 src/olympia/constants/base.py:52
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "Diulas Sebelumnya"
 
 #: src/olympia/constants/base.py:31
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr ""
+msgstr "Diulas Sebelumnya dan Menunggu Ulasan Lengkap"
 
 #: src/olympia/constants/base.py:33 src/olympia/editors/helpers.py:924
 #: src/olympia/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "Dihapus"
 
 #: src/olympia/constants/base.py:38
 msgid "Pending approval"
-msgstr ""
+msgstr "Penundaan persetujuan"
 
 #: src/olympia/constants/base.py:44
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Ditandai untuk ulasan lebih lanjut"
 
 #: src/olympia/constants/base.py:51
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: src/olympia/constants/base.py:123
 msgid "Full"
-msgstr ""
+msgstr "Penuh"
 
 #: src/olympia/constants/base.py:124
 msgid "Preliminary"
-msgstr ""
+msgstr "Pendahuluan"
 
 #: src/olympia/constants/base.py:135 src/olympia/users/notifications.py:157
 msgid "Developer"
@@ -4147,7 +4160,7 @@ msgstr "Ekstensi"
 
 #: src/olympia/constants/base.py:161
 msgid "Complete Theme"
-msgstr ""
+msgstr "Tema Komplet"
 
 #: src/olympia/constants/base.py:163
 msgid "Search Engine"
@@ -4159,7 +4172,7 @@ msgstr "Paket Bahasa (Aplikasi)"
 
 #: src/olympia/constants/base.py:165
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Paket Bahasa (Pengaya)"
 
 #: src/olympia/constants/base.py:166
 msgid "Plugin"
@@ -4185,7 +4198,7 @@ msgstr "Paket Bahasa (Aplikasi)"
 
 #: src/olympia/constants/base.py:178
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Paket Bahasa (Pengaya)"
 
 #: src/olympia/constants/base.py:179
 msgid "Plugins"
@@ -4193,27 +4206,27 @@ msgstr "Модулі"
 
 #: src/olympia/constants/base.py:271
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Hanya menanyakan ini pada laman profil pengembang dan pengaya"
 
 #: src/olympia/constants/base.py:272
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Tanyakan setelah pengguna mulai mengunduh pengaya ini"
 
 #: src/olympia/constants/base.py:273
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Tanyakan sebelum pengguna mulai mengunduh pengaya ini"
 
 #: src/olympia/constants/base.py:389
 msgid "Exception"
-msgstr ""
+msgstr "Pengecualian"
 
 #: src/olympia/constants/base.py:390
 msgid "Release"
-msgstr ""
+msgstr "Rilis"
 
 #: src/olympia/constants/base.py:391
 msgid "Change"
-msgstr ""
+msgstr "Ubah"
 
 #: src/olympia/constants/base.py:402
 msgid "Persona"
@@ -4221,7 +4234,7 @@ msgstr "Персона"
 
 #: src/olympia/constants/base.py:435
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Poin Pengulas Manual"
 
 #: src/olympia/constants/base.py:436
 msgid "Full Add-on Review"
