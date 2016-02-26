@@ -2,14 +2,13 @@
 from django.core.exceptions import ValidationError
 
 from mock import Mock
-from nose.tools import eq_
 from rest_framework.request import Request
 from rest_framework.serializers import Serializer
 from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
-from olympia.api.fields import (ESTranslationSerializerField,
-                                TranslationSerializerField)
+from olympia.api.fields import (
+    ESTranslationSerializerField, TranslationSerializerField)
 from olympia.amo.tests import TestCase
 from olympia.translations.models import Translation
 
@@ -39,42 +38,38 @@ class _TestTranslationSerializerField(object):
             'es': unicode(Translation.objects.get(id=self.addon.name.id,
                                                   locale='es')),
         }
-        eq_(result, expected)
+        assert result == expected
 
         result = field.field_to_native(self.addon, 'description')
         expected = {
             'en-US': Translation.objects.get(id=self.addon.description.id,
                                              locale='en-US'),
         }
-        eq_(result, expected)
+        assert result == expected
 
     def _test_expected_single_string(self, field):
         result = field.field_to_native(self.addon, 'name')
         expected = unicode(self.addon.name)
-        eq_(result, expected)
+        assert result == expected
 
         result = field.field_to_native(self.addon, 'description')
         expected = unicode(self.addon.description)
-        eq_(result, expected)
+        assert result == expected
 
     def test_from_native(self):
         data = u'Translatiön'
         field = self.field_class()
         result = field.from_native(data)
-        eq_(result, data)
+        assert result == data
 
+    def test_from_native_dict(self):
         data = {
             'fr': u'Non mais Allô quoi !',
             'en-US': u'No But Hello what!'
         }
         field = self.field_class()
         result = field.from_native(data)
-        eq_(result, data)
-
-        data = ['Bad Data']
-        field = self.field_class()
-        result = field.from_native(data)
-        eq_(result, unicode(data))
+        assert result == data
 
     def test_field_from_native_strip(self):
         data = {
@@ -83,7 +78,7 @@ class _TestTranslationSerializerField(object):
         }
         field = self.field_class()
         result = field.from_native(data)
-        eq_(result, {'fr': u'Non mais Allô quoi !', 'en-US': u''})
+        assert result == {'fr': u'Non mais Allô quoi !', 'en-US': u''}
 
     def test_wrong_locale_code(self):
         data = {
@@ -93,7 +88,7 @@ class _TestTranslationSerializerField(object):
         result = field.from_native(data)
         with self.assertRaises(ValidationError) as exc:
             field.validate(result)
-        eq_(exc.exception.message,
+        assert exc.exception.message == (
             u"The language code 'unknown-locale' is invalid.")
 
     def test_none_type_locale_is_allowed(self):
@@ -105,7 +100,7 @@ class _TestTranslationSerializerField(object):
         field = self.field_class()
         result = field.from_native(data)
         field.validate(result)
-        eq_(result, data)
+        assert result == data
 
     def test_field_to_native(self):
         field = self.field_class()
@@ -122,7 +117,7 @@ class _TestTranslationSerializerField(object):
             'es': unicode(Translation.objects.get(id=self.addon.name.id,
                                                   locale='es')),
         }
-        eq_(result, expected)
+        assert result == expected
 
     def test_field_to_native_empty_context(self):
         mock_serializer = Serializer()
@@ -157,7 +152,7 @@ class _TestTranslationSerializerField(object):
         # _expect_single_string() method simply tests with the current
         # language, whatever it is.
         request = Request(self.factory.get('/', {'lang': 'lol'}))
-        eq_(request.GET['lang'], 'lol')
+        assert request.GET['lang'] == 'lol'
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
@@ -168,9 +163,9 @@ class _TestTranslationSerializerField(object):
         field = self.field_class()
         self.addon = Addon()
         result = field.field_to_native(self.addon, 'name')
-        eq_(result, None)
+        assert result is None
         result = field.field_to_native(self.addon, 'description')
-        eq_(result, None)
+        assert result is None
 
 
 class TestESTranslationSerializerField(_TestTranslationSerializerField,
@@ -200,8 +195,8 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         ]
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
-        eq_(self.addon.foo_translations, {'testlang': 'teststring',
-                                          'testlang2': 'teststring2'})
+        assert self.addon.foo_translations == {
+            'testlang': 'teststring', 'testlang2': 'teststring2'}
 
     def test_attach_translations_target_name(self):
         # data mimics what the field will receive from elasticsearch_dsl
@@ -214,8 +209,8 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         self.addon = Addon()
         self.field_class().attach_translations(
             self.addon, data, 'foo', target_name='bar')
-        eq_(self.addon.bar_translations, {'testlang': 'teststring',
-                                          'testlang2': 'teststring2'})
+        assert self.addon.bar_translations, {
+            'testlang': 'teststring', 'testlang2': 'teststring2'}
 
     def test_attach_translations_missing_key(self):
         # data mimics what the field will receive from elasticsearch_dsl
@@ -224,25 +219,25 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         data.foo_translations = None
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
-        eq_(self.addon.foo_translations, {})
+        assert self.addon.foo_translations == {}
 
     def _test_expected_dict(self, field):
         result = field.field_to_native(self.addon, 'name')
         expected = self.addon.name_translations
-        eq_(result, expected)
+        assert result == expected
 
         result = field.field_to_native(self.addon, 'description')
         expected = self.addon.description_translations
-        eq_(result, expected)
+        assert result == expected
 
     def _test_expected_single_string(self, field):
         result = field.field_to_native(self.addon, 'name')
         expected = unicode(self.addon.name_translations['en-US'])
-        eq_(result, expected)
+        assert result == expected
 
         result = field.field_to_native(self.addon, 'description')
         expected = unicode(self.addon.description_translations['en-US'])
-        eq_(result, expected)
+        assert result == expected
 
     def test_field_to_native_source(self):
         self.addon.mymock = Mock()
@@ -251,14 +246,14 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         field = self.field_class(source='mymock.mymockedfield')
         result = field.field_to_native(self.addon, 'shouldbeignored')
         expected = self.addon.name_translations
-        eq_(result, expected)
+        assert result == expected
 
     def test_field_null(self):
         field = self.field_class()
         self.addon.name_translations = {}
         result = field.field_to_native(self.addon, 'name')
-        eq_(result, None)
+        assert result is None
 
         self.addon.description_translations = None
         result = field.field_to_native(self.addon, 'description')
-        eq_(result, None)
+        assert result is None

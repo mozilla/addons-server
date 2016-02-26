@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_
-
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, attach_categories, attach_tags, attach_translations)
@@ -29,7 +27,7 @@ class TestExtract(TestCase):
     def test_extract_attributes(self):
         extracted = self._extract()
         for attr in self.attrs:
-            eq_(extracted[attr], getattr(self.addon, attr))
+            assert extracted[attr] == getattr(self.addon, attr)
 
     def test_extract_translations(self):
         translations_name = {
@@ -47,11 +45,11 @@ class TestExtract(TestCase):
         self.addon.description = translations_description
         self.addon.save()
         extracted = self._extract()
-        eq_(extracted['name_translations'], [
+        assert extracted['name_translations'] == [
             {'lang': u'en-US', 'string': translations_name['en-US']},
             {'lang': u'es', 'string': translations_name['es']},
-        ])
-        eq_(extracted['description_translations'], [
+        ]
+        assert extracted['description_translations'] == [
             {'lang': u'en-US', 'string': translations_description['en-US']},
             {'lang': u'es', 'string': translations_description['es']},
-        ])
+        ]
