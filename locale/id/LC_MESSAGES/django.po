@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 01:55+0000\n"
+"PO-Revision-Date: 2016-02-26 02:21+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2227,19 +2227,19 @@ msgstr "{addon} dieskalasi karena tingginya jumlah laporan penyalahgunaan."
 
 #: src/olympia/amo/log.py:426
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Laporan Penyalahgunaan Tinggi"
 
 #: src/olympia/amo/log.py:433
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} dieskalasi oleh pengulas."
 
 #: src/olympia/amo/log.py:434
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Eskalasi pengulas"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Video dihilangkan dari {addon} karena ada masalah dengan video. "
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2247,19 +2247,19 @@ msgstr "Video dihapus"
 
 #: src/olympia/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} diulas ulang karena gawai baru ditambahkan."
 
 #: src/olympia/amo/log.py:450
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Gawai Ditambahkan"
 
 #: src/olympia/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} gawai mendukung perubahan manual oleh pengulas."
 
 #: src/olympia/amo/log.py:458
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Gawai Diubah oleh Pengulas"
 
 #: src/olympia/amo/log.py:475
 msgid "Created: {0}."
@@ -2267,7 +2267,7 @@ msgstr "Dibuat: {0}."
 
 #: src/olympia/amo/log.py:481
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Bidang yang disunting: {2} diatur jadi: {0}."
 
 #: src/olympia/amo/log.py:487
 msgid "Deleted: {1}."
