@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2015-06-19 17:57+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-02-26 04:10+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -5695,6 +5695,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"As informações sobre o seu complemento serão exibidas neste idioma,\n"
+"                        a não ser que você substitua-o com uma tradução específica.\n"
+"                        Isto só é útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5711,6 +5714,10 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu complemento tem uma outra página inicial, digite o\n"
+"                          endereço aqui. Se o seu site está localizado em outro\n"
+"                          idioma, múltiplas traduções podem ser\n"
+"                          adicionadas. Isto só é útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5915,6 +5922,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Usado em listas de complementos, como resultados de busca\n"
+"                            e complementos em destaque."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -6032,6 +6041,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Digite o seguinte texto para confirmar sua decisão:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -10360,7 +10371,7 @@ msgstr[1] "{0} complementos"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10443,7 +10454,7 @@ msgstr "Salvar"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Desempenho do editor de complementos"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -13440,6 +13451,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"O que significa quando um complemento é marcado como\n"
+"    lento?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
