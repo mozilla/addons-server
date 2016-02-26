@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 19:43+0000\n"
+"PO-Revision-Date: 2016-02-26 20:43+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5789,6 +5789,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Estas etiquetas são usadas para classificar os complementos. Isto só é\n"
+"                        válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5845,6 +5847,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Se selecionado, iremos tentar atualizar automaticamente o seu\n"
+"                        complemento quando uma nova versão do SDK for lançada.\n"
+"                        Isto só é válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -6241,6 +6246,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Vocẽ receberá um e-mail quando um editor revisá-lo. \n"
+"          Enquanto isso, você e seus amigos podem instalá-lo diretamente\n"
+"          da sua página de detalhes:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -8123,6 +8131,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"A listagem dos seus complementos está desativada e não será exibida\n"
+"                             em nenhuma de nossas galerias ou atualização de serviços."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8138,6 +8148,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
 msgstr ""
+"Você receberá um e-mail quando a revisão for concluída. Portanto,\n"
+"                             seu complemento não será listado em nossa galeria, mas você\n"
+"                             poderá acessá-lo diretamente em sua página de detalhes."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
@@ -8145,6 +8158,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Você receberá um e-mail quando a revisão for\n"
+"                             concluída e seu complemento for assinado."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -8152,18 +8167,25 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"Você receberá um e-mail quando a revisão for concluída. Enquanto\n"
+"                             isso, seu complemento não será lista em nossa galeria, mas você\n"
+"                             pode acessá-lo diretamente em sua página de detalhes. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Seu complemento será exibido em nossa galeria e os usuários\n"
+"                             receberão atualizações automáticas."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Seu complemento foi assinado e poderá ser empacotado com um\n"
+"                             instalador de aplicativo."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8171,6 +8193,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Seu complemento foi desativado por um administrador do site e não será\n"
+"                             mais exibido em nossa galeria. Se você tiver alguma dúvida,\n"
+"                             por favor, envie um e-mail para amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8226,7 +8251,7 @@ msgstr "Criação:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -10552,7 +10577,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Todas as revisões foram moderadas.  Bom trabalho!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13416,6 +13441,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Os complementos hospedados em nossa galeria são gratuitos, exceto quando houver uma indicação\n"
+"    clara do contrário."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
