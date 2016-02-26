@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 09:18+0000\n"
+"PO-Revision-Date: 2016-02-26 11:09+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2559,14 +2559,14 @@ msgstr "Koleksi yang Saya Buat"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:13
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:15
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Koleksi yang Saya Ikuti"
 
 #: src/olympia/amo/templates/amo/site_nav.html:73
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
 #: src/olympia/users/models.py:512
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Pengaya Fovorit Saya"
 
 #: src/olympia/amo/templates/amo/site_nav.html:78
 msgid "More&hellip;"
@@ -2591,11 +2591,13 @@ msgid ""
 "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a "
 "href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr ""
+"Laman <a href=\"%(current_pg_url)s\">%(current_pg)s</a> dari <a "
+"href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html:16
 #: src/olympia/amo/templates/amo/mobile/impala_paginator.html:6
 msgid "Jump to first page"
-msgstr ""
+msgstr "Menuju laman pertama"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html:22
 #: src/olympia/amo/templates/amo/mobile/impala_paginator.html:12
@@ -2603,11 +2605,11 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/addons/detail.html:38
 #: src/olympia/stats/templates/stats/stats.html:164
 msgid "Previous"
-msgstr "Попередній"
+msgstr "Sebelumnya"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Menuju laman terakhir"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2619,6 +2621,7 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
+"Menampilkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> dari <b>%(count)s</b>"
 
 #: src/olympia/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
@@ -2631,6 +2634,8 @@ msgid ""
 "If you are not prompted to install %(addon_name)s in a moment, please <a "
 "href=\"%(addon_xpi)s\">click here</a>."
 msgstr ""
+"Jika anda tidak dianjurkan untuk memasang %(addon_name)s dalam waktu dekat, "
+"silakan <a href=\"%(addon_xpi)s\">klik di sini</a>."
 
 #: src/olympia/amo/tests/test_messages.py:57
 #: src/olympia/amo/tests/test_messages.py:58 src/olympia/reviews/forms.py:25
@@ -2643,19 +2648,19 @@ msgstr "Judul"
 #: src/olympia/amo/tests/test_messages.py:57
 #: src/olympia/amo/tests/test_messages.py:58
 msgid "Body"
-msgstr ""
+msgstr "Badan"
 
 #: src/olympia/amo/tests/test_messages.py:59
 msgid "Another Title"
-msgstr ""
+msgstr "Judul Lain"
 
 #: src/olympia/amo/tests/test_messages.py:59
 msgid "Another Body"
-msgstr ""
+msgstr "Badan Lain"
 
 #: src/olympia/api/views.py:255
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Belum diimplementasikan."
 
 #: src/olympia/applications/views.py:39
 #: src/olympia/applications/templates/applications/appversions.html:3
@@ -2664,7 +2669,7 @@ msgstr "Versi Aplikasi"
 
 #: src/olympia/applications/views.py:45
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Versi yang diterima untuk seluruh aplikasi di AMO."
 
 #: src/olympia/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
@@ -2676,6 +2681,10 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Pengaya yang didaftarkan ke Pengaya Mozilla harus memiliki sebuah berkas "
+"keterangan dengan sekurangnya satu dari aplikasi di bawah ini yang didukung."
+" Hanya versi yang tercantum di bawah ini yang diperkenankan untuk aplikasi "
+"ini."
 
 #: src/olympia/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -2698,12 +2707,15 @@ msgid ""
 "must include one with the required properties as specified <a "
 "href=\"%(url)s\">here</a>."
 msgstr ""
+"Jika aplikasi anda yang didukung tidak memerlukan berkas keterangan, anda "
+"masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana "
+"dijelaskan <a href=\"%(url)s\">di sini</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:44
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Koleksi :: %s"
 
 #: src/olympia/bandwagon/feeds.py:50
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:137
@@ -2716,31 +2728,31 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Koleksi :: {1}"
 
 #: src/olympia/bandwagon/forms.py:21
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Hanya saya yang bisa melihat koleksi ini."
 
 #: src/olympia/bandwagon/forms.py:22
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Siapapun bisa melihat koleksi ini."
 
 #: src/olympia/bandwagon/forms.py:123
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Beri koleksi anda nama."
 
 #: src/olympia/bandwagon/forms.py:125
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py:127
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Terangkan koleksi anda (tak ada tautan yang diperkenankan)."
 
 #: src/olympia/bandwagon/forms.py:132
 msgid "Privacy:"
-msgstr ""
+msgstr "Privasi:"
 
 #: src/olympia/bandwagon/forms.py:137
 msgid "Icon"
@@ -2748,7 +2760,7 @@ msgstr "Ikon"
 
 #: src/olympia/bandwagon/forms.py:143
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Mohon jangan isi bidang ini, ia hanya digunakan untuk menangkap bot"
 
 #: src/olympia/bandwagon/forms.py:167
 msgid "This name cannot be used."
@@ -2816,7 +2828,7 @@ msgstr "Nama"
 
 #: src/olympia/bandwagon/views.py:100
 msgid "Recently Popular"
-msgstr ""
+msgstr "Baru-baru ini Populer"
 
 #: src/olympia/bandwagon/views.py:189
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:18
@@ -2837,6 +2849,8 @@ msgid ""
 "Your new collection is shown below. You can <ahref=\"%(url)s\">edit "
 "additional settings</a> if you'dlike."
 msgstr ""
+"Koleksi baru anda ditampilkan di bawah ini. Anda dapat "
+"<ahref=\"%(url)s\">menyunting pengaturan tambahan</a> jika anda inginkan."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -2939,7 +2953,7 @@ msgstr "Tentang Koleksi Ini"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Pengaya yang disinkronkan ke Firefox bergerak"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
@@ -3014,6 +3028,11 @@ msgid ""
 "everyone can see it. If you would like to hide it from public view, click "
 "the button below to make it private."
 msgstr ""
+"Pengaya yang anda tandai sebagai favorit menggunakan fitur <b>Tambahkan ke "
+"Favorit</b> yang muncul di bawah ini. Koleksi ini saat ini diatur "
+"<b>umum</b>, yang berarti semua bisa melihatnya. Jika anda ingin "
+"menyembunyikannya dari pandangan publik, klik tombol di bawah ini untuk "
+"membuatnya privat."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
@@ -3022,22 +3041,27 @@ msgid ""
 " you can see it.  If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Pengaya yang anda tandai sebagai favorit menggunakan fitur <b>Tambahkan ke "
+"Favorit</b> yang muncul di bawah ini. Koleksi ini sedang ditampilkan sebagai"
+" <b>privat</b>, artinya hanya anda yang dapat melihatnya.  Jika anda ingin "
+"semua orang bisa melihat pengaya favorit anda, klik tombol di bawah ini "
+"untuk menjadikannya publik."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Pengaya favorit saya"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html:25
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
+msgstr[0] "<span>%(addons)s</span> pengaya"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html:32
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> pengikut"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3049,7 +3073,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut mingguan"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3058,7 +3082,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut bulanan"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3070,7 +3094,7 @@ msgstr[0] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
+msgstr[0] "%(num)s pengikut"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3088,17 +3112,17 @@ msgstr "Berhenti Mengikuti"
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html:7
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:53
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ikuti Koleksi ini"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Sunting Koleksi ini"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html:4
 #: src/olympia/bandwagon/templates/bandwagon/delete.html:15
 msgid "Delete {0}"
-msgstr ""
+msgstr "Hapus {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html:13
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:14
@@ -3147,7 +3171,7 @@ msgstr "Deskripsi"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html:39
 msgid "Contributors & More"
-msgstr ""
+msgstr "Kontributor & Lainnya"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html:54
 #: src/olympia/bandwagon/templates/bandwagon/edit.html:67
@@ -3180,11 +3204,11 @@ msgstr "Pemilik"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:14
 msgid "Make Owner"
-msgstr ""
+msgstr "Dijadikan Pemilik"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:18
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Menghapus pengguna ini sebagai kontributor"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:18
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:43
@@ -3196,7 +3220,7 @@ msgstr "Hapus"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:24
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Koleksi Kontributor"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
@@ -3205,16 +3229,21 @@ msgid ""
 "description.  To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Anda bisa menambahkan kontributor di koleksi ini.  Seorang kontributor bisa "
+"menambah dan menghapus pengaya dari koleksi ini, namun tidak dapat mengubah "
+"nama atau deskripsinya.  Untuk menambahkan seorang kontributor, masukkan "
+"alamat surel mereka ke dalam kotak di bawah ini. Kontributor harus memiliki "
+"akun Pengaya Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:41
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:20
 #: src/olympia/users/templates/users/delete.html:49
 msgid "Email"
-msgstr ""
+msgstr "Surel"
 
 # Column name in a table.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:42
@@ -3223,15 +3252,15 @@ msgstr "Peran"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:51
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Masukkan alamat surel kontributor untuk ditambahkan"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:53
 msgid "Add Contributor"
-msgstr ""
+msgstr "Tambahkan Kontributor"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:60
 msgid "Contributor"
-msgstr ""
+msgstr "Kontributor"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -3243,6 +3272,9 @@ msgid ""
 " be able to edit it. You will only be able to add and remove add-ons from "
 "it."
 msgstr ""
+"<b>Awas:</b> dengan mengubah pemilik koleksi ini, anda tidak akan bisa lagi "
+"menyuntingnya. Anda hanya akan bisa menambahkan atau menghapuskan pengaya "
+"dari situ."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:83
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:157
@@ -3262,12 +3294,12 @@ msgstr "Lanjut"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:84
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"change-owner-cancel\" href=\"#\">Batalkan</a>"
 
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:7
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Koleksi oleh {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:31
 msgid "No collections found."
@@ -3275,23 +3307,23 @@ msgstr "Tidak ada koleksi ditemukan."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:6
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Koleksi yang Paling Banyak Diikuti"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:7
 msgid "Newest Collections"
-msgstr ""
+msgstr "Koleksi Terbaru"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:8
 msgid "Collections by Name"
-msgstr ""
+msgstr "Koleksi Berdasarkan Nama"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:9
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Koleksi yang Baru Saja Diperbarui"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:10
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Koleksi Populer Baru-baru Ini"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:28
 #, python-format
@@ -3308,17 +3340,17 @@ msgstr ""
 #: src/olympia/browse/templates/browse/extensions.html:13
 #: src/olympia/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "Berlangganan"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "Mengikuti"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "Membuat Koleksi"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
@@ -3331,23 +3363,23 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:42
 msgid "Collection Icon"
-msgstr ""
+msgstr "Ikon Koleksi"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:44
 msgid "Reset"
-msgstr ""
+msgstr "Setel Ulang"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG dan JPG didukung.  Gambar akan diubah ukurannya menjadi 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Ada sejumlah kesalahan dalam formulir ini.  Silakan memperbaikinya."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Pengaya dalam Koleksi Anda"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
@@ -3355,16 +3387,20 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Untuk memasukkan sebuah pengaya dalam koleksi ini, masukkan namanya dalam "
+"kotak di bawah ini dan tekan masuk.  Anda bisa juga menggunakan tautan "
+"<strong>Tambahkan ke Koleksi</strong> di seluruh situs ini untuk memasukkan "
+"pengaya nanti."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
 #: src/olympia/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
-msgstr ""
+msgstr "Pengaya"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Masukkan nama pengaya untuk disertakan"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:28
 msgid "Add to Collection"
@@ -3373,63 +3409,68 @@ msgstr "Tambahkan ke Koleksi"
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 #: src/olympia/editors/helpers.py:936 src/olympia/editors/helpers.py:956
 msgid "Pending"
-msgstr ""
+msgstr "Ditunda"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:47
 msgid "Add a comment"
-msgstr ""
+msgstr "Tambahkan komentar"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:48
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Hapus pengaya ini dari koleksi"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "KOLEKSI"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Kelompok pengaya yang berkaitan yang bisa dibuat siapa saja."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:3
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:3
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Pengaya yang Diblokir"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:8
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr ""
+msgstr "Daftar Blokir"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> telah diblokir untuk melindungi anda."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Mengapa pengaya ini diblokir?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "Siapa yang terpengaruh?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "Apakah maksudnya?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:22
 msgid ""
 "Users are strongly encouraged to disable the problematic add-on or plugin, "
 "but may choose to continue using it if they accept the risks described."
 msgstr ""
+"Pengguna disarankan untuk mematikan pengaya atau plugin yang bermasalah, "
+"tapi bisa memilih untuk melanjutkan menggunakannya jika mereka menerima "
+"resiko yang dijelaskan."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:27
 msgid ""
 "The problematic add-on or plugin will be automatically disabled and no "
 "longer usable."
 msgstr ""
+"Pengaya atau plugin yang bermasalah akan secara otomatis dimatikan dan tidak"
+" bisa digunakan lagi."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:33
 #, python-format
@@ -3440,11 +3481,19 @@ msgid ""
 "software may be blocked from general use.  For more information, please read"
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Saat Mozilla menyadari keberadaan pengaya, plugin atau perangkat lunak pihak"
+" ketiga lainnya yang sungguh-sungguh membahayakan %(app)s keamanan, "
+"stabilitas, atau performa dan memenuhi <a href=\"%(criteria)s\">sejumlah "
+"kriteria</a>, perangkat lunak tersebut akan diblokir dari penggunaan umum.  "
+"Untuk keterangan lebih lanjut, silakan baca <a href=\"%(support)s\">artikel "
+"pendukung ini</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
 msgstr ""
+"Diblokir pada %(date)s. <a href=\"%(link)s\">Tampilkan permintaan "
+"blokir</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:48
 #, python-format
@@ -3456,6 +3505,8 @@ msgid ""
 "The following software is known to cause serious security, stability, or "
 "performance issues with {app}."
 msgstr ""
+"Perangkat lunak berikut ini diketahui menyebabkan persoalan serius terkait "
+"keamanan, stabilitas dan performa {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:76 src/olympia/browse/feeds.py:98
@@ -3467,7 +3518,7 @@ msgstr "%s Pengaya"
 #: src/olympia/browse/feeds.py:113
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s Tema"
 
 #: src/olympia/browse/feeds.py:129
 #, python-format
@@ -3480,25 +3531,27 @@ msgstr "Pengaya Unggulan:: %s"
 msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing %s."
 msgstr ""
+"Ini adalah sejumlah pengaya favorit kami untuk membantu anda mulai "
+"menyesuaikan %s."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:157
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Perangkat pencarian terkait dengan %s"
 
 #: src/olympia/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Perangkat pencarian dan ekstensi terkait pencarian"
 
 #: src/olympia/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Perangkat pencarian"
 
 #: src/olympia/browse/views.py:55 src/olympia/browse/views.py:65
 #: src/olympia/search/forms.py:85
 msgid "Most Users"
-msgstr ""
+msgstr "Sebagian Besar Pengguna"
 
 #: src/olympia/browse/views.py:61 src/olympia/browse/views.py:72
 #: src/olympia/browse/views.py:279
@@ -3546,6 +3599,8 @@ msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing "
 "%(app)s."
 msgstr ""
+"Ini adalah sejumlah pengaya favorit kami untuk membantu anda mulai "
+"menyesuaikan %(app)s."
 
 #: src/olympia/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
@@ -3565,11 +3620,11 @@ msgstr "Unduh Paket Bahasa"
 
 #: src/olympia/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "Tersedia dalam logat anda"
 
 #: src/olympia/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Daftar paket bahasa dan kamus yang tersedia dalam logat anda."
 
 #: src/olympia/browse/templates/browse/language_tools.html:41
 #: src/olympia/browse/templates/browse/language_tools.html:63
@@ -3589,7 +3644,7 @@ msgstr "Paket Bahasa"
 
 #: src/olympia/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Seluruh logat"
 
 #: src/olympia/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
@@ -3598,7 +3653,7 @@ msgstr "Daftar paket bahasa dan kamus."
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html:8
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Perangkat Pencarian"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html:39
@@ -3609,19 +3664,19 @@ msgstr[0] "<b>{0}</b> додаток"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "Pencarian Ekstensi"
 
 #: src/olympia/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Tambahkan fungsi terkait pencarian pada Firefox"
 
 #: src/olympia/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "Penyedia Pencarian"
 
 #: src/olympia/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Temukan penyedia baru untuk batang pencarian anda"
 
 #: src/olympia/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
@@ -3633,12 +3688,17 @@ msgid ""
 "Learn more about the <a "
 "href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
 msgstr ""
+"Pelajari lebih lanjut mengenai <a "
+"href=\"http://support.mozilla.com/kb/Search+bar\">batang pencarian</a> di "
+"{0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html:94
 msgid ""
 "Browse through even more search providers at <a "
 "href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 msgstr ""
+"Jelajahi lebih banyak penyedia pencarian di <a "
+"href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html:95
 msgid ""
@@ -3646,50 +3706,53 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a "
+"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Buat"
+" sendiri</a> perangkat pencarian anda"
 
 #: src/olympia/browse/templates/browse/themes.html:6
 #: src/olympia/browse/templates/browse/themes.html:9
 #: src/olympia/constants/base.py:174
 msgid "Complete Themes"
-msgstr ""
+msgstr "Tema Komplet"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Ekstensi Paling Populer"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Ekstensi Berperingkat Tinggi"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Ekstensi Terbaru"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Ekstensi berdasarkan Nama"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Ekstensi berdasarkan Unduhan Mingguan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Ekstensi yang Baru-baru ini Diperbarui"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Ekstensi Yang Akan Datang"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Tema Komplet Unggulan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Tema Komplet Paling Populer"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
@@ -5924,60 +5987,74 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr ""
+"Berikan rincian lebih lanjut dengan <a href=\"{0}\">menyunting "
+"daftarnya</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:35
 msgid ""
 "Tell your users why you created this in your <a href=\"{0}\">Developer "
 "Profile</a>."
 msgstr ""
+"Sampaikan pada pengguna mengapa anda membuat pengaya ini dalam <a "
+"href=\"{0}\">Profil Pengembang</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:36
 msgid ""
 "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to "
 "stay updated on reviews, collections, and more."
 msgstr ""
+"Lihat dan berlangganan penyedia aktivitas <a href=\"{0}\">pengaya anda</a> "
+"untuk mendapatkan informasi ulasan, koleksi dan lebih banyak lagi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:37
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:86
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr ""
+msgstr "Tampilkan perkiraan waktu tunggu <a href=\"{0}\">antrian ulasan</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Maju dalam Antrian Ulasan!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Jadilah Pengulas AMO hari ini dan pengaya anda akan diulas lebih cepat."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
 "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di "
+"sini:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Pengaya anda telah didaftarkan ke antrian Ulasan Pendahuluan Tak Terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+msgstr "Pengaya anda telah didaftarkan ke antrian Ulasan Penuh Tak Terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Anda akan menerima sebuah surel saat pengaya telah diulas oleh seorang "
+"penyunting dan diteken."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "Pengaya anda tidak akan tersedia untuk publik di situs ini."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:84
 msgid ""
 "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's "
 "developer page</a>."
 msgstr ""
+"Anda bisa mengunggah versi terbaru pengaya anda di <a href=\"{0}\">laman "
+"pengembang pengaya</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
