@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 04:10+0000\n"
+"PO-Revision-Date: 2016-02-26 19:43+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5697,7 +5697,7 @@ msgid ""
 msgstr ""
 "As informações sobre o seu complemento serão exibidas neste idioma,\n"
 "                        a não ser que você substitua-o com uma tradução específica.\n"
-"                        Isto só é útil para complementos listados."
+"                        Isto só é válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5717,7 +5717,7 @@ msgstr ""
 "Se o seu complemento tem uma outra página inicial, digite o\n"
 "                          endereço aqui. Se o seu site está localizado em outro\n"
 "                          idioma, múltiplas traduções podem ser\n"
-"                          adicionadas. Isto só é útil para complementos listados."
+"                          adicionadas. Isto só é válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5740,6 +5740,11 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Se você desejar exibir um endereço de e-mail para suporte\n"
+"                          digite-o aqui. Se você tiver endereços de e-mail\n"
+"                          diferentes para cada idioma, pode adicioná-los\n"
+"                          neste campo. Isto só é válido para\n"
+"                          complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5748,6 +5753,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu complemento tem um site de suporte ou fórum, insira\n"
+"                          o endereço aqui. Se o seu site está localizado em\n"
+"                          outros idiomas, pode-se adicionar as traduções\n"
+"                          neste campo. Só é válido para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -10003,7 +10012,7 @@ msgstr "Isto rejeitará o complemento e o removerá da fila de análises."
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Deixe um comentário para esta versão.  O autor não poderá lê-lo."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -13650,7 +13659,7 @@ msgstr "Que recursos você gostou ou não gostou?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
-msgstr "Ele foi útil?"
+msgstr "Foi útil?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
@@ -15947,6 +15956,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"O link de redefinição de senha é inválido, provavelmente já foi utilizado.  "
+"Por favor solicite um novo link de redefinição de senha."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
