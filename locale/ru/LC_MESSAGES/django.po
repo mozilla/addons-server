@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-18 19:03+0000\n"
+"PO-Revision-Date: 2016-02-26 21:56+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -653,7 +653,7 @@ msgstr "Версия {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Здесь нечего смотреть!  Разработчик не добавил никаких деталей."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -1113,6 +1113,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Хотите установить {0} в ваш мобильный Firefox?  Отсканируйте этот QR-код для установки прямо\n"
+"  в свой телефон.  (Вам понадобится QR-ридер.  Поищите в магазине приложений вашего телефона, если\n"
+"  у вас его нет.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -1252,7 +1255,7 @@ msgid "Show the developer's reply to this review"
 msgstr "Показать ответ разработчика на этот отзыв"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Просмотреть все отзывы на это дополнение"
@@ -1344,7 +1347,7 @@ msgid "Part of these Collections"
 msgstr "Часть этих подборок"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Другие дополнения от %(author)s"
@@ -1577,11 +1580,11 @@ msgid "translate"
 msgstr "перевести"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Просмотреть все отзывы пользователей"
-msgstr[1] "Просмотреть все %(cnt)s отзыва пользователей"
+msgstr[0] ""
+msgstr[1] ""
 msgstr[2] "Просмотреть все %(cnt)s отзывов пользователей"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
@@ -2271,7 +2274,7 @@ msgstr "Эскалация проверки"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Видео удалено из {addon} из-за проблемы с видео. "
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2457,6 +2460,9 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Ой!  У нас ошибка.</h1> <p>Мы скоро это починим.</p> <p> Попробуйте "
+"обновить страницу или вернуться на <a href=\"%(home)s\">домашнюю страницу "
+"дополнений</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2880,6 +2886,8 @@ msgid ""
 "Your new collection is shown below. You can <ahref=\"%(url)s\">edit "
 "additional settings</a> if you'dlike."
 msgstr ""
+"Ваша новая подборка показана ниже. Если хотите, вы можете <a "
+"href=\"%(url)s\">изменить дополнительные настройки</a>."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -3409,11 +3417,11 @@ msgstr "Сбросить"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Поддерживаются PNG и JPG. Изображения должны быть размером 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "В этой форме есть ошибки.  Пожалуйста, исправьте их."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -4744,6 +4752,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Вы не можете удалить файл после начала процесса проверки.  Вы должны удалить"
+" версию целиком."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -10235,7 +10245,7 @@ msgstr[2] "{0} дополнений"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10406,7 +10416,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Все отзывы проверены.  Хорошая работа!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13787,7 +13797,7 @@ msgid "This review is for a previous version of the add-on ({0})."
 msgstr "Это отзыв для предыдущей версии этого дополнения ({0})."
 
 #: src/olympia/reviews/templates/reviews/review.html:56
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
 "add-on."
@@ -13795,11 +13805,7 @@ msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
 msgstr[0] ""
-"Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">отзыв</a> на"
-" это дополнение."
 msgstr[1] ""
-"Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">%(cnt)s "
-"отзыва</a> на это дополнение."
 msgstr[2] ""
 "Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">%(cnt)s "
 "отзывов</a> на это дополнение."
@@ -13934,7 +13940,7 @@ msgid "Read More&nbsp;&raquo;"
 msgstr "Подробнее&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html:7
-#, fuzzy, python-format
+#, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Просмотреть все отзывы"
@@ -14705,7 +14711,7 @@ msgstr "Посетите мобильный сайт"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Статус сайта "
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15493,6 +15499,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Измените ваш пароль.  Если вы забыли свой ​​пароль, вы можете <a "
+"href=\"%(reset_url)s\">использовать форму сброса</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15515,6 +15523,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Сообщите немного больше информации о себе.  Все эти поля являются "
+"необязательными, но они помогут другим пользователям лучше узнать вас."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -15781,6 +15791,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Ссылка на сброс пароля неверна, вероятно потому, что она уже была "
+"использована.  Пожалуйста, запросите новый сброс пароля."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
