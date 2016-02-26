@@ -25,7 +25,7 @@
             {# L10n: {0} is the number of users. #}
             {{ ngettext("<strong>{0}</strong> user",
                         "<strong>{0}</strong> users",
-                        addon.persona.popularity)|f(addon.persona.popularity|numberfmt)|safe }}
+                        addon.persona.popularity)|fe(addon.persona.popularity|numberfmt) }}
           </span>
         {% elif extra == 'rating' %}
           {# TODO(jbalogh): call this rating when remora is gone. #}
@@ -64,7 +64,7 @@
           <p>
             {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
             {% set dt = _('%%Y-%%m-%%d') %}
-            {{ _('by {0} on {1}')|f(users_list(addon.listed_authors)|safe or persona.display_username|safe,
+            {{ _('by {0} on {1}')|fe(users_list(addon.listed_authors)|safe or persona.display_username|safe,
                                     addon.created|datetime(dt)) }}
           </p>
           {% if addon.total_reviews %}
@@ -75,7 +75,7 @@
             <span>{{ _('Not yet rated') }}</span>
           {% endif %}
           <span class="users">
-            {{ _('<b>{0}</b> users')|f(addon.persona.popularity|numberfmt) }}
+            {{ _('<b>{0}</b> users')|fe(addon.persona.popularity|numberfmt) }}
           </span>
         </div>
       {% endif %}

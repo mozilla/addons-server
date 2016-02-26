@@ -93,6 +93,60 @@ def test_page_title_markup():
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
+def test_template_escaping():
+    """Test that tests various formatting scenarios we're using in our
+    templates and makes sure they're working as expected.
+    """
+    # Simple HTML in a translatable string
+    expected = '<a href="...">This is a test</a>'
+    assert render('{{ _(\'<a href="...">This is a test</a>\') }}') == expected
+
+    # Simple HTML in a translatable string, with |fe works as expected
+    expected = '<a href="...">This is a test</a>'
+    original = '{{ _(\'<a href="...">{0}</a>\')|fe(\'This is a test\') }}'
+    assert render(original) == expected
+
+    # |f does not mark the resulting string as "safe" thus autoescaping
+    # set's in
+    expected = '&lt;a href=&#34;...&#34;&gt;This is a test&lt;/a&gt;'
+    original = '{{ _(\'<a href="...">{0}</a>\')|f(\'This is a test\') }}'
+    assert render(original) == expected
+
+    # if an explicit |safe before |f is applied the output is still unsafe
+    # and will be autoescaped. Use |fe for that.
+    expected = '&lt;a href=&#34;...&#34;&gt;This is a test&lt;/a&gt;'
+    original = '{{ _(\'<a href="...">{0}</a>\')|safe|f(\'This is a test\') }}'
+    assert render(original) == expected
+
+    # |safe after the |f marks the whole formatted string as safe though
+    # and autoescaping won't be applied anymore.
+    # Please note that this does not escape the arguments of |f!
+    expected = '<a href="...">This is a test</a>'
+    original = '{{ _(\'<a href="...">{0}</a>\')|f(\'This is a test\')|safe }}'
+    assert render(original) == expected
+
+    # Various tests for gettext related helpers and make sure they work
+    # properly just as `_()` does.
+    expected = '<b>5 users</b>'
+    assert render(
+        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)|fe(5) }}'
+    ) == expected
+
+    # You could also mark the whole output as |safe but note that this
+    # does not escape the arguments of |f!
+    expected = '<b>5 users</b>'
+    assert render(
+        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
+        '|f(5)|safe }}'
+    ) == expected
+
+    # and now only with |f it get's escaped again
+    expected = '&lt;b&gt;5 users&lt;/b&gt;'
+    assert render(
+        '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)|f(5) }}'
+    ) == expected
+
+
 class TestBreadcrumbs(amo.tests.BaseTestCase):
 
     def setUp(self):
