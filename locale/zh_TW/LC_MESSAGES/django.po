@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 03:08+0000\n"
+"PO-Revision-Date: 2016-02-26 12:36+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5664,7 +5664,7 @@ msgstr "刪除附加元件後將會將其自網站永久移除，並防止相容
 msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
-msgstr ""
+msgstr "請輸入下列文字作為確認: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
