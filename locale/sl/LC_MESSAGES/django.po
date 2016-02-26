@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 11:19+0000\n"
+"PO-Revision-Date: 2016-02-26 16:29+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3094,6 +3094,11 @@ msgid ""
 " you can see it.  If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Dodatke, ki jih označite kot priljubljene z značilnostjo <b>Dodaj k "
+"priljubljenim</b>, se bodo pojavili spodaj.  Ta zbirka je trenutno "
+"<b>zasebna</b>, kar pomeni, da jo lahko vidite samo vi.  Če bi želeli, da "
+"vsi vidijo vaše priljubljene, kliknite na spodnji gumb, da jo naredite "
+"javno."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -3292,6 +3297,10 @@ msgid ""
 "description.  To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Tej zbirki lahko dodate več oseb, ki lahko prispevajo dodatke.  Oseba lahko "
+"dodaja ali odstranjuje dodatke iz te zbirke, vendar ne more spreminjati "
+"imena ali opisa.  Za dodajanje osebe vnesite njeno/njegovo e-pošto v spodnje"
+" polje.  Osebe morajo imeti račun Dodatkov Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -3428,11 +3437,11 @@ msgstr "Ponastavi"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Podprta sta PNG in JPG.  Velikost slike bo spremenjena na 32 x 32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Ta obrazec vsebuje napake.  Popravite jih spodaj."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -3444,6 +3453,9 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Za vključitev dodatka v to zbirko v spodnje polje vnesite njegovo ime in "
+"pritisnite Enter.  Za kasnejše vključevanje dodatkov lahko uporabite tudi "
+"povezave <strong>Dodaj k zbirki</strong>."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
@@ -3535,6 +3547,10 @@ msgid ""
 "software may be blocked from general use.  For more information, please read"
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Ko Mozilla naleti na dodatke, vtičnike ali programsko opremo tretjih oseb, "
+"ki resno ogrožajo %(app)s varnost, stabilnost ali zmogljivost in ustrezajo "
+"<a href=\"%(criteria)s\">določenim merilom</a>, jo Mozilla lahko zavrne.  Za"
+" več podatkov preberite <a href=\"%(support)s\">članek podpore</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -3974,12 +3990,12 @@ msgstr "Združljivost {app} {version}"
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "Vrhnjih 95 %% je združljivih s prejšnjo različico"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "Vrhnjih 95 %% vseh dodatkov"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -4547,7 +4563,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Jedro"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -4759,6 +4775,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Ko se je postopek pregleda enkrat začel, datoteke ni mogoče izbrisati.  "
+"Morate izbrisati celotno različico."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -5543,6 +5561,10 @@ msgid ""
 "                          listings, as well as at the top of your add-on's\n"
 "                          details page. It is only relevant for listed add-ons."
 msgstr ""
+"Kratek opis osnovnega delovanja vašega\n"
+"                          dodatka, ki je prikazan na seznamu iskanja in\n"
+"                          brskanja kot tudi na vrhu strani s podrobnostmi\n"
+"                          dodatka.  To velja samo za dodatke na seznamu."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5550,6 +5572,10 @@ msgid ""
 "                        Choose any that fit your add-on's functionality for the most\n"
 "                        exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategorije so glavni način brskanja uporabnikov po dodatkih.\n"
+"                        Izberite vse, ki ustrezajo funkcionalnosti vašega dodatka,\n"
+"                        da ga kar najbolje izpostavite.  To velja samo za navedene\n"
+"                        dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
@@ -5570,6 +5596,10 @@ msgid ""
 "                        may have a maximum of {0} tags. It is only relevant\n"
 "                        for listed add-ons."
 msgstr ""
+"Oznake uporabnikom pomagajo najti vaš dodatek in morajo\n"
+"                        biti kratki opisi, kot so zavihki, orodna vrstica ali\n"
+"                        twitter.  Imate lahko največ {0} oznak.  To velja samo\n"
+"                        za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:129
 #: src/olympia/devhub/templates/devhub/personas/edit.html:97
@@ -5610,6 +5640,10 @@ msgid ""
 "                          field is only displayed on the add-on's details\n"
 "                          page. It is only relevant for listed add-ons."
 msgstr ""
+"Daljši opis značilnosti, delovanja\n"
+"                          in drugi pomembni podatki.  To polje je prikazano\n"
+"                          samo na strani s podrobnostmi dodatka.  To velja\n"
+"                          samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
@@ -5622,6 +5656,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Podatki o vašem dodatku so prikazani v tem jeziku,\n"
+"                        razen če ga ne preglasite z drugim.  To velja samo za\n"
+"                        navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5638,6 +5675,10 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Če ima vaš dodatek drugo domačo stran, tukaj\n"
+"                          vnesite njegov naslov.  Če je spletna stran prevedena\n"
+"                          v druge jezike, lahko dodate več prevodov tega polja.\n"
+"                          To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5660,6 +5701,10 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Če želite prikazati e-poštni naslov za prošnje za\n"
+"                          podporo, jo vnesite tukaj.  Če imate za vsak jezik\n"
+"                          drug naslov, lahko dodate več prevodov tega polja.  To\n"
+"                          velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5668,6 +5713,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Če ima vaš dodatek spletno stran za podporo ali\n"
+"                          forum, tukaj vnesite njegov naslov.  Če je spletna stran\n"
+"                          prevedena v druge jezike, lahko dodate več prevodov\n"
+"                          tega polja.  To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5686,6 +5735,11 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"Vsi podatki, ki bi jih uporabniki morda želeli vedeti,\n"
+"                          ampak se ne nanašajo nujno na povzetek ali opis dodatka.\n"
+"                          Pogoste uporabe vključujejo navajanje znanih večjih hroščev,\n"
+"                          navodil za prijavo hroščev, pričakovanega datuma izdaje nove\n"
+"                          različice itd.  To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5700,6 +5754,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Te oznake se uporabljajo za razvrščanje dodatkov.\n"
+"                        To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5718,6 +5774,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Ali naj se izvorna koda vašega dodatka prikaže v našem spletnem\n"
+"                        pregledovalniku.  To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5737,6 +5795,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Ali naj bo statistika prenosov in uporabe vašega dodatka\n"
+"                        prikazana v našem spletnem pregledovalniku.\n"
+"                        To velja samo za navedene dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5839,6 +5900,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Uporablja se na seznamih z dodatki, kot na primer\n"
+"                            v rezultatih iskanja ali pa na seznamu izbranih dodatkov."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -6140,6 +6203,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Ko bo urednik dodatek pregledal, boste prejeli obvestilo po e-pošti.\n"
+"          Do takrat si ga lahko vaši prijatelji in vi sami prenesete neposredno\n"
+"          prek strani s podrobnostmi:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7981,6 +8047,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"Popis vašega dodatka je onemogočen in ni prikazan\n"
+"                             nikjer v naši galeriji ali storitvi za posodobitve."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8003,6 +8071,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Ko bo pregled končan in bo vaš dodatek\n"
+"                             podpisan, boste prejeli e-pošto."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -8016,12 +8086,14 @@ msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Vaš dodatek je prikazan v naši galeriji in uporabniki\n"
+"                             bodo samodejno prejemali posodobitve."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
-msgstr ""
+msgstr "Dodatek je podpisan in je lahko del namestilnika aplikacij."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8084,7 +8156,7 @@ msgstr "Ustvarjeno:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b %%e, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -8185,6 +8257,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Izberite ustrezno licenco za pravice, ki jih podeljujete za vašo izvorno kodo.  To\n"
+"                  velja samo za navedene dodatke."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8553,7 +8627,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "Vaša prej poslana zasnova, ki čaka na pregled."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -9048,6 +9122,8 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Če izbrišete različico, ki je že bila pregledana, se\n"
+"               lahko pregled naslednje posodobitve občutno zakasni."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9863,7 +9939,7 @@ msgstr "To bo dodatek zavrnilo in ga odstranilo iz čakalne vrste za pregled."
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Oddajte pripombo za to različico.  Avtor tega ne bo mogel videti."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10237,7 +10313,7 @@ msgstr[3] "{0} dodatkov"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0} %%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10327,7 +10403,7 @@ msgstr "Shrani"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Uspešnost urednika dodatkov"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10415,7 +10491,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Vse preglede se je moderiralo.  Zelo dobro!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13149,7 +13225,7 @@ msgstr "Galerija dodatkov"
 msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
-msgstr ""
+msgstr "Kako naj izbiram med dodatki, ki očitno delajo eno in isto?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13230,6 +13306,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Dodatki, ki gostujejo v naši galeriji, so brezplačni, razen če ni\n"
+"    jasno označeno drugače."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13272,7 +13350,7 @@ msgstr ""
 msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
-msgstr ""
+msgstr "Kaj pomeni, če je dodatek označen kot počasen?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -14688,7 +14766,7 @@ msgstr "Prikaži mobilno stran"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Stanje strani "
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15462,6 +15540,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Spremenite svoje geslo.  Če ste pozabili geslo, lahko <a "
+"href=\"%(reset_url)s\">uporabite obrazec za ponastavitev</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15484,6 +15564,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Povejte nam kaj več o sebi.  Vsa ta polja sicer niso obvezna, vendar pa bodo"
+" pomagala drugim uporabnikom, da vas bolje spoznajo."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -15748,6 +15830,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Povezava za ponastavitev gesla je bila neveljavna, morda zato, ker je že "
+"bila uporabljena.  Ponovno zahtevajte ponastavitev gesla."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
