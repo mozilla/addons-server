@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 00:53+0000\n"
+"PO-Revision-Date: 2016-02-27 05:27+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4459,7 +4459,7 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py:18
 msgid "All Platforms"
-msgstr ""
+msgstr "Semua Platform"
 
 #: src/olympia/constants/platforms.py:25
 msgid "Linux"
@@ -4483,44 +4483,44 @@ msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py:60
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Inti"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Perubahan Terbaru untuk %s"
 
 #: src/olympia/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Perubahan Terbaru Untuk Pengaya Saya"
 
 #: src/olympia/devhub/forms.py:69
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Harus punya sekurangnya satu pemilik."
 
 #: src/olympia/devhub/forms.py:72
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Setidaknya satu penulis harus dicantumkan."
 
 #: src/olympia/devhub/forms.py:76
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Penulis hanya akan terdaftar sekali."
 
 #: src/olympia/devhub/forms.py:94
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug tidak benar."
 
 #: src/olympia/devhub/forms.py:106
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Salah objek JSON"
 
 #: src/olympia/devhub/forms.py:111
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Pesan tidak memenuhi syarat untuk anotasi"
 
 #: src/olympia/devhub/forms.py:124
 #: src/olympia/devhub/templates/devhub/versions/edit.html:94
@@ -4530,23 +4530,23 @@ msgstr "Detail"
 
 #: src/olympia/devhub/forms.py:141
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Apakah nama lisensi anda?"
 
 #: src/olympia/devhub/forms.py:144
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Menyediakan teks untuk lisensi anda."
 
 #: src/olympia/devhub/forms.py:181
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Teks lisensi diperlukan saat memilih Lainnya."
 
 #: src/olympia/devhub/forms.py:231
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Pengaya ini memiliki Kesepakatan Lisensi Pengguna"
 
 #: src/olympia/devhub/forms.py:234
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Harap merinci Kesepakatan Lisensi Pengguna pengaya anda:"
 
 #: src/olympia/devhub/forms.py:237
 msgid "This add-on has a Privacy Policy"
@@ -4558,39 +4558,39 @@ msgstr "Tentukan Kebijakan Privasi pengaya Anda:"
 
 #: src/olympia/devhub/forms.py:278
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Mengapa anda membuat pengaya ini?"
 
 #: src/olympia/devhub/forms.py:279
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Apakah pengembangan pengaya ini selanjutnya?"
 
 #: src/olympia/devhub/forms.py:316
 msgid "The developers of this add-on"
-msgstr ""
+msgstr "Pengembang pengaya ini"
 
 #: src/olympia/devhub/forms.py:317
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "Mozilla Foundation"
 
 #: src/olympia/devhub/forms.py:318
 msgid "An organization of my choice"
-msgstr ""
+msgstr "Organisasi pilihan saya"
 
 #: src/olympia/devhub/forms.py:361
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Masukkan jumlah yang disarankan lebih besar dari 0."
 
 #: src/olympia/devhub/forms.py:364
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Masukkan jumlah yang disarankan kurang dari ${0}."
 
 #: src/olympia/devhub/forms.py:373
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "ID Paypal diperlukan untuk menerima kontribusi."
 
 #: src/olympia/devhub/forms.py:379
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Tidak dapat memvalidasi id PayPal."
 
 #: src/olympia/devhub/forms.py:388
 msgid "Unsupported file type, please upload an archive file {extensions}."
