@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 23:17+0000\n"
+"PO-Revision-Date: 2016-02-27 00:14+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4262,75 +4262,75 @@ msgstr "Ulasan Kamus yang Diperbarui"
 
 #: src/olympia/constants/base.py:442
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Ulasan Lengkap Paket Bahasa"
 
 #: src/olympia/constants/base.py:443
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Paket Bahasa"
 
 #: src/olympia/constants/base.py:444
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Ulasan Paket Bahasa yang Diperbarui"
 
 #: src/olympia/constants/base.py:445
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus untuk ulasan yang terlambat"
 
 #: src/olympia/constants/base.py:446
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Hari Sebelum Poin Bonus Diterapkan"
 
 #: src/olympia/constants/base.py:447
 msgid "Theme Review"
-msgstr ""
+msgstr "Ulasan Tema"
 
 #: src/olympia/constants/base.py:448
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Ulasan Lengkap Penyedia Pencarian"
 
 #: src/olympia/constants/base.py:449
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Penyedia Pencarian"
 
 #: src/olympia/constants/base.py:450
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Ulasan Penyedia Pencarian yang Diperbarui"
 
 #: src/olympia/constants/base.py:451
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Tema Komplet"
 
 #: src/olympia/constants/base.py:452
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Tema Komplet"
 
 #: src/olympia/constants/base.py:453
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Ulasan Tema Komplet yang Diperbarui"
 
 #: src/olympia/constants/base.py:454
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Ulasan Pengaya Dimoderasi"
 
 #: src/olympia/constants/base.py:455
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderasi Ulasan Pengaya Dikembalikan"
 
 #: src/olympia/constants/base.py:502
 msgid "Level 1"
-msgstr ""
+msgstr "Tingkat 1"
 
 #: src/olympia/constants/base.py:503
 msgid "Level 2"
-msgstr ""
+msgstr "Tingkat 2"
 
 #: src/olympia/constants/base.py:504
 msgid "Level 3"
-msgstr ""
+msgstr "Tingkat 3"
 
 #: src/olympia/constants/base.py:505
 msgid "Level 4"
-msgstr ""
+msgstr "Tingkat 4"
 
 #: src/olympia/constants/base.py:506
 msgid "Level 5"
