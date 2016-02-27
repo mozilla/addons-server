@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 16:19+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-02-27 11:32+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1120,6 +1120,10 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Vuoi installare {0} su Firefox per dispositivi portatili? Scannerizza il "
+"codice QR per installarlo direttamente sul tuo smartphone. Per eseguire "
+"l’operazione è necessario un qualsiasi lettore di codici QR, che puoi "
+"trovare sulla piattaforma di distribuzione app del tuo smartphone."
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -2281,7 +2285,7 @@ msgstr "Escalation revisori"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Il video è stato rimosso da {addon} perché presentava dei problemi."
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2901,6 +2905,8 @@ msgid ""
 "Your new collection is shown below. You can <ahref=\"%(url)s\">edit "
 "additional settings</a> if you'dlike."
 msgstr ""
+"La nuova raccolta è mostrata di seguito. Se lo desideri, è possibile "
+"<ahref=\"%(url)s\">modificare le impostazioni aggiuntive</a>."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -5680,6 +5686,8 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Le informazioni sul componente aggiuntivo verranno visualizzate in questa lingua quando non sarà disponibile una versione specifica per la lingua locale del visitatore. Rilevante solo per i componenti aggiuntivi pubblici.\n"
+"\n"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5722,6 +5730,10 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Inserisci nel seguente campo l’indirizzo email dedicato alle richieste di "
+"supporto, se presente. Se il supporto viene offerto in più lingue, puoi "
+"aggiungere più occorrenze di questo campo, uno per ogni lingua in cui è reso"
+" disponibile. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
