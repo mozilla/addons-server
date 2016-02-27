@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 10:20+0000\n"
+"PO-Revision-Date: 2016-02-27 11:39+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5469,6 +5469,9 @@ msgid ""
 "                        Choose any that fit your add-on's functionality for the most\n"
 "                        exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategorier är det främsta sättet användare surfar bland tillägg.\n"
+"                        Välj någon som passar ditt tilläggs funktionalitet för den bästa\n"
+"                        exponeringen. Det är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
