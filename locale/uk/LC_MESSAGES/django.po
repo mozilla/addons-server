@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 08:25+0000\n"
+"PO-Revision-Date: 2016-02-27 08:32+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11488,7 +11488,7 @@ msgstr "Танзанійський шилінг"
 
 #: src/olympia/lib/constants.py:152
 msgid "Ukraine Hryvna"
-msgstr "Українська гривня"
+msgstr "Гривня"
 
 #: src/olympia/lib/constants.py:153
 msgid "Uganda Shilling"
@@ -11508,11 +11508,11 @@ msgstr "Узбецький сом"
 
 #: src/olympia/lib/constants.py:157
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Венесуельський болівар"
 
 #: src/olympia/lib/constants.py:158
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "В'єтнамський донг"
 
 #: src/olympia/lib/constants.py:159
 msgid "Vanuatu Vatu"
@@ -11520,23 +11520,23 @@ msgstr "Вануатський вату"
 
 #: src/olympia/lib/constants.py:160
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Самоанська тала"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Франк КФА BEAC"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Східнокарибський долар"
 
 #: src/olympia/lib/constants.py:163
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Спеціальні права запозичення Міжнародного Валютного Фонду (МВФ)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Франк КФА BCEAO"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
@@ -11544,19 +11544,19 @@ msgstr "Французький тихоокеанський франк (CFP)"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Єменський ріал"
 
 #: src/olympia/lib/constants.py:167
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Південноафриканський ранд"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Замбійська квача"
 
 #: src/olympia/lib/constants.py:169
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Зімбабвійський долар"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
