@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 01:02+0000\n"
+"PO-Revision-Date: 2016-02-27 10:20+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2915,7 +2915,7 @@ msgstr "För att betygsätta samlingar måste du ha ett konto."
 #: src/olympia/templates/base.html:145
 #: src/olympia/templates/impala/base.html:198
 msgid "Create an Add-ons Account"
-msgstr "Skapa ett konto"
+msgstr "Skapa ett konto för tillägg"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html:21
 #: src/olympia/templates/base.html:148
@@ -3035,6 +3035,10 @@ msgid ""
 " you can see it.  If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Tillägg du markerar som favoriter med hjälp av funktionen <b>Lägg till i "
+"favoriter</b> syns nedan. Denna samling är för närvarande <b>privat</b>, "
+"vilket innebär att enbart du kan se den.  Om du vill visa den offentligt, "
+"klicka på knappen nedan för att göra den publik."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
