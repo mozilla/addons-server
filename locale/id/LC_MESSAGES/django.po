@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 00:14+0000\n"
+"PO-Revision-Date: 2016-02-27 00:53+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4334,100 +4334,100 @@ msgstr "Tingkat 4"
 
 #: src/olympia/constants/base.py:506
 msgid "Level 5"
-msgstr ""
+msgstr "Tingkat 5"
 
 #: src/olympia/constants/base.py:507
 msgid "Level 6"
-msgstr ""
+msgstr "Tingkat 6"
 
 #: src/olympia/constants/base.py:508
 msgid "Level 7"
-msgstr ""
+msgstr "Tingkat 7"
 
 #: src/olympia/constants/base.py:509
 msgid "Level 8"
-msgstr ""
+msgstr "Tingkat 8"
 
 #: src/olympia/constants/base.py:510
 msgid "Level 9"
-msgstr ""
+msgstr "Tingkat 9"
 
 #: src/olympia/constants/base.py:523
 msgid "Not signed"
-msgstr ""
+msgstr "Tidak ditandatangani"
 
 #: src/olympia/constants/base.py:524
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Ditandatangani untuk ulasan penuh"
 
 #: src/olympia/constants/base.py:525
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Ditandatangani untuk ulasan pendahuluan"
 
 #: src/olympia/constants/editors.py:14
 #: src/olympia/editors/templates/editors/themes/queue.html:76
 #: src/olympia/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr ""
+msgstr "Meminta Info Tambahan"
 
 #: src/olympia/constants/editors.py:15
 #: src/olympia/editors/templates/editors/themes/queue.html:74
 #: src/olympia/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr ""
+msgstr "Tandai"
 
 #: src/olympia/constants/editors.py:16
 #: src/olympia/editors/templates/editors/themes/queue.html:72
 #: src/olympia/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:502
 #: src/olympia/editors/templates/editors/themes/queue.html:71
 #: src/olympia/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
-msgstr ""
+msgstr "Tolak"
 
 #: src/olympia/constants/editors.py:18
 #: src/olympia/editors/templates/editors/themes/queue.html:70
 msgid "Approve"
-msgstr ""
+msgstr "Setujui"
 
 #: src/olympia/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Konten seksual atau pronografi"
 
 #: src/olympia/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Konten yang tidak pantas atau ofensif"
 
 #: src/olympia/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Gambar kekerasan, perang atau persenjataan"
 
 #: src/olympia/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Konten Nazi atau kebencian lainnya"
 
 #: src/olympia/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "Konten fitnah"
 
 #: src/olympia/constants/editors.py:28
 msgid "Online gambling"
-msgstr ""
+msgstr "Judi daring"
 
 #: src/olympia/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Konten spam"
 
 #: src/olympia/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Gambar berkualitas rendah, meregang atau kosong"
 
 #: src/olympia/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Masalah gambar di bagian atas yang sejajar"
 
 #: src/olympia/constants/licenses.py:13
 msgid "All Rights Reserved"
@@ -4435,27 +4435,27 @@ msgstr "Всі права захищені"
 
 #: src/olympia/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: src/olympia/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py:18
 msgid "All Platforms"
