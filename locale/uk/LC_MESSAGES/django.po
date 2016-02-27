@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 21:13+0000\n"
+"PO-Revision-Date: 2016-02-27 08:25+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11308,87 +11308,87 @@ msgstr "Малайзійський рингіт"
 
 #: src/olympia/lib/constants.py:107
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Мозамбіцький метікал"
 
 #: src/olympia/lib/constants.py:108
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Намібійський долар"
 
 #: src/olympia/lib/constants.py:109
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Нігерійська найра"
 
 #: src/olympia/lib/constants.py:110
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Нікарагуанська кордоба"
 
 #: src/olympia/lib/constants.py:111
 msgid "Norway Krone"
-msgstr ""
+msgstr "Норвезька крона"
 
 #: src/olympia/lib/constants.py:112
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Непальська рупія"
 
 #: src/olympia/lib/constants.py:113
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Новозеландський долар"
 
 #: src/olympia/lib/constants.py:114
 msgid "Oman Rial"
-msgstr ""
+msgstr "Оманський ріал"
 
 #: src/olympia/lib/constants.py:115
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Панамське бальбоа"
 
 #: src/olympia/lib/constants.py:116
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Новий соль"
 
 #: src/olympia/lib/constants.py:117
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Кіна"
 
 #: src/olympia/lib/constants.py:118
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Філіппінський песо"
 
 #: src/olympia/lib/constants.py:119
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Пакистанська рупія"
 
 #: src/olympia/lib/constants.py:120
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Злотий"
 
 #: src/olympia/lib/constants.py:121
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Парагвайський гуарані"
 
 #: src/olympia/lib/constants.py:122
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Катарський ріал"
 
 #: src/olympia/lib/constants.py:123
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Румунський лей"
 
 #: src/olympia/lib/constants.py:124
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Сербський динар"
 
 #: src/olympia/lib/constants.py:125
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Російський рубль"
 
 #: src/olympia/lib/constants.py:126
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Руандійський франк"
 
 #: src/olympia/lib/constants.py:127
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Саудівський ріал"
 
 #: src/olympia/lib/constants.py:128
 msgid "Solomon Islands Dollar"
@@ -11396,15 +11396,15 @@ msgstr "Долар Соломонових Островів"
 
 #: src/olympia/lib/constants.py:129
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Сейшельська рупія"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Суданський фунт"
 
 #: src/olympia/lib/constants.py:131
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Шведська крона"
 
 #: src/olympia/lib/constants.py:132
 msgid "Singapore Dollar"
@@ -11412,7 +11412,7 @@ msgstr "Сінгапурський долар"
 
 #: src/olympia/lib/constants.py:133
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Фунт Святої Єлени"
 
 #: src/olympia/lib/constants.py:134
 msgid "Sierra Leone Leone"
@@ -11420,15 +11420,15 @@ msgstr "Леоне Сьєрра-Леоне"
 
 #: src/olympia/lib/constants.py:135
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Сомалійський шилінг"
 
 #: src/olympia/lib/constants.py:136
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Луїджино"
 
 #: src/olympia/lib/constants.py:137
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Суринамський долар"
 
 #: src/olympia/lib/constants.py:138
 msgid "São Tomé and Príncipe Dobra"
@@ -11436,31 +11436,31 @@ msgstr "Добра Сан-Томе і Прінсіпі"
 
 #: src/olympia/lib/constants.py:139
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Сальвадорський колон"
 
 #: src/olympia/lib/constants.py:140
 msgid "Syria Pound"
-msgstr ""
+msgstr "Сирійський фунт"
 
 #: src/olympia/lib/constants.py:141
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Ліланджені"
 
 #: src/olympia/lib/constants.py:142
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Тайський бат"
 
 #: src/olympia/lib/constants.py:143
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Таджицький сомоні"
 
 #: src/olympia/lib/constants.py:144
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Туркменський манат"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Туніський динар"
 
 #: src/olympia/lib/constants.py:146
 msgid "Tonga Pa'anga"
@@ -11468,11 +11468,11 @@ msgstr "Тонганська паанга"
 
 #: src/olympia/lib/constants.py:147
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Турецька ліра"
 
 #: src/olympia/lib/constants.py:148
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Долар Тринідаду і Тобаго"
 
 #: src/olympia/lib/constants.py:149
 msgid "Tuvalu Dollar"
@@ -11480,19 +11480,19 @@ msgstr "Долар Тувалу"
 
 #: src/olympia/lib/constants.py:150
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Новий тайванський долар"
 
 #: src/olympia/lib/constants.py:151
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Танзанійський шилінг"
 
 #: src/olympia/lib/constants.py:152
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Українська гривня"
 
 #: src/olympia/lib/constants.py:153
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Угандійський шилінг"
 
 #: src/olympia/lib/constants.py:154
 msgid "United States Dollar"
@@ -11500,11 +11500,11 @@ msgstr "Долар США"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Уругвайський песо"
 
 #: src/olympia/lib/constants.py:156
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Узбецький сом"
 
 #: src/olympia/lib/constants.py:157
 msgid "Venezuela Bolivar"
