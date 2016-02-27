@@ -2017,7 +2017,7 @@ class TestSubmitSteps(TestCase):
     def test_menu_step_2(self):
         self.client.post(reverse('devhub.submit.1'))
         doc = pq(self.client.get(reverse('devhub.submit.2')).content)
-        self.assert_linked(doc, [1, 2])
+        self.assert_linked(doc, [2])
         self.assert_highlight(doc, 2)
 
     def test_menu_step_3(self):
