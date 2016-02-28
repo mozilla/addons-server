@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 03:20+0000\n"
+"PO-Revision-Date: 2016-02-28 04:13+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5481,6 +5481,10 @@ msgid ""
 "                          listings, as well as at the top of your add-on's\n"
 "                          details page. It is only relevant for listed add-ons."
 msgstr ""
+"Penjelasan pendek untuk fungsi dasar \n"
+"                          pengaya anda yang ditampilkan dalam daftar pencarian \n"
+"                          dan penjelajahan, seperti halnya bagian atas rincian laman \n"
+"                          pengaya anda. Hanya relevan untuk pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5488,6 +5492,9 @@ msgid ""
 "                        Choose any that fit your add-on's functionality for the most\n"
 "                        exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategori adalah cara utama pengguna menelusuri pengaya.\n"
+"                        Pilihlah pengaya mana saja yang sesuai dengan fungsinya\n"
+"                        untuk mendapatkan eksposure paling besar. Hanya relevan untuk pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
@@ -5496,6 +5503,9 @@ msgid ""
 "application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if "
 "there is a reason you need to modify your categories."
 msgstr ""
+"Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi "
+"ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika "
+"ada alasan anda perlu mengubah kategori anda."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:119
 msgid ""
@@ -5504,32 +5514,36 @@ msgid ""
 "                        may have a maximum of {0} tags. It is only relevant\n"
 "                        for listed add-ons."
 msgstr ""
+"Tag membantu pengguna menemukan pengaya anda dan harus berisi \n"
+"                        gambaran pendek berisi tab, toolbar, atau twitter.  Anda\n"
+"                        bisa memiliki maksimum {0} tag. Ini hanya relevan\n"
+"                        untuk pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:129
 #: src/olympia/devhub/templates/devhub/personas/edit.html:97
 #: src/olympia/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
+msgstr[0] "Dipisahkan koma, minimal {0} karakter."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:100
 #: src/olympia/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Contoh: gelap, sinema, noir. Batas 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:136
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "Tag dicadangkan:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
-msgstr ""
+msgstr "Rincian Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:15
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Rincian Pengaya untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:22
 msgid ""
@@ -5538,6 +5552,10 @@ msgid ""
 "                          field is only displayed on the add-on's details\n"
 "                          page. It is only relevant for listed add-ons."
 msgstr ""
+"Penjelasan lebih panjang dari fitur,\n"
+"                          fungsi, dan informasi relevan lainnya. Bidang\n"
+"                          ini hanya ditampilkan pada rincian laman\n"
+"                          pengaya. Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
@@ -5550,6 +5568,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Informasi mengenai pengaya anda ditampilkan dalam logat ini\n"
+"                        terkecuali jika anda membatalkannya dengan penerjemahan spesifik untuk logat tertentu.\n"
+"                        Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5566,19 +5587,23 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Jika pengaya anda memiliki beranda yang lain, masukkan\n"
+"                          alamatnya di sini. Jika situs anda dilokalkan ke dalam bahasa\n"
+"                          lainnya penerjemahan berbeda dari bidang ini dapat \n"
+"                          ditambahkan. Hanya berlaku untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
-msgstr ""
+msgstr "Gambar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:5
 msgid "Support Information"
-msgstr ""
+msgstr "Informasi Pendukung"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:15
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informasi Pendukung untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:22
 msgid ""
