@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 08:20+0000\n"
+"PO-Revision-Date: 2016-02-28 08:54+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5449,7 +5449,7 @@ msgstr "檢視原始碼？"
 msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "是否要將附加元件原始碼顯示於我們的線上檢視器。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5468,7 +5468,7 @@ msgid ""
 "Whether the download and usage stats of your add-on can\n"
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
-msgstr ""
+msgstr "是否要將您附加元件的下載次數與使用統計顯示於我們的線上檢視器。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5487,7 +5487,7 @@ msgid ""
 "If selected, we will try to automatically upgrade your\n"
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
-msgstr ""
+msgstr "若選擇此選項，我們將在有新版的 SDK 發布時嘗試自動升級您的附加元件。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5552,6 +5552,8 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"上傳您附加元件的圖示，或從我們提供的圖示中挑選一個。附加元件所在之處幾乎都會顯示此圖示。上傳的圖片必須使用下列任一格式: "
+".png、.jpg。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5566,7 +5568,7 @@ msgstr "32x32 像素"
 msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
-msgstr ""
+msgstr "使用在附加元件清單，像是搜尋結果與精選附加元件當中。"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -5857,7 +5859,7 @@ msgid ""
 "You'll receive an email once it has been reviewed by an editor. In\n"
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
-msgstr ""
+msgstr "您將在編輯完成審核後收到郵件通知。在此同時，您跟您的朋友可到此元件的詳細資訊頁面直接安裝:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7343,7 +7345,7 @@ msgstr "您已經停用這個附加元件"
 msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
-msgstr ""
+msgstr "您的附加元件已下架，不會在網站的任何地方或自動更新服務中出現。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -7358,27 +7360,27 @@ msgid ""
 "You will receive an email when the review is complete. Until\n"
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
-msgstr ""
+msgstr "您會在審查完成時收到郵件通知。在那之前，您的附加元件還不會公開上架，但可開啟詳細資訊頁面。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
 msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
-msgstr ""
+msgstr "您會在審查與簽署完成時收到郵件通知。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
 "You will receive an email when the review is complete. Until\n"
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
-msgstr ""
+msgstr "您會在審查完成時收到郵件通知。在那之前，您的附加元件還不會公開上架，但可開啟詳細資訊頁面。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
-msgstr ""
+msgstr "您的附加元件已公開陳列在網站上，使用者將接收自動更新。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
@@ -7391,14 +7393,14 @@ msgid ""
 "Your add-on was disabled by a site administrator and is no\n"
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "您的附加元件已被網站管理員停用，不在網站上公開上架。若您有任何問題，請聯絡 amo-admins@mozilla.org。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
 "Your add-on is displayed in our gallery as experimental\n"
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
-msgstr ""
+msgstr "您的附加元件被標示為「實驗性」，使用者將接收自動更新。某些功能無法在附加元件中使用。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -7411,20 +7413,21 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"您會在完整審查完成時收到郵件通知。在那之前，您的附加元件會先公開上架，會被標示為「實驗中」，使用者也會收到自動更新。您的附加元件中有些功能尚無法使用。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
 "You will receive an email when the full review is\n"
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
-msgstr ""
+msgstr "您會在完整審查完成時收到郵件通知，讓您可將附加元件與應用程式的安裝程式一同發佈。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
 "All add-ons hosted in our gallery must now be reviewed by an\n"
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
-msgstr ""
+msgstr "所有交由本網站代管的附加元件自現在起皆須由編輯進行審核。若您想繼續交由本站管理，請點擊選擇審核方式。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -7436,7 +7439,7 @@ msgid ""
 "                                           be installed if someone clicks the Install\n"
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
-msgstr ""
+msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -7457,7 +7460,7 @@ msgstr "下個版本:"
 msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
-msgstr ""
+msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -7538,7 +7541,7 @@ msgstr "瀏覽部落格 &#9658;"
 msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
-msgstr ""
+msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公開上架的附加元件有關。"
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -7871,7 +7874,7 @@ msgstr "在您上傳設計與提交表格後，AMO團隊將審核您已更新的
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "您先前重新送出的設計，還在審核當中。"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -9087,7 +9090,7 @@ msgstr "這將會退回附加元件並從等待審核區移除。"
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "為此版本加上留言，作者不會看到。"
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -12122,7 +12125,7 @@ msgstr "附加元件藝廊"
 msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
-msgstr ""
+msgstr "我要如何在有相同功能的附加元件間做選擇？"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -12192,7 +12195,7 @@ msgstr "我需要花多少錢購買附加元件？"
 msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
-msgstr ""
+msgstr "除非有另外標示，我們網站上代管的附加元件都是免費的。"
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -12233,14 +12236,14 @@ msgstr ""
 msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
-msgstr ""
+msgstr "附加元件被標示為「緩慢」是什麼意思？"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
 "Most add-ons load code and resources at the same time Firefox\n"
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
-msgstr ""
+msgstr "大部分附加元件都會在 Firefox 啟動時載入程式碼與資源。大部分情況下對啟動時間的影響不大，但某些原件還是會讓您注意到載入變慢了。"
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -12529,6 +12532,8 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Sunbird 計畫的開發已經終止，最後一次發行時間是 2010 年 3 月 30 日。我們很驕傲曾經能在此網站提供 Sunbird "
+"附加元件代管，但隨計畫中止，我們也已停止對這些附加元件的支援。"
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -14246,7 +14251,7 @@ msgstr "密碼"
 msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
+msgstr "修改密碼。若您忘記了密碼，您可以 <a href=\"%(reset_url)s\">使用重設表單</a>。"
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -14268,7 +14273,7 @@ msgstr "個人檔案"
 msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "請提供關於您的更多資訊給我們。這些欄位均為選填，但能夠幫助其他人了解您更多。"
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -14521,7 +14526,7 @@ msgstr "請再次輸入密碼"
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
-msgstr ""
+msgstr "密碼重設鏈結無效，可能是已經被使用過了。請重新要求密碼重設。"
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -14746,7 +14751,7 @@ msgid ""
 "Unfortunately, we weren't able to unsubscribe you.  The link you clicked is "
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "很抱歉，我們無法取消您的訂閱。您點擊的鏈結無效。但您還是可到 <a href=\"%(edit_url)s\">資料編輯頁面</a> 退訂。"
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
