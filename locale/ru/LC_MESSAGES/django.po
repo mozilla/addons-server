@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 21:56+0000\n"
-"Last-Translator: bychek.ru <a@bychek.ru>\n"
+"PO-Revision-Date: 2016-02-28 15:14+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -945,7 +945,7 @@ msgstr "Правка"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d.%%m.%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -1071,6 +1071,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Внимание:</strong> Это обновление не было проверено Mozilla и не "
+"может быть установлено на версию Firefox 43 и выше. Будьте осторожны при "
+"установке ПО от третьих сторон, оно может повредить ваш компьютер."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
@@ -1381,7 +1384,7 @@ msgid "No Restart"
 msgstr "Без перезапуска"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Познакомьтесь с разработчиком: <a href=\"%(url)s\">%(name)s</a>"
@@ -1583,8 +1586,8 @@ msgstr "перевести"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Просмотреть все %(cnt)s отзыва пользователей"
+msgstr[1] "Просмотреть все %(cnt)s отзыва пользователей"
 msgstr[2] "Просмотреть все %(cnt)s отзывов пользователей"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
@@ -3088,6 +3091,10 @@ msgid ""
 " you can see it.  If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Дополнения, которые вы отметите как любимые, используя <b>Добавить в "
+"избранное</b>, появятся ниже. Эта подборка сейчас является <b>приватной</b>,"
+" что значит, что только вы можете её видеть. Если вы хотите, чтобы все могли"
+" видеть, что вы добавили в избранное, нажмите на кнопку ниже."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -3281,6 +3288,11 @@ msgid ""
 "description.  To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Вы можете добавить несколько участников в эту подборку.  Участник может "
+"добавлять и удалять дополнения из подборки, но не может изменять их имена и "
+"описания.  Чтобы добавить участника, введите его адрес электронной почты в "
+"поле ниже. У участников должен быть учётная запись на сайте дополнений "
+"Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -3433,6 +3445,9 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Чтобы добавить дополнение в подборку введите её имя в поле ниже и нажмите "
+"enter.  Также вы можете использовать ссылки <strong>Добавить в "
+"подборку</strong> на сайте, чтобы добавить дополнения позже."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
@@ -4534,7 +4549,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Ядро"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -5694,6 +5709,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Эти флаги используются для классификации дополнений. Это относится только\n"
+"                         к дополнениям, видным на сайте."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5712,6 +5729,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Может ли источник вашего дополнения отображаться в нашем\n"
+"                        средстве онлайн-просмотра. Это относится только к дополнениям, видным на сайте."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5731,6 +5750,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Может ли статистика загрузок или использования вашего дополнения "
+"отображаться в нашем средстве онлайн-просмотра. Это относится только к "
+"дополнениям, видным на сайте."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5835,6 +5857,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Используется в листингах дополнений, таких как результаты поиска\n"
+"                            и избранные дополнения."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -5951,6 +5975,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Введите следующий текст, чтобы подтвердить ваше решение:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -6141,6 +6167,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Вы получите письмо по электронной почте, как только оно будет проверено редактором.\n"
+"          Тем временем, вы и ваши друзья могут установить его\n"
+"          прямо со страницы:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7629,6 +7658,12 @@ msgid ""
 " be written to disk, and all of this data must be cleared when Firefox quits"
 " or the Private Browsing session ends."
 msgstr ""
+"Дополнения, которые хранят и обрабатывают данные просмотра должны "
+"поддерживать <a "
+"href=\"https://developer.mozilla.org/ru/docs/Supporting_private_browsing_mode\">режим"
+" Приватного просмотра</a>.  В этом режиме, никакие данные не должны "
+"записываться на диск, а все данные должны удаляться при выходе из Firefox "
+"или Приватного просмотра."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -8035,6 +8070,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Вы получите письмо после завершения\n"
+"                             проверки и подписи вашего дополнения."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -8048,12 +8085,16 @@ msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Ваше дополнение отображается в нашей галерее и пользователи\n"
+"                             получают автоматические обновления."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Ваше дополнение подписано и может быть упаковано с\n"
+"                             установщиком приложения."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8116,7 +8157,7 @@ msgstr "Создано:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -8217,6 +8258,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код.\n"
+"                  Это относится только к дополнениям, видным на сайте."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8579,7 +8622,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "Ваш ранее представленный дизайн,  который ожидает проверки."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -9079,6 +9122,9 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Удаление версии, которая уже была проверена,\n"
+"               также может вызвать значительную задержку при проверке\n"
+"               вашего следующего обновления."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9132,6 +9178,12 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Скрытие вашего дополнения сделает его (и каждую его версию/файлы) не "
+"видимыми на этом сайте. Оно не будет отображаться в поиске, у него не будет "
+"страницы и оно не будет автоматически обновляться у пользователей.  Это "
+"рекомендуется для скрытых дополнений, предоставляющих свой <a "
+"href=\"%(update_url)s\" target=\"_blank\">updateURL</a> в их манифесте для "
+"автоматических обновлений."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -9890,7 +9942,7 @@ msgstr "Это отклонит дополнение и удалить его и
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Прокомментируйте эту версию.  Автор не сможет это увидеть."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10329,7 +10381,7 @@ msgstr "Сохранить"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Производительность редактора дополнений"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -13184,6 +13236,8 @@ msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
 msgstr ""
+"Как мне выбрать между дополнениями, которые похоже делают\n"
+"    одно и то же?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13266,6 +13320,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Дополнения, размещённые в нашей галерее, бесплатны, если явно не указано\n"
+"    обратное."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13310,6 +13366,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"Что значит, когда дополнение отмечено как\n"
+"    медленное?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -13619,16 +13677,15 @@ msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Я автор дополнения, могу ли я отвечать на отзывы?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:142
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes, add-on authors can provide a single response to a review. You can set "
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
 "Да, авторы дополнений могут написать один ответ на отзыв. Вы можете создать "
-"тему для обсуждения на нашем <a href=\"https://forum.mozilla-"
-"russia.org/viewforum.php?id=28\">форуме</a>, чтобы принять участие в "
-"дополнительной или последующей дискуссии."
+"тему для обсуждения на нашем <a href=\"%(forum_url)s\">форуме</a>, чтобы "
+"принять участие в дополнительной или последующей дискуссии."
 
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -13805,7 +13862,11 @@ msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
 msgstr[0] ""
+"Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">%(cnt)s "
+"отзыв</a> на это дополнение."
 msgstr[1] ""
+"Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">%(cnt)s "
+"отзыва</a> на это дополнение."
 msgstr[2] ""
 "Этот пользователь ранее оставил <a href=\"%(user_review_url)s\">%(cnt)s "
 "отзывов</a> на это дополнение."
