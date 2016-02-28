@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 08:42+0000\n"
+"PO-Revision-Date: 2016-02-28 09:50+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5627,6 +5627,11 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"All information som slutanvändaren kanske vill vet men som\n"
+"                          nödvändigtvis inte är lämplig i tilläggets sammanfattning eller beskrivning.\n"
+"                          Vanliga användningsområden inkluderar listning av större kända buggar, information om\n"
+"                          hur man rapporterar buggar, planerat datum för en ny utgåva,\n"
+"                          etc. Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5641,6 +5646,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Dessa flaggor används för att klassificera tillägg. Det är endast\n"
+"                        relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5659,6 +5666,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Om källan till ditt tillägg kan visas i vårt\n"
+"                        visningsprogram. Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5678,6 +5687,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Om nedladdnings och användningsstatistik för ditt tillägg kan\n"
+"                        visas i vårt visningsprogram.\n"
+"                        Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5697,6 +5709,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Om vald, kommer vi att försöka att automatiskt uppgradera ditt\n"
+"                        tillägg när en ny version av SDK släpps.\n"
+"                        Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5766,6 +5781,10 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Ladda upp en ikon för ditt tillägg eller välj en från våra. Ikonen\n"
+"                      visas nästan överallt där ditt tillägg finns. Uppladdade bilder\n"
+"                      måste vara en av följande bildformat: .png, .jpg.\n"
+"                      Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5781,6 +5800,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Används i listor över tillägg, som sökresultat\n"
+"                            och utvalda tillägg."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -6082,6 +6103,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Du kommer att få ett mejl när tillägget har granskats av en redigerare. Under\n"
+"          tiden kan du och dina vänner installera det direkt från dess\n"
+"          detaljsida:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
