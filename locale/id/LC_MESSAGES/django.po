@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 01:13+0000\n"
+"PO-Revision-Date: 2016-02-28 02:12+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4914,21 +4914,23 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1677
 msgid "Preliminary Review Requested."
-msgstr ""
+msgstr "Ulasan Pendahuluan Dimintakan."
 
 #: src/olympia/devhub/views.py:1678
 msgid "Full Review Requested."
-msgstr ""
+msgstr "Ulasan Penuh Dimintakan."
 
 #: src/olympia/devhub/views.py:1779
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
+"Keterangan pengenal anda yang lama telah dicabut dan tidak lagi berlaku. "
+"Pastikan memperbarui semua klien API dengan keterangan pengenal yang baru."
 
 #: src/olympia/devhub/views.py:1797
 msgid "New API key created"
-msgstr ""
+msgstr "Kunci API baru dibuat"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -4936,24 +4938,27 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"Sebelum memulai, harap membaca dan menerima Kesepakatan Distribusi Pengaya "
+"Firefox. Ini juga akan berhubungan dengan Pemberitahuan Privasi kami yang "
+"menerangkan bagaimana kami menangani informasi anda."
 
 #: src/olympia/devhub/templates/devhub/agreement.html:13
 msgid "Printable Version"
-msgstr ""
+msgstr "Versi Dapat Dicetak"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:19
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Saya menerima Kesepakatan ini"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:21
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "or <a href=\"{0}\">Batal</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html:23
 #: src/olympia/devhub/templates/devhub/base_impala.html:20
 #: src/olympia/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Kembali ke Pengaya"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4961,7 +4966,7 @@ msgstr ""
 #: src/olympia/search/templates/search/results.html:9
 #: src/olympia/search/templates/search/mobile/results.html:6
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Pencarian"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:6
 #: src/olympia/devhub/templates/devhub/search.html:8
@@ -4982,43 +4987,45 @@ msgstr "Cari"
 #: src/olympia/search/templates/search/collections.html:18
 #: src/olympia/search/templates/search/personas.html:20
 msgid "Search Results"
-msgstr ""
+msgstr "Hasil Pencarian"
 
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html:13
 #: src/olympia/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Hasil Pencarian untuk \"{0}\""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Masukkan sejumlah istilah penelusuran."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Memperbarui hasil&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Memasukkan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Pengulas AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html:29
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
 "faster."
 msgstr ""
+"Mari! Bergabunglah menjadi Pengulas AMO hari ini agar pengaya anda diulas "
+"lebih cepat."
 
 #: src/olympia/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Jadilah Pengulas AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Pelajari Segala Hal Mengenai Pengaya"
 
 #: src/olympia/devhub/templates/devhub/index.html:41
 msgid ""
@@ -5029,38 +5036,48 @@ msgid ""
 "and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
 "already have all the necessary skills to make a great add-on."
 msgstr ""
+"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan "
+"pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a"
+" href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, "
+"dan <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda "
+"sudah memiliki semua keterampilan yang diperlukan untuk membuat pengaya yang"
+" hebat."
 
 #: src/olympia/devhub/templates/devhub/index.html:51
 msgid ""
 "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
 "Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Beralihlah ke <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
+"Developer Network</a> untuk mempelajari segala hal yang ingin anda ketahui "
+"untuk memulai."
 
 #: src/olympia/devhub/templates/devhub/index.html:58
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Mulailah Membuat Pengaya"
 
 #: src/olympia/devhub/templates/devhub/index.html:86
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:25
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:15
 #: src/olympia/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/index.html:90
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Visibility:"
-msgstr ""
+msgstr "Visibilitas:"
 
 #: src/olympia/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
-msgstr ""
+msgstr "Versi Terbaru:"
 
 #: src/olympia/devhub/templates/devhub/index.html:109
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:145
 #: src/olympia/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
-msgstr ""
+msgstr "Posisi Antrean:"
 
 #: src/olympia/devhub/templates/devhub/index.html:110
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:146
