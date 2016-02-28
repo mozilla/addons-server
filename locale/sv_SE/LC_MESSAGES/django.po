@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 11:39+0000\n"
+"PO-Revision-Date: 2016-02-28 08:42+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5491,6 +5491,10 @@ msgid ""
 "                        may have a maximum of {0} tags. It is only relevant\n"
 "                        for listed add-ons."
 msgstr ""
+"Taggar hjälper användarna att hitta ditt tillägg och bör \n"
+"                        vara korta beskrivningar så som flikar, \n"
+"                        verktygsfält eller twitter.  Du kan ha högst {0} taggar.\n"
+"                        Det är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:129
 #: src/olympia/devhub/templates/devhub/personas/edit.html:97
@@ -5527,6 +5531,10 @@ msgid ""
 "                          field is only displayed on the add-on's details\n"
 "                          page. It is only relevant for listed add-ons."
 msgstr ""
+"En längre förklaring av funktioner,\n"
+"                          funktionalitet och annan relevant information. Detta\n"
+"                          fält visas endast på tilläggets informationssida.\n"
+"                          Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
@@ -5539,6 +5547,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Information om ditt tillägg visas i på den här språket\n"
+"                        om du inte åsidosätter det med en språkspecifik översättning.\n"
+"                        Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5555,6 +5566,10 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Om ditt tillägg har en annan hemsida, ange dess\n"
+"                          adress här. Om din webbplats är översatt till andra\n"
+"                          språk kan flera översättningar av detta fält läggas till.\n"
+"                          Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5577,6 +5592,11 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Om du vill visa en e-postadress för supportfrågor,\n"
+"                          skriv den här. Om du har olika adresser\n"
+"                          för varje språk kan flera översättningar av detta fält\n"
+"                          läggas till. Det är endast relevant för\n"
+"                          listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5585,6 +5605,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Om ditt tillägg har en supportwebbplats eller forum, ange\n"
+"                          adressen här. Om din webbplats är översatt till\n"
+"                          andra språk, kan flera översättningar av detta fält läggas\n"
+"                          till  tillsättas. Detta är endast relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5870,6 +5894,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Ange följande text för att bekräfta ditt beslut:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -9740,6 +9766,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
 msgstr ""
+"Kommentera den här versionen.  Upphovsmannen kommer inte att kunna se detta."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -13076,6 +13103,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Tillägg i vårt galleri är gratis om det inte tydligt står\n"
+"    något annat."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13120,6 +13149,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"Vad betyder det när ett tillägg är flaggad som\n"
+"    långsam?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -13127,6 +13158,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"De flesta tillägg laddar kod och resurser samtidigt som Firefox\n"
+"        startar. I de flesta fall är påverkan av uppstartstid minimal,\n"
+"        men vissa tillägg kan orsaka en märkbar fördröjning."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
