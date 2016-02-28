@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 04:13+0000\n"
+"PO-Revision-Date: 2016-02-28 04:41+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5589,7 +5589,7 @@ msgid ""
 msgstr ""
 "Jika pengaya anda memiliki beranda yang lain, masukkan\n"
 "                          alamatnya di sini. Jika situs anda dilokalkan ke dalam bahasa\n"
-"                          lainnya penerjemahan berbeda dari bidang ini dapat \n"
+"                          lainnya, berbagai penerjemahan dari bidang ini dapat \n"
 "                          ditambahkan. Hanya berlaku untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
@@ -5613,6 +5613,11 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Jika anda ingin menampilkan alamat surel untuk mendukung \n"
+"                          permintaan, masukkan di sini. Jika anda memiliki alamat\n"
+"                          berbeda untuk tiap bahasa, berbagai penerjemahan atas\n"
+"                          bidang ini bisa ditambahkan. Hanya relevan untuk\n"
+"                          pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5621,15 +5626,19 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Jika pengaya anda memiliki situs atau forum pendukung, masukkan\n"
+"                          alamatnya di sini. Jika situs anda dilokalkan ke dalam\n"
+"                          bahasa lainnya, berbagai penerjemahan atas bidang ini bisa\n"
+"                          ditambahkan. Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
-msgstr ""
+msgstr "Rincian Teknis"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:16
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Rincian Teknis untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
@@ -5639,50 +5648,59 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"Informasi apapun yang ingin diketahui pengguna yang tidak\n"
+"                          sepenuhnya dapat diaplikasikan untuk ringkasan atau keterangan pengaya.\n"
+"                          Penggunaan umum termasuk mendaftar, bug utama yang diketahui, informasi mengenai\n"
+"                          bagaimana cara melaporkan bug, mengantisipasi tanggal rilis versi baru,\n"
+"                          dll. Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
-msgstr ""
+msgstr "Batas 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:68
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Bendera Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:69
 msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Bendera ini hanya digunakan untuk mengklasifikasikan pengaya. Hanya\n"
+"                        relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Ini adalah pengaya yang site-specific."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:77
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "View Source?"
-msgstr ""
+msgstr "Tampilkan Sumber?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:90
 msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Apakah sumber pengaya anda dapat ditampilkan dalam\n"
+"                        penampil daring kami. Hanya berlaku untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Kode sumber pengaya ini dapat dilihat secara publik."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:96
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Tidak, kode sumber pengaya ini tidak bisa ditampilkan secara publik."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Public Stats?"
-msgstr ""
+msgstr "Statistik Publik?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:102
 msgid ""
@@ -5690,18 +5708,21 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Apakah statistik unduhan dan penggunaan pengaya anda\n"
+"                        dapat ditampilkan dalam penampil daring kami.\n"
+"                        Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statistik pengaya ini dapat dilihat secara publik."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:109
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Tidak, statistik pengaya ini tidak dapat dilihat secara publik."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Mutakhirkan SDK?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:116
 msgid ""
@@ -5709,35 +5730,42 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Jika terpilih, kami akan secara otomatis memutakhirkan pengaya\n"
+"                        anda saat versi baru SDK dirilis.\n"
+"                        Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
 "This add-on will be automatically upgraded to new versions of the Add-on "
 "SDK."
 msgstr ""
+"Pengaya ini akan dimutakhirkan secara otomatis ke versi baru SDK Pengaya."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Tidak, pengaya ini akan dimutakhirkan secara manual."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Pengenal unik universal"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:130
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:132
 msgid ""
 "The UUID of your add-on is specified in its install manifest and uniquely "
 "identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
+"UUID pengaya anda disebutkan secara spesifik dalam manifest pemasangannya "
+"dan secara unik mengidentifikasi hal itu. Anda tidak bisa mengubah UUID "
+"setelah pengaya dikirimkan."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:143
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:144
 msgid "Whiteboard"
-msgstr ""
+msgstr "Papan tulis"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:146
 msgid ""
