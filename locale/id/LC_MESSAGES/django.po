@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 02:12+0000\n"
+"PO-Revision-Date: 2016-02-28 03:20+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5084,20 +5084,20 @@ msgstr "Posisi Antrean:"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:50
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s dari %(total)s"
 
 #: src/olympia/devhub/templates/devhub/index.html:120
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
-msgstr ""
+msgstr "Unggah Versi Baru"
 
 #: src/olympia/devhub/templates/devhub/index.html:128
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Tampilkan semua pengaya ►"
 
 #: src/olympia/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Terbitkan pengaya anda!"
 
 #: src/olympia/devhub/templates/devhub/index.html:136
 #, python-format
@@ -5105,15 +5105,17 @@ msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
 "href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Unggah sebuah <a href=\"%(addon_url)s\">pengaya</a> atau <a "
+"href=\"%(theme_url)s\">tema</a> untuk memulai!"
 
 #: src/olympia/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Kembali ke beranda DevHub"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Pusat Pengembang <small>Pengaya</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html:20
 msgid "more add-ons..."
@@ -5125,11 +5127,11 @@ msgstr "Документація"
 
 #: src/olympia/devhub/templates/devhub/nav.html:35
 msgid "Extension Development"
-msgstr ""
+msgstr "Pengembangan Ekstensi"
 
 #: src/olympia/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Tema Ringan"
 
 #: src/olympia/devhub/templates/devhub/nav.html:39
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:6
@@ -5147,11 +5149,11 @@ msgstr "Правила додатків"
 
 #: src/olympia/devhub/templates/devhub/nav.html:46
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Validator Pengaya"
 
 #: src/olympia/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Pengecek Kompatibilitas Pengaya"
 
 #: src/olympia/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
@@ -5159,7 +5161,7 @@ msgstr "Розробницькі додатки"
 
 #: src/olympia/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Komunitas dan Dukungan"
 
 #: src/olympia/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
@@ -5171,32 +5173,36 @@ msgstr "Форум додатків"
 
 #: src/olympia/devhub/templates/devhub/nav.html:61
 msgid "More Resources"
-msgstr ""
+msgstr "Lebih Banyak Sumber Daya"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Pencarian Dokumen Pengembang"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Gunakan bidang di bawah ini untuk mengunggah paket pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:19
 msgid ""
 "After upload, a series of automated validation tests will run to check "
 "compatibility with the following application version:"
 msgstr ""
+"Setelah mengunggah, serangkaian pengujian validasi otomatis akan berjalan "
+"untuk memeriksa kompatibilitas dengan versi aplikasi di bawah ini:"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:34
 msgid ""
 "After upload, a series of automated validation tests will be run on your "
 "file."
 msgstr ""
+"Setelah mengunggah, serangkaian pengujian validasi otomatis akan dijalankan "
+"pada fiel anda."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:42
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Apakah anda ingin pengaya ini didistribusikan di situs ini?"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:49
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
@@ -5214,6 +5220,9 @@ msgid ""
 "Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you "
 "encounter."
 msgstr ""
+"Pengajuan pengaya yang tidak terdaftar untuk penandatanganan saat ini dalam "
+"versi beta terbuka. Harap <a href=\"%(url)s\" target=\"_blank\">melaporkan "
+"bug apapun</a> yang anda temui."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html:5
@@ -5222,31 +5231,31 @@ msgstr "Hasil Validasi untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Hasil Validasi"
 
 #: src/olympia/devhub/templates/devhub/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Divalidasi di:"
 
 #: src/olympia/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Diuji kompatibilitasnya terhadap:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4
 #: src/olympia/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Aktivitas Terbaru untuk Pengaya Saya"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:14
 #: src/olympia/devhub/templates/devhub/addons/activity.html:19
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:33
 msgid "Recent Activity"
-msgstr ""
+msgstr "Aktivitas Terkini"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Aktivitas Terkini untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:36
 #, python-format
@@ -5255,11 +5264,11 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> oleh %(us
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:59
 msgid "Refine Activity"
-msgstr ""
+msgstr "Aktivitas Diperbaiki"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:72
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitas"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:83
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:34
@@ -5267,7 +5276,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:4
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:6
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Berlangganan umpan ini"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:7
 #, python-format
@@ -5276,6 +5285,9 @@ msgid ""
 "latest release of %(app_name)s. Please consider updating your add-on's "
 "compatibility info, or uploading a newer version of this add-on."
 msgstr ""
+"Pengaya ini tidak kompatibel dengan <b>%(app_name)s %(app_version)s</b>, "
+"rilis terakhir dari %(app_name)s. Harap mempertimbangkan untuk memperbarui "
+"info kompatibilitas pengaya anda, atau mengunggah versi terbaru pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:15
 #, python-format
@@ -5285,19 +5297,23 @@ msgid ""
 "href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a "
 "href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-"
+"updateurl=\"%(update_url)s\">Kompatibilitas Diperbarui</a> <a "
+"href=\"%(version_url)s\" class=\"button\">Mengunggah Versi Baru</a> atau <a "
+"href=\"#\" class=\"close\">Abaikan</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Lihat dan perbarui rentang kompatibilitas aplikasi."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html:6
 #: src/olympia/devhub/templates/devhub/versions/edit.html:44
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibilitas"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:2
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Memperbarui Kompatibilitas"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:4
 msgid ""
@@ -5305,6 +5321,9 @@ msgid ""
 "on even if the install manifest in the package indicates that the add-on is "
 "incompatible."
 msgstr ""
+"Menyesuaikan informasi aplikasi di sini akan memungkinkan pengguna untuk "
+"memasang pengaya anda bahkan jika manifest pemasangan di paket "
+"mengindikasikan bahwa pengaya ini tidak kompatibel."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
@@ -5313,7 +5332,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:31
 #: src/olympia/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Tambahkan Aplikasi Lain &hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: src/olympia/devhub/templates/devhub/addons/owner.html:86
@@ -5335,13 +5354,13 @@ msgstr "%(ago)s oleh %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:52
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Aktivitas lebih lama untuk Pengaya Anda"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:76
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> tema"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -5350,7 +5369,7 @@ msgstr[0] ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:6
 #: src/olympia/editors/templates/editors/themes/single.html:37
 msgid "Edit Listing"
-msgstr ""
+msgstr "Sunting Daftar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:13
 #: src/olympia/devhub/templates/devhub/includes/macros.html:18
@@ -5362,7 +5381,7 @@ msgstr "Жодного"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:52
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Mengelola Penulis dan Lisensi"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:29
 #: src/olympia/editors/templates/editors/review.html:270
@@ -5371,7 +5390,7 @@ msgstr "Penyusun"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
-msgstr ""
+msgstr "Tentang peran penulis"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:78
 msgid ""
@@ -5382,6 +5401,13 @@ msgid ""
 "authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's "
 "settings and statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Pengaya bisa memiliki sejumlah penulis dengan 3 peran yang "
+"memungkinkan:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola semua aspek "
+"pendaftaran pengaya, termasuk menambahkan dan menghapus penulis lainnya</li>"
+" <li><b>Pengembang:</b> Dapat mengelola semua aspek pendaftaran pengaya, "
+"kecuali menambahkan dan menghapus penulsi lain dan mengelola pembayaran</li>"
+" <li><b>Pengamat:</b> Dapat melihat pengaturan dan statistik pengaya, tetapi"
+" tidak bisa membuat perubahan apapun </li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53
@@ -5395,10 +5421,12 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
+"Profil pengembang <a href=\"%(url)s\">anda</a> saat ini "
+"<strong>publi</strong> dan <strong>memerlukan</strong> untuk berkontribusi."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
-msgstr ""
+msgstr "Hapus Keduanya"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:27
 #, python-format
@@ -5406,31 +5434,33 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong>."
 msgstr ""
+"Profil <a href=\"%(url)s\">developer anda</a> saat ini "
+"<strong>publik</strong>."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
-msgstr ""
+msgstr "Hapus Profil"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:42
 msgid "Create Profile"
-msgstr ""
+msgstr "Buat Profil"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Informasi Dasar"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:17
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Informasi Dasar untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:32
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:33
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Pilihlah URL slug yang unik dan pendek untuk pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:35
