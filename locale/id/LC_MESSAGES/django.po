@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-27 16:22+0000\n"
+"PO-Revision-Date: 2016-02-28 01:13+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4765,12 +4765,12 @@ msgstr "%s dijawab dengan %s (%s)."
 #: src/olympia/devhub/tasks.py:555
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Koneksi ke \"%s\" habis waktu."
 
 #: src/olympia/devhub/tasks.py:557
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Tidak bisa menghubungi host di \"%s\"."
 
 #: src/olympia/devhub/utils.py:104
 #, python-format
@@ -4778,133 +4778,139 @@ msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated."
 " After addressing the visible messages, you'll be able to see the others."
 msgstr ""
+"Validasi menghasilkan terlalu banyak kesalahan/peringatan sehingga %s pesan "
+"terpotong. Setelah menyampaikan pesan yang terlihat, Anda akan bisa melihat "
+"yang lain."
 
 #: src/olympia/devhub/views.py:183
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Semua Pengaya Saya"
 
 #: src/olympia/devhub/views.py:210
 msgid "All Activity"
-msgstr ""
+msgstr "Semua Aktivitas"
 
 #: src/olympia/devhub/views.py:211
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Pembaruan Pengaya"
 
 #: src/olympia/devhub/views.py:212
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status Pengaya"
 
 #: src/olympia/devhub/views.py:213
 msgid "User Collections"
-msgstr ""
+msgstr "Koleksi Pengguna"
 
 #: src/olympia/devhub/views.py:214
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: src/olympia/pages/templates/pages/dev_faq.html:38
 #: src/olympia/pages/templates/pages/dev_faq.html:484
 msgid "User Reviews"
-msgstr ""
+msgstr "Ulasan Pengguna"
 
 #: src/olympia/devhub/views.py:327 src/olympia/devhub/views.py:331
 #: src/olympia/devhub/views.py:484 src/olympia/devhub/views.py:513
 #: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1150
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Perubahan berhasil disimpan."
 
 #: src/olympia/devhub/views.py:334 src/olympia/devhub/views.py:1631
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Silahkan lihat formulirnya untuk kesalahan."
 
 #: src/olympia/devhub/views.py:346
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
+"Pengaya tidak dapat dihapus. Menonaktifkan pengaya ini sebagai gantinya."
 
 #: src/olympia/devhub/views.py:356
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema dihapus."
 
 #: src/olympia/devhub/views.py:356
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Pengaya dihapus."
 
 #: src/olympia/devhub/views.py:362
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Nama URL salah. Tema tidak dihapus."
 
 #: src/olympia/devhub/views.py:367
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Nama URL salah. Pengaya tidak dihapus."
 
 #: src/olympia/devhub/views.py:449
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Penulis telah ditambahkan ke pengaya anda"
 
 #: src/olympia/devhub/views.py:456
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Seorang penulis telah diubah perannya pada pengaya anda"
 
 #: src/olympia/devhub/views.py:476
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Seorang penulis telah dihapus dari pengaya anda"
 
 #: src/olympia/devhub/views.py:519
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Terjadi kesalahan dalam kiriman anda."
 
 #: src/olympia/devhub/views.py:583
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Pengaya Divalidasi"
 
 #: src/olympia/devhub/views.py:594
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Memeriksa Kompatibilitas Pengaya"
 
 #: src/olympia/devhub/views.py:808 src/olympia/signing/views.py:90
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Anda tidak dapat mengirimkan jenis pengaya ini"
 
 #: src/olympia/devhub/views.py:1051 src/olympia/users/forms.py:471
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Gambar harus dalam bentuk PNG atau JPG."
 
 #: src/olympia/devhub/views.py:1055
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Icon tidak dapat dijadikan animasi."
 
 #: src/olympia/devhub/views.py:1057
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Gambar tidak dapat dijadikan animasi."
 
 #: src/olympia/devhub/views.py:1070
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Gambar tidak bisa lebih besar daripada %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py:1080
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
 
 #: src/olympia/devhub/views.py:1087
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Terjadi kesalahan menggunggah pratinjau anda."
 
 #: src/olympia/devhub/views.py:1189
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Versi %s dinonaktifkan."
 
 #: src/olympia/devhub/views.py:1193
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Versi %s dihapus."
 
 #: src/olympia/devhub/views.py:1203
 msgid ""
 "This upload has failed validation, and may lack complete validation results."
 " Please take due care when reviewing it."
 msgstr ""
+"Unggahan ini telah gagal divalidasi, dan boleh jadi tidak memiliki hasil "
+"validasi yang lengkap. Silakan berhati-hati saat mengulasnya."
 
 #: src/olympia/devhub/views.py:1677
 msgid "Preliminary Review Requested."
