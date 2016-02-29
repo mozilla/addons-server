@@ -307,7 +307,8 @@ class Addon(OnChangeMixin, ModelBase):
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
         help_text=_(u'Users will always be asked in the Add-ons'
-                    u' Manager (Firefox 4 and above)'))
+                    u' Manager (Firefox 4 and above).'
+                    u' Only applies to desktop.'))
     enable_thankyou = models.BooleanField(
         default=False, help_text='Should the thank you note be sent to '
                                  'contributors?')
