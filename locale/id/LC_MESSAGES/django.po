@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 04:41+0000\n"
+"PO-Revision-Date: 2016-02-29 03:14+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5774,22 +5774,26 @@ msgid ""
 "addon, and any additional information that may help. This whiteboard is also"
 " editable by editors."
 msgstr ""
+"Papan tulis adalah tempat untuk menyediakan informasi yang relevan untuk "
+"pengaya anda, apapun versinya, kepada penyunting. Gunakan untuk menyediakan "
+"cara menguji pengaya, dan tambahan informasi lainnya yang bisa membantu. "
+"Papan tulis ini juga bisa diedit oleh penyunting."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Hapus pengaya yang tergantung ini"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Masukkan nama pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Media Pengaya untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr ""
+msgstr "Ikon pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid ""
@@ -5798,21 +5802,27 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Unggah ikon untuk pengaya anda atau pilih dari salah satu milik kami. Ikon\n"
+"                      ditampilkan hampir di manapun pengaya anda berada. Gambar yang diunggah\n"
+"                      harus salah satu dari tipe berikut: .png, .jpg.\n"
+"                      Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Pilih ikon untuk pengaya Anda:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:37
 msgid "32x32px"
-msgstr ""
+msgstr "32 x 32 px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Digunakan di daftar pengaya, seperti hasil pencarian\n"
+"                            dan pengaya yang diunggulkan."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -5821,7 +5831,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Digunakan di laman rincian pengaya."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:56
 msgid "Upload a Custom Icon..."
@@ -5830,32 +5840,34 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
+"PNG dan JPG didukung. Ikon akan diubah ukurannya menjadi 64 x 64 pixel jika "
+"lebih besar."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:83
 msgid "Screenshots"
-msgstr ""
+msgstr "Tangkapan layar"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:89
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Harap menyediakan sekurangnya satu tangkapan layar pengaya anda:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:114
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Harap menyediakan keterangan untuk tangkapan layar ini:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:130
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Tambahkan Tangkapan layar..."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr ""
+msgstr "Tes"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
-msgstr ""
+msgstr "Tes Umum"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:9
@@ -5867,7 +5879,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
-msgstr ""
+msgstr "Tes Ekstensi"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:17
@@ -5883,12 +5895,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: src/olympia/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Pesan tidak perlu disembunyikan untuk penandatanganan otomatis"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: src/olympia/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Menyembunyikan pesan ada di versi sebelumnya dan tidak diindahkan"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -5901,28 +5913,32 @@ msgstr "Teratas"
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr ""
+msgstr "Hapus tema"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/versions/list.html:117
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Hapus Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Menghapus tema anda akan menghapusnya sama sekali dari situs."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:14
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again by others."
 msgstr ""
+"Menghapus pengaya anda akan secara permanen menghapusnya dari situs dan "
+"mencegah GUID tersebut diserahkan kembali oleh orang lain."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Masukkan teks berikut ini untuk mengkonfirmasi keputusan anda:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -5936,11 +5952,11 @@ msgstr "Beritahu kami mengapa Anda menghapus pengaya Anda:"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
 #: src/olympia/editors/templates/editors/review.html:253
 msgid "Actions"
-msgstr ""
+msgstr "Aksi"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Lanjutkan proses pendaftaran untuk pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
@@ -5952,7 +5968,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Sunting rincian mengenai pendaftaran pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
@@ -5983,7 +5999,7 @@ msgstr "Kelola Pembayaran"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:55
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:6
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Kelola Status & Versi"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
@@ -5998,19 +6014,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Sunting rincian mengenai daftar tema ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:16
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Lihat popularitas tema ini dari waktu ke waktu."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:22
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Ubah pemilik tema ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Mentransfer Kepemilikan"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:28
 msgid "Delete this theme."
@@ -6021,6 +6037,8 @@ msgid ""
 "This add-on will be deleted automatically after a few days if the submission"
 " process is not completed."
 msgstr ""
+"Pengaya ini akan dihapus secara otomatis setelah beberapa hari jika proses "
+"pendaftarannya tidak komplet."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
@@ -6029,17 +6047,17 @@ msgstr "Dimatikan"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:36
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Posisi antrean:</b> %(pos)s dari %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:23
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Memasukkan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
@@ -6047,7 +6065,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
-msgstr ""
+msgstr "Langkah 3. Gambarkan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
@@ -6055,34 +6073,36 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Rindian laman akan:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:24
 #: src/olympia/devhub/templates/devhub/personas/edit.html:89
 #: src/olympia/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+"Harap hanya menggunakan huruf, angka, garis bawah, dan garis sambung dalam "
+"URL anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
-msgstr ""
+msgstr "Sediakan ringkasan pendek:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:39
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Ringkasan ini akan ditampilkan dalam daftar dan pencarian."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "Provide a more detailed description:"
-msgstr ""
+msgstr "Sediakan deskripsi yang lebih rinci:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "The description will appear on the detail page."
-msgstr ""
+msgstr "Deksripsi akan muncul dalam laman rincian."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Penyerahan Lengkap"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:8
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:13
@@ -6190,11 +6210,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
-msgstr ""
+msgstr "Langkah 5"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
-msgstr ""
+msgstr "Langkah 5. Pilih Lisensi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:9
 msgid ""
@@ -6202,18 +6222,21 @@ msgid ""
 "is licensed. Please select a license from the list below or enter a custom "
 "license."
 msgstr ""
+"Kami meminta semua pengaya untuk mengindikasikan di bawah ketentuan mana "
+"kode sumber mereka dilisensi. Silakan memilih lisensi dari daftar di bawah "
+"ini atau masukkan lisensi khusus."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
-msgstr ""
+msgstr "Pilih lisensi untuk pengaya anda:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:3
 msgid "Step 4"
-msgstr ""
+msgstr "Langkah 4"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
-msgstr ""
+msgstr "Langkah 4. Menambahkan Gambar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:9
 msgid ""
@@ -6221,10 +6244,14 @@ msgid ""
 "it does. We strongly recommend uploading a custom icon, as in some areas of "
 "the website, only the icon and name will appear."
 msgstr ""
+"Ikon khusus dan tangkapan layar menarik perhatian dan membantu pengguna "
+"untuk memahami apa yang dilakukannya. Kami sangat merekomendasikan untuk "
+"emngunggah ikon khusus, seperti di sejumlah bagian dalam situs, hanya ikon "
+"dan nama yang akan muncul."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
-msgstr ""
+msgstr "Langkah 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
@@ -9791,15 +9818,18 @@ msgid ""
 "               this addon (whatever the version), between the developer and the\n"
 "               editor. This is visible and editable by both."
 msgstr ""
+"Papan tulis adalah tempat bertukar informasi yang relevan untuk \n"
+"               pengaya ini (apapun versinya), antara para pengaya dan\n"
+"               penyunting. Ini dapat dilihat dan disunting oleh kedua belah pihak."
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Perbarui papan tulis"
 
 #: src/olympia/editors/templates/editors/review.html:257
 #: src/olympia/editors/templates/editors/review.html:258
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: src/olympia/editors/templates/editors/review.html:258
 msgid "Admin Page"
