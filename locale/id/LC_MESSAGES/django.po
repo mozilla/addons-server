@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-29 03:14+0000\n"
+"PO-Revision-Date: 2016-02-29 04:13+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6112,11 +6112,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr ""
+msgstr "Pengaya anda telah dimasukkan ke dalam antrean Ulasan Pendahuluan."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:14
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr ""
+msgstr "Pengaya anda telah dimasukkan ke dalam antrean Ulasan Lengkap."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:18
 msgid ""
@@ -6124,6 +6124,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Anda akan menerima sebuah surel saat pengaya telah diulas oleh penyunting. \n"
+"          sementara itu, anda dan teman anda dapat memasangnya langsung dari \n"
+"          laman rinciannya:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -6135,6 +6138,8 @@ msgstr "Langkah berikutnya:"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:82
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr ""
+"<a href=\"{0}\">Unggah</a> berkas yang spesifik untuk platform tertentu dari"
+" versi ini."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
@@ -6255,7 +6260,7 @@ msgstr "Langkah 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
-msgstr ""
+msgstr "Langkah 6. Pilih Proses Pengulasan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:10
 msgid ""
@@ -6264,6 +6269,11 @@ msgid ""
 "on can still be accessed through its direct URL. Please choose the review "
 "process below that best fits your add-on."
 msgstr ""
+"Semua pengaya yang diterima dalam galeri kami harus diulas oleh seorang "
+"penyunting sebelum dapat dimunculkan dalam kategori atau hasil pencarian. "
+"Saat menunggu ulasan, pengaya anda masih bisa diakses melalui tautan URL "
+"langsungnya. Harap memilih proses ulasan di bawah ini yang sesuai dengan "
+"pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:26
 #, python-format
@@ -6271,30 +6281,32 @@ msgid ""
 "A complete review of your add-on's source and functionality. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Ulasan komplet sumber pengaya anda dan fungsinya. <a "
+"href=\"%(url)s\">Selengkapnya &hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Sesuai untuk pengaya yang dipoles"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Diperlukan jika pengaya dibundel dalam sebuah instalator"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
-msgstr ""
+msgstr "Ulasan akan dilakukan dalam 10 hari"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Review of subsequent versions within 5 days"
-msgstr ""
+msgstr "Ulasan versi selanjutnya dilakukan dalam 5 hari"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:36
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Pemasangan bebas peringatan dan tidak ada batasan fitur"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:40
 msgid "Choose Full Review"
-msgstr ""
+msgstr "Pilih Ulasan Lengkap"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:49
 #, python-format
@@ -6302,34 +6314,36 @@ msgid ""
 "A faster review of your add-on's source for any major problems. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Ulasan yang lebih cepat dari sumber pengaya anda untuk masalah besar apapun."
+" <a href=\"%(url)s\">Selengkapnya&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:55
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Sesuai untuk pengaya eksperimental"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:56
 msgid "Review should take place within 3 days"
-msgstr ""
+msgstr "Ulasan akan dilakukan dalam 3 hari"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Sejumlah keterbatasan fitur"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Pengaya biner dan dikaburkan tidak memenuhi syarat"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:62
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Pilih Ulasan Pendahuluan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Getting Started"
-msgstr ""
+msgstr "Memulai"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Unggah pengaya anda"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Describe your add-on"
@@ -6337,38 +6351,38 @@ msgstr "Опишіть свій додаток"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:10
 msgid "Add images"
-msgstr ""
+msgstr "Tambahkan gambar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
-msgstr ""
+msgstr "Pilih lisensi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
-msgstr ""
+msgstr "Pilih proses ulasan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:18
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr ""
+msgstr "Proses Pendaftaran"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:4
 msgid "Step 1"
-msgstr ""
+msgstr "Langkah 1"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:7
 msgid "Step 1. Getting Started"
-msgstr ""
+msgstr "Langkah 1. Memulai"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "Langkah 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:9
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "Langkah 2. Unggah Pengaya Anda"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:11
 msgid ""
@@ -6376,25 +6390,28 @@ msgid ""
 "restrictions. After upload, a series of automated validation tests will be "
 "run on your file."
 msgstr ""
+"Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih "
+"pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi "
+"otomatis akan dijalankan pada berkas anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:39
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:65
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Mengesampingkan secara administratif"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html:3
 #: src/olympia/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Keterangan Pengenal API"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:20
 #, python-format
@@ -6402,14 +6419,16 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Untuk instruksi yang lebih rinci, lihat <a href=\"%(docs_url)s\">dokumentasi"
+" API</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
-msgstr ""
+msgstr "Penerbit JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:32
 msgid "JWT secret"
-msgstr ""
+msgstr "Rahasia JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:37
 #, python-format
