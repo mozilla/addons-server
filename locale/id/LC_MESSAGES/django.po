@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-29 04:13+0000\n"
+"PO-Revision-Date: 2016-02-29 05:05+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6438,10 +6438,14 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Untuk membuat permintaan API, kirimkan sebuah <a href=\"%(jwt_url)s\">JSON "
+"Web Token (JWT)</a> sebagai bagian awal otorisasi. Anda perlu menghasilkan "
+"JWT untuk setiap permintaan sebagaimana diterangkan dalam <a "
+"href=\"%(docs_url)s\">dokumentasi API</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "Anda belum memiliki keterangan pengenal API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:53
 #, python-format
@@ -6449,14 +6453,16 @@ msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Fitur ini masih dalam pengembangan aktif. Jika anda menemukan masalah "
+"silakan <a target=\"_blank\" href=\"%(bug_link)s\">laporkan bug</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:61
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Mencabut dan menghasilkan ulang keterangan pengenal"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:63
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Menghasilkan keterangan pengenal baru"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6464,7 +6470,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:24
 #: src/olympia/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Kesepakatan Pengembang"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:7
@@ -6472,17 +6478,20 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:27
 #: src/olympia/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Menghubungi Kami"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:12
 msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Terima kasih atas minat anda menghubungi tim Pengaya Mozilla. SIlakan "
+"membaca laman ini secara cermat untuk memastikan permintaan anda menuju ke "
+"tempat yang tepat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Dukungan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
@@ -6491,14 +6500,18 @@ msgid ""
 "that add-on's author through the support channels listed on the add-on's "
 "listing page."
 msgstr ""
+"Jika anda memiliki pertanyaan mengenai dukungan tentang pengaya tertentu, "
+"misalnya \"bagaimana cara menggunakan pengaya ini?\" atau \"mengapa pengaya "
+"ini tidak bekerja dengan baik?\", silakan menghubungi penulis pengaya "
+"tersebut melalui saluran dukungan yang terdaftar dalam laman daftar pengaya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Kekhawatiran Penyuntingan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors at mozilla dot org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 #, python-format
@@ -6509,14 +6522,19 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
+"Jika anda memiliki pertanyaan mengenai ulasan Penyunting atas sebuah pengaya"
+" atau ingin melaporkan pelanggaran kebijakan, silakan mengirim surel "
+"%(mail_editors)s. <strong>Hampir semua laporan pengaya berada dalam kategori"
+" ini.</strong> Harap menyertakan tautan pada pengaya yang dibahasa dan "
+"deskripsi terinci mengenai pertanyaan atau komentar anda."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Kerentanan Keamanan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dot org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 #, python-format
@@ -6529,10 +6547,18 @@ msgid ""
 "policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Jika anda menemukan kerentanan keamanan pada sebuah pengaya, bahkan jika "
+"pengaya itu tidak dimuat di sini, Mozilla sangat tertarik pada penemuan anda"
+" dan akan bekerja bersama pengembang untuk memperbaiki masalahnya secepat "
+"mungkin. Isu keamanan pengaya dapat dilaporkan <a "
+"href=\"http://www.mozilla.org/projects/security/security-bugs-"
+"policy.html\">secara rahasia</a> di <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> atau dengan mengirim surel "
+"%(mail_admins)s."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Fungsi Situs & Pengembangan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
@@ -6540,16 +6566,21 @@ msgid ""
 "href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in "
 "GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Jika anda menemukan masalah dengan situs ini, kami akan dengan senang hati "
+"memperbaikinya. Silakan <a "
+"href=\"https://github.com/mozilla/olympia/issues\">mengirimkan laporan "
+"bug</a> di GitHub, yang mencantumkan letak masalah dan bagaimana anda "
+"menemukannya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Menjaga Pengaya Anda"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Mengirimkan Versi Baru Pengaya Anda"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
@@ -6561,6 +6592,13 @@ msgid ""
 "provided. There is no limit to the number of versions that can be submitted,"
 " but please remember that versions must be reviewed by an editor."
 msgstr ""
+"Pengembang didorong untuk mengirimkan pembaruan pengaya mereka untuk "
+"memperbaiki bug, menambah fitur, dan atau memperbaiki produk mereka. Versi "
+"baru pengaya tersebut harus memiliki <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">nomor versi"
+" yang lebih tinggi</a> dan bisa dikirimkan melalui Perangkat Pengembang yang"
+" tersedia. Tidak ada batasan untuk jumlah versi yang bisa dikirimkan, namun "
+"harap diingat bahwa versi tersebut harus diulas oleh seorang penyunting."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:18
 msgid ""
@@ -6568,14 +6606,17 @@ msgid ""
 "versions submitted before the review is completed will move that version to "
 "the end of the queue."
 msgstr ""
+"Versi baru ini akan ditambahkan untuk antrean ulasan yang ditunda, dan versi"
+" tambahan lainnya yang dikirimkan sebelum ulasan selesai akan memindahkan "
+"versi tersebut ke ujung antrean."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:23
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Bagaimana saya memasukkan pengaya versi Beta?"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:25
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr ""
+msgstr "Saluran beta hanya tersedia bagi pengaya yang diulas secara lengkap."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:31
 msgid ""
@@ -6623,7 +6664,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Pemindahan Kepemilikan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:57
 msgid ""
@@ -6668,7 +6709,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
-msgstr ""
+msgstr "Sengketa Kode"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:90
 msgid ""
@@ -6699,7 +6740,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:306
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Terakhir diperbarui: 13 Januari 2011"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:13
 #, python-format
@@ -6727,34 +6768,38 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Kriteria untuk Pengaya Unggulan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:33
 msgid ""
 "Before nominating an add-on to be featured, please ensure it meets the "
 "following criteria:"
 msgstr ""
+"Sebelum menominasikan pengaya untuk diunggulkan, harap memastikan pengaya "
+"tersebut memenuhi kriteria berikut:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid ""
 "The add-on must have a complete and informative listing on AMO. This means:"
 msgstr ""
+"Pengaya harus memiliki daftar yang lengkap dan informatif di AMO. Ini "
+"berarti:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
-msgstr ""
+msgstr "ikon khusus 64 pixel"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:42
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr ""
+msgstr "nama yang jelas dan ringkas (tak ada kata kunci panjang)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr ""
+msgstr "ringkasan yang jelas dan ringkas mengenai fungsi pengaya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:44
 msgid "detailed description and privacy policy, if applicable"
-msgstr ""
+msgstr "deskripsi dan kebijakan privasi yang terinci, jika memungkinkan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
@@ -14791,7 +14836,7 @@ msgstr ""
 #: src/olympia/versions/feeds.py:61
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Riwayat Versi"
 
 #: src/olympia/versions/feeds.py:69
 msgid "Version History with Changelogs"
@@ -14799,7 +14844,7 @@ msgstr "Riwayat Versi dengan Log Perubahan"
 
 #: src/olympia/versions/models.py:314
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Pengaya menggunakan komponen biner."
 
 #: src/olympia/versions/models.py:317
 msgid "Add-on has opted into strict compatibility checking."
@@ -14879,11 +14924,11 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py:51
 msgid "Target Version"
-msgstr ""
+msgstr "Versi Target"
 
 #: src/olympia/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr ""
+msgstr "Mengirim surel ketika selesai"
 
 #: src/olympia/zadmin/forms.py:105
 msgid "Log emails instead of sending"
