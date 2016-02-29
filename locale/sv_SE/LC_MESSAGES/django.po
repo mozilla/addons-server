@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-28 23:22+0000\n"
+"PO-Revision-Date: 2016-02-29 17:49+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -8014,7 +8014,7 @@ msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
-"Ditt tillägg har signerats och kan paketeras med en\n"
+"Ditt tillägg har signerats och kan paketeras med ett\n"
 "                             installationsprogram."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
@@ -8059,6 +8059,9 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
+"Du kommer att få ett mejl när den fullständiga granskningen är\n"
+"                             klar, vilket gör att du kan paketera ditt tillägg i ett\n"
+"                             installationsprogram."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -8066,6 +8069,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Alla tillägg som hyses i vårt galleri måste nu granskas av en\n"
+"                             redaktör. Om du vill fortsätta hysa ditt tillägg, vänligen\n"
+"                             välj en granskningsprocess."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8078,6 +8084,10 @@ msgid ""
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
 msgstr ""
+"Detta är den version av ditt tillägg som kommer\n"
+"                                           att installeras om någon klickar på knappen Installera\n"
+"                                           på addons.mozilla.org. Detta är endast\n"
+"                                           relevant för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -8099,6 +8109,8 @@ msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
 msgstr ""
+"Detta är den senaste uppladdade versionen, men\n"
+"                                           den är inte uppladdad på webbplatsen ännu."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -8187,6 +8199,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Välj en licens som lämpar sig för de rättigheter du beviljar för din källkod.\n"
+"                  Detta är endast relevant för listade tillägg."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
