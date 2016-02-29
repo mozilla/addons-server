@@ -648,3 +648,7 @@ option.status-public {
 option.status-lite {
     font-style: italic;
 }
+
+option.status-deleted {
+    text-decoration:  line-through;
+}

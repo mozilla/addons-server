@@ -636,11 +636,11 @@ def review(request, addon):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    versions = (Version.objects.filter(addon=addon)
-                               .exclude(files__status=amo.STATUS_BETA)
-                               .order_by('-created')
-                               .transform(Version.transformer_activity)
-                               .transform(Version.transformer))
+    versions = (Version.unfiltered.filter(addon=addon)
+                                  .exclude(files__status=amo.STATUS_BETA)
+                                  .order_by('-created')
+                                  .transform(Version.transformer_activity)
+                                  .transform(Version.transformer))
 
     class PseudoVersion(object):
         def __init__(self):
@@ -650,7 +650,8 @@ def review(request, addon):
         approvalnotes = None
         compatible_apps_ordered = ()
         releasenotes = None
-        status = 'Deleted',
+        status = 'Deleted'
+        deleted = True
 
         @property
         def created(self):
@@ -662,6 +663,7 @@ def review(request, addon):
                         .details.get('version', '[deleted]'))
 
     # Grab review history for deleted versions of this add-on
+    # Version are soft-deleted now but we need this for older deletions.
     comments = (CommentLog.objects
                 .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
                         activity_log__versionlog=None,

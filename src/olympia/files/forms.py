@@ -17,7 +17,7 @@ log = commonware.log.getLogger('z.files')
 
 class FileSelectWidget(widgets.Select):
     def render_options(self, choices, selected_choices):
-        def option(files, label=None):
+        def option(files, label=None, deleted=False):
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
             files.sort(lambda a, b: ((a.status == amo.STATUS_DISABLED) -
@@ -32,6 +32,8 @@ class FileSelectWidget(widgets.Select):
 
             status = set(u'status-%s' % amo.STATUS_CHOICES_API[f.status]
                          for f in files)
+            if deleted:
+                status.update([u'status-deleted'])
             output.extend((u' class="', jinja2.escape(' '.join(status)), u'"'))
             output.extend((u'>', jinja2.escape(label), u'</option>\n'))
             return output
@@ -46,7 +48,7 @@ class FileSelectWidget(widgets.Select):
         output = []
         output.append(u'<option></option>')
 
-        vers = Version.objects.filter(files__id__in=file_ids).distinct()
+        vers = Version.unfiltered.filter(files__id__in=file_ids).distinct()
         for ver in vers.order_by('-created'):
             hashes = defaultdict(list)
             for f in ver.files.filter(id__in=file_ids):
@@ -55,12 +57,12 @@ class FileSelectWidget(widgets.Select):
             label = '{0} ({1})'.format(ver.version, ver.nomination)
             distinct_files = hashes.values()
             if len(distinct_files) == 1:
-                output.extend(option(distinct_files[0], label))
+                output.extend(option(distinct_files[0], label, ver.deleted))
             elif distinct_files:
                 output.extend((u'<optgroup label="',
                                jinja2.escape(ver.version), u'">'))
                 for f in distinct_files:
-                    output.extend(option(f))
+                    output.extend(option(f, deleted=ver.deleted))
                 output.append(u'</optgroup>')
 
         return jinja2.Markup(u''.join(output))
