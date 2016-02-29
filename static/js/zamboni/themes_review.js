@@ -441,7 +441,7 @@ function initSearch() {
                 $clear.show();
                 // Show results.
                 if (data.meta.total_count === 0) {
-                    $searchIsland.html(no_results).show();
+                    $searchIsland.html(no_results).show().removeClass('hidden');
                 } else {
                     var results = [];
                     $.each(data.objects, function(i, item) {
