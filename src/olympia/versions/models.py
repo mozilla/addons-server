@@ -95,7 +95,7 @@ class Version(OnChangeMixin, ModelBase):
         upload_to=source_upload_path, null=True, blank=True)
 
     # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instanciation.
+    # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
@@ -231,10 +231,16 @@ class Version(OnChangeMixin, ModelBase):
             return ''
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
-    def delete(self):
+    def delete(self, hard=False):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
-        super(Version, self).delete()
+        if hard:
+            super(Version, self).delete()
+        else:
+            # By default we soft delete so we can keep the files for comparison
+            # and a record of the version number.
+            self.deleted = True
+            self.save()
 
     @property
     def current_queue(self):
@@ -601,7 +607,7 @@ def clear_compatversion_cache_on_save(sender, instance, created, **kw):
     except ObjectDoesNotExist:
         return
 
-    if not kw.get('raw') and created:
+    if not kw.get('raw') and (created or instance.deleted):
         instance.addon.invalidate_d2c_versions()
 
 
@@ -625,19 +631,20 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version,
     dispatch_uid='version_inherit_nomination')
-models.signals.post_delete.connect(
-    update_status, sender=Version, dispatch_uid='version_update_status')
 models.signals.post_save.connect(
     update_incompatible_versions, sender=Version,
     dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
-models.signals.pre_delete.connect(
-    cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 models.signals.post_save.connect(
     clear_compatversion_cache_on_save, sender=Version,
     dispatch_uid='clear_compatversion_cache_save')
+
+models.signals.pre_delete.connect(
+    cleanup_version, sender=Version, dispatch_uid='cleanup_version')
+models.signals.post_delete.connect(
+    update_status, sender=Version, dispatch_uid='version_update_status')
+models.signals.post_delete.connect(
+    update_incompatible_versions, sender=Version,
+    dispatch_uid='version_update_incompat')
 models.signals.post_delete.connect(
     clear_compatversion_cache_on_delete, sender=Version,
     dispatch_uid='clear_compatversion_cache_del')

@@ -201,12 +201,26 @@ class TestVersion(TestCase):
 
         addon = Addon.objects.no_cache().get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
-        assert not Version.unfiltered.filter(addon=addon).exists()
+        assert Version.unfiltered.filter(addon=addon).exists()
 
     def test_version_delete_files(self):
         version = Version.objects.get(pk=81551)
         eq_(version.files.count(), 1)
         version.delete()
+        eq_(version.files.count(), 1)
+
+    def test_version_hard_delete(self):
+        version = Version.objects.get(pk=81551)
+        version.delete(hard=True)
+
+        addon = Addon.objects.no_cache().get(pk=3615)
+        assert not Version.objects.filter(addon=addon).exists()
+        assert not Version.unfiltered.filter(addon=addon).exists()
+
+    def test_version_hard_delete_files(self):
+        version = Version.objects.get(pk=81551)
+        eq_(version.files.count(), 1)
+        version.delete(hard=True)
         eq_(version.files.count(), 0)
 
     def test_version_delete_logs(self):

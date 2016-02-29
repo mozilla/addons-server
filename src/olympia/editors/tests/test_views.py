@@ -2043,7 +2043,7 @@ class TestReview(ReviewBase):
                             applications='something',
                             comments=version['comments'])
                 self.client.post(self.url, data)
-                v.delete()
+                v.delete(hard=True)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):

@@ -175,6 +175,7 @@ class Update(object):
             LEFT JOIN files curfile
                 ON curfile.version_id = curver.id
             WHERE
+                versions.deleted = 0 AND
                 -- Note that the WHEN clauses here will evaluate to the same
                 -- thing for each row we examine. The JOINs above narrow the
                 -- rows matched by the WHERE clause to versions of a specific

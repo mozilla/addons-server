@@ -16,7 +16,7 @@ import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from nose.plugins.attrib import attr
-from nose.tools import assert_not_equal, assert_raises, eq_, ok_
+from nose.tools import assert_not_equal, assert_raises, eq_
 from PIL import Image
 from pyquery import PyQuery as pq
 
@@ -2801,10 +2801,12 @@ class AddVersionTest(UploadTest):
 
     def post(self, supported_platforms=[amo.PLATFORM_MAC],
              override_validation=False, expected_status=200, source=None,
-             beta=False):
+             beta=False, nomination_type=None):
         d = dict(upload=self.upload.uuid, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
+        if nomination_type:
+            d['nomination_type'] = nomination_type
         r = self.client.post(self.url, d)
         eq_(r.status_code, expected_status)
         return r
@@ -2819,26 +2821,27 @@ class TestAddVersion(AddVersionTest):
     def test_unique_version_num(self):
         self.version.update(version='0.1')
         r = self.post(expected_status=400)
-        assert_json_error(r, None, 'Version 0.1 already exists')
+        assert_json_error(
+            r, None, 'Version 0.1 already exists, or was uploaded before.')
 
     def test_same_version_if_previous_is_rejected(self):
-        # We can have several times the same version number, if the previous
+        # We can't re-use the same version number, even if the previous
         # versions have been disabled/rejected.
-        self.version.update(version='0.1', approvalnotes='approval notes')
-        self.version.releasenotes = 'release notes'
-        self.version.save()
+        self.version.update(version='0.1')
         self.version.files.update(status=amo.STATUS_DISABLED)
-        self.post(expected_status=200)
+        r = self.post(expected_status=400)
+        assert_json_error(
+            r, None, 'Version 0.1 already exists, or was uploaded before.')
 
-        self.version.reload()
-        version = Version.objects.latest()
-        ok_(version.pk != self.version.pk)
-        eq_(version.version, self.version.version)
-
-        # We reuse the release and approval notes from the last rejected
-        # version with the same version number.
-        eq_(version.releasenotes, self.version.releasenotes)
-        eq_(version.approvalnotes, self.version.approvalnotes)
+    def test_same_version_if_previous_is_deleted(self):
+        # We can't re-use the same version number if the previous
+        # versions has been deleted either.
+        self.version.update(version='0.1')
+        self.version.delete()
+        r = self.post(expected_status=400,
+                      nomination_type=amo.STATUS_NOMINATED)
+        assert_json_error(
+            r, None, 'Version 0.1 already exists, or was uploaded before.')
 
     def test_success(self):
         r = self.post()

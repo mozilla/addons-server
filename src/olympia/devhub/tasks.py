@@ -79,9 +79,11 @@ def submit_file(addon_pk, upload_pk):
 
 @atomic
 def create_version_for_upload(addon, upload):
-    if (addon.fileupload_set.filter(created__gt=upload.created,
-                                    version=upload.version).exists()
-            or addon.versions.filter(version=upload.version).exists()):
+    fileupload_exists = addon.fileupload_set.filter(
+        created__gt=upload.created, version=upload.version).exists()
+    version_exists = Version.unfiltered.filter(
+        addon=addon, version=upload.version).exists()
+    if (fileupload_exists or version_exists):
         log.info('Skipping Version creation for {upload_uuid} that would '
                  ' cause duplicate version'.format(upload_uuid=upload.uuid))
     else:

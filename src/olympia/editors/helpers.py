@@ -69,6 +69,8 @@ def file_review_status(addon, file):
 
 @register.function
 def version_status(addon, version):
+    if version.deleted:
+        return _(u'Deleted')
     return ','.join(unicode(s) for s in version.status)
 
 
