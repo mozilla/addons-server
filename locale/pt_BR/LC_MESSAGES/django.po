@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 20:43+0000\n"
-"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 23:48+0000\n"
+"Last-Translator: Wolfgang Marcos <wolfgang@cryptolab.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -8350,6 +8350,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Por favor escolha uma licença apropriada para o seu código fonte.\n"
+"                  Isto é relevante apenas para complementos listados."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -15716,6 +15718,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Nos fale mais sobre você.  Todos esses campos são opcionais, mas ajudarão "
+"outros usuários a conhecê-lo melhor."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -16241,6 +16245,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Infelizmente não conseguimos descadastrá-lo.  O link que você clicou é "
+"inválido. Entretanto, você ainda pode se descadastrar <a "
+"href=\"%(edit_url)s\">editando o seu perfil</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
