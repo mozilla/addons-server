@@ -17,8 +17,8 @@
     {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("Your add-on's listing is disabled and is not showing
-                             anywhere in our gallery or update service.")) }}
+                          _("Your add-on's listing is disabled and is not showing "
+                            "anywhere in our gallery or update service.")) }}
       </a>
     {% elif addon.status == amo.STATUS_NULL %}
       <a href="{{ url('devhub.submit.resume', addon.slug) }}">
@@ -31,66 +31,66 @@
     {% elif addon.status == amo.STATUS_UNREVIEWED %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("You will receive an email when the review is complete. Until
-                             then, your add-on is not listed in our gallery but can be
-                             accessed directly from its details page.")
+                          _("You will receive an email when the review is complete. Until "
+                            "then, your add-on is not listed in our gallery but can be "
+                            "accessed directly from its details page.")
                           if addon.is_listed else
-                          _('You will receive an email when the review is
-                             complete and your add-on is signed.')) }}
+                          _("You will receive an email when the review is "
+                            "complete and your add-on is signed.")) }}
       </a>
     {% elif addon.status == amo.STATUS_NOMINATED %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("You will receive an email when the review is complete. Until
-                             then, your add-on is not listed in our gallery but can be
-                             accessed directly from its details page. ")
+                          _("You will receive an email when the review is complete. Until "
+                            "then, your add-on is not listed in our gallery but can be "
+                            "accessed directly from its details page. ")
                           if addon.is_listed else
-                          _('You will receive an email when the review is
-                             complete and your add-on is signed.')) }}
+                          _("You will receive an email when the review is "
+                            "complete and your add-on is signed.")) }}
       </a>
     {% elif addon.status == amo.STATUS_PUBLIC %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("Your add-on is displayed in our gallery and users are
-                             receiving automatic updates.")
+                          _("Your add-on is displayed in our gallery and users are "
+                            "receiving automatic updates.")
                           if addon.is_listed else
-                          _("Your add-on has been signed and can be bundled with an
-                             application installer.")) }}
+                          _("Your add-on has been signed and can be bundled with an "
+                            "application installer.")) }}
       </a>
     {% elif addon.status == amo.STATUS_DISABLED %}
       <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload">
         {{ status_and_tip(addon,
-                          _("Your add-on was disabled by a site administrator and is no
-                             longer shown in our gallery. If you have any questions,
-                             please email amo-admins@mozilla.org.")) }}
+                          _("Your add-on was disabled by a site administrator and is no "
+                            "longer shown in our gallery. If you have any questions, "
+                            "please email amo-admins@mozilla.org.")) }}
       </a>
     {% elif addon.status == amo.STATUS_LITE %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("Your add-on is displayed in our gallery as experimental
-                             and users are receiving automatic updates. Some features
-                             are unavailable to your add-on.")
+                          _("Your add-on is displayed in our gallery as experimental "
+                            "and users are receiving automatic updates. Some features "
+                            "are unavailable to your add-on.")
                           if addon.is_listed else
                           _('Your add-on has been signed.')) }}
       </a>
     {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("You will receive an email when the full review is complete.
-                             Until then, your add-on is displayed in our gallery as
-                             experimental and users are receiving automatic updates.
-                             Some features are unavailable to your add-on.")
+                          _("You will receive an email when the full review is complete. "
+                            "Until then, your add-on is displayed in our gallery as "
+                            "experimental and users are receiving automatic updates. "
+                            "Some features are unavailable to your add-on.")
                           if addon.is_listed else
-                          _('You will receive an email when the full review is
-                             complete, making you able to bundle your add-on with an
-                             application installer.')) }}
+                          _("You will receive an email when the full review is "
+                            "complete, making you able to bundle your add-on with an "
+                            "application installer.")) }}
       </a>
     {% elif addon.status == amo.STATUS_PURGATORY %}
       <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
-                          _("All add-ons hosted in our gallery must now be reviewed by an
-                             editor. If you wish to continue hosting your add-on, please
-                             click to select a review process.")) }}
+                          _("All add-ons hosted in our gallery must now be reviewed by an "
+                            "editor. If you wish to continue hosting your add-on, please "
+                            "click to select a review process.")) }}
       </a>
     {% endif %}
   </strong>
@@ -112,10 +112,10 @@
   <li>
     <strong>{{ _('Current Version:') }}</strong>
     {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
-    <span class="tip tooltip" title="{{ _('This is the version of your add-on that will
-                                           be installed if someone clicks the Install
-                                           button on addons.mozilla.org. It is only
-                                           relevant for listed add-ons.') }}">?</span>
+    <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
+                                          'be installed if someone clicks the Install '
+                                          'button on addons.mozilla.org. It is only '
+                                          'relevant for listed add-ons.') }}">?</span>
   </li>
 {% endif %}
 {% if sorting == 'created' %}
@@ -135,8 +135,7 @@
   <li>
     <strong>{{ _('Next Version:') }}</strong>
     {{ link_if_listed_else_text(addon.latest_version, addon.latest_version.version) }}
-    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however
-                                           it isn’t live on the site yet.') }}">?</span>
+    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
   </li>
 {% endif %}
 {% with position = get_position(addon) %}

@@ -533,7 +533,7 @@ class ReviewHelper:
                                   'administrators, not the author.'),
                    'reject': _lazy('This will reject the add-on and remove '
                                    'it from the review queue.'),
-                   'comment': _lazy('Make a comment on this version.  The '
+                   'comment': _lazy('Make a comment on this version. The '
                                     'author won\'t be able to see this.')}
 
         if self.addon.status == amo.STATUS_LITE:

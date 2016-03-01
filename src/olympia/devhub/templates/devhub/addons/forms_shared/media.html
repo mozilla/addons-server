@@ -13,18 +13,18 @@
           {% if context == 'edit' %}
           <th>
             {{ tip(_("Add-on icon"),
-                   _("Upload an icon for your add-on or choose from one of ours. The
-                      icon is displayed nearly everywhere your add-on is. Uploaded images
-                      must be one of the following image types: .png, .jpg.
-                      It is only relevant for listed add-ons.")) }}
+                   _("Upload an icon for your add-on or choose from one of ours. The "
+                     "icon is displayed nearly everywhere your add-on is. Uploaded images "
+                     "must be one of the following image types: .png, .jpg. "
+                     "It is only relevant for listed add-ons.")) }}
           </th>
           {% endif %}
           <td>
           {% if context == 'submit' %}
             <label>
-              {% trans %}
+              {% trans -%}
                 Select an icon for your add-on:
-              {% endtrans %}
+              {%- endtrans %}
             </label>
             {% endif %}
             {% if editable %}
@@ -36,8 +36,8 @@
                   {# L10n: The size of the icon #}
                   {{ _('32x32px') }}
                   {{ tip(None,
-                         _("Used in listings of add-ons, like search results
-                            and featured add-ons.")) }}
+                         _("Used in listings of add-ons, like search results "
+                           "and featured add-ons.")) }}
                 </div>
 
                 <div class="icon_preview" id="icon_preview_64">
