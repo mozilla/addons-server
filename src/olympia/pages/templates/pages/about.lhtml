@@ -13,7 +13,7 @@
 <p>{% trans %}addons.mozilla.org, commonly known as "AMO", is Mozilla's official
 site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey.
 Add-ons let you add new features and change the way your browser
-or application works.  Take a look around and explore the thousands of ways to
+or application works. Take a look around and explore the thousands of ways to
 customize the way you do things online.{% endtrans %}</p>
 
 <h3>{{ _('Who creates these add-ons?') }}</h3>

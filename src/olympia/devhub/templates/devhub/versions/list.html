@@ -227,9 +227,9 @@
         Once a version has been deleted, you may not upload a new
         version with the same version number.
       {% endtrans %}
-      <p>{{ _('Deleting a version which has already been reviewed
-               may also cause a significant delay in the review of
-               your next update.') }}</p>
+      <p>{{ _('Deleting a version which has already been reviewed '
+              'may also cause a significant delay in the review of '
+              'your next update.') }}</p>
       <p>{{ _('Are you sure you wish to delete this version?') }}</p>
       {{ csrf() }}
       <div class="modal-actions">
@@ -290,7 +290,7 @@
           Unlisting your add-on will make it (and each of its versions/files)
           invisible on this website. It won't show up in searches, won't have a
           public facing page, and won't be updated automatically for current
-          users.  It is recommended for unlisted add-ons to provide a custom
+          users. It is recommended for unlisted add-ons to provide a custom
           <a href="{{ update_url }}" target="_blank">updateURL</a> in their
           manifest file for automatic updates.
         {% endtrans %}
