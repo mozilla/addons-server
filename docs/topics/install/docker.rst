@@ -47,6 +47,13 @@ on your host machine::
     docker-compose up -d
     make initialize_docker  # Answer yes, and create your superuser when asked.
 
+.. note::
+
+   When using a virtual machine for docker the default behaviour is to mount
+   your home directory into the docker vm. Your code checkout will need
+   to be with your home directory so that docker-compose will find the necessary
+   files.
+
 Accessing docker
 ~~~~~~~~~~~~~~~~
 
