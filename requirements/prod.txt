@@ -40,6 +40,7 @@ django-waffle==0.11
 django-babel==0.4.0
 easy-thumbnails==1.4
 elasticsearch==1.1.1
+elasticsearch-dsl==0.0.11
 fastchardet==0.2.0
 feedparser==5.1.3
 fudge==1.0.3

@@ -17,7 +17,7 @@ from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import ESTestCase, TestCase
 from olympia.amo.helpers import absolutify, numberfmt, urlparams
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
@@ -1511,3 +1511,101 @@ class TestMobileDetails(TestPersonas, TestMobile):
         url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
         response = test.Client().get(url)
         eq_(response.status_code, 301)
+
+
+class TestAddonSearchView(ESTestCase):
+
+    def setUp(self):
+        super(TestAddonSearchView, self).setUp()
+        self.url = reverse('addon-search')
+
+    def tearDown(self):
+        super(TestAddonSearchView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def test_basic(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        assert addon.last_updated  # Just in case.
+        self.refresh()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == addon.last_updated.isoformat()
+
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['slug'] == 'my-second-addon'
+
+    def test_empty(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
+
+    def test_pagination(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        addon_factory(slug='my-third-addon', name=u'My third Addôn')
+        self.refresh()
+
+        response = self.client.get(self.url, {'page_size': 1})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+
+        response = self.client.get(data['next'])
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon2.pk
+        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['slug'] == 'my-second-addon'
+
+    def test_filtering_non_public_addons(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
+                      status=amo.STATUS_NULL)
+        addon_factory(slug='my-unreviewed-addon', name=u'My unreviewed Addôn',
+                      status=amo.STATUS_UNREVIEWED)
+        addon_factory(slug='my-nominated-addon', name=u'My nominated Addôn',
+                      status=amo.STATUS_NOMINATED)
+        addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
+                      status=amo.STATUS_DISABLED)
+        addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
+                      is_listed=False)
+        addon_factory(slug='my-disabled-by-user-addon',
+                      name=u'My disabled by user Addôn',
+                      disabled_by_user=True)
+        self.refresh()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'

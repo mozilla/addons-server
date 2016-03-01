@@ -21,7 +21,10 @@ import caching.base as caching
 import jinja2
 import commonware.log
 import session_csrf
+from elasticsearch_dsl import F, Search
+from elasticsearch_dsl.filter import Bool
 from mobility.decorators import mobilized, mobile_template
+from rest_framework.generics import ListAPIView
 from session_csrf import anonymous_csrf_exempt
 
 from olympia import amo
@@ -36,6 +39,7 @@ from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import (
     Collection, CollectionFeature, CollectionPromo)
 from olympia import paypal
+from olympia.api.paginator import ESPaginator
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.sharing.views import share as share_redirect
@@ -43,9 +47,11 @@ from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
+from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
-from .decorators import addon_view_factory
+from .search import get_alias
+from .serializers import ESAddonSerializer
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -633,3 +639,30 @@ def persona_redirect(request, persona_id):
         # with cascading deletes?). Tell GoogleBot these are dead with a 404.
         return http.HttpResponseNotFound()
     return http.HttpResponsePermanentRedirect(to)
+
+
+class AddonSearchView(ListAPIView):
+    authentication_classes = []
+    filter_backends = []
+    paginator_class = ESPaginator
+    permission_classes = []
+    serializer_class = ESAddonSerializer
+    paginate_by = 25
+    paginate_by_param = 'page_size'
+
+    def get_queryset(self):
+        qs = Search(using=amo.search.get_es(),
+                    index=get_alias(),
+                    doc_type=Addon._meta.db_table)
+        # FIXME: once we start adding filter_backends, we should move that
+        # filtering and sorting in the backends instead.
+        return qs.filter(Bool(must=[
+            F('term', is_listed=True),
+            F('term', is_disabled=False),
+            F('term', status=amo.REVIEWED_STATUSES),
+        ])).sort('name_sort')
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(AddonSearchView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)

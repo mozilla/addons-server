@@ -1,5 +1,4 @@
-from nose.tools import eq_
-
+# -*- coding: utf-8 -*-
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, attach_categories, attach_tags, attach_translations)
@@ -11,9 +10,11 @@ class TestExtract(TestCase):
 
     def setUp(self):
         super(TestExtract, self).setUp()
-        self.attrs = ('id', 'slug', 'created', 'last_updated',
-                      'weekly_downloads', 'average_daily_users', 'status',
-                      'type', 'hotness', 'is_disabled')
+        self.attrs = (
+            'id', 'slug', 'created', 'default_locale', 'last_updated',
+            'weekly_downloads', 'average_daily_users', 'status', 'type',
+            'hotness', 'is_disabled', 'is_listed',
+        )
         self.transforms = (attach_categories, attach_tags, attach_translations)
 
     def _extract(self):
@@ -26,4 +27,29 @@ class TestExtract(TestCase):
     def test_extract_attributes(self):
         extracted = self._extract()
         for attr in self.attrs:
-            eq_(extracted[attr], getattr(self.addon, attr))
+            assert extracted[attr] == getattr(self.addon, attr)
+
+    def test_extract_translations(self):
+        translations_name = {
+            'en-US': u'Name in ënglish',
+            'es': u'Name in Español',
+            'it': None,  # Empty name should be ignored in extract.
+        }
+        translations_description = {
+            'en-US': u'Description in ënglish',
+            'es': u'Description in Español',
+            'fr': '',  # Empty description should be ignored in extract.
+        }
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon.name = translations_name
+        self.addon.description = translations_description
+        self.addon.save()
+        extracted = self._extract()
+        assert extracted['name_translations'] == [
+            {'lang': u'en-US', 'string': translations_name['en-US']},
+            {'lang': u'es', 'string': translations_name['es']},
+        ]
+        assert extracted['description_translations'] == [
+            {'lang': u'en-US', 'string': translations_description['en-US']},
+            {'lang': u'es', 'string': translations_description['es']},
+        ]
