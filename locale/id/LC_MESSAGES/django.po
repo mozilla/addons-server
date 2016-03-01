@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 07:38+0000\n"
+"PO-Revision-Date: 2016-03-01 09:54+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -10913,147 +10913,147 @@ msgstr "Pound Saint Helena"
 
 #: src/olympia/lib/constants.py:134
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Leone Sierra Leone"
 
 #: src/olympia/lib/constants.py:135
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Shilling Somalia"
 
 #: src/olympia/lib/constants.py:136
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Luigino Seborga"
 
 #: src/olympia/lib/constants.py:137
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Dollar Suriname"
 
 #: src/olympia/lib/constants.py:138
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Dobra São Tomé and Príncipe"
 
 #: src/olympia/lib/constants.py:139
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Colon El Salvador"
 
 #: src/olympia/lib/constants.py:140
 msgid "Syria Pound"
-msgstr ""
+msgstr "Pound Suriah"
 
 #: src/olympia/lib/constants.py:141
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Lilangeni Swaziland"
 
 #: src/olympia/lib/constants.py:142
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Baht Thailand"
 
 #: src/olympia/lib/constants.py:143
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Somoni Tajikistan"
 
 #: src/olympia/lib/constants.py:144
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Manat Turkmenistan"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Dinar Tunisia"
 
 #: src/olympia/lib/constants.py:146
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Pa'anga Tonga"
 
 #: src/olympia/lib/constants.py:147
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Lira Turki"
 
 #: src/olympia/lib/constants.py:148
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dollar Trinidad dan Tobago"
 
 #: src/olympia/lib/constants.py:149
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Dollar Tuvalu"
 
 #: src/olympia/lib/constants.py:150
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Dollar Baru Taiwan"
 
 #: src/olympia/lib/constants.py:151
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Shilling Tanzania"
 
 #: src/olympia/lib/constants.py:152
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Hryvna Ukraina"
 
 #: src/olympia/lib/constants.py:153
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Shilling Uganda"
 
 #: src/olympia/lib/constants.py:154
 msgid "United States Dollar"
-msgstr ""
+msgstr "Dollar Amerika Serikat"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Peso Uruguay"
 
 #: src/olympia/lib/constants.py:156
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Som Uzbekistan"
 
 #: src/olympia/lib/constants.py:157
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Bolivar Venezuela"
 
 #: src/olympia/lib/constants.py:158
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Dong Viet Nam"
 
 #: src/olympia/lib/constants.py:159
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vatu Vanuatu"
 
 #: src/olympia/lib/constants.py:160
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Tala Samoa"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Dollar Karibia Timur"
 
 #: src/olympia/lib/constants.py:163
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Special Drawing Rights Dana Moneter Internasional (IMF)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franc Communauté Financière Africaine (BCEAO)"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franc Comptoirs Français du Pacifique (CFP)"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Rial Yemen"
 
 #: src/olympia/lib/constants.py:167
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Rand Afrika Selatan"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Kwacha Zambia"
 
 #: src/olympia/lib/constants.py:169
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dollar Zimbabwe"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
@@ -11062,11 +11062,11 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Tentang Pengaya Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Apakah situs ini?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -11079,7 +11079,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Siapakah yang membuat pengaya ini?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -11092,7 +11092,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Bagaimana saya bisa tetap mengikuti hal-hal yang terjadi di AMO?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:27
 msgid ""
@@ -12022,11 +12022,11 @@ msgstr "Часті питання"
 
 #: src/olympia/pages/templates/pages/faq.html:13
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Menggunakan Pengaya"
 
 #: src/olympia/pages/templates/pages/faq.html:15
 msgid "What is an add-on?"
-msgstr ""
+msgstr "Apakah pengaya itu?"
 
 #: src/olympia/pages/templates/pages/faq.html:16
 #, python-format
@@ -12166,7 +12166,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Apakah pengaya aman untuk dipasang?"
 
 #: src/olympia/pages/templates/pages/faq.html:123
 #, python-format
@@ -12217,7 +12217,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:156
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Bagaimana jika kita mengalami masalah dengan pengaya?"
 
 #: src/olympia/pages/templates/pages/faq.html:157
 #, python-format
@@ -12232,7 +12232,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:169
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Galeri Pengaya"
 
 #: src/olympia/pages/templates/pages/faq.html:171
 msgid ""
@@ -12253,6 +12253,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr ""
+"Bagaimana seandainya saya tidak bisa menemukan pengaya yang saya cari?"
 
 #: src/olympia/pages/templates/pages/faq.html:181
 #, python-format
@@ -12296,7 +12297,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:206
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Berapakah harga pengaya?"
 
 #: src/olympia/pages/templates/pages/faq.html:207
 msgid ""
@@ -12318,7 +12319,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Apakah pengaya versi beta itu?"
 
 #: src/olympia/pages/templates/pages/faq.html:218
 msgid ""
