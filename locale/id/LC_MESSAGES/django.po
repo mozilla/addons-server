@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-29 15:51+0000\n"
+"PO-Revision-Date: 2016-03-01 04:48+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6835,7 +6835,7 @@ msgstr "deskripsi dan kebijakan privasi yang terinci, jika memungkinkan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:45
 msgid "updated screenshots of the add-on's functionality"
-msgstr ""
+msgstr "memperbarui tangkapan layar untuk fungsi pengaya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:46
 msgid ""
@@ -6850,7 +6850,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Pengaya harus memiliki minimal 2000 pengguna."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:50
 msgid ""
@@ -6883,17 +6883,21 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "nama pengaya, URLnya, dan apakah anda adalah pengembangnya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:63
 msgid ""
 "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"penjelasan pendek mengenai mengapa pengaya ini memiliki daya tarik yang luas"
+" dan harus diunggulkan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
 "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
+"pilihan lainnya, tautkan ke ulasan eksternal atau artikel yang menyebutkan "
+"pengaya ini"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -6939,13 +6943,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Bergabung dengan Badan Penasihat Pengaya Unggulan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid ""
 "Every six months a new Advisory Board is chosen based on applications from "
 "the add-ons community. Members must:"
 msgstr ""
+"Setiap enam bulan sebuah Badan Penasihat dipilih berdasarkan aplikasi dari "
+"komunitas pengaya. Anggota harus:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid ""
@@ -14826,7 +14832,7 @@ msgstr "sunting profil anda"
 
 #: src/olympia/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Anda tidak akan menghentikan langganan anda"
 
 #: src/olympia/users/templates/users/unsubscribe.html:30
 #, python-format
@@ -14874,7 +14880,7 @@ msgstr[0] "%(num)s pengaya"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Rata-rata peringkat untuk pengembang pengaya"
 
 #: src/olympia/versions/feeds.py:61
 #, python-format
