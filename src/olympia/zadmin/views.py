@@ -593,7 +593,8 @@ def general_search(request, app_id, model_id):
 @addon_view_factory(qs=Addon.with_unlisted.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
-    pager = amo.utils.paginate(request, addon.versions.all(), 30)
+    pager = amo.utils.paginate(
+        request, Version.unfiltered.filter(addon=addon), 30)
     # A list coercion so this doesn't result in a subquery with a LIMIT which
     # MySQL doesn't support (at this time).
     versions = list(pager.object_list)

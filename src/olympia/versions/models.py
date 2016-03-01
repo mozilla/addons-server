@@ -239,6 +239,7 @@ class Version(OnChangeMixin, ModelBase):
         else:
             # By default we soft delete so we can keep the files for comparison
             # and a record of the version number.
+            self.files.update(status=amo.STATUS_DISABLED)
             self.deleted = True
             self.save()
 
