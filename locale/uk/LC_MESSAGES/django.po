@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 09:20+0000\n"
+"PO-Revision-Date: 2016-03-01 10:23+0000\n"
 "Last-Translator: Sergii Klymenko <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -938,7 +938,7 @@ msgstr "Редагувати"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d.%%m.%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -1105,6 +1105,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Хочете встановити {0} у ваш мобільний Firefox?  Проскануйте цей QR-код для встановлення прямо\n"
+"  на ваш телефон.  (Вам знадобиться QR-читач.  Пошукайте в магазині додатків вашого телефона,\n"
+"  якщо у вас його немає.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -3399,6 +3402,9 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Щоб включити додаток до цієї збірки, введіть його ім'я у поле нижче та "
+"натисніть enter.  Ви також можете використовувати посилання <strong>Додати "
+"до Збірки</strong> на сайті, щоб включити додатки пізніше."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
