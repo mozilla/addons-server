@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 09:54+0000\n"
+"PO-Revision-Date: 2016-03-01 10:50+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7073,7 +7073,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Saat melakukan tinjauan lengkap, penyunting akan:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid ""
@@ -12753,7 +12753,7 @@ msgid "This review is for a previous version of the add-on ({0})."
 msgstr "Ulasan ini dibuat untuk versi pengaya ({0}) sebelumnya."
 
 #: src/olympia/reviews/templates/reviews/review.html:56
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
 "add-on."
@@ -12761,8 +12761,8 @@ msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
 msgstr[0] ""
-"Pengguna ini memiliki <a href=\"%(user_review_url)s\">ulasan sebelumnya</a> "
-"untuk pengaya ini."
+"Pengguna ini memiliki <a href=\"%(user_review_url)s\">%(cnt)s ulasan "
+"terdahulu</a> untuk pengaya ini."
 
 #: src/olympia/reviews/templates/reviews/review.html:62
 #, python-format
@@ -12886,10 +12886,10 @@ msgid "Read More&nbsp;&raquo;"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html:7
-#, fuzzy, python-format
+#, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Lihat Semua Ulasan"
+msgstr[0] "Lihat Semua %(cnt)s Ulasan"
 
 #: src/olympia/search/forms.py:11
 msgid "Most popular this week"
