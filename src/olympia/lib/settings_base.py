@@ -70,6 +70,11 @@ THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
+# Add Access-Control-Allow-Origin: * header for the new API with
+# django-cors-headers.
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/v3/.*$'
+
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
@@ -326,7 +331,10 @@ MIDDLEWARE_CLASSES = (
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
 
+    # CSP and CORS need to come before CommonMiddleware because they might
+    # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',

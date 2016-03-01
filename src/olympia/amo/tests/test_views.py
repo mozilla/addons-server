@@ -367,6 +367,31 @@ class TestCSP(TestCase):
         eq_(log_cef.call_args[0][2]['PATH_INFO'], '/services/csp/report')
 
 
+class TestCORS(TestCase):
+    def get(self, url, **headers):
+        return self.client.get(url, HTTP_ORIGIN='testserver', **headers)
+
+    def test_no_cors(self):
+        response = self.get(reverse('home'))
+        assert response.status_code == 200
+        assert not response.has_header('Access-Control-Allow-Origin')
+        assert not response.has_header('Access-Control-Allow-Credentials')
+
+    def test_no_cors_legacy_api(self):
+        response = self.get('/en-US/firefox/api/1.5/search/test')
+        assert response.status_code == 200
+        assert not response.has_header('Access-Control-Allow-Origin')
+        assert not response.has_header('Access-Control-Allow-Credentials')
+
+    def test_cors_api_v3(self):
+        url = reverse('addon-search')
+        assert '/api/v3/' in url
+        response = self.get(url)
+        assert response.status_code == 200
+        assert not response.has_header('Access-Control-Allow-Credentials')
+        assert response['Access-Control-Allow-Origin'] == '*'
+
+
 class TestContribute(TestCase):
 
     def test_contribute_json(self):
