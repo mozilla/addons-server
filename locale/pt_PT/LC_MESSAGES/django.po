@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 22:59+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-03-02 10:49+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -1885,7 +1885,7 @@ msgstr "Submeter um novo extra"
 #: src/olympia/devhub/templates/devhub/index.html:24
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr "Submeter um tema novo"
+msgstr "Submeter um novo tema"
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/amo/templates/amo/site_nav.html:87
@@ -15481,7 +15481,7 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
-"De tempos a tempos, a Mozilla poderá enviar-lhe um email sobre os próximos "
+"De tempo a tempo, a Mozilla poderá enviar-lhe um email sobre os próximos "
 "lançamentos e eventos sobre extras. Por favor, selecione os tópicos de "
 "interesse."
 
