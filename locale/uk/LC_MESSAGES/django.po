@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 10:13+0000\n"
+"PO-Revision-Date: 2016-03-02 17:59+0000\n"
 "Last-Translator: Sergii Klymenko <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1063,6 +1063,10 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Увага:</strong> Цей додаток не був перевірений Mozilla і не може "
+"бути встановлений на версію Firefox 43 та вище.  Будьте обережні при "
+"встановленні програмного забезпечення від третіх сторін, яке може пошкодити "
+"ваш комп'ютер."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
@@ -2255,7 +2259,7 @@ msgstr "Ескалація перевірки"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Відео видалене з {addon} через проблеми з відео. "
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2440,6 +2444,9 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Отакої!  У нас виникла помилка.</h1> <p> Ми виправимо її найближчим "
+"часом.</p> <p> Ви можете спробувати оновити сторінку або повернутись на <a "
+"href=\"%(home)s\"> домашню сторінку додатків</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
