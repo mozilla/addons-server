@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 14:43+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"PO-Revision-Date: 2016-03-02 21:00+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -119,8 +119,8 @@ msgstr[1] "A(z) \"{0}\" foglalt címkék, ezért nem használhatók."
 #: src/olympia/addons/forms.py:111
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "{0} túl sok címke."
-msgstr[1] "{0} túl sok címke."
+msgstr[0] "{0} címkével több az engedélyezettnél."
+msgstr[1] "{0} címkével több az engedélyezettnél."
 
 #: src/olympia/addons/forms.py:117
 #, python-format
@@ -952,7 +952,7 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"A kiegészítő telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilal "
+"A kiegészítő telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla "
 "ingyenes és nyílt böngészőjét."
 
 #: src/olympia/addons/templates/addons/popups.html:21
@@ -995,7 +995,7 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"A téma telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilal ingyenes és "
+"A téma telepítéséhez <b>töltsön le egy Firefox</b>ot, a Mozilla ingyenes és "
 "nyílt böngészőjét."
 
 #: src/olympia/addons/templates/addons/popups.html:60
@@ -5175,7 +5175,7 @@ msgstr "Kiegészítő-ellenőrző"
 
 #: src/olympia/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
-msgstr "Kiegészítő kompatibilitásviszgálata"
+msgstr "Kiegészítő kompatibilitásvizsgálata"
 
 #: src/olympia/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
@@ -5243,8 +5243,8 @@ msgid ""
 "encounter."
 msgstr ""
 "A nem listázott kiegészítők aláírásra való benyújtása jelenleg nyílt béta "
-"állapotú. Kérjük, <a href=\"%(url)s\" target=\"_blank\"> jeletse, ha hibával"
-" találkozik</a>."
+"állapotú. Kérjük, <a href=\"%(url)s\" target=\"_blank\"> jelentse, ha "
+"hibával találkozik</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html:5
@@ -6625,10 +6625,10 @@ msgid ""
 "update regardless of any kind of alphabetical sorting."
 msgstr ""
 "Ugyan mi ezeket \"béta verzióknak\" nevezzük, használhatja ezt a csatornát "
-"éjszakai kiadásokhoz, alfa vagy előzetes kiadási verziókhoz is. Jegyezze meg"
-" hogy csak egy csatorna van erre a célra és a csatorna minden felhasználója "
-"megkapja a legfrissebb beküldött kiegészítőt. Például, ha feltölti az "
-"<code>1.0beta1</code> verziót a kiadási csatornába és felölti az "
+"éjszakai kiadásokhoz, alfa vagy előzetes kiadási verziókhoz is. Ne feledje, "
+"hogy csak egy csatorna van erre a célra, és a csatorna minden felhasználója "
+"megkapja a legfrissebb beküldött kiegészítőt. Ha például feltölti az "
+"<code>1.0beta1</code> verziót a kiadási csatornába és feltölti az "
 "<code>1.1alpha1</code> verziót, akkor minden <code>1.0beta1</code> "
 "felhasználónak felajánlja a frissítést az <code>1.1alpha1</code> verzióra. A"
 " frissítésék kiküldése beküldési dátum, és nem verziószám alapján történik, "
@@ -6946,7 +6946,7 @@ msgid ""
 "Every six months a new Advisory Board is chosen based on applications from "
 "the add-ons community. Members must:"
 msgstr ""
-"Hat hónaponta új tanácsadói testület kerül kiválasztásra a közösségéből. A "
+"Hat havonta új tanácsadói testület kerül kiválasztásra a közösségéből. A "
 "tagoknak:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:108
@@ -7096,7 +7096,7 @@ msgid ""
 "practices"
 msgstr ""
 "felülvizsgálják a forráskódot, teljesítmény és biztonsági megfontolások "
-"alapj"
+"alapján"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
@@ -7939,7 +7939,7 @@ msgstr "Alkalmazás eltávolítása"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Válasszon <b>legfeljebb {0}</b> {1} kategórát a kiegészítőhöz:"
+msgstr[0] "Válasszon <b>legfeljebb {0}</b> {1} kategóriát a kiegészítőhöz:"
 msgstr[1] "Válasszon <b>legfeljebb {0}</b> {1} kategórát a kiegészítőhöz:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
@@ -10903,7 +10903,7 @@ msgstr "indiai rúpia"
 
 #: src/olympia/lib/constants.py:70
 msgid "Iraq Dinar"
-msgstr "iraki dínár"
+msgstr "iraki dinár"
 
 #: src/olympia/lib/constants.py:71
 msgid "Iran Rial"
@@ -10919,7 +10919,7 @@ msgstr "jersey-i font"
 
 #: src/olympia/lib/constants.py:74
 msgid "Jamaica Dollar"
-msgstr "jamaikai dollár"
+msgstr "jamaicai dollár"
 
 #: src/olympia/lib/constants.py:75
 msgid "Jordan Dinar"
@@ -11059,7 +11059,7 @@ msgstr "namíbiai dollár"
 
 #: src/olympia/lib/constants.py:109
 msgid "Nigeria Naira"
-msgstr "nigéria naira"
+msgstr "nigériai naira"
 
 #: src/olympia/lib/constants.py:110
 msgid "Nicaragua Cordoba"
@@ -14894,7 +14894,7 @@ msgstr "Elfelejtettem a jelszavam."
 #: src/olympia/users/templates/users/login_modal.html:3
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Bejelentkezve mint <strong>%s (user_email)</strong>!"
+msgstr "Bejelentkezve mint <strong>%s(user_email)s</strong>!"
 
 #: src/olympia/users/templates/users/newpw_sent.html:3
 #: src/olympia/users/templates/users/newpw_sent.html:8
