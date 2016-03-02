@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-02 00:03+0000\n"
+"PO-Revision-Date: 2016-03-02 12:06+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7292,12 +7292,17 @@ msgid ""
 "Add-ons whose main purpose is to facilitate access to pornographic material,"
 " or include references to this material in their descriptions"
 msgstr ""
+"Pengaya yang tujuan utamanya untuk memfasilitasi akses untuk materi "
+"pornografi, atau menyertakan referensi untuk materi ini dalam penjelasan "
+"mereka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:210
 msgid ""
 "Add-ons that, upon installation, auto-install or launch installers of non-"
 "Firefox software"
 msgstr ""
+"Pengaya yang, pada saat dipasang, terpasang otomatis atau meluncurkan "
+"instalator dari perangkat lunak non-Firefox"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:215
 msgid ""
@@ -7311,10 +7316,14 @@ msgid ""
 "Add-ons that make changes to web content in ways that are non-obvious or "
 "difficult to trace by their users"
 msgstr ""
+"Pengaya yang membuat perubahan pada konten web dengan cara yang tidak "
+"langsung atau sulit dilacak oleh pengguna mereka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:225
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
 msgstr ""
+"Pengaya yang mengintai atau menangkap lalu lintas jaringan atau pengguna "
+"lainnya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:230
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -7322,7 +7331,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Mengubah Fitur yang Tetap dan Tak Terduga"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -7544,6 +7553,12 @@ msgid ""
 "the need for such protection, and help us preserve some of the most valuable"
 " assets of the Mozilla Foundation."
 msgstr ""
+"Hal ini berlaku untuk merek dagang Mozilla Foundation juga, termasuk "
+"\"Mozilla\", \"Firefox\", dan \"Tunderbird\". Kebijakan Mozilla tentang "
+"penggunaan merek dagang dirancang untuk melindungi dari kebingungan, dan "
+"mencegah merek dagang diubah karena kurangnya perlindungan; harap "
+"menghormati kebutuhan atas perlindungan semacam ini, dan bantu kami menjaga "
+"sebagian dari aset Mozilla Foundation yang paling berharga."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:84
 msgid "Licensing"
@@ -7593,6 +7608,8 @@ msgid ""
 "What happens after your add-on is submitted? Learn about how our Editors "
 "review submissions."
 msgstr ""
+"Apa yang terjadi setelah pengaya anda dimasukkan? Pelajari bagaimana "
+"Penyunting kami mengulas pendaftaran."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:81
 msgid ""
@@ -7615,6 +7632,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
 msgstr ""
+"Bagaimana cara berhubungan dengan kami menyangkut kebijakan ini atau pengaya"
+" anda."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6
 msgid "You have disabled this add-on"
@@ -9576,7 +9595,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html:87
 #: src/olympia/editors/templates/editors/includes/daily-message.html:4
 msgid "Announcement"
-msgstr ""
+msgstr "Pengumuman"
 
 #. "Filter" is a button label (verb)
 #: src/olympia/editors/templates/editors/beta_signed_log.html:17
@@ -9585,7 +9604,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/macros.html:45
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Saringan"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:23
 #: src/olympia/editors/templates/editors/eventlog.html:30
@@ -9598,38 +9617,38 @@ msgstr "Дата"
 #: src/olympia/editors/templates/editors/eventlog.html:31
 #: src/olympia/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "Acara"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:37
 #: src/olympia/editors/templates/editors/eventlog.html:44
 #: src/olympia/editors/templates/editors/home.html:180
 msgid "More details."
-msgstr ""
+msgstr "Rincian lainnya."
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:46
 #: src/olympia/editors/templates/editors/eventlog.html:53
 msgid "No events found for this period."
-msgstr ""
+msgstr "Tidak ada acara yang ditemukan dalam rentang waktu ini."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:5
 msgid "Log Details"
-msgstr ""
+msgstr "Rincian Log"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:11
 msgid "Log details"
-msgstr ""
+msgstr "Rincian log"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:15
 msgid "Add-on Title"
-msgstr ""
+msgstr "Judul Pengaya"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr ""
+msgstr "Judul Ulasan"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr ""
+msgstr "Teks Ulasan"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
@@ -9757,11 +9776,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
-msgstr ""
+msgstr "Ulasan Anda"
 
 #: src/olympia/editors/templates/editors/performance.html:34
 msgid "By {user_name}"
-msgstr ""
+msgstr "Oleh {user_name}"
 
 #: src/olympia/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
@@ -9769,15 +9788,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html:42
 msgid "This Month"
-msgstr ""
+msgstr "Bulan Ini"
 
 #: src/olympia/editors/templates/editors/performance.html:48
 msgid "This Year"
-msgstr ""
+msgstr "Tahun Ini"
 
 #: src/olympia/editors/templates/editors/performance.html:59
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Kinerja Bulanan"
 
 #: src/olympia/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
@@ -9785,36 +9804,36 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html:76
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: src/olympia/editors/templates/editors/performance.html:81
 msgid "Month"
-msgstr ""
+msgstr "Bulan"
 
 #: src/olympia/editors/templates/editors/performance.html:88
 msgid "Year"
-msgstr ""
+msgstr "Tahun"
 
 #: src/olympia/editors/templates/editors/performance.html:95
 msgid "All-Time"
-msgstr ""
+msgstr "Setiap-Waktu"
 
 #: src/olympia/editors/templates/editors/queue.html:28
 msgid "Advanced Search"
-msgstr ""
+msgstr "Pencarian Lanjut"
 
 #: src/olympia/editors/templates/editors/queue.html:30
 msgid "clear search"
-msgstr ""
+msgstr "hapus pencarian"
 
 #: src/olympia/editors/templates/editors/queue.html:72
 #: src/olympia/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr ""
+msgstr "Proses Mengulas"
 
 #: src/olympia/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Aksi moderasi:"
 
 #: src/olympia/editors/templates/editors/queue.html:90
 #, python-format
@@ -9830,7 +9849,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Seluruh ulasan telah dimoderasi.  Kerja bagus!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -9856,11 +9875,11 @@ msgstr "Panduan Editor"
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr ""
+msgstr "Ulasan {0}"
 
 #: src/olympia/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Riwayat perubahan pengguna pengaya"
 
 #: src/olympia/editors/templates/editors/review.html:52
 #: src/olympia/editors/templates/editors/review.html:266
@@ -9876,11 +9895,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:73
 msgid "Compatibility:"
-msgstr ""
+msgstr "Kompatibilitas:"
 
 #: src/olympia/editors/templates/editors/review.html:84
 msgid "Additional sources:"
-msgstr ""
+msgstr "Sumber tambahan:"
 
 #: src/olympia/editors/templates/editors/review.html:87
 msgid "Download files"
@@ -9888,17 +9907,19 @@ msgstr "Unduh berkas"
 
 #: src/olympia/editors/templates/editors/review.html:89
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Pengembang telah menyediakan kode sumber."
 
 #: src/olympia/editors/templates/editors/review.html:124
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Versi ini belum diulas."
 
 #: src/olympia/editors/templates/editors/review.html:154
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"Anda masih bisa memasukkan formulir ini, bagaimanapun hanya lakukan jika "
+"anda mengetahui ini tidak akan berbenturan."
 
 #: src/olympia/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
@@ -9907,11 +9928,11 @@ msgstr ""
 #: src/olympia/editors/templates/editors/review.html:167
 #: src/olympia/files/templates/files/viewer.html:54
 msgid "Files:"
-msgstr ""
+msgstr "Berkas:"
 
 #: src/olympia/editors/templates/editors/review.html:181
 msgid "Tested on:"
-msgstr ""
+msgstr "Dites pada:"
 
 #: src/olympia/editors/templates/editors/review.html:220
 msgid ""
@@ -9939,7 +9960,7 @@ msgstr "(admin)"
 
 #: src/olympia/editors/templates/editors/review.html:258
 msgid "Admin Page"
-msgstr ""
+msgstr "Admin Laman"
 
 #: src/olympia/editors/templates/editors/review.html:263
 msgid "Review This Add-on"
@@ -9947,11 +9968,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:265
 msgid "More Information"
-msgstr ""
+msgstr "Informasi Selengkapnya"
 
 #: src/olympia/editors/templates/editors/review.html:267
 msgid "Resolution"
-msgstr ""
+msgstr "Resolusi"
 
 #: src/olympia/editors/templates/editors/reviewlog.html:36
 msgid "Editor"
@@ -9978,11 +9999,11 @@ msgstr "Tidak ada ulasan ditemukan untuk rentang waktu ini."
 
 #: src/olympia/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Abaikan pengumuman ini"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
-msgstr ""
+msgstr "Berkas dalam versi ini:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
@@ -9990,7 +10011,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
-msgstr ""
+msgstr "Bandingkan"
 
 #: src/olympia/editors/templates/editors/includes/history.html:6
 #, python-format
@@ -11162,6 +11183,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
+"Katakan pada teman! Biarkan orang tahu pengaya mana yang anda gunakan."
 
 #: src/olympia/pages/templates/pages/about.lhtml:59
 #, python-format
@@ -11176,7 +11198,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "Saya punya pertanyaan"
 
 #: src/olympia/pages/templates/pages/about.lhtml:67
 #, python-format
@@ -11195,7 +11217,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Siapa yang mengerjakan situs ini?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:77
 #, python-format
@@ -11205,14 +11227,18 @@ msgid ""
 "significant contributors can be found on our <a href=\"%(url)s\"> Site "
 "Credits</a> page."
 msgstr ""
+"Selama bertahun-tahun, banyak orang telah berkontribusi untuk situs ini, "
+"termasuk para relawan dari komunitas dan tim tetap AMO. Daftar kontributor "
+"yang signifikan dapat ditemukan di laman<a href=\"%(url)s\"> Site "
+"Credits</a> ."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Pelaporan Kompatibilitas Pengaya"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Pelaporan Kompatibilitas Pengaya telah dipasang"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:28
 msgid ""
@@ -13308,7 +13334,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:40
 msgid "Group by:"
-msgstr ""
+msgstr "Dikelompokkan berdasarkan:"
 
 #: src/olympia/stats/templates/stats/stats.html:42
 msgid "day"
@@ -13354,7 +13380,7 @@ msgstr "Statistik untuk {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Papan Statistik"
 
 #: src/olympia/stats/templates/stats/stats.html:104
 msgid ""
@@ -13372,7 +13398,7 @@ msgstr ""
 #: src/olympia/stats/templates/stats/reports/overview.html:37
 #: src/olympia/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr ""
+msgstr "Tidak ada data tersedia."
 
 #: src/olympia/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
@@ -13388,39 +13414,39 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:185
 msgid "Change settings."
-msgstr ""
+msgstr "Ubah pengaturan."
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Pengaya Dibuat berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Pengaya Diunduh berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Pengaya Digunakan sebelum Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Pengaya Diperbarui sebelum Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Penggunaan aplikasi berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Koleksi Dibuat berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Kontribusi berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Diunduh berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
