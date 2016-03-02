@@ -21,6 +21,7 @@ Django==1.7.11
 dj-database-url==0.2.2
 django-aesfield==0.1.2
 django-cache-nuggets==0.1.1
+django-cors-headers==1.1.0
 django-cronjobs==0.2.3
 django_csp==2.0.3
 django-environ==0.4.0
