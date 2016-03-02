@@ -1,5 +1,4 @@
 from django import http
-from django.conf import settings
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
@@ -22,6 +21,7 @@ from olympia.bandwagon.models import Collection
 from olympia.versions.compare import dict_from_int, version_dict, version_int
 
 from .forms import ESSearchForm, SecondarySearchForm
+from .filters import get_locale_analyzer
 
 
 DEFAULT_NUM_COLLECTIONS = 20
@@ -293,13 +293,6 @@ def _build_suggestions(request, cat, suggester):
     return results
 
 
-def _get_locale_analyzer():
-    analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(translation.get_language())
-    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
-        return None
-    return analyzer
-
-
 def name_only_query(q):
     d = {}
 
@@ -311,7 +304,7 @@ def name_only_query(q):
         for field in ('name', 'slug', 'authors'):
             d['%s__%s' % (field, k)] = v
 
-    analyzer = _get_locale_analyzer()
+    analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
         d['name_%s__match' % analyzer] = {'query': q, 'boost': 2.5,
                                           'analyzer': analyzer}
@@ -335,7 +328,7 @@ def name_query(q):
                                     'type': 'phrase'},
                 tags__match={'query': q.split(), 'boost': 0.1})
 
-    analyzer = _get_locale_analyzer()
+    analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
         more['summary_%s__match' % analyzer] = {'query': q,
                                                 'boost': 0.6,
