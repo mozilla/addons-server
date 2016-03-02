@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 10:50+0000\n"
+"PO-Revision-Date: 2016-03-02 00:03+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7069,7 +7069,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
-msgstr ""
+msgstr "Mengetes Metode &amp; Isu Bersama"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
@@ -8130,12 +8130,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:217
 #: src/olympia/devhub/templates/devhub/personas/submit.html:163
 msgid "Theme Design"
-msgstr ""
+msgstr "Desain Tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:221
 #: src/olympia/devhub/templates/devhub/personas/edit.html:224
 msgid "Upload New Design"
-msgstr ""
+msgstr "Unggah Desain Baru"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:226
 msgid ""
@@ -8161,11 +8161,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
-msgstr ""
+msgstr "Judul"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
-msgstr ""
+msgstr "Catatan Kaki"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:274
 #: src/olympia/devhub/templates/devhub/personas/submit.html:167
@@ -8356,7 +8356,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:12
 #: src/olympia/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status & Versi"
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
@@ -12676,7 +12676,7 @@ msgstr ""
 
 #: src/olympia/reviews/forms.py:149
 msgid "Skip for now"
-msgstr ""
+msgstr "Lewatkan untuk sekarang"
 
 #: src/olympia/reviews/forms.py:151
 #: src/olympia/reviews/templates/reviews/review.html:107
@@ -12720,11 +12720,11 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html:15
 #: src/olympia/reviews/templates/reviews/reply.html:31
 msgid "Reply"
-msgstr ""
+msgstr "Balas"
 
 #: src/olympia/reviews/templates/reviews/reply.html:28
 msgid "Write a Reply"
-msgstr ""
+msgstr "Menulis Balasan"
 
 #: src/olympia/reviews/templates/reviews/reply.html:36
 #: src/olympia/reviews/templates/reviews/report_review.html:12
@@ -12735,11 +12735,11 @@ msgstr "Затвердити"
 #: src/olympia/reviews/templates/reviews/reply.html:38
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "or <a href=\"%(url)s\">Batal</a>"
 
 #: src/olympia/reviews/templates/reviews/report_review.html:3
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Silakan pilih satu alasan:"
 
 #: src/olympia/reviews/templates/reviews/review.html:26
 #, python-format
@@ -12787,7 +12787,7 @@ msgstr "Balas ulasan"
 
 #: src/olympia/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Sunting balasan"
 
 #: src/olympia/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -12795,7 +12795,7 @@ msgstr "Edit ulasan"
 
 #: src/olympia/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Hapus balasan"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html:5
@@ -12833,7 +12833,7 @@ msgstr "Tidak ada ulasan ditemukan."
 #: src/olympia/reviews/templates/reviews/review_list.html:57
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Rata-rata</strong> (%(total)s)"
 
 #: src/olympia/reviews/templates/reviews/review_list.html:72
 msgid "Write a New Review"
@@ -12861,11 +12861,11 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:3
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
-msgstr ""
+msgstr "Tambahkan Ulasan"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Masuk untuk menambahkan sebuah ulasan"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
@@ -12913,11 +12913,11 @@ msgstr "cari koleksi"
 
 #: src/olympia/search/forms.py:25
 msgid "search for themes"
-msgstr ""
+msgstr "mencari tema"
 
 #: src/olympia/search/forms.py:26
 msgid "search for apps"
-msgstr ""
+msgstr "mencari aplikasi"
 
 #: src/olympia/search/forms.py:49
 msgid "Sort By"
@@ -12925,7 +12925,7 @@ msgstr "Urut Berdasarkan"
 
 #: src/olympia/search/forms.py:84
 msgid "Relevance"
-msgstr ""
+msgstr "Relevansi"
 
 #: src/olympia/search/helpers.py:24
 msgid ""
@@ -12990,7 +12990,7 @@ msgstr ""
 
 #: src/olympia/search/views.py:600
 msgid "All Tags"
-msgstr ""
+msgstr "Seluruh Tag"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html:8
@@ -12999,11 +12999,11 @@ msgstr ""
 
 #: src/olympia/search/templates/search/collections.html:10
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Koleksi Hasil Pencarian"
 
 #: src/olympia/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pencarian Tidak Tersedia"
 
 #: src/olympia/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -13312,15 +13312,15 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:42
 msgid "day"
-msgstr ""
+msgstr "hari"
 
 #: src/olympia/stats/templates/stats/stats.html:45
 msgid "week"
-msgstr ""
+msgstr "pekan"
 
 #: src/olympia/stats/templates/stats/stats.html:48
 msgid "month"
-msgstr ""
+msgstr "bulan"
 
 #: src/olympia/stats/templates/stats/stats.html:54
 msgid "For last:"
@@ -13328,19 +13328,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:57
 msgid "7 days"
-msgstr ""
+msgstr "7 hari"
 
 #: src/olympia/stats/templates/stats/stats.html:60
 msgid "30 days"
-msgstr ""
+msgstr "30 hari"
 
 #: src/olympia/stats/templates/stats/stats.html:63
 msgid "90 days"
-msgstr ""
+msgstr "90 hari"
 
 #: src/olympia/stats/templates/stats/stats.html:66
 msgid "365 days"
-msgstr ""
+msgstr "365 hari"
 
 #: src/olympia/stats/templates/stats/stats.html:69
 msgid "Custom..."
