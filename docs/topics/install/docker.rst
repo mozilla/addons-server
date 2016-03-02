@@ -51,7 +51,7 @@ on your host machine::
 
    When using a virtual machine for docker the default behaviour is to mount
    your home directory into the docker vm. Your code checkout will need
-   to be with your home directory so that docker-compose will find the necessary
+   to be within your home directory so that docker-compose will find the necessary
    files.
 
 Accessing docker
