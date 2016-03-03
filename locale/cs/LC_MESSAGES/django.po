@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 18:44+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2016-03-03 21:30+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -646,7 +646,7 @@ msgstr "Verze {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Zde není nic k vidění! Vývojář neposkytl žádné detaily."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -1336,7 +1336,7 @@ msgid "Part of these Collections"
 msgstr "Součástí sbírek"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Ostatní doplňky autora %(author)s"
@@ -1370,7 +1370,7 @@ msgid "No Restart"
 msgstr "Nevyžaduje restart"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Seznamte se s vývojářem: <a href=\"%(url)s\">%(name)s</a>"
@@ -2562,7 +2562,7 @@ msgstr "Rozšíření"
 
 #: src/olympia/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Chcete větší přizpůsobení? Vyzkoušejte <b>plné motivy</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html:56
 #: src/olympia/bandwagon/views.py:96
@@ -2703,6 +2703,9 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Doplňky nahrávané na server s doplňky Mozilla musí obsahovat manifest soubor"
+" s alespoň jednou podporovanou aplikací uvedenou níže. Uvedeny jsou také "
+"povolené verze těchto aplikací."
 
 #: src/olympia/applications/templates/applications/appversions.html:25
 msgid "GUID"
@@ -4526,7 +4529,7 @@ msgstr "Autor smí být v seznamu pouze jednou."
 
 #: src/olympia/devhub/forms.py:94
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Nesprávný název URL."
 
 #: src/olympia/devhub/forms.py:106
 msgid "Invalid JSON object"
@@ -4850,11 +4853,11 @@ msgstr "Doplněk smazán."
 
 #: src/olympia/devhub/views.py:362
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Nesprávný název URL. Motiv nebyl smazán."
 
 #: src/olympia/devhub/views.py:367
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
 #: src/olympia/devhub/views.py:449
 msgid "An author has been added to your add-on"
@@ -5013,11 +5016,11 @@ msgstr "Výsledky vyhledávání pro \"{0}\""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Zadejte prosím frázi pro vyhledání."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Načítání výsledků&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -5897,6 +5900,8 @@ msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again by others."
 msgstr ""
+"Smazáním doplňku jej nenávratně odstraníte z této stránky a zabráníte "
+"komukoliv v použití jeho GUID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid ""
@@ -10735,7 +10740,7 @@ msgstr "Neplatný archiv."
 
 #: src/olympia/files/utils.py:529 src/olympia/files/utils.py:532
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Nepodařilo se zpracovat manifest soubor."
 
 #: src/olympia/files/utils.py:551
 msgid "Could not find an add-on ID."
@@ -11053,7 +11058,7 @@ msgstr "Etiopský birr"
 
 #: src/olympia/lib/constants.py:49
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Členské země eurozóny, Euro"
 
 #: src/olympia/lib/constants.py:50
 msgid "Fiji Dollar"
@@ -14072,7 +14077,7 @@ msgstr "Chybí klíč \"upload\" v multipart části dat."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Verze neodpovídá manifest souboru."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
@@ -14156,7 +14161,7 @@ msgstr "Přihlášení uživatelé"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:34
 msgid "Archived Data"
-msgstr ""
+msgstr "Archivovaná data"
 
 #: src/olympia/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
@@ -14256,6 +14261,9 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"Zpracování statistik je momentálně zakázáno a aktuální data nejsou dostupná."
+" Statistiky jsou ale nadále sbírány a tato stránka bude brzy o chybějící "
+"data doplněna."
 
 #: src/olympia/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
@@ -14819,6 +14827,8 @@ msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
 msgstr ""
+"Své heslo musíte obnovit pomocí účtu Firefox Account. Zkuste se raději "
+"přihlásit."
 
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
@@ -14827,7 +14837,7 @@ msgstr "Nové heslo"
 
 #: src/olympia/users/forms.py:242
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mail musí být {email}."
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
@@ -14903,6 +14913,8 @@ msgstr "Výchozí jazyk"
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Uživatelé s účtem Firefox Account v tuto chvíli nemohou měnit své e-mailové "
+"adresy."
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
@@ -14910,7 +14922,7 @@ msgstr "Vloženo chybné heslo!"
 
 #: src/olympia/users/forms.py:459
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "E-mailovou adresu nelze změnit."
 
 #: src/olympia/users/forms.py:541
 msgid ""
@@ -14947,7 +14959,7 @@ msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:353
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonymní uživatel {id}"
 
 #: src/olympia/users/models.py:410
 msgid "Your account has been restricted"
@@ -15058,6 +15070,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"Na vaši adresu byl odeslán e-mail obsahující odkaz k aktivaci účtu. Před tím"
+" než se budete moci přihlásit, si musíte svůj účet aktivovat klepnutím na "
+"tento odkaz."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -15247,13 +15262,15 @@ msgstr "Smazat obrázek"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "Nastavte prosím své zobrazované jméno"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
 msgstr ""
+"Pro dokončení registrace prosím zadejte své jméno pro zobrazení nebo "
+"uživatelské jméno."
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
@@ -15274,7 +15291,7 @@ msgstr "E-mailová adresa"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Spravovat účet Firefox Account..."
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
@@ -15409,17 +15426,19 @@ msgstr "vše"
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:3
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:8
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "Používat účet Firefox Account"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:3
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Server s doplňky nyní pro přihlášení využívá účty Firefox Account. "
+"Pokračujte prosím pro dokončení jednoduchého procesu migrace vašeho účtu."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
-msgstr ""
+msgstr "Přeskočit"
 
 #: src/olympia/users/templates/users/login.html:3
 #: src/olympia/users/templates/users/mobile/login.html:3
@@ -15429,7 +15448,7 @@ msgstr "Přihlášení uživatele"
 #: src/olympia/users/templates/users/login.html:13
 #: src/olympia/users/templates/users/mobile/login.html:21
 msgid "Enter your email"
-msgstr ""
+msgstr "Zadejte svoji e-mailovou adresu"
 
 #: src/olympia/users/templates/users/login.html:15
 #: src/olympia/users/templates/users/mobile/login.html:23
@@ -15565,6 +15584,7 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Váš účet používá účet Firefox Account. Vaše heslo zde již nelze měnit."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
