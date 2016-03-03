@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-02 12:06+0000\n"
+"PO-Revision-Date: 2016-03-03 22:03+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6714,6 +6714,9 @@ msgid ""
 "listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's "
 "current owner."
 msgstr ""
+"Mozilla dapat membantu dengan memberikan izin tambahan dari daftar pengaya "
+"jika <a href=\"%(link_contact)s\">dihubungi</a> oleh pemilik pengaya saat "
+"ini."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
@@ -6722,6 +6725,11 @@ msgid ""
 "stable and useful. It also provides valuable feedback to developers, "
 "allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla mendorong penggunanya untuk memberikan umpan balik atas pengalaman "
+"mereka saat menggunakan pengaya. Hal ini memungkinkan pengguna lain untuk "
+"menentukan apakah pengaya mereka stabil dan berguna. Juga memberikan umpan "
+"balik yang berguna untuk pengembang, agar mereka dapat terus memperbaiki "
+"pengaya sesuai kebutuhan pengguna."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:76
 #, python-format
@@ -6731,6 +6739,9 @@ msgid ""
 " moderation, but negative reviews will not be removed unless they provide "
 "false information."
 msgstr ""
+"Ulasan harus mengikuti <a href=\"%(link_guidelines)s\">petunjuk ulasan</a>. "
+"Ulasan yang tidak memenuhi panduan ini akan ditandai untuk moderasi, tapi "
+"ulasan negatif tidak akan dihapus kecuali mereka memberikan informasi palsu."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
@@ -6738,6 +6749,10 @@ msgid ""
 "group, or email address. It is recommended that support questions be posted "
 "via those mediums instead of in an add-on's review section."
 msgstr ""
+"Banyak pengembang yang menyediakan mekanisme dukungan, seperti forum, "
+"kelompok diskusi, atau alamat surel. Direkomendasikan agar pertanyaan "
+"dukungan itu dikirimkan melalui medium tersebut alih-alih bagian ulasan "
+"pengaya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6750,6 +6765,11 @@ msgid ""
 " The original author of an add-on retains copyright of their work unless "
 "otherwise noted in the add-on's license."
 msgstr ""
+"Banyak pengaya yang memperbolehkan kode sumber mereka dilihat secara "
+"terbuka. Hal ini tidak berarti bahwa kode sumber itu bersifat open source "
+"atau tersedia untuk digunakan di pengaya lainnya. Penulis asli sebuah "
+"pengaya memiliki hak cipta karya mereka terkecuali dinyatakan dalam lisensi "
+"pengaya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
@@ -6760,6 +6780,12 @@ msgid ""
 "submissions (including updates) containing infringing code will be denied "
 "approval for public status."
 msgstr ""
+"Pada saat kami diberi tahu tentang pelanggaran hak cipta atau lisensi, kami "
+"akan mengambil langkah-langkah untuk meninjau situasi dan menentukan apakah "
+"pelanggaran yang sebenarnya telah terjadi. Jika kami menentukan bahwa ada "
+"pelanggaran, kami akan menghapus pengaya yang bermasalah dan menghubungi "
+"penulisnya. Pengiriman pengaya baru (termasuk pembaruan) yang mengandung "
+"pelanggaran kode akan ditolak persetujuannya untuk mendapat status publik."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid ""
@@ -6767,6 +6793,9 @@ msgid ""
 "code, you must contact the original author and receive explicit permission "
 "before using the source code."
 msgstr ""
+"Jika Anda tidak yakin tentang status hak cipta ssebuah kode sumber pengaya, "
+"Anda harus menghubungi penulis asli dan mendapatkan izin sebelum menggunakan"
+" kode sumber tersebut."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:107
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:306
@@ -6782,6 +6811,10 @@ msgid ""
 "other Mozilla websites. These add-ons showcase the power of Firefox "
 "customization and are useful to a wide audience."
 msgstr ""
+"Pengaya unggulan adalah ekstensi berkualitas tinggi dan tema yang disoroti "
+"di <a href=\"%(link_gallery)s\">AMO</a>, Pengelola Pengaya Firefox, dan di "
+"seluruh situs Mozilla lainnya. Pengaya ini menunjukkan kekuatan pengkhususan"
+" Firefox dan berguna untuk audiens yang luas."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -6789,6 +6822,9 @@ msgid ""
 "group of add-on developers and fans from the Mozilla community who have "
 "volunteered to review and vote on nominations."
 msgstr ""
+"Pengaya unggulan dipilih oleh Dewan Penasihat Pengaya Unggulan, sekelompok "
+"kecil pengembang dan penggemar dari komunitas Mozilla yang secara sukarela "
+"meninjau dan memilih berdasarkan nominasi."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:25
 #, python-format
@@ -6797,6 +6833,9 @@ msgid ""
 "month, and <a href=\"%(link_themes)s\">featured complete themes</a> are "
 "chosen every quarter."
 msgstr ""
+"<a href=\"%(link_featured)s\">Ekstensi unggulan</a> dipilih setiap bulan, "
+"dan <a href=\"%(link_themes)s\">tema lengkap unggulan</a> dipilih setiap "
+"kuartal."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:30
 msgid "Criteria for Featured Add-ons"
@@ -6841,12 +6880,17 @@ msgstr "memperbarui tangkapan layar untuk fungsi pengaya"
 msgid ""
 "must be fully approved by AMO editors (no preliminarily reviewed entries)"
 msgstr ""
+"harus disetujui sepenuhnya oleh penyunting AMO (tidak ada entri yang "
+"ditinjau sebelumnya)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid ""
 "The add-on must have excellent user reviews and any problems or support "
 "requests must be promptly addressed by the developer."
 msgstr ""
+"Pengaya ini pasti memiliki ulasan pengguna yang sempurna dan jika ada "
+"masalah atau permintaan dukungan pasti segera ditindaklanjuti oleh "
+"pengembangnya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6857,6 +6901,8 @@ msgid ""
 "The add-on must be compatible with the latest release of Firefox and must be"
 " compatible with beta versions 4 weeks before their final release."
 msgstr ""
+"Pengaya harus kompatibel dengan rilis terakhir Firefox dan harus kompatibel "
+"dengan versi beta 4 minggu sebelum rilis finalnya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
@@ -6865,6 +6911,10 @@ msgid ""
 " performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
+"<strong>Yang terpenting</strong>, pengaya harus memiliki daya tarik luas "
+"bagi pengguna Firefox dan unggul di hampir semua hal: pengalaman pengguna, "
+"performa, keamanan dan nilai ketergunaan atau hiburan. Tema lengkap unggulan"
+" juga harus menarik secara visual."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6880,6 +6930,8 @@ msgid ""
 "If you wish to nominate an add-on to be featured and it meets the criteria "
 "above, send an email to %(mail_featured)s with:"
 msgstr ""
+"Jika anda ingin menominasikan pengaya untuk diunggulkan dan pengaya tersebut"
+" sesuai dengan kriteria di atas, kirimkan surel ke %(mail_featured)s dengan:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:62
 msgid "the add-on name, URL, and whether you are its developer"
@@ -6907,6 +6959,12 @@ msgid ""
 "quality or security issues, incompatibility, and similarity to another "
 "featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Nominasi pengaya ditinjau oleh Dewan Penasihat setiap bulan (sekali dalam 3 "
+"bulan untuk nominasi tema lengkap). Alasan umum penolakan diantaranya kurang"
+" menarik untuk pengguna, pengalaman pengguna yang kurang optimal, masalah "
+"keamanan atau mutu, ketidakcocokan, dan kemiripan dengan pengaya unggulan "
+"lainnya. Pengaya yang ditolak tidak dapat dinominasikan ulang dalam waktu 3 "
+"bulan."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -6918,6 +6976,9 @@ msgid ""
 "rotate out featured add-ons. Some of the most common reasons for add-ons "
 "being removed from the featured list are:"
 msgstr ""
+"Mozilla dan Dewan Penasihat Pengaya Unggulan secara teratur mengevaluasi dan"
+" menggilir pengaya unggulan. Sebagian dari alasan umum sebuah pengaya "
+"dikeluarkan dari daftar unggulan adalah:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid ""
@@ -6926,12 +6987,19 @@ msgid ""
 "demonstrating growth in any substantial way, that's a good indicator the "
 "add-on may not be very useful to our users."
 msgstr ""
+"Kurangnya pertumbuhan &mdash; Pengaya yang diunggulkan biasanya mengalami "
+"pertumbuhan yang substansial dalam pengunduhan dan pengguna aktif. Jika "
+"sebuah pengaya tidak menunjukkan pertumbuhan secara substansial, ini adalah "
+"penanda bahwa pengaya tersebut tidak terlalu bermanfaat bagi pengguna."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid ""
 "Negative reviews &mdash; Featured add-ons should have a great experience and"
 " very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
+"Ulasan negatif &mdash; Pengaya unggulan harus memberikan pengalaman yang "
+"baik dan hanya sedikit bug, jadi pengaya dengan banyak ulasan negatif akan "
+"pertimbangkan ulang."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
@@ -6940,6 +7008,10 @@ msgid ""
 "not yet compatible with a Beta version of Firefox four weeks before its "
 "expected release will lose their featured status."
 msgstr ""
+"Ketidakcocokan dengan versi Firefox yang akan datang &mdash; Pengaya "
+"unggulan diharapkan cocok dengan versi beta dan stabil Firefox. Pengaya yang"
+" belum cocok dengan versi beta Firefox empat minggu sebelum rilisnya "
+"dijadwalkan akan kehilangan status unggulannya."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -6966,12 +7038,16 @@ msgid ""
 "commit to trying all the nominations submitted, giving their feedback, and "
 "casting their votes every month"
 msgstr ""
+"berkomitmen untuk mencoba semua nominasi yang diserahkan, memberikan umpan "
+"balik mereka, dan memberikan suara mereka setiap bulan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid ""
 "abstain from voting on add-ons that they have any business or personal "
 "affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
+"menjauhkan diri dari pemungutan suara untuk pengaya di mana mereka memiliki "
+"ikatan bisnis atau pribadi, serta pesaing langsung pengaya bersangkutan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -6979,6 +7055,9 @@ msgid ""
 "of security, privacy, compatibility, or any other reason, but in general it "
 "is up to the Board to select add-ons to feature."
 msgstr ""
+"Anggota tim Pengaya Mozilla dapat memveto pilihan pengaya apapun karena "
+"alasan keamanan, privasi, kecocokan dan lain sebagainya, namun secara umum, "
+"ini adalah keputusan Badan untuk memilih pengaya unggulan."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -6989,6 +7068,13 @@ msgid ""
 " defaults, so if a locale has opted to select its own features, some or all "
 "of the global features may not appear in that locale."
 msgstr ""
+"Kebijakan pengaya unggulan ini hanya berlaku untuk pengaya unggulan di "
+"daftar global addons.mozilla.org. Pengaya yang diunggulkan di lokasi lainnya"
+" seringkali ditarik dari daftar ini, namun Mozilla dapat mengunggulkan "
+"pengaya apapun di lokasi lainya tanpa persetujuan Badan. Sebagai tambahan, "
+"pengaya dengan fitur lokal-spesifik mengesampingkan ketetapan global, jadi "
+"jika sebuah lokal telah memilih fitur-fiturnya, sebagian atau keseluruhan "
+"dari fitur global boleh jadi tidak muncul di lokal tersebut."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:126
 #, python-format
@@ -6997,6 +7083,9 @@ msgid ""
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
+"Ikuti <a href=\"%(link_blog)s\">Blog Pengaya</a> atau <a "
+"href=\"%(link_twitter)s\">@mozamo</a> di Twitter untuk mengetahui kapan "
+"periode aplikasi berikutnya dibuka."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -7017,6 +7106,10 @@ msgid ""
 "We offer two types of review and developers are free to choose the best fit "
 "for their add-on."
 msgstr ""
+"Dengan maksud untuk memastikan semua pengaya yang dimuat di galeri kami aman"
+" untuk dipasang pengguna, Mozilla akan mulai meminta semua pengaya yang "
+"dimuat untuk melewati peninjauan. Kami menawarkan dua tipe tinjauan dan "
+"pengaya bebas memilih yang paling tepat untuk pengaya mereka."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
@@ -7025,6 +7118,10 @@ msgid ""
 "distribution to the masses. All site features are available to these add-"
 "ons."
 msgstr ""
+"<strong><a href=\"#full\">Ulasan Lengkap</a></strong> &mdash; tinjauan "
+"menyeluruh akan kode dan fungsi pengaya, tepat untuk pengaya yang siap "
+"didistribusikan secara luas. Seluruh fitur situs akan tersedia untuk pengaya"
+" ini."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
