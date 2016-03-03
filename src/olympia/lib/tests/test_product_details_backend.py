@@ -25,3 +25,6 @@ class TestNoCachePDFileStorage(object):
         data = self.storage._cache.get(cache_key)
 
         assert data is None
+
+        # We're storing the data on the class itself
+        assert self.storage.json_data[cache_key] == good_data
