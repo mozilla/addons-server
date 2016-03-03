@@ -943,7 +943,7 @@ msgstr "Uredi"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr "%d. %m. %Y"
+msgstr "%%d. %%m. %%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
