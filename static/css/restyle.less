@@ -2,6 +2,8 @@
 @primary-blue: rgba( 12, 153, 213, 1);
 @primary-link: #6AC3E2;
 @primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
+@link-on-white-bg: #0996F8;
+@link-on-color-bg: #fff;
 
 // Fonts
 @font-face {
@@ -129,10 +131,10 @@ blue-pattern, blue-gradient, white overlay
 }
 .menu-nav {
     font-size: 0.75rem;
-    color: #fff;
+    color: @link-on-color-bg;
 }
 .amo-header ul a {
-    color: #fff;
+    color: @link-on-color-bg;
 }
 #masthead h1 {
     font-family: inherit;
@@ -143,11 +145,11 @@ blue-pattern, blue-gradient, white overlay
 }
 
 .site-title a {
-    color: #fff;
+    color: @link-on-color-bg;
     text-decoration: none;
 
     &:focus, &:hover{
-        color: #fff;
+        color: @link-on-color-bg;
         text-shadow: none;
     }
 
@@ -160,7 +162,7 @@ blue-pattern, blue-gradient, white overlay
     margin-top: -20px !important;
     margin-bottom: 20px !important;
     a {
-         color: #FFF;
+         color: @link-on-color-bg;
 
          &:before {
             background-image: none;
@@ -195,7 +197,7 @@ blue-pattern, blue-gradient, white overlay
             }
 
             > a {
-                color: #FFF;
+                color: @link-on-color-bg;
             }
 
             background-color: #fff;
@@ -325,7 +327,7 @@ button.search-button {
 
 /* fix color of search suggestions */
 #site-search-suggestions a span {
-    color: #0996F8;
+    color: @link-on-white-bg;
 }
 
 
@@ -516,7 +518,7 @@ button.search-button {
     text-decoration: none;
 }
 #featured-addon h3 a, #monthly h3 a {
-    color: #fff;
+    color: @link-on-color-bg;
 }
 #monthly .addons p.desc, #monthly .wrap p {
     max-height: 5.4em;
@@ -608,7 +610,12 @@ button.good {
       rgba(12, 153, 213, 0.0) 400px);
     font-family: inherit;
     font-style: normal;
+
+    #social-footer a {
+        color: @link-on-color-bg;
+    }
 }
+
 #lang_form {
      margin-top: 12px;
 }
@@ -661,13 +668,13 @@ button.good {
 }
 #addon-summary a,
 .notice.c.author a {
-    color: #FFF !important;
+    color: @link-on-color-bg !important;
 }
 
 .notice.c.author {
     h3, p {
         a {
-            color: #FFF;
+            color: @link-on-color-bg;
         }
         margin-left: 90px;
     }
@@ -709,6 +716,13 @@ button.good {
     color: #FFF;
 }
 
+.hovercard a h3,
+.secondary li a,
+#footer a:link,
+#footer a:visited {
+  color: @link-on-white-bg;
+}
+
 /* Notice - underneath description (asking for contribution &/or showing dependencies )*/
 .addon-details .primary .notice {
     border-radius: 0;
@@ -718,24 +732,26 @@ button.good {
     background: 0;
 
     .hovercard.addon {
-         &:hover,
-         &:hover:before,
-         &:hover .icon,
-         &:hover .summary,
-         &:hover .more {
+
+        &:hover,
+        &:hover:before,
+        &:hover .icon,
+        &:hover .summary,
+        &:hover .more {
             background: none;
             border-color: transparent;
             box-shadow: none;
-         }
+        }
 
-         .more {
-             display: block !important;
-             .addon-summary,
-             .byline,
-             .vitals {
+        .more {
+            display: block !important;
+
+            .addon-summary,
+            .byline,
+            .vitals {
                 display: none;
-             }
-         }
+            }
+        }
     }
 }
 
@@ -760,7 +776,7 @@ button.good {
     .vital a,
     #reviews-link,
     #daily-users a {
-        color: #fff;
+        color: @link-on-color-bg;
     }
     .version-number,
     h4.author,
@@ -829,7 +845,7 @@ button.good {
     li a:link {
         font-weight: normal;
         font-size: 12px !important;
-        color: #3363a2 !important;
+        color: @link-on-white-bg !important;
         padding: 6px;
 
         &:after {
@@ -891,11 +907,11 @@ button.good {
 .section > hgroup a,
 .article.prose a,
 #persona-side a {
-    color: @primary-blue;
+    color: @link-on-white-bg;
 }
 
 .xoxo a {
-    color: @primary-blue;
+    color: @link-on-white-bg;
 }
 
 .previews {
