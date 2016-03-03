@@ -401,8 +401,9 @@ class Addon(OnChangeMixin, ModelBase):
         # To avoid a circular import.
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't
-        # 0 (STATUS_INCOMPLETE).
-        soft_deletion = self.highest_status or self.status
+        # 0 (STATUS_INCOMPLETE) with no versions.
+        soft_deletion = ((self.highest_status or self.status) or
+                         Version.unfiltered.filter(addon=self).exists())
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return
