@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2015-10-27 10:06+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"PO-Revision-Date: 2016-03-02 22:10+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -274,7 +274,7 @@ msgstr "<b>{0}</b> téma keresése"
 
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> alkalmazás keresése"
+msgstr "<b>{0}</b> appok keresése"
 
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
@@ -424,7 +424,7 @@ msgstr "Keresési eredmények"
 #: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
 #: static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
-msgstr "Promo kezdőlap"
+msgstr "Kezdőlap – bemutató"
 
 #: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 msgid "Homepage Featured"
@@ -919,7 +919,7 @@ msgstr "További verziók megtekintése"
 
 #: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Csak a Firefox-al – szerezze be a Firefox-ot most!"
+msgstr "Csak a Firefoxszal – szerezze be a Firefoxot most!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid ""

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-02 21:00+0000\n"
+"PO-Revision-Date: 2016-03-02 22:26+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4905,7 +4905,7 @@ msgstr "A kép nem lehet animált."
 #: src/olympia/devhub/views.py:1070
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr "A kép nem lehet nagyobb, mint %dKB."
+msgstr "A kép nem lehet nagyobb, mint %d KB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py:1080
@@ -5523,7 +5523,7 @@ msgid ""
 "there is a reason you need to modify your categories."
 msgstr ""
 "A kategóriák nem módosíthatók amíg az alkalmazás kiemelt kiegészítője. "
-"Küldjön levelet <a href=\"mailto:%(email)s\">%(email)s</a>, amennyiben "
+"Küldjön levelet ide: <a href=\"mailto:%(email)s\">%(email)s</a>, amennyiben "
 "valamilyen okból módosítani szeretné a kategóriát."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:119
@@ -6792,7 +6792,7 @@ msgstr "egy pontos és tömör név (nincsenek hosszú kulcsszavak)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:43
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr "egy pontés és tömör összegzés a kiegészítő funkcióiról"
+msgstr "egy pontos és tömör összegzés a kiegészítő funkcióiról"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:44
 msgid "detailed description and privacy policy, if applicable"
@@ -7134,7 +7134,7 @@ msgid ""
 "proper preference naming - all preference names should begin with "
 "\"extensions.\", followed by the add-on name or some other unique identifier"
 msgstr ""
-"helyes beállításelnevezés – minden beállítás név „extension.”-tal kell "
+"helyes beállításelnevezés – minden beállításnév „extension.”-tal kell "
 "kezdődjön, a kiegészítő nevével vagy más egyedi azonosítóval követve"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:103
@@ -8008,7 +8008,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
-"Javasolni lehet a felhasználóknak, hogy támogassék a kiegészítőket a "
+"Javasolni lehet a felhasználóknak, hogy támogassák a kiegészítőket a "
 "Fejlesztői profilon keresztül"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:41
@@ -14894,7 +14894,7 @@ msgstr "Elfelejtettem a jelszavam."
 #: src/olympia/users/templates/users/login_modal.html:3
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Bejelentkezve mint <strong>%s(user_email)s</strong>!"
+msgstr "Bejelentkezve mint <strong>%(user_email)s</strong>!"
 
 #: src/olympia/users/templates/users/newpw_sent.html:3
 #: src/olympia/users/templates/users/newpw_sent.html:8
@@ -15183,7 +15183,7 @@ msgstr "Pólóméret"
 
 #: src/olympia/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr "Beküldéskor átirányítják a Google Forms oldalra."
+msgstr "Beküldéskor átirányítják a Google Űrlapok oldalra."
 
 #: src/olympia/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
