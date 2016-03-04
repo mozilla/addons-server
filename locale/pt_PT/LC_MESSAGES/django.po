@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-03 23:40+0000\n"
+"PO-Revision-Date: 2016-03-04 00:52+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3260,6 +3260,11 @@ msgid ""
 "description.  To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Pode adicionar múltiplos contribuintes a esta coleção. Um contribuinte pode "
+"adicionar e remover extras nesta coleção, mas não pode alternar o nome ou "
+"descrição da mesma. Para adicionar um contribuinte, introduza o respetivo "
+"email na caixa em baixo. Os contribuintes têm de ter uma conta de extras da "
+"Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -3400,7 +3405,7 @@ msgstr "São suportados PNG e JPG.  A imagem será redimensionada para 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Existem erros neste formulário. Por favor, corrija-os em baixo."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -3412,6 +3417,10 @@ msgid ""
 " hit enter.  You can also use the <strong>Add to Collection</strong> links "
 "throughout the site to include add-ons later."
 msgstr ""
+"Para incluir um extra nesta coleção, introduza o nome do mesmo na caixa em "
+"baixo e carregue no enter. Pode também utilizar as ligações "
+"<strong>Adicionar à coleção</strong> dispostas no site para incluir extras "
+"mais tarde."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17
 #: src/olympia/constants/base.py:400
@@ -3502,6 +3511,12 @@ msgid ""
 "software may be blocked from general use.  For more information, please read"
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Quando a Mozilla toma conhecimento de extras, plugins ou outro software de "
+"terceiros que comprometa seriamente a segurança, estabilidade ou desempenho "
+"do %(app)s e que cumpra <a href=\"%(criteria)s\">determinados critérios</a>,"
+" o software pode ser bloqueado de uma utilização geral. Para mais "
+"informações, por favor leia <a href=\"%(support)s\">este artigo de "
+"apoio</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -4723,6 +4738,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Não pode eliminar um ficheiro depois do processo de revisão começar. Deve "
+"eliminar completamente a versão."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -5503,6 +5520,10 @@ msgid ""
 "                          listings, as well as at the top of your add-on's\n"
 "                          details page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação curta da funcionalidade\n"
+"                          básica do seu extra que é apresentada em listas de pesquisa\n"
+"                          e de navegação, bem como no topo da página de detalhes\n"
+"                          do seu extra. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5510,6 +5531,9 @@ msgid ""
 "                        Choose any that fit your add-on's functionality for the most\n"
 "                        exposure. It is only relevant for listed add-ons."
 msgstr ""
+"As categorias são a forma principal que os utilizadores utilizam para navegar pelos extras.\n"
+"                        Escolha qualquer uma que se enquadre na funcionalidade do seu extra para uma maior\n"
+"                        exposição. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
@@ -5530,6 +5554,10 @@ msgid ""
 "                        may have a maximum of {0} tags. It is only relevant\n"
 "                        for listed add-ons."
 msgstr ""
+"As etiquetas ajudam os utilizadores a encontrar o seu extra e devem ser descrições\n"
+"                        curtas tais como separadores, barra de ferramentas ou twitter. Deve\n"
+"                        ter um máximo de {0} etiquetas. Isto apenas é relevante\n"
+"                        para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:129
 #: src/olympia/devhub/templates/devhub/personas/edit.html:97
@@ -5566,6 +5594,10 @@ msgid ""
 "                          field is only displayed on the add-on's details\n"
 "                          page. It is only relevant for listed add-ons."
 msgstr ""
+"Uma explicação mais longa de funcionalidades\n"
+"                          e outras informações relevantes. Este campo\n"
+"                          apenas é apresentado na página de detalhes\n"
+"                          do extra. Apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
@@ -5578,6 +5610,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"A informação sobre o seu extra é apresentada neste idioma\n"
+"                        a menos que a sobreponha com uma tradução específica de um idioma.\n"
+"                        Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5594,6 +5629,10 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu extra tem outra página, introduza o seu endereço\n"
+"                          aqui. Se o seu website estiver traduzido em outros idiomas,\n"
+"                          podem ser adicionadas múltiplas traduções deste campo.\n"
+"                          Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5616,6 +5655,11 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Se quiser apresentar um endereço de e-mail para questões de apoio,\n"
+"                          insira-o aqui. Se tiver diferentes endereços para cada\n"
+"                          idioma, podem ser adicionadas múltiplas traduções \n"
+"                          deste campo. Isto apenas é relevante para extras\n"
+"                          listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5624,6 +5668,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu extra tem um website ou fórum de apoio, introduza\n"
+"                          o respetivo endereço aqui. Se o seu website está traduzido\n"
+"                          noutros idiomas, múltiplas traduções deste campo podem\n"
+"                          ser adicionadas. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5642,6 +5690,11 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"Quaisquer informações que utilizadores finais possam querer saber que não\n"
+"                          necessariamente aplicáveis no resumo ou descrição do extra.\n"
+"                          Utilizações frequentes incluem a indicação dos maiores bugs conhecidos, informações sobre\n"
+"                          como reportar bugs, antecipação das datas de lançamento de uma nova versão,\n"
+"                          etc. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5656,6 +5709,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Estes sinalizadores são utilizados para classificar extras. \n"
+"                        Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5674,6 +5729,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Se a fonte do seu extra pode ser apresentada no nosso\n"
+"                        visualizador online. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5693,6 +5750,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Se as estatísticas de utilização e transferências do seu extra podem\n"
+"                        ser apresentadas no nosso visualizador online.\n"
+"                        Isto apenas é relevante para extras listados."
 
 # 76%
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
@@ -5714,6 +5774,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Se selecionado, nós tentaremos atualizar automaticamente o seu\n"
+"                        extra quando uma nova versão do SDK for lançada.\n"
+"                        Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
