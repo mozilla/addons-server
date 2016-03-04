@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-01 21:39+0000\n"
+"PO-Revision-Date: 2016-03-04 19:59+0000\n"
 "Last-Translator: Andriy Kuryk <andrij.kuryk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5919,6 +5919,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Введіть наступний текст, щоб підтвердити Ваше рішення: \n"
+" {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -9815,7 +9817,7 @@ msgstr "Це відхилить додаток і прибере його з ч�
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Залиште коментар для цієї версії.  Автор не зможе його побачити."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10170,7 +10172,7 @@ msgstr[2] "{0} додатків"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10254,7 +10256,7 @@ msgstr "Зберегти"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Продуктивність редактора додатків"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10341,7 +10343,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Всі відгуки були промодеровані.  Гарна робота!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13079,6 +13081,7 @@ msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
 msgstr ""
+"Як мені обрати додаток серед інших, якщо вони виконують подібні функції?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13161,6 +13164,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Додатки розміщуються в нашій галереї. Вони безкоштовні, крім випадків коли "
+"явно вказано протилежне."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13205,6 +13210,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"Що означає, коли додаток відмічений як \n"
+" повільний?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
