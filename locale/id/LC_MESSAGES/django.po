@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 12:23+0000\n"
+"PO-Revision-Date: 2016-03-04 13:14+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7843,6 +7843,8 @@ msgid ""
 "Terms of Service for submitting your work to our site. Developers are "
 "required to accept this agreement before submission."
 msgstr ""
+"Syarat dan Ketentuan untuk memasukkan karya anda ke dalam situs kami. "
+"Pengembang diminta menerima argumen ini sebelum memasukkan."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -8269,7 +8271,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:92
 #: src/olympia/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Pilih kategori yang paling tepat menggambarkan Tema anda."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:95
 #: src/olympia/devhub/templates/devhub/personas/submit.html:44
@@ -8555,6 +8557,8 @@ msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
 msgstr ""
+"Berkas ditambahkan untuk versi yang diulas harus diulas sebelum tersedia "
+"untuk diunduh."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:15
 #, python-format
@@ -8571,7 +8575,7 @@ msgstr "Pilih platform target untuk berkas ini."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Jenis ulasan mana yang Anda inginkan untuk dinominasikan?"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:51
 msgid "Only publish this version to my beta channel."
@@ -8650,6 +8654,8 @@ msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Jika pengaya anda mengandung kode yang dikaburkan atau biner, sediakan "
+"sumbernya di sini untuk para pengulas."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
 #: src/olympia/devhub/templates/devhub/versions/edit.html:149
@@ -8797,7 +8803,7 @@ msgstr "Unggah Versi Baru"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Ulasan lengkap barangkali tidak diperlukan"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:201
 msgid ""
@@ -8808,7 +8814,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
-msgstr ""
+msgstr "Meminta ulasan lengkap"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
@@ -8823,7 +8829,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:219
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Menghapus versi ini akan secara permanen menghapus:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:225
 msgid ""
@@ -8848,7 +8854,7 @@ msgstr "Hapus Versi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
 msgid "Disable Version"
-msgstr ""
+msgstr "Mematikan Versi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:247
 msgid "Add a new Version"
@@ -8868,6 +8874,8 @@ msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
 msgstr ""
+"Menyembunyikan pengaya akan mencegahnya dari muncul di manapun dalam galeri "
+"kami dan akan menghentikan pengguna menerima pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:265
 msgid "Are you sure you wish to hide your add-on?"
@@ -8876,7 +8884,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html:286
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Keluarkan Pengaya dari Daftar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 #, python-format
@@ -8898,21 +8906,24 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "Menghilangkan pengaya dari daftar tidak bisa diurungkan!"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "An unlisted add-on cannot be switched to be listed."
 msgstr ""
+"Pengaya yang tidak berada dalam daftar tidak bisa diubah jadi terdaftar."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Apakah anda yakin ingin mengeluarkan pengaya anda dari daftar?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:330
 msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
 msgstr ""
+"Membatalkan permintaan ulasan pengaya akan membuat pengaya anda hanya "
+"mendapat ulasan pendahuluan."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid ""
@@ -8920,53 +8931,60 @@ msgid ""
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
+"Membatalkan permintaan ulasan anda akan menandai pengaya sebagai tak "
+"lengkap. Jika anda tidak melengkapi pengaya setelah beberapa hari dengan "
+"meminta ulasan ulang, ia akan dihapus."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Apakah anda ingin membatalkan permintaan ulasan anda?"
 
 #: src/olympia/discovery/modules.py:140
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Berbelanja Semakin Mudah"
 
 #: src/olympia/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Simpan hal-hal kesukaan anda dalam kenyamanan peramban anda."
 
 #: src/olympia/discovery/modules.py:149
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Bangun situs yang sempurna"
 
 #: src/olympia/discovery/modules.py:156
 msgid "Help test Firefox with these tools"
-msgstr ""
+msgstr "Bantu menguji Firefox dengan alat berikut"
 
 #: src/olympia/discovery/modules.py:164
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Pertama kali menggunakan Pengaya?"
 
 #: src/olympia/discovery/modules.py:165
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Jangan khawatir, begini cara memulainya."
 
 #: src/olympia/discovery/modules.py:169
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Menerjemahkan konten web dari dan ke lebih 40 bahasa."
 
 #: src/olympia/discovery/modules.py:171
 msgid ""
 "Easily connect to your social networks, and share or comment on the page "
 "you're visiting."
 msgstr ""
+"Hubungkan jejaring sosial anda dengan mudah, dan bagikan atau berkomentar di"
+" laman yang anda kunjungi."
 
 #: src/olympia/discovery/modules.py:173
 msgid ""
 "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
+"Lihat sekilas untuk membandingkan harga ketika anda sedang berbelanja daring"
+" atau mencari penerbangan."
 
 #: src/olympia/discovery/modules.py:183
 msgid "Firefox 4 Collection"
-msgstr ""
+msgstr "Koleksi Firefox 4"
 
 #: src/olympia/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
@@ -8982,93 +9000,99 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:203
 msgid "Firefox Summer Collection"
-msgstr ""
+msgstr "Koleksi Musim Panas Firefox"
 
 #: src/olympia/discovery/modules.py:204
 msgid "Here are some great add-ons for Firefox."
-msgstr ""
+msgstr "Ini adalah sejumlah pengaya hebat untuk Firefox."
 
 #: src/olympia/discovery/modules.py:212
 msgid "Thunderbird Collection"
-msgstr ""
+msgstr "Koleksi Thunderbird"
 
 #: src/olympia/discovery/modules.py:213
 msgid "Here are some great add-ons for Thunderbird."
-msgstr ""
+msgstr "Berikut adalah sejumlah pengaya hebat untuk Thunderbird."
 
 #: src/olympia/discovery/modules.py:221
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Duduk Bersandar dan Santai"
 
 #: src/olympia/discovery/modules.py:222
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Pengaya yang membantu dalam perjalanan anda!"
 
 #: src/olympia/discovery/modules.py:226
 msgid ""
 "Displays a country flag depicting the location of the current website's "
 "server and more."
 msgstr ""
+"Tampilkan bendera negaya yang menunjukkan lokasi di mana server situs ini "
+"kini terpasang dan lain sebagainya."
 
 #: src/olympia/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "FoxClox memungkinkan anda mengetahui waktu di seluruh dunia."
 
 #: src/olympia/discovery/modules.py:230
 msgid ""
 "Automatically get the lowest price when you shop online or search for "
 "flights."
 msgstr ""
+"Secara otomatis mendapatkan harga paling murah saat berbelanja daring atau "
+"mencari penerbangan."
 
 #: src/olympia/discovery/modules.py:240
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ pengaya untuk Sekolah"
 
 #: src/olympia/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Pengaya untuk guru, orang tua dan siswa yang kembali ke sekolah."
 
 #: src/olympia/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Apakah anda ingin mengetahui situs mana yang bisa dipercaya?"
 
 #: src/olympia/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks adalah pengaya pembuat markah #1."
 
 #: src/olympia/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Laman web dan penerjemah teks, kamus, dan lainnya!"
 
 #: src/olympia/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
-msgstr ""
+msgstr "Pengaya untuk membantu anda dalam perjalanan di 2012"
 
 #: src/olympia/discovery/modules.py:272
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Cinta di Udara"
 
 #: src/olympia/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Tambahkan secercah roman ke Firefox anda."
 
 #: src/olympia/discovery/modules.py:280
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "Tambahkan Tema!"
 
 #: src/olympia/discovery/modules.py:281
 msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
 msgstr ""
+"Kunjungi addons.mozilla.org dari Firefox untuk Android dan dandani peramban "
+"bergerak anda sesuai dengan gaya, suasana hati anda atau berdasarkan musim."
 
 #: src/olympia/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Bangun dan bergeraklah!"
 
 #: src/olympia/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Pasang pengaya kebugaran ini agar anda tetap aktif dan sehat."
 
 #: src/olympia/discovery/modules.py:299
 msgid "New &amp; Now"
@@ -9076,15 +9100,15 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Dapatkan pengaya yang paling baru, wajib dipunyai saat ini."
 
 #: src/olympia/discovery/modules.py:332
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Penjelajahan bebas khawatir"
 
 #: src/olympia/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Melindungi privasi anda daring dengan pengaya dalam koleksi ini."
 
 #: src/olympia/discovery/modules.py:342
 msgid ""
@@ -9094,15 +9118,15 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Pengaya untuk Pemenang Kontes Australis"
 
 #: src/olympia/discovery/modules.py:358
 msgid "What are your interests?"
-msgstr ""
+msgstr "Apakah minat anda?"
 
 #: src/olympia/discovery/templates/discovery/base.html:7
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Temukan Pengaya"
 
 #: src/olympia/discovery/templates/discovery/pane.html:23
 msgid "What are Add-ons?"
@@ -9122,12 +9146,12 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/pane.html:62
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Pelajari Lebih Lanjut Tentang Pengaya"
 
 #: src/olympia/discovery/templates/discovery/pane.html:66
 #: src/olympia/discovery/templates/discovery/pane.html:73
 msgid "See all"
-msgstr ""
+msgstr "Lihat semuanya"
 
 #: src/olympia/discovery/templates/discovery/pane.html:79
 msgid "More ways to customize"
@@ -9139,15 +9163,15 @@ msgstr "Переглянути всі додатки"
 
 #: src/olympia/discovery/templates/discovery/pane.html:85
 msgid "See all complete themes"
-msgstr ""
+msgstr "Lihat semua tema lengkap"
 
 #: src/olympia/discovery/templates/discovery/pane.html:91
 msgid "Close Video"
-msgstr ""
+msgstr "Tutup Video"
 
 #: src/olympia/discovery/templates/discovery/pane.html:94
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Saat video dimainkan, pengaya yang disebutkan akan muncul di sini."
 
 #. {0} is the user's login name.
 #: src/olympia/discovery/templates/discovery/pane_account.html:6
@@ -9167,7 +9191,7 @@ msgstr "Pengaya yang diunduh:"
 
 #: src/olympia/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
-msgstr ""
+msgstr "Pengguna Aktif"
 
 #: src/olympia/discovery/templates/discovery/addons/detail.html:70
 msgid "Last Updated"
@@ -9179,7 +9203,7 @@ msgstr "Batalkan Pemasangan"
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
-msgstr ""
+msgstr "Dapatkan Pengaya Di Mana Saja"
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:8
 #, python-format
@@ -9191,21 +9215,25 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Dapatkan Pengaya Bergerak"
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Belanja cerdas musim liburan ini"
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr ""
+"Temukan pengaya yang hebat untuk membantu anda dengan semua kebutuhan "
+"belanja liburan."
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:13
 msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at"
 " your fingertips."
 msgstr ""
+"Pasang Aplikasi Peramban Amazon dan dapatkan fitur Amazon di ujung jari "
+"anda."
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:22
 msgid ""
@@ -9215,7 +9243,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "Lihat seluruh koleksi pengaya belanja liburan."
 
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -9227,11 +9255,11 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Bergabunglah untuk merayakan semangat komunitas global."
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
-msgstr ""
+msgstr "Tunjukkan dukungan anda"
 
 #: src/olympia/editors/forms.py:28
 msgid "Approved reviews"
@@ -9243,11 +9271,11 @@ msgstr "Ulasan dihapus"
 
 #: src/olympia/editors/forms.py:37 src/olympia/editors/forms.py:67
 msgid "View entries between"
-msgstr ""
+msgstr "Lihatlah masukan diantaranya"
 
 #: src/olympia/editors/forms.py:39 src/olympia/editors/forms.py:68
 msgid "and"
-msgstr ""
+msgstr "dan"
 
 #: src/olympia/editors/forms.py:41
 msgid "Filter by type/action"
@@ -9255,38 +9283,38 @@ msgstr "Filter berdasarkan tipe/tindakan"
 
 #: src/olympia/editors/forms.py:58
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Lulus validasi otomatis"
 
 #: src/olympia/editors/forms.py:60
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Gagal validasi otomatis"
 
 #: src/olympia/editors/forms.py:62
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Disaring oleh validasi otomatis"
 
 #: src/olympia/editors/forms.py:69
 msgid "containing"
-msgstr ""
+msgstr "mengandung"
 
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py:75
 msgid "start"
-msgstr ""
+msgstr "mulai"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py:79
 msgid "end"
-msgstr ""
+msgstr "akhir"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py:82
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "pengaya, penyunting atau komentar"
 
 #: src/olympia/editors/forms.py:98
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Pencarian berdasarkan nama pengaya / surel penulis"
 
 #: src/olympia/editors/forms.py:103
 msgid "yes"
@@ -9298,15 +9326,15 @@ msgstr "tidak"
 
 #: src/olympia/editors/forms.py:105
 msgid "Admin Flag"
-msgstr ""
+msgstr "Tandai Admin"
 
 #: src/olympia/editors/forms.py:113
 msgid "Max. Version"
-msgstr ""
+msgstr "Versi Max."
 
 #: src/olympia/editors/forms.py:117
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Hari Sejak Pendaftaran"
 
 #: src/olympia/editors/forms.py:122
 msgid "Add-on Types"
@@ -9339,101 +9367,103 @@ msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not"
 " generate an email)"
 msgstr ""
+"Beritahu saya jika lain kali pengaya ini diperbarui. (Pembaruan berikutnya "
+"tidak akan menghasilkan surel)"
 
 #: src/olympia/editors/forms.py:265
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Bersihkan Penandaan Ulasan Admin"
 
 #: src/olympia/editors/forms.py:267
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Bersihkan tanda permintaan info lebih lanjut"
 
 #: src/olympia/editors/forms.py:281
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Pilih respon yang direkam..."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:324
 msgid "theme name"
-msgstr ""
+msgstr "nama tema"
 
 #: src/olympia/editors/forms.py:350
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Orang lain mengulas tema ini."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:447
 msgid "app, reviewer, or comment"
-msgstr ""
+msgstr "aplikasi, pengulas, atau komentar"
 
 #: src/olympia/editors/helpers.py:51 src/olympia/editors/helpers.py:59
 msgid "Pending Full Review"
-msgstr ""
+msgstr "Ulasan Lengkap Ditunda"
 
 #: src/olympia/editors/helpers.py:53
 msgid "Pending Preliminary Review"
-msgstr ""
+msgstr "Ulasan Pendahuluan Ditunda"
 
 #: src/olympia/editors/helpers.py:66
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Ditolak atau Tidak Diulas"
 
 #: src/olympia/editors/helpers.py:123 src/olympia/editors/helpers.py:136
 msgid "Queue"
-msgstr ""
+msgstr "Antrean"
 
 #: src/olympia/editors/helpers.py:124
 #: src/olympia/editors/templates/editors/base.html:50
 #: src/olympia/editors/templates/editors/base.html:65
 msgid "Pending Updates"
-msgstr ""
+msgstr "Pembaruan Ditunda"
 
 #: src/olympia/editors/helpers.py:125
 #: src/olympia/editors/templates/editors/base.html:48
 #: src/olympia/editors/templates/editors/base.html:63
 msgid "Full Reviews"
-msgstr ""
+msgstr "Ulasan Lengkap"
 
 #: src/olympia/editors/helpers.py:126
 #: src/olympia/editors/templates/editors/base.html:52
 #: src/olympia/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Ulasan Pendahuluan"
 
 #: src/olympia/editors/helpers.py:127
 #: src/olympia/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Ulasan Dimoderasi"
 
 #: src/olympia/editors/helpers.py:128
 #: src/olympia/editors/templates/editors/base.html:46
 msgid "Fast Track"
-msgstr ""
+msgstr "Jalur Cepat"
 
 #: src/olympia/editors/helpers.py:130
 msgid "Pending Themes"
-msgstr ""
+msgstr "Tema Ditunda"
 
 #: src/olympia/editors/helpers.py:131
 #: src/olympia/editors/templates/editors/themes/queue.html:4
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Tema Ditandai"
 
 #: src/olympia/editors/helpers.py:132
 msgid "Update Themes"
-msgstr ""
+msgstr "Perbarui Tema"
 
 #: src/olympia/editors/helpers.py:137
 msgid "Unlisted Pending Updates"
-msgstr ""
+msgstr "Pembaruan Ditunda Tidak Terdaftar"
 
 #: src/olympia/editors/helpers.py:138
 msgid "Unlisted Full Reviews"
-msgstr ""
+msgstr "Ulasan Penuh Tidak Terdaftar"
 
 #: src/olympia/editors/helpers.py:139
 msgid "Unlisted Preliminary Reviews"
-msgstr ""
+msgstr "Ulasan Pendahuluan Tidak Terdaftar"
 
 #: src/olympia/editors/helpers.py:170
 msgid "Fast Track ({0})"
@@ -9477,7 +9507,7 @@ msgstr[0] ""
 
 #: src/olympia/editors/helpers.py:261
 msgid "Addon"
-msgstr ""
+msgstr "Pengaya"
 
 #: src/olympia/editors/helpers.py:262
 msgid "Type"
@@ -9485,7 +9515,7 @@ msgstr "Тип"
 
 #: src/olympia/editors/helpers.py:263
 msgid "Waiting Time"
-msgstr ""
+msgstr "Waktu Tunggu"
 
 #: src/olympia/editors/helpers.py:264
 #: src/olympia/editors/templates/editors/review.html:285
@@ -9494,11 +9524,11 @@ msgstr "Tanda"
 
 #: src/olympia/editors/helpers.py:265
 msgid "Applications"
-msgstr ""
+msgstr "Aplikasi"
 
 #: src/olympia/editors/helpers.py:270
 msgid "Additional"
-msgstr ""
+msgstr "Tambahan"
 
 #: src/olympia/editors/helpers.py:285
 msgid "Site Specific"
@@ -9506,15 +9536,15 @@ msgstr "Situs Tertentu"
 
 #: src/olympia/editors/helpers.py:287
 msgid "Requires External Software"
-msgstr ""
+msgstr "Perangkat Lunak Luar Diperlukan"
 
 #: src/olympia/editors/helpers.py:289
 msgid "Binary Components"
-msgstr ""
+msgstr "Komponen Biner"
 
 #: src/olympia/editors/helpers.py:313
 msgid "moments ago"
-msgstr ""
+msgstr "saat yang lalu"
 
 #. L10n: first argument is number of minutes
 #: src/olympia/editors/helpers.py:316
@@ -9536,27 +9566,27 @@ msgstr[0] "{0} hari"
 
 #: src/olympia/editors/helpers.py:488
 msgid "Push to public"
-msgstr ""
+msgstr "Dorong ke publik"
 
 #: src/olympia/editors/helpers.py:490
 msgid "Grant full review"
-msgstr ""
+msgstr "Memberi ulasan lengkap"
 
 #: src/olympia/editors/helpers.py:505
 msgid "Request more information"
-msgstr ""
+msgstr "Meminta informasi tambahan"
 
 #: src/olympia/editors/helpers.py:508
 msgid "Request super-review"
-msgstr ""
+msgstr "Meminta ulasan-super"
 
 #: src/olympia/editors/helpers.py:519
 msgid "Grant preliminary review"
-msgstr ""
+msgstr "Memberi ulasan pendahuluan"
 
 #: src/olympia/editors/helpers.py:520
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "Ini akan menandai berkas sebagai telah mendapat ulasan pendahuluan."
 
 #: src/olympia/editors/helpers.py:522
 msgid ""
