@@ -7,6 +7,9 @@ Add-ons
     These APIs are experimental and are currently being worked on. Endpoints
     may change without warning.
 
+    At the moment these APIs don't yet require authentication and therefore
+    are limited to listed public add-ons.
+
 ------
 Search
 ------
@@ -30,8 +33,6 @@ Detail
 .. _addon-detail:
 
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
-
-**Not implemented yet**.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
