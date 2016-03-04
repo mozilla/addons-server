@@ -1822,3 +1822,231 @@ h3.author .transfer-ownership {
   margin-left: 0;
   width: 77%;
 }
+
+/* Editor pages */
+body.editor-tools {
+  .site-title strong {
+    color: @link-on-color-bg;
+  }
+
+  .pill-nav-amo {
+    border-radius: 0;
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .pill-nav-amo a {
+    color: @link-on-color-bg;
+    border-radius: 0;
+  }
+
+  .pill-nav-amo a.selected {
+    background-color: #ffffff;
+    color: @link-on-white-bg;
+    background-image: none;
+  }
+
+  #navbar {
+    border: none;
+    overflow: visible;
+  }
+
+  #navbar ul li.top {
+    width: 20%;
+    border-right: 0;
+    text-align: center;
+  }
+
+  #navbar > ul > li > ul {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  }
+
+  #navbar > ul li > ul li {
+    background-color: #fff;
+    background-image: none;
+    color: @default-font-color;
+    border-bottom: none;
+    text-align: left;
+
+    a, a:link, a:visited {
+      color: @default-font-color;
+      border-bottom: none;
+    }
+
+    a:hover {
+        background: #ebf4fe;
+    }
+  }
+
+  #navbar li.top:hover, #navbar li.top.selected {
+    background-image: none;
+    text-decoration: underline;
+  }
+
+  #navbar li.top a.controller {
+    border-right: none;
+  }
+
+  .daily-message .featured-inner {
+    border: @detail-border;
+  }
+
+  .listing-header {
+    background: none;
+    background-color: #ecf5fe;
+    background-image: none;
+    text-align: center;
+    border-bottom: 0;
+    border-radius: 0;
+  }
+
+  #editors-stats-charts, #editors-stats-charts-unlisted, #editors-stats {
+    border: @detail-border;
+    border-radius: 0;
+  }
+
+  .editor-stats-dark {
+    text-align: center;
+    background-color: transparent;
+  }
+
+  div.editor-waiting {
+    border-radius: 0;
+    border: @detail-border;
+  }
+
+  .waiting_new, .waiting_med, .waiting_old {
+    box-shadow: none;
+  }
+
+  .editor-stats-table:first-child > div {
+    border-left-width: 0;
+  }
+
+  .editor-stats-table .int {
+    color: @default-font-color;
+  }
+
+  #editors_main, .section {
+    .results {
+      border: @detail-border;
+      background-color: #ecf5fe;
+      border-radius: 0;
+
+      .results-inner {
+        border: none;
+      }
+    }
+  }
+
+  #reviewers-score-bar {
+    background: none;
+    border-radius: 0;
+    border: @detail-border;
+    box-shadow: none;
+  }
+
+  div.section {
+    ul.tabnav li.selected a {
+      padding-bottom: 5px;
+      background-color: #ffffff;
+      border-color: #ebebeb;
+      color: @default-font-color;
+    }
+
+    ul.tabnav li a {
+      background-color: #ecf5fe;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      color: @link-on-white-bg;
+    }
+
+    a:hover {
+      padding-bottom: 5px;
+      border-color: @primary-link;
+    }
+
+    .queue-outer {
+      border-radius: 0;
+      border: @detail-border;
+
+      .queue-inner {
+        border-radius: 0;
+        border: none;
+      }
+    }
+
+    .queue-search form #id_q {
+      border-radius: 0;
+    }
+
+    #queue-island {
+      border: @detail-border;
+    }
+
+    #addon.primary {
+
+      .article {
+        border: @detail-border;
+        border-radius: 0;
+      }
+
+      div#review-actions {
+        border: @detail-border;
+        border-radius: 0;
+
+        #review-actions-form {
+          border: none;
+          border-radius: 0;
+        }
+
+        .action_nav {
+          background: none;
+          background-color: #ecf5fe;
+
+          li {
+            text-shadow: none;
+            border: none;
+            background: none;
+            color: @link-on-white-bg;
+          }
+
+          li.on-tab {
+            color: @default-font-color;
+            background-color: #ffffff;
+            border-top: none;
+          }
+
+          li:first-child, li:last-child {
+            border-radius: 0;
+            border-left: none;
+
+          }
+        }
+      }
+
+      .whiteboard {
+        border: @detail-border;
+        border-radius: 0;
+      }
+    }
+
+    .secondary {
+      width: 15%;
+
+      a.thumbnail.thumbnail {
+        border: @detail-border;
+      }
+    }
+
+    #addon {
+      .object-lead {
+        background: none;
+      }
+    }
+  }
+
+}

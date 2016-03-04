@@ -9,7 +9,7 @@
   {{ editor_page_title(title=addon.name) }}
 {% endblock %}
 
-{% block bodyclass %}inverse{% endblock %}
+{% block bodyclass %}{{ super() }} inverse{% endblock %}
 
 {% block breadcrumbs %}
 {{ editors_breadcrumbs(addon_queue=addon, items=[(None, addon.name)]) }}
