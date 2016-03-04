@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 14:15+0000\n"
+"PO-Revision-Date: 2016-03-04 14:50+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -10055,7 +10055,7 @@ msgstr "Oleh {user_name}"
 
 #: src/olympia/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr ""
+msgstr "Kontributor Aktif"
 
 #: src/olympia/editors/templates/editors/performance.html:42
 msgid "This Month"
@@ -10291,19 +10291,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "Lebih Lama"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "Lebih Baru"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Poin Terbaru"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Belum ada poin yang diberikan."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -10329,19 +10329,19 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/single.html:26
 #: src/olympia/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr ""
+msgstr "Pengulas"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Tema yang Telah Dihapus"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Tanggal Penghapusan"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Tidak ada tema yang dihapus yang ditemukan dalam periode ini."
 
 #: src/olympia/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -10349,20 +10349,20 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Tanggal Ulasan"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:9
 #: src/olympia/editors/templates/editors/themes/logs.html:18
 msgid "Action"
-msgstr ""
+msgstr "Tindakan"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:10
 msgid "Reason"
-msgstr ""
+msgstr "Alasan"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Saat ini tidak ada ulasan."
 
 #: src/olympia/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
@@ -10381,15 +10381,15 @@ msgstr[0] ""
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Log Ulasan Tema"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Antrean Ulasan Tema"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Pilihan Ulasan"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
@@ -10405,15 +10405,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
-msgstr ""
+msgstr "Tema Berikutnya"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:68
 msgid "Previous Theme"
-msgstr ""
+msgstr "Tema Sebelumnya"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Riwayat Ulasan Anda"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
@@ -10433,19 +10433,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Bersihkan Pencarian"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Lepaskan Penguncian Tema Saya"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Antrian Tema Interaktif"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Panduan Pengulas"
 
 #: src/olympia/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -10482,11 +10482,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Pilih satu alasan penolakan"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Jelaskan alasan penolakan anda"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
@@ -10502,7 +10502,7 @@ msgstr "Tidak bisa melakukan diff sebuah versi atas dirinya sendiri"
 
 #: src/olympia/files/helpers.py:153
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Berkas itu tidak ada lagi."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py:162
@@ -10518,10 +10518,12 @@ msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
+"Berkas ini tidak dapat dilihat secara daring. Harap mengunduh berkas untuk "
+"melihat kontennya."
 
 #: src/olympia/files/helpers.py:194
 msgid "This file is a directory."
-msgstr ""
+msgstr "Berkas ini adalah direktori."
 
 #: src/olympia/files/tasks.py:37
 #, python-format
@@ -10535,7 +10537,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:343
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 #: src/olympia/files/utils.py:380
 msgid "Invalid file name in archive: {0}"
@@ -10547,37 +10549,39 @@ msgstr ""
 
 #: src/olympia/files/utils.py:439
 msgid "Invalid archive."
-msgstr ""
+msgstr "Arsip tidak sah."
 
 #: src/olympia/files/utils.py:529 src/olympia/files/utils.py:532
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Tidak bisa mengurai berkas manifest."
 
 #: src/olympia/files/utils.py:551
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Tidak bisa menemukan ID pengaya."
 
 #: src/olympia/files/utils.py:554
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID pengaya harus terdiri dari 64 karakter atau kurang dari itu."
 
 #: src/olympia/files/utils.py:556
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "ID pengaya tidak sesuai dengan pengaya."
 
 #: src/olympia/files/utils.py:564
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Menduplikasi ID pengaya yang ditemukan."
 
 #: src/olympia/files/utils.py:567
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Nomor versi harus kurang dari 32 karakter."
 
 #: src/olympia/files/utils.py:570
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
+"Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda baca "
+"ini: +*.-_."
 
 #: src/olympia/files/utils.py:587
 msgid "<em:type> doesn't match add-on"
@@ -10585,11 +10589,11 @@ msgstr ""
 
 #: src/olympia/files/views.py:53
 msgid "Back to review"
-msgstr ""
+msgstr "Kembali ke ulasan"
 
 #: src/olympia/files/views.py:57
 msgid "Back to addon"
-msgstr ""
+msgstr "Kembali ke pengaya"
 
 #: src/olympia/files/templates/files/file.html:2
 msgid "Download {0}"
@@ -10604,7 +10608,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Perbandingan Berkas :: Alat penyunting"
 
 #: src/olympia/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
@@ -10612,84 +10616,84 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html:19
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validasi gagal:"
 
 #: src/olympia/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Berkas pengaya sedang diproses, harap tunggu."
 
 #: src/olympia/files/templates/files/viewer.html:46
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Mengambil hasil validasi..."
 
 #: src/olympia/files/templates/files/viewer.html:57
 msgid "Deleted files:"
-msgstr ""
+msgstr "Berkas yang dihapus:"
 
 #: src/olympia/files/templates/files/viewer.html:66
 msgid "Hide known files"
-msgstr ""
+msgstr "Sembunyikan berkas yang diketahui"
 
 #: src/olympia/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Versi pengaya SDK:"
 
 #: src/olympia/files/templates/files/viewer.html:73
 msgid "Tab stops:"
-msgstr ""
+msgstr "Hentikan tab:"
 
 #: src/olympia/files/templates/files/viewer.html:79
 #: src/olympia/files/templates/files/viewer.html:80
 msgid "Up file"
-msgstr ""
+msgstr "Unggah berkas"
 
 #: src/olympia/files/templates/files/viewer.html:84
 #: src/olympia/files/templates/files/viewer.html:85
 msgid "Down file"
-msgstr ""
+msgstr "Unduh berkas"
 
 #: src/olympia/files/templates/files/viewer.html:90
 #: src/olympia/files/templates/files/viewer.html:91
 msgid "Previous diff"
-msgstr ""
+msgstr "Diff sebelumnya"
 
 #: src/olympia/files/templates/files/viewer.html:93
 #: src/olympia/files/templates/files/viewer.html:94
 msgid "Previous note"
-msgstr ""
+msgstr "Catatan sebelumnya"
 
 #: src/olympia/files/templates/files/viewer.html:100
 #: src/olympia/files/templates/files/viewer.html:101
 msgid "Next diff"
-msgstr ""
+msgstr "Diff berikutnya"
 
 #: src/olympia/files/templates/files/viewer.html:103
 #: src/olympia/files/templates/files/viewer.html:104
 msgid "Next note"
-msgstr ""
+msgstr "Catatan berikutnya"
 
 #: src/olympia/files/templates/files/viewer.html:109
 #: src/olympia/files/templates/files/viewer.html:110
 msgid "Expand all"
-msgstr ""
+msgstr "Buka semua"
 
 #: src/olympia/files/templates/files/viewer.html:114
 #: src/olympia/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Sembunyikan atau tampilkan pohon"
 
 #: src/olympia/files/templates/files/viewer.html:119
 #: src/olympia/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Bungkus atau buka teks"
 
 #: src/olympia/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Tidak ada berkas dalam berkas yang diunggah."
 
 #: src/olympia/files/templates/files/viewer.html:134
 msgid "Fetching file."
-msgstr ""
+msgstr "Mengambil berkas."
 
 #: src/olympia/lib/constants.py:6
 msgid "United Arab Emirates Dirham"
@@ -11349,7 +11353,7 @@ msgstr "Dollar Zimbabwe"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Video harus berupa WebM."
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -11368,6 +11372,12 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, secara umum dikenal sebagai \"AMO\", adalah situs resmi "
+"Mozilla untuk pengaya bagi perangkat lunak Mozilla. seperti Firefox, "
+"Thunderbird, dan SeaMonkey. Pengaya memungkinkan anda menambah fitur baru "
+"dan mengubah cara peramban atau aplikasi anda bekerja.  Lihatlah sekeliling "
+"dan eksplorasi ribuan cara untuk menyesuaikan cara anda melakukan hal-hal "
+"daring."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -11381,6 +11391,11 @@ msgid ""
 "released. Add-ons marked as Experimental have not been reviewed and should "
 "only be installed with caution."
 msgstr ""
+"Pengaya yang terdaftar di sini telah dibuat oleh ribuan pengembang dari "
+"negara kami, mulai dari pehobi individu sampai perusahaan besar. Semua "
+"pengaya yang terdaftar secara publik diulas oleh tim penyunting sebelum "
+"dirilis. Pengaya yang ditandai Eksperimental belum diulas dan hanya bisa "
+"dipasang dengan kewaspadaan."
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
@@ -11390,7 +11405,7 @@ msgstr "Bagaimana saya bisa tetap mengikuti hal-hal yang terjadi di AMO?"
 msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
-msgstr ""
+msgstr "Ada beberapa cara untuk mengetahui kabar terbaru dari dunia pengaya:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:29
 #, python-format
@@ -11415,12 +11430,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Ini kedengaran menarik! Bagaimana caranya bergabung?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Ada banyak cara untuk bisa bergabung. Jika anda memiliki sisi teknis:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:42
 #, python-format
@@ -11450,6 +11465,8 @@ msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"Jika anda tertarik pada pengaya tapi tidak terlalu teknis, ada beberapa cara"
+" untuk membantu:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
@@ -11519,10 +11536,12 @@ msgid ""
 "It’s easy to help us make sure add-ons are updated in time for the release "
 "of the next version of Firefox."
 msgstr ""
+"Mudah sekali membantu kami memastikan pengaya diperbarui tepat waktu pada "
+"saat rilis versi Firefox berikutnya."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Begini cara memulai melaporkan kecocokan pengaya:"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:40
 msgid ""
@@ -13618,27 +13637,27 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
-msgstr ""
+msgstr "Ulasan Ditulis"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:30
 msgid "User Signups"
-msgstr ""
+msgstr "Pengguna Mendaftar"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:34
 msgid "Archived Data"
-msgstr ""
+msgstr "Data Diarsipkan"
 
 #: src/olympia/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Rentang Tanggal Khusus"
 
 #: src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
-msgstr ""
+msgstr "Dari"
 
 #: src/olympia/stats/templates/stats/popup.html:19
 msgid "To"
-msgstr ""
+msgstr "Untuk"
 
 #: src/olympia/stats/templates/stats/popup.html:27
 #: src/olympia/users/templates/users/pwreset_confirm.html:38
@@ -13647,7 +13666,7 @@ msgstr "Perbarui"
 
 #: src/olympia/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Ekspor"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:18
@@ -13664,7 +13683,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:30
 msgid "Controls:"
-msgstr ""
+msgstr "Kendali:"
 
 #: src/olympia/stats/templates/stats/stats.html:33
 msgid "reset zoom"
@@ -13688,7 +13707,7 @@ msgstr "bulan"
 
 #: src/olympia/stats/templates/stats/stats.html:54
 msgid "For last:"
-msgstr ""
+msgstr "Untuk terakhir:"
 
 #: src/olympia/stats/templates/stats/stats.html:57
 msgid "7 days"
@@ -13820,7 +13839,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Aplikasi Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
@@ -13828,7 +13847,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Bahasa Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
@@ -13836,7 +13855,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Platform Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
@@ -13844,19 +13863,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Peringkat berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Ulasan Dibuat berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Sumber unduhan berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Mengenai melacak sumber eksternal..."
 
 #: src/olympia/stats/templates/stats/reports/sources.html:10
 #, python-format
@@ -13890,7 +13909,7 @@ msgstr "Pengguna Harian berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Apakah pengguna harian itu?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -13957,7 +13976,7 @@ msgstr ""
 #: src/olympia/templates/base.html:168
 #: src/olympia/templates/impala/base.html:215
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo catatan kaki"
 
 #: src/olympia/templates/categories.html:2
 msgid "Choose a category"
@@ -14259,13 +14278,15 @@ msgstr "Surel harus {email}."
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Nama pengguna tidak bisa hanya berisi digit."
 
 #: src/olympia/users/forms.py:274
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
+"Masukkan nama pengguna yang benar, terdiri dari huruf, angka, garis bawah "
+"atau tanda hubung."
 
 #: src/olympia/users/forms.py:277
 msgid "This username cannot be used."
@@ -14305,6 +14326,8 @@ msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
+"Harap gunakan alamat surel dari penyedia lainnya untuk melengkapi "
+"pendaftaran."
 
 #: src/olympia/users/forms.py:345
 msgid "This display name cannot be used."
@@ -14327,6 +14350,7 @@ msgstr "Lokal tetap"
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Pengguna Firefox Accounts saat ini tidak dapat mengubah alamat sirel mereka."
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
@@ -14344,7 +14368,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Silakan masukkan sekurangnya satu nama untuk mendaftarhitamkan."
 
 #: src/olympia/users/helpers.py:53
 msgctxt "user_list_others"
@@ -14403,11 +14427,11 @@ msgstr "pengaya baru atau fitur Firefox tersedia"
 
 #: src/olympia/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "kecocokan pengaya saya berhasil ditingkatkan"
 
 #: src/olympia/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "pengaya berdasarkan sdk saya berhasil ditingkatkan"
 
 #: src/olympia/users/notifications.py:66
 msgid "someone writes a review of my add-on"
@@ -14419,40 +14443,43 @@ msgstr "seseorang menulis ulasan tentang aplikasi saya"
 
 #: src/olympia/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "kontes atau acara pengaya diumumkan"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kecocokan pengaya saya tidak bisa ditingkatkan"
 
 #: src/olympia/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "pengaya berdasarkan sdk saya tidak bisa ditingkatkan"
 
 #: src/olympia/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "pengaya saya diulas oleh seorang penyunting"
 
 #: src/olympia/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla perlu menghubungi saya mengenai pengaya individual saya"
 
 #: src/olympia/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "aplikasi saya diulas oleh seorang penyunting"
 
 #: src/olympia/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla perlu menghubungi saya mengenai aplikasi individual saya"
 
 #: src/olympia/users/notifications.py:139
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla ingin menghubungi saya mengenai kabar dan survei Pengembang Aplikasi"
 
 #: src/olympia/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla ingin menghubungi saya mengenai region baru yang ditambahkan ke "
+"Marketplace"
 
 #: src/olympia/users/notifications.py:158
 msgid "User Notifications"
@@ -14480,6 +14507,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"Sebuah surel telah dikirimkan ke alamat anda untuk mengkonfirmasi akun anda."
+" Sebelum anda bisa masuk, anda harus mengaktifkan akun anda dengan mengklik "
+"di tautan yang ada dalam surel ini."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -14527,7 +14557,7 @@ msgstr ""
 #: src/olympia/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Mohon maaf, tapi anda tidak dapat meminta kaus saat ini."
 
 #: src/olympia/users/views.py:329
 msgid "Your email address was changed successfully"
@@ -14758,7 +14788,7 @@ msgstr "Lain-lain"
 
 #: src/olympia/users/templates/users/edit.html:170
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Tentukan koleksi apa yang sebaiknya ditampilkan dalam profil anda."
 
 #: src/olympia/users/templates/users/edit.html:178
 msgid "Display the collections I have created"
@@ -14777,6 +14807,8 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
+"Sewaktu-waktu, Mozilla akan mengirimi anda surel mengenai rilis yang akan "
+"datang dan acara pengaya. Silakan memilih topik yang anda minati."
 
 #: src/olympia/users/templates/users/edit.html:205
 msgid ""
@@ -14818,6 +14850,8 @@ msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan"
+" untuk menyelesaikan proses peningkatan sederhana."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
@@ -14980,12 +15014,16 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Tautan penyetelan ulang sandi tidak valid, mungkin sudah pernah digunakan.  "
+"Silakan ajukan permintaan penyetelan ulang sandi yang baru."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Lupa sandi anda? Masukkan alamat surel di bawah ini, dan kami akan "
+"mengirimkan surel berisi instruksi untuk membuat yang baru."
 
 #: src/olympia/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
