@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-03 22:03+0000\n"
+"PO-Revision-Date: 2016-03-04 05:15+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7130,6 +7130,11 @@ msgid ""
 "check for functionality or full policy compliance, but the reviewed add-ons "
 "have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Ulasan Pendahuluan</a></strong> &mdash; "
+"ulasan lebih cepat yang ditujukan untuk pengaya eksperimental. Ulasan "
+"pendahuluan tidak memeriksa fungsi atau penyesuaian kebijakan sepenuhnya, "
+"namun pengaya yang diulas memiliki tombol peringatan untuk pemasangan dan "
+"sejumlah keterbatasan fitur."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -7141,6 +7146,13 @@ msgid ""
 "for users. Developers will receive an email with any updates throughout the "
 "review process."
 msgstr ""
+"Deksripsi lengkap tiap pilihan ada di bawah ini. Setelah memilih proses "
+"pengulasan saat pendaftaran, pengaya akan ditempatkan dalam antrean. Pengaya"
+" akan diulas oleh <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO "
+"Editors</a>, sekelompok pengembang berbakat yang dengan sukarela membantu "
+"proyek Mozilla dengan mengulas pengaya untuk memastikan pengalaman yang "
+"stabil dan aman untuk pengguna. Pengembang akan menerima surel dengan "
+"pembaruan apapun selama proses peninjauan."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -7149,6 +7161,10 @@ msgid ""
 "allows the author to blog or share the link with friends, inviting them to "
 "try it out, even when not yet reviewed."
 msgstr ""
+"Saat menunggu ulasan, pengaya tidak akan muncul di manapun di galeri secara "
+"publik, namun tautan langsung pada laman rincian pengaya akan bekerja. Ini "
+"memungkinkan penulis untuk memasang di blog atau membagi tautannya dengan "
+"teman, mengundang mereka untuk mencobanya, bahkan saat belum diulas."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
@@ -7157,12 +7173,19 @@ msgid ""
 " meets that criteria, please consider working out the kinks while in "
 "preliminary review and accumulating user feedback first."
 msgstr ""
+"Ulasan lengkap sesuai untuk pengaya yang teruji, stabil, cepat dan memiliki "
+"daya tarik untuk pengguna kami. Jika anda tidak yakin bahwa pengaya anda "
+"memenuhi kriteria tersebut, harap mempertimbangkan memperbaiki kekusutan "
+"tersebut saat masih berada dalam ulasan pendahuluan dan mengumpulkan umpan "
+"balik pengguna terlebih dahulu."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:50
 msgid ""
 "We aim to perform full reviews in under 10 days, though most add-ons are "
 "reviewed in much less time."
 msgstr ""
+"Kami berupaya untuk melakukan tinjauan penuh kurang dari 10 hari, meskipun "
+"sebagian besar pengaya diulas dalam waktu yang lebih singkat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -7177,27 +7200,34 @@ msgid ""
 "install the add-on, making sure it functions as described and is free of "
 "major defects"
 msgstr ""
+"memasang pengaya, memastikannya berfungsi sebagaimana dijelaskan dan bebas "
+"dari kekurangan yang besar"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid ""
 "perform a source code review, looking for performance and security best "
 "practices"
 msgstr ""
+"melakukan peninjauan kode sumber, mencari praktik terbaik performa dan "
+"keamanan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:74
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr ""
+msgstr "memastikan kebijakan privasi pengaya sejalan dengan fungsinya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:79
 msgid ""
 "look for compliance with all of Mozilla's policies, detailed in these "
 "documents"
 msgstr ""
+"memastikan kepatuhan terhadap semua kebijakan Mozilla, dirinci dalam dokumen"
+" ini"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:86
 msgid ""
 "Some of the most common issues we see when performing these reviews are:"
 msgstr ""
+"Beberapa masalah paling umum kami jumpai saat melakukan tinjauan ini adalah:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:93
 msgid ""
@@ -7206,24 +7236,31 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap"
 " your loose variables</a>"
 msgstr ""
+"<strong>JavaScript polusi nama</strong> &mdash; pelanggaran paling umum. "
+"Pastikan untuk <a "
+"href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">membungkus"
+" variabel yang longgar</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:99
 msgid ""
 "proper preference naming - all preference names should begin with "
 "\"extensions.\", followed by the add-on name or some other unique identifier"
 msgstr ""
+"penamaan yang tepat - semua nama yang dipilih harus diawali dengan "
+"\"ekstensi.\", dilanjutkan dengan nama pengaya atau beberapa pengenal unik "
+"lainnya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "eksekusi JavaScript secara remote atau injeksi"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
-msgstr ""
+msgstr "XUL daring"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:105
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "XMLHttpRequests disinkronkan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:106
 msgid "obfuscated code"
@@ -7231,7 +7268,7 @@ msgstr "kode yang dikaburkan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:107
 msgid "binary components or executables"
-msgstr ""
+msgstr "komponen biner atau yang bisa dieksekusi"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
@@ -7239,7 +7276,7 @@ msgstr "memasukkan perangkat lunak pihak ketiga"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "kesalahan yang dihasilkan dalam Konsol Kesalahan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:111
 msgid "memory leaks"
@@ -7251,7 +7288,7 @@ msgstr "kemungkinan konflik dengan pengaya lainnya"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "penurunan performa memulai aplikasi atau memuat laman"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:117
 #, python-format
@@ -7261,6 +7298,10 @@ msgid ""
 " binary or obfuscated code, are allowed under certain conditions outlined "
 "below."
 msgstr ""
+"Untuk keterangan mengenai bagaimana menghindari masalah ini, silakan lihat "
+"<a href=\"%(link_howto)s\">Pustaka Panduan</a>. Beberapa praktek ini, "
+"misalnya kode atau biner yang dikaburkan, diperkenankan dalam kondisi "
+"tertentu yang diuraikan di bawah ini."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:123
 #, python-format
@@ -7270,6 +7311,10 @@ msgid ""
 "more about this scanner in the <a href=\"%(link_validation)s\">Validation "
 "Help</a> document."
 msgstr ""
+"Sebagian besar dari pembatasan di atas diuji secara otomatis oleh pemindai "
+"ekstensi yang akan menandai pengaya yang mencurigakan untuk diulas "
+"penyunting. Anda bisa membaca mengenai pemindai ini di dokumen <a "
+"href=\"%(link_validation)s\">Bantuan Validasi</a> ."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:129
 msgid ""
@@ -7280,6 +7325,12 @@ msgid ""
 "placed in the Notes to Reviewer field when editing a version in the "
 "Developer Hub."
 msgstr ""
+"Jika pengaya ini bersifat spesifik untuk situs, telah direkomendasikan bahwa"
+" akun pengujian disediakan untuk digunakan dalam proses ulasan. Selain itu, "
+"instruksi pengujian yang rinci disertakan dan akan memungkinkan penyunting "
+"untuk memahami lebih baik bagaimana pengaya berfungsi dan mempercepat proses"
+" pengujian. Informasi ini akan ditempatkan dalam Catatan untuk Pengulas saat"
+" sebuah versi disunting dalam Pusat Pengembang."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:134
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:168
@@ -7293,6 +7344,10 @@ msgid ""
 "install button. All features, including voluntary contributions and beta "
 "channels will be available."
 msgstr ""
+"Setelah sebuah pengaya diberi ulasan lengkap, ia akan segera tersedia di "
+"galeri, ditampilkan dalam hasil pencarian dan penelusuran dengan tombol "
+"pemasangan bebas peringatan. Seluruh fitur, termasuk kontribusi sukarela dan"
+" saluran bera akan tersedia."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
@@ -7302,6 +7357,11 @@ msgid ""
 "version will be updated across the site and deployed through the automatic "
 "update service."
 msgstr ""
+"Versi berikutnya pengaya akan ditempatkan secara otomatis dalam antrean "
+"ulasan penuh. Sampai saat peninjauan diselesaikan, versi baru hanya akan "
+"ditampilkan dalam laman Riwayat Versi pengaya. Setelah ditinjau, versi "
+"tersebut akan diperbarui di seluruh situs dan disebarkan melalui layanan "
+"pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:148
 msgid ""
@@ -7311,6 +7371,11 @@ msgid ""
 "In most cases, the developer can simply fix the problem and re-submit for "
 "full review."
 msgstr ""
+"Jika sebuah versi tidak memenuhi kriteria untuk ulasan lengkap, dapat "
+"diberikan tinjauan pendahuluan atau dimatikan jika ada kekhawatiran "
+"keamanan. Penulis akan menerima surel yang menjelaskan tindakan yang diambil"
+" dan bagaimana cara memperbaikinya. Dalam kebanyakan kasus, pengembang dapat"
+" memperbaiki masalahnya dan memasukkan kembali untuk diulas lengkap."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:155
 msgid ""
@@ -7318,6 +7383,10 @@ msgid ""
 "way to get user testing and feedback without going through the longer, more "
 "thorough review process. We aim to complete these reviews in under 3 days."
 msgstr ""
+"Peninjauan pendahuluan sesuai untuk pengaya yang lebih eksperimental dan "
+"menyediakan cara bagi pengguna untuk mendapatkan pengujian pengguna dan "
+"umpan balik tanpa melalui proses peninjauan yang panjang dan menyeluruh. "
+"Kami bermaksud untuk melengkapi tinjauan ini dalam waktu kurang dari 3 hari."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:160
 msgid "Testing Methods"
@@ -7331,6 +7400,11 @@ msgid ""
 "granted unless a security vulnerability or major policy violation is "
 "discovered."
 msgstr ""
+"Saat melakukan tinjauan pendahuluan, penyunting akan mengulas koe sumber "
+"untuk isu keamanan dan pelanggaran kebijakan yang besar, tapi tidak akan "
+"memasang pengaya untuk menguji fungsi dalam kebanyakan kasus. Tinjauan "
+"pendahuluan akan diberikan kecuali ada kerentanan keamanan atau pelanggaran "
+"kebijakan besar yang ditemukan."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:171
 msgid ""
@@ -7341,12 +7415,21 @@ msgid ""
 "though no click-through is required. Additionally, these add-ons cannot use "
 "the voluntary contributions and beta channel features."
 msgstr ""
+"Saat pengulasan awal diberikan, pengaya akan segera tersedia di galeri, "
+"ditampilkan dalam hasil pencarian dan penelusuran tapi memiliki peringkat "
+"lebih rendah daripada pengaya yang diulas lengkap. Tombol pemasangan akan "
+"memiliki garis peringatan dan pemberitahuan bahwa pengaya ini bersifat "
+"eksperimental dan belum diulas sepenuhnya oleh Mozilla, meskipun tidak ada "
+"klik-lalui yang diperlukan. Selain itu, pengaya ini tidak bisa menggunakan "
+"kontribusi sukarela dan fitur saluran beta."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid ""
 "After being granted preliminary review, Mozilla may later revoke the review "
 "if other serious problems are reported to us by users."
 msgstr ""
+"Setelah diberikan ulasan pendahuluan, Mozilla dapat mencabut ulasan jika ada"
+" masalah serius lainnya yang dilaporkan pada kami oleh pengguna."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:183
 msgid ""
@@ -7859,11 +7942,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Antrean tidak ditinjau secara ketat dalam urutan"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(diperlukan karena pengaya ini menerima kontribusi)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:18
 msgid "Manage Your Developer Profile"
@@ -7916,11 +7999,11 @@ msgstr "Laporan Kompatibilitas"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:45
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} laporan kegagalan"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} laporan keberhasilan"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -7939,7 +8022,7 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "HTML diperbolehkan: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:10
 msgid "Some HTML supported."
@@ -7977,7 +8060,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Baca lebih lanjut mengenai kebijakan mengulas kode sumber."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
@@ -11812,11 +11895,17 @@ msgid ""
 "to submit your add-ons to AMO, manage add-on information, and review "
 "statistics."
 msgstr ""
+"Papan \"Perangkat Pengaya\" adalah area yang memberikan alat untuk mengelola"
+" pengaya anda secara berhasil. Ia menyediakan fungsi yang diperlukan untuk "
+"memasukkan pengaya anda ke AMO, mengelola informasi pengaya dan mengulas "
+"statistiknya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:312
 msgid ""
 "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr ""
+"Apakah Mozilla memiliki kebijakan yang ditetapkan mengenai penyampaian "
+"apakah yang dapat diterima?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:314
 #, python-format
@@ -11827,10 +11916,15 @@ msgid ""
 "Reviewing Guide</a> to ensure that your add-on meets specific guidelines for"
 " functionality and security."
 msgstr ""
+"Ya.  <a href=\"%(p_url)s\">Kebijakan Pengaya</a> Mozilla menjelaskan apa "
+"yang dianggap penyampaian yang dapat diterima. Kebijakan ini dapat diubah "
+"tanpa pemberitahuan sebelumnya. Selain itu, tim editorial AMO menggunakan <a"
+" href=\"%(g_url)s\">Panduan Tinjauan Editor</a> untuk memastikan bahwa "
+"pengaya anda memenuhi panduan spesifik tertentu untuk fungsi dan keamanan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:324
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Bagaimana saya memasukkan pengaya untuk diulas?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:326
 #, python-format
@@ -11841,20 +11935,28 @@ msgid ""
 "href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has "
 "met the guidelines used by editors to review add-ons."
 msgstr ""
+"Papan Perangkat Pengembang akan memungkinkan anda memuat dan memasukkan "
+"pengaya ke AMO. Anda harus menjadi pengguna AMO yang terdaftar sebelum bisa "
+"memasukkan pengaya. Sebelum memasukkan pengaya anda, pastikan untuk telah "
+"membaca <a href=\"%(url)s\">Panduan Ulasan Editor</a> AMO untuk memastikan "
+"pengaya anda telah memenuhi panduan yang digunakan editor untuk mengulas "
+"pengaya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:336
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Sistem operasi apa yang saya pilih untuk pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:338
 msgid ""
 "You must choose the operating systems on which your add-on will successfully"
 " function."
 msgstr ""
+"Anda harus memilih sistem operasi yang memungkinkan pengaya anda berhasil "
+"berfungsi."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:344
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Kategori apa yang saya pilih untuk pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:346
 msgid ""
@@ -11864,10 +11966,15 @@ msgid ""
 "re-categorize your add-on if it's determined that it's better suited in a "
 "different category."
 msgstr ""
+"Pilihan kategori tergantung pada apa tipe audiens yang anda tergetkan dan "
+"fungsi pengaya anda. Jika anda tidak yakin pengaya anda termasuk dalam "
+"kategori mana, harap memilih \"Lainnya\". Tim AMO bisa mengkategori ulang "
+"pengaya anda jika telah ditentukan bahwa pengaya ini lebih cocok dalam "
+"kategori yang berbeda."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:355
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Apakah artinya \"menominasikan\" pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:357
 msgid ""
@@ -13321,7 +13428,7 @@ msgstr "Ringkasan"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "berdasarkan Sumber"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
@@ -13337,7 +13444,7 @@ msgstr "berdasarkan Bahasa"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "berdasarkan Platform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
@@ -13345,15 +13452,15 @@ msgstr "berdasarkan Status Pengaya"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
-msgstr ""
+msgstr "Pelanggan"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html:12
 msgid "Ratings"
-msgstr ""
+msgstr "Peringkat"
 
 #: src/olympia/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistik Pengaya"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
@@ -14014,7 +14121,7 @@ msgstr "Sandi baru"
 
 #: src/olympia/users/forms.py:242
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Surel harus {email}."
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
@@ -14081,7 +14188,7 @@ msgstr "Foto Profil"
 #: src/olympia/users/forms.py:385
 #: src/olympia/users/templates/users/edit.html:142
 msgid "Default locale"
-msgstr ""
+msgstr "Lokal tetap"
 
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
@@ -14130,11 +14237,11 @@ msgstr "Tidak ada pengguna dengan email tersebut."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:353
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Pengguna anonim {id}"
 
 #: src/olympia/users/models.py:410
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Akun anda telah dibatasi"
 
 #: src/olympia/users/models.py:480
 msgid "Please confirm your email address"
@@ -14146,7 +14253,7 @@ msgstr "Pengaya Bergerak Saya"
 
 #: src/olympia/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "seorang pengembang pengaya berterima kasih atas suatu kontribusi"
 
 #: src/olympia/users/notifications.py:24
 msgid "an add-on developer replies to my review"
@@ -14158,7 +14265,7 @@ msgstr "pengembang aplikasi membalas ulasan saya"
 
 #: src/olympia/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "pengaya baru atau fitur Firefox tersedia"
 
 #: src/olympia/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
@@ -14726,6 +14833,8 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Anda telah bermigrasi ke Firefox Accounts. Anda tidak bisa lagi mengubah "
+"kata sandi di sini."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
@@ -14782,6 +14891,7 @@ msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Anda ingin melacak pengaya favorit atau membuat pengaya yang anda inginkan"
 
 #: src/olympia/users/templates/users/register.html:20
 msgid ""
