@@ -1609,3 +1609,19 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
+
+    def test_with_query(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon_factory(slug='unrelated', name=u'Unrelated')
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': 'addon'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'

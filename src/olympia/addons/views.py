@@ -21,8 +21,7 @@ import caching.base as caching
 import jinja2
 import commonware.log
 import session_csrf
-from elasticsearch_dsl import F, Search
-from elasticsearch_dsl.filter import Bool
+from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
 from rest_framework.generics import ListAPIView
 from session_csrf import anonymous_csrf_exempt
@@ -42,6 +41,8 @@ from olympia import paypal
 from olympia.api.paginator import ESPaginator
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
+from olympia.search.filters import (
+    PublicContentFilter, SearchQueryFilter, SortingFilter)
 from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
@@ -643,7 +644,7 @@ def persona_redirect(request, persona_id):
 
 class AddonSearchView(ListAPIView):
     authentication_classes = []
-    filter_backends = []
+    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
     paginator_class = ESPaginator
     permission_classes = []
     serializer_class = ESAddonSerializer
@@ -651,16 +652,9 @@ class AddonSearchView(ListAPIView):
     paginate_by_param = 'page_size'
 
     def get_queryset(self):
-        qs = Search(using=amo.search.get_es(),
-                    index=get_alias(),
-                    doc_type=Addon._meta.db_table)
-        # FIXME: once we start adding filter_backends, we should move that
-        # filtering and sorting in the backends instead.
-        return qs.filter(Bool(must=[
-            F('term', is_listed=True),
-            F('term', is_disabled=False),
-            F('term', status=amo.REVIEWED_STATUSES),
-        ])).sort('name_sort')
+        return Search(using=amo.search.get_es(),
+                      index=get_alias(),
+                      doc_type=Addon._meta.db_table)
 
     @classmethod
     def as_view(cls, **kwargs):

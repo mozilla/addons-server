@@ -17,7 +17,7 @@ This endpoint allows you to search through public add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
-    :param q: The search query. **Not implemented yet**.
+    :param q: The search query.
     :>json count: The number of results for this query.
     :>json next: The URL of the next page of results.
     :>json previous: The URL of the previous page of results.
