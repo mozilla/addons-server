@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 05:15+0000\n"
+"PO-Revision-Date: 2016-03-04 05:42+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -7439,6 +7439,11 @@ msgid ""
 "reviewed, the version will be updated across the site and deployed through "
 "the automatic update service."
 msgstr ""
+"Versi berikutnya dari pengaya akan secara otomatis ditempatkan dalam antrean"
+" ulasan pendahuluan. Sampai peninjauan selesai, versi bari akan ditampilkan "
+"dalam laman Riwayat Versi pengaya. Setelah peninjauan, versi ini akan "
+"diperbarui di seluruh situs dan disebarkan melalui layanan pembaruan "
+"otomatis."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
@@ -7458,6 +7463,9 @@ msgid ""
 "href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a "
 "href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Pengaya yang diketahui dilekati <a "
+"href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> atau <a "
+"href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -7466,6 +7474,10 @@ msgid ""
 "generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> "
 "download and directory assistants, child pornography finders, etc."
 msgstr ""
+"Pengaya yang kriminal dan ilegal, misalnya <a "
+"href=\"http://en.wikipedia.org/wiki/Click_fraud\">klik penipuan</a> "
+"generator, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> "
+"direktori dan asisten pengunduhan, alat menemukan pornografi anak, dll."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:204
 msgid ""
@@ -11790,37 +11802,39 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html:225
 msgid "Mailing List"
-msgstr ""
+msgstr "Milis"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html:229
 msgid "Newsgroup"
-msgstr ""
+msgstr "Grup Berita"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html:233
 msgid "Google Group"
-msgstr ""
+msgstr "Grup Google"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:236
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Forum pengaya"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:239
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:243
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Apakah Mozilla menawarkan layanan pengembangan?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:244
 msgid "No."
-msgstr ""
+msgstr "Tidak."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:246
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Apakah ada pengembang pihak ke-3 yang bisa saya sewa untuk membangun pengaya"
+" saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:248
 #, python-format
