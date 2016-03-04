@@ -5,6 +5,7 @@ from urlparse import urlparse
 
 from django.apps import apps
 from django import http
+from django.db import transaction
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
@@ -241,7 +242,12 @@ def find_files(job):
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View'),
                           ('BulkValidationAdminTools', 'View')])
+@transaction.non_atomic_requests
 def start_validation(request):
+    # FIXME: `@transaction.non_atomic_requests` is a workaround for an issue
+    # that might exist elsewhere too. The view is wrapped in a transaction
+    # by default and because of that tasks being started in this view
+    # won't see the `ValidationJob` object created.
     form = BulkValidationForm(request.POST)
     if form.is_valid():
         job = form.save(commit=False)
