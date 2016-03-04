@@ -19,6 +19,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from waffle.decorators import waffle_switch
 
+from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
 from olympia.api.jwt_auth.views import JWTProtectedView
@@ -289,6 +290,8 @@ class AccountSuperCreate(JWTProtectedView):
                             status=422)
 
         data = serializer.data
+        # In a future version of DRF this could be validated_data['group']:
+        group = serializer.object.get('group')
         user_token = os.urandom(4).encode('hex')
         username = data['username'] or 'super-created-{}'.format(user_token)
         fxa_id = data['fxa_id'] or None
@@ -306,13 +309,17 @@ class AccountSuperCreate(JWTProtectedView):
         user.set_password(password)
         user.save()
 
+        if group:
+            GroupUser.objects.create(user=user, group=group)
+
         login(request, user)
         request.session.save()
 
         log.info(u'API user {api_user} created and logged in a user from '
                  u'the super-create API: user_id: {user.pk}; '
-                 u'user_name: {user.username}; fxa_id: {user.fxa_id}'
-                 .format(user=user, api_user=request.user))
+                 u'user_name: {user.username}; fxa_id: {user.fxa_id}; '
+                 u'group: {group}'
+                 .format(user=user, api_user=request.user, group=group))
 
         cookie = {
             'name': settings.SESSION_COOKIE_NAME,
@@ -324,6 +331,8 @@ class AccountSuperCreate(JWTProtectedView):
             'user_id': user.pk,
             'username': user.username,
             'email': user.email,
+            'display_name': user.display_name,
+            'groups': list((g.pk, g.name, g.rules) for g in user.groups.all()),
             'fxa_id': user.fxa_id,
             'session_cookie': cookie,
         }, status=201)

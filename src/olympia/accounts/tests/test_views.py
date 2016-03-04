@@ -9,6 +9,7 @@ from waffle.models import Switch
 
 from rest_framework.test import APIRequestFactory, APITestCase
 
+from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
@@ -808,6 +809,7 @@ class TestAccountSuperCreate(APIAuthTestCase):
         assert user.email == data['email']
         assert user.email.endswith('@addons.mozilla.org')
         assert user.fxa_id == data['fxa_id']
+        assert user.display_name == data['display_name']
         assert data['session_cookie']['name']
         assert data['session_cookie']['value']
         encoded = '{name}={value}'.format(**data['session_cookie'])
@@ -872,3 +874,28 @@ class TestAccountSuperCreate(APIAuthTestCase):
             'username': [
                 'Someone with this username already exists in the system'],
         }
+
+    def test_cannot_add_user_to_group_when_one_doesnt_exist(self):
+        res = self.post(self.url, {'group': 'reviewer'})
+        assert res.status_code == 422, res.content
+        assert res.data['errors'] == {
+            'group': [
+                'Could not find a permissions group with the exact rules '
+                'needed.'],
+        }
+
+    def test_can_create_a_reviewer_user(self):
+        Group.objects.create(rules='Addons:Review', name='reviewer group')
+        res = self.post(self.url, {'group': 'reviewer'})
+        assert res.status_code == 201, res.content
+        user = UserProfile.objects.get(pk=res.data['user_id'])
+        assert action_allowed_user(user, 'Addons', 'Review')
+
+    def test_can_create_an_admin_user(self):
+        group = Group.objects.create(rules='*:*', name='admin group')
+        res = self.post(self.url, {'group': 'admin'})
+
+        assert res.status_code == 201, res.content
+        user = UserProfile.objects.get(pk=res.data['user_id'])
+        assert action_allowed_user(user, 'Any', 'DamnThingTheyWant')
+        assert res.data['groups'] == [(group.pk, group.name, group.rules)]
