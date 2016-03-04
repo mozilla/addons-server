@@ -14,6 +14,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   topics/readme_include
    topics/api/index
    topics/install/index
    topics/development/index
