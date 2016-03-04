@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 13:14+0000\n"
+"PO-Revision-Date: 2016-03-04 14:15+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -9594,6 +9594,9 @@ msgid ""
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr ""
+"Gunakan formulir ini untuk meminta informasi tambahan dari penulis. Mereka "
+"akan menerima surel dan akan bisa menjawab di sini. Anda akan diberi tahu "
+"menggunakan surel saat mereka membalas."
 
 #: src/olympia/editors/helpers.py:526
 msgid ""
@@ -9601,10 +9604,14 @@ msgid ""
 "other concerns that an administrator should look into, enter your comments "
 "in the area below. They will be sent to administrators, not the author."
 msgstr ""
+"Jika anda memiliki kekhawatiran mengenai keamanan pengaya ini, masalah hak "
+"cipta, atau kekhawatiran lainnya yang harus diperiksa administrator, "
+"masukkan komentar anda di area di bawah. Semua akan dikirimkan kepada "
+"administrator, bukan penulis."
 
 #: src/olympia/editors/helpers.py:532
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr ""
+msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
@@ -9612,40 +9619,50 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "Ini akan menolak pengaya dan mengeluarkannya dari antrean ulasan."
 
 #: src/olympia/editors/helpers.py:542
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Ini akan menandai pengaya sebagai telah mendapat ulasan pendahuluan. Versi "
+"sesudahnya akan melalui ulasan pendahuluan."
 
 #: src/olympia/editors/helpers.py:547
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Ini akan menandai pengaya sebagai telah mendapat ulasan pendahuluan. Versi "
+"sesudahnya akan melalui ulasan pendahuluan."
 
 #: src/olympia/editors/helpers.py:552
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Meneruskan ulasan pendahuluan"
 
 #: src/olympia/editors/helpers.py:553
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"Ini akan meneruskan pengaya sebagai telah menerima ulasan pendahuluan. Versi"
+" sesudahnya akan melalui ulasan pendahuluan."
 
 #: src/olympia/editors/helpers.py:558
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr ""
+"Ini akan menyetujui versi sandbox dari pengaya publik untuk muncul di sisi "
+"publik."
 
 #: src/olympia/editors/helpers.py:561
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
+"Ini akan menolak sebuah versi dari pengaya publik dan mengeluarkannya dari "
+"antrean."
 
 #: src/olympia/editors/helpers.py:564
 msgid ""
@@ -9653,66 +9670,69 @@ msgid ""
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr ""
+"Ini akan menandai pengaya dan versi terbarunya dan berkasnya sebagai publik."
+" Versi berikutnya juga akan dimasukkan sandbox sampai diulas oleh "
+"penyunting."
 
 #: src/olympia/editors/helpers.py:637
 msgid "add-on"
-msgstr ""
+msgstr "pengaya"
 
 #: src/olympia/editors/helpers.py:940 src/olympia/editors/helpers.py:960
 msgid "Flagged"
-msgstr ""
+msgstr "Ditandai"
 
 #: src/olympia/editors/helpers.py:944 src/olympia/editors/helpers.py:963
 msgid "Updates"
-msgstr ""
+msgstr "Pembaruan"
 
 #: src/olympia/editors/models.py:183
 msgid "Admin Review"
-msgstr ""
+msgstr "Ulasan Admin"
 
 #: src/olympia/editors/models.py:184
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Pengaya jetpack"
 
 #: src/olympia/editors/models.py:186
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Pengaya Restartless"
 
 #: src/olympia/editors/models.py:187
 msgid "More Information Requested"
-msgstr ""
+msgstr "Diperlukan Lebih Banyak Informasi"
 
 #: src/olympia/editors/models.py:188
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Mengandung Komentar Editor"
 
 #: src/olympia/editors/models.py:190
 msgid "Sources provided"
-msgstr ""
+msgstr "Sumber disediakan"
 
 #: src/olympia/editors/models.py:191
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py:69
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Menggandakan Pendaftaran"
 
 #: src/olympia/editors/tasks.py:81
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Terima kasih karena telah memasukkan Tema anda"
 
 #: src/olympia/editors/tasks.py:85
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Ada masalah dengan Tema yang ada masukkan"
 
 #: src/olympia/editors/tasks.py:89
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Pendaftaran tema ditandai untuk peninjauan"
 
 #: src/olympia/editors/tasks.py:96
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Ada pertanyaan mengenai pendaftaran Tema Anda"
 
 #: src/olympia/editors/views.py:144
 msgid "New Add-ons (Under 5 days)"
@@ -9728,44 +9748,44 @@ msgstr ""
 
 #: src/olympia/editors/views.py:532
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Terjadi masalah yang tidak diketahui"
 
 #: src/olympia/editors/views.py:587
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Mengulas sendiri tidak diperkenankan."
 
 #: src/olympia/editors/views.py:609
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Ulasan berhasil diproses."
 
 #: src/olympia/editors/views.py:807
 msgid "was approved"
-msgstr ""
+msgstr "telah disetujui"
 
 #: src/olympia/editors/views.py:808
 msgid "given preliminary review"
-msgstr ""
+msgstr "diberi ulasan pendahuluan"
 
 #: src/olympia/editors/views.py:809
 msgid "rejected"
-msgstr ""
+msgstr "ditolak"
 
 #: src/olympia/editors/views.py:810
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "dieskalasi"
 
 #: src/olympia/editors/views.py:812
 msgid "needs more information"
-msgstr ""
+msgstr "perlu lebih banyak informasi"
 
 #: src/olympia/editors/views.py:813
 msgid "needs super review"
-msgstr ""
+msgstr "perlu ulasan super"
 
 #: src/olympia/editors/views.py:814
 msgid "commented"
-msgstr ""
+msgstr "dikomentari"
 
 #: src/olympia/editors/views_themes.py:326
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -9800,7 +9820,7 @@ msgstr "<i>anonim</i> pada tanggal %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Kembali ke beranda Perangkat Penyunting"
 
 #: src/olympia/editors/templates/editors/base.html:43
 #: src/olympia/editors/templates/editors/themes/base.html:14
@@ -9811,7 +9831,7 @@ msgstr "Черги"
 
 #: src/olympia/editors/templates/editors/base.html:60
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Antrean Tidak Terdaftar"
 
 #: src/olympia/editors/templates/editors/base.html:72
 #: src/olympia/editors/templates/editors/performance.html:6
@@ -9828,20 +9848,20 @@ msgstr "Логи"
 #: src/olympia/editors/templates/editors/reviewlog.html:4
 #: src/olympia/editors/templates/editors/reviewlog.html:27
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Log Ulasan Pengaya"
 
 #: src/olympia/editors/templates/editors/base.html:80
 #: src/olympia/editors/templates/editors/eventlog.html:4
 #: src/olympia/editors/templates/editors/eventlog.html:8
 #: src/olympia/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Log Ulasan Dimoderasi"
 
 #: src/olympia/editors/templates/editors/base.html:82
 #: src/olympia/editors/templates/editors/beta_signed_log.html:4
 #: src/olympia/editors/templates/editors/beta_signed_log.html:8
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "Log Berkas Beta Ditandatangani"
 
 #: src/olympia/editors/templates/editors/base.html:87
 #: src/olympia/editors/templates/editors/includes/daily-message.html:4
@@ -9903,11 +9923,11 @@ msgstr "Teks Ulasan"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Ulasan telah ditandai sebelum dihapus."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
-msgstr ""
+msgstr "Tidak dihapus"
 
 #: src/olympia/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
@@ -9927,7 +9947,7 @@ msgstr[0] ""
 #: src/olympia/editors/templates/editors/home.html:36
 #: src/olympia/editors/templates/editors/home.html:86
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Waktu tunggu saat ini:"
 
 #: src/olympia/editors/templates/editors/home.html:44
 #: src/olympia/editors/templates/editors/home.html:94
@@ -9990,40 +10010,40 @@ msgstr ""
 #: src/olympia/editors/templates/editors/leaderboard.html:18
 #: src/olympia/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Belum ada nilai ulasan yang diberikan."
 
 #: src/olympia/editors/templates/editors/leaderboard.html:23
 msgid "Rank"
-msgstr ""
+msgstr "Peringkat"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Skor"
 
 #: src/olympia/editors/templates/editors/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Pesan Hari Ini"
 
 #: src/olympia/editors/templates/editors/motd.html:12
 msgid "Update message of the day"
-msgstr ""
+msgstr "Perbarui pesan hari ini"
 
 #: src/olympia/editors/templates/editors/motd.html:15
 #: src/olympia/editors/templates/editors/review.html:224
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Performa Penyunting Pengaya"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
-msgstr ""
+msgstr "Tampilkan statistik untuk pengguna"
 
 #: src/olympia/editors/templates/editors/performance.html:29
 msgid "Range"
-msgstr ""
+msgstr "Rentang"
 
 #: src/olympia/editors/templates/editors/performance.html:32
 msgid "Your Reviews"
