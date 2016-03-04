@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 19:59+0000\n"
-"Last-Translator: Andriy Kuryk <andrij.kuryk@gmail.com>\n"
+"PO-Revision-Date: 2016-03-04 23:38+0000\n"
+"Last-Translator: Sergii Klymenko <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -3258,6 +3258,10 @@ msgid ""
 "description.  To add a contributor, enter their email in the box below. "
 "Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Ви можете додати декілька помічників у цю збірку.  Помічник може додавати та"
+" видаляти додатки зі збірки, але не може змінювати їхні назви та описи.  Щоб"
+" додати помічника, введіть його адресу електронної пошти у поле нижче. "
+"Помічники повинні мати обліковий запис на сайті додатків Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -4725,6 +4729,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Ви не можете видалити файл, якщо почався процес перевірки.  Ви повинні "
+"видалити повністю всю версію."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -5509,6 +5515,10 @@ msgid ""
 "                          listings, as well as at the top of your add-on's\n"
 "                          details page. It is only relevant for listed add-ons."
 msgstr ""
+"Коротке пояснення про базову функціональність\n"
+"                          ваших додатків, що показана у списках пошуку та перегляду,\n"
+"                          а також у верхній частині сторінки подробиць ваших додатків.\n"
+"                          Це має відношення лише до перелічених додатків."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5682,6 +5692,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Чи може джерело вашого додатка бути відображене у нашому\n"
+"                        засобі онлайн-перегляду. Це стосується лише додатків, що знаходяться в списку."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5701,6 +5713,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Чи може статистика завантажень або використання вашого додатка\n"
+"                        бути показана в нашому засобі онлайн-перегляду.\n"
+"                        Це стосується лише додатків, що знаходяться в списку."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5804,6 +5819,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Використовується у списках додатків, таких як\n"
+"                            результати пошуку та популярні додатки."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -6108,6 +6125,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Ви отримаєте електронний лист, як тільки додаток буде перевірено\n"
+"          редактором. Тим часом ви та ваші друзі можуть встановити його\n"
+"          зі сторінки інформації:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7953,6 +7973,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"Сторінка вашого додатку відключена і не відображається\n"
+"                             ні в нашій галереї, ні в службі оновлення."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -7975,6 +7997,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"По завершенні процесу перевірки та після\n"
+"                             підпису додатку ви отримаєте лист."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
