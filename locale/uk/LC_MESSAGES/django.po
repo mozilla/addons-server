@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 23:38+0000\n"
+"PO-Revision-Date: 2016-03-04 23:52+0000\n"
 "Last-Translator: Sergii Klymenko <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2869,6 +2869,8 @@ msgid ""
 "Your new collection is shown below. You can <ahref=\"%(url)s\">edit "
 "additional settings</a> if you'dlike."
 msgstr ""
+"Ваша нова збірка показана нижче. Якщо хочете, ви можете "
+"<ahref=\"%(url)s\">змінити додаткові налаштування</a>."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -3066,6 +3068,10 @@ msgid ""
 " you can see it.  If you would like everyone to be able to see your "
 "favorites, click the button below to make it public."
 msgstr ""
+"Додатки, які ви позначите як улюблені, використовуючи <b>Додати до "
+"вподобань</b>, з'являться нижче. Ця збірка наразі є <b>приватною</b>, що "
+"означає, що лише ви можете її бачити.  Якщо ви хочете, щоб всі мали змогу "
+"бачити ваші вподобання, натисніть на кнопку нижче."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -5674,6 +5680,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Ці прапорці використовуються для класифікації додатків.\n"
+"                        Це стосується лише додатків, що знаходяться в списку."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -8012,12 +8020,16 @@ msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Ваш додаток відображається в нашій галереї та користувачі\n"
+"                             отримують автоматичні оновлення."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Ваш додаток був підписаний і може бути об'єднаний з\n"
+"                             інсталятором програми."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8179,6 +8191,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
+"                  програмного коду. Це стосується лише додатків, які є в списку."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8539,7 +8553,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "Ваш раніше представлений дизайн,  який очікує перевірки."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -9036,6 +9050,9 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Видалення версії, яка вже була перевірена, також може\n"
+"               спричинити значну затримку при перевірці\n"
+"               вашого наступного оновлення."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
