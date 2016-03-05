@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 14:50+0000\n"
+"PO-Revision-Date: 2016-03-05 08:02+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -12386,16 +12386,21 @@ msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
+"Inisiatif Sumber Terbuka menyediakan ketentuan untuk sejumlah kunci lisensi "
+"sumber terbuka."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:599
 msgid "A comparison of known open source licenses on Wikipedia."
 msgstr ""
+"Perbandingan untuk lisensi sumber terbuka yang sudah dikenal di Wikipedia."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:605
 msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"Sebuah situs yang menediakan panduan yang tidak menghakimi dalam memilih "
+"lisensi untuk proyek sumber terbuka anda."
 
 #: src/olympia/pages/templates/pages/faq.html:3
 #: src/olympia/pages/templates/pages/faq.html:9
@@ -12424,7 +12429,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Akankah pengaya bekerja dengan peramban atau aplikasi saya?"
 
 #: src/olympia/pages/templates/pages/faq.html:27
 #, python-format
@@ -12442,7 +12447,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Apa sajakah tipe pengaya yang berbeda?"
 
 #: src/olympia/pages/templates/pages/faq.html:43
 #, python-format
@@ -12503,7 +12508,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Bagaimana cara saya memasang, mengelola atau menghapus pengaya?"
 
 #: src/olympia/pages/templates/pages/faq.html:86
 #, python-format
@@ -12519,7 +12524,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr ""
+msgstr "Bagaimana cara saya memasang pengaya tanpa melakukan restart Firefox?"
 
 #: src/olympia/pages/templates/pages/faq.html:101
 #, python-format
@@ -12533,7 +12538,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Bagaimana cara menjaga pengaya tetap mutakhir?"
 
 #: src/olympia/pages/templates/pages/faq.html:111
 #, python-format
@@ -12652,6 +12657,8 @@ msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
 msgstr ""
+"Apakah artinya jika sebuah pengaya disebut \"eksperimental\" atau \"diberi "
+"ulasan pendahuluan\"?"
 
 #: src/olympia/pages/templates/pages/faq.html:188
 #, python-format
@@ -12665,7 +12672,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Apakah artinya jika sebuah pengaya \"belum diulas\"?"
 
 #: src/olympia/pages/templates/pages/faq.html:197
 #, python-format
@@ -12690,7 +12697,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Apakah artinya jika sebuah pengaya meminta kontribusi?"
 
 #: src/olympia/pages/templates/pages/faq.html:211
 msgid ""
@@ -12720,6 +12727,11 @@ msgid ""
 "installed, all beta releases are unreviewed by Mozilla and may harm your "
 "computer."
 msgstr ""
+"Harap dicatat bahwa ketika anda memasang pengaya dari bagian \"Versi Beta\" "
+"di daftar pengaya, anda akan terus menerima pembaruan untuk pengaya tersebut"
+" saat pengaya itu tersedia. Seperti versi awal yang anda pasang, seluruh "
+"rilisan beta tidak diulas oleh Mozilla dan mungkin berbahaya bagi komputer "
+"anda."
 
 #: src/olympia/pages/templates/pages/faq.html:229
 msgid ""
@@ -12737,6 +12749,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
 msgstr ""
+"Bagaimana saya bisa melaporkan ulasan pengguna yang tidak pantas atau spam?"
 
 #: src/olympia/pages/templates/pages/faq.html:237
 msgid ""
@@ -12749,6 +12762,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr ""
+"Bagaimana saya bisa melaporkan bug atau menghubungi tim Pengaya Mozilla?"
 
 #: src/olympia/pages/templates/pages/faq.html:243
 #, python-format
@@ -12757,7 +12771,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:246
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Apakah Lisensi Kode Sumber itu?"
 
 #: src/olympia/pages/templates/pages/faq.html:247
 #, python-format
@@ -12779,7 +12793,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:264
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Koleksi dan Kesukaan"
 
 #: src/olympia/pages/templates/pages/faq.html:267
 msgid "What is a collection?"
@@ -12788,10 +12802,12 @@ msgstr "Apa itu koleksi?"
 #: src/olympia/pages/templates/pages/faq.html:268
 msgid "Collections are groups of related add-ons created by users to share."
 msgstr ""
+"Koleksi adalah kumpulan pengaya yang berkaitan yang digunakan pengguna untuk"
+" berbagi."
 
 #: src/olympia/pages/templates/pages/faq.html:270
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Apakah koleksi Kesukaan Saya itu?"
 
 #: src/olympia/pages/templates/pages/faq.html:271
 msgid ""
@@ -12799,6 +12815,9 @@ msgid ""
 "later. You can add an add-on to your favorites collection by clicking \"Add "
 "to favorites\" on its details page."
 msgstr ""
+"Pengaya favorit adalah pengaya yang sudah anda tandai agar mudah ditemukan "
+"kembali nanti. Anda bisa menambah sebuah pengaya pada koleksi favorit anda "
+"dengan mengklik \"Tambahkan ke kesukaan\" di laman rinciannya."
 
 #: src/olympia/pages/templates/pages/faq.html:275
 #: src/olympia/templates/menu_links.html:13
@@ -12808,7 +12827,7 @@ msgstr "Pengaya Seluler"
 
 #: src/olympia/pages/templates/pages/faq.html:278
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Apakah pengaya bergerak itu?"
 
 #: src/olympia/pages/templates/pages/faq.html:279
 #, python-format
@@ -12821,7 +12840,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:288
 msgid "Developer Topics"
-msgstr ""
+msgstr "Topik Pengembang"
 
 #: src/olympia/pages/templates/pages/faq.html:289
 #, python-format
@@ -12833,7 +12852,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:294
 msgid "Still have questions?"
-msgstr ""
+msgstr "Masih punya pertanyaan?"
 
 #: src/olympia/pages/templates/pages/faq.html:295
 #, python-format
@@ -12846,12 +12865,12 @@ msgstr ""
 #: src/olympia/pages/templates/pages/review_guide.html:36
 #: src/olympia/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Sejumlah kiat untuk menulis ulasan yang bagus"
 
 #: src/olympia/pages/templates/pages/review_guide.html:39
 #: src/olympia/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Pertanyaan yang Sering Ditanyakan mengenai Ulasan"
 
 #: src/olympia/pages/templates/pages/review_guide.html:46
 msgid ""
@@ -12859,56 +12878,63 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
+"Ulasan pengaya adalah cara anda untuk berbagai pendapat mengenai pengaya "
+"yang anda pasang dan gunakan. Tim moderasi ulasan kami memiliki hak untuk "
+"menolak atau menghapus ulasan apapun yang tidak sesuai dengan panduan ini."
 
 #: src/olympia/pages/templates/pages/review_guide.html:53
 msgid "Do:"
-msgstr ""
+msgstr "Lakukan:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:56
 msgid ""
 "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
+"Menulislah seperti sedang menyampaikan pada teman mengenai pengalaman dengan"
+" pengaya."
 
 #: src/olympia/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Jaga supaya ulasan ringkas dan mudah dipahami."
 
 #: src/olympia/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Berikan rincian yang spesifik dan membantu. Misalnya:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Apakah pengaya bekerja seperti yang anda harapkan?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Fitur apa yang anda suka atau tidak sukai?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"
-msgstr ""
+msgstr "Apakah berguna?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Apakah mudah dibuat?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Apakah anda akan terus menggunakan pengaya ini?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:73
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Luangkan waktu untuk membaca ulasan anda sebelum memasukkannya untuk "
+"meminimalkan kesalahan ketik."
 
 #: src/olympia/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
-msgstr ""
+msgstr "Jangan:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Mengirim ulasan satu kata seperti \"Hebat!\", \"luar biasa,\" atau \"jelek.\""
 
 #: src/olympia/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -12919,34 +12945,44 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:92
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Tulis ulasan untuk pengaya yang belum pernah anda gunakan sendiri."
 
 #: src/olympia/pages/templates/pages/review_guide.html:97
 msgid ""
 "Use profanity, sexual language or language that can be construed as hateful."
 msgstr ""
+"Menggunakan bahasa kasar, seksual atau bahasa yang bisa ditafsirkan sebagai "
+"kebencian."
 
 #: src/olympia/pages/templates/pages/review_guide.html:103
 msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
+"Memasukkan HTML, tautan, kode sumber atau potongan kode. Ulasan dimaksudkan "
+"berupa teks saja."
 
 #: src/olympia/pages/templates/pages/review_guide.html:108
 msgid ""
 "Make false statements, disparage add-on authors or personally insult them."
 msgstr ""
+"Membuat pernyataan yang salah, meremehkan penulis pengaya atau secara "
+"pribadi menghina mereka."
 
 #: src/olympia/pages/templates/pages/review_guide.html:114
 msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
+"Masukkan alamat surel anda atau orang lain, nomor telepon, atau rincian "
+"pribadi lainnya."
 
 #: src/olympia/pages/templates/pages/review_guide.html:119
 msgid ""
 "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
+"Kirimkan ulasan untuk pengaya milik anda atau organisasi yang anda tulis "
+"atau wakili."
 
 #: src/olympia/pages/templates/pages/review_guide.html:125
 msgid ""
@@ -12958,7 +12994,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Bagaimana saya bisa melaporkan ulasan yang problematis?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:135
 msgid ""
@@ -12970,7 +13006,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Saya adalah penulis pengaya, bisakah saya merespon ulasan?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:142
 #, python-format
@@ -12983,6 +13019,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
+"Saya adalah penulis pengaya, bisakah saya menghapus ulasan atau peringkat "
+"yang kurang bagus?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:151
 msgid ""
@@ -12995,7 +13033,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird telah dipensiunkan"
 
 #: src/olympia/pages/templates/pages/sunbird.html:29
 msgid ""
@@ -13014,7 +13052,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Baca lebih lanjut tentang Sunbird"
 
 #: src/olympia/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -13022,15 +13060,15 @@ msgstr ""
 
 #: src/olympia/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Terjadi kesalahan dengan mata uang ini."
 
 #: src/olympia/paypal/__init__.py:68
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Jumlah ini terlalu kecil untuk ditukar ke mata uang penerima."
 
 #: src/olympia/paypal/__init__.py:70
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Pembeli dan penjual harus memiliki akun PayPal berbeda."
 
 #. L10n: {0} is the currency.
 #: src/olympia/paypal/__init__.py:73
@@ -13045,7 +13083,7 @@ msgstr ""
 
 #: src/olympia/reviews/feeds.py:31
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Riwayat Ulasan untuk Pengaya ini"
 
 #. L10n: This describes the number of stars given out of 5
 #: src/olympia/reviews/feeds.py:49
@@ -13391,6 +13429,7 @@ msgstr "Pencarian Tidak Tersedia"
 #: src/olympia/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Pencarian saat ini tidak tersedia. Silakan coba lagi dalam beberapa menit."
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html:9
@@ -13399,7 +13438,7 @@ msgstr ""
 
 #: src/olympia/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Hasil Pencarian Tema"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:14
@@ -13418,7 +13457,7 @@ msgstr[0] ""
 
 #: src/olympia/search/templates/search/results.html:67
 msgid "Filter Results"
-msgstr ""
+msgstr "Hasil Penyaringan"
 
 #: src/olympia/search/templates/search/results.html:69
 msgid "Category"
@@ -13426,7 +13465,7 @@ msgstr "Kategori"
 
 #: src/olympia/search/templates/search/results.html:84
 msgid "Tag"
-msgstr ""
+msgstr "Tag"
 
 #: src/olympia/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
@@ -13448,7 +13487,7 @@ msgstr[0] ""
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Tweet di Twitter"
 
 #: src/olympia/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -13457,15 +13496,15 @@ msgstr[0] "{0} tweet"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Bagikan di g+"
 
 #: src/olympia/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Pasang di Reddit"
 
 #: src/olympia/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Pasang di Tumblr"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:61
@@ -13553,23 +13592,25 @@ msgstr ""
 
 #: src/olympia/signing/views.py:67
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Anda tidak memiliki pengaya ini."
 
 #: src/olympia/signing/views.py:82
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
+"Kehilangan kunci \"unggah\" dalam berkas data yang terdiri dari beberapa "
+"bagian."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versi ini tidak cocok dengan berkas manifest."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
-msgstr ""
+msgstr "Versi yang sudah ada."
 
 #: src/olympia/signing/views.py:136
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Tidak ada berkas yang diunggah untuk pengaya dan versi tadi."
 
 #: src/olympia/stats/models.py:238
 msgid "Thanks for contributing to {addon_name}"
@@ -13617,23 +13658,23 @@ msgstr "Statistik Pengaya"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Pengaya sedang Digunakan"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:10
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Pengaya yang Dibuat"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:14
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Pengaya yang Diunduh"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:18
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Pengaya yang Diperbarui"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:22
 msgid "Collections Created"
-msgstr ""
+msgstr "Koleksi Dibuat"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:26
 msgid "Reviews Written"
@@ -13745,6 +13786,9 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"Pemrosesan statistik saat ini dimatikan, sehingga data baru tidak tersedia. "
+"Statistik masih tetap dikumpulkan dan laman ini akan diperbarui segera "
+"dengan data yang hilang."
 
 #: src/olympia/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
@@ -13818,7 +13862,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Bahasa pengguna berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
@@ -14121,6 +14165,8 @@ msgstr "Selamat datang ke Pengaya {0}."
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
+"Pilih dari ribuan fitur tambahan dan gayakan untuk membuat Firefox jadi "
+"milik anda."
 
 #: src/olympia/templates/impala/base.html:156
 #, python-format
@@ -14266,6 +14312,8 @@ msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
 msgstr ""
+"Anda harus memulihkan sandi anda melalui Firefox Accounts. Cobalah masuk "
+"sebagai gantinya."
 
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
@@ -14365,6 +14413,8 @@ msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
+"Untuk menjadi anonim, masukkan alasan perubahan, tapi jangan mengubah bagian"
+" lainnya."
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
@@ -14659,6 +14709,8 @@ msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Ulasan dan peringkat anda tidak akan dihapus, tapi semuanya tidak akan "
+"diasosiasikan dengan anda lagi."
 
 #: src/olympia/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -14696,6 +14748,7 @@ msgstr ""
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Mengelola informasi akun dasar, misalnya nama pengguna dan alamat surel."
 
 #: src/olympia/users/templates/users/edit.html:39
 #: src/olympia/users/templates/users/register.html:47
@@ -14769,6 +14822,8 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Ini adalah lokal tetap yang digunakan untuk menampilkan informasi mengenai "
+"anda (misalnya deskripsi anda)."
 
 #: src/olympia/users/templates/users/edit.html:152
 msgid ""
@@ -15035,6 +15090,10 @@ msgid ""
 " you do not receive an email then please confirm you have entered the same "
 "email address used during account registration."
 msgstr ""
+"Surel telah dikirimkan ke akun yang meminta dengan informasi lebih lengkap. "
+"Jika anda tidak menerima surel saat itu, silakan mengkonfirmasi bahwa anda "
+"telah mengirimkan alamat surel yang sama yang digunakan saat pendaftaran "
+"akun."
 
 #: src/olympia/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -15070,6 +15129,8 @@ msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Anda adalah pengembang pengaya dan ingin mengunggah pengaya anda untuk "
+"dimuat di AMO"
 
 #: src/olympia/users/templates/users/register.html:23
 msgid ""
@@ -15077,6 +15138,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Setelah pendaftaran berhasil dilakukan, anda akan dikirimi surel konfirmasi "
+"ke alamat surel yang anda sediakan. Silakan ikuti instruksi di sini untuk "
+"mengkonfirmasi akun anda."
 
 #: src/olympia/users/templates/users/register.html:30
 #, python-format
@@ -15136,12 +15200,17 @@ msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Sebagai tanda terima kasih, kami ingin mengirimkan kaus edisi khusus, yang "
+"dirancang komunitas. Untuk menerima kaus anda, silakan mengisi formulir di "
+"bawah ini."
 
 #: src/olympia/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Informasi kontak anda hanya akan digunakan Mozila untuk mengirimkan kaus "
+"edisi khusus ini."
 
 #: src/olympia/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -15202,12 +15271,18 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Kami mohon maaf, namun untuk bisa mendapatkan kaus khusus edisi terbatas "
+"kami, anda haruslah seorang pengembang dengan sekurangnya satu pengaya "
+"terdaftar, satu pengaya tidak terdaftar namun ditandatangani, atau berapapun"
+" tema latar dengan jumlah total pengguna rata-rata 10.000 per hari."
 
 #: src/olympia/users/templates/users/tougher_password.html:2
 msgid ""
 "For your account a password must contain at least 8 characters including "
 "letters and numbers."
 msgstr ""
+"Untuk akun anda, sebuah sandi harus terdiri dari sekurangnya 8 karakter "
+"termasuk huruf dan angka."
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
