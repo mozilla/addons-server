@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-25 01:01+0000\n"
+"PO-Revision-Date: 2016-03-05 03:07+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -5911,6 +5911,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Enter the following text confirm your decision:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -6096,6 +6098,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"You'll receive an email once it has been reviewed by an editor. In\n"
+"          the meantime, you and your friends can install it directly from its\n"
+"          details page:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7534,6 +7539,11 @@ msgid ""
 " be written to disk, and all of this data must be cleared when Firefox quits"
 " or the Private Browsing session ends."
 msgstr ""
+"Add-ons that store or otherwise handle browsing data must support <a "
+"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private"
+" Browsing Mode</a>.  During a Private Browsing session, no browsing data can"
+" be written to disc, and all of this data must be cleared when Firefox quits"
+" or the Private Browsing session ends."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -7905,6 +7915,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"Your add-on's listing is disabled and is not showing\n"
+"                             anywhere in our gallery or update service."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -7920,6 +7932,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
 msgstr ""
+"You will receive an email when the review is complete. Until\n"
+"                             then, your add-on is not listed in our gallery but can be\n"
+"                             accessed directly from its details page."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
@@ -7927,6 +7942,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"You will receive an email when the review is\n"
+"                             complete and your add-on is signed."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -7934,18 +7951,25 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"You will receive an email when the review is complete. Until\n"
+"                             then, your add-on is not listed in our gallery but can be\n"
+"                             accessed directly from its details page. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Your add-on is displayed in our gallery and users are\n"
+"                             receiving automatic updates."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Your add-on has been signed and can be bundled with an\n"
+"                             application installer."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -7953,6 +7977,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Your add-on was disabled by a site administrator and is no\n"
+"                             longer shown in our gallery. If you have any questions,\n"
+"                             please email amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -7960,6 +7987,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Your add-on is displayed in our gallery as experimental\n"
+"                             and users are receiving automatic updates. Some features\n"
+"                             are unavailable to your add-on."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -7972,6 +8002,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"You will receive an email when the full review is complete.\n"
+"                             Until then, your add-on is displayed in our gallery as\n"
+"                             experimental and users are receiving automatic updates.\n"
+"                             Some features are unavailable to your add-on."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -7979,6 +8013,9 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
+"You will receive an email when the full review is\n"
+"                             complete, making you able to bundle your add-on with an\n"
+"                             application installer."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -7986,6 +8023,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"All add-ons hosted in our gallery must now be reviewed by an\n"
+"                             editor. If you wish to continue hosting your add-on, please\n"
+"                             click to select a review process."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -7998,6 +8038,10 @@ msgid ""
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
 msgstr ""
+"This is the version of your add-on that will\n"
+"                                           be installed if someone clicks the Install\n"
+"                                           button on addons.mozilla.org. It is only\n"
+"                                           relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -8008,7 +8052,7 @@ msgstr "Created:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -8019,6 +8063,8 @@ msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
 msgstr ""
+"This is the newest uploaded version, however\n"
+"                                           it isn’t live on the site yet."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -8107,6 +8153,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Please choose a licence appropriate for the rights you grant on your source code.\n"
+"                  It is only relevant for listed add-ons."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8135,12 +8183,16 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Users will be required to accept the following End-User Licence Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on receives. Please note that a EULA is not the same as a code licence, such as the GPL or MPL.\n"
+"                It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
+"                It is only relevant for listed add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8350,6 +8402,10 @@ msgid ""
 "                                search and browse listings, as well as at\n"
 "                                the top of your theme's details page."
 msgstr ""
+"A short explanation of your theme's\n"
+"                                basic functionality that is displayed in\n"
+"                                search and browse listings, as well as at\n"
+"                                the top of your theme's details page."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8462,7 +8518,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "Your previously resubmitted design,  which is under pending review."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -8551,6 +8607,10 @@ msgid ""
 "                                      search and browse listings, as well as at\n"
 "                                      the top of your theme's details page."
 msgstr ""
+"A short explanation of your theme's\n"
+"                                      basic functionality that is displayed in\n"
+"                                      search and browse listings, as well as at\n"
+"                                      the top of your theme's details page."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
@@ -8718,6 +8778,9 @@ msgid ""
 "                          add-on even if the install manifest in the package indicates that the\n"
 "                          add-on is incompatible."
 msgstr ""
+"Adjusting application information here will allow users to install your\n"
+"                          add-on even if the install manifest in the package indicates that the\n"
+"                          add-on is incompatible."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8726,6 +8789,10 @@ msgid ""
 "                              release/version. This information is also shown in the\n"
 "                              Add-ons Manager when updating."
 msgstr ""
+"Information about changes in this release, new features,\n"
+"                              known bugs, and other useful information specific to this\n"
+"                              release/version. This information is also shown in the\n"
+"                              Add-ons Manager when updating."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8742,6 +8809,9 @@ msgid ""
 "                              to the Editor reviewing this add-on, such as test\n"
 "                              account information."
 msgstr ""
+"Optionally, enter any information that may be useful\n"
+"                              to the Editor reviewing this add-on, such as test\n"
+"                              account information."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8952,6 +9022,9 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Deleting a version which has already been reviewed\n"
+"               may also cause a significant delay in the review of\n"
+"               your next update."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9005,6 +9078,12 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Unlisting your add-on will make it (and each of its versions/files) "
+"invisible on this web site. It won't show up in searches, won't have a "
+"public facing page, and won't be updated automatically for current users.  "
+"It is recommended for unlisted add-ons to provide a custom <a "
+"href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
+"file for automatic updates."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -9741,6 +9820,7 @@ msgstr "This will reject the add-on and remove it from the review queue."
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
 msgstr ""
+"Make a comment on this version.  The author won't be able to see this."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10091,7 +10171,7 @@ msgstr[1] "{0} add-ons"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10171,7 +10251,7 @@ msgstr "Save"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Add-on Editor Performance"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10258,7 +10338,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "All reviews have been moderated.  Good work!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -10357,6 +10437,9 @@ msgid ""
 "               this addon (whatever the version), between the developer and the\n"
 "               editor. This is visible and editable by both."
 msgstr ""
+"The whiteboard is the place to exchange information relevant to\n"
+"               this addon (whatever the version), between the developer and the\n"
+"               editor. This is visible and editable by both."
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
@@ -11515,6 +11598,11 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site "
+"for add-ons to Mozilla software, such as Firefox, Thunderbird, and "
+"SeaMonkey. Add-ons let you add new features and change the way your browser "
+"or application works.  Take a look around and explore the thousands of ways "
+"to customise the way you do things online."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -12049,6 +12137,14 @@ msgid ""
 "on. Developers need to be very, very careful with using them.  Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"Yes. It's possible, but some of the functionality provided by these "
+"libraries are available through XPCOM, XUL, and JavaScript. In addition, "
+"authors should take care if libraries modify primitive object prototypes "
+"(String.prototype, Date.prototype, etc.) and/or define global functions (eg."
+" the $ function). These are prone to cause conflict with other add-ons, in "
+"particular if different add-ons use different versions of libraries and so "
+"on. Developers need to be very, very careful with using them.  Mozilla does "
+"not offer documentation on using them to build add-ons."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
@@ -12209,6 +12305,13 @@ msgid ""
 " with tools to help manage source code, version control, bug tracking and "
 "documentation."
 msgstr ""
+"Yes. Many developers choose to host their own add-ons. Choosing to host your"
+" add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows"
+" for much greater exposure to your add-on due to the large volume of "
+"visitors to the site.  <a href=\"%(md_url)s\">mozdev.org</a> offers free "
+"project hosting for Mozilla applications and extensions providing developers"
+" with tools to help manage source code, version control, bug tracking and "
+"documentation."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
@@ -12287,6 +12390,11 @@ msgid ""
 "Reviewing Guide</a> to ensure that your add-on meets specific guidelines for"
 " functionality and security."
 msgstr ""
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an "
+"acceptable submission. This policy is subject to change without notice.  In "
+"addition, the AMO editorial team uses the <a href=\"%(g_url)s\">Editors "
+"Reviewing Guide</a> to ensure that your add-on meets specific guidelines for"
+" functionality and security."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:324
 msgid "How do I submit my add-on for review?"
@@ -12470,6 +12578,11 @@ msgid ""
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which "
 "provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors "
+"Reviewing Guide</a> to ensure that your add-on is setup as expected.  It's "
+"also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which "
+"provides excellent insight into ensuring a smooth review of your add-on."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -12659,6 +12772,12 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"Free Software Foundation provides short summaries of the key open source "
+"licences, including whether the licence qualifies as a free software licence"
+" or a copyleft licence.  Also includes a discussion of what constitutes a "
+"free software licence or a copyleft licence (e.g., a Copyleft licence is a "
+"general method for making a program or other work free, and requiring all "
+"modified and extended versions of the program to be free as well.)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:589
 msgid ""
@@ -12981,6 +13100,8 @@ msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
 msgstr ""
+"How do I choose between add-ons that seem to do the same\n"
+"    thing?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -12991,6 +13112,12 @@ msgid ""
 "    which is most liked by other users. Remember that you can also just try\n"
 "    out both and see which you like better."
 msgstr ""
+"There are often several add-ons that have similar features. To\n"
+"    figure out which is right for you, read the entire description of the\n"
+"    add-on and view its screenshots. If there are still several in the running,\n"
+"    read through the add-on's ratings, user reviews, and statistics to see\n"
+"    which is most liked by other users. Remember that you can also just try\n"
+"    out both and see which you like better."
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -13062,6 +13189,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Add-ons hosted in our gallery are free unless clearly marked\n"
+"    otherwise."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13074,6 +13203,10 @@ msgid ""
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Some add-on authors request users who enjoy an add-on to\n"
+"        contribute to its development by making a monetary contribution. These\n"
+"        contributions go directly to the developer unless a third party is\n"
+"        indicated, such as the non-profit Mozilla Foundation."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -13086,6 +13219,10 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Beta add-ons are unreviewed versions which represent the\n"
+"        latest work of an add-on author. While different authors have different\n"
+"        standards for beta code quality, you should assume that these add-ons\n"
+"        are less stable than the general add-on releases."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -13106,6 +13243,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"What does it mean when an add-on is flagged as\n"
+"    slow?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -13113,6 +13252,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"Most add-ons load code and resources at the same time Firefox\n"
+"        is starting up. In most cases the impact in start-up time is minimal,\n"
+"        but some add-ons can cause a noticeable slowdown."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -13125,6 +13267,10 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"To report a user review of an add-on, log in with your account\n"
+"    and visit the add-on's reviews page. Find the review you wish to report,\n"
+"    click \"Report this review\" and select a reason. Our editorial team will\n"
+"    investigate the review and take appropriate action."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13436,6 +13582,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Development on the Sunbird project has halted and its final release was on "
+"March 30, 2010.  We've been proud to host Sunbird add-ons on this site but "
+"as the project is no longer maintained we have disabled our support for the "
+"add-ons."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -13529,6 +13679,19 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a "
+"friend about your experience with the add-on. Give specifics and helpful "
+"details, such as what features you liked and/or disliked, how easy to use it"
+" is, and any disadvantages it has.  Avoid generic language such as calling "
+"it \"Great\" or \"Bad\" unless you can give reasons why you believe this is "
+"so. </li> <li> Please do not post bug reports in reviews. We do not make "
+"your email address available to add-on developers and they may need to "
+"contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance"
+" for this add-on. </li> <li>Please keep reviews clean, avoid the use of "
+"improper language and do not post any personal information. </li> </ul> "
+"<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -14449,7 +14612,7 @@ msgstr "View Mobile Site"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Site Status "
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15214,6 +15377,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Change your password.  If you forgot your password, you can <a "
+"href=\"%(reset_url)s\">use the reset form</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15236,6 +15401,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Give us a bit more information about yourself.  All these fields are "
+"optional, but they'll help other users get to know you better."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -15497,6 +15664,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -15752,6 +15921,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Unfortunately, we weren't able to unsubscribe you.  The link you clicked is "
+"invalid. However, you can unsubscribe still by clicking unsubscribe on your "
+"<a href=\"%(edit_url)s\">edit profile page</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
