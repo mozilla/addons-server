@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-05 06:28+0000\n"
+"PO-Revision-Date: 2016-03-05 07:25+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1169,10 +1169,10 @@ msgid "Show the developer's reply to this review"
 msgstr "顯示這篇評論的開發者回應"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "瀏覽此附加元件的所有評論"
+msgstr[0] "瀏覽此附加元件的所有 %(cnt)s 筆評論"
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:118
@@ -1254,10 +1254,10 @@ msgid "Part of these Collections"
 msgstr "這些收藏集的一部份"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "%(author)s 的其他附加元件"
+msgstr[0] "這些作者的其他附加元件"
 
 #: src/olympia/addons/templates/addons/impala/details.html:41
 #, python-format
@@ -1284,10 +1284,10 @@ msgid "No Restart"
 msgstr "不需要重新啟動"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "認識開發者: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[0] "<a href=\"%(url)s\">認識開發者</a>"
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:137
@@ -1470,10 +1470,10 @@ msgid "translate"
 msgstr "翻譯"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "瀏覽所有使用者的評論"
+msgstr[0] "瀏覽所有 %(cnt)s 筆使用者評論"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
@@ -8149,7 +8149,7 @@ msgid ""
 "Optionally, enter any information that may be useful\n"
 "                              to the Editor reviewing this add-on, such as test\n"
 "                              account information."
-msgstr ""
+msgstr "可在此選填任何編輯在審核此附加元件時可用的資訊，例如測試帳號資訊等。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8346,7 +8346,7 @@ msgid ""
 "Deleting a version which has already been reviewed\n"
 "               may also cause a significant delay in the review of\n"
 "               your next update."
-msgstr ""
+msgstr "刪除已經通過審核的版本可能會造成您在下次更新審核時的速度變慢。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -8398,6 +8398,8 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"下架附加元件後將會讓其（以及所有版本、檔案）在網站中消失。下架後將不會顯示在搜尋結果、不再擁有公開頁面，也不會對現有的使用者提供自動更新。建議您為下架的附加元件中的安裝資訊檔提供自訂的"
+" <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> 以提供自動更新功能。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -9697,7 +9699,7 @@ msgid ""
 "The whiteboard is the place to exchange information relevant to\n"
 "               this addon (whatever the version), between the developer and the\n"
 "               editor. This is visible and editable by both."
-msgstr ""
+msgstr "白板（whiteboard）是一個能夠讓開發者與編輯交換附加元件相關資訊的地方（不論版本），雙方皆可檢視與編輯。"
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
@@ -10853,6 +10855,8 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org，通常稱為「AMO」，是 Mozilla 產品，例如 Firefox、Thunderbird、SeaMonkey "
+"等等的官方附加元件網站。附加元件可讓您新增功能或修改瀏覽器與應用程式的運作方式。歡迎隨處看看，探索數以千計的不同上網方式。"
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -11325,6 +11329,11 @@ msgid ""
 "on. Developers need to be very, very careful with using them.  Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"是，可以。但這些程式庫需透過 XPCOM、XUL 及 JavaScript "
+"才能提供某些功能。此外，作者應該注意程式庫是否會修改到原始物件原型（String.prototype, Date.prototype "
+"等等）或定義全域函數（例如 $ "
+"函數）。這些行為很容易會與其他附加元件相衝突，尤其是當不同附加元件使用了不同版本的函示庫的時候。開發者使用時請一定要很小心、很小心、很小心。Mozilla"
+" 不提供關於如何使用這些工具開發附加元件的相關文件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
@@ -11472,6 +11481,10 @@ msgid ""
 " with tools to help manage source code, version control, bug tracking and "
 "documentation."
 msgstr ""
+"可以。許多開發者選擇自行提供附加元件下載。但由於有大量的使用者會前往 AMO 瀏覽，若選擇將附加元件交由 <a "
+"href=\"%(amo_url)s\">Mozilla 的附加元件站</a> 將能夠有較大的曝光率。<a "
+"href=\"%(md_url)s\">mozdev.org</a> 亦為 Mozilla "
+"相關應用程式及擴充套件提供免費的專案代管，並提供開發者工具以幫助管理程式碼、版本控制、問題追蹤及開發文件等。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
@@ -11538,6 +11551,9 @@ msgid ""
 "Reviewing Guide</a> to ensure that your add-on meets specific guidelines for"
 " functionality and security."
 msgstr ""
+"是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> "
+"當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，AMO 團隊將使用 <a "
+"href=\"%(g_url)s\">編輯審核指南</a> 以確保您附加元件的功能與安全性符合當中的項目。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:324
 msgid "How do I submit my add-on for review?"
@@ -11696,6 +11712,9 @@ msgid ""
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which "
 "provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
+"這就是為什麼要先閱讀 <a href=\"%(g_url)s\">編輯審核指南</a> 相當重要，如此才能確保附加元件如預期地設定。閱讀 <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> "
+"這篇部落格文章也是個好點子，當中提供了如何能確保附加元件能夠順暢通過審核的方式。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -11849,6 +11868,8 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"Free Software Foundation 提供了主要開放原始碼授權條款的簡介，當中包含這些條款是自由軟體授權還是 copyleft "
+"授權。當中還有關於如何分別這兩類授權的討論（舉例來說，Copyleft 授權是讓程式或作品可自由使用，並要求所有衍生作品也可自由使用。）"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:589
 msgid ""
@@ -12142,6 +12163,7 @@ msgid ""
 "    which is most liked by other users. Remember that you can also just try\n"
 "    out both and see which you like better."
 msgstr ""
+"常常會有許多附加元件提供類似的功能。若要找出哪一套才是最適合您的，請閱讀附加元件的描述並看看畫面擷圖。若還是有很幾套無法決定，請閱讀附加元件的評分、使用者留言及統計資訊以了解其他使用者最喜歡哪套附加元件。請記住您也可以每套都試試看再決定您最喜歡哪套。"
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -12213,7 +12235,7 @@ msgid ""
 "        contribute to its development by making a monetary contribution. These\n"
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
+msgstr "某些附加元件的作者希望喜歡他們的附加元件的使用者可以捐款，以幫助附加元件的開發。除非另外寫明，這些捐款將直接、完全提供給開發者。"
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -12226,6 +12248,8 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Beta "
+"測試版的附加元件是尚未經過審核的版本，代表附加元件作者推出的最新版本。不同作者對於「測試版」的程式碼品質定義可能不同，您應該假設這些附加元件會比正式版本較不穩定。"
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -12262,6 +12286,7 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"若要回報使用者對附加元件的評論，請登入您的帳號並前往附加元件的評論頁面，找到您想要回報的評論項目，然後點擊「回報此評論」然後選擇原因。我們的編輯團隊將調查該評論並做出適當的反應。"
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -12633,6 +12658,9 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>請牢記:</h2><ul><li>用您在跟朋友介紹附加元件使用體驗的語氣撰寫。提供明確、有用的詳細資訊，例如您喜歡哪些功能、不喜歡那些功能、有多好用、有什麼缺點等等。請避免模糊的語言例如「超棒」、「超爛」，除非您能明確提供這樣做的原因。</li><li>請不要在評論中張貼錯誤回報，我們不會公開展示您的電子郵件地址而開發者可能會需要聯絡您才能解決您的問題。請參考<a"
+" href=\"%(support)s\">技術支援段落</a>當中的方式，以取得關於該附加元件的幫助。</li></ul><p>請閱讀<a "
+"href=\"%(guide)s\" target=\"_blank\">審核指南</a>以取得使用者評論的詳細資訊。</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -12674,14 +12702,14 @@ msgid "This review is for a previous version of the add-on ({0})."
 msgstr "此意見為舊版本 ({0}) 的附加元件。"
 
 #: src/olympia/reviews/templates/reviews/review.html:56
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this "
 "add-on."
 msgid_plural ""
 "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> "
 "of this add-on."
-msgstr[0] "對於這個附加元件，此使用者 <a href=\"%(user_review_url)s\">曾發表過評論</a>。"
+msgstr[0] "此使用者對此附加元件 <a href=\"%(user_review_url)s\">曾發表過 %(cnt)s 筆評論</a>。"
 
 #: src/olympia/reviews/templates/reviews/review.html:62
 #, python-format
@@ -12803,10 +12831,10 @@ msgid "Read More&nbsp;&raquo;"
 msgstr "了解更多&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html:7
-#, fuzzy, python-format
+#, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "檢視所有評論"
+msgstr[0] "檢視所有 %(cnt)s 筆評論"
 
 #: src/olympia/search/forms.py:11
 msgid "Most popular this week"
