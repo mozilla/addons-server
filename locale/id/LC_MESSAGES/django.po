@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-06 16:24+0000\n"
+"PO-Revision-Date: 2016-03-06 16:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -9115,6 +9115,9 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Menghapus sebuah versi yang sudah diulas\n"
+"               dapat menyebabkan penundaan signifikan dari pengulasan\n"
+"              pembaruan anda berikutnya."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9168,6 +9171,13 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Mengeluarkan pengaya anda dari daftar akan membuatnya (dan setiap "
+"versinya/files) tidak terlihat di situs ini. Ia tidak akan terlihat di "
+"pencarian, tidak akan memiliki laman yang menghadap public, dan tidak akan "
+"diperbarui secara otomatis untuk pengguna saat ini.  Direkomendasikan bagi "
+"pengaya yang tidak terdaftar untuk menyediakan <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> yang khusus dalam berkas manifes untuk "
+"pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -9175,6 +9185,9 @@ msgid ""
 "Switching add-ons to unlisted is currently in an open beta. Please <a "
 "href=\"%(url)s\" target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Mengubah pengaya menjadi tidak ada dalam daftar saat ini ada dalam versi "
+"beta terbuka. Harap <a href=\"%(url)s\" target=\"_blank\">melaporkan bug "
+"apapun</a> yang anda temui."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "Unlisting an add-on is irreversible!"
@@ -9268,7 +9281,7 @@ msgstr "Tema Hari St. Patrick"
 
 #: src/olympia/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Hias peramban anda untuk merayakan Hari St. Patrick&rsquo;."
 
 #: src/olympia/discovery/modules.py:203
 msgid "Firefox Summer Collection"
@@ -9368,7 +9381,7 @@ msgstr "Pasang pengaya kebugaran ini agar anda tetap aktif dan sehat."
 
 #: src/olympia/discovery/modules.py:299
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Baru &amp; Kini"
 
 #: src/olympia/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
@@ -9387,6 +9400,8 @@ msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
+"Pengaya yang hebat untuk bekerja, bersenang-senang, privasi produktivitas "
+"&hellip; apapun!"
 
 #: src/olympia/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
@@ -9448,7 +9463,7 @@ msgstr "Saat video dimainkan, pengaya yang disebutkan akan muncul di sini."
 #. {0} is the user's login name.
 #: src/olympia/discovery/templates/discovery/pane_account.html:6
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Hai, {0}"
 
 #: src/olympia/discovery/templates/discovery/pane_account.html:17
 #, python-format
@@ -9456,6 +9471,8 @@ msgid ""
 "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's "
 "mission</a>!"
 msgstr ""
+"Terima kasih karena menggunakan %(app)s dan mendukung <a "
+"href=\"%(url)s\">misi Mozilla</a>!"
 
 #: src/olympia/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
