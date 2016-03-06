@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-04 00:52+0000\n"
+"PO-Revision-Date: 2016-03-06 02:44+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5846,6 +5846,10 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Envie um ícone para o seu extra ou escolha um dos nossos. O\n"
+"                      ícone é apresentado em praticamente em todo o lado. As imagens enviadas\n"
+"                      devem ser de um dos seguintes tipos de imagem: .png, .jpg.\n"
+"                      Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -5861,6 +5865,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Utilizado em listas de extras, tais como resultados de pesquisas\n"
+"                            e extras destacados."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -5974,6 +5980,8 @@ msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
 msgstr ""
+"Introduza um seguinte texto para confirmar a sua decisão:\n"
+"           {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -6160,6 +6168,9 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Irá receber um email depois deste ser revisto por um editor. Entretanto, \n"
+"          você e os seus amigos podem instalá-lo diretamente a partir da\n"
+"          sua página de detalhes:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7645,6 +7656,13 @@ msgid ""
 " be written to disk, and all of this data must be cleared when Firefox quits"
 " or the Private Browsing session ends."
 msgstr ""
+"Extras que armazenem ou façam a gestão de dados de navegação devem suportar "
+"o <a "
+"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">modo"
+" de navegação privada</a>.  Durante uma sessão de navegação privada, nenhuma"
+" informação de navegação pode ser escrita para o disco e todos estes dados "
+"devem ser limpos quando o Firefox encerra ou a sessão de navegação privada "
+"terminar."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -8028,6 +8046,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"A apresentação do seu extra em listas está desativada e não será\n"
+"                             apresentado em qualquer área da nossa galeria ou serviço de atualização."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8043,6 +8063,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
 msgstr ""
+"Irá receber um email quando a análise estiver concluída. Até lá, \n"
+"                             o seu extra não aparecerá listado na nossa galeria mas poderá\n"
+"                             ser acedido diretamente através da página de detalhes."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
