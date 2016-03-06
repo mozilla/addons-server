@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-06 15:20+0000\n"
+"PO-Revision-Date: 2016-03-06 16:24+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -8066,6 +8066,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Pengaya anda ditampilkan di galeri kami sebagai eksperimental\n"
+"                             dan pengguna menerima pembaruan otomatis. Sejumlah fitur\n"
+"                             tidak tersedia untuk pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -8078,6 +8081,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"Anda akan menerima surel jika ulasan lengkap sudah selesai.\n"
+"                             Hingga saat itu, pengaya anda ditampilkan dalam galeri kami sebagai\n"
+"                             eksperimental dan pengguna menerima pembaruan otomatis.\n"
+"                             Sejumlah fitur tidak tersedia untuk pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8085,6 +8092,9 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
+"Anda akan menerima surel saat ulasan lengkap telah\n"
+"                             selesai, membuat anda bisa membundel pengaya anda dengan sebuah\n"
+"                             instalator aplikasi."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -8092,6 +8102,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Semua pengaya yang dimuat di galeri kami kini harus diulas oleh seorang\n"
+"                             penyunting. Jika anda ingin pengaya anda terus dimuat, harap\n"
+"                             klik untuk memilih proses pengulasan."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8104,6 +8117,10 @@ msgid ""
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
 msgstr ""
+"Ini adalah versi pengaya anda yang akan\n"
+"                                           dipasang jika seseorang mengklik tombol\n"
+"                                           Pasang di addons.mozilla.org. Hanya relevan\n"
+"                                           untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -8125,6 +8142,8 @@ msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
 msgstr ""
+"Ini adalah versi terbaru yang sudah diunggah, namun\n"
+"                                          ini belum ditampilkan di situs."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -8150,6 +8169,10 @@ msgid ""
 "requesting contributions, but can be useful for any developer interested in "
 "connecting with users."
 msgstr ""
+"Profil pengembang anda akan mengatakan pada pengguna mengenai anda, mengapa "
+"anda membuat pengaya ini, dan apa yang akan dilakukan berikutnya untuk "
+"pengaya. Profil ini memerlukan permintaan kontribusi pengaya, namun bisa "
+"berguna untuk setiap pengembang yang tertarik berhubungan dengan pengguna."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
@@ -8166,12 +8189,16 @@ msgid ""
 "Whether it was an idea while in line at the grocery store or the solution to"
 " one of life's great problems, share your story."
 msgstr ""
+"Apakah itu hanya ide saat mengantre di toko kelontong atau solusi untuk "
+"persoalan besar dalam hidup seseorang, bagikan cerita anda."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:61
 msgid ""
 "Telling your users what's coming soon will give them something to look "
 "forward to."
 msgstr ""
+"Menyampaikan pada pengguna apa yang akan muncul dalam waktu dekat akan "
+"memberi mereka sesuatu untuk ditunggu."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
@@ -8206,6 +8233,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Harap memilih lisensi yang tepat bagi hak yang ingin anda berikan untuk kode sumber anda.\n"
+"                  Hanya relevan untuk pengaya yang terdaftar."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8226,25 +8255,31 @@ msgstr "Hapus aplikasi ini"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:70
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
+msgstr[0] "Pilih <b>hingga {0}</b> {1} kategori untuk pengaya ini:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Pengguna akan diminta menerima Kesepakatan Lisensi Pengguna (EULA) sebelum memasang pengaya anda. Keberadaan EULA secara signifikan mempengaruhi jumlah unduhan yang diterima pengaya. Harap dicatat bahwa EULA tidak sama dengan kode lisensi, misalnya GPL atau MPL.\n"
+"                Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Jika pengaya anda memancarkan data apapun dari komputer pengguna, diperlukan sebuah kebijakan privasi yang menjelaskan data apa yang dikirim dan bagaimana itu digunakan.\n"
+"                Hanya relevan untuk pengaya yang terdaftar."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
 "If your add-on contains binary or obfuscated code other than known "
 "libraries, upload its sources for review."
 msgstr ""
+"Jika pengaya anda mengandung kode biner atau kode yang dikaburkan selain "
+"pustaka yang diketahui, unggah sumbernya untuk ulasan."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8255,6 +8290,8 @@ msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
 msgstr ""
+"Anda tidak bisa menghapus berkas individu setelah proses ulasan dimulai. "
+"Anda harus menghapus seluruh versi."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -8266,12 +8303,12 @@ msgstr "Urung"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "Anda sedang meminta <b>kontribusi</b> dari pengguna"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:24
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Laman kontribusi anda: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -8286,10 +8323,13 @@ msgid ""
 "Add-ons enrolled in our contributions program can request voluntary "
 "financial support from users."
 msgstr ""
+"Pengaya yang dimasukkan ke dalam program kontribusi bisa meminta dukungan "
+"finansial sukarela dari pengguna."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
+"Mendorong pengguna untuk mendukung pengaya anda melalui Profil Pengembang"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
@@ -8300,6 +8340,8 @@ msgid ""
 "Receive contributions in your PayPal account or send them to an organization"
 " of your choice"
 msgstr ""
+"Menerima kontribusi melalui akun PayPal anda atau mengirimkannya ke lembaga "
+"pilihan anda"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
@@ -8311,6 +8353,8 @@ msgid ""
 "Contributions are only available for add-ons with a <a "
 "href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
+"Kontribusi hanya tersedia untuk pengaya dengan <a href=\"%(url)s\">profil "
+"pengembang yang lengkap</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
@@ -8395,6 +8439,10 @@ msgid ""
 "their support. You might also want to tell them about what's next for your "
 "add-on and about any other add-ons you've made for them to try."
 msgstr ""
+"Kami merekomendasikan untuk berterima kasih pada pengguna dan mengatakan "
+"pada mereka betapa anda menghargai dukungan mereka. Anda mungkin juga ingin "
+"mengatakan pada mereka apa langkah selanjutnya untuk pengaya anda dan "
+"tentang pengaya lain yang anda minta mereka coba."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
@@ -8416,7 +8464,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:87
 #: src/olympia/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Berikan URL yang cantik untuk laman rincian anda."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:92
 #: src/olympia/devhub/templates/devhub/personas/submit.html:41
@@ -8435,6 +8483,10 @@ msgid ""
 "                                search and browse listings, as well as at\n"
 "                                the top of your theme's details page."
 msgstr ""
+"Penjelasan pendek atas tema anda\n"
+"                                fungsi dasar yang ditampilkan di\n"
+"                                daftar pencarian dan penelusuran, termasuk di\n"
+"                                bagian atas laman rincian tema anda."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8455,6 +8507,8 @@ msgid ""
 "The licensor permits others to copy, distribute, display, and perform the "
 "work, including for commercial purposes."
 msgstr ""
+"Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, "
+"memajang dan menampilkan karya, termasuk untuk tujuan komersial."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:141
 #: src/olympia/devhub/templates/devhub/personas/edit.html:162
@@ -8464,6 +8518,8 @@ msgid ""
 "The licensor permits others to copy, distribute, display, and perform the "
 "work for non-commercial purposes only."
 msgstr ""
+"Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, "
+"memajang dan menampilkan karya untuk tujuan non-komersial saja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:147
 #: src/olympia/devhub/templates/devhub/personas/submit.html:93
@@ -8481,6 +8537,9 @@ msgid ""
 "The licensor permits others to copy, distribute, display and perform the "
 "work, as well as make derivative works based on it."
 msgstr ""
+"Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, "
+"memajang dan menampilkan karya, termasuk membuat karya turunan berdasarkan "
+"itu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:182
 #: src/olympia/devhub/templates/devhub/personas/submit.html:128
@@ -8494,6 +8553,9 @@ msgid ""
 "same license or one compatible with the one that governs the licensor's "
 "work."
 msgstr ""
+"Pemberi lisensi mengizinkan orang lain untuk mendistribusikan karya turunan "
+"hanya di bawah lisensi yang sama atau yang cocok dengan yang mengatur karya "
+"pemberi lisensi."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:192
 #: src/olympia/devhub/templates/devhub/personas/submit.html:138
@@ -8501,6 +8563,9 @@ msgid ""
 "The licensor permits others to copy, distribute and transmit only unaltered "
 "copies of the work — not derivative works based on it."
 msgstr ""
+"Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan dan "
+"memancarkan hanya salinan yang belum diubah dari karya — bukan karya turunan"
+" berdasarkan itu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:199
 #: src/olympia/devhub/templates/devhub/personas/submit.html:145
@@ -8532,10 +8597,15 @@ msgid ""
 "Upon upload and form submission, the AMO Team will review your updated "
 "design. Your current design will still be public in the meantime."
 msgstr ""
+"Setelah mengunggah dan melakukan pendaftaran, tim AMO akan mengulas "
+"rancangan anda yang diperbarui. Rancangan saat ini akan bisa ditampilkan di "
+"publik sementara waktu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
 msgstr ""
+"Rancangan yang anda masukkan ulang sebelumnya,  yang masih ditunda "
+"ulasannya."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -8609,6 +8679,9 @@ msgid ""
 "Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
 "create one</a>!"
 msgstr ""
+"Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda "
+"lebih personal. Daftarkan rancangan anda sendiri di bawah ini, or <a "
+"href=\"%(submit_url)s\">pelajari cara membuatnya</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -8621,6 +8694,10 @@ msgid ""
 "                                      search and browse listings, as well as at\n"
 "                                      the top of your theme's details page."
 msgstr ""
+"Penjelasan pendek tema anda\n"
+"                                      fungsi dasar yang ditampilkan di\n"
+"                                      daftar pencarian dan penelusuran, termasuk di\n"
+"                                      bagian atas laman rincian tema anda."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
@@ -8630,6 +8707,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Saya setuju dengan <a href=\"%(agreement_url)s\" "
+"target=\"_blank\">Kesepakatan Distribusi Pengaya Firefox</a> dan untuk "
+"informasi saya ditangani sebagaimana dijelaskan dalam <a "
+"href=\"%(privacy_notice_url)s\" target=\"_blank\">Catatan Situs, Komunikasi "
+"dan Kuki Privasi</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8640,6 +8722,8 @@ msgid ""
 "Your theme has been submitted to the Review Queue. You'll receive an email "
 "once it has been reviewed, typically within 24 hours."
 msgstr ""
+"Tema anda telah dimasukkan ke Antrean Ulasan. Anda akan menerima surel "
+"setelah tema ini diulas, biasanya dalam waktu 24 jam."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:19
 #, python-format
@@ -8647,6 +8731,8 @@ msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
+"Berikan rincian tambahan mengenai tema anda dengan <a "
+"href=\"%(edit_url)s\">menyunting daftarnya</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:25
 #, python-format
@@ -8654,11 +8740,13 @@ msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity "
 "feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Lihat dan berlangganan <a href=\"%(feed_url)s\">umpan aktivitas</a> tema "
+"anda untuk tetap mengetahui ulasan, koleksi dan hal lain yang terbaru."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:32
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Bergabunglah dengan percakapan di <a href=\"%(forum_url)s\">forum</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
@@ -8680,7 +8768,7 @@ msgstr "PNG atau JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Diluruskan ke kanan atas"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
@@ -8696,7 +8784,7 @@ msgstr "3000 &times; 100 pixel"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Diluruskan ke kiri bawah"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
@@ -8718,6 +8806,10 @@ msgid ""
 "ons. Please <a href=\"%(url)s\" target=\"_blank\">report any bugs</a> that "
 "you encounter."
 msgstr ""
+"Pendaftaran pembaruan untuk mendaftar pengaya untuk penandatanganan saat ini"
+" adalah versi beta yang terbuka. Ulasan manual masih bisa diminta untuk "
+"sejumlah besar pengaya. Harap <a href=\"%(url)s\" "
+"target=\"_blank\">melaporkan bug apapun</a> yang anda temui."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Select the target platform for this file."
@@ -8740,6 +8832,12 @@ msgid ""
 "significantly in the near future. Please <a href=\"%(issues_url)s\" "
 "target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
+"Perilaku saluran beta telah berubah untuk mengakomidasi <a "
+"href=\"%(addon_signing_url)s\" target=\"_blank\">penandatanganan pengaya "
+"yang wajib</a>. Proses baru saat ini adalah versi beta yang terbuka, dan "
+"bisa berubah secara significant dalam waktu dekat. Harap <a "
+"href=\"%(issues_url)s\" target=\"_blank\">melaporkan bug apapun</a> yang "
+"anda temui."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 msgid "Manage Version {0}"
@@ -8770,6 +8868,9 @@ msgid ""
 "                          add-on even if the install manifest in the package indicates that the\n"
 "                          add-on is incompatible."
 msgstr ""
+"Menyesuaikan informasi aplikasi di sini akan memungkinkan pengguna untuk memasang\n"
+"                          pengaya anda meskipun manifest pemasangan di paketnya mengindikasikan bahwa\n"
+"                          pengaya ini tidak cocok."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8778,6 +8879,10 @@ msgid ""
 "                              release/version. This information is also shown in the\n"
 "                              Add-ons Manager when updating."
 msgstr ""
+"Informasi mengenai perubahan di rilisan ini, fitur baru\n"
+"                              bug yang diketahui, dan informasi berguna lainnya yang spesifik untuk\n"
+"                              rilisan/versi ini. Informasi ini juga ditampilkan dalam\n"
+"                              Manajer Pengaya saat memperbarui."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8794,6 +8899,9 @@ msgid ""
 "                              to the Editor reviewing this add-on, such as test\n"
 "                              account information."
 msgstr ""
+"Silakan memilih, masukkan informasi apapun yang bisa berguna\n"
+"                              kepada Penyunting yang mengulas pengaya ini, seperti\n"
+"                              uji informasi akun."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8818,12 +8926,13 @@ msgstr "Tambah Berkas"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Berkas {file_id} ({platform})"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
 msgstr ""
+"Dibuat di %(created)s dan diubah menjadi %(status)s pada %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
@@ -8856,7 +8965,7 @@ msgstr "0 berkas"
 #: src/olympia/devhub/templates/devhub/versions/list.html:31
 #, python-format
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Posisi antrean: %(pos)s dari %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:48
 msgid "Not validated."
@@ -8904,6 +9013,8 @@ msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
+"Dimuat di {0}, namun disembunyikan untuk siapapun kecuali penulis. Digunakan"
+" untuk secara temporer menyembunyikan daftar atau menghentikannya."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:114
 msgid "Unlisted:"
@@ -8914,6 +9025,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own. (beta)"
 msgstr ""
+"Tidak didistribusikan di {0}. Pengembang akan mengunggah versi baru untuk "
+"penandatanganan dan distribusi pengaya sendiri. (beta)"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
@@ -8961,6 +9074,10 @@ msgid ""
 "of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
 "documentation</a> for more information."
 msgstr ""
+"Pengaya yang tidak terdaftar tidak memerlukan Ulasan Lengkap kecuali jika "
+"didistribusikan sebagai bagian dari instalator aplikasi. Baca <a "
+"href=\"{link}\" target=\"_blank\">dokumentasi ini</a> untuk informasi lebih "
+"lanjut."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
@@ -8976,6 +9093,9 @@ msgid ""
 "your add-on status to change, or your listing to lose public visibility, if "
 "this is the only public version of your add-on."
 msgstr ""
+"Anda akan menghapus versi pengaya anda saat ini. Hal ini bisa menyebabkan "
+"status pengaya anda berubah, atau daftar anda kehilangan pandangan publik, "
+"jika ini adalah satu-satunya versi publik pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:219
 msgid "Deleting this version will permanently delete:"
@@ -8986,6 +9106,8 @@ msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
+"<strong>Penting:</strong> Sekali sebuah versi dihapus, anda mungkin tidak "
+"boleh mengunggah versi baru dengan nomor versi yang sama."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid ""
