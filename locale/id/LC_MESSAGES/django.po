@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-07 00:22+0000\n"
+"PO-Revision-Date: 2016-03-07 01:25+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -12168,6 +12168,13 @@ msgid ""
 "with, how it should be updated, and so on. The format of the Install "
 "Manifest is RDF/XML."
 msgstr ""
+"Berkas ini, disebut <a href=\"%(url)s\">Manifest Pemasangan</a>, digunakan "
+"oleh Manajer Pengaya untuk memungkinkan aplikasi XUL untuk menentukan "
+"informasi mengenai pengaya saat dipasang. Ia mengandung metadata yang "
+"mengidentifikasi pengaya, memberikan informasi mengenai siapa yang "
+"membuatnya, di mana informasi yang lebih banyak bisa ditemukan mengenai hal "
+"ini, versi apa dari aplikasi yang cocok dengan itu, bagaimana caranya "
+"diperbarui dan seterusnya. Format Manifest Pemasangan adalah RDF/XML."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:132
 msgid "What does \"maxVersion\" mean?"
@@ -12194,12 +12201,18 @@ msgid ""
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Ya. Anda bisa menggunakan <a href=\"%(url)s\">XPCOM model komponen obyek</a>"
+" Mozilla untuk meningkatkan pengaya anda. Komponen XPCOM bisa digunakan dan "
+"diimplementasikan dalam JavaScript, Java, dan Python sebagai tambahan untuk "
+"C++."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:150
 msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
+"Bisakah saya menggunakan pustaka JavaScript seperti jQuery, MooTools atau "
+"Prototype untuk membuat pengaya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:152
 msgid ""
@@ -12290,6 +12303,11 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Ya. Rincian untuk melokalkan pengaya anda bisa ditemukan dalam <a "
+"href=\"%(l10n_url)s\">laman Pelokalan Mozilla Developer Network </a>. <a "
+"href=\"%(bz_url)s\">Proyek BabelZilla </a> juga merupakan sumber yang baik "
+"untuk belajar tentang pelokalan dan membantu menerjemahkan pengaya secara "
+"sukarela."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -12300,12 +12318,12 @@ msgstr ""
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:216
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (untuk diskusi pengembangan pengaya)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:218
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (untuk dukungan terkait pemuatan pengaya anda di AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:220
@@ -12313,6 +12331,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (untuk diskusi mengenai SDK Pengaya dan cfx/jpm - sebelumnya "
+"dikenal sebagai Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html:225
@@ -12368,7 +12388,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Bisakah saya memuat pengaya saya sendiri?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:265
 #, python-format
@@ -12381,10 +12401,18 @@ msgid ""
 " with tools to help manage source code, version control, bug tracking and "
 "documentation."
 msgstr ""
+"Ya. Banyak pengembang yang memilih memuat pengaya mereka sendiri. Meski "
+"demikian, memilih untuk memuat pengaya di <a href=\"%(amo_url)s\">situs "
+"pengaya Mozilla</a>, memungkinkan eksposur yang jauh lebih besar pada "
+"pengaya anda karena jumlah pengunjung yang besar ke situs.  <a "
+"href=\"%(md_url)s\">mozdev.org</a> menawarkan pemuatan proyek gratis untuk "
+"aplikasi dan ekstensi Mozilla yang memberi pengembang perangkat untuk "
+"membantu mengelola kode sumber, versi kendali, pelacakan bug dan "
+"dokumentasi."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Bisakah Mozilla memuat pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:279
 #, python-format
@@ -12392,10 +12420,12 @@ msgid ""
 "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on "
 "website</a>."
 msgstr ""
+"Ya. Anda bisa memuat pengaya anda di <a href=\"%(url)s\">situs pengaya "
+"Mozilla</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:284
 msgid "What is AMO?"
-msgstr ""
+msgstr "Apakah AMO itu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:286
 msgid ""
@@ -12406,10 +12436,16 @@ msgid ""
 "infrastructure necessary to manage, host and expose your add-on to a massive"
 " base of Mozilla users."
 msgstr ""
+"AMO Mozilla (<a "
+"href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) adalah "
+"inkubator yang membantu pengembang membuat, mendistribusikan, dan mendukung "
+"produk konsumen yang luar biasa, dengan dukungan Mozilla. Menyediakan "
+"perangkat dan infrastruktur yang diperlukan untuk mengelola, memuat dan "
+"menampilkan pengaya anda kepada pengguna Mozilla secara masif."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:295
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Apakah Mozilla menjaga informasi akun saya tetap privat?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:297
 #, python-format
@@ -12417,10 +12453,12 @@ msgid ""
 "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your "
 "information is managed by Mozilla."
 msgstr ""
+"Ya. Kami memiliki <a href=\"%(url)s\">Kebijakan Privasi</a> yang menjelaskan"
+" bagaimana informasi anda dikelola Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:302
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Apa sajakah \"perangkat pengembang\" yang didaftar dalam AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:304
 msgid ""
@@ -12515,10 +12553,13 @@ msgid ""
 "Nominated add-ons are new add-ons that the author has nominated to become "
 "public via the Developer Tools."
 msgstr ""
+"Pengaya yang dinominasikan adalah pengaya baru yang penulisnya telah "
+"dinominasikan untuk menjadi publik melalui Perangkat Pengembang."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:363
 msgid "Can I specify a license agreement for using my add-on?"
 msgstr ""
+"Bisakah saya merinci kesepakatan lisensi untuk menggunakan pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:365
 msgid ""
@@ -12526,10 +12567,13 @@ msgid ""
 "can also add or update a license agreement via the Developer Tools dashboard"
 " after your add-on has been submitted."
 msgstr ""
+"Bisa. Anda bisa merinci kesepakatan lisensi saat memasukkan pengaya. Anda "
+"juga bisa menambahkan atau memperbarui kesepakatan pengaya lewat papan "
+"Perangkat Pengembang setelah pengaya anda didaftarkan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:372
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Bisakah saya memasukkan kebijakan privasi untuk pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:374
 msgid ""
@@ -12537,10 +12581,13 @@ msgid ""
 "also add or update a privacy policy via the Developer Tools dashboard after "
 "your add-on has been submitted."
 msgstr ""
+"Bisa. Anda bisa merinci kebijakan privasi saat memasukkan pengaya. Anda juga"
+" bisa menambah atau memperbarui kebijakan privasi melalui papan Perangkat "
+"Pengembang setelah pengaya anda didaftarkan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:383
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Mengapa pengaya saya harus diulas?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:385
 #, python-format
@@ -12550,10 +12597,14 @@ msgid ""
 " reviewed using the guidelines outlined in the <a href=\"%(url)s\">Editors "
 "Reviewing Guide</a>."
 msgstr ""
+"Semua pengaya yang didaftarkan, baik baru atau dieprbarui, harus diulas "
+"untuk memastikan bahwa pengguna Mozilla mendapatkan pengalaman yang stabil "
+"dan aman. Seluruh pendaftaran pengaya diulas menggunakan panduan yang "
+"ditulis dalam <a href=\"%(url)s\">Panduan Pengulasan Penyunting</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:393
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Siapa yang mengulas pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:395
 #, python-format
@@ -12565,10 +12616,17 @@ msgid ""
 "hard to ensure that your add-on is set up correctly and follows the "
 "guidelines outlined in the <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Semua pengaya diulas oleh Penyunting AMO, sekelompok pengembang berbakat "
+"yang secara sukarela membantu proyek Mozilla dengan mengulas pengaya untuk "
+"memastikan pengalaman yang stabil dan aman untuk pengguna Mozilla. Saat "
+"berkomunikasi dengan penyunting, harap sopan, sabar dan menghormati karena "
+"mereka bekerja keras untuk memastikan pengaya anda dipasang dengan benar dan"
+" mengikuri panduan yang digariskan di <a href=\"%(url)s\">Panduan Ulasan "
+"Penyunting</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:406
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Apakah panduan yang digunakan untuk mengulas pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:408
 #, python-format
@@ -12579,31 +12637,38 @@ msgid ""
 " are addressed prior to submitting their add-on for review. This will "
 "greatly assist in expediting the review process."
 msgstr ""
+"Tim penyunting Mozilla mengikuti <a href=\"%(url)s\">Panduan Ulasan "
+"Penyunting</a> saat menguji pengaya untuk diterima di AMO. Sangat penting "
+"bagi pengembang pengaya meninjau panduan ini untuk memastikan bahwa bagian "
+"masalah umum telah ditangani sebelum memasukkan pengaya mereka untuk diulas."
+" Ini akan sangat membantu mempercepat proses pengulasan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:418
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Berapa lama waktu yang diperlukan pengaya saya untuk diulas?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:420
 msgid ""
 "We cannot give a time estimate as to how long it will take before an add-on "
 "is reviewed. Many factors affect the time including the:"
 msgstr ""
+"Kami tidak dapat memberikan perkiraan waktu berapa lama sebelum pengaya "
+"diulas. Beberapa faktor yang mempengaruhi jangka waktu tercakup dalam:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:427
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "jumlah pengaya yang dimasukkan"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:429
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "kompleksitas kode pengaya"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:431
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "jumlah masalah yang dicakup"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:434
 #, python-format
@@ -12614,10 +12679,15 @@ msgid ""
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which "
 "provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
+"Inilah pentingnya membaca <a href=\"%(g_url)s\">Panduan Ulasan "
+"Penyunting</a> untuk memastikan bahwa pengaya anda ditetapkan sebagaimana "
+"diharapkan.  Juga merupakan ide bagus untuk membaca tulisan di blog, <a "
+"href=\"%(blog_url)s\">Agar Pengaya Anda Berhasil Diulas</a> yang memberikan "
+"wawasan untuk memastikan ulasan yang lancar untuk pengaya anda."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Bagaimana saya bisa melihat berapa kali pengaya saya diunduh?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:448
 msgid ""
@@ -12625,10 +12695,14 @@ msgid ""
 "information that can help you determine your add-on downloads since you've "
 "submitted it to AMO."
 msgstr ""
+"Papan Statistik yang ditemukan dalam papan Perangkat Pengembang menyediakan "
+"informasi yang bisa membantu anda menentukan berapa kali pengaya anda "
+"diunduh sejak dimasukkan ke AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:455
 msgid "How can I see how many active users are using my add-on?"
 msgstr ""
+"Bagaimana saya bisa melihat berapa banyak pengguna aktif pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:457
 msgid ""
@@ -12636,10 +12710,13 @@ msgid ""
 "information that can help you determine how many users have been actively "
 "using your add-on since you've submitted it to AMO."
 msgstr ""
+"Papan Statistik yang ditemukan dalam papan Perangkat Pengembang menyediakan "
+"informasi yang bisa membantu anda menentukan berapa jumlah pengguna aktif "
+"pengaya anda sejak dimasukkan ke AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:464
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Bagaimana saya memasukkan pembaruan pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:466
 msgid ""
@@ -12647,10 +12724,13 @@ msgid ""
 "by choosing the option \"Upload a new version\" and uploading a new .xpi "
 "file for your add-on."
 msgstr ""
+"Anda bisa memasukkan pembaruan pengaya melalui papan Perangkat Pengembang "
+"dengan memilih \"Unggah versi baru\" dan mengunggah berkas .xpi baru untuk "
+"pengaya anda."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:473
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Apakah pembaruan yang saya buat perlu diulas oleh penyunting?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:475
 msgid ""
@@ -12660,17 +12740,27 @@ msgid ""
 "however, you submit a new updated file, then your add-on update will need to"
 " be reviewed by an editor."
 msgstr ""
+"Tergantung. Jika anda hanya mengubah deskripsi pengaya atau memperbarui "
+"\"maxVersion\" untuk memastikan kecocokan dengan pembaruan perangkat lunak "
+"Mozilla, maka pengaya anda tidak perlu diulas kembali. Namun, jika anda "
+"memasukkan berkas pembaruan, maka pengaya anda akan perlu diulas kembali "
+"oleh penyunting."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:486
 msgid ""
 "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
+"Bagaimana saya menjawab pengguna yang mengirimkan ulasan negatif untuk "
+"pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:488
 msgid ""
 "A developer may reply to any review posted to their add-on as long as they "
 "are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
+"Pengembang bisa membalas ulasan apapun untuk pengaya mereka asalkan mereka "
+"masuk dalam AMO. Sebagai tambahan, setiap pengguna bisa menandai ulasan "
+"sebagai:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:495
@@ -12694,6 +12784,7 @@ msgstr "Laporan bug atau permintaan dukungan yang tidak pada tempatnya"
 #: src/olympia/pages/templates/pages/dev_faq.html:501
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
+"Lainnya (memberi bagian yang muncul dengan cepat untuk memberi informasi)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:504
 msgid ""
@@ -12701,20 +12792,28 @@ msgid ""
 "reviewer but this feature is being investigated and considered for a future "
 "update."
 msgstr ""
+"Saat ini, AMO tidak menyediakan mekanisme untuk berkomunikasi secara "
+"langsung dengan pengulas namun fitur ini sedang diselidiki dan "
+"dipertimbangkan untuk pembaruan di masa depan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:511
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
+"Bisakah saya meminta sebuah ulasan dihapus jika ulasan tersebut negatif?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:513
 msgid ""
 "No. We do not remove negative reviews from add-ons unless they are found to "
 "be false."
 msgstr ""
+"Tidak. Kami tidak menghapus ulasan negatif dari pengaya kecuali jika ulasan "
+"itu diketahui salah."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:519
 msgid "Can I request that a review be removed if the review is inaccurate?"
 msgstr ""
+"Bisakah saya meminta sebuah ulasan dihapus jika ulasan tersebut tidak "
+"akurat?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:521
 msgid ""
@@ -12722,6 +12821,9 @@ msgid ""
 "inaccurate information to be removed, we will review the post and consider "
 "removing it."
 msgstr ""
+"Jika penulis mengontak kami dan meminta supaya ulasan yang mengandung "
+"kesalahan informasi atau tidak akurat dihapus, kami akan meninjau kiriman "
+"tersebut dan menghapusnya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:530
 msgid ""
@@ -12736,6 +12838,17 @@ msgid ""
 "guarantees nor is responsible for the content of these sites or your "
 "reliance on such content."
 msgstr ""
+"Apakah anda perlu tambahan informasi mengenai berbagai lisensi sumber "
+"terbuka? Apakah anda kebingungan mengenai lisensi mana yang harus anda "
+"pilih? Hak apakah yang memberi lisensi secara spesifik? Tidak ada yang "
+"menggantikan membaca ketentuan lengkap sebuah lisensi, di bawah ini ada "
+"sejumlah situs yang mengandung informasi mengenai beberapa kunci lisensi "
+"sumber terbuka yang bisa membantu anda menyortir perbedaan di antaranya. "
+"Situs ini disediakan hanya untuk kenyamanan anda dan sebagai referensi untuk"
+" penggunaan pribadi. Sumber ini tidak dianggap saran hukum dan tidak "
+"sebaiknya digunakan untuk memberi saran terkait hal tersebut. Mozilla tidak "
+"menjamin dan tidak bertanggung jawab atas konten situs ini jika anda "
+"bergantung padanya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:545
 msgid ""
@@ -13460,7 +13573,7 @@ msgstr ""
 #: src/olympia/reviews/feeds.py:23
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Ulasan untuk %s"
 
 #: src/olympia/reviews/feeds.py:31
 msgid "Review History for this Addon"
@@ -13470,11 +13583,11 @@ msgstr "Riwayat Ulasan untuk Pengaya ini"
 #: src/olympia/reviews/feeds.py:49
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Peringkat %d dari 5 bintang"
 
 #: src/olympia/reviews/forms.py:148
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Terus mengulas; hilangkan penanda"
 
 #: src/olympia/reviews/forms.py:149
 msgid "Skip for now"
@@ -13495,7 +13608,7 @@ msgstr "Terima kasih, ulasan ini telah ditandai untuk persetujuan editor."
 
 #: src/olympia/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Tambahkan ulasan untuk {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html:26
 #, python-format
@@ -13514,10 +13627,24 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Ingatlah:</h2> <ul> <li> Menulis seperti anda menyampaikan pada teman "
+"mengenai pengalaman dengan pengaya. Berikan rincian yang spesifik dan "
+"membantu, misalnya fitur apa yang anda suka/atau tidak suka, apakah mudah "
+"menggunakannya, dan kekurangan yang dimilikinya.  Hindari penggunaan bahasa "
+"yang umum seperti penyebutan \"Hebat\" atau \"Buruk\" terkecuali jika anda "
+"bisa memberi alasan. </li> <li> Harap jangan mengirimkan laporan bug dalam "
+"ulasan. Kami tidak memberikan alamat surel anda pada pengembang pengaya dan "
+"mereka mungkin perlu menghubungi anda untuk membantu masalah anda. Lihat <a "
+"href=\"%(support)s\">bagian dukungan</a> untuk menemukan di mana bisa "
+"mendapatkan bantuan untuk pengaya ini. </li> <li>Harap jaga ulasan tetap "
+"bersih, hindari penggunaan bahasa yang tidak pantas dan jangan memasang "
+"informasi pribadi apapun. </li> </ul> <p>Bacalah <a href=\"%(guide)s\" "
+"target=\"_blank\">Panduan Ulasan</a> untuk informasi lebih rinci mengenai "
+"ulasan pengguna pengaya.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Membalas ulasan oleh {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html:15
 #: src/olympia/reviews/templates/reviews/reply.html:31
