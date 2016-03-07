@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-07 01:25+0000\n"
+"PO-Revision-Date: 2016-03-07 01:54+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -13780,12 +13780,12 @@ msgstr[0] "{num} ulasan"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Peringkat {0} dari 5 bintang"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Peringkat %(rating)s dari 5 bintang"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:3
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:8
@@ -13812,7 +13812,7 @@ msgstr "oleh %(user)s"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:38
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Lebih Lanjut&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html:7
 #, python-format
@@ -13910,12 +13910,12 @@ msgstr "Pengaya {0}"
 #. Firefox."
 #: src/olympia/search/views.py:554
 msgid "Any {0}"
-msgstr ""
+msgstr "Berapapun {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py:589
 msgid "All Systems"
-msgstr ""
+msgstr "Semua Sistem"
 
 #: src/olympia/search/views.py:600
 msgid "All Tags"
@@ -13924,7 +13924,7 @@ msgstr "Seluruh Tag"
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html:8
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Hasil Pencarian Koleksi untuk {0}"
 
 #: src/olympia/search/templates/search/collections.html:10
 msgid "Collection Search Results"
@@ -13942,7 +13942,7 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Hasil Pencarian Tema untuk {0}"
 
 #: src/olympia/search/templates/search/personas.html:11
 msgid "Themes Search Results"
@@ -13951,17 +13951,17 @@ msgstr "Hasil Pencarian Tema"
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Tag"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Hasil Pencarian untuk tag \"{0}\""
 
 #: src/olympia/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> hasil yang cocok"
 
 #: src/olympia/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -13977,7 +13977,7 @@ msgstr "Tag"
 
 #: src/olympia/search/templates/search/mobile/results.html:20
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Hasil Pencarian <i>({num})</i>"
 
 #: src/olympia/sharing/__init__.py:14
 msgid "{0} post"
@@ -13991,7 +13991,7 @@ msgstr "Kirim ke Facebook"
 #: src/olympia/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
+msgstr[0] "{0} Menyukai"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -14017,65 +14017,65 @@ msgstr "Pasang di Tumblr"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:61
 msgid "localservice1"
-msgstr ""
+msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:63
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Dikirim ke localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice1/?url={url}&judul={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
+msgstr[0] "{0} kiriman di localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:76
 msgid "localservice2"
-msgstr ""
+msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:78
 msgid "Post to localservice2"
-msgstr ""
+msgstr "Dikirim ke localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:80
 msgid "http://localservice2/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice2/?url={url}&judul={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] ""
+msgstr[0] "{0} kiriman di localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:91
 msgid "localservice3"
-msgstr ""
+msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:93
 msgid "Post to localservice3"
-msgstr ""
+msgstr "Dikirim ke localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice3/?url={url}&judul={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] ""
+msgstr[0] "{0} kiriman di localservice3"
 
 #: src/olympia/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -14096,7 +14096,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py:53
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Tidak bisa menemukan pengaya dengan id \"{}\"."
 
 #: src/olympia/signing/views.py:67
 msgid "You do not own this addon."
@@ -14122,7 +14122,7 @@ msgstr "Tidak ada berkas yang diunggah untuk pengaya dan versi tadi."
 
 #: src/olympia/stats/models.py:238
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Terima kasih karena telah berkontribusi ke {addon_name}"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
@@ -14220,15 +14220,15 @@ msgstr "Ekspor"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Papan Statistik :: Pengaya untuk {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Papan Statistik"
 
 #: src/olympia/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Papan Statistik :: Pengaya untuk {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -14236,7 +14236,7 @@ msgstr "Kendali:"
 
 #: src/olympia/stats/templates/stats/stats.html:33
 msgid "reset zoom"
-msgstr ""
+msgstr "menyetel ulang zoom"
 
 #: src/olympia/stats/templates/stats/stats.html:40
 msgid "Group by:"
@@ -14276,7 +14276,7 @@ msgstr "365 hari"
 
 #: src/olympia/stats/templates/stats/stats.html:69
 msgid "Custom..."
-msgstr ""
+msgstr "Khusus..."
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html:88
@@ -14300,7 +14300,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Memuat data terbaru&hellip;"
 
 #: src/olympia/stats/templates/stats/stats.html:142
 #: src/olympia/stats/templates/stats/reports/overview.html:25
@@ -14311,15 +14311,15 @@ msgstr "Tidak ada data tersedia."
 
 #: src/olympia/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Papan saat ini dalam keadaan <b>publik</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:179
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Statistik kontribusi saat ini dalam keadaaan <b>privat</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:182
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Papan saat ini dalam keadaan <b>privat</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:185
 msgid "Change settings."
@@ -14367,6 +14367,10 @@ msgid ""
 "evening and only include original add-on downloads, not updates. Downloads "
 "can be broken down by the specific source referring the download. </p>"
 msgstr ""
+"<h2>Bagaimana unduhan dihitung?</h2> <p> Penghitungan unduhan diperbarui "
+"tiap malam dan hanya memasukkan pengunduhan pengaya pertama kalinya, bukan "
+"pembaruan. Unduhan bisa dibagi-bagi berdasarkan sumber spesifik yang merujuk"
+" pada unduhan. </p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -14378,7 +14382,7 @@ msgstr "Penggunaan Platform berdasarkan Tanggal"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Unduhan"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #: src/olympia/stats/templates/stats/reports/overview.html:13
@@ -14387,7 +14391,7 @@ msgstr "Memuat..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Rata-rata Pengguna Harian"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
@@ -14395,7 +14399,7 @@ msgstr "Aplikasi Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Lihat aplikasi lainnya&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
@@ -14403,7 +14407,7 @@ msgstr "Bahasa Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Lihat bahasa lainnya&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
@@ -14411,7 +14415,7 @@ msgstr "Platform Teratas"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Lihat platform lainnya&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
@@ -14446,6 +14450,20 @@ msgid ""
 "blog\", \"external-sidebar\", \"external-campaign225\", etc. The following "
 "URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Melacak sumber eksternal</h2> <p> Jika anda menautkan laman rincian "
+"pengaya anda atau langsung pada berkasnya dari situs eksternal, misalnya "
+"blog anda atau situs, anda bisa menambahkan parameter untuk dilacak sebagai "
+"tambahan sumber pengunduhan di halaman ini. Misalnya, tautan berikut akan "
+"muncul sebagai bersumber dari blog anda: <dl> <dt>Laman Rincian Pengaya</dt>"
+" <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>blog "
+"eksternal</b></dd> <dt>Tautan Berkas Langsung</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> </dl> <p> Hanya parameter src yang dimulai dengan "
+"\"eksternal-\" akan dilacak, hingga 61 karakter tambahan. Teks apapun "
+"setelah \"eksternal-\" bisa digunakan untuk menjelaskan sumbernya, misalnya "
+"\"blog eksternal\", \"sidebar eksternal\", \"kampanye 225 eksternal\", dll. "
+"Beberapa karakter aman URL ini diperkenankan: <code>a-z A-Z - . _ ~ %% "
+"+</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -14470,6 +14488,10 @@ msgid ""
 "Active Daily Users, or the total number of people using your theme by day. "
 "</p>"
 msgstr ""
+"<h2>Apakah pengguna harian itu?</h2> <p> Tema yang dipasang dari situs ini "
+"diperiksa pembaruannya sekali setiap hari. Jumlah total ping pembaruan ini "
+"disebut sebagai Pengguna Aktif Harian, atau jumlah total orang yang "
+"menggunakan tema anda berdasarkan hari. </p>"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:20
 msgid ""
