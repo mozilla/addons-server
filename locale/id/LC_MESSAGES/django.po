@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-07 01:54+0000\n"
+"PO-Revision-Date: 2016-03-07 04:12+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -728,7 +728,7 @@ msgstr "Ekstensi &amp; yang Akan Datang"
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
 #: src/olympia/discovery/templates/discovery/pane.html:74
 msgid "Featured Themes"
-msgstr ""
+msgstr "Tema Unggulan"
 
 #: src/olympia/addons/templates/addons/home.html:77
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
@@ -5327,7 +5327,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
-msgstr ""
+msgstr "Versi yang Didukung"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:31
 #: src/olympia/devhub/templates/devhub/versions/edit.html:63
@@ -5827,7 +5827,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "64x64px"
-msgstr ""
+msgstr "64 x 64 px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
@@ -5835,7 +5835,7 @@ msgstr "Digunakan di laman rincian pengaya."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:56
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Unggah Ikon yang lain..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
@@ -5873,7 +5873,7 @@ msgstr "Tes Umum"
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
-msgstr ""
+msgstr "Tes Keamanan"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:13
@@ -5885,12 +5885,12 @@ msgstr "Tes Ekstensi"
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
-msgstr ""
+msgstr "Tes Pelokalan"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:21
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Tes Kompatibilitas"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: src/olympia/files/templates/files/viewer.html:142
@@ -5942,7 +5942,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Beritahu kami mengapa Anda menghapus tema Anda:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:36
 msgid "Please tell us why you are deleting your add-on:"
@@ -5964,7 +5964,7 @@ msgstr "Lanjutkan"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Hapus pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
@@ -5972,7 +5972,7 @@ msgstr "Sunting rincian mengenai pendaftaran pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Unggah versi baru pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "New Version"
@@ -5980,7 +5980,7 @@ msgstr "Versi Baru"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:44
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Statistik harian untuk unduhan dan pengguna."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: src/olympia/stats/templates/stats/stats.html:75
@@ -6003,14 +6003,14 @@ msgstr "Kelola Status & Versi"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Lihat Daftar Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:64
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:37
 #: src/olympia/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Lihat Perubahan Baru-baru ini"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
@@ -6030,7 +6030,7 @@ msgstr "Mentransfer Kepemilikan"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:28
 msgid "Delete this theme."
-msgstr ""
+msgstr "Hapus tema ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:10
 msgid ""
@@ -6061,7 +6061,7 @@ msgstr "Memasukkan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
-msgstr ""
+msgstr "Langkah 3"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
@@ -6069,7 +6069,7 @@ msgstr "Langkah 3. Gambarkan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
-msgstr ""
+msgstr "Nama dan versi:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
@@ -6108,7 +6108,7 @@ msgstr "Penyerahan Lengkap"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:13
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
-msgstr ""
+msgstr "Selesai!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
@@ -7089,7 +7089,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Terakhir diperbarui: Januari 31, 2013"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:7
@@ -7097,7 +7097,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:15
 #: src/olympia/devhub/templates/devhub/docs/policies.html:64
 msgid "Review Process"
-msgstr ""
+msgstr "Proses Pemeriksaan"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:12
 msgid ""
@@ -8389,27 +8389,27 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Siapa yang akan menerima kontribusi pada pengaya ini?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Apa nama organisasi tersebut?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:19
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Apa URL organisasi tersebut?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:22
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Apa ID PayPal organisasi tersebut?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:28
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Apa ID PayPal Anda?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:29
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Daftar PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
@@ -8417,21 +8417,23 @@ msgstr "Apakah kontribusi yang anda sarankan?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Contoh: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Kapan seorang pengguna bisa dimintai kontribusi?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Sampaikan catatan terima-kasih?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:47
 msgid ""
 "We'll automatically email users who contribute to your add-on with this "
 "message."
 msgstr ""
+"Kami akan mengiri surel secara otomatis ke pengguna yang berkontribusi ke "
+"pengaya Anda dengan pesan ini."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -8446,11 +8448,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Kontribusi Aktif"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "atau <a id=\"setup-cancel\" href=\"#\">Batal</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:28
 msgid "Transfer ownership"
@@ -8459,7 +8461,7 @@ msgstr "Pengalihan kepemilikan"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:77
 #: src/olympia/devhub/templates/devhub/personas/submit.html:31
 msgid "Theme Details"
-msgstr ""
+msgstr "Detil Tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:87
 #: src/olympia/devhub/templates/devhub/personas/submit.html:36
@@ -8937,7 +8939,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Dibuat pada %(created)s dan diubah pada %(status)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
@@ -9018,7 +9020,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:114
 msgid "Unlisted:"
-msgstr ""
+msgstr "Tidak terdaftar:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:114
 msgid ""
@@ -9030,7 +9032,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
-msgstr ""
+msgstr "Versi terkini"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Currently on AMO"
@@ -9054,11 +9056,11 @@ msgstr "Validasi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:146
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Versi selanjutnya dari pengaya ini"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:157
 msgid "Older versions"
-msgstr ""
+msgstr "Versi sebelumnya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:170
 msgid "Upload a New Version"
@@ -9133,16 +9135,16 @@ msgstr "Mematikan Versi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:247
 msgid "Add a new Version"
-msgstr ""
+msgstr "Tambah Versi baru"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:249
 msgid "Add Version"
-msgstr ""
+msgstr "Tambah Versi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:256
 #: src/olympia/devhub/templates/devhub/versions/list.html:274
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Sembunyikan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:259
 msgid ""
@@ -9154,7 +9156,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:265
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Anda yakin ingin menyembunyikan pengaya Anda?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:286
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -9273,7 +9275,7 @@ msgstr "Koleksi Firefox 4"
 
 #: src/olympia/discovery/modules.py:184
 msgid "Here are some great add-ons for Firefox 4."
-msgstr ""
+msgstr "Berikut ini pengaya unggulan untuk Firefox 4."
 
 #: src/olympia/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
@@ -10555,7 +10557,7 @@ msgstr "Editor"
 
 #: src/olympia/editors/templates/editors/reviewlog.html:54
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Pengaya telah dihapus."
 
 #: src/olympia/editors/templates/editors/reviewlog.html:59
 #: src/olympia/editors/templates/editors/themes/logs.html:36
@@ -10582,7 +10584,7 @@ msgstr "Berkas dalam versi ini:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr ""
+msgstr "Isi"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
@@ -12857,6 +12859,10 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr> to help you if you want to "
 "use or distribute code licensed under it."
 msgstr ""
+"Sebagai tambahan untuk teks lengkap Lisensi Publik Mozilla(\"MPL\"), ini "
+"juga menyediakan versi beranotasi dari MPL dan <abbr title=\"Frequently "
+"Asked Questions\">FAQ</abbr> untuk membantu anda jika anda ingin menggunakan"
+" atau mendistribusikan kode di bawahnya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:559
 msgid ""
@@ -12864,6 +12870,9 @@ msgid ""
 "treat distributions, proprietary software linking, and redistribution of "
 "code with changes."
 msgstr ""
+"Tabel yang meringkas dan membandingkan bagaimana sebagian dari kunci lisensi"
+" kode terbuka memperlakukan distribusi, kaitan perangkat lunak asal, dan "
+"distribusi ulang kode dengan perubahan."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:572
 msgid ""
@@ -12874,6 +12883,13 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"Yayasan Perangkat Lunak Bebas menyediakan ringkasan pendek dari kunci "
+"lisensi sumber terbuka, termasuk apakah lisensi ini dapat dikategorikan "
+"sebagai lisensi perangkat lunak bebas atau lisensi copyleft.  Juga "
+"menyertakan diskusi akan apa yang dimaksud lisensi perangkat lunak bebas "
+"atau lisensi copyleft (mis. lisensi COpyleft adalah metode umum untuk "
+"membuat program atau karya lainnya bebas, dan meminta semua versi yang "
+"dimodifikasi dan diperpanjang untuk menjadi bebas juga.)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:589
 msgid ""
@@ -12920,6 +12936,12 @@ msgid ""
 "needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about "
 "customization</a>"
 msgstr ""
+"Pengaya adalah bagian kecil perangkat lunak yang menambah fitur atau fungsi "
+"untuk pemasangan %(app_name)s. Pengaya bisa menambah %(app_name)s dengan "
+"fitur baru, kamus bahasa asing, atau mengubah tampilan visualnya. Melalui "
+"pengaya, anda bisa menyesuaikan %(app_name)s sesuai dengan kebutuhan dan "
+"selera anda. <a href=\"%(learnmore_url)s\">Pelajari lebih lanjut tentang "
+"penyesuaian</a>"
 
 #: src/olympia/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
@@ -12938,6 +12960,15 @@ msgid ""
 "as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will "
 "indicate whether the add-on is compatible or not."
 msgstr ""
+"Pengaya yang terdaftar dalam galeri ini hanya bekerja dengan aplikasi "
+"berbasis Mozilla, misalnya <a href=\"%(getfirefox_url)s\">Firefox</a>, <a "
+"href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dan <a "
+"href=\"%(getthunderbird_url)s\">Thunderbird</a>. Namun demikian tidak semua "
+"pengaya bekerja dengan tiap aplikasi itu atau setiap versi dari aplikasi "
+"tersebut. Tiap pengaya merinci aplikasi mana dan di version mana pengaya itu"
+" bisa bekerja, misalnya Firefox 2.0 - 3.6.*. Untuk pengaya Firefox, tombol "
+"pemasangan akan mengindikasikan apakah pengaya ini cocok atau tidak."
 
 #: src/olympia/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
@@ -12949,6 +12980,8 @@ msgid ""
 "There are several kinds of add-ons that customize %(app_name)s in different "
 "ways:"
 msgstr ""
+"Ada beberapa jenis pengaya yang disesuaikan dengan %(app_name)s dalam "
+"berbagai cara:"
 
 #: src/olympia/pages/templates/pages/faq.html:47
 #, python-format
@@ -12959,6 +12992,11 @@ msgid ""
 "more closely with social websites, and add features you see in other "
 "applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Ekstensi</a></strong> tambahkan fitur "
+"baru ke %(app_name)s atau mengubah fungsi yang sudah ada. Terdapat sejumlah "
+"ekstensi yang memungkinkan anda untuk menghentikan iklan, mengunduh video "
+"dari situs, berintegrasi lebih erat dengan situs sosial, dan menambah fitur "
+"yang anda lihat dalam aplikasi lainnya."
 
 #: src/olympia/pages/templates/pages/faq.html:55
 #, python-format
@@ -12967,6 +13005,9 @@ msgid ""
 "entire appearance of %(app_name)s, usually including icons, colors, dialogs,"
 " and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Tema Lengkap</a></strong> mengubah "
+"tampilan seluruh %(app_name)s, biasanya termasuk ikon, warna, dialog dan "
+"gaya visual lainnya."
 
 #: src/olympia/pages/templates/pages/faq.html:61
 #, python-format
@@ -12974,6 +13015,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight "
 "themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Tema</a></strong> adalah tema ringan yang"
+" menggunakan gambar latar untuk menyesuaikan toolbar %(app_name)s anda."
 
 #: src/olympia/pages/templates/pages/faq.html:66
 #, python-format
@@ -12982,6 +13025,9 @@ msgid ""
 "additional choices to the search box dropdown. These providers allow you to "
 "quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Penyedia Pencarian</a> </strong> menambah"
+" pilihan lainnya untuk kotak pencarian yang muncul ke bawah. Penyedia ini "
+"memungkinkan anda untuk mencari situs apa saja dengan cepat."
 
 #: src/olympia/pages/templates/pages/faq.html:72
 #, python-format
@@ -12999,6 +13045,9 @@ msgid ""
 "display or understand different types of media, such as Adobe Flash or Apple"
 " Quicktime."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Plugin</a></strong> bantuan %(app_name)s "
+"menampilkan atau memahami tipe media yang berbeda, misalnya Adobe Flash atau"
+" Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
@@ -13015,6 +13064,13 @@ msgid ""
 "have difficulty installing add-ons, see <a "
 "href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"Dalam banyak kasus, pengaya bisa dipasang dengan hanya mengklik tombol "
+"pemasangan yang tersedia. Pengaya bisa dikelola, dimatikan, atau dilepaskan "
+"dari Manajer Pengaya dalam %(app_name)s. Untuk instruksi yang lebih terinci,"
+" baca <a href=\"%(extension_url)s\">artikel ini mengenai ekstensi</a> or <a "
+"href=\"%(theme_url)s\">yang satu ini untuk Tema dan Tema Lengkap</a>. Jika "
+"anda memiliki kesulitan dalam memasang pengaya, lihat <a "
+"href=\"%(troubleshooting_url)s\">Ekstensi Pemecahan Masalah dan Tema</a>."
 
 #: src/olympia/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -14566,7 +14622,7 @@ msgstr "Tampilkan Situs Seluler"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Status Situs "
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -14626,7 +14682,7 @@ msgstr "Tentang Firefox"
 
 #: src/olympia/templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Gabung ke Mozilla"
 
 #: src/olympia/templates/menu_links.html:24
 msgid "Participate"
@@ -14634,11 +14690,11 @@ msgstr "Berpartisipasi"
 
 #: src/olympia/templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Pusat Pers"
 
 #: src/olympia/templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Perkakas Merk"
 
 #: src/olympia/templates/menu_links.html:28
 msgid "Careers"
@@ -14705,7 +14761,7 @@ msgstr ""
 
 #: src/olympia/templates/impala/base.html:164
 msgid "On the go?"
-msgstr ""
+msgstr "Dalam perjalanan?"
 
 #: src/olympia/templates/impala/base.html:166
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
@@ -15726,7 +15782,7 @@ msgstr "Laporkan penguna {0}"
 
 #: src/olympia/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "Pemesanan T-Shirt"
 
 #: src/olympia/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
@@ -15735,7 +15791,7 @@ msgstr "Kaus Edisi Khusus Kreator Pengaya"
 #: src/olympia/users/templates/users/t-shirt.html:14
 #: src/olympia/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Catatan:"
 
 #: src/olympia/users/templates/users/t-shirt.html:15
 msgid ""
@@ -15780,31 +15836,31 @@ msgstr "Nama Lengkap"
 
 #: src/olympia/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Alamat 1"
 
 #: src/olympia/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Alamat 2"
 
 #: src/olympia/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Kota /Kabupaten"
 
 #: src/olympia/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Provinsi (jika berlaku)"
 
 #: src/olympia/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Kode Pos (jika berlaku)"
 
 #: src/olympia/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Negara"
 
 #: src/olympia/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/olympia/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
