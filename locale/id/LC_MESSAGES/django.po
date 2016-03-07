@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-07 05:17+0000\n"
+"PO-Revision-Date: 2016-03-07 06:14+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -13248,6 +13248,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Dengan ribuan pengaya yang tersedia, ada sesuatu untuk tiap orang. Namun "
+"jika anda mencari pengaya tertentu dan tak dapat menemukannya, anda bisa "
+"mencoba mencari di situs lain atau menulis tentang itu dalam <a "
+"href=\"%(forum_url)s\">forum Pengaya </a>."
 
 #: src/olympia/pages/templates/pages/faq.html:187
 msgid ""
@@ -13266,6 +13270,12 @@ msgid ""
 " add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more "
 "about our review process</a></dd>"
 msgstr ""
+"Pengaya eksperimental telah dicek oleh penyunting kami untuk memastikan "
+"mereka tidak memiliki persoalan keamanan, namun pengaya tersebut mungkin "
+"masih mengandung bug atau tidak bekerja selayaknya. Berhati-hatilah saat "
+"memasang pengaya eksperimental dan melepas pengaya secepatnya jika anda "
+"menemui masalah. <a href=\"%(url)s\">Pelajari lebih lanjut tentang proses "
+"ulasan kami</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -13281,6 +13291,12 @@ msgid ""
 "reviewed add-ons. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
+"Meskipun semua pengaya yang tersedia secara publik di galeri kami diulas "
+"oleh penyunting, boleh jadi anda menerima tautan langsung ke sebuah pengaya "
+"yang belum diulas. Berhati-hatilah saat memasang pengaya ini, karena mereka "
+"bisa membahayakan komputer anda atau melanggar privasi anda. Kami "
+"merekomendasikan anda untuk hanya memasang pengaya yang sudah diulas. <a "
+"href=\"%(url)s\">Pelajari lebih lanjut mengenai proses ulasan kami</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html:206
 msgid "How much do add-ons cost to purchase?"
@@ -13291,6 +13307,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Pengaya yang dimuat di galeri kami semua gratis kecuali ditandai\n"
+"    sebaliknya."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13303,6 +13321,10 @@ msgid ""
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Sejumlah penulis pengaya meminta pengguna yang menikmati pengaya untuk \n"
+"        berkontribusi pada pengembangannya dengan memberikan kontribusi uang. \n"
+"        Kontribusi semacam ini ditujukan langsung kepada pengembang kecuali ada indikasi\n"
+"        pihak ketiga, misalnya Mozilla Foundation yang bersifat nirlaba."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -13315,6 +13337,10 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Pengaya beta adalah versi yang belum diulas yang mewakili\n"
+"        karya terbaru penulis pengaya. Meski penulis yang berbeda memiliki standar\n"
+"        berlainan untuk kualitas kode beta, anda harus berasumsi bahwa pengaya tersebut\n"
+"        kurang stabil dibandingkan rilis pengaya yang umum."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -13335,6 +13361,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"Apakah artinya jika pengaya ditandai\n"
+"    lambat?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -13342,6 +13370,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"Sebagian besar pengaya memuat kode dan sumber bersamaan dengan saat Firefox\n"
+"        dimulai. Kadang ini berakibat waktu memulai sangat singkat,\n"
+"        tapi kadang dapat juga menyebabkan pelambatan yang terlihat jelas."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -13355,6 +13386,10 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"Untuk melaporkan ulasan pengguna atas sebuah pengaya, masuk log dengan akun anda\n"
+"    dan kunjungi laman ulasan pengaya. Temukan ulasan yang ingin anda laporkan,\n"
+"    klik \"Laporkan ulasan ini\" dan pilih satu alasan. Tim penyunting kami akan\n"
+"    menyelidiki ulasan tersebut dan mengambil tindakan yang seharusnya."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13364,7 +13399,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html:243
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "Silakan kunjungi <a href=\"%(contact_url)s\">laman Kontak</a> kami."
 
 #: src/olympia/pages/templates/pages/faq.html:246
 msgid "What is a Source Code License?"
@@ -13381,12 +13416,21 @@ msgid ""
 " open source licenses like the GPL or BSD licenses instead of making up "
 "their own."
 msgstr ""
+"Kode sumber yang digunakan untuk membuat pengaya adalah hak cipta eksklusif "
+"dari penulis pengaya, terkecuali dinyatakan sebaliknya dalam lisensi kode "
+"sumber. Banyak pengaya dalam situs ini memiliki <a href=\"%(url)s\" "
+"lang=\"en\">lisensi sumber terbuka</a> yang membuat code sumbernya tersedia "
+"secara publik untuk disalin dan digunakan ulang dengan syarat yang "
+"ditentukan oelh penulisnya. Sebagian penulis memilih sumber terbuka yang "
+"sudah dikenal luas seperti GPL atau BSD alih-alih membuat sendiri."
 
 #: src/olympia/pages/templates/pages/faq.html:256
 #, python-format
 msgid ""
 "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
+"Firefox perangkat lunak Mozilla lainnya berbasis <a href=\"%(url)s\">sumber "
+"terbuka</a>."
 
 #: src/olympia/pages/templates/pages/faq.html:264
 msgid "Collections and Favorites"
@@ -13658,6 +13702,8 @@ msgid ""
 "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a "
 "href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
+"Kami merekomendasikan meningkatkan ke <a href=\"%(tb_url)s\">Thunderbird</a>"
+" dan <a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: src/olympia/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -13666,6 +13712,8 @@ msgstr "Baca lebih lanjut tentang Sunbird"
 #: src/olympia/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
 msgstr ""
+"Terjadi masalah komunikasi dengan PayPal. Silakan mencoba kembali lagi "
+"nanti."
 
 #: src/olympia/paypal/__init__.py:50
 msgid "There was an error with this currency."
@@ -13683,7 +13731,7 @@ msgstr "Pembeli dan penjual harus memiliki akun PayPal berbeda."
 #: src/olympia/paypal/__init__.py:73
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Penjual tidak menerima pembayaran dalam %s."
 
 #: src/olympia/reviews/feeds.py:23
 #, python-format
@@ -14615,6 +14663,11 @@ msgid ""
 " Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Apakah pengguna harian itu?</h2> <p> Pengaya yang diunduh dari situs ini"
+" dicek pembaruannya sekali setiap hari. Jumlah total pembaruan pin ini "
+"diketahui sebagai Pengguna Aktif Harian. Pengguna harian bisa dijabarkan "
+"berdasarkan versi pengaya, sistem operasi, status pengaya, aplikasi dan "
+"logat. </p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
@@ -14793,6 +14846,9 @@ msgid ""
 "To try the thousands of add-ons available here, download <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
+"Cobalah ribuan pengaya yang tersedia di sini, unduh <a "
+"href=\"%(url)s\">Mozilla Firefox</a>, cara cepat dan bebas untuk menjelajahi"
+" Web!"
 
 #: src/olympia/templates/impala/base.html:138
 #, python-format
@@ -14800,6 +14856,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Pengaya beralih ke Firefox Accounts untuk masuk log. <a href=\"%(url)s\" "
+"class=\"fxa-login\">Masuklah sekarang untuk mentransfer akun anda.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:148
@@ -14816,7 +14874,7 @@ msgstr ""
 #: src/olympia/templates/impala/base.html:156
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Tambahkan fitur ekstra dan gaya untuk membuat %(app)s milik anda."
 
 #: src/olympia/templates/impala/base.html:164
 msgid "On the go?"
@@ -14824,7 +14882,7 @@ msgstr "Dalam perjalanan?"
 
 #: src/olympia/templates/impala/base.html:166
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Periksa <a class=\"mobile-link\" href=\"#\">situs Pengaya Bergerak</a>."
 
 #: src/olympia/templates/impala/header_title.html:21
 msgid "Android Add-ons"
@@ -15781,6 +15839,8 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"Registrasi di AMO <strong>tidak diperlukan</strong> jika anda hanya ingin "
+"mengunduh dan memasang pengaya publik."
 
 #: src/olympia/users/templates/users/register.html:16
 msgid "You only need to register if:"
@@ -15822,6 +15882,9 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"Jika anda inginkan, anda bisa membaca <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">Peringatan Legal</a> dan <a href=\"%(privacy)s\" title=\"Privacy "
+"Policy\">Kebijakan Privasi</a>kami."
 
 #: src/olympia/users/templates/users/register.html:52
 msgid "Display name"
@@ -15971,6 +16034,8 @@ msgid ""
 "The email address <strong>%(email)s</strong> will no longer get messages "
 "when:"
 msgstr ""
+"Alamat surel <strong>%(email)s</strong> tidak akan mendapatkan pesan lagi "
+"saat:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
@@ -15995,6 +16060,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Sayang sekali, kami tidak bisa menghentikan langganan anda.  Tautan yang "
+"anda klik sudah tidak berlaku. Namun demikian, anda bisa berhenti "
+"berlangganan di <a href=\"%(edit_url)s\">laman edit profil</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
