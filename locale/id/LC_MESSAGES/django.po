@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-07 04:12+0000\n"
+"PO-Revision-Date: 2016-03-07 05:17+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -13085,6 +13085,11 @@ msgid ""
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still "
 "require a restart before you can use them."
 msgstr ""
+"Dalam Firefox, pengaya yang ditandai dengan \"Tidak diperlukan restart\" "
+"bisa dipasang tanpa melakukan restart. Pengaya ini telah dibuat menggunakan "
+"<a href=\"%(sdk_url)s\">Pengaya SDK</a> atau <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Pengaya lainnya akan tetap "
+"memerlukan restart sebelum anda bisa menggunakannya."
 
 #: src/olympia/pages/templates/pages/faq.html:110
 msgid "How do I keep add-ons up-to-date?"
@@ -13101,6 +13106,13 @@ msgid ""
 "the <a href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-"
 "date."
 msgstr ""
+"Pengaya, berbeda dengan plugin, secara otomatis untuk mengecek pembaruan "
+"sekali setiap hari. Di Firefox, pembaruan dipasang secara otomatis. Versi "
+"Firefox sebelum nomor 4 (dan aplikasi lainnya) akan mengingatkan anda bahwa "
+"pembaruan pengaya anda telah tersedia. <a href=\"%(plugin_url)s\">Plugin</a>"
+" saat ini tidak secara otomatis mengecek pembaruan, jadi pastikan untuk "
+"secara teratur mengunjungi <a href=\"%(plugincheck_url)s\">Pengecekan "
+"Plugin</a> untuk selalu mendapat kabar terbaru."
 
 #: src/olympia/pages/templates/pages/faq.html:122
 msgid "Are add-ons safe to install?"
@@ -13116,11 +13128,18 @@ msgid ""
 "caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
+"Terkecuali ditandai sebaliknya, pengaya yang tersedia dari galeri ini telah "
+"ditandai dan disetujui oleh tim penyunting Mozilla dan aman untuk dipasang. "
+"Kami merekomendasikan anda hanya memasang pengaya yang sudah disetuji. Jika "
+"anda ingin memasang pengaya yang belum disetujui atau pengaya dari situs "
+"pihak ketiga, berhati-hatilah karena pengaya ini bisa membahayakan komputer "
+"anda atau melanggar privasi anda. <a href=\"%(learnmore_url)s\">Pelajari "
+"lebih lanjut tentang proses persetujuan kami</a>"
 
 #: src/olympia/pages/templates/pages/faq.html:133
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Bisakah pengaya membuat %(app_name)s lebih lambat?"
 
 #: src/olympia/pages/templates/pages/faq.html:135
 #, python-format
@@ -13130,6 +13149,10 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"Sebagian besar pengaya tidak menyebabkan penurunan performa yang dapat "
+"dilihat dengan jelas %(app_name)s, meskipun pemasangan dalam jumlah yang "
+"terlalu bear bisa memberikan dampak yang merugikan. Jika anda mencurigai "
+"sebuah pengaya menyebabkan %(app_name)s melambat, cobalah mematikannya."
 
 #: src/olympia/pages/templates/pages/faq.html:141
 #, python-format
@@ -13152,6 +13175,15 @@ msgid ""
 "Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility "
 "Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
+"Jika sebuah pengaya tidak cocok dengan versi %(app_name)s anda, biasanya ini"
+" baik karena versi %(app_name)s anda sudah usang atau penulis pengaya belum "
+"memperbarui pengaya untuk jadi lebih cocok dengan versi baru yang anda "
+"gunakan. Mozilla tidak merekomendasikan untuk mencoba mengelakkan pengecekan"
+" kecocokan ini, karena mereka bisa menyebabkan ketidakstabilan peramban atau"
+" dalam banyak kasus kehilangan data. Untuk pengguna yang mengecek Firefox "
+"versi beta atau alpha, kami menawarkan <a href=\"%(acr_url)s\">Pelaporan "
+"Kecocokan Pengaya</a> untuk meminta pengembang pengaya memperbarui kecocokan"
+" mereka."
 
 #: src/olympia/pages/templates/pages/faq.html:156
 msgid "What if I have problems with an add-on?"
@@ -13167,6 +13199,13 @@ msgid ""
 "installed, <a href=\"%(troubleshooting_url)s\">visit this support "
 "article</a> for troubleshooting tips."
 msgstr ""
+"Pengaya biasanya dibuat oleh pengembang pihak ketiga dari seluruh dunia, "
+"jadi cara terbaik untuk mendapatkan bantuan dengan sebuah pengaya adalah "
+"mencari tautan dukungan di beranda pengaya atau mengontak pengembang. Jika "
+"anda memiliki masalah dengan %(app_name)s yang anda curigai berhubungan "
+"dengan pengaya yang telah anda pasang, <a "
+"href=\"%(troubleshooting_url)s\">lihat artikel dukungan ini</a> untuk kiat "
+"penyelesaian masalah."
 
 #: src/olympia/pages/templates/pages/faq.html:169
 msgid "Add-on Gallery"
@@ -13177,6 +13216,8 @@ msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
 msgstr ""
+"Bagaimana saya bisa memilih pengaya apa yang sepertinya melakukan hal\n"
+"    yang sama?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13187,6 +13228,12 @@ msgid ""
 "    which is most liked by other users. Remember that you can also just try\n"
 "    out both and see which you like better."
 msgstr ""
+"Seringkali ada beberapa pengaya yang memiliki fitur serupa. Untuk\n"
+"    mencari tahu mana yang tepat untuk anda, baca seluruh deskripsi\n"
+"    pengaya dan lihat gambar layarnya. Jika masih ada beberapa yang sedang bekerja,\n"
+"    baca secara keseluruhan peringkat pengaya, ulasan pengguna, dan statistik untuk melihat\n"
+"    apa yang paling disukai pengguna. Ingatlah bahwa anda juga bisa mencoba\n"
+"    keduanya dan lihat mana yang lebih anda sukai."
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -13565,6 +13612,9 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
+"Ya, penulis pengaya bisa menyediakan satu respon untuk ulasan anda. Anda "
+"bisa menyetel topik diskusi dalam <a href=\"%(forum_url)s\">forum</a> anda "
+"untuk berhubungan dengan diskusi tambahan atau tindak lanjut."
 
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -13580,6 +13630,11 @@ msgid ""
 "release of your add-on, we may consider deleting the review. Submit your "
 "detailed request to amo-editors@mozilla.org."
 msgstr ""
+"Secara umum, tidak. Namun jika ulasan tidak memenuhi panduan di atas, anda "
+"bisa mengklik \"Melaporkan ulasan ini\" agar ulasan tersebut dimoderasi. "
+"Jika sebuah ulasan menyertakan keluhan yang tidak lagi benar disebabkan "
+"rilisan baru pengaya anda, kami akan mempertimbangkan untuk menghapus "
+"ulasan. Kirimkan permintaan terinci anda ke amo-editors@mozilla.org."
 
 #: src/olympia/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
@@ -13592,6 +13647,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Pengembangan proyek Sunbird telah dihentikan dan rilisan terakhirnya adalah "
+"tanggal 30 Maret 2010.  Kami bangga telah memuat pengaya Sunbird di situs "
+"ini namun sebagai proyek kami tidak lagi memeliharanya, kami telah "
+"menghentikan dukungan kami untuk pengaya tersebut."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -15860,23 +15919,23 @@ msgstr "Negara"
 
 #: src/olympia/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr "Telefon"
+msgstr "Telepon"
 
 #: src/olympia/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Info Kaus"
 
 #: src/olympia/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Ukuran Kaus"
 
 #: src/olympia/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Anda akan diarahkan ke Google Forms untuk pemasukan."
 
 #: src/olympia/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "Meminta Kaus"
 
 #: src/olympia/users/templates/users/t-shirt.html:137
 msgid ""
@@ -15900,11 +15959,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Berhenti berlangganan"
 
 #: src/olympia/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Anda sukses berhenti berlangganan!"
 
 #: src/olympia/users/templates/users/unsubscribe.html:10
 #, python-format
@@ -15915,7 +15974,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr ""
+msgstr "Tindakan Lainnya:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
@@ -15947,15 +16006,15 @@ msgstr "Pengguna sejak"
 
 #: src/olympia/users/templates/users/vcard.html:34
 msgid "Time of last login"
-msgstr ""
+msgstr "Waktu log masuk terakhir"
 
 #: src/olympia/users/templates/users/vcard.html:40
 msgid "IP address of last login"
-msgstr ""
+msgstr "Alamat IP log masuk terakhir"
 
 #: src/olympia/users/templates/users/vcard.html:47
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Jumlah pengaya yang dikembangkan"
 
 #: src/olympia/users/templates/users/vcard.html:52
 msgid "{0} add-ons"
@@ -15992,11 +16051,11 @@ msgstr "Pengaya menggunakan komponen biner."
 
 #: src/olympia/versions/models.py:317
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Pengaya telah dimasukkan ke dalam pengecekan kecocokan yang ketat."
 
 #: src/olympia/versions/models.py:715
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} dan kemudian"
 
 #: src/olympia/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
@@ -16005,17 +16064,19 @@ msgstr "Tautan permanen ke versi ini"
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html:10
 msgid "Released {0}"
-msgstr ""
+msgstr "Dirilis {0}"
 
 #: src/olympia/versions/templates/versions/version.html:39
 #, python-format
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr ""
+"Kode sumber dirilis di bawah <a target=\"_blank\" "
+"href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html:44
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Kode sumber dirilis di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html:60
 msgid "View the source"
@@ -16031,7 +16092,7 @@ msgstr "Riwayat Versi {0}"
 #: src/olympia/versions/templates/versions/version_list.html:29
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> versi"
 
 #: src/olympia/versions/templates/versions/version_list.html:35
 #: src/olympia/versions/templates/versions/mobile/version_list.html:14
@@ -16051,7 +16112,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/mobile/version.html:4
 msgid "Beta Version {0}"
-msgstr ""
+msgstr "Versi Beta {0}"
 
 #: src/olympia/versions/templates/versions/mobile/version.html:29
 msgid "Works with:"
@@ -16060,11 +16121,11 @@ msgstr "Bekerja pada:"
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html:12
 msgid "Version History"
-msgstr ""
+msgstr "Riwayat Versi"
 
 #: src/olympia/zadmin/forms.py:48
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Versi Maks. Saat Ini"
 
 #: src/olympia/zadmin/forms.py:51
 msgid "Target Version"
