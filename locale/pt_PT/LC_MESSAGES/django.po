@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-08 00:13+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-03-08 20:10+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -8277,6 +8277,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Por favor escolha uma licença apropriada para os direitos que concede no seu código fonte.\n"
+"                  Apenas é relevante para extras listados."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -13220,6 +13222,8 @@ msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
 msgstr ""
+"Como escolho entre extras que parecem fazer a mesma\n"
+"    coisa?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13342,6 +13346,8 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"O que significa quando um extra é sinalizado como\n"
+"    lento?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -15514,6 +15520,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Altere a sua palavra-passe.  Se se esqueceu da sua palavra-passe, pode <a "
+"href=\"%(reset_url)s\">utilizar o formulário de reposição</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15802,6 +15810,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"A ligação da reposição de palavra-passe era inválida, possivelmente porque "
+"já foi utilizada.  Por favor solicite uma nova reposição de palavra-passe."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -16058,6 +16068,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Infelizmente, não conseguimos cancelar a sua subscrição.  A ligação que "
+"clicou é inválida. Contudo, pode cancelar a subscrição na sua <a "
+"href=\"%(edit_url)s\">página de edição de perfil</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
