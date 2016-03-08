@@ -159,6 +159,7 @@ NEW_FEATURES = True
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
+ADDONS_LINTER_BIN = 'addons-linter'
 
 LESS_PREPROCESS = True
 

@@ -164,6 +164,7 @@ REDIRECT_URL = 'https://outgoing.allizom.org/v1/'
 
 CLEANCSS_BIN = 'cleancss'
 UGLIFY_BIN = 'uglifyjs'
+ADDONS_LINTER_BIN = 'addons-linter'
 
 LESS_PREPROCESS = True
 
