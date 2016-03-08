@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import re
+import uuid
 
 from django import test
 from django.conf import settings
@@ -1511,6 +1512,62 @@ class TestMobileDetails(TestPersonas, TestMobile):
         url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
         response = test.Client().get(url)
         eq_(response.status_code, 301)
+
+
+class TestAddonViewSet(TestCase):
+    def setUp(self):
+        super(TestAddonViewSet, self).setUp()
+        self.addon = addon_factory(
+            guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+
+    def _test_detail_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == self.addon.last_updated.isoformat()
+
+    def test_get_by_id(self):
+        self._test_detail_url()
+
+    def test_get_by_slug(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self._test_detail_url()
+
+    def test_get_by_guid(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_by_guid_email_format(self):
+        self.addon.update(guid='my-addon@example.tld')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_not_public(self):
+        # At the moment this API only works with public addons.
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_disabled_by_user(self):
+        # At the moment this API only works with non-disabled addons.
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_not_listed(self):
+        # At the moment this API only works with listed addons.
+        self.addon.update(is_listed=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_not_found(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
 
 class TestAddonSearchView(ESTestCase):

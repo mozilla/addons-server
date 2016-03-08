@@ -2,6 +2,7 @@ import functools
 import hashlib
 import json
 import random
+import re
 import uuid
 from operator import attrgetter
 
@@ -24,6 +25,8 @@ import session_csrf
 from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
 from rest_framework.generics import ListAPIView
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
 from olympia import amo
@@ -52,7 +55,8 @@ from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
 from .search import get_alias
-from .serializers import ESAddonSerializer
+from .serializers import AddonSerializer, ESAddonSerializer
+
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -640,6 +644,31 @@ def persona_redirect(request, persona_id):
         # with cascading deletes?). Tell GoogleBot these are dead with a 404.
         return http.HttpResponseNotFound()
     return http.HttpResponsePermanentRedirect(to)
+
+
+class AddonViewSet(RetrieveModelMixin, GenericViewSet):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = AddonSerializer
+    addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
+    queryset = Addon.objects.public()  # Only public+enabled add-ons for now.
+    lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+
+    def get_object(self):
+        value = self.kwargs.get('pk')
+        if value and not value.isdigit():
+            # If the value contains anything other than a digit, it's either
+            # a slug or a guid. guids need to contain either {} or @, which are
+            # invalid in a slug.
+            if self.addon_id_pattern.match(value):
+                self.lookup_field = 'guid'
+            else:
+                self.lookup_field = 'slug'
+            self.kwargs.update({
+                'pk': None,
+                self.lookup_field: value
+            })
+        return super(AddonViewSet, self).get_object()
 
 
 class AddonSearchView(ListAPIView):

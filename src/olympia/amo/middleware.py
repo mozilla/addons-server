@@ -47,7 +47,8 @@ class LocaleAndAppURLMiddleware(object):
             # TODO: Eventually put MOBILE in RETIRED_APPS, but not yet.
             return redirect_type(request.path.replace('/mobile', '/android'))
 
-        if 'lang' in request.GET:
+        if ('lang' in request.GET and not prefixer.shortened_path.startswith(
+                settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX)):
             # Blank out the locale so that we can set a new one.  Remove lang
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
