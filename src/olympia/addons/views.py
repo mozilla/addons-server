@@ -503,6 +503,7 @@ def contribute(request, addon):
     is_suggested = contrib_type == 'suggested'
     source = request.POST.get('source', '')
     comment = request.POST.get('comment', '')
+    currency = 'USD' if is_suggested else request.POST.get('currency', 'USD')
 
     amount = {
         'suggested': addon.suggested_amount,
@@ -534,6 +535,7 @@ def contribute(request, addon):
     try:
         paykey, status = paypal.get_paykey(
             dict(amount=amount,
+                 currency=currency,
                  email=paypal_id,
                  ip=request.META.get('REMOTE_ADDR'),
                  memo=contrib_for,
@@ -549,7 +551,7 @@ def contribute(request, addon):
 
     if paykey:
         contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,
-                               amount=amount, source=source,
+                               amount=amount, currency=currency, source=source,
                                source_locale=request.LANG,
                                annoying=addon.annoying,
                                uuid=str(contribution_uuid),
