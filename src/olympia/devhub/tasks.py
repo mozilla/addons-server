@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import socket
+import subprocess
 import urllib2
 from copy import deepcopy
 from decimal import Decimal
@@ -21,6 +22,7 @@ from django_statsd.clients import statsd
 from PIL import Image
 
 import validator
+import waffle
 
 from olympia import amo
 from olympia.amo.celery import task
@@ -143,17 +145,20 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_file_path(path, hash_, listed, **kw):
+def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
     Should only be called directly by ValidationAnnotator."""
+    run_linter = is_webextension and waffle.switch_is_active('addons-linter')
 
+    if run_linter:
+        return run_addons_linter(path, listed=listed)
     return run_validator(path, listed=listed)
 
 
 @validation_task
-def validate_file(file_id, hash_, **kw):
+def validate_file(file_id, hash_, is_webextension=False, **kw):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 
@@ -163,6 +168,14 @@ def validate_file(file_id, hash_, **kw):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
+        run_linter = (
+            is_webextension
+            and waffle.switch_is_active('addons-linter'))
+
+        if run_linter:
+            return run_addons_linter(
+                file_.current_file_path, listed=file_.version.addon.is_listed)
+
         return run_validator(file_.current_file_path,
                              listed=file_.version.addon.is_listed)
 
@@ -388,24 +401,48 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         return json_result
 
 
-def track_validation_stats(json_result):
+def run_addons_linter(path, listed=True):
+    from .utils import fix_addons_linter_output
+    process = subprocess.Popen([
+        settings.ADDONS_LINTER_BIN,
+        path,
+        '--boring',
+        '--output=json'
+    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    with statsd.timer('devhub.linter'):
+        stdout, stderr = process.communicate()
+
+    if stderr:
+        raise ValueError(stderr)
+
+    parsed_data = json.loads(stdout)
+
+    result = json.dumps(fix_addons_linter_output(parsed_data, listed))
+    track_validation_stats(result, addons_linter=True)
+
+    return result
+
+
+def track_validation_stats(json_result, addons_linter=False):
     """
     Given a raw JSON string of validator results, log some stats.
     """
     result = json.loads(json_result)
     result_kind = 'success' if result['errors'] == 0 else 'failure'
-    statsd.incr('devhub.validator.results.all.{}'.format(result_kind))
+    runner = 'linter' if addons_linter else 'validator'
+    statsd.incr('devhub.{}.results.all.{}'.format(runner, result_kind))
 
     listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
     signable_tag = ('is_signable' if addon_can_be_signed(result)
                     else 'is_not_signable')
 
     # Track listed/unlisted success/fail.
-    statsd.incr('devhub.validator.results.{}.{}'
-                .format(listed_tag, result_kind))
+    statsd.incr('devhub.{}.results.{}.{}'
+                .format(runner, listed_tag, result_kind))
     # Track how many listed/unlisted add-ons can be automatically signed.
-    statsd.incr('devhub.validator.results.{}.{}'
-                .format(listed_tag, signable_tag))
+    statsd.incr('devhub.{}.results.{}.{}'
+                .format(runner, listed_tag, signable_tag))
 
 
 @task(rate_limit='4/m')
