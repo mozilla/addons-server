@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-08 22:21+0000\n"
+"PO-Revision-Date: 2016-03-09 21:54+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -8324,6 +8324,8 @@ msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Se o seu extra transmite quaisquer dados do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como estes são utilizados. \n"
+"                Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8539,6 +8541,10 @@ msgid ""
 "                                search and browse listings, as well as at\n"
 "                                the top of your theme's details page."
 msgstr ""
+"Uma explicação curta das funcionalidades básicas \n"
+"                                do seu tema e que é apresentada em \n"
+"                                listagens de pesquisas e de navegação, bem como no\n"
+"                                topo da página de detalhes do seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8746,6 +8752,10 @@ msgid ""
 "                                      search and browse listings, as well as at\n"
 "                                      the top of your theme's details page."
 msgstr ""
+"Uma explicação curta das funcionalidades básicas \n"
+"                                      do seu tema e que é apresentada em \n"
+"                                      listagens de pesquisas e de navegação, bem como no \n"
+"                                      topo da página de detalhes do seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
@@ -8918,6 +8928,9 @@ msgid ""
 "                          add-on even if the install manifest in the package indicates that the\n"
 "                          add-on is incompatible."
 msgstr ""
+"Ajustar a informação da aplicação aqui irá permitir que os utilizadores instalem o seu \n"
+"                          extra mesmo que o manifesto de instalação no pacote indique que o \n"
+"                          extra é incompatível."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8926,6 +8939,10 @@ msgid ""
 "                              release/version. This information is also shown in the\n"
 "                              Add-ons Manager when updating."
 msgstr ""
+"Informação sobre alterações neste lançamento, novas funcionalidades, \n"
+"                              bugs conhecidos e outras informações específicas úteis para este \n"
+"                              lançamento/versão. Esta informação é também apresentada no \n"
+"                              Gestor de extras ao atualizar."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8942,6 +8959,9 @@ msgid ""
 "                              to the Editor reviewing this add-on, such as test\n"
 "                              account information."
 msgstr ""
+"Opcionalmente, introduza qualquer informação que possa ser útil ao \n"
+"                              Editor a rever este extra, tal como a informação da \n"
+"                              conta de teste."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -9155,6 +9175,9 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Eliminar uma versão que já foi revista pode \n"
+"               significar um atraso significativo na revisão da sua \n"
+"               próxima atualização."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9209,6 +9232,13 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Anular a listagem do seu extra irá torná-lo (e cada uma das suas "
+"versões/ficheiros) invisível neste website. Não irá ser apresentado em "
+"pesquisas, não irá ter uma página pública principal e não será "
+"automaticamente atualizado para os utilizadores atuais. É recomendável que "
+"os extras não-listados forneçam um <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> personalizado no seu ficheiro de manifesto "
+"para atualizações automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
