@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-02 11:35+0000\n"
+"PO-Revision-Date: 2016-03-09 10:08+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1574,7 +1574,7 @@ msgstr "Licenca za izvorno kodo"
 #: src/olympia/addons/templates/addons/impala/persona_grid.html:16
 #: src/olympia/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr "uporabnikov {0}"
+msgstr "{0} uporabnikov"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:19
 #: src/olympia/reviews/templates/reviews/review.html:40
