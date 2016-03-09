@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
@@ -3556,7 +3556,7 @@ msgid ""
 " your own</a> search tool"
 msgstr ""
 "<a href=\"https://developer.mozilla.org/zh-"
-"TW/docs/%E8%A3%BD%E4%BD%9C_OpenSearch_%E6%90%9C%E5%B0%8B%E6%A8%A1%E7%B5%84\">建立您自己的搜尋工具</a>"
+"TW/docs/%%E8%%A3%%BD%%E4%%BD%%9C_OpenSearch_%%E6%%90%%9C%%E5%%B0%%8B%%E6%%A8%%A1%%E7%%B5%%84\">建立您自己的搜尋工具</a>"
 
 #: src/olympia/browse/templates/browse/themes.html:6
 #: src/olympia/browse/templates/browse/themes.html:9
