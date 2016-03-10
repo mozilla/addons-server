@@ -479,12 +479,16 @@ class ReviewHelper:
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if ((not addon.admin_review or acl.action_allowed(request,
-             'ReviewerAdminTools', 'View'))
-            and (not is_limited_reviewer(request)
-                 or (datetime.datetime.now() -
-                     addon.latest_version.nomination >= datetime.timedelta(
-                     hours=REVIEW_LIMITED_DELAY_HOURS)))):
+        reviewable_because_complete = addon.status != amo.STATUS_NULL
+        reviewable_because_admin = (
+            not addon.admin_review or
+            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+        reviewable_because_submission_time = (
+            not is_limited_reviewer(request) or
+            (datetime.datetime.now() - addon.latest_version.nomination >=
+             datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS)))
+        if (reviewable_because_complete and reviewable_because_admin and
+                reviewable_because_submission_time):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
                     label = _lazy('Push to public')
@@ -619,9 +623,13 @@ class ReviewBase(object):
             details['files'] = [f.id for f in self.files]
         if self.version:
             details['version'] = self.version.version
+            args = (self.addon, self.version)
+        else:
+            args = (self.addon,)
 
-        amo.log(action, self.addon, self.version, user=self.user,
-                created=datetime.datetime.now(), details=details)
+        kwargs = {'user': self.user, 'created': datetime.datetime.now(),
+                  'details': details}
+        amo.log(action, *args, **kwargs)
 
     def notify_email(self, template, subject):
         """Notify the authors that their addon has been reviewed."""
@@ -637,15 +645,16 @@ class ReviewBase(object):
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
         data['addon_type'] = (_lazy('add-on'))
-        send_mail('editors/emails/%s.ltxt' % template,
-                  subject % (self.addon.name, self.version.version),
+        subject = subject % (self.addon.name,
+                             self.version.version if self.version else '')
+        send_mail('editors/emails/%s.ltxt' % template, subject,
                   emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
         dev_ver_url = self.addon.get_dev_url('versions')
         return {'name': self.addon.name,
-                'number': self.version.version,
+                'number': self.version.version if self.version else '',
                 'reviewer': self.user.display_name,
                 'addon_url': absolutify(addon_url),
                 'dev_versions_url': absolutify(dev_ver_url),
@@ -659,12 +668,13 @@ class ReviewBase(object):
         """Send a request for information to the authors."""
         emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
-        self.version.update(has_info_request=True)
+        if self.version:
+            self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail('editors/emails/info.ltxt',
-                  u'Mozilla Add-ons: %s %s' %
-                  (self.addon.name, self.version.version),
+        subject = u'Mozilla Add-ons: %s %s' % (
+            self.addon.name, self.version.version if self.version else '')
+        send_mail('editors/emails/info.ltxt', subject,
                   emails, Context(self.get_context_data()),
                   perm_setting='individual_contact')
 
@@ -677,10 +687,11 @@ class ReviewBase(object):
                   Context(self.get_context_data()))
 
     def process_comment(self):
-        kw = {'has_editor_comment': True}
-        if self.data.get('clear_info_request'):
-            kw['has_info_request'] = False
-        self.version.update(**kw)
+        if self.version:
+            kw = {'has_editor_comment': True}
+            if self.data.get('clear_info_request'):
+                kw['has_info_request'] = False
+            self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 
