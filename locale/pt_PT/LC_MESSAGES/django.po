@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-10 18:25+0000\n"
+"PO-Revision-Date: 2016-03-10 19:17+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -589,7 +589,7 @@ msgstr "EULA"
 #: src/olympia/addons/templates/addons/details_box.html:171
 #: src/olympia/addons/templates/addons/details_box.html:231
 msgid "More about this add-on"
-msgstr "Mais acerca este extra"
+msgstr "Mais acerca deste extra"
 
 #: src/olympia/addons/templates/addons/details_box.html:180
 msgid "Image Gallery"
@@ -642,7 +642,7 @@ msgstr "Versão {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Nada a mostrar aqui! O programador não incluiu quaisquer detalhes."
+msgstr "Nada a mostrar aqui!  O programador não incluiu quaisquer detalhes."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -929,7 +929,7 @@ msgstr "Editar"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr "%%Y-%%m-%%d"
+msgstr "%%d/%%m/%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -2576,7 +2576,7 @@ msgstr "Maior número de seguidores"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
-msgstr "Coleções que fiz"
+msgstr "Coleções que eu fiz"
 
 #: src/olympia/amo/templates/amo/site_nav.html:70
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:4
@@ -5282,18 +5282,18 @@ msgstr "Testado para compatibilidade contra:"
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4
 #: src/olympia/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
-msgstr "Actividade recente para os meus extras"
+msgstr "Atividade recente para os meus extras"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:14
 #: src/olympia/devhub/templates/devhub/addons/activity.html:19
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:33
 msgid "Recent Activity"
-msgstr "Actividade recente"
+msgstr "Atividade recente"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for {0}"
-msgstr "Actividade recente para {0}"
+msgstr "Atividade recente para {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:36
 #, python-format
@@ -5302,11 +5302,11 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> por %(use
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:59
 msgid "Refine Activity"
-msgstr "Refinar actividade"
+msgstr "Refinar atividade"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:72
 msgid "Activity"
-msgstr "Actividade"
+msgstr "Atividade"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:83
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:34
@@ -5336,7 +5336,7 @@ msgid ""
 "href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-"
-"updateurl=\"%(update_url)s\">Actualização de compatibilidade</a> <a "
+"updateurl=\"%(update_url)s\">Atualização de compatibilidade</a> <a "
 "href=\"%(version_url)s\" class=\"button\">Carregar nova versão</a> ou <a "
 "href=\"#\" class=\"close\">Ignorar</a>"
 
@@ -5392,7 +5392,7 @@ msgstr "%(ago)s por %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:52
 msgid "Older activity for My Add-ons"
-msgstr "Actividade antiga para os meus extras"
+msgstr "Atividade antiga para os meus extras"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:76
@@ -5995,7 +5995,7 @@ msgstr "Por favor, diga-nos porque está a eliminar o seu extra:"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
 #: src/olympia/editors/templates/editors/review.html:253
 msgid "Actions"
-msgstr "Acções"
+msgstr "Ações"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
@@ -6096,8 +6096,8 @@ msgstr "<b>Posição na fila:</b> %(pos)s de %(total)s"
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:23
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "<strong>{0}</strong> utilizador activo"
-msgstr[1] "<strong>{0}</strong> utilizadores activos"
+msgstr[0] "<strong>{0}</strong> utilizador ativo"
+msgstr[1] "<strong>{0}</strong> utilizadores ativos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -6526,7 +6526,7 @@ msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
-"Obrigado pelo seu interesse em entrar em contato com a equipe do Mozilla "
+"Obrigado pelo seu interesse em entrar em contacto com a equipa do Mozilla "
 "Firefox. Por favor, leia este documento cuidadosamente para garantir que o "
 "seu pedido vai para o lugar certo."
 
@@ -8503,7 +8503,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
-msgstr "Activar contribuições"
+msgstr "Ativar contribuições"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:66
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
@@ -9541,7 +9541,7 @@ msgstr "Extras descarregados:"
 
 #: src/olympia/discovery/templates/discovery/addons/detail.html:61
 msgid "Active Users"
-msgstr "Utilizadores activos"
+msgstr "Utilizadores ativos"
 
 #: src/olympia/discovery/templates/discovery/addons/detail.html:70
 msgid "Last Updated"
@@ -9853,7 +9853,7 @@ msgstr[1] "Revisões moderadas ({0})"
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "Análise completa não-listada ({0})"
-msgstr[1] "Análises completas não-listadas ({0})"
+msgstr[1] "Revisões completas não-listadas ({0})"
 
 #: src/olympia/editors/helpers.py:201
 msgid "Unlisted Pending Update ({0})"
@@ -9865,7 +9865,7 @@ msgstr[1] "Atualizações pendentes não-listadas ({0})"
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "Análise preliminar não-listada ({0})"
-msgstr[1] "Análises preliminares não-listadas ({0})"
+msgstr[1] "Revisões preliminares não-listadas ({0})"
 
 #: src/olympia/editors/helpers.py:261
 msgid "Addon"
@@ -10483,7 +10483,7 @@ msgstr "Processar revisões"
 
 #: src/olympia/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
-msgstr "Acções de moderação:"
+msgstr "Ações de moderação:"
 
 #: src/olympia/editors/templates/editors/queue.html:90
 #, python-format
@@ -13989,8 +13989,8 @@ msgstr "Seja o primeiro a escrever um comentário"
 #: src/olympia/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} comentário"
-msgstr[1] "{num} comentários"
+msgstr[0] "{num} revisão"
+msgstr[1] "{num} revisões"
 
 # 87%
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
@@ -15343,7 +15343,7 @@ msgid ""
 msgstr ""
 "Foi enviado um email para o seu endereço para confirmar a sua conta. Antes "
 "de iniciar sessão, deve ativar a sua conta clicando na ligação fornecida "
-"neste e-mail."
+"neste email."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -16110,7 +16110,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr "Mais acções:"
+msgstr "Mais ações:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
