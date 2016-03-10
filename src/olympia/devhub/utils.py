@@ -408,7 +408,9 @@ class ValidationComparator(object):
             severity = msg.get('signing_severity')
             prev_msg = self.find_matching_message(msg)
             if prev_msg:
-                msg['matched'] = prev_msg
+                msg['matched'] = prev_msg.copy()
+                if 'matched' in msg['matched']:
+                    del msg['matched']['matched']
                 if severity:
                     msg['ignored'] = self.is_ignorable(prev_msg)
 
