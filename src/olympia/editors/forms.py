@@ -17,7 +17,7 @@ from olympia.addons.models import Addon, Persona
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
-from olympia.editors.helpers import file_review_status, ReviewHelper
+from olympia.editors.helpers import file_review_status
 from olympia.editors.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 
@@ -304,11 +304,6 @@ class ReviewForm(happyforms.Form):
     def unreviewed_files(self):
         return (self.helper.version.unreviewed_files
                 if self.helper.version else [])
-
-
-def get_review_form(data, request=None, addon=None, version=None):
-    helper = ReviewHelper(request=request, addon=addon, version=version)
-    return ReviewForm(data, helper=helper)
 
 
 class MOTDForm(happyforms.Form):

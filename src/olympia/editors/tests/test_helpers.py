@@ -275,24 +275,25 @@ class TestReviewHelper(TestCase):
         return unicode(self.get_helper().actions[action]['details'])
 
     def test_action_changes(self):
-        eq_(self.get_action(amo.STATUS_LITE, 'reject')[:26],
-            'This will reject the files')
-        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27],
-            'This will reject the add-on')
-        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25],
-            'This will mark the add-on')
-        eq_(self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25],
-            'This will mark the add-on')
-        eq_(self.get_action(amo.STATUS_LITE, 'prelim')[:24],
-            'This will mark the files')
-        eq_(self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27],
+        assert (self.get_action(amo.STATUS_LITE, 'reject')[:26] ==
+                'This will reject the files')
+        assert (self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27] ==
+                'This will reject the add-on')
+        assert (self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25] ==
+                'This will mark the add-on')
+        assert (self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25] ==
+                'This will mark the add-on')
+        assert (self.get_action(amo.STATUS_LITE, 'prelim')[:24] ==
+                'This will mark the files')
+        assert (
+            self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27] ==
             'This will retain the add-on')
-        eq_(self.get_action(amo.STATUS_NULL, 'reject')[:26],
-            'This will reject a version')
-        eq_(self.get_action(amo.STATUS_NOMINATED, 'public')[-31:],
-            'they are reviewed by an editor.')
-        eq_(self.get_action(amo.STATUS_PUBLIC, 'public')[-29:],
-            'to appear on the public side.')
+        assert (self.get_action(amo.STATUS_NULL, 'info')[:41] ==
+                'Use this form to request more information')
+        assert (self.get_action(amo.STATUS_NOMINATED, 'public')[-31:] ==
+                'they are reviewed by an editor.')
+        assert (self.get_action(amo.STATUS_PUBLIC, 'public')[-29:] ==
+                'to appear on the public side.')
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -389,6 +390,22 @@ class TestReviewHelper(TestCase):
         eq_(mail.outbox[0].subject, self.preamble)
 
         eq_(self.check_log_count(amo.LOG.REQUEST_INFORMATION.id), 1)
+
+    def test_request_more_information_no_versions(self):
+        assert len(mail.outbox) == 0
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 0
+        self.version.delete()
+        self.helper = helpers.ReviewHelper(request=self.request,
+                                           addon=self.addon)
+        data = {'comments': 'foo', 'action': 'info',
+                'operating_systems': 'osx', 'applications': 'Firefox'}
+        self.helper.set_data(data)
+        self.helper.handler.request_information()
+
+        assert len(mail.outbox) == 1
+        subject = 'Mozilla Add-ons: Delicious Bookmarks '
+        assert mail.outbox[0].subject == subject
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_email_no_locale(self):
         self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
