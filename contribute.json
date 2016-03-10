@@ -7,14 +7,14 @@
         "tests": "https://travis-ci.org/mozilla/addons-server"
     },
     "participate": {
-        "home": "https://wiki.mozilla.org/Webdev/GetInvolved/addons.mozilla.org",
+        "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
         "docs": "http://addons-server.readthedocs.org/",
         "irc": "irc://irc.mozilla.org/#amo",
-        "irc-contacts": ["magopian", "clouserw"]
+        "irc-contacts": ["andym", "cgrebs", "kumar", "magopian", "mstriemer", "muffinresearch", "tofumatt"]
     },
     "bugs": {
-        "list": "https://bugzilla.mozilla.org/describecomponents.cgi?product=addons.mozilla.org",
-        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=addons.mozilla.org"
+        "list": "https://github.com/mozilla/addons-server/issues",
+        "report": "https://github.com/mozilla/addons-server/issues/new"
     },
     "urls": {
         "prod": "https://addons.mozilla.org/",
