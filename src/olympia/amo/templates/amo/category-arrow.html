@@ -5,6 +5,19 @@
   .html-rtl #{{ prefix }}-{{ key }} {
     background: url({{ STATIC_URL }}img/zamboni/arrow-left-blue.png) no-repeat right center;
   }
+  .restyle #{{ prefix }}-{{ key }},
+  .restyle.html-rtl #{{ prefix }}-{{ key }} {
+    background: #ecf5fe;
+    color: #333;
+  }
+  .restyle #{{ prefix }}-{{ key }} a,
+  .restyle.html-rtl #{{ prefix }}-{{ key }} a {
+    font-weight: bold;
+  }
+  .restyle #{{ prefix }}-{{ key }} a:after,
+  .restyle.html-rtl #{{ prefix }}-{{ key }} a:after {
+    color: #333;
+  }
   #{{ prefix }}-{{ key }} a {
     color: inherit;
   }

@@ -580,6 +580,11 @@ button.search-button {
   margin-top: 0;
 }
 
+// Side nav elsewhere (themes)
+.secondary .highlight {
+  padding: 0;
+}
+
 // Install Button
 .button,
 button,
@@ -612,14 +617,23 @@ button.good {
   margin-top: 290px !important;
 }
 
-.secondary {
+.home .secondary {
   margin: 12px 0;
+}
 
-  h2 {
+.secondary {
+  margin: 0 0 12px;
+  width: 180px;
+
+  h2, h3 {
     color: #aaa;
     font-family: inherit;
+    font-size: 14px;
     font-style: normal;
     font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    padding: 6px;
     text-transform: uppercase;
   }
 
@@ -883,7 +897,7 @@ button.good {
 }
 
 // Themes
-.other-categories {
+.secondary .other-categories {
   background-color: transparent;
   border: 0;
 
@@ -904,20 +918,33 @@ button.good {
     text-transform: uppercase;
   }
 
-  li a:link {
-    color: @link-on-white-bg !important;
-    font-size: 12px !important;
+  li a {
+    color: @link-on-white-bg;
+    font-size: 12px;
     font-weight: normal;
-    padding: 6px;
+    padding: 5px 6px;
+    position: relative;
+    text-decoration: none;
 
     &:after {
+      color: rgba(0, 0, 0, 0.125);
       content: '\203a';
-      float: right;
-      font-size: 10px;
+      font-family: Georgia;
+      font-weight: normal;
+      font-size: 18px;
+      position: absolute;
+      right: 6px;
+      top: 0;
     }
 
     &:hover {
       background-color: #ecf5fe;
+    }
+
+    &:hover:after,
+    &:focus:after,
+    &.selected:after {
+      color: inherit;
     }
   }
 }
