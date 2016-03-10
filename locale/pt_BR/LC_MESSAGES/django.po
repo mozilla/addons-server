@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-02 16:55+0000\n"
+"PO-Revision-Date: 2016-03-10 00:53+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -8238,10 +8238,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
-"Você receberá um email quando a revisão estiver completa.\n"
-"                             Até então, seu add-on será exibido em nossa galeria como\n"
+"Você receberá um e-mail quando a revisão estiver completa.\n"
+"                             Até então, seu complemento será exibido em nossa galeria como\n"
 "                             experimental e os usuários recebem atualizações automáticas.\n"
-"                             Alguns recursos são indisponíveis para o seu add-on."
+"                             Alguns recursos são indisponíveis para o seu complemento."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8249,9 +8249,9 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
-"Você receberá um email quando a revisão estiver\n"
-"                             completa, tornando-o capaz de empacotar seu add-on com um\n"
-"                             instalador de aplicação."
+"Você receberá um e-mail quando a revisão estiver\n"
+"                             completa, tornando-o capaz de empacotar seu complemento com um\n"
+"                             instalador de aplicativo."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -11886,19 +11886,19 @@ msgstr "Franco de Contadores Franceses do Pacifico (CFP)"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
-msgstr "Yemen Rial"
+msgstr "Rial do Yemen"
 
 #: src/olympia/lib/constants.py:167
 msgid "South Africa Rand"
-msgstr "South Africa Rand"
+msgstr "Rand da África do Sul"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zambia Kwacha"
-msgstr "Zambia Kwacha"
+msgstr "Kwacha da Zâmbia"
 
 #: src/olympia/lib/constants.py:169
 msgid "Zimbabwe Dollar"
-msgstr "Zimbabwe Dollar"
+msgstr "Dólar do Zimbabué"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
