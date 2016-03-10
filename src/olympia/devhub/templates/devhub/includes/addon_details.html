@@ -1,12 +1,17 @@
 {% from "includes/forms.html" import tip %}
 {% from "devhub/includes/macros.html" import link_if_listed_else_text %}
 
-{% macro status_and_tip(addon, tip) %}
-  {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
-    <span class="{{ status_class(addon) }}"><b>{{ _('You have disabled this add-on') }}</b></span>
-  {% else %}
-    <span class="{{ status_class(addon) }}"><b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
+{% macro status_and_tip(addon, tip, url='') %}
+  {% if not url %}
+    {% set url = addon.get_dev_url('versions') %}
   {% endif %}
+  <a href="{{ url }}">
+    {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
+      <span class="{{ status_class(addon) }}"><b>{{ _('You have disabled this add-on') }}</b></span>
+    {% else %}
+      <span class="{{ status_class(addon) }}"><b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
+    {% endif %}
+  </a>
   <span class="tip tooltip" title="{{ tip }}">?</span>
 {% endmacro %}
 
@@ -15,21 +20,15 @@
     {{ _('Status:') }}
 
     {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("Your add-on's listing is disabled and is not showing "
                             "anywhere in our gallery or update service.")) }}
-      </a>
     {% elif addon.status == amo.STATUS_NULL %}
-      <a href="{{ url('devhub.submit.resume', addon.slug) }}">
-        {{ status_and_tip(addon, _('Please complete your add-on.')) }}
-      </a>
+        {{ status_and_tip(addon, _('Please complete your add-on.'),
+                          url=url('devhub.submit.resume', addon.slug)) }}
     {% elif addon.status == amo.STATUS_PENDING %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon, _('You will receive an email when the review is complete.')) }}
-      </a>
     {% elif addon.status == amo.STATUS_UNREVIEWED %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("You will receive an email when the review is complete. Until "
                             "then, your add-on is not listed in our gallery but can be "
@@ -37,9 +36,7 @@
                           if addon.is_listed else
                           _("You will receive an email when the review is "
                             "complete and your add-on is signed.")) }}
-      </a>
     {% elif addon.status == amo.STATUS_NOMINATED %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("You will receive an email when the review is complete. Until "
                             "then, your add-on is not listed in our gallery but can be "
@@ -47,34 +44,27 @@
                           if addon.is_listed else
                           _("You will receive an email when the review is "
                             "complete and your add-on is signed.")) }}
-      </a>
     {% elif addon.status == amo.STATUS_PUBLIC %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("Your add-on is displayed in our gallery and users are "
                             "receiving automatic updates.")
                           if addon.is_listed else
                           _("Your add-on has been signed and can be bundled with an "
                             "application installer.")) }}
-      </a>
     {% elif addon.status == amo.STATUS_DISABLED %}
-      <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload">
         {{ status_and_tip(addon,
                           _("Your add-on was disabled by a site administrator and is no "
                             "longer shown in our gallery. If you have any questions, "
-                            "please email amo-admins@mozilla.org.")) }}
-      </a>
+                            "please email amo-admins@mozilla.org."),
+                            url=(addon.get_dev_url('versions') + '#version-upload')) }}
     {% elif addon.status == amo.STATUS_LITE %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("Your add-on is displayed in our gallery as experimental "
                             "and users are receiving automatic updates. Some features "
                             "are unavailable to your add-on.")
                           if addon.is_listed else
                           _('Your add-on has been signed.')) }}
-      </a>
     {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("You will receive an email when the full review is complete. "
                             "Until then, your add-on is displayed in our gallery as "
@@ -84,14 +74,11 @@
                           _("You will receive an email when the full review is "
                             "complete, making you able to bundle your add-on with an "
                             "application installer.")) }}
-      </a>
     {% elif addon.status == amo.STATUS_PURGATORY %}
-      <a href="{{ addon.get_dev_url('versions') }}">
         {{ status_and_tip(addon,
                           _("All add-ons hosted in our gallery must now be reviewed by an "
                             "editor. If you wish to continue hosting your add-on, please "
                             "click to select a review process.")) }}
-      </a>
     {% endif %}
   </strong>
 </li>
