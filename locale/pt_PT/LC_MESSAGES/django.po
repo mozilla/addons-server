@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-10 14:13+0000\n"
+"PO-Revision-Date: 2016-03-10 18:25+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1765,9 +1765,9 @@ msgid ""
 "read a busy page, there's an add-on to improve your on-the-go browsing."
 msgstr ""
 "Os extras são aplicações que permitem personalizar o Firefox com "
-"funcionalidade e estilo extra. Se escrever o nome de um site ou não consegue"
-" ler uma página ocupada, existe um extra para melhorar a sua experiência de "
-"navegação."
+"funcionalidade e estilo extra. Se escrever mal o nome de um site ou não "
+"consegue ler uma página ocupada, existe um extra para melhorar a sua "
+"experiência de navegação."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -13959,7 +13959,7 @@ msgstr[1] "<b>{0}</b> avaliações para este extra"
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html:33
 msgid "Developer reply by {0}"
-msgstr "O programador respondeu por {0}"
+msgstr "Resposta do programador por {0}"
 
 #: src/olympia/reviews/templates/reviews/review_list.html:35
 #, python-format
