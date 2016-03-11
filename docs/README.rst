@@ -20,7 +20,7 @@ Or simply::
 
     make update_deps
 
-The documentation is viewable at http://olympia.readthedocs.org/, and covers
+The documentation is viewable at http://addons-server.readthedocs.org/, and covers
 development using Addons Server, the source code for `Add-ons
 <https://addons.mozilla.org/>`_.
 
