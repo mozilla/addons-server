@@ -46,6 +46,10 @@ def with_addon(allow_missing=False):
         def inner(view, request, guid=None, **kwargs):
             try:
                 addon = Addon.unfiltered.get(guid=guid)
+                if addon.is_deleted:
+                    return Response(
+                        {'error': _('That add-on has been deleted.')},
+                        status=status.HTTP_400_BAD_REQUEST)
             except Addon.DoesNotExist:
                 if allow_missing:
                     addon = None
