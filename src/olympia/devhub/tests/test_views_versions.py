@@ -580,6 +580,31 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert version.source
         assert not version.addon.admin_review
 
+    def test_update_source_file_should_drop_info_request_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        version.has_info_request = True
+        version.save()
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        version = Version.objects.get(pk=self.version.pk)
+        assert response.status_code == 302
+        assert not version.has_info_request
+
+    def test_update_approvalnotes_should_drop_info_request_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        version.has_info_request = True
+        version.save()
+        data = self.formset(approvalnotes="New notes.")
+        response = self.client.post(self.url, data)
+        version = Version.objects.get(pk=self.version.pk)
+        assert response.status_code == 302
+        assert not version.has_info_request
+
 
 class TestVersionEditSearchEngine(TestVersionEditMixin,
                                   amo.tests.BaseTestCase):
