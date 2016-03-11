@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-21 14:41+0000\n"
+"PO-Revision-Date: 2016-03-10 22:31+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -11798,51 +11798,51 @@ msgstr "Tajikistan Somoni"
 
 #: src/olympia/lib/constants.py:144
 msgid "Turkmenistan Manat"
-msgstr "Turkmenistan Manat"
+msgstr "Manat Turcomeno"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tunisia Dinar"
-msgstr "Tunisia Dinar"
+msgstr "Dinar da Tunísia"
 
 #: src/olympia/lib/constants.py:146
 msgid "Tonga Pa'anga"
-msgstr "Tonga Pa'anga"
+msgstr "Pa'anga do Tonga"
 
 #: src/olympia/lib/constants.py:147
 msgid "Turkey Lira"
-msgstr "Turkey Lira"
+msgstr "Lira da Turquia"
 
 #: src/olympia/lib/constants.py:148
 msgid "Trinidad and Tobago Dollar"
-msgstr "Trinidad and Tobago Dollar"
+msgstr "Dólar de Trindade e Tobago"
 
 #: src/olympia/lib/constants.py:149
 msgid "Tuvalu Dollar"
-msgstr "Tuvalu Dollar"
+msgstr "Dólar de Tuvalu"
 
 #: src/olympia/lib/constants.py:150
 msgid "Taiwan New Dollar"
-msgstr "Taiwan New Dollar"
+msgstr "Novo Dólar de Taiwan"
 
 #: src/olympia/lib/constants.py:151
 msgid "Tanzania Shilling"
-msgstr "Tanzania Shilling"
+msgstr "Xelim da Tanzânia"
 
 #: src/olympia/lib/constants.py:152
 msgid "Ukraine Hryvna"
-msgstr "Ukraine Hryvna"
+msgstr "Hryvnia da Ucrânia"
 
 #: src/olympia/lib/constants.py:153
 msgid "Uganda Shilling"
-msgstr "Uganda Shilling"
+msgstr "Xelim do Uganda"
 
 #: src/olympia/lib/constants.py:154
 msgid "United States Dollar"
-msgstr "United States Dollar"
+msgstr "Dólar Americano"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uruguay Peso"
-msgstr "Uruguay Peso"
+msgstr "Peso do Uruguai"
 
 #: src/olympia/lib/constants.py:156
 msgid "Uzbekistan Som"
