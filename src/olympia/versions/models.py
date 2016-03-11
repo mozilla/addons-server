@@ -86,11 +86,6 @@ class Version(OnChangeMixin, ModelBase):
 
     deleted = models.BooleanField(default=False)
 
-    supported_locales = models.CharField(max_length=255)
-
-    _developer_name = models.CharField(max_length=255, default='',
-                                       editable=False)
-
     source = models.FileField(
         upload_to=source_upload_path, null=True, blank=True)
 
@@ -133,13 +128,10 @@ class Version(OnChangeMixin, ModelBase):
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:
             license = None
-        max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
-        developer = data.get('developer_name', '')[:max_len]
         v = cls.objects.create(
             addon=addon,
             version=data['version'],
             license_id=license,
-            _developer_name=developer,
             source=source
         )
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
@@ -490,10 +482,6 @@ class Version(OnChangeMixin, ModelBase):
             # Use File.update so signals are triggered.
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
-
-    @property
-    def developer_name(self):
-        return self._developer_name
 
     def reset_nomination_time(self, nomination=None):
         if not self.nomination or nomination:
