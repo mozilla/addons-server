@@ -21,12 +21,12 @@ class AllowedTest(TestCase):
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_owner_allowed(self):
-        self.assertTrue(allowed(self.request, self.file))
+        assert allowed(self.request, self.file)
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     def test_reviewer_allowed(self):
-        self.assertTrue(allowed(self.request, self.file))
+        assert allowed(self.request, self.file)
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)

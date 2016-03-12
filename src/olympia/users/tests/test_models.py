@@ -11,6 +11,7 @@ from django.contrib.auth.hashers import (is_password_usable, check_password,
 from django.core import mail
 from django.utils import encoding, translation
 
+import pytest
 from mock import patch
 from nose.tools import eq_
 
@@ -394,21 +395,21 @@ class TestPasswords(TestCase):
 
     def test_sha512(self):
         encoded = make_password('lètmein', 'seasalt', 'sha512')
-        self.assertEqual(
-            encoded,
+        assert encoded == (
             'sha512$seasalt$16bf4502ffdfce9551b90319d06674e6faa3e174144123d'
             '392d94470ebf0aa77096b871f9e84f60ed2bac2f10f755368b068e52547e04'
             '35fef8b4f6ca237d7d8')
-        self.assertTrue(is_password_usable(encoded))
-        self.assertTrue(check_password('lètmein', encoded))
-        self.assertFalse(check_password('lètmeinz', encoded))
-        self.assertEqual(identify_hasher(encoded).algorithm, "sha512")
+        assert is_password_usable(encoded)
+        assert check_password('lètmein', encoded)
+        assert not check_password('lètmeinz', encoded)
+        assert identify_hasher(encoded).algorithm == "sha512"
+
         # Blank passwords
         blank_encoded = make_password('', 'seasalt', 'sha512')
-        self.assertTrue(blank_encoded.startswith('sha512$'))
-        self.assertTrue(is_password_usable(blank_encoded))
-        self.assertTrue(check_password('', blank_encoded))
-        self.assertFalse(check_password(' ', blank_encoded))
+        assert blank_encoded.startswith('sha512$')
+        assert is_password_usable(blank_encoded)
+        assert check_password('', blank_encoded)
+        assert not check_password(' ', blank_encoded)
 
     def test_empty_password(self):
         profile = UserProfile(password=None)
@@ -466,14 +467,15 @@ class TestUserEmailField(TestCase):
         eq_(UserEmailField().clean(user.email), user)
 
     def test_failure(self):
-        with self.assertRaises(forms.ValidationError):
+        with pytest.raises(forms.ValidationError):
             UserEmailField().clean('xxx')
 
     def test_empty_email(self):
         UserProfile.objects.create(email='')
-        with self.assertRaises(forms.ValidationError) as e:
+        with pytest.raises(forms.ValidationError) as exc_info:
             UserEmailField().clean('')
-        eq_(e.exception.messages[0], 'This field is required.')
+
+        assert exc_info.value.messages[0] == 'This field is required.'
 
 
 class TestBlacklistedPassword(TestCase):
