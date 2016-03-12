@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-11 13:35+0000\n"
+"PO-Revision-Date: 2016-03-12 20:39+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -13993,7 +13993,7 @@ msgstr "{0} :: Avaliações"
 #: src/olympia/reviews/templates/reviews/mobile/add.html:4
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr "Revisões para {0}"
+msgstr "Comentários para {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html:27
