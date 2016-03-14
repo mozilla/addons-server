@@ -71,8 +71,6 @@ SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 SERVICES_DOMAIN = 'localhost:8000'
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-VALIDATE_ADDONS = True
-
 ADDON_COLLECTOR_ID = 1
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).

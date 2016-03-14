@@ -355,13 +355,6 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     Not all application versions will have a set of registered
     compatibility tests.
     """
-    if not settings.VALIDATE_ADDONS:
-        # This should only ever be set on development instances.
-        # Don't run the validator, just return a skeleton passing result set.
-        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
-        results['metadata']['listed'] = listed
-        return json.dumps(results)
-
     from validator.validate import validate
 
     apps = dump_apps.Command.JSON_PATH
