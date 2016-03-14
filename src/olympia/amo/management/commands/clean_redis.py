@@ -3,7 +3,6 @@ import socket
 import time
 
 from django.conf import settings
-from django.core.cache import parse_backend_uri
 from django.core.management.base import BaseCommand
 
 import redis as redislib
@@ -75,26 +74,17 @@ def cleanup(master, slave):
 
 
 def get_redis_backend(backend_uri):
-    _, server, params = parse_backend_uri(backend_uri)
-    db = params.pop('db', 0)
+
+    db = int(backend_uri.pop('DB', 0))
+    host = backend_uri.pop('HOST', 'localhost')
+    password = backend_uri.pop('PASSWORD', None)
+    port = int(backend_uri.pop('PORT', 6379))
+
     try:
-        db = int(db)
-    except (ValueError, TypeError):
-        db = 0
-    try:
-        socket_timeout = float(params.pop('socket_timeout'))
+        socket_timeout = float(backend_uri['OPTIONS'].pop('socket_timeout'))
     except (KeyError, ValueError):
         socket_timeout = None
-    password = params.pop('password', None)
-    if ':' in server:
-        host, port = server.split(':')
-        try:
-            port = int(port)
-        except (ValueError, TypeError):
-            port = 6379
-    else:
-        host = server
-        port = 6379
+
     return redislib.Redis(host=host, port=port, db=db, password=password,
                           socket_timeout=socket_timeout)
 
