@@ -1425,7 +1425,7 @@ REDIS_BACKENDS = {
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator.
 SPIDERMONKEY = None
-VALIDATE_ADDONS = True
+
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
 
