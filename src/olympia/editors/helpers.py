@@ -721,8 +721,7 @@ class ReviewAddon(ReviewBase):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
-        self.set_addon(highest_status=amo.STATUS_PUBLIC,
-                       status=amo.STATUS_PUBLIC)
+        self.set_addon(status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -782,10 +781,6 @@ class ReviewAddon(ReviewBase):
         status = self.addon.status
 
         changes = {'status': amo.STATUS_LITE}
-        if (self.addon.status in (amo.STATUS_PUBLIC,
-                                  amo.STATUS_LITE_AND_NOMINATED)):
-            changes['highest_status'] = amo.STATUS_LITE
-
         template = u'%s_to_preliminary' % self.review_type
         subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
         if (self.review_type == 'preliminary' and

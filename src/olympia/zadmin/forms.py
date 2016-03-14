@@ -200,7 +200,7 @@ MonthlyPickFormSet = modelformset_factory(MonthlyPick, form=MonthlyPickForm,
 class AddonStatusForm(ModelForm):
     class Meta:
         model = Addon
-        fields = ('status', 'highest_status')
+        fields = ('status',)
 
 
 class FileStatusForm(ModelForm):

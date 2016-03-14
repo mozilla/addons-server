@@ -1068,7 +1068,6 @@ CELERY_ROUTES = {
 
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
-    'olympia.amo.tasks.delete_incomplete_addons': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
     'olympia.amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},

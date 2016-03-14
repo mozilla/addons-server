@@ -43,7 +43,6 @@
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "highest_status": 4,
             "default_locale": "en-US",
             "the_reason": null
         }
@@ -92,7 +91,6 @@
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "highest_status": 4,
             "default_locale": "en-US",
             "the_reason": null
         }
@@ -140,7 +138,6 @@
             "summary": null,
             "disabled_by_user": 0,
             "type": 1,
-            "highest_status": 1,
             "default_locale": "en-US",
             "the_reason": null
         }
