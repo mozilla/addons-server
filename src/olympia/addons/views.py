@@ -26,7 +26,6 @@ from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
@@ -690,13 +689,3 @@ class AddonSearchView(ListAPIView):
     def as_view(cls, **kwargs):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
-
-    def get(self, thing):
-        return Response({
-            'count': 3,
-            'results': [
-                {'name': 'Gyro', 'slug': 'gyro'},
-                {'name': 'Taco', 'slug': 'taco'},
-                {'name': 'Burrito', 'slug': 'burrito'},
-            ],
-        })
