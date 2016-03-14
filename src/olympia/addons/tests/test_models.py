@@ -561,26 +561,12 @@ class TestAddonModels(TestCase):
         eq_(len(mail.outbox), 1)
         assert reason in mail.outbox[0].body
 
-    def test_delete_status_gone_wild(self):
-        """
-        Test deleting add-ons where the higheststatus is zero, but there's a
-        non-zero status.
-        """
-        count = Addon.objects.count()
-        addon = Addon.objects.get(pk=3615)
-        addon.status = amo.STATUS_UNREVIEWED
-        addon.highest_status = 0
-        addon.delete('bye')
-        eq_(len(mail.outbox), 1)
-        assert count == Addon.unfiltered.count()
-
     def test_delete_incomplete_no_versions(self):
         """Test deleting incomplete add-ons."""
         count = Addon.unfiltered.count()
         a = Addon.objects.get(pk=3615)
         a.latest_version.delete(hard=True)
         a.status = 0
-        a.highest_status = 0
         a.save()
         a.delete(None)
         assert len(mail.outbox) == 0
@@ -591,7 +577,6 @@ class TestAddonModels(TestCase):
         count = Addon.unfiltered.count()
         a = Addon.objects.get(pk=3615)
         a.status = 0
-        a.highest_status = 0
         a.save()
         a.delete('oh looky here')
         assert len(mail.outbox) == 1
@@ -1561,8 +1546,7 @@ class TestAddonDelete(TestCase):
 
     def test_review_delete(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                     status=amo.STATUS_PUBLIC,
-                                     highest_status=amo.STATUS_PUBLIC)
+                                     status=amo.STATUS_PUBLIC)
 
         review = Review.objects.create(addon=addon, rating=1, body='foo',
                                        user=UserProfile.objects.create())

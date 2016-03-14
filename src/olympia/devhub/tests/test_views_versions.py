@@ -91,7 +91,6 @@ class TestVersion(TestCase):
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
-        self.addon.highest_status = amo.STATUS_NULL
         self.addon.status = amo.STATUS_UNREVIEWED
         self.addon.save()
 
@@ -103,10 +102,11 @@ class TestVersion(TestCase):
 
     def test_delete_message_incomplete(self):
         """
-        If an addon has highest_status = 0, they shouldn't be bothered with a
+        If an addon has status = 0, they shouldn't be bothered with a
         blacklisting threat if they hit delete.
         """
-        self.addon.highest_status = amo.STATUS_NULL
+        # Need to hard delete the version or add-on will be soft-deleted.
+        self.addon.latest_version.delete(hard=True)
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
         r = self.client.get(self.url)

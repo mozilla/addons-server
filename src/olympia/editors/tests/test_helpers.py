@@ -449,7 +449,6 @@ class TestReviewHelper(TestCase):
         addon = Addon.objects.get(pk=3615)
 
         eq_(addon.status, amo.STATUS_PUBLIC)
-        eq_(addon.highest_status, amo.STATUS_PUBLIC)
 
         eq_(addon.versions.all()[0].files.all()[0].status,
             amo.STATUS_PUBLIC)
@@ -472,7 +471,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_PUBLIC)
 
@@ -497,7 +495,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_PUBLIC)
 
@@ -539,8 +536,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -565,8 +560,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -591,8 +584,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary(auto_validation=True)
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -630,7 +621,6 @@ class TestReviewHelper(TestCase):
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.status == amo.STATUS_NULL
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_DISABLED)
@@ -650,7 +640,6 @@ class TestReviewHelper(TestCase):
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.status == amo.STATUS_NULL
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_DISABLED)

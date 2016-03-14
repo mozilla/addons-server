@@ -613,10 +613,6 @@ def addon_manage(request, addon):
             log.info('Addon "%s" status changed to: %s' % (
                 addon.slug, form.cleaned_data['status']))
             form.save()
-        if 'highest_status' in form.changed_data:
-            log.info('Addon "%s" highest status changed to: %s' % (
-                addon.slug, form.cleaned_data['highest_status']))
-            form.save()
 
         for form in formset:
             if 'status' in form.changed_data:
