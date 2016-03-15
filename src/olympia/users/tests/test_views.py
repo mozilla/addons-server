@@ -208,8 +208,8 @@ class TestEdit(UserViewBase):
 
         # The email shouldn't change until they confirm, but the name should
         u = UserProfile.objects.get(id='4043307')
-        self.assertEquals(u.name, 'DJ SurfNTurf')
-        self.assertEquals(u.email, 'jbalogh@mozilla.com')
+        assert u.name == 'DJ SurfNTurf'
+        assert u.email == 'jbalogh@mozilla.com'
 
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject.find('Please confirm your email'), 0)
@@ -474,13 +474,13 @@ class TestEmailChange(UserViewBase):
         eq_(r.status_code, 400)
 
     def test_success(self):
-        self.assertEqual(self.user.email, 'jbalogh@mozilla.com')
+        assert self.user.email == 'jbalogh@mozilla.com'
         url = reverse('users.emailchange', args=[self.user.id, self.token,
                                                  self.hash])
         r = self.client.get(url, follow=True)
         eq_(r.status_code, 200)
         u = UserProfile.objects.get(id=self.user.id)
-        self.assertEqual(u.email, 'nobody@mozilla.org')
+        assert u.email == 'nobody@mozilla.org'
 
     def test_email_change_to_an_existing_user_email(self):
         token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
@@ -935,8 +935,8 @@ class TestLogout(UserViewBase):
                         domain='builder')
         r = self.client.get(url, follow=True)
         to, code = r.redirect_chain[0]
-        self.assertEqual(to, 'https://builder.addons.mozilla.org/addon/new')
-        self.assertEqual(code, 302)
+        assert to == 'https://builder.addons.mozilla.org/addon/new'
+        assert code == 302
 
         # Test an invalid domain
         url = urlparams(reverse('users.logout'), to='/en-US/about',

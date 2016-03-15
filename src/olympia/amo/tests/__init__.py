@@ -385,9 +385,9 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
                         self.fail('form %r had the following error(s):\n%s'
                                   % (k, msg))
                     if hasattr(v, 'non_field_errors'):
-                        self.assertEquals(v.non_field_errors(), [])
+                        assert v.non_field_errors() == []
                     if hasattr(v, 'non_form_errors'):
-                        self.assertEquals(v.non_form_errors(), [])
+                        assert v.non_form_errors() == []
 
     def assertLoginRedirects(self, response, to, status_code=302):
         # Not using urlparams, because that escapes the variables, which
@@ -405,27 +405,25 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         """
         if hasattr(response, 'redirect_chain'):
             # The request was a followed redirect
-            self.assertTrue(
-                len(response.redirect_chain) > 0,
-                "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
+            assert \
+                len(response.redirect_chain) > 0, \
+                ("Response didn't redirect as expected: Response"
+                 " code was %d (expected %d)" % (response.status_code,
+                                                 status_code))
 
             url, status_code = response.redirect_chain[-1]
 
-            self.assertEqual(
-                response.status_code, target_status_code,
-                "Response didn't redirect as expected: Final"
-                " Response code was %d (expected %d)" % (response.status_code,
-                                                         target_status_code))
+            assert response.status_code == target_status_code, \
+                ("Response didn't redirect as expected: Final"
+                 " Response code was %d (expected %d)" % (response.status_code,
+                                                          target_status_code))
 
         else:
             # Not a followed redirect
-            self.assertEqual(
-                response.status_code, status_code,
-                "Response didn't redirect as expected: Response"
-                " code was %d (expected %d)" % (response.status_code,
-                                                status_code))
+            assert response.status_code == status_code, \
+                ("Response didn't redirect as expected: Response"
+                 " code was %d (expected %d)" % (response.status_code,
+                                                 status_code))
             url = response['Location']
 
         scheme, netloc, path, query, fragment = urlsplit(url)
@@ -435,9 +433,10 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
             expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
                                        e_fragment))
 
-        self.assertEqual(
-            url, expected_url,
-            "Response redirected to '%s', expected '%s'" % (url, expected_url))
+        msg = (
+            "Response redirected to '%s', expected '%s'" %
+            (url, expected_url))
+        assert url == expected_url, msg
 
     def assertLoginRequired(self, response, status_code=302):
         """

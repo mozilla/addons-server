@@ -40,7 +40,7 @@ class TestHelpers(amo.tests.BaseTestCase):
 
         # no tags, no list
         s = render('{{ tag_list(addon) }}', ctx)
-        self.assertEqual(s.strip(), "")
+        assert s.strip() == ""
 
         s = render('{{ tag_list(addon, tags=tags) }}', ctx)
         assert s, "Non-empty tags must return tag list."

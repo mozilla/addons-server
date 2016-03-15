@@ -133,7 +133,7 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         expected = csv.DictReader(
             # Strip any extra spaces from the expected content.
             line.strip() for line in expected.splitlines())
-        self.assertEqual(tuple(content), tuple(expected))
+        assert tuple(content) == tuple(expected)
 
 
 class TestSeriesSecurity(StatsTest):
