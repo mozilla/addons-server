@@ -11,7 +11,7 @@ Addons-Server
 Welcome to the Addons Server!  This is `addons.mozilla.org`_.
 
 We have some good `install docs`_ if you want to try it out.  We'd love
-your help!  You can come talk to us on `irc://irc.mozilla.org/amo` if you
+your help!  You can come talk to us on `irc.mozilla.org #amo`_ if you
 have questions.
 
 Please report bugs here: https://github.com/mozilla/addons/issues or https://github.com/mozilla/addons-server/issues
@@ -24,7 +24,7 @@ You can join our mailing list at: https://mail.mozilla.org/listinfo/dev-addons
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`install docs`: https://addons-server.readthedocs.org/en/latest/topics/install/docker.html
-.. _`irc://irc.mozilla.org/amo`: irc://irc.mozilla.org/amo
+.. _`irc.mozilla.org #amo`: irc://irc.mozilla.org/amo
 
 
 .. marker-for-security-bug-inclusion-do-not-remove
