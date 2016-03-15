@@ -1,11 +1,22 @@
 import os
 import logging
+import sys
 from datetime import datetime
 
 log = logging.getLogger('z.startup')
 
 # Remember when mod_wsgi loaded this file so we can track it in nagios.
 wsgi_loaded = datetime.now()
+
+if 'RECURSION_LIMIT' in os.environ:
+    try:
+        limit = int(os.environ['RECURSION_LIMIT'])
+    except TypeError:
+        log.warning('Unable to parse RECURSION_LIMIT "{}"'.format(
+            os.environ['RECURSION_LIMIT']))
+    else:
+        sys.setrecursionlimit(limit)
+        log.info('Set RECURSION_LIMIT to {}'.format(limit))
 
 # Tell celery that we're using Django.
 os.environ['CELERY_LOADER'] = 'django'
