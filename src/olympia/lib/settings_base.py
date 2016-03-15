@@ -339,7 +339,7 @@ MIDDLEWARE_CLASSES = (
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'commonware.log.ThreadRequestMiddleware',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',

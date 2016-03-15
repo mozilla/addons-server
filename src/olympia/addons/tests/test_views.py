@@ -1571,6 +1571,7 @@ class TestAddonViewSet(TestCase):
 
 
 class TestAddonSearchView(ESTestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestAddonSearchView, self).setUp()
@@ -1581,15 +1582,20 @@ class TestAddonSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
+    def perform_search(self, url, data=None, **headers):
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        return data
+
     def test_basic(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
         assert addon.last_updated  # Just in case.
         self.refresh()
 
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(self.url)
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -1605,9 +1611,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-second-addon'
 
     def test_empty(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
 
@@ -1617,9 +1621,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(slug='my-third-addon', name=u'My third Addôn')
         self.refresh()
 
-        response = self.client.get(self.url, {'page_size': 1})
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(self.url, {'page_size': 1})
         assert data['count'] == 3
         assert len(data['results']) == 1
 
@@ -1628,9 +1630,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
 
-        response = self.client.get(data['next'])
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(data['next'])
         assert data['count'] == 3
         assert len(data['results']) == 1
 
@@ -1656,9 +1656,7 @@ class TestAddonSearchView(ESTestCase):
                       disabled_by_user=True)
         self.refresh()
 
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(self.url)
         assert data['count'] == 1
         assert len(data['results']) == 1
 
@@ -1672,9 +1670,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(slug='unrelated', name=u'Unrelated')
         self.refresh()
 
-        response = self.client.get(self.url, {'q': 'addon'})
-        assert response.status_code == 200
-        data = json.loads(response.content)
+        data = self.perform_search(self.url, {'q': 'addon'})
         assert data['count'] == 1
         assert len(data['results']) == 1
 
@@ -1682,3 +1678,11 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
+
+    def test_with_session_cookie(self):
+        # Session cookie should be ignored, therefore a request with it should
+        # not cause more database queries.
+        self.client.login(username='regular@mozilla.com', password='password')
+        data = self.perform_search(self.url)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
