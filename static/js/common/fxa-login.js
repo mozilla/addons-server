@@ -35,7 +35,6 @@ function enableFxALogin() {
     function fxaLogin(opts) {
         opts = opts || {};
         var authConfig = {
-            action:  'signin',
             client_id: config.clientId,
             email: opts.email || config.email,
             state: config.state + ':' + urlsafe(btoa(nextPath())),
