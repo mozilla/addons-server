@@ -184,7 +184,14 @@ def get_outgoing_url(url):
     if not settings.REDIRECT_URL:
         return url
 
-    url_netloc = urlparse(url).netloc
+    parsed_url = urlparse(url)
+    url_netloc = parsed_url.netloc
+
+    # This prevents a link like javascript://addons.mozilla.org...
+    # being returned unchanged since the netloc matches the
+    # safe list see bug 1251023
+    if parsed_url.scheme not in ['http', 'https']:
+        return '/'
 
     # No double-escaping, and some domain names are excluded.
     if (url_netloc == urlparse(settings.REDIRECT_URL).netloc

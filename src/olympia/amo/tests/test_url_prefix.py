@@ -303,6 +303,12 @@ def test_outgoing_url_query_params():
     assert fixed.endswith('%3A//xx.com%3Fq=1&v=2%22%20style=%22123%22'), fixed
 
 
+def test_outgoing_url_javascript_scheme():
+    url = 'javascript://addons.mozilla.org/%0Aalert(location.href)'
+    fixed = urlresolvers.get_outgoing_url(url)
+    assert fixed == '/'
+
+
 def check(x, y):
     return eq_(urlresolvers.lang_from_accept_header(x), y)
 

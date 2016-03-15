@@ -656,9 +656,6 @@ MINIFY_BUNDLES = {
             # Users
             'js/zamboni/users.js',
 
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
-
             # Hover delay for global header
             'moz_header/menu.js',
 
@@ -766,9 +763,6 @@ MINIFY_BUNDLES = {
 
             # Login
             'js/impala/login.js',
-
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.12.0.js',
