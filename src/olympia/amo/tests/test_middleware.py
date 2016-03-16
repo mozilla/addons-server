@@ -11,7 +11,8 @@ from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
 
-from olympia.amo.middleware import NoAddonsMiddleware, NoVarySessionMiddleware
+from olympia.amo.middleware import (
+    AuthenticationMiddlewareWithoutAPI, NoAddonsMiddleware)
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
@@ -30,20 +31,19 @@ class TestMiddleware(TestCase):
         response = test.Client().get('/', follow=True)
         eq_(response['Vary'], 'X-Mobile, User-Agent')
 
-    @patch('django.contrib.sessions.middleware.'
-           'SessionMiddleware.process_request')
-    def test_session_not_used_api(self, process_request):
+    @patch('django.contrib.auth.middleware.'
+           'AuthenticationMiddleware.process_request')
+    def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
-        req.API = True
-        NoVarySessionMiddleware().process_request(req)
-        assert not process_request.called
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert process_request.called
 
     @patch('django.contrib.sessions.middleware.'
            'SessionMiddleware.process_request')
-    def test_session_not_used(self, process_request):
-        req = RequestFactory().get('/')
-        NoVarySessionMiddleware().process_request(req)
-        assert process_request.called
+    def test_authentication_not_used_with_the_api(self, process_request):
+        req = RequestFactory().get('/api/lol')
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert not process_request.called
 
 
 def test_redirect_with_unicode_get():

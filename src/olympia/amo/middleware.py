@@ -7,6 +7,8 @@ import contextlib
 import urllib
 
 from django.conf import settings
+from django.contrib.auth.middleware import AuthenticationMiddleware
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
 from django.http import (Http404, HttpResponseRedirect,
@@ -88,6 +90,20 @@ class LocaleAndAppURLMiddleware(object):
         request.LANG = prefixer.locale
 
 
+class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
+    """
+    Like AuthenticationMiddleware, but disabled for the API, which uses its
+    own authentication mechanism.
+    """
+    def process_request(self, request):
+        if request.path.startswith('/api/'):
+            request.user = AnonymousUser()
+        else:
+            return super(
+                AuthenticationMiddlewareWithoutAPI,
+                self).process_request(request)
+
+
 class NoVarySessionMiddleware(SessionMiddleware):
     """
     SessionMiddleware sets Vary: Cookie anytime request.session is accessed.
@@ -98,11 +114,6 @@ class NoVarySessionMiddleware(SessionMiddleware):
     We skip the cache in Zeus if someone has an AMOv3 cookie, so varying on
     Cookie at this level only hurts us.
     """
-
-    def process_request(self, request):
-        if not getattr(request, 'API', False):
-            super(NoVarySessionMiddleware, self).process_request(request)
-
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
