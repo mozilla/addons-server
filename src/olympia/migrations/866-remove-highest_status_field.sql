@@ -1,1 +1,1 @@
-ALTER TABLE `addons` DROP COLUMN `highest_status`;
+ALTER TABLE `addons` DROP COLUMN `higheststatus`;
