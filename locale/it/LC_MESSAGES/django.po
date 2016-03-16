@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2015-10-20 13:35+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-03-16 19:57+0000\n"
+"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -3999,12 +3999,12 @@ msgstr "Compatibilità {app} {version}"
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "I migliori, compatibili al 95%% con la versione precedente"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "Migliori 95%% di tutti i componenti aggiuntivi"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -5742,6 +5742,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Se il componente aggiuntivo ha un sito o forum di supporto dedicato, "
+"inserisci qui l’indirizzo. Nel caso il sito sia disponibile in varie lingue,"
+" puoi aggiungere più occorrenze di questo campo, una per ogni lingua in cui "
+"il sito è localizzato. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5760,6 +5764,11 @@ msgid ""
 "                          how to report bugs, anticipated release date of a new version,\n"
 "                          etc. It is only relevant for listed add-ons."
 msgstr ""
+"Ulteriori informazioni utili per l’utente finale che non possono essere "
+"inserite nei campi sommario e descrizione. Questo campo è solitamente "
+"utilizzato per indicare l’elenco dei bug noti più importanti, le istruzioni "
+"per segnalare nuovi bug, date di rilascio previste di versioni future e "
+"simili. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
@@ -5794,6 +5803,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Specifica se il codice sorgente del componente aggiuntivo può essere "
+"visualizzato sul sito. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5816,6 +5827,9 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Specifica se le statistiche di download e di utilizzo del componente "
+"aggiuntivo possono essere visualizzate sul sito. Rilevante solo per i "
+"componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5838,6 +5852,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Selezionando questa opzione, al rilascio di ogni nuova versione di SDK verrà"
+" effettuato un tentativo automatico di aggiornamento del componente "
+"aggiuntivo. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5909,6 +5926,11 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Carica un’icona personalizzata per il componente aggiuntivo oppure scegline "
+"una tra quelle predefinite. L’icona viene generalmente visualizzata in tutte"
+" le pagine dove compare il componente aggiuntivo. L’icona deve essere "
+"caricata in uno dei seguenti formati: .png, .jpg. Rilevante solo per i "
+"componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -6037,7 +6059,7 @@ msgstr "Impossibile verificare i dati inseriti, riprova."
 msgid ""
 "Enter the following text confirm your decision:\n"
 "           {slug}"
-msgstr ""
+msgstr "Confermare l’operazione digitando il seguente testo: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
@@ -8148,6 +8170,9 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"La visualizzazione del componente aggiuntivo è stata disattivata; il "
+"componente aggiuntivo non verrà visualizzato nelle pagine elenco né sarà "
+"disponibile per gli aggiornamenti automatici."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -8173,6 +8198,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Riceverai una notifica via email quando il componente aggiuntivo avrà "
+"superato la revisione e sarà stato firmato digitalmente."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -8180,18 +8207,25 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"Quando la revisione sarà completata riceverai una notifica tramite email. "
+"Fino ad allora il componente non comparirà nelle pagine elenco del sito, ma "
+"sarà comunque accessibile dalla propria pagina dedicata."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Il componente aggiuntivo è visualizzato nelle pagine elenco del sito e gli "
+"aggiornamenti automatici sono attivi."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
 msgstr ""
+"Il componente aggiuntivo è stato firmato digitalmente da Mozilla e ora può "
+"essere distribuito tramite un programma di installazione."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8199,6 +8233,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Questo componente aggiuntivo è stato disattivato da un amministratore del "
+"sito e non viene più visualizzato nelle pagine elenco. Per qualsiasi domanda"
+" contatta amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8206,6 +8243,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Il componente aggiuntivo è segnalato nelle pagine elenco come componente "
+"sperimentale e gli utenti che lo hanno installato ricevono gli aggiornamenti"
+" automatici. Alcune funzionalità non sono disponibili."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -8218,6 +8258,11 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"Quando la revisione sarà completata riceverai una notifica tramite email. "
+"Fino ad allora il componente aggiuntivo verrà segnalato nelle pagine elenco "
+"come componente sperimentale e gli utenti che lo hanno installato "
+"riceveranno gli aggiornamenti automatici. Alcune funzionalità non sono "
+"disponibili."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8235,6 +8280,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Da questo momento tutti i componenti aggiuntivi ospitati sul nostro sito "
+"saranno sottoposti a revisione. Se intendi continuare a usufruire di questo "
+"servizio, seleziona il processo di revisione appropriato."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8260,7 +8308,7 @@ msgstr "Creato:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -8363,6 +8411,9 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Scegli la licenza appropriata per i diritti che intendi concedere a terzi "
+"sul codice sorgente del componente aggiuntivo. Rilevante solo per i "
+"componenti aggiuntivi pubblici."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8395,6 +8446,12 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Prima di installare il componente aggiuntivo agli utenti verrà richiesto di "
+"accettare le condizioni dell’End-User License Agreement (EULA), contratto di"
+" licenza per l’utente finale. La presenza di tale contratto influisce "
+"significativamente sul numero di download di un componente aggiuntivo. Nota "
+"bene: EULA non equivale a un contratto di licenza del codice quale per "
+"esempio GPL o MPL. Rilevante solo per i componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid ""
@@ -8618,6 +8675,8 @@ msgid ""
 "                                search and browse listings, as well as at\n"
 "                                the top of your theme's details page."
 msgstr ""
+"Una breve presentazione del tema, verrà visualizzata nelle pagine elenco e "
+"nei risultati di ricerca oltre che nella pagina del tema su AMO."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8826,6 +8885,9 @@ msgid ""
 "                                      search and browse listings, as well as at\n"
 "                                      the top of your theme's details page."
 msgstr ""
+"Una breve presentazione del tema, verrà visualizzata nelle pagine elenco e "
+"nei risultati di ricerca oltre che nella sezione superiore  nella pagina del"
+" tema su AMO."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
@@ -8998,6 +9060,9 @@ msgid ""
 "                          add-on even if the install manifest in the package indicates that the\n"
 "                          add-on is incompatible."
 msgstr ""
+"Modificando da questa pagina le informazioni sul componente aggiuntivo "
+"consentirai agli utenti di installarlo anche se nel file manifesto del "
+"pacchetto venga dichiarato incompatibile."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -10695,6 +10760,9 @@ msgid ""
 "               this addon (whatever the version), between the developer and the\n"
 "               editor. This is visible and editable by both."
 msgstr ""
+"La bacheca è un pannello in cui sviluppatore ed editore possono scambiarsi "
+"informazioni rilevanti su qualunque versione del componente aggiuntivo. I "
+"suoi contenuti possono essere visualizzati e modificati da entrambi."
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
@@ -12604,6 +12672,14 @@ msgid ""
 " with tools to help manage source code, version control, bug tracking and "
 "documentation."
 msgstr ""
+"Si. Molti sviluppatori scelgono di caricare i loro componenti aggiuntivi su "
+"un proprio spazio web. Tuttavia caricare il componente sul <a "
+"href=\"%(amo_url)s\">sito Mozilla dedicato ai componenti aggiuntivi</a> "
+"offre una maggiore visibilità grazie al grande numero di visitatori del "
+"sito. <a href=\"%(md_url)s\">mozdev.org</a> mette a disposizione un hosting "
+"gratuito ai progetti per applicazioni ed estensioni Mozilla, fornendo agli "
+"sviluppatori strumenti utili per gestire il codice sorgente, il controllo di"
+" versione, il bug tracking e la documentazione."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
@@ -12883,6 +12959,12 @@ msgid ""
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which "
 "provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
+"Per questo è importante leggere la <a href=\"%(g_url)s\">Guida per "
+"revisori</a>, in modo da impostare il componente aggiuntivo secondo i "
+"criteri indicati. Un’altra lettura utile è l'articolo <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, che "
+"fornisce eccellenti spunti su come far passare la verifica al componente "
+"aggiuntivo senza intoppi."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -13524,6 +13606,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Tranne dove diversamente indicato, i componenti aggiuntivi presenti nelle "
+"pagine elenco di AMO sono da considerarsi gratuiti."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13586,6 +13670,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"La maggior parte dei componenti aggiuntivi carica codice e risorse all’avvio"
+" di Firefox. In molti casi l’impatto sui tempi di avvio è minimo, in alcuni "
+"casi il rallentamento può essere significativo."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -13939,6 +14026,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Lo sviluppo del progetto Sunbird è stato sospeso, l’ultima versione è stata "
+"rilasciata il 30 marzo 2010. Siamo orgogliosi di aver ospitato i componenti "
+"aggiuntivi per Sunbird sul nostro sito, ma dal momento che il progetto non è"
+" più attivo abbiamo disattivato il supporto per i componenti aggiuntivi."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
