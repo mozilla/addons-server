@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-12 22:08+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-03-16 18:00+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -7469,13 +7469,13 @@ msgid ""
 "though no click-through is required. Additionally, these add-ons cannot use "
 "the voluntary contributions and beta channel features."
 msgstr ""
-"Assim que o extra for aprovado na análise preliminar, ele será "
-"disponibilizado na galeria, sendo exibido na navegação e resultados de "
-"pesquisa, porém em posições posteriores aos extras com análise completa. Seu"
-" botão de instalação exibirá listras de alerta e uma notificação informando "
-"que o extra é experimental e não foi completamente analisado pela Mozilla. "
-"Além disso, estes extras não podem receber doações voluntárias ou usar "
-"canais beta."
+"Assim que o extra for aprovado na revisão preliminar será disponibilizado na"
+" galeria, sendo exibido na navegação e resultados de pesquisa, porém em "
+"posições posteriores aos extras com a revisão completa. O seu botão de "
+"instalação exibirá listras de alerta e uma notificação a informar que o "
+"extra é experimental e não foi completamente revisto pela Mozilla. Além "
+"disso, estes extras não podem receber doações voluntárias ou usar "
+"funcionalidades do canal beta."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid ""
@@ -9336,7 +9336,7 @@ msgstr "Aqui estão alguns grandes extras para o Firefox 4."
 
 #: src/olympia/discovery/modules.py:193
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Temas do dia de São Patrício"
+msgstr "Temas do Dia de São Patrício"
 
 #: src/olympia/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -13360,7 +13360,7 @@ msgid ""
 msgstr ""
 "Extras experimentais foram verificados pelos nossos editores para se "
 "certificarem de que não têm problemas de segurança, mas eles podem ainda ter"
-" erros ou não funcionar correctamente. Tenha cuidado ao instalar extras "
+" erros ou não funcionar corretamente. Tenha cuidado ao instalar extras "
 "experimentais e desinstale o extra imediatamente se notar problemas. <a "
 "href=\"%(url)s\">Saiba mais sobre o processo de revisão</a></dd>"
 
@@ -15454,7 +15454,7 @@ msgstr "Erros encontrados"
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
-"Houve erros nas alterações que efectuou. Corrija-os e volte a submeter."
+"Houve erros nas alterações que efetuou. Corrija-os e volte a submeter."
 
 #: src/olympia/users/views.py:273
 msgid ""
@@ -15527,7 +15527,7 @@ msgstr "Existem erros neste formulário"
 
 #: src/olympia/users/views.py:640
 msgid "Please correct them and resubmit."
-msgstr "Por favor, corrigia-os e volte a enviá-los."
+msgstr "Por favor, corrija-os e volte a submeter."
 
 #: src/olympia/users/views.py:655
 msgid "User reported."

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-12 20:42+0000\n"
+"PO-Revision-Date: 2016-03-16 18:04+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -30,7 +30,7 @@ msgstr "Selecione um ficheiro..."
 
 #: static/js/common/upload-addon.js:70
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "O seu extra deve terminar com .xpi, .jar, .xml"
+msgstr "O seu extra deve terminar com .xpi, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
@@ -78,7 +78,7 @@ msgstr "A validar {0}"
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:273
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Recebida resposta vazia do servidor: {0}"
+msgstr "Recebida resposta vazia do servidor; estado: {0}"
 
 #: static/js/common/upload-addon.js:373
 msgid "Unexpected server error while validating."
@@ -86,7 +86,7 @@ msgstr "Erro inesperado do servidor enquanto validava."
 
 #: static/js/common/upload-addon.js:412
 msgid "Finished validating {0}"
-msgstr "Validação {0} terminada"
+msgstr "Validação de {0} terminada"
 
 #: static/js/common/upload-addon.js:418
 msgid "Your add-on validation timed out, it will be manually reviewed."
@@ -1121,7 +1121,7 @@ msgstr "Solicitadas mais informações"
 
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr "Marcado para análise"
+msgstr "Marcado"
 
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
