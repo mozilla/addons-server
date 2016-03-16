@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-16 16:05+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-03-16 17:37+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -9302,6 +9302,14 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Impostando il tipo di visibilità di un componente aggiuntivo come “esterno” "
+"non sarà più possibile visualizzare le sue versioni e i suoi file su AMO. "
+"Ciò significa che il componente non verrà più incluso nei risultati di "
+"ricerca né avrà una pagina dedicata, inoltre cesseranno gli aggiornamenti "
+"automatici sui dispositivi degli utenti. Quando si ricorre a questa opzione "
+"è pertanto raccomandato includere un <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a> nel file manifesto per rendere possibili gli"
+" aggiornamenti automatici."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:299
 #, python-format
@@ -10064,7 +10072,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr ""
+msgstr "Scrivi un commento su questa versione. L’autore non potrà leggerlo."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10419,7 +10427,7 @@ msgstr[1] "{0} componenti aggiuntivi"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -10499,7 +10507,7 @@ msgstr "Salva"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Prestazioni revisore"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -10586,7 +10594,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgstr "Tutte le recensioni sono state moderate. Ben fatto!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -11846,6 +11854,12 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, noto anche come \"AMO\", è il sito ufficiale che ospita "
+"i componenti aggiuntivi per i software Mozilla come Firefox, Thunderbird e "
+"SeaMonkey. I componenti aggiuntivi permettono di arricchire il browser e le "
+"altre applicazioni con nuove caratteristiche e modificarne il funzionamento."
+" Esplora il sito e scopri migliaia di modi per personalizzare la tua "
+"esperienza online."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -12405,6 +12419,15 @@ msgid ""
 "on. Developers need to be very, very careful with using them.  Mozilla does "
 "not offer documentation on using them to build add-ons."
 msgstr ""
+"È possibile, ma considera che diverse funzionalità di queste librerie sono "
+"disponibili anche attraverso XPCOM, XUL e JavaScript. Inoltre occorre "
+"accertarsi che la libreria non modifichi prototipi di oggetto primitivi "
+"(String.prototype, Date.prototype ecc.) o definisca funzioni globali (es. la"
+" funzione $). Tali modifiche tendono a causare conflitti con gli altri "
+"componenti aggiuntivi, specialmente se questi ultimi utilizzano diverse "
+"versioni di librerie e così via. Utilizzare le librerie nei componenti "
+"aggiuntivi è un’operazione che richiede la massima attenzione e non è "
+"coperta dalla documentazione Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
@@ -12661,6 +12684,13 @@ msgid ""
 "Reviewing Guide</a> to ensure that your add-on meets specific guidelines for"
 " functionality and security."
 msgstr ""
+"Sì. La <a href=\"%(p_url)s\">politica sui componenti aggiuntivi</a> Mozilla "
+"descrive quali caratteristiche deve possedere un componente aggiuntivo per "
+"essere considerato accettabile. Questa politica può essere soggetta a "
+"cambiamenti senza alcun preavviso. Inoltre il team di revisori AMO utilizza "
+"la <a href=\"%(g_url)s\">Guida per revisori</a> per accertarsi che il "
+"componente aggiuntivo rispetti le linee guida in materia di funzionalità e "
+"sicurezza."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:324
 msgid "How do I submit my add-on for review?"
@@ -13051,6 +13081,13 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"La Free Software Foundation mette a disposizione brevi riassunti delle "
+"principali licenze Open Source, inclusa la classificazione di tali licenze "
+"come software libero o copyleft. Comprende anche una discussione sulle "
+"differenze tra licenza per software libero e licenza Copyleft (es. una "
+"licenza Copyleft è un metodo comune per registrare come libero un programma "
+"o altra opera e rendere obbligatorio che anche tutte le sue versioni "
+"modificate o estese siano libere)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:589
 msgid ""
@@ -13396,7 +13433,7 @@ msgstr "Galleria di componenti aggiuntivi"
 msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
-msgstr ""
+msgstr "Come scelgo tra componenti aggiuntivi che fanno la stessa cosa?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13407,6 +13444,12 @@ msgid ""
 "    which is most liked by other users. Remember that you can also just try\n"
 "    out both and see which you like better."
 msgstr ""
+"Spesso diversi componenti aggiuntivi presentano funzionalità simili. Per "
+"decidere quale componente aggiuntivo utilizzare, leggi la descrizione "
+"completa e controlla gli screenshot. Se a questo punto sei ancora indeciso, "
+"dai un’occhiata ai voti, alle recensioni degli utenti e alle statistiche per"
+" capire qual è il più apprezzato dagli altri utenti. E non dimenticare che "
+"puoi sempre installarli entrambi e decidere quale preferisci."
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -13494,6 +13537,11 @@ msgid ""
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Alcuni autori di estensioni richiedono agli utenti di contribuire allo "
+"sviluppo dei componenti aggiuntivi con delle donazioni. Questi contributi "
+"vanno direttamente allo sviluppatore, a meno che non sia indicato un altro "
+"soggetto (ad esempio l’organizzazione senza fini di lucro Mozilla "
+"Foundation)."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -13506,6 +13554,11 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"I componenti aggiuntivi \"beta\" sono versioni non verificate e "
+"rappresentano il lavoro più aggiornato di uno sviluppatore. Ogni autore "
+"utilizza criteri diversi per quanto riguarda la qualità del codice di una "
+"versione beta, in ogni caso è opportuno ipotizzare che queste estensioni "
+"siano meno stabili rispetto alle versioni definitive."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -13525,6 +13578,7 @@ msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
 msgstr ""
+"Che cosa significa quando un componente aggiuntivo è segnalato come lento?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -13544,6 +13598,11 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"Per segnalare la recensione di un utente effettua l’accesso, poi apri la "
+"pagina con le recensioni degli utenti, trova la recensione che vuoi "
+"segnalare, fai clic su \"Segnala questa recensione\" e seleziona una "
+"motivazione per la segnalazione. I moderatori del sito valuteranno la "
+"recensione e prenderanno i necessari provvedimenti."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13980,6 +14039,21 @@ msgid ""
 "<p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Tieni conto di questi suggerimenti:</h2> <ul> <li>Scrivi come se stessi "
+"descrivendo a un amico la tua esperienza con questo componente aggiuntivo. "
+"Fornisci dettagli specifici e chiari, ad esempio spiega le caratteristiche "
+"che hai apprezzato e quello che non ti è piaciuto, come valuti la semplicità"
+" di utilizzo e quali sono i difetti. Evita espressioni generiche come "
+"\"grandioso\" o \"pessimo\" senza spiegare le ragioni di questo "
+"giudizio.</li> <li>Non segnalare problemi o bug nelle recensioni. Il tuo "
+"indirizzo email non è visibile agli sviluppatori e potrebbero avere bisogno "
+"di contattarti per aiutarti a risolvere il problema. Consulta la <a "
+"href=\"%(support)s\">sezione di supporto</a> per scoprire come ottenere "
+"aiuto per questo componente aggiuntivo.</li> <li>Non utilizzare un "
+"linguaggio inappropriato e non inserire informazioni personali.</li> </ul> "
+"<p>Leggi le <a href=\"%(guide)s\" target=\"_blank\">Linee guida per le "
+"recensioni</a> per ulteriori dettagli sulle recensioni dei componenti "
+"aggiuntivi.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -14928,7 +15002,7 @@ msgstr "Visualizza sito Mobile"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "Stato del sito"
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
@@ -15719,6 +15793,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Modifica la tua password. Se hai dimenticato la password puoi <a "
+"href=\"%(reset_url)s\">utilizzare il modulo per reimpostarla</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -15741,6 +15817,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Fornisci qualche informazione in più su di te. Tutti i campi sono "
+"facoltativi ma possono aiutare gli altri utenti a conoscerti meglio."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -16008,6 +16086,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Il link per la reimpostazione della password non è valido in quanto è già "
+"stato utilizzato. Richiedere una nuova reimpostazione della password."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -16267,6 +16347,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Purtroppo non siamo in grado di rimuovere la tua iscrizione. Il link che hai"
+" utilizzato non è valido. Puoi comunque rimuovere la tua iscrizione "
+"modificando la pagina del tuo <a href=\"%(edit_url)s\">profilo</a>."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
