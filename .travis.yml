@@ -10,34 +10,33 @@ cache:
 
 matrix:
   fast_finish: true
-
-env:
-  - TOX_ENV=flake8
-  - TOX_ENV=docs
-  - TOX_ENV=assets
-  - TOX_ENV=es
-  - TOX_ENV=abuse
-  - TOX_ENV=accounts
-  - TOX_ENV=addons
-  - TOX_ENV=amo
-  - TOX_ENV=api
-  - TOX_ENV=bandwagon
-  - TOX_ENV=blocklist
-  - TOX_ENV=devhub
-  - TOX_ENV=discovery
-  - TOX_ENV=editors
-  - TOX_ENV=files
-  - TOX_ENV=landfill
-  - TOX_ENV=lib
-  - TOX_ENV=paypal
-  - TOX_ENV=reviews
-  - TOX_ENV=search
-  - TOX_ENV=signing
-  - TOX_ENV=stats
-  - TOX_ENV=tags
-  - TOX_ENV=translations
-  - TOX_ENV=users
-  - TOX_ENV=zadmin
+  include:
+    - env: TOX_ENV=flake8
+    - env: TOX_ENV=docs
+    - env: TOX_ENV=assets
+    - env: TOX_ENV=elasticsearch
+    - env: TOX_ENV=main APP=abuse
+    - env: TOX_ENV=main APP=accounts
+    - env: TOX_ENV=main APP=addons
+    - env: TOX_ENV=main APP=amo
+    - env: TOX_ENV=main APP=api
+    - env: TOX_ENV=main APP=bandwagon
+    - env: TOX_ENV=main APP=blocklist
+    - env: TOX_ENV=main APP=devhub
+    - env: TOX_ENV=main APP=discovery
+    - env: TOX_ENV=main APP=editors
+    - env: TOX_ENV=main APP=files
+    - env: TOX_ENV=main APP=landfill
+    - env: TOX_ENV=main APP=lib
+    - env: TOX_ENV=main APP=paypal
+    - env: TOX_ENV=main APP=reviews
+    - env: TOX_ENV=main APP=search
+    - env: TOX_ENV=main APP=signing
+    - env: TOX_ENV=main APP=stats
+    - env: TOX_ENV=main APP=tags
+    - env: TOX_ENV=main APP=translations
+    - env: TOX_ENV=main APP=users
+    - env: TOX_ENV=main APP=zadmin
 
 services:
   - memcached
@@ -53,7 +52,7 @@ before_script:
   - mysql -e 'create database olympia;'
 
 script:
-  - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+  - RUNNING_IN_CI=True tox -v -e $TOX_ENV
 
 notifications:
   irc:
