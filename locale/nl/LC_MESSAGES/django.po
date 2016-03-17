@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 10:34+0000\n"
+"PO-Revision-Date: 2016-02-26 10:14+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -224,7 +224,7 @@ msgstr "Bijdrage voor {0}"
 
 #: src/olympia/addons/views.py:613
 msgid "Abuse reported."
-msgstr "Misbruik gerapporteerd."
+msgstr "Misbruik gemeld."
 
 #: src/olympia/addons/widgets.py:49
 msgid "My add-on doesn't fit into any of the categories"
@@ -395,8 +395,8 @@ msgid ""
 "Help support the continued development of <strong>%(addon_name)s</strong> by"
 " making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Help verdere ontwikkeling van <strong>%(addon_name)s</strong> te steunen "
-"door een kleine bijdrage te geven via <a href=\"%(paypal_url)s\">PayPal</a>."
+"Ondersteun verdere ontwikkeling van <strong>%(addon_name)s</strong> door een"
+" kleine bijdrage te geven via <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:15
 #, python-format
@@ -564,7 +564,7 @@ msgstr "Gemiddeld aantal dagelijkse gebruikers"
 
 #: src/olympia/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
-msgstr "Misbruikrapporten"
+msgstr "Misbruikmeldingen"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html:121
@@ -1113,7 +1113,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
 msgid "Report Abuse"
-msgstr "Misbruik rapporteren"
+msgstr "Misbruik melden"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:10
 #, python-format
@@ -2241,11 +2241,11 @@ msgstr "App uitgeschakeld"
 
 #: src/olympia/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} geëscaleerd vanwege groot aantal misbruikrapporten."
+msgstr "{addon} geëscaleerd vanwege groot aantal misbruikmeldingen."
 
 #: src/olympia/amo/log.py:426
 msgid "High Abuse Reports"
-msgstr "Veel misbruikrapporten"
+msgstr "Veel misbruikmeldingen"
 
 #: src/olympia/amo/log.py:433
 msgid "{addon} escalated by reviewer."
@@ -10142,11 +10142,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
-msgstr "{addon}:: Misbruikrapporten"
+msgstr "{addon}:: Misbruikmeldingen"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:12
 msgid "Abuse Reports for {addon} ({num})"
-msgstr "Misbruikrapporten voor {addon} ({num})"
+msgstr "Misbruikmeldingen voor {addon} ({num})"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:18
 #, python-format
@@ -11060,27 +11060,27 @@ msgstr "Verenigde Arabische Emiraten Dirham"
 
 #: src/olympia/lib/constants.py:7
 msgid "Afghanistan Afghani"
-msgstr "Afghaanse Afghani"
+msgstr "Afghaanse afghani"
 
 #: src/olympia/lib/constants.py:8
 msgid "Albania Lek"
-msgstr "Albanese Lek"
+msgstr "Albanese lek"
 
 #: src/olympia/lib/constants.py:9
 msgid "Armenia Dram"
-msgstr "Armeense Dram"
+msgstr "Armeense dram"
 
 #: src/olympia/lib/constants.py:10
 msgid "Netherlands Antilles Guilder"
-msgstr "Nederlands Antilliaanse Gulden"
+msgstr "Nederlands-Antilliaanse gulden"
 
 #: src/olympia/lib/constants.py:11
 msgid "Angola Kwanza"
-msgstr "Angolese Kwanza"
+msgstr "Angolese kwanza"
 
 #: src/olympia/lib/constants.py:12
 msgid "Argentina Peso"
-msgstr "Argentijnse Peso"
+msgstr "Argentijnse peso"
 
 #: src/olympia/lib/constants.py:13
 msgid "Australia Dollar"
@@ -11236,7 +11236,7 @@ msgstr "Fiji-dollar"
 
 #: src/olympia/lib/constants.py:51
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr "Falkland-eilanden (Malvinas) pond"
+msgstr "Falklandeilandse pond"
 
 #: src/olympia/lib/constants.py:52
 msgid "United Kingdom Pound"
@@ -11568,7 +11568,7 @@ msgstr "Sint-Helena-Pond"
 
 #: src/olympia/lib/constants.py:134
 msgid "Sierra Leone Leone"
-msgstr "Sierra Leone Leone"
+msgstr "Sierraleoonse leone"
 
 #: src/olympia/lib/constants.py:135
 msgid "Somalia Shilling"
@@ -13425,9 +13425,8 @@ msgid ""
 msgstr ""
 "Meld u aan met uw account en bezoek de beoordelingspagina van de add-on om "
 "een gebruikersbeoordeling van een add-on te melden. Zoek de beoordeling die "
-"u wilt melden, klik op ‘Deze beoordeling rapporteren’ en selecteer een "
-"reden. Ons editorteam onderzoekt de beoordeling en neemt toepasselijke "
-"actie."
+"u wilt melden, klik op ‘Deze beoordeling melden’ en selecteer een reden. Ons"
+" editorteam onderzoekt de beoordeling en neemt toepasselijke actie."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -14925,7 +14924,7 @@ msgstr "Welkom {0}"
 #: src/olympia/templates/impala/user_login.html:20
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Registreer</a> of <a href=\"%(login)s\">meld u aan</a>"
+msgstr "<a href=\"%(reg)s\">Registreren</a> of <a href=\"%(login)s\">aanmelden</a>"
 
 #: src/olympia/templates/impala/base.html:126
 #, python-format
@@ -15362,9 +15361,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
-"Er is ter bevestiging van uw account een e-mailbericht naar uw adres "
-"verstuurd. Voordat u zich kunt aanmelden dient u uw account te activeren "
-"door op de in dit bericht vermelde koppeling te klikken."
+"Er is een e-mailbericht naar uw adres verzonden om uw account te bevestigen."
+" Voordat u zich kunt aanmelden, dient u uw account te activeren door op de "
+"koppeling in dit e-mailbericht te klikken."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -15392,7 +15391,7 @@ msgid ""
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
-"Er is een e-mailbericht verzonden naar {0} om uw nieuwe e-mailadres te "
+"Er is een e-mailbericht naar {0} verzonden om uw nieuwe e-mailadres te "
 "bevestigen. U dient op de koppeling in dit e-mailbericht te klikken om de "
 "wijziging door te voeren. Tot die tijd kunt u zich blijven aanmelden met uw "
 "huidige e-mailadres."
@@ -15474,9 +15473,9 @@ msgid ""
 "you can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
-"Er is een e-mail verzonden naar uw adres {0} om uw account te bevestigen. "
-"Voordat u zich kunt aanmelden dient u uw account te activeren door op de "
-"koppeling in dit e-mailbericht te klikken."
+"Er is een e-mailbericht naar uw adres {0} verzonden om uw account te "
+"bevestigen. Voordat u zich kunt aanmelden, dient u uw account te activeren "
+"door op de koppeling in dit e-mailbericht te klikken."
 
 #: src/olympia/users/views.py:639
 msgid "There are errors in this form"
@@ -15507,11 +15506,11 @@ msgid ""
 "person in your development group delete you from the list of authors for "
 "your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"U kunt uw account niet verwijderen als u geregistreerd staat als een <a "
-"href=\"%(link)s\">schrijver van een add-on</a>. Vraag om uw account te "
-"kunnen verwijderen iemand anders in uw ontwikkelingsgroep om u te "
-"verwijderen uit de lijst met schrijvers voor uw add-ons. Hierna kunt u hier "
-"terugkomen om uw account te verwijderen."
+"U kunt uw account niet verwijderen als u als een <a "
+"href=\"%(link)s\">schrijver van een add-on</a> bent vermeld. Vraag hiervoor "
+"iemand anders in uw ontwikkelingsgroep om u uit de lijst met schrijvers voor"
+" uw add-ons te verwijderen. Daarna kunt u hier terugkomen om uw account te "
+"verwijderen."
 
 #: src/olympia/users/templates/users/delete.html:29
 msgid ""
@@ -15584,7 +15583,7 @@ msgstr "E-mailadres"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr "Firefox Account beheren…"
+msgstr "Firefox-account beheren…"
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
