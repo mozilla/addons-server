@@ -10,33 +10,34 @@ cache:
 
 matrix:
   fast_finish: true
-  include:
-    - env: TOX_ENV=flake8
-    - env: TOX_ENV=docs
-    - env: TOX_ENV=assets
-    - env: TOX_ENV=elasticsearch
-    - env: TOX_ENV=main APP=abuse
-    - env: TOX_ENV=main APP=accounts
-    - env: TOX_ENV=main APP=addons
-    - env: TOX_ENV=main APP=amo
-    - env: TOX_ENV=main APP=api
-    - env: TOX_ENV=main APP=bandwagon
-    - env: TOX_ENV=main APP=blocklist
-    - env: TOX_ENV=main APP=devhub
-    - env: TOX_ENV=main APP=discovery
-    - env: TOX_ENV=main APP=editors
-    - env: TOX_ENV=main APP=files
-    - env: TOX_ENV=main APP=landfill
-    - env: TOX_ENV=main APP=lib
-    - env: TOX_ENV=main APP=paypal
-    - env: TOX_ENV=main APP=reviews
-    - env: TOX_ENV=main APP=search
-    - env: TOX_ENV=main APP=signing
-    - env: TOX_ENV=main APP=stats
-    - env: TOX_ENV=main APP=tags
-    - env: TOX_ENV=main APP=translations
-    - env: TOX_ENV=main APP=users
-    - env: TOX_ENV=main APP=zadmin
+
+env:
+  - TOX_ENV=flake8
+  - TOX_ENV=docs
+  - TOX_ENV=assets
+  - TOX_ENV=elasticsearch
+  - TOX_ENV=main APP=abuse
+  - TOX_ENV=main APP=accounts
+  - TOX_ENV=main APP=addons
+  - TOX_ENV=main APP=amo
+  - TOX_ENV=main APP=api
+  - TOX_ENV=main APP=bandwagon
+  - TOX_ENV=main APP=blocklist
+  - TOX_ENV=main APP=devhub
+  - TOX_ENV=main APP=discovery
+  - TOX_ENV=main APP=editors
+  - TOX_ENV=main APP=files
+  - TOX_ENV=main APP=landfill
+  - TOX_ENV=main APP=lib
+  - TOX_ENV=main APP=paypal
+  - TOX_ENV=main APP=reviews
+  - TOX_ENV=main APP=search
+  - TOX_ENV=main APP=signing
+  - TOX_ENV=main APP=stats
+  - TOX_ENV=main APP=tags
+  - TOX_ENV=main APP=translations
+  - TOX_ENV=main APP=users
+  - TOX_ENV=main APP=zadmin
 
 services:
   - memcached
