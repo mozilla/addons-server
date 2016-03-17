@@ -33,24 +33,26 @@ class FormsTest(TestCase):
     def test_update_addon_non_existing_name(self):
         """An add-on edit can change the name to any non-existing name."""
         addon = addon_factory(name='some name')
-        form = forms.AddonForm(dict(name=self.non_existing_name),
-                               instance=addon)
+        form = forms.AddonFormBasic(dict(name=self.non_existing_name),
+                                    request=None, instance=addon)
         form.is_valid()
         assert 'name' not in form.errors
 
     def test_update_addon_existing_name(self):
         """An add-on edit can't change the name to an existing add-on name."""
         addon = addon_factory(name='some name')
-        form = forms.AddonForm(dict(name=self.existing_name), instance=addon)
+        form = forms.AddonFormBasic(dict(name=self.existing_name),
+                                    request=None, instance=addon)
         assert not form.is_valid()
-        assert form.errors['name'][0] == self.error_msg
+        assert form.errors['name'][0][1] == self.error_msg
 
     def test_update_addon_existing_name_used_by_unlisted(self):
         """An add-on edit can change the name to an existing name used by an
         unlisted add-on."""
         Addon.objects.get(pk=3615).update(is_listed=False)
         addon = addon_factory(name='some name')
-        form = forms.AddonForm(dict(name=self.existing_name), instance=addon)
+        form = forms.AddonFormBasic(dict(name=self.existing_name),
+                                    request=None, instance=addon)
         form.is_valid()
         assert 'name' not in form.errors
 
@@ -58,7 +60,8 @@ class FormsTest(TestCase):
         """An unlisted add-on edit can change the name to an existing name used
         by an listed add-on."""
         addon = addon_factory(name='some name', is_listed=False)
-        form = forms.AddonForm(dict(name=self.existing_name), instance=addon)
+        form = forms.AddonFormBasic(dict(name=self.existing_name),
+                                    request=None, instance=addon)
         form.is_valid()
         assert 'name' not in form.errors
 
@@ -66,7 +69,8 @@ class FormsTest(TestCase):
         """An add-on edit can change the name to an existing name used by
         another add-on type."""
         addon = addon_factory(name='some name', type=amo.ADDON_PERSONA)
-        form = forms.AddonForm(dict(name=self.existing_name), instance=addon)
+        form = forms.AddonFormBasic(dict(name=self.existing_name),
+                                    request=None, instance=addon)
         form.is_valid()
         assert 'name' not in form.errors
 
