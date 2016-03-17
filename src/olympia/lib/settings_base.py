@@ -939,8 +939,9 @@ REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
 
 # Default to short expiration; check "remember me" to override
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 1209600
+# See: https://github.com/mozilla/addons-server/issues/1789
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 2592000
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797

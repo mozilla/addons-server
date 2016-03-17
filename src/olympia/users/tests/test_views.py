@@ -1,4 +1,6 @@
 import collections
+from dateutil.parser import parse
+from datetime import datetime, timedelta
 import json
 from urlparse import urlparse
 
@@ -908,6 +910,26 @@ class TestReset(UserViewBase):
                                      'new_password2': 'password1'})
         assert not self.user.reload().check_password('password1')
         assert 'You can no longer change your password' in res.content
+
+
+class TestSessionLength(UserViewBase):
+
+    def test_session_does_not_expire_quickly(self):
+        """Make sure no one is overriding our settings and making sessions
+        expire at browser session end. See:
+        https://github.com/mozilla/addons-server/issues/1789
+        """
+        self.client.login(username='jbalogh@mozilla.com', password='password')
+        r = self.client.get('/', follow=True)
+        cookie = r.cookies[settings.SESSION_COOKIE_NAME]
+
+        # The user's session should be valid for at least four weeks (near a
+        # month).
+        four_weeks_from_now = datetime.now() + timedelta(days=28)
+        expiry = parse(cookie['expires']).replace(tzinfo=None)
+
+        assert cookie.value != ''
+        assert expiry >= four_weeks_from_now
 
 
 class TestLogout(UserViewBase):
