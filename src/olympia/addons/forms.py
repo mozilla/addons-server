@@ -31,7 +31,6 @@ from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation
 from olympia.translations.utils import transfield_changed
-from olympia.translations.widgets import TranslationTextInput
 from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
@@ -395,40 +394,6 @@ class AddonFormTechnical(AddonFormBase):
         fields = ('developer_comments', 'view_source', 'site_specific',
                   'external_software', 'auto_repackage', 'public_stats',
                   'whiteboard')
-
-
-class AddonForm(happyforms.ModelForm):
-    name = forms.CharField(widget=TranslationTextInput,)
-    homepage = forms.CharField(widget=TranslationTextInput, required=False)
-    eula = forms.CharField(widget=TranslationTextInput,)
-    description = forms.CharField(widget=TranslationTextInput,)
-    developer_comments = forms.CharField(widget=TranslationTextInput,)
-    privacy_policy = forms.CharField(widget=TranslationTextInput,)
-    the_future = forms.CharField(widget=TranslationTextInput,)
-    the_reason = forms.CharField(widget=TranslationTextInput,)
-    support_email = forms.CharField(widget=TranslationTextInput,)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'homepage', 'default_locale', 'support_email',
-                  'support_url', 'description', 'summary',
-                  'developer_comments', 'eula', 'privacy_policy', 'the_reason',
-                  'the_future', 'view_source', 'prerelease', 'site_specific',)
-
-        exclude = ('status', )
-
-    def clean_name(self):
-        return clean_addon_name(
-            self.cleaned_data['name'], instance=self.instance)
-
-    def save(self):
-        desc = self.data.get('description')
-        if desc and desc != unicode(self.instance.description):
-            amo.log(amo.LOG.EDIT_DESCRIPTIONS, self.instance)
-        if self.changed_data:
-            amo.log(amo.LOG.EDIT_PROPERTIES, self.instance)
-
-        super(AddonForm, self).save()
 
 
 class AbuseForm(happyforms.Form):
