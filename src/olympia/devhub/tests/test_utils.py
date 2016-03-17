@@ -509,14 +509,17 @@ class TestValidationAnnotatorBase(TestCase):
         # Make sure we run the correct validation task for the matched file,
         # if there is a match.
         if file_:
-            self.validate_file.assert_called_once_with([
-                file_.pk, file_.original_hash])
+            self.validate_file.assert_called_once_with(
+                [file_.pk],
+                {'hash_': file_.original_hash, 'is_webextension': False})
         else:
             assert not self.validate_file.called
 
         # Make sure we run the correct validation task for the upload.
         self.validate_upload.assert_called_once_with(
-            [self.file_upload.path, self.file_upload.hash, listed])
+            [self.file_upload.path],
+            {'hash_': self.file_upload.hash, 'listed': listed,
+             'is_webextension': False})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
@@ -539,11 +542,17 @@ class TestValidationAnnotatorBase(TestCase):
         # or only one validation task if there's no match.
         if file_old:
             self.validate_file.assert_has_calls([
-                mock.call([file_new.pk, file_new.original_hash]),
-                mock.call([file_old.pk, file_old.original_hash])])
+                mock.call([file_new.pk], {
+                    'hash_': file_new.original_hash,
+                    'is_webextension': False}),
+                mock.call([file_old.pk], {
+                    'hash_': file_old.original_hash,
+                    'is_webextension': False})
+            ])
         else:
-            self.validate_file.assert_called_once_with([
-                file_new.pk, file_new.original_hash])
+            self.validate_file.assert_called_once_with(
+                [file_new.pk],
+                {'hash_': file_new.original_hash, 'is_webextension': False})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.

@@ -427,7 +427,6 @@ class TestParseXpi(TestCase):
         assert parsed['is_experiment']
 
     def test_match_type_extension_for_webextensions(self):
-        self.create_switch('webextensions')
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
@@ -1098,7 +1097,6 @@ class TestFileFromUpload(UploadTest):
         assert not file_.is_experiment
 
     def test_webextension(self):
-        self.create_switch('webextensions')
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_webextension': True})

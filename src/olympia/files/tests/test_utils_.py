@@ -10,7 +10,7 @@ from nose.tools import eq_
 from django import forms
 
 from olympia import amo
-from olympia.amo.tests import create_switch, TestCase
+from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -170,28 +170,11 @@ class TestExtractor(TestCase):
     def test_parse_manifest_json(self, exists_mock, rdf_extractor,
                                  package_json_extractor,
                                  manifest_json_extractor):
-        self.create_switch('webextensions')
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
         utils.Extractor.parse('foobar')
         assert not rdf_extractor.called
         assert not package_json_extractor.called
         assert manifest_json_extractor.called
-
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.PackageJSONExtractor')
-    @mock.patch('olympia.files.utils.RDFExtractor')
-    @mock.patch('olympia.files.utils.os.path.exists')
-    def test_parse_manifest_json_no_waffle(self, exists_mock, rdf_extractor,
-                                           package_json_extractor,
-                                           manifest_json_extractor):
-        # Here we don't create the waffle switch to enable it.
-        exists_mock.side_effect = self.os_path_exists_for('manifest.json')
-        with self.assertRaises(forms.ValidationError) as exc:
-            utils.Extractor.parse('foobar')
-        assert exc.exception.message == "WebExtensions aren't allowed yet"
-        assert not rdf_extractor.called
-        assert not package_json_extractor.called
-        assert not manifest_json_extractor.called
 
 
 class TestPackageJSONExtractor(TestCase):
@@ -494,7 +477,6 @@ def test_bump_version_in_package_json(file_obj):
 
 
 def test_bump_version_in_manifest_json(file_obj):
-    create_switch('webextensions')
     with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/webextension.xpi',
             file_obj.file_path):
