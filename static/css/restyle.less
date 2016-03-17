@@ -1,3 +1,6 @@
+// Needed for hovercards
+@import 'impala/hovercards';
+
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
 @primary-link: #6ac3e2;
@@ -402,6 +405,11 @@ button.search-button {
 
 #promos .promo-purple {
   background: none;
+}
+
+.featured li {
+  height: auto;
+  width: auto;
 }
 
 // Featured/Monthly Add-on background modification
@@ -1029,4 +1037,79 @@ button.good {
   .close {
     border-radius: 0;
   }
+}
+
+// Unified theme view
+.personas-featured .persona-list-3col {
+  border: 0;
+  min-height: 125px;
+}
+
+.persona-list-3col {
+  li {
+    border: 0;
+    display: inline;
+    overflow: hidden;
+    padding: .6em 0 0;
+    position: relative;
+  }
+
+  .persona.hovercard {
+    margin-right: 14px;
+    width: 32%;
+
+    a {
+      padding: 0;
+    }
+
+    h3 {
+      max-width: 200px;
+    }
+  }
+}
+
+.category-landing .addons-column ul.personas {
+  padding: 0;
+}
+
+.category-landing .addons-column ul li {
+  overflow: visible;
+
+  .persona a {
+    padding: 0;
+  }
+}
+
+.persona.hovercard {
+  max-width: 200px;
+
+  &:hover {
+    margin-bottom: -12px;
+    height: 90px;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 0;
+    padding: 6px 0 3px;
+  }
+
+  .persona-preview {
+    float: none;
+  }
+}
+
+// This is used to override JS that tries to mess with these styles :'(
+.persona.hovercard a {
+  background: none !important;
+
+  .persona-preview [data-browsertheme] {
+    background: none !important;
+    border: 0 !important; // zamboni.css defines this as !important :-/
+  }
+}
+
+.personas-grid li {
+  height: auto;
+  width: auto;
 }

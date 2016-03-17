@@ -1,84 +1,96 @@
-<div class="persona persona-{{ size }}">
-  <div class="persona-inner">
-    <div class="persona-preview{% if details %} with-details{% endif %}">
-      {% set tag = 'a' if linked else 'div' %}
-      {% with addon_url = url_ or addon.get_url_path() %}
-        <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
-      {% endwith %}
-      style="background-image:url('{{ preview }}')"
-      data-browsertheme="{{ persona.json_data }}">
+{% if not waffle.flag('restyle') or size == 'large' %}
+  <div class="persona persona-{{ size }}">
+    <div class="persona-inner">
+      <div class="persona-preview{% if details %} with-details{% endif %}">
+        {% set tag = 'a' if linked else 'div' %}
+        {% with addon_url = url_ or addon.get_url_path() %}
+          <{{ tag }} {% if linked %}href="{{ addon_url }}" target="_self"{% endif %}
+        {% endwith %}
+        style="background-image:url('{{ preview }}')"
+        data-browsertheme="{{ persona.json_data }}">
+          {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
+            {% if addon.is_unreviewed() %}
+              <span class="review-decal">{{ _('Awaiting Review') }}</span>
+            {% elif addon.is_rejected() %}
+              <span class="review-decal rejected">{{ _('Rejected') }}</span>
+            {% elif addon.is_public() %}
+              <span class="review-decal approved">{{ _('Approved') }}</span>
+            {% endif %}
+
+          {% elif extra == 'created' %}
+            <span class="created">
+              {{ _('Added {0}')|f(addon.created|datetime) }}
+            </span>
+          {% elif extra == 'popular' %}
+            <span class="users">
+              {# L10n: {0} is the number of users. #}
+              {{ ngettext("<strong>{0}</strong> user",
+                          "<strong>{0}</strong> users",
+                          addon.persona.popularity)|fe(addon.persona.popularity|numberfmt) }}
+            </span>
+          {% elif extra == 'rating' %}
+            {# TODO(jbalogh): call this rating when remora is gone. #}
+            <span class="reviews">
+              {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
+            </span>
+          {% endif %}
+          {% if title %}
+            <span class="addon-title"><b>{{ addon.name }}</b></span>
+          {% endif %}
+          {% if caption %}
+            <span class="caption">{{ _('Hover to Preview') }}</span>
+          {% endif %}
+          {% if linked %}
+            <span class="persona-install">
+              <button class="add">
+                <div>
+                  <img src="{{ static('img/impala/add-small.png') }}" alt="{{ _('Add') }}">
+                  <span class="disabled-icon">+</span>
+                  <span>{{ _('Add') }}</span>
+                </div>
+              </button>
+            </span>
+          {% endif %}
+        </{{ tag }}>
+
         {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
-          {% if addon.is_unreviewed() %}
-            <span class="review-decal">{{ _('Awaiting Review') }}</span>
-          {% elif addon.is_rejected() %}
-            <span class="review-decal rejected">{{ _('Rejected') }}</span>
-          {% elif addon.is_public() %}
-            <span class="review-decal approved">{{ _('Approved') }}</span>
-          {% endif %}
+          <span class="artist-tools">
+            <a href="{{ addon.get_dev_url() }}" title="{{ _('Edit') }}"><img src="{{ static('img/admin/icon_changelink.gif') }}" alt="{{ _('Edit') }}"></a>
+          </span>
+        {% endif %}
 
-        {% elif extra == 'created' %}
-          <span class="created">
-            {{ _('Added {0}')|f(addon.created|datetime) }}
-          </span>
-        {% elif extra == 'popular' %}
-          <span class="users">
-            {# L10n: {0} is the number of users. #}
-            {{ ngettext("<strong>{0}</strong> user",
-                        "<strong>{0}</strong> users",
-                        addon.persona.popularity)|fe(addon.persona.popularity|numberfmt) }}
-          </span>
-        {% elif extra == 'rating' %}
-          {# TODO(jbalogh): call this rating when remora is gone. #}
-          <span class="reviews">
-            {{ addon.average_rating|float|stars }} {{ addon.total_reviews|numberfmt }}
-          </span>
+        {% if details %}
+          <h6><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h6>
+          <div class="details">
+            <p>
+              {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
+              {% set dt = _('%%Y-%%m-%%d') %}
+              {{ _('by {0} on {1}')|fe(users_list(addon.listed_authors)|safe or persona.display_username|safe,
+                                      addon.created|datetime(dt)) }}
+            </p>
+            {% if addon.total_reviews %}
+              <a href="{{ url('addons.reviews.list', addon.slug) }}">
+                {{ addon.average_rating|float|stars }}
+                {{ addon.total_reviews }}</a>
+            {% else %}
+              <span>{{ _('Not yet rated') }}</span>
+            {% endif %}
+            <span class="users">
+              {{ _('<b>{0}</b> users')|fe(addon.persona.popularity|numberfmt) }}
+            </span>
+          </div>
         {% endif %}
-        {% if title %}
-          <span class="addon-title"><b>{{ addon.name }}</b></span>
-        {% endif %}
-        {% if caption %}
-          <span class="caption">{{ _('Hover to Preview') }}</span>
-        {% endif %}
-        {% if linked %}
-          <span class="persona-install">
-            <button class="add">
-              <div>
-                <img src="{{ static('img/impala/add-small.png') }}" alt="{{ _('Add') }}">
-                <span class="disabled-icon">+</span>
-                <span>{{ _('Add') }}</span>
-              </div>
-            </button>
-          </span>
-        {% endif %}
-      </{{ tag }}>
-
-      {% if request and request.check_ownership(addon, require_owner=True, admin=False) %}
-        <span class="artist-tools">
-          <a href="{{ addon.get_dev_url() }}" title="{{ _('Edit') }}"><img src="{{ static('img/admin/icon_changelink.gif') }}" alt="{{ _('Edit') }}"></a>
-        </span>
-      {% endif %}
-
-      {% if details %}
-        <h6><a href="{{ addon.get_url_path() }}">{{ addon.name }}</a></h6>
-        <div class="details">
-          <p>
-            {# L10n: For datetime formatting, see the table on http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior #}
-            {% set dt = _('%%Y-%%m-%%d') %}
-            {{ _('by {0} on {1}')|fe(users_list(addon.listed_authors)|safe or persona.display_username|safe,
-                                    addon.created|datetime(dt)) }}
-          </p>
-          {% if addon.total_reviews %}
-            <a href="{{ url('addons.reviews.list', addon.slug) }}">
-              {{ addon.average_rating|float|stars }}
-              {{ addon.total_reviews }}</a>
-          {% else %}
-            <span>{{ _('Not yet rated') }}</span>
-          {% endif %}
-          <span class="users">
-            {{ _('<b>{0}</b> users')|fe(addon.persona.popularity|numberfmt) }}
-          </span>
-        </div>
-      {% endif %}
+      </div>
     </div>
   </div>
-</div>
+{% else %}
+  <div class="persona hovercard">
+    <a href="{{ addon.get_url_path() }}">
+      <div class="persona-preview">
+        <img src="{{ addon.persona.thumb_url }}"
+             data-browsertheme="{{ addon.persona.json_data }}" alt="">
+      </div>
+      <h3>{{ addon.name }}</h3>
+    </a>
+  </div>
+{% endif %}
