@@ -6,6 +6,7 @@ python:
 cache:
   directories:
     - node_modules
+    - .tox
     - $HOME/.cache/pip/
 
 matrix:
