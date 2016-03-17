@@ -476,6 +476,8 @@ def contributions_series(request, addon, group, start, end, format):
     if format == 'csv':
         fields = ['date', 'count']
         fields.extend(currencies)
+        for row in series:
+            row.update(row['data'])
         return render_csv(request, addon, series, fields)
     elif format == 'json':
         return render_json(request, addon, series)
