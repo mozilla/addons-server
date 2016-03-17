@@ -12,10 +12,10 @@ matrix:
   fast_finish: true
 
 env:
-  - TOX_ENV=flake8 APP=
-  - TOX_ENV=docs APP=
-  - TOX_ENV=assets APP=
-  - TOX_ENV=elasticsearch APP=
+  - TOX_ENV=flake8 APP=xx
+  - TOX_ENV=docs APP=xx
+  - TOX_ENV=assets APP=xx
+  - TOX_ENV=elasticsearch APP=xx
   - TOX_ENV=main APP=abuse
   - TOX_ENV=main APP=accounts
   - TOX_ENV=main APP=addons
