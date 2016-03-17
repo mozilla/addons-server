@@ -8,6 +8,9 @@ cache:
     - node_modules
     - $HOME/.cache/pip/
 
+matrix:
+  fast_finish: true
+
 env:
   - TOX_ENV=flake8
   - TOX_ENV=docs
