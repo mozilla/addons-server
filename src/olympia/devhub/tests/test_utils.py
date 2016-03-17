@@ -51,7 +51,9 @@ class TestValidationComparator(TestCase):
 
         self.old_msg.update(old)
         self.new_msg.update(merge_dicts(old, changes))
-        self.expected_msg.update(merge_dicts(self.new_msg, expected_changes))
+        if expected_changes is not None:
+            self.expected_msg.update(
+                merge_dicts(self.new_msg, expected_changes))
 
         if ('signing_severity' in self.expected_msg and
                 'ignore_duplicates' not in self.expected_msg):
@@ -63,7 +65,8 @@ class TestValidationComparator(TestCase):
 
         results = self.run_comparator(self.old_msg, self.new_msg.copy())
 
-        assert results['messages'] == [self.expected_msg]
+        if expected_changes is not None:
+            assert results['messages'] == [self.expected_msg]
 
         if 'signing_severity' in self.new_msg:
             summary = merge_dicts(self.SIGNING_SUMMARY,
@@ -79,6 +82,8 @@ class TestValidationComparator(TestCase):
                 assert summaries == (self.SIGNING_SUMMARY, summary)
             else:
                 assert summaries == (summary, self.SIGNING_SUMMARY)
+
+        return results
 
     def run_comparator(self, old, new):
         return (utils.ValidationComparator({'messages': [old]})
@@ -121,6 +126,36 @@ class TestValidationComparator(TestCase):
         assert self.old_msg == A
         assert self.new_msg == A_plus_B
         assert self.expected_msg == FINAL
+
+    def test_compare_nested_matches(self):
+        """Test that nested matches are not included."""
+
+        old = {
+            'id': ('a', 'b', 'c'),
+            'file': 'thing.js',
+            'context': ('x', 'y', 'z'),
+            'thing': 'stuff',
+            'matched': {'something': 'else'},
+        }
+        old_without_matched = old.copy()
+        del old_without_matched['matched']
+
+        changes = {
+            'thing': 'other_thing',
+            'foo': 'bar',
+        }
+
+        expected_result = {
+            'id': ('a', 'b', 'c'),
+            'file': 'thing.js',
+            'context': ('x', 'y', 'z'),
+            'thing': 'other_thing',
+            'foo': 'bar',
+            'matched': old_without_matched,
+        }
+
+        results = self.compare(old, changes, expected_changes=None)
+        assert results['messages'] == [expected_result]
 
     def test_compare_results(self):
         """Test that `compare` tests results correctly."""

@@ -79,9 +79,11 @@ def submit_file(addon_pk, upload_pk):
 
 @atomic
 def create_version_for_upload(addon, upload):
-    if (addon.fileupload_set.filter(created__gt=upload.created,
-                                    version=upload.version).exists()
-            or addon.versions.filter(version=upload.version).exists()):
+    fileupload_exists = addon.fileupload_set.filter(
+        created__gt=upload.created, version=upload.version).exists()
+    version_exists = Version.unfiltered.filter(
+        addon=addon, version=upload.version).exists()
+    if (fileupload_exists or version_exists):
         log.info('Skipping Version creation for {upload_uuid} that would '
                  ' cause duplicate version'.format(upload_uuid=upload.uuid))
     else:
@@ -353,13 +355,6 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
     Not all application versions will have a set of registered
     compatibility tests.
     """
-    if not settings.VALIDATE_ADDONS:
-        # This should only ever be set on development instances.
-        # Don't run the validator, just return a skeleton passing result set.
-        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
-        results['metadata']['listed'] = listed
-        return json.dumps(results)
-
     from validator.validate import validate
 
     apps = dump_apps.Command.JSON_PATH

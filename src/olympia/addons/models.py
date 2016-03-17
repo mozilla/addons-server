@@ -229,10 +229,6 @@ class Addon(OnChangeMixin, ModelBase):
     type = models.PositiveIntegerField(db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), db_index=True, default=0)
-    highest_status = models.PositiveIntegerField(
-        choices=STATUS_CHOICES.items(), default=0,
-        help_text="An upper limit for what an author can change.",
-        db_column='higheststatus')
     icon_type = models.CharField(max_length=25, blank=True,
                                  db_column='icontype')
     homepage = TranslatedField()
@@ -307,7 +303,8 @@ class Addon(OnChangeMixin, ModelBase):
     annoying = models.PositiveIntegerField(
         choices=amo.CONTRIB_CHOICES, default=0,
         help_text=_(u'Users will always be asked in the Add-ons'
-                    u' Manager (Firefox 4 and above)'))
+                    u' Manager (Firefox 4 and above).'
+                    u' Only applies to desktop.'))
     enable_thankyou = models.BooleanField(
         default=False, help_text='Should the thank you note be sent to '
                                  'contributors?')
@@ -395,13 +392,16 @@ class Addon(OnChangeMixin, ModelBase):
             return
         clean_slug(self, slug_field)
 
+    def is_soft_deleteable(self):
+        return self.status or Version.unfiltered.filter(addon=self).exists()
+
     @transaction.atomic
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't
-        # 0 (STATUS_INCOMPLETE).
-        soft_deletion = self.highest_status or self.status
+        # 0 (STATUS_INCOMPLETE) with no versions.
+        soft_deletion = self.is_soft_deleteable()
         if soft_deletion and self.status == amo.STATUS_DELETED:
             # We're already done.
             return

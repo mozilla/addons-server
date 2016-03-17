@@ -91,7 +91,6 @@ class TestVersion(TestCase):
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
-        self.addon.highest_status = amo.STATUS_NULL
         self.addon.status = amo.STATUS_UNREVIEWED
         self.addon.save()
 
@@ -103,10 +102,11 @@ class TestVersion(TestCase):
 
     def test_delete_message_incomplete(self):
         """
-        If an addon has highest_status = 0, they shouldn't be bothered with a
+        If an addon has status = 0, they shouldn't be bothered with a
         blacklisting threat if they hit delete.
         """
-        self.addon.highest_status = amo.STATUS_NULL
+        # Need to hard delete the version or add-on will be soft-deleted.
+        self.addon.latest_version.delete(hard=True)
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
         r = self.client.get(self.url)
@@ -579,6 +579,31 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.admin_review
+
+    def test_update_source_file_should_drop_info_request_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        version.has_info_request = True
+        version.save()
+        tdir = temp.gettempdir()
+        tmp_file = temp.NamedTemporaryFile
+        with tmp_file(suffix=".zip", dir=tdir) as source_file:
+            source_file.write('a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        version = Version.objects.get(pk=self.version.pk)
+        assert response.status_code == 302
+        assert not version.has_info_request
+
+    def test_update_approvalnotes_should_drop_info_request_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        version.has_info_request = True
+        version.save()
+        data = self.formset(approvalnotes="New notes.")
+        response = self.client.post(self.url, data)
+        version = Version.objects.get(pk=self.version.pk)
+        assert response.status_code == 302
+        assert not version.has_info_request
 
 
 class TestVersionEditSearchEngine(TestVersionEditMixin,

@@ -5,7 +5,7 @@
   <h3>
     {{ title }}
   </h3>
-  {% if addon.highest_status or addon.status %}
+  {% if addon.is_soft_deleteable() %}
     <p class="warning">
       {% if addon.is_persona() %}
         {{ _('Deleting your theme will permanently remove it from the site.') }}
@@ -21,8 +21,7 @@
   {% endif %}
   <p>
     <label>
-      {{ _('Enter the following text confirm your decision:
-           {slug}')|fe(slug=addon.slug) }}
+      {{ _('Enter the following text confirm your decision: {slug}')|fe(slug=addon.slug) }}
     </label>
     <input class="full-width" type="text" name="slug" autocomplete="off"
            placeholder="{{ addon.slug }}" pattern="{{ addon.slug }}" required>

@@ -80,6 +80,11 @@ This allows you to generate a new user account and sign in as that user.
         `profile request <https://github.com/mozilla/fxa-profile-server/blob/master/docs/API.md#get-v1profile>`_.
         This is empty by default, meaning the user's account will
         need to be migrated to a Firefox Account.
+    :param group:
+        assign the user to a permission group. Valid choices:
+
+        - **reviewer**: can access add-on reviewer pages, AKA Editor Tools
+        - **admin**: can access any protected page
 
 
     .. sourcecode:: bash
@@ -93,9 +98,11 @@ This allows you to generate a new user account and sign in as that user.
 
         {
             "username": "super-created-7ee304ce",
+            "display_name": "Super Created 7ee304ce",
             "user_id": 10985,
             "email": "super-created-7ee304ce@addons.mozilla.org",
             "fxa_id": null,
+            "groups": [],
             "session_cookie": {
                 "encoded": "sessionid=.eJyrVopPLC3JiC8tTi2KT...",
                 "name": "sessionid",

@@ -2,6 +2,7 @@ import functools
 import hashlib
 import json
 import random
+import re
 import uuid
 from operator import attrgetter
 
@@ -21,7 +22,11 @@ import caching.base as caching
 import jinja2
 import commonware.log
 import session_csrf
+from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
+from rest_framework.generics import ListAPIView
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
 from olympia import amo
@@ -36,16 +41,22 @@ from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import (
     Collection, CollectionFeature, CollectionPromo)
 from olympia import paypal
+from olympia.api.paginator import ESPaginator
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
+from olympia.search.filters import (
+    PublicContentFilter, SearchQueryFilter, SortingFilter)
 from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
 
+from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .models import Addon, Persona, FrozenAddon
-from .decorators import addon_view_factory
+from .search import get_alias
+from .serializers import AddonSerializer, ESAddonSerializer
+
 
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -633,3 +644,48 @@ def persona_redirect(request, persona_id):
         # with cascading deletes?). Tell GoogleBot these are dead with a 404.
         return http.HttpResponseNotFound()
     return http.HttpResponsePermanentRedirect(to)
+
+
+class AddonViewSet(RetrieveModelMixin, GenericViewSet):
+    authentication_classes = []
+    permission_classes = []
+    serializer_class = AddonSerializer
+    addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
+    queryset = Addon.objects.public()  # Only public+enabled add-ons for now.
+    lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+
+    def get_object(self):
+        value = self.kwargs.get('pk')
+        if value and not value.isdigit():
+            # If the value contains anything other than a digit, it's either
+            # a slug or a guid. guids need to contain either {} or @, which are
+            # invalid in a slug.
+            if self.addon_id_pattern.match(value):
+                self.lookup_field = 'guid'
+            else:
+                self.lookup_field = 'slug'
+            self.kwargs.update({
+                'pk': None,
+                self.lookup_field: value
+            })
+        return super(AddonViewSet, self).get_object()
+
+
+class AddonSearchView(ListAPIView):
+    authentication_classes = []
+    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
+    paginator_class = ESPaginator
+    permission_classes = []
+    serializer_class = ESAddonSerializer
+    paginate_by = 25
+    paginate_by_param = 'page_size'
+
+    def get_queryset(self):
+        return Search(using=amo.search.get_es(),
+                      index=get_alias(),
+                      doc_type=Addon._meta.db_table)
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(AddonSearchView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)

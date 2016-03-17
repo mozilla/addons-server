@@ -70,6 +70,11 @@ THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 NOBODY_EMAIL = 'nobody@mozilla.org'
 
+# Add Access-Control-Allow-Origin: * header for the new API with
+# django-cors-headers.
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/v3/.*$'
+
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
@@ -78,6 +83,8 @@ DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
 # Run all views in a transaction unless they are decorated not to.
 DATABASES['default']['ATOMIC_REQUESTS'] = True
+# Pool our database connections up for 300 seconds
+DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # A database to be used by the services scripts, which does not use Django.
 # The settings can be copied from DATABASES, but since its not a full Django
@@ -91,13 +98,6 @@ SERVICES_DATABASE = {
 }
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
-
-# For use django-mysql-pool backend.
-DATABASE_POOL_ARGS = {
-    'max_overflow': 10,
-    'pool_size': 5,
-    'recycle': 300
-}
 
 # Put the aliases for your slave databases in this list.
 SLAVE_DATABASES = []
@@ -147,6 +147,7 @@ def lazy_langs(languages):
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
 PROD_DETAILS_URL = 'https://svn.mozilla.org/libs/product-details/json/'
+PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage'  # noqa
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
@@ -330,12 +331,15 @@ MIDDLEWARE_CLASSES = (
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
 
+    # CSP and CORS need to come before CommonMiddleware because they might
+    # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'commonware.log.ThreadRequestMiddleware',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
@@ -930,7 +934,6 @@ NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
 REDIRECT_SECRET_KEY = ''
 
-PFS_URL = 'https://pfs.mozilla.org/plugins/PluginFinderService.php'
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
 
@@ -1065,7 +1068,6 @@ CELERY_ROUTES = {
 
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
-    'olympia.amo.tasks.delete_incomplete_addons': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
     'olympia.amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},
@@ -1389,10 +1391,11 @@ ASYNC_SIGNALS = True
 PERSONA_DEFAULT_PAGES = 10
 
 REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION', 'redis://localhost:6379/0?socket_timeout=0.5')
+    'REDIS_LOCATION',
+    'redis://localhost:6379/0?socket_timeout=0.5')
 
 
-def _get_redis_settings(uri):
+def get_redis_settings(uri):
     import urlparse
     urlparse.uses_netloc.append('redis')
 
@@ -1411,15 +1414,17 @@ def _get_redis_settings(uri):
         'OPTIONS': options
     }
 
+# This is used for `django-cache-machine`
+REDIS_BACKEND = REDIS_LOCATION
 
 REDIS_BACKENDS = {
-    'master': _get_redis_settings(REDIS_LOCATION)
+    'master': get_redis_settings(REDIS_LOCATION)
 }
 
 # Full path or executable path (relative to $PATH) of the spidermonkey js
 # binary.  It must be a version compatible with amo-validator.
 SPIDERMONKEY = None
-VALIDATE_ADDONS = True
+
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
 

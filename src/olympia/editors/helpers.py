@@ -69,6 +69,8 @@ def file_review_status(addon, file):
 
 @register.function
 def version_status(addon, version):
+    if version.deleted:
+        return _(u'Deleted')
     return ','.join(unicode(s) for s in version.status)
 
 
@@ -477,12 +479,16 @@ class ReviewHelper:
         labels, details = self._review_actions()
 
         actions = SortedDict()
-        if ((not addon.admin_review or acl.action_allowed(request,
-             'ReviewerAdminTools', 'View'))
-            and (not is_limited_reviewer(request)
-                 or (datetime.datetime.now() -
-                     addon.latest_version.nomination >= datetime.timedelta(
-                     hours=REVIEW_LIMITED_DELAY_HOURS)))):
+        reviewable_because_complete = addon.status != amo.STATUS_NULL
+        reviewable_because_admin = (
+            not addon.admin_review or
+            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+        reviewable_because_submission_time = (
+            not is_limited_reviewer(request) or
+            (datetime.datetime.now() - addon.latest_version.nomination >=
+             datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS)))
+        if (reviewable_because_complete and reviewable_because_admin and
+                reviewable_because_submission_time):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
                     label = _lazy('Push to public')
@@ -531,7 +537,7 @@ class ReviewHelper:
                                   'administrators, not the author.'),
                    'reject': _lazy('This will reject the add-on and remove '
                                    'it from the review queue.'),
-                   'comment': _lazy('Make a comment on this version.  The '
+                   'comment': _lazy('Make a comment on this version. The '
                                     'author won\'t be able to see this.')}
 
         if self.addon.status == amo.STATUS_LITE:
@@ -617,9 +623,13 @@ class ReviewBase(object):
             details['files'] = [f.id for f in self.files]
         if self.version:
             details['version'] = self.version.version
+            args = (self.addon, self.version)
+        else:
+            args = (self.addon,)
 
-        amo.log(action, self.addon, self.version, user=self.user,
-                created=datetime.datetime.now(), details=details)
+        kwargs = {'user': self.user, 'created': datetime.datetime.now(),
+                  'details': details}
+        amo.log(action, *args, **kwargs)
 
     def notify_email(self, template, subject):
         """Notify the authors that their addon has been reviewed."""
@@ -635,19 +645,19 @@ class ReviewBase(object):
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
         data['addon_type'] = (_lazy('add-on'))
-        send_mail('editors/emails/%s.ltxt' % template,
-                  subject % (self.addon.name, self.version.version),
+        subject = subject % (self.addon.name,
+                             self.version.version if self.version else '')
+        send_mail('editors/emails/%s.ltxt' % template, subject,
                   emails, Context(data), perm_setting='editor_reviewed')
 
     def get_context_data(self):
-        if self.addon.is_listed:
-            url = self.addon.get_url_path(add_prefix=False)
-        else:
-            url = self.addon.get_dev_url('versions')
+        addon_url = self.addon.get_url_path(add_prefix=False)
+        dev_ver_url = self.addon.get_dev_url('versions')
         return {'name': self.addon.name,
-                'number': self.version.version,
+                'number': self.version.version if self.version else '',
                 'reviewer': self.user.display_name,
-                'addon_url': absolutify(url),
+                'addon_url': absolutify(addon_url),
+                'dev_versions_url': absolutify(dev_ver_url),
                 'review_url': absolutify(reverse('editors.review',
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
@@ -658,12 +668,13 @@ class ReviewBase(object):
         """Send a request for information to the authors."""
         emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
-        self.version.update(has_info_request=True)
+        if self.version:
+            self.version.update(has_info_request=True)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
-        send_mail('editors/emails/info.ltxt',
-                  u'Mozilla Add-ons: %s %s' %
-                  (self.addon.name, self.version.version),
+        subject = u'Mozilla Add-ons: %s %s' % (
+            self.addon.name, self.version.version if self.version else '')
+        send_mail('editors/emails/info.ltxt', subject,
                   emails, Context(self.get_context_data()),
                   perm_setting='individual_contact')
 
@@ -676,10 +687,11 @@ class ReviewBase(object):
                   Context(self.get_context_data()))
 
     def process_comment(self):
-        kw = {'has_editor_comment': True}
-        if self.data.get('clear_info_request'):
-            kw['has_info_request'] = False
-        self.version.update(**kw)
+        if self.version:
+            kw = {'has_editor_comment': True}
+            if self.data.get('clear_info_request'):
+                kw['has_info_request'] = False
+            self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
 
@@ -709,8 +721,7 @@ class ReviewAddon(ReviewBase):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
-        self.set_addon(highest_status=amo.STATUS_PUBLIC,
-                       status=amo.STATUS_PUBLIC)
+        self.set_addon(status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -770,10 +781,6 @@ class ReviewAddon(ReviewBase):
         status = self.addon.status
 
         changes = {'status': amo.STATUS_LITE}
-        if (self.addon.status in (amo.STATUS_PUBLIC,
-                                  amo.STATUS_LITE_AND_NOMINATED)):
-            changes['highest_status'] = amo.STATUS_LITE
-
         template = u'%s_to_preliminary' % self.review_type
         subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
         if (self.review_type == 'preliminary' and

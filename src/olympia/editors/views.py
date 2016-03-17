@@ -31,7 +31,8 @@ from olympia.editors.models import (
     ViewPreliminaryQueue, ViewQueue, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.helpers import (
-    is_limited_reviewer, ViewFastTrackQueueTable, ViewFullReviewQueueTable,
+    is_limited_reviewer, ReviewHelper,
+    ViewFastTrackQueueTable, ViewFullReviewQueueTable,
     ViewPendingQueueTable, ViewPreliminaryQueueTable,
     ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable,
     ViewUnlistedPreliminaryQueueTable)
@@ -580,16 +581,13 @@ def review(request, addon):
         raise http.Http404
 
     version = addon.latest_version
-    if not version:
-        raise http.Http404
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
-    form = forms.get_review_form(request.POST or None, request=request,
-                                 addon=addon, version=version)
-
+    form_helper = ReviewHelper(request=request, addon=addon, version=version)
+    form = forms.ReviewForm(request.POST or None, helper=form_helper)
     queue_type = ('prelim' if form.helper.review_type == 'preliminary'
                   else form.helper.review_type)
     if addon.is_listed:
@@ -613,7 +611,7 @@ def review(request, addon):
     # cached validation, since editors will almost certainly need to access
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
-    if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
+    if version and not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
         for file_ in version.files.all():
             if not file_.has_been_validated:
                 devhub_tasks.validate(file_)
@@ -625,22 +623,21 @@ def review(request, addon):
                 amo.STATUS_LITE_AND_NOMINATED]
 
     try:
-        show_diff = (addon.versions.exclude(id=version.id)
-                                   .filter(files__isnull=False,
-                                           created__lt=version.created,
-                                           files__status__in=statuses)
-                                   .latest())
+        show_diff = version and (
+            addon.versions.exclude(id=version.id).filter(
+                files__isnull=False, created__lt=version.created,
+                files__status__in=statuses).latest())
     except Version.DoesNotExist:
         show_diff = None
 
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    versions = (Version.objects.filter(addon=addon)
-                               .exclude(files__status=amo.STATUS_BETA)
-                               .order_by('-created')
-                               .transform(Version.transformer_activity)
-                               .transform(Version.transformer))
+    versions = (Version.unfiltered.filter(addon=addon)
+                                  .exclude(files__status=amo.STATUS_BETA)
+                                  .order_by('-created')
+                                  .transform(Version.transformer_activity)
+                                  .transform(Version.transformer))
 
     class PseudoVersion(object):
         def __init__(self):
@@ -650,7 +647,8 @@ def review(request, addon):
         approvalnotes = None
         compatible_apps_ordered = ()
         releasenotes = None
-        status = 'Deleted',
+        status = 'Deleted'
+        deleted = True
 
         @property
         def created(self):
@@ -662,6 +660,7 @@ def review(request, addon):
                         .details.get('version', '[deleted]'))
 
     # Grab review history for deleted versions of this add-on
+    # Version are soft-deleted now but we need this for older deletions.
     comments = (CommentLog.objects
                 .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
                         activity_log__versionlog=None,

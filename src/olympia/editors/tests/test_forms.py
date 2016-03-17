@@ -6,8 +6,8 @@ from django.utils.encoding import force_unicode
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
-from olympia.editors.forms import get_review_form
-from olympia.editors.helpers import NOMINATED_STATUSES
+from olympia.editors.forms import ReviewForm
+from olympia.editors.helpers import NOMINATED_STATUSES, ReviewHelper
 from olympia.editors.models import CannedResponse
 from olympia.users.models import UserProfile
 
@@ -28,10 +28,10 @@ class TestReviewActions(TestCase):
 
     def set_status(self, status):
         self.addon.update(status=status)
-        form = get_review_form({'addon_files': [self.file.pk]},
-                               request=self.request,
-                               addon=self.addon,
-                               version=self.version)
+        form = ReviewForm(
+            {'addon_files': [self.file.pk]},
+            helper=ReviewHelper(request=self.request, addon=self.addon,
+                                version=self.version))
         return form.helper.get_actions(self.request, self.addon)
 
     def test_lite_nominated(self):
@@ -41,11 +41,11 @@ class TestReviewActions(TestCase):
 
     def test_other_statuses(self):
         for status in Addon.STATUS_CHOICES:
-            if status in NOMINATED_STATUSES:
+            if status in NOMINATED_STATUSES + (amo.STATUS_NULL, ):
                 return
             else:
-                eq_(force_unicode(self.set_status(status)['prelim']['label']),
-                    'Grant preliminary review')
+                label = self.set_status(status)['prelim']['label']
+                assert force_unicode(label) == 'Grant preliminary review'
 
     def test_nominated_unlisted_addon_no_prelim(self):
         self.addon.update(is_listed=False)
@@ -65,6 +65,10 @@ class TestReviewActions(TestCase):
         # If the file is unreviewed then there is no option to reject,
         # so the length of the actions is one shorter
         eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)
+
+    def test_addon_status_null(self):
+        # If the add-on is null we only show info, comment and super review.
+        assert len(self.set_status(amo.STATUS_NULL)) == 3
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_admin_flagged_addon_actions(self, action_allowed_mock):
@@ -94,9 +98,10 @@ class TestCannedResponses(TestReviewActions):
             sort_group=u'public', type=amo.CANNED_RESPONSE_APP)
 
     def test_no_app(self):
-        form = get_review_form({'addon_files': [self.file.pk]},
-                               request=self.request, addon=self.addon,
-                               version=self.version)
+        form = ReviewForm(
+            {'addon_files': [self.file.pk]},
+            helper=ReviewHelper(request=self.request, addon=self.addon,
+                                version=self.version))
         choices = form.fields['canned_response'].choices[1][1]
         # choices is grouped by the sort_group, where choices[0] is the
         # default "Choose a response..." option.

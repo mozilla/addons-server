@@ -68,7 +68,7 @@ data-default-locale="{{ request.LANG|lower }}"
             <legend>{{ _('Password') }}</legend>
             <p class="sub_legend">
               {% trans reset_url=url('password_reset_form') -%}
-              Change your password.  If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
+              Change your password. If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
               {%- endtrans %}
             </p>
             <ol class="formfields">
@@ -98,7 +98,7 @@ data-default-locale="{{ request.LANG|lower }}"
           <legend>{{ _('Profile') }}</legend>
           <p class="sub_legend">
             {% trans -%}
-              Give us a bit more information about yourself.  All these fields
+              Give us a bit more information about yourself. All these fields
               are optional, but they'll help other users get to know you better.
             {%- endtrans %}
           </p>

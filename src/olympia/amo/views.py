@@ -7,7 +7,6 @@ from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
-from django.utils.encoding import iri_to_uri
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -164,9 +163,3 @@ def cspreport(request):
 def version(request):
     path = os.path.join(settings.ROOT, 'version.json')
     return HttpResponse(open(path, 'rb'), content_type='application/json')
-
-
-@non_atomic_requests
-def plugin_check_redirect(request):
-    return http.HttpResponseRedirect('%s?%s' % (
-        settings.PFS_URL, iri_to_uri(request.META.get('QUERY_STRING', ''))))

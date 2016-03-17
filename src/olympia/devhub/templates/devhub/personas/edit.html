@@ -103,10 +103,10 @@
           <li class="row">
             <label for="{{ form.description.auto_id }}" class="row" data-for="description">
               <p>{{ form.description.label }} {{ required() }}</p>
-              {{ tip(None, _("A short explanation of your theme's
-                                basic functionality that is displayed in
-                                search and browse listings, as well as at
-                                the top of your theme's details page.")) }}
+              {{ tip(None, _("A short explanation of your theme's "
+                             "basic functionality that is displayed in "
+                             "search and browse listings, as well as at "
+                             "the top of your theme's details page.")) }}
             </label>
             {{ form.description }}
             {{ form.description.errors }}
@@ -239,7 +239,7 @@
             {% set rereview = persona.rereviewqueuetheme_set.all() %}
             {% if rereview.exists() %}
               <h3>{{ _('Your previously resubmitted design, '
-                      ' which is under pending review.') }}</h3>
+                       'which is under pending review.') }}</h3>
               <ul class="rereview-preview">
                 <li id="persona-header" class="row">
                   <h3>{{ _('Pending Header') }}</h3>

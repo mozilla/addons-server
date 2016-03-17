@@ -561,29 +561,26 @@ class TestAddonModels(TestCase):
         eq_(len(mail.outbox), 1)
         assert reason in mail.outbox[0].body
 
-    def test_delete_status_gone_wild(self):
-        """
-        Test deleting add-ons where the higheststatus is zero, but there's a
-        non-zero status.
-        """
-        count = Addon.objects.count()
-        addon = Addon.objects.get(pk=3615)
-        addon.status = amo.STATUS_UNREVIEWED
-        addon.highest_status = 0
-        addon.delete('bye')
-        eq_(len(mail.outbox), 1)
-        assert count == Addon.unfiltered.count()
+    def test_delete_incomplete_no_versions(self):
+        """Test deleting incomplete add-ons."""
+        count = Addon.unfiltered.count()
+        a = Addon.objects.get(pk=3615)
+        a.latest_version.delete(hard=True)
+        a.status = 0
+        a.save()
+        a.delete(None)
+        assert len(mail.outbox) == 0
+        assert Addon.unfiltered.count() == (count - 1)
 
-    def test_delete_incomplete(self):
+    def test_delete_incomplete_with_versions(self):
         """Test deleting incomplete add-ons."""
         count = Addon.unfiltered.count()
         a = Addon.objects.get(pk=3615)
         a.status = 0
-        a.highest_status = 0
         a.save()
-        a.delete(None)
-        eq_(len(mail.outbox), 0)
-        eq_(Addon.unfiltered.count(), count - 1)
+        a.delete('oh looky here')
+        assert len(mail.outbox) == 1
+        assert count == Addon.unfiltered.count()
 
     def test_delete_searchengine(self):
         """
@@ -1544,11 +1541,12 @@ class TestAddonDelete(TestCase):
 
         # This should not throw any FK errors if all the cascades work.
         addon.delete()
+        # Make sure it was actually a hard delete.
+        assert not Addon.unfiltered.filter(pk=addon.pk).exists()
 
     def test_review_delete(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                     status=amo.STATUS_PUBLIC,
-                                     highest_status=amo.STATUS_PUBLIC)
+                                     status=amo.STATUS_PUBLIC)
 
         review = Review.objects.create(addon=addon, rating=1, body='foo',
                                        user=UserProfile.objects.create())
@@ -1560,6 +1558,13 @@ class TestAddonDelete(TestCase):
         eq_(Addon.unfiltered.filter(pk=addon.pk).exists(), True)
         eq_(Review.objects.filter(pk=review.pk).exists(), False)
         eq_(ReviewFlag.objects.filter(pk=flag.pk).exists(), False)
+
+    def test_delete_with_deleted_versions(self):
+        addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        version = Version.objects.create(addon=addon, version="1.0")
+        version.delete()
+        addon.delete()
+        assert Addon.unfiltered.filter(pk=addon.pk).exists()
 
 
 class TestUpdateStatus(TestCase):

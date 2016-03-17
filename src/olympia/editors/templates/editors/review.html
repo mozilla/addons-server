@@ -61,7 +61,7 @@
       {% for version in pager.object_list|reverse %}
       <tr class="listing-header">
         <th colspan="2">
-          {% trans version = version.version, created = version.created|datetime, version_status = version.status|join(',') %}
+          {% trans version = version.version, created = version.created|datetime, version_status = version_status(addon, version) %}
           Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
           {% endtrans %}
         </th>
@@ -234,9 +234,9 @@
       <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>
       {{ whiteboard_form.whiteboard }}
       {{ form.notify.errors }}
-      <p>{{ _('The whiteboard is the place to exchange information relevant to
-               this addon (whatever the version), between the developer and the
-               editor. This is visible and editable by both.') }}</p>
+      <p>{{ _('The whiteboard is the place to exchange information relevant to '
+              'this addon (whatever the version), between the developer and the '
+              'editor. This is visible and editable by both.') }}</p>
       <div class="whiteboard-actions">
         <input type="submit" value="{{ _('Update the whiteboard') }}" />
       </div>

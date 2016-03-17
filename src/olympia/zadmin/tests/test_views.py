@@ -1431,7 +1431,6 @@ class TestAddonManagement(TestCase):
     def _form_data(self, data=None):
         initial_data = {
             'status': '4',
-            'highest_status': '4',
             'form-0-status': '4',
             'form-0-id': '67442',
             'form-TOTAL_FORMS': '1',

@@ -42,9 +42,9 @@
           {% if compat_form %}
           <tr>
             <th>{{ tip(_("Compatibility"),
-                       _("Adjusting application information here will allow users to install your
-                          add-on even if the install manifest in the package indicates that the
-                          add-on is incompatible.")) }}</th>
+                       _("Adjusting application information here will allow users to install your "
+                         "add-on even if the install manifest in the package indicates that the "
+                         "add-on is incompatible.")) }}</th>
             <td class="compat-versions">
                 {{ compat_form.non_form_errors() }}
                 {{ compat_form.management_form }}
@@ -71,10 +71,10 @@
           {% with field = version_form.releasenotes %}
             <th>
               <label data-for="releasenotes">{{ _("Version Notes") }}
-              {{ tip(None, _("Information about changes in this release, new features,
-                              known bugs, and other useful information specific to this
-                              release/version. This information is also shown in the
-                              Add-ons Manager when updating.")) }}
+              {{ tip(None, _("Information about changes in this release, new features, "
+                             "known bugs, and other useful information specific to this "
+                             "release/version. This information is also shown in the "
+                             "Add-ons Manager when updating.")) }}
               </label>
             </th>
             <td>
@@ -111,9 +111,9 @@
           {% with field = version_form.approvalnotes %}
             <th>
               <label for="{{ field.auto_id }}">{{ _("Notes for Reviewers") }}</label>
-              {{ tip(None, _("Optionally, enter any information that may be useful
-                              to the Editor reviewing this add-on, such as test
-                              account information.")) }}
+              {{ tip(None, _("Optionally, enter any information that may be useful "
+                             "to the Editor reviewing this add-on, such as test "
+                             "account information.")) }}
             </th>
             <td>
               {{ field.errors }}

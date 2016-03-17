@@ -23,14 +23,18 @@
     {% endblock %}
     {% block site_css %}
       {{ css('zamboni/css') }}
-      {% if waffle.flag('restyle') %}
-        {{ css('restyle/css') }}
-      {% endif %}
       <!--[if IE]><link rel="stylesheet" href="{{ static('css/legacy/ie.css') }}"><![endif]-->
       <!--[if IE 7]><link rel="stylesheet" href="{{ static('css/legacy/ie7.css') }}"><![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
+
+    {% block restyle %}
+      {% if waffle.flag('restyle') %}
+        {{ css('restyle/css') }}
+      {% endif %}
+    {% endblock %}
+
     <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
 
     {% if settings.DEBUG %}
@@ -57,9 +61,6 @@
         data-static-url="{{ STATIC_URL }}"
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
-        {% if waffle.flag('restyle') %}
-          class="restyle"
-        {% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">

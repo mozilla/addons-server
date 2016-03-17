@@ -11,7 +11,6 @@
   </p>
   <p>
     <label>Status:</label> {{ form.status }}<br>
-    <label>Highest:</label> {{ form.highest_status }}<br>
   </p>
   {% if versions %}
   <h3>Versions &amp; Files</h3>
@@ -39,10 +38,14 @@
                 <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
                 <td>{{ file.get_platform_display() }}</td>
                 <td>
-                  {{ form_map[file.id].status }}
-                  {% for hidden in form_map[file.id].hidden_fields() %}
-                    {{ hidden }}
-                  {% endfor %}
+                  {% if not file.version.deleted %}
+                    {{ form_map[file.id].status }}
+                    {% for hidden in form_map[file.id].hidden_fields() %}
+                        {{ hidden }}
+                    {% endfor %}
+                  {% else %}
+                    Deleted
+                  {% endif %}
                 </td>
                 <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" class="recalc" title="{{ file.hash }}">Recalc Hash</a></td>
                 <td>

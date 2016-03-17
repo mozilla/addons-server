@@ -47,6 +47,13 @@ on your host machine::
     docker-compose up -d
     make initialize_docker  # Answer yes, and create your superuser when asked.
 
+.. note::
+
+   When using a virtual machine for docker the default behaviour is to mount
+   your home directory into the docker vm. Your code checkout will need
+   to be within your home directory so that docker-compose will find the necessary
+   files.
+
 Accessing docker
 ~~~~~~~~~~~~~~~~
 
@@ -125,8 +132,9 @@ Gotchas!
 ~~~~~~~~
 
 Please note: any command that would result in files added or modified
-outside of the ``olympia`` folder (e.g. modifying pip or npm dependencies) won't be
-persisted, and thus won't survive after the running container exits.
+outside of the ``addons-server`` folder (e.g. modifying pip or npm
+dependencies) won't be persisted, and thus won't survive after the
+running container exits.
 
 .. note::
     If you need to persist any changes to the image, they should be carried out
@@ -150,8 +158,8 @@ If you want to test out changes to the Olympia Docker image locally, use the
 normal `Docker commands <https://docs.docker.com/reference/commandline/cli/>`_
 such as this to build a new image::
 
-    cd olympia
-    docker build -t addons/olympia .
+    cd addons-server
+    docker build -t addons/addons-server .
     docker-compose up -d
 
 After you've tested your new image, simply commit to master and the

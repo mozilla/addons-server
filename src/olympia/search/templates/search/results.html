@@ -55,7 +55,7 @@
   <p class="cnt">
     {{ ngettext('<b>{0}</b> matching result',
                 '<b>{0}</b> matching results',
-                cnt)|f(cnt|numberfmt)|safe }}
+                cnt)|fe(cnt|numberfmt) }}
   </p>
 {% endmacro %}
 

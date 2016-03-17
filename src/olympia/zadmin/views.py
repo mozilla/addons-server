@@ -5,6 +5,7 @@ from urlparse import urlparse
 
 from django.apps import apps
 from django import http
+from django.db import transaction
 from django.conf import settings
 from django.contrib import admin
 from django.core.cache import cache
@@ -241,7 +242,12 @@ def find_files(job):
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View'),
                           ('BulkValidationAdminTools', 'View')])
+@transaction.non_atomic_requests
 def start_validation(request):
+    # FIXME: `@transaction.non_atomic_requests` is a workaround for an issue
+    # that might exist elsewhere too. The view is wrapped in a transaction
+    # by default and because of that tasks being started in this view
+    # won't see the `ValidationJob` object created.
     form = BulkValidationForm(request.POST)
     if form.is_valid():
         job = form.save(commit=False)
@@ -593,7 +599,8 @@ def general_search(request, app_id, model_id):
 @addon_view_factory(qs=Addon.with_unlisted.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
-    pager = amo.utils.paginate(request, addon.versions.all(), 30)
+    pager = amo.utils.paginate(
+        request, Version.unfiltered.filter(addon=addon), 30)
     # A list coercion so this doesn't result in a subquery with a LIMIT which
     # MySQL doesn't support (at this time).
     versions = list(pager.object_list)
@@ -605,10 +612,6 @@ def addon_manage(request, addon):
             amo.log(amo.LOG.CHANGE_STATUS, addon, form.cleaned_data['status'])
             log.info('Addon "%s" status changed to: %s' % (
                 addon.slug, form.cleaned_data['status']))
-            form.save()
-        if 'highest_status' in form.changed_data:
-            log.info('Addon "%s" highest status changed to: %s' % (
-                addon.slug, form.cleaned_data['highest_status']))
             form.save()
 
         for form in formset:

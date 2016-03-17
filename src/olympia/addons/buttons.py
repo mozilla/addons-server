@@ -68,7 +68,7 @@ def big_install_button(context, addon, **kwargs):
 def mobile_install_button(context, addon, **kwargs):
     from olympia.addons.helpers import statusflags
     button = install_button(context, addon, detailed=True, size='prominent',
-                            mobile=True, **kwargs)
+                            mobile=True, show_contrib=False, **kwargs)
     flags = jinja2.escape(statusflags(context, addon))
     markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
     return jinja2.Markup(markup)

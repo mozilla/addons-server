@@ -86,16 +86,11 @@ class Version(OnChangeMixin, ModelBase):
 
     deleted = models.BooleanField(default=False)
 
-    supported_locales = models.CharField(max_length=255)
-
-    _developer_name = models.CharField(max_length=255, default='',
-                                       editable=False)
-
     source = models.FileField(
         upload_to=source_upload_path, null=True, blank=True)
 
     # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instanciation.
+    # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
     objects = VersionManager()
 
@@ -133,13 +128,10 @@ class Version(OnChangeMixin, ModelBase):
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:
             license = None
-        max_len = cls._meta.get_field_by_name('_developer_name')[0].max_length
-        developer = data.get('developer_name', '')[:max_len]
         v = cls.objects.create(
             addon=addon,
             version=data['version'],
             license_id=license,
-            _developer_name=developer,
             source=source
         )
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
@@ -231,10 +223,17 @@ class Version(OnChangeMixin, ModelBase):
             return ''
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
-    def delete(self):
+    def delete(self, hard=False):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
         amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
-        super(Version, self).delete()
+        if hard:
+            super(Version, self).delete()
+        else:
+            # By default we soft delete so we can keep the files for comparison
+            # and a record of the version number.
+            self.files.update(status=amo.STATUS_DISABLED)
+            self.deleted = True
+            self.save()
 
     @property
     def current_queue(self):
@@ -484,10 +483,6 @@ class Version(OnChangeMixin, ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    @property
-    def developer_name(self):
-        return self._developer_name
-
     def reset_nomination_time(self, nomination=None):
         if not self.nomination or nomination:
             nomination = nomination or datetime.datetime.now()
@@ -601,7 +596,7 @@ def clear_compatversion_cache_on_save(sender, instance, created, **kw):
     except ObjectDoesNotExist:
         return
 
-    if not kw.get('raw') and created:
+    if not kw.get('raw') and (created or instance.deleted):
         instance.addon.invalidate_d2c_versions()
 
 
@@ -625,19 +620,20 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version,
     dispatch_uid='version_inherit_nomination')
-models.signals.post_delete.connect(
-    update_status, sender=Version, dispatch_uid='version_update_status')
 models.signals.post_save.connect(
     update_incompatible_versions, sender=Version,
     dispatch_uid='version_update_incompat')
-models.signals.post_delete.connect(
-    update_incompatible_versions, sender=Version,
-    dispatch_uid='version_update_incompat')
-models.signals.pre_delete.connect(
-    cleanup_version, sender=Version, dispatch_uid='cleanup_version')
 models.signals.post_save.connect(
     clear_compatversion_cache_on_save, sender=Version,
     dispatch_uid='clear_compatversion_cache_save')
+
+models.signals.pre_delete.connect(
+    cleanup_version, sender=Version, dispatch_uid='cleanup_version')
+models.signals.post_delete.connect(
+    update_status, sender=Version, dispatch_uid='version_update_status')
+models.signals.post_delete.connect(
+    update_incompatible_versions, sender=Version,
+    dispatch_uid='version_update_incompat')
 models.signals.post_delete.connect(
     clear_compatversion_cache_on_delete, sender=Version,
     dispatch_uid='clear_compatversion_cache_del')

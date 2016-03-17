@@ -244,9 +244,9 @@ class AvgDailyUserCountTestCase(TestCase):
     def test_adu_is_adjusted_in_cron(self):
         addon = Addon.objects.get(pk=3615)
         eq_(addon.average_daily_users, 6000000)
-        self.assertTrue(
-            addon.average_daily_users > addon.total_downloads + 10000,
-            'Unexpected ADU count. ADU of %d not greater than %d' % (
+        assert \
+            addon.average_daily_users > addon.total_downloads + 10000, \
+            ('Unexpected ADU count. ADU of %d not greater than %d' % (
                 addon.average_daily_users, addon.total_downloads + 10000))
         cron._update_addon_average_daily_users([(3615, 6000000)])
         addon = Addon.objects.get(pk=3615)
@@ -260,9 +260,9 @@ class AvgDailyUserCountTestCase(TestCase):
                                              count=1234)
         counter.save()
 
-        self.assertTrue(
-            addon.average_daily_users > addon.total_downloads + 10000,
-            'Unexpected ADU count. ADU of %d not greater than %d' % (
+        assert \
+            addon.average_daily_users > addon.total_downloads + 10000, \
+            ('Unexpected ADU count. ADU of %d not greater than %d' % (
                 addon.average_daily_users, addon.total_downloads + 10000))
 
         adu = cron.update_addon_average_daily_users

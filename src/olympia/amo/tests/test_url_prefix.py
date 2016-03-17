@@ -41,8 +41,15 @@ class MiddlewareTest(BaseTestCase):
             '/es-ES/firefox/addon/1': '/es/firefox/addon/1',
             '/es-PE/firefox/addon/1': '/es/firefox/addon/1',
 
-            # /admin doesn't get an app.
+            # /developers doesn't get an app.
             '/developers': '/en-US/developers',
+
+            # Check basic use-cases with a 'lang' GET parameter:
+            '/?lang=fr': '/fr/firefox/',
+            '/addon/1/?lang=fr': '/fr/firefox/addon/1/',
+            '/addon/1?lang=fr': '/fr/firefox/addon/1',
+            '/firefox?lang=fr': '/fr/firefox/',
+            '/developers?lang=fr': '/fr/developers',
         }
 
         for path, location in redirections.items():
@@ -58,6 +65,12 @@ class MiddlewareTest(BaseTestCase):
         # /services doesn't get an app or locale.
         response = self.process('/services')
         assert response is None
+
+        # Things in settings.SUPPORTED_NONAPPS_NONLOCALES_PREFIX don't get
+        # a redirect either, even if they have a lang GET parameter.
+        with self.settings(SUPPORTED_NONAPPS_NONLOCALES_PREFIX=('lol',)):
+            response = self.process('/lol?lang=fr')
+            assert response is None
 
     def test_api_no_redirect(self):
         response = self.process('/api/v3/some/endpoint/')

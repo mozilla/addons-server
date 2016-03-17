@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import re
+import uuid
 
 from django import test
 from django.conf import settings
@@ -17,7 +18,7 @@ from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import ESTestCase, TestCase
 from olympia.amo.helpers import absolutify, numberfmt, urlparams
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
@@ -1511,3 +1512,177 @@ class TestMobileDetails(TestPersonas, TestMobile):
         url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
         response = test.Client().get(url)
         eq_(response.status_code, 301)
+
+
+class TestAddonViewSet(TestCase):
+    def setUp(self):
+        super(TestAddonViewSet, self).setUp()
+        self.addon = addon_factory(
+            guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+
+    def _test_detail_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == self.addon.last_updated.isoformat()
+
+    def test_get_by_id(self):
+        self._test_detail_url()
+
+    def test_get_by_slug(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
+        self._test_detail_url()
+
+    def test_get_by_guid(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_by_guid_email_format(self):
+        self.addon.update(guid='my-addon@example.tld')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_not_public(self):
+        # At the moment this API only works with public addons.
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_disabled_by_user(self):
+        # At the moment this API only works with non-disabled addons.
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_not_listed(self):
+        # At the moment this API only works with listed addons.
+        self.addon.update(is_listed=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_not_found(self):
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+
+class TestAddonSearchView(ESTestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestAddonSearchView, self).setUp()
+        self.url = reverse('addon-search')
+
+    def tearDown(self):
+        super(TestAddonSearchView, self).tearDown()
+        self.empty_index('default')
+        self.refresh()
+
+    def perform_search(self, url, data=None, **headers):
+        with self.assertNumQueries(0):
+            response = self.client.get(url, data, **headers)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        return data
+
+    def test_basic(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        assert addon.last_updated  # Just in case.
+        self.refresh()
+
+        data = self.perform_search(self.url)
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == addon.last_updated.isoformat()
+
+        result = data['results'][1]
+        assert result['id'] == addon2.pk
+        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['slug'] == 'my-second-addon'
+
+    def test_empty(self):
+        data = self.perform_search(self.url)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
+
+    def test_pagination(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
+        addon_factory(slug='my-third-addon', name=u'My third Addôn')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'page_size': 1})
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+
+        data = self.perform_search(data['next'])
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon2.pk
+        assert result['name'] == {'en-US': u'My second Addôn'}
+        assert result['slug'] == 'my-second-addon'
+
+    def test_filtering_non_public_addons(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
+                      status=amo.STATUS_NULL)
+        addon_factory(slug='my-unreviewed-addon', name=u'My unreviewed Addôn',
+                      status=amo.STATUS_UNREVIEWED)
+        addon_factory(slug='my-nominated-addon', name=u'My nominated Addôn',
+                      status=amo.STATUS_NOMINATED)
+        addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
+                      status=amo.STATUS_DISABLED)
+        addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
+                      is_listed=False)
+        addon_factory(slug='my-disabled-by-user-addon',
+                      name=u'My disabled by user Addôn',
+                      disabled_by_user=True)
+        self.refresh()
+
+        data = self.perform_search(self.url)
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+
+    def test_with_query(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon_factory(slug='unrelated', name=u'Unrelated')
+        self.refresh()
+
+        data = self.perform_search(self.url, {'q': 'addon'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+
+    def test_with_session_cookie(self):
+        # Session cookie should be ignored, therefore a request with it should
+        # not cause more database queries.
+        self.client.login(username='regular@mozilla.com', password='password')
+        data = self.perform_search(self.url)
+        assert data['count'] == 0
+        assert len(data['results']) == 0

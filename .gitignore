@@ -14,8 +14,10 @@ docs/api/_build
 src/olympia/lib/product_json/.gitignore
 src/olympia/lib/product_json/*.json
 src/olympia/lib/product_json/.last_update
+src/olympia/lib/product_json/*.json.last_modified
 src/olympia/lib/product_json/regions/*.json
 src/olympia/lib/product_json/regions/.last_update
+src/olympia/lib/product_json/regions/*.json.last_modified
 build*.py
 web/media/build_id.txt
 web/media/manifest.appcache

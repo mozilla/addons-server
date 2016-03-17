@@ -2043,7 +2043,7 @@ class TestReview(ReviewBase):
                             applications='something',
                             comments=version['comments'])
                 self.client.post(self.url, data)
-                v.delete()
+                v.delete(hard=True)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):
@@ -2312,18 +2312,22 @@ class TestReview(ReviewBase):
         assert '0.1' in ths.text()
 
     def test_no_versions(self):
-        """A 404 should be returned if there's no version."""
+        """The review page should still load if there are no versions."""
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(self.url, {'action': 'info',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
 
         self.version.delete()
 
-        assert self.client.get(self.url).status_code == 404
+        assert self.client.get(self.url).status_code == 200
         response = self.client.post(self.url, {'action': 'info',
                                                'comments': 'hello sailor'})
-        assert response.status_code == 404
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
 
     @patch('olympia.editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):

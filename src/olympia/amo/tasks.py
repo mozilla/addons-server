@@ -8,7 +8,6 @@ import phpserialize
 from hera.contrib.django_utils import flush_urls
 
 from olympia import amo
-from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
@@ -103,18 +102,6 @@ def delete_anonymous_collections(items, **kw):
              (len(items), delete_anonymous_collections.rate_limit))
     Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
                               pk__in=items).delete()
-
-
-@task
-def delete_incomplete_addons(items, **kw):
-    log.info('[%s@%s] Deleting incomplete add-ons' %
-             (len(items), delete_incomplete_addons.rate_limit))
-    for addon in Addon.objects.filter(
-            highest_status=0, status=0, pk__in=items):
-        try:
-            addon.delete('Deleted for incompleteness')
-        except Exception as e:
-            log.error("Couldn't delete add-on %s: %s" % (addon.id, e))
 
 
 @task

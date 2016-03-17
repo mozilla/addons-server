@@ -786,18 +786,18 @@ function initPayments(delegate) {
         "img/zamboni/contributions/passive.png",
         "img/zamboni/contributions/after.png",
         "img/zamboni/contributions/roadblock.png",
-    ],
-        media_url = $("body").attr("data-media-url"),
-        to = false,
-        img = $("<img id='contribution-preview' alt='' />");
-        moz = $("input[value='moz']");
+    ];
+    var static_url = $("body").attr("data-static-url");
+    var to = false;
+    var img = $("<img id='contribution-preview' alt='' />");
+    var moz = $("input[value='moz']");
     img.hide().appendTo($("body"));
     moz.parent().after(
         $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
     $(".nag li label").each(function (i,v) {
         var pl = new Image();
-        pl.src = media_url + previews[i];
-        $(this).after(format(" &nbsp;<a class='extra' href='{0}{1}'>{2}</a>", [media_url, previews[i], gettext('Example')]));
+        pl.src = static_url + previews[i];
+        $(this).after(format(" &nbsp;<a class='extra' href='{0}{1}'>{2}</a>", [static_url, previews[i], gettext('Example')]));
     });
     $(".nag").delegate("a.extra", "mouseover", function(e) {
         var tgt = $(this);

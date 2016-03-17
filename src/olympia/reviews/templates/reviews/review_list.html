@@ -26,7 +26,7 @@
           {# L10n: {0} is a number. #}
           <h3>{{ ngettext('<b>{0}</b> review for this add-on',
                           '<b>{0}</b> reviews for this add-on',
-                          num)|f(num|numberfmt)|safe }}</h3>
+                          num)|fe(num|numberfmt) }}</h3>
         {% endwith %}
       {% elif reply %}
         {# L10n: {0} is a developer's name. #}

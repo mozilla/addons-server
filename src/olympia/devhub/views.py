@@ -1147,6 +1147,12 @@ def version_edit(request, addon_id, addon, version_id):
                 if (isinstance(form, forms.CompatForm) and
                         'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
+
+        fields = ('source', 'approvalnotes')
+        has_changed = [field in version_form.changed_data for field in fields]
+        if version.has_info_request and any(has_changed):
+            version.update(has_info_request=False)
+            version.save()
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 

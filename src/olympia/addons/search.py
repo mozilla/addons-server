@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from olympia import amo
 from olympia.amo.models import SearchMixin
+from olympia.amo.utils import to_language
 from olympia.addons.cron import reindex_addons
 from olympia.addons.models import Persona
 from olympia.bandwagon.cron import reindex_collections
@@ -24,16 +25,22 @@ log = logging.getLogger('z.es')
 
 def extract(addon):
     """Extract indexable attributes from an add-on."""
-    attrs = ('id', 'slug', 'created', 'last_updated', 'weekly_downloads',
-             'bayesian_rating', 'average_daily_users', 'status', 'type',
-             'hotness', 'is_disabled', 'is_listed')
+    attrs = ('id', 'slug', 'created', 'default_locale', 'last_updated',
+             'weekly_downloads', 'bayesian_rating', 'average_daily_users',
+             'status', 'type', 'hotness', 'is_disabled', 'is_listed')
     d = {attr: getattr(addon, attr) for attr in attrs}
     # Coerce the Translation into a string.
     d['name_sort'] = unicode(addon.name).lower()
     translations = addon.translations
     d['name'] = list(set(string for _, string in translations[addon.name_id]))
+    d['name_translations'] = [
+        {'lang': to_language(lang), 'string': string}
+        for lang, string in addon.translations[addon.name_id] if string]
     d['description'] = list(set(string for _, string
                                 in translations[addon.description_id]))
+    d['description_translations'] = [
+        {'lang': to_language(lang), 'string': string}
+        for lang, string in addon.translations[addon.description_id] if string]
     d['summary'] = list(set(string for _, string
                             in translations[addon.summary_id]))
     d['authors'] = [a.name for a in addon.listed_authors]
@@ -125,8 +132,26 @@ def get_mappings():
     mapping = {
         'properties': {
             'boost': {'type': 'float', 'null_value': 1.0},
+            'default_locale': {'type': 'string', 'index': 'no'},
+            'last_updated': {'type': 'date'},
             # Turn off analysis on name so we can sort by it.
             'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+            # Don't index *_translations fields, they are only there to be
+            # returned to the API directly.
+            'name_translations': {
+                'properties': {
+                    'lang': {'index': 'no', 'type': 'string'},
+                    'string': {'index': 'no', 'type': 'string'}
+                },
+                'type': 'object'
+            },
+            'description_translations': {
+                'properties': {
+                    'lang': {'index': 'no', 'type': 'string'},
+                    'string': {'index': 'no', 'type': 'string'}
+                },
+                'type': 'object'
+            },
             # Adding word-delimiter to split on camelcase and punctuation.
             'name': {'type': 'string',
                      'analyzer': 'standardPlusWordDelimiter'},

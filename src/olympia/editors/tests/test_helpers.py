@@ -275,24 +275,25 @@ class TestReviewHelper(TestCase):
         return unicode(self.get_helper().actions[action]['details'])
 
     def test_action_changes(self):
-        eq_(self.get_action(amo.STATUS_LITE, 'reject')[:26],
-            'This will reject the files')
-        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27],
-            'This will reject the add-on')
-        eq_(self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25],
-            'This will mark the add-on')
-        eq_(self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25],
-            'This will mark the add-on')
-        eq_(self.get_action(amo.STATUS_LITE, 'prelim')[:24],
-            'This will mark the files')
-        eq_(self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27],
+        assert (self.get_action(amo.STATUS_LITE, 'reject')[:26] ==
+                'This will reject the files')
+        assert (self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27] ==
+                'This will reject the add-on')
+        assert (self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25] ==
+                'This will mark the add-on')
+        assert (self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25] ==
+                'This will mark the add-on')
+        assert (self.get_action(amo.STATUS_LITE, 'prelim')[:24] ==
+                'This will mark the files')
+        assert (
+            self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27] ==
             'This will retain the add-on')
-        eq_(self.get_action(amo.STATUS_NULL, 'reject')[:26],
-            'This will reject a version')
-        eq_(self.get_action(amo.STATUS_NOMINATED, 'public')[-31:],
-            'they are reviewed by an editor.')
-        eq_(self.get_action(amo.STATUS_PUBLIC, 'public')[-29:],
-            'to appear on the public side.')
+        assert (self.get_action(amo.STATUS_NULL, 'info')[:41] ==
+                'Use this form to request more information')
+        assert (self.get_action(amo.STATUS_NOMINATED, 'public')[-31:] ==
+                'they are reviewed by an editor.')
+        assert (self.get_action(amo.STATUS_PUBLIC, 'public')[-29:] ==
+                'to appear on the public side.')
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -341,6 +342,33 @@ class TestReviewHelper(TestCase):
             eq_(len(mail.outbox), 1)
             assert mail.outbox[0].body, 'Expected a message'
 
+    def test_email_links(self):
+        expected = {
+            'nominated_to_nominated': 'addon_url',
+            'nominated_to_preliminary': 'addon_url',
+            'nominated_to_public': 'addon_url',
+            'nominated_to_sandbox': 'dev_versions_url',
+
+            'pending_to_preliminary': 'addon_url',
+            'pending_to_public': 'addon_url',
+            'pending_to_sandbox': 'dev_versions_url',
+
+            'preliminary_to_preliminary': 'addon_url',
+
+            'unlisted_to_reviewed': 'dev_versions_url',
+            'unlisted_to_reviewed_auto': 'dev_versions_url',
+            'unlisted_to_sandbox': 'dev_versions_url'
+        }
+
+        self.helper.set_data(self.get_data())
+        context_data = self.helper.handler.get_context_data()
+        for template, context_key in expected.iteritems():
+            mail.outbox = []
+            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+            eq_(len(mail.outbox), 1)
+            assert context_key in context_data
+            assert context_data.get(context_key) in mail.outbox[0].body
+
     def setup_data(self, status, delete=[], is_listed=True):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
@@ -362,6 +390,22 @@ class TestReviewHelper(TestCase):
         eq_(mail.outbox[0].subject, self.preamble)
 
         eq_(self.check_log_count(amo.LOG.REQUEST_INFORMATION.id), 1)
+
+    def test_request_more_information_no_versions(self):
+        assert len(mail.outbox) == 0
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 0
+        self.version.delete()
+        self.helper = helpers.ReviewHelper(request=self.request,
+                                           addon=self.addon)
+        data = {'comments': 'foo', 'action': 'info',
+                'operating_systems': 'osx', 'applications': 'Firefox'}
+        self.helper.set_data(data)
+        self.helper.handler.request_information()
+
+        assert len(mail.outbox) == 1
+        subject = 'Mozilla Add-ons: Delicious Bookmarks '
+        assert mail.outbox[0].subject == subject
+        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_email_no_locale(self):
         self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
@@ -405,7 +449,6 @@ class TestReviewHelper(TestCase):
         addon = Addon.objects.get(pk=3615)
 
         eq_(addon.status, amo.STATUS_PUBLIC)
-        eq_(addon.highest_status, amo.STATUS_PUBLIC)
 
         eq_(addon.versions.all()[0].files.all()[0].status,
             amo.STATUS_PUBLIC)
@@ -428,7 +471,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_PUBLIC)
 
@@ -453,7 +495,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_public()
 
             assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_PUBLIC)
 
@@ -495,8 +536,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -521,8 +560,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary()
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -547,8 +584,6 @@ class TestReviewHelper(TestCase):
                 self.helper.handler.process_preliminary(auto_validation=True)
 
             assert self.addon.status == amo.STATUS_LITE
-            if status == amo.STATUS_LITE_AND_NOMINATED:
-                assert self.addon.highest_status == amo.STATUS_LITE
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_LITE)
 
@@ -586,7 +621,6 @@ class TestReviewHelper(TestCase):
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.status == amo.STATUS_NULL
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_DISABLED)
@@ -606,7 +640,6 @@ class TestReviewHelper(TestCase):
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
-            assert self.addon.highest_status == amo.STATUS_PUBLIC
             assert self.addon.status == amo.STATUS_NULL
             assert self.addon.versions.all()[0].files.all()[0].status == (
                 amo.STATUS_DISABLED)
