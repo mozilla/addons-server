@@ -101,9 +101,7 @@ var csv_keys = {
         'cb-dl-hotness'         : gettext('Browse Listing Up and Coming Sort')
     },
     contributions: {
-        "count": gettext('Number of Contributions'),
-        "total": gettext('Total Amount Contributed'),
-        "average": gettext('Average Contribution')
+        "count": gettext('Number of Contributions')
     },
     overview: {
         'downloads' : gettext('Downloads'),

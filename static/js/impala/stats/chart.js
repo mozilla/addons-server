@@ -254,7 +254,7 @@
                 // Add offset to line up points and ticks on day grouping.
                 'pointStart' : start,
                 'data'  : series[field],
-                'visible' : !(metric == 'contributions' && id !='total')
+                'visible' : !(metric == 'contributions' && id !='count')
             });
         }
 
@@ -405,17 +405,6 @@
         if (metric == "contributions" && newConfig.series.length) {
             _.extend(newConfig, {
                 yAxis : [
-                    { // Amount
-                        title: {
-                            text: gettext('Amount, in USD')
-                        },
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 2);
-                            }
-                        },
-                        min: 0
-                    },
                     { // Number of Contributions
                         title: {
                            text: gettext('Number of Contributions')
@@ -425,8 +414,7 @@
                             formatter: function() {
                                 return Highcharts.numberFormat(this.value, 0);
                             }
-                        },
-                        opposite: true
+                        }
                     }
                 ],
                 tooltip: {
@@ -434,8 +422,6 @@
                     crosshairs : true
                 }
             });
-            // set Daily Users series to use the right yAxis.
-            newConfig.series[0].yAxis = 1;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 
