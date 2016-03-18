@@ -1,12 +1,12 @@
-=======================================
-Welcome to Addon Servers documentation!
-=======================================
+=========================================
+Welcome to Add-ons Servers documentation!
+=========================================
 
-Addon server is the codebase for https://addons.mozilla.org/ ;
-the source lives at https://github.com/mozilla/addons-server
+Add-ons Server is the codebase for https://addons.mozilla.org/;
+the source lives at https://github.com/mozilla/addons-server.
 
-This project was called *olympia* so a lot of this documentation may
-refer to that.
+In the past, this project was *olympia*; documentation that refers to olympia
+refers to this project.
 
 Contents
 --------
