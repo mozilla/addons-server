@@ -17,9 +17,9 @@ help:
 	@echo "  debug             to connect to a running addons-server docker for debugging"
 	@echo "  make              to connect to a running addons-server docker and run make ARGS"
 	@echo "  docs              to builds the docs for Zamboni"
-	@echo "  test              to run all the test suite"
-	@echo "  test_force_db     to run all the test suite with a new database"
-	@echo "  tdd               to run all the test suite, but stop on the first error"
+	@echo "  test              to run the entire test suite"
+	@echo "  test_force_db     to run the entire test suite with a new database"
+	@echo "  tdd               to run the entire test suite, but stop on the first error"
 	@echo "  test_failed       to rerun the failed tests from the previous run"
 	@echo "  initialize_db     to create a new database"
 	@echo "  populate_data     to populate a new database"
@@ -40,22 +40,22 @@ docs:
 	$(MAKE) -C docs html
 
 test:
-	py.test $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test $(ARGS)
 
 test_es:
-	py.test -m es_tests $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test -m es_tests $(ARGS)
 
 test_no_es:
-	py.test -m "not es_tests" $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test -m "not es_tests" $(ARGS)
 
 test_force_db:
-	py.test --create-db $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test --create-db $(ARGS)
 
 tdd:
-	py.test -x --pdb $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test -x --pdb $(ARGS)
 
 test_failed:
-	py.test --lf $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test --lf $(ARGS)
 
 initialize_db:
 	python manage.py reset_db
