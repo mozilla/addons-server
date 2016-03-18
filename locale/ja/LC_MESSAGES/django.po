@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-18 01:54+0000\n"
+"PO-Revision-Date: 2016-03-18 02:06+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -10167,7 +10167,7 @@ msgstr "オランダ, アンティル・ギルダー"
 
 #: src/olympia/lib/constants.py:11
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "アンゴラ, クワンザ"
 
 #: src/olympia/lib/constants.py:12
 msgid "Argentina Peso"
@@ -10191,67 +10191,67 @@ msgstr "ボスニア・ヘルツェゴビナ, 兌換マルク"
 
 #: src/olympia/lib/constants.py:17
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "バルバドス, ドル"
 
 #: src/olympia/lib/constants.py:18
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "バングラデシュ, タカ"
 
 #: src/olympia/lib/constants.py:19
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "ブルガリア, レフ"
 
 #: src/olympia/lib/constants.py:20
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "バーレーン, ディナール"
 
 #: src/olympia/lib/constants.py:21
 msgid "Burundi Franc"
-msgstr ""
+msgstr "ブルンジ, フラン"
 
 #: src/olympia/lib/constants.py:22
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "バーミューダ, ドル"
 
 #: src/olympia/lib/constants.py:23
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "ブルネイ, ダルサラーム・ドル"
 
 #: src/olympia/lib/constants.py:24
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "ボリビア, ボリビアーノ"
 
 #: src/olympia/lib/constants.py:25
 msgid "Brazil Real"
-msgstr ""
+msgstr "ブラジル, レアル"
 
 #: src/olympia/lib/constants.py:26
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "バハマ, ドル"
 
 #: src/olympia/lib/constants.py:27
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "ブータン, ニュルタム"
 
 #: src/olympia/lib/constants.py:28
 msgid "Botswana Pula"
-msgstr ""
+msgstr "ボツワナ, プラ"
 
 #: src/olympia/lib/constants.py:29
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "ベラルーシ, ルーブル"
 
 #: src/olympia/lib/constants.py:30
 msgid "Belize Dollar"
-msgstr ""
+msgstr "ベリーズ, ドル"
 
 #: src/olympia/lib/constants.py:31
 msgid "Canada Dollar"
-msgstr ""
+msgstr "カナダ, ドル"
 
 #: src/olympia/lib/constants.py:32
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "コンゴ/キンシャサ, フラン"
 
 #: src/olympia/lib/constants.py:33
 msgid "Switzerland Franc"
@@ -10767,7 +10767,7 @@ msgstr "サモア, タラ"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "中部アフリカ諸国銀行 (BEAC) CFA, フラン BEAC"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
@@ -10775,15 +10775,15 @@ msgstr "東カリブ, ドル"
 
 #: src/olympia/lib/constants.py:163
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "国際通貨基金 (IMF) 特別引き出し権"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "西アフリカ諸国中央銀行 (BCEAO), フラン"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "パシフィック (CFP), フラン"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
@@ -13766,7 +13766,7 @@ msgstr "このメールアドレスを持つユーザは存在しません。"
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:353
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "匿名ユーザ {id}"
 
 #: src/olympia/users/models.py:410
 msgid "Your account has been restricted"
