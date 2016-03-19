@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-18 02:06+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"PO-Revision-Date: 2016-03-19 14:22+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -40,11 +40,11 @@ msgstr "あなたの Firefox アカウントは既に当サイト上に存在し
 
 #: src/olympia/accounts/views.py:108
 msgid "Great job!"
-msgstr ""
+msgstr "ログイン完了！"
 
 #: src/olympia/accounts/views.py:109
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr "Firefox アカウントで Add-ons サイトへログインできるようになりました。"
+msgstr "今後 Firefox アカウントで Add-ons サイトへログインできます。"
 
 #: src/olympia/accounts/views.py:121
 msgid "Need help?"
@@ -614,7 +614,7 @@ msgstr "バージョン {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "表示できる情報が何もありません。開発者が詳細情報を提供していません。"
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -894,7 +894,7 @@ msgstr "編集"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -1015,6 +1015,8 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>警告:</strong> このアドオンは Mozilla による審査を受けておらず、Firefox 43 "
+"以降のリリース版にインストールすることはできません。サードパーティ製ソフトウェアはあなたのコンピュータに悪影響を及ぼすこともあるため、インストールには注意が必要です。"
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
@@ -1055,6 +1057,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Android 版 Firefox で {0} を使いたいですか？ この QR "
+"コードを読み取れば、あなたのスマートフォンに直接インストールできます。(QR "
+"コードリーダーが必要です。お持ちでなければアプリストアを検索してみてください)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -1829,11 +1834,11 @@ msgstr "管理者用ツール"
 
 #: src/olympia/amo/fields.py:15
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "間違っています。再度お試しください。"
 
 #: src/olympia/amo/fields.py:16
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "入力内容を検証できませんでした。再度お試しください。"
 
 #: src/olympia/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
@@ -2174,7 +2179,7 @@ msgstr "審査担当者による上級審査依頼"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "動画に問題があったため、{addon} の動画は削除されました。"
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -4349,7 +4354,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "コア"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -4844,7 +4849,7 @@ msgstr "検索語句を入力してください。"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "結果を読み込み中..."
 
 # ボタン
 #: src/olympia/devhub/templates/devhub/index.html:22
@@ -8149,7 +8154,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
-msgstr ""
+msgstr "ソースコード"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:128
 msgid ""
@@ -12927,7 +12932,7 @@ msgstr "サイトメンテナンスの間、いくつかの機能が一時的に
 
 #: src/olympia/signing/views.py:53
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "ID が「{}」のアドオンは見つかりませんでした。"
 
 #: src/olympia/signing/views.py:67
 msgid "You do not own this addon."
@@ -12939,7 +12944,7 @@ msgstr "マルチパートファイルデータに「upload」キーが含まれ
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "バージョンがマニフェストファイルと一致しません。"
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
@@ -13367,7 +13372,7 @@ msgstr "モバイル用サイトを表示"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status "
-msgstr ""
+msgstr "サイトステータス"
 
 # フッタ左端
 #: src/olympia/templates/footer.html:3
@@ -13489,6 +13494,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Add-ons サイトは Firefox アカウントを使ったログイン方式への切り替えを行っています。<a href=\"%(url)s\" class"
+"=\"fxa-login\">今すぐログインしてアカウントを移行しましょう</a>。"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:148
@@ -13643,7 +13650,7 @@ msgstr ""
 msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
-msgstr ""
+msgstr "Firefox アカウントを通じてパスワードを回復する必要があります。代わりにログインしてみてください。"
 
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
@@ -13652,7 +13659,7 @@ msgstr "新しいパスワード"
 
 #: src/olympia/users/forms.py:242
 msgid "Email must be {email}."
-msgstr ""
+msgstr "メールアドレスは {email} でなければなりません。"
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
@@ -13721,7 +13728,7 @@ msgstr "既定のロケール"
 
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Firefox アカウントでは今のところメールアドレスの変更はできません。"
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
@@ -13729,7 +13736,7 @@ msgstr "入力されたパスワードが間違っています。"
 
 #: src/olympia/users/forms.py:459
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "メールアドレスは変更できません。"
 
 #: src/olympia/users/forms.py:541
 msgid ""
@@ -14053,13 +14060,13 @@ msgstr "今すぐユーザの写真を削除"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "表示名を設定してください"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
-msgstr ""
+msgstr "登録プロセスを完了するには表示名もしくはユーザ名を設定してください。"
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
@@ -14078,7 +14085,7 @@ msgstr "メールアドレス"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox アカウントを管理..."
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
@@ -14205,17 +14212,18 @@ msgstr "すべて"
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:3
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:8
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "Firefox アカウントへ移行"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:3
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Add-ons サイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
-msgstr ""
+msgstr "スキップ"
 
 #: src/olympia/users/templates/users/login.html:3
 #: src/olympia/users/templates/users/mobile/login.html:3
@@ -14225,7 +14233,7 @@ msgstr "ログイン"
 #: src/olympia/users/templates/users/login.html:13
 #: src/olympia/users/templates/users/mobile/login.html:21
 msgid "Enter your email"
-msgstr ""
+msgstr "メールアドレスを入力してください"
 
 #: src/olympia/users/templates/users/login.html:15
 #: src/olympia/users/templates/users/mobile/login.html:23
@@ -14360,7 +14368,7 @@ msgstr "パスワードの変更が完了しました"
 msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
-msgstr ""
+msgstr "あなたは Firefox アカウントへの移行を完了したため、今後ここでパスワードを変更することはできません。"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
