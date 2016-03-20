@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-20 22:08+0000\n"
+"PO-Revision-Date: 2016-03-20 22:11+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -93,7 +93,7 @@ msgstr "Denne slug bruges allerede. Vælg en anden."
 #: src/olympia/addons/forms.py:74
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Denne slug kan ikke være  \"%s\". Vælg en anden."
+msgstr "Denne slug kan ikke være \"%s\". Vælg en anden."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py:93
@@ -11004,7 +11004,7 @@ msgid ""
 msgstr ""
 "Gennem årene har mange personer bidraget til dette websted, både frivillige "
 "fra fællesskabet og et dedikeret AMO-hold. Du kan se en liste med væsentlige"
-" bidragsydere på vores  <a href=\"%(url)s\">websted over bidragsydere</a> ."
+" bidragsydere på vores <a href=\"%(url)s\">websted over bidragsydere</a> ."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
@@ -12072,7 +12072,7 @@ msgstr ""
 "websted blevet undersøgt og godkendt af Mozillas hold af redaktører, og er "
 "sikre at installere. Vi anbefaler, at du kun installerer godkendte "
 "tilføjelser. Hvis du ønsker at installere tilføjelser, der ikke er "
-"godkendte, herunder  tilføjelser fra andre websteder, skal du være "
+"godkendte, herunder tilføjelser fra andre websteder, skal du være "
 "forsigtigt, da disse tilføjelser kan skade din computer eller krænke dit "
 "privatliv. <a href=\"%(learnmore_url)s\">Læs mere om vores "
 "godkendelsesproces</a>."
@@ -14383,7 +14383,7 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
-"Skift din adgangskode.  Hvis du har glemt din adgangskode, kan du <a "
+"Skift din adgangskode. Hvis du har glemt din adgangskode, kan du <a "
 "href=\"%(reset_url)s\">bruge nulstillingsformularen</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
@@ -14407,7 +14407,7 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
-"Skriv lidt mere om dig selv.  Alle disse felter er valgfrie, men de vil "
+"Skriv lidt mere om dig selv. Alle disse felter er valgfrie, men de vil "
 "hjælpe andre med at lære dig bedre at kende."
 
 #: src/olympia/users/templates/users/edit.html:124
@@ -14675,7 +14675,7 @@ msgid ""
 "used.  Please request a new password reset."
 msgstr ""
 "Linket til nulstilling af adgangskode er ugyldigt, muligvis fordi det "
-"allerede er blevet anvendt.  Bed om en nye nulstilling af adgangskode."
+"allerede er blevet anvendt. Bed om en nye nulstilling af adgangskode."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
@@ -14713,7 +14713,7 @@ msgid ""
 "download and install public add-ons."
 msgstr ""
 "Det er <strong>ikke påkrævet</strong> at registrere sig på AMO, hvis du vil "
-"hente og installere  offentlige tilføjelser."
+"hente og installere offentlige tilføjelser."
 
 #: src/olympia/users/templates/users/register.html:16
 msgid "You only need to register if:"
