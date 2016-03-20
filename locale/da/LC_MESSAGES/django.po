@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-20 16:45+0000\n"
+"PO-Revision-Date: 2016-03-20 22:08+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -634,7 +634,7 @@ msgstr "Version {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Intet at se her!  Udvikleren har ikke inkluderet nogle detaljer."
+msgstr "Intet at se her! Udvikleren har ikke inkluderet nogle detaljer."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -2424,8 +2424,8 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Hovsa!  Vi har haft en fejl.</h1> <p>Den vil vi få rettet snart.</p> <p>"
-" Du kan prøve at genindlæse siden eller gå tilbage til <a "
+"<h1>Hovsa! Vi har haft en fejl.</h1> <p>Den vil vi få rettet snart.</p> <p> "
+"Du kan prøve at genindlæse siden eller gå tilbage til <a "
 "href=\"%(home)s\">siden med tilføjelser</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
@@ -4976,7 +4976,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Lær alt om tilføjelser"
 
 #: src/olympia/devhub/templates/devhub/index.html:41
 msgid ""
@@ -7529,11 +7529,11 @@ msgstr "{0} succesrapporter"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
-msgstr ""
+msgstr "Nyt for udviklere"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Læs bloggen &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid ""
@@ -10833,6 +10833,11 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, almindeligvis kendt som \"AMO\", er Mozillas officielle "
+"websted for tilføjelser til Mozilla-programmer såsom Firefox, Thunderbird og"
+" SeaMonkey. Med tilføjelser kan du tilføje nye funktioner og ændre måden, "
+"hvorpå din browser fungerer. Se dig omkring og udforsk de tusindvis af "
+"måder, du kan tilpasse, hvordan du gør ting på nettet."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -10919,7 +10924,7 @@ msgid ""
 "review add-ons for code quality and stability."
 msgstr ""
 "Hvis du har erfaring med udvikling af tilføjelser, så<a href=\"%(url)s\"> "
-"bliv redaktør</a>!  Vores redaktører er vilde med tilføjelser, og har en "
+"bliv redaktør</a>! Vores redaktører er vilde med tilføjelser, og har en "
 "teknisk baggrund. De undersøger kodens kvalitet og stabilitet."
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
@@ -10929,6 +10934,10 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Hjælp med at forbedre dette websted. Det er open source, og du kan "
+"rapportere fejl og indsende fejlrettelser. <a href=\"%(url)s\"> GitHub</a> "
+"indeholder alle vores aktuelle fejlrapporter. Du kan stadig finde ældre "
+"fejlrapporter i Bugzilla."
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -10969,8 +10978,8 @@ msgid ""
 "answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Et godt sted at begynde er i vores <a href=\"%(faq_url)s\"><abbr "
-"title=\"Ofte stillede spørgsmål\">OSS</abbr></a>.  Hvis du ikke kan finde et"
-" svar dér, kan du <a href=\"%(forum_url)s\"> spørge i vores forummer</a>."
+"title=\"Ofte stillede spørgsmål\">OSS</abbr></a>. Hvis du ikke kan finde et "
+"svar dér, kan du <a href=\"%(forum_url)s\"> spørge i vores forummer</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:72
 #, python-format
@@ -11055,7 +11064,7 @@ msgid ""
 msgstr ""
 "Hvis du opgraderer til en ny version af Firefox eller opdaterer dine "
 "tilføjelser, vil dine gamle rapporter blive skjult, så du kan teste den nye "
-"version. Hvis du har nogle spørgsmål, spørg i  <a href=\"%(url)s\">vores "
+"version. Hvis du har nogle spørgsmål, spørg i <a href=\"%(url)s\">vores "
 "forum</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:69
@@ -11086,7 +11095,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr "Udviklere  &amp; administratorer"
+msgstr "Udviklere &amp; administratorer"
 
 #: src/olympia/pages/templates/pages/credits.html:21
 msgid "Localizers"
@@ -11997,11 +12006,11 @@ msgid ""
 msgstr ""
 "Tilføjelser kan i de fleste tilfælde installeres ved at klikke på knappen "
 "Installer. Tilføjelser kan håndteres, deaktiveres eller afinstalleres fra "
-"fanebledet Tilføjelser i %(app_name)s. For mere detaljerede anvisninger, læs"
+"fanebladet Tilføjelser i %(app_name)s. For mere detaljerede anvisninger, læs"
 " <a href=\"%(extension_url)s\">denne artikel om udvidelser</a> eller <a "
 "href=\"%(theme_url)s\">denne om temaer og udvidede temaer</a>. Hvis du har "
 "problemer med at installere tilføjelser, se <a "
-"href=\"%(troubleshooting_url)s\">Problemer med  udvidelser og temaer</a>."
+"href=\"%(troubleshooting_url)s\">Problemer med udvidelser og temaer</a>."
 
 #: src/olympia/pages/templates/pages/faq.html:100
 msgid "How do I install add-ons without restarting Firefox?"
@@ -12081,6 +12090,10 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"De fleste tilføjelser medfører intet mærkbart fald i ydelsen i %(app_name)s,"
+" men installerer du et stort antal, kan det have negative virkninger. Hvis "
+"du mistænker en tilføjelse for, at få %(app_name)s til at blive langsom, så "
+"prøv at deaktivere den."
 
 #: src/olympia/pages/templates/pages/faq.html:141
 #, python-format
@@ -12168,6 +12181,10 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
+"Med tusindvis af tilgængelige tilføjelser, er der noget for enhver. Men hvis"
+" du leder efter en bestemt tilføjelse, og ikke kan finde den, kan du prøve "
+"at finde den på andre websteder eller skrive om den i vores <a "
+"href=\"%(forum_url)s\">forum</a>."
 
 #: src/olympia/pages/templates/pages/faq.html:187
 msgid ""
@@ -12224,6 +12241,8 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Tilføjelser på vores websted er gratis, med mindre andet er tydeligt "
+"angivet."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -12236,6 +12255,10 @@ msgid ""
 "        contributions go directly to the developer unless a third party is\n"
 "        indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Nogle udviklere af tilføjelser anmoder brugere, der godt kan lide en "
+"tilføjelse, om at bidrage til dens udvikling ved at give et økonomisk "
+"bidrag. Disse bidrag går direkte til udvikleren, medmindre tredjepart er "
+"angivet, såsom den almennyttige Mozilla Foundation."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -12248,6 +12271,10 @@ msgid ""
 "        standards for beta code quality, you should assume that these add-ons\n"
 "        are less stable than the general add-on releases."
 msgstr ""
+"Beta-tilføjelser er ikke-godkendte versioner, som repræsenterer det seneste "
+"arbejde fra en udvikler. Udviklere har forskellige standarder for kvaliteten"
+" af beta-kode, men du bør gå ud fra, at disse tilføjelser er mindre stabile "
+"end de almindelige udgivelser."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
@@ -12267,7 +12294,7 @@ msgstr ""
 msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
-msgstr ""
+msgstr "Hvad betyder det, når en tilføjelse er markeret som langsom?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -12275,6 +12302,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"De fleste tilføjelser indlæser kode og ressourcer samtidig med, at Firefox "
+"startes. I de fleste tilfælde er påvirkningen af opstartstiden minimal, men "
+"nogle tilføjelser kan forårsage en mærkbar nedsat hastighed."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
@@ -12287,6 +12317,11 @@ msgid ""
 "    click \"Report this review\" and select a reason. Our editorial team will\n"
 "    investigate the review and take appropriate action."
 msgstr ""
+"For at rapportere en brugeranmeldelse af en tilføjelse, skal du logge ind på"
+" din konto og gå til tilføjelsens side med anmeldelser. Find den anmeldelse "
+"du vil rapportere, klik på \"Rapporter denne anmeldelse\" og vælg en årsag. "
+"Vores redaktion vil undersøge anmeldelsen og træffe passende "
+"foranstaltninger."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13717,6 +13752,8 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Tilføjelser skifter til Firefox-konti til login. <a href=\"%(url)s\" class"
+"=\"fxa-login\">Log ind nu for at overføre din konto.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:148
@@ -14645,8 +14682,8 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
-"Glemt din adgangskode? Indtast din mailadresse nedenunder og vi vil sende "
-"instruktion i hvordan du laver en ny."
+"Glemt din adgangskode? Indtast din mailadresse nedenunder, og vi vil sende "
+"vejledning i, hvordan du laver en ny."
 
 #: src/olympia/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
