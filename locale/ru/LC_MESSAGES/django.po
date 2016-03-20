@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-12 18:31+0000\n"
+"PO-Revision-Date: 2016-03-20 13:56+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -5560,6 +5560,10 @@ msgid ""
 "                          listings, as well as at the top of your add-on's\n"
 "                          details page. It is only relevant for listed add-ons."
 msgstr ""
+"Короткое объяснение базовой функциональности вашего\n"
+"                          дополнения, которое отображается в поиске и страницах,\n"
+"                          а также вверху страницы самого дополнения.\n"
+"                          Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5567,6 +5571,9 @@ msgid ""
 "                        Choose any that fit your add-on's functionality for the most\n"
 "                        exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Категории - основной критерий, по которому пользователи просматривают дополнения.\n"
+"                        Выберите любую, которая наилучшим образом соответствует функциональности\n"
+"                        вашего дополнения. Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
@@ -5625,6 +5632,10 @@ msgid ""
 "                          field is only displayed on the add-on's details\n"
 "                          page. It is only relevant for listed add-ons."
 msgstr ""
+"Длинное описание возможностей,\n"
+"                          функциональности, и другой релеватной информации.\n"
+"                          Это поле отображается только на странице деталей дополнения.\n"
+"                          Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
@@ -5637,6 +5648,9 @@ msgid ""
 "                        unless you override it with a locale-specific translation.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Информация о вашем дополнении, отображаемая в этой локали,\n"
+"                        хотя вы можете переопределять её переводом на другой язык.\n"
+"                        Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5653,6 +5667,10 @@ msgid ""
 "                          languages multiple translations of this field can be\n"
 "                          added. It is only relevant for listed add-ons."
 msgstr ""
+"Если у вашего дополнения другая домашняя страница, введите её\n"
+"                          адрес здесь. Если ваш сайт переведён на другие\n"
+"                          языки, можно добавить переводы в это поле.\n"
+"                          Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -5675,6 +5693,11 @@ msgid ""
 "                          this field can be added. It is only relevant for\n"
 "                          listed add-ons."
 msgstr ""
+"Если вы хотите отобразить адрес электронной почты для поддержки,\n"
+"                          введите его здесь. Если у вас есть различные адреса\n"
+"                          для каждого языка, то можно добавить несколько\n"
+"                          локализаций для этого поля. Это относится только к\n"
+"                          опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5683,6 +5706,10 @@ msgid ""
 "                          other languages, multiple translations of this field can\n"
 "                          be added. It is only relevant for listed add-ons."
 msgstr ""
+"Если у вашего дополнения есть сайт поддержки или форум, введите\n"
+"                          его адрес здесь. Если ваш сайт переведён на\n"
+"                          другие языки, для этого поля можно добавить несколько локализаций.\n"
+"                          Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
@@ -5779,6 +5806,9 @@ msgid ""
 "                        add-on when a new version of the SDK is released.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Если выбрано, мы попытаемся автоматически обновить ваше\n"
+"                        дополнение при выходе новой версии SDK.\n"
+"                        Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
@@ -5848,6 +5878,10 @@ msgid ""
 "                      must be one of the following image types: .png, .jpg.\n"
 "                      It is only relevant for listed add-ons."
 msgstr ""
+"Загрузите иконку вашего дополнения или выберите одну из наших.\n"
+"                      Иконка отображается везде рядом с вашим дополнением. Загружаемые изображения\n"
+"                      могут быть в следующих форматах: .png, .jpg.\n"
+"                      Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -8069,6 +8103,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page."
 msgstr ""
+"Вы получите письмо, когда проверка будет завершена. До этого,\n"
+"                             ваше дополнение не будет отображаться в нашей галерее, но к нему\n"
+"                             можно получить доступ непосредственно с его страницы."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48
@@ -8085,6 +8122,9 @@ msgid ""
 "                             then, your add-on is not listed in our gallery but can be\n"
 "                             accessed directly from its details page. "
 msgstr ""
+"Вы получите письмо, когда проверка будет завершена. До этого,\n"
+"                             ваше дополнение не будет отображаться в нашей галерее, но к нему\n"
+"                             можно получить доступ непосредственно с его страницы. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
 msgid ""
@@ -8108,6 +8148,9 @@ msgid ""
 "                             longer shown in our gallery. If you have any questions,\n"
 "                             please email amo-admins@mozilla.org."
 msgstr ""
+"Ваше дополнение отключено администратором сайта и\n"
+"                             более не показывается в нашей галерее. Если у вам есть какие-либо вопросы,\n"
+"                             пожалуйста, напишите на amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
@@ -8115,6 +8158,9 @@ msgid ""
 "                             and users are receiving automatic updates. Some features\n"
 "                             are unavailable to your add-on."
 msgstr ""
+"Ваше дополнение показывается в нашей галерее как экспериментальное,\n"
+"                             а пользователи получают автоматические обновления. Некоторые\n"
+"                             возможности для вашего дополнения недоступны."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -8127,6 +8173,10 @@ msgid ""
 "                             experimental and users are receiving automatic updates.\n"
 "                             Some features are unavailable to your add-on."
 msgstr ""
+"Вы получите письмо, когда полная проверка будет завершена.\n"
+"                             До этого, ваше дополнение будет показываться в нашей галерее как\n"
+"                             экспериментальное и пользователи смогут получать автоматические обновления.\n"
+"                             Некоторые возможности для вашего дополнения будут недоступны."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -8134,6 +8184,9 @@ msgid ""
 "                             complete, making you able to bundle your add-on with an\n"
 "                             application installer."
 msgstr ""
+"Вы получите письмо, когда полная проверка будет\n"
+"                             завершена, дав вам возможность упаковать ваше дополнение\n"
+"                             с установщиком."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid ""
@@ -8141,6 +8194,9 @@ msgid ""
 "                             editor. If you wish to continue hosting your add-on, please\n"
 "                             click to select a review process."
 msgstr ""
+"Все дополнения, хранимые в нашей галереи, должны быть проверены\n"
+"                             редактором. Если вы хотите продолжать хостить ваше дополнение, пожалуйста,\n"
+"                             щёлкните, чтобы выбрать процесс проверки."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:113
 msgid "Current Version:"
@@ -8153,6 +8209,10 @@ msgid ""
 "                                           button on addons.mozilla.org. It is only\n"
 "                                           relevant for listed add-ons."
 msgstr ""
+"Это версия вашего дополнения, которая может\n"
+"                                           быть установлена любым, кто нажмёт на кнопку\n"
+"                                           Установить на addons.mozilla,org. Это относится\n"
+"                                           только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:123
 msgid "Created:"
@@ -8174,6 +8234,8 @@ msgid ""
 "This is the newest uploaded version, however\n"
 "                                           it isn’t live on the site yet."
 msgstr ""
+"Это новейшая загруженная версия, однако\n"
+"                                           она ещё не на сайте."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -8301,6 +8363,8 @@ msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used.\n"
 "                It is only relevant for listed add-ons."
 msgstr ""
+"Если ваше дополнение передаёт какие-либо данные с компьютера пользователя, необходимо иметь политику приватности, которая объясняет, какие данные отправляются и как они используются.\n"
+"                Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8892,6 +8956,9 @@ msgid ""
 "                          add-on even if the install manifest in the package indicates that the\n"
 "                          add-on is incompatible."
 msgstr ""
+"Настройка информации о расширении позволит пользователям устанавливать\n"
+"                          ваше дополнение, даже если в его манифесте указано, что\n"
+"                          дополнение несовместимо."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
@@ -8900,6 +8967,10 @@ msgid ""
 "                              release/version. This information is also shown in the\n"
 "                              Add-ons Manager when updating."
 msgstr ""
+"Информация об изменениях в этом релизе, новые возможности,\n"
+"                              известные баги, и другая полезная информация, относящаяся к\n"
+"                              этому релизу/версии. Эта информация также показывается в\n"
+"                              менеджере дополнений, при обновлении."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8916,6 +8987,9 @@ msgid ""
 "                              to the Editor reviewing this add-on, such as test\n"
 "                              account information."
 msgstr ""
+"При желании, введите любую информацию, которая может быть полезна\n"
+"                              для редактора, проверяющего это дополнение, такую как\n"
+"                              информацию о тестовом аккаунте."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -11735,6 +11809,11 @@ msgid ""
 "or application works.  Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, широко известный как \"AMO\" является официальным сайтом"
+" Mozilla для дополнений ПО Mozilla, такого как Firefox, Thunderbird и "
+"SeaMonkey. Дополнения позволяют добавить новые возможности и улучшить работу"
+" вашего браузера.  Оглянитесь вокруг и исследуйте тысячи способов настроить "
+"то, как вы работаете в Интернете."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -13381,6 +13460,9 @@ msgid ""
 "        is starting up. In most cases the impact in start-up time is minimal,\n"
 "        but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"Многие дополнения загружают код и ресурсы во время\n"
+"        запуска Firefox. В большинстве случаев их воздействие на запуск минимально,\n"
+"        но некоторые дополнения могут быть причиной заметного замедления."
 
 #: src/olympia/pages/templates/pages/faq.html:236
 msgid "How do I report an inappropriate or spam user review?"
