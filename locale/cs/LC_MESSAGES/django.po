@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-09 09:15+0000\n"
+"PO-Revision-Date: 2016-03-20 08:54+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1065,7 +1065,7 @@ msgid ""
 "when installing third-party software that might harm your computer."
 msgstr ""
 "<strong>Varování:</strong> Tento doplněk nebyl zkontrolován Mozillou a "
-"nemůže být nainstalován do Firefoxu verze 43 a vyšší.  Buďte opatrní při "
+"nemůže být nainstalován do Firefoxu verze 43 a vyšší. Buďte opatrní při "
 "instalaci softwaru třetích stran, který může být škodlivý pro váš počítač."
 
 #: src/olympia/addons/templates/addons/popups.html:120
@@ -1111,6 +1111,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Chcete {0} do své mobilní verze Firefoxu? Pro přímou instalaci si sejměte "
+"tento QR kód. (Budete potřebovat čtečku QR kódu. Pokud ji nemáte, podívejte "
+"se do obchodu s aplikacemi pro váš telefon.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
@@ -3403,12 +3406,11 @@ msgstr "Obnovit"
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
-"Podporované formáty jsou PNG a JPG.  Obrázky budou upraveny na rozměry "
-"32x32."
+"Podporované formáty jsou PNG a JPG. Obrázky budou upraveny na rozměry 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr "V tomto formuláři se vyskytly chyby.  Níže je prosím opravte."
+msgstr "V tomto formuláři se vyskytly chyby. Níže je prosím opravte."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -4516,7 +4518,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Jádro"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -5669,6 +5671,8 @@ msgid ""
 "These flags are used to classify add-ons. It is only\n"
 "                        relevant for listed add-ons."
 msgstr ""
+"Tyto příznaky jsou použity k zařazení doplňku. Relevantní pouze pro "
+"zveřejněné doplňky."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
@@ -5687,6 +5691,8 @@ msgid ""
 "Whether the source of your add-on can be displayed in our\n"
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Určuje, zda může být zdrojový k doplňku zobrazen v našem online prohlížeči. "
+"Relevantní pouze pro zveřejněné doplňky."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -5706,6 +5712,8 @@ msgid ""
 "                        be displayed in our online viewer.\n"
 "                        It is only relevant for listed add-ons."
 msgstr ""
+"Určuje, zda mohou být statistiky použití zobrazeny v našem online "
+"prohlížeči. Relevantní pouze pro zveřejněné doplňky."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
@@ -5808,6 +5816,8 @@ msgid ""
 "Used in listings of add-ons, like search results\n"
 "                            and featured add-ons."
 msgstr ""
+"Použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené "
+"doplňky."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -6107,6 +6117,8 @@ msgid ""
 "          the meantime, you and your friends can install it directly from its\n"
 "          details page:"
 msgstr ""
+"Jakmile bude doplněk zkontrolován redaktorem, obdržíte e-mail. V mezičase si"
+" ho můžete vy a vaši přátelé nainstalovat přímo ze stránky detailu:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -7929,6 +7941,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing\n"
 "                             anywhere in our gallery or update service."
 msgstr ""
+"Stránka vašeho doplňku je zakázána a není tak k dispozici kdekoliv v naší "
+"galerii či aktualizační službě."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "Please complete your add-on."
@@ -7951,6 +7965,8 @@ msgid ""
 "You will receive an email when the review is\n"
 "                             complete and your add-on is signed."
 msgstr ""
+"Jakmile bude kontrola dokončena a váš doplněk podepsán, budete informováni "
+"e-mailem."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
 msgid ""
@@ -7964,12 +7980,14 @@ msgid ""
 "Your add-on is displayed in our gallery and users are\n"
 "                             receiving automatic updates."
 msgstr ""
+"Váš doplněk je zobrazen v naší galerii a uživatelé k němu získávají "
+"aktualizace."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
 "Your add-on has been signed and can be bundled with an\n"
 "                             application installer."
-msgstr ""
+msgstr "Váš doplněk byl podepsán a může být přibalen k instalátoru aplikace."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
 msgid ""
@@ -8132,6 +8150,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source code.\n"
 "                  It is only relevant for listed add-ons."
 msgstr ""
+"Vyberte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke"
+" svému zdrojovému kódu. Relevantní pouze pro zveřejněné doplňky."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8491,7 +8511,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr "Vámi dříve odeslaný vzhled,  který čeká na kontrolu."
+msgstr "Vámi dříve odeslaný vzhled, který čeká na kontrolu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -8987,6 +9007,8 @@ msgid ""
 "               may also cause a significant delay in the review of\n"
 "               your next update."
 msgstr ""
+"Smazání verze, která již byla zkontrolována, může způsobit zdržení při "
+"kontrole vaší příští aktualizace."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Are you sure you wish to delete this version?"
@@ -9790,7 +9812,7 @@ msgstr "Zamítne doplněk a odstraní jej z fronty na kontrolu."
 
 #: src/olympia/editors/helpers.py:534
 msgid "Make a comment on this version.  The author won't be able to see this."
-msgstr "Přidejte komentář k této verzi.  Autor jej nebude vidět."
+msgstr "Přidejte komentář k této verzi. Autor jej nebude vidět."
 
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
@@ -10316,7 +10338,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
 msgid "All reviews have been moderated.  Good work!"
-msgstr "Všechny recenze byly zkontrolovány.  Skvělá práce!"
+msgstr "Všechny recenze byly zkontrolovány. Skvělá práce!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -13039,7 +13061,7 @@ msgstr "Galerie doplňků"
 msgid ""
 "How do I choose between add-ons that seem to do the same\n"
 "    thing?"
-msgstr ""
+msgstr "Jak si mám vybrat mezi doplňky, které dělají tu samou věc?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
@@ -13119,6 +13141,7 @@ msgid ""
 "Add-ons hosted in our gallery are free unless clearly marked\n"
 "    otherwise."
 msgstr ""
+"Pokud není jasně řečeno jinak, jsou hostované doplňky dostupné zdarma."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -13162,7 +13185,7 @@ msgstr ""
 msgid ""
 "What does it mean when an add-on is flagged as\n"
 "    slow?"
-msgstr ""
+msgstr "Co znamená, když je doplněk označen jako pomalý?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -15614,6 +15637,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Odkaz na obnovu hesla je neplatný, možná proto, že již byl použit. Požádejte"
+" prosím o obnovu hesla znovu."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
