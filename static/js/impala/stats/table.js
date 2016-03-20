@@ -91,10 +91,9 @@
                          _.each(fields, function(f) {
                              newBody += '<td>';
                              if (metric == 'contributions' && f != 'count') {
-                                 var symbol = {'EUR': '€', 'JPY': '¥'}[f.substr(5)] || '$';
-                                 var decimals = f == 'data|JPY' ? 0 : 2;
-                                 newBody += symbol +
-                                    Highcharts.numberFormat(z.StatsManager.getField(row, f), decimals);
+                                 var currency = z.StatsManager.CURRENCY_DATA[f.substr(5)];
+                                 newBody += currency.symbol +
+                                    Highcharts.numberFormat(z.StatsManager.getField(row, f), currency.decimals);
                              } else {
                                  newBody += Highcharts.numberFormat(z.StatsManager.getField(row, f),0);
                              }

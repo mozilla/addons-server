@@ -8,6 +8,10 @@ z.StatsManager = (function() {
     var STATS_VERSION = '2011-12-12';
     var PRECISION = 2;
 
+    $.ajax('/static/js/currency.json').then(function(c) {
+        z.StatsManager.CURRENCY_DATA = c;
+    });
+
     var storage         = z.Storage("stats"),
         storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
@@ -198,6 +202,9 @@ z.StatsManager = (function() {
             _.sortBy(
                 _.keys(fields),
                 function (f) {
+                    if (metric == 'contributions') {
+                        return -fields[f] * z.StatsManager.CURRENCY_DATA[f].multiplier;
+                    }
                     return -fields[f];
                 }
             ),

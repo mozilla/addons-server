@@ -46,7 +46,7 @@ ALL_CURRENCIES = {
     'EGP': _lazy(u'Egypt Pound'),
     'ERN': _lazy(u'Eritrea Nakfa'),
     'ETB': _lazy(u'Ethiopia Birr'),
-    'EUR': _lazy(u'Euro Member Countries'),
+    'EUR': _lazy(u'Euro'),
     'FJD': _lazy(u'Fiji Dollar'),
     'FKP': _lazy(u'Falkland Islands (Malvinas) Pound'),
     'GBP': _lazy(u'United Kingdom Pound'),

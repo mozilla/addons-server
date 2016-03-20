@@ -62,10 +62,14 @@
           {# L10n: {0} is a currency symbol (e.g., $),
                    {1} is an amount input field #}
           {{ _('A one-time contribution of {0} {1}')|fe(
-            '$', '<input type="text" name="onetime-amount" value=""/>'|safe) }}
+            '<span id="onetime-symbol">$</span>'|safe,
+            '<input type="text" name="onetime-amount" value=""/>'|safe
+            ) }}
           <select name="currency">
-          {% for item in amo.PAYPAL_CURRENCIES %}
-            <option value="{{ item }}">{{ amo.PAYPAL_CURRENCIES[item] }}</option>
+          {% for item in amo.PAYPAL_CURRENCIES|sort %}
+            <option value="{{ item }}"
+                    {% if item == amo.CURRENCY_DEFAULT %}selected="selected"{% endif %}
+                    >{{ amo.PAYPAL_CURRENCIES[item] }}</option>
           {% endfor %}
           </select>
         </label>

@@ -455,12 +455,13 @@ def contributions_series(request, addon, group, start, end, format):
           .filter(addon=addon, amount__gt=0, transaction_id__isnull=False,
                   created__range=date_range)
           .values('date_created', 'currency')
-          .annotate(count=Count('amount'), total=Sum('amount')))
+          .annotate(count=Count('amount'), total=Sum('amount'))
+          .order_by('-date_created'))
 
     series = []
     currencies = set()
     last = None
-    for row in sorted(qs, key=lambda x: x['date_created'], reverse=True):
+    for row in qs:
         if last is None or last['date'] != row['date_created']:
             last = {
                 'date': row['date_created'],
