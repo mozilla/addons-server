@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-20 15:16+0000\n"
+"PO-Revision-Date: 2016-03-20 16:45+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -43,7 +43,7 @@ msgstr "Godt klaret!"
 
 #: src/olympia/accounts/views.py:109
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr ""
+msgstr "Nu kan du logge ind på Mozilla-tilføjelser med din Firefox-konto."
 
 #: src/olympia/accounts/views.py:121
 msgid "Need help?"
@@ -1320,11 +1320,11 @@ msgid "Part of these Collections"
 msgstr "En del af disse samlinger"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Andre tilføjelser af %(author)s"
-msgstr[1] "Andre tilføjelser af disse udviklere"
+msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:41
 #, python-format
@@ -1352,11 +1352,11 @@ msgid "No Restart"
 msgstr "Ingen genstart"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Mød udvikleren: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Mød udviklerne</a>"
+msgstr[1] ""
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:137
@@ -2424,6 +2424,9 @@ msgid ""
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Hovsa!  Vi har haft en fejl.</h1> <p>Den vil vi få rettet snart.</p> <p>"
+" Du kan prøve at genindlæse siden eller gå tilbage til <a "
+"href=\"%(home)s\">siden med tilføjelser</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2538,7 +2541,7 @@ msgstr "Udvidelser"
 
 #: src/olympia/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Vil du have mere tilpasning? Prøv <b>udvidede temaer</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html:56
 #: src/olympia/bandwagon/views.py:96
@@ -2606,7 +2609,7 @@ msgstr "Forrige"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
-msgstr ""
+msgstr "Hop til sidste side"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -4947,11 +4950,11 @@ msgstr "Resultat af søgning efter \"{0}\""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Indtast nogle søgekriterier."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Indlæser resultat &hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
@@ -8550,7 +8553,7 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Kom i gang og rør dig!"
 
 #: src/olympia/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
@@ -8558,7 +8561,7 @@ msgstr "Installér disse fitness-tilføjelser for at holde dig aktiv og sund."
 
 #: src/olympia/discovery/modules.py:299
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nyt &amp; Nu"
 
 #: src/olympia/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
@@ -12398,7 +12401,7 @@ msgid "Still have questions?"
 msgstr "Har du stadig spørgsmål?"
 
 #: src/olympia/pages/templates/pages/faq.html:295
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support "
 "website</a>. For general add-on and website questions, visit our <a "
@@ -12425,6 +12428,10 @@ msgid ""
 "you’ve installed and used. Our review moderation team reserves the right to "
 "refuse or remove any review that does not comply with these guidelines."
 msgstr ""
+"Anmeldelser af tilføjelser er en måde, hvorpå du kan dele din mening om de "
+"tilføjelser, du har installeret og brugt. Vores moderationshold forbeholder "
+"sig retten til at afvise eller slette alle anmeldelser, der ikke er i "
+"overensstemmelse med disse retningslinjer."
 
 #: src/olympia/pages/templates/pages/review_guide.html:53
 msgid "Do:"
@@ -12467,6 +12474,8 @@ msgstr "Vil du fortsætte med at bruge denne tilføjelse?"
 msgid ""
 "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
+"Brug lidt tid på at gennemgå din anmeldelse inden du sender den ind for at "
+"minimere slåfejl."
 
 #: src/olympia/pages/templates/pages/review_guide.html:79
 msgid "Don’t:"
@@ -12475,6 +12484,8 @@ msgstr "Lad være med at:"
 #: src/olympia/pages/templates/pages/review_guide.html:82
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
+"Indsende anmeldelser på ét ord som fx \"Fantastisk!\", \"vidunderlig\" eller"
+" \"dårlig\"."
 
 #: src/olympia/pages/templates/pages/review_guide.html:87
 msgid ""
@@ -12497,6 +12508,8 @@ msgid ""
 "Include HTML, links, source code or code snippets. Reviews are meant to be "
 "text only."
 msgstr ""
+"Inkludere HTML, links, kildekode eller kodestykker. Anmeldelser bør kun "
+"bestå af tekst."
 
 #: src/olympia/pages/templates/pages/review_guide.html:108
 msgid ""
@@ -12510,6 +12523,8 @@ msgid ""
 "Include your own or anyone else’s email, phone number, or other personal "
 "details."
 msgstr ""
+"Inkludere dit eget eller andres mailadresse, telefonnummer eller andre "
+"personlige detaljer."
 
 #: src/olympia/pages/templates/pages/review_guide.html:119
 msgid ""
@@ -14312,7 +14327,7 @@ msgstr "Mailadresse"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Håndter Firefox-konto..."
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
@@ -14331,6 +14346,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Skift din adgangskode.  Hvis du har glemt din adgangskode, kan du <a "
+"href=\"%(reset_url)s\">bruge nulstillingsformularen</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -14353,6 +14370,8 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Skriv lidt mere om dig selv.  Alle disse felter er valgfrie, men de vil "
+"hjælpe andre med at lære dig bedre at kende."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -14447,17 +14466,19 @@ msgstr "alle"
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:3
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:8
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "Skift til Firefox-konti"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:3
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Mozilla-tilføjelser er gået over til Firefox-konti til login. Fortsæt for at"
+" fuldføre den enkle overgangsproces."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
-msgstr ""
+msgstr "Spring over"
 
 #: src/olympia/users/templates/users/login.html:3
 #: src/olympia/users/templates/users/mobile/login.html:3
@@ -14467,7 +14488,7 @@ msgstr "Bruger-login"
 #: src/olympia/users/templates/users/login.html:13
 #: src/olympia/users/templates/users/mobile/login.html:21
 msgid "Enter your email"
-msgstr ""
+msgstr "Indtast din mailadresse"
 
 #: src/olympia/users/templates/users/login.html:15
 #: src/olympia/users/templates/users/mobile/login.html:23
@@ -14603,6 +14624,8 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Du har skiftet til Firefox-konti. Du kan ikke længere skifte din adgangskode"
+" her."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
@@ -14614,6 +14637,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Linket til nulstilling af adgangskode er ugyldigt, muligvis fordi det "
+"allerede er blevet anvendt.  Bed om en nye nulstilling af adgangskode."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
