@@ -258,6 +258,14 @@
           gallery and will stop users from receiving automatic updates.
         {% endtrans %}
       </p>
+      {% if addon.latest_version and addon.latest_version.current_queue %}
+        <p>
+            {% trans %}
+            The files awaiting review will be disabled and you will need to
+            upload new versions.
+            {% endtrans %}
+        </p>
+      {% endif %}
       <p>
         {% trans %}
           Are you sure you wish to hide your add-on?
