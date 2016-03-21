@@ -1,6 +1,10 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
+.. image:: https://buildtimetrend.herokuapp.com/badge/mozilla/addons-server/latest
+    :alt: Buildtime Trend badge
+    :target: https://buildtimetrend.herokuapp.com/dashboard/mozilla/addons-server
+
 .. image:: https://requires.io/github/mozilla/addons-server/requirements.svg?branch=master
     :target: https://requires.io/github/mozilla/addons-server/requirements/?branch=master
 
