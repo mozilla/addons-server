@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-20 08:54+0000\n"
+"PO-Revision-Date: 2016-03-21 17:31+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -938,7 +938,7 @@ msgstr "Upravit"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d.%%m.%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -3951,12 +3951,12 @@ msgstr "Kompatibilita s aplikací {app} {version}"
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "95 %% nejpopulárnějších z předchozí verze"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "95 %% ze všech doplňků"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -8050,7 +8050,7 @@ msgstr "Vytvořeno:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -10165,7 +10165,7 @@ msgstr[2] "{0} doplňků"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
