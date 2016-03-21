@@ -63,6 +63,25 @@ h1 {
   font-size: 2.25rem;
 }
 
+// These are all defined in AMO's original CSS and seem to need overriding :'(
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active,
+button.link:hover span,
+button.link:focus span,
+button.link:active span,
+.more-info,
+.more-info:link,
+.more-info:visited,
+.more-info:hover,
+.more-info:focus,
+.more-info:active {
+  color: @link-on-white-bg;
+}
+
 /* Main Content Wrapper */
 #background-wrapper {
   background-color: #0c99d5;
