@@ -2,32 +2,71 @@ language: python
 sudo: false
 python:
   - "2.7"
+
+cache:
+  directories:
+    - node_modules
+    - .tox
+    - $HOME/.cache/pip/
+
+matrix:
+  fast_finish: true
+
 env:
-  - TOX_ENV=flake8
-  - TOX_ENV=docs
-  - TOX_ENV=assets
-  - TOX_ENV=es
-  - TOX_ENV=addons-devhub-editors
-  - TOX_ENV=main
+  - TOX_ENV=flake8 APP=xx
+  - TOX_ENV=docs APP=xx
+  - TOX_ENV=assets APP=xx
+  - TOX_ENV=elasticsearch APP=xx
+  - TOX_ENV=main APP=abuse
+  - TOX_ENV=main APP=accounts
+  - TOX_ENV=main APP=addons
+  - TOX_ENV=main APP=amo
+  - TOX_ENV=main APP=api
+  - TOX_ENV=main APP=bandwagon
+  - TOX_ENV=main APP=blocklist
+  - TOX_ENV=main APP=devhub
+  - TOX_ENV=main APP=discovery
+  - TOX_ENV=main APP=editors
+  - TOX_ENV=main APP=files
+  - TOX_ENV=main APP=landfill
+  - TOX_ENV=main APP=lib
+  - TOX_ENV=main APP=paypal
+  - TOX_ENV=main APP=reviews
+  - TOX_ENV=main APP=search
+  - TOX_ENV=main APP=signing
+  - TOX_ENV=main APP=stats
+  - TOX_ENV=main APP=tags
+  - TOX_ENV=main APP=translations
+  - TOX_ENV=main APP=users
+  - TOX_ENV=main APP=zadmin
+
 services:
   - memcached
+
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.3.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
+
 install:
   - nvm current
   - nvm deactivate
   - nvm install 4
   - nvm use 4
-  - pip install tox==1.8.1
+  - pip install --upgrade pip wheel tox==2.3.1
+
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
+
 script:
-  - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+  - RUNNING_IN_CI=True tox -v -e $TOX_ENV
+
 notifications:
   irc:
     channels:
       - "irc.mozilla.org#amo-bots"
     on_success: change
     on_failure: always
+
+branches:
+  only: [master]
