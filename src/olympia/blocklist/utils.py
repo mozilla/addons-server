@@ -1,6 +1,28 @@
 JSON_DATE_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
 
 
+def del_none(d):
+    """
+    Delete keys with the value ``None`` in a dictionary, recursively.
+
+    This alters the input so you may wish to ``copy`` the dict first.
+    """
+    # d.iteritems isn't used as you can't del or the iterator breaks.
+    for key, value in d.items():
+        if value is None:
+            del d[key]
+        elif isinstance(value, dict):
+            del_none(value)
+        elif isinstance(value, list):
+            for v in value:
+                if isinstance(v, dict):
+                    del_none(v)
+                    if not v:
+                        d[key] = []
+
+    return d  # For convenience
+
+
 def certificates_to_json(items):
     results = []
     for cert in items:
@@ -15,7 +37,7 @@ def certificates_to_json(items):
                 'created': cert.details.created.strftime(JSON_DATE_FORMAT),
             }
         })
-    return results
+    return [del_none(r) for r in results]
 
 
 def gfxs_to_json(items):
@@ -40,13 +62,14 @@ def gfxs_to_json(items):
                 'created': gfx.details.created.strftime(JSON_DATE_FORMAT),
             }
         })
-    return results
+    return [del_none(r) for r in results]
 
 
 def addons_to_json(items):
     results = []
-    for guid, addon in items:
+    for guid, addon in items.items():
         versionRange = []
+        details = addon.rows[0].details
         for row in addon.rows:
             if row.min or row.max or row.severity or row.apps:
                 targetApplication = []
@@ -70,13 +93,13 @@ def addons_to_json(items):
             'versionRange': versionRange,
             'prefs': prefs,
             'details': {
-                'who': addon.details.who,
-                'why': addon.details.why,
-                'bug': addon.details.bug,
-                'created': addon.details.created.strftime(JSON_DATE_FORMAT),
+                'who': details.who,
+                'why': details.why,
+                'bug': details.bug,
+                'created': details.created.strftime(JSON_DATE_FORMAT),
             }
         })
-    return results
+    return [del_none(r) for r in results]
 
 
 def plugins_to_json(items):
@@ -91,11 +114,11 @@ def plugins_to_json(items):
                 'maxVersion': plugin.max,
                 'severity': plugin.severity,
                 'vulneratibilityStatus': plugin.get_vulnerability_status,
-                'targetApplication': {
+                'targetApplication': [{
                     'guid': plugin.app_guid,
                     'minVersion': plugin.app_min,
                     'maxVersion': plugin.app_max,
-                }
+                }]
             },
             'details': {
                 'who': plugin.details.who,
@@ -111,4 +134,4 @@ def plugins_to_json(items):
         if plugin.filename:
             record['matchFilename'] = plugin.filename
         results.append(record)
-    return results
+    return [del_none(r) for r in results]

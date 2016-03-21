@@ -91,7 +91,9 @@ def get_items(apiver=None, app=None, appver=None):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
 
-    app_query = Q(app__pk__isnull=False)
+    app_query = (Q(app__isnull=True) |
+                 Q(app__guid__isnull=True) |
+                 Q(app__guid__isnull=False))
 
     if app:
         app_query = Q(app__guid__isnull=True) | Q(app__guid=app)
@@ -126,9 +128,18 @@ def get_items(apiver=None, app=None, appver=None):
 def get_plugins(apiver=3, app=None, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
+
+    app_query = (Q(app__isnull=True) |
+                 Q(app__guid__isnull=True) |
+                 Q(app__guid__isnull=False))
+
+    if app:
+        app_query = (Q(app__isnull=True) |
+                     Q(app__guid=app) |
+                     Q(app__guid__isnull=True))
+
     plugins = (BlocklistPlugin.objects.no_cache().select_related('details')
-               .filter(Q(app__isnull=True) | Q(app__guid=app) |
-                       Q(app__guid__isnull=True))
+               .filter(app_query)
                .extra(select={'app_guid': 'blapps.guid',
                               'app_min': 'blapps.min',
                               'app_max': 'blapps.max'}))
@@ -146,9 +157,9 @@ def get_plugins(apiver=3, app=None, appver=None):
 
 @non_atomic_requests
 def blocklist_json(request):
-    key = 'blocklist-json'
-    cache.add('blocklist-json:keyversion', 1)
-    version = cache.get('blocklist-json:keyversion')
+    key = 'blocklist:json'
+    cache.add('blocklist:keyversion', 1)
+    version = cache.get('blocklist:keyversion')
     response = cache.get(key, version=version)
     if response is None:
         response = _blocklist_json(request)
