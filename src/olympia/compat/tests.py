@@ -8,6 +8,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
+from olympia.compat.indexers import AppCompatIndexer
 from olympia.compat.models import CompatReport, CompatTotals
 
 
@@ -314,3 +315,20 @@ class TestReporterDetail(TestCase):
         self.check_table(
             good=0, bad=0, appver='',
             report_pks=[])
+
+
+class TestAppCompatIndexer(TestCase):
+    def setUp(self):
+        self.indexer = AppCompatIndexer()
+
+    def test_mapping(self):
+        doc_name = self.indexer.get_doctype_name()
+        assert doc_name
+
+        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+
+        # Spot check: make sure addon-specific 'summary' field is not present.
+        assert 'summary' not in mapping_properties
+
+        # Make sure 'boost' is present.
+        assert 'boost' in mapping_properties

@@ -25,7 +25,6 @@ from olympia import amo
 from olympia.amo import search
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
-from olympia.addons.search import get_mappings as get_addons_mappings
 from olympia.amo import messages, get_user
 from olympia.amo.decorators import (
     any_permission_required, json_view, login_required, post_required)
@@ -36,6 +35,7 @@ from olympia.bandwagon.models import Collection
 from olympia.compat.models import AppCompat, CompatTotals
 from olympia.devhub.models import ActivityLog
 from olympia.files.models import File, FileUpload
+from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint

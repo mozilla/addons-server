@@ -35,7 +35,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.acl import check_ownership
-from olympia.addons import search as addons_search
+from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -775,7 +775,7 @@ class ESTestCase(TestCase):
         for index in set(settings.ES_INDEXES.values()):
             cls.es.indices.delete(index, ignore=[404])
 
-        addons_search.create_new_index()
+        search_indexers.create_new_index()
         stats_search.create_new_index()
 
     @classmethod

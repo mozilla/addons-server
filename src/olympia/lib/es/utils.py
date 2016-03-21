@@ -21,7 +21,7 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
-def index_objects(ids, model, search, index=None, transforms=None,
+def index_objects(ids, model, extract_func, index=None, transforms=None,
                   objects=None):
     if index is None:
         index = model._get_index()
@@ -39,7 +39,7 @@ def index_objects(ids, model, search, index=None, transforms=None,
 
     bulk = []
     for ob in qs:
-        data = search.extract(ob)
+        data = extract_func(ob)
         for index in indices:
             bulk.append({
                 "_source": data,
