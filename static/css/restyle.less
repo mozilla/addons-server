@@ -5,6 +5,9 @@
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
 
+// Common styles
+@detail-border: 1px solid #ebebeb;
+
 // Fonts
 @font-face {
   font-family: 'Open Sans';
@@ -395,8 +398,22 @@ button.search-button {
   box-shadow: none;
 }
 
-.restyle .primary .island {
-  padding-top: 0;
+.restyle .primary.island {
+  border-top: @detail-border;
+}
+
+.island > section {
+  border-bottom: @detail-border;
+}
+
+#reviews .review,
+#detail-relnotes .items {
+  border: 0;
+}
+
+#reviews a.more-info,
+#detail-relnotes a.more-info {
+  float: none;
 }
 
 #promos .promo-purple {
