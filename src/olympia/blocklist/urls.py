@@ -7,4 +7,6 @@ urlpatterns = patterns(
     url('^$', views.blocked_list, name='blocked.list'),
     # The prefix tells us to look at item, plugin, or gfx.
     url('^([ip]\d+)$', views.blocked_detail, name='blocked.detail'),
+    url('^blocklists.json',
+        'olympia.blocklist.views.blocklist_json', name='blocklist.json'),
 )
