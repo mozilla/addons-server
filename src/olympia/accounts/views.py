@@ -268,6 +268,8 @@ class AccountSourceView(generics.RetrieveAPIView):
     @waffle_switch('fxa-auth')
     def retrieve(self, request, *args, **kwargs):
         email = request.GET.get('email')
+        if email is None:
+            return Response({'error': 'Email is required.'}, status=422)
         try:
             user = UserProfile.objects.get(email=email)
         except UserProfile.DoesNotExist:
