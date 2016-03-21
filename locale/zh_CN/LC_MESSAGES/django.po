@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-02-26 06:34+0000\n"
+"PO-Revision-Date: 2016-03-21 02:32+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -7506,7 +7506,7 @@ msgstr "查看全部"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "View Statistics Dashboard"
-msgstr "查看统计数据仪表盘"
+msgstr "查看统计数据面板"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Compatibility Reports"
@@ -11660,7 +11660,7 @@ msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides "
 "information that can help you determine your add-on downloads since you've "
 "submitted it to AMO."
-msgstr "在开发者工具面板中能找到统计信息面板，那里提供的信息可以帮您确定自从您提交它到 AMO 后的下载量。"
+msgstr "在开发者工具面板中您能找到统计数据面板，那里提供的信息可以帮助您确定在您提交到 AMO 后的下载量。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:455
 msgid "How can I see how many active users are using my add-on?"
@@ -11671,7 +11671,7 @@ msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides "
 "information that can help you determine how many users have been actively "
 "using your add-on since you've submitted it to AMO."
-msgstr "在开发者工具面板中能找到统计信息面板，那里提供的信息可以帮您确定自从您提交它到 AMO 后，有多少活跃用户在使用您的附加组件。"
+msgstr "在开发者工具面板中您能找到统计信息面板，那里提供的信息可以帮助您确定提交到 AMO 后，有多少活跃用户在使用您的附加组件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:464
 msgid "How do I submit an update for my add-on?"
@@ -11682,7 +11682,7 @@ msgid ""
 "You can submit an update for your add-on via the Developer Tools dashboard "
 "by choosing the option \"Upload a new version\" and uploading a new .xpi "
 "file for your add-on."
-msgstr "您可以在开发者工具面板中选择“上传新版本”并上传您附加组件的 .xpi 文件为您的附加组件提交更新。"
+msgstr "您可以在开发者工具面板中选择“上传新版本”，然后上传您的附加组件的 .xpi 文件为您的附加组件提交更新。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:473
 msgid "Does my update need to be reviewed by editors?"
@@ -13154,15 +13154,15 @@ msgstr "导出"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: 统计面板 :: {1} 附加组件"
+msgstr "{0} :: 统计数据面板 :: {1} 附加组件"
 
 #: src/olympia/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr "{0} :: 统计信息面板"
+msgstr "{0} :: 统计数据面板"
 
 #: src/olympia/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "统计信息面板 :: {0} 的附加组件"
+msgstr "统计数据面板 :: {0} 的附加组件"
 
 #: src/olympia/stats/templates/stats/stats.html:30
 msgid "Controls:"
@@ -13221,7 +13221,7 @@ msgstr "{0} 的统计数据"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Statistics Dashboard"
-msgstr "统计信息面板"
+msgstr "统计数据面板"
 
 #: src/olympia/stats/templates/stats/stats.html:104
 msgid ""
@@ -13243,7 +13243,7 @@ msgstr "没有可用数据。"
 
 #: src/olympia/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
-msgstr "这个仪表板目前是<b>公开显示的</b>。"
+msgstr "这个面板目前<b>公开显示</b>。"
 
 #: src/olympia/stats/templates/stats/stats.html:179
 msgid "Contribution stats are currently <b>private</b>."
@@ -13251,7 +13251,7 @@ msgstr "捐款统计目前是<b>私密的</b>。"
 
 #: src/olympia/stats/templates/stats/stats.html:182
 msgid "This dashboard is currently <b>private</b>."
-msgstr "这个仪表板目前是<b>私密的</b>。"
+msgstr "这个面板目前<b>私密</b>。"
 
 #: src/olympia/stats/templates/stats/stats.html:185
 msgid "Change settings."
