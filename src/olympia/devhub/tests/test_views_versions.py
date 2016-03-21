@@ -173,12 +173,36 @@ class TestVersion(TestCase):
         res = self.client.post(self.disable_url)
         eq_(res.status_code, 302)
         addon = Addon.objects.get(id=3615)
-        eq_(addon.disabled_by_user, True)
-        eq_(addon.status, amo.STATUS_PUBLIC)
+        assert addon.disabled_by_user
+        assert addon.status == amo.STATUS_PUBLIC
         assert hide_mock.called
 
+        # Check we didn't change the status of the files.
+        assert addon.latest_version.files.all()[0].status == amo.STATUS_PUBLIC
+
         entry = ActivityLog.objects.get()
-        eq_(entry.action, amo.LOG.USER_DISABLE.id)
+        assert entry.action == amo.LOG.USER_DISABLE.id
+        msg = entry.to_string()
+        assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
+
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_user_can_disable_addon_pending_version(self, hide_mock):
+        self.addon.update(status=amo.STATUS_PUBLIC,
+                          disabled_by_user=False)
+        (new_version, _) = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        assert self.addon.latest_version == new_version
+        res = self.client.post(self.disable_url)
+        eq_(res.status_code, 302)
+        addon = Addon.objects.get(id=3615)
+        assert addon.disabled_by_user
+        assert addon.status == amo.STATUS_PUBLIC
+        assert hide_mock.called
+
+        # Check we disabled the file pending review.
+        assert addon.latest_version.all_files[0].status == amo.STATUS_DISABLED
+
+        entry = ActivityLog.objects.get()
+        assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
