@@ -55,7 +55,7 @@ class TestFxALoginWaffle(APITestCase):
 
     def test_source_200_when_waffle_is_on(self):
         create_switch('fxa-auth', active=True)
-        response = self.client.get(self.source_url)
+        response = self.client.get(self.source_url, {'email': 'u@example.com'})
         assert response.status_code == 200
 
 
@@ -770,6 +770,13 @@ class TestAccountSourceView(APITestCase):
         response = self.get('no-user@mozilla.org')
         assert response.status_code == 200
         assert response.data == {'source': 'fxa'}
+
+    def test_multiple_users_returned(self):
+        UserProfile.objects.create(username='alice', email=None)
+        UserProfile.objects.create(username='bob', email=None)
+        response = self.client.get(reverse('accounts.source'))
+        assert response.status_code == 422
+        assert response.data == {'error': 'Email is required.'}
 
 
 class TestAccountSuperCreate(APIAuthTestCase):
