@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-16 18:00+0000\n"
+"PO-Revision-Date: 2016-03-21 20:47+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2229,11 +2229,11 @@ msgstr "Conta atualizada."
 
 #: src/olympia/amo/log.py:409
 msgid "Escalation cleared for {addon}."
-msgstr "O encaminhamento para análise superior do {addon} foi removido."
+msgstr "Escalação removida para {addon}."
 
 #: src/olympia/amo/log.py:410
 msgid "Escalation cleared"
-msgstr "Encaminhado para análise superior removido"
+msgstr "Escalação removida"
 
 #: src/olympia/amo/log.py:418
 msgid "App disabled"
@@ -2241,9 +2241,7 @@ msgstr "Aplicação desativada"
 
 #: src/olympia/amo/log.py:425
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
-"{addon} foi encaminhado para análise superior devido a um grande número de "
-"denúncias de abuso."
+msgstr "{addon} foi escalado devido a um grande número de denúncias de abuso."
 
 #: src/olympia/amo/log.py:426
 msgid "High Abuse Reports"
@@ -2251,11 +2249,11 @@ msgstr "Grande número de denúncias de abuso"
 
 #: src/olympia/amo/log.py:433
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} encaminhado para análise superior por um editor."
+msgstr "{addon} foi escalado pelo revisor."
 
 #: src/olympia/amo/log.py:434
 msgid "Reviewer escalation"
-msgstr "Encaminhamento para análise superior do editor"
+msgstr "Escalação do revisor"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
@@ -4268,7 +4266,7 @@ msgstr "Persona"
 
 #: src/olympia/constants/base.py:435
 msgid "Manual Reviewer Points"
-msgstr "Pontos do manual de análises"
+msgstr "Pontos do manual do revisor"
 
 #: src/olympia/constants/base.py:436
 msgid "Full Add-on Review"
@@ -6217,7 +6215,8 @@ msgstr "Passar à frente na fila de revisão!"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Torne-se hoje num revisor AMO e tenha os seus extras revistos mais depressa."
+"Torne-se num revisor AMO hoje e tenha os seus extras revistos mais "
+"rapidamente."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
@@ -9748,7 +9747,7 @@ msgstr "Outra pessoa está analisando este tema."
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:447
 msgid "app, reviewer, or comment"
-msgstr "aplicativo, editor ou comentário"
+msgstr "aplicativo, revisor, ou comentário"
 
 #: src/olympia/editors/helpers.py:51 src/olympia/editors/helpers.py:59
 msgid "Pending Full Review"
@@ -10433,7 +10432,7 @@ msgstr "Por {user_name}"
 
 #: src/olympia/editors/templates/editors/performance.html:39
 msgid "Active Contributors"
-msgstr "As minhas revisões"
+msgstr "Contribuições ativas"
 
 #: src/olympia/editors/templates/editors/performance.html:42
 msgid "This Month"
@@ -10505,7 +10504,7 @@ msgstr "Todas as revisões foram moderadas.  Bom trabalho!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
-msgstr "Notas da versão / Comentários ao editor"
+msgstr "Notas da versão / Notas para o revisor"
 
 #: src/olympia/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
@@ -10692,7 +10691,7 @@ msgstr "Nenhum ponto recebido ainda."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr "Principais editores (últimos 7 dias)"
+msgstr "Principais revisores (últimos 7 dias)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
@@ -12884,7 +12883,7 @@ msgid ""
 "update."
 msgstr ""
 "Atualmente o AMO não fornece um mecanismo de comunicação direta com o autor "
-"da análise, mas esse recurso está sendo considerado para uma atualização "
+"da análise, mas esse recurso está a ser considerado para uma atualização "
 "futura."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:511
@@ -14080,7 +14079,7 @@ msgstr "Inicie sessão para deixar um comentário"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr "Ainda sem comentários."
+msgstr "Ainda sem avaliações."
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
@@ -15898,7 +15897,7 @@ msgstr "Criado por Mim."
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html:94
 msgid "My Reviews"
-msgstr "Minhas revisões"
+msgstr "Meus comentários"
 
 #: src/olympia/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
