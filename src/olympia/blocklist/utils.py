@@ -26,7 +26,7 @@ def del_none(d):
 def certificates_to_json(items):
     results = []
     for cert in items:
-        results.append({
+        results.append(del_none({
             'blockID': cert.block_id,
             'serialNumber': cert.serial,
             'issuerName': cert.issuer,
@@ -37,8 +37,8 @@ def certificates_to_json(items):
                 'bug': cert.details.bug,
                 'created': cert.details.created.strftime(JSON_DATE_FORMAT),
             }
-        })
-    return [del_none(r) for r in results]
+        }))
+    return results
 
 
 def gfxs_to_json(items):
@@ -47,7 +47,7 @@ def gfxs_to_json(items):
         devices = []
         if gfx.devices:
             devices = [d.strip() for d in gfx.devices.split(' ') if d.strip()]
-        results.append({
+        results.append(del_none({
             'blockID': gfx.block_id,
             'os': gfx.os,
             'vendor': gfx.vendor,
@@ -65,8 +65,8 @@ def gfxs_to_json(items):
                 'bug': gfx.details.bug,
                 'created': gfx.details.created.strftime(JSON_DATE_FORMAT),
             }
-        })
-    return [del_none(r) for r in results]
+        }))
+    return results
 
 
 def addons_to_json(items):
@@ -90,7 +90,7 @@ def addons_to_json(items):
                     'targetApplication': targetApplication
                 })
         prefs = [pref.strip() for pref in addon.prefs]
-        results.append({
+        results.append(del_none({
             'guid': guid,
             'blockID': addon.block_id,
             'os': addon.os,
@@ -103,8 +103,8 @@ def addons_to_json(items):
                 'bug': details.bug,
                 'created': details.created.strftime(JSON_DATE_FORMAT),
             }
-        })
-    return [del_none(r) for r in results]
+        }))
+    return results
 
 
 def plugins_to_json(items):
@@ -140,5 +140,5 @@ def plugins_to_json(items):
             record['matchDescription'] = plugin.description
         if plugin.filename:
             record['matchFilename'] = plugin.filename
-        results.append(record)
-    return [del_none(r) for r in results]
+        results.append(del_none(record))
+    return results
