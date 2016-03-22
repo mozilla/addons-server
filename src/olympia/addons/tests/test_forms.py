@@ -106,6 +106,19 @@ class FormsTest(TestCase):
         eq_(form.errors['slug'],
             [u'The slug cannot be "submit". Please choose another.'])
 
+    def test_bogus_homepage(self):
+        form = forms.AddonFormDetails(
+            {'homepage': 'whatever://something'}, request=None)
+        assert not form.is_valid()
+        eq_(form.errors['homepage'][0][1], u'Enter a valid URL.')
+
+    def test_homepage_is_not_required(self):
+        delicious = Addon.objects.get()
+        form = forms.AddonFormDetails(
+            {'default_locale': 'en-US'},
+            request=None, instance=delicious)
+        assert form.is_valid()
+
     def test_slug_isdigit(self):
         delicious = Addon.objects.get()
         form = forms.AddonFormBasic({'slug': '123'}, request=None,
