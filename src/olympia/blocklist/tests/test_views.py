@@ -15,6 +15,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import (
     BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx, BlocklistItem,
     BlocklistIssuerCert, BlocklistPlugin, BlocklistPref)
+from olympia.blocklist.utils import JSON_DATE_FORMAT
 
 base_xml = """
 <?xml version="1.0"?>
@@ -69,7 +70,12 @@ class BlocklistViewTest(TestCase):
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
         cache.clear()
         self.json_url = reverse('blocklist.json')
-        self.details = BlocklistDetail.objects.create()
+        self.details = BlocklistDetail.objects.create(
+            name="blocked item",
+            who="All Firefox and Fennec users",
+            why="Security issue",
+            bug="http://bug.url.com/",
+        )
 
     def create_blplugin(self, app_guid=None, app_min=None, app_max=None,
                         *args, **kw):
@@ -326,6 +332,48 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         self.assertEscaped(self.item, 'homepage_url')
         self.assertEscaped(self.item, 'update_url')
 
+    def test_addons_json(self):
+        self.item.update(os="WINNT 5.0",
+                         severity=0, min='0', max='*')
+
+        self.app.update(min='2.0', max='3.0')
+
+        app2 = BlocklistApp.objects.create(
+            blitem=self.item, guid=amo.FIREFOX.guid,
+            min="1.0", max="2.0")
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        item = blocklist['add-ons'][0]
+
+        assert item['os'] == self.item.os
+
+        # VersionRange
+        assert item['versionRange'] == [{
+            'severity': 0,
+            'minVersion': '0',
+            'maxVersion': '*',
+            'targetApplication': [{
+                'guid': self.app.guid,
+                'minVersion': '2.0',
+                'maxVersion': '3.0',
+            }, {
+                'guid': app2.guid,
+                'minVersion': '1.0',
+                'maxVersion': '2.0',
+            }]
+        }]
+
+        created = self.item.details.created
+        assert item['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
+
 
 class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
@@ -519,6 +567,52 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
         self.assertOptional(self.plugin, 'info_url', 'infoURL')
         self.assertEscaped(self.plugin, 'info_url')
 
+    def test_plugins_json(self):
+        self.plugin.update(os="WINNT 5.0",
+                           xpcomabi="win",
+                           name="plugin name",
+                           description="plugin description",
+                           filename="plugin filename",
+                           info_url="http://info.url.com/", severity=0,
+                           vulnerability_status=1, min='2.0', max='3.0')
+
+        self.app.update(min='2.0', max='3.0')
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        plugin = blocklist['plugins'][0]
+
+        # Add infoURL
+        assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['os'] == self.plugin.os
+        assert plugin['xpcomabi'] == self.plugin.xpcomabi
+        assert plugin['matchName'] == self.plugin.name
+        assert plugin['matchFilename'] == self.plugin.filename
+        assert plugin['matchDescription'] == self.plugin.description
+
+        # VersionRange
+        assert plugin['versionRange'] == [{
+            'severity': 0,
+            'vulnerabilityStatus': 1,
+            'minVersion': '2.0',
+            'maxVersion': '3.0',
+            'targetApplication': [{
+                'guid': self.app.guid,
+                'minVersion': '2.0',
+                'maxVersion': '3.0',
+            }]
+        }]
+
+        created = self.plugin.details.created
+        assert plugin['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
+
 
 class BlocklistGfxTest(BlocklistViewTest):
 
@@ -603,6 +697,14 @@ class BlocklistGfxTest(BlocklistViewTest):
         assert gfxItem.get('hardware') == self.gfx.hardware
         devices = gfxItem.get('devices')
         assert devices == self.gfx.devices.split(' ')
+        created = self.gfx.details.created
+        assert gfxItem['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
 
     def test_gfx_no_devices_json(self):
         self.gfx.devices = None
@@ -655,10 +757,12 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         super(BlocklistIssuerCertTest, self).setUp()
         self.issuerCertBlock = BlocklistIssuerCert.objects.create(
             issuer='testissuer', serial='testserial',
-            details=BlocklistDetail.objects.create(name='one'))
+            details=BlocklistDetail.objects.create(
+                name='one', who="Who", why="Why", bug="http://bug.url.com/"))
         self.issuerCertBlock2 = BlocklistIssuerCert.objects.create(
             issuer='anothertestissuer', serial='anothertestserial',
-            details=BlocklistDetail.objects.create(name='two'))
+            details=BlocklistDetail.objects.create(
+                name='two', who="Who", why="Why", bug="http://bug.url.com/"))
 
     def test_extant_nodes(self):
         r = self.client.get(self.fx4_url)
@@ -684,8 +788,24 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         eq_(certItem['blockID'], self.issuerCertBlock.block_id)
         eq_(certItem['issuerName'], self.issuerCertBlock.issuer)
         eq_(certItem['serialNumber'], self.issuerCertBlock.serial)
+        created = self.issuerCertBlock.details.created
+        assert certItem['details'] == {
+            "name": "one",
+            "who": "Who",
+            "why": "Why",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
 
         certItem = blocklist['certificates'][1]
         eq_(certItem['blockID'], self.issuerCertBlock2.block_id)
         eq_(certItem['issuerName'], self.issuerCertBlock2.issuer)
         eq_(certItem['serialNumber'], self.issuerCertBlock2.serial)
+        created = self.issuerCertBlock2.details.created
+        assert certItem['details'] == {
+            "name": "two",
+            "who": "Who",
+            "why": "Why",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }

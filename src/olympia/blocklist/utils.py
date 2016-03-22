@@ -31,6 +31,7 @@ def certificates_to_json(items):
             'serialNumber': cert.serial,
             'issuerName': cert.issuer,
             'details': {
+                'name': cert.details.name,
                 'who': cert.details.who,
                 'why': cert.details.why,
                 'bug': cert.details.bug,
@@ -58,6 +59,7 @@ def gfxs_to_json(items):
             'driverVersionComparator': gfx.driver_version_comparator,
             'hardware': gfx.hardware,
             'details': {
+                'name': gfx.details.name,
                 'who': gfx.details.who,
                 'why': gfx.details.why,
                 'bug': gfx.details.bug,
@@ -84,7 +86,7 @@ def addons_to_json(items):
                 versionRange.append({
                     'minVersion': row.min,
                     'maxVersion': row.max,
-                    'severity': row.severity or '0',
+                    'severity': row.severity,
                     'targetApplication': targetApplication
                 })
         prefs = [pref.strip() for pref in addon.prefs]
@@ -95,6 +97,7 @@ def addons_to_json(items):
             'versionRange': versionRange,
             'prefs': prefs,
             'details': {
+                'name': details.name,
                 'who': details.who,
                 'why': details.why,
                 'bug': details.bug,
@@ -110,19 +113,21 @@ def plugins_to_json(items):
         record = {
             'blockID': plugin.block_id,
             'os': plugin.os,
+            'xpcomabi': plugin.xpcomabi,
             'infoURL': plugin.info_url,
-            'versionRange': {
+            'versionRange': [{
                 'minVersion': plugin.min,
                 'maxVersion': plugin.max,
                 'severity': plugin.severity,
-                'vulneratibilityStatus': plugin.get_vulnerability_status,
+                'vulnerabilityStatus': plugin.get_vulnerability_status,
                 'targetApplication': [{
                     'guid': plugin.app_guid,
                     'minVersion': plugin.app_min,
                     'maxVersion': plugin.app_max,
                 }]
-            },
+            }],
             'details': {
+                'name': plugin.details.name,
                 'who': plugin.details.who,
                 'why': plugin.details.why,
                 'bug': plugin.details.bug,
