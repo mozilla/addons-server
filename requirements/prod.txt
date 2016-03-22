@@ -1,5 +1,5 @@
 -r compiled.txt
-amo-validator==1.10.23
+amo-validator==1.10.24
 amqp==1.4.9
 anyjson==0.3.3
 argparse==1.2.1
