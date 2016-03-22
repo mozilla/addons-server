@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-21 20:47+0000\n"
+"PO-Revision-Date: 2016-03-22 17:08+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -15901,7 +15901,7 @@ msgstr "Meus comentários"
 
 #: src/olympia/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
-msgstr "Extra ainda sem revisões."
+msgstr "Nenhum comentário sobre extras ainda."
 
 #: src/olympia/users/templates/users/profile.html:120
 msgid "Report User"
