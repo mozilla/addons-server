@@ -50,7 +50,7 @@ $.fn.ratingwidget = function(classes) {
         }).bind('touchmove touchend', function(e) {
             var wid = $widget.width();
             var left = $widget.offset().left;
-            var r = (e.originalEvent.touches[0].clientX - left) / wid * 5 + 1;
+            var r = (e.originalEvent.changedTouches[0].clientX - left) / wid * 5 + 1;
             r = ~~Math.min(Math.max(r,1),5);
             setStars(r);
         });
