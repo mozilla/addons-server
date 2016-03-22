@@ -129,10 +129,6 @@ urlpatterns = patterns(
     url('^persona/(?P<persona_id>\d+)',
         'olympia.addons.views.persona_redirect', name='persona'),
 
-    # Redirect top-tags to tags/top
-    ('^top-tags/?',
-     lambda r: redirect('tags.top_cloud', permanent=True)),
-
     ('^personas/film and tv/?$',
      lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
 
