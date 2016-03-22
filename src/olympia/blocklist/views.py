@@ -94,9 +94,9 @@ def get_items(apiver=None, app=None, appver=None):
     if app:
         app_query = Q(app__guid__isnull=True) | Q(app__guid=app)
     else:
-        app_query = (Q(app__isnull=True) |
-                     Q(app__guid__isnull=True) |
-                     Q(app__guid__isnull=False))
+        # This is useful to make the LEFT OUTER JOIN with blapps then
+        # used in the extra clause.
+        app_query = Q(app__isnull=True) | Q(app__isnull=False)
 
     addons = (BlocklistItem.objects.no_cache()
               .select_related('details')
@@ -134,9 +134,7 @@ def get_plugins(apiver=3, app=None, appver=None):
                      Q(app__guid=app) |
                      Q(app__guid__isnull=True))
     else:
-        app_query = (Q(app__isnull=True) |
-                     Q(app__guid__isnull=True) |
-                     Q(app__guid__isnull=False))
+        app_query = Q(app__isnull=True) | Q(app__isnull=False)
 
     plugins = (BlocklistPlugin.objects.no_cache().select_related('details')
                .filter(app_query)
@@ -169,6 +167,10 @@ def blocklist_json(request):
 
 
 def _blocklist_json(request):
+    """Export the whole blocklist in JSON.
+
+    It will select blocklists for all apps.
+    """
     items, _ = get_items()
     plugins = get_plugins()
     issuerCertBlocks = BlocklistIssuerCert.objects.all()

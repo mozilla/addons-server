@@ -374,6 +374,36 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
             "bug": "http://bug.url.com/"
         }
 
+    def test_addons_json_with_no_app(self):
+        self.item.update(os="WINNT 5.0",
+                         severity=0, min='0', max='*')
+
+        self.app.delete()
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        item = blocklist['add-ons'][0]
+
+        assert item['os'] == self.item.os
+
+        # VersionRange
+        assert item['versionRange'] == [{
+            'severity': 0,
+            'minVersion': '0',
+            'maxVersion': '*',
+            'targetApplication': []
+        }]
+
+        created = self.item.details.created
+        assert item['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
+
 
 class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
@@ -613,6 +643,48 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
             "bug": "http://bug.url.com/"
         }
 
+    def test_plugins_json_with_no_app(self):
+        self.plugin.update(os="WINNT 5.0",
+                           xpcomabi="win",
+                           name="plugin name",
+                           description="plugin description",
+                           filename="plugin filename",
+                           info_url="http://info.url.com/", severity=0,
+                           vulnerability_status=1, min='2.0', max='3.0')
+
+        self.app.delete()
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        plugin = blocklist['plugins'][0]
+
+        # Add infoURL
+        assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['os'] == self.plugin.os
+        assert plugin['xpcomabi'] == self.plugin.xpcomabi
+        assert plugin['matchName'] == self.plugin.name
+        assert plugin['matchFilename'] == self.plugin.filename
+        assert plugin['matchDescription'] == self.plugin.description
+
+        # VersionRange
+        assert plugin['versionRange'] == [{
+            'severity': 0,
+            'vulnerabilityStatus': 1,
+            'minVersion': '2.0',
+            'maxVersion': '3.0',
+            'targetApplication': []
+        }]
+
+        created = self.plugin.details.created
+        assert plugin['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
+
 
 class BlocklistGfxTest(BlocklistViewTest):
 
@@ -809,3 +881,8 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
             "created": created.strftime(JSON_DATE_FORMAT),
             "bug": "http://bug.url.com/"
         }
+
+    def test_json_url_is_not_prefixed_and_does_not_redirect(self):
+        assert self.json_url == '/blocked/blocklists.json'
+        r = self.client.get(self.json_url, follow=False)
+        assert r.status_code == 200

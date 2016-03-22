@@ -211,6 +211,7 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # path that isn't just one /, and doesn't require any locale or app.
 SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
     'api/v3',
+    'blocked/blocklists.json',
 )
 
 # paths that don't require an app prefix
