@@ -336,7 +336,7 @@ class TestOtherStuff(TestCase):
         r = test.Client().get(u'/ar/firefox/?q=འ')
         doc = pq(r.content)
         link = doc('.account.anonymous a')[1].attrib['href']
-        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%25E0%25BD%25A0')
+        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%E0%BD%A0')
 
 
 @mock.patch('olympia.amo.views.log_cef')
