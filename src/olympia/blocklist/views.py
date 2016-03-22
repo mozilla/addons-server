@@ -91,12 +91,12 @@ def get_items(apiver=None, app=None, appver=None):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
 
-    app_query = (Q(app__isnull=True) |
-                 Q(app__guid__isnull=True) |
-                 Q(app__guid__isnull=False))
-
     if app:
         app_query = Q(app__guid__isnull=True) | Q(app__guid=app)
+    else:
+        app_query = (Q(app__isnull=True) |
+                     Q(app__guid__isnull=True) |
+                     Q(app__guid__isnull=False))
 
     addons = (BlocklistItem.objects.no_cache()
               .select_related('details')
@@ -129,14 +129,14 @@ def get_plugins(apiver=3, app=None, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
 
-    app_query = (Q(app__isnull=True) |
-                 Q(app__guid__isnull=True) |
-                 Q(app__guid__isnull=False))
-
     if app:
         app_query = (Q(app__isnull=True) |
                      Q(app__guid=app) |
                      Q(app__guid__isnull=True))
+    else:
+        app_query = (Q(app__isnull=True) |
+                     Q(app__guid__isnull=True) |
+                     Q(app__guid__isnull=False))
 
     plugins = (BlocklistPlugin.objects.no_cache().select_related('details')
                .filter(app_query)
