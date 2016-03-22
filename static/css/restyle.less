@@ -1056,8 +1056,48 @@ button.good {
   color: @link-on-white-bg;
 }
 
-.previews {
+.restyle .previews {
   background: #f5f5f5;
+  // This breaks the preview panel out of the containing box, allowing
+  // it to be full-width.
+  // See: https://github.com/mozilla/addons-server/pull/1947
+  margin-left: ~"calc(-1 * ((100vw - 100%) / 2))";
+  padding: 30px 0;
+  width: 100vw;
+
+  .carousel {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 6px 20px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+
+  .control {
+    color: @link-on-white-bg;
+    height: 170px;
+    line-height: 3.5;
+
+    &:hover {
+      color: @link-on-white-bg;
+    }
+
+    &.prev {
+      background: linear-gradient(to right, rgba(245, 245, 245, 1) 50%,
+                                            rgba(245, 245, 245, 0));
+    }
+
+    &.next {
+      background: linear-gradient(to left, rgba(245, 245, 245, 1) 50%,
+                                           rgba(245, 245, 245, 0));
+    }
+
+    &.disabled {
+      opacity: 0;
+      transition: opacity 100ms linear;
+    }
+  }
 }
 
 // lightbox
