@@ -278,6 +278,14 @@ def test_urlparams_unicode():
     utils.urlparams(url)
 
 
+def test_urlparams_returns_safe_string():
+    s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
+    assert s == 'https://foo.com/?param=help%2Bme'
+
+    s = render('{{ "https://foo.com/"|urlparams(param="help%2Bme") }}', {})
+    assert s == 'https://foo.com/?param=help%2Bme'
+
+
 def test_isotime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|isotime }}', {'d': time})
