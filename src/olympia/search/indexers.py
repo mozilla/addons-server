@@ -74,17 +74,6 @@ def create_new_index(index_name=None, config=None):
     create_index(index_name, config)
 
 
-def get_alias():
-    """
-    Convenience function that just returns the index alias name for
-    search-related documents.
-
-    Try not using it in new code, it's mainly there for the reindex management
-    command.
-    """
-    return BaseSearchIndexer.get_index_alias()
-
-
 def get_mappings():
     """
     Return a dict with all search-related ES mappings.

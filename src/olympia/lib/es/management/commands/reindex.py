@@ -27,10 +27,24 @@ time_limits = settings.CELERY_TIME_LIMITS[
 ES = get_es()
 
 
-MODULES = {
-    'stats': stats_search,
-    'addons': search_indexers,
-}
+def get_modules(with_stats=True):
+    """Return python modules containing functions reindex needs.
+
+    The `with_stats` parameter can be passed to omit the stats index module.
+
+    This needs to be dynamic to work with testing correctly, since tests change
+    the value of settings.ES_INDEXES to hit test-specific aliases."""
+    rval = {
+        # The keys are the index alias names, the values the python modules.
+        # The 'default' in ES_INDEXES is confusingly named 'addons', but it
+        # contains all the main document types we search for in AMO: addons,
+        # but also collections, app compatibility, users...
+        settings.ES_INDEXES['default']: search_indexers,
+    }
+    if with_stats:
+        rval[settings.ES_INDEXES['stats']] = stats_search
+
+    return rval
 
 
 def log(msg, stdout=sys.stdout):
@@ -51,8 +65,7 @@ def update_aliases(actions, stdout=sys.stdout):
 
 
 @task_with_callbacks
-def create_new_index(module_str, new_index, stdout=sys.stdout):
-    alias = MODULES[module_str].get_alias()
+def create_new_index(alias, new_index, stdout=sys.stdout):
     log('Create the index {0}, for alias: {1}'.format(new_index, alias),
         stdout=stdout)
 
@@ -71,13 +84,13 @@ def create_new_index(module_str, new_index, stdout=sys.stdout):
             settings.ES_DEFAULT_NUM_SHARDS
         )
 
-    MODULES[module_str].create_new_index(new_index, config)
+    get_modules()[alias].create_new_index(new_index, config)
 
 
 @task_with_callbacks
-def index_data(module_str, index, stdout=sys.stdout):
+def index_data(alias, index, stdout=sys.stdout):
     log('Reindexing {0}'.format(index), stdout=stdout)
-    MODULES[module_str].reindex(index)
+    get_modules()[alias].reindex(index)
 
 
 @task_with_callbacks
@@ -141,9 +154,7 @@ class Command(BaseCommand):
 
         log('Starting the reindexation', stdout=self.stdout)
 
-        modules = ['addons']
-        if kwargs.get('with_stats', False):
-            modules.append('stats')
+        modules = get_modules(with_stats=kwargs.get('with_stats', False))
 
         if kwargs.get('wipe', False):
             skip_confirmation = kwargs.get('noinput', False)
@@ -157,7 +168,7 @@ class Command(BaseCommand):
 
             if (confirm == 'yes' or skip_confirmation):
                 unflag_database(stdout=self.stdout)
-                for index in set(MODULES[m].get_alias() for m in modules):
+                for index in set(modules.keys()):
                     ES.indices.delete(index, ignore=404)
             else:
                 raise CommandError("Aborted.")
@@ -179,10 +190,9 @@ class Command(BaseCommand):
 
         to_remove = []
 
-        # For each index, we create a new time-stamped index.
-        for module in modules:
+        # For each alias, we create a new time-stamped index.
+        for alias, module in modules.items():
             old_index = None
-            alias = MODULES[module].get_alias()
 
             olds = ES.indices.get_aliases(alias, ignore=404)
             for old_index in olds:
@@ -203,9 +213,9 @@ class Command(BaseCommand):
             step1 = tree.add_task(flag_database,
                                   args=[new_index, old_index, alias])
             step2 = step1.add_task(create_new_index,
-                                   args=[module, new_index])
+                                   args=[alias, new_index])
             step3 = step2.add_task(index_data,
-                                   args=[module, new_index])
+                                   args=[alias, new_index])
             last_action = step3
 
             # Adding new index to the alias.
