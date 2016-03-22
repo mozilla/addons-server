@@ -43,7 +43,9 @@ def certificates_to_json(items):
 def gfxs_to_json(items):
     results = []
     for gfx in items:
-        devices = [d.strip() for d in gfx.devices.split(' ') if d.strip()]
+        devices = []
+        if gfx.devices:
+            devices = [d.strip() for d in gfx.devices.split(' ') if d.strip()]
         results.append({
             'blockID': gfx.block_id,
             'os': gfx.os,
