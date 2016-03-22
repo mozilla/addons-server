@@ -709,11 +709,11 @@ class ReviewTypeForm(forms.Form):
 
 class Step3Form(AddonFormBasic):
     description = TransField(widget=TransTextarea, required=False)
+    tags = None
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description',
-                  'homepage', 'support_email', 'support_url')
+        fields = ('name', 'slug', 'summary', 'description')
 
 
 class PreviewForm(happyforms.ModelForm):
