@@ -173,12 +173,12 @@ def _blocklist_json(request):
     plugins = get_plugins()
     issuerCertBlocks = BlocklistIssuerCert.objects.all()
     gfxs = BlocklistGfx.objects.all()
-    cas = None
+    ca = None
 
     try:
-        cas = BlocklistCA.objects.all()[0]
+        ca = BlocklistCA.objects.all()[0]
         # base64encode does not allow str as argument
-        cas = base64.b64encode(cas.data.encode('utf-8'))
+        ca = base64.b64encode(ca.data.encode('utf-8'))
     except IndexError:
         pass
 
@@ -190,7 +190,7 @@ def _blocklist_json(request):
         'add-ons': addons_to_json(items),
         'plugins': plugins_to_json(plugins),
         'gfx': gfxs_to_json(gfxs),
-        'cas': cas,
+        'ca': ca,
     }
     return JsonResponse(results)
 

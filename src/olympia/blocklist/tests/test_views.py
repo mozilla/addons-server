@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import base64
+import json
 from datetime import datetime
 from xml.dom import minidom
 
@@ -67,6 +68,7 @@ class BlocklistViewTest(TestCase):
                                                   '4.0'])
         self.mobile_url = reverse('blocklist', args=[2, amo.MOBILE.guid, '.9'])
         cache.clear()
+        self.json_url = reverse('blocklist.json')
         self.details = BlocklistDetail.objects.create()
 
     def create_blplugin(self, app_guid=None, app_min=None, app_max=None,
@@ -583,6 +585,50 @@ class BlocklistGfxTest(BlocklistViewTest):
                 .getElementsByTagName('gfxBlacklistEntry')[0])
         eq_(item.getAttribute('blockID'), 'g' + str(self.details.id))
 
+    def test_gfx_json(self):
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        gfxItem = blocklist['gfx'][0]
+
+        assert gfxItem.get('blockID') == self.gfx.block_id
+        assert gfxItem.get('os') == self.gfx.os
+        assert gfxItem.get('feature') == self.gfx.feature
+        assert gfxItem.get('vendor') == self.gfx.vendor
+        assert gfxItem.get('featureStatus') == self.gfx.feature_status
+        assert gfxItem.get('driverVersion') == self.gfx.driver_version
+        assert gfxItem.get('driverVersionMax') == self.gfx.driver_version_max
+        expected_comparator = self.gfx.driver_version_comparator
+        assert gfxItem.get('driverVersionComparator') == expected_comparator
+        assert gfxItem.get('hardware') == self.gfx.hardware
+        devices = gfxItem.get('devices')
+        assert devices == self.gfx.devices.split(' ')
+
+    def test_gfx_no_devices_json(self):
+        self.gfx.devices = None
+        self.gfx.save()
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+        gfxItem = blocklist['gfx'][0]
+        assert gfxItem['devices'] == []
+
+    def test_gfx_no_null_values_json(self):
+        self.gfx.update(os=None, vendor=None, devices=None,
+                        feature=None, feature_status=None,
+                        driver_version=None, driver_version_max=None,
+                        driver_version_comparator=None, hardware=None)
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+        gfxItem = blocklist['gfx'][0]
+        assert 'os' not in gfxItem
+        assert 'vendor' not in gfxItem
+        assert 'feature' not in gfxItem
+        assert 'featureStatus' not in gfxItem
+        assert 'driverVersion' not in gfxItem
+        assert 'driverVersionMax' not in gfxItem
+        assert 'driverVersionComparator' not in gfxItem
+        assert 'hardware' not in gfxItem
+
 
 class BlocklistCATest(BlocklistViewTest):
 
@@ -595,6 +641,12 @@ class BlocklistCATest(BlocklistViewTest):
         dom = minidom.parseString(r.content)
         ca = dom.getElementsByTagName('caBlocklistEntry')[0]
         eq_(base64.b64decode(ca.childNodes[0].toxml()), 'Ètå…, ≥•≤')
+
+    def test_ca_json(self):
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+        ca = blocklist['ca']
+        eq_(base64.b64decode(ca), 'Ètå…, ≥•≤')
 
 
 class BlocklistIssuerCertTest(BlocklistViewTest):
@@ -623,3 +675,17 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         serialNode = dom.getElementsByTagName('serialNumber')[1]
         serialNumber = serialNode.childNodes[0].wholeText
         eq_(serialNumber, self.issuerCertBlock2.serial)
+
+    def test_certs_json(self):
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        certItem = blocklist['certificates'][0]
+        eq_(certItem['blockID'], self.issuerCertBlock.block_id)
+        eq_(certItem['issuerName'], self.issuerCertBlock.issuer)
+        eq_(certItem['serialNumber'], self.issuerCertBlock.serial)
+
+        certItem = blocklist['certificates'][1]
+        eq_(certItem['blockID'], self.issuerCertBlock2.block_id)
+        eq_(certItem['issuerName'], self.issuerCertBlock2.issuer)
+        eq_(certItem['serialNumber'], self.issuerCertBlock2.serial)
