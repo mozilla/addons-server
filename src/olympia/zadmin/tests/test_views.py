@@ -715,23 +715,26 @@ class TestBulkValidationTask(BulkValidationTest):
         res = ValidationResult.objects.get()
         self.assertCloseToNow(res.completed)
         assert not res.task_error
-        eq_(res.errors, 1)  # package could not be found
-        eq_(res.valid, False)
-        eq_(res.warnings, 0)
-        eq_(res.notices, 0)
-        v = json.loads(res.validation)
-        eq_(v['errors'], 1)
+        validation = json.loads(res.validation)
+        assert res.errors == 1
+        assert validation['messages'][0]['id'] == (
+            ['main', 'prepare_package', 'not_found'])
+        assert res.valid is False
+        assert res.warnings == 0, [mess['message']
+                                   for mess in validation['messages']]
+        assert res.notices == 0
+        assert validation['errors'] == 1
         self.assertCloseToNow(res.validation_job.completed)
-        eq_(res.validation_job.stats['total'], 1)
-        eq_(res.validation_job.stats['completed'], 1)
-        eq_(res.validation_job.stats['passing'], 0)
-        eq_(res.validation_job.stats['failing'], 1)
-        eq_(res.validation_job.stats['errors'], 0)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject,
+        assert res.validation_job.stats['total'] == 1
+        assert res.validation_job.stats['completed'] == 1
+        assert res.validation_job.stats['passing'] == 0
+        assert res.validation_job.stats['failing'] == 1
+        assert res.validation_job.stats['errors'] == 0
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
             'Behold! Validation results for Firefox %s->%s'
             % (self.curr_max.version, self.new_max.version))
-        eq_(mail.outbox[0].to, ['fliggy@mozilla.com'])
+        assert mail.outbox[0].to == ['fliggy@mozilla.com']
 
     @mock.patch('validator.validate.validate')
     def test_validator_bulk_compat_flag(self, validate):
