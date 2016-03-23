@@ -8,6 +8,7 @@ import time
 from django.core.cache import cache
 from django.db.models import Q, signals as db_signals
 from django.db.transaction import non_atomic_requests
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
@@ -19,6 +20,9 @@ from olympia.versions.compare import version_int
 from .models import (
     BlocklistApp, BlocklistCA, BlocklistDetail, BlocklistGfx, BlocklistItem,
     BlocklistIssuerCert, BlocklistPlugin)
+
+from .utils import (
+    certificates_to_json, addons_to_json, plugins_to_json, gfxs_to_json)
 
 
 App = collections.namedtuple('App', 'guid min max')
@@ -63,6 +67,7 @@ def _blocklist(request, apiver, app, appver):
     data = dict(items=items, plugins=plugins, gfxs=gfxs, apiver=apiver,
                 appguid=app, appver=appver, last_update=last_update, cas=cas,
                 issuerCertBlocks=issuerCertBlocks)
+
     return render(request, 'blocklist/blocklist.xml', data,
                   content_type='text/xml')
 
@@ -82,17 +87,26 @@ for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
                                    dispatch_uid='delete_%s' % m)
 
 
-def get_items(apiver, app, appver=None):
+def get_items(apiver=None, app=None, appver=None):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
+
+    if app:
+        app_query = Q(app__guid__isnull=True) | Q(app__guid=app)
+    else:
+        # This is useful to make the LEFT OUTER JOIN with blapps then
+        # used in the extra clause.
+        app_query = Q(app__isnull=True) | Q(app__isnull=False)
+
     addons = (BlocklistItem.objects.no_cache()
               .select_related('details')
               .prefetch_related('prefs')
-              .filter(Q(app__guid__isnull=True) | Q(app__guid=app))
+              .filter(app_query)
               .order_by('-modified')
               .extra(select={'app_guid': 'blapps.guid',
                              'app_min': 'blapps.min',
                              'app_max': 'blapps.max'}))
+
     items, details = {}, {}
     for guid, rows in sorted_groupby(addons, 'guid'):
         rows = list(rows)
@@ -111,15 +125,23 @@ def get_items(apiver, app, appver=None):
     return items, details
 
 
-def get_plugins(apiver, app, appver=None):
+def get_plugins(apiver=3, app=None, appver=None):
     # API versions < 3 ignore targetApplication entries for plugins so only
     # block the plugin if the appver is within the block range.
+
+    if app:
+        app_query = (Q(app__isnull=True) |
+                     Q(app__guid=app) |
+                     Q(app__guid__isnull=True))
+    else:
+        app_query = Q(app__isnull=True) | Q(app__isnull=False)
+
     plugins = (BlocklistPlugin.objects.no_cache().select_related('details')
-               .filter(Q(app__isnull=True) | Q(app__guid=app) |
-                       Q(app__guid__isnull=True))
+               .filter(app_query)
                .extra(select={'app_guid': 'blapps.guid',
                               'app_min': 'blapps.min',
                               'app_max': 'blapps.max'}))
+
     if apiver < 3 and appver is not None:
         def between(ver, min, max):
             if not (min and max):
@@ -129,6 +151,50 @@ def get_plugins(apiver, app, appver=None):
         plugins = [p for p in plugins if between(app_version, p.app_min,
                                                  p.app_max)]
     return list(plugins)
+
+
+@non_atomic_requests
+def blocklist_json(request):
+    key = 'blocklist:json'
+    cache.add('blocklist:keyversion', 1)
+    version = cache.get('blocklist:keyversion')
+    response = cache.get(key, version=version)
+    if response is None:
+        response = _blocklist_json(request)
+        cache.set(key, response, 60 * 60, version=version)
+    patch_cache_control(response, max_age=60 * 60)
+    return response
+
+
+def _blocklist_json(request):
+    """Export the whole blocklist in JSON.
+
+    It will select blocklists for all apps.
+    """
+    items, _ = get_items()
+    plugins = get_plugins()
+    issuerCertBlocks = BlocklistIssuerCert.objects.all()
+    gfxs = BlocklistGfx.objects.all()
+    ca = None
+
+    try:
+        ca = BlocklistCA.objects.all()[0]
+        # base64encode does not allow str as argument
+        ca = base64.b64encode(ca.data.encode('utf-8'))
+    except IndexError:
+        pass
+
+    last_update = int(round(time.time() * 1000))
+
+    results = {
+        'last_update': last_update,
+        'certificates': certificates_to_json(issuerCertBlocks),
+        'add-ons': addons_to_json(items),
+        'plugins': plugins_to_json(plugins),
+        'gfx': gfxs_to_json(gfxs),
+        'ca': ca,
+    }
+    return JsonResponse(results)
 
 
 @non_atomic_requests
