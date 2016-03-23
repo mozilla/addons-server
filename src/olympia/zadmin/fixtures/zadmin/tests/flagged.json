@@ -136,41 +136,5 @@
             "hash": "sha256:0934704605d5976734711897ad2d5c91390f6792ee7352d2c6019cfd77367ce1",
             "status": "4"
         }
-    },
-    {
-        "pk": 1,
-        "model": "files.approval",
-        "fields": {
-            "created": "2009-10-20 15:38:57",
-            "user": 4230,
-            "comments": "blah blah bla",
-            "applications": "",
-            "reviewtype": "nominated",
-            "action": 3,
-            "reply_to": null,
-            "os": "",
-            "addon": 1,
-            "modified": "2009-08-03 23:59:20",
-            "created": "2009-08-03 23:58:46",
-            "file": 1
-        }
-    },
-    {
-        "pk": 3,
-        "model": "files.approval",
-        "fields": {
-            "created": "2009-10-20 15:38:57",
-            "user": 4230,
-            "comments": "blah blah bla",
-            "applications": "",
-            "reviewtype": "pending",
-            "action": 2,
-            "reply_to": null,
-            "os": "",
-            "addon": 3,
-            "modified": "2009-08-03 23:59:20",
-            "created": "2009-08-03 23:58:46",
-            "file": 2
-        }
     }
 ]
