@@ -6,6 +6,7 @@ import tempfile
 import zipfile
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
 import mock
@@ -217,6 +218,13 @@ class TestPackaged(TestCase):
         assert not packaged.is_signed(self.file_.file_path)
         packaged.sign_file(self.file_, settings.SIGNING_SERVER)
         assert packaged.is_signed(self.file_.file_path)
+
+    def test_size_updated(self):
+        unsigned_size = storage.size(self.file_.file_path)
+        packaged.sign_file(self.file_, settings.SIGNING_SERVER)
+        signed_size = storage.size(self.file_.file_path)
+        assert self.file_.size == signed_size
+        assert unsigned_size < signed_size
 
     def test_sign_file_multi_package(self):
         fpath = 'src/olympia/files/fixtures/files/multi-package.xpi'
