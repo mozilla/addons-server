@@ -17,6 +17,13 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     noappsupport = '<div class="extra"><span class="notsupported">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
+// Restyle is enabled; we're going to modify the text.
+if ($('body').hasClass('restyle')) {
+    notavail = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
+    incompat = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
+    noappsupport = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
+}
+
 // The lowest maxVersion an app has to support to allow default-to-compatible.
 var D2C_MAX_VERSIONS = {
     firefox: '4.0',
