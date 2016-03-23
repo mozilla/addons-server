@@ -9,7 +9,6 @@ from django.core import mail
 from django.core.cache import cache
 
 import mock
-from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -709,7 +708,6 @@ class TestBulkNotify(BulkValidationTest):
 
 class TestBulkValidationTask(BulkValidationTest):
 
-    @attr('validator')
     def test_validate(self):
         self.start_validation()
         res = ValidationResult.objects.get()

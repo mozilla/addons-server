@@ -6,7 +6,6 @@ from django import forms
 from django.core.files.storage import default_storage as storage
 
 import mock
-from nose.plugins.attrib import attr
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 import waffle
@@ -477,7 +476,6 @@ class TestValidateFile(BaseUploadTest):
             storage.delete(self.file.file_path)
         super(TestValidateFile, self).tearDown()
 
-    @attr('validator')
     def test_lazy_validate(self):
         r = self.client.post(reverse('devhub.json_file_validation',
                                      args=[self.addon.slug, self.file.id]),

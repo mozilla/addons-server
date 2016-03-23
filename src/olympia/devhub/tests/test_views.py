@@ -15,7 +15,6 @@ from django.utils.translation import trim_whitespace
 import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
-from nose.plugins.attrib import attr
 from nose.tools import assert_not_equal, assert_raises, eq_
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -2096,7 +2095,6 @@ class TestUpload(BaseUploadTest):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(FileUpload.objects.get().user, user)
 
-    @attr('validator')
     def test_fileupload_validation(self):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
@@ -2165,7 +2163,6 @@ class TestUploadDetail(BaseUploadTest):
                                  {'upload': f})
         eq_(r.status_code, 302)
 
-    @attr('validator')
     def test_detail_json(self):
         self.post()
 
