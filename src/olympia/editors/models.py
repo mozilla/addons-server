@@ -243,6 +243,52 @@ class ViewFastTrackQueue(ViewQueue):
         return q
 
 
+class ViewAllList(ViewQueue):
+    guid = models.CharField(max_length=255)
+    version_date = models.DateTimeField()
+    _author_ids = models.CharField(max_length=255)
+    _author_usernames = models.CharField()
+    review_date = models.DateField()
+    review_version_num = models.CharField(max_length=255)
+
+    @property
+    def authors(self):
+        ids = self._explode_concat(self._author_ids)
+        usernames = self._explode_concat(self._author_usernames, cast=unicode)
+        return zip(ids, usernames)
+
+    def base_query(self):
+        q = super(ViewAllList, self).base_query()
+        q['select'].update({
+            'guid': 'addons.guid',
+            '_author_ids': 'GROUP_CONCAT(authors.user_id)',
+            '_author_usernames': 'GROUP_CONCAT(users.username)',
+            'version_date': 'versions.nomination',
+            'review_date': 'reviewed_versions.reviewed',
+            'review_version_num': 'reviewed_versions.version',
+        })
+        q['from'].extend([
+            """LEFT JOIN addons_users AS authors
+                    ON addons.id = authors.addon_id""",
+            'LEFT JOIN users as users ON users.id = authors.user_id',
+            """LEFT JOIN (
+                SELECT id, addon_id, reviewed, version FROM versions
+                WHERE reviewed IS NOT NULL
+                ORDER BY id desc
+                ) AS reviewed_versions
+                    ON reviewed_versions.addon_id = addons.id"""
+        ])
+        q['where'].extend([
+            """reviewed_versions.id = (select max(reviewed_versions.id)) OR
+                (reviewed_versions.id IS NULL AND addons.inactive = 0 AND
+                 addons.is_listed = {0})
+            """.format('1' if self.listed else '0'),
+            'addons.status NOT IN (%s, %s, %s)' % (
+                amo.STATUS_NULL, amo.STATUS_DELETED, amo.STATUS_DISABLED)
+        ])
+        return q
+
+
 class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
     listed = False
 
@@ -252,6 +298,10 @@ class ViewUnlistedPendingQueue(ViewPendingQueue):
 
 
 class ViewUnlistedPreliminaryQueue(ViewPreliminaryQueue):
+    listed = False
+
+
+class ViewUnlistedAllList(ViewAllList):
     listed = False
 
 

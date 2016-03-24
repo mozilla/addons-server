@@ -233,19 +233,23 @@ class UserProfile(OnChangeMixin, ModelBase,
     def is_anonymous(self):
         return False
 
-    def get_user_url(self, name='profile', src=None, args=None):
+    @staticmethod
+    def create_user_url(id_, username=None, url_name='profile', src=None,
+                        args=None):
         """
         We use <username> as the slug, unless it contains gross
         characters - in which case use <id> as the slug.
         """
         from olympia.amo.utils import urlparams
         chars = '/<>"\''
-        slug = self.username
-        if not self.username or any(x in chars for x in self.username):
-            slug = self.id
+        if not username or any(x in chars for x in username):
+            username = id_
         args = args or []
-        url = reverse('users.%s' % name, args=[slug] + args)
+        url = reverse('users.%s' % url_name, args=[username] + args)
         return urlparams(url, src=src)
+
+    def get_user_url(self, name='profile', src=None, args=None):
+        return self.create_user_url(self.id, self.username, name, src, args)
 
     def get_url_path(self, src=None):
         return self.get_user_url('profile', src=src)

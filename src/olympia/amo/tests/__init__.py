@@ -129,7 +129,7 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            eq_(e.text(), text)
+            assert e.text() == text
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):

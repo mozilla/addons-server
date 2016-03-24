@@ -22,7 +22,7 @@ from olympia.amo.utils import send_mail as amo_send_mail
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
+    ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.sql_table import SQLTable
 from olympia.lib.crypto.packaged import sign_file
@@ -138,7 +138,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
                 'queue': _('Queue'),
                 'pending': _('Unlisted Pending Updates'),
                 'nominated': _('Unlisted Full Reviews'),
-                'prelim': _('Unlisted Preliminary Reviews')
+                'prelim': _('Unlisted Preliminary Reviews'),
+                'all': _('Unlisted All Add-ons'),
             }
 
         if items and not queue == 'queue':
@@ -208,7 +209,12 @@ def queue_tabnav(context):
                    (ngettext('Unlisted Preliminary Review ({0})',
                              'Unlisted Preliminary Reviews ({0})',
                              unlisted_counts['prelim'])
-                    .format(unlisted_counts['prelim'])))]
+                    .format(unlisted_counts['prelim']))),
+                  ('all', 'unlisted_all',
+                   (ngettext('Unlisted All Add-ons ({0})',
+                             'Unlisted All Add-ons ({0})',
+                             unlisted_counts['all'])
+                    .format(unlisted_counts['all'])))]
 
     return tabnav
 
@@ -259,17 +265,7 @@ class ItemStateTable(object):
         self.item_number = page.start_index()
 
 
-class EditorQueueTable(SQLTable, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
-    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
-    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
-    applications = tables.Column(verbose_name=_lazy(u'Applications'),
-                                 sortable=False)
-    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
-                              sortable=False)
-    additional_info = tables.Column(
-        verbose_name=_lazy(u'Additional'), sortable=False)
+class _EditorTableColumnsHelper():
 
     def render_addon_name(self, row):
         url = reverse('editors.review', args=[row.addon_slug])
@@ -310,6 +306,40 @@ class EditorQueueTable(SQLTable, ItemStateTable):
                        u'title="%s"></div>' % flag
                        for flag in row.flags)
 
+    @classmethod
+    def translate_sort_cols(cls, colname):
+        legacy_sorts = {
+            'name': 'addon_name',
+            'age': 'waiting_time_min',
+            'type': 'addon_type_id',
+        }
+        return legacy_sorts.get(colname, colname)
+
+    @classmethod
+    def review_url(cls, row):
+        return reverse('editors.review', args=[row.addon_slug])
+
+    def safe_substitute(self, string, *args):
+        return string % tuple(jinja2.escape(arg) for arg in args)
+
+
+class EditorQueueTable(SQLTable, ItemStateTable, _EditorTableColumnsHelper):
+    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
+    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
+    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
+    applications = tables.Column(verbose_name=_lazy(u'Applications'),
+                                 sortable=False)
+    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
+                              sortable=False)
+    additional_info = tables.Column(
+        verbose_name=_lazy(u'Additional'), sortable=False)
+
+    class Meta:
+        sortable = True
+        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
+                   'flags', 'applications', 'additional_info']
+
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:
             r = _lazy('moments ago')
@@ -328,26 +358,52 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return jinja2.escape(r)
 
     @classmethod
-    def translate_sort_cols(cls, colname):
-        legacy_sorts = {
-            'name': 'addon_name',
-            'age': 'waiting_time_min',
-            'type': 'addon_type_id',
-        }
-        return legacy_sorts.get(colname, colname)
-
-    @classmethod
     def default_order_by(cls):
         return '-waiting_time_min'
 
-    @classmethod
-    def review_url(cls, row):
-        return reverse('editors.review', args=[row.addon_slug])
+
+class EditorAllListTable(SQLTable, ItemStateTable, _EditorTableColumnsHelper):
+    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
+    version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
+    guid = tables.Column(verbose_name=_lazy(u'GUID'))
+    authors = tables.Column(verbose_name=_lazy(u'Authors'),
+                            sortable=False)
+    last_review = tables.Column(verbose_name=_lazy(u'Last Review'),
+                                sortable=False)
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
+    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
+                              sortable=False)
+    additional_info = tables.Column(
+        verbose_name=_lazy(u'Additional'), sortable=False)
 
     class Meta:
-        sortable = True
-        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
-                   'flags', 'applications', 'additional_info']
+        columns = ['addon_name', 'version_date', 'addon_type_id', 'guid',
+                   'authors', 'flags', 'additional_info', 'last_review']
+
+    def render_guid(self, row):
+        return self.safe_substitute(u'%s', row.guid)
+
+    def render_version_date(self, row):
+        return self.safe_substitute(u'<span>%s</span>', row.version_date)
+
+    def render_last_review(self, row):
+        return self.safe_substitute(u'<span><em>%s</em> on %s</span>',
+                                    row.review_version_num, row.review_date)
+
+    def render_authors(self, row):
+        authors = row.authors
+        if not len(authors):
+            return ''
+        url = UserProfile.create_user_url(authors[0][0],
+                                          username=authors[0][1])
+        more = ''.join(u'%s\n' % uname for (id_, uname) in authors)
+        return self.safe_substitute(
+            u'<span title="%s"><a href="%s">%s</a>%s</span>',
+            more, url, authors[0][1], '...' if len(authors) > 1 else '')
+
+    @classmethod
+    def default_order_by(cls):
+        return 'version_date'
 
 
 class ViewPendingQueueTable(EditorQueueTable):
@@ -390,6 +446,12 @@ class ViewUnlistedPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewUnlistedPreliminaryQueue
+
+
+class ViewUnlistedAllListTable(EditorAllListTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedAllList
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -669,7 +731,10 @@ class ReviewBase(object):
         emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         if self.version:
-            self.version.update(has_info_request=True)
+            kw = {'has_info_request': True}
+            if not self.addon.is_listed and not self.version.reviewed:
+                kw['reviewed'] = datetime.datetime.now()
+            self.version.update(**kw)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         subject = u'Mozilla Add-ons: %s %s' % (
@@ -691,6 +756,8 @@ class ReviewBase(object):
             kw = {'has_editor_comment': True}
             if self.data.get('clear_info_request'):
                 kw['has_info_request'] = False
+            if not self.addon.is_listed and not self.version.reviewed:
+                kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
