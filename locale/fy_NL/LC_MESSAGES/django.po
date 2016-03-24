@@ -11,12 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2008-09-22 13:20-0700\n"
 "Last-Translator: Wil Clouser <wclouser@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Pootle 1.1.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -2005,7 +2003,6 @@ msgid "Explore"
 msgstr ""
 
 # Plural in this context means many of the add-on type
-# Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html:23 src/olympia/browse/feeds.py:65 src/olympia/browse/feeds.py:78 src/olympia/browse/feeds.py:92 src/olympia/browse/feeds.py:100
 #: src/olympia/browse/templates/browse/base_listing.html:7 src/olympia/browse/templates/browse/creatured.html:10 src/olympia/browse/templates/browse/impala/base_listing.html:37
 #: src/olympia/constants/base.py:173 src/olympia/templates/menu_links.html:8
@@ -3416,13 +3413,11 @@ msgid "Theme"
 msgstr ""
 
 # Plural in this context means many of the add-on type
-# Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py:175
 #, fuzzy
 msgid "Dictionaries"
 msgstr "Dictionaries"
 
-# Plural in this context means many of the add-on type
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py:177
 #, fuzzy
@@ -12090,7 +12085,6 @@ msgstr ""
 msgid "Congratulations! Your user account was successfully created."
 msgstr "Congratulations! Your user account was successfully created."
 
-# %1 is the user's email address
 # %1 is the user's email address
 #: src/olympia/users/views.py:615
 #, fuzzy

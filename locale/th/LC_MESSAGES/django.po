@@ -4,19 +4,16 @@
 # Automatically generated, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: addons\n"
+"Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2013-11-08 06:31+0000\n"
 "Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
 "Language-Team: Thai\n"
-"Language: th\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-POOTLE-MTIME: 1383892291.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -473,8 +470,8 @@ msgid "Version {0}:"
 msgstr "รุ่น {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "ไม่มีอะไรให้ดูที่นี่! นักพัฒนาไม่ได้ใส่รายละเอียดใด ๆ"
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -793,11 +790,8 @@ msgid "QR code for add-on"
 msgstr "QR code ของส่วนเสริม"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr ""
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
+msgstr "ต้องการ {0} ใน Firefox บนมือถือของคุณ? สแกน QR code นี้เพื่อติดตั้งโดยตรงบนมือถือของคุณ (คุณจำเป็นต้องมีตัวอ่าน QR ค้นหาในร้านค้าแอพบนมือถือของคุณถ้าคุณไม่มี)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
@@ -1720,8 +1714,8 @@ msgid "Reviewer escalation"
 msgstr ""
 
 #: src/olympia/amo/log.py:442
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgid "Video removed from {addon} because of a problem with the video."
+msgstr "วิดีโอถูกถอดออกจาก {addon} เนื่องจากเกิดปัญหาเกี่ยวกับวิดีโอ"
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2349,9 +2343,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"ส่วนเสริมที่คุณทำเครื่องหมายเป็นรายการโปรดโดยใช้คุณสมบัติ<b>เพิ่มไปยังรายการโปรด</b>ปรากฏอยู่ด้านล่าง ชุดสะสมนี้เป็น<b>ส่วนตัว</b>ในปัจจุบัน ซึ่งหมายความว่าเฉพาะคุณเท่านั้นที่สามารถเห็นมันได้ "
+"ถ้าคุณต้องการให้ทุกคนสามารถเห็นรายการโปรดของคุณได้ให้คลิกปุ่มที่อยู่ด้านล่างเพื่อทำให้มันเป็นสาธารณะ"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -2490,9 +2486,10 @@ msgstr "ผู้มีส่วนร่วมชุดสะสม"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"คุณสามารถเพิ่มผู้มีส่วนร่วมหลายคนให้กับชุดสะสมนี้ ผู้มีส่วนร่วมสามารถเพิ่มและเอาส่วนเสริมออกจากชุดสะสมนี้ แต่ไม่สามารถเปลี่ยนชื่อหรือคำอธิบายของมันได้ ในการเพิ่มผู้มีส่วนร่วม ให้ใส่อีเมลของพวกเขาในกล่องด้านล่าง ผู้มีส่วนร่วมต้องมีบัญชีของ Mozilla Add-ons"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2598,8 +2595,8 @@ msgid "Reset"
 msgstr "ตั้งค่าใหม่"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "รองรับ PNG และ JPG รูปจะถูกย่อที่ขนาด 32x32"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
@@ -2611,8 +2608,8 @@ msgstr "ส่วนเสริมในชุดสะสมของคุณ
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
-"To include an add-on in this collection, enter its name in the box below and hit enter.  You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
-msgstr ""
+"To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
+msgstr "การเพิ่มส่วนเสริมในชุดสะสมนี้ ทำได้โดยใส่ชื่อของส่วนเสริมลงในช่องข้างล่างแล้วกดปุ่ม enter และคุณยังสามารถใช้ลิงก์ <strong>เพิ่มไปยังชุดสะสม</strong> ในเว็บเพื่อที่จะเพิ่มส่วนเสริมในภายหลัง"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/constants/base.py:400 src/olympia/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
@@ -4639,10 +4636,8 @@ msgid "32x32px"
 msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-msgid ""
-"Used in listings of add-ons, like search results\n"
-"                            and featured add-ons."
-msgstr ""
+msgid "Used in listings of add-ons, like search results and featured add-ons."
+msgstr "ใช้แสดงในรายการของส่วนเสริม เช่น ผลการค้นหาและส่วนเสริมที่แนะนำ"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
