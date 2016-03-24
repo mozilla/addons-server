@@ -28,12 +28,13 @@ from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewQueue, ViewUnlistedFullReviewQueue,
+    ViewPreliminaryQueue, ViewQueue, ViewUnlistedAllList,
+    ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper,
     ViewFastTrackQueueTable, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewPreliminaryQueueTable,
+    ViewPendingQueueTable, ViewPreliminaryQueueTable, ViewUnlistedAllListTable,
     ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable,
     ViewUnlistedPreliminaryQueueTable)
 from olympia.reviews.forms import ReviewFlagFormSet
@@ -469,7 +470,8 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         counts = {
             'pending': construct_query(ViewUnlistedPendingQueue, **kw),
             'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
-            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw)}
+            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw),
+            'all': construct_query(ViewUnlistedAllList, **kw)}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -843,3 +845,9 @@ def whiteboard(request, addon):
         addon = form.save()
         return redirect('editors.review', addon.pk)
     raise PermissionDenied
+
+
+@unlisted_addons_reviewer_required
+def unlisted_list(request):
+    return _queue(request, ViewUnlistedAllListTable, 'all',
+                  unlisted=True)

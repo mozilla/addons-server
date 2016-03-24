@@ -108,6 +108,45 @@ class TestViewPendingQueueTable(TestCase):
         assert doc('div.ed-sprite-admin-review').length
 
 
+class TestUnlistedViewAllListTable(TestCase):
+
+    def setUp(self):
+        super(TestUnlistedViewAllListTable, self).setUp()
+        qs = Mock()
+        self.table = helpers.ViewUnlistedAllListTable(qs)
+
+    def test_addon_name(self):
+        row = Mock()
+        page = Mock()
+        page.start_index = Mock()
+        page.start_index.return_value = 1
+        row.addon_name = 'フォクすけといっしょ'.decode('utf8')
+        row.addon_slug = 'test'
+        row.latest_version = u'0.12'
+        self.table.set_page(page)
+        a = pq(self.table.render_addon_name(row))
+
+        assert (a.attr('href') == reverse('editors.review',
+                                          args=[str(row.addon_slug)]))
+        assert a.text() == 'フォクすけといっしょ 0.12'.decode('utf8')
+
+    def test_last_review(self):
+        row = Mock()
+        row.review_version_num = u'0.34.3b'
+        row.review_date = u'2016-01-01'
+        doc = pq(self.table.render_last_review(row))
+        assert doc.text() == u'0.34.3b on 2016-01-01'
+
+    def test_authors(self):
+        row = Mock()
+        row.authors = [(123, 'bob'), (345, 'steve')]
+        doc = pq(self.table.render_authors(row))
+        url = UserProfile.create_user_url(123, username='bob')
+        assert doc('span').text() == 'bob ...'
+        assert doc('span a').attr('href') == url
+        assert doc('span').attr('title') == 'bob steve '
+
+
 class TestAdditionalInfoInQueue(TestCase):
 
     def setUp(self):
