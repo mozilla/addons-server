@@ -85,44 +85,6 @@ class TestSiteEvents(TestCase):
         eq_(len(events), 0)
 
 
-class TestFlagged(TestCase):
-    fixtures = ['base/users', 'zadmin/tests/flagged']
-
-    def setUp(self):
-        super(TestFlagged, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.url = reverse('zadmin.flagged')
-
-    def test_get(self):
-        response = self.client.get(self.url, follow=True)
-
-        addons = dict((a.id, a) for a in response.context['addons'])
-        assert len(addons) == 3
-
-        # 1. an addon should have latest version attached
-        addon = Addon.objects.get(id=1)
-        assert addons[1] == addon
-        assert (addons[1].version.id ==
-                Version.objects.filter(addon=addon).latest().id)
-
-    def test_post(self):
-        response = self.client.post(self.url, {'addon_id': ['1', '2']},
-                                    follow=True)
-        self.assert3xx(response, self.url)
-
-        assert not Addon.objects.no_cache().get(id=1).admin_review
-        assert not Addon.objects.no_cache().get(id=2).admin_review
-
-        addons = response.context['addons']
-        eq_(len(addons), 1)
-        eq_(addons[0], Addon.objects.get(id=3))
-
-    def test_empty(self):
-        Addon.objects.update(admin_review=False)
-        res = self.client.get(self.url)
-        eq_(set(res.context['addons']), set([]))
-
-
 class BulkValidationTest(TestCase):
     fixtures = ['base/addon_3615', 'base/appversion', 'base/users']
 
@@ -1779,7 +1741,7 @@ class TestFileDownload(TestCase):
 
 
 class TestPerms(TestCase):
-    fixtures = ['base/users', 'zadmin/tests/flagged']
+    fixtures = ['base/users']
 
     FILE_ID = '1234567890abcdef1234567890abcdef'
 
@@ -1794,7 +1756,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1811,7 +1772,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1828,7 +1788,6 @@ class TestPerms(TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1844,7 +1803,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.validation', 200)
-        self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
@@ -1856,7 +1814,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
