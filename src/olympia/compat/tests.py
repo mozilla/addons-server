@@ -332,3 +332,8 @@ class TestAppCompatIndexer(TestCase):
 
         # Make sure 'boost' is present.
         assert 'boost' in mapping_properties
+
+    def test_no_extract(self):
+        # Extraction is handled differently for this class because it's quite
+        # specific, so it does not have an extract_document() method.
+        assert not hasattr(self.indexer, 'extract_document')
