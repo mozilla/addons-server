@@ -76,9 +76,6 @@ a:visited,
 a:hover,
 a:focus,
 a:active,
-button.link:hover span,
-button.link:focus span,
-button.link:active span,
 .more-info,
 .more-info:link,
 .more-info:visited,
@@ -86,6 +83,13 @@ button.link:active span,
 .more-info:focus,
 .more-info:active {
   color: @link-on-white-bg;
+}
+
+a.button,
+button.link:hover span,
+button.link:focus span,
+button.link:active span {
+  color: @link-on-color-bg;
 }
 
 /* Main Content Wrapper */
