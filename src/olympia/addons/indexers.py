@@ -28,23 +28,41 @@ class AddonIndexer(BaseSearchIndexer):
         }
         mapping = {
             doc_name: {
+                'dynamic': False,
                 'properties': {
+                    'id': {'type': 'long'},
+
+                    'app': {'type': 'long'},
+                    'appversion': {'properties': {app.id: appver
+                                                  for app in amo.APP_USAGE}},
+                    'authors': {'type': 'string'},
+                    'average_daily_users': {'type': 'long'},
+                    'bayesian_rating': {'type': 'double'},
+                    'category': {'type': 'integer'},
+                    'created': {'type': 'date'},
                     'boost': {'type': 'float', 'null_value': 1.0},
                     'default_locale': {'type': 'string', 'index': 'no'},
+                    'description': {'type': 'string', 'analyzer': 'snowball'},
+                    'has_version': {'type': 'boolean'},
+                    'has_theme_rereview': {'type': 'boolean'},
+                    'hotness': {'type': 'double'},
+                    'is_disabled': {'type': 'boolean'},
+                    'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
-                    # Turn off analysis on name so we can sort by it.
-                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
                     'name': {'type': 'string',
                              'analyzer': 'standardPlusWordDelimiter'},
+                    # Turn off analysis on name so we can sort by it.
+                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'platforms': {'type': 'integer', 'index_name': 'platform'},
+                    'slug': {'type': 'string'},
+                    'status': {'type': 'byte'},
                     'summary': {'type': 'string', 'analyzer': 'snowball'},
-                    'description': {'type': 'string', 'analyzer': 'snowball'},
                     'tags': {'type': 'string', 'index': 'not_analyzed',
                              'index_name': 'tag'},
-                    'platforms': {'type': 'integer', 'index_name': 'platform'},
-                    'appversion': {'properties': {app.id: appver
-                                                  for app in amo.APP_USAGE}},
+                    'type': {'type': 'byte'},
+                    'weekly_downloads': {'type': 'long'},
                 },
             },
         }
@@ -69,14 +87,30 @@ class AddonIndexer(BaseSearchIndexer):
                  'weekly_downloads', 'bayesian_rating', 'average_daily_users',
                  'status', 'type', 'hotness', 'is_disabled', 'is_listed')
         data = {attr: getattr(obj, attr) for attr in attrs}
-        data['authors'] = [a.name for a in obj.listed_authors]
-        # We go through attach_categories and attach_tags transformer before
-        # calling this function, it sets category_ids and tag_list.
-        data['category'] = getattr(obj, 'category_ids', [])
-        data['tags'] = getattr(obj, 'tag_list', [])
-        if obj.current_version:
-            data['platforms'] = [p.id for p in
-                                 obj.current_version.supported_platforms]
+
+        if obj.type == amo.ADDON_PERSONA:
+            try:
+                # Boost on popularity.
+                data['boost'] = obj.persona.popularity ** .2
+                data['has_theme_rereview'] = (
+                    obj.persona.rereviewqueuetheme_set.exists())
+                # 'weekly_downloads' field is used globally to sort, but
+                # for themes weekly_downloads don't make much sense, use
+                # popularity instead (FIXME: should be the other way around).
+                data['weekly_downloads'] = obj.persona.popularity
+            except ObjectDoesNotExist:
+                # The instance won't have a persona while it's being created.
+                pass
+        else:
+            # Boost by the number of users on a logarithmic scale. The maximum
+            # boost (11,000,000 users for adblock) is about 5x.
+            data['boost'] = obj.average_daily_users ** .2
+            data['has_theme_rereview'] = None
+        # Double the boost if the add-on is public.
+        if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
+            data['boost'] = max(data['boost'], 1) * 4
+
+        data['app'] = [app.id for app in obj.compatible_apps.keys()]
         data['appversion'] = {}
         for app, appver in obj.compatible_apps.items():
             if appver:
@@ -89,26 +123,15 @@ class AddonIndexer(BaseSearchIndexer):
             data['has_version'] = obj._current_version is not None
         except ObjectDoesNotExist:
             data['has_version'] = None
-        data['app'] = [app.id for app in obj.compatible_apps.keys()]
 
-        if obj.type == amo.ADDON_PERSONA:
-            try:
-                # This would otherwise get attached by the transformer.
-                data['weekly_downloads'] = obj.persona.popularity
-                # Boost on popularity.
-                data['boost'] = obj.persona.popularity ** .2
-                data['has_theme_rereview'] = (
-                    obj.persona.rereviewqueuetheme_set.exists())
-            except ObjectDoesNotExist:
-                # The instance won't have a persona while it's being created.
-                pass
-        else:
-            # Boost by the number of users on a logarithmic scale. The maximum
-            # boost (11,000,000 users for adblock) is about 5x.
-            data['boost'] = obj.average_daily_users ** .2
-        # Double the boost if the add-on is public.
-        if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
-            data['boost'] = max(data['boost'], 1) * 4
+        data['authors'] = [a.name for a in obj.listed_authors]
+        # We go through attach_categories and attach_tags transformer before
+        # calling this function, it sets category_ids and tag_list.
+        data['category'] = getattr(obj, 'category_ids', [])
+        if obj.current_version:
+            data['platforms'] = [p.id for p in
+                                 obj.current_version.supported_platforms]
+        data['tags'] = getattr(obj, 'tag_list', [])
 
         # Handle localized fields.
         # First, deal with the 3 fields that need everything:

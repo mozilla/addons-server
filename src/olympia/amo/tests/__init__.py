@@ -14,6 +14,7 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 from django import forms, test
 from django.conf import settings
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.exceptions import ImproperlyConfigured
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.forms.fields import Field
@@ -751,7 +752,14 @@ class ESTestCase(TestCase):
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
     mock_es = False
-    indexes_names = None  # Changed below.
+
+    # We need ES indexes aliases to match prod behaviour, but also we need the
+    # names need to stay consistent during the whole test run, so we generate
+    # them at import time. Note that this works because pytest overrides
+    # ES_INDEXES before the test run even begins - if we were using
+    # override_settings() on ES_INDEXES we'd be in trouble.
+    index_names = {key: timestamp_index(value)
+                   for key, value in settings.ES_INDEXES.items()}
 
     @classmethod
     def setUpClass(cls):
@@ -772,23 +780,26 @@ class ESTestCase(TestCase):
             'english': ['en-us'],
             'spanish': ['es'],
         }
-
-        for index in set(settings.ES_INDEXES.values() +
-                         cls.indexes_names.values()):
-            cls.es.indices.delete(index, ignore=[404])
+        indexes = set(settings.ES_INDEXES.values() + cls.index_names.values())
+        for index in indexes:
+            if not index.startswith('test_'):
+                # Just in case.
+                raise ImproperlyConfigured(
+                    'Tests are trying to delete a non test index: %s' % index)
+                cls.es.indices.delete(index, ignore=[404])
 
         # Create new search and stats indexes. This is crucial to set up the
         # correct mappings before we start indexing things in tests.
         search_indexers.create_new_index(
-            index_name=cls.indexes_names['default'])
-        stats_search.create_new_index(index_name=cls.indexes_names['stats'])
+            index_name=cls.index_names['default'])
+        stats_search.create_new_index(index_name=cls.index_names['stats'])
 
         # Alias it to the name the code is going to use (which is suffixed by
         # pytest to avoid clashing with the real thing).
         actions = [
-            {'add': {'index': cls.indexes_names['default'],
+            {'add': {'index': cls.index_names['default'],
                      'alias': settings.ES_INDEXES['default']}},
-            {'add': {'index': cls.indexes_names['stats'],
+            {'add': {'index': cls.index_names['stats'],
                      'alias': settings.ES_INDEXES['stats']}}
         ]
         cls.es.indices.update_aliases({'actions': actions})
@@ -820,12 +831,6 @@ class ESTestCase(TestCase):
             settings.ES_INDEXES[index],
             body={"query": {"match_all": {}}}
         )
-
-# We need ES indexes aliases to match prod behaviour, but also we need the
-# names need to stay consistent during the whole test run, so we generate them
-# at import time.
-ESTestCase.indexes_names = {key: timestamp_index(value)
-                            for key, value in settings.ES_INDEXES.items()}
 
 
 class ESTestCaseWithAddons(ESTestCase):
