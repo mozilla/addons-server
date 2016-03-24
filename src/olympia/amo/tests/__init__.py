@@ -14,7 +14,6 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 from django import forms, test
 from django.conf import settings
 from django.contrib.messages.storage.fallback import FallbackStorage
-from django.core.exceptions import ImproperlyConfigured
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.forms.fields import Field
@@ -780,16 +779,15 @@ class ESTestCase(TestCase):
             'english': ['en-us'],
             'spanish': ['es'],
         }
-        indexes = set(settings.ES_INDEXES.values() + cls.index_names.values())
-        for index in indexes:
-            if not index.startswith('test_'):
-                # Just in case.
-                raise ImproperlyConfigured(
-                    'Tests are trying to delete a non test index: %s' % index)
-                cls.es.indices.delete(index, ignore=[404])
+        aliases_and_indexes = set(settings.ES_INDEXES.values() +
+                                  cls.es.indices.get_aliases().keys())
+        for key in aliases_and_indexes:
+            if key.startswith('test_amo'):
+                cls.es.indices.delete(key, ignore=[404])
 
-        # Create new search and stats indexes. This is crucial to set up the
-        # correct mappings before we start indexing things in tests.
+        # Create new search and stats indexes with the timestamped name.
+        # This is crucial to set up the correct mappings before we start
+        # indexing things in tests.
         search_indexers.create_new_index(
             index_name=cls.index_names['default'])
         stats_search.create_new_index(index_name=cls.index_names['stats'])
