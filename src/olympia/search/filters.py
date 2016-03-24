@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils import translation
 
 from elasticsearch_dsl import F, query
@@ -10,8 +9,6 @@ from olympia import amo
 
 def get_locale_analyzer(lang):
     analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
-    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
-        return None
     return analyzer
 
 

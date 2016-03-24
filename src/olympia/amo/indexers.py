@@ -2,8 +2,7 @@ import logging
 
 from django.conf import settings
 
-from olympia.constants.search import (
-    SEARCH_ANALYZER_MAP, SEARCH_ANALYZER_PLUGINS)
+from olympia.constants.search import SEARCH_ANALYZER_MAP
 
 from .models import SearchMixin
 from .utils import to_language
@@ -75,12 +74,6 @@ class BaseSearchIndexer(object):
         doc_name = cls.get_doctype_name()
 
         for analyzer in SEARCH_ANALYZER_MAP:
-            if (not settings.ES_USE_PLUGINS and
-                    analyzer in SEARCH_ANALYZER_PLUGINS):
-                log.info('While creating mapping, skipping the %s analyzer '
-                         'as usage of plugins is disabled' % analyzer)
-                continue
-
             for field in field_names:
                 property_name = '%s_%s' % (field, analyzer)
                 mapping[doc_name]['properties'][property_name] = {
@@ -135,10 +128,6 @@ class BaseSearchIndexer(object):
         # Indices for each language. languages is a list of locales we want to
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.iteritems():
-            if (not settings.ES_USE_PLUGINS and
-                    analyzer in SEARCH_ANALYZER_PLUGINS):
-                continue
-
             extend_with_me['%s_%s' % (field, analyzer)] = list(
                 set(string for locale, string
                     in obj.translations[getattr(obj, db_field)]
