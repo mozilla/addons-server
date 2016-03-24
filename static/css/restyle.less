@@ -1104,6 +1104,16 @@ button.good {
   }
 }
 
+// If the viewport is smaller than the min-width of the page weirdness
+// happens, so we go back to a non-full-width screenshot then.
+// See: https://github.com/mozilla/addons-server/issues/1983
+@media (max-width: 1018px) {
+  .restyle .previews {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 // lightbox
 #lightbox {
   background: rgba(0, 0, 0, 0.75);
