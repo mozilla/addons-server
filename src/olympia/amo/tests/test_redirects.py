@@ -17,12 +17,6 @@ class TestRedirects(TestCase):
         assert r.redirect_chain[-1][0].endswith(
             '/en-US/firefox/themes/film-and-tv')
 
-    def test_top_tags(self):
-        """`/top-tags/?` should 301 to `/tags/top`."""
-        response = self.client.get(u'/top-tags/', follow=True)
-        self.assert3xx(response, '/en-US/firefox/tags/top',
-                       status_code=301)
-
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
            `/addon/\d+/contribute/installed`."""
