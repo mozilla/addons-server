@@ -55,43 +55,6 @@ log = commonware.log.getLogger('z.zadmin')
 
 
 @admin_required(reviewers=True)
-def flagged(request):
-    types = list(set(amo.ADDON_TYPES.keys()))
-    addons = (Addon.objects.no_cache()
-                           .filter(admin_review=True, type__in=types)
-                           .no_transforms().order_by('-created'))
-
-    if request.method == 'POST':
-        ids = map(int, request.POST.getlist('addon_id'))
-        for addon in addons.filter(id__in=ids):
-            addon.update(admin_review=False)
-        return redirect('zadmin.flagged')
-
-    if not addons:
-        return render(request, 'zadmin/flagged_addon_list.html',
-                      {'addons': addons, 'reverse': reverse})
-
-    sql = """SELECT {t}.* FROM {t} JOIN (
-                SELECT addon_id, MAX(created) AS created
-                FROM {t}
-                GROUP BY addon_id) as J
-             ON ({t}.addon_id = J.addon_id AND {t}.created = J.created)
-             WHERE {t}.addon_id IN {ids}"""
-
-    ids = '(%s)' % ', '.join(str(a.id) for a in addons)
-    versions_sql = sql.format(t=Version._meta.db_table, ids=ids)
-
-    versions = dict((x.addon_id, x) for x in
-                    Version.objects.raw(versions_sql))
-
-    for addon in addons:
-        addon.version = versions.get(addon.id)
-
-    return render(request, 'zadmin/flagged_addon_list.html',
-                  {'addons': addons})
-
-
-@admin_required(reviewers=True)
 def langpacks(request):
     if request.method == 'POST':
         try:
