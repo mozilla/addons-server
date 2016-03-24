@@ -97,4 +97,4 @@ def reindex(index_name):
             reindexer(index_name)
         except Exception:
             # We want to log this event but continue.
-            log.error('Reindexer %r failed' % reindexer.__name__)
+            log.exception('Reindexer %r failed' % reindexer.__name__)
