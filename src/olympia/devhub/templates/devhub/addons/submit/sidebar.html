@@ -21,12 +21,10 @@
     {% for text, class in NAV %}
       <li class="{{ class }}{% if step.current == loop.index %} current{% endif %}">
         {% if step.current < HAS_ADDON %}
-         {# 1. Don't link to future steps.
-            2. If step 1 is complete (agreement accepted), don't link to it. #}
-          {% if loop.index > step.current or (loop.index == 1 and step.current > 1)%}
-            {{ text }}
-          {% else %}
+          {% if loop.index <= step.current %}
             <a href="{{ url(BASE % loop.index) }}">{{ text }}</a>
+          {% else %}
+            {{ text }}
           {% endif %}
         {% else %}
           {# 1. We have an addon, so don't link to non-addon steps.
