@@ -31,7 +31,7 @@ class TestTranslationSerializerField(TestCase):
                                    localized_string=u'Name in Español')
 
     def _test_expected_dict(self, field):
-        result = field.field_to_native(self.addon, 'name')
+        result = field.get_attribute(self.addon, 'name')
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
                                                      locale='en-US')),
@@ -56,28 +56,28 @@ class TestTranslationSerializerField(TestCase):
         expected = unicode(self.addon.description)
         assert result == expected
 
-    def test_from_native(self):
+    def test_to_representation(self):
         data = u'Translatiön'
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_representation(data)
         assert result == data
 
-    def test_from_native_dict(self):
+    def test_to_representation_dict(self):
         data = {
             'fr': u'Non mais Allô quoi !',
             'en-US': u'No But Hello what!'
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_representation(data)
         assert result == data
 
-    def test_field_from_native_strip(self):
+    def test_field_to_representation_strip(self):
         data = {
             'fr': u'  Non mais Allô quoi ! ',
             'en-US': u''
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_representation(data)
         assert result == {'fr': u'Non mais Allô quoi !', 'en-US': u''}
 
     def test_wrong_locale_code(self):
@@ -85,7 +85,7 @@ class TestTranslationSerializerField(TestCase):
             'unknown-locale': 'some name',
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_representation(data)
         with self.assertRaises(ValidationError) as exc:
             field.validate(result)
         assert exc.exception.message == (
@@ -98,7 +98,7 @@ class TestTranslationSerializerField(TestCase):
             'en-US': None,
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_representation(data)
         field.validate(result)
         assert result == data
 
@@ -106,11 +106,9 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class()
         self._test_expected_dict(field)
 
-    def test_field_to_native_source(self):
-        self.addon.mymock = Mock()
-        self.addon.mymock.mymocked_field = self.addon.name
-        field = self.field_class(source='mymock.mymocked_field')
-        result = field.field_to_native(self.addon, 'shouldbeignored')
+    def test_get_attribute_source(self):
+        field = self.field_class(source='name')
+        result = field.get_attribute(self.addon)
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
                                                      locale='en-US')),
@@ -238,12 +236,9 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         expected = unicode(self.addon.description_translations['en-US'])
         assert result == expected
 
-    def test_field_to_native_source(self):
-        self.addon.mymock = Mock()
-        self.addon.mymock.mymockedfield_translations = (
-            self.addon.name_translations)
-        field = self.field_class(source='mymock.mymockedfield')
-        result = field.field_to_native(self.addon, 'shouldbeignored')
+    def test_get_attribute_source(self):
+        field = self.field_class(source='name')
+        result = field.get_attribute(self.addon)
         expected = self.addon.name_translations
         assert result == expected
 

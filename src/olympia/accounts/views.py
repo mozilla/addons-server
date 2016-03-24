@@ -162,7 +162,10 @@ def with_user(format):
     def outer(fn):
         @functools.wraps(fn)
         def inner(self, request):
-            data = request.GET if request.method == 'GET' else request.DATA
+            data = (
+                request.query_params
+                if request.method == 'GET'
+                else request.data)
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
             next_path = parse_next_path(state_parts)
@@ -286,14 +289,13 @@ class AccountSuperCreate(JWTProtectedView):
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
-        serializer = AccountSuperCreateSerializer(data=request.DATA)
+        serializer = AccountSuperCreateSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({'errors': serializer.errors},
                             status=422)
 
         data = serializer.data
-        # In a future version of DRF this could be validated_data['group']:
-        group = serializer.object.get('group')
+        group = serializer.validated_data['group']
         user_token = os.urandom(4).encode('hex')
         username = data['username'] or 'super-created-{}'.format(user_token)
         fxa_id = data['fxa_id'] or None

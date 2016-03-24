@@ -45,22 +45,19 @@ class AccountSuperCreateSerializer(serializers.Serializer):
     group = serializers.ChoiceField(choices=group_rules.items(),
                                     required=False)
 
-    def validate_email(self, attrs, source):
-        email = attrs.get(source)
+    def validate_email(self, email):
         if email and UserProfile.objects.filter(email=email).exists():
             raise serializers.ValidationError(
                 'Someone with this email already exists in the system')
-        return attrs
+        return email
 
-    def validate_username(self, attrs, source):
-        username = attrs.get(source)
+    def validate_username(self, username):
         if username and UserProfile.objects.filter(username=username).exists():
             raise serializers.ValidationError(
                 'Someone with this username already exists in the system')
-        return attrs
+        return username
 
-    def validate_group(self, attrs, source):
-        group = attrs.get(source)
+    def validate_group(self, group):
         if group:
             rule = group_rules[group]
             # This isn't perfect. It makes an assumption that a single group
@@ -75,5 +72,5 @@ class AccountSuperCreateSerializer(serializers.Serializer):
                 raise serializers.ValidationError(
                     'Could not find a permissions group with the exact '
                     'rules needed.')
-            attrs[source] = qs.get()
-        return attrs
+            group = qs.get()
+        return group

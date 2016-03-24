@@ -40,9 +40,9 @@ class BaseESSerializer(ModelSerializer):
                 fields[key] = ESTranslationSerializerField(source=field.source)
         return fields
 
-    def to_native(self, data):
+    def to_internal_value(self, data):
         obj = self.fake_object(data)
-        return super(BaseESSerializer, self).to_native(obj)
+        return super(BaseESSerializer, self).to_internal_value(obj)
 
     def fake_object(self, data):
         """
