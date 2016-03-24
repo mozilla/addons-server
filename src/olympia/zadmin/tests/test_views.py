@@ -27,7 +27,7 @@ from olympia.compat.cron import compatibility_report
 from olympia.compat.models import CompatReport
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub.models import ActivityLog
-from olympia.files.models import Approval, File, FileUpload
+from olympia.files.models import File, FileUpload
 from olympia.stats.models import UpdateCount
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -98,29 +98,13 @@ class TestFlagged(TestCase):
         response = self.client.get(self.url, follow=True)
 
         addons = dict((a.id, a) for a in response.context['addons'])
-        eq_(len(addons), 3)
+        assert len(addons) == 3
 
-        # 1. an addon should have latest version and approval attached
+        # 1. an addon should have latest version attached
         addon = Addon.objects.get(id=1)
-        eq_(addons[1], addon)
-        eq_(addons[1].version.id,
-            Version.objects.filter(addon=addon).latest().id)
-        eq_(addons[1].approval.id,
-            Approval.objects.filter(addon=addon).latest().id)
-
-        # 2. missing approval is ok
-        addon = Addon.objects.get(id=2)
-        eq_(addons[2], addon)
-        eq_(addons[2].version.id,
-            Version.objects.filter(addon=addon).latest().id)
-        eq_(addons[2].approval, None)
-
-        # 3. missing approval is ok
-        addon = Addon.objects.get(id=3)
-        eq_(addons[3], addon)
-        eq_(addons[3].approval.id,
-            Approval.objects.filter(addon=addon).latest().id)
-        eq_(addons[3].version, None)
+        assert addons[1] == addon
+        assert (addons[1].version.id ==
+                Version.objects.filter(addon=addon).latest().id)
 
     def test_post(self):
         response = self.client.post(self.url, {'addon_id': ['1', '2']},

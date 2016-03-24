@@ -93,21 +93,5 @@
             "site_specific": false,
             "total_reviews": 0
         }
-    },
-    {
-        "pk": 32470,
-        "model": "files.approval",
-        "fields": {
-            "created": "2010-08-28 19:15:33",
-            "user": 5497308,
-            "modified": "2010-08-28 19:15:33",
-            "reviewtype": "nominated",
-            "applications": "",
-            "comments": "Dear add-on developer,\r\n\r\nIt is unclear to us at this time if your add-on will be useful for a general audience so that it warrants public listing. We're rejecting your nomination, but encourage you to promote your listing so that it garners more active users and user reviews. You may re-nominate your add-on once there is more proof of its usefulness.\r\n\r\nThank you.",
-            "file": 97656,
-            "action": 1,
-            "os": "",
-            "addon": 222197
-        }
     }
 ]

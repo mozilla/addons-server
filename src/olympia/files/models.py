@@ -553,25 +553,6 @@ def track_file_status_change(file_):
                     .format(file_.status))
 
 
-# TODO(davedash): Get rid of this table once /editors is on zamboni
-class Approval(ModelBase):
-
-    reviewtype = models.CharField(max_length=10, default='pending')
-    action = models.IntegerField(default=0)
-    os = models.CharField(max_length=255, default='')
-    applications = models.CharField(max_length=255, default='')
-    comments = models.TextField(null=True)
-
-    addon = models.ForeignKey('addons.Addon')
-    user = models.ForeignKey('users.UserProfile')
-    file = models.ForeignKey(File)
-    reply_to = models.ForeignKey('self', null=True, db_column='reply_to')
-
-    class Meta(ModelBase.Meta):
-        db_table = 'approvals'
-        ordering = ('-created',)
-
-
 class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = UUIDField(auto=True)
