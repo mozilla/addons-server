@@ -10,13 +10,10 @@ msgstr ""
 "PO-Revision-Date: 2013-11-10 15:01+0000\n"
 "Last-Translator: Konsta <konstar@nic.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
-"Language: fi\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1384095680.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -272,9 +269,6 @@ msgstr "tai"
 msgid "Suggested Contribution: {0}"
 msgstr "Suositeltu lahjoitus: {0}"
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/contribution.html:48 src/olympia/amo/templates/amo/recaptcha.html:5 src/olympia/versions/templates/versions/version.html:52
 msgid "What's this?"
@@ -559,8 +553,6 @@ msgid "Featured Themes"
 msgstr "Suositellut teemat"
 
 # 80%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/home.html:77 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
@@ -1198,8 +1190,6 @@ msgstr "Lisää"
 
 # 94%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:7 src/olympia/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
 msgstr "Lisää kokoelmaan"
@@ -1361,15 +1351,11 @@ msgstr "Näytä kaikki suositellut lisäosat"
 
 # 95%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:57
 msgid "View all Popular add-ons"
 msgstr "Näytä kaikki suositut lisäosat"
 
 # 78%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
@@ -1379,9 +1365,6 @@ msgstr "Lisää lisäosia"
 msgid "Highest Rated"
 msgstr "Parhaiten arvioidut"
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:74 src/olympia/amo/templates/amo/side_nav.html:5 src/olympia/amo/templates/amo/site_nav.html:27 src/olympia/amo/templates/amo/site_nav.html:57
 #: src/olympia/bandwagon/views.py:97 src/olympia/browse/views.py:57 src/olympia/browse/views.py:67 src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
@@ -2228,8 +2211,6 @@ msgstr "Kirjaudu sisään antaaksesi äänesi tälle kokoelmalle"
 
 # 93%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/helpers.py:123 src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
 msgstr ""
@@ -2239,8 +2220,6 @@ msgid "Favorite"
 msgstr ""
 
 # 95%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/helpers.py:124 src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
@@ -2260,9 +2239,6 @@ msgstr ""
 msgid "Added"
 msgstr "Lisäyspäivä"
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/views.py:190
 msgid "Popularity"
@@ -2293,7 +2269,6 @@ msgstr ""
 # 89%
 # 82%
 # 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/add.html:3 src/olympia/bandwagon/templates/bandwagon/add.html:11 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
 msgstr "Luo uusi kokoelma"
@@ -2311,9 +2286,6 @@ msgstr ""
 
 # 89%
 # 100%
-# 100%
-# 100%
-# 89%
 #: src/olympia/bandwagon/templates/bandwagon/add.html:33 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:38
 #, fuzzy
 msgid "Create Collection"
@@ -2385,8 +2357,6 @@ msgstr[1] "<span>%(num)s</span> seuraajaa"
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
 msgstr "Tietoja tästä kokoelmasta"
@@ -2413,15 +2383,11 @@ msgstr "Lisäasetukset:"
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:86
 msgid "Edit Collection"
 msgstr "Muokkaa kokoelmaa"
 
 # 78%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:88 src/olympia/bandwagon/templates/bandwagon/includes/delete.html:3
 msgid "Delete Collection"
@@ -2480,8 +2446,6 @@ msgid ""
 msgstr ""
 
 # 89%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -2549,8 +2513,6 @@ msgid "Follow this Collection"
 msgstr "Seuraa tätä kokoelmaa"
 
 # 76%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html:17
 msgid "Edit this Collection"
@@ -2731,8 +2693,6 @@ msgstr "Seurataan"
 
 # 89%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
@@ -2751,12 +2711,12 @@ msgid "Reset"
 msgstr "Nollaa"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "PNG- ja JPG-kuvia tuetaan. Kuvan kooksi muutetaan 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "Lomakkeessa on virheitä. Korjaa ne alla."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -2764,12 +2724,12 @@ msgstr "Kokoelmasi lisäosat"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
-"To include an add-on in this collection, enter its name in the box below and hit enter.  You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
+"To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
+"Lisätäksesi lisäosan tähän kokoelmaan, anna sen nimi alla olevaan laatikkoon ja paina Enter. Voit käyttää myös <strong>Lisää kokoelmaan</strong> -linkkejä muilla sivuilla lisätäksesi lisäosia "
+"myöhemmin."
 
 # 85%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/constants/base.py:400 src/olympia/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
@@ -2891,8 +2851,6 @@ msgid "Search tools and search-related extensions"
 msgstr "Hakutyökalut ja hakemiseen liittyvät laajennukset"
 
 # 91%
-# 100%
-# 100%
 # 100%
 #: src/olympia/browse/feeds.py:161
 msgid "Search tools"
@@ -3315,8 +3273,6 @@ msgstr ""
 
 # 88%
 # 100%
-# 100%
-# 100%
 #: src/olympia/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
 msgstr "Alusta"
@@ -3472,8 +3428,6 @@ msgstr "Liitännäinen"
 
 # 83%
 # 100%
-# 100%
-# 100%
 #: src/olympia/constants/base.py:167 src/olympia/editors/templates/editors/includes/search_results_themes.html:5 src/olympia/editors/templates/editors/themes/deleted.html:18
 #: src/olympia/editors/templates/editors/themes/history_table.html:8 src/olympia/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
@@ -3522,8 +3476,6 @@ msgid "Change"
 msgstr ""
 
 # 87%
-# 100%
-# 100%
 # 100%
 #: src/olympia/constants/base.py:402
 msgid "Persona"
@@ -4335,8 +4287,6 @@ msgstr ""
 
 # 80%
 # 100%
-# 100%
-# 100%
 #: src/olympia/devhub/templates/devhub/nav.html:39 src/olympia/devhub/templates/devhub/docs/policies-agreement.html:6 src/olympia/devhub/templates/devhub/docs/policies-contact.html:6
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:6 src/olympia/devhub/templates/devhub/docs/policies-recommended.html:6
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:6 src/olympia/devhub/templates/devhub/docs/policies-submission.html:6 src/olympia/devhub/templates/devhub/docs/policies.html:3
@@ -4545,9 +4495,6 @@ msgstr ""
 
 # 82%
 # 100%
-# 100%
-# 100%
-# 82%
 #: src/olympia/devhub/templates/devhub/addons/profile.html:3 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:4
 #, fuzzy
 msgid "Manage Developer Profile"
@@ -4823,8 +4770,6 @@ msgid "Universally unique identifier"
 msgstr ""
 
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:130
 msgid "UUID"
@@ -6521,8 +6466,6 @@ msgstr ""
 
 # 81%
 # 100%
-# 100%
-# 100%
 # 76%
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:2 src/olympia/stats/templates/stats/addon_report_menu.html:39
 #, fuzzy
@@ -7837,8 +7780,6 @@ msgstr "Tämä valinta merkitsee lisäosan ja sen tiedostojen uusimmat versiot j
 
 # 85%
 # 100%
-# 100%
-# 100%
 # 83%
 #: src/olympia/editors/helpers.py:637
 #, fuzzy
@@ -7851,9 +7792,6 @@ msgstr ""
 
 # 85%
 # 100%
-# 100%
-# 100%
-# 85%
 #: src/olympia/editors/helpers.py:944 src/olympia/editors/helpers.py:963
 #, fuzzy
 msgid "Updates"
@@ -8033,9 +7971,6 @@ msgid "Filter"
 msgstr ""
 
 # 100%
-# 100%
-# 100%
-# 100%
 #: src/olympia/editors/templates/editors/beta_signed_log.html:23 src/olympia/editors/templates/editors/eventlog.html:30 src/olympia/editors/templates/editors/reviewlog.html:34
 #: src/olympia/editors/templates/editors/themes/logs.html:16
 msgid "Date"
@@ -8106,8 +8041,6 @@ msgid "Current waiting times:"
 msgstr ""
 
 # 81%
-# 100%
-# 100%
 # 100%
 #: src/olympia/editors/templates/editors/home.html:44 src/olympia/editors/templates/editors/home.html:94
 msgid "{0} add-on"
@@ -11407,8 +11340,6 @@ msgstr "Loppu"
 
 # 85%
 # 100%
-# 100%
-# 100%
 #: src/olympia/stats/templates/stats/popup.html:27 src/olympia/users/templates/users/pwreset_confirm.html:38
 msgid "Update"
 msgstr "Päivitä"
@@ -11906,8 +11837,6 @@ msgstr "Rekisteröidy"
 
 # 83%
 # 100%
-# 100%
-# 100%
 #: src/olympia/templates/mobile/header_auth.html:8 src/olympia/users/templates/users/login_form.html:41 src/olympia/users/templates/users/pwreset_complete.html:15
 #: src/olympia/users/templates/users/mobile/login.html:56
 msgid "Log in"
@@ -12331,8 +12260,6 @@ msgstr "Poista käyttäjäkuva"
 
 # 80%
 # 100%
-# 100%
-# 100%
 #: src/olympia/users/templates/users/delete_photo.html:14
 msgid "Delete my user picture now"
 msgstr "Poista käyttäjäkuvani nyt"
@@ -12372,20 +12299,17 @@ msgstr "Salasana"
 
 #: src/olympia/users/templates/users/edit.html:70
 #, python-format
-msgid "Change your password.  If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
+msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
+msgstr "Vaihda salasanasi. Jos olet unohtanut sen, voit <a href=\"%(reset_url)s\">käyttää nollauslomaketta</a>."
 
 # 91%
 # 75%
-# 100%
 # 100%
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
 msgstr "Vanha salasana"
 
 # 91%
-# 100%
-# 100%
 # 100%
 #: src/olympia/users/templates/users/edit.html:84
 msgid "New Password"
@@ -12400,8 +12324,8 @@ msgid "Profile"
 msgstr "Profiili"
 
 #: src/olympia/users/templates/users/edit.html:100
-msgid "Give us a bit more information about yourself.  All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
+msgstr "Anna meille vähän lisätietoja itsestäsi. Kaikki kentät ovat valinnaisia, mutta ne auttavat muita tuntemaan sinut paremmin."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -12546,8 +12470,6 @@ msgstr "Hallitse käyttäjää"
 
 # 75%
 # 100%
-# 100%
-# 100%
 #: src/olympia/users/templates/users/profile.html:18 src/olympia/users/templates/users/report_abuse_full.html:9
 msgid "Report user"
 msgstr "Ilmoita käyttäjä"
@@ -12686,8 +12608,6 @@ msgid "Please describe why you are reporting this user, such as for spam or an i
 msgstr "Kerro, miksi olet ilmoittamassa käyttäjää, kuten roskapostin tai sopimattoman kuvan takia."
 
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
@@ -12936,8 +12856,6 @@ msgstr "Toimii seuraavilla ohjelmaversioilla:"
 
 # {0} is the add-on name
 # 78%
-# 100%
-# 100%
 # 100%
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html:12

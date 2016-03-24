@@ -10,13 +10,10 @@ msgstr ""
 "PO-Revision-Date: 2016-02-13 16:25+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Pontoon\n"
-"X-POOTLE-MTIME: 1411975936.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -493,8 +490,8 @@ msgid "Version {0}:"
 msgstr "Sürüm {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "Burada bir şey yok! Geliştirici herhangi bir ayrıntı eklememiş."
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -790,9 +787,11 @@ msgstr "Bu Persona %(app)s %(new_version)s gerektiriyor. Siz şu anda %(app)s {o
 
 #: src/olympia/addons/templates/addons/popups.html:108
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above. Be careful when installing third-party software that might "
+"harm your computer."
 msgstr ""
+"<strong>Dikkat:</strong> Bu eklenti Mozilla tarafından henüz incelenmedi ve Firefox 43 ve üstündeki son kullanıcı sürümlerine kurulamaz. Bilgisayarınıza zararı dokunabilecek üçüncü taraf "
+"yazılımlarını kurarken dikkatli olun."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -822,11 +821,9 @@ msgid "QR code for add-on"
 msgstr "Eklentinin QR kodu"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Mobil Firefox'unuzda {0} olsun ister misiniz? Doğrudan telefonunuza yüklemek için bu QR kodunu tarayın. (Bir QR okuyucusuna ihtiyacınız olacak. Yüklü bir tane yoksa telefonunuz marketinde arayın.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
@@ -1924,8 +1921,9 @@ msgstr "Hata"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Tüh! Bir hata oluştu.</h1> <p>Bunu en kısa sürede gidermeye çalışacağız.</p> <p>Sayfayı tazelemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler ana sayfasına</a> geri dönebilirsiniz.</p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2566,9 +2564,11 @@ msgstr "Koleksiyona Katkıda Bulunanlar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Bu koleksiyona birden fazla katkıcı ekleyebilirsinsiniz. Bir katkıcı bu koleksiyona eklenti ekleyebilir ve kaldırabilir, fakat koleksiyon ismini ve açıklamasını değiştiremez. Katkıcı eklemek için "
+"aşağıya e-posta adresini yazın. Katkıcılar Mozilla Eklentiler hesabına sahip olmalıdır."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2680,12 +2680,12 @@ msgid "Reset"
 msgstr "Sıfırla"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "PNG ve JPG destekleniyor. Resim boyutu 32x32'ye boyutlandırılacak."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "Formda bazı hatalar var. Lütfen aşağıdakileri düzeltin."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -3855,8 +3855,8 @@ msgid "Version doesn't match"
 msgstr "Sürüm eşleşmiyor"
 
 #: src/olympia/devhub/forms.py:668
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
+msgid "You cannot delete a file once the review process has started. You must delete the whole version."
+msgstr "İnceleme süreci başladığında bir dosyayı silemezsiniz. Tüm sürümü silmelisiniz."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -12161,8 +12161,8 @@ msgstr "Parola"
 
 #: src/olympia/users/templates/users/edit.html:70
 #, python-format
-msgid "Change your password.  If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
+msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
+msgstr "Parolanızı değiştirin. Parolanızı unuttuysanız <a href=\"%(reset_url)s\">sıfırlama formunu</a> kullanabilirsiniz."
 
 # 91%
 # 75%
@@ -12186,8 +12186,8 @@ msgid "Profile"
 msgstr "Profil"
 
 #: src/olympia/users/templates/users/edit.html:100
-msgid "Give us a bit more information about yourself.  All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
+msgstr "Bize kendin hakkında biraz bilgi verin. Bu alanlar isteğe bağlıdır, fakat diğer kullanıcıların seni daha iyi tanımasına yardım edeceklerdir."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -12411,8 +12411,8 @@ msgid "Confirm password"
 msgstr "Parolayı doğrulayın"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:47
-msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr ""
+msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
+msgstr "Muhtemelen daha önceden kullanıldığı için parola sıfırlama bağlantısı geçersiz. Lütfen yeni bir parola sıfırlama isteği gönderin."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."

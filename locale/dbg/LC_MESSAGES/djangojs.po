@@ -1,3 +1,4 @@
+
 #, fuzzy
 msgid ""
 msgstr ""
@@ -115,58 +116,36 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Īƞƈŀŭḓḗ ḓḗŧȧīŀḗḓ ṽḗřşīǿƞ ƞǿŧḗş (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
 #: static/js/common/upload-addon.js:466
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested, "
-"include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
-msgstr ""
-"Īƒ ẏǿŭř ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧƞ ȧƈƈǿŭƞŧ ŧǿ ȧ ẇḗƀşīŧḗ īƞ ǿřḓḗř ŧǿ ƀḗ ƒŭŀŀẏ ŧḗşŧḗḓ, "
-"īƞƈŀŭḓḗ ȧ ŧḗşŧ ŭşḗřƞȧḿḗ ȧƞḓ ƥȧşşẇǿřḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř (ŧħīş ƈȧƞ ƀḗ "
-"ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
+msgstr "Īƒ ẏǿŭř ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧƞ ȧƈƈǿŭƞŧ ŧǿ ȧ ẇḗƀşīŧḗ īƞ ǿřḓḗř ŧǿ ƀḗ ƒŭŀŀẏ ŧḗşŧḗḓ, īƞƈŀŭḓḗ ȧ ŧḗşŧ ŭşḗřƞȧḿḗ ȧƞḓ ƥȧşşẇǿřḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
 #: static/js/common/upload-addon.js:467
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Īƒ ẏǿŭř ȧḓḓ-ǿƞ īş īƞŧḗƞḓḗḓ ƒǿř ȧ ŀīḿīŧḗḓ ȧŭḓīḗƞƈḗ ẏǿŭ şħǿŭŀḓ ƈħǿǿşḗ "
-"Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ īƞşŧḗȧḓ ǿƒ Ƒŭŀŀ Řḗṽīḗẇ."
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Īƒ ẏǿŭř ȧḓḓ-ǿƞ īş īƞŧḗƞḓḗḓ ƒǿř ȧ ŀīḿīŧḗḓ ȧŭḓīḗƞƈḗ ẏǿŭ şħǿŭŀḓ ƈħǿǿşḗ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ īƞşŧḗȧḓ ǿƒ Ƒŭŀŀ Řḗṽīḗẇ."
 
 #: static/js/common/upload-addon.js:480
 msgid "Add-on submission checklist"
 msgstr "Ȧḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
 
 #: static/js/common/upload-addon.js:481
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīzīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş "
-"ẇīŀŀ ḿīƞīḿīzḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīzīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş ẇīŀŀ ḿīƞīḿīzḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
 
 #: static/js/common/upload-addon.js:483
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known"
-" libraries) need to have their sources submitted separately for review. Make "
-"sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Ƈǿḿƥīŀḗḓ ƀīƞȧřīḗş, ȧş ẇḗŀŀ ȧş ḿīƞīƒīḗḓ ǿř ǿƀƒŭşƈȧŧḗḓ şƈřīƥŧş (ḗẋƈŀŭḓīƞɠ "
-"ķƞǿẇƞ ŀīƀřȧřīḗş) ƞḗḗḓ ŧǿ ħȧṽḗ ŧħḗīř şǿŭřƈḗş şŭƀḿīŧŧḗḓ şḗƥȧřȧŧḗŀẏ ƒǿř řḗṽīḗẇ. "
-"Ḿȧķḗ şŭřḗ ŧħȧŧ ẏǿŭ ŭşḗ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓ ƒīḗŀḓ ŧǿ ȧṽǿīḓ ħȧṽīƞɠ ẏǿŭř "
-"şŭƀḿīşşīǿƞ řḗĵḗƈŧḗḓ."
+"Ƈǿḿƥīŀḗḓ ƀīƞȧřīḗş, ȧş ẇḗŀŀ ȧş ḿīƞīƒīḗḓ ǿř ǿƀƒŭşƈȧŧḗḓ şƈřīƥŧş (ḗẋƈŀŭḓīƞɠ ķƞǿẇƞ ŀīƀřȧřīḗş) ƞḗḗḓ ŧǿ ħȧṽḗ ŧħḗīř şǿŭřƈḗş şŭƀḿīŧŧḗḓ şḗƥȧřȧŧḗŀẏ ƒǿř řḗṽīḗẇ. Ḿȧķḗ şŭřḗ ŧħȧŧ ẏǿŭ ŭşḗ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓ "
+"ƒīḗŀḓ ŧǿ ȧṽǿīḓ ħȧṽīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ řḗĵḗƈŧḗḓ."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Ŧħḗ ṽȧŀīḓȧŧīǿƞ ƥřǿƈḗşş ƒǿŭƞḓ ŧħḗşḗ īşşŭḗş ŧħȧŧ ƈȧƞ ŀḗȧḓ ŧǿ řḗĵḗƈŧīǿƞş:"
 
 #: static/js/common/upload-addon.js:518
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it "
-"here."
-msgstr ""
-"Īƒ ẏǿŭ ȧřḗ ŭƞƒȧḿīŀīȧř ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş řḗṽīḗẇ ƥřǿƈḗşş, ẏǿŭ ƈȧƞ řḗȧḓ ȧƀǿŭŧ īŧ "
-"ħḗřḗ."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Īƒ ẏǿŭ ȧřḗ ŭƞƒȧḿīŀīȧř ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş řḗṽīḗẇ ƥřǿƈḗşş, ẏǿŭ ƈȧƞ řḗȧḓ ȧƀǿŭŧ īŧ ħḗřḗ."
 
 #: static/js/common/upload-addon.js:555
 msgid "Sorry, no supported platform has been found."
@@ -309,13 +288,11 @@ msgstr "{0} řḗƒŭƞḓş"
 msgid "{0} installs"
 msgstr "{0} īƞşŧȧŀŀş"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
-#: static/js/impala/stats/csv_keys.js:109
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
-#: static/js/impala/stats/csv_keys.js:110
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
 
@@ -408,8 +385,7 @@ msgstr "Şḗȧřƈħ Şŭɠɠḗşŧīǿƞş"
 msgid "Search Results"
 msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
-#: static/js/impala/stats/csv_keys.js:51
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Ħǿḿḗƥȧɠḗ Ƥřǿḿǿ"
 
@@ -437,8 +413,7 @@ msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
 msgid "Detail Page (Development Channel)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
-#: static/js/impala/stats/csv_keys.js:64
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
 
@@ -823,8 +798,7 @@ msgstr "Ḓȧŧḗ"
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1229 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -863,8 +837,7 @@ msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħ�
 
 #: static/js/zamboni/buttons.js:129
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
+msgstr "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:210
@@ -897,12 +870,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
-" plugin."
-msgstr ""
-"Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ "
-"şḗȧřƈħ ƥŀŭɠīƞ."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
 #: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
@@ -1080,12 +1049,8 @@ msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
 msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
 #: static/js/zamboni/init.js:28
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. "
-"Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -1149,8 +1114,7 @@ msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
 msgid "Tests"
 msgstr "Ŧḗşŧş"
 
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Ḗřřǿř"
 
@@ -1251,3 +1215,4 @@ msgstr "Ẏǿŭ'řḗ ŧřẏīƞɠ īŧ ǿƞ!"
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Ȧḓḓḗḓ ŧǿ Ƒīřḗƒǿẋ"
+
