@@ -1,18 +1,16 @@
+
 msgid ""
 msgstr ""
-"Project-Id-Version: addons.mozilla.org\n"
+"Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
-"Language: vi\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Translate Toolkit 1.11.0-rc1\n"
-"X-POOTLE-MTIME: 1442176168.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -291,15 +289,14 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:15
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:21
 #, python-format
 msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
+"href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:30
@@ -557,8 +554,8 @@ msgstr "Cập nhật {0}"
 
 #. {0} is a date.
 #: src/olympia/addons/templates/addons/macros.html:10 src/olympia/addons/templates/addons/macros.html:69 src/olympia/addons/templates/addons/persona_preview.html:21
-#: src/olympia/addons/templates/addons/listing/items_mobile.html:44 src/olympia/addons/templates/addons/listing/macros.html:39
-#: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:37 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
+#: src/olympia/addons/templates/addons/listing/items_mobile.html:44 src/olympia/addons/templates/addons/listing/macros.html:39 src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:37
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
 msgstr "Đã thêm {0}"
 
@@ -797,11 +794,8 @@ msgid "QR code for add-on"
 msgstr "Mã QR cho tiện ích"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr ""
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
+msgstr "Muốn {0} trên Firefox di động của bạn? Quét mã QR này để cài đặt trực tiếp vào điện thoại. (Bạn sẽ cần một đầu đọc QR. Tìm trong marketplace của điện thoại của bạn nếu chưa có.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
@@ -814,8 +808,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Nếu bạn nghi ngờ tiện ích này vi phạm <a href=\"%(url)s\">chính sách của chúng tôi</a> hoặc có vấn đề về bảo mật hoặc tính riêng tư, vui lòng dùng biểu mẫu bên dưới để mô tả sự lo ngại của bạn. Vui "
-"lòng không dùng biểu mẫu này cho bất kì lí do nào khác."
+"Nếu bạn nghi ngờ tiện ích này vi phạm <a href=\"%(url)s\">chính sách của chúng tôi</a> hoặc có vấn đề về bảo mật hoặc tính riêng tư, vui lòng dùng biểu mẫu bên dưới để mô tả sự lo ngại của bạn. Vui"
+" lòng không dùng biểu mẫu này cho bất kì lí do nào khác."
 
 #: src/olympia/addons/templates/addons/report_abuse.html:24 src/olympia/users/templates/users/report_abuse.html:19
 msgid "Send Report"
@@ -1279,9 +1273,8 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Trở lại trang chủ Tiện ích {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:21 src/olympia/amo/helpers.py:237 src/olympia/bandwagon/templates/bandwagon/edit.html:34 src/olympia/discovery/templates/discovery/pane.html:92
-#: src/olympia/editors/templates/editors/base.html:21 src/olympia/editors/templates/editors/performance.html:72 src/olympia/templates/menu_links.html:4
-#: src/olympia/templates/impala/header_title.html:13 src/olympia/templates/impala/header_title.html:15 src/olympia/templates/impala/header_title.html:19
-#: src/olympia/templates/impala/header_title.html:23 src/olympia/templates/mobile/base_addons.html:47
+#: src/olympia/editors/templates/editors/base.html:21 src/olympia/editors/templates/editors/performance.html:72 src/olympia/templates/menu_links.html:4 src/olympia/templates/impala/header_title.html:13
+#: src/olympia/templates/impala/header_title.html:15 src/olympia/templates/impala/header_title.html:19 src/olympia/templates/impala/header_title.html:23 src/olympia/templates/mobile/base_addons.html:47
 msgid "Add-ons"
 msgstr "Tiện ích"
 
@@ -1304,12 +1297,11 @@ msgstr ""
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
-#: src/olympia/addons/templates/addons/mobile/home.html:43 src/olympia/amo/templates/amo/site_nav.html:32 src/olympia/browse/feeds.py:107
-#: src/olympia/browse/templates/browse/impala/base_listing.html:38 src/olympia/browse/templates/browse/personas/base.html:6 src/olympia/browse/templates/browse/personas/base.html:42
-#: src/olympia/browse/templates/browse/personas/category_landing.html:21 src/olympia/browse/templates/browse/personas/category_landing.html:23
-#: src/olympia/browse/templates/browse/personas/category_landing.html:38 src/olympia/browse/templates/browse/personas/grid.html:7 src/olympia/browse/templates/browse/personas/grid.html:11
-#: src/olympia/browse/templates/browse/personas/mobile/base.html:7 src/olympia/browse/templates/browse/personas/mobile/category_landing.html:19 src/olympia/constants/base.py:180
-#: src/olympia/devhub/templates/devhub/personas/submit.html:13 src/olympia/editors/helpers.py:105 src/olympia/editors/templates/editors/base.html:26
+#: src/olympia/addons/templates/addons/mobile/home.html:43 src/olympia/amo/templates/amo/site_nav.html:32 src/olympia/browse/feeds.py:107 src/olympia/browse/templates/browse/impala/base_listing.html:38
+#: src/olympia/browse/templates/browse/personas/base.html:6 src/olympia/browse/templates/browse/personas/base.html:42 src/olympia/browse/templates/browse/personas/category_landing.html:21
+#: src/olympia/browse/templates/browse/personas/category_landing.html:23 src/olympia/browse/templates/browse/personas/category_landing.html:38 src/olympia/browse/templates/browse/personas/grid.html:7
+#: src/olympia/browse/templates/browse/personas/grid.html:11 src/olympia/browse/templates/browse/personas/mobile/base.html:7 src/olympia/browse/templates/browse/personas/mobile/category_landing.html:19
+#: src/olympia/constants/base.py:180 src/olympia/devhub/templates/devhub/personas/submit.html:13 src/olympia/editors/helpers.py:105 src/olympia/editors/templates/editors/base.html:26
 #: src/olympia/editors/templates/editors/performance.html:73 src/olympia/search/templates/search/personas.html:39 src/olympia/templates/menu_links.html:9
 msgid "Themes"
 msgstr "Giao diện"
@@ -1365,8 +1357,7 @@ msgstr "Bộ sưu tập của Tôi"
 msgid "My Favorites"
 msgstr "Ưa thích của Tôi"
 
-#: src/olympia/amo/context_processors.py:67 src/olympia/discovery/templates/discovery/pane_account.html:13 src/olympia/templates/impala/user_login.html:14
-#: src/olympia/templates/mobile/header_auth.html:5
+#: src/olympia/amo/context_processors.py:67 src/olympia/discovery/templates/discovery/pane_account.html:13 src/olympia/templates/impala/user_login.html:14 src/olympia/templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "Đăng xuất"
 
@@ -1417,13 +1408,12 @@ msgstr ""
 msgid "Enter at least one value."
 msgstr ""
 
-#: src/olympia/amo/helpers.py:162 src/olympia/amo/templates/amo/site_nav.html:61 src/olympia/bandwagon/templates/bandwagon/add.html:9
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:15 src/olympia/bandwagon/templates/bandwagon/delete.html:9 src/olympia/bandwagon/templates/bandwagon/edit.html:15
-#: src/olympia/bandwagon/templates/bandwagon/user_listing.html:18 src/olympia/bandwagon/templates/bandwagon/user_listing.html:21
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:12 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:20
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:24 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2 src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:3
-#: src/olympia/stats/templates/stats/stats.html:77 src/olympia/templates/menu_links.html:12
+#: src/olympia/amo/helpers.py:162 src/olympia/amo/templates/amo/site_nav.html:61 src/olympia/bandwagon/templates/bandwagon/add.html:9 src/olympia/bandwagon/templates/bandwagon/collection_detail.html:15
+#: src/olympia/bandwagon/templates/bandwagon/delete.html:9 src/olympia/bandwagon/templates/bandwagon/edit.html:15 src/olympia/bandwagon/templates/bandwagon/user_listing.html:18
+#: src/olympia/bandwagon/templates/bandwagon/user_listing.html:21 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:12
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:20 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:24
+#: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:3 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:2
+#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:3 src/olympia/stats/templates/stats/stats.html:77 src/olympia/templates/menu_links.html:12
 msgid "Collections"
 msgstr "Bộ sưu tập"
 
@@ -1867,18 +1857,18 @@ msgstr "Không tìm thấy"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please let us know at <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of "
-"the popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You "
-"may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
-"ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please let us know at <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over"
+" to some of the popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-"
+"ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front "
+"page</a>. </li> </ul>"
 msgstr ""
 "<h1>Xin lỗi, nhưng chúng tôi không thể tìm thấy trang mà bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin mà bạn yêu cầu không có trên trang của chúng tôi. Có thể là bạn đã nhấn vào một liên kết hết "
-"hạn, hoặc gõ địa chỉ không chính xác. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đi theo một liên kết từ nơi nào đó, vui lòng cho chúng tôi biết tại <a href="
-"\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Cho chúng tôi biết bạn đến từ nơi nào và cái mà bạn đang tìm kiếm, chúng tôi sẽ cố sửa. </li> </ul> <p>Hoặc bạn có thể đi tới một số "
-"trang thông dụng sau trên website của chúng tôi.</p> <ul> <li>Bạn có hứng thú với một <a href=\"%(rec)s\">danh sách các tiện ích đáng dùng</a>?</li> <li> Bạn có muốn <a href=\"%(search)s\">tìm kiếm "
-"tiện ích</a>? Bạn có thể vào <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ cần dùng trường tìm kiếm ở phía trên. </li> <li> Nếu bạn muốn bắt đầu từ đầu, chỉ cần vào <a href=\"%(home)s\">trang "
-"đầu Tiện ích</a>. </li> </ul>"
+"hạn, hoặc gõ địa chỉ không chính xác. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đi theo một liên kết từ nơi nào đó, vui lòng cho chúng tôi biết tại <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Cho chúng tôi biết bạn đến từ nơi nào và cái mà bạn đang tìm kiếm, chúng tôi sẽ cố sửa. </li> </ul> <p>Hoặc bạn có thể đi tới một số"
+" trang thông dụng sau trên website của chúng tôi.</p> <ul> <li>Bạn có hứng thú với một <a href=\"%(rec)s\">danh sách các tiện ích đáng dùng</a>?</li> <li> Bạn có muốn <a href=\"%(search)s\">tìm "
+"kiếm tiện ích</a>? Bạn có thể vào <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ cần dùng trường tìm kiếm ở phía trên. </li> <li> Nếu bạn muốn bắt đầu từ đầu, chỉ cần vào <a "
+"href=\"%(home)s\">trang đầu Tiện ích</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -1886,8 +1876,8 @@ msgstr "Ôi"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr "<h1>Ối! Chúng ta gặp lỗi rồi.</h1> <p>Chúng tôi sẽ bắt tay vào sửa sớm.</p> <p> Bạn có thể thử tải lại trang, hoặc quay về lại <a href=\"%(home)s\">trang chủ Tiện ích</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -1964,8 +1954,7 @@ msgstr ""
 msgid "Most Followers"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html:68 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
+#: src/olympia/amo/templates/amo/site_nav.html:68 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:18
 msgid "Collections I've Made"
 msgstr "Bộ sưu tập Tôi đã tạo"
 
@@ -1974,8 +1963,8 @@ msgstr "Bộ sưu tập Tôi đã tạo"
 msgid "Collections I'm Following"
 msgstr "Bộ sưu tập Tôi đang theo dõi"
 
-#: src/olympia/amo/templates/amo/site_nav.html:73 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
-#: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20 src/olympia/users/models.py:512
+#: src/olympia/amo/templates/amo/site_nav.html:73 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
+#: src/olympia/users/models.py:512
 msgid "My Favorite Add-ons"
 msgstr "Tiện ích Ưa thích của Tôi"
 
@@ -2365,9 +2354,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Những tiện ích mà bạn đánh dấu là ưa thích bằng tính năng <b>Thêm vào Ưa thích</b> xuất hiện bên dưới. Bộ sưu tập này hiện đang <b>riêng tư</b>, có nghĩa là chỉ mình bạn có thể thấy nó. Nếu bạn "
+"muốn mọi người có thể thấy những cái bạn thích, nhấn lên nút bên dưới để chuyển nó thành công khai."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -2507,9 +2498,11 @@ msgstr "Người đóng góp cho Bộ sưu tập"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Bạn có thể thêm nhiều người đóng góp cho bộ sưu tập này. Một người đóng góp có thể thêm và xóa tiện tích khỏi bộ sưu tập này, nhưng không thể thay đổi tên hoặc mô tả của nó. Để thêm một người đóng "
+"góp, nhập địa chỉ email của họ ở bên dưới. Những người đóng góp phải có một tài khoản Tiện ích Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2616,21 +2609,20 @@ msgid "Reset"
 msgstr "Khởi tạo lại"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "PNG và JPG được hỗ trợ. Hình ảnh sẽ được chỉnh lại thành 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "Có nhiều lỗi trong biểu mẫu này. Vui lòng sửa chúng bên dưới."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
 msgstr "Tiện ích trong Bộ sưu tập của bạn"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
-msgid ""
-"To include an add-on in this collection, enter its name in the box below and hit enter.  You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
-msgstr ""
+msgid "To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
+msgstr "Để bao gồm một tiện ích trong bộ sưu tập này, nhập tên của nó vào ô bên dưới và ấn Enter. Bạn cũng có thể dùng liên kết <strong>Thêm vào Bộ sưu tập</strong> trên trang để bao gồm tiện ích."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/constants/base.py:400 src/olympia/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
@@ -2701,8 +2693,10 @@ msgstr "Tiện ích hoặc phần bổ trợ có vấn đề sẽ tự động b
 #, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
+"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Khi Mozilla nhận thấy những tiện ích, phần bổ trợ, hoặc phần mềm khác của bên thứ ba có gây ảnh hưởng nghiêm trọng đến tính bảo mật, tính ổn định, hoặc hiệu năng của %(app)s và hợp <a "
+"href=\"%(criteria)s\">tiêu chí nào đó</>, phần mềm đó có thể bị chặn. Để biết thêm thông tin, vui lòng đọc <a href=\"%(support)s\">bài viết hỗ trợ này</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -2844,7 +2838,6 @@ msgstr "{0} :: Công cụ Tìm kiếm"
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> tiện ích"
-msgstr[1] "<b>{0}</b> tiện ích"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -3822,7 +3815,6 @@ msgstr ""
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} lỗi"
-msgstr[1] "{0} lỗi"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
@@ -3830,7 +3822,6 @@ msgstr[1] "{0} lỗi"
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
-msgstr[1] "{0} cảnh báo"
 
 #: src/olympia/devhub/models.py:375 src/olympia/reviews/templates/reviews/add.html:58
 msgid "Review"
@@ -4021,8 +4012,8 @@ msgstr "{0} :: Tìm kiếm"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:6 src/olympia/devhub/templates/devhub/search.html:8 src/olympia/editors/forms.py:435 src/olympia/editors/forms.py:437
 #: src/olympia/editors/templates/editors/queue.html:27 src/olympia/editors/templates/editors/themes/queue_list.html:14 src/olympia/search/templates/search/collections.html:17
-#: src/olympia/search/templates/search/personas.html:18 src/olympia/search/templates/search/results.html:18 src/olympia/search/templates/search/mobile/results.html:8
-#: src/olympia/templates/search.html:14 src/olympia/templates/impala/search.html:18
+#: src/olympia/search/templates/search/personas.html:18 src/olympia/search/templates/search/results.html:18 src/olympia/search/templates/search/mobile/results.html:8 src/olympia/templates/search.html:14
+#: src/olympia/templates/impala/search.html:18
 msgid "Search"
 msgstr "Tìm kiếm"
 
@@ -4066,9 +4057,9 @@ msgstr "Tìm hiểu Đầy đủ về Tiện ích"
 
 #: src/olympia/devhub/templates/devhub/index.html:41
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html:51
@@ -4262,17 +4253,17 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Tiện ích này không tương thích với <b>%(app_name)s %(app_version)s</b>, bản phát hành mới nhất của %(app_name)s. Vui lòng cân nhắc việc cập nhật thông tin tương thích cho tiện ích của bạn, hoặc tải "
-"lên phiên bản mới cho tiện ích này."
+"Tiện ích này không tương thích với <b>%(app_name)s %(app_version)s</b>, bản phát hành mới nhất của %(app_name)s. Vui lòng cân nhắc việc cập nhật thông tin tương thích cho tiện ích của bạn, hoặc tải"
+" lên phiên bản mới cho tiện ích này."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:15
 #, python-format
 msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" "
+"class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#"
-"\" class=\"close\">Bỏ qua</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a "
+"href=\"#\" class=\"close\">Bỏ qua</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
@@ -4417,8 +4408,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:119
@@ -4665,10 +4655,8 @@ msgid "32x32px"
 msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-msgid ""
-"Used in listings of add-ons, like search results\n"
-"                            and featured add-ons."
-msgstr ""
+msgid "Used in listings of add-ons, like search results and featured add-ons."
+msgstr "Được dùng trong trang liệt kê tiện ích, như kết quả tìm kiếm và tiện ích khuyên dùng."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -4813,8 +4801,8 @@ msgstr "Thống kê hàng này về lượt tải và người dùng."
 msgid "Statistics"
 msgstr "Thống kê"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:5
-#: src/olympia/devhub/templates/devhub/payments/payments.html:3 src/olympia/devhub/templates/devhub/payments/tier.html:4
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:5 src/olympia/devhub/templates/devhub/payments/payments.html:3
+#: src/olympia/devhub/templates/devhub/payments/tier.html:4
 msgid "Manage Payments"
 msgstr "Quản lí Khoản chi trả"
 
@@ -5170,8 +5158,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/api/key.html:37
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
@@ -5191,8 +5179,8 @@ msgstr ""
 msgid "Generate new credentials"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:3 src/olympia/devhub/templates/devhub/docs/policies-agreement.html:7
-#: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:9 src/olympia/devhub/templates/devhub/docs/policies.html:24 src/olympia/devhub/templates/devhub/docs/policies.html:103
+#: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:3 src/olympia/devhub/templates/devhub/docs/policies-agreement.html:7 src/olympia/devhub/templates/devhub/docs/policies-agreement.html:9
+#: src/olympia/devhub/templates/devhub/docs/policies.html:24 src/olympia/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
 msgstr ""
 
@@ -5226,8 +5214,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
-"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this "
+"category.</strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:31
@@ -5242,8 +5230,8 @@ msgstr ""
 #, python-format
 msgid ""
 "If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
-"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
-"\">Bugzilla</a> or by emailing %(mail_admins)s."
+"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:42
@@ -5252,8 +5240,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
-"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in GitHub, including the location of the problem and "
-"how you encountered it."
+"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/olympia/issues\">file a bug report</a> in GitHub, including the location of the problem and"
+" how you encountered it."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3 src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -5267,9 +5255,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
-"please remember that versions must be reviewed by an editor."
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions "
+"that can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:18
@@ -5332,8 +5320,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
-"Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
-"to developers, allowing them to continuously improve their add-on to meet user needs."
+"Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback"
+" to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:76
@@ -5382,8 +5370,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:19
-msgid ""
-"Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
+msgid "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:25
@@ -5567,9 +5554,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
-"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
-"receive an email with any updates throughout the review process."
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
+"for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:37
@@ -5580,8 +5567,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
-"Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
-"out the kinks while in preliminary review and accumulating user feedback first."
+"Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working"
+" out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:50
@@ -5676,8 +5663,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:123
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
-"\"%(link_validation)s\">Validation Help</a> document."
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
+"href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:129
@@ -5698,8 +5685,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:142
 msgid ""
-"Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
-"on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
+"Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the "
+"add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:148
@@ -5801,9 +5788,9 @@ msgstr ""
 msgid ""
 "<p> Whenever an add-on includes any unexpected* feature that </p> <ul> <li>compromises user privacy or security (like sending data to third parties),</li> <li>changes default settings like the "
 "homepage or search engine, or</li> <li>changes settings or features in other add-ons or deactivates them altogether</li> </ul> <p>the features must adhere to the following requirements:</p> <ul> "
-"<li>The add-on description must clearly state what changes the add-on makes.</li> <li>All changes must be opt-in, meaning the user must take non-default action to enact the change.</li> <li>The opt-"
-"in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
-"features are those that are unrelated to the add-on's primary function.</p>"
+"<li>The add-on description must clearly state what changes the add-on makes.</li> <li>All changes must be opt-in, meaning the user must take non-default action to enact the change.</li> <li>The "
+"opt-in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected"
+" features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:268
@@ -5820,8 +5807,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:282
 msgid ""
-"Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>.  During a Private Browsing "
-"session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
+"Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>.  During a Private Browsing"
+" session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:287
@@ -5864,10 +5851,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:25
 msgid ""
-"<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
-"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
-"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
+"<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and"
+" concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
+"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should"
+" cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
 "be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
 
@@ -5881,8 +5868,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:37
 msgid ""
 "<strong>Has the add-on been well-tested, and is it free of obvious or serious defects?</strong> One important thing that we look for when considering an add-on is whether its user reviews indicate "
-"that it has received thorough testing, and that it doesn't have serious problems or negative impacts on the browser. If reviewers report problems such as major performance issues, crashes, frequent "
-"problems using the functions of the add-on, or spamming of messages to the error console, you should take those reports to heart, and re-submit your add-on after you've addressed them as best you "
+"that it has received thorough testing, and that it doesn't have serious problems or negative impacts on the browser. If reviewers report problems such as major performance issues, crashes, frequent"
+" problems using the functions of the add-on, or spamming of messages to the error console, you should take those reports to heart, and re-submit your add-on after you've addressed them as best you "
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
@@ -5890,8 +5877,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:43
 msgid ""
 "<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
-"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
-"authors will avoid retaliating with rudeness of their own."
+"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that"
+" authors will avoid retaliating with rudeness of their own."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:49
@@ -5902,8 +5889,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:55
 msgid ""
-"We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
-"Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
+"We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users."
+" Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:61
@@ -5914,8 +5901,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:67
 msgid ""
-"<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that "
-"infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
+"<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that"
+" infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
 
@@ -5939,8 +5926,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:86
 msgid ""
-"Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
-"intellectual property."
+"Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your"
+" intellectual property."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:92
@@ -6004,11 +5991,10 @@ msgid "You will receive an email when the review is complete."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
-msgid ""
-"You will receive an email when the review is complete. Until\n"
-"                             then, your add-on is not listed in our gallery but can be\n"
-"                             accessed directly from its details page."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr ""
+"Bạn sẽ nhận được một email khi việc xét duyệt hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ không được hiển thị trong trang trưng bày của chúng tôi nhưng vẫn có thể được truy cập trực tiếp từ trang"
+" chi tiết."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:38 src/olympia/devhub/templates/devhub/includes/addon_details.html:48
 msgid ""
@@ -6017,17 +6003,14 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:44
-msgid ""
-"You will receive an email when the review is complete. Until\n"
-"                             then, your add-on is not listed in our gallery but can be\n"
-"                             accessed directly from its details page. "
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
 msgstr ""
+"Bạn sẽ nhận được một email khi việc xét duyệt hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ không được hiển thị trong trang trưng bày của chúng tôi nhưng vẫn có thể được truy cập trực tiếp từ trang"
+" chi tiết."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:54
-msgid ""
-"Your add-on is displayed in our gallery and users are\n"
-"                             receiving automatic updates."
-msgstr ""
+msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
+msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày của chúng tôi và người dùng đang nhận được cập nhật tự động."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid ""
@@ -6043,11 +6026,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
-msgid ""
-"Your add-on is displayed in our gallery as experimental\n"
-"                             and users are receiving automatic updates. Some features\n"
-"                             are unavailable to your add-on."
-msgstr ""
+msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
+msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:74
 msgid "Your add-on has been signed."
@@ -6055,11 +6035,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
 msgid ""
-"You will receive an email when the full review is complete.\n"
-"                             Until then, your add-on is displayed in our gallery as\n"
-"                             experimental and users are receiving automatic updates.\n"
-"                             Some features are unavailable to your add-on."
+"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
+"unavailable to your add-on."
 msgstr ""
+"Bạn sẽ nhận được một email khi việc xét duyệt đầy đủ hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận "
+"được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 msgid ""
@@ -6348,8 +6328,8 @@ msgstr "Chúng tôi sẽ tự động gửi email tới những người dùng �
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
-"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
-"them to try."
+"We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for"
+" them to try."
 msgstr ""
 "Chúng tôi khuyến nghị bạn nên cảm ơn người dùng và cho họ biết bạn trân trọng sự ủng hộ của họ như thế nào. Bạn cũng có thể muốn nói cho họ biết tương lai tiện ích của bạn có gì và về các tiện ích "
 "khác mà bạn đã tạo ra để họ thử."
@@ -6611,8 +6591,8 @@ msgstr "Tập tin được thêm vào các phiên bản đã xét duyệt phải
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:15
 #, python-format
 msgid ""
-"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(url)s\" target=\"_blank"
-"\">report any bugs</a> that you encounter."
+"Submission of updates to unlisted add-ons for signing is currently in an open beta. Manual review may still be required for a large number of add-ons. Please <a href=\"%(url)s\" "
+"target=\"_blank\">report any bugs</a> that you encounter."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:35
@@ -6657,19 +6637,16 @@ msgid "Upload Another File"
 msgstr "Tải lên Tập tin Khác"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:45
-msgid ""
-"Adjusting application information here will allow users to install your\n"
-"                          add-on even if the install manifest in the package indicates that the\n"
-"                          add-on is incompatible."
-msgstr ""
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Điều chỉnh thông tin ứng dụng tại đây sẽ cho phép người dùng cài đặt tiện ích của bạn cho dù tập tin chỉ dẫn cài đặt trong gói có ghi rằng tiện ích của bạn không tương thích."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:74
 msgid ""
-"Information about changes in this release, new features,\n"
-"                              known bugs, and other useful information specific to this\n"
-"                              release/version. This information is also shown in the\n"
-"                              Add-ons Manager when updating."
+"Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
+"updating."
 msgstr ""
+"Thông tin về thay đổi trong lần phát hành này, tính năng mới, lỗi đã biết, và các thông tin hữu ích khác của riêng lần phát hành/phiên bản này. Thông tin này cũng được hiển thị trong trình Quản lí "
+"Tiện ích khi cập nhật."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -6680,11 +6657,8 @@ msgid "Notes for Reviewers"
 msgstr "Lưu ý cho Người đánh giá"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:114
-msgid ""
-"Optionally, enter any information that may be useful\n"
-"                              to the Editor reviewing this add-on, such as test\n"
-"                              account information."
-msgstr ""
+msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
+msgstr "Tùy chọn phụ, nhập bất kì thông tin nào hữu ích cho Biên tập viên xét duyệt tiện ích này, ví dụ như thông tin tài khoản thử nghiệm."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -6840,8 +6814,7 @@ msgid "Delete Version {version}"
 msgstr "Xóa phiên bản {version}"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:218
-msgid ""
-"You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
+msgid "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:219
@@ -7986,8 +7959,8 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html:119
-msgid "All reviews have been moderated.  Good work!"
-msgstr ""
+msgid "All reviews have been moderated. Good work!"
+msgstr "Tất cả xét duyệt đã được điều chỉnh. Làm tốt lắm!"
 
 #: src/olympia/editors/templates/editors/queue.html:161
 msgid "Version Notes / Notes for Reviewer"
@@ -8172,9 +8145,8 @@ msgstr "Từ Trước đến Nay"
 msgid "You have <span>{0}</span> points."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/includes/search_results_themes.html:6 src/olympia/editors/templates/editors/themes/history_table.html:7
-#: src/olympia/editors/templates/editors/themes/logs.html:19 src/olympia/editors/templates/editors/themes/queue_list.html:49 src/olympia/editors/templates/editors/themes/single.html:26
-#: src/olympia/editors/templates/editors/themes/themes.html:45
+#: src/olympia/editors/templates/editors/includes/search_results_themes.html:6 src/olympia/editors/templates/editors/themes/history_table.html:7 src/olympia/editors/templates/editors/themes/logs.html:19
+#: src/olympia/editors/templates/editors/themes/queue_list.html:49 src/olympia/editors/templates/editors/themes/single.html:26 src/olympia/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
 msgstr ""
 
@@ -9249,8 +9221,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
@@ -9293,8 +9264,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml:77
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:4
@@ -9328,8 +9299,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/acr_firstrun.html:61
 #, python-format
 msgid ""
-"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
-"href=\"%(url)s\">our forums</a>."
+"If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a"
+" href=\"%(url)s\">our forums</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:69
@@ -9393,8 +9364,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html:61
 msgid ""
-"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
-"Commons Attribution-NonCommercial 3.0 License</a>."
+"Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative"
+" Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html:65
@@ -9526,8 +9497,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:143
 #, python-format
-msgid ""
-"Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
+msgid "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:150
@@ -9568,8 +9538,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:187
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:195
@@ -9640,8 +9610,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:248
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
@@ -9651,8 +9621,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:265
 #, python-format
 msgid ""
-"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site.  <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help "
+"Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due"
+" to the large volume of visitors to the site.  <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help "
 "manage source code, version control, bug tracking and documentation."
 msgstr ""
 
@@ -9730,8 +9700,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:346
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:355
@@ -9765,8 +9735,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:385
 #, python-format
 msgid ""
-"All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
-"<a href=\"%(url)s\">Editors Reviewing Guide</a>."
+"All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the"
+" <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:393
@@ -9818,8 +9788,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:434
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected.  It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected.  It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
@@ -9835,8 +9805,7 @@ msgid "How can I see how many active users are using my add-on?"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:457
-msgid ""
-"The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
+msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:464
@@ -9960,8 +9929,8 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
-"Tiện ích là các mẩu phần mềm nhỏ thêm các tính năng hoặc chức năng mới cho %(app_name)s của bạn. Tiện ích có thể bổ sung %(app_name)s với các tính năng mới, từ điển ngôn ngữ, hoặc thay đổi diện mạo "
-"của nó. Thông qua tiện ích, bạn có thể tùy biến %(app_name)s cho phù hợp nhu cầu và sở thích của mình. <a href=\"%(learnmore_url)s\">Tìm hiểu thêm về việc tùy biến</a>"
+"Tiện ích là các mẩu phần mềm nhỏ thêm các tính năng hoặc chức năng mới cho %(app_name)s của bạn. Tiện ích có thể bổ sung %(app_name)s với các tính năng mới, từ điển ngôn ngữ, hoặc thay đổi diện mạo"
+" của nó. Thông qua tiện ích, bạn có thể tùy biến %(app_name)s cho phù hợp nhu cầu và sở thích của mình. <a href=\"%(learnmore_url)s\">Tìm hiểu thêm về việc tùy biến</a>"
 
 #: src/olympia/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
@@ -9970,13 +9939,15 @@ msgstr "Tiện ích có hoạt động trên ứng dụng hoặc trình duyệt 
 #: src/olympia/pages/templates/pages/faq.html:27
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
-"Tiện ích được liệt kê tại trang trưng bày này chỉ hoạt động trên các ứng dụng nền Mozilla, như <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Tuy nhiên, không phải tất cả tiện ích hoạt động với mỗi ứng dụng đó hoặc mỗi phiên bản của các ứng "
-"dụng đó. Mỗi tiện ích đều chỉ rõ ứng dụng và phiên bản mà nó hoạt động được, như Firefox 2.0 - 3.6.*. Đối với các tiện ích Firefox, nút cài đặt sẽ cho biết liệu tiện ích có tương thích hay không."
+"Tiện ích được liệt kê tại trang trưng bày này chỉ hoạt động trên các ứng dụng nền Mozilla, như <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Tuy nhiên, không phải tất cả tiện ích hoạt động với mỗi ứng dụng đó hoặc mỗi phiên bản của các "
+"ứng dụng đó. Mỗi tiện ích đều chỉ rõ ứng dụng và phiên bản mà nó hoạt động được, như Firefox 2.0 - 3.6.*. Đối với các tiện ích Firefox, nút cài đặt sẽ cho biết liệu tiện ích có tương thích hay "
+"không."
 
 #: src/olympia/pages/templates/pages/faq.html:42
 msgid "What are the different types of add-ons?"
@@ -10010,8 +9981,8 @@ msgstr ""
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Nhà cung cấp Tìm kiếm</a></strong> thêm các lựa chọn bổ sung vào danh sách thả xuống trên hộp tìm kiếm. Các nhà cung cấp này cho phép bạn nhanh chóng tìm kiếm bất "
-"kì trang web nào."
+"<strong><a href=\"%(browse_url)s\">Nhà cung cấp Tìm kiếm</a></strong> thêm các lựa chọn bổ sung vào danh sách thả xuống trên hộp tìm kiếm. Các nhà cung cấp này cho phép bạn nhanh chóng tìm kiếm bất"
+" kì trang web nào."
 
 #: src/olympia/pages/templates/pages/faq.html:72
 #, python-format
@@ -10042,8 +10013,8 @@ msgstr "Làm thế nào để tôi có thể cài đặt tiện ích mà không 
 #: src/olympia/pages/templates/pages/faq.html:101
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:110
@@ -10054,8 +10025,8 @@ msgstr "Làm thế nào để tôi có thể giữ cho tiện ích luôn đượ
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:122
@@ -10065,9 +10036,9 @@ msgstr "Tiện ích có an toàn để cài đặt không?"
 #: src/olympia/pages/templates/pages/faq.html:123
 #, python-format
 msgid ""
-"Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
+"Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved"
+" add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
 "Trừ khi có đánh dấu khác, tiện ích từ trang trưng bày này đã được kiểm tra và chấp thuận bởi nhóm biên tập viên của Mozilla và hoàn toàn an toàn để cài đặt. Chúng tôi khuyến nghị bạn chỉ cài đặt "
 "các tiện ích được chấp thuận. Nếu bạn muốn cài đặt các tiện ích chưa được chấp thuận hoặc tiện ích từ trang web của bên thứ ba, hãy cẩn trọng vì các tiện ích này có thể làm hại máy tính của bạn "
@@ -10094,8 +10065,8 @@ msgstr "%(app_name)s cho tôi biết một tiện ích không tương thích. C�
 #, python-format
 msgid ""
 "If an add-on isn't compatible with your version of %(app_name)s, it is usually either because your version of %(app_name)s is outdated or the add-on author has not yet updated the add-on to be "
-"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
-"users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
+"compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For"
+" users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Nếu một tiện ích không tương thích với phiên bản %(app_name)s của bạn, thì thường là vì phiên bản %(app_name)s đã quá hạn hoặc tác giả tiện ích chưa cập nhật tiện ích cho tương thích với phiên bản "
 "mới mà bạn đang dùng. Mozilla không khuyến khích việc lách các kiểm tra tính tương thích, vì chúng có thể dẫn đến sự bất ổn cho trình duyệt và mất mát dữ liệu trong một vài trường hợp. Đối với "
@@ -10113,8 +10084,8 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
-"Tiện ích thường được tạo bởi nhà phát triển bên ngoài từ khắp nơi trên thế giới, cho nên cách tốt nhất để được trợ giúp cho một tiện ích là tìm liên kết hỗ trợ trên trang chủ của tiện ích hoặc liên "
-"hệ với nhà phát triển. Nếu gặp vấn đề với %(app_name)s mà bạn nghi ngờ là có liên quan đến các tiện ích mà mình đã cài đặt, <a href=\"%(troubleshooting_url)s\">vào bài viết hỗ trợ này</a> để đọc "
+"Tiện ích thường được tạo bởi nhà phát triển bên ngoài từ khắp nơi trên thế giới, cho nên cách tốt nhất để được trợ giúp cho một tiện ích là tìm liên kết hỗ trợ trên trang chủ của tiện ích hoặc liên"
+" hệ với nhà phát triển. Nếu gặp vấn đề với %(app_name)s mà bạn nghi ngờ là có liên quan đến các tiện ích mà mình đã cài đặt, <a href=\"%(troubleshooting_url)s\">vào bài viết hỗ trợ này</a> để đọc "
 "các mẹo gỡ rối vấn đề."
 
 #: src/olympia/pages/templates/pages/faq.html:169
@@ -10122,20 +10093,16 @@ msgid "Add-on Gallery"
 msgstr "Trang trưng bày Tiện ích"
 
 #: src/olympia/pages/templates/pages/faq.html:171
-msgid ""
-"How do I choose between add-ons that seem to do the same\n"
-"    thing?"
-msgstr ""
+msgid "How do I choose between add-ons that seem to do the same thing?"
+msgstr "Làm thế nào để tôi có thể chọn giữa các tiện ích có vẻ như cùng làm một việc giống nhau?"
 
 #: src/olympia/pages/templates/pages/faq.html:173
 msgid ""
-"There are often several add-ons that have similar features. To\n"
-"    figure out which is right for you, read the entire description of the\n"
-"    add-on and view its screenshots. If there are still several in the running,\n"
-"    read through the add-on's ratings, user reviews, and statistics to see\n"
-"    which is most liked by other users. Remember that you can also just try\n"
-"    out both and see which you like better."
+"There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
+"the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
+"Thường có vài tiện ích có tính năng tương tự nhau. Để xác định cái nào phù hợp với mình, hãy đọc toàn bộ mô tả của tiện ích và xem ảnh chụp màn hình của nó. Nếu vẫn còn vài cái để so sánh, hãy đọc "
+"qua xếp hạng, đánh giá người dùng, và thống kê của tiện ích để xem cái nào được những người dùng khác thích nhất. Nên nhớ rằng bạn cũng có thể thử cả hai và xem bạn thích cái nào hơn."
 
 #: src/olympia/pages/templates/pages/faq.html:180
 msgid "What if I can't find an add-on I'm looking for?"
@@ -10155,8 +10122,8 @@ msgstr "Nếu một tiện ích là \"thử nghiệm\" hoặc \"đã được x�
 #: src/olympia/pages/templates/pages/faq.html:188
 #, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental "
+"add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Tiện ích thử nghiệm đã được kiểm tra bởi các biên tập viên của chúng tôi để chắc chắn là chúng không có các vấn đề bảo mật, nhưng chúng có thể vẫn còn lỗi hoặc không hoạt động tốt. Hãy cẩn trọng "
 "khi cài đặt tiện ích thử nghiệm và gỡ bỏ chúng ngay lập tức nếu bạn thấy có vấn đề. <a href=\"%(url)s\">Tìm hiểu thêm về quá trình xét duyệt của chúng tôi</a></dd>"
@@ -10172,18 +10139,16 @@ msgid ""
 "as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Trong khi tất cả tiện ích hiện công khai trong trang trưng bày của chúng tôi được xét duyệt bởi biên tập viên, bạn có thể nhận được liên kết trực tiếp tới một tiện ích chưa được xét duyệt. Hãy cẩn "
-"trọng khi cài đặt các tiện ích này, vì chúng có thể làm hại máy tính hoặc vi phạm sự riêng tư của bạn. Chúng tôi khuyến nghị bạn chỉ nên cài đặt các tiện ích đã được xét duyệt. <a href=\"%(url)s"
-"\">Tìm hiểu thêm về quá trình xét duyệt của chúng tôi</a></dd>"
+"trọng khi cài đặt các tiện ích này, vì chúng có thể làm hại máy tính hoặc vi phạm sự riêng tư của bạn. Chúng tôi khuyến nghị bạn chỉ nên cài đặt các tiện ích đã được xét duyệt. <a "
+"href=\"%(url)s\">Tìm hiểu thêm về quá trình xét duyệt của chúng tôi</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html:206
 msgid "How much do add-ons cost to purchase?"
 msgstr "Tiện ích tốn bao nhiêu tiền?"
 
 #: src/olympia/pages/templates/pages/faq.html:207
-msgid ""
-"Add-ons hosted in our gallery are free unless clearly marked\n"
-"    otherwise."
-msgstr ""
+msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
+msgstr "Tiện ích được lưu trữ trên trang trưng bày của chúng tôi đều là miễn phí, trừ khi có cái nào được đánh dấu khác."
 
 #: src/olympia/pages/templates/pages/faq.html:210
 msgid "What does it mean when an add-on asks for contributions?"
@@ -10191,11 +10156,11 @@ msgstr "Khi một tiện ích đề nghị hỗ trợ tài chính, điều đó 
 
 #: src/olympia/pages/templates/pages/faq.html:211
 msgid ""
-"Some add-on authors request users who enjoy an add-on to\n"
-"        contribute to its development by making a monetary contribution. These\n"
-"        contributions go directly to the developer unless a third party is\n"
-"        indicated, such as the non-profit Mozilla Foundation."
+"Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
+"indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Một số tác giả tiện ích đề nghị những người dùng thích tiện ích của họ hỗ trợ sự phát triển bằng một khoản tài chính nhỏ. Những khoản đóng góp này sẽ được gửi trực tiếp tới nhà phát triển trừ khi "
+"có bên thứ ba nào đó được chỉ định, ví dụ như Quỹ Mozilla phi lợi nhuận."
 
 #: src/olympia/pages/templates/pages/faq.html:216
 msgid "What are beta add-ons?"
@@ -10203,25 +10168,23 @@ msgstr "Tiện ích beta là gì?"
 
 #: src/olympia/pages/templates/pages/faq.html:218
 msgid ""
-"Beta add-ons are unreviewed versions which represent the\n"
-"        latest work of an add-on author. While different authors have different\n"
-"        standards for beta code quality, you should assume that these add-ons\n"
-"        are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
+"Tiện ích beta là các phiên bản chưa được kiểm tra, đại diện cho thành quả mới nhất của tác giả tiện ích. Mặc dù các tác giả khác nhau sẽ có các chuẩn khác nhau đối với chất lượng của một đoạn mã "
+"beta, bạn nên cho rằng các tiện ích này sẽ ít ổn định hơn so với các bản phát hành thông thường."
 
 #: src/olympia/pages/templates/pages/faq.html:222
 msgid ""
-"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
+"Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial"
+" version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
 msgstr ""
 "Vui lòng lưu ý rằng khi bạn cài đặt một tiện ích từ phần \"Phiên bản Beta\" của trang liệt kê tiện ích, bạn sẽ tiếp tục nhận được cập nhật cho tiện ích đó. Giống như phiên bản ban đầu mà bạn cài, "
 "tất cả bản beta đều không được Mozilla xem xét và có thể gây ảnh hưởng tới máy tính của bạn."
 
 #: src/olympia/pages/templates/pages/faq.html:229
-msgid ""
-"What does it mean when an add-on is flagged as\n"
-"    slow?"
-msgstr ""
+msgid "What does it mean when an add-on is flagged as slow?"
+msgstr "Khi một tiện ích bị gắn cờ chậm, điều đó có nghĩa là gì?"
 
 #: src/olympia/pages/templates/pages/faq.html:231
 msgid ""
@@ -10236,11 +10199,11 @@ msgstr "Tôi có thể báo cáo một đánh giá spam hoặc không phù hợp
 
 #: src/olympia/pages/templates/pages/faq.html:237
 msgid ""
-"To report a user review of an add-on, log in with your account\n"
-"    and visit the add-on's reviews page. Find the review you wish to report,\n"
-"    click \"Report this review\" and select a reason. Our editorial team will\n"
-"    investigate the review and take appropriate action."
+"To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
+"editorial team will investigate the review and take appropriate action."
 msgstr ""
+"Để báo cáo một đánh giá người dùng của một tiện ích, đăng nhập bằng tài khoản của bạn và vào trang đánh giá của tiện ích. Tìm đánh giá mà bạn muốn báo cáo, nhấn \"Báo cáo đánh giá này\" và chọn một"
+" lí do. Nhóm biên tập viên của chúng tôi sẽ kiểm tra đánh giá đó và thực hiện các thao tác phù hợp."
 
 #: src/olympia/pages/templates/pages/faq.html:242
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -10258,13 +10221,13 @@ msgstr "Giấy phép Mã nguồn là gì?"
 #: src/olympia/pages/templates/pages/faq.html:247
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses"
+" like the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Mã nguồn được dùng để tạo ra tiện ích là một bản quyền riêng biệt của tác giả tiện ích, trừ khi có tuyên bố khác trong giấy phép mã nguồn. Nhiều tiện ích trên trang này có <a href=\"%(url)s\" lang="
-"\"en\">giấy phép mã nguồn mở</a> cho phép mã nguồn hiện hữu công cộng để sao chép và sử dụng lại theo những điều kiện được xác định bởi tác giả. Hầu hết tác giả chọn các giấy phép mã nguồn mở được "
-"biết đến rộng rãi như GPL hoặc BSD thay vì viết cái của riêng họ."
+"Mã nguồn được dùng để tạo ra tiện ích là một bản quyền riêng biệt của tác giả tiện ích, trừ khi có tuyên bố khác trong giấy phép mã nguồn. Nhiều tiện ích trên trang này có <a href=\"%(url)s\" "
+"lang=\"en\">giấy phép mã nguồn mở</a> cho phép mã nguồn hiện hữu công cộng để sao chép và sử dụng lại theo những điều kiện được xác định bởi tác giả. Hầu hết tác giả chọn các giấy phép mã nguồn mở "
+"được biết đến rộng rãi như GPL hoặc BSD thay vì viết cái của riêng họ."
 
 #: src/olympia/pages/templates/pages/faq.html:256
 #, python-format
@@ -10325,8 +10288,8 @@ msgstr "Vẫn còn câu hỏi?"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
-"Đối với hỗ trợ Firefox thông thường, hãy vào <a href=\"%(sumo_url)s\">trang web hỗ trợ</a> của chúng tôi. Đối với các câu hỏi về trang web và tiện ích thông thường, hãy vào <a href=\"%(forum_url)s"
-"\">diễn đàn</a> của chúng tôi."
+"Đối với hỗ trợ Firefox thông thường, hãy vào <a href=\"%(sumo_url)s\">trang web hỗ trợ</a> của chúng tôi. Đối với các câu hỏi về trang web và tiện ích thông thường, hãy vào <a "
+"href=\"%(forum_url)s\">diễn đàn</a> của chúng tôi."
 
 #: src/olympia/pages/templates/pages/review_guide.html:36 src/olympia/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
@@ -10540,9 +10503,9 @@ msgstr "Thêm một đánh giá cho {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has.  Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
@@ -10664,7 +10627,6 @@ msgstr "Hãy là người đầu tiên viết đánh giá."
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} đánh giá"
-msgstr[1] "{num} đánh giá"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -10860,7 +10822,6 @@ msgstr "Kết quả Tìm kiếm <i>({num})</i>"
 msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] "{0} bài"
-msgstr[1] "{0} bài"
 
 #: src/olympia/sharing/__init__.py:20
 msgid "Post to Facebook"
@@ -10879,7 +10840,6 @@ msgstr ""
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} tweet"
-msgstr[1] "{0} tweet"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
@@ -11293,10 +11253,10 @@ msgstr "Giới thiệu về theo dõi nguồn bên ngoài…"
 #, python-format
 msgid ""
 "<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
@@ -11323,8 +11283,8 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/usage.html:20
 msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
+"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken"
+" down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html:3
@@ -11957,8 +11917,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Bạn không thể xóa tài khoản của mình nếu được liệt kê là <a href=\"%(link)s\"> tác giả của tiện ích bất kì</a>. Để xóa tài khoản của mình, vui lòng nhờ người khác trong nhóm phát triển xóa bạn khỏi "
-"danh sách tác giả tiện ích. Sau đó bạn sẽ có thể xóa tài khoản của mình tại đây."
+"Bạn không thể xóa tài khoản của mình nếu được liệt kê là <a href=\"%(link)s\"> tác giả của tiện ích bất kì</a>. Để xóa tài khoản của mình, vui lòng nhờ người khác trong nhóm phát triển xóa bạn khỏi"
+" danh sách tác giả tiện ích. Sau đó bạn sẽ có thể xóa tài khoản của mình tại đây."
 
 #: src/olympia/users/templates/users/delete.html:29
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -12048,8 +12008,8 @@ msgid "Profile"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:100
-msgid "Give us a bit more information about yourself.  All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
+msgstr "Cung cấp một tí thông tin thêm về chính bạn. Tất cả các thông tin này là không bắt buộc nhưng sẽ giúp người dùng khác quen thuộc với bạn."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -12268,8 +12228,8 @@ msgid "Confirm password"
 msgstr "Xác nhận mật khẩu"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:47
-msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr ""
+msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
+msgstr "Liên kết khởi tạo lại mật khẩu không hợp lệ, có thể là vì nó đã được dùng. Vui lòng yêu cầu đợt khởi tạo lại mật khẩu mới."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
@@ -12280,8 +12240,7 @@ msgid "Send password reset link"
 msgstr "Gửi liên kết khôi phục mật khẩu"
 
 #: src/olympia/users/templates/users/pwreset_sent.html:10
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
+msgid "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr "Một email đã được gửi đến tài khoản với thông tin thêm. Nếu bạn không nhận được email vui lòng chắc chắn rằng bạn đã nhập đúng địa chỉ email đã dùng khi đăng kí tài khoản."
 
 #: src/olympia/users/templates/users/register.html:4
@@ -12590,3 +12549,4 @@ msgstr ""
 #: src/olympia/zadmin/forms.py:105
 msgid "Log emails instead of sending"
 msgstr ""
+

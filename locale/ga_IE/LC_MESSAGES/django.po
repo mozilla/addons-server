@@ -11,11 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
-"Language: ga\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? 3 : 4\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -266,7 +265,7 @@ msgstr "Tá forbróir an bhreiseáin seo ag iarraidh go dtacóidh tú leis trí 
 msgid "Contribute"
 msgstr "Tabhair deontas"
 
-# This is a separator between the graphical [contribute] button and the 
+# This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html:34 src/olympia/addons/templates/addons/report_abuse.html:26 src/olympia/addons/templates/addons/impala/contribution.html:32
@@ -497,8 +496,8 @@ msgid "Version {0}:"
 msgstr "Leagan {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "Níl aon rud suimiúil anseo! Níor chuir an forbróir aon mhionsonraí san áireamh."
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -2717,12 +2716,12 @@ msgid "Reset"
 msgstr "Bánaigh"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "Tacaítear le PNG agus JPG. Athrófar méid na híomhá go 32×32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "Tá earráidí san fhoirm seo. Ceartaigh iad le do thoil."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -4805,10 +4804,8 @@ msgid "32x32px"
 msgstr "32×32pct"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-msgid ""
-"Used in listings of add-ons, like search results\n"
-"                            and featured add-ons."
-msgstr ""
+msgid "Used in listings of add-ons, like search results and featured add-ons."
+msgstr "Úsáidtear é seo nuair a thaispeántar an breiseán i liosta, mar shampla torthaí cuardaigh agus breiseáin mhór-le-rá."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48

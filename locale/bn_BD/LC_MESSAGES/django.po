@@ -6,13 +6,10 @@ msgstr ""
 "PO-Revision-Date: 2014-08-19 04:41+0000\n"
 "Last-Translator: Riyad <riyadrir@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: bn_BD\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1408423307.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -476,8 +473,8 @@ msgid "Version {0}:"
 msgstr "সংস্করণ {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "এখানে কিছুই দেখা যাচ্ছে না! ডেভেলপার বিস্তারিত কোন কিছুই যুক্ত করেনি।"
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -804,11 +801,8 @@ msgid "QR code for add-on"
 msgstr "অ্যাড-অনের জন্য QR কোড"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr ""
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
+msgstr "{0} আপনার মোবাইলের ফায়ারফক্সে চান? আপনার ফোনে সরাসরি ইন্সটল করতে এই QR কোডটি স্ক্যান করুন। (আপনার একটি QR রিডারের প্রয়োজন হবে। আপনার কাছে না থেকে থাকলে আপনার ফোনের মার্কেটপ্লেসে অনুসন্ধান করুন।)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
@@ -1744,8 +1738,8 @@ msgid "Reviewer escalation"
 msgstr "রিভিউয়ার অপসারন"
 
 #: src/olympia/amo/log.py:442
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgid "Video removed from {addon} because of a problem with the video."
+msgstr "ভিডিও এর সাথে একটি সমস্যা থাকায় {addon} থেকে ভিডিও অপসারন করা হয়েছে।"
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -2625,12 +2619,12 @@ msgid "Reset"
 msgstr "রিসেট"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "PNG এবং JPG সমর্থিত। ছবি ৩২x৩২ তে পরিবর্তিত হবে।"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "এই ফর্মে ভুল আছে। দয়া করে সেগুলো নিচে ঠিক করুন।"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -3790,8 +3784,8 @@ msgid "Version doesn't match"
 msgstr "সংস্করণ মেলেনি"
 
 #: src/olympia/devhub/forms.py:668
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
+msgid "You cannot delete a file once the review process has started. You must delete the whole version."
+msgstr "রিভিউ প্রক্রিয়া শুরু হওয়ার পর আপনি কোন ফাইল অপসারন করতে পারবেন না। আপনাকে অবশ্যই সম্পূর্ণ ভার্সন মুছে দিতে হবে।"
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
@@ -6459,8 +6453,8 @@ msgid "Upon upload and form submission, the AMO Team will review your updated de
 msgstr "আপলোড এবং ফর্ম সাবমিট করার পর এএমও দল আপনার হালনাগাদকৃত ডিজাইন পর্যালোচনা করবে। সেসময় পর্যন্ত, আপনার বর্তমান ডিজাইন সকলের নিকট দেখা যাবে।"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
-msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgid "Your previously resubmitted design, which is under pending review."
+msgstr "আপনি পূর্বেই ডিজাইন সাবমিট করেছিলেন যেটি বর্তমানে পর্যালোচনার অপেক্ষায় রয়েছে।"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"

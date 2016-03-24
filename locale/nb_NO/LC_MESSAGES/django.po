@@ -6,13 +6,10 @@ msgstr ""
 "PO-Revision-Date: 2015-01-24 23:49+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1422143389.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -476,8 +473,8 @@ msgid "Version {0}:"
 msgstr "Versjon {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "Ingenting å se her! Utvikleren tok ikke med noen detaljer."
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -803,11 +800,8 @@ msgid "QR code for add-on"
 msgstr "QR-kode for utvidelse"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr ""
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
+msgstr "Ønsker du å ha {0} på din mobile Firefox? Skann denne QR-koden for å installere direkte på telefonen. (Du trenger en QR-leser. Søk på telefonens markedsplass dersom du ikke har en.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
@@ -1743,8 +1737,8 @@ msgid "Reviewer escalation"
 msgstr "Redaktør-eskalering"
 
 #: src/olympia/amo/log.py:442
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgid "Video removed from {addon} because of a problem with the video."
+msgstr "Video fjernet fra {addon} på grunn av et problem med videoen."
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
@@ -1896,8 +1890,8 @@ msgstr "Oops"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr "<h1>Oops! En feil oppstod.</h1> <p>Vi vil starte å rette den snart.</p> <p> Du kan prøve å oppdatere siden, eller gå tilbake til <a href=\"%(home)s\">hjemmesiden for utvidelser</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2378,9 +2372,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:186
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Utvidelser som du markerer som favoritter med <b>Legg til i favoritter</b> vises nedenfor. Denne samlingen er akkurat nå <b>privat</b>, som betyr at bare du kan se den. Dersom du ønsker at alle "
+"skal kunne se dine favoritter, trykk på knappen nedenfor for å gjøre den offentlig."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:196
 msgid "My favorite add-ons"
@@ -2524,9 +2520,11 @@ msgstr "Bidragsytere til samlingen"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:26
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Du kan legge til flere bidragsytere til denne samlingen. En bidragsyter kan legge til og fjerne utvidelser til samlingen, men kan ikke endre navnet eller beskrivelsen. For å legge inn en "
+"bidragsyter, skriv inn e-postadressen deres i boksen nedenfor. Bidragsytere må ha en konto på Mozilla Add-ons."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:40
 msgid "User"
@@ -2632,12 +2630,12 @@ msgid "Reset"
 msgstr "Tilbakestill"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgid "PNG and JPG supported. Image will be resized to 32x32."
+msgstr "PNG og JPG er støttet. Bilde vil endres størrelse til 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgid "There are errors in this form. Please correct them below."
+msgstr "Der er feil i skjemaet. Rett opp de først."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -2645,8 +2643,10 @@ msgstr "Utvidelser i samlingen din"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
-"To include an add-on in this collection, enter its name in the box below and hit enter.  You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
+"To include an add-on in this collection, enter its name in the box below and hit enter. You can also use the <strong>Add to Collection</strong> links throughout the site to include add-ons later."
 msgstr ""
+"For å ta med en utvidelse i denne samlingen, skriv inn navnet i boksen nedenfor og trykk enter. Du kan også bruke <strong>Legg til i samling</strong>-lenkene på dette nettstedet for å legge til "
+"utvidelser senere."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/constants/base.py:400 src/olympia/devhub/templates/devhub/addons/activity.html:62
 msgid "Add-on"
@@ -2717,8 +2717,10 @@ msgstr "Den problematiske utvidelsen eller programtillegget vil automatisk slås
 #, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
+"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Når Mozilla blir kjent med utvidelser, programtillegg eller annen tredjeparts programvare som kompromitterer %(app)s sin sikkerhet, stabilitet eller ytelse, og samtidig er innenfor <a href="
+"\"%(criteria)s\">forskjellige kriterier</a>, kan programmet bli blokkert fra generell bruk. For mer informasjon om dette, les <a href=\"%(support)s\">brukerstøtteartikkelen</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -3800,8 +3802,8 @@ msgid "Version doesn't match"
 msgstr "Versjon stemmer ikke"
 
 #: src/olympia/devhub/forms.py:668
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
+msgid "You cannot delete a file once the review process has started. You must delete the whole version."
+msgstr "Du kan ikke slette en fil når gjennomgangsprosessen har startet. Du må slette hele versjonen."
 
 #: src/olympia/devhub/forms.py:688
 msgid "The platform All cannot be combined with specific platforms."
