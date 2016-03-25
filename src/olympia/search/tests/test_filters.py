@@ -5,7 +5,6 @@ from elasticsearch_dsl import Search
 from mock import Mock
 
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -90,35 +89,6 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         qs_str = json.dumps(qs)
         assert 'fuzzy' not in qs_str
-
-    @override_settings(ES_USE_PLUGINS=True)
-    def test_polish_analyzer(self):
-        """
-        Test that the polish analyzer is included correctly since it is an
-        exception to the rest b/c it is a plugin.
-        """
-        with self.activate(locale='pl'):
-            qs = self._filter(data={'q': u'próba'})
-            should = (qs['query']['function_score']['query']['bool']['should'])
-            expected = {
-                'match': {
-                    'name_polish': {
-                        'query': u'pr\xf3ba', 'boost': 2.5,
-                        'analyzer': 'polish'
-                    }
-                }
-            }
-            assert expected in should
-
-            expected = {
-                'match': {
-                    'description_polish': {
-                        'query': u'pr\xf3ba', 'boost': 0.6,
-                        'analyzer': 'polish', 'type': 'phrase'
-                    }
-                }
-            }
-            assert expected in should
 
 
 class TestPublicContentFilter(FilterTestsBase):

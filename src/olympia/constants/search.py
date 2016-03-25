@@ -37,7 +37,9 @@ SEARCH_ANALYZER_MAP = {
     'dutch': ['nl'],
     # Polish requires the Elasticsearch plugin:
     # https://github.com/elasticsearch/elasticsearch-analysis-stempel
-    'polish': ['pl'],
+    # We had issues with that in Marketplace and never enabled it from AMO,
+    # so leave it out until we decide to revisit the issue.
+    # 'polish': ['pl'],
     'brazilian': ['pt-br'],
     'portuguese': ['pt-pt'],
     'romanian': ['ro'],
@@ -57,13 +59,6 @@ SEARCH_LANGUAGE_TO_ANALYZER = {}
 for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
-
-
-# List of analyzers that require a plugin. Depending on settings.ES_USE_PLUGINS
-# we may disable or bypass these.
-SEARCH_ANALYZER_PLUGINS = [
-    'polish',
-]
 
 # Which stemmer to use for each langauge.
 #

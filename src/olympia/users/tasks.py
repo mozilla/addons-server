@@ -9,7 +9,7 @@ from olympia.amo.helpers import user_media_path
 from olympia.lib.es.utils import index_objects
 
 from .models import UserProfile
-from . import search
+from .indexers import UserProfileIndexer
 
 task_log = commonware.log.getLogger('z.task')
 
@@ -46,7 +46,7 @@ def resize_photo(src, dst, locally=False, **kw):
 def index_users(ids, **kw):
     task_log.debug('Indexing users %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     index = kw.pop('index', None)
-    index_objects(ids, UserProfile, search, index)
+    index_objects(ids, UserProfile, UserProfileIndexer.extract_document, index)
 
 
 @task
