@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-25 11:29+0000\n"
+"PO-Revision-Date: 2016-03-25 12:20+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -11341,11 +11341,11 @@ msgstr "szamoai tala"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "afrikai valutaközösségi (BEAC) frank\n"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
-msgstr "Kelet-karibi dollár"
+msgstr "kelet-karibi dollár"
 
 #: src/olympia/lib/constants.py:163
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
@@ -11353,31 +11353,31 @@ msgstr "Nemzetközi Valutaalap (IMF) különleges lehívási jogok"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "afrikai valutaközösségi (BEACO) frank\n"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "csendes-óceáni valutaközösségi (CFP) frank"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
-msgstr ""
+msgstr "jemeni riál"
 
 #: src/olympia/lib/constants.py:167
 msgid "South Africa Rand"
-msgstr ""
+msgstr "dél-afrikai rand"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "zambiai kwacha"
 
 #: src/olympia/lib/constants.py:169
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "zimbabwei dollár"
 
 #: src/olympia/lib/video/ffmpeg.py:112 src/olympia/lib/video/totem.py:81
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "A videónak WebM formátumban kell lennie."
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -11399,7 +11399,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Ki készíti ezeket a kiegészítőket?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -11443,12 +11443,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Ez jól hangzik! Hogyan kapcsolódhatok be?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Sok módja van a bekapcsolódásnak. Ha a műszaki oldalon van:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:42
 #, python-format
@@ -11456,6 +11456,9 @@ msgid ""
 "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
 "update services and can help you reach a large audience of users."
 msgstr ""
+"<a href=\"%(url)s\">Készítse el saját kiegészítőjét</a>. Ingyenes tárhely és"
+" frissítési szolgáltatásokat biztosítunk, és segíthetünk felhasználók széles"
+" közönségét elérni."
 
 #: src/olympia/pages/templates/pages/about.lhtml:45
 #, python-format
@@ -11464,6 +11467,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Ha van kiegészítő-fejlesztési tapasztalat, <a href=\"%(url)s\">legyen "
+"szerkesztő</a>! A szerkesztőink kiegészítő-rajongók, műszaki háttérrel, akik"
+" ellenőrzik a kiegészítők kódminőségét és stabilitásukat."
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
 #, python-format
@@ -11472,27 +11478,36 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Segítsen tökéletesíteni honlapunkat. Nyílt forráskódú, és bejelentheti a "
+"hibákat, valamint javításokat küldhet be. A <a href=\"%(url)s\">GitHub</a> "
+"tartalmazza az összes jelenlegi hibát, a korábbi hibák pedig megtalálható a "
+"Bugzillában."
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
 msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"Ha érdeklik a kiegészítők, de nem a műszaki oldaluk, akkor is több módon "
+"segíthet:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Mondja el barátainak! Hadd tudják meg, milyen kiegészítőket használ."
 
 #: src/olympia/pages/templates/pages/about.lhtml:59
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Vegyen részt a <a href=\"%(url)s\">fórumunkon</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:61
 msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Értékeljen kiegészítőket az oldalon. A kiegészítők szerzői nagyobb eséllyel "
+"fejlesztik a kiegészítőjüket, és írnak újakat, ha tudják, hogy az emberek "
+"értékelik a munkájukat."
 
 #: src/olympia/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -11883,11 +11898,13 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr ""
+"Szükségem van néhány tanácsra a kiegészítőm elkészítéséhez. Hol találok "
+"segítséget?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:216
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (a kiegészítő-fejlesztések megvitatásához)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:218
@@ -11926,7 +11943,7 @@ msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:243
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Biztosít-e a Mozilla fejlesztői szolgáltatásokat?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:244
 msgid "No."
@@ -11935,6 +11952,8 @@ msgstr "Nem."
 #: src/olympia/pages/templates/pages/dev_faq.html:246
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Vannak-e harmadik félnek számító fejlesztők, akiket meg lehet bízni "
+"kiegészítő-fejlesztéssel?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:248
 #, python-format
@@ -11945,6 +11964,11 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Igen, találhat külső fejlesztőket a <a href=\"%(forum_url)s\">Kiegészítők "
+"fórumon</a> keresztül, a <a href=\"%(list_url)s\">mozilla.jobs listán</a>, a"
+" <a href=\"%(mz_url)s\">mozillaZine fórumokon</a> vagy <a "
+"href=\"%(wiki_url)s\">a Mozilla Wikin</a>. Kérjük, vegye figyelembe, hogy a "
+"Mozilla nem nyújt fejlesztő ajánlásokat."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
@@ -11975,7 +11999,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:284
 msgid "What is AMO?"
-msgstr ""
+msgstr "Mi az az AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:286
 msgid ""
@@ -13066,7 +13090,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "A Sunbird visszavonult"
 
 #: src/olympia/pages/templates/pages/sunbird.html:29
 msgid ""
@@ -13075,6 +13099,10 @@ msgid ""
 "as the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"A Sunbird projekt fejlesztése leállt, az utolsó kiadás 2010. március 30.-án "
+"volt.  Büszkék vagyunk arra, hogy mi szolgáltattuk a Sunbird kiegészítőket "
+"ezen az oldalon, de mivel a projekt már nem karbantartott, ezért letiltottuk"
+" a kiegészítők támogatását."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -13082,10 +13110,12 @@ msgid ""
 "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a "
 "href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
+"Javasoljuk a <a href=\"%(tb_url)s\">Thunderbirdre</a> és a <a "
+"href=\"%(lightning_url)s\">Lightningra</a> frissítést."
 
 #: src/olympia/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Tudjon meg többet a Sunbirdről"
 
 #: src/olympia/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -13093,21 +13123,22 @@ msgstr "Hiba történt a PayPal kommunikáció közben. Próbálja meg később.
 
 #: src/olympia/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Hiba történt ezzel a pénznemmel."
 
 #: src/olympia/paypal/__init__.py:68
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Az összeg túl kicsi a vevő pénznemére alakításhoz."
 
 #: src/olympia/paypal/__init__.py:70
 msgid "The buyer and seller must have different PayPal accounts."
 msgstr ""
+"A vevőnek és az eladónak különböző PayPal számlával kell rendelkeznie."
 
 #. L10n: {0} is the currency.
 #: src/olympia/paypal/__init__.py:73
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "A vevő nem fogad el fizetéseket ebben a pénznemben: %s."
 
 #: src/olympia/reviews/feeds.py:23
 #, python-format
@@ -13258,7 +13289,7 @@ msgstr "Válasz az értékelésre"
 
 #: src/olympia/reviews/templates/reviews/review.html:89
 msgid "Edit reply"
-msgstr ""
+msgstr "Válasz szerkesztése"
 
 #: src/olympia/reviews/templates/reviews/review.html:94
 msgid "Edit review"
@@ -13266,7 +13297,7 @@ msgstr "Értékelés szerkesztése"
 
 #: src/olympia/reviews/templates/reviews/review.html:102
 msgid "Delete reply"
-msgstr ""
+msgstr "Válasz törlése"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html:5
@@ -13325,21 +13356,21 @@ msgstr[1] "{num} értékelés"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "{0} csillagra értékelve az 5-ből"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "%(rating)s csillagra értékelve az 5-ből"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:3
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:8
 msgid "Add a Review"
-msgstr ""
+msgstr "Értékelés hozzáadása"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:5
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Jelentkezzen be az értékelés hozzáadásához"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
@@ -13389,11 +13420,11 @@ msgstr "gyűjtemények keresése"
 
 #: src/olympia/search/forms.py:25
 msgid "search for themes"
-msgstr ""
+msgstr "témák keresése"
 
 #: src/olympia/search/forms.py:26
 msgid "search for apps"
-msgstr ""
+msgstr "alkalmazások keresése"
 
 #: src/olympia/search/forms.py:49
 msgid "Sort By"
@@ -13461,7 +13492,7 @@ msgstr "Bármely {0}"
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py:589
 msgid "All Systems"
-msgstr ""
+msgstr "Összes rendszer"
 
 #: src/olympia/search/views.py:600
 msgid "All Tags"
@@ -13489,11 +13520,11 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "{0} téma találatai"
 
 #: src/olympia/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Tématalálatok"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:14
@@ -13503,7 +13534,7 @@ msgstr "{0} :: Címke"
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Találatok a(z) „{0}” címkére"
 
 #: src/olympia/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
@@ -13540,12 +13571,12 @@ msgstr "Elküldés a Facebookra"
 #: src/olympia/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} személynek tetszik"
+msgstr[1] "{0} személynek tetszik"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Megosztás Twitteren"
 
 #: src/olympia/sharing/__init__.py:35
 msgid "{0} tweet"
@@ -13555,15 +13586,15 @@ msgstr[1] "{0} csirip"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Megosztás g+-on"
 
 #: src/olympia/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Elküldés a Redditre"
 
 #: src/olympia/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Elküldés a Tumblrre"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:61
@@ -13714,7 +13745,7 @@ msgstr "Értékelések"
 
 #: src/olympia/stats/templates/stats/dashboard.html:3
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Kiegészítőstatisztika"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:6
 msgid "Add-ons in Use"
@@ -13746,19 +13777,19 @@ msgstr "Felhasználói regisztrációk"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html:34
 msgid "Archived Data"
-msgstr ""
+msgstr "Archivált adatok"
 
 #: src/olympia/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Egyéni dátumtartomány"
 
 #: src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
-msgstr "Feladó"
+msgstr "Kezdet"
 
 #: src/olympia/stats/templates/stats/popup.html:19
 msgid "To"
-msgstr "Címzett:"
+msgstr "Vég"
 
 #: src/olympia/stats/templates/stats/popup.html:27
 #: src/olympia/users/templates/users/pwreset_confirm.html:38
@@ -13772,7 +13803,7 @@ msgstr "Exportálás"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Statisztikaoldal :: {1} kiegészítők"
+msgstr "{0} :: Statisztikai vezérlőpult :: Kiegészítők ehhez: {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
@@ -13788,7 +13819,7 @@ msgstr "Vezérlőelemek:"
 
 #: src/olympia/stats/templates/stats/stats.html:33
 msgid "reset zoom"
-msgstr ""
+msgstr "nagyítás visszaállítása"
 
 #: src/olympia/stats/templates/stats/stats.html:40
 msgid "Group by:"
@@ -14165,7 +14196,7 @@ msgstr "Sajtó"
 
 #: src/olympia/templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Arculati eszköztár"
 
 #: src/olympia/templates/menu_links.html:28
 msgid "Careers"
@@ -14322,11 +14353,11 @@ msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Meglévő helyszíneken"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Új területi beállítások"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:42
@@ -14334,8 +14365,8 @@ msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
 msgstr ""
-"Nem mentette el a változásokat <b>{0}</b> nyelven. Szeretné elmenteni a "
-"változásokat a nyelvváltás előtt?"
+"Nem mentette el a változásokat <b>{0}</b> területi beállításhoz. Szeretné "
+"elmenteni a változásokat a területi beállítások váltása előtt?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -14352,7 +14383,7 @@ msgstr ""
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr "Nyelv törlése"
+msgstr "Területi beállítás törlése"
 
 #: src/olympia/users/forms.py:41
 #, python-format
@@ -14392,7 +14423,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "A felhasználónevek nem tartalmazhatnak csak számokat."
 
 #: src/olympia/users/forms.py:274
 msgid ""
@@ -14402,11 +14433,11 @@ msgstr ""
 
 #: src/olympia/users/forms.py:277
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Ez a felhasználónév nem használható."
 
 #: src/olympia/users/forms.py:283
 msgid "This username is already in use."
-msgstr ""
+msgstr "Ez a felhasználónév már használatban van."
 
 #: src/olympia/users/forms.py:296
 #: src/olympia/users/templates/users/edit.html:107
@@ -14442,7 +14473,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:345
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Ez a megjelenítendő név nem használható."
 
 #: src/olympia/users/forms.py:359
 msgid "The passwords did not match."
@@ -14456,11 +14487,12 @@ msgstr "Profilkép"
 #: src/olympia/users/forms.py:385
 #: src/olympia/users/templates/users/edit.html:142
 msgid "Default locale"
-msgstr ""
+msgstr "Alapértelmezett területi beállítás"
 
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"A Firefox Fiókok felhasználói jelenleg nem módosíthatják az e-mail címüket."
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
@@ -14468,7 +14500,7 @@ msgstr "Rossz jelszót írt be!"
 
 #: src/olympia/users/forms.py:459
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "Az e-mail nem módosítható."
 
 #: src/olympia/users/forms.py:541
 msgid ""
@@ -14478,7 +14510,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Írjon be legalább egy nevet a tiltólistához."
 
 #: src/olympia/users/helpers.py:53
 msgctxt "user_list_others"
@@ -14505,11 +14537,11 @@ msgstr "Nincs ilyen felhasználó ilyen e-mail címmel."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:353
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Ismeretlen felhasználó {id}"
 
 #: src/olympia/users/models.py:410
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "A felhasználói fiókja korlátozva lett"
 
 #: src/olympia/users/models.py:480
 msgid "Please confirm your email address"
@@ -14529,7 +14561,7 @@ msgstr "egy kiegészítő fejlesztője válaszol az értékelésemre"
 
 #: src/olympia/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "egy alkalmazás fejlesztője válaszol az értékelésemre"
 
 #: src/olympia/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -14545,15 +14577,15 @@ msgstr "az sdk-alapú kiegészítő frissítése sikeres"
 
 #: src/olympia/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr "valaki értékelést írt a kiegészítőmhöz"
+msgstr "valaki értékelést ír a kiegészítőmhöz"
 
 #: src/olympia/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "valaki értékelést ír az alkalmazásomhoz"
 
 #: src/olympia/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr "kiegészítő versenyek vagy versenyek kerültek bejelentésre"
+msgstr "kiegészítő versenyek vagy versenyek kerülnek bejelentésre"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
@@ -14565,28 +14597,32 @@ msgstr "az sdk-alapú kiegészítő nem frissíthető"
 
 #: src/olympia/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr "a kiegészítőmet egy szerkesztő értékelte"
+msgstr "a kiegészítőmet egy szerkesztő értékeli"
 
 #: src/olympia/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "a Mozillának szükséges kapcsolatba lépnie velem a kiegészítőm miatt"
 
 #: src/olympia/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "az alkalmazásomat egy szerkesztő értékeli"
 
 #: src/olympia/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "a Mozillának szükséges kapcsolatba lépnie velem az alkalmazásom miatt"
 
 #: src/olympia/users/notifications.py:139
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"A Mozilla kapcsolatba akar lépni velem releváns alkalmazás-fejlesztői "
+"hírekkel és felmérésekkel kapcsolatban"
 
 #: src/olympia/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"A Mozilla kapcsolatba akar lépni velem a Marketplacebe bekerülő új régiók "
+"miatt"
 
 #: src/olympia/users/notifications.py:158
 msgid "User Notifications"
@@ -14598,7 +14634,7 @@ msgstr "Egy e-mail cím megadása kötelező."
 
 #: src/olympia/users/views.py:94
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Ezzel az e-mail címmel nem létezik felhasználó."
 
 #: src/olympia/users/views.py:111
 msgid "Invalid confirmation code!"
