@@ -51,12 +51,17 @@ class BaseESSerializer(ModelSerializer):
         """
         raise NotImplementedError
 
+    def handle_date(self, value):
+        if not value:
+            return None
+        return datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
+
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""
         for field_name in field_names:
             value = getattr(data, field_name, None)
             if field_name in self.datetime_fields and value:
-                value = datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
+                value = self.handle_date(value)
             setattr(obj, field_name, value)
         return obj
 

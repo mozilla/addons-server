@@ -2,10 +2,12 @@
 from itertools import chain
 
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import ESTestCase, TestCase
+from olympia.amo.tests import ESTestCase, file_factory, TestCase
 from olympia.addons.models import (
     Addon, attach_categories, attach_tags, attach_translations)
 from olympia.addons.indexers import AddonIndexer
+from olympia.constants.applications import FIREFOX
+from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 
 
@@ -16,9 +18,9 @@ class TestAddonIndexer(TestCase):
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
     simple_fields = [
-        'id', 'slug', 'created', 'default_locale', 'last_updated',
-        'weekly_downloads', 'average_daily_users', 'status', 'type',
-        'hotness', 'is_disabled', 'is_listed',
+        'id', 'bayesian_rating', 'slug', 'created', 'default_locale', 'guid',
+        'last_updated', 'weekly_downloads', 'average_daily_users', 'status',
+        'type', 'hotness', 'is_disabled', 'is_listed',
     ]
 
     def setUp(self):
@@ -39,9 +41,10 @@ class TestAddonIndexer(TestCase):
         # exist on the model, or it has a different name, or the value we need
         # to store in ES differs from the one in the db.
         complex_fields = [
-            'app', 'appversion', 'authors', 'bayesian_rating', 'boost',
-            'category', 'description', 'has_theme_rereview', 'has_version',
-            'name', 'name_sort', 'platforms', 'summary', 'tags',
+            'app', 'appversion', 'authors', 'boost', 'category',
+            'current_version', 'description', 'has_theme_rereview',
+            'has_version', 'name', 'name_sort', 'platforms', 'public_stats',
+            'summary', 'tags',
         ]
 
         # For each translated field that needs to be indexed, we store one
@@ -83,6 +86,18 @@ class TestAddonIndexer(TestCase):
         assert name_translations['properties']['lang']['index'] == 'no'
         assert name_translations['properties']['string']['index'] == 'no'
 
+        # Make sure current_version mapping is set.
+        assert mapping_properties['current_version']['properties']
+        version_mapping = mapping_properties['current_version']['properties']
+        expected_version_keys = ('id', 'files', 'reviewed', 'version')
+        assert set(version_mapping.keys()) == set(expected_version_keys)
+
+        # Make sure files mapping is set inside current_version.
+        files_mapping = version_mapping['files']['properties']
+        expected_file_keys = ('id', 'created', 'filename', 'hash', 'platform',
+                              'size', 'status')
+        assert set(files_mapping.keys()) == set(expected_file_keys)
+
     def _extract(self):
         qs = Addon.objects.filter(id__in=[3615])
         for t in self.transforms:
@@ -101,6 +116,43 @@ class TestAddonIndexer(TestCase):
         # Check base fields values. Other tests below check the dynamic ones.
         for field_name in self.simple_fields:
             assert extracted[field_name] == getattr(self.addon, field_name)
+
+        assert extracted['app'] == [FIREFOX.id]
+        assert extracted['appversion'] == {
+            FIREFOX.id: {
+                'min': self.addon.compatible_apps[FIREFOX].min.version_int,
+                'max': self.addon.compatible_apps[FIREFOX].max.version_int,
+            }
+        }
+        assert extracted['authors'] == [u'55021 التطب']
+        assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
+        assert extracted['category'] == self.addon.category_ids
+        assert extracted['has_theme_rereview'] is None
+        assert extracted['platforms'] == [PLATFORM_ALL.id]
+        assert extracted['tags'] == []
+
+    def test_extract_version_and_files(self):
+        self.addon = Addon.objects.get(pk=3615)
+        version = self.addon.current_version
+        file_factory(version=version, platform=PLATFORM_MAC.id)
+        extracted = self._extract()
+
+        assert extracted['current_version']
+        assert extracted['current_version']['id'] == version.pk
+        assert extracted['current_version']['reviewed'] == version.reviewed
+        assert extracted['current_version']['version'] == version.version
+        for index, file_ in enumerate(version.all_files):
+            extracted_file = extracted['current_version']['files'][index]
+            assert extracted_file['id'] == file_.pk
+            assert extracted_file['created'] == file_.created
+            assert extracted_file['filename'] == file_.filename
+            assert extracted_file['hash'] == file_.hash
+            assert extracted_file['platform'] == file_.platform
+            assert extracted_file['size'] == file_.size
+            assert extracted_file['status'] == file_.status
+        assert extracted['has_version']
+        assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
+                                                   PLATFORM_ALL.id])
 
     def test_extract_translations(self):
         translations_name = {

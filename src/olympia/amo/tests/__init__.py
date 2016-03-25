@@ -49,6 +49,7 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.lib.es.signals import process, reset
 from olympia.lib.es.utils import timestamp_index
+from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import ApplicationsVersions, Version
 from olympia.users.models import UserProfile
@@ -613,6 +614,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
     persona_id = kw.pop('persona_id', None)
+    tags = kw.pop('tags', [])
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -648,6 +650,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         persona_id = persona_id if persona_id is not None else a.id
         Persona.objects.create(addon=a, popularity=a.weekly_downloads,
                                persona_id=persona_id)  # Save 3.
+
+    for tag in tags:
+        Tag(tag_text=tag).save_tag(a)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -688,8 +693,9 @@ def collection_factory(**kw):
 def file_factory(**kw):
     v = kw['version']
     status = kw.pop('status', amo.STATUS_PUBLIC)
+    platform = kw.pop('platform', amo.PLATFORM_ALL.id)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=amo.PLATFORM_ALL.id, status=status, **kw)
+                            platform=platform, status=status, **kw)
     return f
 
 

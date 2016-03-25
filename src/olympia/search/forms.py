@@ -101,7 +101,6 @@ class ESSearchForm(happyforms.Form):
     atype = forms.TypedChoiceField(required=False, coerce=int,
                                    choices=amo.ADDON_TYPES.iteritems())
     cat = forms.CharField(required=False)
-    price = forms.CharField(required=False)
     sort = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
