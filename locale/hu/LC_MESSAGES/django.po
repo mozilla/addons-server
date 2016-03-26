@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-26 12:24+0000\n"
+"PO-Revision-Date: 2016-03-26 12:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14507,6 +14507,8 @@ msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
+"Az anonimizáláshoz adja meg a változás okát, de ne változtasson meg más "
+"mezőt."
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
@@ -14650,6 +14652,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"Egy e-mailt küldtünk az Ön címére, hogy megerősítsük a fiókját. Mielőtt be "
+"tudna jelentkezni, aktiválnia kell a fiókját az e-mailben küldött "
+"hivatkozásra kattintással."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -14677,11 +14682,14 @@ msgid ""
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
+"Egy e-mailt küldtünk a(z) {0} címre, hogy megerősítsük az új e-mail címét. A"
+" változások érvénybe lépéséhez rá kell kattintania az e-mailben kapott "
+"hivatkozásra. Addig még bejelentkezhet a jelenlegi e-mail címével."
 
 #: src/olympia/users/views.py:210
 #, python-format
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Kérjük, erősítse meg az e-mail cím módosítását itt: %s"
 
 #: src/olympia/users/views.py:224
 msgid "Errors Found"
@@ -14695,7 +14703,7 @@ msgstr "Hibák voltak a módosításokban. Javítsa ki őket, és küldje újra.
 #: src/olympia/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Sajnáljuk, de most nem jogosult póló kérésére."
 
 #: src/olympia/users/views.py:329
 msgid "Your email address was changed successfully"
