@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-26 19:07+0000\n"
+"PO-Revision-Date: 2016-03-26 22:16+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -15889,7 +15889,7 @@ msgstr "Acompanhado por mim"
 # "Me" in this context is the user shown on the User Info page
 #: src/olympia/users/templates/users/profile.html:86
 msgid "Created by Me"
-msgstr "Criado por Mim."
+msgstr "Criadas por mim"
 
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html:94
