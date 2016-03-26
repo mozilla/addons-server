@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-25 12:20+0000\n"
+"PO-Revision-Date: 2016-03-26 12:24+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14714,6 +14714,8 @@ msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
+"A felhasználói fiókját aktiváló hivatkozás el lett küldve a(z) {0} e-mail "
+"címére. Rá kell kattintania mielőtt bejelentkezhetne."
 
 #: src/olympia/users/views.py:439
 #, python-format
@@ -14723,6 +14725,10 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
+"Ha nem kapott megerősítő e-mail, akkor győződjön meg róla, hogy a levelező "
+"szolgáltatása nem jelölte meg „kéretlen üzenetként” vagy „spamként”. Ha "
+"szükséges, <a href=\"%s\">újra kérheti a megerősítő üzenetet</a> a fent "
+"említett e-mail címére."
 
 #: src/olympia/users/views.py:444
 msgid "Activation Email Sent"
@@ -14790,17 +14796,21 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"A „törlésre” kattintva a fiókja <strong>véglegesen eltávolításra "
+"kerül</strong>. Tehát:"
 
 #: src/olympia/users/templates/users/delete.html:35
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Többé nem fog tudni bejelentkezni a %(site)s oldalra."
 
 #: src/olympia/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
 msgstr ""
+"Az értékelései és minősítési nem kerülnek törlésre, de többé nem fognak "
+"Önhöz kötődni."
 
 #: src/olympia/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
@@ -14825,17 +14835,21 @@ msgstr "Saját felhasználói kép törlése"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "Kérjük, adja meg a megjelenítendő nevét"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
 msgstr ""
+"Kérjük, állítsa be a megjelenítendő nevet vagy felhasználónevet a "
+"regisztráció befejezéséhez."
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Kezelje az alapvető fiókinformációt, mint például a felhasználónevét és "
+"e-mail címét."
 
 #: src/olympia/users/templates/users/edit.html:39
 #: src/olympia/users/templates/users/register.html:47
@@ -14850,7 +14864,7 @@ msgstr "E-mail cím"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox-fiók kezelése…"
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
@@ -14869,6 +14883,8 @@ msgid ""
 "Change your password.  If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Jelszó megváltoztatása. Ha elfelejtette jelszavát, akkor használja a <a "
+"href=\"%(reset_url)s\">helyreállítási űrlapot</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
@@ -14891,24 +14907,28 @@ msgid ""
 "Give us a bit more information about yourself.  All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Adjon meg némi információt Önről. Ezek a mező nem kötelezőek, de segítenek "
+"más felhasználóknak jobban megismerni Önt."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Ez az URL csak akkor fog látszani, ha Ön fejlesztő."
 
 #: src/olympia/users/templates/users/edit.html:133
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Válasszon fotót&hellip;"
 
 #: src/olympia/users/templates/users/edit.html:137
 msgid "Delete current photo"
-msgstr ""
+msgstr "Jelenlegi fotó törlése"
 
 #: src/olympia/users/templates/users/edit.html:144
 msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"Ez a jelenleg használt területi beállítás az Ön információinak "
+"megjelenítéséhez (pl. a leírásánál)."
 
 #: src/olympia/users/templates/users/edit.html:152
 msgid ""
@@ -14920,7 +14940,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:161
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Engedélyezett HTML: {0}. A hivatkozások tiltottak."
 
 #: src/olympia/users/templates/users/edit.html:168
 msgid "Miscellaneous"
@@ -14928,7 +14948,7 @@ msgstr "Egyebek"
 
 #: src/olympia/users/templates/users/edit.html:170
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Döntse el mely gyűjtemények jelenlenek meg a profiljában."
 
 #: src/olympia/users/templates/users/edit.html:178
 msgid "Display the collections I have created"
@@ -14947,6 +14967,9 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
+"Időről időre a Mozilla e-mail üzeneteket küldhet a soron következő "
+"kiadásokról és eseményekről. Kérjük válassza ki azokat a témákat, melyek "
+"érdeklik."
 
 #: src/olympia/users/templates/users/edit.html:205
 msgid ""
@@ -14988,6 +15011,8 @@ msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"A Mozilla Kiegészítők áttért a Firefox fiókokra a bejelentkezéshez. "
+"Folytassa az egyszerű frissítési folyamat befejezéséhez."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
@@ -15137,6 +15162,8 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Áttért a Firefox fiókok használatára, többé már nem változtathatja meg itt a"
+" jelszavát."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
@@ -15187,26 +15214,32 @@ msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"Az AMO regisztráció <strong>nem kötelező</strong>, ha csak nyilvános "
+"kiegészítőket szeretne letölteni és telepíteni."
 
 #: src/olympia/users/templates/users/register.html:16
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Csak akkor kell regisztrálnia ha:"
 
 #: src/olympia/users/templates/users/register.html:18
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Értékeléseket akar beküldeni kiegészítőkhöz"
 
 #: src/olympia/users/templates/users/register.html:19
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Szeretné nyomon követni kedvenc kiegészítőgyűjteményeit vagy szeretne egy "
+"sajátot létrehozni"
 
 #: src/olympia/users/templates/users/register.html:20
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Ön egy kiegészítőfejlesztő, és szeretné feltölteni a kiegészítőjét, hogy az "
+"AMO szolgáltassa azt "
 
 #: src/olympia/users/templates/users/register.html:23
 msgid ""
@@ -15214,6 +15247,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"A sikeres regisztráció után egy megerősítő e-mailt fog kapni a megadott "
+"e-mail címre. Kérjük kövesse az abban leírt utasításokat, hogy megerősítse "
+"fiókját."
 
 #: src/olympia/users/templates/users/register.html:30
 #, python-format
@@ -15222,6 +15258,9 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"Ha szeretné,  elolvashatja a <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">Jogi megjegyzéseket</a> és az <a href=\"%(privacy)s\" "
+"title=\"Privacy Policy\">Adatvédelmi nyilatkozatot</a>."
 
 #: src/olympia/users/templates/users/register.html:52
 msgid "Display name"
@@ -15342,12 +15381,19 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Sajnáljuk, de ahhoz hogy jogosult legyen a különleges kiadású pólónkra, "
+"ahhoz kiegészítőfejlesztőnek kell lennie, legalább egy listázott "
+"kiegészítővel, vagy egy nem listázott, de aláírt kiegészítővel, vagy "
+"tetszőleges számú háttértémával, amelyek összesített, átlagos napi "
+"felhasználószáma eléri a 10.000-et."
 
 #: src/olympia/users/templates/users/tougher_password.html:2
 msgid ""
 "For your account a password must contain at least 8 characters including "
 "letters and numbers."
 msgstr ""
+"A fiókhoz tartozó jelszónak legalább 8 karakter hosszúnak kell lennie, "
+"valamint betűket és számokat is kell tartalmaznia."
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
@@ -15450,7 +15496,7 @@ msgstr "A kiegészítő bináris komponenseket használ."
 
 #: src/olympia/versions/models.py:317
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "A kiegészítő feliratkozott a szigorú kompatibilitás-ellenőrzésre."
 
 #: src/olympia/versions/models.py:715
 msgid "{app} {min} and later"
