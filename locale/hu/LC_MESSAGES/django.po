@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-27 22:14+0000\n"
+"PO-Revision-Date: 2016-03-27 22:38+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1344,8 +1344,8 @@ msgstr[1] "A szerzők további kiegészítői"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói vélemény"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói vélemény"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói értékelés"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> felhasználói értékelés"
 
 #: src/olympia/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
@@ -7258,7 +7258,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:134
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:168
 msgid "After the Review"
-msgstr "A vizsgálat után"
+msgstr "Az értékelés után"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:136
 msgid ""
@@ -7481,10 +7481,10 @@ msgid ""
 "preliminary review and must choose the full review process."
 msgstr ""
 "A kiegészítők tartalmazhatnak bináris, olvashatatlanná tett és minimalizált "
-"forráskódot, de a Mozilla számára engedélyezni kell, hogy megvizsgáljon a "
-"vizsgálatra küldött kiegészítő minden verziójának ember által olvasható "
+"forráskódot, de a Mozilla számára engedélyezni kell, hogy megvizsgálja az "
+"értékelésre küldött kiegészítő minden verziójának ember által olvasható "
 "forráskódjából egy másolatot. Ezek a kiegészítők nem fogadhatók el az "
-"előzetes vizsgálaton, hanem a teljes vizsgálat folyamatát kell választani."
+"előzetes értékelésen, hanem a teljes értékelési folyamatot kell választani."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:295
 msgid ""
@@ -7495,11 +7495,11 @@ msgid ""
 "code will only be used for the purpose of reviewing the add-on."
 msgstr ""
 "Ha egy kiegészítő bináris vagy olvashatatlanná tett forráskódot tartalmaz, a"
-" szerző a kiegészítő vizsgálta után egy üzenetet kap, mely jelzi, hogy a "
-"forráskód vizsgálatával kapcsolatosan kivel vegye fel a kapcsolatot a "
+" szerző a kiegészítő értékelése után egy üzenetet kap, mely jelzi, hogy a "
+"forráskód értékelésével kapcsolatosan kivel vegye fel a kapcsolatot a "
 "Mozillánál. Ezt a kódot megvizsgálja egy adminisztrátor, de nem lesz "
 "megosztva vagy közzétéve semmilyen módon. A kódot kizárólag a kiegészítő "
-"vizsgálatára használjuk."
+"értékeléséhez használjuk."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:301
 #, python-format
@@ -7775,7 +7775,7 @@ msgstr "Egészítse ki a kiegészítőjét."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr "Az ellenőrzés befejeztével kapni fog egy e-mailt."
+msgstr "Az értékelés befejeztével kapni fog egy e-mailt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid ""
@@ -8024,15 +8024,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr "Olvasson többet a forráskód-ellenőrzési házirendről."
+msgstr "Olvasson többet a forráskód-értékelési házirendről."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
 msgstr ""
-"Nem távolíthat el különálló fájlokat az átvizsgálási folyamat befejezte "
-"előtt. Az egész verziót törölnie kell."
+"Nem távolíthat el különálló fájlokat az értékelési folyamat befejezte előtt."
+" Az egész verziót törölnie kell."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -8100,7 +8100,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Az adományozás csak a teljesen ellenőrzött kiegészítőknél elérhető."
+msgstr "Az adományozás csak a teljesen értékelt kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:65
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:2
@@ -8514,8 +8514,8 @@ msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
 msgstr ""
-"Az ellenőrzött verziókhoz hozzáadott fájlokat ellenőrizni kell, mielőtt "
-"azokat elérhetők lesznek."
+"Az értékelt verziókhoz hozzáadott fájlokat értékelni kell, mielőtt azokat "
+"elérhetők lesznek."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:15
 #, python-format
@@ -8617,8 +8617,8 @@ msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
-"Ha a kiegészítő bináris vagy obfuszkált kódot tartalmaz, akkor tegye itt "
-"elérhetővé a forrást az értékelőknek."
+"Ha a kiegészítő bináris vagy olvashatatlanná tett kódot tartalmaz, akkor "
+"tegye elérhetővé itt a forrást az értékelőknek."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
 #: src/olympia/devhub/templates/devhub/versions/edit.html:149
@@ -8684,17 +8684,17 @@ msgstr "Ellenőrzés most."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:67
 msgid "Request Full Review"
-msgstr "Teljes vizsgálat kérése"
+msgstr "Teljes értékelés kérése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:68
 msgid "Request Preliminary Review"
-msgstr "Előzetes vizsgálat kérése"
+msgstr "Előzetes értékelés kérése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:80
 #: src/olympia/devhub/templates/devhub/versions/list.html:327
 #: src/olympia/devhub/templates/devhub/versions/list.html:350
 msgid "Cancel Review Request"
-msgstr "Vizsgálat kérésének megszakítása"
+msgstr "Értékelés kérésének megszakítása"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:93
 msgid "Addon visibility"
@@ -8773,7 +8773,7 @@ msgstr "Új verzió feltöltése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:200
 msgid "Full review may not be required"
-msgstr "A teljes ellenőrzés nem biztos hogy szükséges"
+msgstr "A teljes értékelés nem biztos hogy szükséges"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:201
 msgid ""
@@ -8784,7 +8784,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:209
 msgid "Request full review"
-msgstr "Teljes ellenőrzés kérése"
+msgstr "Teljes értékelés kérése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:217
 msgid "Delete Version {version}"
@@ -8889,7 +8889,7 @@ msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
 msgstr ""
-"Az ellenőrzési kérelem megszakításával a kiegészítő előzetesen vizsgált "
+"Az ellenőrzési kérelem megszakításával a kiegészítő előzetesen értékelt "
 "állapotú lesz."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:335
@@ -8898,13 +8898,13 @@ msgid ""
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
-"Az ellenőrzési kérelem megszakításával a kiegészítő \"nem teljes\" állapotba"
-" kerül. Amennyiben néhány napon belül nem egészíti ki az ellenőrzési "
-"kérelmét, abban az esetben törlésre kerül."
+"Az értékelési kérelem megszakításával a kiegészítő \"nem teljes\" állapotba "
+"kerül. Amennyiben néhány napon belül nem egészíti ki az értékelési kérelmét,"
+" abban az esetben törlésre kerül."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
-msgstr "Biztosan megszakítja az ellenőrzési kérést?"
+msgstr "Biztosan megszakítja az értékelési kérést?"
 
 #: src/olympia/discovery/modules.py:140
 msgid "Shopping Made Easy"
@@ -9346,7 +9346,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:265
 msgid "Clear Admin Review Flag"
-msgstr "Adminisztrátori vizsgálat jelző törlése"
+msgstr "Adminisztrátori értékelés jelző törlése"
 
 #: src/olympia/editors/forms.py:267
 msgid "Clear more info requested flag"
@@ -9363,7 +9363,7 @@ msgstr "téma neve"
 
 #: src/olympia/editors/forms.py:350
 msgid "Someone else is reviewing this theme."
-msgstr "Valaki más vizsgálja ezt a témát."
+msgstr "Valaki más értékeli ezt a témát."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:447
@@ -9372,15 +9372,15 @@ msgstr "app, értékelő vagy megjegyzés"
 
 #: src/olympia/editors/helpers.py:51 src/olympia/editors/helpers.py:59
 msgid "Pending Full Review"
-msgstr "Teljes vizsgálatra vár"
+msgstr "Teljes értékelésre vár"
 
 #: src/olympia/editors/helpers.py:53
 msgid "Pending Preliminary Review"
-msgstr "Előzetes vizsgálatra vár"
+msgstr "Előzetes értékelésre vár"
 
 #: src/olympia/editors/helpers.py:66
 msgid "Rejected or Unreviewed"
-msgstr "Visszautasított vagy nem ellenőrzött"
+msgstr "Visszautasított vagy nem értékelt"
 
 #: src/olympia/editors/helpers.py:123 src/olympia/editors/helpers.py:136
 msgid "Queue"
@@ -9396,18 +9396,18 @@ msgstr "Függő frissítések"
 #: src/olympia/editors/templates/editors/base.html:48
 #: src/olympia/editors/templates/editors/base.html:63
 msgid "Full Reviews"
-msgstr "Teljes vizsgálatok"
+msgstr "Teljes értékelések"
 
 #: src/olympia/editors/helpers.py:126
 #: src/olympia/editors/templates/editors/base.html:52
 #: src/olympia/editors/templates/editors/base.html:67
 msgid "Preliminary Reviews"
-msgstr "Előzetes vizsgálatok"
+msgstr "Előzetes értékelések"
 
 #: src/olympia/editors/helpers.py:127
 #: src/olympia/editors/templates/editors/base.html:54
 msgid "Moderated Reviews"
-msgstr "Moderált vizsgálatok"
+msgstr "Moderált értékelések"
 
 #: src/olympia/editors/helpers.py:128
 #: src/olympia/editors/templates/editors/base.html:46
@@ -9448,8 +9448,8 @@ msgstr[1] "Gyorsító sáv ({0})"
 #: src/olympia/editors/helpers.py:175
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] "Teljes vizsgálat ({0})"
-msgstr[1] "Teljes vizsgálat ({0})"
+msgstr[0] "Teljes értékelés ({0})"
+msgstr[1] "Teljes értékelések ({0})"
 
 #: src/olympia/editors/helpers.py:180
 msgid "Pending Update ({0})"
@@ -9460,14 +9460,14 @@ msgstr[1] "Függő frissítések ({0})"
 #: src/olympia/editors/helpers.py:185
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Előzetes vizsgálat ({0})"
-msgstr[1] "Előzetes vizsgálatok ({0})"
+msgstr[0] "Előzetes értékelés ({0})"
+msgstr[1] "Előzetes értékelések ({0})"
 
 #: src/olympia/editors/helpers.py:190
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] "Moderált vizsgálat ({0})"
-msgstr[1] "Moderált vizsgálatok ({0})"
+msgstr[0] "Moderált értékelés ({0})"
+msgstr[1] "Moderált értékelések ({0})"
 
 #: src/olympia/editors/helpers.py:196
 msgid "Unlisted Full Review ({0})"
@@ -9555,7 +9555,7 @@ msgstr "Publikálás"
 
 #: src/olympia/editors/helpers.py:490
 msgid "Grant full review"
-msgstr "Teljes vizsgálat engedélyezése"
+msgstr "Teljes értékelés engedélyezése"
 
 #: src/olympia/editors/helpers.py:505
 msgid "Request more information"
@@ -9563,15 +9563,15 @@ msgstr "További információ kérése"
 
 #: src/olympia/editors/helpers.py:508
 msgid "Request super-review"
-msgstr "Teljes vizsgálat kérése"
+msgstr "Teljes értékelés kérése"
 
 #: src/olympia/editors/helpers.py:519
 msgid "Grant preliminary review"
-msgstr "Előzetes vizsgálat megadása"
+msgstr "Előzetes értékelés megadása"
 
 #: src/olympia/editors/helpers.py:520
 msgid "This will mark the files as preliminarily reviewed."
-msgstr "Ez megjelöli a fájlokat, mint előzetesen átvizsgált."
+msgstr "Ez megjelöli a fájlokat, mint előzetesen értékelt."
 
 #: src/olympia/editors/helpers.py:522
 msgid ""
@@ -9597,7 +9597,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py:532
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
-"Ezzel a kiegészítő elutasításra kerül és vizsgálatra várakozók listájában "
+"Ezzel a kiegészítő elutasításra kerül és az értékelés várakozók listájában "
 "sem fog szerepelni."
 
 #: src/olympia/editors/helpers.py:534
@@ -9608,35 +9608,35 @@ msgstr ""
 #: src/olympia/editors/helpers.py:538
 msgid "This will reject the files and remove them from the review queue."
 msgstr ""
-"Ez visszautasítja a fájlokat, és eltávolítja azokat a vizsgálati sorból."
+"Ez visszautasítja a fájlokat, és eltávolítja azokat az értékelési sorból."
 
 #: src/olympia/editors/helpers.py:542
 msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
-"Ez a kiegészítőt előzetesen vizsgáltnak tekinti. A későbbi verzióknak is "
-"felülvizsgálaton kell átesniük."
+"Ez a kiegészítőt előzetesen értékeltnek tekinti. A későbbi verzióknak is "
+"előzetes értékelésen kell átesniük."
 
 #: src/olympia/editors/helpers.py:547
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
-"Ez a fájlt előzetesen vizsgáltnak tekinti. A későbbi verzióknak is "
-"felülvizsgálaton kell átesniük."
+"Ez a fájlt előzetesen értékeltnek tekinti. A későbbi verzióknak is előzetes "
+"értékelésen kell átesniük."
 
 #: src/olympia/editors/helpers.py:552
 msgid "Retain preliminary review"
-msgstr "Előzetes vizsgálat megtartása"
+msgstr "Előzetes értékelés megtartása"
 
 #: src/olympia/editors/helpers.py:553
 msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
-"Ez a kiegészítő előzetesen átvizsgált marad. A későbbi verzióknak is "
-"felülvizsgálaton kell átesniük."
+"Ez a kiegészítő előzetesen értékelt marad. A későbbi verzióknak is előzetes "
+"értékelésen kell átesniük."
 
 #: src/olympia/editors/helpers.py:558
 msgid ""
@@ -9661,7 +9661,7 @@ msgid ""
 msgstr ""
 "Ez a kiegészítőt és annak legfrissebb változatát publikusnak tekinti. A "
 "jövőben megjelenő verziók nem jelennek meg addig, amíg egy szerkesztő nem "
-"vizsgálja meg."
+"értékeli."
 
 #: src/olympia/editors/helpers.py:637
 msgid "add-on"
@@ -9677,7 +9677,7 @@ msgstr "Frissítések"
 
 #: src/olympia/editors/models.py:183
 msgid "Admin Review"
-msgstr "Adminisztrátori vizsgálat"
+msgstr "Adminisztrátori értékelés"
 
 #: src/olympia/editors/models.py:184
 msgid "Jetpack Add-on"
@@ -9717,7 +9717,7 @@ msgstr "Probléma a téma beküldésével"
 
 #: src/olympia/editors/tasks.py:89
 msgid "Theme submission flagged for review"
-msgstr "Téma beküldés megjelölve vizsgálatra"
+msgstr "Téma beküldés megjelölve értékelésre"
 
 #: src/olympia/editors/tasks.py:96
 msgid "A question about your Theme submission"
@@ -9741,11 +9741,11 @@ msgstr "Ismeretlen hiba történt"
 
 #: src/olympia/editors/views.py:587
 msgid "Self-reviews are not allowed."
-msgstr "Az önvizsgálat nem engedélyezett."
+msgstr "Az önértékelés nem engedélyezett."
 
 #: src/olympia/editors/views.py:609
 msgid "Review successfully processed."
-msgstr "Az vizsgálat sikeresen megtörtént."
+msgstr "Az értékelés sikeresen megtörtént."
 
 #: src/olympia/editors/views.py:807
 msgid "was approved"
@@ -9753,7 +9753,7 @@ msgstr "jóváhagyva"
 
 #: src/olympia/editors/views.py:808
 msgid "given preliminary review"
-msgstr "előzetesen átvizsgált"
+msgstr "előzetesen értékelt"
 
 #: src/olympia/editors/views.py:809
 msgid "rejected"
@@ -9770,7 +9770,7 @@ msgstr "további információ szükséges"
 
 #: src/olympia/editors/views.py:813
 msgid "needs super review"
-msgstr "teljes vizsgálat szükséges"
+msgstr "teljes értékelés szükséges"
 
 #: src/olympia/editors/views.py:814
 msgid "commented"
@@ -9781,9 +9781,9 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
-"{0} téma vizsgálat sikeresen feldolgozva (+{1} pont, összesen {2})."
+"{0} téma értékelés sikeresen feldolgozva (+{1} pont, összesen {2})."
 msgstr[1] ""
-"{0} téma vizsgálat sikeresen feldolgozva (+{1} pont, összesen {2})."
+"{0} téma értékelés sikeresen feldolgozva (+{1} pont, összesen {2})."
 
 #: src/olympia/editors/views_themes.py:341
 msgid ""
@@ -9843,7 +9843,7 @@ msgstr "Naplók"
 #: src/olympia/editors/templates/editors/reviewlog.html:4
 #: src/olympia/editors/templates/editors/reviewlog.html:27
 msgid "Add-on Review Log"
-msgstr "Kiegészítő vizsgálati naplója"
+msgstr "Kiegészítő értékelési naplója"
 
 # 80%
 # 100%
@@ -9852,7 +9852,7 @@ msgstr "Kiegészítő vizsgálati naplója"
 #: src/olympia/editors/templates/editors/eventlog.html:8
 #: src/olympia/editors/templates/editors/eventlog_detail.html:4
 msgid "Moderated Review Log"
-msgstr "Moderált vizsgálatok naplója"
+msgstr "Moderált értékelések naplója"
 
 #: src/olympia/editors/templates/editors/base.html:82
 #: src/olympia/editors/templates/editors/beta_signed_log.html:4
@@ -9912,15 +9912,15 @@ msgstr "Kiegészítő címe"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:17
 msgid "Review Title"
-msgstr "Vizsgálat címe"
+msgstr "Értékelés címe"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:19
 msgid "Review Text"
-msgstr "Vizsgálat szövege"
+msgstr "Értékelés szövege"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:23
 msgid "Review was flagged prior to deletion."
-msgstr "A vizsgálat meg lett jelölve törlés előtt."
+msgstr "Az értékelés meg lett jelölve törlés előtt."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html:31
 msgid "Undelete"
@@ -9931,8 +9931,8 @@ msgstr "Törlés visszavonása"
 #: src/olympia/editors/templates/editors/home.html:11
 msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
-msgstr[0] "({num}) teljes vizsgálat"
-msgstr[1] "({num}) teljes vizsgálat"
+msgstr[0] "({num}) teljes értékelés"
+msgstr[1] "({num}) teljes értékelés"
 
 # 86%
 # 100%
@@ -9947,8 +9947,8 @@ msgstr[1] "({num}) függő frissítés"
 #: src/olympia/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "({num}) előzetes vizsgálat"
-msgstr[1] "({num}) előzetes vizsgálat"
+msgstr[0] "({num}) előzetes értékelés"
+msgstr[1] "({num}) előzetes értékelés"
 
 #: src/olympia/editors/templates/editors/home.html:36
 #: src/olympia/editors/templates/editors/home.html:86
@@ -9973,8 +9973,8 @@ msgstr "{0}%%"
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Titkos teljes vizsgálat ({num})"
-msgstr[1] "Titkos teljes vizsgálatok ({num})"
+msgstr[0] "Titkos teljes értékelés ({num})"
+msgstr[1] "Titkos teljes értékelések ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
@@ -9985,19 +9985,19 @@ msgstr[1] "Titkos függő frissítések ({num})"
 #: src/olympia/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Titkos előzetes vizsgálat ({num})"
-msgstr[1] "Titkos előzetes vizsgálatok ({num})"
+msgstr[0] "Titkos előzetes értékelés ({num})"
+msgstr[1] "Titkos előzetes értékelések ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:109
 #: src/olympia/editors/templates/editors/performance.html:37
 #: src/olympia/editors/templates/editors/themes/home.html:54
 msgid "Total Reviews"
-msgstr "Összes vizsgálat"
+msgstr "Összes értékelés"
 
 #: src/olympia/editors/templates/editors/home.html:110
 #: src/olympia/editors/templates/editors/themes/home.html:55
 msgid "Reviews This Month"
-msgstr "A hónap vizsgálatai"
+msgstr "A hónap értékelései"
 
 #: src/olympia/editors/templates/editors/home.html:111
 msgid "New Editors"
@@ -10006,7 +10006,7 @@ msgstr "Új szerkesztők"
 #: src/olympia/editors/templates/editors/home.html:126
 #: src/olympia/editors/templates/editors/home.html:141
 msgid "You're #{0} with {1} reviews"
-msgstr "Ön #{0}, {1} vizsgálattal"
+msgstr "Ön #{0}, {1} értékeléssel"
 
 #. num = number of reviews in the queue
 # 87%
@@ -10014,8 +10014,8 @@ msgstr "Ön #{0}, {1} vizsgálattal"
 #: src/olympia/editors/templates/editors/home.html:171
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] "({num}) moderált vizsgálat"
-msgstr[1] "({num}) moderált vizsgálat"
+msgstr[0] "({num}) moderált értékelés"
+msgstr[1] "({num}) moderált értékelés"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:3
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:56
@@ -10025,7 +10025,7 @@ msgstr "Értékelő ranglista"
 #: src/olympia/editors/templates/editors/leaderboard.html:18
 #: src/olympia/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr "Nincsenek még vizsgálati pontok."
+msgstr "Nincsenek még értékelési pontok."
 
 #: src/olympia/editors/templates/editors/leaderboard.html:23
 msgid "Rank"
@@ -10117,7 +10117,7 @@ msgstr "keresés törlése"
 #: src/olympia/editors/templates/editors/queue.html:72
 #: src/olympia/editors/templates/editors/queue.html:122
 msgid "Process Reviews"
-msgstr "Vizsgálatok feldolgozása"
+msgstr "Értékelések feldolgozása"
 
 #: src/olympia/editors/templates/editors/queue.html:80
 msgid "Moderation actions:"
@@ -10147,7 +10147,7 @@ msgstr "Verzió megjegyzések / Megjegyzések az értékelőknek"
 
 #: src/olympia/editors/templates/editors/queue.html:169
 msgid "There are currently no add-ons of this type to review."
-msgstr "Jelenleg nincsenek átvizsgálandó kiegészítők ebből a típusból."
+msgstr "Jelenleg nincsenek értékelendő kiegészítők ebből a típusból."
 
 #: src/olympia/editors/templates/editors/queue.html:181
 #: src/olympia/editors/templates/editors/themes/queue_list.html:85
@@ -10165,7 +10165,7 @@ msgstr "Útmutató szerkesztőknek"
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html:25
 msgid "Review {0}"
-msgstr "{0} vizsgálata"
+msgstr "{0} értékelése"
 
 #: src/olympia/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
@@ -10368,11 +10368,11 @@ msgstr "Nem találhatóak törölt témák ebben az időszakban."
 
 #: src/olympia/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr "Téma vizsgálat előzményei ehhez: {0}"
+msgstr "Téma értékelés előzményei ehhez: {0}"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr "Vizsgálat időpontja"
+msgstr "Értékelés időpontja"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:9
 #: src/olympia/editors/templates/editors/themes/logs.html:18
@@ -10385,19 +10385,19 @@ msgstr "Ok"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr "Jelenleg nincsenek vizsgálatok."
+msgstr "Jelenleg nincsenek értékelések."
 
 #: src/olympia/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} függő téma vizsgálat"
-msgstr[1] "{num} függő téma vizsgálat"
+msgstr[0] "{num} függő téma értékelés"
+msgstr[1] "{num} függő téma értékelés"
 
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} megjelölt vizsgálat"
-msgstr[1] "{num} megjelölt vizsgálat"
+msgstr[0] "{num} megjelölt értékelés"
+msgstr[1] "{num} megjelölt értékelés"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
@@ -10407,19 +10407,19 @@ msgstr[1] "{num} frissítés"
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr "Téma vizsgálati napló"
+msgstr "Téma értékelési napló"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr "Téma vizsgálati sor"
+msgstr "Téma értékelési sor"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr "Vizsgálati beállítások"
+msgstr "Értékelési beállítások"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr "Automatikus továbbhaladás vizsgálat után"
+msgstr "Automatikus továbbhaladás értékelés után"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -10439,23 +10439,23 @@ msgstr "Előző téma"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr "Vizsgálati előzményei"
+msgstr "Értékelési előzmények"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr "Vizsgálat véglegesítése"
+msgstr "Értékelés véglegesítése"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr "Vizsgálatok véglegesítése"
+msgstr "Értékelések véglegesítése"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr "{0} / {1} átvizsgálva"
+msgstr "{0} / {1} értékelve"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr "Jelenleg nincsenek átvizsgálandó témák."
+msgstr "Jelenleg nincsenek értékelendő témák."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
@@ -10475,7 +10475,7 @@ msgstr "Értékelők útmutatója"
 
 #: src/olympia/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr "Téma átvizsgálás ehhez: {0}"
+msgstr "Téma értékelés ehhez: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
@@ -10483,7 +10483,7 @@ msgstr "(Lehetséges ismételt benyújtások)"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr "Múltbeli vizsgálati megjegyzések"
+msgstr "Múltbeli értékelési megjegyzések"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: src/olympia/editors/templates/editors/themes/themes.html:74
@@ -11349,7 +11349,7 @@ msgstr "szamoai tala"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr "afrikai valutaközösségi (BEAC) frank\n"
+msgstr "afrikai valutaközösségi (BEAC) frank"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
@@ -11361,7 +11361,7 @@ msgstr "Nemzetközi Valutaalap (IMF) különleges lehívási jogok"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "afrikai valutaközösségi (BEACO) frank\n"
+msgstr "afrikai valutaközösségi (BEACO) frank"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
@@ -11475,9 +11475,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
-"Ha van kiegészítő-fejlesztési tapasztalat, <a href=\"%(url)s\">legyen "
+"Ha van kiegészítő-fejlesztési tapasztalata, <a href=\"%(url)s\">legyen "
 "szerkesztő</a>! A szerkesztőink kiegészítő-rajongók, műszaki háttérrel, akik"
-" ellenőrzik a kiegészítők kódminőségét és stabilitásukat."
+" értékelik a kiegészítők kódminőségét és stabilitásukat."
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
 #, python-format
@@ -12682,8 +12682,7 @@ msgstr ""
 msgid ""
 "What does it mean if an add-on is \"experimental\" or \"preliminarily "
 "reviewed\"?"
-msgstr ""
-"Mit jelent, ha egy kiegészítő „kísérleti” vagy „előzetesen átvizsgált”?"
+msgstr "Mit jelent, ha egy kiegészítő „kísérleti” vagy „előzetesen értékelt”?"
 
 #: src/olympia/pages/templates/pages/faq.html:188
 #, python-format
@@ -12694,8 +12693,8 @@ msgid ""
 " add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more "
 "about our review process</a></dd>"
 msgstr ""
-"A kísérleti kiegészítőket a szerkesztők ellenőrizték biztonsági szempontból,"
-" azonban lehetnek benne hibák vagy a működése lehet, hogy nem megfelelő. "
+"A kísérleti kiegészítőket a szerkesztők értékelték biztonsági szempontból, "
+"azonban lehetnek benne hibák vagy a működése lehet, hogy nem megfelelő. "
 "Legyen óvatos a kísérleti kiegészítők telepítésekor és amennyiben bármilyen "
 "problémát észlel azonnal távolítsa el. <a href=\"%(url)s\">Tudjon meg többet"
 " az ellenőrző folyamatról</a></dd>"
@@ -12703,7 +12702,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html:196
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr ""
-"Mit jelent ha a kiegészítő „nincs vizsgálva”?\n"
+"Mit jelent ha a kiegészítő „nincs értékelve”?\n"
 "?"
 
 #: src/olympia/pages/templates/pages/faq.html:197
@@ -12717,11 +12716,11 @@ msgid ""
 "process</a></dd>"
 msgstr ""
 "Annak ellenére, hogy minden kiegészítő nyilvánosan elérhető a galériában és "
-"a szerkesztők megvizsgálták őket, előfordulhat, hogy olyan közvetlen "
-"hivatkozást, amely még nem esett át az ellenőrzésen. Legyen óvatos ilyen "
-"kiegészítők telepítésekor, mivel azok károsíthatják rendszerét vagy "
-"sérthetik személyes adatait. Javasoljuk, hogy csak ellenőrzött kiegészítőket"
-" telepítsen. <a href=\"%(url)s\">Ismerje meg az ellenőrzési "
+"a szerkesztők értékelték őket, előfordulhat, hogy olyan közvetlen "
+"hivatkozást kap, amely még nem esett át az értékelésen. Legyen óvatos az "
+"ilyen kiegészítők telepítésekor, mivel azok károsíthatják rendszerét vagy "
+"sérthetik személyes adatait. Javasoljuk, hogy csak értékelt kiegészítőket "
+"telepítsen. <a href=\"%(url)s\">Ismerje meg az értékelési "
 "folyamatot</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html:206
@@ -12775,10 +12774,10 @@ msgid ""
 "installed, all beta releases are unreviewed by Mozilla and may harm your "
 "computer."
 msgstr ""
-"Vegye figyelembe, hogyha egy kiegészítőt a \"Beta verzió\" részéből telepít,"
-" akkor folyamatosan érkezni fognak a frissítések. Ahogy az első telepített "
-"verziónál, úgy az összes beta kiadást sem vizsgálja a Mozilla és kárt "
-"okozhat a rendszerében."
+"Vegye figyelembe, hogyha egy kiegészítőt a „Béta verzió” részéből telepít, "
+"akkor folyamatosan érkezni fognak a frissítések. Ahogy az első telepített "
+"verziónál, úgy az összes béta kiadást sem értékeli a Mozilla és kárt okozhat"
+" a rendszerében."
 
 #: src/olympia/pages/templates/pages/faq.html:229
 msgid "What does it mean when an add-on is flagged as slow?"
