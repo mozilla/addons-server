@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-26 12:30+0000\n"
+"PO-Revision-Date: 2016-03-27 19:07+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14041,7 +14041,7 @@ msgstr "Napi felhasználók dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Kik a napi felhasználók?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -14061,7 +14061,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Felhasználói regisztrációk dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -14248,6 +14248,9 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"A Kiegészítők Firefox fiókokra váltanak a bejelentkezéshez. <a "
+"href=\"%(url)s\" class=\"fxa-login\">Jelentkezzen be most a fiókja "
+"átviteléhez.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:148
@@ -14405,12 +14408,17 @@ msgid ""
 "more. Please update your password by <a href=\"%s\">issuing a password "
 "reset</a>."
 msgstr ""
+"Az új jelszóházirendek részeként, a jelszónak %s vagy több karakternek kell "
+"lennie. Kérjük, frissítse a jelszót, <a href=\"%s\">jelszó helyreállítás "
+"kérésével</a>."
 
 #: src/olympia/users/forms.py:115
 msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
 msgstr ""
+"A Firefox Fiókokon keresztül kell helyreállítani a jelszavát. Próbáljon meg "
+"ehelyett bejelentkezni."
 
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
@@ -14419,7 +14427,7 @@ msgstr "Új jelszó"
 
 #: src/olympia/users/forms.py:242
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Az e-mailnek ennek kell lennie: {email}."
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
@@ -14430,6 +14438,8 @@ msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
+"Adjon meg egy érvényes felhasználónevet, amely betűkből, számokból, "
+"aláhúzásokból vagy kötőjelekből áll."
 
 #: src/olympia/users/forms.py:277
 msgid "This username cannot be used."
