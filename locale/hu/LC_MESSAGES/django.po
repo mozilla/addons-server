@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-27 20:18+0000\n"
+"PO-Revision-Date: 2016-03-27 20:36+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2251,11 +2251,11 @@ msgstr "Sok visszaélési jelentés"
 
 #: src/olympia/amo/log.py:433
 msgid "{addon} escalated by reviewer."
-msgstr "A vizsgálatot végző eszkalálta ezt: {addon}."
+msgstr "Az értékelő eszkalálta ezt: {addon}."
 
 #: src/olympia/amo/log.py:434
 msgid "Reviewer escalation"
-msgstr "A vizsgálatot végző általi eszkalálás"
+msgstr "Értékelő általi eszkalálás"
 
 #: src/olympia/amo/log.py:442
 msgid "Video removed from {addon} because of a problem with the video. "
@@ -2275,12 +2275,11 @@ msgstr "Eszközök hozzáadva"
 
 #: src/olympia/amo/log.py:457
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
-"{addon} eszköztámogatása kézzel megváltoztatva a vizsgálatot végző által."
+msgstr "{addon} eszköztámogatása kézzel megváltoztatva az értékelő által."
 
 #: src/olympia/amo/log.py:458
 msgid "Device(s) Changed by Reviewer"
-msgstr "Eszközök megváltoztatva a vizsgálatot végző által"
+msgstr "Eszközök megváltoztatva az értékelő által"
 
 #: src/olympia/amo/log.py:475
 msgid "Created: {0}."
@@ -2328,12 +2327,11 @@ msgstr "{0.name} felhasználó eltávolítva ebből: {group}."
 
 #: src/olympia/amo/log.py:545
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
-"{addon} minimális követelményeit a vizsgálatot végző kézzel módosította."
+msgstr "{addon} minimális követelményeit az értékelő kézzel módosította."
 
 #: src/olympia/amo/log.py:546
 msgid "Requirements Changed by Reviewer"
-msgstr "A követelményeket a vizsgálatot végző módosította"
+msgstr "A követelményeket az értékelő módosította"
 
 #: src/olympia/amo/log.py:553
 msgid "{addon} minimum requirements manually changed."
@@ -6198,7 +6196,7 @@ msgstr "Kerüljön előre a vizsgálati sorban!"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
-"Váljon AMO átvizsgálóvá még ma, és gyorsítsa fel kiegészítőinek vizsgálatát."
+"Váljon AMO értékelővé még ma, és gyorsítsa fel kiegészítőinek vizsgálatát."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
@@ -8595,7 +8593,7 @@ msgstr "Jóváhagyás állapota"
 #: src/olympia/devhub/templates/devhub/versions/edit.html:113
 #: src/olympia/editors/templates/editors/review.html:108
 msgid "Notes for Reviewers"
-msgstr "Megjegyzés a vizsgálatot végzőknek"
+msgstr "Megjegyzés az értékelőknek"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:114
 msgid ""
@@ -8614,6 +8612,8 @@ msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Ha a kiegészítő bináris vagy obfuszkált kódot tartalmaz, akkor tegye itt "
+"elérhetővé a forrást az értékelőknek."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
 #: src/olympia/devhub/templates/devhub/versions/edit.html:149
@@ -9363,7 +9363,7 @@ msgstr "Valaki más vizsgálja ezt a témát."
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:447
 msgid "app, reviewer, or comment"
-msgstr "app, vizsgáló vagy megjegyzés"
+msgstr "app, értékelő vagy megjegyzés"
 
 #: src/olympia/editors/helpers.py:51 src/olympia/editors/helpers.py:59
 msgid "Pending Full Review"
@@ -9786,6 +9786,9 @@ msgid ""
 "review those released themes. You may have to refresh the page to see the "
 "changes reflected in the table below."
 msgstr ""
+"A téma zárak sikeresen elengedve. Más értékelők most felülvizsgálhatják a "
+"kiadott témákat. Előfordulhat, hogy frissíteni kell az oldalt, hogy a "
+"változások megjelenjenek az alábbi táblázatban."
 
 #: src/olympia/editors/templates/editors/abuse_reports.html:4
 msgid "{addon} :: Abuse Reports"
@@ -10322,11 +10325,11 @@ msgstr "Nincsenek még pontok."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr "Legjobb átvizsgálók (elmúlt 7 nap)"
+msgstr "Legjobb értékelők (elmúlt 7 nap)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr "Nincsenek még legjobb átvizsgálók."
+msgstr "Nincsenek még legjobb értékelők."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -10463,7 +10466,7 @@ msgstr "Interaktív téma sor"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
-msgstr "Átvizsgálók útmutatója"
+msgstr "Értékelők útmutatója"
 
 #: src/olympia/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
@@ -13894,7 +13897,7 @@ msgstr "Nincs elérhető adat."
 
 #: src/olympia/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
-msgstr "Az vezérlőpult jelenleg <b>nyilvános</b>."
+msgstr "A vezérlőpult jelenleg <b>nyilvános</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:179
 msgid "Contribution stats are currently <b>private</b>."
