@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-27 19:07+0000\n"
+"PO-Revision-Date: 2016-03-27 20:18+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9960,7 +9960,7 @@ msgstr[1] "{0} kiegészítők"
 #: src/olympia/editors/templates/editors/home.html:95
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html:61
 msgid "Unlisted Full Review ({num})"
@@ -13599,68 +13599,68 @@ msgstr "Elküldés a Tumblrre"
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:61
 msgid "localservice1"
-msgstr ""
+msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:63
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Küldés ide: localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice1/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} üzenet itt: localservice1"
+msgstr[1] "{0} üzenet itt: localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:76
 msgid "localservice2"
-msgstr ""
+msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:78
 msgid "Post to localservice2"
-msgstr ""
+msgstr "Küldés ide: localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:80
 msgid "http://localservice2/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice2/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} üzenet itt: localservice2"
+msgstr[1] "{0} üzenet itt: localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:91
 msgid "localservice3"
-msgstr ""
+msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:93
 msgid "Post to localservice3"
-msgstr ""
+msgstr "Küldés ide: localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} üzenet itt: localservice3"
+msgstr[1] "{0} üzenet itt: localservice3"
 
 #: src/olympia/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -13681,27 +13681,27 @@ msgstr ""
 
 #: src/olympia/signing/views.py:53
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "A(z) „{}” azonosítójú kiegészítő nem található."
 
 #: src/olympia/signing/views.py:67
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Nem Ön a kiegészítő tulajdonosa."
 
 #: src/olympia/signing/views.py:82
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Hiányzó „feltöltés” kulcs a többrészes fájl adataiban."
 
 #: src/olympia/signing/views.py:96
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "A verzió nem egyezik meg a jegyzékfájllal."
 
 #: src/olympia/signing/views.py:100
 msgid "Version already exists."
-msgstr ""
+msgstr "A verzió már létezik."
 
 #: src/olympia/signing/views.py:136
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Nincs feltöltött fájl a kiegészítőhöz és a verzióhoz."
 
 #: src/olympia/stats/models.py:238
 msgid "Thanks for contributing to {addon_name}"
@@ -13877,6 +13877,9 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"A statisztikai feldolgozás le van tiltva, így a legfrissebb adatok nem "
+"érhetőek el. A statisztikák továbbra is gyűlnek, és ez az oldal hamarosan "
+"frissülni fog a hiányzó adatokkal."
 
 #: src/olympia/stats/templates/stats/stats.html:110
 msgid "Loading the latest data&hellip;"
@@ -13891,15 +13894,15 @@ msgstr "Nincs elérhető adat."
 
 #: src/olympia/stats/templates/stats/stats.html:177
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Az vezérlőpult jelenleg <b>nyilvános</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:179
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "A hozzájárulási statisztika jelenleg <b>privát</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:182
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Az vezérlőpult jelenleg <b>privát</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:185
 msgid "Change settings."
@@ -13907,19 +13910,19 @@ msgstr "Beállítások módosítása."
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Létrehozott kiegészítők dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Letöltött kiegészítők dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Használatban lévő kiegészítők dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Kiegészítők frissítése dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
@@ -13927,19 +13930,19 @@ msgstr "Alkalmazás használata dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Létrehozott gyűjtemények dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Hozzájárulások dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Letöltve dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Hogyan számolódnak a letöltések?"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -13947,6 +13950,9 @@ msgid ""
 "evening and only include original add-on downloads, not updates. Downloads "
 "can be broken down by the specific source referring the download. </p>"
 msgstr ""
+"<h2>Hogy számolódnak a letöltések?</h2> <p>A letöltésszámok minden este "
+"frissítésre kerülnek, és csak az eredeti kiegészítő-letöltések számítanak, a"
+" frissítések nem. A letöltések lebonthatóak konkrét források szerint.</p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -13954,7 +13960,7 @@ msgstr "Felhasználói nyelvek dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Platform-használat dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
@@ -13971,7 +13977,7 @@ msgstr "naponta átlagosan <b>{0}</b> felhasználó"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Top alkalmazások"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
@@ -13979,7 +13985,7 @@ msgstr "További alkalmazások&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Top nyelvek"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
@@ -13987,19 +13993,19 @@ msgstr "További nyelvek&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Top platformok"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "További platformok&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Értékelés dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Létrehozott értékelések dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
@@ -14007,7 +14013,7 @@ msgstr "Letöltés dátumonként"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "A külső források követéséről…"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:10
 #, python-format
@@ -14033,7 +14039,7 @@ msgstr "Kiegészítő állapota dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Feliratkozók dátum szerint"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
@@ -14050,6 +14056,10 @@ msgid ""
 "Active Daily Users, or the total number of people using your theme by day. "
 "</p>"
 msgstr ""
+"<h2>Kik a napi felhasználók?</h2><p>Az oldalról telepített témák naponta "
+"egyszer ellenőrzik a frissítéseket. Ezen frissítési ellenőrzések összesített"
+" száma az úgynevezett aktív napi felhasználók, vagy az emberek teljes száma,"
+" akik használják a témát aznap.</p>"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:20
 msgid ""
@@ -14058,6 +14068,11 @@ msgid ""
 " Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Kik a napi felhasználók?</h2><p>Az oldalról letölthető kiegészítők "
+"naponta egyszer ellenőrzik a frissítéseket. Ezen frissítési ellenőrzések "
+"összesített száma az úgynevezett aktív napi felhasználók. A napi "
+"felhasználók lebonthatóak a kiegészítő verziója, az operációs rendszer, a "
+"kiegészítő állapota, az alkalmazás és a területi beállítások szerint.</p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
