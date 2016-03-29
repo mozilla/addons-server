@@ -21,10 +21,32 @@ This endpoint allows you to search through public add-ons.
 .. http:get:: /api/v3/addons/search/
 
     :param string q: The search query.
+    :param string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`add-ons <addon-detail>`.
+
+.. _addon-search-sort:
+
+    Available sorting parameters:
+
+    ==============  ==========================================================
+         Parameter  Description
+    ==============  ==========================================================
+           created  Creation date, descending
+         downloads  Number of weekly downloads, descending
+           hotness  Hotness (average number of users progression), descending.
+            rating  Bayesian rating, descending.
+           updated  Last updated date, descending
+             users  Average number of daily users, descending.
+    ==============  ==========================================================
+
+    The default is to sort by number of weekly downloads, descending.
+
+    You can combine multiple parameters by separating multiple parameters with
+    a comma. For instance, to sort search results by downloads and then by
+    creation date, use `sort=downloads,created`. 
 
 ------
 Detail
