@@ -223,11 +223,13 @@ for key, val in intersphinx_mapping.items():
 # Root url where source files can be browsed online.
 src_base_url = 'http://github.com/mozilla/olympia/tree/master/'
 
+# Ignore missing targets for the http:obj <type>, it's how we declare the types
+# for input/output fields in the API docs.
 nitpick_ignore = [
-  ('http:obj', 'array'),
-  ('http:obj', 'boolean'),
-  ('http:obj', 'int'),
-  ('http:obj', 'object'),
-  ('http:obj', 'string'),
-  ('http:obj', 'string|object|null'),
+    ('http:obj', 'array'),
+    ('http:obj', 'boolean'),
+    ('http:obj', 'int'),
+    ('http:obj', 'object'),
+    ('http:obj', 'string'),
+    ('http:obj', 'string|object|null'),
 ]
