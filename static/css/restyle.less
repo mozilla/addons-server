@@ -53,18 +53,18 @@
   background: none;
 }
 
-body {
+body.restyle {
   background: #fff none repeat scroll 0 0;
   color: #333;
-  font-family: @primary-font !important;
+  font-family: @primary-font;
   font-style: normal;
   font-size: 0.875rem;
   line-height: 1.5;
   min-width: 1018px;
 }
 
-h1 {
-  font-family: @primary-font !important;
+h1, #masthead h1 {
+  font-family: @primary-font;
   font-style: normal;
   font-size: 2.25rem;
 }
@@ -195,7 +195,6 @@ button.link:active span {
 }
 
 #masthead h1 {
-  font-family: inherit;
   font-size: 3.5rem;
   line-height: 3rem;
   letter-spacing: -1px;
@@ -219,6 +218,8 @@ button.link:active span {
 
 // DevHub Title
 .site-title.prominent {
+  // These are tied up in some really nested class + id selectors, so we
+  // cave and use !important
   margin-bottom: 20px !important;
   margin-top: -20px !important;
 
@@ -395,17 +396,17 @@ button.search-button {
   background: #fff;
 }
 
-.site-balloon {
-  display: none !important;
+.restyle .site-balloon {
+  display: none;
 }
 
 #promos {
-  display: block !important;
-  height: auto !important;
+  display: block;
+  height: auto;
   margin-left: -210px;
-  min-height: 0 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  min-height: 0;
+  opacity: 1;
+  visibility: visible;
   width: 960px;
 }
 
@@ -507,8 +508,8 @@ button.search-button {
   }
 }
 
-.control {
-  font-family: @primary-font !important;
+.restyle .control {
+  font-family: @primary-font;
 }
 
 #promos {
@@ -748,7 +749,7 @@ button.good {
 
 .addon-details .primary,
 .addon-details .secondary {
-  font-family: @primary-font !important;
+  font-family: @primary-font;
 }
 
 #addon h1 {
@@ -793,7 +794,8 @@ button.good {
 
 #addon-summary a,
 .notice.c.author a {
-  color: @link-on-color-bg !important;
+  color: @link-on-color-bg;
+  text-decoration: underline;
 }
 
 .notice.c.author {
@@ -868,7 +870,7 @@ button.good {
     }
 
     .more {
-      display: block !important;
+      display: block;
 
       .addon-summary,
       .byline,
@@ -930,9 +932,9 @@ button.good {
   }
 }
 
-#promos.shown {
-  height: 271px !important;
-  min-height: 271px !important;
+.restyle #promos.shown {
+  height: 271px;
+  min-height: 271px;
 }
 
 #side-nav.c.expanded {
@@ -958,7 +960,7 @@ button.good {
   border: 0;
 
   ul {
-    border-top: none !important;
+    border-top: none;
 
     li {
       padding: 0;
@@ -970,7 +972,7 @@ button.good {
     font-family: @primary-font;
     font-size: 14px;
     font-style: normal;
-    font-weight: 700 !important;
+    font-weight: 700;
     text-transform: uppercase;
   }
 
@@ -1189,11 +1191,11 @@ button.good {
 }
 
 // This is used to override JS that tries to mess with these styles :'(
-.persona.hovercard a {
+.restyle .persona.hovercard a {
   background: none !important;
 
   .persona-preview [data-browsertheme] {
-    background: none !important;
+    background: none;
     border: 0 !important; // zamboni.css defines this as !important :-/
   }
 }
@@ -1209,6 +1211,8 @@ button.good {
 
 // Install buttons
 .install-button .concealed {
+  // This is display: none !important because JS modifies the element's
+  // CSS directly.
   display: none !important;
 }
 
