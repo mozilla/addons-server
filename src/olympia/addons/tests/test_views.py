@@ -1590,12 +1590,13 @@ class TestAddonSearchView(ESTestCase):
         return data
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
-        assert addon.last_updated  # Just in case.
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              weekly_downloads=666)
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                               weekly_downloads=555)
         self.refresh()
 
-        data = self.perform_search(self.url)
+        data = self.perform_search(self.url)  # No query.
         assert data['count'] == 2
         assert len(data['results']) == 2
 
@@ -1616,9 +1617,12 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_pagination(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn')
-        addon_factory(slug='my-third-addon', name=u'My third Addôn')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              weekly_downloads=33)
+        addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
+                               weekly_downloads=22)
+        addon_factory(slug='my-third-addon', name=u'My third Addôn',
+                      weekly_downloads=11)
         self.refresh()
 
         data = self.perform_search(self.url, {'page_size': 1})
@@ -1630,6 +1634,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
 
+        # Search using the second page URL given in return value.
         data = self.perform_search(data['next'])
         assert data['count'] == 3
         assert len(data['results']) == 1
@@ -1638,6 +1643,33 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'My second Addôn'}
         assert result['slug'] == 'my-second-addon'
+
+    def test_pagination_sort_and_query(self):
+        addon_factory(slug='my-addon', name=u'Cy Addôn')
+        addon2 = addon_factory(slug='my-second-addon', name=u'By second Addôn')
+        addon1 = addon_factory(slug='my-first-addon', name=u'Ay first Addôn')
+        addon_factory(slug='only-happy-when-itrains', name=u'Garbage')
+        self.refresh()
+
+        data = self.perform_search(self.url, {
+            'page_size': 1, 'q': u'addôn', 'sort': 'name'})
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon1.pk
+        assert result['name'] == {'en-US': u'Ay first Addôn'}
+
+        # Search using the second page URL given in return value.
+        assert 'sort=name' in data['next']
+        data = self.perform_search(data['next'])
+        assert data['count'] == 3
+        assert len(data['results']) == 1
+        assert 'sort=name' in data['previous']
+
+        result = data['results'][0]
+        assert result['id'] == addon2.pk
+        assert result['name'] == {'en-US': u'By second Addôn'}
 
     def test_filtering_non_public_addons(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn')
