@@ -73,6 +73,8 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):
             attach_tags([obj])
+        # attach_tags() might not have attached anything to the addon, if it
+        # had no tags.
         return getattr(obj, 'tag_list', [])
 
     def get_url(self, obj):
