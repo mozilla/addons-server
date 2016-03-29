@@ -1,12 +1,17 @@
 import re
 
 from django.core import exceptions
+from django.core.validators import URLValidator
 from django.forms import fields
 from django.utils.translation import ugettext as _
 
 from nobot.fields import HumanCaptchaField
 
 from olympia.amo.widgets import ColorWidget
+
+
+class HttpHttpsOnlyURLField(fields.URLField):
+    default_validators = [URLValidator(schemes=('http', 'https'))]
 
 
 class ReCaptchaField(HumanCaptchaField):

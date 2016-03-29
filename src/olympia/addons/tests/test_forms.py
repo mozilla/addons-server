@@ -20,6 +20,26 @@ from olympia.tags.models import Tag, AddonTag
 from olympia.users.models import UserProfile
 
 
+class TestAddonFormSupport(TestCase):
+
+    def test_bogus_support_url(self):
+        form = forms.AddonFormSupport(
+            {'support_url': 'javascript://something.com'}, request=None)
+        assert not form.is_valid()
+        eq_(form.errors['support_url'][0][1], u'Enter a valid URL.')
+
+    def test_ftp_support_url(self):
+        form = forms.AddonFormSupport(
+            {'support_url': 'ftp://foo.com'}, request=None)
+        assert not form.is_valid()
+        eq_(form.errors['support_url'][0][1], u'Enter a valid URL.')
+
+    def test_http_support_url(self):
+        form = forms.AddonFormSupport(
+            {'support_url': 'http://foo.com'}, request=None)
+        assert form.is_valid()
+
+
 class FormsTest(TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
                 'addons/blacklisted')
@@ -108,7 +128,13 @@ class FormsTest(TestCase):
 
     def test_bogus_homepage(self):
         form = forms.AddonFormDetails(
-            {'homepage': 'whatever://something'}, request=None)
+            {'homepage': 'javascript://something.com'}, request=None)
+        assert not form.is_valid()
+        eq_(form.errors['homepage'][0][1], u'Enter a valid URL.')
+
+    def test_ftp_homepage(self):
+        form = forms.AddonFormDetails(
+            {'homepage': 'ftp://foo.com'}, request=None)
         assert not form.is_valid()
         eq_(form.errors['homepage'][0][1], u'Enter a valid URL.')
 
