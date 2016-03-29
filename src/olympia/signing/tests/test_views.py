@@ -132,6 +132,15 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         assert 'processed' in response.data
 
+    @mock.patch('olympia.devhub.views.Version.from_upload')
+    def test_addon_was_deleted(self, from_upload):
+        addon = Addon.unfiltered.get(guid=self.guid)
+        addon.delete()
+        response = self.put(self.url(self.guid, '3.0'))
+        assert response.status_code == 400
+        assert 'error' in response.data
+        assert response.data['error'] == 'That add-on has been deleted.'
+
     @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_added(self, sign_version):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
