@@ -144,7 +144,7 @@ class AddonIndexer(BaseSearchIndexer):
                 min_, max_ = 0, version_int('9999')
             data['appversion'][app.id] = dict(min=min_, max=max_)
         data['authors'] = [a.name for a in obj.listed_authors]
-        # Double the boost if the add-on is public.
+        # Quadruple the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
             data['boost'] = max(data['boost'], 1) * 4
         # We go through attach_categories and attach_tags transformer before
