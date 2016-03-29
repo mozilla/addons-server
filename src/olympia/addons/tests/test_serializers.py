@@ -12,7 +12,7 @@ from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
 
 
-class _TestAddonSerializerOutputMixin(object):
+class AddonSerializerOutputTestMixin(object):
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
     def setUp(self):
@@ -89,13 +89,13 @@ class _TestAddonSerializerOutputMixin(object):
         assert result['description'] == translated_descriptions
 
 
-class TestAddonSerializerOutput(_TestAddonSerializerOutputMixin, TestCase):
+class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     def serialize(self):
         serializer = AddonSerializer(context={'request': self.request})
         return serializer.to_native(self.addon)
 
 
-class TestESAddonSerializerOutput(_TestAddonSerializerOutputMixin, ESTestCase):
+class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def tearDown(self):
         super(TestESAddonSerializerOutput, self).tearDown()
         self.empty_index('default')
