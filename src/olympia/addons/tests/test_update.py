@@ -4,8 +4,6 @@ from email import utils
 
 from django.db import connection
 
-from nose.tools import eq_
-
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
@@ -43,7 +41,7 @@ class TestDataValidate(VersionCheckMixin, TestCase):
         data['appOS'] = 'something %s penguin' % amo.PLATFORM_LINUX.api_name
         form = self.get(data)
         assert form.is_valid()
-        eq_(form.data['appOS'], amo.PLATFORM_LINUX.id)
+        assert form.data['appOS'] == amo.PLATFORM_LINUX.id
 
     def test_app_version_fails(self):
         data = self.good_data.copy()
@@ -64,7 +62,7 @@ class TestDataValidate(VersionCheckMixin, TestCase):
         data = self.good_data.copy()
         form = self.get(data)
         assert form.is_valid()
-        eq_(form.data['version_int'], 3070000001000)
+        assert form.data['version_int'] == 3070000001000
 
     def test_sql_injection(self):
         data = self.good_data.copy()
@@ -152,7 +150,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         version, file = self.get('', '3000000001100',
                                  self.app, self.platform)
-        eq_(version, self.version_1_0_2)
+        assert version == self.version_1_0_2
 
     def test_new_client(self):
         """
@@ -161,7 +159,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         version, file = self.get('', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_2)
+        assert version == self.version_1_2_2
 
     def test_min_client(self):
         """
@@ -176,7 +174,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('', '3070000005000',  # 3.7a5pre
                                  self.app, self.platform)
-        eq_(version, self.version_1_1_3)
+        assert version == self.version_1_1_3
 
     def test_new_client_ordering(self):
         """
@@ -197,7 +195,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_2)
+        assert version == self.version_1_2_2
 
     def test_public_not_beta(self):
         """
@@ -205,10 +203,10 @@ class TestLookup(VersionCheckMixin, TestCase):
         for a beta version, then you get a public version.
         """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
-        eq_(self.addon.status, amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_public_beta(self):
         """
@@ -221,7 +219,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_can_downgrade(self):
         """
@@ -234,7 +232,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
 
-        eq_(version, self.version_1_1_3)
+        assert version == self.version_1_1_3
 
     def test_public_pending_exists(self):
         """
@@ -250,7 +248,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
 
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_public_pending_no_file_beta(self):
         """
@@ -265,9 +263,9 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
         dest = Version.objects.get(pk=self.version_1_2_2)
-        eq_(dest.addon.status, amo.STATUS_PUBLIC)
-        eq_(dest.files.all()[0].status, amo.STATUS_PUBLIC)
-        eq_(version, dest.pk)
+        assert dest.addon.status == amo.STATUS_PUBLIC
+        assert dest.files.all()[0].status == amo.STATUS_PUBLIC
+        assert version == dest.pk
 
     def test_public_pending_not_exists(self):
         """
@@ -282,7 +280,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('1.2beta', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_not_public(self):
         """
@@ -293,7 +291,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         version, file = self.get('1.2.1', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_platform_does_not_exist(self):
         """If client passes a platform, find that specific platform."""
@@ -304,7 +302,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_platform_exists(self):
         """If client passes a platform, find that specific platform."""
@@ -315,7 +313,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_2)
+        assert version == self.version_1_2_2
 
     def test_file_for_platform(self):
         """If client passes a platform, make sure we get the right file."""
@@ -330,13 +328,13 @@ class TestLookup(VersionCheckMixin, TestCase):
         file_two.save()
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_2)
-        eq_(file, file_one.pk)
+        assert version == self.version_1_2_2
+        assert file == file_one.pk
 
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_WIN)
-        eq_(version, self.version_1_2_2)
-        eq_(file, file_two.pk)
+        assert version == self.version_1_2_2
+        assert file == file_two.pk
 
     def test_file_preliminary(self):
         """
@@ -350,7 +348,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_file_preliminary_addon(self):
         """
@@ -367,7 +365,7 @@ class TestLookup(VersionCheckMixin, TestCase):
             self.change_status(self.version_1_2_1, amo.STATUS_LITE)
             version, file = self.get('1.2', self.version_int,
                                      self.app, amo.PLATFORM_LINUX)
-            eq_(version, self.version_1_2_1)
+            assert version == self.version_1_2_1
 
     def test_file_preliminary_odd_statuses(self):
         """
@@ -382,13 +380,13 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_0, amo.STATUS_DISABLED)
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
         # Current version deleted.
         Version.objects.get(pk=self.version_1_2_0).delete()
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
     def test_file_preliminary_ex_full_addon(self):
         """
@@ -400,7 +398,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.change_status(self.version_1_2_2, amo.STATUS_LITE)
         version, file = self.get('1.2', self.version_int,
                                  self.app, amo.PLATFORM_LINUX)
-        eq_(version, self.version_1_2_1)
+        assert version == self.version_1_2_1
 
 
 class TestDefaultToCompat(VersionCheckMixin, TestCase):
@@ -482,9 +480,8 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
         for version in versions:
             for mode in modes:
-                eq_(self.get(app_version=version, compat_mode=mode),
-                    expected['-'.join([version, mode])],
-                    'Unexpected version for "%s-%s"' % (version, mode))
+                assert self.get(app_version=version, compat_mode=mode) == (
+                    expected['-'.join([version, mode])])
 
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
@@ -570,7 +567,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         # versioning scheme. This results in no versions being written to the
         # incompatible_versions table.
         self.create_override(min_version='ver1', max_version='ver2')
-        eq_(IncompatibleVersions.objects.all().count(), 0)
+        assert IncompatibleVersions.objects.all().count() == 0
 
     def test_min_max_version(self):
         # Tests the minimum requirement of the app maxVersion.
@@ -613,7 +610,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         data = self.good_data.copy()
         data["id"] = "garbage"
         up = self.get(data)
-        eq_(up.get_rdf(), up.get_bad_rdf())
+        assert up.get_rdf() == up.get_bad_rdf()
 
     def test_no_platform(self):
         file = File.objects.get(pk=67442)
@@ -624,11 +621,11 @@ class TestResponse(VersionCheckMixin, TestCase):
         data["appOS"] = self.win.api_name
         up = self.get(data)
         assert up.get_rdf()
-        eq_(up.data['row']['file_id'], file.pk)
+        assert up.data['row']['file_id'] == file.pk
 
         data["appOS"] = self.mac.api_name
         up = self.get(data)
-        eq_(up.get_rdf(), up.get_no_updates_rdf())
+        assert up.get_rdf() == up.get_no_updates_rdf()
 
     def test_different_platform(self):
         file = File.objects.get(pk=67442)
@@ -646,21 +643,21 @@ class TestResponse(VersionCheckMixin, TestCase):
         up = self.get(data)
         up.is_valid()
         up.get_update()
-        eq_(up.data['row']['file_id'], file_pk)
+        assert up.data['row']['file_id'] == file_pk
 
         data['appOS'] = self.mac.api_name
         up = self.get(data)
         up.is_valid()
         up.get_update()
-        eq_(up.data['row']['file_id'], mac_file_pk)
+        assert up.data['row']['file_id'] == mac_file_pk
 
     def test_good_version(self):
         up = self.get(self.good_data)
         up.is_valid()
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '4.0')
+        assert up.data['row']['min'] == '2.0'
+        assert up.data['row']['max'] == '4.0'
 
     def test_beta_version(self):
         file = File.objects.get(pk=67442)
@@ -686,7 +683,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         up = self.get(data)
         up.is_valid()
         up.get_update()
-        eq_(up.data['row']['file_id'], file.pk)
+        assert up.data['row']['file_id'] == file.pk
 
     def test_no_app_version(self):
         data = self.good_data.copy()
@@ -702,8 +699,8 @@ class TestResponse(VersionCheckMixin, TestCase):
         up.is_valid()
         up.get_update()
         assert up.data['row']['hash'].startswith('sha256:3808b13e')
-        eq_(up.data['row']['min'], '2.0')
-        eq_(up.data['row']['max'], '4.0')
+        assert up.data['row']['min'] == '2.0'
+        assert up.data['row']['max'] == '4.0'
 
     def test_content_type(self):
         up = self.get(self.good_data)
@@ -725,7 +722,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         hdrs = dict(up.get_headers(1))
         lm = datetime(*utils.parsedate_tz(hdrs['Last-Modified'])[:7])
         exp = datetime(*utils.parsedate_tz(hdrs['Expires'])[:7])
-        eq_((exp - lm).seconds, 3600)
+        assert (exp - lm).seconds == 3600
 
     def test_appguid(self):
         up = self.get(self.good_data)
@@ -764,7 +761,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         self.addon_one.status = amo.STATUS_PUBLIC
         self.addon_one.save()
         up.get_rdf()
-        eq_(up.data['row']['file_id'], file.pk)
+        assert up.data['row']['file_id'] == file.pk
         assert up.data['row']['url'] == self.get_file_url()
 
     def test_hash(self):
@@ -776,7 +773,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         file.save()
 
         rdf = self.get(self.good_data).get_rdf()
-        eq_(rdf.find('updateHash'), -1)
+        assert rdf.find('updateHash') == -1
 
     def test_releasenotes(self):
         rdf = self.get(self.good_data).get_rdf()
@@ -786,7 +783,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         version.update(releasenotes=None)
 
         rdf = self.get(self.good_data).get_rdf()
-        eq_(rdf.find('updateInfoURL'), -1)
+        assert rdf.find('updateInfoURL') == -1
 
     def test_sea_monkey(self):
         data = {
@@ -799,20 +796,20 @@ class TestResponse(VersionCheckMixin, TestCase):
         up = self.get(data)
         rdf = up.get_rdf()
         assert up.data['row']['hash'].startswith('sha256:9d9a389')
-        eq_(up.data['row']['min'], '1.0')
-        eq_(up.data['row']['version'], '0.5.2')
+        assert up.data['row']['min'] == '1.0'
+        assert up.data['row']['version'] == '0.5.2'
         assert rdf.find(data['appID']) > -1
 
     def test_no_updates_at_all(self):
         self.addon_one.versions.all().delete()
         upd = self.get(self.good_data)
-        eq_(upd.get_rdf(), upd.get_no_updates_rdf())
+        assert upd.get_rdf() == upd.get_no_updates_rdf()
 
     def test_no_updates_my_fx(self):
         data = self.good_data.copy()
         data['appVersion'] = '5.0.1'
         upd = self.get(data)
-        eq_(upd.get_rdf(), upd.get_no_updates_rdf())
+        assert upd.get_rdf() == upd.get_no_updates_rdf()
 
 
 class TestFirefoxHotfix(VersionCheckMixin, TestCase):

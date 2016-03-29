@@ -1,5 +1,3 @@
-from nose.tools import eq_
-
 from olympia import amo
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
 from olympia.amo.tests import TestCase
@@ -19,25 +17,25 @@ class TestGetFeaturedIds(TestCase):
         super(TestGetFeaturedIds, self).setUp()
 
     def test_by_app(self):
-        eq_(set(get_featured_ids(amo.FIREFOX)),
+        assert set(get_featured_ids(amo.FIREFOX)) == (
             set(self.all_locales))
 
     def test_by_type(self):
-        eq_(set(get_featured_ids(amo.FIREFOX, 'xx', 1)),
+        assert set(get_featured_ids(amo.FIREFOX, 'xx', 1)) == (
             set(self.no_locale_type_one))
 
     def test_by_locale(self):
-        eq_(set(get_featured_ids(amo.FIREFOX)),
+        assert set(get_featured_ids(amo.FIREFOX)) == (
             set(self.all_locales))
-        eq_(set(get_featured_ids(amo.FIREFOX, 'xx')),
+        assert set(get_featured_ids(amo.FIREFOX, 'xx')) == (
             set(self.no_locale))
-        eq_(set(get_featured_ids(amo.FIREFOX, 'en-US')),
+        assert set(get_featured_ids(amo.FIREFOX, 'en-US')) == (
             set(self.no_locale + self.en_us_locale))
 
     def test_locale_shuffle(self):
         # Make sure the locale-specific add-ons are at the front.
         ids = get_featured_ids(amo.FIREFOX, 'en-US')
-        eq_((ids[0],), self.en_us_locale)
+        assert (ids[0],) == self.en_us_locale
 
 
 class TestGetCreaturedIds(TestCase):
@@ -53,13 +51,13 @@ class TestGetCreaturedIds(TestCase):
         super(TestGetCreaturedIds, self).setUp()
 
     def test_by_category(self):
-        eq_(set(get_creatured_ids(self.category, None)),
+        assert set(get_creatured_ids(self.category, None)) == (
             set(self.no_locale))
 
     def test_by_locale(self):
-        eq_(set(get_creatured_ids(self.category, 'en-US')),
+        assert set(get_creatured_ids(self.category, 'en-US')) == (
             set(self.no_locale + self.en_us_locale))
 
     def test_shuffle(self):
         ids = get_creatured_ids(self.category, 'en-US')
-        eq_((ids[0],), self.en_us_locale)
+        assert (ids[0],) == self.en_us_locale
