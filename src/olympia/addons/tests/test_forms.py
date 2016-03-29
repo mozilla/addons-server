@@ -3,7 +3,6 @@ import os
 import tempfile
 
 from mock import patch
-from nose.tools import eq_
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -82,7 +81,7 @@ class FormsTest(TestCase):
         f = forms.AddonFormBasic(dict(name=self.existing_name), request=None,
                                  instance=a)
         assert not f.is_valid()
-        eq_(f.errors.get('name')[0][1], self.error_msg)
+        assert f.errors.get('name')[0][1] == self.error_msg
 
     def test_old_same(self):
         """
@@ -92,25 +91,25 @@ class FormsTest(TestCase):
         f = forms.AddonFormBasic(dict(name=self.existing_name), request=None,
                                  instance=delicious)
         f.is_valid()
-        eq_(f.errors.get('name'), None)
+        assert f.errors.get('name') is None
 
     def test_locales(self):
         form = forms.AddonFormDetails(request={})
-        eq_(form.fields['default_locale'].choices[0][0], 'af')
+        assert form.fields['default_locale'].choices[0][0] == 'af'
 
     def test_slug_blacklist(self):
         delicious = Addon.objects.get()
         form = forms.AddonFormBasic({'slug': 'submit'}, request=None,
                                     instance=delicious)
         assert not form.is_valid()
-        eq_(form.errors['slug'],
+        assert form.errors['slug'] == (
             [u'The slug cannot be "submit". Please choose another.'])
 
     def test_bogus_homepage(self):
         form = forms.AddonFormDetails(
             {'homepage': 'whatever://something'}, request=None)
         assert not form.is_valid()
-        eq_(form.errors['homepage'][0][1], u'Enter a valid URL.')
+        assert form.errors['homepage'][0][1] == u'Enter a valid URL.'
 
     def test_homepage_is_not_required(self):
         delicious = Addon.objects.get()
@@ -124,7 +123,7 @@ class FormsTest(TestCase):
         form = forms.AddonFormBasic({'slug': '123'}, request=None,
                                     instance=delicious)
         assert not form.is_valid()
-        eq_(form.errors['slug'],
+        assert form.errors['slug'] == (
             [u'The slug cannot be "123". Please choose another.'])
 
 
@@ -161,24 +160,24 @@ class TestTagsForm(TestCase):
 
     def test_tags(self):
         self.add_tags('foo, bar')
-        eq_(self.get_tag_text(), ['bar', 'foo'])
+        assert self.get_tag_text(), ['bar' == 'foo']
 
     def test_tags_xss(self):
         self.add_tags('<script>alert("foo")</script>, bar')
-        eq_(self.get_tag_text(), ['bar', 'scriptalertfooscript'])
+        assert self.get_tag_text(), ['bar' == 'scriptalertfooscript']
 
     def test_tags_case_spaces(self):
         self.add_tags('foo, bar')
         self.add_tags('foo,    bar   , Bar, BAR, b a r ')
-        eq_(self.get_tag_text(), ['b a r', 'bar', 'foo'])
+        assert self.get_tag_text(), ['b a r', 'bar' == 'foo']
 
     def test_tags_spaces(self):
         self.add_tags('foo, bar beer')
-        eq_(self.get_tag_text(), ['bar beer', 'foo'])
+        assert self.get_tag_text(), ['bar beer' == 'foo']
 
     def test_tags_unicode(self):
         self.add_tags(u'Österreich')
-        eq_(self.get_tag_text(), [u'Österreich'.lower()])
+        assert self.get_tag_text() == [u'Österreich'.lower()]
 
     def add_restricted(self, *args):
         if not args:
@@ -193,10 +192,10 @@ class TestTagsForm(TestCase):
         form = forms.AddonFormBasic(data=self.data, request=None,
                                     instance=self.addon)
 
-        eq_(form.fields['tags'].initial, 'bar, foo')
-        eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
+        assert form.fields['tags'].initial, 'bar == foo'
+        assert self.get_tag_text(), ['bar', 'foo' == 'restartless']
         self.add_tags('')
-        eq_(self.get_tag_text(), ['restartless'])
+        assert self.get_tag_text() == ['restartless']
 
     def test_tags_error(self):
         self.add_restricted('restartless', 'sdk')
@@ -204,12 +203,12 @@ class TestTagsForm(TestCase):
         data.update({'tags': 'restartless'})
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
-        eq_(form.errors['tags'][0],
+        assert form.errors['tags'][0] == (
             '"restartless" is a reserved tag and cannot be used.')
         data.update({'tags': 'restartless, sdk'})
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
-        eq_(form.errors['tags'][0],
+        assert form.errors['tags'][0] == (
             '"restartless", "sdk" are reserved tags and cannot be used.')
 
     @patch('olympia.access.acl.action_allowed')
@@ -217,12 +216,12 @@ class TestTagsForm(TestCase):
         action_allowed.return_value = True
         self.add_restricted('restartless')
         self.add_tags('foo, bar')
-        eq_(self.get_tag_text(), ['bar', 'foo'])
+        assert self.get_tag_text(), ['bar' == 'foo']
         self.add_tags('foo, bar, restartless')
-        eq_(self.get_tag_text(), ['bar', 'foo', 'restartless'])
+        assert self.get_tag_text(), ['bar', 'foo' == 'restartless']
         form = forms.AddonFormBasic(data=self.data, request=None,
                                     instance=self.addon)
-        eq_(form.fields['tags'].initial, 'bar, foo, restartless')
+        assert form.fields['tags'].initial, 'bar, foo == restartless'
 
     @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted_count(self, action_allowed):
@@ -237,7 +236,7 @@ class TestTagsForm(TestCase):
 
     def test_tags_slugified_count(self):
         self.add_tags(', '.join('tag-test' for i in range(0, 21)))
-        eq_(self.get_tag_text(), ['tag-test'])
+        assert self.get_tag_text() == ['tag-test']
 
     def test_tags_limit(self):
         self.add_tags(' %s' % ('t' * 128))
@@ -249,8 +248,9 @@ class TestTagsForm(TestCase):
         form = forms.AddonFormBasic(data=data, request=None,
                                     instance=self.addon)
         assert not form.is_valid()
-        eq_(form.errors['tags'], ['All tags must be 128 characters or less'
-                                  ' after invalid characters are removed.'])
+        assert form.errors['tags'] == [
+            'All tags must be 128 characters or less after invalid characters'
+            ' are removed.']
 
 
 class TestIconForm(TestCase):
@@ -324,7 +324,7 @@ class TestCategoryForm(TestCase):
         addon = Addon.objects.create(type=amo.ADDON_SEARCH)
         form = forms.CategoryFormSet(addon=addon)
         apps = [f.app for f in form.forms]
-        eq_(apps, [amo.FIREFOX])
+        assert apps == [amo.FIREFOX]
 
 
 class TestThemeForm(TestCase):

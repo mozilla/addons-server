@@ -5,7 +5,6 @@ import time
 
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
-from nose.tools import eq_
 import mock
 
 from olympia import amo
@@ -27,12 +26,12 @@ class TestLastUpdated(TestCase):
 
         cron.addon_last_updated()
         for addon in Addon.objects.all():
-            eq_(addon.last_updated, addon.created)
+            assert addon.last_updated == addon.created
 
         # Make sure it's stable.
         cron.addon_last_updated()
         for addon in Addon.objects.all():
-            eq_(addon.last_updated, addon.created)
+            assert addon.last_updated == addon.created
 
     def test_catchall(self):
         """Make sure the catch-all last_updated is stable and accurate."""
@@ -45,12 +44,12 @@ class TestLastUpdated(TestCase):
         cron.addon_last_updated()
         for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                           type=amo.ADDON_EXTENSION):
-            eq_(addon.last_updated, addon.created)
+            assert addon.last_updated == addon.created
 
         # Make sure it's stable.
         cron.addon_last_updated()
         for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
-            eq_(addon.last_updated, addon.created)
+            assert addon.last_updated == addon.created
 
     def test_last_updated_lite(self):
         # Make sure lite addons' last_updated matches their file's
@@ -60,8 +59,8 @@ class TestLastUpdated(TestCase):
         cron.addon_last_updated()
         addon = Addon.objects.get(id=3615)
         files = File.objects.filter(version__addon=addon)
-        eq_(len(files), 1)
-        eq_(addon.last_updated, files[0].datestatuschanged)
+        assert len(files) == 1
+        assert addon.last_updated == files[0].datestatuschanged
         assert addon.last_updated
 
     def test_last_update_lite_no_files(self):
@@ -69,32 +68,32 @@ class TestLastUpdated(TestCase):
         File.objects.update(status=amo.STATUS_UNREVIEWED)
         cron.addon_last_updated()
         addon = Addon.objects.get(id=3615)
-        eq_(addon.last_updated, addon.created)
+        assert addon.last_updated == addon.created
         assert addon.last_updated
 
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
-        eq_(AppSupport.objects.filter(app=amo.FIREFOX.id).count(), 4)
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 4
 
         # Run it again to test deletes.
         cron._update_appsupport(ids)
-        eq_(AppSupport.objects.filter(app=amo.FIREFOX.id).count(), 4)
+        assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 4
 
     def test_appsupport_listed(self):
         AppSupport.objects.all().delete()
-        eq_(AppSupport.objects.filter(addon=3723).count(), 0)
+        assert AppSupport.objects.filter(addon=3723).count() == 0
         cron.update_addon_appsupport()
-        eq_(AppSupport.objects.filter(addon=3723,
-                                      app=amo.FIREFOX.id).count(), 0)
+        assert AppSupport.objects.filter(
+            addon=3723, app=amo.FIREFOX.id).count() == 0
 
     def test_appsupport_seamonkey(self):
         addon = Addon.objects.get(pk=15663)
         addon.update(status=amo.STATUS_PUBLIC)
         AppSupport.objects.all().delete()
         cron.update_addon_appsupport()
-        eq_(AppSupport.objects.filter(addon=15663,
-                                      app=amo.SEAMONKEY.id).count(), 1)
+        assert AppSupport.objects.filter(
+            addon=15663, app=amo.SEAMONKEY.id).count() == 1
 
 
 class TestHideDisabledFiles(TestCase):
@@ -147,8 +146,8 @@ class TestHideDisabledFiles(TestCase):
                                    self.msg)
         m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
-        eq_(mv_mock.call_count, 2)
-        eq_(m_storage.delete.call_count, 2)
+        assert mv_mock.call_count == 2
+        assert m_storage.delete.call_count == 2
 
     @mock.patch('olympia.files.models.File.mv')
     @mock.patch('olympia.files.models.storage')
@@ -170,8 +169,8 @@ class TestHideDisabledFiles(TestCase):
                                    self.msg)
         m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
-        eq_(mv_mock.call_count, 2)
-        eq_(m_storage.delete.call_count, 2)
+        assert mv_mock.call_count == 2
+        assert m_storage.delete.call_count == 2
 
     @mock.patch('olympia.files.models.File.mv')
     @mock.patch('olympia.files.models.storage')
@@ -184,10 +183,10 @@ class TestHideDisabledFiles(TestCase):
         f1 = self.f1
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        eq_(mv_mock.call_count, 1)
+        assert mv_mock.call_count == 1
         # It should have been removed from mirror stagins.
         m_storage.delete.assert_called_with(f1.mirror_file_path)
-        eq_(m_storage.delete.call_count, 1)
+        assert m_storage.delete.call_count == 1
 
 
 class TestUnhideDisabledFiles(TestCase):
@@ -243,14 +242,14 @@ class AvgDailyUserCountTestCase(TestCase):
 
     def test_adu_is_adjusted_in_cron(self):
         addon = Addon.objects.get(pk=3615)
-        eq_(addon.average_daily_users, 6000000)
+        assert addon.average_daily_users == 6000000
         assert \
             addon.average_daily_users > addon.total_downloads + 10000, \
             ('Unexpected ADU count. ADU of %d not greater than %d' % (
                 addon.average_daily_users, addon.total_downloads + 10000))
         cron._update_addon_average_daily_users([(3615, 6000000)])
         addon = Addon.objects.get(pk=3615)
-        eq_(addon.average_daily_users, addon.total_downloads)
+        assert addon.average_daily_users == addon.total_downloads
 
     def test_adu_flag(self):
         addon = Addon.objects.get(pk=3615)
@@ -279,7 +278,7 @@ class AvgDailyUserCountTestCase(TestCase):
             os.environ.pop('FORCE_INDEXING', None)
 
         addon = Addon.objects.get(pk=3615)
-        eq_(addon.average_daily_users, 1234)
+        assert addon.average_daily_users == 1234
 
 
 class TestCleanupImageFiles(TestCase):
