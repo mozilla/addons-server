@@ -40,9 +40,34 @@ class AddonIndexer(BaseSearchIndexer):
                     'bayesian_rating': {'type': 'double'},
                     'category': {'type': 'integer'},
                     'created': {'type': 'date'},
+                    'current_version': {
+                        'type': 'object',
+                        'dynamic': False,
+                        'properties': {
+                            'id': {'type': 'long', 'index': 'no'},
+                            'reviewed': {'type': 'date', 'index': 'no'},
+                            'files': {
+                                'type': 'object',
+                                'dynamic': False,
+                                'properties': {
+                                    'id': {'type': 'long', 'index': 'no'},
+                                    'created': {'type': 'date', 'index': 'no'},
+                                    'hash': {'type': 'string', 'index': 'no'},
+                                    'filename': {
+                                        'type': 'string', 'index': 'no'},
+                                    'platform': {
+                                        'type': 'byte', 'index': 'no'},
+                                    'size': {'type': 'long', 'index': 'no'},
+                                    'status': {'type': 'byte'},
+                                }
+                            },
+                            'version': {'type': 'string', 'index': 'no'},
+                        }
+                    },
                     'boost': {'type': 'float', 'null_value': 1.0},
                     'default_locale': {'type': 'string', 'index': 'no'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
+                    'guid': {'type': 'string', 'index': 'no'},
                     'has_version': {'type': 'boolean'},
                     'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
@@ -55,7 +80,8 @@ class AddonIndexer(BaseSearchIndexer):
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
-                    'platforms': {'type': 'integer', 'index_name': 'platform'},
+                    'platforms': {'type': 'byte', 'index_name': 'platform'},
+                    'public_stats': {'type': 'boolean'},
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
                     'summary': {'type': 'string', 'analyzer': 'snowball'},
@@ -83,9 +109,10 @@ class AddonIndexer(BaseSearchIndexer):
     @classmethod
     def extract_document(cls, obj):
         """Extract indexable attributes from an add-on."""
-        attrs = ('id', 'slug', 'created', 'default_locale', 'last_updated',
-                 'weekly_downloads', 'bayesian_rating', 'average_daily_users',
-                 'status', 'type', 'hotness', 'is_disabled', 'is_listed')
+        attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
+                 'default_locale', 'guid', 'hotness', 'is_disabled',
+                 'is_listed', 'last_updated', 'public_stats', 'slug', 'status',
+                 'type', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
@@ -106,9 +133,6 @@ class AddonIndexer(BaseSearchIndexer):
             # boost (11,000,000 users for adblock) is about 5x.
             data['boost'] = obj.average_daily_users ** .2
             data['has_theme_rereview'] = None
-        # Double the boost if the add-on is public.
-        if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
-            data['boost'] = max(data['boost'], 1) * 4
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         data['appversion'] = {}
@@ -119,18 +143,33 @@ class AddonIndexer(BaseSearchIndexer):
                 # Fake wide compatibility for search tools and personas.
                 min_, max_ = 0, version_int('9999')
             data['appversion'][app.id] = dict(min=min_, max=max_)
-        try:
-            data['has_version'] = obj._current_version is not None
-        except ObjectDoesNotExist:
-            data['has_version'] = None
-
         data['authors'] = [a.name for a in obj.listed_authors]
+        # Quadruple the boost if the add-on is public.
+        if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
+            data['boost'] = max(data['boost'], 1) * 4
         # We go through attach_categories and attach_tags transformer before
         # calling this function, it sets category_ids and tag_list.
         data['category'] = getattr(obj, 'category_ids', [])
         if obj.current_version:
+            data['current_version'] = {
+                'id': obj.current_version.pk,
+                'files': [{
+                    'id': file_.id,
+                    'created': file_.created,
+                    'filename': file_.filename,
+                    'hash': file_.hash,
+                    'platform': file_.platform,
+                    'size': file_.size,
+                    'status': file_.status,
+                } for file_ in obj.current_version.all_files],
+                'reviewed': obj.current_version.reviewed,
+                'version': obj.current_version.version,
+            }
+            data['has_version'] = True
             data['platforms'] = [p.id for p in
                                  obj.current_version.supported_platforms]
+        else:
+            data['has_version'] = None
         data['tags'] = getattr(obj, 'tag_list', [])
 
         # Handle localized fields.

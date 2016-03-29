@@ -292,7 +292,3 @@ class GenerateErrorForm(happyforms.Form):
                    'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
                    'HTTP_USER_AGENT': 'MySuperBrowser'}
             log_cef(settings.STATSD_PREFIX, 6, env)
-
-
-class PriceTiersForm(happyforms.Form):
-    prices = forms.FileField()

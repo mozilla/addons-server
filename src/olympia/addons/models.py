@@ -226,7 +226,8 @@ class Addon(OnChangeMixin, ModelBase):
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
 
-    type = models.PositiveIntegerField(db_column='addontype_id', default=0)
+    type = models.PositiveIntegerField(
+        choices=amo.ADDON_TYPE.items(), db_column='addontype_id', default=0)
     status = models.PositiveIntegerField(
         choices=STATUS_CHOICES.items(), db_index=True, default=0)
     icon_type = models.CharField(max_length=25, blank=True,

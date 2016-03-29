@@ -1666,7 +1666,8 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-addon'
 
     def test_with_query(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              tags=['some_tag'])
         addon_factory(slug='unrelated', name=u'Unrelated')
         self.refresh()
 

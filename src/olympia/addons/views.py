@@ -683,7 +683,7 @@ class AddonSearchView(ListAPIView):
     def get_queryset(self):
         return Search(using=amo.search.get_es(),
                       index=AddonIndexer.get_index_alias(),
-                      doc_type=Addon._meta.db_table)
+                      doc_type=AddonIndexer.get_doctype_name())
 
     @classmethod
     def as_view(cls, **kwargs):
