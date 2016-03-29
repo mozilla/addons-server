@@ -7,6 +7,7 @@
 @primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
+@header-font-color: #c63717;
 
 // Common styles
 @detail-border: 1px solid #ebebeb;
@@ -65,8 +66,34 @@ body.restyle {
 
 h1, #masthead h1 {
   font-family: @primary-font;
-  font-style: normal;
+}
+
+#site-nav ul {
+  margin-bottom: 1.5em;
+}
+
+h2 {
+  margin-top: 1em;
+}
+
+h1,
+.primary h2,
+hgroup h2.addon,
+.personas-featured h3 {
+  color: @header-font-color;
+  font-family: @primary-font !important;
   font-size: 2.25rem;
+  font-style: normal;
+}
+
+.addon-details h2 {
+  color: inherit;
+  font-size: 1.75rem;
+}
+
+.primary header h2,
+.personas-featured h3 {
+  margin: 5px 0 15px;
 }
 
 // These are all defined in AMO's original CSS and seem to need overriding :'(
@@ -165,6 +192,15 @@ button.link:active span {
     0 416px,
     0 0,
     0 0;
+}
+
+.category-landing [role="main"],
+.amo-header + .primary {
+  width: 78%;
+}
+
+.category-landing .amo-header + .primary header {
+  display: none;
 }
 
 // hide overflow to cover streching of bg in
@@ -641,7 +677,7 @@ button.search-button {
 
 // Side nav elsewhere (themes)
 .secondary .highlight {
-  padding: 0;
+  padding: 7px 0 0;
 }
 
 // Install Button
@@ -745,7 +781,7 @@ button.good {
 }
 
 // Add-on Details Page
-#page #breadcrumbs {
+#breadcrumbs {
   display: none;
 }
 
