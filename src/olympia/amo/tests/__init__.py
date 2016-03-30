@@ -269,6 +269,30 @@ class TestClient(Client):
         else:
             raise AttributeError
 
+    def generate_api_token(self, user, **payload_overrides):
+        """
+        Creates a jwt token for this user.
+        """
+        from rest_framework_jwt.settings import api_settings
+        payload = api_settings.JWT_PAYLOAD_HANDLER(user)
+        payload.update(payload_overrides)
+        token = api_settings.JWT_ENCODE_HANDLER(payload)
+        return token
+
+    def login_api(self, user):
+        """
+        Creates a jwt token for this user as if they just logged in and send
+        it in an Authorization header with all future requests for this client.
+        """
+        token = self.generate_api_token(user)
+        self.defaults['HTTP_AUTHORIZATION'] = 'JWT {0}'.format(token)
+
+    def logout_api(self):
+        """
+        Removes the Authorization header from future requests.
+        """
+        self.defaults.pop('HTTP_AUTHORIZATION', None)
+
 
 Mocked_ES = mock.patch('olympia.amo.search.get_es', spec=True)
 

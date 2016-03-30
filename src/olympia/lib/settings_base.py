@@ -1659,6 +1659,10 @@ JWT_AUTH = {
     # Expiration for non-apikey jwt tokens. Since this will be used by our
     # frontend clients we want a slightly longer expiration than normal.
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+
+    # This allows JWT tokens created with the default implementation (NOT the
+    # ones created with an API Key) to be refreshed for a week.
+    'JWT_ALLOW_REFRESH': True,
 }
 
 REST_FRAMEWORK = {
@@ -1669,7 +1673,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'olympia.api.authentication.JSONWebTokenAuthentication',
     ),
 }
 
