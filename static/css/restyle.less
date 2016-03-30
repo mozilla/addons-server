@@ -869,9 +869,6 @@ button.good {
   margin-top: -5px;
 }
 
-// Re-colors links on top of details page to white
-#addon a,
-.author a,
 .addon-vitals .widgets .widget {
   color: #fff;
 }
@@ -973,6 +970,20 @@ button.good {
 // make hovercard hide discription and always show "add to firefox"
 .addon-details .primary .notice.dependencies {
   height: 130px;
+}
+
+// Standard pages have the default
+// text color. This is overridden for details
+// pages below.
+h3.author a,
+h4.author a {
+  color: @default-font-color;
+  text-decoration: underline;
+}
+
+h3.author .transfer-ownership {
+  color: @link-on-color-bg;
+  text-decoration: none;
 }
 
 // font issues on addon-details
