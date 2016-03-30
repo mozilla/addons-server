@@ -96,7 +96,8 @@ h2 {
 h1,
 .primary h2,
 hgroup h2.addon,
-.personas-featured h3 {
+.personas-featured h3,
+#featured-addons .featured-inner h3 {
   color: @default-font-color;
   font-family: @primary-font !important;
   font-size: 1.692rem;
@@ -1251,17 +1252,47 @@ button.good {
   }
 }
 
-.category-landing .addons-column {
+.category-landing {
+  .addons-column {
+    ul.personas {
+      padding: 0;
+    }
 
-  ul.personas {
-    padding: 0;
+    ul li {
+      overflow: visible;
+
+      .persona a {
+        padding: 0;
+      }
+    }
   }
 
-  ul li {
-    overflow: visible;
+  // Featured add-ons in a category listing page.
+  // This fixes https://github.com/mozilla/addons-server/issues/2025
+  #featured-addons {
+    background: none;
+    border: 0;
 
-    .persona a {
-      padding: 0;
+    .featured-inner {
+      background: none;
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 25px;
+      width: auto;
+    }
+  }
+
+  .view-all {
+    text-align: left;
+
+    a:link,
+    a:visited {
+      color: @link-on-white-bg;
     }
   }
 }
