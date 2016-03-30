@@ -6,7 +6,7 @@ from nose.tools import eq_
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.access.models import Group
+from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionWatcher)
@@ -183,8 +183,6 @@ class TestCollections(TestCase):
         c = Collection.objects.create(author=self.user, slug='boom')
 
         fake_request = mock.Mock()
-        fake_request.groups = ()
-        fake_request.user.is_authenticated.return_value = True
 
         # Owner.
         fake_request.user = self.user
@@ -196,13 +194,16 @@ class TestCollections(TestCase):
         eq_(c.can_view_stats(fake_request), False)
 
         # Member of group with Collections:Edit permission.
-        fake_request.groups = (Group(name='Collections Agency',
-                                     rules='CollectionStats:View'),)
+        group = Group.objects.create(name='Collections Agency',
+                                     rules='CollectionStats:View')
+        del fake_request.user.groups_list
+        grouser = GroupUser.objects.create(user=fake_request.user, group=group)
         eq_(c.can_view_stats(fake_request), True)
 
         # Developer.
+        grouser.delete()
+        del fake_request.user.groups_list
         CollectionUser.objects.create(collection=c, user=self.user)
-        fake_request.groups = ()
         fake_request.user = self.user
         eq_(c.can_view_stats(fake_request), True)
 

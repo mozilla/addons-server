@@ -59,6 +59,20 @@ class TestUserProfile(TestCase):
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, 'Please confirm your email address')
 
+    def test_groups_list(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        group1 = Group.objects.create(name='un')
+        group2 = Group.objects.create(name='deux')
+        GroupUser.objects.create(user=user, group=group1)
+        GroupUser.objects.create(user=user, group=group2)
+        assert user.groups_list == list(user.groups.all())
+        assert len(user.groups_list) == 2
+
+        # Remove the user from the groups, groups_list should not have changed
+        # since it's a cached property.
+        GroupUser.objects.filter(group=group1).delete()
+        assert len(user.groups_list) == 2
+
     def test_welcome_name(self):
         u1 = UserProfile(username='sc')
         u2 = UserProfile(username='sc', display_name="Sarah Connor")
@@ -114,14 +128,14 @@ class TestUserProfile(TestCase):
         assert not user.has_anonymous_display_name()
 
     def test_add_admin_powers(self):
-        u = UserProfile.objects.get(username='jbalogh')
+        user = UserProfile.objects.get(username='jbalogh')
 
-        assert not u.is_staff
-        assert not u.is_superuser
+        assert not user.is_staff
+        assert not user.is_superuser
         GroupUser.objects.create(group=Group.objects.get(name='Admins'),
-                                 user=u)
-        assert u.is_staff
-        assert u.is_superuser
+                                 user=user)
+        assert user.is_staff
+        assert user.is_superuser
 
     def test_dont_add_admin_powers(self):
         Group.objects.create(name='API', rules='API.Users:*')

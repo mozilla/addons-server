@@ -65,6 +65,11 @@ class CachedProperty(object):
         self.__name__ = name or func.__name__
         self.__doc__ = doc or func.__doc__
 
+    def __delete__(self, obj):
+        if not self.writable:
+            raise TypeError('read only attribute')
+        obj.__dict__.pop(self.__name__, None)
+
     def __get__(self, obj, type=None):
         if obj is None:
             return self
