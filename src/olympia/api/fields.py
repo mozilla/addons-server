@@ -36,24 +36,15 @@ class TranslationSerializerField(fields.Field):
         self.min_length = kwargs.pop('min_length', None)
 
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
-        # Default to return all translations for each field.
         self.requested_language = None
 
-    def initialize(self, parent, field_name):
-        super(TranslationSerializerField, self).initialize(parent, field_name)
-        request = self.context.get('request', None)
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            # A specific language was requested, we will only return one
-            # translation per field.
-            self.requested_language = request.GET['lang']
-
-    def fetch_all_translations(self, obj, source):
-        translations = Translation.objects.filter(
-            id=source.id, localized_string__isnull=False)
+    def fetch_all_translations(self, obj, source, field):
+        translations = field.__class__.objects.filter(
+             id=field.id, localized_string__isnull=False)
         return dict((to_language(trans.locale), unicode(trans))
-                    for trans in translations) if translations else None
+                     for trans in translations) if translations else None
 
-    def fetch_single_translation(self, obj, attrs):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         return unicode(obj) if obj else None
 
     def get_attribute(self, obj):
@@ -64,15 +55,25 @@ class TranslationSerializerField(fields.Field):
         else:
             return self.fetch_all_translations(obj, source)
 
-    def to_representation(self, data):
-        if isinstance(data, basestring):
-            return data.strip()
-        elif isinstance(data, dict):
-            for key, value in data.items():
-                data[key] = value and value.strip()
-            return data
-        data = super(TranslationSerializerField, self).to_representation(data)
-        return unicode(data)
+    def get_attribute(self, obj, requested_language=None):
+        source = self.source or self.field_name
+        field = fields.get_attribute(obj, source.split('.'))
+        if not field:
+            return None
+
+        request = self.context.get('request', None)
+
+        if requested_language is None:
+            if request and request.method == 'GET' and 'lang' in request.GET:
+                requested_language = request.GET['lang']
+        if requested_language:
+            return self.fetch_single_translation(
+                obj, source, field, requested_language)
+        else:
+            return self.fetch_all_translations(obj, source, field)
+
+    def to_representation(self, value):
+        return value
 
     def to_internal_value(self, data):
         value = super(TranslationSerializerField, self).to_internal_value(data)
@@ -103,11 +104,17 @@ class ESTranslationSerializerField(TranslationSerializerField):
     built from ES data that we previously attached on the object.
     """
     suffix = '_translations'
+    _source = None
 
-    def __init__(self, *args, **kwargs):
-        if kwargs.get('source'):
-            kwargs['source'] = '%s%s' % (kwargs['source'], self.suffix)
-        super(ESTranslationSerializerField, self).__init__(*args, **kwargs)
+    def get_source(self):
+        if self._source is None:
+            return None
+        return self._source + self.suffix
+
+    def set_source(self, val):
+        self._source = val
+
+    source = property(get_source, set_source)
 
     @classmethod
     def attach_translations(cls, obj, data, source_name, target_name=None):
@@ -132,18 +139,12 @@ class ESTranslationSerializerField(TranslationSerializerField):
                 dict((getattr(v, 'lang', ''), getattr(v, 'string', ''))
                      for v in getattr(data, source_key, {}) or {}))
 
-    def fetch_all_translations(self, obj, source):
+    def fetch_all_translations(self, obj, source, field):
         return source or None
 
-    def fetch_single_translation(self, obj, source):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         translations = self.fetch_all_translations(obj, source) or {}
 
-        return (translations.get(self.requested_language) or
+        return (translations.get(requested_language) or
                 translations.get(getattr(source, 'default_locale', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
-
-    def bind(self, field_name, parent):
-        super(ESTranslationSerializerField, self).bind(field_name, parent)
-
-        if self.field_name:
-            self.field_name = '%s%s' % (self.field_name, self.suffix)

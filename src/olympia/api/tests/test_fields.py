@@ -30,8 +30,9 @@ class TestTranslationSerializerField(TestCase):
         Translation.objects.create(id=self.addon.name.id, locale='es',
                                    localized_string=u'Name in Español')
 
-    def _test_expected_dict(self, field):
-        result = field.get_attribute(self.addon, 'name')
+    def _test_expected_dict(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
                                                      locale='en-US')),
@@ -40,19 +41,22 @@ class TestTranslationSerializerField(TestCase):
         }
         assert result == expected
 
-        result = field.field_to_native(self.addon, 'description')
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': Translation.objects.get(id=self.addon.description.id,
                                              locale='en-US'),
         }
         assert result == expected
 
-    def _test_expected_single_string(self, field):
-        result = field.field_to_native(self.addon, 'name')
+    def _test_expected_single_string(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
         expected = unicode(self.addon.name)
         assert result == expected
 
-        result = field.field_to_native(self.addon, 'description')
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
         expected = unicode(self.addon.description)
         assert result == expected
 
@@ -102,7 +106,7 @@ class TestTranslationSerializerField(TestCase):
         field.validate(result)
         assert result == data
 
-    def test_field_to_native(self):
+    def test_get_attribute(self):
         field = self.field_class()
         self._test_expected_dict(field)
 
@@ -117,11 +121,10 @@ class TestTranslationSerializerField(TestCase):
         }
         assert result == expected
 
-    def test_field_to_native_empty_context(self):
+    def test_get_attribute_empty_context(self):
         mock_serializer = Serializer()
         mock_serializer.context = {}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
     def test_field_to_native_request_POST(self):
@@ -129,7 +132,6 @@ class TestTranslationSerializerField(TestCase):
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
     def test_field_to_native_request_GET(self):
@@ -137,7 +139,6 @@ class TestTranslationSerializerField(TestCase):
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
     def test_field_to_native_request_GET_lang(self):
@@ -154,15 +155,18 @@ class TestTranslationSerializerField(TestCase):
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_single_string(field)
 
     def test_field_null(self):
         field = self.field_class()
         self.addon = Addon()
-        result = field.field_to_native(self.addon, 'name')
+
+        field.bind('name', None)
+        result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
-        result = field.field_to_native(self.addon, 'description')
+
+        field.bind('description', None)
+        result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
 
