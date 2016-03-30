@@ -891,7 +891,7 @@ button.good {
   }
 }
 
-.install-button > .button.add.installer {
+.button.add {
   background: #57bd35;
   border-radius: 3px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
@@ -899,15 +899,15 @@ button.good {
   font-size: 14px;
   color: #fff;
   line-height: 16px;
-}
 
-.install-button > .button.add.installer:hover {
-  background: #90e07f;
-}
+  &:active {
+    box-shadow: none;
+  }
 
-.install-button > .button.add.installer:active {
-  background: #40a624;
-  box-shadow: none;
+  &.installer.warning,
+  &.installer.caution {
+    color: #333 !important;
+  }
 }
 
 .notice {
