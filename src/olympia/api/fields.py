@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _lazy
+from django.core.exceptions import ValidationError
 
 from rest_framework import fields
 from rest_framework import serializers
@@ -12,7 +13,7 @@ class TranslationSerializerField(fields.Field):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
-    - When deserializing, in `to_representation`, it accepts both a string or a
+    - When deserializing, in `from_native`, it accepts both a string or a
       dictionary. If a string is given, it'll be considered to be in the
       default language.
 
@@ -34,49 +35,48 @@ class TranslationSerializerField(fields.Field):
 
     def __init__(self, *args, **kwargs):
         self.min_length = kwargs.pop('min_length', None)
-
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
         self.requested_language = None
 
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
-             id=field.id, localized_string__isnull=False)
+            id=field.id, localized_string__isnull=False)
         return dict((to_language(trans.locale), unicode(trans))
-                     for trans in translations) if translations else None
+                    for trans in translations) if translations else None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        return unicode(obj) if obj else None
-
-    def get_attribute(self, obj):
-        source = fields.get_attribute(obj, self.source.split('.'))
-
-        if self.requested_language:
-            return self.fetch_single_translation(obj, source)
-        else:
-            return self.fetch_all_translations(obj, source)
+        return unicode(field) if field else None
 
     def get_attribute(self, obj, requested_language=None):
         source = self.source or self.field_name
         field = fields.get_attribute(obj, source.split('.'))
         if not field:
             return None
-
         request = self.context.get('request', None)
-
         if requested_language is None:
             if request and request.method == 'GET' and 'lang' in request.GET:
                 requested_language = request.GET['lang']
         if requested_language:
-            return self.fetch_single_translation(
-                obj, source, field, requested_language)
+            return self.fetch_single_translation(obj, source, field,
+                                                 requested_language)
         else:
             return self.fetch_all_translations(obj, source, field)
 
-    def to_representation(self, value):
-        return value
+    def to_representation(self, val):
+        return val
 
     def to_internal_value(self, data):
-        value = super(TranslationSerializerField, self).to_internal_value(data)
+        if isinstance(data, basestring):
+            self.validate(data)
+            return data.strip()
+        elif isinstance(data, dict):
+            self.validate(data)
+            for key, value in data.items():
+                data[key] = value and value.strip()
+            return data
+        return unicode(data)
+
+    def validate(self, value):
         value_too_short = True
 
         if isinstance(value, basestring):
@@ -85,7 +85,7 @@ class TranslationSerializerField(fields.Field):
         else:
             for locale, string in value.items():
                 if locale.lower() not in settings.LANGUAGES:
-                    raise serializers.ValidationError(
+                    raise ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)))
                 if string and (len(string.strip()) >= self.min_length):
@@ -93,9 +93,8 @@ class TranslationSerializerField(fields.Field):
                     break
 
         if self.min_length and value_too_short:
-            raise serializers.ValidationError(
+            raise ValidationError(
                 self.error_messages['min_length'].format(num=self.min_length))
-        return value
 
 
 class ESTranslationSerializerField(TranslationSerializerField):
@@ -135,16 +134,15 @@ class ESTranslationSerializerField(TranslationSerializerField):
             target_name = source_name
         target_key = '%s%s' % (target_name, cls.suffix)
         source_key = '%s%s' % (source_name, cls.suffix)
-        setattr(obj, target_key,
-                dict((getattr(v, 'lang', ''), getattr(v, 'string', ''))
-                     for v in getattr(data, source_key, {}) or {}))
+        setattr(obj, target_key, dict((v.get('lang', ''), v.get('string', ''))
+                                      for v in data.get(source_key, {}) or {}))
 
     def fetch_all_translations(self, obj, source, field):
-        return source or None
+        return field or None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        translations = self.fetch_all_translations(obj, source) or {}
-
+        translations = self.fetch_all_translations(obj, source, field) or {}
         return (translations.get(requested_language) or
-                translations.get(getattr(source, 'default_locale', None)) or
+                translations.get(getattr(obj, 'default_locale', None)) or
+                translations.get(getattr(obj, 'default_language', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
