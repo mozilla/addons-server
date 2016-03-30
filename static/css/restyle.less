@@ -849,14 +849,20 @@ button.good {
 }
 
 // first block of details - icon, name, description...
-.addon-details .primary:first-of-type {
-  min-height: 257px;
-  padding-bottom: 1em;
-}
+.addon-details {
+  .primary:first-of-type {
+    min-height: 257px;
+    padding-bottom: 1em;
+  }
 
-.addon-details .secondary.addon-vitals {
-  position: relative;
-  z-index: 1;
+  .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-wrapper .install-button a.button.download {
+    margin-bottom: 10px;
+  }
 }
 
 #addon-description.prose {
@@ -1363,8 +1369,17 @@ h3.author .transfer-ownership {
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
               inset 0 -2px 0 0 rgba(30, 30, 30, 0.25);
   color: #b1b1b1;
+  cursor: default;
   font-size: 14px;
   padding-left: 20px;
+  margin-bottom: 5px;
+  white-space: normal;
+  text-shadow: none;
+}
+
+#addon .more-versions a {
+  color: @link-on-white-bg;
+  margin-left: 10px;
 }
 
 // Contribute button fixes
