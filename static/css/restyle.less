@@ -1205,6 +1205,7 @@ button.good {
 .personas-featured .persona-list-3col {
   border: 0;
   min-height: 125px;
+  padding-bottom: 10px;
 }
 
 .persona-list-3col {
@@ -1214,10 +1215,14 @@ button.good {
     overflow: hidden;
     padding: 0.6em 0 0;
     position: relative;
+
+    &:nth-of-type(3n) .persona.hovercard:hover {
+      margin-bottom: -3px;
+    }
   }
 
   .persona.hovercard {
-    margin-right: 14px;
+    margin-right: 29px;
     width: 32%;
 
     a {
