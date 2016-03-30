@@ -1311,12 +1311,21 @@ h3.author .transfer-ownership {
   }
 }
 
+.category-landing .featured.three-col .addon.hovercard:hover {
+  height: 320px;
+  margin-bottom: -320px;
+}
+
 .persona.hovercard {
   max-width: 200px;
 
   &:hover {
     margin-bottom: -12px;
     height: 90px;
+
+    .addon-writeup {
+      display: none;
+    }
   }
 
   h3 {
