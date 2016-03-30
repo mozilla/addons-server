@@ -18,12 +18,14 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
-from rest_framework import status
-from rest_framework.response import Response
 
 from cache_nuggets.lib import memoize
 from dateutil.parser import parse
 from product_details import product_details
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from olympia import amo
 from olympia.amo.utils import DecimalJSONEncoder
@@ -33,7 +35,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
-from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.api.jwt_auth.views import JWTKeyAuthentication
 from olympia.bandwagon.models import Collection
 from olympia.bandwagon.views import get_collection
 from olympia.stats.forms import DateForm
@@ -721,7 +723,9 @@ class ArchiveMixin(object):
         return addon
 
 
-class ArchiveListView(ArchiveMixin, JWTProtectedView):
+class ArchiveListView(ArchiveMixin, APIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, slug, year, month):
         addon = self.get_addon(request, slug)
@@ -752,7 +756,9 @@ class ArchiveListView(ArchiveMixin, JWTProtectedView):
         return Response(data)
 
 
-class ArchiveView(ArchiveMixin, JWTProtectedView):
+class ArchiveView(ArchiveMixin, APIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, slug, year, month, day, model_name):
         addon = self.get_addon(request, slug)

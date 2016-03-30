@@ -15,7 +15,7 @@ from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
     assert_url_equal, create_switch, InitializeSessionMixin, TestCase)
-from olympia.api.tests.utils import APIAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
 FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
@@ -724,7 +724,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert not self.register_user.called
 
 
-class TestProfileView(APIAuthTestCase):
+class TestProfileView(APIKeyAuthTestCase):
 
     def setUp(self):
         self.create_api_user()
@@ -779,7 +779,7 @@ class TestAccountSourceView(APITestCase):
         assert response.data == {'error': 'Email is required.'}
 
 
-class TestAccountSuperCreate(APIAuthTestCase):
+class TestAccountSuperCreate(APIKeyAuthTestCase):
 
     def setUp(self):
         super(TestAccountSuperCreate, self).setUp()

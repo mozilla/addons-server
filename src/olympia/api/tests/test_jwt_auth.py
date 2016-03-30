@@ -6,20 +6,26 @@ from django.test import RequestFactory
 
 import jwt
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings
 
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
 from olympia.api.jwt_auth import handlers
-from olympia.api.jwt_auth.views import JWTKeyAuthentication, JWTProtectedView
+from olympia.api.jwt_auth.views import JWTKeyAuthentication
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.users.models import UserProfile
 
 
-class ProtectedView(JWTProtectedView):
+class JWTKeyAuthTestView(APIView):
     """
-    This is an example of a view that would be protected by JWT token auth.
+    This is an example of a view that would be protected by
+    JWTKeyAuthentication.
     """
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTKeyAuthentication]
+
     def get(self, request):
         return Response('some get response')
 
@@ -27,7 +33,7 @@ class ProtectedView(JWTProtectedView):
         return Response({'user_pk': request.user.pk})
 
 
-class JWTAuthTester(TestCase):
+class JWTAuthKeyTester(TestCase):
 
     def create_api_key(self, user, key='some-user-key', is_active=True,
                        secret='some-shared-secret', **kw):
@@ -36,24 +42,32 @@ class JWTAuthTester(TestCase):
                                      is_active=is_active, **kw)
 
     def auth_token_payload(self, user, issuer):
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        return jwt_payload_handler(user, issuer)
+        """Creates a JWT payload as a client would."""
+        issued_at = datetime.utcnow()
+        return {
+            # The JWT issuer must match the 'key' field of APIKey
+            'iss': issuer,
+            'iat': issued_at,
+            'exp': issued_at + timedelta(
+                seconds=settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME)
+        }
 
     def encode_token_payload(self, payload, secret):
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-        return jwt_encode_handler(payload, secret)
+        """Encodes a JWT payload as a client would."""
+        token = jwt.encode(payload, secret, api_settings.JWT_ALGORITHM)
+        return token.decode('utf-8')
 
     def create_auth_token(self, user, issuer, secret):
         payload = self.auth_token_payload(user, issuer)
         return self.encode_token_payload(payload, secret)
 
 
-class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
+class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestJWTProtectedView, self).setUp()
-        self.endpoint(ProtectedView)
+        super(TestJWTKeyAuthProtectedView, self).setUp()
+        self.endpoint(JWTKeyAuthTestView)
         self.client.logout()  # just to be sure!
         self.user = UserProfile.objects.get(email='del@icio.us')
 
@@ -92,11 +106,11 @@ class TestJWTProtectedView(WithDynamicEndpoints, JWTAuthTester):
         assert res.status_code == 401, res.content
 
 
-class TestJWTAuthHandlers(JWTAuthTester):
+class TestJWTKeyAuthHandlers(JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestJWTAuthHandlers, self).setUp()
+        super(TestJWTKeyAuthHandlers, self).setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_report_unknown_issuer(self):
@@ -146,7 +160,6 @@ class TestJWTAuthHandlers(JWTAuthTester):
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
         payload['exp'] = (datetime.utcnow() -
-                          settings.JWT_AUTH['JWT_EXPIRATION_DELTA'] -
                           timedelta(seconds=10))
         token = self.encode_token_payload(payload, api_key.secret)
 
@@ -197,7 +210,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
         payload = self.auth_token_payload(self.user, api_key.key)
         payload['exp'] = (
             datetime.utcnow() +
-            timedelta(seconds=settings.MAX_JWT_AUTH_TOKEN_LIFETIME) +
+            timedelta(seconds=settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME) +
             timedelta(seconds=1)
         )
         token = self.encode_token_payload(payload, api_key.secret)
@@ -208,7 +221,7 @@ class TestJWTAuthHandlers(JWTAuthTester):
         assert ctx.exception.detail == 'JWT exp (expiration) is too long'
 
 
-class TestJWTKeyAuthentication(JWTAuthTester):
+class TestJWTKeyAuthentication(JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

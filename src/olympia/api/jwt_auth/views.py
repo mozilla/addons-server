@@ -1,8 +1,10 @@
+from django.utils.translation import ugettext as _
+
+import jwt
 from rest_framework import exceptions
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
+from olympia.api.jwt_auth import handlers
 from olympia.api.models import APIKey
 
 
@@ -24,6 +26,34 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
     by the authenticated user.
     """
 
+    def authenticate(self, request):
+        """
+        Returns a two-tuple of `User` and token if a valid signature has been
+        supplied using JWT-based authentication.  Otherwise returns `None`.
+
+        Copied from rest_framework_jwt BaseJSONWebTokenAuthentication, with
+        the decode_handler changed to our own - because we don't want that
+        decoder to be the default one in settings.
+        """
+        jwt_value = self.get_jwt_value(request)
+        if jwt_value is None:
+            return None
+
+        try:
+            payload = handlers.jwt_decode_handler(jwt_value)
+        except jwt.ExpiredSignature:
+            msg = _('Signature has expired.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.DecodeError:
+            msg = _('Error decoding signature.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.InvalidTokenError:
+            raise exceptions.AuthenticationFailed()
+
+        user = self.authenticate_credentials(payload)
+
+        return (user, jwt_value)
+
     def authenticate_credentials(self, payload):
         """
         Returns a verified AMO user who is active and allowed to make API
@@ -43,16 +73,3 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             raise exceptions.AuthenticationFailed(msg)
 
         return api_key.user
-
-
-class JWTProtectedView(APIView):
-    """
-    Base class to protect any API view by way of JWT headers.
-
-    As mentioned in the authentication class, this only verifies that the
-    user is who they say they are, it does not verify that the request came
-    from that user. It's like Oauth 2.0 but without any need to store
-    tokens in the database (because we can just verify the JWT signature).
-    """
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTKeyAuthentication]
