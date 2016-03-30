@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-30 09:40+0000\n"
+"PO-Revision-Date: 2016-03-30 11:30+0000\n"
 "Last-Translator: Sergii Klymenko <kleim.hostel@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5521,7 +5521,7 @@ msgstr ""
 "Коротке пояснення про базову функціональність\n"
 "                          ваших додатків, що показана у списках пошуку та перегляду,\n"
 "                          а також у верхній частині сторінки подробиць ваших додатків.\n"
-"                          Це стосується лише додатків, що знаходяться в списку."
+"                          Це стосується лише опублікованих додатків."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5719,7 +5719,7 @@ msgid ""
 "                        online viewer. It is only relevant for listed add-ons."
 msgstr ""
 "Чи може джерело вашого додатка бути відображене у нашому\n"
-"                        засобі онлайн-перегляду. Це стосується лише додатків, що знаходяться в списку."
+"                        засобі онлайн-перегляду. Це стосується лише опублікованих додатків."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
@@ -8240,7 +8240,7 @@ msgid ""
 "                  It is only relevant for listed add-ons."
 msgstr ""
 "Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
-"                  програмного коду. Це стосується лише додатків, які є в списку."
+"                  програмного коду. Це стосується лише опублікованих додатків."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
