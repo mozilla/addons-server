@@ -8,6 +8,7 @@
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
 @header-font-color: #c63717;
+@default-font-color: #333;
 
 // Common styles
 @detail-border: 1px solid #ebebeb;
@@ -49,41 +50,62 @@
        url('../../css/impala/fonts/OpenSans-Italic.ttf') format('ttf');
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.5;
+}
+
 // Styles
 #tabzilla:before {
   background: none;
 }
 
+html {
+  font-size: 13px;
+}
+
 body.restyle {
   background: #fff none repeat scroll 0 0;
-  color: #333;
+  color: @default-font-color;
   font-family: @primary-font;
   font-style: normal;
-  font-size: 0.875rem;
   line-height: 1.5;
   min-width: 1018px;
 }
 
-h1, #masthead h1 {
+h1,
+#masthead h1 {
   font-family: @primary-font;
 }
-
-#site-nav ul {
-  margin-bottom: 1.5em;
+#masthead h1 a {
+  color: @link-on-color-bg;
 }
 
 h2 {
   margin-top: 1em;
 }
 
+.primary h1,
+.island h2 {
+  margin-top: 0;
+}
+
 h1,
 .primary h2,
 hgroup h2.addon,
 .personas-featured h3 {
-  color: @header-font-color;
+  color: @default-font-color;
   font-family: @primary-font !important;
-  font-size: 2.25rem;
+  font-size: 1.692rem;
   font-style: normal;
+  line-height: 1.5;
+}
+
+#collections-landing {
+  margin-top: 20px;
 }
 
 .addon-details h2 {
@@ -93,7 +115,7 @@ hgroup h2.addon,
 
 .primary header h2,
 .personas-featured h3 {
-  margin: 5px 0 15px;
+  margin: 0 0 15px;
 }
 
 // These are all defined in AMO's original CSS and seem to need overriding :'(
@@ -213,9 +235,13 @@ button.link:active span {
   font-family: inherit;
 }
 
+body:not(.home) .amo-header {
+  min-height: 130px;
+  margin-bottom: 10px;
+}
+
 .menu-nav {
   color: @link-on-color-bg;
-  font-size: 0.75rem;
 }
 
 .amo-header ul a {
@@ -227,14 +253,9 @@ button.link:active span {
   }
 }
 
-.menu-nav {
-  color: #fff;
-  font-size: 0.75rem;
-}
-
 #masthead h1 {
-  font-size: 3.5rem;
-  line-height: 3rem;
+  font-size: 4.308rem; // 56px
+  line-height: 3.692rem; // 48px
   letter-spacing: -1px;
   text-transform: none;
 }
@@ -446,6 +467,7 @@ button.search-button {
   opacity: 1;
   visibility: visible;
   width: 960px;
+  margin-bottom: 10px;
 }
 
 #promos,
@@ -647,14 +669,15 @@ button.search-button {
   text-align: left;
 }
 
-#featured-addon h3 a, #monthly h3 a {
+#featured-addon h3 a,
+#monthly h3 a {
   color: @link-on-color-bg;
 }
 
-#monthly .addons p.desc, #monthly .wrap p {
+#monthly .addons p.desc,
+#monthly .wrap p {
   clear: both;
   color: #fff;
-  font-size: 0.85rem;
   font-weight: 200;
   max-height: 5.4em;
   text-overflow: ellipsis;
@@ -709,7 +732,7 @@ button.good {
 }
 
 .restyle.home .shift-secondary {
-  margin-top: 300px;
+  margin-top: 282px;
 }
 
 .home .secondary {
@@ -998,6 +1021,8 @@ button.good {
 .secondary .other-categories {
   background-color: transparent;
   border: 0;
+  margin-top: 0;
+  padding-top: 0;
 
   ul {
     border-top: none;
@@ -1199,15 +1224,18 @@ button.good {
   }
 }
 
-.category-landing .addons-column ul.personas {
-  padding: 0;
-}
+.category-landing .addons-column {
 
-.category-landing .addons-column ul li {
-  overflow: visible;
-
-  .persona a {
+  ul.personas {
     padding: 0;
+  }
+
+  ul li {
+    overflow: visible;
+
+    .persona a {
+      padding: 0;
+    }
   }
 }
 
