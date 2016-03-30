@@ -242,7 +242,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
+        self.request.data = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -257,7 +257,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
                 next_path=base64.urlsafe_b64encode('/a/path/?')),
@@ -276,7 +276,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(next_path='L2Zvbw'),
         }
@@ -293,7 +293,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': u'some-blob:/raw/path',
         }
@@ -310,7 +310,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': u'some-blob:',
         }
@@ -327,7 +327,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
                 next_path=base64.urlsafe_b64encode('https://www.google.com')),
@@ -344,7 +344,7 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
-        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
+        self.request.data = {'code': 'foo', 'state': 'some-blob'}
         self.user.is_authenticated = lambda: False
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -356,7 +356,7 @@ class TestWithUser(TestCase):
 
     def test_profile_does_not_exist(self):
         self.fxa_identify.side_effect = verify.IdentificationError
-        self.request.DATA = {'code': 'foo', 'state': 'some-blob'}
+        self.request.data = {'code': 'foo', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
             self.request, views.ERROR_NO_PROFILE, next_path=None,
@@ -364,7 +364,7 @@ class TestWithUser(TestCase):
         assert not self.find_user.called
 
     def test_code_not_provided(self):
-        self.request.DATA = {'hey': 'hi', 'state': 'some-blob'}
+        self.request.data = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
             self.request, views.ERROR_NO_CODE, next_path=None, format='json')
@@ -376,7 +376,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        self.request.data = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -390,7 +390,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
         self.user.pk = 100
-        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        self.request.data = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -405,7 +405,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = None
         self.user.pk = 100
         self.user.fxa_id = ''
-        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        self.request.data = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -420,7 +420,7 @@ class TestWithUser(TestCase):
         self.find_user.return_value = None
         self.user.pk = 100
         self.user.fxa_id = '4321'
-        self.request.DATA = {'code': 'woah', 'state': 'some-blob'}
+        self.request.data = {'code': 'woah', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
             self.request, views.ERROR_USER_MIGRATED, next_path=None,
@@ -431,7 +431,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = mock.MagicMock(pk=222)
         self.user.pk = 100
-        self.request.DATA = {
+        self.request.data = {
             'code': 'woah',
             'state': 'some-blob:{}'.format(
                 base64.urlsafe_b64encode('https://www.google.com/')),
@@ -446,7 +446,7 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
         self.user.is_authenticated = lambda: False
-        self.request.DATA = {
+        self.request.data = {
             'code': 'foo',
             'state': 'other-blob:{}'.format(base64.urlsafe_b64encode('/next')),
         }
