@@ -37,9 +37,11 @@ function initPromos($context, module_context, version, platform) {
             $('#background-wrapper').addClass('carousel-header');
             $('#promos').addClass('show');
             $('#side-nav').addClass('expanded');
+            // .4px needed to fix half-pixel issue in FF.
+            var extraHeight = $('body.restyle').length ? 24.4 : 40;
             $('#background-wrapper').height(
                 $('.amo-header').height() +
-                $('#promos').height() + 40
+                $('#promos').height() + extraHeight
             );
         }
     });
