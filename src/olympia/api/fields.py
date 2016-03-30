@@ -3,10 +3,8 @@ from django.utils.translation import ugettext_lazy as _lazy
 from django.core.exceptions import ValidationError
 
 from rest_framework import fields
-from rest_framework import serializers
 
 from olympia.amo.utils import to_language
-from olympia.translations.models import Translation
 
 
 class TranslationSerializerField(fields.Field):
