@@ -719,7 +719,7 @@ button.search-button {
 }
 
 // Side nav elsewhere (themes)
-.secondary .highlight {
+body:not(.developer-hub) .secondary .highlight {
   padding: 7px 0 0;
 }
 
@@ -759,9 +759,12 @@ button.good {
   margin: 12px 0;
 }
 
+body:not(.developer-hub) .secondary {
+  width: 180px;
+}
+
 .secondary {
   margin: 0 0 12px;
-  width: 180px;
 
   h2, h3 {
     color: #aaa;
@@ -1445,4 +1448,16 @@ h3.author .transfer-ownership {
 .sidebar button:active {
   border: 0;
   box-shadow: inset 1px 1px 1px #fff;
+}
+
+// Developer Hub
+.developer-hub {
+
+  .addon-submission-process {
+    padding-top: 0;
+
+    form {
+      margin-top: 0;
+    }
+  }
 }
