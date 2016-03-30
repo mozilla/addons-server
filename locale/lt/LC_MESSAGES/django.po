@@ -6,13 +6,10 @@ msgstr ""
 "PO-Revision-Date: 2014-02-24 21:21+0000\n"
 "Last-Translator: Paulius <ekstras@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: lt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1393276875.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -483,8 +480,8 @@ msgid "Version {0}:"
 msgstr "Versija {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgid "Nothing to see here! The developer did not include any details."
+msgstr "Čia nieko nėra! Kūrėjas nepateikė jokių detalių."
 
 #: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
@@ -815,11 +812,10 @@ msgid "QR code for add-on"
 msgstr "Priedo QR kodas"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox? Scan this QR code to install directly to your phone. (You'll need a QR reader. Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Norite {0} savo mobiliojoje Firefox? Nuskenuokite šį QR kodą ir galėsite įdiegti iškart savo telefone. (Jums reikės QR kodų skaitytuvo. Paieškote savo telefono programėlių parduotuvėje, jeigu jo "
+"dar neturite)."
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6 src/olympia/addons/templates/addons/report_abuse_full.html:10 src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328

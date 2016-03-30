@@ -35,7 +35,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.acl import check_ownership
-from olympia.addons import search as addons_search
+from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -48,6 +48,8 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.lib.es.signals import process, reset
+from olympia.lib.es.utils import timestamp_index
+from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import ApplicationsVersions, Version
 from olympia.users.models import UserProfile
@@ -129,7 +131,7 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            eq_(e.text(), text)
+            assert e.text() == text
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
@@ -612,6 +614,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
     persona_id = kw.pop('persona_id', None)
+    tags = kw.pop('tags', [])
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -647,6 +650,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         persona_id = persona_id if persona_id is not None else a.id
         Persona.objects.create(addon=a, popularity=a.weekly_downloads,
                                persona_id=persona_id)  # Save 3.
+
+    for tag in tags:
+        Tag(tag_text=tag).save_tag(a)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -687,8 +693,9 @@ def collection_factory(**kw):
 def file_factory(**kw):
     v = kw['version']
     status = kw.pop('status', amo.STATUS_PUBLIC)
+    platform = kw.pop('platform', amo.PLATFORM_ALL.id)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=amo.PLATFORM_ALL.id, status=status, **kw)
+                            platform=platform, status=status, **kw)
     return f
 
 
@@ -750,7 +757,14 @@ class ESTestCase(TestCase):
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
     mock_es = False
-    exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
+
+    # We need ES indexes aliases to match prod behaviour, but also we need the
+    # names need to stay consistent during the whole test run, so we generate
+    # them at import time. Note that this works because pytest overrides
+    # ES_INDEXES before the test run even begins - if we were using
+    # override_settings() on ES_INDEXES we'd be in trouble.
+    index_names = {key: timestamp_index(value)
+                   for key, value in settings.ES_INDEXES.items()}
 
     @classmethod
     def setUpClass(cls):
@@ -771,12 +785,28 @@ class ESTestCase(TestCase):
             'english': ['en-us'],
             'spanish': ['es'],
         }
+        aliases_and_indexes = set(settings.ES_INDEXES.values() +
+                                  cls.es.indices.get_aliases().keys())
+        for key in aliases_and_indexes:
+            if key.startswith('test_amo'):
+                cls.es.indices.delete(key, ignore=[404])
 
-        for index in set(settings.ES_INDEXES.values()):
-            cls.es.indices.delete(index, ignore=[404])
+        # Create new search and stats indexes with the timestamped name.
+        # This is crucial to set up the correct mappings before we start
+        # indexing things in tests.
+        search_indexers.create_new_index(
+            index_name=cls.index_names['default'])
+        stats_search.create_new_index(index_name=cls.index_names['stats'])
 
-        addons_search.create_new_index()
-        stats_search.create_new_index()
+        # Alias it to the name the code is going to use (which is suffixed by
+        # pytest to avoid clashing with the real thing).
+        actions = [
+            {'add': {'index': cls.index_names['default'],
+                     'alias': settings.ES_INDEXES['default']}},
+            {'add': {'index': cls.index_names['stats'],
+                     'alias': settings.ES_INDEXES['stats']}}
+        ]
+        cls.es.indices.update_aliases({'actions': actions})
 
     @classmethod
     def tearDownClass(cls):

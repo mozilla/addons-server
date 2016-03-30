@@ -314,8 +314,8 @@ def collection_message(request, collection, option):
     if option == 'add':
         title = _('Collection created!')
         msg = _(
-            'Your new collection is shown below. You can <a'
-            'href="%(url)s">edit additional settings</a> if you\'d'
+            'Your new collection is shown below. You can '
+            '<a href="%(url)s">edit additional settings</a> if you\'d '
             'like.'
         ) % {'url': collection.edit_url()}
     elif option == 'update':

@@ -1,3 +1,4 @@
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -6,13 +7,10 @@ msgstr ""
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: pt\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444870302.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -137,8 +135,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Binários compilados, bem como scripts minificados ou ofuscados (excluindo bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Tenha a certeza que utiliza o campo "
-"de envio de código fonte para evitar que as sua submissão seja rejeitada."
+"Binários compilados, bem como scripts minificados ou ofuscados (excluindo bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Tenha a certeza que utiliza o campo"
+" de envio de código fonte para evitar que as sua submissão seja rejeitada."
 
 #: static/js/common/upload-addon.js:501
 msgid "The validation process found these issues that can lead to rejections:"
@@ -1216,3 +1214,4 @@ msgstr "Está a experimentá-lo!"
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Adicionado ao Firefox"
+

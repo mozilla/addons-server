@@ -1,4 +1,4 @@
-from jingo import register, get_env
+from jingo import register
 import jinja2
 
 
@@ -11,22 +11,3 @@ def tag_list(context, addon, tags=[]):
     c.update({'addon': addon,
               'tags': tags})
     return c
-
-
-def range_convert(value, old_min, old_max, new_min, new_max):
-    """
-    Utility to tranfer a value (preserving the relative value in
-    the range) from its current range to a new one.
-    """
-    old_range = 1 if old_max - old_min == 0 else old_max - old_min
-    new_range = new_max - new_min
-    return int(((value - old_min) * new_range) / old_range) + new_min
-
-
-@register.function
-def tag_link(tag, min_count, max_count, min_level=1):
-    """create the tag cloud link with the poper tagLevel class"""
-    factor = max(range_convert(tag.num_addons, 0, max_count, 1, 10),
-                 min_level)
-    template = get_env().get_template('tags/tag_link.html')
-    return jinja2.Markup(template.render({'factor': factor, 'tag': tag}))

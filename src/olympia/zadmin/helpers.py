@@ -15,7 +15,6 @@ def admin_site_links():
             ('Monthly Pick', reverse('zadmin.monthly_pick')),
             ('Bulk add-on validation', reverse('zadmin.validation')),
             ('Fake mail', reverse('zadmin.mail')),
-            ('Flagged reviews', reverse('zadmin.flagged')),
             ('ACR Reports', reverse('zadmin.compat')),
             ('Email Add-on Developers', reverse('zadmin.email_devs')),
         ],

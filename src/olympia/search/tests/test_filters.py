@@ -5,7 +5,6 @@ from elasticsearch_dsl import Search
 from mock import Mock
 
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -91,35 +90,6 @@ class TestQueryFilter(FilterTestsBase):
         qs_str = json.dumps(qs)
         assert 'fuzzy' not in qs_str
 
-    @override_settings(ES_USE_PLUGINS=True)
-    def test_polish_analyzer(self):
-        """
-        Test that the polish analyzer is included correctly since it is an
-        exception to the rest b/c it is a plugin.
-        """
-        with self.activate(locale='pl'):
-            qs = self._filter(data={'q': u'próba'})
-            should = (qs['query']['function_score']['query']['bool']['should'])
-            expected = {
-                'match': {
-                    'name_polish': {
-                        'query': u'pr\xf3ba', 'boost': 2.5,
-                        'analyzer': 'polish'
-                    }
-                }
-            }
-            assert expected in should
-
-            expected = {
-                'match': {
-                    'description_polish': {
-                        'query': u'pr\xf3ba', 'boost': 0.6,
-                        'analyzer': 'polish', 'type': 'phrase'
-                    }
-                }
-            }
-            assert expected in should
-
 
 class TestPublicContentFilter(FilterTestsBase):
 
@@ -140,11 +110,48 @@ class TestSortingFilter(FilterTestsBase):
 
     filter_classes = [SortingFilter]
 
-    def test_sort(self):
+    def _reformat_order(self, key):
+        # elasticsearch-dsl transforms '-something' for us, so we have to
+        # expect the sort param in this format when we inspect the resulting
+        # queryset object.
+        return {key[1:]: {'order': 'desc'}} if key.startswith('-') else key
+
+    def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
         assert 'sort' not in qs
+
         qs = self._filter()
-        assert qs['sort'] == ['name_sort']
+        assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
+
+    def test_sort_query(self):
+        SORTING_PARAMS = SortingFilter.SORTING_PARAMS
+
+        for param in SORTING_PARAMS:
+            qs = self._filter(data={'sort': param})
+            assert qs['sort'] == [self._reformat_order(SORTING_PARAMS[param])]
+        # Having a search query does not change anything, the requested sort
+        # takes precedence.
+        for param in SORTING_PARAMS:
+            qs = self._filter(data={'q': 'something', 'sort': param})
+            assert qs['sort'] == [self._reformat_order(SORTING_PARAMS[param])]
+
+        # If the sort query is wrong, just omit it and fall back to the
+        # default.
+        qs = self._filter(data={'sort': 'WRONGLOL'})
+        assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
+
+        # Same as above but with a search query.
+        qs = self._filter(data={'q': 'something', 'sort': 'WRONGLOL'})
+        assert 'sort' not in qs
+
+    def test_sort_query_multiple(self):
+        qs = self._filter(data={'sort': ['rating,created']})
+        assert qs['sort'] == [self._reformat_order('-bayesian_rating'),
+                              self._reformat_order('-created')]
+
+        # If the sort query is wrong, just omit it.
+        qs = self._filter(data={'sort': ['LOLWRONG,created']})
+        assert qs['sort'] == [self._reformat_order('-created')]
 
 
 class TestCombinedFilter(FilterTestsBase):

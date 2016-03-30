@@ -7,14 +7,10 @@ msgstr ""
 "PO-Revision-Date: 2013-10-24 06:32+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
-"Language: eu\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.9.0\n"
-"X-Project-Style: default\n"
-"X-POOTLE-MTIME: 1382596325.0\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1217,3 +1213,4 @@ msgstr "Saiatzen ari zara!"
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Firefoxera gehituta"
+

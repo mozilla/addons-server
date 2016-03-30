@@ -4,16 +4,16 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-22 17:08+0000\n"
+"PO-Revision-Date: 2016-03-26 22:16+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-"X-POOTLE-MTIME: 1380916461.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -2635,7 +2635,6 @@ msgstr "Saltar para a última página"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
-#. First and second arguments are the result range (e.g., 1-20);
 #. third
 #. argument is the number of total results (e.g., 1,000).
 #: src/olympia/amo/templates/amo/impala/paginator.html:36
@@ -3092,7 +3091,6 @@ msgstr[1] "<span>%(followers)s</span> seguidores"
 #. People "follow" collections to get notified of updates.
 #. Like
 #. Twitter followers.
-#. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:10
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:18
@@ -3115,7 +3113,6 @@ msgstr[1] "%(num)s seguidores mensais"
 #. People "follow" collections to get notified of updates.
 #. Like
 #. Twitter followers.
-#. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:26
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:26
@@ -4813,8 +4810,8 @@ msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated."
 " After addressing the visible messages, you'll be able to see the others."
 msgstr ""
-"A validação gerou muitos erros/alertas então %s mensagens foram cortadas. "
-"Após corrigir as mensagens visíveis, você poderá ver as outras mensagens."
+"A validação gerou muitos erros/alertas então %s mensagens foram truncadas. "
+"Após corrigir as mensagens visíveis, poderá ver as outras."
 
 #: src/olympia/devhub/views.py:183
 msgid "All My Add-ons"
@@ -15892,7 +15889,7 @@ msgstr "Acompanhado por mim"
 # "Me" in this context is the user shown on the User Info page
 #: src/olympia/users/templates/users/profile.html:86
 msgid "Created by Me"
-msgstr "Criado por Mim."
+msgstr "Criadas por mim"
 
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html:94

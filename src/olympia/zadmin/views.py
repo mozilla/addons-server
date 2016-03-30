@@ -25,7 +25,6 @@ from olympia import amo
 from olympia.amo import search
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
-from olympia.addons.search import get_mappings as get_addons_mappings
 from olympia.amo import messages, get_user
 from olympia.amo.decorators import (
     any_permission_required, json_view, login_required, post_required)
@@ -35,7 +34,8 @@ from olympia.amo.utils import HttpResponseSendFile, chunked
 from olympia.bandwagon.models import Collection
 from olympia.compat.models import AppCompat, CompatTotals
 from olympia.devhub.models import ActivityLog
-from olympia.files.models import Approval, File, FileUpload
+from olympia.files.models import File, FileUpload
+from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint
@@ -52,52 +52,6 @@ from .forms import (
 from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
 
 log = commonware.log.getLogger('z.zadmin')
-
-
-@admin_required(reviewers=True)
-def flagged(request):
-    types = list(set(amo.ADDON_TYPES.keys()))
-    addons = (Addon.objects.no_cache()
-                           .filter(admin_review=True, type__in=types)
-                           .no_transforms().order_by('-created'))
-
-    if request.method == 'POST':
-        ids = map(int, request.POST.getlist('addon_id'))
-        for addon in addons.filter(id__in=ids):
-            addon.update(admin_review=False)
-        return redirect('zadmin.flagged')
-
-    if not addons:
-        return render(request, 'zadmin/flagged_addon_list.html',
-                      {'addons': addons, 'reverse': reverse})
-
-    sql = """SELECT {t}.* FROM {t} JOIN (
-                SELECT addon_id, MAX(created) AS created
-                FROM {t}
-                GROUP BY addon_id) as J
-             ON ({t}.addon_id = J.addon_id AND {t}.created = J.created)
-             WHERE {t}.addon_id IN {ids}"""
-    approvals_sql = sql + """
-        AND (({t}.reviewtype = 'nominated' AND {t}.action = %s)
-             OR ({t}.reviewtype = 'pending' AND {t}.action = %s))"""
-
-    ids = '(%s)' % ', '.join(str(a.id) for a in addons)
-    versions_sql = sql.format(t=Version._meta.db_table, ids=ids)
-    approvals_sql = approvals_sql.format(t=Approval._meta.db_table, ids=ids)
-
-    versions = dict((x.addon_id, x) for x in
-                    Version.objects.raw(versions_sql))
-    approvals = dict((x.addon_id, x) for x in
-                     Approval.objects.raw(approvals_sql,
-                                          [amo.STATUS_NOMINATED,
-                                           amo.STATUS_PENDING]))
-
-    for addon in addons:
-        addon.version = versions.get(addon.id)
-        addon.approval = approvals.get(addon.id)
-
-    return render(request, 'zadmin/flagged_addon_list.html',
-                  {'addons': addons})
 
 
 @admin_required(reviewers=True)

@@ -41,13 +41,6 @@ class TestXSS(TestCase):
         assert self.escaped in r.content
         assert self.xss not in r.content
 
-    def test_tags_xss_cloud(self):
-        """Test xss tag cloud."""
-        url = reverse('tags.top_cloud')
-        r = self.client.get(url, follow=True)
-        assert self.escaped in r.content
-        assert self.xss not in r.content
-
 
 class TestXSSURLFail(TestCase):
     fixtures = ['base/addon_3615',
@@ -74,11 +67,6 @@ class TestXSSURLFail(TestCase):
         """Test xss tag home."""
         self.assertRaises(NoReverseMatch, reverse,
                           'tags.detail', args=[self.xss])
-
-    def test_tags_xss_cloud(self):
-        """Test xss tag cloud."""
-        self.assertRaises(NoReverseMatch, reverse,
-                          'tags.top_cloud', args=[self.xss])
 
     def test_no_reverse(self):
         assert not self.tag.can_reverse()

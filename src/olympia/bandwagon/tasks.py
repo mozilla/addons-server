@@ -12,7 +12,7 @@ from olympia.amo.utils import attach_trans_dict, resize_image
 from olympia.tags.models import Tag
 from olympia.lib.es.utils import index_objects
 
-from . import search
+from .indexers import CollectionIndexer
 from .models import (
     Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
@@ -105,7 +105,8 @@ def collection_watchers(*ids, **kw):
 def index_collections(ids, **kw):
     log.debug('Indexing collections %s-%s [%s].' % (ids[0], ids[-1], len(ids)))
     index = kw.pop('index', None)
-    index_objects(ids, Collection, search, index, [attach_translations])
+    index_objects(ids, Collection, CollectionIndexer.extract_document,
+                  index, [attach_translations])
 
 
 def attach_translations(collections):

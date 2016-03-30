@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils import translation
 
 from elasticsearch_dsl import F, query
@@ -10,8 +9,6 @@ from olympia import amo
 
 def get_locale_analyzer(lang):
     analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
-    if not settings.ES_USE_PLUGINS and analyzer in amo.SEARCH_ANALYZER_PLUGINS:
-        return None
     return analyzer
 
 
@@ -126,14 +123,33 @@ class SortingFilter(BaseFilterBackend):
     A django-rest-framework filter backend that applies sorting to an ES query
     according to the request.
     """
+    SORTING_PARAMS = {
+        'users': '-average_daily_users',
+        'rating': '-bayesian_rating',
+        'created': '-created',
+        'name': 'name_sort',
+        'downloads': '-weekly_downloads',
+        'updated': '-last_updated',
+        'hotness': '-hotness'
+    }
+    SORTING_DEFAULT = 'downloads'
 
     def filter_queryset(self, request, qs, view):
-        search_query = request.GET.get('q')
+        search_query_param = request.GET.get('q')
+        sort_param = request.GET.get('sort')
+        order_by = None
 
-        # When querying (with `?q=`) we want to let ES order results by
-        # relevance. Otherwise we order by name (To be tweaked further when
-        # we implement ?sort=).
-        order_by = None if search_query else ['name_sort']
+        if sort_param:
+            order_by = [self.SORTING_PARAMS[name] for name in
+                        sort_param.split(',') if name in self.SORTING_PARAMS]
+
+        # The default sort behaviour depends on the presence of a query: When
+        # querying (with `?q=`) we want to let ES order results by relevance
+        # by default. Therefore, if we don't have a valid order_by at this
+        # point, only add the default one if we did not have a search query
+        # param.
+        if not order_by and not search_query_param:
+            order_by = [self.SORTING_PARAMS[self.SORTING_DEFAULT]]
 
         if order_by:
             return qs.sort(*order_by)

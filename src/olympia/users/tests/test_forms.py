@@ -625,6 +625,22 @@ class TestUserRegisterForm(UserFormBase):
         r = self.client.post('/en-US/firefox/users/register', data)
         self.assertFormError(r, 'form', 'homepage', m)
 
+    def test_bad_scheme_homepage(self):
+        data = {'homepage': 'javascript://example.com',
+                'email': ''}
+        m = 'This URL has an invalid format. '
+        m += 'Valid URLs look like http://example.com/my_page.'
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'homepage', m)
+
+    def test_ftp_scheme_homepage(self):
+        data = {'homepage': 'ftp://example.com',
+                'email': ''}
+        m = 'This URL has an invalid format. '
+        m += 'Valid URLs look like http://example.com/my_page.'
+        r = self.client.post('/en-US/firefox/users/register', data)
+        self.assertFormError(r, 'form', 'homepage', m)
+
     def test_already_logged_in(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get('/users/register', follow=True)

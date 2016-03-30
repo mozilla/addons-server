@@ -7,6 +7,7 @@
 @primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
+@header-font-color: #c63717;
 
 // Common styles
 @detail-border: 1px solid #ebebeb;
@@ -53,20 +54,46 @@
   background: none;
 }
 
-body {
+body.restyle {
   background: #fff none repeat scroll 0 0;
   color: #333;
-  font-family: @primary-font !important;
+  font-family: @primary-font;
   font-style: normal;
   font-size: 0.875rem;
   line-height: 1.5;
   min-width: 1018px;
 }
 
-h1 {
+h1, #masthead h1 {
+  font-family: @primary-font;
+}
+
+#site-nav ul {
+  margin-bottom: 1.5em;
+}
+
+h2 {
+  margin-top: 1em;
+}
+
+h1,
+.primary h2,
+hgroup h2.addon,
+.personas-featured h3 {
+  color: @header-font-color;
   font-family: @primary-font !important;
-  font-style: normal;
   font-size: 2.25rem;
+  font-style: normal;
+}
+
+.addon-details h2 {
+  color: inherit;
+  font-size: 1.75rem;
+}
+
+.primary header h2,
+.personas-featured h3 {
+  margin: 5px 0 15px;
 }
 
 // These are all defined in AMO's original CSS and seem to need overriding :'(
@@ -76,9 +103,6 @@ a:visited,
 a:hover,
 a:focus,
 a:active,
-button.link:hover span,
-button.link:focus span,
-button.link:active span,
 .more-info,
 .more-info:link,
 .more-info:visited,
@@ -86,6 +110,15 @@ button.link:active span,
 .more-info:focus,
 .more-info:active {
   color: @link-on-white-bg;
+}
+
+a.button,
+a.delete-button,
+a.delete-button:hover,
+button.link:hover span,
+button.link:focus span,
+button.link:active span {
+  color: @link-on-color-bg;
 }
 
 /* Main Content Wrapper */
@@ -144,7 +177,7 @@ button.link:active span,
       to bottom,
       rgba(12, 153, 213, 0) 0,
       @primary-blue 500px,
-      #fff 0%
+      @primary-blue 0%
     ),
     repeating-linear-gradient(
       118deg,
@@ -159,6 +192,15 @@ button.link:active span,
     0 416px,
     0 0,
     0 0;
+}
+
+.category-landing [role="main"],
+.amo-header + .primary {
+  width: 78%;
+}
+
+.category-landing .amo-header + .primary header {
+  display: none;
 }
 
 // hide overflow to cover streching of bg in
@@ -191,7 +233,6 @@ button.link:active span,
 }
 
 #masthead h1 {
-  font-family: inherit;
   font-size: 3.5rem;
   line-height: 3rem;
   letter-spacing: -1px;
@@ -215,6 +256,8 @@ button.link:active span,
 
 // DevHub Title
 .site-title.prominent {
+  // These are tied up in some really nested class + id selectors, so we
+  // cave and use !important
   margin-bottom: 20px !important;
   margin-top: -20px !important;
 
@@ -391,17 +434,17 @@ button.search-button {
   background: #fff;
 }
 
-.site-balloon {
-  display: none !important;
+.restyle .site-balloon {
+  display: none;
 }
 
 #promos {
-  display: block !important;
-  height: auto !important;
+  display: block;
+  height: auto;
   margin-left: -210px;
-  min-height: 0 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  min-height: 0;
+  opacity: 1;
+  visibility: visible;
   width: 960px;
 }
 
@@ -503,8 +546,8 @@ button.search-button {
   }
 }
 
-.control {
-  font-family: @primary-font !important;
+.restyle .control {
+  font-family: @primary-font;
 }
 
 #promos {
@@ -625,7 +668,7 @@ button.search-button {
 
 .toplist li a {
   line-height: 1.5;
-  padding: .25em 0;
+  padding: 0.25em 0;
 
   small {
     margin-top: -3px;
@@ -634,7 +677,7 @@ button.search-button {
 
 // Side nav elsewhere (themes)
 .secondary .highlight {
-  padding: 0;
+  padding: 7px 0 0;
 }
 
 // Install Button
@@ -738,13 +781,13 @@ button.good {
 }
 
 // Add-on Details Page
-#page #breadcrumbs {
+#breadcrumbs {
   display: none;
 }
 
 .addon-details .primary,
 .addon-details .secondary {
-  font-family: @primary-font !important;
+  font-family: @primary-font;
 }
 
 #addon h1 {
@@ -789,7 +832,8 @@ button.good {
 
 #addon-summary a,
 .notice.c.author a {
-  color: @link-on-color-bg !important;
+  color: @link-on-color-bg;
+  text-decoration: underline;
 }
 
 .notice.c.author {
@@ -837,6 +881,10 @@ button.good {
   z-index: 1;
 }
 
+.addon-details .primary .notice {
+  padding-bottom: 18px;
+}
+
 .hovercard a h3,
 .secondary li a,
 #footer a:link,
@@ -864,7 +912,7 @@ button.good {
     }
 
     .more {
-      display: block !important;
+      display: block;
 
       .addon-summary,
       .byline,
@@ -899,14 +947,12 @@ button.good {
     color: @link-on-color-bg;
   }
 
-  .version-number,
-  h4.author,
+  h4.author a,
   a.privacy-policy,
   #contribution.notice p a,
-  .category.more-info,
   .vital a,
   #reviews-link {
-    opacity: 0.4;
+    text-decoration: underline;
   }
 
   .version-number {
@@ -926,9 +972,9 @@ button.good {
   }
 }
 
-#promos.shown {
-  height: 271px !important;
-  min-height: 271px !important;
+.restyle #promos.shown {
+  height: 271px;
+  min-height: 271px;
 }
 
 #side-nav.c.expanded {
@@ -954,7 +1000,7 @@ button.good {
   border: 0;
 
   ul {
-    border-top: none !important;
+    border-top: none;
 
     li {
       padding: 0;
@@ -966,7 +1012,7 @@ button.good {
     font-family: @primary-font;
     font-size: 14px;
     font-style: normal;
-    font-weight: 700 !important;
+    font-weight: 700;
     text-transform: uppercase;
   }
 
@@ -1100,6 +1146,16 @@ button.good {
   }
 }
 
+// If the viewport is smaller than the min-width of the page weirdness
+// happens, so we go back to a non-full-width screenshot then.
+// See: https://github.com/mozilla/addons-server/issues/1983
+@media (max-width: 1018px) {
+  .restyle .previews {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 // lightbox
 #lightbox {
   background: rgba(0, 0, 0, 0.75);
@@ -1125,7 +1181,7 @@ button.good {
     border: 0;
     display: inline;
     overflow: hidden;
-    padding: .6em 0 0;
+    padding: 0.6em 0 0;
     position: relative;
   }
 
@@ -1175,11 +1231,11 @@ button.good {
 }
 
 // This is used to override JS that tries to mess with these styles :'(
-.persona.hovercard a {
+.restyle .persona.hovercard a {
   background: none !important;
 
   .persona-preview [data-browsertheme] {
-    background: none !important;
+    background: none;
     border: 0 !important; // zamboni.css defines this as !important :-/
   }
 }
@@ -1195,6 +1251,8 @@ button.good {
 
 // Install buttons
 .install-button .concealed {
+  // This is display: none !important because JS modifies the element's
+  // CSS directly.
   display: none !important;
 }
 
@@ -1207,4 +1265,21 @@ button.good {
   color: #b1b1b1;
   font-size: 14px;
   padding-left: 20px;
+}
+
+// Contribute button fixes
+.notice.author .aux {
+  text-align: right;
+}
+
+.notice.c.author {
+  h3,
+  p {
+    margin-left: 0;
+    margin-right: 160px;
+
+    &.suggestion {
+      margin-right: 0;
+    }
+  }
 }

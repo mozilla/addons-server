@@ -15,7 +15,6 @@ from django.utils.translation import trim_whitespace
 import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
-from nose.plugins.attrib import attr
 from nose.tools import assert_not_equal, assert_raises, eq_
 from PIL import Image
 from pyquery import PyQuery as pq
@@ -1327,17 +1326,31 @@ class TestSubmitStep3(TestSubmitBase):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
 
-        # Post and be redirected.
-        d = self.get_dict()
+        # Post and be redirected - trying to sneak
+        # in fields that shouldn't be modified via this form.
+        d = self.get_dict(homepage='foo.com',
+                          support_email='foo@mozilla.com',
+                          support_url='baz.com',
+                          tags='whatevs, whatever')
         r = self.client.post(self.url, d)
         eq_(r.status_code, 302)
         eq_(self.get_step().step, 4)
 
         addon = self.get_addon()
+
+        # This fields should not have been modified.
+        assert_not_equal(addon.homepage, 'foo.com')
+        assert_not_equal(addon.support_email, 'foo@mozilla.com')
+        assert_not_equal(addon.support_url, 'baz.com')
+        eq_(len(addon.tags.values_list()), 0)
+
+        # These are the field that are expected to be
+        # edited here.
         eq_(addon.name, 'Test name')
         eq_(addon.slug, 'testname')
         eq_(addon.description, 'desc')
         eq_(addon.summary, 'Hello!')
+
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
         assert not log_items.filter(action=amo.LOG.EDIT_DESCRIPTIONS.id), (
@@ -2096,7 +2109,6 @@ class TestUpload(BaseUploadTest):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         eq_(FileUpload.objects.get().user, user)
 
-    @attr('validator')
     def test_fileupload_validation(self):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
@@ -2165,7 +2177,6 @@ class TestUploadDetail(BaseUploadTest):
                                  {'upload': f})
         eq_(r.status_code, 302)
 
-    @attr('validator')
     def test_detail_json(self):
         self.post()
 

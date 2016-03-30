@@ -671,7 +671,7 @@ class QueueTest(EditorTest):
 
     def get_queue(self, addon):
         version = addon.latest_version.reload()
-        eq_(version.current_queue.objects.filter(id=addon.id).count(), 1)
+        assert version.current_queue.objects.filter(id=addon.id).count() == 1
 
     def get_expected_addons_by_names(self, names):
         expected_addons = []
@@ -691,8 +691,8 @@ class QueueTest(EditorTest):
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         a = pq(r.content)('.tabnav li a:eq(%s)' % eq)
-        eq_(a.text(), '%s (%s)' % (name, count))
-        eq_(a.attr('href'), self.url)
+        assert a.text() == '%s (%s)' % (name, count)
+        assert a.attr('href') == self.url
 
     def _test_results(self):
         r = self.client.get(self.url)
@@ -1328,6 +1328,32 @@ class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
 
     def test_queue_count(self):
         self._test_queue_count(2, 'Unlisted Preliminary Reviews', 2)
+
+
+class TestUnlistedAllList(QueueTest):
+    listed = False
+
+    def setUp(self):
+        super(TestUnlistedAllList, self).setUp()
+        self.url = reverse('editors.unlisted_all')
+        # We should have all add-ons.
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two',
+             'Prelim One', 'Prelim Two', 'Public'])
+        # Need to set unique nomination times or we get a psuedo-random order.
+        for idx, addon in enumerate(reversed(self.expected_addons)):
+            addon.latest_version.update(
+                nomination=(datetime.now() - timedelta(minutes=idx)))
+
+    def test_breadcrumbs(self):
+        self._test_breadcrumbs([('Unlisted All Add-ons', None)])
+
+    def test_queue_count(self):
+        assert Addon.with_unlisted.all().count() == 7
+        self._test_queue_count(3, 'Unlisted All Add-ons', 7)
+
+    def test_results(self):
+        self._test_results()
 
 
 class TestPerformance(QueueTest):

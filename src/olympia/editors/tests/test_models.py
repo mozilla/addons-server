@@ -8,8 +8,8 @@ from nose.tools import eq_
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.tests import addon_factory
-from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory, user_factory
+from olympia.addons.models import Addon, AddonUser
 from olympia.versions.models import (
     Version, version_uploaded, ApplicationsVersions)
 from olympia.files.models import File
@@ -17,7 +17,7 @@ from olympia.applications.models import AppVersion
 from olympia.editors.models import (
     EditorSubscription, RereviewQueueTheme, ReviewerScore, send_notifications,
     ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
+    ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.users.models import UserProfile
 
@@ -115,8 +115,8 @@ class TestQueue(TestCase):
 
     def test_reviewed_files_are_hidden(self):
         self.new_file(name='Unreviewed', version=u'0.1')
-        create_addon_file('Already Reviewed', '0.1',
-                          amo.STATUS_PUBLIC, amo.STATUS_NULL)
+        self.new_file('Already Reviewed', '0.1',
+                      amo.STATUS_PUBLIC, amo.STATUS_NULL)
         eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
             ['Unreviewed'])
 
@@ -139,13 +139,14 @@ class TestPendingQueue(TestQueue):
     __test__ = True
     Queue = ViewPendingQueue
 
-    def new_file(self, name=u'Pending', version=u'1.0', **kw):
+    def new_file(self, name=u'Pending', version=u'1.0',
+                 addon_status=amo.STATUS_PUBLIC,
+                 file_status=amo.STATUS_UNREVIEWED, **kw):
         # Create the addon and everything related. Note that we are cheating,
         # the addon status might not correspond to the files attached. This is
         # important not to re-save() attached versions and files afterwards,
         # because that might alter the addon status.
-        return create_addon_file(name, version,
-                                 amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+        return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
@@ -218,9 +219,10 @@ class TestFullReviewQueue(TestQueue):
     __test__ = True
     Queue = ViewFullReviewQueue
 
-    def new_file(self, name=u'Nominated', version=u'1.0', **kw):
-        return create_addon_file(name, version,
-                                 amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+    def new_file(self, name=u'Nominated', version=u'1.0',
+                 addon_status=amo.STATUS_NOMINATED,
+                 file_status=amo.STATUS_UNREVIEWED, **kw):
+        return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
@@ -257,9 +259,10 @@ class TestPreliminaryQueue(TestQueue):
     __test__ = True
     Queue = ViewPreliminaryQueue
 
-    def new_file(self, name=u'Preliminary', version=u'1.0', **kw):
-        return create_addon_file(name, version,
-                                 amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+    def new_file(self, name=u'Preliminary', version=u'1.0',
+                 addon_status=amo.STATUS_LITE,
+                 file_status=amo.STATUS_UNREVIEWED, **kw):
+        return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
@@ -294,10 +297,11 @@ class TestFastTrackQueue(TestQueue):
     def query(self):
         return sorted(list(q.addon_name for q in self.Queue.objects.all()))
 
-    def new_file(self, name=u'FastTrack', version=u'1.0', file_params=None,
+    def new_file(self, name=u'FastTrack', version=u'1.0',
+                 addon_status=amo.STATUS_LITE,
+                 file_status=amo.STATUS_UNREVIEWED, file_params=None,
                  **kw):
-        res = create_addon_file(name, version,
-                                amo.STATUS_LITE, amo.STATUS_UNREVIEWED, **kw)
+        res = create_addon_file(name, version, addon_status, file_status, **kw)
         file_ = res['file']
         params = dict(no_restart=True, requires_chrome=False,
                       jetpack_version='1.1')
@@ -364,6 +368,57 @@ class TestUnlistedFullReviewQueue(TestFullReviewQueue):
 class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
     Queue = ViewUnlistedPreliminaryQueue
     listed = False
+
+
+class TestUnlistedAllList(TestQueue):
+    Queue = ViewUnlistedAllList
+    listed = False
+    __test__ = True
+
+    def new_file(self, name=u'Preliminary', version=u'1.0',
+                 addon_status=amo.STATUS_LITE,
+                 file_status=amo.STATUS_UNREVIEWED, **kw):
+        return create_addon_file(name, version, addon_status, file_status,
+                                 listed=self.listed, **kw)
+
+    def test_search_extensions(self):
+        # We don't support unlisted search extensions
+        pass
+
+    def test_reviewed_files_are_hidden(self):
+        # We *want* reviewed files to be listed.
+        pass
+
+    def test_all_addons_are_in_q(self):
+        self.new_file('Lite', addon_status=amo.STATUS_LITE,
+                      file_status=amo.STATUS_UNREVIEWED)
+        self.new_file('Unreviewed', addon_status=amo.STATUS_UNREVIEWED,
+                      file_status=amo.STATUS_UNREVIEWED)
+        self.new_file('Public', addon_status=amo.STATUS_PUBLIC,
+                      file_status=amo.STATUS_PUBLIC)
+        self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
+                      file_status=amo.STATUS_UNREVIEWED)
+        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+            ['Lite', 'Nominated', 'Public', 'Unreviewed'])
+
+    def test_authors(self):
+        addon = self.new_file()['addon']
+        bert = user_factory(username='bert')
+        ernie = user_factory(username='ernie')
+        AddonUser.objects.create(addon=addon, user=bert)
+        AddonUser.objects.create(addon=addon, user=ernie)
+        row = self.Queue.objects.all()[0]
+        assert row.authors == [(bert.id, 'bert'), (ernie.id, 'ernie')]
+
+    def test_last_reviewed_version(self):
+        today = datetime.today().date()
+        self.new_file(name='addon123', version='1.0')
+        v2 = self.new_file(name='addon123', version='2.0')['version']
+        v2.update(reviewed=today)
+        self.new_file(name='addon123', version='3.0')
+        row = self.Queue.objects.all()[0]
+        assert row.review_date == today
+        assert row.review_version_num == '2.0'
 
 
 class TestEditorSubscription(TestCase):

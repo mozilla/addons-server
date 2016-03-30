@@ -1,5 +1,0 @@
-{% if tag.can_reverse() %}
-    <a class="tagLevel{{ factor }} tag" href="{{ url('tags.detail', tag.tag_text.lower()) }}">{{ tag.tag_text }}</a>
-{% else %}
-    <span class="tagLevel{{ factor }} tag">{{ tag.tag_text }}</span>
-{% endif %}

@@ -910,7 +910,8 @@ class TestEditDetails(TestEdit):
         eq_(r.context['form'].errors, {})
 
     def test_edit_default_locale_frontend_error(self):
-        d = dict(description='xx', homepage='yy', default_locale='fr')
+        d = dict(description='xx', homepage='https://staticfil.es/',
+                 default_locale='fr')
         r = self.client.post(self.details_edit_url, d)
         self.assertContains(r, 'Before changing your default locale you must')
 

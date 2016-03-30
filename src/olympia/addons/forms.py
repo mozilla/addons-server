@@ -15,7 +15,8 @@ from quieter_formset.formset import BaseFormSet
 
 from olympia import amo
 from olympia.access import acl
-from olympia.amo.fields import ColorField, ReCaptchaField
+from olympia.amo.fields import (
+    ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     slug_validator, slugify, sorted_groupby, remove_icons)
@@ -163,7 +164,9 @@ class AddonFormBasic(AddonFormBase):
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
 
-        self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
+        if self.fields.get('tags'):
+            self.fields['tags'].initial = ', '.join(
+                self.get_tags(self.instance))
 
         # Do not simply append validators, as validators will persist between
         # instances.
@@ -175,16 +178,18 @@ class AddonFormBasic(AddonFormBase):
         self.fields['name'].validators = name_validators
 
     def save(self, addon, commit=False):
-        tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
-        # Add new tags.
-        for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon)
+        if self.fields.get('tags'):
+            tags_new = self.cleaned_data['tags']
+            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
-        # Remove old tags.
-        for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon)
+            # Add new tags.
+            for t in set(tags_new) - set(tags_old):
+                Tag(tag_text=t).save_tag(addon)
+
+            # Remove old tags.
+            for t in set(tags_old) - set(tags_new):
+                Tag(tag_text=t).remove_tag(addon)
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
@@ -342,6 +347,7 @@ class AddonFormMedia(AddonFormBase):
 
 class AddonFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
+    homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
 
     class Meta:
         model = Addon
@@ -372,7 +378,7 @@ class AddonFormDetails(AddonFormBase):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)(required=False)
+    support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:

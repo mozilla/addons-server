@@ -53,8 +53,8 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .forms import ContributionForm
+from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
-from .search import get_alias
 from .serializers import AddonSerializer, ESAddonSerializer
 
 
@@ -682,8 +682,8 @@ class AddonSearchView(ListAPIView):
 
     def get_queryset(self):
         return Search(using=amo.search.get_es(),
-                      index=get_alias(),
-                      doc_type=Addon._meta.db_table)
+                      index=AddonIndexer.get_index_alias(),
+                      doc_type=AddonIndexer.get_doctype_name())
 
     @classmethod
     def as_view(cls, **kwargs):

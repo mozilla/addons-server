@@ -6,7 +6,6 @@ from django.conf import settings
 from django.db import connection
 
 import mock
-from nose.tools import eq_
 
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
@@ -114,8 +113,8 @@ class TestThemeUpdate(TestCase):
         return update
 
     def test_get_json_bad_ids(self):
-        eq_(self.get_update('en-US', 999).get_json(), None)
-        eq_(self.get_update('en-US', 813).get_json(), None)
+        assert self.get_update('en-US', 999).get_json() == None
+        assert self.get_update('en-US', 813).get_json() == None
 
     def test_get_json_good_ids(self):
         self.addon = Addon.objects.get()

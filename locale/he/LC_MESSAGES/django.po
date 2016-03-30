@@ -11,12 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2012-03-17 13:10+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: Hebrew\n"
-"Language: he\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.6\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -55,8 +53,6 @@ msgid "Download Now"
 msgstr "להוריד עכשיו"
 
 # 88%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/buttons.py:182
 msgid "Download"
@@ -187,8 +183,6 @@ msgstr "התווסף לאחרונה"
 
 # 75%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/views.py:322 src/olympia/bandwagon/views.py:99 src/olympia/browse/views.py:60 src/olympia/browse/views.py:71 src/olympia/search/forms.py:16 src/olympia/search/forms.py:91
 msgid "Recently Updated"
 msgstr "עודכן לאחרונה"
@@ -279,9 +273,6 @@ msgstr "או"
 msgid "Suggested Contribution: {0}"
 msgstr ""
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/contribution.html:48 src/olympia/amo/templates/amo/recaptcha.html:5 src/olympia/versions/templates/versions/version.html:52
 msgid "What's this?"
@@ -451,8 +442,6 @@ msgstr "מדיניות פרטיות"
 
 # 89%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/templates/addons/details_box.html:124 src/olympia/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
 msgstr "צפייה בהצהרת הפרטיות"
@@ -507,8 +496,6 @@ msgid "Version Notes"
 msgstr ""
 
 # 76%
-# 100%
-# 100%
 # 100%
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -567,8 +554,6 @@ msgid "Featured Themes"
 msgstr ""
 
 # 80%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/home.html:77 src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 #, fuzzy
@@ -1205,8 +1190,6 @@ msgstr "עוד"
 
 # 94%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:7 src/olympia/addons/templates/addons/includes/collection_add_widget.html:10
 #, fuzzy
 msgid "Add to collection"
@@ -1249,8 +1232,6 @@ msgid "Collector's Note"
 msgstr ""
 
 # 84%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 #, fuzzy
@@ -1372,15 +1353,11 @@ msgstr ""
 
 # 95%
 # 100%
-# 100%
-# 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:57
 msgid "View all Popular add-ons"
 msgstr "הצגת כל התוספות הפופולריות"
 
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
@@ -1390,9 +1367,6 @@ msgstr "עוד תוספות"
 msgid "Highest Rated"
 msgstr "בעלות הדירוגים הגבוהים ביותר"
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/addons/templates/addons/mobile/home.html:74 src/olympia/amo/templates/amo/side_nav.html:5 src/olympia/amo/templates/amo/site_nav.html:27 src/olympia/amo/templates/amo/site_nav.html:57
 #: src/olympia/bandwagon/views.py:97 src/olympia/browse/views.py:57 src/olympia/browse/views.py:67 src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
@@ -1944,8 +1918,8 @@ msgstr "אוי"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgid "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr "<h1>אוי! אירעה לנו שגיאה.</h1> <p>אנחנו נתקן את זה בקרוב.</p> <p> נסו לרענן את הדף, או בואו חזרה אל <a href=\"%(home)s\">דף התוספות</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -2234,8 +2208,6 @@ msgstr "לא נמצאו סקירות בפרק הזמן."
 
 # 93%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/helpers.py:123 src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 #, fuzzy
 msgid "Add to favorites"
@@ -2246,8 +2218,6 @@ msgid "Favorite"
 msgstr ""
 
 # 95%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/helpers.py:124 src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 #, fuzzy
@@ -2268,9 +2238,6 @@ msgstr ""
 msgid "Added"
 msgstr ""
 
-# 100%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/views.py:190
 msgid "Popularity"
@@ -2301,7 +2268,6 @@ msgstr ""
 # 89%
 # 82%
 # 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/add.html:3 src/olympia/bandwagon/templates/bandwagon/add.html:11 src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 #, fuzzy
 msgid "Create a New Collection"
@@ -2322,7 +2288,6 @@ msgstr "צור אוספים"
 
 # 76%
 # 75%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:6
 #, fuzzy
@@ -2386,8 +2351,6 @@ msgstr[1] ""
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 #, fuzzy
 msgid "About this Collection"
@@ -2415,16 +2378,12 @@ msgstr ""
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:86
 #, fuzzy
 msgid "Edit Collection"
 msgstr "הוסף לאוסף"
 
 # 78%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:88 src/olympia/bandwagon/templates/bandwagon/includes/delete.html:3
 #, fuzzy
@@ -2549,8 +2508,6 @@ msgstr ""
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html:17
 #, fuzzy
 msgid "Edit this Collection"
@@ -2658,8 +2615,6 @@ msgstr ""
 
 # 81%
 # 100%
-# 100%
-# 100%
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:60
 #, fuzzy
 msgid "Contributor"
@@ -2731,8 +2686,6 @@ msgid "Following"
 msgstr ""
 
 # 89%
-# 100%
-# 100%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22 src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
@@ -2957,8 +2910,6 @@ msgstr "שפה"
 
 # Plural in this context means many of the add-on type
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/browse/templates/browse/language_tools.html:42 src/olympia/browse/templates/browse/language_tools.html:64 src/olympia/constants/base.py:162
 #, fuzzy
@@ -3302,8 +3253,6 @@ msgstr ""
 
 # 88%
 # 100%
-# 100%
-# 100%
 #: src/olympia/compat/templates/compat/reporter_detail.html:49
 #, fuzzy
 msgid "Platform"
@@ -3470,8 +3419,6 @@ msgid "Language Packs (Add-on)"
 msgstr ""
 
 # 85%
-# 100%
-# 100%
 # 100%
 #: src/olympia/constants/base.py:179
 #, fuzzy
@@ -4029,8 +3976,6 @@ msgid "Add-on Status"
 msgstr ""
 
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/devhub/views.py:213
 #, fuzzy
@@ -4774,8 +4719,6 @@ msgid "Universally unique identifier"
 msgstr ""
 
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:130
 msgid "UUID"
@@ -6280,16 +6223,12 @@ msgstr ""
 
 # 82%
 # 100%
-# 100%
-# 100%
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:18
 #, fuzzy
 msgid "Manage Your Developer Profile"
 msgstr "Manage Developer Profile"
 
 # 76%
-# 100%
-# 100%
 # 100%
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:20
 #, fuzzy
@@ -7048,8 +6987,6 @@ msgstr ""
 
 # 75%
 # 100%
-# 100%
-# 100%
 #: src/olympia/devhub/templates/devhub/versions/list.html:249
 #, fuzzy
 msgid "Add Version"
@@ -7397,8 +7334,6 @@ msgid "Approved reviews"
 msgstr ""
 
 # 86%
-# 100%
-# 100%
 # 100%
 #: src/olympia/editors/forms.py:29
 #, fuzzy
@@ -10468,7 +10403,6 @@ msgstr ""
 # 75%
 # 78%
 # 100%
-# 100%
 #: src/olympia/pages/templates/pages/faq.html:275 src/olympia/templates/menu_links.html:13 src/olympia/templates/impala/header_title.html:17
 msgid "Mobile Add-ons"
 msgstr "תוספות עבור מכשירים ניידים"
@@ -10823,8 +10757,6 @@ msgstr[1] ""
 
 # 76%
 # 100%
-# 100%
-# 100%
 #: src/olympia/reviews/templates/reviews/review_list.html:42
 #, fuzzy
 msgid "No reviews found."
@@ -10845,8 +10777,6 @@ msgstr ""
 
 # {0} is a number
 # 75%
-# 100%
-# 100%
 # 100%
 #: src/olympia/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
@@ -11277,8 +11207,6 @@ msgid "To"
 msgstr ""
 
 # 85%
-# 100%
-# 100%
 # 100%
 #: src/olympia/stats/templates/stats/popup.html:27 src/olympia/users/templates/users/pwreset_confirm.html:38
 #, fuzzy
@@ -11778,8 +11706,6 @@ msgstr ""
 
 # 83%
 # 100%
-# 100%
-# 100%
 #: src/olympia/templates/mobile/header_auth.html:8 src/olympia/users/templates/users/login_form.html:41 src/olympia/users/templates/users/pwreset_complete.html:15
 #: src/olympia/users/templates/users/mobile/login.html:56
 msgid "Log in"
@@ -12205,8 +12131,6 @@ msgstr ""
 
 # 80%
 # 100%
-# 100%
-# 100%
 #: src/olympia/users/templates/users/delete_photo.html:14
 #, fuzzy
 msgid "Delete my user picture now"
@@ -12253,14 +12177,11 @@ msgstr ""
 # 91%
 # 75%
 # 100%
-# 100%
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
 msgstr "ססמה חדשה"
 
 # 91%
-# 100%
-# 100%
 # 100%
 #: src/olympia/users/templates/users/edit.html:84
 msgid "New Password"
@@ -12495,8 +12416,8 @@ msgid "Confirm password"
 msgstr "אישור ססמה"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:47
-msgid "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset."
-msgstr ""
+msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
+msgstr "קישור לאיפוס ססמה היה בלתי־תקין, אולי בגלל שכבר נעשה בו שימוש. נא לבקש איפוס ססמה מחדש."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
@@ -12728,8 +12649,6 @@ msgstr ""
 
 # {0} is the add-on name
 # 84%
-# 100%
-# 100%
 # 100%
 #: src/olympia/versions/feeds.py:61
 #, python-format

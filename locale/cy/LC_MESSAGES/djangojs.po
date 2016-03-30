@@ -7,12 +7,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: cy\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
-"X-Generator: Pontoon\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -1242,3 +1240,4 @@ msgstr ""
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr ""
+
