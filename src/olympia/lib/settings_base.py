@@ -1647,6 +1647,11 @@ MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 60
 
 # django-rest-framework-jwt settings:
 JWT_AUTH = {
+    # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
+    # want to make sure it does not change behind our backs.
+    # See https://github.com/jpadilla/pyjwt/blob/master/docs/algorithms.rst
+    'JWT_ALGORITHM': 'HS256',
+
     # This adds some padding to timestamp validation in case client/server
     # clocks are off.
     'JWT_LEEWAY': 5,
