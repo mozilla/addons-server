@@ -460,7 +460,7 @@ PUENTE = {
 MINIFY_BUNDLES = {
     'css': {
         'restyle/css': (
-            'css/restyle.less',
+            'css/restyle/restyle.less',
         ),
         # CSS files common to the entire site.
         'zamboni/css': (
