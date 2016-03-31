@@ -1,6 +1,7 @@
 import collections
 import tempfile
 
+import mock
 import pytest
 
 from olympia import amo
@@ -130,3 +131,44 @@ def test_walkfiles():
     all_files = list(walkfiles(basedir))
     assert len(all_files) == 3
     assert set(all_files), set([file1path, file2path == file3path])
+
+
+def test_cached_property():
+    callme = mock.Mock()
+
+    class Foo(object):
+
+        @amo.cached_property
+        def bar(self):
+            callme()
+            return 'value'
+
+    foo = Foo()
+    # Call twice...
+    assert foo.bar == 'value'
+    assert foo.bar == 'value'
+
+    # Check that callme() was called only once.
+    assert callme.call_count == 1
+
+
+def test_set_writable_cached_property():
+    callme = mock.Mock()
+
+    class Foo(object):
+
+        @amo.cached_property(writable=True)
+        def bar(self):
+            callme()
+            return 'original value'
+
+    foo = Foo()
+    foo.bar = 'new value'
+    assert foo.bar == 'new value'
+
+    # Check that callme() was never called, since we overwrote the prop value.
+    assert callme.call_count == 0
+
+    del foo.bar
+    assert foo.bar == 'original value'
+    assert callme.call_count == 1
