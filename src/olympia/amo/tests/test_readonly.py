@@ -3,7 +3,6 @@ from django.db import models
 from django.utils import importlib
 
 import MySQLdb as mysql
-from nose.tools import assert_raises, eq_
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
@@ -56,10 +55,10 @@ class ReadOnlyModeTest(TestCase):
         raise mysql.OperationalError("You can't do this in read-only mode.")
 
     def test_db_error(self):
-        assert_raises(mysql.OperationalError, Addon.objects.create, id=12)
+        self.assertRaises(mysql.OperationalError, Addon.objects.create, id=12)
 
     def test_bail_on_post(self):
         r = self.client.post('/en-US/firefox/')
-        eq_(r.status_code, 503)
+        assert r.status_code == 503
         title = pq(r.content)('title').text()
         assert title.startswith('Maintenance in progress'), title
