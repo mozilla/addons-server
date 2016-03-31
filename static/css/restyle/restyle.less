@@ -721,6 +721,12 @@ body:not(.developer-hub) .secondary .highlight {
 // Button overrides.
 // Add a selector here if there's a different style coming from
 // elsewhere.
+//
+.linux .button.linux,
+.mac .button.mac,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows,
 a.delete-button.delete-addon,
 #upload-file-finish.button,
 #upload-file-widget .button.prominent,
@@ -751,8 +757,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
     background: #57bd35;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
          inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
-
-    span {
+    span:not(.os) {
       border: none;
       margin: 0;
       background: url(../../img/impala/button-icons.png) no-repeat 0 -191px;
@@ -814,6 +819,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
     background-image: url(../../img/impala/warning-bg.png);
     color: #333 !important;
   }
+}
+
+.button:nth-child(n+1) {
+  margin-right: 5px;
 }
 
 .header-search .search-button {
