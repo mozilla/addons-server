@@ -9,7 +9,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
 from olympia.compat.indexers import AppCompatIndexer
-from olympia.compat.models import CompatReport, CompatTotals
+from olympia.compat.models import CompatReport
 
 
 # This is the structure sent to /compatibility/incoming from the ACR.
@@ -39,37 +39,6 @@ class TestCompatReportModel(TestCase):
         CompatReport.objects.create(guid='ballin', works_properly=True)
         CompatReport.objects.create(guid='ballin', works_properly=False)
         eq_(CompatReport.get_counts(guid), {'success': 2, 'failure': 1})
-
-
-class TestIndex(TestCase):
-
-    # TODO: Test valid version processing here.
-
-    def setUp(self):
-        super(TestIndex, self).setUp()
-        self.url = reverse('compat.index', args=[amo.COMPAT[0]['main']])
-        CompatTotals.objects.create(app=1, total=1)
-
-    def test_no_version_redirect(self):
-        res = self.client.get(reverse('compat.index'))
-        self.assert3xx(res, self.url)
-
-    def test_previous_version_link(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        self.assertUrlEqual(doc('h2.c a').attr('href'),
-                            '{url}?page=1&previous=1'.format(url=self.url))
-
-    def test_previous_version_link_with_active_pagination(self):
-        # The current pagination is not kept when we switch to previous
-        # versions. See 1056022.
-        r = self.client.get(self.url, {'page': 2, 'type': 'all'})
-        eq_(r.status_code, 200)
-        doc = pq(r.content)
-        self.assertUrlEqual(
-            doc('h2.c a').attr('href'),
-            '{url}?type=all&page=1&previous=1'.format(url=self.url))
 
 
 class TestIncoming(TestCase):
