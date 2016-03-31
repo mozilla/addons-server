@@ -6,7 +6,6 @@ from django.core.exceptions import PermissionDenied
 
 import mock
 import pytest
-from nose.tools import eq_
 
 from olympia.amo.tests import BaseTestCase, TestCase
 from olympia.amo import decorators, get_user, set_user
@@ -28,7 +27,7 @@ def test_post_required():
     assert isinstance(g(request), http.HttpResponseNotAllowed)
 
     request.method = 'POST'
-    eq_(g(request), mock.sentinel.response)
+    assert g(request) == mock.sentinel.response
 
 
 def test_json_view():
@@ -38,9 +37,9 @@ def test_json_view():
 
     response = decorators.json_view(func)(mock.Mock())
     assert isinstance(response, http.HttpResponse)
-    eq_(response.content, '{"x": 1}')
-    eq_(response['Content-Type'], 'application/json')
-    eq_(response.status_code, 200)
+    assert response.content == '{"x": 1}'
+    assert response['Content-Type'] == 'application/json'
+    assert response.status_code == 200
 
 
 def test_json_view_normal_response():
@@ -52,15 +51,15 @@ def test_json_view_normal_response():
 
     response = decorators.json_view(func)(mock.Mock())
     assert expected is response
-    eq_(response['Content-Type'], 'text/html; charset=utf-8')
+    assert response['Content-Type'] == 'text/html; charset=utf-8'
 
 
 def test_json_view_error():
     """json_view.error returns 400 responses."""
     response = decorators.json_view.error({'msg': 'error'})
     assert isinstance(response, http.HttpResponseBadRequest)
-    eq_(response.content, '{"msg": "error"}')
-    eq_(response['Content-Type'], 'application/json')
+    assert response.content == '{"msg": "error"}'
+    assert response['Content-Type'] == 'application/json'
 
 
 def test_json_view_status():
@@ -68,14 +67,14 @@ def test_json_view_status():
         return {'x': 1}
 
     response = decorators.json_view(func, status_code=202)(mock.Mock())
-    eq_(response.status_code, 202)
+    assert response.status_code == 202
 
 
 def test_json_view_response_status():
     response = decorators.json_response({'msg': 'error'}, status_code=202)
-    eq_(response.content, '{"msg": "error"}')
-    eq_(response['Content-Type'], 'application/json')
-    eq_(response.status_code, 202)
+    assert response.content == '{"msg": "error"}'
+    assert response['Content-Type'] == 'application/json'
+    assert response.status_code == 202
 
 
 class TestTaskUser(TestCase):
@@ -87,9 +86,9 @@ class TestTaskUser(TestCase):
             return get_user()
 
         set_user(UserProfile.objects.get(username='regularuser'))
-        eq_(get_user().pk, 999)
-        eq_(some_func().pk, int(settings.TASK_USER_ID))
-        eq_(get_user().pk, 999)
+        assert get_user().pk == 999
+        assert some_func().pk == int(settings.TASK_USER_ID)
+        assert get_user().pk == 999
 
 
 class TestLoginRequired(BaseTestCase):
@@ -106,22 +105,22 @@ class TestLoginRequired(BaseTestCase):
         func = decorators.login_required(self.f)
         response = func(self.request)
         assert not self.f.called
-        eq_(response.status_code, 302)
-        eq_(response['Location'],
+        assert response.status_code == 302
+        assert response['Location'] == (
             '%s?to=%s' % (reverse('users.login'), 'path'))
 
     def test_no_redirect(self):
         func = decorators.login_required(self.f, redirect=False)
         response = func(self.request)
         assert not self.f.called
-        eq_(response.status_code, 401)
+        assert response.status_code == 401
 
     def test_decorator_syntax(self):
         # @login_required(redirect=False)
         func = decorators.login_required(redirect=False)(self.f)
         response = func(self.request)
         assert not self.f.called
-        eq_(response.status_code, 401)
+        assert response.status_code == 401
 
     def test_no_redirect_success(self):
         func = decorators.login_required(redirect=False)(self.f)
@@ -141,7 +140,7 @@ class TestSetModifiedOn(TestCase):
         users = list(UserProfile.objects.all()[:3])
         self.some_method(True, set_modified_on=users)
         for user in users:
-            eq_(UserProfile.objects.get(pk=user.pk).modified.date(),
+            assert UserProfile.objects.get(pk=user.pk).modified.date() == (
                 datetime.today().date())
 
     def test_not_set_modified_on(self):
