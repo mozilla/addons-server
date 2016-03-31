@@ -8,30 +8,39 @@ def match_rules(rules, app, action):
     for rule in rules.split(','):
         rule_app, rule_action = rule.split(':')
         if rule_app == '*' or rule_app == app:
-            if (rule_action == '*'
-                    or rule_action == action
-                    or action == '%'):
+            if rule_action == '*' or rule_action == action or action == '%':
                 return True
     return False
 
 
 def action_allowed(request, app, action):
     """
-    Determines if the request user has permission to do a certain action
+    Determines if the request user has permission to do a certain action.
 
     'Admin:%' is true if the user has any of:
     ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
+
+    Note: relies in user.groups_list, which is cached on the user instance the
+    first time it's accessed. See also action_allowed_user().
     """
-    allowed = any(match_rules(group.rules, app, action) for group in
-                  getattr(request, 'groups', ()))
-    return allowed
+    return action_allowed_user(request.user, app, action)
 
 
 def action_allowed_user(user, app, action):
-    """Similar to action_allowed, but takes user instead of request."""
-    allowed = any(match_rules(group.rules, app, action) for group in
-                  user.groups.all())
-    return allowed
+    """
+    Determines if the user has permission to do a certain action.
+
+    'Admin:%' is true if the user has any of:
+    ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
+
+    Note: relies in user.groups_list, which is cached on the user instance the
+    first time it's accessed.
+    """
+    if not user.is_authenticated():
+        return False
+
+    return any(
+        match_rules(group.rules, app, action) for group in user.groups_list)
 
 
 def submission_allowed(user, parsed_addon_data):

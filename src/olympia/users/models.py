@@ -261,6 +261,11 @@ class UserProfile(OnChangeMixin, ModelBase,
 
         return urls
 
+    @amo.cached_property(writable=True)
+    def groups_list(self):
+        """List of all groups the user is a member of, as a cached property."""
+        return list(self.groups.all())
+
     @amo.cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""

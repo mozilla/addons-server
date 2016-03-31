@@ -13,6 +13,7 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.management import call_command
 from django.db.models.signals import post_save
@@ -705,7 +706,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req = req.get(url, data or {})
     if user:
         req.user = UserProfile.objects.get(id=user.id)
-        req.groups = user.groups.all()
+    else:
+        req.user = AnonymousUser()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req

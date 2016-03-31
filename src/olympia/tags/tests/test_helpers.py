@@ -22,7 +22,6 @@ class TestHelpers(amo.tests.BaseTestCase):
 
         request = Mock()
         request.user = addon.authors.all()[0]
-        request.groups = ()
 
         tags = addon.tags.not_blacklisted()
 

@@ -229,8 +229,8 @@ class TestThemeForm(TestCase):
         super(TestThemeForm, self).setUp()
         self.populate()
         self.request = mock.Mock()
-        self.request.groups = ()
         self.request.user = mock.Mock()
+        self.request.user.groups_list = []
         self.request.user.is_authenticated.return_value = True
 
     def populate(self):
@@ -474,8 +474,8 @@ class TestEditThemeForm(TestCase):
         super(TestEditThemeForm, self).setUp()
         self.populate()
         self.request = mock.Mock()
-        self.request.groups = ()
         self.request.user = mock.Mock()
+        self.request.user.groups_list = []
         self.request.user.username = 'swagyismymiddlename'
         self.request.user.name = 'Sir Swag A Lot'
         self.request.user.is_authenticated.return_value = True

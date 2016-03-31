@@ -13,7 +13,7 @@ flag in the :class:`~django.contrib.auth.models.User` model to indicate that a
 user can access the admin site.
 
 Outside of that we use the ``access.models.GroupUser`` to define what
-access groups a user is a part of.  We store this in ``request.groups``.
+access groups a user is a part of.
 
 
 How permissions work
