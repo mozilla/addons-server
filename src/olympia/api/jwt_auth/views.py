@@ -1,11 +1,15 @@
 from django.utils.translation import ugettext as _
 
+import commonware
 import jwt
 from rest_framework import exceptions
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from olympia.api.jwt_auth import handlers
 from olympia.api.models import APIKey
+
+
+log = commonware.log.getLogger('z.api.authentication')
 
 
 class JWTKeyAuthentication(JSONWebTokenAuthentication):
@@ -42,13 +46,19 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
         try:
             payload = handlers.jwt_decode_handler(jwt_value)
         except jwt.ExpiredSignature:
+            log.exception('JWTKeyAuthentication signature has expired.')
             msg = _('Signature has expired.')
             raise exceptions.AuthenticationFailed(msg)
         except jwt.DecodeError:
+            log.exception('JWTKeyAuthentication error decoding signature.')
             msg = _('Error decoding signature.')
             raise exceptions.AuthenticationFailed(msg)
         except jwt.InvalidTokenError:
-            raise exceptions.AuthenticationFailed()
+            log.exception('JWTKeyAuthentication invalid token.')
+            msg = _('Invalid JWT Token.')
+            raise exceptions.AuthenticationFailed(msg)
+        # AuthenticationFailed can also be raised directly from our
+        # jwt_decode_handler.
 
         user = self.authenticate_credentials(payload)
 

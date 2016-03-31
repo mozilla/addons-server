@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import mock
 import json
 
 from django.conf import settings
@@ -21,7 +22,7 @@ from olympia.users.models import UserProfile
 class JWTKeyAuthTestView(APIView):
     """
     This is an example of a view that would be protected by
-    JWTKeyAuthentication.
+    JWTKeyAuthentication, used in TestJWTKeyAuthProtectedView below.
     """
     permission_classes = [IsAuthenticated]
     authentication_classes = [JWTKeyAuthentication]
@@ -60,6 +61,77 @@ class JWTAuthKeyTester(TestCase):
     def create_auth_token(self, user, issuer, secret):
         payload = self.auth_token_payload(user, issuer)
         return self.encode_token_payload(payload, secret)
+
+
+class TestJWTKeyAuthentication(JWTAuthKeyTester):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestJWTKeyAuthentication, self).setUp()
+        self.factory = RequestFactory()
+        self.auth = JWTKeyAuthentication()
+        self.user = UserProfile.objects.get(email='del@icio.us')
+
+    def request(self, token):
+        return self.factory.get('/', HTTP_AUTHORIZATION='JWT {}'.format(token))
+
+    def _create_token(self):
+        api_key = self.create_api_key(self.user)
+        return self.create_auth_token(api_key.user, api_key.key,
+                                      api_key.secret)
+
+    def test_get_user(self):
+        user, _ = self.auth.authenticate(self.request(self._create_token()))
+        assert user == self.user
+
+    def test_unknown_issuer(self):
+        api_key = self.create_api_key(self.user)
+        payload = self.auth_token_payload(self.user, api_key.key)
+        payload['iss'] = 'non-existant-issuer'
+        token = self.encode_token_payload(payload, api_key.secret)
+
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(self.request(token))
+
+    def test_deleted_user(self):
+        self.user.update(deleted=True)
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(self.request(self._create_token()))
+
+    def test_user_has_not_read_agreement(self):
+        self.user.update(read_dev_agreement=None)
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(self.request(self._create_token()))
+
+    @mock.patch('olympia.api.jwt_auth.handlers.jwt_decode_handler')
+    def test_decode_authentication_failed(self, jwt_decode_handler):
+        jwt_decode_handler.side_effect = AuthenticationFailed
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(self.request('whatever'))
+
+    @mock.patch('olympia.api.jwt_auth.handlers.jwt_decode_handler')
+    def test_decode_expired_signature(self, jwt_decode_handler):
+        jwt_decode_handler.side_effect = jwt.ExpiredSignature
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            self.auth.authenticate(self.request('whatever'))
+
+        assert ctx.exception.detail == 'Signature has expired.'
+
+    @mock.patch('olympia.api.jwt_auth.handlers.jwt_decode_handler')
+    def test_decode_decoding_error(self, jwt_decode_handler):
+        jwt_decode_handler.side_effect = jwt.DecodeError
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            self.auth.authenticate(self.request('whatever'))
+
+        assert ctx.exception.detail == 'Error decoding signature.'
+
+    @mock.patch('olympia.api.jwt_auth.handlers.jwt_decode_handler')
+    def test_decode_invalid_token(self, jwt_decode_handler):
+        jwt_decode_handler.side_effect = jwt.InvalidTokenError
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            self.auth.authenticate(self.request('whatever'))
+
+        assert ctx.exception.detail == 'Invalid JWT Token.'
 
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
@@ -106,11 +178,11 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
         assert res.status_code == 401, res.content
 
 
-class TestJWTKeyAuthHandlers(JWTAuthKeyTester):
+class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestJWTKeyAuthHandlers, self).setUp()
+        super(TestJWTKeyAuthDecodeHandler, self).setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_report_unknown_issuer(self):
@@ -219,44 +291,3 @@ class TestJWTKeyAuthHandlers(JWTAuthKeyTester):
             handlers.jwt_decode_handler(token)
 
         assert ctx.exception.detail == 'JWT exp (expiration) is too long'
-
-
-class TestJWTKeyAuthentication(JWTAuthKeyTester):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestJWTKeyAuthentication, self).setUp()
-        self.factory = RequestFactory()
-        self.auth = JWTKeyAuthentication()
-        self.user = UserProfile.objects.get(email='del@icio.us')
-
-    def request(self, token):
-        return self.factory.get('/', HTTP_AUTHORIZATION='JWT {}'.format(token))
-
-    def _create_token(self):
-        api_key = self.create_api_key(self.user)
-        return self.create_auth_token(api_key.user, api_key.key,
-                                      api_key.secret)
-
-    def test_get_user(self):
-        user, _ = self.auth.authenticate(self.request(self._create_token()))
-        assert user == self.user
-
-    def test_unknown_issuer(self):
-        api_key = self.create_api_key(self.user)
-        payload = self.auth_token_payload(self.user, api_key.key)
-        payload['iss'] = 'non-existant-issuer'
-        token = self.encode_token_payload(payload, api_key.secret)
-
-        with self.assertRaises(AuthenticationFailed):
-            self.auth.authenticate(self.request(token))
-
-    def test_deleted_user(self):
-        self.user.update(deleted=True)
-        with self.assertRaises(AuthenticationFailed):
-            self.auth.authenticate(self.request(self._create_token()))
-
-    def test_user_has_not_read_agreement(self):
-        self.user.update(read_dev_agreement=None)
-        with self.assertRaises(AuthenticationFailed):
-            self.auth.authenticate(self.request(self._create_token()))
