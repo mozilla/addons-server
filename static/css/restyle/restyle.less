@@ -1097,7 +1097,6 @@ h3.author .transfer-ownership {
   .version-number,
   h4.author,
   h4.author a,
-  #addon-summary,
   a.eula,
   a.privacy-policy,
   .notice h3,
@@ -1106,6 +1105,9 @@ h3.author .transfer-ownership {
   .notice p b,
   .category.more-info,
   .vital a,
+  .warning a,
+  #addon-summary,
+  #weekly-downloads .stats,
   #reviews-link,
   #daily-users a {
     color: @link-on-color-bg;
@@ -1114,10 +1116,15 @@ h3.author .transfer-ownership {
   h4.author a,
   a.privacy-policy,
   a.eula,
-  #contribution.notice p a,
   .vital a,
+  .warning a,
+  #contribution.notice p a,
   #reviews-link {
     text-decoration: underline;
+  }
+
+  #weekly-downloads .stats {
+    font-size: 1rem;
   }
 
   .version-number {
