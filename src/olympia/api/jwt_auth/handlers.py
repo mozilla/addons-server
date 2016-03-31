@@ -82,8 +82,8 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
                     u'{e.__class__.__name__}: {e}'.format(e=exc))
         raise
 
-    if (payload['exp'] - payload['iat'] >
-            settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME):
+    max_jwt_auth_token_lifetime = settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME
+    if payload['exp'] - payload['iat'] > max_jwt_auth_token_lifetime:
         log.info('JWT auth: expiration is too long; '
                  'iss={iss}, iat={iat}, exp={exp}'.format(**payload))
         raise exceptions.AuthenticationFailed(
