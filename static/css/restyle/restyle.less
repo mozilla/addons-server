@@ -1463,9 +1463,26 @@ h3.author .transfer-ownership {
   }
 }
 
-.category-landing .featured.three-col .addon.hovercard:hover {
-  height: 320px;
-  margin-bottom: -320px;
+.category-landing .featured.three-col .addon.hovercard {
+
+  &:hover {
+    height: 320px;
+    margin-bottom: -320px;
+  }
+
+  .addon-writeup {
+    display: none;
+  }
+
+  .extra {
+    max-width: 200px;
+
+    .button.not-available {
+      margin-top: -12px;
+      font-size: 12px;
+    }
+  }
+
 }
 
 .persona.hovercard {
@@ -1474,10 +1491,6 @@ h3.author .transfer-ownership {
   &:hover {
     margin-bottom: -12px;
     height: 90px;
-
-    .addon-writeup {
-      display: none;
-    }
   }
 
   h3 {
