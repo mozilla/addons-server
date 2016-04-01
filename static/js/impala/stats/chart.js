@@ -126,7 +126,8 @@
             start   = range.start,
             end     = range.end,
             date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10),
-            fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
+            fields  = metric != 'contributions' && obj.fields ?
+                obj.fields.slice(0,5) : ['count'],
             series  = {},
             events  = obj.events,
             chartRange = {},
@@ -254,7 +255,7 @@
                 // Add offset to line up points and ticks on day grouping.
                 'pointStart' : start,
                 'data'  : series[field],
-                'visible' : !(metric == 'contributions' && id !='total')
+                'visible' : true
             });
         }
 
@@ -305,17 +306,9 @@
                 };
             } else if (metric == 'contributions') {
                 return function() {
-                    var ret = "<b>" + xFormatter(this.x) + "</b>",
-                        p;
-                    for (var i=0; i < this.points.length; i++) {
-                        p = this.points[i];
-                        ret += '<br>' + p.series.name + ': ';
-                        if (p.series.options.yAxis > 0) {
-                            ret += Highcharts.numberFormat(p.y, 0);
-                        } else {
-                            ret += currencyFormatter(p.y);
-                        }
-                    }
+                    var ret = "<b>" + xFormatter(this.x) + "</b>" +
+                        '<br>' + this.points[0].series.name.trim() + ': ' +
+                        this.points[0].y;
                     return addEventData(ret, this.x);
                 };
             } else {
@@ -405,17 +398,6 @@
         if (metric == "contributions" && newConfig.series.length) {
             _.extend(newConfig, {
                 yAxis : [
-                    { // Amount
-                        title: {
-                            text: gettext('Amount, in USD')
-                        },
-                        labels: {
-                            formatter: function() {
-                                return Highcharts.numberFormat(this.value, 2);
-                            }
-                        },
-                        min: 0
-                    },
                     { // Number of Contributions
                         title: {
                            text: gettext('Number of Contributions')
@@ -425,8 +407,7 @@
                             formatter: function() {
                                 return Highcharts.numberFormat(this.value, 0);
                             }
-                        },
-                        opposite: true
+                        }
                     }
                 ],
                 tooltip: {
@@ -434,8 +415,6 @@
                     crosshairs : true
                 }
             });
-            // set Daily Users series to use the right yAxis.
-            newConfig.series[0].yAxis = 1;
         }
         newConfig.tooltip.formatter = tooltipFormatter;
 

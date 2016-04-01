@@ -178,7 +178,6 @@ def _call(url, paypal_data, ip=None):
             ('application-id', settings.PAYPAL_APP_ID),
             ('request-data-format', 'NV'),
             ('response-data-format', 'NV'),
-            ('application-id', settings.PAYPAL_APP_ID),
             ('security-userid', auth['USER']),
             ('security-password', auth['PASSWORD']),
             ('security-signature', auth['SIGNATURE'])]:

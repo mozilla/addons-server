@@ -244,9 +244,9 @@ class TestCSVs(ESStatsTest):
                                           group='day', format='csv')
 
         eq_(response.status_code, 200, 'unexpected http status')
-        self.csv_eq(response, """date,total,count,average
-                                 2009-06-02,4.98,2,2.49
-                                 2009-06-01,5.00,1,5.0""")
+        self.csv_eq(response, """date,count,USD
+                                 2009-06-02,2,4.98
+                                 2009-06-01,1,5.00""")
 
     def test_sources_series(self):
         response = self.get_view_response('stats.sources_series',
@@ -691,16 +691,18 @@ class TestResponses(ESStatsTest):
             {
                 "count": 2,
                 "date": "2009-06-02",
-                "average": 2.49,
-                "total": 4.98,
-                "end": "2009-06-02"
+                "end": "2009-06-02",
+                "data": {
+                    "USD": 4.98
+                }
             },
             {
                 "count": 1,
                 "date": "2009-06-01",
-                "average": 5.0,
-                "total": 5.0,
-                "end": "2009-06-01"
+                "end": "2009-06-01",
+                "data": {
+                    "USD": 5.0
+                }
             }
         ])
 
@@ -708,9 +710,9 @@ class TestResponses(ESStatsTest):
         r = self.get_view_response('stats.contributions_series', group='day',
                                    format='csv')
         eq_(r.status_code, 200)
-        self.csv_eq(r, """date,count,total,average
-                          2009-06-02,2,4.98,2.49
-                          2009-06-01,1,5.00,5.0""")
+        self.csv_eq(r, """date,count,USD
+                          2009-06-02,2,4.98
+                          2009-06-01,1,5.00""")
 
 
 # Test the SQL query by using known dates, for weeks and months etc.

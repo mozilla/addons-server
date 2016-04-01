@@ -13,7 +13,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db import connection
-from django.db.models import Avg, Count, Q, Sum
+from django.db.models import Count, Q, Sum
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, render
 from django.utils.cache import add_never_cache_headers, patch_cache_control
@@ -456,18 +456,32 @@ def contributions_series(request, addon, group, start, end, format):
     qs = (Contribution.objects.extra(select={'date_created': 'date(created)'})
           .filter(addon=addon, amount__gt=0, transaction_id__isnull=False,
                   created__range=date_range)
-          .values('date_created')
-          .annotate(count=Count('amount'), average=Avg('amount'),
-                    total=Sum('amount')))
+          .values('date_created', 'currency')
+          .annotate(count=Count('amount'), total=Sum('amount'))
+          .order_by('-date_created'))
 
-    # Add `date` and `end` keys for legacy compat.
-    series = sorted(qs, key=lambda x: x['date_created'], reverse=True)
-    for row in series:
-        row['end'] = row['date'] = row.pop('date_created')
+    series = []
+    currencies = set()
+    last = None
+    for row in qs:
+        if last is None or last['date'] != row['date_created']:
+            last = {
+                'date': row['date_created'],
+                'end': row['date_created'],
+                'count': 0,
+                'data': {}
+            }
+            series.append(last)
+        last['count'] += row['count']
+        last['data'][row['currency']] = row['total']
+        currencies.add(row['currency'])
 
     if format == 'csv':
-        return render_csv(request, addon, series,
-                          ['date', 'count', 'total', 'average'])
+        fields = ['date', 'count']
+        fields.extend(currencies)
+        for row in series:
+            row.update(row['data'])
+        return render_csv(request, addon, series, fields)
     elif format == 'json':
         return render_json(request, addon, series)
 

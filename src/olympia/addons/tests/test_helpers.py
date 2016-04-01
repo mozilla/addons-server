@@ -55,7 +55,7 @@ class TestHelpers(TestCase):
         request.GET = {'src': 'direct'}
 
         c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings,
-             'request': request}
+             'request': request, 'amo': amo}
 
         s = contribution(c, a)
         doc = PyQuery(s)
@@ -72,7 +72,7 @@ class TestHelpers(TestCase):
         request = Mock()
 
         c = {'LANG': 'en-us', 'APP': amo.FIREFOX, 'settings': settings,
-             'request': request}
+             'request': request, 'amo': amo}
 
         s = contribution(c, a, contribution_src='browse')
         doc = PyQuery(s)

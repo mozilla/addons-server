@@ -8,6 +8,10 @@ z.StatsManager = (function() {
     var STATS_VERSION = '2011-12-12';
     var PRECISION = 2;
 
+    $.ajax('/static/js/currency.json').then(function(c) {
+        z.StatsManager.CURRENCY_DATA = c;
+    });
+
     var storage         = z.Storage("stats"),
         storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
@@ -34,7 +38,8 @@ z.StatsManager = (function() {
         "versions": true,
         "statuses": true,
         "overview": true,
-        "site": true
+        "site": true,
+        "contributions": true
     };
 
     // is a metric an average or a sum?
@@ -171,7 +176,6 @@ z.StatsManager = (function() {
             fields = {};
 
         // Non-breakdown metrics only have one field.
-        if (metric == 'contributions') return ['count', 'total', 'average'];
         if (!(metric in breakdownMetrics)) return ["count"];
 
         ds = dataStore[metric];
@@ -194,10 +198,13 @@ z.StatsManager = (function() {
         }, this);
 
         // sort the fields, make them proper field identifiers, and return.
-        return _.map(
+        var x = _.map(
             _.sortBy(
                 _.keys(fields),
                 function (f) {
+                    if (metric == 'contributions') {
+                        return -fields[f] * z.StatsManager.CURRENCY_DATA[f].multiplier;
+                    }
                     return -fields[f];
                 }
             ),
@@ -205,6 +212,8 @@ z.StatsManager = (function() {
                 return "data|" + f;
             }
         );
+        if (metric == 'contributions') x.unshift('count');
+        return x;
     }
 
 
@@ -299,12 +308,6 @@ z.StatsManager = (function() {
                 data: {},
                 empty: true
             };
-            if (metric == 'contributions') {
-                _.extend(groupVal, {
-                    average: 0,
-                    total: 0
-                });
-            }
         }
 
         function performAggregation() {
@@ -319,8 +322,6 @@ z.StatsManager = (function() {
                 // overview gets special treatment. Only average ADUs.
                 if (metric == 'overview') {
                     groupVal.data.updates /= groupCount;
-                } else if (metric == 'contributions') {
-                    groupVal.average /= groupCount;
                 } else if (metric in breakdownMetrics) {
                     // average for mean metrics.
                     _.each(groupVal.data, function(val, field) {
@@ -350,21 +351,11 @@ z.StatsManager = (function() {
                     data: {},
                     empty: true
                 };
-                if (metric == 'contributions') {
-                    _.extend(groupVal, {
-                        average: 0,
-                        total: 0
-                    });
-                }
             }
             // add the current row to our aggregates.
             if (row && groupVal) {
                 groupVal.empty = false;
                 groupVal.count += row.count;
-                if (metric == 'contributions') {
-                    groupVal.total += parseFloat(row.total);
-                    groupVal.average += parseFloat(row.average);
-                }
                 if (metric in breakdownMetrics) {
                     _.each(row.data, function(val, field) {
                         if (!groupVal.data[field]) {

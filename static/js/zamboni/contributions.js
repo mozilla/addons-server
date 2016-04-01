@@ -178,6 +178,9 @@ var contributions = {
         .find('input:text').keypress(function() {
             $(this).parent().siblings(':radio').prop('checked', true);
         }).end()
+        .find('select').change(function() {
+            changeCurrency(this.value);
+        }).end()
         .find('textarea').keyup(function() {
             var txt = $(this).val(),
                 limit = contributions.commentlimit,
@@ -260,6 +263,12 @@ var contributions = {
                         .find('textarea').val('').keyup().end()
                         .find('input:radio:first').prop('checked', true).end()
                         .fadeIn();
+
+                    $.ajax('/static/js/currency.json').then(function(c) {
+                        contributions.CURRENCY_DATA = c;
+                        // TODO: select an appropriate currency based on the user's locale
+                        changeCurrency(cb.find('select')[0].value);
+                    });
                 },
                 onHide: function(hash) {
                     if ($.browser.opera) {
@@ -278,6 +287,12 @@ var contributions = {
 
         if (window.location.hash === '#contribute-confirm') {
             $('#contribute-button').click();
+        }
+
+        function changeCurrency(code) {
+            var currency = contributions.CURRENCY_DATA[code];
+            $('#onetime-symbol').text(currency.symbol);
+            contrib_limit = currency.limit;
         }
     }
 
