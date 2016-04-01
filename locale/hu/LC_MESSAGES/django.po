@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-29 10:43+0000\n"
+"PO-Revision-Date: 2016-03-30 21:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -8353,7 +8353,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design,  which is under pending review."
-msgstr ""
+msgstr "Az előzőleg benyújtott dizájnja, amely értékelésre vár."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
@@ -8365,7 +8365,7 @@ msgstr "Függő lábléc"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Majd frissítheti a témadizájnt itt, amint az elfogadásra került."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
@@ -8545,7 +8545,7 @@ msgstr "Válassza ki a fájl futtatására alkalmas platformot."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:46
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Melyik értékeléstípusra szeretne benevezni?"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:51
 msgid "Only publish this version to my beta channel."
@@ -8887,15 +8887,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "Unlisting an add-on is irreversible!"
-msgstr ""
+msgstr "A kiegészítő listázásának visszavonása nem visszafordítható!"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Egy nem listázott kiegészítő nem kapcsolható vissza listázottá."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:307
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Biztos, hogy vissza akarja vonni a kiegészítő listázását?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:330
 msgid ""
@@ -9007,10 +9007,13 @@ msgid ""
 "Displays a country flag depicting the location of the current website's "
 "server and more."
 msgstr ""
+"Megjeleníti az ország zászlóját, ahol a jelenlegi weboldal kiszolgálója "
+"található, és még többet."
 
 #: src/olympia/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr ""
+"A FoxClocks lehetővé teszi, hogy szemmel tartsa az időt a világ körül."
 
 #: src/olympia/discovery/modules.py:230
 msgid ""
@@ -9221,16 +9224,20 @@ msgid ""
 "Install the Amazon Browser Apps and receive special Amazon features right at"
 " your fingertips."
 msgstr ""
+"Telepítse az Amazon böngésző alkalmazásokat, és különleges Amazon funkciókat"
+" fog kapni, egy karnyújtásnyira."
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:22
 msgid ""
 "Keep an eye on your eBay activity wherever you are on the web when you "
 "install the eBay Sidebar for Firefox."
 msgstr ""
+"Tartsa szemmel a eBay tevékenységét, bárhol az interneten, amint telepíti az"
+" eBay oldalsávot a Firefoxhoz."
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
-msgstr ""
+msgstr "Tekintse meg a teljes ünnepi bevásárlás kiegészítőgyűjteményt."
 
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -9242,7 +9249,7 @@ msgstr "Tegye egyedivé a Firefoxát<br>a nemzeti zászlójával"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Csatlakozzon hozzánk a globális közösségi szellem ünnepléséhez."
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
@@ -11433,7 +11440,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Hogyan tudok lépést tartani azzal, hogy mi történik az AMO-n?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:27
 msgid ""
@@ -11711,7 +11718,7 @@ msgstr "Támogatási erőforrások"
 #: src/olympia/pages/templates/pages/dev_faq.html:35
 #: src/olympia/pages/templates/pages/dev_faq.html:261
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Kiegészítőjének közreadása"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:36
 #: src/olympia/pages/templates/pages/dev_faq.html:381
@@ -11739,10 +11746,13 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>Hogyan készítek egy kiegészítőt?</h3> <p>A Mozilla a <a "
+"href=\"%(url)s\">Mozilla fejlesztői hálózaton</a> keresztül biztosít "
+"dokumentációt arról, hogy hogyan készítsen el egy kiegészítőt.</p>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:55
 msgid "Other resources include:"
-msgstr ""
+msgstr "Más források többek között:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:59
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -11754,7 +11764,7 @@ msgstr "Mozilla kiegészítők blog"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:66
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Milyen eszközökre van szükségem, hogy egy kiegészítőt készítsek?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:68
 msgid ""
@@ -11765,7 +11775,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:82
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Népszerű kódszerkesztők többek között:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: src/olympia/pages/templates/pages/dev_faq.html:85
@@ -11835,7 +11845,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:141
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Tartalmazhat a kiegészítőm bináris komponenseket?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:143
 #, python-format
@@ -11850,6 +11860,8 @@ msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
+"Használhatok JavaScript könyvtárakat, mint a jQuery, MooTools vagy "
+"Prototype, a kiegészítőm elkészítéséhez?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:152
 msgid ""
@@ -12948,12 +12960,12 @@ msgstr ""
 #: src/olympia/pages/templates/pages/review_guide.html:36
 #: src/olympia/pages/templates/pages/review_guide.html:51
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Néhány tipp nagyszerű értékelések írásához"
 
 #: src/olympia/pages/templates/pages/review_guide.html:39
 #: src/olympia/pages/templates/pages/review_guide.html:131
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Gyakran ismételt kérdések az értékelésekről"
 
 #: src/olympia/pages/templates/pages/review_guide.html:46
 msgid ""
@@ -12970,22 +12982,24 @@ msgstr "Ezt tegye:"
 msgid ""
 "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
+"Írjon úgy, mintha egy barátjának mesélne a kiegészítővel szerzett "
+"tapasztalatairól."
 
 #: src/olympia/pages/templates/pages/review_guide.html:61
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Legyen az értékelések tömörek, és könnyen érthetőek."
 
 #: src/olympia/pages/templates/pages/review_guide.html:62
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Adjon meg konkrét és hasznos részleteket. Például:"
 
 #: src/olympia/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Úgy működött a kiegészítő, ahogyan azt várta?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Milyen funkciók tetszettek és milyenek nem?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:66
 msgid "Was it useful?"

@@ -7,7 +7,9 @@ env:
   - TOX_ENV=docs
   - TOX_ENV=assets
   - TOX_ENV=es
-  - TOX_ENV=addons-devhub-editors
+  - TOX_ENV=addons
+  - TOX_ENV=devhub
+  - TOX_ENV=editors
   - TOX_ENV=main
 services:
   - memcached

@@ -9,7 +9,6 @@ from django.template import Context as TemplateContext
 from django.utils import translation
 
 import mock
-from nose.tools import eq_
 
 from olympia.amo.models import FakeEmail
 from olympia.amo.tests import BaseTestCase
@@ -43,7 +42,7 @@ class TestSendMail(BaseTestCase):
                             recipient_list=[to], fail_silently=False)
 
         assert success
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_blacklist_flag(self):
         to = 'nobody@mozilla.org'
@@ -52,32 +51,32 @@ class TestSendMail(BaseTestCase):
                             recipient_list=[to], fail_silently=False,
                             use_blacklist=True)
         assert success
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
         success = send_mail('test subject', 'test body',
                             recipient_list=[to], fail_silently=False,
                             use_blacklist=False)
         assert success
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
     def test_user_setting_default(self):
         user = UserProfile.objects.all()[0]
         to = user.email
 
         # Confirm there's nothing in the DB and we're using the default
-        eq_(UserNotification.objects.count(), 0)
+        assert UserNotification.objects.count() == 0
 
         # Make sure that this is True by default
         setting = notifications.NOTIFICATIONS_BY_SHORT['reply']
-        eq_(setting.default_checked, True)
+        assert setting.default_checked
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to], fail_silently=False)
 
         assert success, "Email wasn't sent"
-        eq_(len(mail.outbox), 1)
-
-        eq_(mail.outbox[0].body.count('users/unsubscribe'), 1)  # bug 676601
+        assert len(mail.outbox) == 1
+        # bug 676601
+        assert mail.outbox[0].body.count('users/unsubscribe') == 1
 
     def test_user_setting_checked(self):
         user = UserProfile.objects.all()[0]
@@ -87,14 +86,15 @@ class TestSendMail(BaseTestCase):
             notification_id=n.id, user=user, enabled=True)
 
         # Confirm we're reading from the database
-        eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
+        assert UserNotification.objects.filter(
+            notification_id=n.id).count() == 1
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to], fail_silently=False)
 
         assert "You received this email because" in mail.outbox[0].body
         assert success, "Email wasn't sent"
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
     def test_user_mandatory(self):
         # Make sure there's no unsubscribe link in mandatory emails.
@@ -123,22 +123,23 @@ class TestSendMail(BaseTestCase):
             notification_id=n.id, user=user, enabled=False)
 
         # Confirm we're reading from the database.
-        eq_(UserNotification.objects.filter(notification_id=n.id).count(), 1)
+        assert UserNotification.objects.filter(
+            notification_id=n.id).count() == 1
 
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to], fail_silently=False)
 
         assert success, "Email wasn't sent"
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     def test_success_real_mail(self):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org'],
                          fail_silently=False)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject.find('test subject'), 0)
-        eq_(mail.outbox[0].body.find('test body'), 0)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject.find('test subject') == 0
+        assert mail.outbox[0].body.find('test body') == 0
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
@@ -146,9 +147,9 @@ class TestSendMail(BaseTestCase):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org'],
                          fail_silently=False)
-        eq_(len(mail.outbox), 0)
-        eq_(FakeEmail.objects.count(), 1)
-        eq_(FakeEmail.objects.get().message.endswith('test body'), True)
+        assert len(mail.outbox) == 0
+        assert FakeEmail.objects.count() == 1
+        assert FakeEmail.objects.get().message.endswith('test body')
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
@@ -157,11 +158,11 @@ class TestSendMail(BaseTestCase):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org'],
                          fail_silently=False)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject.find('test subject'), 0)
-        eq_(mail.outbox[0].body.find('test body'), 0)
-        eq_(FakeEmail.objects.count(), 1)
-        eq_(FakeEmail.objects.get().message.endswith('test body'), True)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject.find('test subject') == 0
+        assert mail.outbox[0].body.find('test body') == 0
+        assert FakeEmail.objects.count() == 1
+        assert FakeEmail.objects.get().message.endswith('test body')
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
@@ -170,9 +171,9 @@ class TestSendMail(BaseTestCase):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org', 'b@example.fr'],
                          fail_silently=False)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].to, ['nobody@mozilla.org'])
-        eq_(FakeEmail.objects.count(), 1)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['nobody@mozilla.org']
+        assert FakeEmail.objects.count() == 1
 
     @mock.patch('olympia.amo.utils.Context')
     def test_dont_localize(self, fake_Context):
@@ -187,7 +188,7 @@ class TestSendMail(BaseTestCase):
         translation.activate('zh_TW')
         send_mail('test subject', 'test body', perm_setting='reply',
                   recipient_list=[to], fail_silently=False)
-        eq_(perm_setting[0], u'an add-on developer replies to my review')
+        assert perm_setting[0] == u'an add-on developer replies to my review'
 
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
@@ -204,18 +205,18 @@ class TestSendMail(BaseTestCase):
         msg = mail.outbox[0]
         message = msg.message()
 
-        eq_(msg.to, emails)
-        eq_(msg.subject, subject)
-        eq_(msg.from_email, settings.NOBODY_EMAIL)
-        eq_(msg.extra_headers['Reply-To'], settings.EDITORS_EMAIL)
+        assert msg.to == emails
+        assert msg.subject == subject
+        assert msg.from_email == settings.NOBODY_EMAIL
+        assert msg.extra_headers['Reply-To'] == settings.EDITORS_EMAIL
 
-        eq_(message.is_multipart(), True)
-        eq_(message.get_content_type(), 'multipart/alternative')
-        eq_(message.get_default_type(), 'text/plain')
+        assert message.is_multipart()
+        assert message.get_content_type() == 'multipart/alternative'
+        assert message.get_default_type() == 'text/plain'
 
         payload = message.get_payload()
-        eq_(payload[0].get_content_type(), 'text/plain')
-        eq_(payload[1].get_content_type(), 'text/html')
+        assert payload[0].get_content_type() == 'text/plain'
+        assert payload[1].get_content_type() == 'text/html'
 
         message1 = payload[0].as_string()
         message2 = payload[1].as_string()
@@ -233,13 +234,13 @@ class TestSendMail(BaseTestCase):
                         mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
-        eq_(attachments, mail.outbox[0].attachments,
+        assert attachments == mail.outbox[0].attachments, (
             'Attachments not included')
 
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'])
-        eq_('test subject', mail.outbox[0].subject, 'Subject not stripped')
+        assert 'test subject' == mail.outbox[0].subject, 'Subject not stripped'
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)

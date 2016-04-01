@@ -22,7 +22,7 @@ from waffle.decorators import waffle_switch
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
-from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.api.jwt_auth.views import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
@@ -258,7 +258,9 @@ class AuthenticateView(APIView):
             return safe_redirect(next_path, 'login')
 
 
-class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveAPIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = UserProfileSerializer
 
     def retrieve(self, request, *args, **kw):
@@ -283,7 +285,8 @@ class AccountSourceView(generics.RetrieveAPIView):
         return Response(self.get_serializer(user).data)
 
 
-class AccountSuperCreate(JWTProtectedView):
+class AccountSuperCreate(APIView):
+    authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
         IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
 

@@ -1,5 +1,3 @@
-from django.http import HttpRequest
-
 import mock
 import pytest
 from nose.tools import assert_false
@@ -63,8 +61,7 @@ def test_match_rules():
 
 
 def test_anonymous_user():
-    # Fake request must not have .groups, just like an anonymous user.
-    fake_request = HttpRequest()
+    fake_request = req_factory_factory('/')
     assert_false(action_allowed(fake_request, amo.FIREFOX, 'Admin:%'))
 
 
@@ -93,7 +90,6 @@ class TestHasPerm(TestCase):
 
     def fake_request_with_user(self, user):
         request = mock.Mock()
-        request.groups = user.groups.all()
         request.user = user
         request.user.is_authenticated = mock.Mock(return_value=True)
         return request
@@ -119,7 +115,6 @@ class TestHasPerm(TestCase):
 
     def test_require_author_when_admin(self):
         self.request = self.fake_request_with_user(self.login_admin())
-        self.request.groups = self.request.user.groups.all()
         assert check_ownership(self.request, self.addon, require_author=False)
 
         assert not check_ownership(self.request, self.addon,
@@ -134,7 +129,6 @@ class TestHasPerm(TestCase):
         self.addon.update(status=amo.STATUS_DELETED)
         assert not check_addon_ownership(self.request, self.addon)
         self.request.user = self.login_admin()
-        self.request.groups = self.request.user.groups.all()
         assert not check_addon_ownership(self.request, self.addon)
 
     def test_ignore_disabled(self):

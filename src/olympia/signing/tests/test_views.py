@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.api.tests.utils import APIAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
 from olympia.signing.views import VersionView
@@ -18,7 +18,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
-class SigningAPITestCase(APIAuthTestCase):
+class SigningAPITestCase(APIKeyAuthTestCase):
     fixtures = ['base/addon_3615', 'base/user_4043307']
 
     def setUp(self):

@@ -148,7 +148,8 @@ class TestEditBasic(TestEdit):
             '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
 
         # Now make sure we don't have escaped content in the rendered form.
-        form = AddonFormBasic(instance=self.get_addon(), request=object())
+        form = AddonFormBasic(instance=self.get_addon(),
+                              request=req_factory_factory('/'))
         eq_(pq('<body>%s</body>' % form['summary'])(
             '[lang="en-us"]').html().strip(),
             '<b>oh my</b>')

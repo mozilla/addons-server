@@ -1,7 +1,9 @@
 from django.test import RequestFactory
 from mock import Mock
-from rest_framework.views import APIView
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 
 from olympia.access.models import Group, GroupUser
 from olympia.api.permissions import GroupPermission
@@ -10,6 +12,9 @@ from olympia.users.models import UserProfile
 
 
 class ProtectedView(APIView):
+    # Use session auth for this test view because it's easy, and the goal is
+    # to test the permission, not the authentication.
+    authentication_classes = [SessionAuthentication]
     permission_classes = [GroupPermission('SomeRealm', 'SomePermission')]
 
     def get(self, request):
@@ -52,4 +57,4 @@ class TestGroupPermission(TestCase):
         request.user = Mock(is_authenticated=Mock(return_value=False))
         view = Mock()
         perm = GroupPermission('SomeRealm', 'SomePermission')
-        assert perm.has_permission(request, view) == False
+        assert perm.has_permission(request, view) is False

@@ -1,5 +1,5 @@
 // Needed for hovercards
-@import 'impala/hovercards';
+@import '../impala/hovercards';
 
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
@@ -8,6 +8,7 @@
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
 @header-font-color: #c63717;
+@default-font-color: #333;
 
 // Common styles
 @detail-border: 1px solid #ebebeb;
@@ -19,7 +20,7 @@
   font-weight: 400;
   src: local('Open Sans'),
        local('OpenSans'),
-       url('../../css/impala/fonts/OpenSans-Regular.ttf') format('ttf');
+       url('../impala/fonts/OpenSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -28,7 +29,7 @@
   font-weight: 700;
   src: local('Open Sans Bold'),
        local('OpenSans-Bold'),
-       url('../../css/impala/fonts/OpenSans-Bold.ttf') format('ttf');
+       url('../impala/fonts/OpenSans-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -37,7 +38,7 @@
   font-weight: 700;
   src: local('Open Sans BoldItalic'),
        local('OpenSans-BoldItalic'),
-       url('../../css/impala/fonts/OpenSans-BoldItalic.ttf') format('ttf');
+       url('../impala/fonts/OpenSans-BoldItalic.ttf') format('truetype');
 }
 
 @font-face {
@@ -46,7 +47,15 @@
   font-weight: 400;
   src: local('Open Sans Italic'),
        local('OpenSans-Italic'),
-       url('../../css/impala/fonts/OpenSans-Italic.ttf') format('ttf');
+       url('../impala/fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.5;
 }
 
 // Styles
@@ -54,36 +63,50 @@
   background: none;
 }
 
+html {
+  font-size: 13px;
+}
+
 body.restyle {
   background: #fff none repeat scroll 0 0;
-  color: #333;
+  color: @default-font-color;
   font-family: @primary-font;
   font-style: normal;
-  font-size: 0.875rem;
   line-height: 1.5;
   min-width: 1018px;
 }
 
-h1, #masthead h1 {
+h1,
+#masthead h1 {
   font-family: @primary-font;
 }
-
-#site-nav ul {
-  margin-bottom: 1.5em;
+#masthead h1 a {
+  color: @link-on-color-bg;
 }
 
 h2 {
   margin-top: 1em;
 }
 
+.primary h1,
+.island h2 {
+  margin-top: 0;
+}
+
 h1,
 .primary h2,
 hgroup h2.addon,
-.personas-featured h3 {
-  color: @header-font-color;
+.personas-featured h3,
+#featured-addons .featured-inner h3 {
+  color: @default-font-color;
   font-family: @primary-font !important;
-  font-size: 2.25rem;
+  font-size: 1.692rem;
   font-style: normal;
+  line-height: 1.5;
+}
+
+#collections-landing {
+  margin-top: 20px;
 }
 
 .addon-details h2 {
@@ -93,7 +116,7 @@ hgroup h2.addon,
 
 .primary header h2,
 .personas-featured h3 {
-  margin: 5px 0 15px;
+  margin: 0 0 15px;
 }
 
 // These are all defined in AMO's original CSS and seem to need overriding :'(
@@ -213,9 +236,13 @@ button.link:active span {
   font-family: inherit;
 }
 
+body:not(.home) .amo-header {
+  min-height: 130px;
+  margin-bottom: 10px;
+}
+
 .menu-nav {
   color: @link-on-color-bg;
-  font-size: 0.75rem;
 }
 
 .amo-header ul a {
@@ -227,14 +254,9 @@ button.link:active span {
   }
 }
 
-.menu-nav {
-  color: #fff;
-  font-size: 0.75rem;
-}
-
 #masthead h1 {
-  font-size: 3.5rem;
-  line-height: 3rem;
+  font-size: 4.308rem; // 56px
+  line-height: 3.692rem; // 48px
   letter-spacing: -1px;
   text-transform: none;
 }
@@ -370,13 +392,16 @@ button.link:active span {
 }
 
 #site-nav #themes ul.two-col {
-  height: 270px;
+  height: 293px;
   padding: 8px;
 
   div {
     display: none;
+  }
+
+  + div {
     left: -1px;
-    top: 314px;
+    top: 305px
   }
 }
 
@@ -414,16 +439,10 @@ button.link:active span {
     border-radius: 0;
     box-shadow: none;
     font: inherit;
+    height: 30px;
   }
 }
 
-button.search-button {
-  background-image:
-    url('https://addons.cdn.mozilla.net/static/img/icons/go-arrow.png?ad8fa66'),
-        linear-gradient(#6fbf4a, #6fbf4a);
-  border-radius: 0;
-  box-shadow: none;
-}
 
 // fix color of search suggestions
 #site-search-suggestions a span {
@@ -446,6 +465,7 @@ button.search-button {
   opacity: 1;
   visibility: visible;
   width: 960px;
+  margin-bottom: 10px;
 }
 
 #promos,
@@ -482,7 +502,23 @@ button.search-button {
 }
 
 #promos .promo-purple {
-  background: none;
+  h2,
+  h3,
+  a,
+  p.desc {
+    color: @link-on-color-bg;
+    text-align: left;
+    text-shadow: none;
+  }
+
+  h2,
+  p.desc {
+    color: #000;
+  }
+}
+
+.promo h2 {
+  margin-top: 0;
 }
 
 .featured li {
@@ -496,7 +532,7 @@ button.search-button {
   background: none;
 
   &:before {
-    background-image: url('https://addons.cdn.mozilla.net/static/img/zamboni/discovery_pane/promos/monthly-bg.png?eb06c0f');
+    background-image: url('../../img/zamboni/discovery_pane/promos/monthly-bg.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -504,6 +540,7 @@ button.search-button {
     display: block;
     height: 100%;
     filter: contrast(170%) grayscale(100%);
+    -webkit-filter: contrast(170%) grayscale(100%);
     left: 0;
     mix-blend-mode: multiply;
     opacity: 0.3;
@@ -647,14 +684,15 @@ button.search-button {
   text-align: left;
 }
 
-#featured-addon h3 a, #monthly h3 a {
+#featured-addon h3 a,
+#monthly h3 a {
   color: @link-on-color-bg;
 }
 
-#monthly .addons p.desc, #monthly .wrap p {
+#monthly .addons p.desc,
+#monthly .wrap p {
   clear: both;
   color: #fff;
-  font-size: 0.85rem;
   font-weight: 200;
   max-height: 5.4em;
   text-overflow: ellipsis;
@@ -676,32 +714,153 @@ button.search-button {
 }
 
 // Side nav elsewhere (themes)
-.secondary .highlight {
+body:not(.developer-hub) .secondary .highlight {
   padding: 7px 0 0;
 }
 
-// Install Button
-.button,
+// Button overrides.
+// Add a selector here if there's a different style coming from
+// elsewhere.
+//
+.linux .button.linux,
+.mac .button.mac,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows,
+a.delete-button.delete-addon,
+#upload-file-finish.button,
+#upload-file-widget .button.prominent,
+#promos .view-button a,
+.cta a.button:link,
 button,
-input[type="submit"] {
+button.button,
+.button,
+a.button:link,
+input:not(.upvotes):not(.downvotes)[type="submit"] {
   background: #5784bf;
-  border: 0;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+       inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+  color: #fff;
+  display: inline-block;
+  font-family: @primary-font;
+  font-size: 1.077rem;
+  line-height: 1.5;
+  padding: 8px 16px 9px;
+  position: relative;
+  text-shadow: none;
+  transition: box-shadow linear 0.25s;
+
+  &.download,
+  &.add {
+    background: #57bd35;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+         inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
+    span:not(.os) {
+      border: none;
+      margin: 0;
+      background: url(../../img/impala/button-icons.png) no-repeat 0 -191px;
+      padding: 0 0 0 24px;
+    }
+  }
+
+  &.contribute b {
+    display: inline;
+    background-position: 0 -444px;
+  }
+
+  &.good {
+    background: #489615;
+  }
+
+  &.delete-button,
+  &.developer {
+    background: #bc2b1a;
+    span {
+      background-position: 0 -383px;
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    background: #ccc;
+    text-shadow: none;
+
+    &:hover {
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+           inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+    }
+
+    &:active {
+      top: 0;
+    }
+  }
+
+  b {
+    display: none;
+  }
+
+  &.selected,
+  &:hover,
+  &:focus {
+    box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+          inset 0 -2px rgba(0, 0, 0, 0.1),
+          inset 0 0 100px rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    top: 2px;
+    box-shadow: none;
+  }
+
+  &.installer.warning,
+  &.installer.caution {
+    background-image: url(../../img/impala/warning-bg.png);
+    color: #333 !important;
+  }
+}
+
+.button:nth-child(n+1) {
+  margin-right: 5px;
+}
+
+.header-search .search-button {
+  background-color: #57bd35;
+  background-image: url('../../img/icons/go-arrow.png');
   border-radius: 0;
   box-shadow: none;
-  font-family: inherit;
+  height: 30px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    top: 1px;
+  }
 }
 
-.button.add,
-.button.good,
-button.good {
-  background: #489615;
+.button.CTA {
+  background: #57bd35 !important;
+  font-size: 16px !important;
+  padding: 16px !important;
 }
 
-.button.selected,
-.button:active,
-.button:focus,
-.button:hover {
-  box-shadow: 0 0 100px rgba(255, 255, 255, 0.2) inset;
+.invisible-upload {
+  padding: 5px 0;
+}
+
+.item .install {
+  border-radius: none;
+  background: none;
+
+  strong {
+    padding: 0;
+    margin: 10px 0 2px;
+  }
 }
 
 #popular-extensions {
@@ -709,16 +868,19 @@ button.good {
 }
 
 .restyle.home .shift-secondary {
-  margin-top: 300px;
+  margin-top: 282px;
 }
 
 .home .secondary {
   margin: 12px 0;
 }
 
+body:not(.developer-hub) .secondary {
+  width: 180px;
+}
+
 .secondary {
   margin: 0 0 12px;
-  width: 180px;
 
   h2, h3 {
     color: #aaa;
@@ -737,10 +899,6 @@ button.good {
   }
 }
 
-.button.CTA {
-  font-size: 16px;
-  padding: 16px;
-}
 
 .island .pager {
   display: none;
@@ -776,8 +934,14 @@ button.good {
   }
 }
 
-#lang_form {
+#footer #lang_form {
   margin-top: 12px;
+
+  label {
+    color: @link-on-white-bg;
+    font-family: @primary-font;
+    text-transform: none;
+  }
 }
 
 // Add-on Details Page
@@ -800,14 +964,20 @@ button.good {
 }
 
 // first block of details - icon, name, description...
-.addon-details .primary:first-of-type {
-  min-height: 257px;
-  padding-bottom: 1em;
-}
+.addon-details {
+  .primary:first-of-type {
+    min-height: 257px;
+    padding-bottom: 1em;
+  }
 
-.addon-details .secondary.addon-vitals {
-  position: relative;
-  z-index: 1;
+  .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-wrapper .install-button a.button.download {
+    margin-bottom: 10px;
+  }
 }
 
 #addon-description.prose {
@@ -823,9 +993,6 @@ button.good {
   margin-top: -5px;
 }
 
-// Re-colors links on top of details page to white
-#addon a,
-.author a,
 .addon-vitals .widgets .widget {
   color: #fff;
 }
@@ -846,24 +1013,6 @@ button.good {
   }
 }
 
-.install-button > .button.add.installer {
-  background: #57bd35;
-  border-radius: 3px;
-  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-        inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
-  font-size: 14px;
-  color: #fff;
-  line-height: 16px;
-}
-
-.install-button > .button.add.installer:hover {
-  background: #90e07f;
-}
-
-.install-button > .button.add.installer:active {
-  background: #40a624;
-  box-shadow: none;
-}
 
 .notice {
   background: 0;
@@ -929,12 +1078,26 @@ button.good {
   height: 130px;
 }
 
+// Standard pages have the default
+// text color. This is overridden for details
+// pages below.
+h3.author a,
+h4.author a {
+  color: @default-font-color;
+  text-decoration: underline;
+}
+
+h3.author .transfer-ownership {
+  color: @link-on-color-bg;
+  text-decoration: none;
+}
+
 // font issues on addon-details
 .addon-details {
   .version-number,
   h4.author,
   h4.author a,
-  #addon-summary,
+  a.eula,
   a.privacy-policy,
   .notice h3,
   .notice p,
@@ -942,6 +1105,9 @@ button.good {
   .notice p b,
   .category.more-info,
   .vital a,
+  .warning a,
+  #addon-summary,
+  #weekly-downloads .stats,
   #reviews-link,
   #daily-users a {
     color: @link-on-color-bg;
@@ -949,10 +1115,16 @@ button.good {
 
   h4.author a,
   a.privacy-policy,
-  #contribution.notice p a,
+  a.eula,
   .vital a,
+  .warning a,
+  #contribution.notice p a,
   #reviews-link {
     text-decoration: underline;
+  }
+
+  #weekly-downloads .stats {
+    font-size: 1rem;
   }
 
   .version-number {
@@ -998,12 +1170,18 @@ button.good {
 .secondary .other-categories {
   background-color: transparent;
   border: 0;
+  margin-top: 0;
+  padding-top: 0;
 
   ul {
     border-top: none;
 
     li {
       padding: 0;
+
+      a {
+        padding: 5px 6px 5px 12px;
+      }
     }
   }
 
@@ -1072,14 +1250,6 @@ button.good {
 
   h3, p {
     font-family: @primary-font;
-  }
-
-  a.button {
-    background-color: @primary-blue;
-    background-image: none;
-    border: 0;
-    border-radius: 0;
-    text-shadow: none;
   }
 }
 
@@ -1174,6 +1344,7 @@ button.good {
 .personas-featured .persona-list-3col {
   border: 0;
   min-height: 125px;
+  padding-bottom: 10px;
 }
 
 .persona-list-3col {
@@ -1183,10 +1354,14 @@ button.good {
     overflow: hidden;
     padding: 0.6em 0 0;
     position: relative;
+
+    &:nth-of-type(3n) .persona.hovercard:hover {
+      margin-bottom: -3px;
+    }
   }
 
   .persona.hovercard {
-    margin-right: 14px;
+    margin-right: 29px;
     width: 32%;
 
     a {
@@ -1199,16 +1374,54 @@ button.good {
   }
 }
 
-.category-landing .addons-column ul.personas {
-  padding: 0;
+.category-landing {
+  .addons-column {
+    ul.personas {
+      padding: 0;
+    }
+
+    ul li {
+      overflow: visible;
+
+      .persona a {
+        padding: 0;
+      }
+    }
+  }
+
+  // Featured add-ons in a category listing page.
+  // This fixes https://github.com/mozilla/addons-server/issues/2025
+  #featured-addons {
+    background: none;
+    border: 0;
+
+    .featured-inner {
+      background: none;
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 25px;
+      width: auto;
+    }
+  }
+
+  .view-all {
+    text-align: left;
+
+    a:link,
+    a:visited {
+      color: @link-on-white-bg;
+    }
+  }
 }
 
-.category-landing .addons-column ul li {
-  overflow: visible;
-
-  .persona a {
-    padding: 0;
-  }
+.category-landing .featured.three-col .addon.hovercard:hover {
+  height: 320px;
+  margin-bottom: -320px;
 }
 
 .persona.hovercard {
@@ -1217,6 +1430,10 @@ button.good {
   &:hover {
     margin-bottom: -12px;
     height: 90px;
+
+    .addon-writeup {
+      display: none;
+    }
   }
 
   h3 {
@@ -1254,22 +1471,48 @@ button.good {
   // This is display: none !important because JS modifies the element's
   // CSS directly.
   display: none !important;
+
+  &.CTA {
+    display: block !important;
+  }
 }
 
 .extra .button.not-available {
-  background: #fbfbfb url(../img/impala/no.png) 6px 50% no-repeat;
+  background: #fbfbfb url(../../img/impala/no.png) 6px 50% no-repeat;
   border: 1px solid #b1b1b1;
   border-radius: 3px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
               inset 0 -2px 0 0 rgba(30, 30, 30, 0.25);
   color: #b1b1b1;
+  cursor: default;
   font-size: 14px;
   padding-left: 20px;
+  margin-bottom: 5px;
+  white-space: normal;
+  text-shadow: none;
+}
+
+#addon .more-versions a {
+  color: @link-on-white-bg;
+  margin-left: 10px;
 }
 
 // Contribute button fixes
 .notice.author .aux {
   text-align: right;
+
+  #contribute-button {
+    text-decoration: none;
+  }
+
+  .install-button {
+    margin-right: 0;
+
+    .add {
+      margin-top: 5px;
+      text-decoration: none;
+    }
+  }
 }
 
 .notice.c.author {
@@ -1280,6 +1523,79 @@ button.good {
 
     &.suggestion {
       margin-right: 0;
+    }
+  }
+}
+
+
+.secondary .submit-theme {
+  padding: 0;
+
+  a.button {
+    white-space: normal;
+  }
+}
+
+// Fix theme button alignment
+.theme .choices {
+  float: none;
+}
+
+.theme-queue a.button:active,
+.sidebar a.button:active,
+.theme-queue button:active,
+.sidebar button:active {
+  border: 0;
+  box-shadow: inset 1px 1px 1px #fff;
+}
+
+// Developer Hub
+.developer-hub {
+  .addon-submission-process {
+    padding-top: 0;
+
+    form {
+      margin-top: 0;
+    }
+  }
+}
+
+#edit-addon h3 a {
+  top: 0;
+}
+
+#downloadAnyway {
+  color: @link-on-color-bg;
+}
+
+.action-needed {
+  overflow: auto;
+}
+
+#persona-summary {
+
+  .install,
+  .install-wrapper,
+  .install-persona,
+  p.warning,
+  .persona-inner {
+    padding: 0;
+  }
+
+  p {
+    clear: left;
+  }
+
+  .install-wrapper {
+    float: left;
+  }
+
+  table {
+    margin-top: 15px;
+    width: 290px;
+
+    td {
+      width: 100%;
     }
   }
 }

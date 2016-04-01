@@ -195,7 +195,7 @@ class TestButton(ButtonTest):
         self.addon.annoying = amo.CONTRIB_ROADBLOCK
         b = self.get_button()
         assert b.show_contrib
-        assert b.button_class, ['contrib' == 'go']
+        assert b.button_class == ['contrib', 'go']
         assert b.install_class == ['contrib']
 
     def test_show_contrib_mobile(self):
@@ -236,7 +236,7 @@ class TestButton(ButtonTest):
         b = self.get_button()
         assert not b.featured
         assert b.unreviewed
-        assert b.button_class, ['download' == 'caution']
+        assert b.button_class == ['download', 'caution']
         assert b.install_class == ['unreviewed']
         assert b.install_text == 'Not Reviewed'
 
@@ -246,8 +246,8 @@ class TestButton(ButtonTest):
         b = self.get_button(version=self.beta_version)
         assert not b.featured
         assert b.is_beta
-        assert b.button_class, ['download' == 'caution']
-        assert b.install_class, ['unreviewed' == 'beta']
+        assert b.button_class == ['download', 'caution']
+        assert b.install_class == ['unreviewed', 'beta']
         assert b.install_text == 'Not Reviewed'
 
     def test_lite(self):
@@ -284,7 +284,7 @@ class TestButton(ButtonTest):
         assert not b.featured
         assert not b.lite
         assert b.unreviewed
-        assert b.button_class, ['download' == 'caution']
+        assert b.button_class == ['download', 'caution']
         assert b.install_class == ['unreviewed']
         assert b.install_text == 'Not Reviewed'
 

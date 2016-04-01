@@ -6,7 +6,6 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 
 import pytest
-from nose.tools import eq_
 
 from olympia.amo.storage_utils import (walk_storage, copy_stored_file,
                                        move_stored_file, rm_stored_dir)
@@ -33,21 +32,22 @@ def test_storage_walk():
         results = [(dir, set(subdirs), set(files))
                    for dir, subdirs, files in sorted(walk_storage(tmp))]
 
-        yield (eq_, results.pop(0),
-               (tmp, set(['four', 'one']), set(['file1.txt'])))
-        yield (eq_, results.pop(0),
-               (jn('four'), set(['five', 'kristi\xe2\x98\x83']), set([])))
-        yield (eq_, results.pop(0),
-               (jn('four/five'), set([]), set(['file1.txt'])))
-        yield (eq_, results.pop(0), (jn('four/kristi\xe2\x98\x83'), set([]),
-                                     set(['kristi\xe2\x98\x83.txt'])))
-        yield (eq_, results.pop(0), (jn('one'), set(['three', 'two']),
-                                     set(['file1.txt', 'file2.txt'])))
-        yield (eq_, results.pop(0),
-               (jn('one/three'), set([]), set(['file1.txt'])))
-        yield (eq_, results.pop(0),
-               (jn('one/two'), set([]), set(['file1.txt'])))
-        yield (eq_, len(results), 0)
+        assert results.pop(0) == (
+            tmp, set(['four', 'one']), set(['file1.txt']))
+        assert results.pop(0) == (
+            jn('four'), set(['five', 'kristi\xe2\x98\x83']), set([]))
+        assert results.pop(0) == (
+            jn('four/five'), set([]), set(['file1.txt']))
+        assert results.pop(0) == (
+            jn('four/kristi\xe2\x98\x83'), set([]),
+            set(['kristi\xe2\x98\x83.txt']))
+        assert results.pop(0) == (
+            jn('one'), set(['three', 'two']), set(['file1.txt', 'file2.txt']))
+        assert results.pop(0) == (
+            jn('one/three'), set([]), set(['file1.txt']))
+        assert results.pop(0) == (
+            jn('one/two'), set([]), set(['file1.txt']))
+        assert len(results) == 0
     finally:
         rm_local_tmp_dir(tmp)
 
@@ -64,13 +64,12 @@ def test_rm_stored_dir():
 
         rm_stored_dir(jn('one'))
 
-        yield (eq_, storage.exists(jn('one')), False)
-        yield (eq_, storage.exists(jn('one/file1.txt')), False)
-        yield (eq_, storage.exists(jn('one/two')), False)
-        yield (eq_, storage.exists(jn('one/two/file1.txt')), False)
-        yield (eq_, storage.exists(jn(u'one/kristi\u0107/kristi\u0107.txt')),
-               False)
-        yield (eq_, storage.exists(jn('file1.txt')), True)
+        assert not storage.exists(jn('one'))
+        assert not storage.exists(jn('one/file1.txt'))
+        assert not storage.exists(jn('one/two'))
+        assert not storage.exists(jn('one/two/file1.txt'))
+        assert not storage.exists(jn(u'one/kristi\u0107/kristi\u0107.txt'))
+        assert storage.exists(jn('file1.txt'))
     finally:
         rm_local_tmp_dir(tmp)
 
@@ -101,37 +100,37 @@ class TestFileOps(BaseTestCase):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_self_copy(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('src.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_move(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest)
-        eq_(self.contents(dest), '<contents>')
-        eq_(storage.exists(src), False)
+        assert self.contents(dest) == '<contents>'
+        assert storage.exists(src) == False
 
     def test_non_ascii(self):
         src = self.newfile(u'kristi\u0107.txt',
                            u'ivan kristi\u0107'.encode('utf8'))
         dest = self.path(u'somedir/kristi\u0107.txt')
         copy_stored_file(src, dest)
-        eq_(self.contents(dest), 'ivan kristi\xc4\x87')
+        assert self.contents(dest) == 'ivan kristi\xc4\x87'
 
     def test_copy_chunking(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
+        assert self.contents(dest) == '<contents>'
 
     def test_move_chunking(self):
         src = self.newfile('src.txt', '<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest, chunk_size=1)
-        eq_(self.contents(dest), '<contents>')
-        eq_(storage.exists(src), False)
+        assert self.contents(dest) == '<contents>'
+        assert storage.exists(src) == False

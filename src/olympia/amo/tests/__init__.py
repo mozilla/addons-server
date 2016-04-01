@@ -13,6 +13,7 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.management import call_command
 from django.db.models.signals import post_save
@@ -27,7 +28,6 @@ from django.utils.importlib import import_module
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
-from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView
@@ -102,7 +102,7 @@ def initial(form):
 
 
 def assert_required(error_msg):
-    eq_(error_msg, unicode(Field.default_error_messages['required']))
+    assert error_msg == unicode(Field.default_error_messages['required'])
 
 
 def check_links(expected, elements, selected=None, verify=True):
@@ -138,11 +138,10 @@ def check_links(expected, elements, selected=None, verify=True):
                 e = e.find('a')
             assert_url_equal(e.attr('href'), link)
             if verify and link != '#':
-                eq_(Client().head(link, follow=True).status_code, 200,
-                    '%r is dead' % link)
+                assert Client().head(link, follow=True).status_code == 200
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
-            eq_(bool(e.length), text == selected)
+            assert bool(e.length) == (text == selected)
 
 
 def check_selected(expected, links, selected):
@@ -153,11 +152,11 @@ def assert_url_equal(url, other, compare_host=False):
     """Compare url paths and query strings."""
     parsed = urlparse(unicode(url))
     parsed_other = urlparse(unicode(other))
-    eq_(parsed.path, parsed_other.path)  # Paths are equal.
-    eq_(parse_qs(parsed.query),
-        parse_qs(parsed_other.query))  # Params are equal.
+    assert parsed.path == parsed_other.path  # Paths are equal.
+    # Params are equal.
+    assert parse_qs(parsed.query) == parse_qs(parsed_other.query)
     if compare_host:
-        eq_(parsed.netloc, parsed_other.netloc)
+        assert parsed.netloc == parsed_other.netloc
 
 
 def create_sample(name=None, **kw):
@@ -224,7 +223,6 @@ class MobileTest(object):
         self.MOBILE = self.request.MOBILE = True
 
 
-@nottest
 def mobile_test(f):
     """Test decorator for hitting mobile views."""
     @wraps(f)
@@ -461,8 +459,8 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         Oh, and Django's `assertSetEqual` is lame and requires actual sets:
         http://bit.ly/RO9sTr
         """
-        eq_(set(a), set(b), message)
-        eq_(len(a), len(b), message)
+        assert set(a) == set(b), message
+        assert len(a) == len(b), message
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -502,14 +500,14 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         Determines if a response has suitable CORS headers. Appends 'OPTIONS'
         on to the list of verbs.
         """
-        eq_(res['Access-Control-Allow-Origin'], '*')
+        assert res['Access-Control-Allow-Origin'] == '*'
         assert 'API-Status' in res['Access-Control-Expose-Headers']
         assert 'API-Version' in res['Access-Control-Expose-Headers']
 
         verbs = map(str.upper, verbs) + ['OPTIONS']
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
-        eq_(res['Access-Control-Allow-Headers'],
+        assert res['Access-Control-Allow-Headers'] == (
             'X-HTTP-Method-Override, Content-Type')
 
     def update_session(self, session):
@@ -708,7 +706,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req = req.get(url, data or {})
     if user:
         req.user = UserProfile.objects.get(id=user.id)
-        req.groups = user.groups.all()
+    else:
+        req.user = AnonymousUser()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
