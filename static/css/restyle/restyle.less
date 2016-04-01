@@ -719,9 +719,16 @@ body:not(.developer-hub) .secondary .highlight {
 }
 
 // Button overrides.
+
+// Display is set here so it doesn't clobber low specificity
+// platform specific button hiding.
+button,
+.button {
+  display: inline-block;
+}
+
 // Add a selector here if there's a different style coming from
 // elsewhere.
-//
 .linux .button.linux,
 .mac .button.mac,
 .other .button.bsd,
@@ -743,7 +750,6 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
        inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
   color: #fff;
-  display: inline-block;
   font-family: @primary-font;
   font-size: 1.077rem;
   line-height: 1.5;
