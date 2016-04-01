@@ -715,11 +715,6 @@ body:not(.home) .amo-header {
   }
 }
 
-// Side nav elsewhere (themes)
-body:not(.developer-hub) .secondary .highlight {
-  padding: 7px 0 0;
-}
-
 // Button overrides.
 
 // Display is set here so it doesn't clobber low specificity
@@ -919,7 +914,11 @@ a.button.release-theme-lock {
   margin: 12px 0;
 }
 
-body:not(.developer-hub) .secondary {
+.category-landing .secondary,
+section.secondary {
+  .highlight {
+    padding: 7px 0 0;
+  }
   width: 180px;
 }
 
