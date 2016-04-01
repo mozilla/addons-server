@@ -1,5 +1,7 @@
+from rest_framework.exceptions import NotFound
 from rest_framework.pagination import PageNumberPagination
-from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
+from django.core.paginator import (
+    EmptyPage, Page, PageNotAnInteger, Paginator, InvalidPage)
 
 
 class ESPaginator(Paginator):
@@ -54,6 +56,7 @@ class ESPaginator(Paginator):
 
 class CustomPageNumberPagination(PageNumberPagination):
     """Custom pagination implementation to hook in our `ESPaginator`."""
+    page_size_query_param = 'page_size'
 
     def paginate_queryset(self, queryset, request, view=None):
         """
