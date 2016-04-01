@@ -10,8 +10,8 @@ from olympia.versions.models import Version
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = serializers.Field(source='get_platform_display')
-    status = serializers.Field(source='get_status_display')
+    platform = serializers.ReadOnlyField(source='get_platform_display')
+    status = serializers.ReadOnlyField(source='get_status_display')
 
     class Meta:
         model = File
@@ -40,12 +40,12 @@ class AddonSerializer(serializers.ModelSerializer):
     description = TranslationSerializerField()
     homepage = TranslationSerializerField()
     name = TranslationSerializerField()
-    status = serializers.Field(source='get_status_display')
+    status = serializers.ReadOnlyField(source='get_status_display')
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
-    type = serializers.Field(source='get_type_display')
+    type = serializers.ReadOnlyField(source='get_type_display')
     url = serializers.SerializerMethodField()
 
     # FIXME:
@@ -82,7 +82,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
-    datetime_fields = ('last_updated',)
+    datetime_fields = ('last_updated', 'created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 

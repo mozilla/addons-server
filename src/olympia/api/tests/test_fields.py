@@ -130,7 +130,7 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class()
         self._test_expected_dict(field, mock_serializer)
 
-    def test_field_to_native_request_POST(self):
+    def test_field_get_attribute_request_POST(self):
         request = Request(self.factory.post('/'))
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
