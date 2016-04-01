@@ -11,8 +11,8 @@ class TranslationSerializerField(fields.Field):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
-    - When deserializing, in `from_native`, it accepts both a string or a
-      dictionary. If a string is given, it'll be considered to be in the
+    - When deserializing, in `to_internal_value`, it accepts both a string
+      or a dictionary. If a string is given, it'll be considered to be in the
       default language.
 
     - When serializing, its behavior depends on the parent's serializer
