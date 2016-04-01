@@ -49,7 +49,7 @@ class AddonSerializerOutputTestMixin(object):
 
         result_file = result['current_version']['files'][0]
         assert result_file['id'] == file_.pk
-        assert result_file['created'] == file_.created
+        assert result_file['created'] == file_.created.isoformat()
         assert result_file['hash'] == file_.hash
         assert result_file['platform'] == file_.get_platform_display()
         assert result_file['size'] == file_.size
@@ -64,7 +64,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['homepage'] == {'en-US': self.addon.homepage}
         assert result['name'] == {'en-US': self.addon.name}
-        assert result['last_updated'] == self.addon.last_updated
+        assert result['last_updated'] == self.addon.last_updated.isoformat()
         assert result['public_stats'] == self.addon.public_stats
         assert result['slug'] == self.addon.slug
         assert result['status'] == self.addon.get_status_display()
