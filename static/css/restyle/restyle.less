@@ -79,7 +79,6 @@ body.restyle {
   font-family: @primary-font;
   font-style: normal;
   line-height: 1.5;
-  min-width: 1018px;
 }
 
 h1,
@@ -114,6 +113,11 @@ hgroup h2.addon,
 masthead.submit-theme,
 #collections-landing {
   margin-top: 20px;
+}
+
+.addon-description-header,
+.addon-details .secondary.addon-vitals {
+  background: none;
 }
 
 .addon-details h2 {
@@ -151,8 +155,24 @@ button.link:active span {
   color: @link-on-color-bg;
 }
 
-/* Main Content Wrapper */
-#background-wrapper {
+.amo-header,
+.primary,
+.secondary {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    width: 100%;
+  }
+}
+
+.primary,
+.secondary {
+  background: #fff;
+}
+
+.header-bg {
   background-color: #0c99d5;
   /*
     Main Content Wrapper Background - General
@@ -184,10 +204,13 @@ button.link:active span {
     0 416px,
     0 0,
     0 0;
-  border-top: 2px solid #fff;
-  position: absolute;
-  height: 130px;
-  width: 100%;
+  // This breaks the background panel wrapper out of the containing box,
+  // allowing it to be full-width. This means the background gradient can
+  // span the entire width of the viewport, even though the parent has a
+  // max-width.
+  margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
+  min-width: 960px;
+  width: 100vw;
 }
 
 /*
@@ -195,8 +218,8 @@ button.link:active span {
   blue-pattern, blue-gradient, white overlay
   (sharp-cut at 416px)
 */
-.home #background-wrapper,
-.addon-details #background-wrapper {
+.home .header-bg,
+.addon-details .header-bg {
   background-image:
     linear-gradient(
       to bottom,
@@ -222,6 +245,15 @@ button.link:active span {
     0 416px,
     0 0,
     0 0;
+}
+
+.amo-header {
+  margin-bottom: 0;
+}
+
+.amo-header-wrapper {
+  margin: 0 auto;
+  max-width: 960px;
 }
 
 .category-landing [role="main"],
@@ -466,13 +498,10 @@ body:not(.home) .amo-header {
 
 #promos {
   display: block;
-  height: auto;
-  margin-left: -210px;
+  margin: 20px 0 0;
   min-height: 0;
   opacity: 1;
   visibility: visible;
-  width: 960px;
-  margin-bottom: 10px;
 }
 
 #promos,
@@ -909,14 +938,6 @@ a.button.release-theme-lock {
 
 #popular-extensions {
   margin-top: 0;
-}
-
-.restyle.home .shift-secondary {
-  margin-top: 282px;
-}
-
-.home .secondary {
-  margin: 12px 0;
 }
 
 .category-landing .secondary,
@@ -1367,7 +1388,8 @@ h3.author .transfer-ownership {
 // If the viewport is smaller than the min-width of the page weirdness
 // happens, so we go back to a non-full-width screenshot then.
 // See: https://github.com/mozilla/addons-server/issues/1983
-@media (max-width: 1018px) {
+@media (max-width: 960px) {
+  .header-bg,
   .restyle .previews {
     margin-left: 0;
     width: 100%;
