@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from elasticsearch_dsl.result import Result
 from rest_framework.serializers import ModelSerializer
 
 from .fields import ESTranslationSerializerField, TranslationSerializerField
@@ -43,6 +44,13 @@ class BaseESSerializer(ModelSerializer):
     def to_internal_value(self, data):
         obj = self.fake_object(data)
         return super(BaseESSerializer, self).to_internal_value(obj)
+
+    def to_representation(self, data):
+        if isinstance(data, Result):
+            data = data.to_dict()
+
+        obj = self.fake_object(data)
+        return super(BaseESSerializer, self).to_representation(obj)
 
     def fake_object(self, data):
         """

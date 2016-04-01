@@ -82,13 +82,13 @@ class AddonSerializer(serializers.ModelSerializer):
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
-    datetime_fields = ('last_updated', 'created', 'last_updated', 'modified')
+    datetime_fields = ('last_updated',)
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
-        obj = Addon(id=data.id, slug=data.slug, is_listed=True)
+        obj = Addon(id=data['id'], slug=data['slug'], is_listed=True)
 
         if data['current_version'] and data['current_version']['files']:
             data_version = data['current_version']
