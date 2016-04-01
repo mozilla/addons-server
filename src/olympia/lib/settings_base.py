@@ -1671,6 +1671,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
+    # Enable pagination
+    'PAGE_SIZE': 25,
 }
 
 # This is the DSN to the local Sentry service. It might be overidden in
