@@ -12,6 +12,7 @@ class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     platform = serializers.ReadOnlyField(source='get_platform_display')
     status = serializers.ReadOnlyField(source='get_status_display')
+    created = serializers.DateTimeField(read_only=True, format=None)
 
     class Meta:
         model = File
@@ -47,6 +48,7 @@ class AddonSerializer(serializers.ModelSerializer):
     tags = serializers.SerializerMethodField()
     type = serializers.ReadOnlyField(source='get_type_display')
     url = serializers.SerializerMethodField()
+    last_updated = serializers.DateTimeField(read_only=True, format=None)
 
     # FIXME:
     # - categories (need to sort out the id/slug mess in existing search code)
