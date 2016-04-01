@@ -17,7 +17,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.api.tests.utils import APIAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.bandwagon.models import Collection
 from olympia.stats import views, tasks
 from olympia.stats import search
@@ -886,7 +886,7 @@ class TestXss(amo.tests.TestXss):
         assert views.get_report_view(req) == {}
 
 
-class ArchiveTestCase(APIAuthTestCase):
+class ArchiveTestCase(APIKeyAuthTestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

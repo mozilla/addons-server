@@ -12,7 +12,6 @@ AMO uses JWT tokens in a different way. Notes:
 
 See https://github.com/GetBlimp/django-rest-framework-jwt/ for more info.
 """
-from datetime import datetime
 import logging
 
 from django.conf import settings
@@ -27,24 +26,8 @@ from olympia.api.models import APIKey
 log = logging.getLogger('z.jwt')
 
 
-def jwt_payload_handler(user, issuer):
-    # This creates a payload but at the time of this comment it is only used
-    # for testing.
-    issued_at = datetime.utcnow()
-    return {
-        # The JWT issuer must match the 'key' field of APIKey
-        'iss': issuer,
-        'iat': issued_at,
-        'exp': issued_at + api_settings.JWT_EXPIRATION_DELTA,
-    }
-
-
-def jwt_encode_handler(payload, secret):
-    token = jwt.encode(payload, secret, api_settings.JWT_ALGORITHM)
-    return token.decode('utf-8')
-
-
 def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
+    """Decodes a JWT token."""
     # If you raise AuthenticationFailed from this method, its value will
     # be displayed to the client. Be careful not to reveal anything
     # sensitive. When you raise other exceptions, the user will see
@@ -99,7 +82,8 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
                     u'{e.__class__.__name__}: {e}'.format(e=exc))
         raise
 
-    if payload['exp'] - payload['iat'] > settings.MAX_JWT_AUTH_TOKEN_LIFETIME:
+    max_jwt_auth_token_lifetime = settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME
+    if payload['exp'] - payload['iat'] > max_jwt_auth_token_lifetime:
         log.info('JWT auth: expiration is too long; '
                  'iss={iss}, iat={iat}, exp={exp}'.format(**payload))
         raise exceptions.AuthenticationFailed(

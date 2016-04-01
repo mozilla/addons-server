@@ -250,6 +250,7 @@ JINGO_EXCLUDE_APPS = (
     'admin',
     'toolbar_statsd',
     'registration',
+    'rest_framework',
     'debug_toolbar',
     'waffle',
 )
@@ -398,6 +399,7 @@ INSTALLED_APPS = (
     'aesfield',
     'django_extensions',
     'raven.contrib.django',
+    'rest_framework',
     'waffle',
     'jingo_minify',
     'puente',
@@ -1638,30 +1640,25 @@ AES_KEYS = {
     #'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
 }
 
-# Time in seconds for how long a JWT auth token can live.
-# When developers are creating auth tokens they cannot set the expiration any
-# longer than this.
-MAX_JWT_AUTH_TOKEN_LIFETIME = 60
-
+# Time in seconds for how long a JWT auth token created by developers with
+# their API key can live. When developers are creating auth tokens they cannot
+# set the expiration any longer than this.
+MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 60
 
 # django-rest-framework-jwt settings:
 JWT_AUTH = {
-    # We don't want to refresh tokens right now. Refreshing a token is when
-    # you accept a request with a valid token and return a new one with a
-    # longer expiration.
-    'JWT_ALLOW_REFRESH': False,
-
-    # JWTs are only valid for one minute.
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(
-        seconds=MAX_JWT_AUTH_TOKEN_LIFETIME),
-
-    'JWT_ENCODE_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_encode_handler',
-    'JWT_DECODE_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_decode_handler',
-    'JWT_PAYLOAD_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_payload_handler',
+    # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
+    # want to make sure it does not change behind our backs.
+    # See https://github.com/jpadilla/pyjwt/blob/master/docs/algorithms.rst
     'JWT_ALGORITHM': 'HS256',
+
     # This adds some padding to timestamp validation in case client/server
     # clocks are off.
     'JWT_LEEWAY': 5,
+
+    # Expiration for non-apikey jwt tokens. Since this will be used by our
+    # frontend clients we want a slightly longer expiration than normal.
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
 }
 
 REST_FRAMEWORK = {
@@ -1670,6 +1667,9 @@ REST_FRAMEWORK = {
     # Which it will try to use if the client accepts text/html.
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
 

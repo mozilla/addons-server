@@ -6,18 +6,21 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_master
-from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.api.jwt_auth.views import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 from olympia.signing.serializers import FileUploadSerializer
+
 
 log = logging.getLogger('signing')
 
@@ -70,7 +73,9 @@ def with_addon(allow_missing=False):
     return wrapper
 
 
-class VersionView(JWTProtectedView):
+class VersionView(APIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
 
     @handle_read_only_mode
     @with_addon(allow_missing=True)
@@ -145,7 +150,9 @@ class VersionView(JWTProtectedView):
         return Response(serializer.data)
 
 
-class SignedFile(JWTProtectedView):
+class SignedFile(APIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
 
     @use_master
     def get(self, request, file_id):
