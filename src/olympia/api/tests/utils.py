@@ -12,7 +12,7 @@ class APIAuthTestCase(APITestCase, JWTAuthTester):
     def create_api_user(self):
         self.user = UserProfile.objects.create(
             email='a@m.o',
-            read_dev_agreement=datetime.today()
+            read_dev_agreement=datetime.today(),
         )
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 

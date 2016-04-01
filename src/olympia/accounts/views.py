@@ -295,12 +295,13 @@ class AccountSuperCreate(JWTProtectedView):
                             status=422)
 
         data = serializer.data
-        group = serializer.validated_data['group']
+
+        group = serializer.validated_data.get('group', None)
         user_token = os.urandom(4).encode('hex')
-        username = data['username'] or 'super-created-{}'.format(user_token)
-        fxa_id = data['fxa_id'] or None
-        email = data['email'] or '{}@addons.mozilla.org'.format(username)
-        password = data['password'] or os.urandom(16).encode('hex')
+        username = data.get('username', 'super-created-{}'.format(user_token))
+        fxa_id = data.get('fxa_id', None)
+        email = data.get('email', '{}@addons.mozilla.org'.format(username))
+        password = data.get('password', os.urandom(16).encode('hex'))
 
         user = UserProfile.objects.create(
             username=username,
