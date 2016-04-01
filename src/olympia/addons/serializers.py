@@ -9,7 +9,7 @@ from olympia.versions.models import Version
 
 
 class FileSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField('get_url')
+    url = serializers.SerializerMethodField()
     platform = serializers.Field(source='get_platform_display')
     status = serializers.Field(source='get_status_display')
 
@@ -44,9 +44,9 @@ class AddonSerializer(serializers.ModelSerializer):
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
-    tags = serializers.SerializerMethodField('get_tags')
+    tags = serializers.SerializerMethodField()
     type = serializers.Field(source='get_type_display')
-    url = serializers.SerializerMethodField('get_url')
+    url = serializers.SerializerMethodField()
 
     # FIXME:
     # - categories (need to sort out the id/slug mess in existing search code)

@@ -9,7 +9,7 @@ log = logging.getLogger('accounts')
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    picture_url = serializers.URLField(read_only=True, source='picture_url')
+    picture_url = serializers.URLField(read_only=True)
 
     class Meta:
         model = UserProfile
@@ -24,7 +24,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class AccountSourceSerializer(serializers.ModelSerializer):
-    source = serializers.CharField(source='source')
+    source = serializers.CharField()
 
     class Meta:
         model = UserProfile
