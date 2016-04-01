@@ -45,20 +45,24 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
 
         try:
             payload = handlers.jwt_decode_handler(jwt_value)
-        except jwt.ExpiredSignature:
-            log.exception('JWTKeyAuthentication signature has expired.')
-            msg = _('Signature has expired.')
-            raise exceptions.AuthenticationFailed(msg)
-        except jwt.DecodeError:
-            log.exception('JWTKeyAuthentication error decoding signature.')
-            msg = _('Error decoding signature.')
-            raise exceptions.AuthenticationFailed(msg)
-        except jwt.InvalidTokenError:
-            log.exception('JWTKeyAuthentication invalid token.')
-            msg = _('Invalid JWT Token.')
-            raise exceptions.AuthenticationFailed(msg)
-        # AuthenticationFailed can also be raised directly from our
-        # jwt_decode_handler.
+        except Exception, exc:
+            try:
+                # Log all exceptions
+                log.info('JWTKeyAuthentication failed; '
+                         'it raised %s (%s)', exc.__class__.__name__, exc)
+                # Re-raise to deal with them properly.
+                raise exc
+            except jwt.ExpiredSignature:
+                msg = _('Signature has expired.')
+                raise exceptions.AuthenticationFailed(msg)
+            except jwt.DecodeError:
+                msg = _('Error decoding signature.')
+                raise exceptions.AuthenticationFailed(msg)
+            except jwt.InvalidTokenError:
+                msg = _('Invalid JWT Token.')
+                raise exceptions.AuthenticationFailed(msg)
+            # Note: AuthenticationFailed can also be raised directly from our
+            # jwt_decode_handler.
 
         user = self.authenticate_credentials(payload)
 
