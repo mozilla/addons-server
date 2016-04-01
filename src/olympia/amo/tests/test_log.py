@@ -33,4 +33,4 @@ class LogTest(TestCase):
         """
         al = amo.log(amo.LOG.CUSTOM_TEXT, 'hi', created=datetime(2009, 1, 1))
 
-        assert al.created, datetime(2009, 1 == 1)
+        assert al.created == datetime(2009, 1, 1)

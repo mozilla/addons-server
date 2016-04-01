@@ -24,11 +24,11 @@ class TestMiddleware(TestCase):
     def test_no_vary_cookie(self):
         # We don't break good usage of Vary.
         response = test.Client().get('/')
-        assert response['Vary'], 'Accept-Language, User-Agent == X-Mobile'
+        assert response['Vary'] == 'Accept-Language, User-Agent, X-Mobile'
 
         # But we do prevent Vary: Cookie.
         response = test.Client().get('/', follow=True)
-        assert response['Vary'], 'X-Mobile == User-Agent'
+        assert response['Vary'] == 'X-Mobile, User-Agent'
 
     @patch('django.contrib.auth.middleware.'
            'AuthenticationMiddleware.process_request')

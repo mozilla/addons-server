@@ -188,20 +188,20 @@ class TestTagsForm(TestCase):
 
     def test_tags(self):
         self.add_tags('foo, bar')
-        assert self.get_tag_text(), ['bar' == 'foo']
+        assert self.get_tag_text() == ['bar', 'foo']
 
     def test_tags_xss(self):
         self.add_tags('<script>alert("foo")</script>, bar')
-        assert self.get_tag_text(), ['bar' == 'scriptalertfooscript']
+        assert self.get_tag_text() == ['bar', 'scriptalertfooscript']
 
     def test_tags_case_spaces(self):
         self.add_tags('foo, bar')
         self.add_tags('foo,    bar   , Bar, BAR, b a r ')
-        assert self.get_tag_text(), ['b a r', 'bar' == 'foo']
+        assert self.get_tag_text() == ['b a r', 'bar', 'foo']
 
     def test_tags_spaces(self):
         self.add_tags('foo, bar beer')
-        assert self.get_tag_text(), ['bar beer' == 'foo']
+        assert self.get_tag_text() == ['bar beer', 'foo']
 
     def test_tags_unicode(self):
         self.add_tags(u'Österreich')
@@ -221,7 +221,7 @@ class TestTagsForm(TestCase):
                                     instance=self.addon)
 
         assert form.fields['tags'].initial, 'bar == foo'
-        assert self.get_tag_text(), ['bar', 'foo' == 'restartless']
+        assert self.get_tag_text() == ['bar', 'foo', 'restartless']
         self.add_tags('')
         assert self.get_tag_text() == ['restartless']
 
@@ -244,12 +244,13 @@ class TestTagsForm(TestCase):
         action_allowed.return_value = True
         self.add_restricted('restartless')
         self.add_tags('foo, bar')
-        assert self.get_tag_text(), ['bar' == 'foo']
+        assert self.get_tag_text() == ['bar', 'foo']
         self.add_tags('foo, bar, restartless')
-        assert self.get_tag_text(), ['bar', 'foo' == 'restartless']
+
+        assert self.get_tag_text() == ['bar', 'foo', 'restartless']
         form = forms.AddonFormBasic(data=self.data, request=self.request,
                                     instance=self.addon)
-        assert form.fields['tags'].initial, 'bar, foo == restartless'
+        assert form.fields['tags'].initial == 'bar, foo, restartless'
 
     @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted_count(self, action_allowed):

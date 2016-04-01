@@ -143,7 +143,7 @@ class TestES(ESTestCaseWithAddons):
 
     def test_order_by_multiple(self):
         qs = Addon.search().order_by('-rating', 'id')
-        assert qs._build_query()['sort'], [{'rating': 'desc'} == 'id']
+        assert qs._build_query()['sort'] == [{'rating': 'desc'}, 'id']
 
     def test_slice(self):
         qs = Addon.search()[5:12]
@@ -274,7 +274,7 @@ class TestES(ESTestCaseWithAddons):
 
     def test_values(self):
         qs = Addon.search().values('name')
-        assert qs._build_query()['fields'], ['id' == 'name']
+        assert qs._build_query()['fields'] == ['id', 'name']
 
     def test_values_result(self):
         addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]

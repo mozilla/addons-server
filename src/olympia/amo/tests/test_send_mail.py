@@ -234,13 +234,13 @@ class TestSendMail(BaseTestCase):
                         mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)
-        assert attachments, mail.outbox[0].attachments == (
+        assert attachments == mail.outbox[0].attachments, (
             'Attachments not included')
 
     def test_send_multilines_subjects(self):
         send_mail('test\nsubject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'])
-        assert 'test subject', mail.outbox[0].subject == 'Subject not stripped'
+        assert 'test subject' == mail.outbox[0].subject, 'Subject not stripped'
 
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
