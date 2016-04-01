@@ -59,7 +59,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']['reviewed'] == version.reviewed
         assert result['current_version']['version'] == version.version
 
-        import ipdb; ipdb.set_trace()
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
@@ -90,10 +89,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == translated_descriptions
 
 
-# class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
-#     def serialize(self):
-#         serializer = AddonSerializer(context={'request': self.request})
-#         return serializer.to_representation(self.addon)
+class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
+    def serialize(self):
+        serializer = AddonSerializer(context={'request': self.request})
+        return serializer.to_representation(self.addon)
 
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):

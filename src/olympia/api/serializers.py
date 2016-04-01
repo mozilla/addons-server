@@ -67,7 +67,7 @@ class BaseESSerializer(ModelSerializer):
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""
         for field_name in field_names:
-            value = getattr(data, field_name, None)
+            value = data.get(field_name, None)
             if field_name in self.datetime_fields and value:
                 value = self.handle_date(value)
             setattr(obj, field_name, value)
