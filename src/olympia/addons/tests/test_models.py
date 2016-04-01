@@ -639,9 +639,9 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
         default = 'icons/default-32.png'
-        assert a.icon_url.endswith(default) == True
-        assert a.get_icon_url(32).endswith(default) == True
-        assert a.get_icon_url(32, use_default=True).endswith(default) == True
+        assert a.icon_url.endswith(default)
+        assert a.get_icon_url(32).endswith(default)
+        assert a.get_icon_url(32, use_default=True).endswith(default)
         assert a.get_icon_url(32, use_default=False) is None
 
     def test_thumbnail_url(self):
@@ -1076,7 +1076,7 @@ class TestAddonModels(TestCase):
         c24.save()
 
         cats = addon().all_categories
-        assert cats, [c22, c23 == c24]
+        assert cats == [c22, c23, c24]
         for cat in cats:
             assert cat.application == amo.FIREFOX.id
 
@@ -1100,7 +1100,7 @@ class TestAddonModels(TestCase):
 
         # This add-on is already associated with three Firefox categories.
         cats = sorted(addon.categories.all(), key=lambda x: x.name)
-        assert addon.app_categories, [(amo.FIREFOX == cats)]
+        assert addon.app_categories == [(amo.FIREFOX, cats)]
 
         # Associate this add-on with a Sunbird category.
         c2 = Category.objects.create(application=amo.SUNBIRD.id,
@@ -1108,7 +1108,7 @@ class TestAddonModels(TestCase):
         AddonCategory.objects.create(addon=addon, category=c2)
 
         # Sunbird category should be excluded.
-        assert get_addon().app_categories, [(amo.FIREFOX == cats)]
+        assert get_addon().app_categories == [(amo.FIREFOX, cats)]
 
     def test_review_replies(self):
         """
@@ -1704,9 +1704,9 @@ class TestAddonModelsFeatured(TestCase):
 
     def _test_featured_random(self):
         f = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(f), [1001, 1003, 2464, 3481, 7661 == 15679]
+        assert sorted(f) == [1001, 1003, 2464, 3481, 7661, 15679]
         f = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(f), [1001, 1003, 2464, 7661 == 15679]
+        assert sorted(f) == [1001, 1003, 2464, 7661, 15679]
         f = Addon.featured_random(amo.THUNDERBIRD, 'en-US')
         assert f == []
 

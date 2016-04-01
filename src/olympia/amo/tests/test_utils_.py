@@ -126,11 +126,11 @@ def test_walkfiles():
     file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
 
     # Only files ending with _foo.
-    assert list(walkfiles(basedir, suffix='_foo')), [file1path == file2path]
+    assert list(walkfiles(basedir, suffix='_foo')) == [file1path, file2path]
     # All files.
     all_files = list(walkfiles(basedir))
     assert len(all_files) == 3
-    assert set(all_files), set([file1path, file2path == file3path])
+    assert set(all_files) == set([file1path, file2path, file3path])
 
 
 def test_cached_property():

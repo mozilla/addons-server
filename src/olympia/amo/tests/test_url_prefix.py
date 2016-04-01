@@ -77,7 +77,7 @@ class MiddlewareTest(BaseTestCase):
 
     def test_vary(self):
         response = self.process('/')
-        assert response['Vary'], 'Accept-Language == User-Agent'
+        assert response['Vary'] == 'Accept-Language, User-Agent'
 
         response = self.process('/firefox')
         assert response['Vary'] == 'Accept-Language'
@@ -154,7 +154,7 @@ class TestPrefixer(BaseTestCase):
             rf = RequestFactory()
             prefixer = urlresolvers.Prefixer(rf.get(url))
             actual = (prefixer.locale, prefixer.app, prefixer.shortened_path)
-            assert actual, (locale, app == path)
+            assert actual == (locale, app, path)
 
         split_eq('/', '', '', '')
         split_eq('/en-US', 'en-US', '', '')
