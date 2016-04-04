@@ -542,7 +542,8 @@ class TestHome(EditorTest):
         unlisted_queues_links = [
             reverse('editors.unlisted_queue_nominated'),
             reverse('editors.unlisted_queue_pending'),
-            reverse('editors.unlisted_queue_prelim')]
+            reverse('editors.unlisted_queue_prelim'),
+            reverse('editors.unlisted_all')]
 
         # Only listed queues for editors.
         doc = pq(self.client.get(self.url).content)
@@ -748,7 +749,7 @@ class TestQueueBasics(QueueTest):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         expected = [
-            'Addon',
+            'Add-on',
             'Type',
             'Waiting Time',
             'Flags',
@@ -817,7 +818,7 @@ class TestQueueBasics(QueueTest):
     def test_legacy_queue_sort(self):
         sorts = (
             ['age', 'Waiting Time'],
-            ['name', 'Addon'],
+            ['name', 'Add-on'],
             ['type', 'Type'],
         )
         for key, text in sorts:
@@ -983,7 +984,8 @@ class TestUnlistedQueueBasics(TestQueueBasics):
         eq_(r.status_code, 200)
         doc = pq(r.content)
         eq_(doc('#navbar li.top ul').eq(1).text(),
-            'Full Reviews (2) Pending Updates (2) Preliminary Reviews (2)')
+            'Full Reviews (2) Pending Updates (2) Preliminary Reviews (2) '
+            'All Add-ons (7)')
 
     def test_listed_unlisted_queues(self):
         # Make sure the listed addons are displayed in the listed queue, and
