@@ -1553,9 +1553,22 @@ h3.author .transfer-ownership {
   cursor: default;
   font-size: 14px;
   padding-left: 20px;
+  padding-right: 5px;
   margin-bottom: 5px;
   white-space: normal;
   text-shadow: none;
+}
+
+.items .item.incompatible {
+  .extra .button.not-available {
+    display: none;
+    float: right;
+  }
+
+  &:focus .extra .button.not-available,
+  &:hover .extra .button.not-available {
+    display: block;
+  }
 }
 
 #addon .more-versions a {
