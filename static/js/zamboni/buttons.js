@@ -19,9 +19,9 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
 
 // Restyle is enabled; we're going to modify the text.
 if ($('body').hasClass('restyle')) {
-    notavail = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
-    incompat = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
-    noappsupport = '<div class="extra"><button class="button not-available" disabled>{0}</button></div>';
+    notavail = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
+    incompat = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
+    noappsupport = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
 }
 
 // The lowest maxVersion an app has to support to allow default-to-compatible.
