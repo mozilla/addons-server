@@ -495,10 +495,35 @@ body:not(.home) .amo-header {
 
 #promos {
   display: block;
-  margin: 20px 0 0;
+  margin: 20px 0 10px;
   min-height: 0;
   opacity: 1;
   visibility: visible;
+  width: 960px;
+
+  #monthly {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
+  }
+
+  .promo-purple,
+  #holiday,
+  #travel {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-2.png);
+
+    h2,
+    h3,
+    a,
+    p.desc {
+      color: @link-on-color-bg;
+      text-align: left;
+      text-shadow: @dark-gray 1px 1px;
+    }
+  }
+
+  #travel {
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+  }
 }
 
 #promos,
@@ -532,22 +557,6 @@ body:not(.home) .amo-header {
 #reviews a.more-info,
 #detail-relnotes a.more-info {
   float: none;
-}
-
-#promos .promo-purple {
-  h2,
-  h3,
-  a,
-  p.desc {
-    color: @link-on-color-bg;
-    text-align: left;
-    text-shadow: none;
-  }
-
-  h2,
-  p.desc {
-    color: #000;
-  }
 }
 
 .promo h2 {
