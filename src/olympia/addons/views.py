@@ -43,7 +43,7 @@ from olympia.bandwagon.models import (
 from olympia import paypal
 from olympia.api.paginator import ESPaginator
 from olympia.api.permissions import (
-    AllowAddonOwner, AllowReadOnlyIfPublic, AllowReviewer, AnyOf)
+    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowReviewer, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -650,7 +650,7 @@ def persona_redirect(request, persona_id):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfPublic, AllowAddonOwner, AllowReviewer),
+        AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor, AllowReviewer),
     ]
     serializer_class = AddonSerializer
     addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')

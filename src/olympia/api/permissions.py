@@ -8,6 +8,9 @@ from olympia.access import acl
 # more.
 
 class GroupPermission(BasePermission):
+    """
+    Allow access depending on the result of action_allowed_user().
+    """
     def __init__(self, app, action):
         self.app = app
         self.action = action
@@ -41,7 +44,7 @@ class AnyOf(BasePermission):
         return any(perm.has_permission(request, view) for perm in self.perms)
 
     def has_object_permission(self, request, view, obj):
-        # This method must call `has_permission` for each
+        # This method *must* call `has_permission` for each
         # sub-permission since the default implementation of
         # `has_object_permission` returns True unconditionally, and
         # some permission objects might not override it.
@@ -53,8 +56,8 @@ class AnyOf(BasePermission):
         return self
 
 
-class AllowAddonOwner(BasePermission):
-
+class AllowAddonAuthor(BasePermission):
+    """Allow access if the user is in the object authors."""
     def has_permission(self, request, view):
         return request.user.is_authenticated()
 
@@ -63,7 +66,7 @@ class AllowAddonOwner(BasePermission):
 
 
 class AllowReviewer(BasePermission):
-    """Require an addons reviewer.
+    """Allow addons reviewer access.
 
     Like editors.decorators.addons_reviewer_required, but as a permission class
     and not a decorator.
@@ -85,8 +88,8 @@ class AllowReviewer(BasePermission):
 
 class AllowReadOnlyIfPublic(BasePermission):
     """
-    The request does not modify the resource, and it's explicitly marked as
-    public, by answering True to obj.is_public().
+    Allow access when the object's is_public() method returns True and the
+    request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
