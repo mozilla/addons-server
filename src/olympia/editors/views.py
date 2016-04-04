@@ -422,7 +422,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
 
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     order_by = request.GET.get('sort', TableObj.default_order_by())
-    order_by = TableObj.translate_sort_cols(order_by)
+    if hasattr(TableObj, 'translate_sort_cols'):
+        order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
     default = 100
     per_page = request.GET.get('per_page', default)
@@ -471,7 +472,9 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
             'pending': construct_query(ViewUnlistedPendingQueue, **kw),
             'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
             'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw),
-            'all': construct_query(ViewUnlistedAllList, **kw)}
+            'all': (ViewUnlistedAllList.objects if admin_reviewer
+                    else exclude_admin_only_addons(
+                        ViewUnlistedAllList.objects)).count}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()

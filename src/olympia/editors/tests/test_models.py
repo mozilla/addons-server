@@ -370,24 +370,15 @@ class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
     listed = False
 
 
-class TestUnlistedAllList(TestQueue):
+class TestUnlistedAllList(TestCase):
     Queue = ViewUnlistedAllList
     listed = False
-    __test__ = True
 
     def new_file(self, name=u'Preliminary', version=u'1.0',
                  addon_status=amo.STATUS_LITE,
                  file_status=amo.STATUS_UNREVIEWED, **kw):
         return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
-
-    def test_search_extensions(self):
-        # We don't support unlisted search extensions
-        pass
-
-    def test_reviewed_files_are_hidden(self):
-        # We *want* reviewed files to be listed.
-        pass
 
     def test_all_addons_are_in_q(self):
         self.new_file('Lite', addon_status=amo.STATUS_LITE,
@@ -419,6 +410,30 @@ class TestUnlistedAllList(TestQueue):
         row = self.Queue.objects.all()[0]
         assert row.review_date == today
         assert row.review_version_num == '2.0'
+
+    def test_latest_version(self):
+        self.new_file(version=u'0.1', created=self.days_ago(2))
+        self.new_file(version=u'0.2', created=self.days_ago(1))
+        self.new_file(version=u'0.3')
+        row = self.Queue.objects.get()
+        eq_(row.latest_version, '0.3')
+
+    def test_addons_disabled_by_user_are_hidden(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].update(disabled_by_user=True)
+        eq_(list(self.Queue.objects.all()), [])
+
+    def test_addons_disabled_by_admin_are_hidden(self):
+        f = self.new_file(version=u'0.1')
+        f['addon'].update(status=amo.STATUS_DISABLED)
+        eq_(list(self.Queue.objects.all()), [])
+
+    def test_count_all(self):
+        self.new_file(name='Addon 1', version=u'0.1')
+        self.new_file(name='Addon 1', version=u'0.2')
+        self.new_file(name='Addon 2', version=u'0.1')
+        self.new_file(name='Addon 2', version=u'0.2')
+        eq_(self.Queue.objects.all().count(), 2)
 
 
 class TestEditorSubscription(TestCase):
