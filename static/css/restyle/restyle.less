@@ -490,7 +490,24 @@ body:not(.home) .amo-header {
 }
 
 .restyle .site-balloon {
-  display: none;
+  background: #fbfbfb;
+  border: 2px solid #1f386e;
+  border-radius: 6px;
+  color: @default-font-color;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  .close {
+    background-image: url(../../img/impala/banner-close-style-refresh.png);
+    color: @default-font-color;
+
+    &:focus,
+    &:hover {
+      background-color: @dark-gray;
+    }
+  }
 }
 
 #promos {
