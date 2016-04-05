@@ -308,7 +308,7 @@ class ViewAllList(RawSQLModel):
     def authors(self):
         ids = self._explode_concat(self._author_ids)
         usernames = self._explode_concat(self._author_usernames, cast=unicode)
-        return zip(ids, usernames)
+        return list(set(zip(ids, usernames)))
 
 
 class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
