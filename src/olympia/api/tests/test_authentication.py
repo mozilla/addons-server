@@ -61,28 +61,37 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         payload['iss'] = 'non-existant-issuer'
         token = self.encode_token_payload(payload, api_key.secret)
 
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request(token))
+        assert ctx.exception.detail == 'Unknown JWT iss (issuer).'
 
     def test_deleted_user(self):
         self.user.update(deleted=True)
-        with self.assertRaises(AuthenticationFailed):
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request(self._create_token()))
+        assert ctx.exception.detail == 'User account is disabled.'
 
     def test_user_has_not_read_agreement(self):
         self.user.update(read_dev_agreement=None)
-        with self.assertRaises(AuthenticationFailed):
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request(self._create_token()))
+        assert ctx.exception.detail == 'User has not read developer agreement.'
 
     @mock.patch('olympia.api.jwt_auth.jwt_decode_handler')
     def test_decode_authentication_failed(self, jwt_decode_handler):
         jwt_decode_handler.side_effect = AuthenticationFailed
-        with self.assertRaises(AuthenticationFailed):
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request('whatever'))
+
+        assert ctx.exception.detail == 'Incorrect authentication credentials.'
 
     @mock.patch('olympia.api.jwt_auth.jwt_decode_handler')
     def test_decode_expired_signature(self, jwt_decode_handler):
         jwt_decode_handler.side_effect = jwt.ExpiredSignature
+
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request('whatever'))
 
@@ -91,17 +100,17 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
     @mock.patch('olympia.api.jwt_auth.jwt_decode_handler')
     def test_decode_decoding_error(self, jwt_decode_handler):
         jwt_decode_handler.side_effect = jwt.DecodeError
+
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request('whatever'))
-
         assert ctx.exception.detail == 'Error decoding signature.'
 
     @mock.patch('olympia.api.jwt_auth.jwt_decode_handler')
     def test_decode_invalid_token(self, jwt_decode_handler):
         jwt_decode_handler.side_effect = jwt.InvalidTokenError
+
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request('whatever'))
-
         assert ctx.exception.detail == 'Invalid JWT Token.'
 
     def test_refuse_refreshable_tokens(self):
@@ -113,7 +122,6 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
 
         with self.assertRaises(AuthenticationFailed) as ctx:
             self.auth.authenticate(self.request(token))
-
         assert ctx.exception.detail == (
             "API key based tokens are not refreshable, don't include "
             "`orig_iat` in their payload.")

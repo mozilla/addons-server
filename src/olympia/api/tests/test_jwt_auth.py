@@ -54,7 +54,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
         with self.assertRaises(AuthenticationFailed) as ctx:
             jwt_auth.jwt_decode_handler(token)
 
-        assert ctx.exception.detail == 'Unknown JWT iss (issuer)'
+        assert ctx.exception.detail == 'Unknown JWT iss (issuer).'
 
     def test_report_token_without_issuer(self):
         payload = self.auth_token_payload(self.user, 'some-issuer')
@@ -63,7 +63,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
         with self.assertRaises(AuthenticationFailed) as ctx:
             jwt_auth.jwt_decode_handler(token)
 
-        assert ctx.exception.detail == 'JWT iss (issuer) claim is missing'
+        assert ctx.exception.detail == 'JWT iss (issuer) claim is missing.'
 
     def test_decode_garbage_token(self):
         with self.assertRaises(jwt.DecodeError) as ctx:
@@ -111,7 +111,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
             jwt_auth.jwt_decode_handler(token)
 
         assert (ctx.exception.detail ==
-                'Invalid JWT: Token is missing the "iat" claim')
+                'Invalid JWT: Token is missing the "iat" claim.')
 
     def test_invalid_issued_at_time(self):
         api_key = self.create_api_key(self.user)
@@ -126,7 +126,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
             jwt_auth.jwt_decode_handler(token)
 
         assert ctx.exception.detail.startswith(
-            'JWT iat (issued at time) is invalid')
+            'JWT iat (issued at time) is invalid.')
 
     def test_missing_expiration(self):
         api_key = self.create_api_key(self.user)
@@ -138,7 +138,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
             jwt_auth.jwt_decode_handler(token)
 
         assert (ctx.exception.detail ==
-                'Invalid JWT: Token is missing the "exp" claim')
+                'Invalid JWT: Token is missing the "exp" claim.')
 
     def test_disallow_long_expirations(self):
         api_key = self.create_api_key(self.user)
@@ -153,4 +153,4 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
         with self.assertRaises(AuthenticationFailed) as ctx:
             jwt_auth.jwt_decode_handler(token)
 
-        assert ctx.exception.detail == 'JWT exp (expiration) is too long'
+        assert ctx.exception.detail == 'JWT exp (expiration) is too long.'

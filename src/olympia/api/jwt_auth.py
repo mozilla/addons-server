@@ -36,14 +36,14 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     if 'iss' not in token_data:
         log.info('No issuer in JWT auth token: {}'.format(token_data))
         raise exceptions.AuthenticationFailed(
-            detail='JWT iss (issuer) claim is missing')
+            detail='JWT iss (issuer) claim is missing.')
 
     try:
         api_key = get_api_key(key=token_data['iss'])
     except ObjectDoesNotExist, exc:
         log.info('No API key for JWT issuer: {}'.format(token_data['iss']))
         raise exceptions.AuthenticationFailed(
-            detail='Unknown JWT iss (issuer)')
+            detail='Unknown JWT iss (issuer).')
 
     # TODO: add nonce checking to prevent replays. bug 1213354.
 
@@ -70,7 +70,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         log.info(u'Missing required claim during JWT authentication: '
                  u'{e.__class__.__name__}: {e}'.format(e=exc))
         raise exceptions.AuthenticationFailed(
-            detail=u'Invalid JWT: {}'.format(exc))
+            detail=u'Invalid JWT: {}.'.format(exc))
     except jwt.InvalidIssuedAtError, exc:
         log.info(u'Invalid iat during JWT authentication: '
                  u'{e.__class__.__name__}: {e}'.format(e=exc))
@@ -87,6 +87,6 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         log.info('JWT auth: expiration is too long; '
                  'iss={iss}, iat={iat}, exp={exp}'.format(**payload))
         raise exceptions.AuthenticationFailed(
-            detail='JWT exp (expiration) is too long')
+            detail='JWT exp (expiration) is too long.')
 
     return payload
