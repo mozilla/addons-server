@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 import commonware.log
 
 from olympia import amo
-from olympia.api import views as api_views
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.decorators import addon_view_factory
@@ -16,6 +15,7 @@ from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
 from olympia.discovery.modules import PromoVideoCollection
+from olympia.legacy_api import views as legacy_api_views
 from olympia.reviews.models import Review
 from olympia.stats.models import GlobalStat
 from olympia.versions.compare import version_int
@@ -129,7 +129,7 @@ def api_view(request, platform, version, list_type, api_version=1.5,
              format='json', content_type='application/json',
              compat_mode='strict'):
     """Wrapper for calling an API view."""
-    view = api_views.ListView()
+    view = legacy_api_views.ListView()
     view.request, view.version = request, api_version
     view.format, view.content_type = format, content_type
     r = view.process_request(list_type, platform=platform, version=version,
