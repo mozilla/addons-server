@@ -522,6 +522,7 @@ body:not(.home) .amo-header {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
   }
 
+  .promo-collection.webdev,
   .promo-purple,
   #holiday,
   #travel {
@@ -535,6 +536,13 @@ body:not(.home) .amo-header {
       text-align: left;
       text-shadow: @dark-gray 1px 1px;
     }
+  }
+
+  .promo-collection.webdev h2,
+  #monthly h2,
+  #monthly h3 {
+    font-size: 36px;
+    font-weight: 100;
   }
 
   #travel {
@@ -647,18 +655,6 @@ body:not(.home) .amo-header {
 
   .promo {
     background-size: cover;
-  }
-
-  #monthly.promo {
-    h2, h3 {
-      color: #fff;
-      font-size: 36px;
-      font-weight: 100;
-    }
-
-    h2 {
-      text-shadow: none;
-    }
   }
 }
 
