@@ -3,18 +3,35 @@ from django.utils.translation import ugettext as _
 import commonware
 import jwt
 from rest_framework import exceptions
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+from rest_framework_jwt.authentication import (
+    JSONWebTokenAuthentication as UpstreamJSONWebTokenAuthentication)
 
-from olympia.api.jwt_auth import handlers
+from olympia import amo
+from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 
 
 log = commonware.log.getLogger('z.api.authentication')
 
 
-class JWTKeyAuthentication(JSONWebTokenAuthentication):
+class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
     """
     DRF authentication class for JWT header auth.
+
+    This mimics what our ACLMiddleware does after a successful authentication,
+    because otherwise that behaviour would be missing in the API since API auth
+    happens after the middleware process request phase.
+    """
+    def authenticate_credentials(self, request):
+        result = super(
+            JSONWebTokenAuthentication, self).authenticate_credentials(request)
+        amo.set_user(result)
+        return result
+
+
+class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
+    """
+    DRF authentication class for JWT header auth with API keys.
 
     This extends the django-rest-framework-jwt auth class to get the
     shared JWT secret from our APIKey database model. Each user (an add-on
@@ -37,14 +54,14 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
 
         Copied from rest_framework_jwt BaseJSONWebTokenAuthentication, with
         the decode_handler changed to our own - because we don't want that
-        decoder to be the default one in settings.
+        decoder to be the default one in settings - and logging added.
         """
         jwt_value = self.get_jwt_value(request)
         if jwt_value is None:
             return None
 
         try:
-            payload = handlers.jwt_decode_handler(jwt_value)
+            payload = jwt_auth.jwt_decode_handler(jwt_value)
         except Exception, exc:
             try:
                 # Log all exceptions
@@ -65,7 +82,6 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             # jwt_decode_handler.
 
         user = self.authenticate_credentials(payload)
-
         return (user, jwt_value)
 
     def authenticate_credentials(self, payload):
@@ -73,6 +89,10 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
         Returns a verified AMO user who is active and allowed to make API
         requests.
         """
+        if 'orig_iat' in payload:
+            msg = ("API key based tokens are not refreshable, don't include "
+                   "`orig_iat` in their payload.")
+            raise exceptions.AuthenticationFailed(msg)
         try:
             api_key = APIKey.get_jwt_key(key=payload['iss'])
         except APIKey.DoesNotExist:
@@ -86,4 +106,5 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             msg = 'User has not read developer agreement.'
             raise exceptions.AuthenticationFailed(msg)
 
+        amo.set_user(api_key.user)
         return api_key.user

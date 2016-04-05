@@ -1546,21 +1546,48 @@ class TestAddonViewSet(TestCase):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
         self._test_detail_url()
 
-    def test_get_not_public(self):
-        # At the moment this API only works with public addons.
+    def test_get_not_public_anonymous(self):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 401
 
-    def test_get_disabled_by_user(self):
-        # At the moment this API only works with non-disabled addons.
+    def test_get_not_public_no_rights(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_not_public_reviewer(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_not_public_author(self):
+        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_disabled_by_user_anonymous(self):
         self.addon.update(disabled_by_user=True)
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 401
 
     def test_get_not_listed(self):
         # At the moment this API only works with listed addons.
         self.addon.update(is_listed=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_deleted(self):
+        # At the moment this API only works with non-deleted addons.
+        self.addon.delete()
         response = self.client.get(self.url)
         assert response.status_code == 404
 

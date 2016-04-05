@@ -35,7 +35,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view, login_required)
 from olympia.amo.urlresolvers import reverse
-from olympia.api.jwt_auth.views import JWTKeyAuthentication
+from olympia.api.authentication import JWTKeyAuthentication
 from olympia.bandwagon.models import Collection
 from olympia.bandwagon.views import get_collection
 from olympia.stats.forms import DateForm

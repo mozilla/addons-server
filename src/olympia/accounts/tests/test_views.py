@@ -8,6 +8,7 @@ import mock
 from waffle.models import Switch
 
 from rest_framework.test import APIRequestFactory, APITestCase
+from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
@@ -544,13 +545,18 @@ class TestLoginView(BaseAuthenticationView):
         assert not self.login_user.called
 
     def test_login_success(self):
-        user = UserProfile.objects.create(email='real@yeahoo.com')
+        user = UserProfile.objects.create(
+            username='foobar', email='real@yeahoo.com')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.post(
             self.url, {'code': 'code', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
+        assert (response.cookies['jwt_api_auth_token'].value ==
+                response.data['token'])
+        verify = VerifyJSONWebTokenSerializer().validate(response.data)
+        assert verify['user'] == user
         self.login_user.assert_called_with(mock.ANY, user, identity)
 
     def test_account_exists_migrated_multiple(self):
@@ -599,12 +605,15 @@ class TestRegisterView(BaseAuthenticationView):
 
     def test_register_success(self):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
-        self.register_user.return_value = UserProfile(email=identity['email'])
+        user = UserProfile(username='foobar', email=identity['email'])
+        self.register_user.return_value = user
         self.fxa_identify.return_value = identity
         response = self.client.post(
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'me@yeahoo.com'
+        assert (response.cookies['jwt_api_auth_token'].value ==
+                response.data['token'])
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         self.register_user.assert_called_with(mock.ANY, identity)
 
@@ -684,12 +693,16 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.register_user.assert_called_with(mock.ANY, identity)
 
     def test_success_with_account_logs_in(self):
-        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
+        user = UserProfile.objects.create(
+            username='foobar', email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.get(
             self.url, {'code': 'code', 'state': self.fxa_state})
         self.assertRedirects(response, reverse('home'))
+        data = {'token': response.cookies['jwt_api_auth_token'].value}
+        verify = VerifyJSONWebTokenSerializer().validate(data)
+        assert verify['user'] == user
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
