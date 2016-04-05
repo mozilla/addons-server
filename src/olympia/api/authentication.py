@@ -82,7 +82,6 @@ class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
             # jwt_decode_handler.
 
         user = self.authenticate_credentials(payload)
-        amo.set_user(user)
         return (user, jwt_value)
 
     def authenticate_credentials(self, payload):
@@ -107,4 +106,5 @@ class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
             msg = 'User has not read developer agreement.'
             raise exceptions.AuthenticationFailed(msg)
 
+        amo.set_user(api_key.user)
         return api_key.user
