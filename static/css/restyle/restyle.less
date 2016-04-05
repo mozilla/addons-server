@@ -590,23 +590,8 @@ body:not(.home) .amo-header {
 #monthly {
   background: none;
 
-  &:before {
-    background-image: url('../../img/zamboni/discovery_pane/promos/monthly-bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: '';
-    display: block;
-    height: 100%;
-    filter: contrast(170%) grayscale(100%);
-    -webkit-filter: contrast(170%) grayscale(100%);
-    left: 0;
-    mix-blend-mode: multiply;
-    opacity: 0.3;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 0;
+  &::before {
+    display: none;
   }
 
   .wrap > div  {
