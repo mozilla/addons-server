@@ -20,7 +20,7 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
 
     This mimics what our ACLMiddleware does after a successful authentication,
     because otherwise that behaviour would be missing in the API since API auth
-    happens after middleware process request phase.
+    happens after the middleware process request phase.
     """
     def authenticate_credentials(self, request):
         result = super(

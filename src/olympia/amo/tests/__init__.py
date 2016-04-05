@@ -281,8 +281,9 @@ class TestClient(Client):
 
     def login_api(self, user):
         """
-        Creates a jwt token for this user as if they just logged in and send
-        it in an Authorization header with all future requests for this client.
+        Creates a jwt token for this user as if they just logged in. This token
+        will be sent in an Authorization header with all future requests for
+        this client.
         """
         token = self.generate_api_token(user)
         self.defaults['HTTP_AUTHORIZATION'] = 'JWT {0}'.format(token)
