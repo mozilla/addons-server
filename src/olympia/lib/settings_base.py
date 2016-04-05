@@ -570,6 +570,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
+            'css/zamboni/unlisted.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',

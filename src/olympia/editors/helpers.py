@@ -210,7 +210,7 @@ def queue_tabnav(context):
                              'Unlisted Preliminary Reviews ({0})',
                              unlisted_counts['prelim'])
                     .format(unlisted_counts['prelim']))),
-                  ('all', 'unlisted_all',
+                  ('all', 'unlisted_queue_all',
                    (ngettext('Unlisted All Add-ons ({0})',
                              'Unlisted All Add-ons ({0})',
                              unlisted_counts['all'])
@@ -390,12 +390,15 @@ class EditorAllListTable(SQLTable, ItemStateTable):
         authors = row.authors
         if not len(authors):
             return ''
-        url = UserProfile.create_user_url(authors[0][0],
-                                          username=authors[0][1])
-        more = ''.join(u'%s\n' % uname for (id_, uname) in authors)
-        return safe_substitute(
-            u'<span title="%s"><a href="%s">%s</a>%s</span>',
-            more, url, authors[0][1], '...' if len(authors) > 1 else '')
+        more = '\n'.join(
+            safe_substitute(u'%s', uname) for (_, uname) in authors)
+        author_links = ''.join(
+            safe_substitute(u'<a href="%s">%s</a>',
+                            UserProfile.create_user_url(id_, username=uname),
+                            uname)
+            for (id_, uname) in authors[0:3])
+        return u'<span title="%s">%s%s</span>' % (
+            more, author_links, '...' if len(authors) > 3 else '')
 
     @classmethod
     def default_order_by(cls):

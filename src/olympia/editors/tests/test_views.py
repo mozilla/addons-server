@@ -543,7 +543,7 @@ class TestHome(EditorTest):
             reverse('editors.unlisted_queue_nominated'),
             reverse('editors.unlisted_queue_pending'),
             reverse('editors.unlisted_queue_prelim'),
-            reverse('editors.unlisted_all')]
+            reverse('editors.unlisted_queue_all')]
 
         # Only listed queues for editors.
         doc = pq(self.client.get(self.url).content)
@@ -1337,7 +1337,7 @@ class TestUnlistedAllList(QueueTest):
 
     def setUp(self):
         super(TestUnlistedAllList, self).setUp()
-        self.url = reverse('editors.unlisted_all')
+        self.url = reverse('editors.unlisted_queue_all')
         # We should have all add-ons.
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two',
