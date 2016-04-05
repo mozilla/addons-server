@@ -13,6 +13,10 @@
 // Common styles
 @detail-border: 1px solid #ebebeb;
 
+// Sizes
+@containerWidth: 1018px;
+@pageWidth: 960px;
+
 // Fonts
 @font-face {
   font-family: 'Open Sans';
@@ -79,6 +83,7 @@ body.restyle {
   font-family: @primary-font;
   font-style: normal;
   line-height: 1.5;
+  min-width: @containerWidth;
 }
 
 h1,
@@ -206,7 +211,7 @@ button.link:active span {
   // span the entire width of the viewport, even though the parent has a
   // max-width.
   margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
-  min-width: 960px;
+  min-width: @containerWidth;
   width: 100vw;
 }
 
@@ -250,7 +255,7 @@ button.link:active span {
 
 .amo-header-wrapper {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: @pageWidth;
 }
 
 .category-landing [role="main"],
@@ -516,7 +521,7 @@ body:not(.home) .amo-header {
   min-height: 0;
   opacity: 1;
   visibility: visible;
-  width: 960px;
+  width: @pageWidth;
 
   #monthly {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
@@ -1371,7 +1376,7 @@ h3.author .transfer-ownership {
 
   .carousel {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: @pageWidth;
     padding: 6px 20px;
     overflow-x: hidden;
     overflow-y: visible;
@@ -1407,11 +1412,17 @@ h3.author .transfer-ownership {
 // If the viewport is smaller than the min-width of the page weirdness
 // happens, so we go back to a non-full-width screenshot then.
 // See: https://github.com/mozilla/addons-server/issues/1983
-@media (max-width: 960px) {
-  .header-bg,
+@media (max-width: @pageWidth) {
   .restyle .previews {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: @containerWidth) {
+  .header-bg {
+    // This should be a negative result so this order is intentional :-)
+    margin-left: (@pageWidth - @containerWidth) / 2;
   }
 }
 
