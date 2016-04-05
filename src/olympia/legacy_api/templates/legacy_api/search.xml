@@ -6,8 +6,8 @@
       {% endfor %}
   {% else %}
       {% for addon in results -%}
-          {% include 'api/includes/addon.xml' -%}
+          {% include 'legacy_api/includes/addon.xml' -%}
       {% endfor %}
   {% endif %}
-  {% if compat %}{% include 'api/compat.xml' %}{% endif %}
+  {% if compat %}{% include 'legacy_api/compat.xml' %}{% endif %}
 </searchresults>

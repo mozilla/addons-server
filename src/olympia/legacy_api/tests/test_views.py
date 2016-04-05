@@ -12,7 +12,7 @@ from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
-from olympia import amo, api
+from olympia import amo, legacy_api
 from olympia.addons.models import (
     Addon, AppSupport, CompatOverride, CompatOverrideRange, Persona, Preview)
 from olympia.amo import helpers
@@ -20,13 +20,13 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.views import handler500
-from olympia.api.utils import addon_to_dict
-from olympia.api.views import addon_filter
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
+from olympia.legacy_api.utils import addon_to_dict
+from olympia.legacy_api.views import addon_filter
 from olympia.tags.models import AddonTag, Tag
 
 
@@ -45,7 +45,8 @@ def make_call(*args, **kwargs):
 
 
 def test_json_not_implemented():
-    eq_(api.views.APIView().render_json({}), '{"msg": "Not implemented yet."}')
+    eq_(legacy_api.views.APIView().render_json({}),
+        '{"msg": "Not implemented yet."}')
 
 
 class UtilsTest(TestCase):
@@ -189,7 +190,7 @@ class APITest(TestCase):
         response = self.client.get('/en-US/firefox/api/addon/12', follow=True)
         last_link = response.redirect_chain[-1]
         assert last_link[0].endswith(
-            'en-US/firefox/api/%.1f/addon/12' % api.CURRENT_VERSION)
+            'en-US/firefox/api/%.1f/addon/12' % legacy_api.CURRENT_VERSION)
 
     def test_forbidden_api(self):
         """
@@ -202,7 +203,7 @@ class APITest(TestCase):
             response,
             'The API version, %.1f, you are using is not valid. Please upgrade'
             ' to the current version %.1f API.' % (
-                0.9, api.CURRENT_VERSION),
+                0.9, legacy_api.CURRENT_VERSION),
             status_code=403)
 
     def test_addon_detail_missing(self):
@@ -210,7 +211,7 @@ class APITest(TestCase):
         Check missing addons.
         """
         response = self.client.get(
-            '/en-US/firefox/api/%.1f/addon/999' % api.CURRENT_VERSION)
+            '/en-US/firefox/api/%.1f/addon/999' % legacy_api.CURRENT_VERSION)
 
         self.assertContains(response, 'Add-on not found!', status_code=404)
 
@@ -222,7 +223,7 @@ class APITest(TestCase):
         doc = pq(response.content)
         eq_(response.status_code, 404)
         d = doc('error')
-        self.assertTemplateUsed(response, 'api/message.xml')
+        self.assertTemplateUsed(response, 'legacy_api/message.xml')
         eq_(d.length, 1)
         eq_(d.text(), 'Not Found')
 
@@ -247,7 +248,7 @@ class APITest(TestCase):
         https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
         """
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
         self.assertContains(
             response, '<appID>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</appID>')
 
@@ -257,13 +258,13 @@ class APITest(TestCase):
         https://bugzilla.mozilla.org/show_bug.cgi?id=546542.
         """
         response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
         self.assertContains(response, '<eula></eula>')
 
     def test_addon_detail_rating(self):
         a = Addon.objects.get(pk=4664)
         response = self.client.get('/en-US/firefox/api/%.1f/addon/4664' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
         self.assertContains(response, '<rating>%d</rating>' %
                             int(round(a.average_rating)))
 
@@ -345,7 +346,8 @@ class APITest(TestCase):
         license.name = 'My License'
         license.url = 'someurl'
         license.save()
-        api_url = '/en-US/firefox/api/%.1f/addon/3615' % api.CURRENT_VERSION
+        api_url = (
+            '/en-US/firefox/api/%.1f/addon/3615' % legacy_api.CURRENT_VERSION)
         response = self.client.get(api_url)
         doc = pq(response.content)
         eq_(doc('license').length, 1)
@@ -534,7 +536,7 @@ class APITest(TestCase):
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
         doc = pq(response.content)
         eq_(doc[0].tag, 'error')
         eq_(response.status_code, 404)
@@ -542,14 +544,14 @@ class APITest(TestCase):
     def test_cross_origin(self):
         # Add-on details should allow cross-origin requests.
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
 
         eq_(response['Access-Control-Allow-Origin'], '*')
         eq_(response['Access-Control-Allow-Methods'], 'GET')
 
         # Even those that are not found.
         response = self.client.get('/en-US/firefox/api/%.1f/addon/999' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
 
         eq_(response['Access-Control-Allow-Origin'], '*')
         eq_(response['Access-Control-Allow-Methods'], 'GET')
@@ -1174,14 +1176,14 @@ class SearchTest(ESTestCase):
         # The search view doesn't allow cross-origin requests.
         # First we check for a search without results.
         response = self.client.get('/en-US/firefox/api/%.1f/search/firebug/3' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
 
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Methods')
 
         # Now a search with results.
         response = self.client.get('/en-US/firefox/api/%.1f/search/delicious' %
-                                   api.CURRENT_VERSION)
+                                   legacy_api.CURRENT_VERSION)
 
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Methods')
@@ -1200,7 +1202,7 @@ class SearchTest(ESTestCase):
     def test_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
-            api.CURRENT_VERSION)
+            legacy_api.CURRENT_VERSION)
         data = json.loads(response.content)['suggestions'][0]
         a = Addon.objects.get(pk=3615)
         eq_(data['id'], str(a.pk))
@@ -1210,14 +1212,14 @@ class SearchTest(ESTestCase):
     def test_no_category_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
-            api.CURRENT_VERSION)
+            legacy_api.CURRENT_VERSION)
         eq_(json.loads(response.content)['suggestions'], [])
 
     def test_suggestions_throttle(self):
         self.create_sample('autosuggest-throttle')
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
-            api.CURRENT_VERSION)
+            legacy_api.CURRENT_VERSION)
         eq_(response.status_code, 503)
 
 
@@ -1226,7 +1228,7 @@ class LanguagePacksTest(UploadTest):
 
     def setUp(self):
         super(LanguagePacksTest, self).setUp()
-        self.url = reverse('api.language', args=['1.5'])
+        self.url = reverse('legacy_api.language', args=['1.5'])
         self.tb_url = self.url.replace('firefox', 'thunderbird')
         self.addon = Addon.objects.get(pk=3723)
 

@@ -22,7 +22,7 @@ urlpatterns = patterns(
     ('^services/', include(services_patterns)),
     url('^__version__$', views.version, name='version.json'),
 
-    url('^opensearch.xml$', 'olympia.api.views.render_xml',
+    url('^opensearch.xml$', 'olympia.legacy_api.views.render_xml',
                             {'template': 'amo/opensearch.xml'},
                             name='amo.opensearch'),
 
