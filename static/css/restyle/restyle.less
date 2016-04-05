@@ -520,6 +520,13 @@ body:not(.home) .amo-header {
 
   #monthly {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
+
+    h2,
+    h3,
+    p {
+      color: @link-on-color-bg;
+      text-shadow: @dark-gray 1px 1px;
+    }
   }
 
   .promo-purple,
@@ -673,13 +680,7 @@ body:not(.home) .amo-header {
 #featured-addon .thumb,
 #monthly .blurb,
 #monthly .thumb {
-  display: block;
-}
-
-#featured-addon .blurb,
-#monthly .blurb {
-  float: right;
-  max-width: 80%;
+  display: inline-block;;
 }
 
 #featured-addon .thumb,
