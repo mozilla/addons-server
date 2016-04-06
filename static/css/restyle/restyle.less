@@ -13,6 +13,10 @@
 // Common styles
 @detail-border: 1px solid #ebebeb;
 
+// Sizes
+@containerWidth: 1018px;
+@pageWidth: 960px;
+
 // Fonts
 @font-face {
   font-family: 'Open Sans';
@@ -56,6 +60,12 @@ h3,
 h4,
 h5 {
   line-height: 1.5;
+  font-family: @primary-font !important;
+  font-style: normal !important;
+}
+
+* {
+  font-family: @primary-font !important;
 }
 
 // Styles
@@ -73,7 +83,7 @@ body.restyle {
   font-family: @primary-font;
   font-style: normal;
   line-height: 1.5;
-  min-width: 1018px;
+  min-width: @containerWidth;
 }
 
 h1,
@@ -96,17 +106,20 @@ h2 {
 h1,
 .primary h2,
 hgroup h2.addon,
-.personas-featured h3,
-#featured-addons .featured-inner h3 {
+.personas-featured h3 {
   color: @default-font-color;
-  font-family: @primary-font !important;
   font-size: 1.692rem;
   font-style: normal;
-  line-height: 1.5;
 }
 
+masthead.submit-theme,
 #collections-landing {
   margin-top: 20px;
+}
+
+.addon-description-header,
+.addon-details .secondary.addon-vitals {
+  background: none;
 }
 
 .addon-details h2 {
@@ -144,8 +157,24 @@ button.link:active span {
   color: @link-on-color-bg;
 }
 
-/* Main Content Wrapper */
-#background-wrapper {
+.amo-header,
+.primary,
+.secondary {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    width: 100%;
+  }
+}
+
+.primary,
+.secondary {
+  background: #fff;
+}
+
+.header-bg {
   background-color: #0c99d5;
   /*
     Main Content Wrapper Background - General
@@ -177,10 +206,13 @@ button.link:active span {
     0 416px,
     0 0,
     0 0;
-  border-top: 2px solid #fff;
-  position: absolute;
-  height: 130px;
-  width: 100%;
+  // This breaks the background panel wrapper out of the containing box,
+  // allowing it to be full-width. This means the background gradient can
+  // span the entire width of the viewport, even though the parent has a
+  // max-width.
+  margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
+  min-width: @containerWidth;
+  width: 100vw;
 }
 
 /*
@@ -188,8 +220,8 @@ button.link:active span {
   blue-pattern, blue-gradient, white overlay
   (sharp-cut at 416px)
 */
-.home #background-wrapper,
-.addon-details #background-wrapper {
+.home .header-bg,
+.addon-details .header-bg {
   background-image:
     linear-gradient(
       to bottom,
@@ -215,6 +247,15 @@ button.link:active span {
     0 416px,
     0 0,
     0 0;
+}
+
+.amo-header {
+  margin-bottom: 0;
+}
+
+.amo-header-wrapper {
+  margin: 0 auto;
+  max-width: @pageWidth;
 }
 
 .category-landing [role="main"],
@@ -454,18 +495,72 @@ body:not(.home) .amo-header {
 }
 
 .restyle .site-balloon {
-  display: none;
+  background: #fbfbfb;
+  border: 2px solid #1f386e;
+  border-radius: 6px;
+  color: @default-font-color;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  .close {
+    background-image: url(../../img/impala/banner-close-style-refresh.png);
+    color: @default-font-color;
+
+    &:focus,
+    &:hover {
+      background-color: @dark-gray;
+    }
+  }
 }
 
 #promos {
   display: block;
-  height: auto;
-  margin-left: -210px;
+  margin: 20px 0 0;
   min-height: 0;
   opacity: 1;
   visibility: visible;
-  width: 960px;
-  margin-bottom: 10px;
+  width: @pageWidth;
+
+  #monthly {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
+
+    h2,
+    h3,
+    p {
+      color: @link-on-color-bg;
+      text-shadow: @dark-gray 1px 1px;
+    }
+  }
+
+  .promo-collection.webdev,
+  .promo-purple,
+  #holiday,
+  #travel {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-2.png);
+
+    h2,
+    h3,
+    a,
+    p.desc {
+      color: @link-on-color-bg;
+      text-align: left;
+      text-shadow: @dark-gray 1px 1px;
+    }
+  }
+
+  .promo-collection.webdev h2,
+  #monthly h2,
+  #monthly h3 {
+    font-size: 36px;
+    font-weight: 100;
+  }
+
+  #travel {
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+  }
 }
 
 #promos,
@@ -501,22 +596,6 @@ body:not(.home) .amo-header {
   float: none;
 }
 
-#promos .promo-purple {
-  h2,
-  h3,
-  a,
-  p.desc {
-    color: @link-on-color-bg;
-    text-align: left;
-    text-shadow: none;
-  }
-
-  h2,
-  p.desc {
-    color: #000;
-  }
-}
-
 .promo h2 {
   margin-top: 0;
 }
@@ -531,23 +610,8 @@ body:not(.home) .amo-header {
 #monthly {
   background: none;
 
-  &:before {
-    background-image: url('../../img/zamboni/discovery_pane/promos/monthly-bg.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: '';
-    display: block;
-    height: 100%;
-    filter: contrast(170%) grayscale(100%);
-    -webkit-filter: contrast(170%) grayscale(100%);
-    left: 0;
-    mix-blend-mode: multiply;
-    opacity: 0.3;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 0;
+  &::before {
+    display: none;
   }
 
   .wrap > div  {
@@ -604,18 +668,6 @@ body:not(.home) .amo-header {
   .promo {
     background-size: cover;
   }
-
-  #monthly.promo {
-    h2, h3 {
-      color: #fff;
-      font-size: 36px;
-      font-weight: 100;
-    }
-
-    h2 {
-      text-shadow: none;
-    }
-  }
 }
 
 // Featured/Monthly Add-on Carousel Element
@@ -629,13 +681,7 @@ body:not(.home) .amo-header {
 #featured-addon .thumb,
 #monthly .blurb,
 #monthly .thumb {
-  display: block;
-}
-
-#featured-addon .blurb,
-#monthly .blurb {
-  float: right;
-  max-width: 80%;
+  display: inline-block;;
 }
 
 #featured-addon .thumb,
@@ -713,15 +759,19 @@ body:not(.home) .amo-header {
   }
 }
 
-// Side nav elsewhere (themes)
-body:not(.developer-hub) .secondary .highlight {
-  padding: 7px 0 0;
+// Button overrides.
+
+// Display is set here so it doesn't clobber low specificity
+// platform specific button hiding.
+button,
+.button {
+  display: inline-block;
 }
 
-// Button overrides.
 // Add a selector here if there's a different style coming from
 // elsewhere.
-//
+.sidebar a.button,
+.sidebar button,
 .linux .button.linux,
 .mac .button.mac,
 .other .button.bsd,
@@ -732,6 +782,9 @@ a.delete-button.delete-addon,
 #upload-file-widget .button.prominent,
 #promos .view-button a,
 .cta a.button:link,
+.theme-queue a.button,
+.theme-queue button,
+.theme .choices button,
 button,
 button.button,
 .button,
@@ -742,10 +795,11 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   border-radius: 3px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
        inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+  box-sizing: border-box;
   color: #fff;
-  display: inline-block;
   font-family: @primary-font;
   font-size: 1.077rem;
+  height: auto;
   line-height: 1.5;
   padding: 8px 16px 9px;
   position: relative;
@@ -770,8 +824,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
     background-position: 0 -444px;
   }
 
+  &.approve,
+  &#commit,
   &.good {
-    background: #489615;
+    background: #57bd35;
   }
 
   &.delete-button,
@@ -818,6 +874,33 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.installer.caution {
     background-image: url(../../img/impala/warning-bg.png);
     color: #333 !important;
+
+    span {
+       background-position: 0 -317px;
+    }
+  }
+}
+
+.theme .choices button,
+.theme-queue a.button,
+.theme-queue button {
+  padding: 8px 20px 9px;
+  min-width: 100px;
+}
+
+.sidebar a.button,
+.sidebar button {
+  width: 100%;
+
+  &#commit:before {
+    top: 12px;
+  }
+}
+
+a.button.release-theme-lock {
+  position: absolute;
+  span {
+    top: 0;
   }
 }
 
@@ -867,20 +950,17 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   margin-top: 0;
 }
 
-.restyle.home .shift-secondary {
-  margin-top: 282px;
-}
-
-.home .secondary {
-  margin: 12px 0;
-}
-
-body:not(.developer-hub) .secondary {
+.category-landing .secondary,
+section.secondary {
+  .highlight {
+    padding: 7px 0 0;
+  }
   width: 180px;
 }
 
 .secondary {
   margin: 0 0 12px;
+  width: 21.49%;
 
   h2, h3 {
     color: #aaa;
@@ -949,9 +1029,12 @@ body:not(.developer-hub) .secondary {
   display: none;
 }
 
-.addon-details .primary,
-.addon-details .secondary {
-  font-family: @primary-font;
+.addon-details {
+  .primary,
+  .secondary {
+    background: none;
+    font-family: @primary-font;
+  }
 }
 
 #addon h1 {
@@ -1166,6 +1249,21 @@ h3.author .transfer-ownership {
   height: 420px;
 }
 
+// Create a new collection pages/collections I'm following pages
+.featured {
+  background: none;
+  border: 0;
+}
+
+.banner-box .featured {
+  background: #489615;
+}
+
+.featured-inner {
+  border: 0;
+  padding-top: 0;
+}
+
 // Themes
 .secondary .other-categories {
   background-color: transparent;
@@ -1178,10 +1276,6 @@ h3.author .transfer-ownership {
 
     li {
       padding: 0;
-
-      a {
-        padding: 5px 6px 5px 12px;
-      }
     }
   }
 
@@ -1283,7 +1377,7 @@ h3.author .transfer-ownership {
 
   .carousel {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: @pageWidth;
     padding: 6px 20px;
     overflow-x: hidden;
     overflow-y: visible;
@@ -1319,10 +1413,17 @@ h3.author .transfer-ownership {
 // If the viewport is smaller than the min-width of the page weirdness
 // happens, so we go back to a non-full-width screenshot then.
 // See: https://github.com/mozilla/addons-server/issues/1983
-@media (max-width: 1018px) {
+@media (max-width: @pageWidth) {
   .restyle .previews {
     margin-left: 0;
     width: 100%;
+  }
+}
+
+@media (max-width: @containerWidth) {
+  .header-bg {
+    // This should be a negative result so this order is intentional :-)
+    margin-left: (@pageWidth - @containerWidth) / 2;
   }
 }
 
@@ -1419,9 +1520,26 @@ h3.author .transfer-ownership {
   }
 }
 
-.category-landing .featured.three-col .addon.hovercard:hover {
-  height: 320px;
-  margin-bottom: -320px;
+.category-landing .featured.three-col .addon.hovercard {
+
+  &:hover {
+    height: 320px;
+    margin-bottom: -320px;
+  }
+
+  .addon-writeup {
+    display: none;
+  }
+
+  .extra {
+    max-width: 200px;
+
+    .button.not-available {
+      margin-top: -12px;
+      font-size: 12px;
+    }
+  }
+
 }
 
 .persona.hovercard {
@@ -1430,10 +1548,6 @@ h3.author .transfer-ownership {
   &:hover {
     margin-bottom: -12px;
     height: 90px;
-
-    .addon-writeup {
-      display: none;
-    }
   }
 
   h3 {
@@ -1487,9 +1601,23 @@ h3.author .transfer-ownership {
   cursor: default;
   font-size: 14px;
   padding-left: 20px;
+  padding-right: 5px;
+  pointer-events: all;
   margin-bottom: 5px;
   white-space: normal;
   text-shadow: none;
+}
+
+.items .item.incompatible {
+  .extra .button.not-available {
+    display: none;
+    float: right;
+  }
+
+  &:focus .extra .button.not-available,
+  &:hover .extra .button.not-available {
+    display: block;
+  }
 }
 
 #addon .more-versions a {
@@ -1582,6 +1710,7 @@ h3.author .transfer-ownership {
     padding: 0;
   }
 
+  .widgets,
   p {
     clear: left;
   }
@@ -1596,6 +1725,54 @@ h3.author .transfer-ownership {
 
     td {
       width: 100%;
+    }
+  }
+}
+
+#review-box form {
+  height: auto;
+  min-height: 270px;
+}
+
+#contribute-box,
+.install-note,
+.modal,
+.popup {
+  border: 1px solid grey;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.contrib-overlay,
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.login {
+  .primary.island {
+    border: 1px solid #ebebeb;
+    margin-top: 10px;
+  }
+
+  .prettyform .listing-footer {
+    background: none;
+    border-top: 0;
+  }
+
+  .prettyform .listing-footer {
+    background: none;
+  }
+}
+
+// Theme detail page
+#persona #more-personas .article {
+  padding: 0 10px 10px;
+
+  .persona.hovercard {
+    height: 78px;
+
+    &:nth-of-type(2n+1) {
+      clear: left;
     }
   }
 }

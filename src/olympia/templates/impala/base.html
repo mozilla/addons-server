@@ -64,11 +64,12 @@
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      {% if waffle.flag('restyle') %}
-        <div id="background-wrapper"></div>
-      {% endif %}
       <div id="page" class="c">
         {% block site_header %}
+          {% if waffle.flag('restyle') %}
+            <div class="header-bg">
+              <div class="amo-header-wrapper">
+          {% endif %}
           {% include "tabzilla.html" %}
           <div class="amo-header">
             <nav id="aux-nav" role="navigation" class="menu-nav c">
@@ -171,7 +172,14 @@
                 <a href="#" class="close">{{ _('Close') }}</a>
               </div>
             {% endblock %}
+            {% if waffle.flag('restyle') %}
+              {% block header_content %}{% endblock header_content %}
+            {% endif %}
           </div>
+          {% if waffle.flag('restyle') %}
+              </div> {# .header-bg #}
+            </div> {# .amo-header-wrapper #}
+          {% endif %}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories

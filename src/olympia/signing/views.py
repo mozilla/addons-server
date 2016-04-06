@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_master
-from olympia.api.jwt_auth.views import JWTKeyAuthentication
+from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon

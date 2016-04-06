@@ -53,8 +53,8 @@ def file_review_status(addon, file):
             return _(u'Pending Preliminary Review')
     # Special case: prelim upgrading to full approval,
     # file can already be preliminary reviewed or not
-    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]
-            and addon.status == amo.STATUS_LITE_AND_NOMINATED):
+    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED] and
+            addon.status == amo.STATUS_LITE_AND_NOMINATED):
         if addon.latest_version.version_int == file.version.version_int:
             return _(u'Pending Full Review')
     if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
@@ -210,7 +210,7 @@ def queue_tabnav(context):
                              'Unlisted Preliminary Reviews ({0})',
                              unlisted_counts['prelim'])
                     .format(unlisted_counts['prelim']))),
-                  ('all', 'unlisted_all',
+                  ('all', 'unlisted_queue_all',
                    (ngettext('Unlisted All Add-ons ({0})',
                              'Unlisted All Add-ons ({0})',
                              unlisted_counts['all'])
@@ -265,7 +265,26 @@ class ItemStateTable(object):
         self.item_number = page.start_index()
 
 
-class _EditorTableColumnsHelper():
+def safe_substitute(string, *args):
+    return string % tuple(jinja2.escape(arg) for arg in args)
+
+
+class EditorQueueTable(SQLTable, ItemStateTable):
+    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
+    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
+    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
+    applications = tables.Column(verbose_name=_lazy(u'Applications'),
+                                 sortable=False)
+    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
+                              sortable=False)
+    additional_info = tables.Column(
+        verbose_name=_lazy(u'Additional'), sortable=False)
+
+    class Meta:
+        sortable = True
+        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
+                   'flags', 'applications', 'additional_info']
 
     def render_addon_name(self, row):
         url = reverse('editors.review', args=[row.addon_slug])
@@ -315,31 +334,6 @@ class _EditorTableColumnsHelper():
         }
         return legacy_sorts.get(colname, colname)
 
-    @classmethod
-    def review_url(cls, row):
-        return reverse('editors.review', args=[row.addon_slug])
-
-    def safe_substitute(self, string, *args):
-        return string % tuple(jinja2.escape(arg) for arg in args)
-
-
-class EditorQueueTable(SQLTable, ItemStateTable, _EditorTableColumnsHelper):
-    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
-    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
-    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
-    applications = tables.Column(verbose_name=_lazy(u'Applications'),
-                                 sortable=False)
-    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
-                              sortable=False)
-    additional_info = tables.Column(
-        verbose_name=_lazy(u'Additional'), sortable=False)
-
-    class Meta:
-        sortable = True
-        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
-                   'flags', 'applications', 'additional_info']
-
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:
             r = _lazy('moments ago')
@@ -362,44 +356,49 @@ class EditorQueueTable(SQLTable, ItemStateTable, _EditorTableColumnsHelper):
         return '-waiting_time_min'
 
 
-class EditorAllListTable(SQLTable, ItemStateTable, _EditorTableColumnsHelper):
-    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
-    version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
+class EditorAllListTable(SQLTable, ItemStateTable):
+    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
     guid = tables.Column(verbose_name=_lazy(u'GUID'))
     authors = tables.Column(verbose_name=_lazy(u'Authors'),
                             sortable=False)
     last_review = tables.Column(verbose_name=_lazy(u'Last Review'),
                                 sortable=False)
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
-    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
-                              sortable=False)
-    additional_info = tables.Column(
-        verbose_name=_lazy(u'Additional'), sortable=False)
+    version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
 
     class Meta:
-        columns = ['addon_name', 'version_date', 'addon_type_id', 'guid',
-                   'authors', 'flags', 'additional_info', 'last_review']
+        columns = ['addon_name', 'guid', 'authors', 'last_review',
+                   'version_date']
+
+    def render_addon_name(self, row):
+        url = reverse('editors.review', args=[
+            row.addon_slug if row.addon_slug is not None else row.id])
+        self.increment_item()
+        return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
+                               url, row.addon_name, row.latest_version)
 
     def render_guid(self, row):
-        return self.safe_substitute(u'%s', row.guid)
+        return safe_substitute(u'%s', row.guid)
 
     def render_version_date(self, row):
-        return self.safe_substitute(u'<span>%s</span>', row.version_date)
+        return safe_substitute(u'<span>%s</span>', row.version_date)
 
     def render_last_review(self, row):
-        return self.safe_substitute(u'<span><em>%s</em> on %s</span>',
-                                    row.review_version_num, row.review_date)
+        return safe_substitute(u'<span><em>%s</em> on %s</span>',
+                               row.review_version_num, row.review_date)
 
     def render_authors(self, row):
         authors = row.authors
         if not len(authors):
             return ''
-        url = UserProfile.create_user_url(authors[0][0],
-                                          username=authors[0][1])
-        more = ''.join(u'%s\n' % uname for (id_, uname) in authors)
-        return self.safe_substitute(
-            u'<span title="%s"><a href="%s">%s</a>%s</span>',
-            more, url, authors[0][1], '...' if len(authors) > 1 else '')
+        more = '\n'.join(
+            safe_substitute(u'%s', uname) for (_, uname) in authors)
+        author_links = ''.join(
+            safe_substitute(u'<a href="%s">%s</a>',
+                            UserProfile.create_user_url(id_, username=uname),
+                            uname)
+            for (id_, uname) in authors[0:3])
+        return u'<span title="%s">%s%s</span>' % (
+            more, author_links, '...' if len(authors) > 3 else '')
 
     @classmethod
     def default_order_by(cls):
@@ -767,8 +766,9 @@ class ReviewAddon(ReviewBase):
     def __init__(self, *args, **kwargs):
         super(ReviewAddon, self).__init__(*args, **kwargs)
 
-        self.is_upgrade = (self.addon.status == amo.STATUS_LITE_AND_NOMINATED
-                           and self.review_type == 'nominated')
+        self.is_upgrade = (
+            self.addon.status == amo.STATUS_LITE_AND_NOMINATED and
+            self.review_type == 'nominated')
 
     def set_data(self, data):
         self.data = data

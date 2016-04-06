@@ -137,14 +137,30 @@ class TestUnlistedViewAllListTable(TestCase):
         doc = pq(self.table.render_last_review(row))
         assert doc.text() == u'0.34.3b on 2016-01-01'
 
-    def test_authors(self):
+    def test_authors_few(self):
         row = Mock()
-        row.authors = [(123, 'bob'), (345, 'steve')]
+        row.authors = [(123, 'bob'), (456, 'steve')]
         doc = pq(self.table.render_authors(row))
-        url = UserProfile.create_user_url(123, username='bob')
-        assert doc('span').text() == 'bob ...'
-        assert doc('span a').attr('href') == url
-        assert doc('span').attr('title') == 'bob steve '
+        assert doc('span').text() == 'bob steve'
+        assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(
+            123, username='bob')
+        assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(
+            456, username='steve')
+        assert doc('span').attr('title') == 'bob steve'
+
+    def test_authors_four(self):
+        row = Mock()
+        row.authors = [(123, 'bob'), (456, 'steve'), (789, 'cvan'),
+                       (999, 'basta')]
+        doc = pq(self.table.render_authors(row))
+        assert doc.text() == 'bob steve cvan ...'
+        assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(
+            123, username='bob')
+        assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(
+            456, username='steve')
+        assert doc('span a:eq(2)').attr('href') == UserProfile.create_user_url(
+            789, username='cvan')
+        assert doc('span').attr('title') == 'bob steve cvan basta', doc.html()
 
 
 class TestAdditionalInfoInQueue(TestCase):

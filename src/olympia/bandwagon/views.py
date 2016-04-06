@@ -27,7 +27,7 @@ from olympia.amo.utils import paginate, redirect_for_login, urlparams
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
-from olympia.api.utils import addon_to_dict
+from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
 from olympia.users.models import UserProfile
@@ -42,8 +42,8 @@ log = commonware.log.getLogger('z.collections')
 
 @non_atomic_requests
 def get_collection(request, username, slug):
-    if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated()
-            and request.user.username == username):
+    if (slug in SPECIAL_SLUGS.values() and request.user.is_authenticated() and
+            request.user.username == username):
         return getattr(request.user, slug + '_collection')()
     else:
         return get_object_or_404(Collection.objects,

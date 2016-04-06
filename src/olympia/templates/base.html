@@ -79,6 +79,10 @@
       {% endif %}
       <div class="section">
         {% block site_header %}
+          {% if waffle.flag('restyle') %}
+            <div class="header-bg">
+              <div class="amo-header-wrapper">
+          {% endif %}
           {% include "tabzilla.html" %}
           <div class="amo-header">
             <nav id="aux-nav" role="navigation" class="menu-nav c">
@@ -122,6 +126,10 @@
               {% block site_stats %}{% endblock %}
             </div>
           </div>
+          {% if waffle.flag('restyle') %}
+              </div> {# .header-bg #}
+            </div> {# .amo-header-wrapper #}
+          {% endif %}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories

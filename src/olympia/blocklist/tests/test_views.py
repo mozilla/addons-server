@@ -685,6 +685,60 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
             "bug": "http://bug.url.com/"
         }
 
+    def test_plugins_json_with_multiple_apps(self):
+        self.plugin.update(os="WINNT 5.0",
+                           xpcomabi="win",
+                           name="plugin name",
+                           description="plugin description",
+                           filename="plugin filename",
+                           info_url="http://info.url.com/", severity=0,
+                           vulnerability_status=1, min='2.0', max='3.0')
+
+        self.app.update(min='2.0', max='3.0')
+
+        BlocklistApp.objects.create(guid=amo.THUNDERBIRD.guid,
+                                    min='3', max='4',
+                                    blplugin=self.plugin)
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        plugin = blocklist['plugins'][0]
+
+        # Add infoURL
+        assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['os'] == self.plugin.os
+        assert plugin['xpcomabi'] == self.plugin.xpcomabi
+        assert plugin['matchName'] == self.plugin.name
+        assert plugin['matchFilename'] == self.plugin.filename
+        assert plugin['matchDescription'] == self.plugin.description
+
+        # VersionRange
+        assert plugin['versionRange'] == [{
+            'severity': 0,
+            'vulnerabilityStatus': 1,
+            'minVersion': '2.0',
+            'maxVersion': '3.0',
+            'targetApplication': [{
+                'guid': self.app.guid,
+                'minVersion': '2.0',
+                'maxVersion': '3.0',
+            }, {
+                'guid': amo.THUNDERBIRD.guid,
+                'minVersion': '3',
+                'maxVersion': '4',
+            }]
+        }]
+
+        created = self.plugin.details.created
+        assert plugin['details'] == {
+            "name": "blocked item",
+            "who": "All Firefox and Fennec users",
+            "why": "Security issue",
+            "created": created.strftime(JSON_DATE_FORMAT),
+            "bug": "http://bug.url.com/"
+        }
+
 
 class BlocklistGfxTest(BlocklistViewTest):
 

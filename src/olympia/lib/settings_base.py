@@ -378,6 +378,7 @@ INSTALLED_APPS = (
     'olympia.discovery',
     'olympia.editors',
     'olympia.files',
+    'olympia.legacy_api',
     'olympia.lib.es',
     'olympia.pages',
     'olympia.perf',
@@ -569,6 +570,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
+            'css/zamboni/unlisted.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
@@ -1659,6 +1661,10 @@ JWT_AUTH = {
     # Expiration for non-apikey jwt tokens. Since this will be used by our
     # frontend clients we want a slightly longer expiration than normal.
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+
+    # This allows JWT tokens created with the default implementation (NOT the
+    # ones created with an API Key) to be refreshed for a week.
+    'JWT_ALLOW_REFRESH': True,
 }
 
 REST_FRAMEWORK = {
@@ -1669,7 +1675,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'olympia.api.authentication.JSONWebTokenAuthentication',
     ),
     # Enable pagination
     'PAGE_SIZE': 25,

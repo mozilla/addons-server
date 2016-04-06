@@ -5,8 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.api.views import addon_filter
 from olympia.bandwagon.models import Collection, MonthlyPick as MP
+from olympia.legacy_api.views import addon_filter
 from olympia.versions.compare import version_int
 
 

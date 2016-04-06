@@ -5,7 +5,7 @@ $(function () {
         $('#background-wrapper').height(
             $('.amo-header').height() +
             ($('.notification-box').length ? 80 : 0) +
-            $('#addon-description-header').height() + 20
+            $('.addon-description-header').height() + 20
         );
     }
 

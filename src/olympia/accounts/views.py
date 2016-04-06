@@ -17,12 +17,13 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
-from olympia.api.jwt_auth.views import JWTKeyAuthentication
+from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
@@ -220,6 +221,22 @@ def with_user(format):
     return outer
 
 
+def add_api_token_to_response(response, user):
+    # Generate API token and add it to the json response.
+    payload = jwt_api_settings.JWT_PAYLOAD_HANDLER(user)
+    token = jwt_api_settings.JWT_ENCODE_HANDLER(payload)
+    if hasattr(response, 'data'):
+        response.data['token'] = token
+    # Also include the API token in a session cookie, so that it is available
+    # for universal frontend apps.
+    response.set_cookie(
+        'jwt_api_auth_token', token,
+        max_age=None, secure=settings.SESSION_COOKIE_SECURE or None,
+        httponly=settings.SESSION_COOKIE_HTTPONLY or None)
+
+    return response
+
+
 class LoginView(APIView):
 
     @waffle_switch('fxa-auth')
@@ -229,7 +246,9 @@ class LoginView(APIView):
             return Response({'error': ERROR_NO_USER}, status=422)
         else:
             login_user(request, user, identity)
-            return Response({'email': identity['email']})
+            response = Response({'email': identity['email']})
+            add_api_token_to_response(response, user)
+            return response
 
 
 class RegisterView(APIView):
@@ -242,7 +261,9 @@ class RegisterView(APIView):
                             status=422)
         else:
             user = register_user(request, identity)
-            return Response({'email': user.email})
+            response = Response({'email': user.email})
+            add_api_token_to_response(response, user)
+            return response
 
 
 class AuthenticateView(APIView):
@@ -255,7 +276,9 @@ class AuthenticateView(APIView):
             return safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
-            return safe_redirect(next_path, 'login')
+            response = safe_redirect(next_path, 'login')
+            add_api_token_to_response(response, user)
+            return response
 
 
 class ProfileView(generics.RetrieveAPIView):

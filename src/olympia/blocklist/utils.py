@@ -76,13 +76,12 @@ def addons_to_json(items):
         details = addon.rows[0].details
         for row in addon.rows:
             if row.min or row.max or row.severity or row.apps:
-                targetApplication = []
-                for app in row.apps:
-                    targetApplication.append({
-                        'guid': app.guid,
-                        'minVersion': app.min,
-                        'maxVersion': app.max,
-                    })
+                targetApplication = [{
+                    'guid': app.guid,
+                    'minVersion': app.min,
+                    'maxVersion': app.max,
+                } for app in row.apps]
+
                 versionRange.append({
                     'minVersion': row.min,
                     'maxVersion': row.max,
@@ -121,10 +120,10 @@ def plugins_to_json(items):
                 'severity': plugin.severity,
                 'vulnerabilityStatus': plugin.get_vulnerability_status,
                 'targetApplication': [{
-                    'guid': plugin.app_guid,
-                    'minVersion': plugin.app_min,
-                    'maxVersion': plugin.app_max,
-                }]
+                    'guid': app.guid,
+                    'minVersion': app.min,
+                    'maxVersion': app.max,
+                } for app in plugin.app.all()]
             }],
             'details': {
                 'name': plugin.details.name,

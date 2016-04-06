@@ -80,7 +80,10 @@ urlpatterns = patterns(
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
-    # SAMO/API
+    # SAMO (Legacy API)
+    ('^api/', include('olympia.legacy_api.urls')),
+
+    # API v3.
     ('^api/', include('olympia.api.urls')),
 
     ('^compatibility/', include('olympia.compat.urls')),

@@ -198,16 +198,6 @@
         }
     },
     {
-        "pk": 50003,
-        "model": "access.group",
-        "fields": {
-            "rules": "Apps:Review,Reviews:Edit",
-            "modified": "2012-01-27 13:32:08",
-            "name": "App Reviewers",
-            "created": "2012-01-27 12:41:00"
-        }
-    },
-    {
         "pk": 50004,
         "model": "access.group",
         "fields": {
@@ -238,14 +228,6 @@
         "model": "access.groupuser",
         "fields": {
             "group": 50002,
-            "user": 5497308
-        }
-    },
-    {
-        "pk": 260,
-        "model": "access.groupuser",
-        "fields": {
-            "group": 50003,
             "user": 5497308
         }
     },
@@ -292,7 +274,7 @@
         "pk": 50057,
         "model": "access.group",
         "fields": {
-            "rules": "AccountLookup:View,Apps:Configure,Transaction:View,Transaction:Refund,Lookup:View,AppLookup:View",
+            "rules": "AccountLookup:View,Transaction:View,Transaction:Refund,Lookup:View",
             "notes": "",
             "modified": "2012-05-22 17:53:57",
             "name": "Support Staff",

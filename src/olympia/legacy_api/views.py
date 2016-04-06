@@ -21,14 +21,14 @@ import jingo
 import waffle
 from caching.base import cached_with
 
-from olympia import amo, api
+from olympia import amo, legacy_api
 from olympia.addons.models import Addon, CompatOverride
 from olympia.amo.decorators import (
     allow_cross_site_request, json_view)
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
 from olympia.amo.utils import JSONEncoder
-from olympia.api.utils import addon_to_dict, extract_filters
+from olympia.legacy_api.utils import addon_to_dict, extract_filters
 from olympia.search.views import (
     AddonSuggestionsAjax, PersonaSuggestionsAjax, name_query)
 from olympia.versions.compare import version_int
@@ -86,19 +86,19 @@ def render_xml(request, template, context={}, **kwargs):
 @non_atomic_requests
 def handler403(request):
     context = {'error_level': ERROR, 'msg': 'Not allowed'}
-    return render_xml(request, 'api/message.xml', context, status=403)
+    return render_xml(request, 'legacy_api/message.xml', context, status=403)
 
 
 @non_atomic_requests
 def handler404(request):
     context = {'error_level': ERROR, 'msg': 'Not Found'}
-    return render_xml(request, 'api/message.xml', context, status=404)
+    return render_xml(request, 'legacy_api/message.xml', context, status=404)
 
 
 @non_atomic_requests
 def handler500(request):
     context = {'error_level': ERROR, 'msg': 'Server Error'}
-    return render_xml(request, 'api/message.xml', context, status=500)
+    return render_xml(request, 'legacy_api/message.xml', context, status=500)
 
 
 def validate_api_version(version):
@@ -106,10 +106,10 @@ def validate_api_version(version):
     We want to be able to deprecate old versions of the API, therefore we check
     for a minimum API version before continuing.
     """
-    if float(version) < api.MIN_VERSION:
+    if float(version) < legacy_api.MIN_VERSION:
         return False
 
-    if float(version) > api.MAX_VERSION:
+    if float(version) > legacy_api.MAX_VERSION:
         return False
 
     return True
@@ -222,7 +222,7 @@ class APIView(object):
                              else 'application/json')
         self.request = request
         if not validate_api_version(api_version):
-            msg = OUT_OF_DATE.format(self.version, api.CURRENT_VERSION)
+            msg = OUT_OF_DATE.format(self.version, legacy_api.CURRENT_VERSION)
             return self.render_msg(msg, ERROR, status=403,
                                    content_type=self.content_type)
 
@@ -235,14 +235,14 @@ class APIView(object):
 
         if self.format == 'xml':
             return render_xml(
-                self.request, 'api/message.xml',
+                self.request, 'legacy_api/message.xml',
                 {'error_level': error_level, 'msg': msg}, *args, **kwargs)
         else:
             return HttpResponse(json.dumps({'msg': _(msg)}), *args, **kwargs)
 
     def render(self, template, context):
         context['api_version'] = self.version
-        context['api'] = api
+        context['api'] = legacy_api
 
         if self.format == 'xml':
             return render_xml(self.request, template, context,
@@ -273,7 +273,7 @@ class AddonDetailView(APIView):
         return self.render_addon(addon)
 
     def render_addon(self, addon):
-        return self.render('api/addon_detail.xml', {'addon': addon})
+        return self.render('legacy_api/addon_detail.xml', {'addon': addon})
 
     def render_json(self, context):
         return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
@@ -304,11 +304,12 @@ def guid_search(request, api_version, guids):
                 addons_xml[key] = ''
 
             else:
-                addon_xml = render_xml_to_string(request,
-                                                 'api/includes/addon.xml',
-                                                 {'addon': addon,
-                                                  'api_version': api_version,
-                                                  'api': api})
+                addon_xml = render_xml_to_string(
+                    request, 'legacy_api/includes/addon.xml', {
+                        'addon': addon,
+                        'api_version': api_version,
+                        'api': legacy_api
+                    })
                 addons_xml[key] = addon_xml
 
     cache.set_many(dict((k, v) for k, v in addons_xml.iteritems()
@@ -318,11 +319,12 @@ def guid_search(request, api_version, guids):
               .transform(CompatOverride.transformer))
 
     addons_xml = [v for v in addons_xml.values() if v]
-    return render_xml(request, 'api/search.xml',
-                      {'addons_xml': addons_xml,
-                       'total': len(addons_xml),
-                       'compat': compat,
-                       'api_version': api_version, 'api': api})
+    return render_xml(request, 'legacy_api/search.xml', {
+        'addons_xml': addons_xml,
+        'total': len(addons_xml),
+        'compat': compat,
+        'api_version': api_version, 'api': legacy_api
+    })
 
 
 class SearchView(APIView):
@@ -395,7 +397,7 @@ class SearchView(APIView):
                 # compatible versions. Decrement the total.
                 total -= 1
 
-        return self.render('api/search.xml', {
+        return self.render('legacy_api/search.xml', {
             'results': results,
             'total': total,
             # For caching
@@ -464,7 +466,7 @@ class ListView(APIView):
         return cached_with(addons, f, map(smart_str, args))
 
     def _process(self, addons, *args):
-        return self.render('api/list.xml',
+        return self.render('legacy_api/list.xml',
                            {'addons': addon_filter(addons, *args)})
 
     def render_json(self, context):
@@ -479,8 +481,8 @@ class LanguageView(APIView):
                                       type=amo.ADDON_LPAPP,
                                       appsupport__app=self.request.APP.id,
                                       disabled_by_user=False).order_by('pk')
-        return self.render('api/list.xml', {'addons': addons,
-                                            'show_localepicker': True})
+        return self.render('legacy_api/list.xml', {'addons': addons,
+                                                   'show_localepicker': True})
 
 
 # pylint: disable-msg=W0613
@@ -489,7 +491,7 @@ def redirect_view(request, url):
     """
     Redirect all requests that come here to an API call with a view parameter.
     """
-    dest = '/api/%.1f/%s' % (api.CURRENT_VERSION,
+    dest = '/api/%.1f/%s' % (legacy_api.CURRENT_VERSION,
                              urllib.quote(url.encode('utf-8')))
     dest = get_url_prefix().fix(dest)
 
