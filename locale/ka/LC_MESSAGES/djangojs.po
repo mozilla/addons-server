@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-05 14:21+0000\n"
+"PO-Revision-Date: 2016-04-06 13:55+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -883,7 +883,7 @@ msgstr "სხვა ვერსიების ნახვა"
 
 #: static/js/zamboni/buttons.js:391
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "მხოლოდ Firefox-ისთვის — მიიღეთ Firefox ახლავე!"
+msgstr "მხოლოდ Firefox-ზე — ჩამოტვირთეთ Firefox!"
 
 #: static/js/zamboni/buttons.js:507 static/js/zamboni/mobile/buttons.js:43
 msgid ""
