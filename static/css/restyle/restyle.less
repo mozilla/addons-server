@@ -62,6 +62,7 @@ h5 {
   line-height: 1.5;
   font-family: @primary-font !important;
   font-style: normal !important;
+  font-weight: normal;
 }
 
 * {
@@ -338,12 +339,60 @@ body:not(.home) .amo-header {
 }
 
 // Navigation Menu and Panels
-#site-nav > ul > li {
-  border-left: none;
-  left: -9px;
+#site-nav,
+.secondary .categories {
+  > ul > li {
+    border-left: none;
+    left: -9px;
 
-  > a  {
-    padding-bottom: 8px;
+    > a  {
+      padding-bottom: 8px;
+    }
+
+    // arrow
+    > ul:after {
+      left: 10px;
+    }
+
+    &:hover:after {
+      top: 25px;
+      left: 1px;
+      height: 10px;
+    }
+  }
+
+  #themes ul.two-col {
+    height: 293px;
+    padding: 8px;
+
+    div {
+      display: none;
+    }
+
+    + div {
+      left: -1px;
+      top: 305px
+    }
+  }
+}
+
+.secondary .categories {
+  background: none;
+
+  h3 {
+    background: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    padding: 6px;
+    text-transform: uppercase;
+
+    a {
+      color: #aaa;
+    }
   }
 }
 
@@ -416,33 +465,6 @@ body:not(.home) .amo-header {
     top: 32px;
     right: 1px;
     height: 10px;
-  }
-}
-
-#site-nav > ul > li {
-  // arrow
-  > ul:after {
-    left: 10px;
-  }
-
-  &:hover:after {
-    top: 25px;
-    left: 1px;
-    height: 10px;
-  }
-}
-
-#site-nav #themes ul.two-col {
-  height: 293px;
-  padding: 8px;
-
-  div {
-    display: none;
-  }
-
-  + div {
-    left: -1px;
-    top: 305px
   }
 }
 
@@ -1266,8 +1288,9 @@ h3.author .transfer-ownership {
   padding-top: 0;
 }
 
-// Themes
-.secondary .other-categories {
+// Navigation
+.secondary .other-categories,
+.secondary .categories {
   background-color: transparent;
   border: 0;
   margin-top: 0;
@@ -1275,6 +1298,11 @@ h3.author .transfer-ownership {
 
   ul {
     border-top: none;
+    padding: 0;
+
+    ul li {
+      margin: 0;
+    }
 
     li {
       padding: 0;
@@ -1292,6 +1320,7 @@ h3.author .transfer-ownership {
 
   li a {
     color: @link-on-white-bg;
+    display: block;
     font-size: 12px;
     font-weight: normal;
     padding: 5px 6px;
