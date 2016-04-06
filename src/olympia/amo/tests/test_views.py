@@ -367,6 +367,8 @@ class TestCSP(TestCase):
 
 
 class TestCORS(TestCase):
+    fixtures = ('base/addon_3615',)
+
     def get(self, url, **headers):
         return self.client.get(url, HTTP_ORIGIN='testserver', **headers)
 
@@ -383,7 +385,7 @@ class TestCORS(TestCase):
         assert not response.has_header('Access-Control-Allow-Credentials')
 
     def test_cors_api_v3(self):
-        url = reverse('addon-search')
+        url = reverse('addon-detail', args=(3615,))
         assert '/api/v3/' in url
         response = self.get(url)
         assert response.status_code == 200
