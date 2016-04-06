@@ -516,12 +516,15 @@ body:not(.home) .amo-header {
 }
 
 #promos {
-  display: block;
   margin: 20px 0 0;
   min-height: 0;
   opacity: 1;
   visibility: visible;
   width: @pageWidth;
+
+  &.show {
+    display: block;
+  }
 
   #monthly {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
