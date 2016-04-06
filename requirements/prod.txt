@@ -63,7 +63,6 @@ mozilla-logger==0.2
 ndg-httpsclient==0.3.2
 newrelic==2.60.0.46
 nobot==0.4.1
-oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
 phpserialize==1.3
