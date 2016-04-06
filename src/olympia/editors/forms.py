@@ -451,8 +451,8 @@ class ThemeReviewForm(happyforms.Form):
 
     def clean_reject_reason(self):
         reject_reason = self.cleaned_data.get('reject_reason', None)
-        if (self.cleaned_data.get('action') == rvw.ACTION_REJECT
-                and reject_reason is None):
+        if (self.cleaned_data.get('action') == rvw.ACTION_REJECT and
+                reject_reason is None):
             raise_required()
         return reject_reason
 

@@ -1,7 +1,15 @@
-flake8==2.3.0 --hash=sha256:c99cc9716d6655d9c8bcb1e77632b8615bf0abd282d7abd9f5c2148cad7fc669
+flake8==2.5.4 \
+    --hash=sha256:fb5a67af4024622287a76abf6b7fe4fb3cfacf765a790976ce64f52c44c88e4a \
+    --hash=sha256:cc1e58179f6cf10524c7bfdd378f5536d0a61497688517791639a5ecc867492f
 # mccabe is required by flake8
-mccabe==0.3 --hash=sha256:89cf6bf4ff644ff8b912e2fa7e2abb68d57a8e7e918e393c72840d30d2ebcf0b
+mccabe==0.5.0 \
+    --hash=sha256:6c1c06d7bb6bc24a85b11eabc8944c0f6a72e6f35f208d4796dcbb27dae75ee8 \
+    --hash=sha256:379358498f58f69157b53f59f46aefda0e9a3eb81365238f69fbedf7014e21ab
 # pep8 is required by flake8
-pep8==1.6.1 --hash=sha256:e6951a33e632d02473110972aaf1cee38f567f7dfe7e72259625276e61eb6173
+pep8==1.7.0 \
+    --hash=sha256:4fc2e478addcf17016657dff30b2d8d611e8341fac19ccf2768802f6635d7b8a \
+    --hash=sha256:a113d5f5ad7a7abacef9df5ec3f2af23a20a28005921577b15dd584d099d5900
 # pyflakes is required by flake8
-pyflakes==0.8.1 --hash=sha256:ac4571695c10ce1536bcdba1a294b9f2d3e6cc9d0ea171b67d50a0864ce3e042
+pyflakes==1.2.3 \
+    --hash=sha256:e87bac26c62ea5b45067cc89e4a12f56e1483f1f2cda17e7c9b375b9fd2f40da \
+    --hash=sha256:2e4a1b636d8809d8f0a69f341acf15b2e401a3221ede11be439911d23ce2139e

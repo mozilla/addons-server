@@ -13,7 +13,7 @@
 # analyzer for the language.
 
 SEARCH_ANALYZER_MAP = {
-    #'': ['af'],    # Afrikaans
+    # '': ['af'],    # Afrikaans
     'arabic': ['ar'],
     'bulgarian': ['bg'],
     'catalan': ['ca'],
@@ -27,13 +27,13 @@ SEARCH_ANALYZER_MAP = {
     'persian': ['fa'],
     'finnish': ['fi'],
     'french': ['fr'],
-    #'': ['ga-ie'], # Gaelic - Ireland
-    #'': ['he'],    # Hebrew
+    # '': ['ga-ie'], # Gaelic - Ireland
+    # '': ['he'],    # Hebrew
     'hungarian': ['hu'],
     'indonesian': ['id'],
     'italian': ['it'],
     'cjk': ['ja', 'ko'],
-    #'': ['mn'],    # Mongolian
+    # '': ['mn'],    # Mongolian
     'dutch': ['nl'],
     # Polish requires the Elasticsearch plugin:
     # https://github.com/elasticsearch/elasticsearch-analysis-stempel
@@ -44,12 +44,12 @@ SEARCH_ANALYZER_MAP = {
     'portuguese': ['pt-pt'],
     'romanian': ['ro'],
     'russian': ['ru'],
-    #'': ['sk'],    # Slovak
-    #'': ['sl'],    # Slovenian
-    #'': ['sq'],    # Albanian
+    # '': ['sk'],    # Slovak
+    # '': ['sl'],    # Slovenian
+    # '': ['sq'],    # Albanian
     'swedish': ['sv-se'],
-    #'': ['uk'],    # Ukrainian
-    #'': ['vi'],    # Vietnamese
+    # '': ['uk'],    # Ukrainian
+    # '': ['vi'],    # Vietnamese
     'chinese': ['zh-cn', 'zh-tw'],
 }
 

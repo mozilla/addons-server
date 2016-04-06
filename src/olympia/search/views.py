@@ -559,8 +559,8 @@ def version_sidebar(request, form_data, facets):
     versions = ['%s.%s' % v for v in sorted(vs, reverse=True)]
 
     for version, floated in zip(versions, map(float, versions)):
-        if (floated not in exclude_versions
-                and floated > request.APP.min_display_version):
+        if (floated not in exclude_versions and
+                floated > request.APP.min_display_version):
             rv.append(FacetLink('%s %s' % (app, version), dict(appver=version),
                                 appver == version))
     return rv

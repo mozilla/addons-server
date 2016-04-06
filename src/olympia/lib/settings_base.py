@@ -1639,7 +1639,7 @@ GUARDED_ADDONS_PATH = ROOT + u'/guarded-addons'
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
 AES_KEYS = {
-    #'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
+    # 'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
 }
 
 # Time in seconds for how long a JWT auth token created by developers with

@@ -174,8 +174,7 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
         return file_.validation.validation
     except FileValidation.DoesNotExist:
         run_linter = (
-            is_webextension
-            and waffle.switch_is_active('addons-linter'))
+            is_webextension and waffle.switch_is_active('addons-linter'))
 
         if run_linter:
             return run_addons_linter(
