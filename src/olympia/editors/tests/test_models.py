@@ -399,7 +399,7 @@ class TestUnlistedAllList(TestCase):
         AddonUser.objects.create(addon=addon, user=bert)
         AddonUser.objects.create(addon=addon, user=ernie)
         row = self.Queue.objects.all()[0]
-        self.assertSetEqual(row.authors, 
+        self.assertSetEqual(row.authors,
                             [(ernie.id, 'ernie'), (bert.id, 'bert')])
 
     def test_last_reviewed_version(self):
