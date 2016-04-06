@@ -41,11 +41,10 @@ class BaseESSerializer(ModelSerializer):
                 fields[key] = ESTranslationSerializerField(source=field.source)
         return fields
 
-    def to_internal_value(self, data):
-        obj = self.fake_object(data)
-        return super(BaseESSerializer, self).to_internal_value(obj)
-
     def to_representation(self, data):
+        # We are passing search results (`Result` instances) directly
+        # to the serializer we support this here rather than transforming
+        # it there every time.
         if isinstance(data, Result):
             data = data.to_dict()
 
