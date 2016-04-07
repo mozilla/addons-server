@@ -73,6 +73,7 @@ def addons_to_json(items):
     results = []
     for guid, addon in items.items():
         versionRange = []
+        name = addon.rows[0].name
         details = addon.rows[0].details
         for row in addon.rows:
             if row.min or row.max or row.severity or row.apps:
@@ -92,6 +93,7 @@ def addons_to_json(items):
         results.append(del_none({
             'guid': guid,
             'blockID': addon.block_id,
+            'name': name,
             'os': addon.os,
             'versionRange': versionRange,
             'prefs': prefs,
@@ -111,6 +113,7 @@ def plugins_to_json(items):
     for plugin in items:
         record = {
             'blockID': plugin.block_id,
+            'name': plugin.name,
             'os': plugin.os,
             'xpcomabi': plugin.xpcomabi,
             'infoURL': plugin.info_url,
