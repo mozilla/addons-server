@@ -1659,12 +1659,12 @@ JWT_AUTH = {
     'JWT_LEEWAY': 5,
 
     # Expiration for non-apikey jwt tokens. Since this will be used by our
-    # frontend clients we want a slightly longer expiration than normal.
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    # frontend clients we want a longer expiration than normal, matching the
+    # session cookie expiration.
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=SESSION_COOKIE_AGE),
 
-    # This allows JWT tokens created with the default implementation (NOT the
-    # ones created with an API Key) to be refreshed for a week.
-    'JWT_ALLOW_REFRESH': True,
+    # We don't allow refreshes, instead we simply have a long duration.
+    'JWT_ALLOW_REFRESH': False,
 }
 
 REST_FRAMEWORK = {

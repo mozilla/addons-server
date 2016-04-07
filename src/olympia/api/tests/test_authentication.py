@@ -10,6 +10,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
@@ -114,7 +115,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         assert ctx.exception.detail == 'Invalid JWT Token.'
 
     def test_refuse_refreshable_tokens(self):
-        # We should not accept tokens that have an orig_iat field set.
+        # We should not accept refreshable tokens.
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
         payload['orig_iat'] = timegm(payload['iat'].utctimetuple())
@@ -134,8 +135,9 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
         payload['orig_iat'] = timegm(payload['iat'].utctimetuple())
         token = self.encode_token_payload(payload, api_key.secret)
 
-        refresh_token_url = reverse('frontend-token-refresh')
-        response = self.client.post(refresh_token_url, data={'token': token})
+        request = self.factory.post('/lol-refresh', {'token': token})
+        response = refresh_jwt_token(request)
+        response.render()
         assert response.status_code == 400
         data = json.loads(response.content)
         assert data == {'non_field_errors': ['Error decoding signature.']}
@@ -206,29 +208,6 @@ class TestJSONWebTokenAuthentication(TestCase):
         token = self.client.generate_api_token(self.user)
         user, _ = self._authenticate(token)
         assert user == self.user
-
-    def test_refresh(self):
-        token = self.client.generate_api_token(
-            self.user, iat=self.days_ago(1),
-            orig_iat=timegm(self.days_ago(2).utctimetuple()))
-        refresh_token_url = reverse('frontend-token-refresh')
-        response = self.client.post(refresh_token_url, data={'token': token})
-        assert response.status_code == 200, response.content
-        data = json.loads(response.content)
-        assert data['token'] != token
-
-        # Try new token.
-        user, _ = self._authenticate(data['token'])
-        assert user == self.user
-
-    def test_refresh_too_old(self):
-        token = self.client.generate_api_token(
-            self.user, orig_iat=timegm(self.days_ago(8).utctimetuple()))
-        refresh_token_url = reverse('frontend-token-refresh')
-        response = self.client.post(refresh_token_url, data={'token': token})
-        assert response.status_code == 400
-        data = json.loads(response.content)
-        assert data == {'non_field_errors': ['Refresh has expired.']}
 
     def test_verify(self):
         token = self.client.generate_api_token(self.user)
