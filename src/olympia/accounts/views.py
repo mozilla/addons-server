@@ -163,10 +163,11 @@ def with_user(format):
     def outer(fn):
         @functools.wraps(fn)
         def inner(self, request):
-            data = (
-                request.query_params
-                if request.method == 'GET'
-                else request.data)
+            if request.method == 'GET':
+                data = request.query_params
+            else:
+                data = request.data
+
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
             next_path = parse_next_path(state_parts)
