@@ -1,7 +1,6 @@
-from rest_framework.exceptions import NotFound
 from rest_framework.pagination import PageNumberPagination
 from django.core.paginator import (
-    EmptyPage, Page, PageNotAnInteger, Paginator, InvalidPage)
+    EmptyPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):
