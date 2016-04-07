@@ -302,18 +302,23 @@ body:not(.home) .amo-header {
   text-transform: none;
 }
 
-.site-title a {
-  color: @link-on-color-bg;
-  text-decoration: none;
+.site-title {
+  margin-bottom: 0;
+  padding-bottom: 7px;
 
-  &:focus,
-  &:hover {
+  a {
     color: @link-on-color-bg;
-    text-shadow: none;
-  }
+    text-decoration: none;
 
-  img {
-    width: 70px;
+    &:focus,
+    &:hover {
+      color: @link-on-color-bg;
+      text-shadow: none;
+    }
+
+    img {
+      width: 70px;
+    }
   }
 }
 
