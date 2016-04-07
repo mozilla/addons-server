@@ -333,7 +333,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         self.assertEscaped(self.item, 'update_url')
 
     def test_addons_json(self):
-        self.item.update(os="WINNT 5.0",
+        self.item.update(os="WINNT 5.0", name="addons name",
                          severity=0, min='0', max='*')
 
         self.app.update(min='2.0', max='3.0')
@@ -347,6 +347,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         item = blocklist['add-ons'][0]
 
+        assert item['name'] == self.item.name
         assert item['os'] == self.item.os
 
         # VersionRange
@@ -385,6 +386,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         item = blocklist['add-ons'][0]
 
+        assert 'name' not in item
         assert item['os'] == self.item.os
 
         # VersionRange
@@ -615,6 +617,7 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         # Add infoURL
         assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['name'] == self.plugin.name
         assert plugin['os'] == self.plugin.os
         assert plugin['xpcomabi'] == self.plugin.xpcomabi
         assert plugin['matchName'] == self.plugin.name
@@ -661,6 +664,7 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         # Add infoURL
         assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['name'] == self.plugin.name
         assert plugin['os'] == self.plugin.os
         assert plugin['xpcomabi'] == self.plugin.xpcomabi
         assert plugin['matchName'] == self.plugin.name
@@ -707,6 +711,7 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         # Add infoURL
         assert plugin['infoURL'] == self.plugin.info_url
+        assert plugin['name'] == self.plugin.name
         assert plugin['os'] == self.plugin.os
         assert plugin['xpcomabi'] == self.plugin.xpcomabi
         assert plugin['matchName'] == self.plugin.name
