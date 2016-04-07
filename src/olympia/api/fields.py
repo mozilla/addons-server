@@ -45,15 +45,19 @@ class TranslationSerializerField(fields.Field):
     def fetch_single_translation(self, obj, source, field, requested_language):
         return unicode(field) if field else None
 
-    def get_attribute(self, obj, requested_language=None):
+    def get_attribute(self, obj):
         source = self.source or self.field_name
         field = fields.get_attribute(obj, source.split('.'))
+
         if not field:
             return None
+
+        requested_language = None
+
         request = self.context.get('request', None)
-        if requested_language is None:
-            if request and request.method == 'GET' and 'lang' in request.GET:
-                requested_language = request.GET['lang']
+        if request and request.method == 'GET' and 'lang' in request.GET:
+            requested_language = request.GET['lang']
+
         if requested_language:
             return self.fetch_single_translation(obj, source, field,
                                                  requested_language)
