@@ -4,8 +4,6 @@ import time
 
 from django.core import mail
 
-from nose.tools import eq_
-
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import addon_factory, user_factory
@@ -82,7 +80,7 @@ class TestQueue(TestCase):
         self.new_file(version=u'0.2', created=self.days_ago(1))
         self.new_file(version=u'0.3')
         row = self.Queue.objects.get()
-        eq_(row.latest_version, '0.3')
+        assert row.latest_version == '0.3'
 
     def test_file_platforms(self):
         # Here's a dupe platform in another version:
@@ -91,7 +89,7 @@ class TestQueue(TestCase):
         self.new_file(version=u'0.2', platform=amo.PLATFORM_LINUX)
         self.new_file(version=u'0.2', platform=amo.PLATFORM_MAC)
         row = self.Queue.objects.get()
-        eq_(sorted(row.file_platform_ids),
+        assert sorted(row.file_platform_ids) == (
             [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id])
 
     def test_file_applications(self):
@@ -100,39 +98,39 @@ class TestQueue(TestCase):
         # Duplicate:
         self.new_file(version=u'0.1', application=amo.FIREFOX)
         row = self.Queue.objects.get()
-        eq_(sorted(row.application_ids),
+        assert sorted(row.application_ids) == (
             [amo.FIREFOX.id, amo.THUNDERBIRD.id])
 
     def test_addons_disabled_by_user_are_hidden(self):
         f = self.new_file(version=u'0.1')
         f['addon'].update(disabled_by_user=True)
-        eq_(list(self.Queue.objects.all()), [])
+        assert list(self.Queue.objects.all()) == []
 
     def test_addons_disabled_by_admin_are_hidden(self):
         f = self.new_file(version=u'0.1')
         f['addon'].update(status=amo.STATUS_DISABLED)
-        eq_(list(self.Queue.objects.all()), [])
+        assert list(self.Queue.objects.all()) == []
 
     def test_reviewed_files_are_hidden(self):
         self.new_file(name='Unreviewed', version=u'0.1')
         self.new_file('Already Reviewed', '0.1',
                       amo.STATUS_PUBLIC, amo.STATUS_NULL)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Unreviewed'])
 
     def test_search_extensions(self):
         self.new_search_ext('Search Tool', '0.1')
         row = self.Queue.objects.get()
-        eq_(row.addon_name, u'Search Tool')
-        eq_(row.application_ids, [])
-        eq_(row.file_platform_ids, [amo.PLATFORM_ALL.id])
+        assert row.addon_name == u'Search Tool'
+        assert row.application_ids == []
+        assert row.file_platform_ids == [amo.PLATFORM_ALL.id]
 
     def test_count_all(self):
         self.new_file(name='Addon 1', version=u'0.1')
         self.new_file(name='Addon 1', version=u'0.2')
         self.new_file(name='Addon 2', version=u'0.1')
         self.new_file(name='Addon 2', version=u'0.2')
-        eq_(self.Queue.objects.all().count(), 2)
+        assert self.Queue.objects.all().count() == 2
 
 
 class TestPendingQueue(TestQueue):
@@ -158,7 +156,7 @@ class TestPendingQueue(TestQueue):
         self.new_file(name='Addon 1', version=u'0.1')
         Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
-        eq_(row.waiting_time_days, 0)
+        assert row.waiting_time_days == 0
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
 
@@ -169,38 +167,38 @@ class TestPendingQueue(TestQueue):
         f['addon'].update(admin_review=True)
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [('admin-review', 'Admin Review')])
+        assert q.flags == [('admin-review', 'Admin Review')]
 
     def test_flags_info_request(self):
         self.new_file(version=u'0.1', version_kw={'has_info_request': True})
         q = self.Queue.objects.get()
-        eq_(q.flags, [('info', 'More Information Requested')])
+        assert q.flags == [('info', 'More Information Requested')]
 
     def test_flags_editor_comment(self):
         self.new_file(version=u'0.1', version_kw={'has_editor_comment': True})
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [('editor', 'Contains Editor Comment')])
+        assert q.flags == [('editor', 'Contains Editor Comment')]
 
     def test_flags_jetpack_and_restartless(self):
         self.new_file(version=u'0.1', file_kw={'jetpack_version': '1.8',
                                                'no_restart': True})
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [('jetpack', 'Jetpack Add-on')])
+        assert q.flags == [('jetpack', 'Jetpack Add-on')]
 
     def test_flags_restartless(self):
         self.new_file(version=u'0.1', file_kw={'no_restart': True})
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [('restartless', 'Restartless Add-on')])
+        assert q.flags == [('restartless', 'Restartless Add-on')]
 
     def test_flags_sources_provided(self):
         f = self.new_file(version=u'0.1')
         f['addon'].versions.update(source='/some/source/file')
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [('sources-provided', 'Sources provided')])
+        assert q.flags == [('sources-provided', 'Sources provided')]
 
     def test_flags_webextension(self):
         self.new_file(version=u'0.1', file_kw={'is_webextension': True})
@@ -212,7 +210,7 @@ class TestPendingQueue(TestQueue):
         self.new_file(version=u'0.1')
 
         q = self.Queue.objects.get()
-        eq_(q.flags, [])
+        assert q.flags == []
 
 
 class TestFullReviewQueue(TestQueue):
@@ -237,20 +235,21 @@ class TestFullReviewQueue(TestQueue):
         create_addon_file('Lite', '0.1',
                           amo.STATUS_LITE_AND_NOMINATED,
                           amo.STATUS_UNREVIEWED, listed=self.listed)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Full', 'Lite'])
 
     def test_any_nominated_file_shows_up(self):
         create_addon_file('Null', '0.1',
                           amo.STATUS_NOMINATED, amo.STATUS_NULL,
                           listed=self.listed)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()), ['Null'])
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == [
+            'Null']
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
         Version.objects.update(nomination=datetime.utcnow())
         row = self.Queue.objects.all()[0]
-        eq_(row.waiting_time_days, 0)
+        assert row.waiting_time_days == 0
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
 
@@ -277,14 +276,14 @@ class TestPreliminaryQueue(TestQueue):
         create_addon_file('Unreviewed', '0.1',
                           amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
                           listed=self.listed)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Lite', 'Unreviewed'])
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
         Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
-        eq_(row.waiting_time_days, 0)
+        assert row.waiting_time_days == 0
         # Time zone might be off due to your MySQL install, hard to test this.
         assert row.waiting_time_min is not None
         assert row.waiting_time_hours is not None
@@ -326,33 +325,33 @@ class TestFastTrackQueue(TestQueue):
 
     def test_include_jetpacks(self):
         self.new_file(name='jetpack')
-        eq_(self.query(), ['jetpack'])
+        assert self.query() == ['jetpack']
 
     def test_ignore_non_jetpacks(self):
         self.new_file(file_params=dict(no_restart=False))
-        eq_(self.query(), [])
+        assert self.query() == []
 
     def test_ignore_non_sdk_bootstrapped_addons(self):
         self.new_file(file_params=dict(jetpack_version=None))
-        eq_(self.query(), [])
+        assert self.query() == []
 
     def test_ignore_sneaky_jetpacks(self):
         self.new_file(file_params=dict(requires_chrome=True))
-        eq_(self.query(), [])
+        assert self.query() == []
 
     def test_include_full_review(self):
         ad = self.new_file(name='full')['addon']
         ad.status = amo.STATUS_NOMINATED
         ad.save()
-        eq_(self.query(), ['full'])
+        assert self.query() == ['full']
 
     def test_include_webextensions(self):
         self.new_file(name='webext', file_params=dict(is_webextension=True))
-        eq_(self.query(), ['webext'])
+        assert self.query() == ['webext']
 
     def test_include_jpm_addons(self):
         self.new_file(name='jpm', file_params=dict(jetpack_version='jpm'))
-        eq_(self.query(), ['jpm'])
+        assert self.query() == ['jpm']
 
 
 class TestUnlistedPendingQueue(TestPendingQueue):
@@ -389,7 +388,7 @@ class TestUnlistedAllList(TestCase):
                       file_status=amo.STATUS_PUBLIC)
         self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
                       file_status=amo.STATUS_UNREVIEWED)
-        eq_(sorted(q.addon_name for q in self.Queue.objects.all()),
+        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Lite', 'Nominated', 'Public', 'Unreviewed'])
 
     def test_authors(self):
@@ -417,24 +416,24 @@ class TestUnlistedAllList(TestCase):
         self.new_file(version=u'0.2', created=self.days_ago(1))
         self.new_file(version=u'0.3')
         row = self.Queue.objects.get()
-        eq_(row.latest_version, '0.3')
+        assert row.latest_version == '0.3'
 
     def test_addons_disabled_by_user_are_hidden(self):
         f = self.new_file(version=u'0.1')
         f['addon'].update(disabled_by_user=True)
-        eq_(list(self.Queue.objects.all()), [])
+        assert list(self.Queue.objects.all()) == []
 
     def test_addons_disabled_by_admin_are_hidden(self):
         f = self.new_file(version=u'0.1')
         f['addon'].update(status=amo.STATUS_DISABLED)
-        eq_(list(self.Queue.objects.all()), [])
+        assert list(self.Queue.objects.all()) == []
 
     def test_count_all(self):
         self.new_file(name='Addon 1', version=u'0.1')
         self.new_file(name='Addon 1', version=u'0.2')
         self.new_file(name='Addon 2', version=u'0.1')
         self.new_file(name='Addon 2', version=u'0.2')
-        eq_(self.Queue.objects.all().count(), 2)
+        assert self.Queue.objects.all().count() == 2
 
 
 class TestEditorSubscription(TestCase):
@@ -452,38 +451,38 @@ class TestEditorSubscription(TestCase):
     def test_email(self):
         es = EditorSubscription.objects.get(user=self.user_one)
         es.send_notification(self.version)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].to, [u'del@icio.us'])
-        eq_(mail.outbox[0].subject,
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [u'del@icio.us']
+        assert mail.outbox[0].subject == (
             'Mozilla Add-ons: Delicious Bookmarks Updated')
 
     def test_notifications(self):
         send_notifications(sender=self.version)
-        eq_(len(mail.outbox), 2)
+        assert len(mail.outbox) == 2
         emails = sorted([o.to for o in mail.outbox])
-        eq_(emails, [[u'del@icio.us'], [u'regular@mozilla.com']])
+        assert emails == [[u'del@icio.us'], [u'regular@mozilla.com']]
 
     def test_notifications_clean(self):
         send_notifications(Version, self.version)
-        eq_(EditorSubscription.objects.count(), 0)
+        assert EditorSubscription.objects.count() == 0
         mail.outbox = []
         send_notifications(Version, self.version)
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_notifications_beta(self):
         self.version.all_files[0].update(status=amo.STATUS_BETA)
         version_uploaded.send(sender=self.version)
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_signal_edit(self):
         self.version.save()
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
     def test_signal_create(self):
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
-        eq_(len(mail.outbox), 2)
-        eq_(mail.outbox[0].subject,
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].subject == (
             'Mozilla Add-ons: Delicious Bookmarks Updated')
 
     def test_signal_create_twice(self):
@@ -492,7 +491,7 @@ class TestEditorSubscription(TestCase):
         mail.outbox = []
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
-        eq_(len(mail.outbox), 0)
+        assert len(mail.outbox) == 0
 
 
 class TestReviewerScore(TestCase):
@@ -510,9 +509,7 @@ class TestReviewerScore(TestCase):
 
     def check_event(self, type, status, event, **kwargs):
         self.addon.type = type
-        eq_(ReviewerScore.get_event(self.addon, status, **kwargs), event, (
-            'Score event for type:%s and status:%s was not %s' % (
-                type, status, event)))
+        assert ReviewerScore.get_event(self.addon, status, **kwargs) == event
 
     def test_events_addons(self):
         types = {
@@ -556,7 +553,7 @@ class TestReviewerScore(TestCase):
 
     def test_award_points(self):
         self._give_points()
-        eq_(ReviewerScore.objects.all()[0].score,
+        assert ReviewerScore.objects.all()[0].score == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_award_points_bonus(self):
@@ -580,18 +577,19 @@ class TestReviewerScore(TestCase):
     def test_award_moderation_points(self):
         ReviewerScore.award_moderation_points(self.user, self.addon, 1)
         score = ReviewerScore.objects.all()[0]
-        eq_(score.score, amo.REVIEWED_SCORES.get(amo.REVIEWED_ADDON_REVIEW))
-        eq_(score.note_key, amo.REVIEWED_ADDON_REVIEW)
+        assert score.score == (
+            amo.REVIEWED_SCORES.get(amo.REVIEWED_ADDON_REVIEW))
+        assert score.note_key == amo.REVIEWED_ADDON_REVIEW
 
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
-        eq_(ReviewerScore.get_total(self.user),
+        assert ReviewerScore.get_total(self.user) == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
-        eq_(ReviewerScore.get_total(user2),
+        assert ReviewerScore.get_total(user2) == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_recent(self):
@@ -601,9 +599,11 @@ class TestReviewerScore(TestCase):
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
-        eq_(len(scores), 2)
-        eq_(scores[0].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
-        eq_(scores[1].score, amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
+        assert len(scores) == 2
+        assert scores[0].score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+        assert scores[1].score == (
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
@@ -611,24 +611,24 @@ class TestReviewerScore(TestCase):
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
-        eq_(leaders['user_rank'], 1)
-        eq_(leaders['leader_near'], [])
-        eq_(leaders['leader_top'][0]['rank'], 1)
-        eq_(leaders['leader_top'][0]['user_id'], self.user.id)
-        eq_(leaders['leader_top'][0]['total'],
+        assert leaders['user_rank'] == 1
+        assert leaders['leader_near'] == []
+        assert leaders['leader_top'][0]['rank'] == 1
+        assert leaders['leader_top'][0]['user_id'] == self.user.id
+        assert leaders['leader_top'][0]['total'] == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
-        eq_(leaders['leader_top'][1]['rank'], 2)
-        eq_(leaders['leader_top'][1]['user_id'], user2.id)
-        eq_(leaders['leader_top'][1]['total'],
+        assert leaders['leader_top'][1]['rank'] == 2
+        assert leaders['leader_top'][1]['user_id'] == user2.id
+        assert leaders['leader_top'][1]['total'] == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
         self._give_points(
             user=user2, addon=amo.tests.addon_factory(type=amo.ADDON_PERSONA))
         leaders = ReviewerScore.get_leaderboards(
             self.user, addon_type=amo.ADDON_PERSONA)
-        eq_(len(leaders['leader_top']), 1)
-        eq_(leaders['leader_top'][0]['user_id'], user2.id)
+        assert len(leaders['leader_top']) == 1
+        assert leaders['leader_top'][0]['user_id'] == user2.id
 
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -636,10 +636,10 @@ class TestReviewerScore(TestCase):
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
-        eq_(leaders['user_rank'], 1)
-        eq_(leaders['leader_near'], [])
-        eq_(leaders['leader_top'][0]['user_id'], self.user.id)
-        eq_(len(leaders['leader_top']), 1)  # Only the editor is here.
+        assert leaders['user_rank'] == 1
+        assert leaders['leader_near'] == []
+        assert leaders['leader_top'][0]['user_id'] == self.user.id
+        assert len(leaders['leader_top']) == 1  # Only the editor is here.
         assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
             'Unexpected admin user found in leaderboards.')
 
@@ -655,9 +655,9 @@ class TestReviewerScore(TestCase):
         addon.type = amo.ADDON_PERSONA
         self._give_points(user=last_user, addon=addon)
         leaders = ReviewerScore.get_leaderboards(last_user)
-        eq_(leaders['user_rank'], 6)
-        eq_(len(leaders['leader_top']), 3)
-        eq_(len(leaders['leader_near']), 2)
+        assert leaders['user_rank'] == 6
+        assert len(leaders['leader_top']) == 3
+        assert len(leaders['leader_near']) == 2
 
     def test_all_users_by_score(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
@@ -666,15 +666,15 @@ class TestReviewerScore(TestCase):
         self._give_points(status=amo.STATUS_LITE)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         users = ReviewerScore.all_users_by_score()
-        eq_(len(users), 2)
+        assert len(users) == 2
         # First user.
-        eq_(users[0]['total'], 180)
-        eq_(users[0]['user_id'], self.user.id)
-        eq_(users[0]['level'], amo.REVIEWED_LEVELS[0]['name'])
+        assert users[0]['total'] == 180
+        assert users[0]['user_id'] == self.user.id
+        assert users[0]['level'] == amo.REVIEWED_LEVELS[0]['name']
         # Second user.
-        eq_(users[1]['total'], 120)
-        eq_(users[1]['user_id'], user2.id)
-        eq_(users[1]['level'], '')
+        assert users[1]['total'] == 120
+        assert users[1]['user_id'] == user2.id
+        assert users[1]['level'] == ''
 
     def test_caching(self):
         self._give_points()
@@ -727,8 +727,8 @@ class TestRereviewQueueTheme(TestCase):
             theme=addon.persona, header='', footer='')
         addon.delete()
 
-        eq_(RereviewQueueTheme.objects.count(), 1)
-        eq_(RereviewQueueTheme.unfiltered.count(), 2)
+        assert RereviewQueueTheme.objects.count() == 1
+        assert RereviewQueueTheme.unfiltered.count() == 2
 
     def test_footer_path_without_footer(self):
         rqt = RereviewQueueTheme.objects.create(

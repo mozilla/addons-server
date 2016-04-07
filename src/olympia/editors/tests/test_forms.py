@@ -1,5 +1,4 @@
 import mock
-from nose.tools import eq_, ok_
 
 from django.utils.encoding import force_unicode
 
@@ -36,7 +35,7 @@ class TestReviewActions(TestCase):
 
     def test_lite_nominated(self):
         status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
-        eq_(force_unicode(status['prelim']['label']),
+        assert force_unicode(status['prelim']['label']) == (
             'Retain preliminary review')
 
     def test_other_statuses(self):
@@ -64,7 +63,7 @@ class TestReviewActions(TestCase):
     def test_not_public(self):
         # If the file is unreviewed then there is no option to reject,
         # so the length of the actions is one shorter
-        eq_(len(self.set_status(amo.STATUS_UNREVIEWED)), 5)
+        assert len(self.set_status(amo.STATUS_UNREVIEWED)) == 5
 
     def test_addon_status_null(self):
         # If the add-on is null we only show info, comment and super review.
@@ -76,13 +75,13 @@ class TestReviewActions(TestCase):
         # Test with an admin editor.
         action_allowed_mock.return_value = True
         status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
-        ok_('public' in status.keys())
-        ok_('prelim' in status.keys())
+        assert 'public' in status.keys()
+        assert 'prelim' in status.keys()
         # Test with an non-admin editor.
         action_allowed_mock.return_value = False
         status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
-        ok_('public' not in status.keys())
-        ok_('prelim' not in status.keys())
+        assert 'public' not in status.keys()
+        assert 'prelim' not in status.keys()
 
 
 class TestCannedResponses(TestReviewActions):
@@ -108,6 +107,6 @@ class TestCannedResponses(TestReviewActions):
         # Within that, it's paired by [group, [[response, name],...]].
         # So above, choices[1][1] gets the first real group's list of
         # responses.
-        eq_(len(choices), 1)
+        assert len(choices) == 1
         assert self.cr_addon.response in choices[0]
         assert self.cr_app.response not in choices[0]
