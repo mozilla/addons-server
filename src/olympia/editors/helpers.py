@@ -537,9 +537,13 @@ class ReviewHelper:
             self.handler = ReviewFiles(request, addon, version, 'pending')
 
     def get_actions(self, request, addon):
-        labels, details = self._review_actions()
-
         actions = SortedDict()
+        if request is None:
+            # If request is not set, it means we are just (ab)using the
+            # ReviewHelper for its `handler` attribute and we don't care about
+            # the actions.
+            return actions
+        labels, details = self._review_actions()
         reviewable_because_complete = addon.status != amo.STATUS_NULL
         reviewable_because_admin = (
             not addon.admin_review or

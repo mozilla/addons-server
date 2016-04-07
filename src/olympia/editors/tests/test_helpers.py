@@ -263,6 +263,11 @@ class TestReviewHelper(TestCase):
         return (ActivityLog.objects.for_addons(self.helper.addon)
                                    .filter(action=id).count())
 
+    def test_no_request(self):
+        self.request = None
+        helper = self.get_helper()
+        assert helper.actions == {}
+
     def test_type_nominated(self):
         assert self.setup_type(amo.STATUS_NOMINATED) == 'nominated'
         assert self.setup_type(amo.STATUS_LITE_AND_NOMINATED) == 'nominated'
