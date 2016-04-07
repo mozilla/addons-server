@@ -41,7 +41,7 @@ from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import (
     Collection, CollectionFeature, CollectionPromo)
 from olympia import paypal
-from olympia.api.paginator import ESPaginator
+from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowReviewer, AnyOf)
 from olympia.reviews.forms import ReviewForm
@@ -680,11 +680,10 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonSearchView(ListAPIView):
     authentication_classes = []
     filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
-    paginator_class = ESPaginator
+    pagination_class = ESPageNumberPagination
     permission_classes = []
     serializer_class = ESAddonSerializer
-    paginate_by = 25
-    paginate_by_param = 'page_size'
+    page_size = 25
 
     def get_queryset(self):
         return Search(using=amo.search.get_es(),

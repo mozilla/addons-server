@@ -163,7 +163,11 @@ def with_user(format):
     def outer(fn):
         @functools.wraps(fn)
         def inner(self, request):
-            data = request.GET if request.method == 'GET' else request.DATA
+            if request.method == 'GET':
+                data = request.query_params
+            else:
+                data = request.data
+
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
             next_path = parse_next_path(state_parts)
@@ -312,19 +316,19 @@ class AccountSuperCreate(APIView):
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
-        serializer = AccountSuperCreateSerializer(data=request.DATA)
+        serializer = AccountSuperCreateSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({'errors': serializer.errors},
                             status=422)
 
         data = serializer.data
-        # In a future version of DRF this could be validated_data['group']:
-        group = serializer.object.get('group')
+
+        group = serializer.validated_data.get('group', None)
         user_token = os.urandom(4).encode('hex')
-        username = data['username'] or 'super-created-{}'.format(user_token)
-        fxa_id = data['fxa_id'] or None
-        email = data['email'] or '{}@addons.mozilla.org'.format(username)
-        password = data['password'] or os.urandom(16).encode('hex')
+        username = data.get('username', 'super-created-{}'.format(user_token))
+        fxa_id = data.get('fxa_id', None)
+        email = data.get('email', '{}@addons.mozilla.org'.format(username))
+        password = data.get('password', os.urandom(16).encode('hex'))
 
         user = UserProfile.objects.create(
             username=username,

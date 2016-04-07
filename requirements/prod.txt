@@ -33,7 +33,7 @@ django-mysql-pymysql==0.1
 django-post-request-task==0.0.3
 django-quieter-formset==0.4
 django-raven-heka==0.3
-djangorestframework==2.4.8
+djangorestframework==3.3.3
 djangorestframework-jwt==1.7.2
 django-statsd-mozilla==0.3.10
 django-storages==1.1.8
@@ -63,7 +63,6 @@ mozilla-logger==0.2
 ndg-httpsclient==0.3.2
 newrelic==2.60.0.46
 nobot==0.4.1
-oauth2==1.5.211
 oauthlib==0.4.0
 ordereddict==1.1
 phpserialize==1.3
@@ -107,7 +106,6 @@ urllib3==1.9
 
 ## Forked.
 -e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
--e git+https://github.com/EnTeQuAk/django-piston-oauth2@b205d6c091ffd3b22f28f1852c15e5588175b38a#egg=django-piston-oauth2
 -e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
 
 

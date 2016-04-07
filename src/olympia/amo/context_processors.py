@@ -41,6 +41,7 @@ def global_settings(request):
 
     if request.user.is_authenticated():
         user = request.user
+
         profile = request.user
         is_reviewer = (acl.check_addons_reviewer(request) or
                        acl.check_personas_reviewer(request))

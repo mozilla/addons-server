@@ -1,18 +1,18 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _lazy
+from django.core.exceptions import ValidationError
 
 from rest_framework import fields
-from rest_framework import serializers
 
 from olympia.amo.utils import to_language
 
 
-class TranslationSerializerField(fields.WritableField):
+class TranslationSerializerField(fields.Field):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
-    - When deserializing, in `from_native`, it accepts both a string or a
-      dictionary. If a string is given, it'll be considered to be in the
+    - When deserializing, in `to_internal_value`, it accepts both a string
+      or a dictionary. If a string is given, it'll be considered to be in the
       default language.
 
     - When serializing, its behavior depends on the parent's serializer
@@ -33,18 +33,7 @@ class TranslationSerializerField(fields.WritableField):
 
     def __init__(self, *args, **kwargs):
         self.min_length = kwargs.pop('min_length', None)
-
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
-        # Default to return all translations for each field.
-        self.requested_language = None
-
-    def initialize(self, parent, field_name):
-        super(TranslationSerializerField, self).initialize(parent, field_name)
-        request = self.context.get('request', None)
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            # A specific language was requested, we will only return one
-            # translation per field.
-            self.requested_language = request.GET['lang']
 
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
@@ -52,37 +41,43 @@ class TranslationSerializerField(fields.WritableField):
         return dict((to_language(trans.locale), unicode(trans))
                     for trans in translations) if translations else None
 
-    def fetch_single_translation(self, obj, source, field):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         return unicode(field) if field else None
 
-    def field_to_native(self, obj, field_name):
-        source = self.source or field_name
-        value = obj
-        for component in source.split('.'):
-            value = fields.get_component(value, component)
-            if value is None:
-                break
+    def get_attribute(self, obj):
+        source = self.source or self.field_name
+        field = fields.get_attribute(obj, source.split('.'))
 
-        field = value
-        if field is None:
+        if not field:
             return None
-        if self.requested_language:
-            return self.fetch_single_translation(obj, source, field)
+
+        requested_language = None
+
+        request = self.context.get('request', None)
+        if request and request.method == 'GET' and 'lang' in request.GET:
+            requested_language = request.GET['lang']
+
+        if requested_language:
+            return self.fetch_single_translation(obj, source, field,
+                                                 requested_language)
         else:
             return self.fetch_all_translations(obj, source, field)
 
-    def from_native(self, data):
+    def to_representation(self, val):
+        return val
+
+    def to_internal_value(self, data):
         if isinstance(data, basestring):
+            self.validate(data)
             return data.strip()
         elif isinstance(data, dict):
+            self.validate(data)
             for key, value in data.items():
                 data[key] = value and value.strip()
             return data
-        data = super(TranslationSerializerField, self).from_native(data)
         return unicode(data)
 
     def validate(self, value):
-        super(TranslationSerializerField, self).validate(value)
         value_too_short = True
 
         if isinstance(value, basestring):
@@ -91,7 +86,7 @@ class TranslationSerializerField(fields.WritableField):
         else:
             for locale, string in value.items():
                 if locale.lower() not in settings.LANGUAGES:
-                    raise serializers.ValidationError(
+                    raise ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)))
                 if string and (len(string.strip()) >= self.min_length):
@@ -99,7 +94,7 @@ class TranslationSerializerField(fields.WritableField):
                     break
 
         if self.min_length and value_too_short:
-            raise serializers.ValidationError(
+            raise ValidationError(
                 self.error_messages['min_length'].format(num=self.min_length))
 
 
@@ -109,11 +104,17 @@ class ESTranslationSerializerField(TranslationSerializerField):
     built from ES data that we previously attached on the object.
     """
     suffix = '_translations'
+    _source = None
 
-    def __init__(self, *args, **kwargs):
-        if kwargs.get('source'):
-            kwargs['source'] = '%s%s' % (kwargs['source'], self.suffix)
-        super(ESTranslationSerializerField, self).__init__(*args, **kwargs)
+    def get_source(self):
+        if self._source is None:
+            return None
+        return self._source + self.suffix
+
+    def set_source(self, val):
+        self._source = val
+
+    source = property(get_source, set_source)
 
     @classmethod
     def attach_translations(cls, obj, data, source_name, target_name=None):
@@ -134,22 +135,15 @@ class ESTranslationSerializerField(TranslationSerializerField):
             target_name = source_name
         target_key = '%s%s' % (target_name, cls.suffix)
         source_key = '%s%s' % (source_name, cls.suffix)
-        setattr(obj, target_key,
-                dict((getattr(v, 'lang', ''), getattr(v, 'string', ''))
-                     for v in getattr(data, source_key, {}) or {}))
+        setattr(obj, target_key, dict((v.get('lang', ''), v.get('string', ''))
+                                      for v in data.get(source_key, {}) or {}))
 
     def fetch_all_translations(self, obj, source, field):
         return field or None
 
-    def fetch_single_translation(self, obj, source, field):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         translations = self.fetch_all_translations(obj, source, field) or {}
-
-        return (translations.get(self.requested_language) or
+        return (translations.get(requested_language) or
                 translations.get(getattr(obj, 'default_locale', None)) or
+                translations.get(getattr(obj, 'default_language', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
-
-    def field_to_native(self, obj, field_name):
-        if field_name:
-            field_name = '%s%s' % (field_name, self.suffix)
-        return super(ESTranslationSerializerField, self).field_to_native(
-            obj, field_name)

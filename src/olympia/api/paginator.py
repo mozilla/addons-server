@@ -1,4 +1,6 @@
-from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
+from rest_framework.pagination import PageNumberPagination
+from django.core.paginator import (
+    EmptyPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):
@@ -49,3 +51,10 @@ class ESPaginator(Paginator):
                 raise EmptyPage('That page contains no results')
 
         return page
+
+
+class ESPageNumberPagination(PageNumberPagination):
+    """Custom pagination implementation to hook in our `ESPaginator`."""
+    page_size_query_param = 'page_size'
+    django_paginator_class = ESPaginator
+    max_page_size = 50

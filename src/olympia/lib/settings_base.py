@@ -1677,6 +1677,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.JSONWebTokenAuthentication',
     ),
+    # Enable pagination
+    'PAGE_SIZE': 25,
 }
 
 # This is the DSN to the local Sentry service. It might be overidden in

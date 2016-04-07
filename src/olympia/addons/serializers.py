@@ -9,9 +9,9 @@ from olympia.versions.models import Version
 
 
 class FileSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField('get_url')
-    platform = serializers.Field(source='get_platform_display')
-    status = serializers.Field(source='get_status_display')
+    url = serializers.SerializerMethodField()
+    platform = serializers.ReadOnlyField(source='get_platform_display')
+    status = serializers.ReadOnlyField(source='get_status_display')
 
     class Meta:
         model = File
@@ -40,13 +40,13 @@ class AddonSerializer(serializers.ModelSerializer):
     description = TranslationSerializerField()
     homepage = TranslationSerializerField()
     name = TranslationSerializerField()
-    status = serializers.Field(source='get_status_display')
+    status = serializers.ReadOnlyField(source='get_status_display')
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
-    tags = serializers.SerializerMethodField('get_tags')
-    type = serializers.Field(source='get_type_display')
-    url = serializers.SerializerMethodField('get_url')
+    tags = serializers.SerializerMethodField()
+    type = serializers.ReadOnlyField(source='get_type_display')
+    url = serializers.SerializerMethodField()
 
     # FIXME:
     # - categories (need to sort out the id/slug mess in existing search code)
@@ -88,7 +88,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
-        obj = Addon(id=data.id, slug=data.slug, is_listed=True)
+        obj = Addon(id=data['id'], slug=data['slug'], is_listed=True)
 
         if data['current_version'] and data['current_version']['files']:
             data_version = data['current_version']
