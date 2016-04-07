@@ -34,7 +34,6 @@ class TranslationSerializerField(fields.Field):
     def __init__(self, *args, **kwargs):
         self.min_length = kwargs.pop('min_length', None)
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
-        self.requested_language = None
 
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
