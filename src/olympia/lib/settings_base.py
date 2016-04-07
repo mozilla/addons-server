@@ -1665,6 +1665,10 @@ JWT_AUTH = {
 
     # We don't allow refreshes, instead we simply have a long duration.
     'JWT_ALLOW_REFRESH': False,
+
+    # Prefix for non-apikey jwt tokens. Should be different from 'JWT' which we
+    # already used for api key tokens.
+    'JWT_AUTH_HEADER_PREFIX': 'JWT-i',
 }
 
 REST_FRAMEWORK = {

@@ -5,10 +5,8 @@ Add-ons
 .. note::
 
     These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning.
-
-    At the moment these APIs don't yet require authentication and therefore
-    are limited to listed public add-ons.
+    may change without warning. The only authentication method available at
+    the moment is :ref:`the internal one<api-auth-internal>`.
 
 ------
 Search
@@ -16,7 +14,7 @@ Search
 
 .. _addon-search:
 
-This endpoint allows you to search through public add-ons.
+This endpoint allows you to search through public, listed add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
@@ -25,7 +23,7 @@ This endpoint allows you to search through public add-ons.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`add-ons <addon-detail>`.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
 
 .. _addon-search-sort:
 
@@ -57,6 +55,13 @@ Detail
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
+
+    .. note::
+        Unlisted or non-public addons require authentication and either
+        reviewer permissions or an user account listed as a developer of the
+        add-on.
+
+    .. _addon-detail-object:
 
     :>json int id: The add-on id on AMO.
     :>json object current_version: Object holding information about the add-on version served by AMO currently.
