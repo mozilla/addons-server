@@ -318,7 +318,6 @@
             // If this add-on is unlisted, then tell the upload view so
             // it'll run the validator with the "listed=False"
             // parameter.
-            var $betaWarningLabel = $('span.beta-warning');
             var $isSideloadLabel = $('label[for=id_is_sideload]');
             var $submitAddonProgress = $('.submit-addon-progress');
             function updateListedStatus() {
@@ -329,7 +328,6 @@
                 // doesn't upload to the correct url. Using
                 // .attr('data-upload-url', val) instead fixes that.
                 $upload_field.attr('data-upload-url', $upload_field.data('upload-url-listed'));
-                $betaWarningLabel.hide();
                 $isSideloadLabel.hide();
                 $isSideloadCheckbox.prop('checked', false);
                 $submitAddonProgress.removeClass('unlisted');
@@ -339,7 +337,6 @@
                 } else {
                   $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
                 }
-                $betaWarningLabel.show();
                 $isSideloadLabel.show();
                 $submitAddonProgress.addClass('unlisted');
               }
@@ -444,18 +441,6 @@
                     var isSideload = $('#id_is_sideload').is(':checked') || $newForm.data('addon-is-sideload');
                     if (isUnlisted()) {
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
-                    } else {  // This is a listed add-on.
-                      if (results.beta) {
-                        function updateBetaStatus() {
-                          if ($beta.is(':checked')) {
-                            $('p.beta-warning').show();
-                          } else {
-                            $('p.beta-warning').hide();
-                          }
-                        }
-                        $beta.bind('change', updateBetaStatus);
-                        updateBetaStatus();
-                      }
                     }
 
                     if (messageCount > 0) {

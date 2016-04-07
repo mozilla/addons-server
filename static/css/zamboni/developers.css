@@ -399,12 +399,6 @@ form.new-addon-file label,
     display: block;
     padding-bottom: 3px;
 }
-.addon-submission-process form label span.beta-warning {
-    display: none;
-}
-.beta-warning em {
-    color: #f00;
-}
 form.new-addon-file label[for=id_is_sideload] {
     display: none;
     margin-left: 20px;

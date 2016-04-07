@@ -111,7 +111,7 @@
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
-             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own. (beta)')|f(settings.SITE_URL) }}</label>
+             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
       <br><br>
       {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
         <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
@@ -300,14 +300,7 @@
           manifest file for automatic updates.
         {% endtrans %}
       </p>
-      <p class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
-        {% trans url='https://github.com/mozilla/olympia/issues' %}
-          Switching add-ons to unlisted is currently in an open beta. Please
-          <a href="{{ url }}" target="_blank">report any bugs</a> that
-          you encounter.
-        {% endtrans %}
-      </p>
-      <p class="beta-warning"><em>{% trans %}Unlisting an add-on is irreversible!{% endtrans %}</em> {% trans %}An unlisted add-on cannot be switched to be listed.{% endtrans %}</p>
+      <p class="warning"><em>{% trans %}Unlisting an add-on is irreversible!{% endtrans %}</em> {% trans %}An unlisted add-on cannot be switched to be listed.{% endtrans %}</p>
       <p>
         {% trans %}
           Are you sure you wish to unlist your add-on?
