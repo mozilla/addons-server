@@ -14,7 +14,7 @@ Search
 
 .. _addon-search:
 
-This endpoint allows you to search through public, listed add-ons.
+This endpoint allows you to search through public add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
@@ -57,8 +57,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
     .. note::
-        Unlisted or non-public addons require authentication and either
-        reviewer permissions or an user account listed as a developer of the
+        Unlisted or non-public add-ons require authentication and either
+        reviewer permissions or a user account listed as a developer of the
         add-on.
 
     .. _addon-detail-object:

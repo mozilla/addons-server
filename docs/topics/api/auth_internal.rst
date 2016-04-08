@@ -53,7 +53,7 @@ Creating an Authorization header
 
 When making an authenticated API request, put your generated
 `JSON Web Token (JWT)`_ into an HTTP Authorization header prefixed with
-``JWT-i``, like this::
+``Bearer``, like this::
 
     Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
 

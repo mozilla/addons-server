@@ -116,7 +116,7 @@ class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
         """
         Get the JWT token from the authorization header.
 
-        Copied from upstream's implementation but uses an hardcoded 'JWT'
+        Copied from upstream's implementation but uses a hardcoded 'JWT'
         prefix in order to be isolated from JWT_AUTH_HEADER_PREFIX setting
         which is used for the non-api key auth above.
         """
