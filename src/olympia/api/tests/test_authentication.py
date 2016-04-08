@@ -10,6 +10,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.helpers import absolutify
@@ -198,9 +199,10 @@ class TestJSONWebTokenAuthentication(TestCase):
 
     def _authenticate(self, token):
         url = absolutify('/api/whatever')
+        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
         request = self.factory.post(
             url, HTTP_HOST='testserver',
-            HTTP_AUTHORIZATION='JWT {0}'.format(token))
+            HTTP_AUTHORIZATION='{0} {1}'.format(prefix, token))
 
         return self.auth.authenticate(request)
 

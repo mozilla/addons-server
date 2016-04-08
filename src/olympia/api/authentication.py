@@ -1,8 +1,10 @@
+from django.utils.encoding import smart_text
 from django.utils.translation import ugettext as _
 
 import commonware
 import jwt
 from rest_framework import exceptions
+from rest_framework.authentication import get_authorization_header
 from rest_framework_jwt.authentication import (
     JSONWebTokenAuthentication as UpstreamJSONWebTokenAuthentication)
 
@@ -17,12 +19,13 @@ log = commonware.log.getLogger('z.api.authentication')
 class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
     """
     DRF authentication class for JWT header auth.
-
-    This mimics what our ACLMiddleware does after a successful authentication,
-    because otherwise that behaviour would be missing in the API since API auth
-    happens after the middleware process request phase.
     """
     def authenticate_credentials(self, request):
+        """
+        Mimic what our ACLMiddleware does after a successful authentication,
+        because otherwise that behaviour would be missing in the API since API
+        auth happens after the middleware process request phase.
+        """
         result = super(
             JSONWebTokenAuthentication, self).authenticate_credentials(request)
         amo.set_user(result)
@@ -108,3 +111,27 @@ class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
 
         amo.set_user(api_key.user)
         return api_key.user
+
+    def get_jwt_value(self, request):
+        """
+        Get the JWT token from the authorization header.
+
+        Copied from upstream's implementation but uses a hardcoded 'JWT'
+        prefix in order to be isolated from JWT_AUTH_HEADER_PREFIX setting
+        which is used for the non-api key auth above.
+        """
+        auth = get_authorization_header(request).split()
+        auth_header_prefix = 'jwt'  # JWT_AUTH_HEADER_PREFIX.lower()
+
+        if not auth or smart_text(auth[0].lower()) != auth_header_prefix:
+            return None
+
+        if len(auth) == 1:
+            msg = _('Invalid Authorization header. No credentials provided.')
+            raise exceptions.AuthenticationFailed(msg)
+        elif len(auth) > 2:
+            msg = _('Invalid Authorization header. Credentials string '
+                    'should not contain spaces.')
+            raise exceptions.AuthenticationFailed(msg)
+
+        return auth[1]

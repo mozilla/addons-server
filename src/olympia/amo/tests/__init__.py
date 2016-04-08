@@ -285,8 +285,10 @@ class TestClient(Client):
         will be sent in an Authorization header with all future requests for
         this client.
         """
+        from rest_framework_jwt.settings import api_settings
+        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
         token = self.generate_api_token(user)
-        self.defaults['HTTP_AUTHORIZATION'] = 'JWT {0}'.format(token)
+        self.defaults['HTTP_AUTHORIZATION'] = '{0} {1}'.format(prefix, token)
 
     def logout_api(self):
         """
