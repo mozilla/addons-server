@@ -81,7 +81,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert 'website maintenance' in response.data['error']
 
     @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_addon_does_not_exist(self, sign_version):
+    def test_addon_is_created_if_it_does_not_already_exist(self, sign_version):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -91,7 +91,10 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE
+        # This is the addon status we expect to have *before* entering
+        # auto_sign_version() - because it's mocked here, we don't get the
+        # actual status we would get without the mocks, which is STATUS_PUBLIC.
+        assert addon.status == amo.STATUS_NOMINATED
         sign_version.assert_called_with(addon.latest_version, is_beta=False)
 
     def test_user_does_not_own_addon(self):
@@ -188,7 +191,10 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE
+        # This is the addon status we expect to have *before* entering
+        # auto_sign_version() - because it's mocked here, we don't get the
+        # actual status we would get without the mocks, which is STATUS_PUBLIC.
+        assert addon.status == amo.STATUS_NOMINATED
         sign_version.assert_called_with(addon.latest_version, is_beta=False)
 
     @mock.patch('olympia.devhub.views.auto_sign_version')
@@ -206,7 +212,7 @@ class TestUploadVersion(BaseUploadVersionCase):
     @mock.patch('olympia.devhub.views.auto_sign_version')
     def test_version_is_beta_unlisted(self, sign_version):
         Addon.objects.get(guid=self.guid).update(
-            status=amo.STATUS_LITE, is_listed=False)
+            is_listed=False, trusted=False)
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
@@ -219,10 +225,13 @@ class TestUploadVersion(BaseUploadVersionCase):
 
         version = qs.get()
         assert version.addon.guid == self.guid
-        assert version.version == version_string
-        assert version.statuses[0][1] == amo.STATUS_LITE
-        assert version.addon.status == amo.STATUS_LITE
         assert not version.is_beta
+        assert version.version == version_string
+        # This is the version status we expect to have *before* entering
+        # auto_sign_version() - because it's mocked here, we don't get the
+        # actual status we would get without the mocks, which is STATUS_PUBLIC.
+        assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
+        assert version.addon.status == amo.STATUS_PUBLIC
         sign_version.assert_called_with(version, is_beta=False)
 
     @mock.patch('olympia.devhub.views.auto_sign_version')

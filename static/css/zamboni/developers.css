@@ -399,10 +399,7 @@ form.new-addon-file label,
     display: block;
     padding-bottom: 3px;
 }
-form.new-addon-file label[for=id_is_sideload] {
-    display: none;
-    margin-left: 20px;
-}
+
 .submit-license input[type=checkbox] + label {
     display: inline;
     padding-bottom: 0;

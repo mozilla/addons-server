@@ -562,8 +562,6 @@ class ReviewHelper:
                 actions['public'] = {'method': self.handler.process_public,
                                      'minimal': False,
                                      'label': label}
-            # An unlisted sideload add-on, which requests a full review, cannot
-            # be granted a preliminary review.
             if addon.is_listed or self.review_type == 'preliminary':
                 actions['prelim'] = {
                     'method': self.handler.process_preliminary,
