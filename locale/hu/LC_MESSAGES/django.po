@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-30 21:00+0000\n"
+"PO-Revision-Date: 2016-04-07 08:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -11877,17 +11877,18 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Hogyan keressen hibát a kiegészítőjében?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:167
 #, python-format
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Használhatja a <a href=\"%(url)s\">Kiegészítő hibakövetőt</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:172
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
+"Hogyan tesztelheti a kompatibilitást a legfrissebb Mozilla szoftverekkel?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:174
 msgid ""
@@ -11903,7 +11904,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:185
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Hogyan javíthatja a kiegészítője teljesítményét?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:187
 #, python-format
@@ -11917,7 +11918,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:195
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Támogathat a kiegészítő több területi beállítást?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:197
 #, python-format
