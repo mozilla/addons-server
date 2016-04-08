@@ -1,3 +1,5 @@
+import os
+import sys
 import logging
 import warnings
 
@@ -34,6 +36,7 @@ class CoreConfig(AppConfig):
 
         self.configure_logging()
         self.load_product_details()
+        self.set_recursion_limit()
 
     def configure_logging(self):
         """Configure the `logging` module to route logging based on settings
@@ -52,3 +55,23 @@ class CoreConfig(AppConfig):
             log.info('Product details missing, downloading...')
             call_command('update_product_details')
             product_details.__init__()  # reload the product details
+
+    def set_recursion_limit(self):
+        """Set explicit recursion limit if set in the environment.
+
+        This is set here to make sure we're setting it always
+        when we initialize Django, also when we're loading celery (which
+        is calling django.setup too).
+
+        This is only being used for the amo-validator so initializing this late
+        should be fine.
+        """
+        if 'RECURSION_LIMIT' in os.environ:
+            try:
+                limit = int(os.environ['RECURSION_LIMIT'])
+            except TypeError:
+                log.warning('Unable to parse RECURSION_LIMIT "{}"'.format(
+                    os.environ['RECURSION_LIMIT']))
+            else:
+                sys.setrecursionlimit(limit)
+                log.info('Set RECURSION_LIMIT to {}'.format(limit))
