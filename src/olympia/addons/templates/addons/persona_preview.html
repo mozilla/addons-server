@@ -1,4 +1,4 @@
-{% if not waffle.flag('restyle') or size == 'large' %}
+{% if size == 'large' %}
   <div class="persona persona-{{ size }}">
     <div class="persona-inner">
       <div class="persona-preview{% if details %} with-details{% endif %}">
