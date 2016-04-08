@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-26 22:16+0000\n"
+"PO-Revision-Date: 2016-04-08 02:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1279,7 +1279,7 @@ msgstr "Descarregar mesmo assim"
 #: src/olympia/addons/templates/addons/impala/contribution.html:24
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr "<b>%(amt)s</b> sugeriu"
+msgstr "<b>%(amt)s</b> sugeridos"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
@@ -1380,8 +1380,8 @@ msgstr[1] "<a href=\"%(url)s\">Conheça os programadores</a>"
 #: src/olympia/addons/templates/addons/impala/details.html:137
 msgid "Learn why {0} was created and find out what's next for this add-on."
 msgstr ""
-"Saiba porque é que {0} foi criado e descubra o próximo desenvolvimento para "
-"este extra."
+"Saiba porque é que o {0} foi criado e descubra o próximo desenvolvimento "
+"para este extra."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html:156
@@ -1516,7 +1516,7 @@ msgstr "Porque é que o {0} foi criado?"
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html:84
 msgid "What's next for {0}"
-msgstr "O que há a seguir para {0}"
+msgstr "O que há a seguir para o {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
