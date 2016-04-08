@@ -1,7 +1,9 @@
 language: python
 sudo: false
+
 python:
   - "2.7"
+
 env:
   - TOX_ENV=flake8
   - TOX_ENV=docs
@@ -11,22 +13,38 @@ env:
   - TOX_ENV=devhub
   - TOX_ENV=editors
   - TOX_ENV=main
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - node_modules
+    - .tox
+    - $HOME/.cache/pip/
+
 services:
   - memcached
+
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
+
 install:
   - nvm current
   - nvm deactivate
   - nvm install 4
   - nvm use 4
+  - pip install --upgrade pip wheel
   - pip install tox==1.8.1
+
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
+
 script:
   - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+
 notifications:
   irc:
     channels:
