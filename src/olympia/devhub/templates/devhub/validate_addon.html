@@ -46,14 +46,6 @@
           {{ new_addon_form.is_unlisted.label }}
           <span class="tip tooltip"
                 title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
-          <span class="beta-warning"><br /><em>{{ _('Warning:') }}</em>
-            {% trans url='https://github.com/mozilla/olympia/issues' %}
-              Submission of unlisted add-ons for signing is currently in an
-              open beta. Please
-              <a href="{{ url }}" target="_blank">report any bugs</a>
-              that you encounter.
-            {% endtrans %}
-          </span>
         </label>
         <label for="{{ new_addon_form.is_sideload.auto_id }}">
           {{ new_addon_form.is_sideload }}
