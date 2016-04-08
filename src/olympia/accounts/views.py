@@ -231,8 +231,10 @@ def add_api_token_to_response(response, user):
     # Also include the API token in a session cookie, so that it is available
     # for universal frontend apps.
     response.set_cookie(
-        'jwt_api_auth_token', token,
-        max_age=None, secure=settings.SESSION_COOKIE_SECURE or None,
+        'jwt_api_auth_token',
+        token,
+        max_age=settings.SESSION_COOKIE_AGE or None,
+        secure=settings.SESSION_COOKIE_SECURE or None,
         httponly=settings.SESSION_COOKIE_HTTPONLY or None)
 
     return response

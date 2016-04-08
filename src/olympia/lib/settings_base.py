@@ -1668,7 +1668,7 @@ JWT_AUTH = {
 
     # Prefix for non-apikey jwt tokens. Should be different from 'JWT' which we
     # already used for api key tokens.
-    'JWT_AUTH_HEADER_PREFIX': 'JWT-i',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 REST_FRAMEWORK = {

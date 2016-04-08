@@ -30,7 +30,7 @@ The token is available in two forms:
 
     * For the endpoints returning JSON, as a property called ``token``.
     * For all endpoints, as a cookie called ``jwt_api_auth_token``. This cookie
-      expires when the browser is closed and is set as ``HttpOnly``.
+      expires after 30 days and is set as ``HttpOnly``.
 
 
 Verifying a JWT
@@ -55,7 +55,7 @@ When making an authenticated API request, put your generated
 `JSON Web Token (JWT)`_ into an HTTP Authorization header prefixed with
 ``JWT-i``, like this::
 
-    Authorization: JWT-i eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
 
 
 .. _`jwt-spec`: https://tools.ietf.org/html/rfc7519
