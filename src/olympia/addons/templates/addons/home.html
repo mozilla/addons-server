@@ -38,17 +38,6 @@
 </section>
 
 <section class="primary" id="homepage">
-  {% if not waffle.flag('restyle') %}
-    {% if request.APP in (amo.FIREFOX, amo.ANDROID) %}
-      <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
-        <div>
-          <ul class="slider">
-          </ul>
-        </div>
-      </section>
-    {% endif %}
-  {% endif %}
-
   {# Cache everything in one block since changes in each block are rare. #}
   {% cache popular %}
     <section id="popular-extensions" class="secondary">

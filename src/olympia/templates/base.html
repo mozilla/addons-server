@@ -30,9 +30,7 @@
     {% block extrahead %}{% endblock %}
 
     {% block restyle %}
-      {% if waffle.flag('restyle') %}
-        {{ css('restyle/css') }}
-      {% endif %}
+      {{ css('restyle/css') }}
     {% endblock %}
 
     <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
@@ -50,7 +48,7 @@
 
     {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %}{% if waffle.flag('restyle') %} restyle{% endif %}"
+  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"
         data-app="{{ request.APP.short }}"
         data-appname="{{ request.APP.pretty }}"
         data-appid="{{ request.APP.id }}"
@@ -64,9 +62,6 @@
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      {% if waffle.flag('restyle') %}
-        <div id="background-wrapper"></div>
-      {% endif %}
       {% if ADMIN_MESSAGE or settings.READ_ONLY %}
         <div id="site-notice">
           {% if ADMIN_MESSAGE %}
@@ -79,57 +74,53 @@
       {% endif %}
       <div class="section">
         {% block site_header %}
-          {% if waffle.flag('restyle') %}
-            <div class="header-bg">
-              <div class="amo-header-wrapper">
-          {% endif %}
-          {% include "tabzilla.html" %}
-          <div class="amo-header">
-            <nav id="aux-nav" role="navigation" class="menu-nav c">
-              <ul>
-                {% if not settings.READ_ONLY %}
-                  {% include "impala/user_login.html" %}
-                {% endif %}
-                {% block aux_nav %}
-                  <li>
-                    <a href="#" id="other-apps"
-                       title="{{ _('Find add-ons for other applications') }}">
-                      {{ _('Other Applications') }}</a>
-                    <ul class="other-apps">
-                      {% for app in amo.APP_USAGE %}
-                        {% if app != request.APP and app != amo.MOBILE %}
-                          <li id="app-{{ app.short }}" class="{{ app.short }}">
-                            <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </li>
-                {% endblock aux_nav %}
-              </ul>
-            </nav>
-            {% block header_search %}
-            <div class="header-search" role="search">
-              {% block search_form %}
-                {% with query_term=query_term %}
-                  {% include 'impala/search.html' %}
-                {% endwith %}
-              {% endblock %}
-            </div>
-            {% endblock %}
-            <div id="masthead">
-              {% block site_header_title %}
-              {% include "impala/header_title.html" %}
-              {{ site_nav() }}
-              {% endblock %}
-              {% block navbar %}{% endblock %}
-              {% block site_stats %}{% endblock %}
-            </div>
-          </div>
-          {% if waffle.flag('restyle') %}
-              </div> {# .header-bg #}
-            </div> {# .amo-header-wrapper #}
-          {% endif %}
+          <div class="header-bg">
+            <div class="amo-header-wrapper">
+              {% include "tabzilla.html" %}
+              <div class="amo-header">
+                <nav id="aux-nav" role="navigation" class="menu-nav c">
+                  <ul>
+                    {% if not settings.READ_ONLY %}
+                      {% include "impala/user_login.html" %}
+                    {% endif %}
+                    {% block aux_nav %}
+                      <li>
+                        <a href="#" id="other-apps"
+                           title="{{ _('Find add-ons for other applications') }}">
+                          {{ _('Other Applications') }}</a>
+                        <ul class="other-apps">
+                          {% for app in amo.APP_USAGE %}
+                            {% if app != request.APP and app != amo.MOBILE %}
+                              <li id="app-{{ app.short }}" class="{{ app.short }}">
+                                <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
+                              </li>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endblock aux_nav %}
+                  </ul>
+                </nav>
+                {% block header_search %}
+                <div class="header-search" role="search">
+                  {% block search_form %}
+                    {% with query_term=query_term %}
+                      {% include 'impala/search.html' %}
+                    {% endwith %}
+                  {% endblock %}
+                </div>
+                {% endblock %}
+                <div id="masthead">
+                  {% block site_header_title %}
+                  {% include "impala/header_title.html" %}
+                  {{ site_nav() }}
+                  {% endblock %}
+                  {% block navbar %}{% endblock %}
+                  {% block site_stats %}{% endblock %}
+                </div>
+              </div>
+            </div> {# .header-bg #}
+          </div> {# .amo-header-wrapper #}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories
