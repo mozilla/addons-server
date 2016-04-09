@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-02 22:14+0000\n"
+"PO-Revision-Date: 2016-04-08 22:08+0000\n"
 "Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2575,7 +2575,7 @@ msgstr "Rozšírenia"
 
 #: src/olympia/amo/templates/amo/site_nav.html:45
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Chcete viac prispôsobenia? Skúste <b>plné témy vzhľadu</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html:56
 #: src/olympia/bandwagon/views.py:96
@@ -3961,12 +3961,12 @@ msgstr "Kompatibilita s aplikáciou {app} {version}"
 #: src/olympia/compat/templates/compat/index.html:17
 #, python-format
 msgid "Top 95%% compatible with previous version"
-msgstr ""
+msgstr "Top 95%% kompatibilných s predchádzajúcou verziou"
 
 #: src/olympia/compat/templates/compat/index.html:18
 #, python-format
 msgid "Top 95%% of all add-ons"
-msgstr ""
+msgstr "Top 95%% zo všetkých doplnkov"
 
 #: src/olympia/compat/templates/compat/index.html:19
 msgid "All active add-ons"
@@ -4531,7 +4531,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py:19
 msgid "Core"
-msgstr ""
+msgstr "Jadro"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
@@ -4880,23 +4880,23 @@ msgstr "Doplnok bol odstránený."
 
 #: src/olympia/devhub/views.py:362
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL názov je nesprávny. Téma nebola odstránená."
 
 #: src/olympia/devhub/views.py:367
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL názov je nesprávny. Doplnok nebol odstránený."
 
 #: src/olympia/devhub/views.py:449
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "K vášmu doplnku bol pridaný autor"
 
 #: src/olympia/devhub/views.py:456
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Pri vašom doplnku autor zmenil rolu"
 
 #: src/olympia/devhub/views.py:476
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Autor bol pri vašom doplnku odobraný"
 
 #: src/olympia/devhub/views.py:519
 msgid "There were errors in your submission."
@@ -4912,7 +4912,7 @@ msgstr "Kontrola kompatibility doplnku"
 
 #: src/olympia/devhub/views.py:808 src/olympia/signing/views.py:90
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
 
 #: src/olympia/devhub/views.py:1051 src/olympia/users/forms.py:471
 msgid "Images must be either PNG or JPG."
@@ -5038,11 +5038,11 @@ msgstr "Výsledky vyhľadávania pre \"{0}\""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Zadajte frázu pre vyhľadávanie."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Načítanie výsledkov&hellip;"
 
 # 82%
 #: src/olympia/devhub/templates/devhub/index.html:22
@@ -5067,7 +5067,7 @@ msgstr "Stať sa redaktorom na AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Dozvedieť sa všetky informácie o doplnkoch"
 
 #: src/olympia/devhub/templates/devhub/index.html:41
 msgid ""
