@@ -154,7 +154,7 @@ class TestDashboard(HubTest):
         doc = pq(self.client.get(self.url).content)
         eq_(doc('title').text(),
             'Manage My Submissions :: Developer Hub :: Add-ons for Firefox')
-        eq_(doc('#social-footer').length, 1)
+        eq_(doc('.links-footer').length, 1)
         eq_(doc('#copyright').length, 1)
         eq_(doc('#footer-links .mobile-link').length, 0)
 
