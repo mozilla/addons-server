@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
 from django.views.decorators.cache import cache_page
@@ -11,8 +10,6 @@ import jinja2
 from olympia import amo
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.models import Addon
-from olympia.translations.models import Translation
 
 
 @jinja2.contextfunction
@@ -239,109 +236,3 @@ class Link(object):
 def js(request):
     return render(request, 'addons/popups.html',
                   content_type='text/javascript')
-
-
-@non_atomic_requests
-def smorgasbord(request):
-    """
-    Gather many different kinds of tasty add-ons together.
-
-    Great for testing install buttons.
-    """
-    def _compat(min, max):
-        # Helper for faking compatible_apps.
-        return {'min': {'version': min}, 'max': {'version': max}}
-
-    addons = []
-    normal_version = _compat('1.0', '10.0')
-    older_version = _compat('1.0', '2.0')
-    newer_version = _compat('9.0', '10.0')
-
-    def all_versions(addon, base_tag):
-        x = (('', normal_version),
-             (' + older version', older_version),
-             (' + newer version', newer_version))
-        for extra, version in x:
-            a = addon()
-            a.tag = base_tag + extra
-            a.compatible_apps[request.APP] = version
-            addons.append(a)
-
-    # Featured.
-    featured = Addon.objects.featured(request.APP)
-    addons.append(featured[0])
-    addons[-1].tag = 'featured'
-
-    normal = Addon.objects.listed(request.APP).exclude(id__in=featured)
-
-    # Normal, Older Version, Newer Version.
-    all_versions(lambda: normal[0], 'normal')
-
-    # Unreviewed.
-    exp = Addon.objects.unreviewed()
-    all_versions(lambda: exp[0], 'unreviewed')
-
-    # Multiple Platforms.
-    addons.append(Addon.objects.get(id=2313))
-    addons[-1].tag = 'platformer'
-
-    # Multiple Platforms + EULA.
-    addons.append(Addon.objects.get(id=2313))
-    addons[-1].eula = Translation(localized_string='xxx')
-    addons[-1].tag = 'platformer + eula'
-
-    # Incompatible Platform + EULa.
-    addons.append(Addon.objects.get(id=5308))
-    addons[-1].eula = Translation(localized_string='xxx')
-    addons[-1].tag = 'windows/linux-only + eula'
-
-    # Incompatible Platform.
-    all_versions(lambda: Addon.objects.get(id=5308), 'windows/linux-only')
-
-    # EULA.
-    eula = (Q(eula__isnull=False, eula__localized_string__isnull=False)
-            & ~Q(eula__localized_string=''))
-    addons.append(normal.filter(eula)[0])
-    addons[-1].tag = 'eula'
-    addons.append(exp.filter(eula)[0])
-    addons[-1].tag = 'eula + unreviewed'
-
-    # Contributions.
-    addons.append(normal.filter(annoying=1)[0])
-    addons[-1].tag = 'contrib: passive'
-    addons.append(normal.filter(annoying=2)[0])
-    addons[-1].tag = 'contrib: after'
-    addons.append(normal.filter(annoying=3)[0])
-    addons[-1].tag = 'contrib: roadblock'
-    addons.append(Addon.objects.get(id=2608))
-    addons[-1].tag = 'after + eula'
-    addons.append(Addon.objects.get(id=8442))
-    addons[-1].tag = 'roadblock + eula'
-
-    # Other App.
-    addons.append(Addon.objects.get(id=5326))
-    addons[-1].tag = 'tbird'
-
-    # Mobile.
-    addons.append(Addon.objects.get(id=53476))
-    addons[-1].tag = 'mobile'
-
-    # Search Engine.
-    addons.append(Addon.objects.filter(type=amo.ADDON_SEARCH)[0])
-    addons[-1].tag = 'search engine'
-
-    # Beta Version
-    beta = normal.filter(versions__files__status=amo.STATUS_BETA)[0]
-    beta.tag = 'beta version'
-
-    # Theme.
-
-    # Persona.
-    addons.append(Addon.objects.filter(type=amo.ADDON_PERSONA)[0])
-    addons[-1].tag = 'persona'
-
-    # Future Version.
-    # No versions.
-
-    return render(request, 'addons/smorgasbord.html',
-                  {'addons': addons, 'beta': beta})
