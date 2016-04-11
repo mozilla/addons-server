@@ -372,6 +372,7 @@ class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
 class TestUnlistedAllList(TestCase):
     Queue = ViewUnlistedAllList
     listed = False
+    fixtures = ['base/users']
 
     def new_file(self, name=u'Preliminary', version=u'1.0',
                  addon_status=amo.STATUS_LITE,
@@ -388,8 +389,10 @@ class TestUnlistedAllList(TestCase):
                       file_status=amo.STATUS_PUBLIC)
         self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
                       file_status=amo.STATUS_UNREVIEWED)
+        self.new_file('Deleted', addon_status=amo.STATUS_PUBLIC,
+                      file_status=amo.STATUS_PUBLIC)['addon'].delete()
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
-            ['Lite', 'Nominated', 'Public', 'Unreviewed'])
+            ['Deleted', 'Lite', 'Nominated', 'Public', 'Unreviewed'])
 
     def test_authors(self):
         addon = self.new_file()['addon']
@@ -405,7 +408,8 @@ class TestUnlistedAllList(TestCase):
         today = datetime.today().date()
         self.new_file(name='addon123', version='1.0')
         v2 = self.new_file(name='addon123', version='2.0')['version']
-        v2.update(reviewed=today)
+        amo.log(amo.LOG.PRELIMINARY_VERSION, v2, v2.addon,
+                user=UserProfile.objects.get(pk=999))
         self.new_file(name='addon123', version='3.0')
         row = self.Queue.objects.all()[0]
         assert row.review_date == today

@@ -383,6 +383,8 @@ class EditorAllListTable(SQLTable, ItemStateTable):
         return safe_substitute(u'<span>%s</span>', row.version_date)
 
     def render_last_review(self, row):
+        if row.review_version_num is None:
+            return _('No Reviews')
         return safe_substitute(u'<span><em>%s</em> on %s</span>',
                                row.review_version_num, row.review_date)
 
@@ -402,7 +404,7 @@ class EditorAllListTable(SQLTable, ItemStateTable):
 
     @classmethod
     def default_order_by(cls):
-        return 'version_date'
+        return '-version_date'
 
 
 class ViewPendingQueueTable(EditorQueueTable):
