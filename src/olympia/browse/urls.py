@@ -33,9 +33,6 @@ urlpatterns = patterns(
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^(?:extensions|complete-themes|full-themes|themes)/moreinfo.php$',
-        views.moreinfo_redirect),
-
     # Full Themes are now Complete Themes.
     url('^full-themes/(?P<category>[^ /]+)?$',
         views.legacy_fulltheme_redirects),
