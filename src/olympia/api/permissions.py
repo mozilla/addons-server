@@ -74,7 +74,7 @@ class AllowReviewer(BasePermission):
     The user logged in must either be making a read-only request and have the
     'ReviewerTools:View' permission, or simply be a reviewer or admin.
 
-    An addons reviewer is someone who is in the group with the following
+    An add-on reviewer is someone who is in the group with the following
     permission: 'Addons:Review'.
     """
     def has_permission(self, request, view):
@@ -83,16 +83,35 @@ class AllowReviewer(BasePermission):
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):
-        return self.has_permission(request, view)
+        return obj.is_listed and self.has_permission(request, view)
 
 
-class AllowReadOnlyIfPublic(BasePermission):
+class AllowReviewerUnlisted(AllowReviewer):
+    """Allow unlisted addons reviewer access.
+
+    Like editors.decorators.unlisted_addons_reviewer_required, but as a
+    permission class and not a decorator.
+
+    The user logged in must an unlisted add-on reviewer or admin.
+
+    An unlisted add-on reviewer is someone who is in the group with the
+    following permission: 'Addons:Review'.
     """
-    Allow access when the object's is_public() method returns True and the
-    request HTTP method is GET/OPTIONS/HEAD.
+    def has_permission(self, request, view):
+        return acl.check_unlisted_addons_reviewer(request)
+
+    def has_object_permission(self, request, view, obj):
+        return not obj.is_listed and self.has_permission(request, view)
+
+
+class AllowReadOnlyIfPublicAndListed(BasePermission):
+    """
+    Allow access when the object's is_public() method and is_listed property
+    both return True and the request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
 
     def has_object_permission(self, request, view, obj):
-        return obj.is_public() and self.has_permission(request, view)
+        return (obj.is_public() and obj.is_listed and
+                self.has_permission(request, view))
