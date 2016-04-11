@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowReviewer, AnyOf,
+    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer, AnyOf,
     GroupPermission)
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
 from olympia.users.models import UserProfile
@@ -227,9 +227,9 @@ class TestAllowReviewer(TestCase):
                 request, myview, Mock())
 
 
-class TestAllowReadOnlyIfPublic(TestCase):
+class TestAllowReadOnlyIfPublicAndListed(TestCase):
     def setUp(self):
-        self.permission = AllowReadOnlyIfPublic()
+        self.permission = AllowReadOnlyIfPublicAndListed()
         self.request_factory = RequestFactory()
         self.unsafe_methods = ('patch', 'post', 'put', 'delete')
         self.safe_methods = ('get', 'options', 'head')
@@ -249,6 +249,7 @@ class TestAllowReadOnlyIfPublic(TestCase):
     def test_has_object_permission_public(self):
         obj = Mock()
         obj.is_public.return_value = True
+        obj.is_listed = True
 
         for verb in self.safe_methods:
             assert self.permission.has_object_permission(
@@ -261,6 +262,25 @@ class TestAllowReadOnlyIfPublic(TestCase):
     def test_has_object_permission_not_public(self):
         obj = Mock()
         obj.is_public.return_value = False
+        obj.is_listed = True
+
+        for verb in self.unsafe_methods + self.safe_methods:
+            assert not self.permission.has_object_permission(
+                self.request(verb), myview, obj)
+
+    def test_has_object_permission_not_listed(self):
+        obj = Mock()
+        obj.is_public.return_value = True
+        obj.is_listed = False
+
+        for verb in self.unsafe_methods + self.safe_methods:
+            assert not self.permission.has_object_permission(
+                self.request(verb), myview, obj)
+
+    def test_has_object_permission_not_listed_nor_public(self):
+        obj = Mock()
+        obj.is_public.return_value = False
+        obj.is_listed = False
 
         for verb in self.unsafe_methods + self.safe_methods:
             assert not self.permission.has_object_permission(

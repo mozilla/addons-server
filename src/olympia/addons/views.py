@@ -43,7 +43,7 @@ from olympia.bandwagon.models import (
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowReviewer, AnyOf)
+    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -650,14 +650,14 @@ def persona_redirect(request, persona_id):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor, AllowReviewer),
+        AnyOf(AllowReadOnlyIfPublicAndListed, AllowAddonAuthor, AllowReviewer),
     ]
     serializer_class = AddonSerializer
     addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
-    # Permission classes disallow access to non-public add-ons unless logged in
-    # as a reviewer/addon owner/admin, so the default queryset is good here.
-    # FIXME: adjust permission classes to make deleted & unlisted addons work.
-    queryset = Addon.objects.all()
+    # Permission classes disallow access to non-public/unlisted add-ons unless
+    # logged in as a reviewer/addon owner/admin, so the unfiltered queryset
+    # is fine here (deleted add-ons are not considered public).
+    queryset = Addon.unfiltered.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_object(self):

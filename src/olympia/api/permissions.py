@@ -86,13 +86,14 @@ class AllowReviewer(BasePermission):
         return self.has_permission(request, view)
 
 
-class AllowReadOnlyIfPublic(BasePermission):
+class AllowReadOnlyIfPublicAndListed(BasePermission):
     """
-    Allow access when the object's is_public() method returns True and the
-    request HTTP method is GET/OPTIONS/HEAD.
+    Allow access when the object's is_public() method and is_listed property
+    both return True and the request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
 
     def has_object_permission(self, request, view, obj):
-        return obj.is_public() and self.has_permission(request, view)
+        return (obj.is_public() and obj.is_listed and
+                self.has_permission(request, view))

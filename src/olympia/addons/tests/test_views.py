@@ -1514,9 +1514,9 @@ class TestMobileDetails(TestPersonas, TestMobile):
         assert response.status_code == 301
 
 
-class TestAddonViewSet(TestCase):
+class TestAddonViewSetDetail(TestCase):
     def setUp(self):
-        super(TestAddonViewSet, self).setUp()
+        super(TestAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
             guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
@@ -1580,16 +1580,60 @@ class TestAddonViewSet(TestCase):
         assert response.status_code == 401
 
     def test_get_not_listed(self):
-        # At the moment this API only works with listed addons.
         self.addon.update(is_listed=False)
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 401
+
+    def test_get_not_listed_no_rights(self):
+        self.addon.update(is_listed=False)
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_not_listed_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.addon.update(is_listed=False)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_not_listed_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.addon.update(is_listed=False)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
     def test_get_deleted(self):
-        # At the moment this API only works with non-deleted addons.
         self.addon.delete()
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 401
+
+    def test_get_deleted_no_rights(self):
+        self.addon.delete()
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_deleted_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.addon.delete()
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_deleted_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.addon.delete()
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
     def test_get_not_found(self):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})
