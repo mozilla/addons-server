@@ -1340,7 +1340,7 @@ class TestUnlistedAllList(QueueTest):
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two',
              'Prelim One', 'Prelim Two', 'Public'])
         # Need to set unique nomination times or we get a psuedo-random order.
-        for idx, addon in enumerate(reversed(self.expected_addons)):
+        for idx, addon in enumerate(self.expected_addons):
             addon.latest_version.update(
                 nomination=(datetime.now() - timedelta(minutes=idx)))
 
@@ -1456,10 +1456,14 @@ class TestPerformance(QueueTest):
 
 
 class SearchTest(EditorTest):
+    listed = True
 
     def setUp(self):
         super(SearchTest, self).setUp()
-        self.login_as_editor()
+        if self.listed:
+            self.login_as_editor()
+        else:  # Testing unlisted views: needs Addons:ReviewUnlisted perm.
+            self.login_as_senior_editor()
 
     def named_addons(self, request):
         return [r.data.addon_name for r in request.context['page'].object_list]
@@ -1471,12 +1475,9 @@ class SearchTest(EditorTest):
         return r
 
 
-class TestQueueSearch(SearchTest):
+class BaseTestQueueSearch(SearchTest):
     fixtures = ['base/users', 'base/appversion']
-
-    def setUp(self):
-        super(TestQueueSearch, self).setUp()
-        self.url = reverse('editors.queue_nominated')
+    __test__ = False  # this is an abstract test case
 
     def generate_files(self, subset=[]):
         files = SortedDict([
@@ -1526,11 +1527,17 @@ class TestQueueSearch(SearchTest):
                 'file_status': amo.STATUS_UNREVIEWED,
                 'platform': amo.PLATFORM_MAC,
             }),
+            ('Deleted', {
+                'version_str': '0.1',
+                'addon_status': amo.STATUS_DELETED,
+                'file_status': amo.STATUS_UNREVIEWED,
+            }),
         ])
         results = {}
         for name, attrs in files.iteritems():
             if not subset or name in subset:
-                results[name] = create_addon_file(name, **attrs)
+                results[name] = create_addon_file(name, listed=self.listed,
+                                                  **attrs)
         return results
 
     def generate_file(self, name):
@@ -1593,7 +1600,7 @@ class TestQueueSearch(SearchTest):
         name = 'Not Admin Reviewed'
         d = self.generate_file(name)
         uni = 'フォクすけといっしょ'.decode('utf8')
-        a = Addon.objects.get(pk=d['addon'].id)
+        a = Addon.with_unlisted.get(pk=d['addon'].id)
         a.name = {'ja': uni}
         a.save()
         r = self.client.get('/ja/' + self.url, {'text_query': uni},
@@ -1621,13 +1628,74 @@ class TestQueueSearch(SearchTest):
         name = 'Not Admin Reviewed'
         d = self.generate_file(name)
         uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
-        a = Addon.objects.get(pk=d['addon'].id)
+        a = Addon.with_unlisted.get(pk=d['addon'].id)
         a.support_email = {'ja': uni}
         a.save()
         r = self.client.get('/ja/' + self.url, {'text_query': uni},
                             follow=True)
         assert r.status_code == 200
         assert self.named_addons(r) == [name]
+
+    def test_search_by_version_requires_app(self):
+        r = self.client.get(self.url, {'max_version': '3.6'})
+        assert r.status_code == 200
+        # This is not the most descriptive message but it's
+        # the easiest to show.  This missing app scenario is unlikely.
+        assert r.context['search_form'].errors.as_text() == (
+            '* max_version\n  * Select a valid choice. 3.6 is not '
+            'one of the available choices.')
+
+    def test_search_by_app_version(self):
+        d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
+                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              application=amo.MOBILE, listed=self.listed)
+        max = AppVersion.objects.get(application=amo.MOBILE.id,
+                                     version='4.0b2pre')
+        (ApplicationsVersions.objects.filter(
+            application=amo.MOBILE.id, version=d['version']).update(max=max))
+        r = self.search(application_id=amo.MOBILE.id, max_version='4.0b2pre')
+        assert self.named_addons(r) == [u'Bieber For Mobile 4.0b2pre']
+
+    def test_form(self):
+        self.generate_file('Bieber For Mobile')
+        r = self.search()
+        doc = pq(r.content)
+        assert doc('#id_application_id').attr('data-url') == (
+            reverse('editors.application_versions_json'))
+        assert doc('#id_max_version option').text() == (
+            'Select an application first')
+        r = self.search(application_id=amo.MOBILE.id)
+        doc = pq(r.content)
+        assert doc('#id_max_version option').text() == (
+            ' '.join([av.version for av in
+                      AppVersion.objects.filter(application=amo.MOBILE.id)]))
+
+    def test_application_versions_json(self):
+        self.generate_file('Bieber For Mobile')
+        r = self.client.post(reverse('editors.application_versions_json'),
+                             {'application_id': amo.MOBILE.id})
+        assert r.status_code == 200
+        data = json.loads(r.content)
+        assert data['choices'] == (
+            [[av, av] for av in
+             [u''] + [av.version for av in
+                      AppVersion.objects.filter(application=amo.MOBILE.id)]])
+
+    def test_clear_search_visible(self):
+        r = self.search(text_query='admin', searching=True)
+        assert r.status_code == 200
+        assert pq(r.content)('.clear-queue-search').text() == 'clear search'
+
+    def test_clear_search_hidden(self):
+        r = self.search(text_query='admin')
+        assert r.status_code == 200
+        assert pq(r.content)('.clear-queue-search').text() is None
+
+
+class TestQueueSearch(BaseTestQueueSearch):
+    def setUp(self):
+        super(TestQueueSearch, self).setUp()
+        self.url = reverse('editors.queue_nominated')
 
     def test_search_by_addon_type(self):
         self.generate_files(['Not Admin Reviewed', 'Justin Bieber Theme',
@@ -1702,7 +1770,7 @@ class TestQueueSearch(SearchTest):
         for app in (amo.MOBILE, amo.FIREFOX):
             create_addon_file('Multi Application', '0.1',
                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-                              application=app)
+                              application=app, listed=self.listed)
 
         r = self.search(application_id=[amo.MOBILE.id])
         doc = pq(r.content)
@@ -1710,26 +1778,6 @@ class TestQueueSearch(SearchTest):
         assert td.children().length == 2
         assert td.children('.ed-sprite-firefox').length == 1
         assert td.children('.ed-sprite-mobile').length == 1
-
-    def test_search_by_version_requires_app(self):
-        r = self.client.get(self.url, {'max_version': '3.6'})
-        assert r.status_code == 200
-        # This is not the most descriptive message but it's
-        # the easiest to show.  This missing app scenario is unlikely.
-        assert r.context['search_form'].errors.as_text() == (
-            '* max_version\n  * Select a valid choice. 3.6 is not '
-            'one of the available choices.')
-
-    def test_search_by_app_version(self):
-        d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-                              application=amo.MOBILE)
-        max = AppVersion.objects.get(application=amo.MOBILE.id,
-                                     version='4.0b2pre')
-        (ApplicationsVersions.objects.filter(
-            application=amo.MOBILE.id, version=d['version']).update(max=max))
-        r = self.search(application_id=amo.MOBILE.id, max_version='4.0b2pre')
-        assert self.named_addons(r) == [u'Bieber For Mobile 4.0b2pre']
 
     def test_age_of_submission(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
@@ -1763,41 +1811,6 @@ class TestQueueSearch(SearchTest):
         addons = self.named_addons(r)
         assert title in addons, ('Unexpected results: %r' % addons)
 
-    def test_form(self):
-        self.generate_file('Bieber For Mobile')
-        r = self.search()
-        doc = pq(r.content)
-        assert doc('#id_application_id').attr('data-url') == (
-            reverse('editors.application_versions_json'))
-        assert doc('#id_max_version option').text() == (
-            'Select an application first')
-        r = self.search(application_id=amo.MOBILE.id)
-        doc = pq(r.content)
-        assert doc('#id_max_version option').text() == (
-            ' '.join([av.version for av in
-                      AppVersion.objects.filter(application=amo.MOBILE.id)]))
-
-    def test_application_versions_json(self):
-        self.generate_file('Bieber For Mobile')
-        r = self.client.post(reverse('editors.application_versions_json'),
-                             {'application_id': amo.MOBILE.id})
-        assert r.status_code == 200
-        data = json.loads(r.content)
-        assert data['choices'] == (
-            [[av, av] for av in
-             [u''] + [av.version for av in
-                      AppVersion.objects.filter(application=amo.MOBILE.id)]])
-
-    def test_clear_search_visible(self):
-        r = self.search(text_query='admin', searching=True)
-        assert r.status_code == 200
-        assert pq(r.content)('.clear-queue-search').text() == 'clear search'
-
-    def test_clear_search_hidden(self):
-        r = self.search(text_query='admin')
-        assert r.status_code == 200
-        assert pq(r.content)('.clear-queue-search').text() is None
-
     def test_clear_search_uses_correct_queue(self):
         # The "clear search" link points to the right listed or unlisted queue.
         # Listed queue.
@@ -1812,7 +1825,41 @@ class TestQueueSearch(SearchTest):
         assert pq(r.content)('.clear-queue-search').attr('href') == url
 
 
+class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
+    listed = False
+    __test__ = True
+
+    def setUp(self):
+        super(TestQueueSearchUnlistedAllList, self).setUp()
+        self.url = reverse('editors.unlisted_queue_all')
+
+    def test_not_searching(self):
+        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
+        r = self.search()
+        # Because we're logged in as senior editor we see admin reviewed too.
+        assert sorted(self.named_addons(r)) == [
+            'Admin Reviewed', 'Not Admin Reviewed']
+
+    def test_search_deleted(self):
+        self.generate_files(['Not Admin Reviewed', 'Deleted'])
+        r = self.search(deleted=1)
+        assert self.named_addons(r) == ['Deleted']
+
+    def test_search_not_deleted(self):
+        self.generate_files(['Not Admin Reviewed', 'Deleted'])
+        r = self.search(deleted=0)
+        assert self.named_addons(r) == ['Not Admin Reviewed']
+
+    def test_search_by_guid(self):
+        name = 'Not Admin Reviewed'
+        addon = self.generate_file(name)['addon']
+        addon.update(guid='guidymcguid.com')
+        r = self.search(text_query='mcguid')
+        assert self.named_addons(r) == ['Not Admin Reviewed']
+
+
 class TestQueueSearchVersionSpecific(SearchTest):
+    __test__ = True
 
     def setUp(self):
         super(TestQueueSearchVersionSpecific, self).setUp()

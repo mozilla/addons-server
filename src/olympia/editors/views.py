@@ -164,12 +164,12 @@ def home(request):
     # Try to read user position from retrieved reviews.
     # If not available, query for it.
     reviews_total_position = (
-        ActivityLog.objects.user_position(reviews_total, request.user)
-        or ActivityLog.objects.total_reviews_user_position(request.user))
+        ActivityLog.objects.user_position(reviews_total, request.user) or
+        ActivityLog.objects.total_reviews_user_position(request.user))
 
     reviews_monthly_position = (
-        ActivityLog.objects.user_position(reviews_monthly, request.user)
-        or ActivityLog.objects.monthly_reviews_user_position(request.user))
+        ActivityLog.objects.user_position(reviews_monthly, request.user) or
+        ActivityLog.objects.monthly_reviews_user_position(request.user))
 
     limited_reviewer = is_limited_reviewer(request)
     data = context(
@@ -403,7 +403,8 @@ def exclude_admin_only_addons(queryset):
     return queryset.filter(admin_review=False)
 
 
-def _queue(request, TableObj, tab, qs=None, unlisted=False):
+def _queue(request, TableObj, tab, qs=None, unlisted=False,
+           SearchForm=forms.QueueSearchForm):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
 
@@ -411,11 +412,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
         qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
 
     if request.GET:
-        search_form = forms.QueueSearchForm(request.GET)
+        search_form = SearchForm(request.GET)
         if search_form.is_valid():
             qs = search_form.filter_qs(qs)
     else:
-        search_form = forms.QueueSearchForm()
+        search_form = SearchForm()
     admin_reviewer = is_admin_reviewer(request)
     if not admin_reviewer and not search_form.data.get('searching'):
         qs = exclude_admin_only_addons(qs)
@@ -853,4 +854,4 @@ def whiteboard(request, addon):
 @unlisted_addons_reviewer_required
 def unlisted_list(request):
     return _queue(request, ViewUnlistedAllListTable, 'all',
-                  unlisted=True)
+                  unlisted=True, SearchForm=forms.AllAddonSearchForm)
