@@ -687,3 +687,8 @@ def id_to_path(pk):
         path.append(pk)
     path.append(pk)
     return os.path.join(*path)
+
+
+@register.filter
+def hidden_field(field):
+    return field.as_widget(attrs={'style': 'display:none'})
