@@ -1401,6 +1401,16 @@ class TestAddonManagement(TestCase):
         file = File.objects.get(pk=67442)
         eq_(file.status, 1)
 
+    def test_addon_deleted_file_status_change(self):
+        file = File.objects.get(pk=67442)
+        file.version.update(deleted=True)
+        data = self._form_data({'form-0-status': '1'})
+        r = self.client.post(self.url, data, follow=True)
+        # Form errors are silently suppressed.
+        assert r.status_code == 200
+        # But no change.
+        assert file.status == 4
+
     @mock.patch.object(File, 'file_path',
                        amo.tests.AMOPaths().file_fixture_path(
                            'delicious_bookmarks-2.1.106-fx.xpi'))
