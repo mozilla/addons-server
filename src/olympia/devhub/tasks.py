@@ -63,6 +63,8 @@ def validate(file_, listed=None, subtask=None):
 
 
 def validate_and_submit(addon, file_, listed=None):
+    """Validate a file upload, then directly submit a new version from that
+    upload."""
     return validate(file_, listed=listed,
                     subtask=submit_file.si(addon.pk, file_.pk))
 
@@ -94,16 +96,21 @@ def create_version_for_upload(addon, upload):
 
         log.info('Creating version for {upload_uuid} that passed '
                  'validation'.format(upload_uuid=upload.uuid))
-        beta = bool(upload.version) and is_beta(upload.version)
+        beta = (addon.is_listed and
+                bool(upload.version) and is_beta(upload.version))
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], is_beta=beta)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        # TODO: Handle sideload add-ons. This assumes the user wants a prelim
-        # review since listed and sideload aren't supported for creation yet.
+        #
+        # Note: this assumes the developer wants a full review. This makes
+        # sense for now because this function is only called from
+        # submit_file(), which is itself only called from the signing API,
+        # which only supports unlisted add-ons, and unlisted add-ons are
+        # supposed to automatically be set as fully reviewed once signed.
         if addon.status == amo.STATUS_NULL:
-            addon.update(status=amo.STATUS_LITE)
+            addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version, is_beta=version.is_beta)
 
 

@@ -297,7 +297,6 @@
 
             var $newForm = $('.new-addon-file');
             var $isUnlistedCheckbox = $('#id_is_unlisted');
-            var $isSideloadCheckbox = $('#id_is_sideload');
 
             function isUnlisted() {
               // True if there's a '#id_is_unlisted' checkbox that is checked, or a
@@ -306,19 +305,11 @@
                       (typeof($newForm.data('addon-is-listed')) != 'undefined' && !$newForm.data('addon-is-listed')));
             }
 
-            function isSideload() {
-              // True if there's a '#id_is_sideload' checkbox that is checked, or a
-              // 'addon-is-sideload' data on the new file form that is true.
-              return (($isSideloadCheckbox.length && $isSideloadCheckbox.is(':checked')) ||
-                      (typeof($newForm.data('addon-is-sideload')) != 'undefined' && $newForm.data('addon-is-sideload')));
-            }
-
             // is_unlisted checkbox: should the add-on be listed on AMO? If not,
             // change the addon upload button's data-upload-url.
             // If this add-on is unlisted, then tell the upload view so
             // it'll run the validator with the "listed=False"
             // parameter.
-            var $isSideloadLabel = $('label[for=id_is_sideload]');
             var $submitAddonProgress = $('.submit-addon-progress');
             function updateListedStatus() {
               if (!isUnlisted()) {  // It's a listed add-on.
@@ -328,18 +319,10 @@
                 // doesn't upload to the correct url. Using
                 // .attr('data-upload-url', val) instead fixes that.
                 $upload_field.attr('data-upload-url', $upload_field.data('upload-url-listed'));
-                $isSideloadLabel.hide();
-                $isSideloadCheckbox.prop('checked', false);
-                $submitAddonProgress.removeClass('unlisted');
               } else {  // It's an unlisted add-on.
-                if (isSideload()) {  // It's a sideload add-on.
-                  $upload_field.attr('data-upload-url', $upload_field.data('upload-url-sideload'));
-                } else {
-                  $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
-                }
-                $isSideloadLabel.show();
-                $submitAddonProgress.addClass('unlisted');
+                $upload_field.attr('data-upload-url', $upload_field.data('upload-url-unlisted'));
               }
+              $submitAddonProgress.removeClass('unlisted');
               /* Don't allow submitting, need to reupload/revalidate the file. */
               $('.addon-upload-dependant').prop('disabled', true);
               $('.addon-upload-failure-dependant').prop({'disabled': true,
@@ -347,7 +330,6 @@
               $('.upload-status').remove();
             }
             $isUnlistedCheckbox.bind('change', updateListedStatus);
-            $isSideloadCheckbox.bind('change', updateListedStatus);
             updateListedStatus();
 
             $('#id_is_manual_review').bind('change', function() {
@@ -438,7 +420,6 @@
                     $("<strong>").text(message).appendTo(upload_results);
 
                     // Specific messages for unlisted addons.
-                    var isSideload = $('#id_is_sideload').is(':checked') || $newForm.data('addon-is-sideload');
                     if (isUnlisted()) {
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     }

@@ -47,12 +47,6 @@
           <span class="tip tooltip"
                 title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
         </label>
-        <label for="{{ new_addon_form.is_sideload.auto_id }}">
-          {{ new_addon_form.is_sideload }}
-          {{ new_addon_form.is_sideload.label }}
-          <span class="tip tooltip"
-                title="{{ new_addon_form.is_sideload.help_text }}">?</span>
-        </label>
       </div>
     </div>
 
@@ -60,7 +54,7 @@
       data-upload-url="{{ url('devhub.standalone_upload') }}"
       data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
       data-upload-url-unlisted="{{ url('devhub.standalone_upload_unlisted') }}"
-      data-upload-url-sideload="{{ url('devhub.standalone_upload_sideload') }}">
+    >
 
   </section>
 </form>
