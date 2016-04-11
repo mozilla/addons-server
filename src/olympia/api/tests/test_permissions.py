@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer, AnyOf,
-    GroupPermission)
+    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer,
+    AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
 from olympia.users.models import UserProfile
 
@@ -225,6 +225,50 @@ class TestAllowReviewer(TestCase):
             assert self.permission.has_permission(request, myview)
             assert self.permission.has_object_permission(
                 request, myview, Mock())
+
+
+class TestAllowUnlistedReviewer(TestCase):
+    fixtures = ['base/users']
+
+    # Note: be careful when testing, under the hood we're using a method that
+    # relies on UserProfile.groups_list, which is cached on the UserProfile
+    # instance.
+    def setUp(self):
+        self.permission = AllowReviewerUnlisted()
+        self.request = RequestFactory().get('/')
+
+    def test_user_cannot_be_anonymous(self):
+        self.request.user = AnonymousUser()
+        obj = Mock()
+        obj.is_listed = False
+        assert not self.permission.has_permission(self.request, myview)
+        assert not self.permission.has_object_permission(
+            self.request, myview, obj)
+
+    def test_authenticated_but_not_reviewer(self):
+        self.request.user = UserProfile.objects.get(pk=999)
+        obj = Mock()
+        obj.is_listed = False
+        assert not self.permission.has_permission(self.request, myview)
+        assert not self.permission.has_object_permission(
+            self.request, myview, obj)
+
+    def test_admin(self):
+        self.request.user = UserProfile.objects.get(email='admin@mozilla.com')
+        obj = Mock()
+        obj.is_listed = False
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
+    def test_unlisted_reviewer(self):
+        self.request.user = UserProfile.objects.get(
+            email='senioreditor@mozilla.com')
+        obj = Mock()
+        obj.is_listed = False
+
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
 
 
 class TestAllowReadOnlyIfPublicAndListed(TestCase):

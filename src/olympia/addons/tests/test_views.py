@@ -1585,15 +1585,23 @@ class TestAddonViewSetDetail(TestCase):
         assert response.status_code == 401
 
     def test_get_not_listed_no_rights(self):
-        self.addon.update(is_listed=False)
         user = UserProfile.objects.create(username='simpleuser')
+        self.addon.update(is_listed=False)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_get_not_listed_reviewer(self):
+    def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
+        self.addon.update(is_listed=False)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_not_listed_specific_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.addon.update(is_listed=False)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -1610,14 +1618,14 @@ class TestAddonViewSetDetail(TestCase):
     def test_get_deleted(self):
         self.addon.delete()
         response = self.client.get(self.url)
-        assert response.status_code == 401
+        assert response.status_code == 404
 
     def test_get_deleted_no_rights(self):
         self.addon.delete()
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_get_deleted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1625,15 +1633,24 @@ class TestAddonViewSetDetail(TestCase):
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_get_deleted_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.addon.delete()
+        self.client.login_api(user)
+        response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_deleted_author(self):
+        # Owners can't see their own add-on once deleted, only admins can.
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        assert response.status_code == 404
 
     def test_get_not_found(self):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})

@@ -43,7 +43,8 @@ from olympia.bandwagon.models import (
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer, AnyOf)
+    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer,
+    AllowReviewerUnlisted, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -650,15 +651,24 @@ def persona_redirect(request, persona_id):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfPublicAndListed, AllowAddonAuthor, AllowReviewer),
+        AnyOf(AllowReadOnlyIfPublicAndListed, AllowAddonAuthor,
+              AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer
     addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
     # Permission classes disallow access to non-public/unlisted add-ons unless
     # logged in as a reviewer/addon owner/admin, so the unfiltered queryset
-    # is fine here (deleted add-ons are not considered public).
-    queryset = Addon.unfiltered.all()
+    # is fine here.
+    queryset = Addon.with_unlisted.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+
+    def get_queryset(self):
+        # Special case: admins - and only admins - can see deleted add-ons.
+        # This is handled outside a permission class because that condition
+        # would pollute all other classes otherwise.
+        if self.request.user.is_authenticated() and self.request.user.is_staff:
+            return Addon.unfiltered.all()
+        return super(AddonViewSet, self).get_queryset()
 
     def get_object(self):
         value = self.kwargs.get('pk')
