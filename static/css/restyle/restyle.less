@@ -2010,23 +2010,19 @@ body.editor-tools {
   }
 
   div.section {
-    ul.tabnav li.selected a {
-      padding-bottom: 5px;
-      background-color: #ffffff;
-      border-color: #ebebeb;
-      color: @default-font-color;
-    }
+    ul.tabnav {
+      li a {
+        padding-bottom: 5px;
+        background-color: #ecf5fe;
+        border-radius: 0;
+        color: @link-on-white-bg;
+      }
 
-    ul.tabnav li a {
-      background-color: #ecf5fe;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      color: @link-on-white-bg;
-    }
-
-    a:hover {
-      padding-bottom: 5px;
-      border-color: @primary-link;
+      li.selected a {
+        background-color: #ffffff;
+        border-color: #ebebeb;
+        color: @default-font-color;
+      }
     }
 
     .queue-outer {
@@ -2036,6 +2032,15 @@ body.editor-tools {
       .queue-inner {
         border-radius: 0;
         border: none;
+
+        .data-grid th.ordered {
+          background: #ffffff;
+        }
+
+        a,
+        a:visited {
+          color: @link-on-white-bg;
+        }
       }
     }
 
@@ -2052,6 +2057,10 @@ body.editor-tools {
       .article {
         border: @detail-border;
         border-radius: 0;
+      }
+
+      .results .files {
+        width: 230px;
       }
 
       div#review-actions {
