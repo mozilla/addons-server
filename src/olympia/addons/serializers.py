@@ -90,18 +90,19 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         """Create a fake instance of Addon and related models from ES data."""
         obj = Addon(id=data['id'], slug=data['slug'], is_listed=True)
 
-        if data['current_version'] and data['current_version']['files']:
-            data_version = data['current_version']
+        data_version = data.get('current_version')
+        if data_version:
             obj._current_version = Version(
                 id=data_version['id'],
                 reviewed=self.handle_date(data_version['reviewed']),
                 version=data_version['version'])
+            data_files = data_version.get('files', [])
             obj._current_version.all_files = [
                 File(
                     id=file_['id'], created=self.handle_date(file_['created']),
                     hash=file_['hash'], filename=file_['filename'],
                     size=file_['size'], status=file_['status'])
-                for file_ in data_version['files']
+                for file_ in data_files
             ]
 
         # Attach base attributes that have the same name/format in ES and in
