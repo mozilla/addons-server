@@ -214,6 +214,10 @@ button.link:active span {
   margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
   min-width: @containerWidth;
   width: 100vw;
+
+  .html-rtl & {
+    margin: 0 ~"calc(-1 * ((100vw - 100%) / 2))" 12px 0;
+  }
 }
 
 /*
@@ -1414,6 +1418,10 @@ h3.author .transfer-ownership {
   margin-left: ~"calc(-1 * ((100vw - 100%) / 2))";
   padding: 30px 0;
   width: 100vw;
+
+  .html-rtl& {
+    margin-right: ~"calc(-1 * ((100vw - 100%) / 2))";
+  }
 
   .carousel {
     margin: 0 auto;
