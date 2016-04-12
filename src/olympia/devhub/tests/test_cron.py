@@ -3,8 +3,6 @@ import os
 
 from django.conf import settings
 
-from nose.tools import eq_
-
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.devhub.cron import update_blog_posts
@@ -23,14 +21,14 @@ class TestRSS(TestCase):
 
         update_blog_posts()
 
-        eq_(BlogPost.objects.count(), 5)
+        assert BlogPost.objects.count() == 5
 
         bp = BlogPost.objects.all()[0]
         url = ("http://blog.mozilla.com/addons/2011/06/10/"
                "update-in-time-for-thunderbird-5/")
-        eq_(bp.title, 'Test!')
-        eq_(bp.date_posted, datetime.date(2011, 6, 10))
-        eq_(bp.permalink, url)
+        assert bp.title == 'Test!'
+        assert bp.date_posted == datetime.date(2011, 6, 10)
+        assert bp.permalink == url
 
 
 class TestPurify(TestCase):
@@ -46,7 +44,7 @@ class TestPurify(TestCase):
         last = Addon.objects.get(pk=3615).modified
         convert_purified([self.addon.pk])
         addon = Addon.objects.get(pk=3615)
-        eq_(addon.modified, last)
+        assert addon.modified == last
 
     def test_has_html(self):
         self.addon.the_reason = 'foo <script>foo</script>'
