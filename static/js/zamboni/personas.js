@@ -21,10 +21,17 @@ function initPreviewTheme(mktTheme) {
 
     // Hover thumbnail install buttons.
     $('.persona-install .add').click(_pd(function(e) {
+        var $nearest = $(this).closest('.persona');
+        if ($(this).closest('.persona').find('.persona-preview a').length) {
+          $nearest = $nearest.find('.persona-preview a');
+        } else {
+          $nearest = $nearest.find('a[data-browsertheme]');
+        }
+
         dispatchPersonaEvent(
             'SelectPersona',
-            $(this).closest('.persona').find('.persona-preview a')[0]);
-        var name = $(this).closest('.persona-preview a').data('browsertheme').name;
+            $nearest[0]);
+        var name = $nearest.data('browsertheme').name;
         _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'theme', name]);
     }));
 
