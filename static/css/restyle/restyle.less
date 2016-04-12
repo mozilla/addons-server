@@ -1586,7 +1586,21 @@ h3.author .transfer-ownership {
       font-size: 12px;
     }
   }
+}
 
+.extra .button.disabled.not-available {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+  box-shadow: none;
+  color: @default-font-color;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 5px 14px 5px 28px;
+
+  .addon-description-header & {
+    border: 0;
+  }
 }
 
 .persona.hovercard {
@@ -1655,7 +1669,9 @@ h3.author .transfer-ownership {
   text-shadow: none;
 }
 
+.addon.hovercard,
 .items .item.incompatible {
+
   .extra .button.not-available {
     display: none;
     float: right;
@@ -1663,9 +1679,30 @@ h3.author .transfer-ownership {
 
   &:focus .extra .button.not-available,
   &:hover .extra .button.not-available {
+    display: block !important;
+
+    span {
+      padding-left: 1rem;
+    }
+  }
+
+  .install-shell .install {
     display: block;
   }
 }
+
+.addon.hovercard,
+.items .item {
+
+  .button {
+    font-size: 1rem;
+  }
+
+  .more-versions {
+    padding-left: 1rem;
+  }
+}
+
 
 #addon .more-versions a {
   color: @link-on-white-bg;
