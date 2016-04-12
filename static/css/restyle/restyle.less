@@ -84,7 +84,6 @@ body.restyle {
   font-family: @primary-font;
   font-style: normal;
   line-height: 1.5;
-  min-width: @containerWidth;
 }
 
 h1,
@@ -1823,10 +1822,25 @@ h3.author .transfer-ownership {
   }
 }
 
-.statistics .primary {
-  float: left;
-  margin-left: 0;
-  width: 77%;
+.restyle.statistics {
+  #page {
+    max-width: @pageWidth;
+    min-width: @pageWidth;
+  }
+
+  .primary {
+    float: left;
+    margin-left: 0;
+    width: 74%;
+  }
+
+  .stat-criteria .island.criteria {
+    float: left;
+  }
+
+  .notification-box {
+    clear: both;
+  }
 }
 
 /* Editor pages */
