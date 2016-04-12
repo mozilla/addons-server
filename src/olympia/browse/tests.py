@@ -16,7 +16,7 @@ from nose.tools import eq_, assert_raises, nottest
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase, ESTestCaseWithAddons
+from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import absolutify, numberfmt, urlparams
 from olympia.addons.tests.test_views import TestMobile
@@ -60,87 +60,6 @@ def test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     eq_(r.status_code, 200)
     eq_(r.context['sorting'], sort)
     test_listing_sort(self, sort, key, reverse, sel_class)
-
-
-class ExtensionTestCase(ESTestCaseWithAddons):
-
-    def setUp(self):
-        super(ExtensionTestCase, self).setUp()
-        self.url = reverse('browse.es.extensions')
-
-
-class TestUpdatedSort(ExtensionTestCase):
-
-    # This needs to run in its own class for isolation.
-    def test_updated_sort(self):
-        r = self.client.get(urlparams(self.url, sort='updated'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.last_updated, reverse=True))
-
-
-class TestESExtensions(ExtensionTestCase):
-
-    def test_landing(self):
-        r = self.client.get(self.url)
-        self.assertTemplateUsed(r, 'browse/extensions.html')
-        self.assertTemplateUsed(r, 'addons/impala/listing/items.html')
-        eq_(r.context['sorting'], 'popular')
-        eq_(r.context['category'], None)
-        doc = pq(r.content)
-        eq_(doc('body').hasClass('s-featured'), True)
-        eq_(doc('.addon-listing .listview').length, 0)
-
-    def test_name_sort(self):
-        r = self.client.get(urlparams(self.url, sort='name'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons), sorted(addons, key=lambda x: x.name))
-
-    def test_created_sort(self):
-        r = self.client.get(urlparams(self.url, sort='created'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.created, reverse=True))
-
-    def test_popular_sort(self):
-        r = self.client.get(urlparams(self.url, sort='popular'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
-
-    def test_rating_sort(self):
-        r = self.client.get(urlparams(self.url, sort='rating'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.bayesian_rating, reverse=True))
-
-    def test_category(self):
-        # Stick one add-on in a category, make sure search finds it.
-        addon = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                     disabled_by_user=False)[0]
-        c = Category.objects.create(application=amo.FIREFOX.id,
-                                    slug='alerts', type=addon.type)
-        AddonCategory.objects.create(category=c, addon=addon)
-        addon.save()
-        self.refresh()
-
-        cat_url = reverse('browse.es.extensions', args=['alerts'])
-        r = self.client.get(urlparams(cat_url))
-        eq_(r.status_code, 200)
-        addons = r.context['addons'].object_list
-        eq_(list(addons), [addon])
-
-    def test_invalid_sort(self):
-        r = self.client.get(urlparams(self.url, sort='wut'))
-        addons = r.context['addons'].object_list
-        assert list(addons)
-        eq_(list(addons),
-            sorted(addons, key=lambda x: x.weekly_downloads, reverse=True))
 
 
 def test_locale_display_name():

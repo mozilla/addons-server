@@ -58,8 +58,6 @@ urlpatterns = patterns(
 
     url('^extensions/(?:(?P<category>[^/]+)/)?$', views.extensions,
         name='browse.extensions'),
-    url('^es/extensions/(?:(?P<category>[^/]+)/)?$', views.es_extensions,
-        name='browse.es.extensions'),
 
     # Creatured URLs now redirect to browse.extensions
     url('^extensions/(?P<category>[^/]+)/featured$',
