@@ -2,6 +2,6 @@
 -r docs.txt
 -r flake8.txt
 
-django-debug-toolbar==1.3.2
-django-fixture-magic==0.0.4
-sqlparse==0.1.14
+django-debug-toolbar==1.3.2 --hash=sha256:d05765591dce6a00aa5fc66179c5cfcfd9540f92046ce8a9e37cf3d4b8d5fe17
+django-fixture-magic==0.0.4 --hash=sha256:8ca514d1f52e57475ffc744e93161eb50848dcec245a16c06d8c5b7b5497c305
+sqlparse==0.1.14 --hash=sha256:36f0f40af9ef4d358b963ab275f62331083c68290a3d14a2199d5dd4d98cc45d

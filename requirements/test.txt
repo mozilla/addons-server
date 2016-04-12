@@ -1,12 +1,16 @@
 --no-binary Pillow
 -r prod.txt
 
-execnet==1.2
-nose==1.3.4
-psutil==0.2.0
-py==1.4.30
-pytest==2.7.0
-pytest-cache==1.0
-pytest-django==2.8.0
-pytest-instafail==0.3.0
-pytest-xdist==1.13.1
+execnet==1.2 --hash=sha256:16293a69b17c846371f1ccb9cef10ad88838c9d5239ba26d88b39efb7b432f6f
+nose==1.3.4 --hash=sha256:e13d48217efa7a583e151e778fb5489be8b338703bea3d1925afc2599dc359a6 \
+            --hash=sha256:76bc63a4e2d5e5a0df77ca7d18f0f56e2c46cfb62b71103ba92a92c79fab1e03
+psutil==0.2.0 --hash=sha256:a103e3f9d07b7fabcf00d1f1c1c28607ba37e41a7e8e63a61bf62acfa02f506c
+py==1.4.30 --hash=sha256:b703e57685ed7c280b1a51c496a4984d83d89def2a930b5e9e5da5a6ca151514 \
+           --hash=sha256:07e20ab90a550bd3c21891e0d887f0931b4098f148aec95e29b5188f161bb075
+pytest==2.7.0 --hash=sha256:91dc842785417208d57e5e8dc8bb40f57316c45da24a50c53b49cb8d045519d6
+pytest-cache==1.0 --hash=sha256:495ec1b5e9112f5bfb7c6bd75ac5e5b56b41e025fdb5afe21b191be31d3fb961
+pytest-django==2.8.0 --hash=sha256:d145ac9dc7a557a719ab79770be0941004e1e038e137c34591919d9df2a790b1 \
+                     --hash=sha256:d76f934e77fa073f48cc521945a49900a859e610fa029dd880d1d8b997b77c23
+pytest-instafail==0.3.0 --hash=sha256:b4d5fc3ca81e530a8d0e15a7771dc14b06fc9a0930c4b3909a7f4527040572c3
+pytest-xdist==1.13.1 --hash=sha256:4382d7a944c1e2b1dc17fee3fd3575495fb10236a3b6e95cc6955db04984bc3c \
+                     --hash=sha256:e76f59b69fc0ccde8b9477284a7fb726a24a21f5faae6ab3059392e8bbd88aa7
