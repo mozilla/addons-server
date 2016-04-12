@@ -343,6 +343,7 @@ class SearchView(APIView):
         filters = {
             'app': app_id,
             'status': amo.STATUS_PUBLIC,
+            'is_listed': True,
             'is_disabled': False,
             'has_version': True,
         }

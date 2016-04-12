@@ -66,9 +66,9 @@ class AddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Addon
         fields = ('id', 'current_version', 'default_locale', 'description',
-                  'guid', 'homepage', 'name', 'last_updated', 'public_stats',
-                  'slug', 'status', 'summary', 'support_email', 'support_url',
-                  'tags', 'type', 'url')
+                  'guid', 'homepage', 'is_listed', 'name', 'last_updated',
+                  'public_stats', 'slug', 'status', 'summary', 'support_email',
+                  'support_url', 'tags', 'type', 'url')
 
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):

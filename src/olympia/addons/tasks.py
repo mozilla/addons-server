@@ -106,7 +106,7 @@ def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_categories, attach_tags, attach_translations)
     index_objects(ids, Addon, AddonIndexer.extract_document,
-                  kw.pop('index', None), transforms, Addon.with_unlisted)
+                  kw.pop('index', None), transforms, Addon.unfiltered)
 
 
 @task

@@ -63,6 +63,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
         assert result['homepage'] == {'en-US': self.addon.homepage}
+        assert result['is_listed'] == self.addon.is_listed
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
         assert result['public_stats'] == self.addon.public_stats
@@ -99,6 +100,21 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']['reviewed'] == version.reviewed
         assert result['current_version']['version'] == version.version
         assert result['current_version']['files'] == []
+
+    def test_deleted(self):
+        self.addon = addon_factory(name=u'My Deleted Addôn')
+        self.addon.delete()
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['status'] == self.addon.get_status_display()
+
+    def test_unlisted(self):
+        self.addon = addon_factory(name=u'My Unlisted Addôn', is_listed=False)
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['is_listed'] == self.addon.is_listed
 
     def test_translations(self):
         translated_descriptions = {

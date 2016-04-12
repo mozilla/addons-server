@@ -32,7 +32,6 @@ from olympia.access import acl
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonUser
-from olympia.addons.tasks import unindex_addons
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -404,7 +403,6 @@ def disable(request, addon_id, addon):
 def unlist(request, addon_id, addon):
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
-    unindex_addons.delay([addon.id])
     return redirect(addon.get_dev_url('versions'))
 
 
