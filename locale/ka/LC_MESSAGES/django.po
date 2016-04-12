@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-06 13:54+0000\n"
+"PO-Revision-Date: 2016-04-11 12:28+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -289,7 +289,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/contribution.html:18
 #: src/olympia/templates/menu_links.html:25
 msgid "Contribute"
-msgstr ""
+msgstr "ხელის შეწყობა"
 
 #. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html:34
@@ -314,7 +314,7 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:50
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
-msgstr ""
+msgstr "ან"
 
 #: src/olympia/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
@@ -378,7 +378,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "რამხელა თანხის შეწირვა გსურთ?"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
@@ -395,14 +395,14 @@ msgstr ""
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "ერთჯერადი შემოთავაზებული შეწირვა რაოდენობით {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount
 #. input
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:64
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "ერთჯერადი შეწირვა რაოდენობით {0} {1}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
@@ -1179,7 +1179,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "მოგწონთ ეს დამატება?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:43
 #, python-format
@@ -1439,7 +1439,7 @@ msgstr ""
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
+msgstr[0] "ყველა %(cnt)s მომხმარებლის მიმოხილვის ნახვა"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84

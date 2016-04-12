@@ -112,7 +112,8 @@ class PublicContentFilter(BaseFilterBackend):
     """
     def filter_queryset(self, request, qs, view):
         return qs.filter(
-            Bool(must=[F('term', status=amo.REVIEWED_STATUSES)],
+            Bool(must=[F('term', status=amo.REVIEWED_STATUSES),
+                       F('term', has_version=True)],
                  must_not=[F('term', is_deleted=True),
                            F('term', is_listed=False),
                            F('term', is_disabled=True)]))

@@ -137,6 +137,13 @@ class TestUnlistedViewAllListTable(TestCase):
         doc = pq(self.table.render_last_review(row))
         assert doc.text() == u'0.34.3b on 2016-01-01'
 
+    def test_no_review(self):
+        row = Mock()
+        row.review_version_num = None
+        row.review_date = None
+        doc = pq(self.table.render_last_review(row))
+        assert doc.text() == u'No Reviews'
+
     def test_authors_few(self):
         row = Mock()
         row.authors = [(123, 'bob'), (456, 'steve')]

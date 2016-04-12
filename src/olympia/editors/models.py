@@ -256,6 +256,7 @@ class ViewAllList(RawSQLModel):
     addon_status = models.IntegerField()
     latest_version = models.CharField(max_length=255)
     admin_review = models.BooleanField()
+    is_deleted = models.BooleanField()
 
     listed = True  # ViewAll for listed or unlisted addons.
 
@@ -271,8 +272,9 @@ class ViewAllList(RawSQLModel):
                 ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
                 ('_author_usernames', 'GROUP_CONCAT(users.username)'),
                 ('admin_review', 'addons.adminreview'),
+                ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
-                ('review_date', 'reviewed_versions.reviewed'),
+                ('review_date', 'reviewed_versions.created'),
                 ('review_version_num', 'reviewed_versions.version'),
             ]),
             'from': [
@@ -285,19 +287,24 @@ class ViewAllList(RawSQLModel):
                     ON addons.id = authors.addon_id""",
                 'LEFT JOIN users as users ON users.id = authors.user_id',
                 """LEFT JOIN (
-                    SELECT id, addon_id, reviewed, version FROM versions
-                    WHERE reviewed IS NOT NULL
+                    SELECT versions.id AS id, addon_id, log.created, version
+                    FROM versions
+                    JOIN log_activity_version AS log_v ON (
+                        log_v.version_id=versions.id)
+                    JOIN log_activity as log ON (
+                        log.id=log_v.activity_log_id)
+                    WHERE log.user_id <> 4757633
                     ORDER BY id desc
                     ) AS reviewed_versions
                     ON reviewed_versions.addon_id = addons.id""",
-            ],
+            ],  # 4757633 is Mozilla, used for auto-signing versions.
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 # Are we showing listed or unlisted addons?
                 '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
-                """reviewed_versions.id = (select max(reviewed_versions.id)) OR
-                    (reviewed_versions.id IS NULL AND addons.inactive = 0 AND
-                    addons.is_listed = {0})
+                """((reviewed_versions.id = (select max(reviewed_versions.id)))
+                    OR
+                    (reviewed_versions.id IS NULL))
                 """.format('1' if self.listed else '0'),
                 'addons.status NOT IN (%s, %s)' % (
                     amo.STATUS_NULL, amo.STATUS_DISABLED)

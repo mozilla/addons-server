@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-06 13:55+0000\n"
+"PO-Revision-Date: 2016-04-11 11:46+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -34,7 +34,7 @@ msgstr "თქვენი დამატება უნდა სრულდ
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% დასრულებულია"
 
@@ -194,7 +194,7 @@ msgstr ""
 
 #: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "ყველა უფლება დაცულია"
 
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
@@ -242,7 +242,7 @@ msgstr ""
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "კატეგორია"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
@@ -316,7 +316,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
-msgstr ""
+msgstr "მეტი ინფო..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451

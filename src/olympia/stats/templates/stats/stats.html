@@ -25,50 +25,6 @@
 
 {% block navbar %}
 <header>
-  <div class="criteria island">
-    <ul>
-      <li>{{ _('Controls:') }}</li>
-      <li>
-        <a id="chart-zoomout" class="inactive" href="#">
-             {{ _('reset zoom') }}
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="criteria group island">
-    <ul>
-      <li>{{ _('Group by:') }}</li>
-      <li data-group="day">
-          <a class="group-day" href="#">{{ _('day') }}</a>
-      </li>
-      <li data-group="week">
-          <a class="group-week" href="#">{{ _('week') }}</a>
-      </li>
-      <li data-group="month">
-          <a class="group-month" href="#">{{ _('month') }}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="criteria range island">
-    <ul>
-      <li>{{ _('For last:') }}</li>
-      <li data-range="7 days"
-          {% if range=='7' %}class="selected"{% endif %}>
-          <a class="days-7" href="#">{{ _('7 days') }}</a></li>
-      <li data-range="30 days"
-          {% if range=='30' %}class="selected"{% endif %}>
-          <a class="days-30" href="#">{{ _('30 days') }}</a></li>
-      <li data-range="90 days"
-          {% if range=='90' %}class="selected"{% endif %}>
-          <a href="#">{{ _('90 days') }}</a></li>
-      <li data-range="365 days"
-          {% if range=='365' %}class="selected"{% endif %}>
-          <a href="#">{{ _('365 days') }}</a></li>
-      <li data-range="custom"
-          {% if range=='custom' %}class="selected"{% endif %}>
-          <a id="custom-date-range" href="#">{{ _('Custom...') }}</a></li>
-    </ul>
-  </div>
   {% if addon %}
     {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
                            (addon.get_url_path(), addon.name),
@@ -95,6 +51,52 @@
       </h1>
     {% endif %}
   </hgroup>
+  <div class="stat-criteria">
+    <div class="criteria island">
+      <ul>
+        <li>{{ _('Controls:') }}</li>
+        <li>
+          <a id="chart-zoomout" class="inactive" href="#">
+               {{ _('reset zoom') }}
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="criteria group island">
+      <ul>
+        <li>{{ _('Group by:') }}</li>
+        <li data-group="day">
+            <a class="group-day" href="#">{{ _('day') }}</a>
+        </li>
+        <li data-group="week">
+            <a class="group-week" href="#">{{ _('week') }}</a>
+        </li>
+        <li data-group="month">
+            <a class="group-month" href="#">{{ _('month') }}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="criteria range island">
+      <ul>
+        <li>{{ _('For last:') }}</li>
+        <li data-range="7 days"
+            {% if range=='7' %}class="selected"{% endif %}>
+            <a class="days-7" href="#">{{ _('7 days') }}</a></li>
+        <li data-range="30 days"
+            {% if range=='30' %}class="selected"{% endif %}>
+            <a class="days-30" href="#">{{ _('30 days') }}</a></li>
+        <li data-range="90 days"
+            {% if range=='90' %}class="selected"{% endif %}>
+            <a href="#">{{ _('90 days') }}</a></li>
+        <li data-range="365 days"
+            {% if range=='365' %}class="selected"{% endif %}>
+            <a href="#">{{ _('365 days') }}</a></li>
+        <li data-range="custom"
+            {% if range=='custom' %}class="selected"{% endif %}>
+            <a id="custom-date-range" href="#">{{ _('Custom...') }}</a></li>
+      </ul>
+    </div>
+  </div>
 </header>
 {% endblock %}
 

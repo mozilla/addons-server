@@ -383,6 +383,8 @@ class EditorAllListTable(SQLTable, ItemStateTable):
         return safe_substitute(u'<span>%s</span>', row.version_date)
 
     def render_last_review(self, row):
+        if row.review_version_num is None:
+            return _('No Reviews')
         return safe_substitute(u'<span><em>%s</em> on %s</span>',
                                row.review_version_num, row.review_date)
 
@@ -402,7 +404,7 @@ class EditorAllListTable(SQLTable, ItemStateTable):
 
     @classmethod
     def default_order_by(cls):
-        return 'version_date'
+        return '-version_date'
 
 
 class ViewPendingQueueTable(EditorQueueTable):
@@ -562,8 +564,6 @@ class ReviewHelper:
                 actions['public'] = {'method': self.handler.process_public,
                                      'minimal': False,
                                      'label': label}
-            # An unlisted sideload add-on, which requests a full review, cannot
-            # be granted a preliminary review.
             if addon.is_listed or self.review_type == 'preliminary':
                 actions['prelim'] = {
                     'method': self.handler.process_preliminary,

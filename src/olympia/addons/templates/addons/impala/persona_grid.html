@@ -2,19 +2,19 @@
 {% for page in pages %}
   {% set first_page = loop.first %}
   <section>
-  {% for addon in page %}
-    <li>
-      <div class="persona hovercard">
-        <a href="{{ addon.get_url_path() }}">
-          <div class="persona-preview">
-            <img {{ 'src' if first_page else 'data-defer-src' }}="{{ addon.persona.thumb_url }}"
-                 data-browsertheme="{{ addon.persona.json_data }}" alt="">
-          </div>
-          <h3>{{ addon.name }}</h3>
-        </a>
-      </div>
-    </li>
-  {% endfor %}
+    {% for addon in page %}
+      <li>
+        <div class="persona hovercard">
+          <a href="{{ addon.get_url_path() }}">
+            <div class="persona-preview">
+              <img {{ 'src' if first_page else 'data-defer-src' }}="{{ addon.persona.thumb_url }}"
+                   data-browsertheme="{{ addon.persona.json_data }}" alt="">
+            </div>
+            <h3>{{ addon.name }}</h3>
+          </a>
+        </div>
+      </li>
+    {% endfor %}
   </section>
 {% endfor %}
 </ul>

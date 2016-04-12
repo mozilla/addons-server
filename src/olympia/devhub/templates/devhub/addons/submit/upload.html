@@ -28,19 +28,13 @@
         <span class="tip tooltip"
               title="{{ new_addon_form.is_unlisted.help_text }}">?</span>
       </label>
-      <label for="{{ new_addon_form.is_sideload.auto_id }}">
-        {{ new_addon_form.is_sideload }}
-        {{ new_addon_form.is_sideload.label }}
-        <span class="tip tooltip"
-              title="{{ new_addon_form.is_sideload.help_text }}">?</span>
-      </label>
     </div>
   </div>
   <input type="file" id="upload-addon"
     data-upload-url="{{ url('devhub.upload') }}"
     data-upload-url-listed="{{ url('devhub.upload') }}"
     data-upload-url-unlisted="{{ url('devhub.upload_unlisted') }}"
-    data-upload-url-sideload="{{ url('devhub.upload_sideload') }}">
+  >
 
   {{ new_addon_form.non_field_errors() }}
 

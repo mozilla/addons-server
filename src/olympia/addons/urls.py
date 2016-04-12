@@ -55,9 +55,6 @@ urlpatterns = patterns(
     url('^addons/buttons.js(?:/.+)?$', 'olympia.addons.buttons.js',
         name='addons.buttons.js'),
 
-    # For happy install button debugging.
-    url('^addons/smorgasbord$', 'olympia.addons.buttons.smorgasbord'),
-
     # Remora EULA and Privacy policy URLS
     ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
      lambda r, addon_id, file_id: redirect('addons.eula',

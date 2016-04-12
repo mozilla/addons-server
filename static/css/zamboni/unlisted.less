@@ -1,11 +1,13 @@
 .queue-inner table.data-grid {
-  table-layout:fixed;
-
   th:first-of-type {
     width: 20px;
   }
 
-  td * {
-    word-wrap: break-word;
+  td {
+    max-width: 18em;
+
+    * {
+      word-wrap: break-word;
+    }
   }
 }

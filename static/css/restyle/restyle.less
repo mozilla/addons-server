@@ -84,7 +84,6 @@ body.restyle {
   font-family: @primary-font;
   font-style: normal;
   line-height: 1.5;
-  min-width: @containerWidth;
 }
 
 h1,
@@ -214,6 +213,10 @@ button.link:active span {
   margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
   min-width: @containerWidth;
   width: 100vw;
+
+  .html-rtl & {
+    margin: 0 ~"calc(-1 * ((100vw - 100%) / 2))" 12px 0;
+  }
 }
 
 /*
@@ -278,9 +281,15 @@ button.link:active span {
   font-family: inherit;
 }
 
-body:not(.home) .amo-header {
+body:not(.home) .amo-header,
+.addon-details .header-bg,
+.home .header-bg {
   min-height: 130px;
   margin-bottom: 10px;
+}
+
+#site-nav ul {
+  margin-bottom: 0;
 }
 
 .menu-nav {
@@ -820,7 +829,8 @@ button,
 button.button,
 .button,
 a.button:link,
-input:not(.upvotes):not(.downvotes)[type="submit"] {
+input:not(.upvotes):not(.downvotes)[type="submit"],
+.persona-install button {
   background: #5784bf;
   border: none;
   border-radius: 3px;
@@ -841,7 +851,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.add {
     background: #57bd35;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-         inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
+          inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
+
     span:not(.os) {
       border: none;
       margin: 0;
@@ -908,7 +919,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
     background-image: url(../../img/impala/warning-bg.png);
     color: #333 !important;
 
-    span {
+    span,
+    span:not(.os) {
        background-position: 0 -317px;
     }
   }
@@ -983,8 +995,9 @@ a.button.release-theme-lock {
   margin-top: 0;
 }
 
+.addon-details .secondary,
 .category-landing .secondary,
-section.secondary {
+body:not(.developer-hub) section.secondary {
   .highlight {
     padding: 7px 0 0;
   }
@@ -1042,8 +1055,8 @@ section.secondary {
   font-family: inherit;
   font-style: normal;
 
-  #social-footer a {
-    color: @link-on-color-bg;
+  .links-footer a {
+    color: @link-on-color-bg !important;
   }
 }
 
@@ -1415,6 +1428,10 @@ h3.author .transfer-ownership {
   padding: 30px 0;
   width: 100vw;
 
+  .html-rtl& {
+    margin-right: ~"calc(-1 * ((100vw - 100%) / 2))";
+  }
+
   .carousel {
     margin: 0 auto;
     max-width: @pageWidth;
@@ -1485,7 +1502,7 @@ h3.author .transfer-ownership {
 .personas-featured .persona-list-3col {
   border: 0;
   min-height: 125px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .persona-list-3col {
@@ -1579,18 +1596,51 @@ h3.author .transfer-ownership {
       font-size: 12px;
     }
   }
+}
 
+.extra .button.disabled.not-available {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+  box-shadow: none;
+  color: @default-font-color;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 5px 14px 5px 28px;
+
+  .addon-description-header & {
+    border: 0;
+  }
 }
 
 .persona.hovercard {
   max-width: 200px;
 
+  .persona-install {
+    border: 0;
+    display: none;
+    float: right;
+    margin-top: 3px;
+    padding-bottom: 5px;
+    position: static;
+
+    button {
+      height: auto;
+      padding: 3px;
+    }
+  }
+
   &:hover {
-    margin-bottom: -12px;
-    height: 90px;
+    height: 100px;
+    margin-bottom: -22px;
+
+    .persona-install {
+      display: block;
+    }
   }
 
   h3 {
+    clear: none;
     font-size: 14px;
     margin: 0;
     padding: 6px 0 3px;
@@ -1648,7 +1698,9 @@ h3.author .transfer-ownership {
   text-shadow: none;
 }
 
+.addon.hovercard,
 .items .item.incompatible {
+
   .extra .button.not-available {
     display: none;
     float: right;
@@ -1656,9 +1708,30 @@ h3.author .transfer-ownership {
 
   &:focus .extra .button.not-available,
   &:hover .extra .button.not-available {
+    display: block !important;
+
+    span {
+      padding-left: 1rem;
+    }
+  }
+
+  .install-shell .install {
     display: block;
   }
 }
+
+.addon.hovercard,
+.items .item {
+
+  .button {
+    font-size: 1rem;
+  }
+
+  .more-versions {
+    padding-left: 1rem;
+  }
+}
+
 
 #addon .more-versions a {
   color: @link-on-white-bg;
@@ -1788,20 +1861,18 @@ h3.author .transfer-ownership {
   background: rgba(0, 0, 0, 0.5);
 }
 
-.login {
-  .primary.island {
-    border: 1px solid #ebebeb;
-    margin-top: 10px;
-  }
+.primary.island {
+  border: 1px solid #ebebeb;
+  margin-top: 10px;
+}
 
-  .prettyform .listing-footer {
-    background: none;
-    border-top: 0;
-  }
+.prettyform .listing-footer {
+  background: none;
+  border-top: 0;
+}
 
-  .prettyform .listing-footer {
-    background: none;
-  }
+.prettyform .listing-footer {
+  background: none;
 }
 
 // Theme detail page
@@ -1817,10 +1888,25 @@ h3.author .transfer-ownership {
   }
 }
 
-.statistics .primary {
-  float: left;
-  margin-left: 0;
-  width: 77%;
+.restyle.statistics {
+  #page {
+    max-width: @pageWidth;
+    min-width: @pageWidth;
+  }
+
+  .primary {
+    float: left;
+    margin-left: 0;
+    width: 74%;
+  }
+
+  .stat-criteria .island.criteria {
+    float: left;
+  }
+
+  .notification-box {
+    clear: both;
+  }
 }
 
 /* Editor pages */
@@ -1950,23 +2036,19 @@ body.editor-tools {
   }
 
   div.section {
-    ul.tabnav li.selected a {
-      padding-bottom: 5px;
-      background-color: #ffffff;
-      border-color: #ebebeb;
-      color: @default-font-color;
-    }
+    ul.tabnav {
+      li a {
+        padding-bottom: 5px;
+        background-color: #ecf5fe;
+        border-radius: 0;
+        color: @link-on-white-bg;
+      }
 
-    ul.tabnav li a {
-      background-color: #ecf5fe;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      color: @link-on-white-bg;
-    }
-
-    a:hover {
-      padding-bottom: 5px;
-      border-color: @primary-link;
+      li.selected a {
+        background-color: #ffffff;
+        border-color: #ebebeb;
+        color: @default-font-color;
+      }
     }
 
     .queue-outer {
@@ -1976,6 +2058,15 @@ body.editor-tools {
       .queue-inner {
         border-radius: 0;
         border: none;
+
+        .data-grid th.ordered {
+          background: #ffffff;
+        }
+
+        a,
+        a:visited {
+          color: @link-on-white-bg;
+        }
       }
     }
 
@@ -1992,6 +2083,10 @@ body.editor-tools {
       .article {
         border: @detail-border;
         border-radius: 0;
+      }
+
+      .results .files {
+        width: 230px;
       }
 
       div#review-actions {
@@ -2049,4 +2144,59 @@ body.editor-tools {
     }
   }
 
+}
+
+.listing .item .desc {
+  color: #777;
+  font-size: 1rem;
+}
+
+/* Source/Diff viewer */
+body.file-viewer {
+  pre, code, kbd, tt, samp, tt {
+    font-family: @mono-stack !important;
+  }
+
+  /* Notice. */
+  #file-viewer.messages-duplicate #files a.notice-duplicate,
+  #file-viewer.messages-signing #files a.notice-signing,
+  #file-viewer.messages-all #files a.notice,
+  /* Warning. */
+  #file-viewer.messages-duplicate #files a.warning-duplicate,
+  #file-viewer.messages-signing #files a.warning-signing,
+  #file-viewer.messages-all #files a.warning,
+  /* Error. */
+  #file-viewer.messages-duplicate #files a.error-duplicate,
+  #files a.error-signing,
+  #files a.error {
+    > span:after {
+      vertical-align: baseline;
+    }
+  }
+
+  #files {
+    width: 18em;
+
+    #files-tree {
+      a > span {
+        border-radius: 0;
+      }
+
+      .notice {
+        border-top: none;
+      }
+    }
+  }
+
+  #content-wrapper {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #content-wrapper,
+  #messages,
+  #thinking,
+  #validation-options {
+    padding-left: 19em;
+  }
 }

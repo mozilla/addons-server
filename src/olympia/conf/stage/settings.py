@@ -43,7 +43,8 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-SERVICES_URL = 'https://services.addons.allizom.org'
+SERVICES_URL = env('SERVICES_URL',
+                   default='https://services.addons.allizom.org')
 STATIC_URL = 'https://addons-stage-cdn.allizom.org/static/'
 MEDIA_URL = 'https://addons-stage-cdn.allizom.org/user-media/'
 

@@ -85,11 +85,19 @@
   </div>
 {% else %}
   <div class="persona hovercard">
-    <a href="{{ addon.get_url_path() }}">
+    <a href="{{ addon.get_url_path() }}" data-browsertheme="{{ addon.persona.json_data }}" class="persona-info">
       <div class="persona-preview">
         <img src="{{ addon.persona.thumb_url }}"
              data-browsertheme="{{ addon.persona.json_data }}" alt="">
       </div>
+      {% if linked %}
+        <div class="persona-install">
+          <button class="add">
+            <span class="disabled-icon">+</span>
+            <span>{{ _('Add') }}</span>
+          </button>
+        </div>
+      {% endif %}
       <h3>{{ addon.name }}</h3>
     </a>
   </div>
