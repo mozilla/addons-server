@@ -76,6 +76,30 @@ class AddonSerializerOutputTestMixin(object):
         assert result['url'] == absolutify(self.addon.get_url_path())
         return result
 
+    def test_no_current_version(self):
+        self.addon = addon_factory(name='lol')
+        self.addon.current_version.delete()
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['current_version'] is None
+
+    def test_no_current_version_files(self):
+        self.addon = addon_factory(name='lol')
+        # Just removing the last file deletes the version, so we have to be
+        # creative and replace the version manually with one that has no files.
+        self.addon.current_version.delete()
+        version = self.addon.versions.create(version='0.42')
+        self.addon._current_version = version
+        self.addon.save()
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['current_version']
+        assert result['current_version']['reviewed'] == version.reviewed
+        assert result['current_version']['version'] == version.version
+        assert result['current_version']['files'] == []
+
     def test_translations(self):
         translated_descriptions = {
             'en-US': u'My Addôn description in english',
@@ -107,7 +131,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         qs = Search(using=amo.search.get_es(),
                     index=AddonIndexer.get_index_alias(),
                     doc_type=AddonIndexer.get_doctype_name())
-        obj = qs.filter(id=self.addon.pk).execute()[0]
+        obj = qs.filter('term', id=self.addon.pk).execute()[0]
 
         with self.assertNumQueries(0):
             serializer = ESAddonSerializer(context={'request': self.request})
