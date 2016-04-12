@@ -9,7 +9,6 @@ from django.db.models import Q
 from django.test.utils import override_settings
 
 import mock
-from nose.tools import eq_, ok_
 from PIL import Image
 from pyquery import PyQuery as pq
 
@@ -100,16 +99,16 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
 
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         addon = self.get_addon()
 
-        eq_(unicode(addon.name), data['name'])
-        eq_(addon.name.id, old_name.id)
+        assert unicode(addon.name) == data['name']
+        assert addon.name.id == old_name.id
 
-        eq_(unicode(addon.slug), data['slug'])
-        eq_(unicode(addon.summary), data['summary'])
+        assert unicode(addon.slug) == data['slug']
+        assert unicode(addon.summary) == data['summary']
 
-        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
+        assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
@@ -117,17 +116,17 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
 
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         addon = self.get_addon()
 
-        eq_(addon.description, old_desc)
+        assert addon.description == old_desc
 
     def test_edit_slug_invalid(self):
         old_edit = self.basic_edit_url
         data = self.get_dict(name='', slug='invalid')
         r = self.client.post(self.basic_edit_url, data)
         doc = pq(r.content)
-        eq_(doc('form').attr('action'), old_edit)
+        assert doc('form').attr('action') == old_edit
 
     def test_edit_slug_valid(self):
         old_edit = self.basic_edit_url
@@ -140,59 +139,58 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
         data['summary'] = '<b>oh my</b>'
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         # Fetch the page so the LinkifiedTranslation gets in cache.
         r = self.client.get(reverse('devhub.addons.edit', args=[data['slug']]))
-        eq_(pq(r.content)('[data-name=summary]').html().strip(),
+        assert pq(r.content)('[data-name=summary]').html().strip() == (
             '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>')
 
         # Now make sure we don't have escaped content in the rendered form.
         form = AddonFormBasic(instance=self.get_addon(),
                               request=req_factory_factory('/'))
-        eq_(pq('<body>%s</body>' % form['summary'])(
-            '[lang="en-us"]').html().strip(),
-            '<b>oh my</b>')
+        html = pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html()
+        assert html.strip() == '<b>oh my</b>'
 
     def test_edit_as_developer(self):
         self.login('regular@mozilla.com')
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         # Make sure we get errors when they are just regular users.
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
         devuser = UserProfile.objects.get(pk=999)
         self.get_addon().addonuser_set.create(
             user=devuser, role=amo.AUTHOR_ROLE_DEV)
         r = self.client.post(self.basic_edit_url, data)
 
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         addon = self.get_addon()
 
-        eq_(unicode(addon.name), data['name'])
+        assert unicode(addon.name) == data['name']
 
-        eq_(unicode(addon.slug), data['slug'])
-        eq_(unicode(addon.summary), data['summary'])
+        assert unicode(addon.slug) == data['slug']
+        assert unicode(addon.summary) == data['summary']
 
-        eq_([unicode(t) for t in addon.tags.all()], sorted(self.tags))
+        assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
 
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertFormError(r, 'form', 'name', 'This field is required.')
 
     def test_edit_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertFormError(
             r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
@@ -202,23 +200,23 @@ class TestEditBasic(TestEdit):
         self.tags.insert(0, 'tag4')
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
-        eq_(result, ', '.join(sorted(self.tags)))
-        eq_((ActivityLog.objects.for_addons(self.addon)
-             .get(action=amo.LOG.ADD_TAG.id)).to_string(),
-            '<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
-            '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
-        eq_(ActivityLog.objects.filter(
-            action=amo.LOG.ADD_TAG.id).count(), count + 1)
+        assert result == ', '.join(sorted(self.tags))
+        html = ('<a href="/en-US/firefox/tag/tag4">tag4</a> added to '
+                '<a href="/en-US/firefox/addon/test_slug/">new name</a>.')
+        assert ActivityLog.objects.for_addons(self.addon).get(
+            action=amo.LOG.ADD_TAG.id).to_string() == html
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.ADD_TAG.id).count() == count + 1
 
     def test_edit_blacklisted_tag(self):
         Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
         data = self.get_dict(tags='blue')
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         error = 'Invalid tag: blue'
         self.assertFormError(r, 'form', 'tags', error)
@@ -228,7 +226,7 @@ class TestEditBasic(TestEdit):
         Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
         data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         error = 'Invalid tags: blue, darn'
         self.assertFormError(r, 'form', 'tags', error)
@@ -239,7 +237,7 @@ class TestEditBasic(TestEdit):
         Tag.objects.get_or_create(tag_text='swearword', blacklisted=True)
         data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         error = 'Invalid tags: blue, darn, swearword'
         self.assertFormError(r, 'form', 'tags', error)
@@ -250,21 +248,21 @@ class TestEditBasic(TestEdit):
         count = ActivityLog.objects.all().count()
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         result = pq(r.content)('#addon_tags_edit').eq(0).text()
 
-        eq_(result, ', '.join(sorted(self.tags)))
+        assert result == ', '.join(sorted(self.tags))
 
-        eq_(ActivityLog.objects.filter(action=amo.LOG.REMOVE_TAG.id).count(),
-            count + 1)
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.REMOVE_TAG.id).count() == count + 1
 
     def test_edit_minlength_tags(self):
         tags = self.tags
         tags.append('a' * (amo.MIN_TAG_LENGTH - 1))
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         self.assertFormError(r, 'form', 'tags',
                              'All tags must be at least %d characters.' %
@@ -288,22 +286,22 @@ class TestEditBasic(TestEdit):
         self.client.post(self.basic_edit_url, data)
 
         # Check that the tag did not get created.
-        eq_(start, Tag.objects.all().count())
+        assert start == Tag.objects.all().count()
 
     def test_edit_tag_slugified(self):
         data = self.get_dict(tags='<script>alert("foo")</script>')
         self.client.post(self.basic_edit_url, data)
         tag = Tag.objects.all().order_by('-pk')[0]
-        eq_(tag.tag_text, 'scriptalertfooscript')
+        assert tag.tag_text == 'scriptalertfooscript'
 
     def test_edit_categories_add(self):
-        eq_([c.id for c in self.get_addon().all_categories], [22])
+        assert [c.id for c in self.get_addon().all_categories] == [22]
         self.cat_initial['categories'] = [22, 23]
 
         self.client.post(self.basic_edit_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22, 23])
+        assert sorted(addon_cats) == [22, 23]
 
     def _feature_addon(self, addon_id=3615):
         c = CollectionAddon.objects.create(
@@ -320,11 +318,11 @@ class TestEditBasic(TestEdit):
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        assert r.context['cat_form'].errors[0]['categories'] == (
             ['Categories cannot be changed while your add-on is featured for '
              'this application.'])
         # This add-on's categories should not change.
-        eq_(sorted(addon_cats), [22])
+        assert sorted(addon_cats) == [22]
 
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
@@ -333,14 +331,14 @@ class TestEditBasic(TestEdit):
         self._feature_addon()
         r = self.client.get(self.basic_edit_url)
         doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
-        eq_(doc('#addon-categories-edit > p').length, 0)
+        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
+        assert doc('#addon-categories-edit > p').length == 0
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_('categories' in r.context['cat_form'].errors[0], False)
+        assert 'categories' not in r.context['cat_form'].errors[0]
         # This add-on's categories should change.
-        eq_(sorted(addon_cats), [22, 23])
+        assert sorted(addon_cats) == [22, 23]
 
     def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""
@@ -348,23 +346,23 @@ class TestEditBasic(TestEdit):
         self.cat_initial['categories'] = [22, 23]
         data = self.get_dict()
         self.client.post(self.basic_edit_url, data)
-        eq_(unicode(self.get_addon().name), data['name'])
+        assert unicode(self.get_addon().name) == data['name']
 
     def test_edit_categories_no_disclaimer(self):
         """Ensure that there is a not disclaimer for non-creatured add-ons."""
         r = self.client.get(self.basic_edit_url)
         doc = pq(r.content)
-        eq_(doc('#addon-categories-edit div.addon-app-cats').length, 1)
-        eq_(doc('#addon-categories-edit > p').length, 0)
+        assert doc('#addon-categories-edit div.addon-app-cats').length == 1
+        assert doc('#addon-categories-edit > p').length == 0
 
     def test_edit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=23).save()
-        eq_([c.id for c in self.get_addon().all_categories], [22, 23])
+        assert [c.id for c in self.get_addon().all_categories] == [22, 23]
 
         self.cat_initial['categories'] = [22, 24]
         self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22, 24])
+        assert sorted(addon_cats) == [22, 24]
 
     def test_edit_categories_xss(self):
         c = Category.objects.get(id=22)
@@ -381,27 +379,27 @@ class TestEditBasic(TestEdit):
     def test_edit_categories_remove(self):
         c = Category.objects.get(id=23)
         AddonCategory(addon=self.addon, category=c).save()
-        eq_([cat.id for cat in self.get_addon().all_categories], [22, 23])
+        assert [cat.id for cat in self.get_addon().all_categories] == [22, 23]
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.basic_edit_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        eq_(sorted(addon_cats), [22])
+        assert sorted(addon_cats) == [22]
 
     def test_edit_categories_required(self):
         del self.cat_initial['categories']
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        assert r.context['cat_form'].errors[0]['categories'] == (
             ['This field is required.'])
 
     def test_edit_categories_max(self):
-        eq_(amo.MAX_CATEGORIES, 2)
+        assert amo.MAX_CATEGORIES == 2
         self.cat_initial['categories'] = [22, 23, 24]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        assert r.context['cat_form'].errors[0]['categories'] == (
             ['You can have only 2 categories.'])
 
     def test_edit_categories_other_failure(self):
@@ -409,7 +407,7 @@ class TestEditBasic(TestEdit):
         self.cat_initial['categories'] = [22, 23]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        assert r.context['cat_form'].errors[0]['categories'] == (
             ['The miscellaneous category cannot be combined with additional '
              'categories.'])
 
@@ -417,7 +415,7 @@ class TestEditBasic(TestEdit):
         self.cat_initial['categories'] = [100]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
-        eq_(r.context['cat_form'].errors[0]['categories'],
+        assert r.context['cat_form'].errors[0]['categories'] == (
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
@@ -450,28 +448,28 @@ class TestEditBasic(TestEdit):
 
         res = self.client.get(self.basic_edit_url)
         divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
-        eq_(len(divs), 2)
+        assert len(divs) == 2
         assert 'restartless' in divs.eq(1).text()
 
     def test_text_not_none_when_has_flags(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#addon-flags').text(), 'This is a site-specific add-on.')
+        assert doc('#addon-flags').text() == 'This is a site-specific add-on.'
 
     def test_text_none_when_no_flags(self):
         addon = self.get_addon()
         addon.update(external_software=False, site_specific=False)
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#addon-flags').text(), 'None')
+        assert doc('#addon-flags').text() == 'None'
 
     def test_nav_links(self):
         activity_url = reverse('devhub.feed', args=['a3615'])
         r = self.client.get(self.url)
         doc = pq(r.content)('#edit-addon-nav')
-        eq_(doc('ul:last').find('li a').eq(1).attr('href'),
+        assert doc('ul:last').find('li a').eq(1).attr('href') == (
             activity_url)
-        eq_(doc('.view-stats').length, 1)
+        assert doc('.view-stats').length == 1
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',
@@ -482,20 +480,20 @@ class TestEditBasic(TestEdit):
         Addon.objects.get(id=3615).update(default_locale='en-US')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'en-us')
+            assert pq(r.content)('#l10n-menu').attr('data-default') == 'en-us'
 
     def test_l10n_not_us(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
+            assert pq(r.content)('#l10n-menu').attr('data-default') == 'fr'
 
     def test_l10n_not_us_id_url(self):
         Addon.objects.get(id=3615).update(default_locale='fr')
         for url in self.get_l10n_urls():
             url = '/id' + url[6:]
             r = self.client.get(url)
-            eq_(pq(r.content)('#l10n-menu').attr('data-default'), 'fr')
+            assert pq(r.content)('#l10n-menu').attr('data-default') == 'fr'
 
 
 class TestEditMedia(TestEdit):
@@ -525,36 +523,36 @@ class TestEditMedia(TestEdit):
     def test_icon_upload_attributes(self):
         doc = pq(self.client.get(self.media_edit_url).content)
         field = doc('input[name=icon_upload]')
-        eq_(field.length, 1)
-        eq_(sorted(field.attr('data-allowed-types').split('|')),
+        assert field.length == 1
+        assert sorted(field.attr('data-allowed-types').split('|')) == (
             ['image/jpeg', 'image/png'])
-        eq_(field.attr('data-upload-url'), self.icon_upload)
+        assert field.attr('data-upload-url') == self.icon_upload
 
     def test_edit_media_defaulticon(self):
         data = dict(icon_type='')
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         assert addon.get_icon_url(64).endswith('icons/default-64.png')
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_media_preuploadedicon(self):
         data = dict(icon_type='icon/appearance')
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         assert addon.get_icon_url(64).endswith('icons/appearance-64.png')
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_media_uploadedicon(self):
         img = get_image_path('mozilla.png')
@@ -572,7 +570,7 @@ class TestEditMedia(TestEdit):
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         # Unfortunate hardcoding of URL
@@ -580,7 +578,7 @@ class TestEditMedia(TestEdit):
         assert ('addon_icons/3/%s' % addon.id) in url, (
             'Unexpected path: %r' % url)
 
-        eq_(data['icon_type'], 'image/png')
+        assert data['icon_type'] == 'image/png'
 
         # Check that it was actually uploaded
         dirname = os.path.join(user_media_path('addon_icons'),
@@ -589,13 +587,13 @@ class TestEditMedia(TestEdit):
 
         assert storage.exists(dest)
 
-        eq_(Image.open(storage.open(dest)).size, (32, 12))
+        assert Image.open(storage.open(dest)).size == (32, 12)
 
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
         log = ActivityLog.objects.all()
-        eq_(log.count(), 1)
-        eq_(log[0].action, amo.LOG.CHANGE_ICON.id)
+        assert log.count() == 1
+        assert log[0].action == amo.LOG.CHANGE_ICON.id
 
     def test_edit_media_uploadedicon_noresize(self):
         img = "static/img/notifications/error.png"
@@ -613,7 +611,7 @@ class TestEditMedia(TestEdit):
         data_formset = self.formset_media(**data)
 
         r = self.client.post(self.media_edit_url, data_formset)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         # Unfortunate hardcoding of URL
@@ -621,7 +619,7 @@ class TestEditMedia(TestEdit):
         assert addon_url.endswith('addon_icons/3/%s-64.png' % addon.id), (
             'Unexpected path: %r' % addon_url)
 
-        eq_(data['icon_type'], 'image/png')
+        assert data['icon_type'] == 'image/png'
 
         # Check that it was actually uploaded
         dirname = os.path.join(user_media_path('addon_icons'),
@@ -630,7 +628,7 @@ class TestEditMedia(TestEdit):
 
         assert storage.exists(dest)
 
-        eq_(Image.open(storage.open(dest)).size, (48, 48))
+        assert Image.open(storage.open(dest)).size == (48, 48)
 
     def check_image_type(self, url, msg):
         img = 'static/js/zamboni/devhub.js'
@@ -638,7 +636,7 @@ class TestEditMedia(TestEdit):
 
         res = self.client.post(url, {'upload_image': src_image})
         response_json = json.loads(res.content)
-        eq_(response_json['errors'][0], msg)
+        assert response_json['errors'][0] == msg
 
     def test_edit_media_icon_wrong_type(self):
         self.check_image_type(self.icon_upload,
@@ -716,7 +714,7 @@ class TestEditMedia(TestEdit):
 
         res = self.client.post(url, {'upload_image': filehandle})
         response_json = json.loads(res.content)
-        eq_(response_json['errors'][0], msg)
+        assert response_json['errors'][0] == msg
 
     def test_icon_animated(self):
         self.check_image_animated(self.icon_upload,
@@ -753,7 +751,7 @@ class TestEditMedia(TestEdit):
     def test_edit_media_preview_add(self):
         self.preview_add()
 
-        eq_(str(self.get_addon().previews.all()[0].caption), 'hi')
+        assert str(self.get_addon().previews.all()[0].caption) == 'hi'
 
     def test_edit_media_preview_edit(self):
         self.preview_add()
@@ -768,8 +766,8 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.media_edit_url, data_formset)
 
-        eq_(str(self.get_addon().previews.all()[0].caption), 'bye')
-        eq_(len(self.get_addon().previews.all()), 1)
+        assert str(self.get_addon().previews.all()[0].caption) == 'bye'
+        assert len(self.get_addon().previews.all()) == 1
 
     def test_edit_media_preview_reorder(self):
         self.preview_add(3)
@@ -788,15 +786,15 @@ class TestEditMedia(TestEdit):
 
         # Add them in backwards ("third", "second", "first")
         data_formset = self.formset_media(c, b, a, initial_count=3)
-        eq_(data_formset['files-0-caption'], 'third')
-        eq_(data_formset['files-1-caption'], 'second')
-        eq_(data_formset['files-2-caption'], 'first')
+        assert data_formset['files-0-caption'] == 'third'
+        assert data_formset['files-1-caption'] == 'second'
+        assert data_formset['files-2-caption'] == 'first'
 
         self.client.post(self.media_edit_url, data_formset)
         # They should come out "first", "second", "third"
-        eq_(str(self.get_addon().previews.all()[0].caption), 'first')
-        eq_(str(self.get_addon().previews.all()[1].caption), 'second')
-        eq_(str(self.get_addon().previews.all()[2].caption), 'third')
+        assert str(self.get_addon().previews.all()[0].caption) == 'first'
+        assert str(self.get_addon().previews.all()[1].caption) == 'second'
+        assert str(self.get_addon().previews.all()[2].caption) == 'third'
 
     def test_edit_media_preview_delete(self):
         self.preview_add()
@@ -811,18 +809,18 @@ class TestEditMedia(TestEdit):
 
         self.client.post(self.media_edit_url, data_formset)
 
-        eq_(len(self.get_addon().previews.all()), 0)
+        assert len(self.get_addon().previews.all()) == 0
 
     def test_edit_media_preview_add_another(self):
         self.preview_add()
         self.preview_add()
 
-        eq_(len(self.get_addon().previews.all()), 2)
+        assert len(self.get_addon().previews.all()) == 2
 
     def test_edit_media_preview_add_two(self):
         self.preview_add(2)
 
-        eq_(len(self.get_addon().previews.all()), 2)
+        assert len(self.get_addon().previews.all()) == 2
 
 
 class TestEditDetails(TestEdit):
@@ -838,11 +836,11 @@ class TestEditDetails(TestEdit):
                     homepage='http://twitter.com/fligtarsmom')
 
         r = self.client.post(self.details_edit_url, data)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_xss(self):
         """
@@ -854,7 +852,7 @@ class TestEditDetails(TestEdit):
         self.addon.save()
         r = self.client.get(self.url)
         doc = pq(r.content)
-        eq_(doc('#edit-addon-details span[lang]').html(),
+        assert doc('#edit-addon-details span[lang]').html() == (
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
 
     def test_edit_homepage_optional(self):
@@ -862,11 +860,11 @@ class TestEditDetails(TestEdit):
                     default_locale='en-US', homepage='')
 
         r = self.client.post(self.details_edit_url, data)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
@@ -883,32 +881,32 @@ class TestEditDetails(TestEdit):
         # We can't use assertFormError here, because the missing fields are
         # stored in a dict, which isn't ordered.
         form_error = r.context['form'].non_field_errors()[0]
-        ok_(form_error.startswith(error))
-        ok_("'description'" in form_error)
-        ok_("'name'" in form_error)
-        ok_("'summary'" in form_error)
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
+        assert "'name'" in form_error
+        assert "'summary'" in form_error
 
         # Now we have a name.
         self.addon.name = {'fr': 'fr name'}
         self.addon.save()
         r = self.client.post(self.details_edit_url, d)
         form_error = r.context['form'].non_field_errors()[0]
-        ok_(form_error.startswith(error))
-        ok_("'description'" in form_error)
-        ok_("'summary'" in form_error)
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
+        assert "'summary'" in form_error
 
         # Now we have a summary.
         self.addon.summary = {'fr': 'fr summary'}
         self.addon.save()
         r = self.client.post(self.details_edit_url, d)
         form_error = r.context['form'].non_field_errors()[0]
-        ok_(form_error.startswith(error))
-        ok_("'description'" in form_error)
+        assert form_error.startswith(error)
+        assert "'description'" in form_error
 
         # Now we're sending an fr description with the form.
         d['description_fr'] = 'fr description'
         r = self.client.post(self.details_edit_url, d)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
 
     def test_edit_default_locale_frontend_error(self):
         d = dict(description='xx', homepage='https://staticfil.es/',
@@ -920,7 +918,8 @@ class TestEditDetails(TestEdit):
         addon = self.get_addon()
         addon.update(default_locale='en-US')
         r = self.client.get(self.details_url)
-        eq_(pq(r.content)('.addon_edit_locale').eq(0).text(), 'English (US)')
+        assert pq(r.content)('.addon_edit_locale').eq(0).text() == (
+            'English (US)')
 
 
 class TestEditSupport(TestEdit):
@@ -935,33 +934,33 @@ class TestEditSupport(TestEdit):
                     support_url='http://apple.com/')
 
         r = self.client.post(self.support_edit_url, data)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_support_optional_url(self):
         data = dict(support_email='sjobs@apple.com',
                     support_url='')
 
         r = self.client.post(self.support_edit_url, data)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
     def test_edit_support_optional_email(self):
         data = dict(support_email='',
                     support_url='http://apple.com/')
 
         r = self.client.post(self.support_edit_url, data)
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
         addon = self.get_addon()
 
         for k in data:
-            eq_(unicode(getattr(addon, k)), data[k])
+            assert unicode(getattr(addon, k)) == data[k]
 
 
 class TestEditTechnical(TestEdit):
@@ -993,10 +992,10 @@ class TestEditTechnical(TestEdit):
     def test_log(self):
         data = self.formset({'developer_comments': 'This is a test'})
         o = ActivityLog.objects
-        eq_(o.count(), 0)
+        assert o.count() == 0
         r = self.client.post(self.technical_edit_url, data)
-        eq_(r.context['form'].errors, {})
-        eq_(o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count(), 1)
+        assert r.context['form'].errors == {}
+        assert o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count() == 1
 
     def test_technical_on(self):
         # Turn everything on
@@ -1007,25 +1006,25 @@ class TestEditTechnical(TestEdit):
                     whiteboard='Whiteboard info.')
 
         r = self.client.post(self.technical_edit_url, self.formset(data))
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
 
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+                assert unicode(getattr(addon, k)) == unicode(data[k])
             elif k == 'whiteboard':
-                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+                assert unicode(getattr(addon, k)) == unicode(data[k])
             else:
-                eq_(getattr(addon, k), True if data[k] == 'on' else False)
+                assert getattr(addon, k) == (data[k] == 'on')
 
         # Andddd offf
         data = dict(developer_comments='Test comment!')
         r = self.client.post(self.technical_edit_url, self.formset(data))
         addon = self.get_addon()
 
-        eq_(addon.external_software, False)
-        eq_(addon.site_specific, False)
-        eq_(addon.view_source, False)
+        assert not addon.external_software
+        assert not addon.site_specific
+        assert not addon.view_source
 
     def test_technical_devcomment_notrequired(self):
         data = dict(developer_comments='',
@@ -1033,14 +1032,14 @@ class TestEditTechnical(TestEdit):
                     site_specific='on',
                     view_source='on')
         r = self.client.post(self.technical_edit_url, self.formset(data))
-        eq_(r.context['form'].errors, {})
+        assert r.context['form'].errors == {}
 
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                eq_(unicode(getattr(addon, k)), unicode(data[k]))
+                assert unicode(getattr(addon, k)) == unicode(data[k])
             else:
-                eq_(getattr(addon, k), True if data[k] == 'on' else False)
+                assert getattr(addon, k) == (data[k] == 'on')
 
     def test_auto_repackage_not_shown(self):
         f = self.addon.current_version.all_files[0]
@@ -1058,53 +1057,53 @@ class TestEditTechnical(TestEdit):
 
     def test_dependencies_none(self):
         AddonDependency.objects.all().delete()
-        eq_(list(self.addon.all_dependencies), [])
+        assert list(self.addon.all_dependencies) == []
         r = self.client.get(self.technical_url)
-        eq_(pq(r.content)('#required-addons .empty').length, 1)
+        assert pq(r.content)('#required-addons .empty').length == 1
 
     def test_dependencies_overview(self):
-        eq_([d.id for d in self.addon.all_dependencies], [5579])
+        assert [d.id for d in self.addon.all_dependencies] == [5579]
         r = self.client.get(self.technical_url)
         req = pq(r.content)('#required-addons')
-        eq_(req.length, 1)
-        eq_(req.attr('data-src'),
+        assert req.length == 1
+        assert req.attr('data-src') == (
             reverse('devhub.ajax.dependencies', args=[self.addon.slug]))
-        eq_(req.find('li').length, 1)
+        assert req.find('li').length == 1
         a = req.find('a')
-        eq_(a.attr('href'), self.dependent_addon.get_url_path())
-        eq_(a.text(), unicode(self.dependent_addon.name))
+        assert a.attr('href') == self.dependent_addon.get_url_path()
+        assert a.text() == unicode(self.dependent_addon.name)
 
     def test_dependencies_initial(self):
         r = self.client.get(self.technical_edit_url)
         form = pq(r.content)('#required-addons .dependencies li[data-addonid]')
-        eq_(form.length, 1)
-        eq_(form.find('input[id$=-dependent_addon]').val(),
+        assert form.length == 1
+        assert form.find('input[id$=-dependent_addon]').val() == (
             str(self.dependent_addon.id))
         div = form.find('div')
-        eq_(div.attr('style'),
+        assert div.attr('style') == (
             'background-image:url(%s)' % self.dependent_addon.icon_url)
         a = div.find('a')
-        eq_(a.attr('href'), self.dependent_addon.get_url_path())
-        eq_(a.text(), unicode(self.dependent_addon.name))
+        assert a.attr('href') == self.dependent_addon.get_url_path()
+        assert a.text() == unicode(self.dependent_addon.name)
 
     def test_dependencies_add(self):
         addon = Addon.objects.get(id=5299)
-        eq_(addon.type, amo.ADDON_EXTENSION)
-        eq_(addon in list(Addon.objects.reviewed()), True)
+        assert addon.type == amo.ADDON_EXTENSION
+        assert addon in list(Addon.objects.reviewed())
 
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
-        eq_(any(r.context['dependency_form'].errors), False)
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids([self.dependent_addon.id, addon.id])
 
         r = self.client.get(self.technical_edit_url)
         reqs = pq(r.content)('#required-addons .dependencies')
-        eq_(reqs.find('li[data-addonid]').length, 2)
+        assert reqs.find('li[data-addonid]').length == 2
         req = reqs.find('li[data-addonid=5299]')
-        eq_(req.length, 1)
+        assert req.length == 1
         a = req.find('div a')
-        eq_(a.attr('href'), addon.get_url_path())
-        eq_(a.text(), unicode(addon.name))
+        assert a.attr('href') == addon.get_url_path()
+        assert a.text() == unicode(addon.name)
 
     def test_dependencies_limit(self):
         deps = Addon.objects.reviewed().exclude(
@@ -1116,7 +1115,7 @@ class TestEditTechnical(TestEdit):
             args.append({'dependent_addon': dep.id})
         d = self.dep_formset(*args)
         r = self.client.post(self.technical_edit_url, d)
-        eq_(r.context['dependency_form'].non_form_errors(),
+        assert r.context['dependency_form'].non_form_errors() == (
             ['There cannot be more than 3 required add-ons.'])
 
     def test_dependencies_limit_with_deleted_form(self):
@@ -1131,17 +1130,17 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset(*args)
         r = self.client.post(self.technical_edit_url, d)
-        eq_(any(r.context['dependency_form'].errors), False)
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids(deps.values_list('id', flat=True))
 
     def check_dep_ids(self, expected=[]):
         a = AddonDependency.objects.values_list('dependent_addon__id',
                                                 flat=True)
-        eq_(sorted(list(a)), sorted(expected))
+        assert sorted(list(a)) == sorted(expected)
 
     def check_bad_dep(self, r):
         """This helper checks that bad dependency data doesn't go through."""
-        eq_(r.context['dependency_form'].errors[1]['dependent_addon'],
+        assert r.context['dependency_form'].errors[1]['dependent_addon'] == (
             ['Select a valid choice. That choice is not one of the available '
              'choices.'])
         self.check_dep_ids([self.dependent_addon.id])
@@ -1152,10 +1151,10 @@ class TestEditTechnical(TestEdit):
         for status in amo.REVIEWED_STATUSES:
             addon.update(status=status)
 
-            eq_(addon in list(Addon.objects.reviewed()), True)
+            assert addon in list(Addon.objects.reviewed())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
-            eq_(any(r.context['dependency_form'].errors), False)
+            assert not any(r.context['dependency_form'].errors)
             self.check_dep_ids([self.dependent_addon.id, addon.id])
 
             AddonDependency.objects.get(dependent_addon=addon).delete()
@@ -1166,7 +1165,7 @@ class TestEditTechnical(TestEdit):
         for status in amo.UNREVIEWED_STATUSES:
             addon.update(status=status)
 
-            eq_(addon in list(Addon.objects.reviewed()), False)
+            assert addon not in list(Addon.objects.reviewed())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
             self.check_bad_dep(r)
@@ -1174,8 +1173,8 @@ class TestEditTechnical(TestEdit):
     def test_dependencies_no_add_reviewed_persona(self):
         """Ensure that reviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
-        eq_(addon.type, amo.ADDON_PERSONA)
-        eq_(addon in list(Addon.objects.reviewed()), True)
+        assert addon.type == amo.ADDON_PERSONA
+        assert addon in list(Addon.objects.reviewed())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
@@ -1184,8 +1183,8 @@ class TestEditTechnical(TestEdit):
         """Ensure that unreviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         addon.update(status=amo.STATUS_UNREVIEWED)
-        eq_(addon.status, amo.STATUS_UNREVIEWED)
-        eq_(addon in list(Addon.objects.reviewed()), False)
+        assert addon.status == amo.STATUS_UNREVIEWED
+        assert addon not in list(Addon.objects.reviewed())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
@@ -1206,7 +1205,7 @@ class TestEditTechnical(TestEdit):
         """Ensure that an add-on cannot be made dependent more than once."""
         d = self.dep_formset({'dependent_addon': self.dependent_addon.id})
         r = self.client.post(self.technical_edit_url, d)
-        eq_(r.context['dependency_form'].forms[1].non_field_errors(),
+        assert r.context['dependency_form'].forms[1].non_field_errors() == (
             ['Addon dependency with this Addon and Dependent addon already '
              'exists.'])
         self.check_dep_ids([self.dependent_addon.id])
@@ -1215,7 +1214,7 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset(total_count=1, initial_count=1)
         r = self.client.post(self.technical_edit_url, d)
-        eq_(any(r.context['dependency_form'].errors), False)
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids()
 
     def test_dependencies_add_delete(self):
@@ -1223,7 +1222,7 @@ class TestEditTechnical(TestEdit):
         self.dep['DELETE'] = True
         d = self.dep_formset({'dependent_addon': 5299})
         r = self.client.post(self.technical_edit_url, d)
-        eq_(any(r.context['dependency_form'].errors), False)
+        assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids([5299])
 
 
@@ -1241,7 +1240,7 @@ class TestAdmin(TestCase):
         self.login_admin()
         url = reverse('devhub.addons.edit', args=['a3615'])
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertContains(r, 'Admin Settings')
         assert 'admin_form' in r.context, 'AdminForm expected in context.'
 
@@ -1249,7 +1248,7 @@ class TestAdmin(TestCase):
         self.login_user()
         url = reverse('devhub.addons.edit', args=['a3615'])
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertNotContains(r, 'Admin Settings')
         assert 'admin_form' not in r.context, (
             'AdminForm not expected in context.')
@@ -1258,13 +1257,13 @@ class TestAdmin(TestCase):
         self.login_admin()
         url = reverse('devhub.addons.admin', args=['a3615'])
         r = self.client.post(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_post_as_nonadmin(self):
         self.login_user()
         url = reverse('devhub.addons.admin', args=['a3615'])
         r = self.client.post(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
 
 class TestThemeEdit(TestCase):
