@@ -13,9 +13,9 @@ from django.core.files import temp
 from django.utils.translation import trim_whitespace
 
 import mock
+import pytest
 import waffle
 from jingo.helpers import datetime as datetime_filter
-from nose.tools import assert_raises
 from PIL import Image
 from pyquery import PyQuery as pq
 
@@ -1760,7 +1760,7 @@ class TestSubmitStep6(TestSubmitBase):
         r = self.client.post(self.url, d)
         assert r.status_code == 302
         assert self.get_addon().status == amo.STATUS_UNREVIEWED
-        assert_raises(SubmitStep.DoesNotExist, self.get_step)
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_full_review(self):
         self.get_version().update(nomination=None)
@@ -1770,7 +1770,7 @@ class TestSubmitStep6(TestSubmitBase):
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
         self.assertCloseToNow(self.get_version().nomination)
-        assert_raises(SubmitStep.DoesNotExist, self.get_step)
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
 
     def test_nomination_date_is_only_set_once(self):
         # This was a regression, see bug 632191.

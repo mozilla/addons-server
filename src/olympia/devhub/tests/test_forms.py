@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
-from nose import SkipTest
+import pytest
 from PIL import Image
 
 from olympia import amo, paypal
@@ -374,10 +374,10 @@ class TestThemeForm(TestCase):
     @mock.patch('olympia.addons.tasks.make_checksum')
     @mock.patch('olympia.addons.tasks.create_persona_preview_images')
     @mock.patch('olympia.addons.tasks.save_persona_image')
+    @pytest.mark.skipif(not hasattr(Image.core, 'jpeg_encoder'),
+                        reason='Not having a jpeg encoder makes test sad')
     def test_success(self, save_persona_image_mock,
                      create_persona_preview_images_mock, make_checksum_mock):
-        if not hasattr(Image.core, 'jpeg_encoder'):
-            raise SkipTest
         make_checksum_mock.return_value = 'hashyourselfbeforeyoucrashyourself'
 
         self.request.user = UserProfile.objects.get(pk=2519)

@@ -9,7 +9,6 @@ from django.db import connection, models
 from django.db.models import Q
 
 import pytest
-from nose.tools import raises
 
 from olympia.amo.tests import BaseTestCase
 from olympia.editors.sql_model import RawSQLModel
@@ -136,13 +135,13 @@ class TestSQLModel(BaseTestCase):
         c = Summary.objects.all().having('total =', 1).get()
         assert c.category == 'apparel'
 
-    @raises(Summary.DoesNotExist)
     def test_get_no_object(self):
-        Summary.objects.all().having('total =', 999).get()
+        with self.assertRaises(Summary.DoesNotExist):
+            Summary.objects.all().having('total =', 999).get()
 
-    @raises(Summary.MultipleObjectsReturned)
     def test_get_many(self):
-        Summary.objects.all().get()
+        with self.assertRaises(Summary.MultipleObjectsReturned):
+            Summary.objects.all().get()
 
     def test_slice1(self):
         qs = Summary.objects.all()[0:1]
@@ -171,9 +170,9 @@ class TestSQLModel(BaseTestCase):
             c.product for c in
             ProductDetail.objects.all().order_by('product')[2:3]]
 
-    @raises(IndexError)
     def test_negative_slices_not_supported(self):
-        Summary.objects.all()[:-1]
+        with self.assertRaises(IndexError):
+            Summary.objects.all()[:-1]
 
     def test_order_by(self):
         c = Summary.objects.all().order_by('category')[0]
@@ -187,9 +186,9 @@ class TestSQLModel(BaseTestCase):
         c = ProductDetail.objects.all().order_by('-product')[0]
         assert c.product == 'snake skin jacket'
 
-    @raises(ValueError)
     def test_order_by_injection(self):
-        Summary.objects.order_by('category; drop table foo;')[0]
+        with self.assertRaises(ValueError):
+            Summary.objects.order_by('category; drop table foo;')[0]
 
     def test_filter(self):
         c = Summary.objects.all().filter(category='apparel')[0]
@@ -244,18 +243,19 @@ class TestSQLModel(BaseTestCase):
         c = Summary.objects.all().having('total >=', 2)[0]
         assert c.category == 'safety'
 
-    @raises(ValueError)
     def test_invalid_raw_filter_spec(self):
-        Summary.objects.all().filter_raw(
-            """category = 'apparel'; drop table foo;
-               select * from foo where category = 'apparel'""", 'apparel')[0]
+        with self.assertRaises(ValueError):
+            Summary.objects.all().filter_raw(
+                """category = 'apparel'; drop table foo;
+                   select * from foo where category = 'apparel'""",
+                'apparel')[0]
 
-    @raises(ValueError)
     def test_filter_field_injection(self):
         f = ("c.name = 'apparel'; drop table foo; "
              "select * from sql_model_test_cat where c.name = 'apparel'")
-        c = Summary.objects.all().filter(**{f: 'apparel'})[0]
-        assert c.category == 'apparel'
+        with self.assertRaises(ValueError):
+            c = Summary.objects.all().filter(**{f: 'apparel'})[0]
+            assert c.category == 'apparel'
 
     def test_filter_value_injection(self):
         v = ("'apparel'; drop table foo; "
