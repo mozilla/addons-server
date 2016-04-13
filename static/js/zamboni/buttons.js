@@ -274,6 +274,7 @@ var installButton = function() {
             warn(gettext('Not available for your platform'));
             $button.addClass('concealed');
             $button.first().css('display', 'inherit');
+            $button.closest('.item.addon').addClass('incompatible');
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
@@ -290,6 +291,7 @@ var installButton = function() {
                 }
                 $button.closest('div').attr('data-version-supported', false);
                 $button.addClass('concealed');
+                $button.closest('.item.addon').addClass('incompatible');
 
                 var $ishell = $button.closest('.install-shell');
                 if (!compatible && $d2c_reasons.children().length) {
@@ -323,6 +325,7 @@ var installButton = function() {
                             [z.appName, z.browserVersion]));
                 $button.closest('div').attr('data-version-supported', false);
                 $button.addClass('concealed');
+                $button.closest('.item.addon').addClass('incompatible');
                 if (!opts.addPopup) return;
 
                 if (badPlatform && olderBrowser) {
