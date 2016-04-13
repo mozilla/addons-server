@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-08 22:08+0000\n"
+"PO-Revision-Date: 2016-04-13 22:02+0000\n"
 "Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1379,7 +1379,7 @@ msgid "No Restart"
 msgstr "Nevyžaduje reštart"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Spoznajte vývojára: <a href=\"%(url)s\">%(name)s</a>"
@@ -2547,6 +2547,10 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p> Zadajte prosím <strong>všetky slová</strong> nižšie a <strong>oddeľte "
+"ich medzerami</strong>, ak je to nutné. </p> <p> Ak sa nedajú prečítať, "
+"môžete <a href=\"#\" id=\"recaptcha_different\">skúsiť iné slová</a> alebo "
+"<a href=\"#\" id=\"recaptcha_audio\">iný typ overenia</a>. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html:4
 #: src/olympia/amo/templates/amo/side_nav.html:12
@@ -2739,6 +2743,9 @@ msgid ""
 "must include one with the required properties as specified <a "
 "href=\"%(url)s\">here</a>."
 msgstr ""
+"Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte "
+"zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané <a "
+"href=\"%(url)s\">tu</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:44
@@ -3745,6 +3752,9 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a href=\"https://developer.mozilla.org/sk/Add-"
+"ons/Creating_OpenSearch_plugins_for_Firefox\">Vytvorte si vlastný</a> "
+"vyhľadávací modul"
 
 #: src/olympia/browse/templates/browse/themes.html:6
 #: src/olympia/browse/templates/browse/themes.html:9
@@ -4556,7 +4566,7 @@ msgstr "Autor môžete byť uvedený len raz."
 
 #: src/olympia/devhub/forms.py:94
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Nesprávny názov URL."
 
 #: src/olympia/devhub/forms.py:106
 msgid "Invalid JSON object"
