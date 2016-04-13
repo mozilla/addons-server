@@ -20,7 +20,7 @@
     {% endtrans %}</p>
     <p><a href="{{ app_url }}" class="button">{{ _('Learn more about Firefox') }}</a></p>
     <p>{% trans %}
-      or <b><a class="installer" href="{url}">download anyway</a></b>
+      or <b><a class="button installer" href="{url}">download anyway</a></b>
     {% endtrans %}</p>
   {% elif APP == amo.THUNDERBIRD %}
     <p class="msg m-learn-more">{% trans %}
@@ -127,7 +127,7 @@
 
 {% macro platform_link() %}
 {# js vars: href, msg #}
-  <li><a class="installer" href="{href}">{msg}</a></li>
+  <li><a class="button installer" href="{href}">{msg}</a></li>
 {% endmacro %}
 
 {% macro not_compatible() %}
