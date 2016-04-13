@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-11 12:28+0000\n"
+"PO-Revision-Date: 2016-04-12 20:20+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -140,6 +140,7 @@ msgstr[0] "თქვენ მხოლოდ {0} კატეგორია �
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
+"სხვადასხვა კატეგორიის დამატებით კატეგორიებთან გაერთიანება შეუძლებელია."
 
 #: src/olympia/addons/forms.py:369
 #, python-format
@@ -150,28 +151,29 @@ msgstr ""
 
 #: src/olympia/addons/forms.py:484 src/olympia/addons/forms.py:575
 msgid "A license must be selected."
-msgstr ""
+msgstr "ლიცენზიის არჩევა აუცილებელია."
 
 #: src/olympia/addons/forms.py:556
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "დაარქვით თემას სახელი."
 
 #: src/olympia/addons/forms.py:562
 #: src/olympia/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "აღწერეთ თქვენი თემა."
 
 #: src/olympia/addons/forms.py:704
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "შეიყვანეთ ავტორის ახალი ელ-ფოსტის მისამართი"
 
 #: src/olympia/addons/helpers.py:35
 msgid "Not Reviewed"
-msgstr ""
+msgstr "განუხილველია"
 
 #: src/olympia/addons/models.py:301
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
+"მომხმარებლებს შეუძლიათ ამ რაოდენობაზე მეტი ან ნაკლები თანხის შემოწირვა."
 
 #: src/olympia/addons/models.py:309
 msgid ""
@@ -183,70 +185,70 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/index.html:92
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:102
 msgid "Listed"
-msgstr ""
+msgstr "სიაშია"
 
 #: src/olympia/addons/views.py:320
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr ""
+msgstr "მოთხოვნადი"
 
 #: src/olympia/addons/views.py:321 src/olympia/browse/views.py:238
 #: src/olympia/browse/views.py:280 src/olympia/browse/views.py:482
 msgid "Recently Added"
-msgstr ""
+msgstr "ბოლოს დამატებული"
 
 #: src/olympia/addons/views.py:322 src/olympia/bandwagon/views.py:99
 #: src/olympia/browse/views.py:60 src/olympia/browse/views.py:71
 #: src/olympia/search/forms.py:16 src/olympia/search/forms.py:91
 msgid "Recently Updated"
-msgstr ""
+msgstr "ბოლოს განახლებული"
 
 #. l10n: {0} is the addon name
 #: src/olympia/addons/views.py:520
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "{0}-სთვის შემომწირველი"
 
 #: src/olympia/addons/views.py:613
 msgid "Abuse reported."
-msgstr ""
+msgstr "შეტყობინება უკანონოდ გამოყენების შესახებ."
 
 #: src/olympia/addons/widgets.py:49
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "ჩემი დამატება არცერთ კატეგორიას არ შეესაბამება"
 
 #: src/olympia/addons/templates/addons/button.html:27
 #: src/olympia/addons/templates/addons/impala/button.html:11
 #: src/olympia/addons/templates/addons/mobile/button.html:11
 msgid "No compatible versions"
-msgstr ""
+msgstr "თავსებადი ვერსიები არაა"
 
 #: src/olympia/addons/templates/addons/button.html:35
 #: src/olympia/addons/templates/addons/impala/button.html:19
 msgid "Added to Mobile"
-msgstr ""
+msgstr "დამატებულია ტელეფონში"
 
 #: src/olympia/addons/templates/addons/button.html:37
 #: src/olympia/addons/templates/addons/impala/button.html:21
 msgid "Add to Mobile"
-msgstr ""
+msgstr "ტელეფონში დამატება"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html:66
 #: src/olympia/addons/templates/addons/includes/install_button.html:19
 msgid "for {0}"
-msgstr ""
+msgstr "{0} -სთვის"
 
 #: src/olympia/addons/templates/addons/button.html:82
 #: src/olympia/addons/templates/addons/mobile/button.html:23
 msgid "View privacy policy"
-msgstr ""
+msgstr "პრივატულობის პოლიტიკის ნახვა"
 
 #: src/olympia/addons/templates/addons/button.html:87
 #: src/olympia/addons/templates/addons/details_box.html:133
 #: src/olympia/addons/templates/addons/mobile/button.html:28
 #: src/olympia/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "მომხმარებლის სალიცენზიო შეთანხმების ნახვა"
 
 #: src/olympia/addons/templates/addons/button.html:92
 #: src/olympia/addons/templates/addons/impala/button.html:54
@@ -255,6 +257,8 @@ msgid ""
 "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn "
 "more</a>"
 msgstr ""
+"ეს დამატება არ არის განხილული Mozilla-ს მიერ. <a "
+"href=\"%(url)s\">დაწვრილებით</a>"
 
 #: src/olympia/addons/templates/addons/button.html:97
 #: src/olympia/addons/templates/addons/impala/button.html:60
@@ -318,13 +322,13 @@ msgstr "ან"
 
 #: src/olympia/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "შემოთავაზებული შემოწირულობა: %S"
 
 #: src/olympia/addons/templates/addons/contribution.html:48
 #: src/olympia/amo/templates/amo/recaptcha.html:5
 #: src/olympia/versions/templates/versions/version.html:52
 msgid "What's this?"
-msgstr ""
+msgstr "რა არის ეს?"
 
 #: src/olympia/addons/templates/addons/contribution.html:63
 #, python-format
@@ -350,7 +354,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
-msgstr ""
+msgstr "შემოწირულობის გაღება"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:9
 #, python-format
@@ -414,34 +418,34 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13
 #: src/olympia/templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(არასავალდებულო)"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
-msgstr ""
+msgstr "შემოწირულობის გაღება"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:82
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "PayPal-თან დაკავშირება"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:83
 msgid "No Thanks"
-msgstr ""
+msgstr "არა, გმადლობთ"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:86
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "შემოწირულობა მიღებულია, გმადლობთ."
 
 #: src/olympia/addons/templates/addons/details_box.html:10
 #: src/olympia/discovery/templates/discovery/addons/detail.html:19
 msgid "No restart required"
-msgstr ""
+msgstr "გადატვირთვას არ საჭიროებს"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html:26
 #: src/olympia/addons/templates/addons/includes/persona.html:9
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "დამატების შესახებ მონაცემები {0}-ისთვის"
 
 #: src/olympia/addons/templates/addons/details_box.html:30
 #: src/olympia/addons/templates/addons/persona_detail_table.html:3
@@ -456,7 +460,7 @@ msgstr "განახლებული"
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:43
 #: src/olympia/discovery/templates/discovery/addons/detail.html:77
 msgid "Website"
-msgstr ""
+msgstr "საიტი"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/addons/templates/addons/details_box.html:47
@@ -464,23 +468,23 @@ msgstr ""
 #: src/olympia/search/templates/search/results.html:72
 #: src/olympia/versions/templates/versions/version.html:21
 msgid "Works with"
-msgstr ""
+msgstr "მუშაობს ვერსიასთან"
 
 #: src/olympia/addons/templates/addons/details_box.html:52
 msgid "Visibility"
-msgstr ""
+msgstr "ხილულობა"
 
 #: src/olympia/addons/templates/addons/details_box.html:57
 #: src/olympia/devhub/templates/devhub/index.html:94
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:104
 msgid "Hidden"
-msgstr ""
+msgstr "დამალული"
 
 #: src/olympia/addons/templates/addons/details_box.html:59
 #: src/olympia/devhub/templates/devhub/index.html:96
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:106
 msgid "Unlisted"
-msgstr ""
+msgstr "სიის გარეთ"
 
 #: src/olympia/addons/templates/addons/details_box.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
@@ -496,7 +500,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/add.html:57
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
-msgstr ""
+msgstr "შეფასება"
 
 #: src/olympia/addons/templates/addons/details_box.html:85
 #: src/olympia/browse/views.py:461 src/olympia/devhub/views.py:77
@@ -504,14 +508,14 @@ msgstr ""
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8
 #: src/olympia/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr ""
+msgstr "ჩამოტვირთვები"
 
 #: src/olympia/addons/templates/addons/details_box.html:91
 #: src/olympia/addons/templates/addons/details_box.html:103
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: src/olympia/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
-msgstr ""
+msgstr "სტატისტიკის ნახვა"
 
 #: src/olympia/addons/templates/addons/details_box.html:97
 msgid "Average Daily Users"
@@ -530,16 +534,16 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:20
 #: src/olympia/templates/mobile/base_addons.html:87
 msgid "Privacy Policy"
-msgstr ""
+msgstr "პრივატულობის პოლიტიკა"
 
 #: src/olympia/addons/templates/addons/details_box.html:124
 #: src/olympia/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "პრივატულობის პოლიტიკა"
 
 #: src/olympia/addons/templates/addons/details_box.html:130
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/details_box.html:171
 #: src/olympia/addons/templates/addons/details_box.html:231
@@ -553,12 +557,12 @@ msgstr ""
 #: src/olympia/addons/templates/addons/details_box.html:190
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "შემქმნელის კომენტარები"
 
 #: src/olympia/addons/templates/addons/details_box.html:199
 #: src/olympia/addons/templates/addons/impala/details.html:259
 msgid "Development Channel"
-msgstr ""
+msgstr "განვითარების არხი"
 
 #: src/olympia/addons/templates/addons/details_box.html:202
 #: src/olympia/addons/templates/addons/mobile/details.html:124
@@ -567,6 +571,9 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
+"განვითარების არხი საშუალებას გაძლევთ გასინჯოთ ამ დამატების ახალი "
+"ექსპერიმენტალური ვერსიები მათ საჯაროდ გამოშვებამდე. განვითარების ვერსიის "
+"დაყენების შემდეგ, განახლებებს მიიღებთ პირდაპირ ამ არხიდან."
 
 #: src/olympia/addons/templates/addons/details_box.html:207
 msgid "Install development version"
@@ -584,7 +591,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/details_box.html:220
 #: src/olympia/addons/templates/addons/impala/details.html:278
 msgid "Version {0}:"
-msgstr ""
+msgstr "ვერის {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
@@ -601,7 +608,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/eula.html:6
 #: src/olympia/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "მომხმარებლის სალიცენზიო შეთანხმება {0}-სთვის"
 
 #: src/olympia/addons/templates/addons/eula.html:17
 #: src/olympia/addons/templates/addons/eula.html:21
@@ -649,11 +656,11 @@ msgstr ""
 #: src/olympia/browse/views.py:236 src/olympia/browse/views.py:281
 #: src/olympia/browse/views.py:481
 msgid "Most Popular"
-msgstr ""
+msgstr "ყველაზე მოთხოვნადი"
 
 #: src/olympia/addons/templates/addons/home.html:43
 msgid "All »"
-msgstr ""
+msgstr "ყველა »"
 
 #: src/olympia/addons/templates/addons/home.html:52
 #: src/olympia/addons/templates/addons/home.html:61
@@ -661,7 +668,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/home.html:78
 #: src/olympia/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "ყველას ნახვა »"
 
 #: src/olympia/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
@@ -671,7 +678,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
 #: src/olympia/discovery/templates/discovery/pane.html:74
 msgid "Featured Themes"
-msgstr ""
+msgstr "გამორჩეული თემები"
 
 #: src/olympia/addons/templates/addons/home.html:77
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
@@ -683,7 +690,7 @@ msgstr "რეკლამირებული კოლექციები"
 #: src/olympia/amo/templates/amo/mobile/sort_by.html:2
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:118
 msgid "Sort by:"
-msgstr ""
+msgstr "დალაგება:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -706,13 +713,13 @@ msgstr "განახლებული {0}"
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr ""
+msgstr "დამატებულია {0}"
 
 #: src/olympia/addons/templates/addons/macros.html:18
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
+msgstr[0] "%(num)s ყოველკვირეული ჩამოტვირთვები"
 
 #: src/olympia/addons/templates/addons/macros.html:28
 #, python-format
@@ -725,7 +732,7 @@ msgstr[0] "%(num)s მომხმარებელი"
 #: src/olympia/addons/templates/addons/impala/details.html:61
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
+msgstr[0] "{0} ყოველკვირეული ჩამოტვირთვები"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/macros.html:61
@@ -738,11 +745,11 @@ msgstr[0] "{0} მომხმარებელი"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "გადახდა გაუქმებულია"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "გადახდა შესრულებულია"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
@@ -799,7 +806,7 @@ msgstr "მხატვარი"
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:14
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr ""
+msgstr "დღიური მომხმარებლები"
 
 #. The License for this add-on.
 #: src/olympia/addons/templates/addons/persona_detail_table.html:26
@@ -809,23 +816,23 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:89
 #: src/olympia/editors/templates/editors/themes/themes.html:41
 msgid "License"
-msgstr ""
+msgstr "ლიცენზია"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:12
 #: src/olympia/constants/base.py:48
 msgid "Awaiting Review"
-msgstr ""
+msgstr "ელოდება განხილვას"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:14
 #: src/olympia/amo/log.py:180 src/olympia/constants/base.py:42
 #: src/olympia/editors/helpers.py:62
 msgid "Rejected"
-msgstr ""
+msgstr "უარყოფილია"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:16
 #: src/olympia/amo/log.py:159
 msgid "Approved"
-msgstr ""
+msgstr "მიღებულია"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/persona_preview.html:26
@@ -843,7 +850,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/persona_preview.html:48
 #: src/olympia/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "დამატება"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:57
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16
@@ -858,7 +865,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:29
 #: src/olympia/editors/templates/editors/review.html:257
 msgid "Edit"
-msgstr ""
+msgstr "ჩასწორება"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -877,7 +884,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reviews_link.html:21
 #: src/olympia/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr ""
+msgstr "ჯერ არაა შეფასებული"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
@@ -892,7 +899,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:21
 #: src/olympia/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "გაიგეთ მეტი Firefox-ის შესახებ"
 
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
@@ -915,7 +922,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "გაიგეთ მეტი Thunderbird-ის შესახებ"
 
 #: src/olympia/addons/templates/addons/popups.html:48
 msgid ""
@@ -932,16 +939,16 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:140
 #: src/olympia/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr ""
+msgstr "ჩადგმა ნებისმიერ შემთხვევაში"
 
 #: src/olympia/addons/templates/addons/popups.html:71
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "ეს დამატება ითხოვს Firefox-ის იმ ვერსიას, რომელიც ჯერ არ გამოსულა."
 
 #: src/olympia/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "დაგვეხმარეთ Firefox-ის ახალი ვერსიების შემოწმებაში"
 
 #: src/olympia/addons/templates/addons/popups.html:77
 #, python-format
@@ -1020,7 +1027,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:328
 msgid "Report Abuse"
-msgstr ""
+msgstr "შეტყობინება უკანონო გამოყენების შესახებ"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:10
 #, python-format
@@ -1033,7 +1040,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/report_abuse.html:24
 #: src/olympia/users/templates/users/report_abuse.html:19
 msgid "Send Report"
-msgstr ""
+msgstr "შეტყობინების გაგზავნა"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:26
 #: src/olympia/addons/templates/addons/mobile/eula.html:16
@@ -1059,36 +1066,36 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 #: src/olympia/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:3
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:5
 msgid "What do you think?"
-msgstr ""
+msgstr "არ აზრის ხართ?"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:7
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:9
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "მიმოხილვის გასაგზავნათ, გთხოვთ <a href=\"%(login)s\">შედით</a> ანგარიშში"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:16
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:18
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "სათაური:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:17
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:19
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr ""
+msgstr "მიმოხილვა:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:18
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:20
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr ""
+msgstr "შეფასება:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:19
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:21
@@ -1096,7 +1103,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/edit_review.html:15
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "შეფასების გაგზავნა"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:24
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:26
@@ -1105,6 +1112,9 @@ msgid ""
 " available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
+"გთხოვთ, მიმოხილვაში ხარვეზებზე არ ისაუბროთ. შემქმნელისთვის თქვენი ელ-ფოსტის "
+"მისამართი არაა ხელმისაწვდომი, გაუმართაობის აღმოსაფხვრელად კი შეიძლება, "
+"თქვენთან დაკავშირება იყოს საჭირო."
 
 #: src/olympia/addons/templates/addons/review_add_box.html:32
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:35
@@ -1129,7 +1139,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/review_list.html:19
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr ""
+msgstr "მიმოხილვები"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:14
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:14
@@ -1141,7 +1151,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/review_list_box.html:19
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "შემქმნელის პასუხის ჩვენება, ამ მიმოხილვაზე"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:27
 #, python-format
@@ -1152,7 +1162,7 @@ msgstr[0] ""
 #: src/olympia/addons/templates/addons/tags_box.html:3
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
-msgstr ""
+msgstr "ჭდეები"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:7
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:9
@@ -1210,25 +1220,25 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "საშუალო"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "დაწერეთ მიმოხილვა"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "მსგავსი კატეგორიები"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
-msgstr "ამ კოლექციების ნაწილი"
+msgstr "ამ კრებულების ნაწილი"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
+msgstr[0] "ამ ავტორის სხვა დამატებები"
 
 #: src/olympia/addons/templates/addons/impala/details.html:41
 #, python-format
@@ -1238,11 +1248,11 @@ msgstr[0] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:69
 msgid "View statistics"
-msgstr ""
+msgstr "სტატისტიკის ნახვა"
 
 #: src/olympia/addons/templates/addons/impala/details.html:84
 msgid "Manage"
-msgstr ""
+msgstr "მართვა"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:96
@@ -1252,7 +1262,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html:103
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "გადაუტვირთავად"
 
 #: src/olympia/addons/templates/addons/impala/details.html:127
 #, python-format
@@ -1271,11 +1281,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:182
 msgid "Add-on home page"
-msgstr ""
+msgstr "დამატების საშინაო გვერდი"
 
 #: src/olympia/addons/templates/addons/impala/details.html:185
 msgid "Support site"
-msgstr ""
+msgstr "მხარდაჭერის საიტი"
 
 #: src/olympia/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
@@ -1296,7 +1306,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html:195
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:129
 msgid "Last Updated:"
-msgstr ""
+msgstr "ბოლო განახლება:"
 
 #: src/olympia/addons/templates/addons/impala/details.html:200
 #, python-format
@@ -1310,7 +1320,7 @@ msgstr ""
 #: src/olympia/versions/templates/versions/version.html:40
 #: src/olympia/versions/templates/versions/version.html:45
 msgid "Custom License"
-msgstr ""
+msgstr "საკუთარი ლიცენზია"
 
 #: src/olympia/addons/templates/addons/impala/details.html:205
 #, python-format
@@ -1331,7 +1341,7 @@ msgstr "ვერსიის ინფორმაცია"
 
 #: src/olympia/addons/templates/addons/impala/details.html:250
 msgid "See complete version history"
-msgstr ""
+msgstr "ვერსიის სრული ისტორია"
 
 #: src/olympia/addons/templates/addons/impala/details.html:262
 msgid ""
@@ -1341,6 +1351,11 @@ msgid ""
 "stop receiving development updates, reinstall the default version from the "
 "link above."
 msgstr ""
+"განვითარების არხი საშუალებას გაძლევთ გასინჯოთ ამ დამატების ახალი "
+"ექსპერიმენტალური ვერსიები მათ საჯაროდ გამოშვებამდე. განვითარების ვერსიის "
+"დაყენების შემდეგ, განახლებებს მიიღებთ პირდაპირ ამ არხიდან. განვითარების "
+"განახლებების მიღების შესაწყვეტად, ხელახლა დააყენეთ ნაგულისხმევი ვერსია ზემოთ"
+" მოცემული ბმულით."
 
 #: src/olympia/addons/templates/addons/impala/details.html:272
 msgid ""
@@ -1350,7 +1365,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:287
 msgid "See complete development channel history"
-msgstr ""
+msgstr "იხილეთ განვითარების არხის სრული ისტორია"
 
 #: src/olympia/addons/templates/addons/impala/details.html:306
 #: src/olympia/addons/templates/addons/impala/details.html:315
@@ -1361,7 +1376,7 @@ msgstr ""
 #: src/olympia/stats/templates/stats/stats.html:202
 #: src/olympia/users/templates/users/profile.html:119
 msgid "close"
-msgstr ""
+msgstr "დახურვა"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html:9
@@ -1390,13 +1405,13 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
+msgstr[0] "შემქმნელების შესახებ"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:96
 #: src/olympia/users/templates/users/edit.html:130
 #: src/olympia/users/templates/users/profile.html:26
 msgid "No Photo"
-msgstr ""
+msgstr "ფოტო არაა"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
@@ -1433,7 +1448,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html:98
 #: src/olympia/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "გადათარგმნა"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:36
 #, python-format
@@ -1444,49 +1459,49 @@ msgstr[0] "ყველა %(cnt)s მომხმარებლის მი�
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "ეს დამატების მიმოხილვა, ჯერ არავის გაუკეთებია."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "იყავით პირველი!"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:14
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:49
 msgid "More"
-msgstr ""
+msgstr "დამატებით"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:7
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr ""
+msgstr "რჩეულ ნაკრებში დამატება"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
 #: src/olympia/devhub/templates/devhub/index.html:73
 #: src/olympia/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
-msgstr ""
+msgstr "ჩემი დამატებები"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 #: src/olympia/amo/context_processors.py:51
 msgid "My Themes"
-msgstr ""
+msgstr "ჩემი თემები"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Firefox-ზე დამატება"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "თემის ჩასწორება"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "მიღება / უარყოფა"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 #: src/olympia/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "მიმოხილვის ისტორია"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1502,7 +1517,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "ჯერ არაა შეფასებული"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:27
@@ -1514,17 +1529,17 @@ msgstr[0] ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "იხილეთ მეტი"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "მომხმარებლები"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:92
 #: src/olympia/browse/views.py:59 src/olympia/browse/views.py:70
 #: src/olympia/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "ყოველკვირეული ჩამოტვირთვები"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:99
 #: src/olympia/compat/templates/compat/reporter_detail.html:46
@@ -1540,7 +1555,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "ყველა ვერსიის ნახვა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
@@ -1548,11 +1563,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "გაფრთხილება"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "მხარდაჭერის საიტზე შესვლა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
@@ -1560,7 +1575,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "სალიცენზიო შეთანხმება"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:5
 #, python-format
@@ -1571,12 +1586,12 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "მიღება"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:10
 #: src/olympia/templates/mobile/base_addons.html:53
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "დამატებები ჯერჯერობით არაა ხელმისავსომი Firefox-ის iOS ვერსიაზე."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:12
 #: src/olympia/templates/mobile/base_addons.html:55
@@ -1584,6 +1599,8 @@ msgid ""
 "You need Firefox to install add-ons. <a "
 "href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"დამატებების დასაყენებლად საჭიროა Firefox. <a "
+"href=\"http://mozilla.com/mobile\">დაწვრილებით&nbsp;&raquo;</a>"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:19
 #: src/olympia/templates/header_title.html:4
@@ -1604,7 +1621,7 @@ msgstr ""
 #: src/olympia/templates/impala/header_title.html:23
 #: src/olympia/templates/mobile/base_addons.html:47
 msgid "Add-ons"
-msgstr ""
+msgstr "დამატებები"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:23
 msgid "Easy ways to personalize."
@@ -1617,7 +1634,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/modules/featured.html:21
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr ""
+msgstr "გაიგეთ მეტი"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:26
 msgid ""
@@ -1653,21 +1670,21 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/home.html:51
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "ყველა რჩეული დამატების ნახვა"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:57
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "ყველა მოთხოვნადი დამატების ნახვა"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
-msgstr ""
+msgstr "მეტი დამატებები"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:72
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:64
 #: src/olympia/search/forms.py:14
 msgid "Highest Rated"
-msgstr ""
+msgstr "უმაღლესი შეფასების მქონე"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:74
 #: src/olympia/amo/templates/amo/side_nav.html:5
@@ -1678,7 +1695,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
 #: src/olympia/search/forms.py:15 src/olympia/search/forms.py:87
 msgid "Newest"
-msgstr ""
+msgstr "უახლესი"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
@@ -1691,19 +1708,19 @@ msgstr ""
 #: src/olympia/amo/context_processors.py:39
 #: src/olympia/devhub/templates/devhub/nav.html:43
 msgid "Tools"
-msgstr ""
+msgstr "ხელსაწყოები"
 
 #: src/olympia/amo/context_processors.py:48
 #: src/olympia/discovery/templates/discovery/pane_account.html:8
 #: src/olympia/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "ჩემი პროფილი"
 
 #: src/olympia/amo/context_processors.py:54
 #: src/olympia/users/templates/users/edit.html:5
 #: src/olympia/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
-msgstr ""
+msgstr "ანგარიშის პარამეტრები"
 
 #: src/olympia/amo/context_processors.py:57
 #: src/olympia/discovery/templates/discovery/pane_account.html:11
@@ -1716,14 +1733,14 @@ msgstr "ჩემი კოლექციები"
 #: src/olympia/discovery/templates/discovery/pane_account.html:10
 #: src/olympia/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr ""
+msgstr "ჩემი რჩეულები"
 
 #: src/olympia/amo/context_processors.py:67
 #: src/olympia/discovery/templates/discovery/pane_account.html:13
 #: src/olympia/templates/impala/user_login.html:14
 #: src/olympia/templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr ""
+msgstr "გასვლა"
 
 #: src/olympia/amo/context_processors.py:72
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:4
@@ -1961,7 +1978,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py:511
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "კომენტარი"
 
 #: src/olympia/amo/log.py:245
 msgid "{tag} added to {addon}."
@@ -2053,7 +2070,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py:369
 msgid "Password changed."
-msgstr ""
+msgstr "პაროლი შეიცვალა."
 
 #: src/olympia/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
@@ -2081,7 +2098,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py:404
 msgid "Account updated."
-msgstr ""
+msgstr "ანგარიში განახლდა."
 
 #: src/olympia/amo/log.py:409
 msgid "Escalation cleared for {addon}."
@@ -2117,7 +2134,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py:444
 msgid "Video removed"
-msgstr ""
+msgstr "ვიდეო წაშლილია"
 
 #: src/olympia/amo/log.py:449
 msgid "{addon} re-review because of new device(s) added."
@@ -2770,7 +2787,7 @@ msgstr[0] "<span>%(num)s</span> მიმდევარი"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
-msgstr ""
+msgstr "ამ კოლექციის შესახებ"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
@@ -6267,7 +6284,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:306
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:97
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "ბოლო განახლება: 13 იანვარი, 2011"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:13
 #, python-format
@@ -6483,7 +6500,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "ბოლო განახლება: 31 იანვარი, 2013"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:7
@@ -8406,7 +8423,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/addons/detail.html:70
 msgid "Last Updated"
-msgstr ""
+msgstr "ბოლო განახლება"
 
 #: src/olympia/discovery/templates/discovery/addons/eula.html:27
 msgid "Cancel Installation"
@@ -13005,7 +13022,7 @@ msgstr ""
 #: src/olympia/templates/amo_footer.html:6
 #: src/olympia/templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "სხვა ენები"
 
 #: src/olympia/templates/base.html:9 src/olympia/templates/impala/base.html:9
 #: src/olympia/templates/mobile/base_addons.html:9
@@ -14371,7 +14388,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/mobile/version.html:29
 msgid "Works with:"
-msgstr ""
+msgstr "მუშაობს ვერსიასთან:"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html:12

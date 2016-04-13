@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-11 11:46+0000\n"
+"PO-Revision-Date: 2016-04-12 20:17+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -424,7 +424,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "ინფორმაციის გვერდი (განვითარების არხი)"
 
 #: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64
@@ -832,15 +832,15 @@ msgstr[0] ""
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js:66
 msgid "Accept and Install"
-msgstr ""
+msgstr "მიღება და ინსტალაცია"
 
 #: static/js/zamboni/buttons.js:66
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0}-ში დამატება"
 
 #: static/js/zamboni/buttons.js:71
 msgid "Download Now"
-msgstr ""
+msgstr "ჩამოტვირთვა ახლავე"
 
 #: static/js/zamboni/buttons.js:112
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -848,12 +848,12 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:117
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "თქვენ უნდა იყენებდეთ Firefox 10.0-ს ან უფრო მაღალ ვერსიას."
 
 #: static/js/zamboni/buttons.js:129
 msgid ""
 "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla ეს ვერსია თქვენი Firefox-ის ვერსიასთან შეუთავსებლად მონიშნა."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js:210
@@ -875,7 +875,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:341
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "მუშაობს {app} ვერსიებთან: {min} - {max}"
 
 #: static/js/zamboni/buttons.js:343
 msgid "View other versions"
@@ -1068,6 +1068,8 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
+"ვებ-საიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. "
+"გთხოვთ, შემოიარეთ მოგვიანებით."
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
