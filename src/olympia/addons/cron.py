@@ -278,9 +278,7 @@ def deliver_hotness():
 @cronjobs.register
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
-    ids = (Addon.with_unlisted.values_list('id', flat=True)
-           .filter(_current_version__isnull=False,
-                   status__in=amo.VALID_STATUSES))
+    ids = Addon.unfiltered.values_list('id', flat=True)
     if addon_type:
         ids = ids.filter(type=addon_type)
     ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))

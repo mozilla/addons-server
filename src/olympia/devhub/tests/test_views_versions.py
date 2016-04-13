@@ -205,8 +205,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
-    @mock.patch('olympia.devhub.views.unindex_addons')
-    def test_user_can_unlist_addon(self, unindex):
+    def test_user_can_unlist_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
         res = self.client.post(self.unlist_url)
@@ -215,16 +214,12 @@ class TestVersion(TestCase):
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
 
-        # Make sure we remove the addon from the search index.
-        assert unindex.delay.called
-
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg
 
-    @mock.patch('olympia.devhub.views.unindex_addons')
-    def test_user_can_unlist_hidden_addon(self, unindex):
+    def test_user_can_unlist_hidden_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
                           is_listed=True)
         res = self.client.post(self.unlist_url)
@@ -233,9 +228,6 @@ class TestVersion(TestCase):
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
         assert not addon.disabled_by_user
-
-        # Make sure we remove the addon from the search index.
-        assert unindex.delay.called
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id

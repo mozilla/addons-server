@@ -479,9 +479,6 @@ class Addon(OnChangeMixin, ModelBase):
         for preview in previews:
             tasks.delete_preview_files.delay(preview)
 
-        # Remove from search index.
-        tasks.unindex_addons.delay([id])
-
         return True
 
     @classmethod

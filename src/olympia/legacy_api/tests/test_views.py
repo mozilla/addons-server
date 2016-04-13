@@ -996,6 +996,18 @@ class SearchTest(ESTestCase):
         self.assertContains(response, """<searchresults total_results="3">""")
         self.assertContains(response, "</addon>", 1)
 
+    def test_unlisted_are_ignored(self):
+        """
+        Test that unlisted add-ons are not shown.
+        """
+        addon = Addon.objects.get(pk=3615)
+        addon.update(is_listed=False)
+        self.refresh()
+        response = self.client.get(
+            "/en-US/firefox/api/1.2/search/delicious")
+        self.assertContains(response, """<searchresults total_results="0">""")
+        self.assertContains(response, "</addon>", 0)
+
     def test_compat_mode_url(self):
         """
         Test the compatMode paramenter in the URL is optional and only accepts

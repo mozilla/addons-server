@@ -852,7 +852,8 @@ class ESTestCase(TestCase):
     @classmethod
     def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
-        [o.save() for o in model.objects.all()]
+        manager = getattr(model, 'unfiltered', model.objects)
+        [o.save() for o in manager.all()]
         cls.refresh(index)
 
     @classmethod
