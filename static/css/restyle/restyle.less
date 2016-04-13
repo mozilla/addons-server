@@ -840,10 +840,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
   box-sizing: border-box;
   color: #fff;
   font-family: @primary-font;
-  font-size: 1.077rem;
+  font-size: 1rem;
   height: auto;
   line-height: 1.5;
-  padding: 8px 16px 9px;
+  padding: 8px 14px 9px;
   position: relative;
   text-shadow: none;
   transition: box-shadow linear 0.25s;
@@ -948,10 +948,6 @@ a.button.release-theme-lock {
   span {
     top: 0;
   }
-}
-
-.button:nth-child(n+1) {
-  margin-right: 5px;
 }
 
 .header-search .search-button {
@@ -1725,16 +1721,15 @@ h3.author .transfer-ownership {
 
 .addon.hovercard,
 .items .item {
-
-  .button {
-    font-size: 1rem;
-  }
-
   .more-versions {
     padding-left: 1rem;
   }
 }
 
+
+.dependencies .addon.hovercard:hover .summary {
+  height: 55px;
+}
 
 #addon .more-versions a {
   color: @link-on-white-bg;
@@ -1966,7 +1961,7 @@ body.editor-tools {
     }
 
     a:hover {
-        background: #ebf4fe;
+      background: #ebf4fe;
     }
   }
 
