@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-08 02:43+0000\n"
+"PO-Revision-Date: 2016-04-12 17:58+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2596,7 +2596,7 @@ msgstr "Mais&hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html:82
 msgid "Add-ons for Mobile"
-msgstr "Extras para o Mobile"
+msgstr "Extras para dispositivos móveis"
 
 #: src/olympia/amo/templates/amo/site_nav.html:86
 #: src/olympia/browse/feeds.py:207
