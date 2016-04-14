@@ -68,6 +68,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int current_version.id: The id for that version.
     :>json string current_version.reviewed: The date that version was reviewed at.
     :>json string current_version.version: The version number string for that version.
+    :>json string current_version.edit_url: The URL to the developer edit page for this version.
     :>json array current_version.files: Array holding information about the files for that version.
     :>json int current_version.files[].id: The id for a file.
     :>json string current_version.files[].created: The creation date for a file.
@@ -77,11 +78,13 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string current_version.files[].url: The (absolute) URL to download a file.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description.
+    :>json string edit_url: The URL to the developer edit page for this add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string|object|null homepage: The add-on homepage.
     :>json string|object|null name: The add-on name.
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
+    :>json string review_url: The URL to the review page for this add-on.
     :>json string slug: The add-on slug.
     :>json string status: The add-on status, in human-readable form.
     :>json string|object|null summary: The add-on summary.

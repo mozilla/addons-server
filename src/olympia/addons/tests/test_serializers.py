@@ -7,6 +7,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
@@ -56,9 +57,16 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['status'] == file_.get_status_display()
         assert result_file['url'] == file_.get_url_path(src='')
 
+        assert result['current_version']['edit_url'] == absolutify(
+            self.addon.get_dev_url(
+                'versions.edit', args=[self.addon.current_version.pk],
+                prefix_only=True))
         assert result['current_version']['reviewed'] == version.reviewed
         assert result['current_version']['version'] == version.version
+        assert result['current_version']['url'] == absolutify(
+            version.get_url_path())
 
+        assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
@@ -67,6 +75,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
         assert result['public_stats'] == self.addon.public_stats
+        assert result['review_url'] == absolutify(
+            reverse('editors.review', args=[self.addon.pk]))
         assert result['slug'] == self.addon.slug
         assert result['status'] == self.addon.get_status_display()
         assert result['summary'] == {'en-US': self.addon.summary}
