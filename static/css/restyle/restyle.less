@@ -943,9 +943,19 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
 }
 
 a.button.release-theme-lock {
+  bottom: 4px;
   position: absolute;
+  right: 0;
+  top: -14px;
+  z-index: 10;
+
   span {
     top: 0;
+  }
+
+  &:active {
+    bottom: 2px;
+    top: -12px;
   }
 }
 
