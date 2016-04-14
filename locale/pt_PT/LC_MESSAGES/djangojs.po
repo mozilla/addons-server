@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-03-16 18:04+0000\n"
+"PO-Revision-Date: 2016-04-14 01:27+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -443,7 +443,7 @@ msgstr "Página de detalhes (fundo)"
 
 #: static/js/impala/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr "Página de detalhes (Canal de desenvolvimento)"
+msgstr "Página de detalhes (canal de desenvolvimento)"
 
 #: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64
