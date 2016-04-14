@@ -700,11 +700,11 @@ class TestAddonModels(TestCase):
         assert not a.is_no_restart()
 
         f.update(no_restart=True)
-        assert Addon.objects.get(pk=3615).is_no_restart() == True
+        assert Addon.objects.get(pk=3615).is_no_restart()
 
         a.versions.all().delete()
         a._current_version = None
-        assert a.is_no_restart() == False
+        assert not a.is_no_restart()
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
@@ -1557,9 +1557,9 @@ class TestAddonDelete(TestCase):
 
         addon.delete()
 
-        assert Addon.unfiltered.filter(pk=addon.pk).exists() == True
-        assert Review.objects.filter(pk=review.pk).exists() == False
-        assert ReviewFlag.objects.filter(pk=flag.pk).exists() == False
+        assert Addon.unfiltered.filter(pk=addon.pk).exists()
+        assert not Review.objects.filter(pk=review.pk).exists()
+        assert not ReviewFlag.objects.filter(pk=flag.pk).exists()
 
     def test_delete_with_deleted_versions(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)

@@ -10,7 +10,6 @@ from django.utils import encoding
 
 import pytest
 from mock import patch, Mock
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -37,7 +36,7 @@ pytestmark = pytest.mark.django_db
 def test_addons_form():
     f = forms.AddonsForm(MultiValueDict({'addon': [''],
                                          'addon_comment': ['comment']}))
-    eq_(f.is_valid(), True)
+    assert f.is_valid()
 
 
 def test_collections_form_bad_slug():
@@ -98,7 +97,7 @@ class TestViews(TestCase):
     def check_response(self, url, code, to=None):
         response = self.client.get(url, follow=True)
         if code == 404:
-            eq_(response.status_code, 404)
+            assert response.status_code == 404
         elif code in (301, 302):
             self.assert3xx(response, to, status_code=code)
         else:  # pragma: no cover
@@ -166,7 +165,7 @@ class TestViews(TestCase):
 
         self.client.login(username='jbalogh@mozilla.com', password='password')
         response = self.client.get(c.get_url_path())
-        eq_(list(response.context['addons'].object_list), [addon])
+        assert list(response.context['addons'].object_list) == [addon]
 
     def test_mine(self):
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
@@ -180,19 +179,19 @@ class TestViews(TestCase):
 
         # My Collections.
         response = self.client.get('/en-US/firefox/collections/mine/')
-        eq_(response.context['author'],
+        assert response.context['author'] == (
             UserProfile.objects.get(email='jbalogh@mozilla.com'))
 
         # My Favorites.
         response = self.client.get(reverse('collections.detail',
                                            args=['mine', 'favorites']))
-        eq_(response.status_code, 200)
-        eq_(list(response.context['addons'].object_list), [addon])
+        assert response.status_code == 200
+        assert list(response.context['addons'].object_list) == [addon]
 
     def test_not_mine(self):
         self.client.logout()
         r = self.client.get(reverse('collections.user', args=['jbalogh']))
-        eq_(r.context['page'], 'user')
+        assert r.context['page'] == 'user'
         assert '#p-mine' not in pq(r.content)('style').text(), (
             "'Collections I've Made' sidebar link shouldn't be highlighted.")
 
@@ -215,14 +214,14 @@ class TestViews(TestCase):
 
         # User not logged in: redirect to login page.
         res = self.client.post(collection.delete_icon_url())
-        eq_(res.status_code, 302)
+        assert res.status_code == 302
         assert res.url != edit_url
 
         self.client.login(username='jbalogh@mozilla.com', password='password')
 
         res = self.client.post(collection.delete_icon_url())
-        eq_(res.status_code, 302)
-        eq_(res.url, 'http://testserver%s' % edit_url)
+        assert res.status_code == 302
+        assert res.url == 'http://testserver%s' % edit_url
 
     def test_delete_icon_csrf_protected(self):
         """The delete icon view only accepts POSTs and is csrf protected."""
@@ -233,10 +232,10 @@ class TestViews(TestCase):
         client.login(username='jbalogh@mozilla.com', password='password')
 
         res = client.get(collection.delete_icon_url())
-        eq_(res.status_code, 405)  # Only POSTs are allowed.
+        assert res.status_code == 405  # Only POSTs are allowed.
 
         res = client.post(collection.delete_icon_url())
-        eq_(res.status_code, 403)  # The view is csrf protected.
+        assert res.status_code == 403  # The view is csrf protected.
 
     def test_no_xss_in_collection_page(self):
         coll = Collection.objects.get(slug='wut-slug')
@@ -257,7 +256,7 @@ class TestPrivacy(TestCase):
         # The favorites collection is created automatically.
         self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
         self.client.login(username='jbalogh@mozilla.com', password='password')
-        eq_(self.client.get(self.url).status_code, 200)
+        assert self.client.get(self.url).status_code == 200
         self.client.logout()
         self.c = Collection.objects.get(slug='favorites',
                                         author__username='jbalogh')
@@ -265,15 +264,15 @@ class TestPrivacy(TestCase):
     def test_owner(self):
         self.client.login(username='jbalogh@mozilla.com', password='password')
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         # TODO(cvan): Uncomment when bug 719512 gets fixed.
-        #eq_(pq(r.content)('.meta .view-stats').length, 1,
+        # assert pq(r.content)('.meta .view-stats').length == 1, (
         #    'Add-on authors should be able to view stats')
 
     def test_private(self):
         self.client.logout()
         self.client.login(username='fligtar@gmail.com', password='foo')
-        eq_(self.client.get(self.url).status_code, 403)
+        assert self.client.get(self.url).status_code == 403
 
     def test_public(self):
         # Make it public, others can see it.
@@ -281,8 +280,8 @@ class TestPrivacy(TestCase):
         self.c.listed = True
         self.c.save()
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        eq_(pq(r.content)('.meta .view-stats').length, 0,
+        assert r.status_code == 200
+        assert pq(r.content)('.meta .view-stats').length == 0, (
             'Only add-on authors can view stats')
 
     def test_publisher(self):
@@ -293,9 +292,9 @@ class TestPrivacy(TestCase):
         CollectionUser.objects.create(collection=self.c, user=u)
         self.client.login(username='fligtar@gmail.com', password='foo')
         r = self.client.get(self.url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         # TODO(cvan): Uncomment when bug 719512 gets fixed.
-        #eq_(pq(r.content)('.meta .view-stats').length, 1,
+        # assert pq(r.content)('.meta .view-stats').length == 1, (
         #    'Add-on authors (not just owners) should be able to view stats')
 
 
@@ -315,7 +314,7 @@ class TestVotes(TestCase):
         self.client.logout()
         r = self.client.post(self.up, follow=True)
         url, _ = r.redirect_chain[-1]
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         assert reverse('users.login') in url
 
     def test_post_required(self):
@@ -324,14 +323,14 @@ class TestVotes(TestCase):
 
     def check(self, upvotes=0, downvotes=0):
         c = Collection.objects.no_cache().get(slug='slug', author=9945)
-        eq_(c.upvotes, upvotes)
-        eq_(c.downvotes, downvotes)
-        eq_(CollectionVote.objects.filter(user=4043307, vote=1).count(),
-            upvotes)
-        eq_(CollectionVote.objects.filter(user=4043307, vote=-1).count(),
-            downvotes)
-        eq_(CollectionVote.objects.filter(user=4043307).count(),
-            upvotes + downvotes)
+        assert c.upvotes == upvotes
+        assert c.downvotes == downvotes
+        assert CollectionVote.objects.filter(
+            user=4043307, vote=1).count() == upvotes
+        assert CollectionVote.objects.filter(
+            user=4043307, vote=-1).count() == downvotes
+        assert CollectionVote.objects.filter(
+            user=4043307).count() == upvotes + downvotes
 
     def test_upvote(self):
         self.client.post(self.up)
@@ -360,7 +359,7 @@ class TestVotes(TestCase):
     def test_ajax_response(self):
         r = self.client.post_ajax(self.up, follow=True)
         assert not r.redirect_chain
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
 
 class TestCRUD(TestCase):
@@ -394,7 +393,7 @@ class TestCRUD(TestCase):
     def create_collection(self, **kw):
         self.data.update(kw)
         r = self.client.post(self.add_url, self.data, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         return r
 
     @patch('olympia.bandwagon.views.statsd.incr')
@@ -410,13 +409,13 @@ class TestCRUD(TestCase):
         GroupUser.objects.create(group=g, user=user)
         self.data.update(kw)
         r = self.client.post(self.add_url, self.data, follow=True)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_no_xss_in_edit_page(self):
         name = '"><script>alert(/XSS/);</script>'
         self.create_collection(name=name)
         collection = Collection.objects.get(slug=self.slug)
-        eq_(collection.name, name)
+        assert collection.name == name
         url = reverse('collections.edit', args=['admin', collection.slug, ])
         r = self.client.get(url)
         self.assertContains(
@@ -437,11 +436,11 @@ class TestCRUD(TestCase):
         user.save()
 
         r = self.client.post(url, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         qs = CollectionWatcher.objects.filter(user__username='clouserw',
                                               collection=80)
-        eq_(qs.count(), 1)
+        assert qs.count() == 1
 
         r = self.client.get('/en-US/firefox/collections/following/',
                             follow=True)
@@ -460,15 +459,16 @@ class TestCRUD(TestCase):
                 'listed': 'True'}
 
         r = self.client.post(self.add_url, data, follow=True)
-        eq_(pq(r.content)('.errorlist li')[0].text, 'This field is required.')
+        assert pq(r.content)('.errorlist li')[0].text == (
+            'This field is required.')
         self.assertContains(r, 'Delicious')
 
     def test_default_locale(self):
         r = self.client.post('/he/firefox/collections/add',
                              self.data, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         c = Collection.objects.get(slug=self.slug)
-        eq_(c.default_locale, 'he')
+        assert c.default_locale == 'he'
 
     def test_fix_slug(self):
         self.data['slug'] = 'some slug'
@@ -478,7 +478,7 @@ class TestCRUD(TestCase):
     def test_showform(self):
         """Shows form if logged in."""
         r = self.client.get(self.add_url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_breadcrumbs(self):
         r = self.client.get(self.add_url)
@@ -493,18 +493,18 @@ class TestCRUD(TestCase):
         """Test submission of addons."""
         # TODO(davedash): Test file uploads, test multiple addons.
         r = self.client.post(self.add_url, self.data, follow=True)
-        eq_(r.request['PATH_INFO'].decode('utf-8'),
+        assert r.request['PATH_INFO'].decode('utf-8') == (
             '/en-US/firefox/collections/admin/%s/' % self.slug)
         c = Collection.objects.get(slug=self.slug)
-        eq_(unicode(c.name), self.data['name'])
-        eq_(c.description, '')
-        eq_(c.addons.all()[0].id, 3615)
+        assert unicode(c.name) == self.data['name']
+        assert c.description == ''
+        assert c.addons.all()[0].id == 3615
 
     def test_duplicate_slug(self):
         """Try the same thing twice.  AND FAIL"""
         self.client.post(self.add_url, self.data, follow=True)
         r = self.client.post(self.add_url, self.data, follow=True)
-        eq_(r.context['form'].errors['slug'][0],
+        assert r.context['form'].errors['slug'][0] == (
             'This url is already in use by another collection')
 
     def test_reassign(self):
@@ -526,22 +526,22 @@ class TestCRUD(TestCase):
         r = self.client.post(url,
                              {'contributor': 4043307, 'new_owner': 4043307},
                              follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         # verify that user1's addon is slug + '-'
         c = Collection.objects.get(slug=self.slug)
-        eq_(c.author_id, 4043307)
+        assert c.author_id == 4043307
 
     def test_edit(self):
         self.create_collection()
         url = reverse('collections.edit', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_edit_contributors_form(self):
         self.create_collection()
         url = reverse('collections.edit', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
-        eq_(Collection.objects.get(slug=self.slug).author_id,
+        assert Collection.objects.get(slug=self.slug).author_id == (
             long(pq(r.content)('#contributor-ac').attr('data-owner')))
 
     def test_edit_breadcrumbs(self):
@@ -567,9 +567,9 @@ class TestCRUD(TestCase):
 
         r = self.client.post(url, {'name': 'HALP', 'slug': 'halp',
                                    'listed': True}, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         c = Collection.objects.get(slug='halp')
-        eq_(unicode(c.name), 'HALP')
+        assert unicode(c.name) == 'HALP'
 
     def test_edit_description(self):
         self.create_collection()
@@ -579,19 +579,19 @@ class TestCRUD(TestCase):
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
         self.assert3xx(r, edit_url, 302)
-        eq_(unicode(Collection.objects.get(slug=self.slug).description),
+        assert unicode(Collection.objects.get(slug=self.slug).description) == (
             'abc')
 
     def test_edit_no_description(self):
         self.create_collection(description='abc')
-        eq_(Collection.objects.get(slug=self.slug).description, 'abc')
+        assert Collection.objects.get(slug=self.slug).description == 'abc'
 
         url = reverse('collections.edit', args=['admin', self.slug])
         self.data['description'] = ''
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
         self.assert3xx(r, edit_url, 302)
-        eq_(unicode(Collection.objects.get(slug=self.slug).description),
+        assert unicode(Collection.objects.get(slug=self.slug).description) == (
             '')
 
     def test_edit_spaces(self):
@@ -602,9 +602,9 @@ class TestCRUD(TestCase):
         r = self.client.post(url,
                              {'name': '  H A L  P ', 'slug': '  halp  ',
                               'listed': True}, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         c = Collection.objects.get(slug='halp')
-        eq_(unicode(c.name), 'H A L  P')
+        assert unicode(c.name) == 'H A L  P'
 
     def test_forbidden_edit(self):
         r = self.client.post(self.add_url, self.data, follow=True)
@@ -613,23 +613,23 @@ class TestCRUD(TestCase):
 
         url = reverse('collections.edit', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
         url = reverse('collections.edit_addons', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
         url = reverse('collections.edit_contributors', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
         url = reverse('collections.edit_privacy', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
         url = reverse('collections.delete', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_acl_collections_edit(self):
         # Test users in group with 'Collections:Edit' are allowed.
@@ -642,43 +642,43 @@ class TestCRUD(TestCase):
 
         url = reverse('collections.edit', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         url = reverse('collections.edit_addons', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)
+        assert r.status_code == 405
         # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.edit_contributors', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)
+        assert r.status_code == 405
         # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.edit_privacy', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 405)
+        assert r.status_code == 405
         # Passed acl check, but this view needs a POST.
 
         url = reverse('collections.delete', args=url_args)
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_edit_favorites(self):
         r = self.client.get(reverse('collections.list'))
         fav = r.context['request'].user.favorites_collection()
         r = self.client.post(fav.edit_url(), {'name': 'xxx', 'listed': True})
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
 
         c = Collection.objects.get(id=fav.id)
-        eq_(unicode(c.name), 'xxx')
+        assert unicode(c.name) == 'xxx'
 
     def test_edit_contrib_tab(self):
         self.create_collection()
         url = reverse('collections.edit', args=['admin', self.slug])
         r = self.client.get(url)
         doc = pq(r.content)
-        eq_(doc('.tab-nav li a[href$=users-edit]').length, 1)
-        eq_(doc('#users-edit').length, 1)
+        assert doc('.tab-nav li a[href$=users-edit]').length == 1
+        assert doc('#users-edit').length == 1
 
     def test_edit_contrib_success_message(self):
         self.create_collection()
@@ -689,8 +689,8 @@ class TestCRUD(TestCase):
                                    'type': 1},
                              follow=True)
         doc = pq(r.content)('.success')
-        eq_(doc('h2').text(), 'Collection updated!')
-        eq_(doc('p').text(), 'View your collection to see the changes.')
+        assert doc('h2').text() == 'Collection updated!'
+        assert doc('p').text() == 'View your collection to see the changes.'
 
     def test_edit_no_contrib_tab(self):
         user = UserProfile.objects.get(email='admin@mozilla.com')
@@ -705,7 +705,7 @@ class TestCRUD(TestCase):
         self.create_collection()
         url = reverse('collections.edit_addons', args=['admin', self.slug])
         r = self.client.get(url, follow=True)
-        eq_(r.status_code, 405)
+        assert r.status_code == 405
 
     def test_edit_addons_post(self):
         self.create_collection()
@@ -713,27 +713,27 @@ class TestCRUD(TestCase):
                       args=['admin', self.slug])
         r = self.client.post(url, {'addon': 3615}, follow=True)
         addon = Collection.objects.filter(slug=self.slug)[0].addons.all()[0]
-        eq_(addon.id, 3615)
+        assert addon.id == 3615
         doc = pq(r.content)('.success')
-        eq_(doc('h2').text(), 'Collection updated!')
-        eq_(doc('p').text(), 'View your collection to see the changes.')
+        assert doc('h2').text() == 'Collection updated!'
+        assert doc('p').text() == 'View your collection to see the changes.'
 
     def test_delete(self):
         self.create_collection()
-        eq_(len(Collection.objects.filter(slug=self.slug)), 1)
+        assert len(Collection.objects.filter(slug=self.slug)) == 1
 
         url = reverse('collections.delete',
                       args=['admin', self.slug])
         self.client.post(url, dict(sure=0))
-        eq_(len(Collection.objects.filter(slug=self.slug)), 1)
+        assert len(Collection.objects.filter(slug=self.slug)) == 1
         self.client.post(url, dict(sure='1'))
-        eq_(len(Collection.objects.filter(slug=self.slug)), 0)
+        assert len(Collection.objects.filter(slug=self.slug)) == 0
 
     def test_no_xss_in_delete_confirm_page(self):
         name = '"><script>alert(/XSS/);</script>'
         self.create_collection(name=name)
         collection = Collection.objects.get(slug=self.slug)
-        eq_(collection.name, name)
+        assert collection.name == name
         url = reverse('collections.delete', args=['admin', collection.slug, ])
         r = self.client.get(url)
         self.assertContains(
@@ -764,12 +764,12 @@ class TestCRUD(TestCase):
         url = reverse('collections.edit',
                       args=['admin', self.slug])
         r = self.client.get(url, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
         assert 'Admin Settings' in doc('form h3').text()
 
         r = self.client.post(url, dict(application=1, type=0), follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
     def test_delete_link(self):
         # Create an addon by user 1.
@@ -783,15 +783,15 @@ class TestCRUD(TestCase):
         url = reverse('collections.edit', args=['admin', self.slug])
 
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
-        eq_(len(doc('a.delete')), 2)
+        assert len(doc('a.delete')) == 2
 
         self.login_regular()
         r = self.client.get(url)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         doc = pq(r.content)
-        eq_(len(doc('a.delete')), 0)
+        assert len(doc('a.delete')) == 0
 
     def test_form_uneditable_slug(self):
         """
@@ -802,7 +802,7 @@ class TestCRUD(TestCase):
         url = reverse('collections.edit', args=['admin', 'mobile'])
         r = self.client.get(url, follow=True)
         doc = pq(r.content)
-        eq_(len(doc('#id_slug')), 0)
+        assert len(doc('#id_slug')) == 0
 
     def test_form_uneditable_slug_submit(self):
         """
@@ -828,11 +828,11 @@ class TestCRUD(TestCase):
                              dict(name='new name', slug=self.slug,
                                   listed=True),
                              follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
 
         newc = Collection.objects.get(slug=self.slug,
                                       author__username=c.author_username)
-        eq_(unicode(newc.name), 'new name')
+        assert unicode(newc.name) == 'new name'
 
 
 class TestChangeAddon(TestCase):
@@ -858,16 +858,16 @@ class TestChangeAddon(TestCase):
     def test_login_required(self):
         self.client.logout()
         r = self.client.post(self.add)
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         assert reverse('users.login') in r['Location'], r['Location']
 
     def test_post_required(self):
         r = self.client.get(self.add)
-        eq_(r.status_code, 405)
+        assert r.status_code == 405
 
     def test_ownership(self):
         r = self.client.post(self.flig_add)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_publisher(self):
         CollectionUser.objects.create(user_id=4043307, collection=self.flig)
@@ -876,14 +876,14 @@ class TestChangeAddon(TestCase):
 
     def test_no_addon(self):
         r = self.client.post(self.add)
-        eq_(r.status_code, 400)
+        assert r.status_code == 400
 
     def test_add_success(self):
         r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         assert self.addon in c.addons.all()
-        eq_(c.addons.count(), 1)
+        assert c.addons.count() == 1
 
     def test_add_secretly(self):
         """
@@ -891,7 +891,7 @@ class TestChangeAddon(TestCase):
         """
         self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         # There should be no log objects for this add-on
-        eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
+        assert len(ActivityLog.objects.for_addons(self.addon)) == 0
 
     def test_add_existing(self):
         r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
@@ -900,7 +900,7 @@ class TestChangeAddon(TestCase):
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         assert self.addon in c.addons.all()
-        eq_(c.addons.count(), 1)
+        assert c.addons.count() == 1
 
     def test_remove_secretly(self):
         """
@@ -910,7 +910,7 @@ class TestChangeAddon(TestCase):
         self.client.post_ajax(self.add, {'addon_id': self.addon.id})
         self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
         # There should be no log objects for this add-on
-        eq_(len(ActivityLog.objects.for_addons(self.addon)), 0)
+        assert len(ActivityLog.objects.for_addons(self.addon)) == 0
 
     def test_remove_success(self):
         r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
@@ -920,13 +920,13 @@ class TestChangeAddon(TestCase):
         self.check_redirect(r)
 
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        eq_(c.addons.count(), 0)
+        assert c.addons.count() == 0
 
     def test_remove_nonexistent(self):
         r = self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
         self.check_redirect(r)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        eq_(c.addons.count(), 0)
+        assert c.addons.count() == 0
 
     def test_no_ajax_response(self):
         r = self.client.post(self.add, {'addon_id': self.addon.id},
@@ -947,26 +947,26 @@ class AjaxTest(TestCase):
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
     def test_list_collections(self):
-        r = self.client.get(reverse('collections.ajax_list')
-                            + '?addon_id=3615',)
+        r = self.client.get(
+            reverse('collections.ajax_list') + '?addon_id=3615')
         doc = pq(r.content)
-        eq_(doc('li.selected').attr('data-id'), '80')
+        assert doc('li.selected').attr('data-id') == '80'
 
     def test_add_collection(self):
         r = self.client.post_ajax(reverse('collections.ajax_add'),
                                   {'addon_id': 3615, 'id': 80}, follow=True)
         doc = pq(r.content)
-        eq_(doc('li.selected').attr('data-id'), '80')
+        assert doc('li.selected').attr('data-id') == '80'
 
     def test_bad_collection(self):
         r = self.client.post(reverse('collections.ajax_add'), {'id': 'adfa'})
-        eq_(r.status_code, 400)
+        assert r.status_code == 400
 
     def test_remove_collection(self):
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 1843, 'id': 80}, follow=True)
         doc = pq(r.content)
-        eq_(len(doc('li.selected')), 0)
+        assert len(doc('li.selected')) == 0
 
     def test_new_collection(self):
         assert not Collection.objects.filter(slug='auniqueone')
@@ -976,7 +976,8 @@ class AjaxTest(TestCase):
              'description': 'foobar', 'listed': True},
             follow=True)
         doc = pq(r.content)
-        eq_(len(doc('li.selected')), 1, "The new collection is not selected.")
+        assert len(doc('li.selected')) == 1, (
+            "The new collection is not selected.")
         assert Collection.objects.filter(slug='auniqueone')
 
     def test_add_other_collection(self):
@@ -986,7 +987,7 @@ class AjaxTest(TestCase):
 
         r = self.client.post(reverse('collections.ajax_add'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_remove_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
@@ -995,14 +996,15 @@ class AjaxTest(TestCase):
 
         r = self.client.post(reverse('collections.ajax_remove'),
                              {'addon_id': 3615, 'id': c.id}, follow=True)
-        eq_(r.status_code, 403)
+        assert r.status_code == 403
 
     def test_ajax_list_no_addon_id(self):
-        eq_(self.client.get(reverse('collections.ajax_list')).status_code, 400)
+        assert self.client.get(
+            reverse('collections.ajax_list')).status_code == 400
 
     def test_ajax_list_bad_addon_id(self):
         url = reverse('collections.ajax_list') + '?addon_id=fff'
-        eq_(self.client.get(url).status_code, 400)
+        assert self.client.get(url).status_code == 400
 
 
 class TestWatching(TestCase):
@@ -1018,19 +1020,19 @@ class TestWatching(TestCase):
 
         self.qs = CollectionWatcher.objects.filter(user__username='clouserw',
                                                    collection=57181)
-        eq_(self.qs.count(), 0)
+        assert self.qs.count() == 0
 
     def test_watch(self):
         r = self.client.post(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(self.qs.count(), 1)
+        assert r.status_code == 200
+        assert self.qs.count() == 1
 
     def test_unwatch(self):
         r = self.client.post(self.url, follow=True)
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         r = self.client.post(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(self.qs.count(), 0)
+        assert r.status_code == 200
+        assert self.qs.count() == 0
 
     def test_amouser_watching(self):
         response = self.client.post(self.url, follow=True)
@@ -1040,8 +1042,8 @@ class TestWatching(TestCase):
 
     def test_ajax_response(self):
         r = self.client.post_ajax(self.url, follow=True)
-        eq_(r.status_code, 200)
-        eq_(json.loads(r.content), {'watching': True})
+        assert r.status_code == 200
+        assert json.loads(r.content) == {'watching': True}
 
 
 class TestSharing(TestCase):
@@ -1050,10 +1052,10 @@ class TestSharing(TestCase):
     def test_twitter_share(self):
         c = Collection.objects.get(id=57181)
         r = self.client.get(c.share_url() + '?service=twitter')
-        eq_(r.status_code, 302)
+        assert r.status_code == 302
         loc = urlparse.urlparse(r['Location'])
         query = dict(urlparse.parse_qsl(loc.query))
-        eq_(loc.netloc, 'twitter.com')
+        assert loc.netloc == 'twitter.com'
         status = 'Home Business Auto :: Add-ons for Firefox'
         assert status in query['status'], query['status']
 
@@ -1061,9 +1063,9 @@ class TestSharing(TestCase):
         c = Collection.objects.get(id=57181)
         url = reverse('collections.share', args=[c.author.username, c.slug])
         r = self.client.get(url)
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
         r = self.client.get(url + '?service=xxx')
-        eq_(r.status_code, 404)
+        assert r.status_code == 404
 
 
 class TestCollectionFeed(TestFeeds):
@@ -1088,13 +1090,13 @@ class TestCollectionListing(TestCase):
 
     def test_default_sort(self):
         r = self.client.get(self.url)
-        eq_(r.context['sorting'], 'featured')
+        assert r.context['sorting'] == 'featured'
 
     def test_featured_sort(self):
         r = self.client.get(urlparams(self.url, sort='featured'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Featured')
+        assert sel.find('a').attr('class') == 'opt'
+        assert sel.text() == 'Featured'
 
     def test_users_redirect(self):
         """Test that 'users' sort redirects to 'followers' sort."""
@@ -1104,42 +1106,42 @@ class TestCollectionListing(TestCase):
     def test_mostsubscribers_sort(self):
         r = self.client.get(urlparams(self.url, sort='followers'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Most Followers')
+        assert sel.find('a').attr('class') == 'opt'
+        assert sel.text() == 'Most Followers'
         c = r.context['collections'].object_list
-        eq_(list(c), sorted(c, key=lambda x: x.subscribers, reverse=True))
+        assert list(c) == sorted(c, key=lambda x: x.subscribers, reverse=True)
 
     def test_newest_sort(self):
         r = self.client.get(urlparams(self.url, sort='created'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'opt')
-        eq_(sel.text(), 'Newest')
+        assert sel.find('a').attr('class') == 'opt'
+        assert sel.text() == 'Newest'
         c = r.context['collections'].object_list
-        eq_(list(c), sorted(c, key=lambda x: x.created, reverse=True))
+        assert list(c) == sorted(c, key=lambda x: x.created, reverse=True)
 
     def test_name_sort(self):
         r = self.client.get(urlparams(self.url, sort='name'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Name')
+        assert sel.find('a').attr('class') == 'extra-opt'
+        assert sel.text() == 'Name'
         c = r.context['collections'].object_list
-        eq_(list(c), sorted(c, key=lambda x: x.name))
+        assert list(c) == sorted(c, key=lambda x: x.name)
 
     def test_updated_sort(self):
         r = self.client.get(urlparams(self.url, sort='updated'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Recently Updated')
+        assert sel.find('a').attr('class') == 'extra-opt'
+        assert sel.text() == 'Recently Updated'
         c = r.context['collections'].object_list
-        eq_(list(c), sorted(c, key=lambda x: x.modified, reverse=True))
+        assert list(c) == sorted(c, key=lambda x: x.modified, reverse=True)
 
     def test_popular_sort(self):
         r = self.client.get(urlparams(self.url, sort='popular'))
         sel = pq(r.content)('#sorter ul > li.selected')
-        eq_(sel.find('a').attr('class'), 'extra-opt')
-        eq_(sel.text(), 'Recently Popular')
+        assert sel.find('a').attr('class') == 'extra-opt'
+        assert sel.text() == 'Recently Popular'
         c = r.context['collections'].object_list
-        eq_(list(c),
+        assert list(c) == (
             sorted(c, key=lambda x: x.weekly_subscribers, reverse=True))
 
     def _test_exclude_empty_collections(self, url):
@@ -1147,7 +1149,7 @@ class TestCollectionListing(TestCase):
         initial_length = len(r.context['collections'].object_list)
         Collection.objects.get(nickname='webdev').addons.clear()
         r = self.client.get(url)
-        eq_(len(r.context['collections'].object_list), initial_length - 1)
+        assert len(r.context['collections'].object_list) == initial_length - 1
 
     def test_exclude_empty_collections_newest_sort(self):
         url = urlparams(self.url, sort='created')
@@ -1167,20 +1169,20 @@ class TestCollectionListing(TestCase):
 
     def test_added_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='created')).content)
-        eq_(doc('.items .item .updated').text().startswith('Added'), True)
+        assert doc('.items .item .updated').text().startswith('Added')
 
     def test_updated_date(self):
         d = pq(self.client.get(urlparams(self.url, sort='updated')).content)
-        eq_(d('.items .item .updated').text().startswith('Updated'), True)
+        assert d('.items .item .updated').text().startswith('Updated')
 
     def test_mostsubscribers_adu_unit(self):
         d = pq(self.client.get(urlparams(self.url, sort='followers')).content)
-        eq_('follower' in d('.items .item .followers').text(), True)
-        eq_('weekly follower' in d('.items .item .followers').text(), False)
+        assert 'follower' in d('.items .item .followers').text()
+        assert 'weekly follower' not in d('.items .item .followers').text()
 
     def test_popular_adu_unit(self):
         d = pq(self.client.get(urlparams(self.url, sort='popular')).content)
-        eq_('weekly follower' in d('.items .item .followers').text(), True)
+        assert 'weekly follower' in d('.items .item .followers').text()
 
 
 class TestCollectionDetailFeed(TestCase):
@@ -1193,17 +1195,17 @@ class TestCollectionDetailFeed(TestCase):
                                 args=[c.author.username, c.slug])
 
     def test_collection_feed(self):
-        eq_(self.client.get(self.feed_url).status_code, 200)
+        assert self.client.get(self.feed_url).status_code == 200
 
     def test_feed_redirect(self):
         r = self.client.get(self.collection.get_url_path() + '?format=rss')
-        eq_(r.status_code, 301)
+        assert r.status_code == 301
         loc = r['Location']
         assert loc.endswith(self.feed_url), loc
 
     def test_private_collection(self):
         self.collection.update(listed=False)
-        eq_(self.client.get(self.feed_url).status_code, 404)
+        assert self.client.get(self.feed_url).status_code == 404
 
     def test_feed_json(self):
         theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
@@ -1211,11 +1213,11 @@ class TestCollectionDetailFeed(TestCase):
         res = self.client.get(self.collection.get_url_path() + 'format:json')
         data = json.loads(res.content)
 
-        eq_(len(data['addons']), 1)
-        eq_(data['addons'][0]['id'], theme.id)
+        assert len(data['addons']) == 1
+        assert data['addons'][0]['id'] == theme.id
 
-        eq_(data['addons'][0]['type'], 'background-theme')
-        eq_(data['addons'][0]['theme']['id'],
+        assert data['addons'][0]['type'] == 'background-theme'
+        assert data['addons'][0]['theme']['id'] == (
             unicode(theme.persona.persona_id))
 
         assert data['addons'][0]['theme']['header']
@@ -1227,7 +1229,7 @@ class TestMobileCollections(TestMobile):
     # for now we want collections disabled.
     def test_collections(self):
         r = self.client.get(reverse('collections.list'))
-        eq_(r.status_code, 200)
+        assert r.status_code == 200
         self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
 
 
@@ -1268,7 +1270,7 @@ class TestCollectionForm(TestCase):
         # No links, no problems.
         form = forms.CollectionForm()
         form.cleaned_data = {'description': 'some description, no links!'}
-        eq_(form.clean_description(), 'some description, no links!')
+        assert form.clean_description() == 'some description, no links!'
 
         # No links allowed: raise on text links.
         form.cleaned_data = {'description': 'http://example.com'}

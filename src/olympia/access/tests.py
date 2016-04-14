@@ -1,6 +1,5 @@
 import mock
 import pytest
-from nose.tools import assert_false
 
 from olympia import amo
 from olympia.amo.tests import TestCase, req_factory_factory
@@ -62,7 +61,7 @@ def test_match_rules():
 
 def test_anonymous_user():
     fake_request = req_factory_factory('/')
-    assert_false(action_allowed(fake_request, amo.FIREFOX, 'Admin:%'))
+    assert not action_allowed(fake_request, amo.FIREFOX, 'Admin:%')
 
 
 class ACLTestCase(TestCase):

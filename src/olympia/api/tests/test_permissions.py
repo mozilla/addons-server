@@ -78,7 +78,7 @@ class TestGroupPermission(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         perm = GroupPermission('SomeRealm', 'SomePermission')
-        assert perm.has_permission(request, view) is False
+        assert not perm.has_permission(request, view)
 
 
 class TestAnyOf(TestCase):

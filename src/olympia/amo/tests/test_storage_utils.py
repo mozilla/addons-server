@@ -113,7 +113,7 @@ class TestFileOps(BaseTestCase):
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest)
         assert self.contents(dest) == '<contents>'
-        assert storage.exists(src) == False
+        assert not storage.exists(src)
 
     def test_non_ascii(self):
         src = self.newfile(u'kristi\u0107.txt',
@@ -133,4 +133,4 @@ class TestFileOps(BaseTestCase):
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest, chunk_size=1)
         assert self.contents(dest) == '<contents>'
-        assert storage.exists(src) == False
+        assert not storage.exists(src)

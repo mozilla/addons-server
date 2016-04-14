@@ -359,17 +359,17 @@ class TestDeveloperPages(TestCase):
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
-        assert title.startswith('Meet the Gmail S/MIME Developer') == True
+        assert title.startswith('Meet the Gmail S/MIME Developer')
 
     def test_roadblock_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
-        assert title.startswith('Meet the Gmail S/MIME Developer') == True
+        assert title.startswith('Meet the Gmail S/MIME Developer')
 
     def test_meet_the_dev_src(self):
         r = self.client.get(reverse('addons.meet', args=['a11730']))
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=developers') == True
+        assert button.endswith('?src=developers')
 
     def test_nl2br_info(self):
         r = self.client.get(reverse('addons.meet', args=['a228106']))
@@ -399,18 +399,18 @@ class TestDeveloperPages(TestCase):
         # If they end up at the roadblock we force roadblock on them
         r = self.client.get(url + '?src=dp-btn-primary')
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=dp-btn-primary') == True
+        assert button.endswith('?src=dp-btn-primary')
 
         # No previous source gets the roadblock page source
         r = self.client.get(url)
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=meetthedeveloper_roadblock') == True
+        assert button.endswith('?src=meetthedeveloper_roadblock')
 
     def test_roadblock_different(self):
         url = reverse('addons.roadblock', args=['a11730'])
         r = self.client.get(url + '?src=dp-btn-primary')
         button = pq(r.content)('.install-button a.button').attr('href')
-        assert button.endswith('?src=dp-btn-primary') == True
+        assert button.endswith('?src=dp-btn-primary')
         assert pq(r.content)('#contribute-box input[name=source]').val() == (
             'roadblock')
 
@@ -870,7 +870,7 @@ class TestImpalaDetailPage(TestCase):
 
     def test_adu_stats_public(self):
         self.addon.update(public_stats=True)
-        assert self.addon.show_adu() == True
+        assert self.addon.show_adu()
         adu = self.get_pq()('#daily-users')
 
         # Check that ADU does link to public statistics dashboard.
@@ -907,7 +907,7 @@ class TestImpalaDetailPage(TestCase):
 
     def test_downloads_stats_public(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
-        assert self.addon.show_adu() == False
+        assert not self.addon.show_adu()
         dls = self.get_pq()('#weekly-downloads')
 
         # Check that weekly downloads links to statistics dashboard.
