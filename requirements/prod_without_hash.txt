@@ -1,4 +1,3 @@
--r compiled_without_hash.txt
 
 ## Not on pypi.
 -e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
