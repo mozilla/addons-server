@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-13 22:02+0000\n"
+"PO-Revision-Date: 2016-04-13 22:16+0000\n"
 "Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5889,12 +5889,12 @@ msgstr "Testy kompatibility"
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: src/olympia/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Skryť správy, ktoré nie sú dôležité pre automatické podpísanie"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: src/olympia/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Skryť správy ignorované v starších verziách"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -6179,10 +6179,14 @@ msgstr ""
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Váš doplnok bol odoslaný do fronty na predbežnú kontrolu doplnkov, ktoré "
+"nebudú v zozname."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Váš doplnok bol odoslaný do fronty na detailnú kontrolu doplnkov, ktoré "
+"nebudú v zozname."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
@@ -6393,11 +6397,11 @@ msgstr "Zmeny pri administrácií"
 #: src/olympia/devhub/templates/devhub/api/agreement.html:3
 #: src/olympia/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Dohoda o distribúcií doplnkov pre Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "Prihlasovacie údaje k API"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:20
 #, python-format
@@ -6405,6 +6409,8 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Pre podrobnejšie inštrukcie nahliadnite do <a href=\"%(docs_url)s\">API "
+"dokumentácie</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
@@ -7939,7 +7945,7 @@ msgstr "Vytvorené:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:136
 msgid "Next Version:"
@@ -7955,12 +7961,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:144
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Fronty nie sú striktne prechádzané podľa poradia"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:9
-#, fuzzy
 msgid "(required since this add-on accepts contributions)"
-msgstr "(vyžadováno, protože tento doplněk přijímá příspěvky)"
+msgstr "(požadované, pretože tento doplnok prijíma príspevky)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:18
 msgid "Manage Your Developer Profile"
@@ -8150,7 +8155,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Príspevky sú dostupné len pre zverejnené doplnky."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:53
 #, python-format
@@ -8601,7 +8606,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:51
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Túto verziu publikovať len v mojom beta kanále."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:54
 #, python-format
@@ -8979,7 +8984,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
 #: src/olympia/discovery/modules.py:140
 msgid "Shopping Made Easy"
