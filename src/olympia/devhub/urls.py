@@ -176,6 +176,8 @@ urlpatterns = decorate(write, patterns(
     url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
 
     url('^upload$', views.upload, name='devhub.upload'),
+    url('^upload/sideload$', partial(views.upload, is_listed=False),
+        name='devhub.upload_sideload'),
     url('^upload/unlisted$',
         partial(views.upload, is_listed=False, automated=True),
         name='devhub.upload_unlisted'),
@@ -190,6 +192,9 @@ urlpatterns = decorate(write, patterns(
         partial(views.upload, is_standalone=True, is_listed=False,
                 automated=True),
         name='devhub.standalone_upload_unlisted'),
+    url('^standalone-upload-sideload$',
+        partial(views.upload, is_standalone=True, is_listed=False),
+        name='devhub.standalone_upload_sideload'),
 
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),

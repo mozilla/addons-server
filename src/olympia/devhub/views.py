@@ -621,7 +621,6 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        # We're asked to directly submit a new Version with that upload.
         tasks.validate_and_submit(addon, upload, listed=is_listed)
     else:
         tasks.validate(upload, listed=is_listed)
@@ -1240,12 +1239,20 @@ def auto_sign_file(file_, is_beta=False):
         # Provide the file to review/sign to the helper.
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
-        # Automated signing directly sets add-ons as public no matter what.
-        helper.handler.process_public(auto_validation=True)
-        if validation.passed_auto_validation:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
+        if addon.is_sideload:
+            helper.handler.process_public(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED,
+                        file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED,
+                        file_)
         else:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
+            helper.handler.process_preliminary(auto_validation=True)
+            if validation.passed_auto_validation:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
+            else:
+                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
 
 
 def auto_sign_version(version, **kwargs):
@@ -1435,13 +1442,12 @@ def submit_addon(request, step):
             AddonUser(addon=addon, user=request.user).save()
             check_validation_override(request, form, addon,
                                       addon.current_version)
-            if not addon.is_listed:
-                # Unlisted add-ons are a bit special: we want them to be
-                # immediately considered "fully reviewed" and have their
-                # files automatically signed. We set the addon as NOMINATED and
-                # call auto_sign_version(), which will set it to public and
-                # do the signing just like reviewer tools would normally do.
-                addon.update(status=amo.STATUS_NOMINATED)
+            if not addon.is_listed:  # Not listed? Automatically choose queue.
+                if data.get('is_sideload'):  # Full review needed.
+                    addon.update(status=amo.STATUS_NOMINATED)
+                else:  # Otherwise, simply do a prelim review.
+                    addon.update(status=amo.STATUS_UNREVIEWED)
+                # Sign all the files submitted, one for each platform.
                 auto_sign_version(addon.versions.get())
             SubmitStep.objects.create(addon=addon, step=3)
             return redirect(_step_url(3), addon.slug)
