@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from olympia.addons.models import Addon, attach_tags
 from olympia.amo.helpers import absolutify
+from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.files.models import File
@@ -18,11 +19,15 @@ class FileSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'hash', 'platform', 'size', 'status', 'url')
 
     def get_url(self, obj):
+        # File.get_url_path() is a little different, it's already absolute, but
+        # needs a src parameter that is appended as a query string.
         return obj.get_url_path(src='')
 
 
 class VersionSerializer(serializers.ModelSerializer):
+    edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
+    url = serializers.SerializerMethodField()
 
     # FIXME:
     # - license
@@ -32,14 +37,23 @@ class VersionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Version
-        fields = ('id', 'files', 'reviewed', 'version')
+        fields = ('id', 'edit_url', 'files', 'reviewed', 'url', 'version')
+
+    def get_url(self, obj):
+        return absolutify(obj.get_url_path())
+
+    def get_edit_url(self, obj):
+        return absolutify(obj.addon.get_dev_url(
+            'versions.edit', args=[obj.pk], prefix_only=True))
 
 
 class AddonSerializer(serializers.ModelSerializer):
     current_version = VersionSerializer()
     description = TranslationSerializerField()
+    edit_url = serializers.SerializerMethodField()
     homepage = TranslationSerializerField()
     name = TranslationSerializerField()
+    review_url = serializers.SerializerMethodField()
     status = serializers.ReadOnlyField(source='get_status_display')
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
@@ -66,9 +80,10 @@ class AddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Addon
         fields = ('id', 'current_version', 'default_locale', 'description',
-                  'guid', 'homepage', 'is_listed', 'name', 'last_updated',
-                  'public_stats', 'slug', 'status', 'summary', 'support_email',
-                  'support_url', 'tags', 'type', 'url')
+                  'edit_url', 'guid', 'homepage', 'is_listed', 'name',
+                  'last_updated', 'public_stats', 'review_url', 'slug',
+                  'status', 'summary', 'support_email', 'support_url', 'tags',
+                  'type', 'url')
 
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):
@@ -79,6 +94,12 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
+
+    def get_edit_url(self, obj):
+        return absolutify(obj.get_dev_url())
+
+    def get_review_url(self, obj):
+        return absolutify(reverse('editors.review', args=[obj.pk]))
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
@@ -93,7 +114,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         data_version = data.get('current_version')
         if data_version:
             obj._current_version = Version(
-                id=data_version['id'],
+                addon=obj, id=data_version['id'],
                 reviewed=self.handle_date(data_version['reviewed']),
                 version=data_version['version'])
             data_files = data_version.get('files', [])
@@ -101,7 +122,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 File(
                     id=file_['id'], created=self.handle_date(file_['created']),
                     hash=file_['hash'], filename=file_['filename'],
-                    size=file_['size'], status=file_['status'])
+                    size=file_['size'], status=file_['status'],
+                    version=obj._current_version)
                 for file_ in data_files
             ]
 
