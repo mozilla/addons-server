@@ -1011,7 +1011,7 @@ CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
-    'olympia.lib.video.tasks')
+)
 
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
@@ -1052,9 +1052,6 @@ CELERY_ROUTES = {
     # be on a worker that listens to the same queue.
     'celery.chord_unlock': {'queue': 'devhub'},
     'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
-
-    # Videos.
-    'olympia.lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
@@ -1183,7 +1180,6 @@ CELERY_ROUTES = {
 #   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
-    'olympia.lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
     # The reindex management command can take up to 3 hours to run.
     'olympia.lib.es.management.commands.reindex': {
         'soft': 10800, 'hard': 14400},
@@ -1513,20 +1509,11 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
 
-# Super temporary. Or Not.
-MARKETPLACE = False
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
 # Defined in the site, this is to allow settings patch to work for tests.
 NO_ADDONS_MODULES = ()
-
-# Where to find ffmpeg and totem if it's not in the PATH.
-FFMPEG_BINARY = 'ffmpeg'
-TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
-                  'indexer': 'totem-video-indexer'}
-VIDEO_LIBRARIES = ['olympia.lib.video.totem', 'olympia.lib.video.ffmpeg']
 
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
