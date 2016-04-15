@@ -538,6 +538,15 @@ class NewAddonForm(AddonUploadForm):
         help_text=_lazy(
             u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
+    is_sideload = forms.BooleanField(
+        initial=False,
+        required=False,
+        label=_lazy(u'This add-on will be bundled with an application '
+                    u'installer.'),
+        help_text=_lazy(u'Add-ons that are bundled with application '
+                        u'installers will be code reviewed '
+                        u'by Mozilla before they are signed and are held to a '
+                        u'higher quality standard.'))
 
     def clean(self):
         if not self.errors:

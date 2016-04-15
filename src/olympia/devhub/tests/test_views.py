@@ -1297,6 +1297,8 @@ class TestSubmitStep2(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.list-addon input#id_is_unlisted[type=checkbox]')
+        # There also is a checkbox to select full review (side-load) or prelim.
+        assert doc('.list-addon input#id_is_sideload[type=checkbox]')
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -2606,14 +2608,10 @@ class TestVersionAddFile(UploadTest):
         assert response.status_code == 400
         assert 'source' in json.loads(response.content)
 
-    # FIXME: test an unlisted addon that was preliminary reviewed, because we
-    # are not changing those, so they exist in the wild and need to continue
-    # working.
-    # And test it for both adding version and adding a file to a version.
-
     @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_fail_validation(self, mock_sign_file):
-        """Files that fail validation are also auto signed/reviewed."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
@@ -2622,11 +2620,60 @@ class TestVersionAddFile(UploadTest):
                        ' "signing_summary": {"trivial": 1, "low": 1,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_PUBLIC
         self.post()
         file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons are also auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        self.addon.update(is_listed=False, trusted=False)
+        # Make sure the file has no validation signing related messages.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 0,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to fully reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_unlisted_addon_fail_validation(self, mock_sign_file):
+        """Files that fail validation are also auto signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation='{"notices": 2, "errors": 0, "messages": [],'
+                       ' "metadata": {}, "warnings": 1,'
+                       ' "signing_summary": {"trivial": 1, "low": 1,'
+                       '                     "medium": 0, "high": 0},'
+                       ' "passed_auto_validation": 1}')
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with failed
         # validation).
@@ -2636,7 +2683,8 @@ class TestVersionAddFile(UploadTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
-        self.addon.update(is_listed=False, trusted=False)
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2644,11 +2692,12 @@ class TestVersionAddFile(UploadTest):
                        ' "signing_summary": {"trivial": 1, "low": 0,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         self.post()
         file_ = File.objects.latest()
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_PUBLIC
+        # Status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with passed
         # validation).
@@ -2884,8 +2933,9 @@ class TestAddVersion(AddVersionTest):
         assert f.status != amo.STATUS_BETA
 
     @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_fail_validation(self, mock_sign_file):
-        """Files that fail validation are also auto signed/reviewed."""
+    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
@@ -2897,18 +2947,20 @@ class TestAddVersion(AddVersionTest):
                 "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with failed
         # validation).
         log = ActivityLog.objects.order_by('pk').last()
-        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
+        assert log.action == expected
 
     @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_pass_validation(self, mock_sign_file):
-        """Files that pass validation are automatically signed/reviewed."""
+    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
+        """Sideloadable unlisted addons also get auto signed/reviewed."""
+        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
         self.addon.update(is_listed=False, trusted=False)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
@@ -2920,9 +2972,60 @@ class TestAddVersion(AddVersionTest):
                 "passed_auto_validation": 1}))
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
+        # Status is changed to fully reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_PUBLIC
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
+        assert log.action == expected
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_unlisted_addon_fail_validation(self, mock_sign_file):
+        """Files that fail validation are also auto signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        # Make sure the file has validation warnings or errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 1,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 0}))
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
+        assert mock_sign_file.called
+        # There is a log for that unlisted file signature (with failed
+        # validation).
+        log = ActivityLog.objects.order_by('pk').last()
+        assert log.action == amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_unlisted_addon_pass_validation(self, mock_sign_file):
+        """Files that pass validation are automatically signed/reviewed."""
+        self.addon.update(
+            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+        # Make sure the file has no validation warnings nor errors.
+        self.upload.update(
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+                "signing_summary": {"trivial": 1, "low": 0,
+                                    "medium": 0, "high": 0},
+                "passed_auto_validation": 1}))
+        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        self.post()
+        file_ = File.objects.latest()
+        # Status is changed to preliminary reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_LITE
+        assert file_.status == amo.STATUS_LITE
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with passed
         # validation).
@@ -3110,10 +3213,10 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
-             source=None, is_listed=True, status_code=200):
+             source=None, is_listed=True, is_sideload=False, status_code=200):
         d = dict(upload=self.upload.uuid, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
-                 is_unlisted=not is_listed)
+                 is_unlisted=not is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
         assert r.status_code == status_code
         if not expect_errors:
@@ -3198,7 +3301,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_LITE  # Automatic signing.
         assert mock_sign_file.called
 
     @mock.patch('olympia.editors.helpers.sign_file')
@@ -3216,6 +3319,16 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
+        assert addon.status == amo.STATUS_LITE  # Prelim review.
+        assert mock_sign_file.called
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_success_unlisted_sideload(self, mock_sign_file):
+        assert Addon.with_unlisted.count() == 0
+        self.post(is_listed=False, is_sideload=True)
+        addon = Addon.with_unlisted.get()
+        assert not addon.is_listed
+        # Full review for sideload addons.
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
