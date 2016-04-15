@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-07 08:17+0000\n"
+"PO-Revision-Date: 2016-04-15 07:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6145,8 +6145,8 @@ msgid ""
 "meantime, you and your friends can install it directly from its details "
 "page:"
 msgstr ""
-"Miután egy szerkesztő áttekintette, kapni fog egy e-mailt. Addig is, Ön és "
-"barátai közvetlenül a részletes oldaláról telepíthetik:"
+"Miután egy szerkesztő értékelte, kapni fog egy e-mailt. Addig is, Ön és "
+"barátai közvetlenül a részletező oldaláról telepíthetik:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
@@ -12154,7 +12154,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:383
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Miért kell a kiegészítőjét értékelni?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:385
 #, python-format
@@ -12167,7 +12167,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:393
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Ki értékeli a kiegészítőjét?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:395
 #, python-format
@@ -13116,6 +13116,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr ""
+"Én vagyok a kiegészítő szerzője, tudom törölni a kedvezőtlen értékeléseket "
+"vagy minősítéseket?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:151
 msgid ""
@@ -13767,7 +13769,7 @@ msgstr "nyelv szerint"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "Platform szerint"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
