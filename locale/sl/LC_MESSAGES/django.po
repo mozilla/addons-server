@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-15 05:43+0000\n"
+"PO-Revision-Date: 2016-04-15 11:29+0000\n"
 "Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5784,7 +5784,7 @@ msgstr "Ne, izvorna koda za ta dodatek ni javno na ogled."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Public Stats?"
-msgstr "Statistika javna?"
+msgstr "Javna statistika?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:102
 msgid ""
@@ -5892,12 +5892,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr "Izberite ikono za vaš dodatek:"
+msgstr "Izberite ikono dodatka:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:37
 msgid "32x32px"
-msgstr "32x32px"
+msgstr "32 x 32 pik"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid ""
@@ -5910,7 +5910,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "64x64px"
-msgstr "64x64px"
+msgstr "64 x 64 pik"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
@@ -5923,7 +5923,7 @@ msgstr "Nalaganje lastne sličice ..."
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
-"Podprta sta PNG in JPG. Sličico se bo pomanjšalo na 64x64 pik, če bo "
+"Podprta sta PNG in JPG. Sličico se bo pomanjšalo na 64 x 64 pik, če bo "
 "prevelika."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:83
@@ -5944,36 +5944,36 @@ msgstr "Dodaj posnetek zaslona ..."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr "Testi"
+msgstr "Preizkusi"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
-msgstr "Splošni testi"
+msgstr "Splošni preizkusi"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
-msgstr "Testi varnosti"
+msgstr "Preizkusi varnosti"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
-msgstr "Testi razširitve"
+msgstr "Preizkusi razširitve"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
-msgstr "Testi lokalizacije"
+msgstr "Preizkusi lokalizacije"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:21
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
-msgstr "Testi združljivosti"
+msgstr "Preizkusi združljivosti"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: src/olympia/files/templates/files/viewer.html:142
@@ -5996,7 +5996,7 @@ msgstr "Vrh"
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr "Zbriši temo"
+msgstr "Izbriši temo"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/versions/list.html:117
@@ -6026,11 +6026,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34
 msgid "Please tell us why you are deleting your theme:"
-msgstr "Prosimo, povejte nam, zakaj brišete svojo temo:"
+msgstr "Povejte nam, zakaj brišete svojo temo:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:36
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Prosimo, povejte nam, zakaj brišete svoj dodatek:"
+msgstr "Povejte nam, zakaj brišete svoj dodatek:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
@@ -8068,7 +8068,7 @@ msgstr "Dopoilnite prosim svoj dodatek."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr "Ko bo pregled končan, boste prejeli sporočilo po e-pošti."
+msgstr "Ko bo pregled končan, boste prejeli obvestilo po e-pošti."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid ""
@@ -9227,7 +9227,7 @@ msgstr "Ali res želite skriti svoj dodatek?"
 #: src/olympia/devhub/templates/devhub/versions/list.html:286
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
 msgid "Unlist Add-on"
-msgstr "Odstrani dodatek iz seznama"
+msgstr "Odstrani dodatek s seznama"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 #, python-format
