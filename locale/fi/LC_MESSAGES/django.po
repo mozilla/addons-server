@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-10 16:19+0000\n"
+"PO-Revision-Date: 2016-04-16 20:47+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2438,7 +2438,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/recaptcha.html:4
 msgid "Are you human?"
-msgstr ""
+msgstr "Oletko ihminen?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html:8
 msgid ""
@@ -2561,7 +2561,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/mobile/paginator.html:10
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
+msgstr[0] "Sivu {n}"
 msgstr[1] "Sivu {n}"
 
 #: src/olympia/amo/templates/services/install.html:38
@@ -4029,7 +4029,7 @@ msgstr "Mobiili"
 
 #: src/olympia/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox Androidille"
 
 #: src/olympia/constants/applications.py:139
 msgid "Mozilla"
@@ -4133,7 +4133,7 @@ msgstr "Kielipaketti (ohjelman)"
 
 #: src/olympia/constants/base.py:165
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Kielipaketti (lisäosa)"
 
 #: src/olympia/constants/base.py:166
 msgid "Plugin"
@@ -5499,7 +5499,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:5
 msgid "Support Information"
-msgstr ""
+msgstr "Tukitiedot"
 
 #. {0} is an addon name
 # 77%
@@ -6061,7 +6061,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
-msgstr ""
+msgstr "Vaihe 5"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
@@ -6080,7 +6080,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:3
 msgid "Step 4"
-msgstr ""
+msgstr "Vaihe 4"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
@@ -6095,7 +6095,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
-msgstr ""
+msgstr "Vaihe 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
@@ -6200,7 +6200,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:4
 msgid "Step 1"
-msgstr ""
+msgstr "Vaihe 1"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:7
 msgid "Step 1. Getting Started"
@@ -6208,7 +6208,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "Vaihe 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:9
 msgid "Step 2. Upload Your Add-on"
@@ -8777,7 +8777,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:39 src/olympia/editors/forms.py:68
 msgid "and"
-msgstr ""
+msgstr "ja"
 
 #: src/olympia/editors/forms.py:41
 msgid "Filter by type/action"
@@ -8802,7 +8802,7 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py:75
 msgid "start"
-msgstr ""
+msgstr "alku"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py:79
@@ -9023,7 +9023,7 @@ msgstr "Lisäosat"
 
 #: src/olympia/editors/helpers.py:262
 msgid "Type"
-msgstr ""
+msgstr "Tyyppi"
 
 #: src/olympia/editors/helpers.py:263
 msgid "Waiting Time"

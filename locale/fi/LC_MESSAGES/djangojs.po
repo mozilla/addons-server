@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-09 14:56+0000\n"
+"PO-Revision-Date: 2016-04-09 14:55+0000\n"
 "Last-Translator: Blue <teemu-vuori@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -1121,7 +1121,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Teema"
 
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
@@ -1129,7 +1129,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "Tila"
 
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
