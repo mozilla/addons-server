@@ -1171,10 +1171,6 @@ body:not(.developer-hub) section.secondary {
   z-index: 1;
 }
 
-.addon-details .primary .notice {
-  padding-bottom: 18px;
-}
-
 .hovercard a h3,
 .secondary li a,
 #footer a:link,
@@ -1189,34 +1185,26 @@ body:not(.developer-hub) section.secondary {
   border-radius: 0;
   border-top: 1px solid rgba(255,255,255,0.3);
   box-shadow: none;
+  padding-bottom: 18px;
 
   .hovercard.addon {
-    &:hover,
-    &:hover:before,
-    &:hover .icon,
-    &:hover .summary,
-    &:hover .more {
-      background: none;
-      border-color: transparent;
-      box-shadow: none;
+    .rating b {
+      color: #fff;
     }
 
-    .more {
-      display: block;
-
-      .addon-summary,
-      .byline,
-      .vitals {
-        display: none;
+    &:hover,
+    &:focus {
+      .summary a h3,
+      .summary a .category.more-info,
+      .rating b {
+        color: @default-font-color;
       }
     }
-  }
-}
 
-// modify dependency to show "add to firefox" button and hide overlay
-// make hovercard hide discription and always show "add to firefox"
-.addon-details .primary .notice.dependencies {
-  height: 130px;
+    .more .addon-summary {
+      display: none;
+    }
+  }
 }
 
 // Standard pages have the default
@@ -1624,8 +1612,12 @@ h3.author .transfer-ownership {
   font-weight: normal;
   padding: 5px 14px 5px 28px;
 
-  .addon-description-header & {
+  .addon-description-header &  {
     border: 0;
+  }
+
+  .addon.hovercard & {
+    border: 1px solid #ebebeb;
   }
 }
 
@@ -1735,11 +1727,6 @@ h3.author .transfer-ownership {
   .more-versions {
     padding-left: 1rem;
   }
-}
-
-
-.dependencies .addon.hovercard:hover .summary {
-  height: 55px;
 }
 
 #addon .more-versions a {
