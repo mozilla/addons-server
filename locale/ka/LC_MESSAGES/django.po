@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-12 20:20+0000\n"
+"PO-Revision-Date: 2016-04-16 16:04+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -642,11 +642,11 @@ msgstr ""
 #: src/olympia/addons/templates/addons/home.html:51
 #: src/olympia/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "შემოთავაზებული გაფართოებები"
 
 #: src/olympia/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "პოპულარული გაფართოებები"
 
 #: src/olympia/addons/templates/addons/home.html:42
 #: src/olympia/amo/templates/amo/side_nav.html:3
@@ -672,7 +672,7 @@ msgstr "ყველას ნახვა »"
 
 #: src/olympia/addons/templates/addons/home.html:60
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "იმედის მომცემი გაფართოებები"
 
 #: src/olympia/addons/templates/addons/home.html:69
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
@@ -753,7 +753,7 @@ msgstr "გადახდა შესრულებულია"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "დამატებაზე დაბრუნება."
 
 #: src/olympia/addons/templates/addons/persona_detail.html:17
 #: src/olympia/addons/templates/addons/impala/details.html:106
@@ -793,7 +793,7 @@ msgstr "ნახეთ ამ მხატვრის ყველა თე�
 #: src/olympia/editors/templates/editors/themes/themes.html:34
 #: src/olympia/templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "კატეგორიები"
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:10
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:3
@@ -840,11 +840,11 @@ msgstr "მიღებულია"
 #: src/olympia/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> მომხმარებელი"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:40
 msgid "Hover to Preview"
-msgstr ""
+msgstr "გადაულივლივეთ წინასწარ სანახავად"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:46
 #: src/olympia/addons/templates/addons/persona_preview.html:48
@@ -872,7 +872,7 @@ msgstr "ჩასწორება"
 #: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d.%%m.%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
@@ -1289,7 +1289,7 @@ msgstr "მხარდაჭერის საიტი"
 
 #: src/olympia/addons/templates/addons/impala/details.html:189
 msgid "Support E-mail"
-msgstr ""
+msgstr "მხარდაჭერის ელ-ფოსტა"
 
 #: src/olympia/addons/templates/addons/impala/details.html:194
 #: src/olympia/devhub/models.py:378
@@ -1301,7 +1301,7 @@ msgstr "ვერსია {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:194
 msgid "Info"
-msgstr ""
+msgstr "ინფორმაცია"
 
 #: src/olympia/addons/templates/addons/impala/details.html:195
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:129
@@ -1333,7 +1333,7 @@ msgstr "ამ დამატების შესახებ"
 
 #: src/olympia/addons/templates/addons/impala/details.html:233
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "განმვითარებლის კომენტარები"
 
 #: src/olympia/addons/templates/addons/impala/details.html:243
 msgid "Version Information"
@@ -1415,7 +1415,7 @@ msgstr "ფოტო არაა"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "ვინ არის {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
@@ -1432,17 +1432,17 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/license.html:21
 #: src/olympia/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
-msgstr ""
+msgstr "წყაროს კოდის ლიცენზია"
 
 #: src/olympia/addons/templates/addons/impala/persona_grid.html:16
 #: src/olympia/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} მომხმარებელი"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:19
 #: src/olympia/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "permalink"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:23
 #: src/olympia/editors/templates/editors/queue.html:98

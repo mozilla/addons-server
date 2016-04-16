@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-12 20:17+0000\n"
+"PO-Revision-Date: 2016-04-16 15:58+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -113,6 +113,8 @@ msgstr "თქვენი შენატანი ავტომატურ�
 #: static/js/common/upload-addon.js:465
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"მიუთითეთ ვერსიის შენიშვნები დეტალურად (ამის გაკეთება მომდევნო ნაბიჯში "
+"შეიძლება)."
 
 #: static/js/common/upload-addon.js:466
 msgid ""
@@ -185,12 +187,12 @@ msgstr "გაყოლის შეჩერება"
 
 #: static/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "მიჰყვებით"
 
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
 
 #: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
@@ -198,47 +200,47 @@ msgstr "ყველა უფლება დაცულია"
 
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "თქვენი თემის სახელი"
 
 #: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "განსახილველად მონიშნული"
 
 #: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "საჭიროა მონაცემების შეყვანა"
 
 #: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "წასაშლელად მონიშნული"
 
 #: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "შედეგების განახლება&hellip;"
 
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
@@ -246,19 +248,19 @@ msgstr "კატეგორია"
 
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}-ს</b> ძიება თემებში"
 
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}-ს</b> ძიება აპებში"
 
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "<b>{0}-ს</b> ძიება დამატებებში"
 
 #: static/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "ორიგინალის გამოყენება"
 
 #: static/js/impala/stats/chart.js:267
 msgid "Week of {0}"
@@ -866,7 +868,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js:267
 msgid "Not available for your platform"
-msgstr ""
+msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js:278 static/js/zamboni/buttons.js:315
@@ -890,70 +892,72 @@ msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
 "search plugin."
 msgstr ""
+"ბოდიში, საძიებო მოდულის დასაინტსტალირებლად გესაჭირეობათ Mozilla-ზე "
+"დაფუძნებული ბრაუზერი (მაგალითად Firefox)."
 
 #: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "ემატება რჩეულებში &hellip;"
 
 #: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "რჩეული იშლება &hellip;"
 
 #: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
-msgstr ""
+msgstr "რჩეულებში დამატება"
 
 #: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "რჩეულებიდან ამოღება"
 
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "განხილვის პროცესში"
 
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
-msgstr ""
+msgstr "კომენტარის დამატება"
 
 #: static/js/zamboni/collections.js:304
 msgid "Comment"
-msgstr ""
+msgstr "კომენტარი"
 
 #: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "ამ დამატების კრებულიდან ამოღება"
 
 #: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
-msgstr ""
+msgstr "ამოღება"
 
 #: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "ამ მომხმარებლის წვლილის შემტანებიდან ამოღება"
 
 #: static/js/zamboni/collections.js:346
 msgid "An email address is required."
-msgstr ""
+msgstr "ელფოსტის მისამართი საჭიროა."
 
 #: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "საკუთარი თავის წვლილის შემტანად დამატება არ შეგიძლიათ."
 
 #: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
-msgstr ""
+msgstr "ეს მომხმარებელი უკვე დაამატეთ."
 
 #: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
-msgstr ""
+msgstr "რჩეულებში დამატება"
 
 #: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
-msgstr ""
+msgstr "რჩეულებიდან ამოღება"
 
 #: static/js/zamboni/collections.js:604
 msgid "Stop following"
-msgstr ""
+msgstr "ადევნების შეწყვეტა"
 
 #: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
@@ -1055,13 +1059,13 @@ msgstr ""
 
 #: static/js/zamboni/global.js:410
 msgid "Loading..."
-msgstr ""
+msgstr "იტვირთება...."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
+msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 
 #: static/js/zamboni/init.js:28
 msgid ""
@@ -1073,16 +1077,16 @@ msgstr ""
 
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "ამ ლოკალიზაციის წაშლა"
 
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "პაროლის სიძლიერე:"
 
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
+msgstr[0] "დარჩენილია სულ მცირე {0} სიმბოლო."
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
