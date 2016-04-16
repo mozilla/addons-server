@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-15 22:46+0000\n"
+"PO-Revision-Date: 2016-04-16 13:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -374,7 +374,7 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 #: static/js/impala-all.js:13530 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
-msgstr "Mjeno twojeje drasty"
+msgstr "Mjeno wašeje drasty"
 
 #: static/js/impala-all.js:14242 static/js/impala-min.js:8
 #: static/js/impala/collections.js:19
@@ -483,7 +483,7 @@ msgstr "Přepruwowanje {0} dokónčene"
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
-"Waše přepruwowanje přidatka je čas překročił, budźe so tohodla manuelnje "
+"Waše přepruwowanje přidatka je čas překročiło, budźe so tohodla manuelnje "
 "přewjesć."
 
 #: static/js/common/upload-addon.js:400 static/js/zamboni/devhub-all.js:652
@@ -553,7 +553,7 @@ msgstr ""
 #: static/js/common/upload-addon.js:446 static/js/zamboni/devhub-all.js:711
 #: static/js/zamboni/devhub-min.js:1
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Kontrolna lisćina za zapodaća přidatkow"
 
 #: static/js/common/upload-addon.js:447 static/js/zamboni/devhub-all.js:712
 #: static/js/zamboni/devhub-min.js:1
@@ -561,6 +561,8 @@ msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Prošu wobkrućće slědowace dypki, prjedy hač swoje zapodaće dokónčiće. To "
+"komdźenja abo njedorozumjenja za přepruwowanski proces pomjeńši:"
 
 #: static/js/common/upload-addon.js:449 static/js/zamboni/devhub-all.js:714
 #: static/js/zamboni/devhub-min.js:1
@@ -570,11 +572,17 @@ msgid ""
 " Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
+"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo "
+"znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. "
+"Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda, zo njeby so waše "
+"zapodaće wotpokazało."
 
 #: static/js/common/upload-addon.js:467 static/js/zamboni/devhub-all.js:732
 #: static/js/zamboni/devhub-min.js:1
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
+"Přepruwowanski proces je slědowace problemy namakał, kotrež móhli k "
+"wotpokazanjam wjesć:"
 
 #: static/js/common/upload-addon.js:484 static/js/zamboni/devhub-all.js:749
 #: static/js/zamboni/devhub-min.js:1
@@ -582,298 +590,300 @@ msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it"
 " here."
 msgstr ""
+"Jeli přepruwowanski proces za přidatki njeznajeće, móžeće so tu wo tym "
+"informować."
 
 #: static/js/common/upload-addon.js:521 static/js/zamboni/devhub-all.js:786
 #: static/js/zamboni/devhub-min.js:1
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Bohužel njeje so podpěrana platforma namakała."
 
 #: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:187
 #: static/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Datajowy typ, kotryž sć nahrał, so njespóznawa."
 
 #: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:209
 #: static/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Sće nahraće přetorhnył."
 
 #: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16898
 #: static/js/zamboni/stats-min.js:5
 msgid "Week of {0}"
-msgstr ""
+msgstr "Tydźeń {0}"
 
 #: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900
 #: static/js/zamboni/stats-min.js:5
 msgid " downloads"
-msgstr ""
+msgstr " sćehnjenjow"
 
 #: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} users"
-msgstr ""
+msgstr "{0} wužiwarjow"
 
 #: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16902
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} přidatkow"
 
 #: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16903
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} zběrkow"
 
 #: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16904
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} pohódnocénjow"
 
 #: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16906
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} předanjow"
 
 #: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16907
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} zarunanjow"
 
 #: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16908
 #: static/js/zamboni/stats-min.js:5
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} instalacijow"
 
 #: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
 #: static/js/impala/stats/csv_keys.js:109 static/js/zamboni/stats-all.js:15284
 #: static/js/zamboni/stats-all.js:15390 static/js/zamboni/stats-all.js:17000
 #: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Downloads"
-msgstr ""
+msgstr "Sćehnjenja"
 
 #: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110 static/js/zamboni/stats-all.js:15287
 #: static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-all.js:17010
 #: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Daily Users"
-msgstr ""
+msgstr "Wšědni wužiwarjo"
 
 #: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17041
 #: static/js/zamboni/stats-min.js:5
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Suma, w USD"
 
 #: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 #: static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-all.js:17052
 #: static/js/zamboni/stats-min.js:5
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Ličba přinoškow"
 
 #: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17078
 #: static/js/zamboni/stats-min.js:5
 msgid "More Info..."
-msgstr ""
+msgstr "Dalše informacije..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17082
 #: static/js/zamboni/stats-min.js:5
 msgid "Details for {0}"
-msgstr ""
+msgstr "Podrobnosće za {0}"
 
 #: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15290
 #: static/js/zamboni/stats-min.js:4
 msgid "Collections Created"
-msgstr ""
+msgstr "Wutworjene zběrki"
 
 #: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15293
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Wužiwane přidatki"
 
 #: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15296
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Wutworjene přidatki"
 
 #: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15299
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Sćehnjene přidatki"
 
 #: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15302
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Zaktualizowane přidatki"
 
 #: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15305
 #: static/js/zamboni/stats-min.js:4
 msgid "Reviews Written"
-msgstr ""
+msgstr "Napisane pohódnoćenja"
 
 #: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15308
 #: static/js/zamboni/stats-min.js:4
 msgid "User Signups"
-msgstr ""
+msgstr "Wužiwarske registrowanja"
 
 #: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15311
 #: static/js/zamboni/stats-min.js:4
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonenća"
 
 #: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15314
 #: static/js/zamboni/stats-min.js:4
 msgid "Ratings"
-msgstr ""
+msgstr "Pohódnoćenja"
 
 #: static/js/impala/stats/csv_keys.js:36
 #: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15317
 #: static/js/zamboni/stats-all.js:15395 static/js/zamboni/stats-min.js:4
 #: static/js/zamboni/stats-min.js:5
 msgid "Sales"
-msgstr ""
+msgstr "Předanje"
 
 #: static/js/impala/stats/csv_keys.js:39
 #: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15320
 #: static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:4
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs"
-msgstr ""
+msgstr "Instalacije"
 
 #: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15323
 #: static/js/zamboni/stats-min.js:4
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznate"
 
 #: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15324
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Zrjadowak přidatkow"
 
 #: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15325
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Zrjadowak přidatkow „Promo“"
 
 #: static/js/impala/stats/csv_keys.js:45 static/js/zamboni/stats-all.js:15326
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "W zrjadowaku přidatkow předstajene"
 
 #: static/js/impala/stats/csv_keys.js:46 static/js/zamboni/stats-all.js:15327
 #: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Zrjadowak přidatkow „Dalše informacije“"
 
 #: static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15328
 #: static/js/zamboni/stats-min.js:4
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Pytanske namjety"
 
 #: static/js/impala/stats/csv_keys.js:48 static/js/zamboni/stats-all.js:15329
 #: static/js/zamboni/stats-min.js:4
 msgid "Search Results"
-msgstr ""
+msgstr "Pytanske wuslědki"
 
 #: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
 #: static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15330
 #: static/js/zamboni/stats-all.js:15331 static/js/zamboni/stats-all.js:15332
 #: static/js/zamboni/stats-min.js:4
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Startowa strona „Promo“"
 
 #: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
 #: static/js/zamboni/stats-all.js:15333 static/js/zamboni/stats-all.js:15334
 #: static/js/zamboni/stats-min.js:4
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Startowa strona „Předstajene“"
 
 #: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
 #: static/js/zamboni/stats-all.js:15335 static/js/zamboni/stats-all.js:15336
 #: static/js/zamboni/stats-min.js:4
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Startowa strona „Nastawace“"
 
 #: static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15337
 #: static/js/zamboni/stats-min.js:4
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Startowa strona „Najbóle woblubowane“"
 
 #: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
 #: static/js/zamboni/stats-all.js:15338 static/js/zamboni/stats-all.js:15340
 #: static/js/zamboni/stats-min.js:4
 msgid "Detail Page"
-msgstr ""
+msgstr "Strona podrobnosćow"
 
 #: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
 #: static/js/zamboni/stats-all.js:15339 static/js/zamboni/stats-all.js:15341
 #: static/js/zamboni/stats-min.js:4
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Strona podrobnosćow (deleka)"
 
 #: static/js/impala/stats/csv_keys.js:61 static/js/zamboni/stats-all.js:15342
 #: static/js/zamboni/stats-min.js:4
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Strona podrobnosćow (wuwiwarski kanal)"
 
 #: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
 #: static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15343
 #: static/js/zamboni/stats-all.js:15344 static/js/zamboni/stats-all.js:15345
 #: static/js/zamboni/stats-min.js:4
 msgid "Often Used With"
-msgstr ""
+msgstr "Husto wužiwany z"
 
 #: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
 #: static/js/zamboni/stats-all.js:15346 static/js/zamboni/stats-all.js:15347
 #: static/js/zamboni/stats-min.js:4
 msgid "Others By Author"
-msgstr ""
+msgstr "Druhe po awtorje"
 
 #: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
 #: static/js/zamboni/stats-all.js:15348 static/js/zamboni/stats-all.js:15349
 #: static/js/zamboni/stats-min.js:4
 msgid "Dependencies"
-msgstr ""
+msgstr "Wotwisnosće"
 
 #: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
 #: static/js/zamboni/stats-all.js:15350 static/js/zamboni/stats-all.js:15351
 #: static/js/zamboni/stats-min.js:4
 msgid "Upsell"
-msgstr ""
+msgstr "Přidatne předanje"
 
 #: static/js/impala/stats/csv_keys.js:71 static/js/zamboni/stats-all.js:15352
 #: static/js/zamboni/stats-min.js:4
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Zeznajće z wuwiwarjom"
 
 #: static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15353
 #: static/js/zamboni/stats-min.js:4
 msgid "User Profile"
-msgstr ""
+msgstr "Wužiwarski profil"
 
 #: static/js/impala/stats/csv_keys.js:73 static/js/zamboni/stats-all.js:15354
 #: static/js/zamboni/stats-min.js:4
 msgid "Version History"
-msgstr ""
+msgstr "Wersijowa historija"
 
 #: static/js/impala/stats/csv_keys.js:75 static/js/zamboni/stats-all.js:15356
 #: static/js/zamboni/stats-min.js:4
 msgid "Sharing"
-msgstr ""
+msgstr "Dźělić"
 
 #: static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15357
 #: static/js/zamboni/stats-min.js:4
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategorijowe strony"
 
 #: static/js/impala/stats/csv_keys.js:77 static/js/zamboni/stats-all.js:15358
 #: static/js/zamboni/stats-min.js:4
 msgid "Collections"
-msgstr ""
+msgstr "Zběrki"
 
 #: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 #: static/js/zamboni/stats-all.js:15359 static/js/zamboni/stats-all.js:15360
 #: static/js/zamboni/stats-min.js:4
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Kategorijowy přehlad „Karusel předstajenych“"
 
 #: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
 #: static/js/zamboni/stats-all.js:15361 static/js/zamboni/stats-all.js:15362
