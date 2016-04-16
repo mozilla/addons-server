@@ -1,17 +1,20 @@
-
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-04-15 22:46+0000\n"
+"Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common-all.js:1426 static/js/impala-all.js:1511
 #: static/js/zamboni/discovery-all.js:12598 static/js/zamboni/init.js:28
@@ -20,53 +23,59 @@ msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
+"Tuta funkcija je so nachwilu znjemóžnjena, mjeztym zo wothladowanske dźěła "
+"na websydle přewjedźemy. Prošu spytajće tróšku pozdźišo hišće raz."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/common-all.js:1837 static/js/impala-all.js:1922
 #: static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
 msgid "Accept and Install"
-msgstr ""
+msgstr "Akceptować a instalować"
 
 #: static/js/common-all.js:1837 static/js/impala-all.js:1922
 #: static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
 msgid "Add to {0}"
-msgstr ""
+msgstr "K {0} přidać"
 
 #: static/js/common-all.js:1842 static/js/impala-all.js:1927
 #: static/js/zamboni/buttons.js:78 static/js/zamboni/discovery-all.js:13113
 msgid "Download Now"
-msgstr ""
+msgstr "Nětko sćahnyć"
 
 #: static/js/common-all.js:1883 static/js/impala-all.js:1968
 #: static/js/zamboni/buttons.js:119 static/js/zamboni/discovery-all.js:13154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
+"Přidatk njeje so zaktualizował, zo byšće standardnu kompatibelnosć podpěrał."
 
 #: static/js/common-all.js:1888 static/js/impala-all.js:1973
 #: static/js/zamboni/buttons.js:124 static/js/zamboni/discovery-all.js:13159
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Dyrbiće Firefox 10.0 abo nowši wužiwać."
 
 #: static/js/common-all.js:1900 static/js/impala-all.js:1985
 #: static/js/zamboni/buttons.js:136 static/js/zamboni/discovery-all.js:13171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
+"Mozilla je tutu wersiju jako z wašej wersiju Firefox kompatibelnu "
+"markěrował."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/common-all.js:1981 static/js/impala-all.js:2066
 #: static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Najebać toho za {0} instalować"
 
 #: static/js/common-all.js:1981 static/js/impala-all.js:2066
 #: static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Najebać toho za {0} sćahnyć"
 
 #: static/js/common-all.js:2038 static/js/impala-all.js:2123
 #: static/js/zamboni/buttons.js:274 static/js/zamboni/discovery-all.js:13309
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Njeje za wašu platformu k dispoziciji"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/common-all.js:2049 static/js/common-all.js:2086
@@ -75,43 +84,48 @@ msgstr ""
 #: static/js/zamboni/discovery-all.js:13320
 #: static/js/zamboni/discovery-all.js:13357
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Njeje za {0} {1} k dispoziciji"
 
 #: static/js/common-all.js:2112 static/js/impala-all.js:2197
 #: static/js/zamboni/buttons.js:348 static/js/zamboni/discovery-all.js:13383
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Funguje z {app} {min} - {max}"
 
 #: static/js/common-all.js:2114 static/js/impala-all.js:2199
 #: static/js/zamboni/buttons.js:350 static/js/zamboni/discovery-all.js:13385
 msgid "View other versions"
-msgstr ""
+msgstr "Druhe wersije pokazać"
 
 #: static/js/common-all.js:2162 static/js/impala-all.js:2247
 #: static/js/zamboni/buttons.js:398 static/js/zamboni/discovery-all.js:13433
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Jenož z Firefox – Wobstarajće sej nětko Firefox!"
 
 #: static/js/common-all.js:2278 static/js/impala-all.js:2363
 #: static/js/zamboni/buttons.js:514 static/js/zamboni/discovery-all.js:13549
-#: static/js/zamboni/mobile-all.js:15177 static/js/zamboni/mobile/buttons.js:43
+#: static/js/zamboni/mobile-all.js:15177
+#: static/js/zamboni/mobile/buttons.js:43
 msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
-" plugin."
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
 msgstr ""
+"Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski"
+" tykač instalował."
 
 #: static/js/common-all.js:9088 static/js/impala-all.js:9649
 #: static/js/zamboni/global.js:410
 msgid "Loading..."
-msgstr ""
+msgstr "Začituje so..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/common-all.js:9152 static/js/impala-all.js:9713
 #: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> znamješko wyše."
+msgstr[1] "<b>{0}</b> znamješce wyše."
+msgstr[2] "<b>{0}</b> znamješka wyše."
+msgstr[3] "<b>{0}</b> znamješkow wyše."
 
 #: static/js/common-all.js:9589 static/js/common-min.js:6
 #: static/js/impala-all.js:10052 static/js/impala-min.js:6
@@ -119,385 +133,413 @@ msgstr[1] ""
 #: static/js/zamboni/mobile-min.js:6
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} hwěžka"
+msgstr[1] "{0} hwěžce"
+msgstr[2] "{0} hwěžki"
+msgstr[3] "{0} hwěžkow"
 
 #: static/js/common-all.js:9676 static/js/common-min.js:6
 #: static/js/impala-all.js:10139 static/js/impala-min.js:6
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Tutón přełožk wotstronić"
 
 #: static/js/common-all.js:10193 static/js/common-min.js:6
 #: static/js/impala-all.js:10674 static/js/impala-min.js:6
 #: static/js/zamboni/discovery-all.js:13678
 msgid "close"
-msgstr ""
+msgstr "začinić"
 
 #: static/js/common-all.js:10860 static/js/common-min.js:6
 #: static/js/impala-all.js:11481 static/js/impala-min.js:6
 #: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
-msgstr ""
+msgstr "Za přepruwowanje woznamjenjeny"
 
 #: static/js/common-all.js:10876 static/js/common-min.js:6
 #: static/js/impala-all.js:11498 static/js/impala-min.js:6
 #: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
-msgstr ""
+msgstr "Waše zapodaće je trěbne"
 
 #: static/js/common-all.js:10945 static/js/common-min.js:6
 #: static/js/impala-all.js:11610 static/js/impala-min.js:7
 #: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Za zhašenje markěrowany"
 
 #: static/js/common-all.js:11573 static/js/common-min.js:7
 #: static/js/impala-all.js:13809 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Přidawa so faworitam&hellip;"
 
 #: static/js/common-all.js:11576 static/js/common-min.js:7
 #: static/js/impala-all.js:13812 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Faworit so wotstronja&hellip;"
 
 #: static/js/common-all.js:11579 static/js/common-min.js:7
 #: static/js/impala-all.js:13815 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Faworitam přidać"
 
 #: static/js/common-all.js:11582 static/js/common-min.js:7
 #: static/js/impala-all.js:13818 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Z faworitow wotstronić"
 
 #: static/js/common-all.js:11647 static/js/common-min.js:7
 #: static/js/impala-all.js:13883 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "Wustejacy"
 
 #: static/js/common-all.js:11648 static/js/common-min.js:7
 #: static/js/impala-all.js:13884 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
-msgstr ""
+msgstr "Komentar přidać"
 
 #: static/js/common-all.js:11648 static/js/common-min.js:7
 #: static/js/impala-all.js:13884 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:304
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: static/js/common-all.js:11649 static/js/common-min.js:7
 #: static/js/impala-all.js:13885 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Tutón přidatk ze zběrki wotstronić"
 
 #: static/js/common-all.js:11649 static/js/common-all.js:11678
 #: static/js/common-min.js:7 static/js/impala-all.js:13885
 #: static/js/impala-all.js:13914 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
-msgstr ""
+msgstr "Wotstronić"
 
 #: static/js/common-all.js:11678 static/js/common-min.js:7
 #: static/js/impala-all.js:13914 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Wužiwarja jako sobuskutkowarja wotstronić"
 
 #: static/js/common-all.js:11690 static/js/common-min.js:7
 #: static/js/impala-all.js:13926 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:346
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mejlowa adresa je trěbna."
 
 #: static/js/common-all.js:11708 static/js/common-min.js:7
 #: static/js/impala-all.js:13944 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Njemóžeće sebje jako sobuskutkowaceho přidać."
 
 #: static/js/common-all.js:11710 static/js/common-min.js:7
 #: static/js/impala-all.js:13946 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
-msgstr ""
+msgstr "Sće hižo toho wužiwarja přidał."
 
 #: static/js/common-all.js:11917 static/js/common-min.js:7
 #: static/js/impala-all.js:14153 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
-msgstr ""
+msgstr "Faworitam přidać"
 
 #: static/js/common-all.js:11921 static/js/common-min.js:7
 #: static/js/impala-all.js:14157 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Z faworitow wotstronić"
 
 #: static/js/common-all.js:11939 static/js/common-min.js:7
 #: static/js/impala-all.js:14175 static/js/impala-all.js:14233
 #: static/js/impala-min.js:8 static/js/impala/collections.js:10
 #: static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Tutej zběrce slědować"
 
 #: static/js/common-all.js:11948 static/js/common-min.js:7
 #: static/js/impala-all.js:14184 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:604
 msgid "Stop following"
-msgstr ""
+msgstr "Hižo njeslědować"
 
 #: static/js/common-all.js:12096 static/js/common-min.js:7
 #: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
-msgstr ""
+msgstr "Hesłowa móc:"
 
 #: static/js/common-all.js:12102 static/js/common-min.js:7
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Znajmjeńša {0} znamješko wyše."
+msgstr[1] "Znajmjeńša {0} znamješce wyše."
+msgstr[2] "Znajmjeńša {0} znamješka wyše."
+msgstr[3] "Znajmjeńša {0} znamješkow wyše."
 
 #: static/js/common-all.js:12286 static/js/common-min.js:7
 #: static/js/impala-all.js:14632 static/js/impala-min.js:8
 #: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Drasty za <b>{0}</b> pytać"
 
 #: static/js/common-all.js:12288 static/js/common-min.js:7
 #: static/js/impala-all.js:14634 static/js/impala-min.js:8
 #: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Nałoženja za <b>{0}</b> pytać"
 
 #: static/js/common-all.js:12290 static/js/common-min.js:7
 #: static/js/impala-all.js:14636 static/js/impala-min.js:8
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Přidatki za <b>{0}</b> pytać"
 
 #: static/js/common-all.js:12521 static/js/common-min.js:7
 #: static/js/impala-all.js:14867 static/js/impala-min.js:8
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:11632 static/js/impala-min.js:7
 #: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Tuta drasta z wašej wersiju {0} kompatibelna njeje"
 
 #: static/js/impala-all.js:12146 static/js/impala-all.js:14331
 #: static/js/impala-min.js:7 static/js/impala-min.js:8
 #: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 #: static/js/zamboni/devhub-all.js:894 static/js/zamboni/devhub-min.js:1
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobrazy dyrbja pak PNG pak JPG być."
 
 #: static/js/impala-all.js:12150 static/js/impala-min.js:7
 #: static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:898
 #: static/js/zamboni/devhub-min.js:1
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Wideja dyrbja we formaće WebM być."
 
 #: static/js/impala-all.js:12177 static/js/impala-min.js:7
 #: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
 #: static/js/zamboni/devhub-all.js:272 static/js/zamboni/devhub-all.js:925
 #: static/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Při kontaktowanju serwera je problem wustupił."
 
 #: static/js/impala-all.js:13298 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Wšě prawa wuměnjene"
 
 #: static/js/impala-all.js:13302 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: static/js/impala-all.js:13307 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: static/js/impala-all.js:13312 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: static/js/impala-all.js:13317 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: static/js/impala-all.js:13322 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala-all.js:13327 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala-all.js:13530 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Mjeno twojeje drasty"
 
 #: static/js/impala-all.js:14242 static/js/impala-min.js:8
 #: static/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Hižo njeslědować"
 
 #: static/js/impala-all.js:14243 static/js/impala-min.js:8
 #: static/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Slědować"
 
 #: static/js/impala-all.js:14313 static/js/impala-min.js:8
 #: static/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "original wužiwać"
 
 #: static/js/impala-all.js:14523 static/js/impala-min.js:8
 #: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Wuslědki so aktualizuja&hellip;"
 
 #: static/js/common/upload-addon.js:69 static/js/zamboni/devhub-all.js:300
 #: static/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
-msgstr ""
+msgstr "Wubjerće dataju..."
 
 #: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Waš přidatk dyrbjał kóncowku .xpi, .jar abo .xml měć"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104 static/js/zamboni/devhub-all.js:335
 #: static/js/zamboni/devhub-min.js:1
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% dokónčene"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js:107 static/js/zamboni/devhub-all.js:338
 #: static/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} z {1}"
 
 #: static/js/common/upload-addon.js:140 static/js/zamboni/devhub-all.js:371
 #: static/js/zamboni/devhub-min.js:1
 msgid "Cancel"
-msgstr ""
+msgstr "Přetorhnyć"
 
 #: static/js/common/upload-addon.js:162 static/js/zamboni/devhub-all.js:393
 #: static/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} so nahrawa"
 
 #: static/js/common/upload-addon.js:189 static/js/zamboni/devhub-all.js:420
 #: static/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
-msgstr ""
+msgstr "Zmylk z {0}"
 
 #: static/js/common/upload-addon.js:194 static/js/zamboni/devhub-all.js:425
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Waš přidatk je při přepruwowanju z {0} zmylkom přepadnył."
+msgstr[1] "Waš přidatk je při přepruwowanju z {0} zmylkomaj přepadnył."
+msgstr[2] "Waš přidatk je při přepruwowanju z {0} zmylkami přepadnył."
+msgstr[3] "Waš přidatk je při přepruwowanju z {0} zmylkami přepadnył."
 
 #: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
 #: static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;a {0} dalši"
+msgstr[1] "&hellip;a {0} dalšej"
+msgstr[2] "&hellip;a {0} dalše"
+msgstr[3] "&hellip;a {0} dalšich"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:478
 #: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743
 #: static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
-msgstr ""
+msgstr "Dospołnu přepruwowansku rozprawu čitać"
 
 #: static/js/common/upload-addon.js:234 static/js/zamboni/devhub-all.js:465
 #: static/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} so přepruwuje"
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:273 static/js/zamboni/devhub-all.js:504
 #: static/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Prózdna wotmołwa je so wot serwera dóstała; status: {0}"
 
 #: static/js/common/upload-addon.js:352 static/js/zamboni/devhub-all.js:604
 #: static/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Njewočakowany serwerowy zmylk při přepruwowanju."
 
 #: static/js/common/upload-addon.js:391 static/js/zamboni/devhub-all.js:643
 #: static/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Přepruwowanje {0} dokónčene"
 
 #: static/js/common/upload-addon.js:397 static/js/zamboni/devhub-all.js:649
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Waše přepruwowanje přidatka je čas překročił, budźe so tohodla manuelnje "
+"přewjesć."
 
 #: static/js/common/upload-addon.js:400 static/js/zamboni/devhub-all.js:652
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} warnowanjom wobstał."
 msgstr[1] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} warnowanjomaj wobstał."
+msgstr[2] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstał."
+msgstr[3] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstał."
 
 #: static/js/common/upload-addon.js:405 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} zdźělenku wobstał."
 msgstr[1] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} zdźělenkomaj wobstał."
+msgstr[2] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstał."
+msgstr[3] ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstał."
 
 #: static/js/common/upload-addon.js:410 static/js/zamboni/devhub-all.js:662
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
+"Waš přidatk je přepruwowanje bjeze zmylkow a bjez warnowanjow wobstał."
 
 #: static/js/common/upload-addon.js:424 static/js/zamboni/devhub-all.js:677
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Waše zapodaće budźe so awtomatisce signować."
 
 #: static/js/common/upload-addon.js:431 static/js/zamboni/devhub-all.js:696
 #: static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
+"Nadrobne wersijowe informacije zapřijeć (to hodźi so w přichodnym kroku "
+"činić)."
 
 #: static/js/common/upload-addon.js:432 static/js/zamboni/devhub-all.js:697
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
-"If your add-on requires an account to a website in order to be fully tested, "
-"include a test username and password in the Notes to Reviewer (this can be "
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
+"Jeli sej waš přidatk konto z websydłom wužaduje, zo by so dospołnje "
+"testował, podajće w zdźělenjach na přepruwowarja testowe wužiwarske mjeno a "
+"hesło (to hodźi so w přichodnym kroku činić)."
 
 #: static/js/common/upload-addon.js:433 static/js/zamboni/devhub-all.js:698
 #: static/js/zamboni/devhub-min.js:1
@@ -505,6 +547,8 @@ msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
+"Jeli waš přidatk je za wobmjezowany wužiwarski kruh mysleny, wy měł "
+"„Nachwilne přepruwowanje“ město „Dospołneho přepruwowanja“ wubrać."
 
 #: static/js/common/upload-addon.js:446 static/js/zamboni/devhub-all.js:711
 #: static/js/zamboni/devhub-min.js:1
@@ -521,9 +565,9 @@ msgstr ""
 #: static/js/common/upload-addon.js:449 static/js/zamboni/devhub-all.js:714
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known"
-" libraries) need to have their sources submitted separately for review. Make "
-"sure that you use the source code upload field to avoid having your "
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
 
@@ -535,8 +579,8 @@ msgstr ""
 #: static/js/common/upload-addon.js:484 static/js/zamboni/devhub-all.js:749
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it "
-"here."
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
 msgstr ""
 
 #: static/js/common/upload-addon.js:521 static/js/zamboni/devhub-all.js:786
@@ -680,15 +724,17 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114
-#: static/js/zamboni/stats-all.js:15317 static/js/zamboni/stats-all.js:15395
-#: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15317
+#: static/js/zamboni/stats-all.js:15395 static/js/zamboni/stats-min.js:4
+#: static/js/zamboni/stats-min.js:5
 msgid "Sales"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113
-#: static/js/zamboni/stats-all.js:15320 static/js/zamboni/stats-all.js:15394
-#: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15320
+#: static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:4
+#: static/js/zamboni/stats-min.js:5
 msgid "Installs"
 msgstr ""
 
@@ -889,9 +935,9 @@ msgstr ""
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101
-#: static/js/zamboni/stats-all.js:15381 static/js/zamboni/stats-all.js:15382
-#: static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101 static/js/zamboni/stats-all.js:15381
+#: static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
@@ -1228,9 +1274,9 @@ msgid "<b>{0}</b> in last {1} days"
 msgstr ""
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
-#: static/js/zamboni/stats-all.js:15552 static/js/zamboni/stats-all.js:15558
-#: static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277 static/js/zamboni/stats-all.js:15552
+#: static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr ""
 
@@ -1256,10 +1302,10 @@ msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2408
-#: static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1229
-#: static/js/zamboni/editors-all.js:15576 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin_validation.js:24
+#: static/js/zamboni/devhub-all.js:2408 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:1229 static/js/zamboni/editors-all.js:15576
+#: static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr ""
 
@@ -1269,6 +1315,8 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
@@ -1276,6 +1324,8 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:110
@@ -1303,6 +1353,8 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:684
@@ -1310,6 +1362,8 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
@@ -1398,6 +1452,8 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:483
@@ -1405,6 +1461,8 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:485
@@ -1412,6 +1470,8 @@ msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:577
@@ -1527,48 +1587,59 @@ msgstr ""
 msgid "No results found"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15186 static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile-all.js:15186
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15187 static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile-all.js:15187
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15188 static/js/zamboni/mobile/buttons.js:54
+#: static/js/zamboni/mobile-all.js:15188
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15189 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile-all.js:15189
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr ""
 
 #: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191
-#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15192 static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile-all.js:15192
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15193 static/js/zamboni/mobile/buttons.js:59
+#: static/js/zamboni/mobile-all.js:15193
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15194 static/js/zamboni/mobile/buttons.js:60
+#: static/js/zamboni/mobile-all.js:15194
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15239 static/js/zamboni/mobile/buttons.js:105
+#: static/js/zamboni/mobile-all.js:15239
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15259 static/js/zamboni/mobile/buttons.js:125
+#: static/js/zamboni/mobile-all.js:15259
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr ""
 
-#: static/js/zamboni/mobile-all.js:15384 static/js/zamboni/mobile/buttons.js:250
+#: static/js/zamboni/mobile-all.js:15384
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr ""
 
@@ -1581,4 +1652,3 @@ msgstr ""
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr ""
-
