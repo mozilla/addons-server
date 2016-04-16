@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-16 13:01+0000\n"
+"PO-Revision-Date: 2016-04-16 15:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -889,117 +889,117 @@ msgstr "Kategorijowy přehlad „Karusel předstajenych“"
 #: static/js/zamboni/stats-all.js:15361 static/js/zamboni/stats-all.js:15362
 #: static/js/zamboni/stats-min.js:4
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategorijowy přehad „Najwyše pohódnoćenje“"
 
 #: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
 #: static/js/zamboni/stats-all.js:15363 static/js/zamboni/stats-all.js:15364
 #: static/js/zamboni/stats-min.js:5
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategorjowy přehlad „Najbóle wolubowane“"
 
 #: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
 #: static/js/zamboni/stats-all.js:15365 static/js/zamboni/stats-all.js:15366
 #: static/js/zamboni/stats-min.js:5
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategorijowy přehlad „Njedawno přidate“"
 
 #: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
 #: static/js/zamboni/stats-all.js:15367 static/js/zamboni/stats-all.js:15368
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po předstajenych“"
 
 #: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
 #: static/js/zamboni/stats-all.js:15369 static/js/zamboni/stats-all.js:15370
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po wužiwarjach“"
 
 #: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
 #: static/js/zamboni/stats-all.js:15371 static/js/zamboni/stats-all.js:15372
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po pohódnoćenju“"
 
 #: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
 #: static/js/zamboni/stats-all.js:15373 static/js/zamboni/stats-all.js:15374
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po wutworjenju“"
 
 #: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
 #: static/js/zamboni/stats-all.js:15375 static/js/zamboni/stats-all.js:15376
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po mjenje“"
 
 #: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
 #: static/js/zamboni/stats-all.js:15377 static/js/zamboni/stats-all.js:15378
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po woblubowanych“"
 
 #: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
 #: static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15380
 #: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po zaktualizowanych“"
 
 #: static/js/impala/stats/csv_keys.js:100
 #: static/js/impala/stats/csv_keys.js:101 static/js/zamboni/stats-all.js:15381
 #: static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Lisćinu přepytować „Sortěrowane po nastawacych“"
 
 #: static/js/impala/stats/csv_keys.js:105 static/js/zamboni/stats-all.js:15386
 #: static/js/zamboni/stats-min.js:5
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Darjena suma dohromady"
 
 #: static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15387
 #: static/js/zamboni/stats-min.js:5
 msgid "Average Contribution"
-msgstr ""
+msgstr "Přerěznje darjena suma"
 
 #: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15396
 #: static/js/zamboni/stats-min.js:5
 msgid "Usage"
-msgstr ""
+msgstr "Wužiwanje"
 
 #: static/js/impala/stats/csv_keys.js:118 static/js/zamboni/stats-all.js:15399
 #: static/js/zamboni/stats-min.js:5
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js:119 static/js/zamboni/stats-all.js:15400
 #: static/js/zamboni/stats-min.js:5
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js:120 static/js/zamboni/stats-all.js:15401
 #: static/js/zamboni/stats-min.js:5
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121 static/js/zamboni/stats-all.js:15402
 #: static/js/zamboni/stats-min.js:5
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15403
 #: static/js/zamboni/stats-min.js:5
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js:123 static/js/zamboni/stats-all.js:15404
 #: static/js/zamboni/stats-min.js:5
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15405
 #: static/js/zamboni/stats-min.js:5
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129 static/js/zamboni/stats-all.js:15410
