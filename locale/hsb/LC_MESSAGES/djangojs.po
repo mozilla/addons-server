@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-16 15:09+0000\n"
+"PO-Revision-Date: 2016-04-16 19:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -889,13 +889,13 @@ msgstr "Kategorijowy přehlad „Karusel předstajenych“"
 #: static/js/zamboni/stats-all.js:15361 static/js/zamboni/stats-all.js:15362
 #: static/js/zamboni/stats-min.js:4
 msgid "Category Landing Top Rated"
-msgstr "Kategorijowy přehad „Najwyše pohódnoćenje“"
+msgstr "Kategorijowy přehlad „Najwyše pohódnoćenje“"
 
 #: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
 #: static/js/zamboni/stats-all.js:15363 static/js/zamboni/stats-all.js:15364
 #: static/js/zamboni/stats-min.js:5
 msgid "Category Landing Most Popular"
-msgstr "Kategorjowy přehlad „Najbóle wolubowane“"
+msgstr "Kategorjowy přehlad „Najbóle woblubowane“"
 
 #: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
 #: static/js/zamboni/stats-all.js:15365 static/js/zamboni/stats-all.js:15366
@@ -1005,311 +1005,311 @@ msgstr "Android"
 #: static/js/impala/stats/csv_keys.js:129 static/js/zamboni/stats-all.js:15410
 #: static/js/zamboni/stats-min.js:5
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Sćehnjenja a wšědni wužiwarjo, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:131 static/js/zamboni/stats-all.js:15412
 #: static/js/zamboni/stats-min.js:5
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenja a wšědni wužiwarjo wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:135 static/js/zamboni/stats-all.js:15416
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Instalacije a wšědni wužiwarjo, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:137 static/js/zamboni/stats-all.js:15418
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Instalacije a wšědni wužiwarjo wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:141 static/js/zamboni/stats-all.js:15422
 #: static/js/zamboni/stats-min.js:5
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Sćehnjenja, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:143 static/js/zamboni/stats-all.js:15424
 #: static/js/zamboni/stats-min.js:5
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenja wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:147 static/js/zamboni/stats-all.js:15428
 #: static/js/zamboni/stats-min.js:5
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Wšědni wužiwarjo, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:149 static/js/zamboni/stats-all.js:15430
 #: static/js/zamboni/stats-min.js:5
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Wšědni wužiwarjo wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:153 static/js/zamboni/stats-all.js:15434
 #: static/js/zamboni/stats-min.js:5
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Nałoženja, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:155 static/js/zamboni/stats-all.js:15436
 #: static/js/zamboni/stats-min.js:5
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Nałoženja wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:159 static/js/zamboni/stats-all.js:15440
 #: static/js/zamboni/stats-min.js:5
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Platformy, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:161 static/js/zamboni/stats-all.js:15442
 #: static/js/zamboni/stats-min.js:5
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Platformy wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165 static/js/zamboni/stats-all.js:15446
 #: static/js/zamboni/stats-min.js:5
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Rěče, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167 static/js/zamboni/stats-all.js:15448
 #: static/js/zamboni/stats-min.js:5
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Rěče wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:171 static/js/zamboni/stats-all.js:15452
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Přidatkowe wersije, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:173 static/js/zamboni/stats-all.js:15454
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Přidatkowe wersije wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:177 static/js/zamboni/stats-all.js:15458
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Přidatkowy status, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:179 static/js/zamboni/stats-all.js:15460
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Přidatkowy status wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183 static/js/zamboni/stats-all.js:15464
 #: static/js/zamboni/stats-min.js:5
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Sćehnjenske žórła, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185 static/js/zamboni/stats-all.js:15466
 #: static/js/zamboni/stats-min.js:5
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjenske žórła wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:189 static/js/zamboni/stats-all.js:15470
 #: static/js/zamboni/stats-min.js:5
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Přinoški, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:191 static/js/zamboni/stats-all.js:15472
 #: static/js/zamboni/stats-min.js:5
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Přinoški wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195 static/js/zamboni/stats-all.js:15476
 #: static/js/zamboni/stats-min.js:5
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Sydłowa statistika, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:197 static/js/zamboni/stats-all.js:15478
 #: static/js/zamboni/stats-min.js:5
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Sydłowa statistika wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:201 static/js/zamboni/stats-all.js:15482
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Wužiwane přidatki, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:203 static/js/zamboni/stats-all.js:15484
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Wužiwane přidatki wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207 static/js/zamboni/stats-all.js:15488
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Sćehnjene přidatki, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209 static/js/zamboni/stats-all.js:15490
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Sćehnjene přidatki wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213 static/js/zamboni/stats-all.js:15494
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Wutworjene přidatki, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:215 static/js/zamboni/stats-all.js:15496
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Wutworjene přidatki wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:219 static/js/zamboni/stats-all.js:15500
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Zaktualizowane přidatki, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:221 static/js/zamboni/stats-all.js:15502
 #: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Zaktualizowane přidatki wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225 static/js/zamboni/stats-all.js:15506
 #: static/js/zamboni/stats-min.js:5
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Napisane pohódnoćenja, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227 static/js/zamboni/stats-all.js:15508
 #: static/js/zamboni/stats-min.js:5
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Napisane pohódnoćenja wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231 static/js/zamboni/stats-all.js:15512
 #: static/js/zamboni/stats-min.js:5
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Wužiwarske registrowanja, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:233 static/js/zamboni/stats-all.js:15514
 #: static/js/zamboni/stats-min.js:5
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Wužiwarske registrowanja wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237 static/js/zamboni/stats-all.js:15518
 #: static/js/zamboni/stats-min.js:5
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Wutworjene zběrki, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:239 static/js/zamboni/stats-all.js:15520
 #: static/js/zamboni/stats-min.js:5
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Wutworjene zběrki wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243 static/js/zamboni/stats-all.js:15524
 #: static/js/zamboni/stats-min.js:5
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonenća, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:245 static/js/zamboni/stats-all.js:15526
 #: static/js/zamboni/stats-min.js:5
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonenća wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249 static/js/zamboni/stats-all.js:15530
 #: static/js/zamboni/stats-min.js:5
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Pohódnoćenja, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251 static/js/zamboni/stats-all.js:15532
 #: static/js/zamboni/stats-min.js:5
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Pohódnoćenja wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255 static/js/zamboni/stats-all.js:15536
 #: static/js/zamboni/stats-min.js:5
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Předanje, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:257 static/js/zamboni/stats-all.js:15538
 #: static/js/zamboni/stats-min.js:5
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Předanje wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261 static/js/zamboni/stats-all.js:15542
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Instalacije, zańdźene {0} dnjow"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263 static/js/zamboni/stats-all.js:15544
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Instalacije wot {0} hač do {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:269 static/js/zamboni/stats-all.js:15550
 #: static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> w zańdźenych {1} dnjach"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:271
 #: static/js/impala/stats/csv_keys.js:277 static/js/zamboni/stats-all.js:15552
 #: static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> wot {1} hač do {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js:275 static/js/zamboni/stats-all.js:15556
 #: static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "Přerěznje <b>{0}</b> w zańdźenych {1} dnjach"
 
 #: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16469
 #: static/js/zamboni/stats-min.js:5
 msgid "No data available."
-msgstr ""
+msgstr "Žane daty k dispoziciji."
 
 #: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209
 #: static/js/zamboni/stats-min.js:5
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
 #: static/js/zamboni/stats-min.js:5
 msgid "Other"
-msgstr ""
+msgstr "Druhe"
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:24
@@ -1317,348 +1317,360 @@ msgstr ""
 #: static/js/zamboni/devhub.js:1229 static/js/zamboni/editors-all.js:15576
 #: static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
 msgid "Select an application first"
-msgstr ""
+msgstr "Wubjerće najprjedy nałoženje"
 
 #: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
+"{0} přidatk na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
 msgstr[1] ""
+"{0} přidatkaj na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
 msgstr[2] ""
+"{0} přidatki na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
 msgstr[3] ""
+"{0} přidatkow na maksimalnu wersiju {1} stajić a awtorej e-mejlku pósłać"
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
+"Awtorej {2} přidatka e-mejlku pósłać, kotrehož přepruwowanje je so "
+"nimokuliło."
 msgstr[1] ""
+"Awtorej {2} přidatkow e-mejlku pósłać, kotrejuž přepruwowanje je so "
+"nimokuliło."
 msgstr[2] ""
+"Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so "
+"nimokuliło."
 msgstr[3] ""
+"Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so "
+"nimokuliło."
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Waš wobhladowak značku video njepodpěruje"
 
 #: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
-msgstr ""
+msgstr "Změny su so składowali"
 
 #: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "E-mejlowu adresu noweho awtora zapodać"
 
 #: static/js/zamboni/devhub-all.js:1715 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Při nahrawanju wašeje dataje je zmylk wustupił."
 
 #: static/js/zamboni/devhub-all.js:1860 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{files} dataja"
+msgstr[1] "{files} dataji"
+msgstr[2] "{files} dataje"
+msgstr[3] "{files} datajow"
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{reviews} wužiwarske pohódnoćenje"
+msgstr[1] "{reviews} wužiwarskej pohódnoćeni"
+msgstr[2] "{reviews} wužiwarske pohódnoćenja"
+msgstr[3] "{reviews} wužiwarskich pohódnoćenjow"
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
 msgid "Learn more"
-msgstr ""
+msgstr "Dalše informacije"
 
 #: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:800
 msgid "Example"
-msgstr ""
+msgstr "Přikład"
 
 #: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Wobrazowe změny so předźěłuja"
 
 #: static/js/zamboni/devhub-all.js:2459 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "To dyrbi płaćiwa e-mejlowa adresa być."
 
 #: static/js/zamboni/devhub-all.js:2613 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Wšě testy wuspěšnje zakónčene."
 
 #: static/js/zamboni/devhub-all.js:2616 static/js/zamboni/devhub-all.js:3011
 #: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83
 #: static/js/zamboni/validator.js:478
 msgid "These tests were not run."
-msgstr ""
+msgstr "Tute testy njejsu so přewjedli."
 
 #: static/js/zamboni/devhub-all.js:2664 static/js/zamboni/devhub-all.js:2677
 #: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131
 #: static/js/zamboni/validator.js:144
 msgid "Tests"
-msgstr ""
+msgstr "Testy"
 
 #: static/js/zamboni/devhub-all.js:2779 static/js/zamboni/devhub-all.js:3108
 #: static/js/zamboni/devhub-all.js:3127 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
 msgid "Error"
-msgstr ""
+msgstr "Zmylk"
 
 #: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:247
 msgid "Warning"
-msgstr ""
+msgstr "Warnowanje"
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3
 #: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Tutu zdźělenku w přichodnych aktualizacijach ignorować"
 
 #: static/js/zamboni/devhub-all.js:2817 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/files-all.js:5663 static/js/zamboni/files-min.js:3
 #: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Nuznosć za awtomatiske signowanje:"
 
 #: static/js/zamboni/devhub-all.js:2832 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Namjety za wobstaće awtomatiskeho signowanja:"
 
 #: static/js/zamboni/devhub-all.js:2920 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testy kompatibelnosće"
 
 #: static/js/zamboni/devhub-all.js:2999 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Přidatk je při přepruwowanju přepadnył."
 
 #: static/js/zamboni/devhub-all.js:3001 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:468
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Přidatk je přepruwowanje wobstał."
 
 #: static/js/zamboni/devhub-all.js:3014 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:481
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} zmylk"
+msgstr[1] "{0} zmylkaj"
+msgstr[2] "{0} zmylki"
+msgstr[3] "{0} zmylkow"
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} warnowanje"
+msgstr[1] "{0} warnowani"
+msgstr[2] "{0} warnowanja"
+msgstr[3] "{0} warnowanjow"
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} powěsć"
+msgstr[1] "{0} powěsći"
+msgstr[2] "{0} powěsće"
+msgstr[3] "{0} powěsćow"
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Přepruwowanje njeda so dokónčić abo je so ze zmylkami dokónčiło"
 
 #: static/js/zamboni/devhub-all.js:3128 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:595
 msgid "Internal server error"
-msgstr ""
+msgstr "Nutřkowny serwerowy zmylk"
 
 #: static/js/zamboni/devhub_search.js:8
 msgid "No results found."
-msgstr ""
+msgstr "Žane wusědki namakane."
 
 #: static/js/zamboni/editors-all.js:15402 static/js/zamboni/editors-min.js:4
 #: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} je sej tutu stronu jako prěni wobhladał."
 
 #: static/js/zamboni/editors-all.js:15452 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Kwitowanka je so přez nałoženje přepruwowała."
 
 #: static/js/zamboni/editors-all.js:15454 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Kwitowanka njeje so přez nałoženje přepruwowała."
 
 #: static/js/zamboni/editors-all.js:15525 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} je sej tutón přidatk jako prěni wobhladał."
 
 #: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Začituje so&hellip;"
 
 #: static/js/zamboni/editors-all.js:15541 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:260
 msgid "Version Notes"
-msgstr ""
+msgstr "Wersijowe pokazy"
 
 #: static/js/zamboni/editors-all.js:15546 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Pokazy za přepruwowarjow"
 
 #: static/js/zamboni/editors-all.js:15551 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:270
 msgid "No version notes found"
-msgstr ""
+msgstr "Žane wersijowe pokazy namakane"
 
 #: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
-msgstr ""
+msgstr "Přerězne pohódnoćenja"
 
 #: static/js/zamboni/editors-all.js:15667 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Ličba pohódnoćenjow"
 
 #: static/js/zamboni/editors-all.js:15726 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
-msgstr ""
+msgstr "Zmylk při začitowanju přełožka"
 
 #: static/js/zamboni/editors-all.js:15975 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
-msgstr ""
+msgstr "Drasta"
 
 #: static/js/zamboni/editors-all.js:15977 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
-msgstr ""
+msgstr "Přepruwowar"
 
 #: static/js/zamboni/editors-all.js:15979 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: static/js/zamboni/editors-all.js:16196 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
-msgstr ""
+msgstr "Informacije požadane"
 
 #: static/js/zamboni/editors-all.js:16197 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
-msgstr ""
+msgstr "Woznamjenjene"
 
 #: static/js/zamboni/editors-all.js:16198 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Wotpokazane"
 
 #: static/js/zamboni/editors-all.js:16200 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:180
 msgid "Approved"
-msgstr ""
+msgstr "Schwalene"
 
 #: static/js/zamboni/editors-all.js:16444 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:424
 msgid "No results found"
-msgstr ""
+msgstr "Žane wuslědki namakane"
 
 #: static/js/zamboni/mobile-all.js:15186
 #: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Za {0} {1} njeaktualizowany"
 
 #: static/js/zamboni/mobile-all.js:15187
 #: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Wužaduje sej nowšu wersiju {0}"
 
 #: static/js/zamboni/mobile-all.js:15188
 #: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
-msgstr ""
+msgstr "Njepřepruwowany"
 
 #: static/js/zamboni/mobile-all.js:15189
 #: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperimentelny <span>(Dalše informacije)</span>"
 
 #: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191
 #: static/js/zamboni/mobile/buttons.js:56
 #: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Njeje za {0} k dispoziciji"
 
 #: static/js/zamboni/mobile-all.js:15192
 #: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentelny"
 
 #: static/js/zamboni/mobile-all.js:15193
 #: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Drasty sej nowšu wersiju {0} wužaduja"
 
 #: static/js/zamboni/mobile-all.js:15194
 #: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Drasty sej {0} wužaduja"
 
 #: static/js/zamboni/mobile-all.js:15239
 #: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
-msgstr ""
+msgstr "Instaluje so..."
 
 #: static/js/zamboni/mobile-all.js:15259
 #: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Tutón přidatk je so nachwilu wot Mozilla přepruwował."
 
 #: static/js/zamboni/mobile-all.js:15384
 #: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
-msgstr ""
+msgstr "Wobchować"
 
 #: static/js/zamboni/mobile-all.js:16049 static/js/zamboni/mobile-min.js:6
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Wupruwujeće jón!"
 
 #: static/js/zamboni/mobile-all.js:16061 static/js/zamboni/mobile-min.js:6
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "K Firefox přidaty"
