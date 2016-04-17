@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-17 11:13+0000\n"
+"PO-Revision-Date: 2016-04-17 12:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -659,7 +659,7 @@ msgstr "Wersijowe pokazy"
 #: src/olympia/addons/templates/addons/eula.html:6
 #: src/olympia/discovery/templates/discovery/addons/eula.html:5
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Licencne dojednanje za kóncnych wužiwarjow (EULA) za {0}"
 
 #: src/olympia/addons/templates/addons/eula.html:17
 #: src/olympia/addons/templates/addons/eula.html:21
@@ -668,7 +668,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 #: src/olympia/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Licencne dojednanje z kónčnym wužiwarjom (EULA)"
 
 #: src/olympia/addons/templates/addons/eula.html:23
 #: src/olympia/discovery/templates/discovery/addons/eula.html:13
@@ -677,27 +677,29 @@ msgid ""
 "%(addon_name)s requires that you accept the following End-User License "
 "Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s sej wužaduje, zo slědowace licencne dojednanje za kónčnych "
+"wužiwarjow (EULA) akceptujeće, prjedy hač z instalowanjom pokročujeće:"
 
 #: src/olympia/addons/templates/addons/eula.html:34
 #: src/olympia/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Wróćo k {0}…"
 
 #: src/olympia/addons/templates/addons/home.html:3
 #: src/olympia/addons/templates/addons/mobile/home.html:3
 #: src/olympia/amo/helpers.py:235
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Přidatki za {0}"
 
 #: src/olympia/addons/templates/addons/home.html:10
 #: src/olympia/addons/templates/addons/home.html:53
 #: src/olympia/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Předstajene rozšěrjenja"
 
 #: src/olympia/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Woblubowane rozšěrjenja"
 
 #: src/olympia/addons/templates/addons/home.html:44
 #: src/olympia/amo/templates/amo/side_nav.html:3
@@ -707,11 +709,11 @@ msgstr ""
 #: src/olympia/browse/views.py:236 src/olympia/browse/views.py:281
 #: src/olympia/browse/views.py:481
 msgid "Most Popular"
-msgstr ""
+msgstr "Najbóle woblubowane"
 
 #: src/olympia/addons/templates/addons/home.html:45
 msgid "All »"
-msgstr ""
+msgstr "Wšě »"
 
 #: src/olympia/addons/templates/addons/home.html:54
 #: src/olympia/addons/templates/addons/home.html:63
@@ -719,29 +721,29 @@ msgstr ""
 #: src/olympia/addons/templates/addons/home.html:80
 #: src/olympia/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Wšě pokazać »"
 
 #: src/olympia/addons/templates/addons/home.html:62
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Nastawace rozšěrjenja"
 
 #: src/olympia/addons/templates/addons/home.html:71
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
 #: src/olympia/discovery/templates/discovery/pane.html:74
 msgid "Featured Themes"
-msgstr ""
+msgstr "Předstajene drasty"
 
 #: src/olympia/addons/templates/addons/home.html:79
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
 msgid "Featured Collections"
-msgstr ""
+msgstr "Předstajene zběrki"
 
 #: src/olympia/addons/templates/addons/listing_header.html:3
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:2
 #: src/olympia/amo/templates/amo/mobile/sort_by.html:2
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:118
 msgid "Sort by:"
-msgstr ""
+msgstr "Sortěrować po:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -753,7 +755,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:40
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:40
 msgid "Updated {0}"
-msgstr ""
+msgstr "Aktualizowany: {0}"
 
 #. {0} is a date.
 #: src/olympia/addons/templates/addons/macros.html:10
@@ -764,35 +766,35 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:37
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:37
 msgid "Added {0}"
-msgstr ""
+msgstr "Přidaty: {0}"
 
 #: src/olympia/addons/templates/addons/macros.html:18
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s tydźenske sćehnjenje"
+msgstr[1] "%(num)s tydźenskej sćehnjeni"
+msgstr[2] "%(num)s tydźenske sćehnjenja"
+msgstr[3] "%(num)s tydźenskich sćehnjenjow"
 
 #: src/olympia/addons/templates/addons/macros.html:28
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s wužiwar"
+msgstr[1] "%(num)s wužiwarjej"
+msgstr[2] "%(num)s wužiwarjo"
+msgstr[3] "%(num)s wužiwarjow"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/macros.html:53
 #: src/olympia/addons/templates/addons/impala/details.html:59
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} tydźenske sćehnjenje"
+msgstr[1] "{0} tydźenskej sćehnjeni"
+msgstr[2] "{0} tydźenske sćehnjenja"
+msgstr[3] "{0} tydźenskich sćehnjenjow"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/macros.html:61
@@ -800,22 +802,22 @@ msgstr[3] ""
 #: src/olympia/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} wužiwar"
+msgstr[1] "{0} wužiwarjej"
+msgstr[2] "{0} wužiwarjo"
+msgstr[3] "{0} wužiwarjow"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Płaćenje přetorhnjene"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:14
 msgid "Payment completed"
-msgstr ""
+msgstr "Płaćenje dokónčene"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:28
 msgid "Return to the addon."
-msgstr ""
+msgstr "Wróćo k přidatkej."
 
 #: src/olympia/addons/templates/addons/persona_detail.html:17
 #: src/olympia/addons/templates/addons/impala/details.html:103
@@ -824,27 +826,27 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/addons/base.html:27
 #: src/olympia/editors/templates/editors/review.html:31
 msgid "by"
-msgstr ""
+msgstr "wot"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Dalše drasty kategorije {0}"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:39
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Wšě drasty kategorije {0} pokazać"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
-msgstr ""
+msgstr "Dalše wot tutoho wuměłca"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:52
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html:49
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Wšě drasty wot tutoho wuměłca pokazać"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:71
 #: src/olympia/addons/templates/addons/mobile/home.html:42
@@ -855,20 +857,20 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/themes.html:34
 #: src/olympia/templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "Kategorije"
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:10
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:3
 #: src/olympia/editors/templates/editors/themes/deleted.html:19
 #: src/olympia/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "Wuměłc"
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:19
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:14
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "Daily Users"
-msgstr ""
+msgstr "Wšědni wužiwarjo"
 
 #. The License for this add-on.
 #: src/olympia/addons/templates/addons/persona_detail_table.html:26
@@ -878,23 +880,23 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:89
 #: src/olympia/editors/templates/editors/themes/themes.html:41
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:13
 #: src/olympia/constants/base.py:48
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Čaka na přepruwowanje"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:15
 #: src/olympia/amo/log.py:180 src/olympia/constants/base.py:42
 #: src/olympia/editors/helpers.py:62
 msgid "Rejected"
-msgstr ""
+msgstr "Wotpokazany"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:17
 #: src/olympia/amo/log.py:159
 msgid "Approved"
-msgstr ""
+msgstr "Schwaleny"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/persona_preview.html:27
@@ -902,20 +904,20 @@ msgstr ""
 #: src/olympia/addons/templates/addons/listing/macros.html:31
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<strong>{0}</strong> wužiwar"
+msgstr[1] "<strong>{0}</strong> wužiwarjej"
+msgstr[2] "<strong>{0}</strong> wužiwarjo"
+msgstr[3] "<strong>{0}</strong> wužiwarjow"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:41
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Za přehlad pokazowak myški nad tym dźeržeć"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:47
 #: src/olympia/addons/templates/addons/persona_preview.html:49
 #: src/olympia/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "Přidać"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:58
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16
@@ -930,18 +932,18 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:29
 #: src/olympia/editors/templates/editors/review.html:257
 msgid "Edit"
-msgstr ""
+msgstr "Wobdźěłać"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d. %%m. %%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:68
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "wot {0} dnja {1}"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:76
 #: src/olympia/reviews/helpers.py:17
@@ -949,11 +951,11 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reviews_link.html:21
 #: src/olympia/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
-msgstr ""
+msgstr "Hišće njepohódnoćeny"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:79
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> wužiwarjow"
 
 #: src/olympia/addons/templates/addons/popups.html:17
 msgid ""
