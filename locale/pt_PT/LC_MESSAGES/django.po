@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-14 01:30+0000\n"
+"PO-Revision-Date: 2016-04-16 23:54+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -8052,7 +8052,7 @@ msgstr "Por favor, complete o seu extra."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:29
 msgid "You will receive an email when the review is complete."
-msgstr "Você receberá um email quando a análise estiver completa."
+msgstr "Irá receber um email quando a análise estiver completa."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid ""
