@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-16 15:58+0000\n"
+"PO-Revision-Date: 2016-04-18 12:56+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -268,7 +268,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js:269
 msgid " downloads"
-msgstr ""
+msgstr " ჩამოტვირთვა"
 
 #: static/js/impala/stats/chart.js:270
 msgid "{0} users"
@@ -276,7 +276,7 @@ msgstr "{0} მომხმარებელი"
 
 #: static/js/impala/stats/chart.js:271
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} დამატება"
 
 #: static/js/impala/stats/chart.js:272
 msgid "{0} collections"
@@ -284,37 +284,37 @@ msgstr "{0} კოლექცია"
 
 #: static/js/impala/stats/chart.js:273
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} მიმოხილვა"
 
 #: static/js/impala/stats/chart.js:275
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} გაყიდვა"
 
 #: static/js/impala/stats/chart.js:276
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} ანაზღაურება"
 
 #: static/js/impala/stats/chart.js:277
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} დაყენება"
 
 #: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
 #: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
-msgstr ""
+msgstr "ჩამოტვირთვები"
 
 #: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
-msgstr ""
+msgstr "დღიური მომხმარებლები"
 
 #: static/js/impala/stats/chart.js:410
 msgid "Amount, in USD"
-msgstr ""
+msgstr "ოდენობა, USD-ში"
 
 #: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
-msgstr ""
+msgstr "დამხმარეების რაოდენობა"
 
 #: static/js/impala/stats/chart.js:447
 msgid "More Info..."
@@ -377,27 +377,27 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js:43
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "დამატებების მმართველი"
 
 #: static/js/impala/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "დამატებების მმართველის პრომო"
 
 #: static/js/impala/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "დამატებების მმართველის რჩეულები"
 
 #: static/js/impala/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "დამატებების მმართველის დაწვრილებით"
 
 #: static/js/impala/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "ძიების შემოთავაზებები"
 
 #: static/js/impala/stats/csv_keys.js:48
 msgid "Search Results"
-msgstr ""
+msgstr "ძიების შედეგები"
 
 #: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
 #: static/js/impala/stats/csv_keys.js:51

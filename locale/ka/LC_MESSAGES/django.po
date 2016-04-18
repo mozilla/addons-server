@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-16 16:04+0000\n"
+"PO-Revision-Date: 2016-04-18 12:50+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -17,15 +17,15 @@ msgstr ""
 
 #: src/olympia/accounts/views.py:52
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr "თქვენი შესვლის მცდელობა ვერ გაანალიზდა. გთხოვთ ცადეთ ხელახლა."
+msgstr "თქვენი შესვლის მცდელობა ვერ გაანალიზდა. გთხოვთ, ცადეთ ხელახლა."
 
 #: src/olympia/accounts/views.py:54
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ ცადეთ ხელახლა."
+msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ, ცადეთ ხელახლა."
 
 #: src/olympia/accounts/views.py:55
 msgid "You could not be logged in. Please try again."
-msgstr "შესვლა ვერ მოხერხდა. გთხოვთ ცადეთ ხელახლა."
+msgstr "შესვლა ვერ მოხერხდა. გთხოვთ, ცადეთ ხელახლა."
 
 #: src/olympia/accounts/views.py:57
 msgid "Your account has already been migrated to Firefox Accounts."
@@ -148,6 +148,8 @@ msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
+"ნაგულისხმევი ლოკალის შეცვლამდე, სახელი, შეჯამება და აღწერა ამ ლოკალზე უნდა "
+"გქონდეთ. ახლა გაკლიათ %s."
 
 #: src/olympia/addons/forms.py:484 src/olympia/addons/forms.py:575
 msgid "A license must be selected."
@@ -190,7 +192,7 @@ msgstr "სიაშია"
 #: src/olympia/addons/views.py:320
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:27
 msgid "Popular"
-msgstr "მოთხოვნადი"
+msgstr "პოპულარული"
 
 #: src/olympia/addons/views.py:321 src/olympia/browse/views.py:238
 #: src/olympia/browse/views.py:280 src/olympia/browse/views.py:482
@@ -267,6 +269,8 @@ msgid ""
 "This add-on has been preliminarily reviewed by Mozilla. <a "
 "href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"ამ დამატებამ Mozilla-ს წინასწარი განხილვა გაიარა. <a "
+"href=\"%(url)s\">შეიტყვეთ მეტი</a>"
 
 #: src/olympia/addons/templates/addons/contribution.html:11
 #: src/olympia/addons/templates/addons/impala/developers.html:44
@@ -274,6 +278,8 @@ msgid ""
 "The developer of this add-on asks that you help support its continued "
 "development by making a small contribution."
 msgstr ""
+"ამ დამატების შემქმნელი ნასიამოვნები დარჩება, თუ მისი დეველოპმენტისთვის "
+"მხარის დასაჭერად მცირე წვლილს შეიტანთ."
 
 #: src/olympia/addons/templates/addons/contribution.html:14
 #, python-format
@@ -281,6 +287,9 @@ msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"ამ დამატების შემქმნელი ნასიამოვნები დარჩება, თუ თქვენს მხარდაჭერას ამ "
+"ორგანიზაციებში მცირე შეწირულობის გაკეთებით გამოხატავთ  <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html:19
 #, python-format
@@ -288,6 +297,9 @@ msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"ამ დამატების შემქმნელი ნასიამოვნები დარჩება, თუ თქვენს მხარდაჭერას ამ "
+"ორგანიზაციებში მცირე წვლილის შეტანით  გამოხატავთ <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html:30
 #: src/olympia/addons/templates/addons/impala/contribution.html:18
@@ -336,6 +348,8 @@ msgid ""
 "The developer of this add-on would like you to consider making a donation to"
 " the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"ამ დამატების შემქმნელი ნასიამოვნები დარჩება. თუ ამ ორგანიზაციებში თანხის "
+"შეწირვაზე დაფიქრდებით <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html:69
 #, python-format
@@ -344,6 +358,9 @@ msgid ""
 "contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you "
 "enjoy using it."
 msgstr ""
+"ამ დამატების შემქმნელი ნასიამოვნები დარჩება. თუ ამ ორგანიზაციებში მცირე "
+"წვლილის შეტანაზე დაფიქრდებით <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html:76
 msgid ""
@@ -351,6 +368,8 @@ msgid ""
 "ecosystem. Your optional contribution helps sustain further development of "
 "this add-on."
 msgstr ""
+"Mozilla ცოცხალი და ჯანმრთელი დეველოპერული ეკოსისტემის მხარდაჭერის ერთგულია. "
+"თქვენი არასავალდებული წვლილი ამ დამატების განვითარებას დიდად დაეხმარება."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:5
 msgid "Make a Contribution"
@@ -362,6 +381,8 @@ msgid ""
 "Help support the continued development of <strong>%(addon_name)s</strong> by"
 " making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"მხარი დაუჭირეთ <strong>%(addon_name)s-ის</strong> განვითარებას და შეიტანეთ "
+"მცირე წვლილი <a href=\"%(paypal_url)s\">PayPal-ის</a> გამოყენებით."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:15
 #, python-format
@@ -370,6 +391,10 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"<b>%(addon_name)s-ისადმი</b> თქვენი მხარდაჭერის საჩვენებლად, მისი შემქმნელი "
+"ნასიამოვნები დარჩება, თუ <a href=\"%(paypal_url)s\">PayPal-ის</a> "
+"გამოყენებით ამ ორგანიზაციებში გააკეთებთ შეწირულობას <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:21
 #, python-format
@@ -379,6 +404,10 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"<b>%(addon_name)s-ისადმი</b> თქვენი მხარდაჭერის საჩვენებლად, მისი შემქმნელი "
+"ნასიამოვნები დარჩება, თუ <a href=\"%(paypal_url)s\">PayPal-ის</a> "
+"გამოყენებით ამ ორგანიზაციებში შეიტანთ მცირე წვლილს <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:30
 msgid "How much would you like to contribute?"
@@ -386,15 +415,15 @@ msgstr "რამხელა თანხის შეწირვა გსუ
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:33
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "შეწირულობის მაქსიმალური ოდენობაა {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:37
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "შეწირულობის მინიმალური ოდენობაა {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:41
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "შეწირულობის ოდენობა უნდა იყოს რიცხვი."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:52
@@ -410,7 +439,7 @@ msgstr "ერთჯერადი შეწირვა რაოდენო�
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "დატოვეთ კომენტარი ან მოითხოვეთ თქვენი შეწირულობით."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:74
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:20
@@ -489,7 +518,7 @@ msgstr "სიის გარეთ"
 #: src/olympia/addons/templates/addons/details_box.html:67
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
-msgstr ""
+msgstr "საჭირო დამატებები"
 
 #: src/olympia/addons/templates/addons/details_box.html:81
 #: src/olympia/addons/templates/addons/persona_detail_table.html:15
@@ -519,11 +548,11 @@ msgstr "სტატისტიკის ნახვა"
 
 #: src/olympia/addons/templates/addons/details_box.html:97
 msgid "Average Daily Users"
-msgstr ""
+msgstr "საშუალო დღიური მომხმარებლები"
 
 #: src/olympia/addons/templates/addons/details_box.html:109
 msgid "Abuse Reports"
-msgstr ""
+msgstr "დარღვევების მოხსენებები"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html:121
@@ -552,7 +581,7 @@ msgstr "მეტი ამ დამატების შესახებ"
 
 #: src/olympia/addons/templates/addons/details_box.html:180
 msgid "Image Gallery"
-msgstr ""
+msgstr "სურათების გალერეა"
 
 #: src/olympia/addons/templates/addons/details_box.html:190
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
@@ -577,7 +606,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html:207
 msgid "Install development version"
-msgstr ""
+msgstr "განვითარების ვერსიის დაყენება"
 
 #: src/olympia/addons/templates/addons/details_box.html:211
 msgid ""
@@ -587,6 +616,10 @@ msgid ""
 "receiving development updates, reinstall the default version from the link "
 "above."
 msgstr ""
+"<strong>ფრთხილად:</strong> ამ დამატების განვითარების ვერსიები Mozilla-ს მიერ"
+" არ განხილულა. განვითარების ვერსიის დაყენების შემდეგ განვითარების ვერსიის "
+"განახლებებს მიიღებთ ამ განმვითარებლისგან. განვითარების განახლებების მიღების "
+"შესაწყვეტად, ხელახლა დააყენეთ ნაგულისხმევი ვერსია ზემოთ მოცემული ბმულით."
 
 #: src/olympia/addons/templates/addons/details_box.html:220
 #: src/olympia/addons/templates/addons/impala/details.html:278
@@ -595,13 +628,13 @@ msgstr "ვერის {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:234
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "სანახავი არაფერია!   განმვითარებელს დეტალები არ დაუმატებია."
 
 #: src/olympia/addons/templates/addons/details_box.html:251
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
 #: src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
-msgstr ""
+msgstr "ვერსიის შენიშვნები"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -617,7 +650,7 @@ msgstr "მომხმარებლის სალიცენზიო შ�
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 #: src/olympia/discovery/templates/discovery/addons/eula.html:11
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "საბოლოო მომხმარებლის სალიცენზიო შეთანხმება"
 
 #: src/olympia/addons/templates/addons/eula.html:23
 #: src/olympia/discovery/templates/discovery/addons/eula.html:13
@@ -626,17 +659,19 @@ msgid ""
 "%(addon_name)s requires that you accept the following End-User License "
 "Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s ინსტალაციის გაგრძელებამდე მოითხოვს, რომ ამ საბოლოო "
+"მომხმარებლის სალიცენზიო შეთანხმებას დაეთანხმოთ:"
 
 #: src/olympia/addons/templates/addons/eula.html:34
 #: src/olympia/addons/templates/addons/privacy.html:26
 msgid "Back to {0}…"
-msgstr ""
+msgstr "დაბრუნება {0}-ზე…"
 
 #: src/olympia/addons/templates/addons/home.html:3
 #: src/olympia/addons/templates/addons/mobile/home.html:3
 #: src/olympia/amo/helpers.py:235
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "დამატებები {0}-სთვის"
 
 #: src/olympia/addons/templates/addons/home.html:10
 #: src/olympia/addons/templates/addons/home.html:51
@@ -767,13 +802,13 @@ msgstr "ავტორი"
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
-msgstr ""
+msgstr "მეტი {0} თემა"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:39
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "ყველა {0} თემის ნახვა"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
@@ -876,7 +911,7 @@ msgstr "%%d.%%m.%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "{0}-სგან {1}-ზე"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:75
 #: src/olympia/reviews/helpers.py:17
@@ -895,6 +930,8 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"ამ და სხვა ათასობით დამატების დასაყენებლად, <b>ჩამოტვირთეთ Firefox</b>, "
+"უფასო და ღია ვებ-ბრაუზერი Mozilla-სგან."
 
 #: src/olympia/addons/templates/addons/popups.html:21
 #: src/olympia/addons/templates/addons/popups.html:52
@@ -1513,7 +1550,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items.html:29
 msgid "Collector's Note"
-msgstr ""
+msgstr "კრებულის შემდგენის შენიშვნა"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
@@ -1525,7 +1562,7 @@ msgstr "ჯერ არაა შეფასებული"
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> ყოველკვირეული ჩამოტვირთვა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
@@ -1551,7 +1588,7 @@ msgstr "ვერსია"
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (ვერსიის შენიშვნები)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
@@ -1559,7 +1596,7 @@ msgstr "ყველა ვერსიის ნახვა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "განვითარების ვერსიის ნახვა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
@@ -1571,7 +1608,7 @@ msgstr "მხარდაჭერის საიტზე შესვლა"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "ავტორისთვის კითხვის დასმა"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
@@ -1666,7 +1703,7 @@ msgstr ""
 #: src/olympia/search/templates/search/personas.html:39
 #: src/olympia/templates/menu_links.html:9
 msgid "Themes"
-msgstr ""
+msgstr "თემები"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:51
 msgid "View all Featured add-ons"
@@ -1699,7 +1736,7 @@ msgstr "უახლესი"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "გამოცადეთ!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
