@@ -11,7 +11,7 @@ from jingo import register
 def fxa_config(context):
     request = context['request']
     config = {camel_case(key): value
-              for key, value in settings.FXA_CONFIG.iteritems()
+              for key, value in settings.FXA_CONFIG['default'].iteritems()
               if key != 'client_secret'}
     if request.user.is_authenticated():
         config['email'] = request.user.email

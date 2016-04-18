@@ -96,7 +96,9 @@ def register_user(request, identity):
     return user
 
 
-def login_user(request, user, identity):
+def update_user(user, identity):
+    """Update a user's info from FxA. Returns whether the user migrated to FxA
+    with this login."""
     if (user.fxa_id != identity['uid'] or
             user.email != identity['email']):
         log.info(
@@ -104,13 +106,20 @@ def login_user(request, user, identity):
             'New {new_email} {new_uid}'.format(
                 pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
-        if not user.fxa_migrated():
-            messages.success(
-                request,
-                _(u'Great job!'),
-                _(u'You can now log in to Add-ons with your Firefox Account.'),
-                extra_tags='fxa')
+        migrated = not user.fxa_migrated()
         user.update(fxa_id=identity['uid'], email=identity['email'])
+        return migrated
+    return False
+
+
+def login_user(request, user, identity):
+    migrated = update_user(user, identity)
+    if migrated:
+        messages.success(
+            request,
+            _(u'Great job!'),
+            _(u'You can now log in to Add-ons with your Firefox Account.'),
+            extra_tags='fxa')
     log.info('Logging in user {} from FxA'.format(user))
     login(request, user)
 
@@ -159,7 +168,10 @@ def parse_next_path(state_parts):
     return next_path
 
 
-def with_user(format):
+def with_user(format, config='default'):
+    assert config in settings.FXA_CONFIG, \
+        '"{config}" not found in FXA_CONFIG'.format(config=config)
+
     def outer(fn):
         @functools.wraps(fn)
         def inner(self, request):
@@ -171,7 +183,7 @@ def with_user(format):
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
             next_path = parse_next_path(state_parts)
-            if 'code' not in data:
+            if not data.get('code'):
                 log.info('No code provided.')
                 return render_error(
                     request, ERROR_NO_CODE, next_path=next_path, format=format)
@@ -188,7 +200,7 @@ def with_user(format):
 
             try:
                 identity = verify.fxa_identify(
-                    data['code'], config=settings.FXA_CONFIG)
+                    data['code'], config=settings.FXA_CONFIG[config])
             except verify.IdentificationError:
                 log.info('Profile not found. Code: {}'.format(data['code']))
                 return render_error(
@@ -222,20 +234,21 @@ def with_user(format):
     return outer
 
 
-def add_api_token_to_response(response, user):
+def add_api_token_to_response(response, user, set_cookie=True):
     # Generate API token and add it to the json response.
     payload = jwt_api_settings.JWT_PAYLOAD_HANDLER(user)
     token = jwt_api_settings.JWT_ENCODE_HANDLER(payload)
     if hasattr(response, 'data'):
         response.data['token'] = token
-    # Also include the API token in a session cookie, so that it is available
-    # for universal frontend apps.
-    response.set_cookie(
-        'jwt_api_auth_token',
-        token,
-        max_age=settings.SESSION_COOKIE_AGE or None,
-        secure=settings.SESSION_COOKIE_SECURE or None,
-        httponly=settings.SESSION_COOKIE_HTTPONLY or None)
+    if set_cookie:
+        # Also include the API token in a session cookie, so that it is
+        # available for universal frontend apps.
+        response.set_cookie(
+            'jwt_api_auth_token',
+            token,
+            max_age=settings.SESSION_COOKIE_AGE or None,
+            secure=settings.SESSION_COOKIE_SECURE or None,
+            httponly=settings.SESSION_COOKIE_HTTPONLY or None)
 
     return response
 

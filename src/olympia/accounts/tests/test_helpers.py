@@ -4,13 +4,17 @@ import mock
 
 from olympia.accounts import helpers
 
+FXA_CONFIG = {
+    'default': {
+        'client_id': 'foo',
+        'client_secret': 'bar',
+        'something': 'hello, world!',
+        'a_different_thing': 'howdy, world!',
+    },
+}
 
-@override_settings(FXA_CONFIG={
-    'client_id': 'foo',
-    'client_secret': 'bar',
-    'something': 'hello, world!',
-    'a_different_thing': 'howdy, world!',
-})
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_fxa_config_anonymous():
     context = mock.MagicMock()
     context['request'].session = {'fxa_state': 'thestate!'}
@@ -23,12 +27,7 @@ def test_fxa_config_anonymous():
     }
 
 
-@override_settings(FXA_CONFIG={
-    'client_id': 'foo',
-    'client_secret': 'bar',
-    'something': 'hello, world!',
-    'a_different_thing': 'howdy, world!',
-})
+@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_fxa_config_logged_in():
     context = mock.MagicMock()
     context['request'].session = {'fxa_state': 'thestate!'}

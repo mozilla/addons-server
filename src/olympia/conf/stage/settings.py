@@ -228,14 +228,26 @@ if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 FXA_CONFIG = {
-    'client_id': env('FXA_CLIENT_ID'),
-    'client_secret': env('FXA_CLIENT_SECRET'),
-    'content_host': 'https://accounts.firefox.com',
-    'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-    'profile_host': 'https://profile.accounts.firefox.com/v1',
-    'redirect_url':
-        'https://addons.allizom.org/api/v3/accounts/authorize/',
-    'scope': 'profile',
+    'default': {
+        'client_id': env('FXA_CLIENT_ID'),
+        'client_secret': env('FXA_CLIENT_SECRET'),
+        'content_host': 'https://accounts.firefox.com',
+        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
+        'profile_host': 'https://profile.accounts.firefox.com/v1',
+        'redirect_url':
+            'https://addons.allizom.org/api/v3/accounts/authorize/',
+        'scope': 'profile',
+    },
+    'internal': {
+        'client_id': env('INTERNAL_FXA_CLIENT_ID'),
+        'client_secret': env('INTERNAL_FXA_CLIENT_SECRET'),
+        'content_host': 'https://accounts.firefox.com',
+        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
+        'profile_host': 'https://profile.accounts.firefox.com/v1',
+        'redirect_url':
+            'https://addons.allizom.org/api/v3/accounts/authorize/',
+        'scope': 'profile',
+    },
 }
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
