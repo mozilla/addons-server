@@ -1154,7 +1154,6 @@ class TestAPIAgreement(TestSubmitBase):
     def setUp(self):
         super(TestAPIAgreement, self).setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.create_switch('signing-api')
 
     def test_agreement_first(self):
         render_agreement_path = 'olympia.devhub.views.render_agreement'
@@ -1180,7 +1179,6 @@ class TestAPIKeyPage(TestCase):
         self.url = reverse('devhub.api_key')
         assert self.client.login(username='del@icio.us', password='password')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.create_switch('signing-api')
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)

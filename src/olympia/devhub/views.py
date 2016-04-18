@@ -24,7 +24,6 @@ import commonware.log
 import waffle
 from django_statsd.clients import statsd
 from PIL import Image
-from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.amo import utils as amo_utils
@@ -1748,7 +1747,6 @@ def docs(request, doc_name=None):
 
 
 @login_required
-@waffle_switch('signing-api')
 def api_key_agreement(request):
     next_step = reverse('devhub.api_key')
     return render_agreement(request, 'devhub/api/agreement.html', next_step)
@@ -1768,7 +1766,6 @@ def render_agreement(request, template, next_step, step=None):
 
 
 @login_required
-@waffle_switch('signing-api')
 @transaction.atomic
 def api_key(request):
     if request.user.read_dev_agreement is None:
