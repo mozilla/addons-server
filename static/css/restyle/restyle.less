@@ -1852,6 +1852,21 @@ h3.author .transfer-ownership {
   box-shadow: none;
 }
 
+.install-note.left {
+  &::before {
+    border: 6px solid transparent;
+    border-bottom-color: grey;
+    right: 71px;
+    top: -13px;
+  }
+
+  &::after {
+    border-bottom-width: 6px;
+    right: 72px;
+    top: -11px;
+  }
+}
+
 .contrib-overlay,
 .modal-overlay {
   background: rgba(0, 0, 0, 0.5);
@@ -2157,6 +2172,17 @@ body.editor-tools {
   .desc {
     color: #777;
     font-size: 1rem;
+  }
+
+  &.incompatible {
+    .action {
+      opacity: 1;
+
+      .info,
+      .install.clickHijack .install-button > .button {
+        opacity: 0.4;
+      }
+    }
   }
 }
 
