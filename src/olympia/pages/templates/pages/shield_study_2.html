@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Help Make Firefox Faster</title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/shield_study_1/main.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/shield_study/main.css">
+    <script src="{{ STATIC_URL }}/js/lib/jquery-1.12.0.js"></script>
+    <script src="{{ STATIC_URL }}/js/zamboni/analytics.js"></script>
+    <script src="{{ STATIC_URL }}/js/shield_study/main.js"></script>
   </head>
   <body>
     <header class="blue">
@@ -26,7 +29,7 @@
       <div class="details-header content-wrapper">
         <h1 data-hook="title">Help Make Firefox Faster</h1>
         <div class="experiment-controls">
-          <a class="button primary large" href="https://addons.mozilla.org/firefox/downloads/latest/x-screen-performance-study-1/">Start Performance Study</a>
+          <a id="opt-in" class="button primary large" href="https://addons.mozilla.org/firefox/downloads/latest/x-screen-performance-study-1/">Start Performance Study</a>
         </div>
       </div>
     </div>
