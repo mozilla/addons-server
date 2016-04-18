@@ -1512,9 +1512,13 @@ h3.author .transfer-ownership {
     padding: 0.6em 0 0;
     position: relative;
 
-    &:nth-of-type(3n) .persona.hovercard:hover,
-    &:nth-of-type(3n) .persona.hovercard:focus {
-      margin-bottom: -14.5px;
+    &:nth-of-type(3n) .persona.hovercard {
+      margin-right: 0;
+
+      &:hover,
+      &:focus {
+        margin-bottom: -14.5px;
+      }
     }
 
     &:nth-of-type(4n) .persona.hovercard {
@@ -1523,8 +1527,8 @@ h3.author .transfer-ownership {
   }
 
   .persona.hovercard {
-    margin-right: 29px;
-    width: 32%;
+    margin-right: 34px;
+    width: 33.3%;
 
     a {
       padding: 0;
