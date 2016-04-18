@@ -1326,7 +1326,6 @@ CSP_SCRIPT_SRC = (
     "'self'",
     'https://addons.mozilla.org',
     'https://www.paypalobjects.com',
-    'https://apis.google.com',
     'https://www.google.com/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     ANALYTICS_HOST,
