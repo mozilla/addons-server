@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-17 12:26+0000\n"
+"PO-Revision-Date: 2016-04-17 20:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -617,9 +617,9 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
-"Wuwiwarski kanal wam zmóžnja, eksperimentalnu wersiju tutoho přidatka, "
-"prjedy hač so powšitkownej zjawnosći přewostaji. Hdyž wuwiwarsku wersiju "
-"instalujeće, budźeće dale aktualizacije z tutoho kanala dóstawać."
+"Wuwiwarski kanal wam zmóžnja, nowu eksperimentalnu wersiju tutoho přidatka "
+"testować, prjedy hač so powšitkownej zjawnosći přewostaji. Hdyž wuwiwarsku "
+"wersiju instalujeće, budźeće dale aktualizacije z tutoho kanala dóstawać."
 
 #: src/olympia/addons/templates/addons/details_box.html:207
 msgid "Install development version"
@@ -962,15 +962,17 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Zo byšće tutón přidatk a tysace dalše instalował, <b>wobstarajće sej "
+"Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html:21
 #: src/olympia/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Dalše informacije wo Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "abo <b><a class=\"installer\" href=\"{url}\">najebać toho instalować</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -980,42 +982,54 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Instalacija w Thunderbird</strong> <ol> <li>Sćehńće a składujće "
+"dataju na swojej krutej tačeli. </li> <li>Wočińće zrjadowak přidatkow přez "
+"meni „Nastroje“ w Mozilla Thunderbird.</li> <li>Wubjerće z tłóčatkom ze "
+"zubatym koleskom pódla pytanskeho pola přidatka zapisk „Přidatk z dataje "
+"instalować...“ a wubjerće sćehnjeny přidatk.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html:41
 msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"Zo byšće tutu drastu instalował, <b>wobstarajće sej Thunderbird</b>, "
+"darmotny e-mejlowy programy wotewrjeneho žórła wot Mozilla Messaging a "
+"instalujće přidatk Personas Plus."
 
 #: src/olympia/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Dalše informacije wo Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html:48
 msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Zo byšće tutu drastu a tysace dalše instalował, <b>wobstarajće sej "
+"Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html:60
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
+"Tutón přidatk njeje so hišće zaktualizował, zo by z wašej wersiju %(app)s "
+"fungował."
 
 #: src/olympia/addons/templates/addons/popups.html:63
 #: src/olympia/addons/templates/addons/popups.html:140
 #: src/olympia/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr ""
+msgstr "Najebać toho instalować"
 
 #: src/olympia/addons/templates/addons/popups.html:71
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotrež hišće njeje wušła."
 
 #: src/olympia/addons/templates/addons/popups.html:74
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Pomhajće, nowe wersije Firefox testować"
 
 #: src/olympia/addons/templates/addons/popups.html:77
 #, python-format
@@ -1023,17 +1037,19 @@ msgid ""
 "This add-on requires %(app)s {new_version}. You are currently using %(app)s "
 "{old_version}."
 msgstr ""
+"Tutón přidatk sej %(app)s {new_version} wužaduje. Wužiwaće tuchwilu %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html:82
 #: src/olympia/addons/templates/addons/popups.html:101
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "{0} aktualizować"
 
 #: src/olympia/addons/templates/addons/popups.html:85
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "abo <a href=\"%(href)s\">starše wersije tutoho přidatka</a> pokazać."
 
 #: src/olympia/addons/templates/addons/popups.html:96
 #, python-format
@@ -1041,6 +1057,8 @@ msgid ""
 "This Persona requires %(app)s %(new_version)s. You are currently using "
 "%(app)s {old_version}."
 msgstr ""
+"Tutón Persona sej %(app)s %(new_version)s wužaduje. Wužiwaće tuchwilu "
+"%(app)s {old_version}."
 
 #: src/olympia/addons/templates/addons/popups.html:108
 msgid ""
@@ -1048,12 +1066,18 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Kedźbu:</strong> Tutón přidatk njeje přepruwowany wot Mozilla a "
+"njeda so do wersije Firefox 43 a nowšych instalować. Budźće kedźbliwy, hdyž "
+"programy třećich poskićowarjow instalujeće, kotrež móhli wašemu ličakej "
+"škodu činić."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
 "<strong>Please note:</strong> This add-on is not compatible with your "
 "operating system."
 msgstr ""
+"<strong>Kedźbu:</strong> Tutón přidatk z wašim dźěłowym systemom "
+"kompatibelny njeje."
 
 #: src/olympia/addons/templates/addons/popups.html:136
 #: src/olympia/addons/templates/addons/impala/button.html:70
@@ -1062,25 +1086,27 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
+"Tutón přidatk je ze slědowaceje přičiny z wašej wersiju %(app)s kompatibelny"
+" njeje:"
 
 #: src/olympia/addons/templates/addons/popups.html:141
 #: src/olympia/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Druhe wersije pokazać"
 
 #: src/olympia/addons/templates/addons/popups.html:148
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Tutón přidatk z wašej wersiju %(app)s kompatibelny njeje."
 
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Prawidła priwatnosće za {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR-kod za přidatk"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
 msgid ""
@@ -1088,13 +1114,16 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Chceće {0} na swojim mobilnym Firefox? Skenujće tutón QR-kod, zo byšće jón "
+"direktnje na swojim telefonje instalował. (Trjebaće QR-čitak. Přepytajće "
+"torhošćo swojeho telefona, jeli tajki nimaće.)"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:6
 #: src/olympia/addons/templates/addons/report_abuse_full.html:10
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:333
 msgid "Report Abuse"
-msgstr ""
+msgstr "Znjewužiwanje zdźělić"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:10
 #, python-format
@@ -1103,11 +1132,15 @@ msgid ""
 "has security or privacy issues, please use the form below to describe your "
 "concerns. Please do not use this form for any other reason."
 msgstr ""
+"Jeli sej mysliće, zo so tutón přidatk přećiwo <a href=\"%(url)s\">našim "
+"prawidłam</a> přeńdźe abo ma problemy wěstoty a priwatnosće, wužiwajće prošu"
+" slědowacy formular, zo byšće swoje wobmyslenja wopisał. Prošu njewužiwaj "
+"tutón formilar z druheje přičiny."
 
 #: src/olympia/addons/templates/addons/report_abuse.html:24
 #: src/olympia/users/templates/users/report_abuse.html:19
 msgid "Send Report"
-msgstr ""
+msgstr "Rozprawu pósłać"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:26
 #: src/olympia/addons/templates/addons/mobile/eula.html:16
@@ -1133,36 +1166,37 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 #: src/olympia/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "Přetorhnyć"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:3
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:5
 msgid "What do you think?"
-msgstr ""
+msgstr "Što mysliće?"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:7
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:9
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr ""
+"Prošu <a href=\"%(login)s\">přizjewće so</a>, zo byšće pohódnoćenje zapodał"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:16
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:18
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "Titul:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:17
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:19
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr ""
+msgstr "Pohódnoćenje:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:18
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:20
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr ""
+msgstr "Pohódnoćenje:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:19
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:21
@@ -1170,7 +1204,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/edit_review.html:15
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "Pohódnoćenje wotpósłać"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:24
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:26
@@ -1179,6 +1213,9 @@ msgid ""
 " available to add-on developers and they may need to contact you to help "
 "resolve your issue."
 msgstr ""
+"Prošu njesćelće rozprawy wo zmylkach w pohódnoćenjach. Njestajamy "
+"přidatkowym wuwiwarjam wašu e-mejlowu adresu k dispoziciji a njemóža tohodla"
+" z wami do zwiska stupić, zo bychu waš problem rozrisali."
 
 #: src/olympia/addons/templates/addons/review_add_box.html:32
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:35
@@ -1187,13 +1224,15 @@ msgid ""
 "See the <a href=\"%(support)s\">support section</a> to find out where to get"
 " assistance for this add-on."
 msgstr ""
+"Hlejće <a href=\"%(support)s\">wotrězk Pomoc</a>, zo byšće pomoc wo tutym "
+"přidatku dóstał."
 
 #: src/olympia/addons/templates/addons/review_add_box.html:38
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:42
 #: src/olympia/pages/templates/pages/review_guide.html:3
 #: src/olympia/pages/templates/pages/review_guide.html:44
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Pohódnoćenske směrnicy"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:5
 #: src/olympia/addons/templates/addons/impala/details-more.html:27
@@ -1203,38 +1242,38 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/review_list.html:19
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr ""
+msgstr "Pohódnoćenja"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:14
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:14
 #: src/olympia/reviews/templates/reviews/review.html:30
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "wot %(user)s dnja %(date)s"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:19
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:29
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Wotmołwu wuwiwarja na tute pohódnoćenje pokazać"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:27
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšě pohódnoćenja tutoho přidatka pokazać"
+msgstr[1] "%(cnt)s pohódnoćeni tutoho přidatka pokazać"
+msgstr[2] "Wšě %(cnt)s pohódnoćenja tutoho přidatka pokazać"
+msgstr[3] "Wšě %(cnt)s pohódnoćenjow tutoho přidatka pokazać"
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:118
 msgid "Tags"
-msgstr ""
+msgstr "Znački"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:7
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Symbol za {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:34
 #: src/olympia/addons/templates/addons/impala/featured_grid.html:26
@@ -1243,20 +1282,20 @@ msgstr ""
 #: src/olympia/users/templates/users/helpers/addon_users_list.html:7
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "wot %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Najebać toho sćahnyć"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:24
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "Namjet: <b>%(amt)s</b>"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Spodoba so wam tutón přidatk?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:43
 #, python-format
@@ -1264,6 +1303,8 @@ msgid ""
 "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help"
 " support its continued development by making a small contribution."
 msgstr ""
+"<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće "
+"jeho dalše wuwiwanje přez mały přinošk podpěrujeće."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:48
 #, python-format
@@ -1272,6 +1313,9 @@ msgid ""
 " your support by making a donation to the <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće "
+"swoju podpěru přez dar za <a href=\"%(charity_url)s\">%(charity_name)s</a> "
+"pokazał."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:53
 #, python-format
@@ -1280,92 +1324,97 @@ msgid ""
 " your support by making a small contribution to <a "
 "href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće "
+"swoju podpěru přez mały přinošk za <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html:4
 msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
+"Tutón přidatk sej slědowace přidatki wužaduje, zo by korektnje fungował:"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Přerězk"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr ""
+msgstr "Napisajće pohódnoćenje"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Přiwuzne kategorije"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Dźěl tutych zběrkow"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Druhe přidatki wot %(author)s"
+msgstr[1] "Druhe přidatki wot tuteju awtorow"
+msgstr[2] "Druhe přidatki wot tutych awtorow"
+msgstr[3] "Druhe přidatki wot tutych awtorow"
 
 #: src/olympia/addons/templates/addons/impala/details.html:39
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> wužiwarske pohódnoćenje"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> wužiwarskej pohódnoćeni"
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> wužiwarske pohódnoćenja"
 msgstr[3] ""
+"<span itemprop=\"ratingCount\">%(num)s</span> wužiwarskich pohódnoćenjow"
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
-msgstr ""
+msgstr "Statistiku pokazać"
 
 #: src/olympia/addons/templates/addons/impala/details.html:81
 msgid "Manage"
-msgstr ""
+msgstr "Rjadować"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:93
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Symbol {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:100
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "Žane znowastartowanje"
 
 #: src/olympia/addons/templates/addons/impala/details.html:124
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Zeznajće so z wuwiwarjom: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjomaj</a>"
+msgstr[2] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
+msgstr[3] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:134
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za njón."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html:161
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Foto wobrazowki přidatka #{0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:187
 msgid "Add-on home page"
-msgstr ""
+msgstr "Startowa strona přidatka"
 
 #: src/olympia/addons/templates/addons/impala/details.html:190
 msgid "Support site"
-msgstr ""
+msgstr "Sydło pomocy"
 
 #: src/olympia/addons/templates/addons/impala/details.html:194
 msgid "Support E-mail"
-msgstr ""
+msgstr "E-mejlowa adresa pomocy"
 
 #: src/olympia/addons/templates/addons/impala/details.html:199
 #: src/olympia/devhub/models.py:378
@@ -1373,21 +1422,21 @@ msgstr ""
 #: src/olympia/versions/templates/versions/version.html:6
 #: src/olympia/versions/templates/versions/mobile/version.html:6
 msgid "Version {0}"
-msgstr ""
+msgstr "Wersija {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:199
 msgid "Info"
-msgstr ""
+msgstr "Informacije"
 
 #: src/olympia/addons/templates/addons/impala/details.html:200
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:116
 msgid "Last Updated:"
-msgstr ""
+msgstr "Poslednja aktualizacija:"
 
 #: src/olympia/addons/templates/addons/impala/details.html:205
 #, python-format
 msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Wozjewjeny pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:206
 #: src/olympia/addons/templates/addons/impala/details.html:211
@@ -1396,28 +1445,28 @@ msgstr ""
 #: src/olympia/versions/templates/versions/version.html:40
 #: src/olympia/versions/templates/versions/version.html:45
 msgid "Custom License"
-msgstr ""
+msgstr "Swójska licenca"
 
 #: src/olympia/addons/templates/addons/impala/details.html:210
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Wozjewjeny pod <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:222
 msgid "About this Add-on"
-msgstr ""
+msgstr "Wo tutym přidatku"
 
 #: src/olympia/addons/templates/addons/impala/details.html:238
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Komentary wuwiwarja"
 
 #: src/olympia/addons/templates/addons/impala/details.html:248
 msgid "Version Information"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #: src/olympia/addons/templates/addons/impala/details.html:255
 msgid "See complete version history"
-msgstr ""
+msgstr "Dospołnu wersijowu historiju pokazać"
 
 #: src/olympia/addons/templates/addons/impala/details.html:267
 msgid ""
@@ -1427,16 +1476,23 @@ msgid ""
 "stop receiving development updates, reinstall the default version from the "
 "link above."
 msgstr ""
+"Wuwiwarski kanal wam zmóžnja, nowu eksperimentalnu wersiju tutoho přidatka "
+"testować, prjedy hač so powšitkownej zjawnosći přewostaji. Hdyž wuwiwarsku "
+"wersiju instalujeće, budźeće dale aktualizacije z tutoho kanala dóstawać. Zo"
+" njebyšće hižo žane wuwiwarske aktualizacije dóstał, instalujće strandardnu "
+"wersiju z wotkaza horjeka."
 
 #: src/olympia/addons/templates/addons/impala/details.html:277
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been "
 "reviewed by Mozilla."
 msgstr ""
+"<strong>Kedźbu:</strong> Wuwiwarske wersije tutoho přidatka njebuchu "
+"přepruwowane wot Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html:292
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Dospołnu historiju wuwiwarskeho kanala pokazać"
 
 #: src/olympia/addons/templates/addons/impala/details.html:311
 #: src/olympia/addons/templates/addons/impala/details.html:320
@@ -1447,153 +1503,158 @@ msgstr ""
 #: src/olympia/stats/templates/stats/stats.html:202
 #: src/olympia/users/templates/users/profile.html:119
 msgid "close"
-msgstr ""
+msgstr "začinić"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html:9
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "Dźakujemy so za instalaciju přidatka {0}"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html:12
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "Zeznajće so z wuwiwarjom přidatka {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:41
 msgid ""
 "Before downloading this add-on, please consider supporting the development "
 "of this add-on by making a small contribution."
 msgstr ""
+"Prjedy hač tutón přidatk sćehnjeće, přemyslujće nad tym, hač chceće "
+"wuwiwanje tutoho přidatka přez mały přinošk podpěrać."
 
 #: src/olympia/addons/templates/addons/impala/developers.html:80
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "Čehodla bu {0} wutworjeny?"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:84
 msgid "What's next for {0}"
-msgstr ""
+msgstr "Što je jako přichodne za {0} planowane"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:89
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wo wuwiwarju"
+msgstr[1] "Wo wuwiwarjomaj"
+msgstr[2] "Wo wuwiwarjach"
+msgstr[3] "Wo wuwiwarjach"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:96
 #: src/olympia/users/templates/users/edit.html:130
 #: src/olympia/users/templates/users/profile.html:26
 msgid "No Photo"
-msgstr ""
+msgstr "Žane foto"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:104
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Štó je {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html:17
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Tutón přidatk je so wot swojeho awtora wotstronił."
 
 #: src/olympia/addons/templates/addons/impala/disabled.html:19
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Tutón přidatk je so wot administratora znjemóžnił."
 
 #: src/olympia/addons/templates/addons/impala/license.html:5
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Licenca žórłoweho koda za {addon}"
 
 #: src/olympia/addons/templates/addons/impala/license.html:21
 #: src/olympia/versions/templates/versions/mobile/version.html:18
 msgid "Source Code License"
-msgstr ""
+msgstr "Licenca žórłoweho koda"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:19
 #: src/olympia/reviews/templates/reviews/review.html:40
 msgid "permalink"
-msgstr ""
+msgstr "trajny wotkaz"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:23
 #: src/olympia/editors/templates/editors/queue.html:98
 #: src/olympia/reviews/templates/reviews/review.html:44
 msgid "translate"
-msgstr ""
+msgstr "přełožować"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:36
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšě wužiwarske pohódnoćenja pokazać"
+msgstr[1] "%(cnt)s wužiwarskej pohódnoćeni pokazać"
+msgstr[2] "Wšitke %(cnt)s wužiwarske pohódnoćenja pokazać"
+msgstr[3] "Wšitkich %(cnt)s wužiwarskich pohódnoćenjow pokazać"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Tutón přidatk njeje so hišće pohódnoćił."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:50
 msgid "Be the first!"
-msgstr ""
+msgstr "Budźće prěni!"
 
 #: src/olympia/addons/templates/addons/impala/toplist.html:6
 msgid "{0} users"
-msgstr ""
+msgstr "{0} wužiwarjow"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html:14
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:49
 msgid "More"
-msgstr ""
+msgstr "Wjace"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:7
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html:10
 msgid "Add to collection"
-msgstr ""
+msgstr "Zběrce přidać"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
 #: src/olympia/devhub/templates/devhub/index.html:73
 #: src/olympia/devhub/templates/devhub/nav.html:14
 msgid "My Add-ons"
-msgstr ""
+msgstr "Moje přidatki"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 #: src/olympia/amo/context_processors.py:52
 msgid "My Themes"
-msgstr ""
+msgstr "Moje drasty"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
-msgstr ""
+msgstr "K Firefox přidać"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Drastu wobdźěłać"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Schwalić / Wotpokazać"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 #: src/olympia/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Historija pohódnoćenjow"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
+"Bohužel tuta drasta hišće na schwalenje čaka. Prošu přińdźće pozdźišo hišće "
+"raz."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:8
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr ""
+"Tuta drasta hišće na schwalenje čaka. Je za wšěch nimo tebje njewidźomna."
 
 #: src/olympia/addons/templates/addons/listing/items.html:29
 msgid "Collector's Note"
-msgstr ""
+msgstr "Přispomnjenka zběraćela"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Hišće njepohódnoćeny"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:27
@@ -1601,60 +1662,60 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:15
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<strong>{0}</strong> tydźenske sćehnjenje"
+msgstr[1] "<strong>{0}</strong> tydźenskej sćehnjeni"
+msgstr[2] "<strong>{0}</strong> tydźenske sćehnjenja"
+msgstr[3] "<strong>{0}</strong> tydźenskich sćehnjenjow"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "Dalše informacije"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Wužiwarjo"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:92
 #: src/olympia/browse/views.py:59 src/olympia/browse/views.py:70
 #: src/olympia/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Tydźenske sćehnjenja"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:99
 #: src/olympia/compat/templates/compat/reporter_detail.html:46
 #: src/olympia/devhub/forms.py:779
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
-msgstr ""
+msgstr "Wersija"
 
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Wersijowe pokazy)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "Wšě wersije pokazać"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "Wuwiwarsku wersiju pokazać"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "Kedźbu"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "Sydło pomocy wopytać"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Awtorej prašenje stajić"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
-msgstr ""
+msgstr "Licencne dojednanje"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:5
 #, python-format
@@ -1662,15 +1723,17 @@ msgid ""
 "%(name)s requires that you accept the following End-User License Agreement "
 "before installation can proceed:"
 msgstr ""
+"%(name)s sej žada, zo slědowace licencne dojednanje za kónčnych wužiwarjow "
+"(EULA) akceptujeće, prjedy hač z instalaciju pokročujeće:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Akceptować"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:10
 #: src/olympia/templates/mobile/base_addons.html:53
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Přidatki tuchwilu za Firefox za iOS k dispoziciji njejsu."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:12
 #: src/olympia/templates/mobile/base_addons.html:55
@@ -1678,12 +1741,14 @@ msgid ""
 "You need Firefox to install add-ons. <a "
 "href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"Trjebaće Firefox, zo byšće přidatki instalował. <a "
+"href=\"http://mozilla.com/mobile\">Dalše informacije&nbsp;&raquo;</a>"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:19
 #: src/olympia/templates/header_title.html:4
 #: src/olympia/templates/impala/header_title.html:3
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Wróćo k startowej stronje přidatka {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:21
 #: src/olympia/amo/helpers.py:237
@@ -1698,11 +1763,11 @@ msgstr ""
 #: src/olympia/templates/impala/header_title.html:23
 #: src/olympia/templates/mobile/base_addons.html:47
 msgid "Add-ons"
-msgstr ""
+msgstr "Přidatki"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:23
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Lochke přiměrjenje."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:24
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
@@ -1711,7 +1776,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/modules/featured.html:21
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr ""
+msgstr "Dalše informacije"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:26
 msgid ""
