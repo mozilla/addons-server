@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-11 14:21+0000\n"
-"PO-Revision-Date: 2016-04-17 20:50+0000\n"
+"PO-Revision-Date: 2016-04-18 21:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1784,6 +1784,10 @@ msgid ""
 "functionality and style. Whether you mistype the name of a website or can't "
 "read a busy page, there's an add-on to improve your on-the-go browsing."
 msgstr ""
+"Přidatki su nałoženja, kotrež wam zmóžnjeja, Firefox z přidatnej "
+"funkcionalnosću a přidatnym stilom přiměrić. Hač mjeno websydła wopak pisaće"
+" abo njemóžeće jara aktiwnu stronu čitać, je přidatk, zo by waše "
+"přehladowanje polěpšił."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1808,25 +1812,25 @@ msgstr ""
 #: src/olympia/search/templates/search/personas.html:39
 #: src/olympia/templates/menu_links.html:9
 msgid "Themes"
-msgstr ""
+msgstr "Drasty"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:51
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Wšě předstajene přidatki pokazać"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:57
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Wšě woblubowane přidatki pokazać"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
-msgstr ""
+msgstr "Dalše přidatki"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:72
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:64
 #: src/olympia/search/forms.py:14
 msgid "Highest Rated"
-msgstr ""
+msgstr "Najwyše pohódnoćene"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:74
 #: src/olympia/amo/templates/amo/side_nav.html:5
@@ -1837,71 +1841,71 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
 #: src/olympia/search/forms.py:15 src/olympia/search/forms.py:87
 msgid "Newest"
-msgstr ""
+msgstr "Najnowše"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "Wupruwujće jón!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Informacije wo drasće &raquo;"
 
 #: src/olympia/amo/context_processors.py:39
 #: src/olympia/devhub/templates/devhub/nav.html:43
 msgid "Tools"
-msgstr ""
+msgstr "Nastroje"
 
 #: src/olympia/amo/context_processors.py:49
 #: src/olympia/discovery/templates/discovery/pane_account.html:8
 #: src/olympia/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Mój profil"
 
 #: src/olympia/amo/context_processors.py:55
 #: src/olympia/users/templates/users/edit.html:5
 #: src/olympia/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
-msgstr ""
+msgstr "Kontowe nastajenja"
 
 #: src/olympia/amo/context_processors.py:58
 #: src/olympia/discovery/templates/discovery/pane_account.html:11
 #: src/olympia/users/templates/users/profile.html:83
 #: src/olympia/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr ""
+msgstr "Moje zběrki"
 
 #: src/olympia/amo/context_processors.py:63
 #: src/olympia/discovery/templates/discovery/pane_account.html:10
 #: src/olympia/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr ""
+msgstr "Moje fawority"
 
 #: src/olympia/amo/context_processors.py:68
 #: src/olympia/discovery/templates/discovery/pane_account.html:13
 #: src/olympia/templates/impala/user_login.html:14
 #: src/olympia/templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr ""
+msgstr "Wotzjewić"
 
 #: src/olympia/amo/context_processors.py:73
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Moje zapodaća rjadować"
 
 #: src/olympia/amo/context_processors.py:76
 #: src/olympia/devhub/templates/devhub/nav.html:27
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:25
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Nowy přidatk zapodać"
 
 #: src/olympia/amo/context_processors.py:78
 #: src/olympia/browse/templates/browse/personas/base.html:50
 #: src/olympia/devhub/templates/devhub/index.html:24
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:29
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Nowu drastu zapodać"
 
 #: src/olympia/amo/context_processors.py:80
 #: src/olympia/amo/templates/amo/site_nav.html:85
@@ -1909,37 +1913,37 @@ msgstr ""
 #: src/olympia/devhub/helpers.py:102 src/olympia/templates/footer.html:6
 #: src/olympia/templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Wuwiwarski róžk"
 
 #: src/olympia/amo/context_processors.py:84 src/olympia/devhub/views.py:1795
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API-kluče rjadować"
 
 #: src/olympia/amo/context_processors.py:89 src/olympia/editors/helpers.py:84
 #: src/olympia/editors/helpers.py:104
 #: src/olympia/editors/templates/editors/base.html:10
 msgid "Editor Tools"
-msgstr ""
+msgstr "Nastroje redaktora"
 
 #: src/olympia/amo/context_processors.py:93
 msgid "Admin Tools"
-msgstr ""
+msgstr "Administratorowe nastroje"
 
 #: src/olympia/amo/fields.py:20
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Wopak, prošu spytajće hišće raz."
 
 #: src/olympia/amo/fields.py:21
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Zmylk při přepruwowanju zapodaća, prošu spytajće hišće raz."
 
 #: src/olympia/amo/fields.py:37
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "To dyrbi płaćiwy heksadecimalny barbowy kod być, na přikład #000000."
 
 #: src/olympia/amo/fields.py:63
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Zapodajće znajmjeńša jednu hódnotu."
 
 #: src/olympia/amo/helpers.py:162
 #: src/olympia/amo/templates/amo/site_nav.html:59
@@ -1958,161 +1962,161 @@ msgstr ""
 #: src/olympia/stats/templates/stats/stats.html:77
 #: src/olympia/templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "Zběrki"
 
 #: src/olympia/amo/helpers.py:171
 #: src/olympia/amo/templates/amo/site_nav.html:83
 #: src/olympia/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Słowniki a rěčne pakćiki"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py:428
 msgid "{0} ago"
-msgstr ""
+msgstr "před {0}"
 
 #: src/olympia/amo/log.py:21
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} je so wutworił."
 
 #: src/olympia/amo/log.py:29
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Kajkosće přidatka {addon} su so wobdźěłali."
 
 #: src/olympia/amo/log.py:35
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Wopisanje přidatka {addon} je so wobdźěłało."
 
 #: src/olympia/amo/log.py:41
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategorije za přidatk {addon} su so wobdźěłali."
 
 #: src/olympia/amo/log.py:47
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) je so přidatkej {addon} přidał."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py:55
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) je so z přidatka {addon} wotstronił."
 
 #: src/olympia/amo/log.py:62
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Přinoški za {addon}."
 
 #: src/olympia/amo/log.py:67 src/olympia/amo/log.py:417
 msgid "{addon} disabled."
-msgstr ""
+msgstr "Přidatk {addon} je znjemóžnjeny."
 
 #: src/olympia/amo/log.py:73
 msgid "{addon} enabled."
-msgstr ""
+msgstr "Přidatk {addon} je zmóžnjeny."
 
 #: src/olympia/amo/log.py:80
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistiki za přidatk {addon} su zjawne."
 
 #: src/olympia/amo/log.py:87
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Statistiki za přidatk {addon} su priwatne."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py:94
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Status přidatka {addon} je so do {0} změnił."
 
 #: src/olympia/amo/log.py:101
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Přehlad je so přidatkej {addon} přidał."
 
 #: src/olympia/amo/log.py:107
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Přehlad přidatka {addon} je so wobdźěłał."
 
 #: src/olympia/amo/log.py:113
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Přehlad přidatka {addon} je so zhašał."
 
 #: src/olympia/amo/log.py:119
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "Wersija {version} je so přidatkej {addon} přidała."
 
 #: src/olympia/amo/log.py:126
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "Wersija {version} přidatka {addon} je so wobdźěłała."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py:134
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Wersija {0} přidatka {addon} je so zhašała."
 
 #: src/olympia/amo/log.py:141
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0.name} je so wersiji {version} přidatka {addon} přidała."
 
 #: src/olympia/amo/log.py:152
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0} je so z wersije {version} přidatka {addon} zhašała."
 
 #: src/olympia/amo/log.py:158
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "Přidatk {addon} {version} schwaleny."
 
 #: src/olympia/amo/log.py:168
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Přidatk {addon} {version} je nachwilu schwaleny."
 
 #: src/olympia/amo/log.py:169
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Nachwilu schwaleny"
 
 #: src/olympia/amo/log.py:179
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "Přidatk {addon} {version} wotpokazany."
 
 #: src/olympia/amo/log.py:189
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "Přidatk {addon} {version} wróćo zdźeržany."
 
 #: src/olympia/amo/log.py:190
 msgid "Retained"
-msgstr ""
+msgstr "Wróćo zdźeržany"
 
 #: src/olympia/amo/log.py:199
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "Přidatk {addon} {version} je so přichodnemu wyšemu městnu dale dał."
 
 #: src/olympia/amo/log.py:200
 msgid "Escalated"
-msgstr ""
+msgstr "Přichodnemu wyšemu městnu dale daty"
 
 #: src/olympia/amo/log.py:209
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Přepruwowanje přidatka {addon} {version} je so požadało."
 
 #: src/olympia/amo/log.py:210
 msgid "Review requested"
-msgstr ""
+msgstr "Přepruwowanje je so požadało"
 
 #: src/olympia/amo/log.py:218
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Dalše informacije wo přidatku {addon} {version} su so požadali."
 
 #: src/olympia/amo/log.py:219
 msgid "More information requested"
-msgstr ""
+msgstr "Dalše informacije požadane"
 
 #: src/olympia/amo/log.py:227
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Superpřepruwowanje přidatka {addon} {version} je so požadało."
 
 #: src/olympia/amo/log.py:228
 msgid "Super review requested"
-msgstr ""
+msgstr "Superpřepruwowanje je požadane"
 
 #: src/olympia/amo/log.py:235
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komentar k přidatkej {addon} {version}."
 
 #: src/olympia/amo/log.py:236
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:19
@@ -2120,107 +2124,108 @@ msgstr ""
 #: src/olympia/editors/helpers.py:580
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: src/olympia/amo/log.py:245
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} je so přidatkej {addon} přidała."
 
 #: src/olympia/amo/log.py:251
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} je so z přidatka {addon} wotstroniła."
 
 #: src/olympia/amo/log.py:257
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "Přidatk {addon} je so zběrce {collection} přidał."
 
 #: src/olympia/amo/log.py:263
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
 #: src/olympia/amo/log.py:269
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} za {addon} napisane."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py:277
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "Přidatk {addon} w {0} předstajeny."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py:284
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "Přidatk {addon} so w {0} hižo njepředstaja."
 
 #: src/olympia/amo/log.py:289
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "Přidatk {addon} so nětko předstaja."
 
 #: src/olympia/amo/log.py:295
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "Přidatk {addon} so hižo njepředstaja."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py:303
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} přidaty."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py:310
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Róla {0.name} za přidatk {addon} do {1} změnjena."
 
 #: src/olympia/amo/log.py:318
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} je nětko pod licencu {0.name}."
 
 #: src/olympia/amo/log.py:324
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Prawidła přidatka {addon} změnjene."
 
 #: src/olympia/amo/log.py:330
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Symbol přidatka {addon} změnjeny."
 
 #: src/olympia/amo/log.py:336
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "Přepruwowanje {review} za přidatk {addon} schwalene."
 
 #: src/olympia/amo/log.py:337
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "Wužiwar {user} je pohódnoćenje {review} za přidatk {addon} schwalił."
 
 #: src/olympia/amo/log.py:346
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Pohódnoćenje {review} za {addon} zhašane."
 
 #: src/olympia/amo/log.py:347
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} je {review} za {addon} zhašał."
 
 #: src/olympia/amo/log.py:354
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maks. wersija nałoženja je so za wersiju {version} zaktualizowała."
 
 #: src/olympia/amo/log.py:359
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
+"Awtorojo su so wo kompatibelnosći wersije {version} přez e-mejl informowali."
 
 #: src/olympia/amo/log.py:364
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mejl wo kompatibelnosći přidatka je so na awtora pósłała."
 
 #: src/olympia/amo/log.py:369
 msgid "Password changed."
-msgstr ""
+msgstr "Hesło je so změniło."
 
 #: src/olympia/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "Za přidatk {addon} su so přepruwowanje pola PayPal nimokulili."
 
 #: src/olympia/amo/log.py:379
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Manifest přidatka {addon} je so zaktualizował."
 
 #: src/olympia/amo/log.py:385
 msgid "{addon} {version} approved but waiting to be made public."
