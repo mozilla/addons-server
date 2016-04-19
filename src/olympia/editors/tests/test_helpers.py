@@ -475,6 +475,10 @@ class TestReviewHelper(TestCase):
         assert mail.outbox[0].subject == subject
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
+    def test_request_more_information_deleted_addon(self):
+        self.addon.delete()
+        self.test_request_more_information()
+
     def test_email_no_locale(self):
         self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
         self.helper.handler.process_public()

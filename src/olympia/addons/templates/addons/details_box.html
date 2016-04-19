@@ -26,6 +26,14 @@
               <caption>{{ _('Add-on Information for {0}')|f(addon_name|xssafe) }}</caption>
             {% endwith %}
             <tbody>
+              {% if addon.is_deleted %}
+              <tr class="addon-status">
+                <th>{{ _('Status') }}</th>
+                <td>
+                    <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong>
+                </td>
+              </tr>
+              {% endif %}
               <tr class="addon-updated">
                 <th>{{ _('Updated') }}</th>
                 <td>

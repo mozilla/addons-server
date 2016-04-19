@@ -546,7 +546,8 @@ class ReviewHelper:
             # the actions.
             return actions
         labels, details = self._review_actions()
-        reviewable_because_complete = addon.status != amo.STATUS_NULL
+        reviewable_because_complete = addon.status not in (
+            amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
             not addon.admin_review or
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))

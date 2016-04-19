@@ -28,7 +28,7 @@ def addon_view(f, qs=Addon.objects.all):
         if addon_id and addon_id.isdigit():
             addon = get_object_or_404(qs(), id=addon_id)
             # Don't get in an infinite loop if addon.slug.isdigit().
-            if addon.slug != addon_id:
+            if addon.slug and addon.slug != addon_id:
                 url = request.path.replace(addon_id, addon.slug, 1)
 
                 if request.GET:
