@@ -116,6 +116,8 @@
                     {% endif %}
                   </div>
                 {% endif %}
+                {# outer_content is for something you want above content on every page. #}
+                {% block outer_content %}{% include "messages.html" %}{% endblock %}
                 {% block amo_balloons %}
                   {% if APP == amo.FIREFOX %}
                     <div class="site-balloon" id="site-nonfx">
@@ -179,8 +181,6 @@
         {% block main_content %}
           {% block navbar %}
           {% endblock %}
-          {# outer_content is for something you want above content on every page. #}
-          {% block outer_content %}{% include "messages.html" %}{% endblock %}
           {% block content %}{% endblock %}
         {% endblock %}
       </div>
