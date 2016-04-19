@@ -48,7 +48,7 @@ urlpatterns = patterns(
         name='pages.sunbird'),
     url('^sunbird/', lambda r: perma_redirect(reverse('pages.sunbird'))),
 
-    url('^shield-study-1/',
-        TemplateView.as_view(template_name='pages/shield_study_1.html'),
+    url('^shield-study-2/',
+        TemplateView.as_view(template_name='pages/shield_study_2.html'),
         name='pages.shield_study_1'),
 )
