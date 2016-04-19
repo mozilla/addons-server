@@ -581,7 +581,7 @@ def application_versions_json(request):
 
 
 @addons_reviewer_required
-@addon_view_factory(qs=Addon.with_unlisted.all)
+@addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon):
     if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
         raise http.Http404
@@ -841,7 +841,7 @@ def leaderboard(request):
 
 
 @addons_reviewer_required
-@addon_view_factory(qs=Addon.with_unlisted.all)
+@addon_view_factory(qs=Addon.unfiltered.all)
 def whiteboard(request, addon):
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 

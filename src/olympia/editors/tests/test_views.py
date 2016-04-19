@@ -2396,6 +2396,18 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
 
+    def test_addon_deleted(self):
+        """The review page should still load for deleted addons."""
+        self.addon.delete()
+        self.url = reverse('editors.review', args=[self.addon.pk])
+
+        assert self.client.get(self.url).status_code == 200
+        response = self.client.post(self.url, {'action': 'info',
+                                               'comments': 'hello sailor'})
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('editors.queue_pending'),
+                       status_code=302)
+
     @patch('olympia.editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
         version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
@@ -2880,20 +2892,29 @@ class TestWhiteboard(ReviewBase):
 
     def test_whiteboard_addition(self):
         whiteboard_info = u'Whiteboard info.'
-        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        url = reverse('editors.whiteboard', args=[
+            self.addon.slug if not self.addon.is_deleted else self.addon.pk])
         response = self.client.post(url, {'whiteboard': whiteboard_info})
         assert response.status_code == 302
-        assert self.get_addon().whiteboard == whiteboard_info
+        assert self.addon.reload().whiteboard == whiteboard_info
 
     @patch('olympia.addons.decorators.owner_or_unlisted_reviewer',
            lambda r, a: True)
     def test_whiteboard_addition_unlisted_addon(self):
         self.addon.update(is_listed=False)
         whiteboard_info = u'Whiteboard info.'
-        url = reverse('editors.whiteboard', args=[self.addon.slug])
+        url = reverse('editors.whiteboard', args=[
+            self.addon.slug if not self.addon.is_deleted else self.addon.pk])
         response = self.client.post(url, {'whiteboard': whiteboard_info})
         assert response.status_code == 302
         assert self.addon.reload().whiteboard == whiteboard_info
+
+
+class TestWhiteboardDeleted(TestWhiteboard):
+
+    def setUp(self):
+        super(TestWhiteboardDeleted, self).setUp()
+        self.addon.delete()
 
 
 class TestAbuseReports(TestCase):

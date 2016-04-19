@@ -40,7 +40,9 @@ class TestReviewActions(TestCase):
 
     def test_other_statuses(self):
         for status in Addon.STATUS_CHOICES:
-            if status in NOMINATED_STATUSES + (amo.STATUS_NULL, ):
+            statuses = NOMINATED_STATUSES + (
+                amo.STATUS_NULL, amo.STATUS_DELETED)
+            if status in statuses:
                 return
             else:
                 label = self.set_status(status)['prelim']['label']
@@ -68,6 +70,10 @@ class TestReviewActions(TestCase):
     def test_addon_status_null(self):
         # If the add-on is null we only show info, comment and super review.
         assert len(self.set_status(amo.STATUS_NULL)) == 3
+
+    def test_addon_status_deleted(self):
+        # If the add-on is deleted we only show info, comment and super review.
+        assert len(self.set_status(amo.STATUS_DELETED)) == 3
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_admin_flagged_addon_actions(self, action_allowed_mock):
