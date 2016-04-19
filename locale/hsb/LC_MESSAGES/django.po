@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-19 11:45+0000\n"
+"PO-Revision-Date: 2016-04-19 18:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -974,6 +974,8 @@ msgstr "Dalše informacije wo Firefox"
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
+"abo <b><a class=\"button installer\" href=\"{url}\">najebać toho "
+"sćahnyć</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -2708,33 +2710,35 @@ msgstr "Njepłaćiwy JWT-token."
 
 #: src/olympia/api/authentication.py:130
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Njepłaćiwa awtorizowanska hłowa. Žane přizjewjenske daty podate."
 
 #: src/olympia/api/authentication.py:133
 msgid ""
 "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+"Njepłaćiwa awtorizowanska hłowa. Znamješkowy rjećazk za přizjewjenske daty "
+"měł žane mjezoty wobsahować."
 
 #: src/olympia/api/fields.py:29
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Polo dyrbi znajmjeńša {num} znamješkow dołhe być."
 
 #: src/olympia/api/fields.py:31
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Rěčny kod {lang_code} je njepłaćiwy."
 
 #: src/olympia/applications/views.py:39
 #: src/olympia/applications/templates/applications/appversions.html:3
 msgid "Application Versions"
-msgstr ""
+msgstr "Nałoženske wersije"
 
 #: src/olympia/applications/views.py:45
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Akceptabelne wersije za wšě nałoženja na AMO."
 
 #: src/olympia/applications/templates/applications/appversions.html:11
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Płaćiwe nałoženske wersije"
 
 #: src/olympia/applications/templates/applications/appversions.html:12
 msgid ""
@@ -2742,21 +2746,24 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Přidatki zapodate pola Mozilla Add-ons dyrbja manifestowu dataju měć, při "
+"čimž so znajmjeńša jednej ze slědowacych nałoženjow podpěruje. Jenož deleka "
+"podate wersije su za tute nałoženja dowolene."
 
 #: src/olympia/applications/templates/applications/appversions.html:25
 #: src/olympia/editors/helpers.py:361
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: src/olympia/applications/templates/applications/appversions.html:26
 #: src/olympia/versions/templates/versions/version_list.html:23
 msgid "Versions"
-msgstr ""
+msgstr "Wersije"
 
 #: src/olympia/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: src/olympia/applications/templates/applications/appversions.html:31
 #, python-format
@@ -2765,107 +2772,114 @@ msgid ""
 "must include one with the required properties as specified <a "
 "href=\"%(url)s\">here</a>."
 msgstr ""
+"Jeli waše podpěrane nałoženje manifestowu dataju njetrjeba, dyrbiće hišće "
+"jednu z trěbnymi kajkosćemi přidać, kaž su <a href=\"%(url)s\">tu</a> "
+"podate."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:44
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Zběrki :: %s"
 
 #: src/olympia/bandwagon/feeds.py:50
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:137
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
+"Zběrki si skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale "
+"dać."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py:70
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Zběrki :: {1}"
 
 #: src/olympia/bandwagon/forms.py:21
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Jenož ja mógu sej tutu zběrku wobhladać."
 
 #: src/olympia/bandwagon/forms.py:22
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Kóždy móže sej tutu zběrku wobhladać."
 
 #: src/olympia/bandwagon/forms.py:123
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Dajće swojej zběrce mjeno."
 
 #: src/olympia/bandwagon/forms.py:125
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py:127
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Wopisajće swoju zběrku (wotkazy dowolene njejsu)."
 
 #: src/olympia/bandwagon/forms.py:132
 msgid "Privacy:"
-msgstr ""
+msgstr "Priwatnosć:"
 
 #: src/olympia/bandwagon/forms.py:137
 msgid "Icon"
-msgstr ""
+msgstr "Symbol"
 
 #: src/olympia/bandwagon/forms.py:143
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
+"Prošu njewupjelnjej tute polo, wužiwa so, zo by awtomatizowane zapiski "
+"spóznał."
 
 #: src/olympia/bandwagon/forms.py:167
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Tute mjeno njeda so wužiwać."
 
 #: src/olympia/bandwagon/forms.py:175 src/olympia/users/forms.py:485
 msgid "No links are allowed."
-msgstr ""
+msgstr "Wotkazy dowolene njejsu."
 
 #: src/olympia/bandwagon/forms.py:187
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Tutón URL so hižo wot druheje zběrki wužiwa"
 
 #: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1049
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Symbole dyrbja pak we formaće PNG pak JPG być."
 
 #: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1067
 #: src/olympia/users/forms.py:476
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Prošu wužiwajće wobrazy, kotrež su mjeńše hač %d MB."
 
 #: src/olympia/bandwagon/helpers.py:51
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Pozitiwny hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py:52
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Negatiwnu hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py:53
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Mój hłós za tutu zběrku wotstronić"
 
 #: src/olympia/bandwagon/helpers.py:64
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Přozjewće so, zo byšće za tutu zběrku wothłosował"
 
 #: src/olympia/bandwagon/helpers.py:123
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "Faworitam přidać"
 
 #: src/olympia/bandwagon/helpers.py:124
 msgid "Favorite"
-msgstr ""
+msgstr "Faworit"
 
 #: src/olympia/bandwagon/helpers.py:124
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Z faworitow wotstronić"
 
 #: src/olympia/bandwagon/views.py:98 src/olympia/bandwagon/views.py:191
 #: src/olympia/browse/views.py:58 src/olympia/browse/views.py:69
@@ -2877,24 +2891,24 @@ msgstr ""
 #: src/olympia/search/forms.py:17 src/olympia/search/forms.py:89
 #: src/olympia/users/templates/users/vcard.html:5
 msgid "Name"
-msgstr ""
+msgstr "Mjeno"
 
 #: src/olympia/bandwagon/views.py:100
 msgid "Recently Popular"
-msgstr ""
+msgstr "Najnowše woblubowane"
 
 #: src/olympia/bandwagon/views.py:189
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16
 msgid "Added"
-msgstr ""
+msgstr "Přidate"
 
 #: src/olympia/bandwagon/views.py:190
 msgid "Popularity"
-msgstr ""
+msgstr "Woblubowanosć"
 
 #: src/olympia/bandwagon/views.py:315
 msgid "Collection created!"
-msgstr ""
+msgstr "Zběrka wutworjena!"
 
 #: src/olympia/bandwagon/views.py:316
 #, python-format
@@ -2902,30 +2916,33 @@ msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
+"Waša nowa zběrka so deleka pokazuje. Móžeće <a href=\"%(url)s\">přidatne "
+"nastajenja wobdźěłać</a>, jeli chceće."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
-msgstr ""
+msgstr "Zběrka je so zaktualizowała!"
 
 #: src/olympia/bandwagon/views.py:323
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
+"<a href=\"%(url)s\">Wobhladajće sej swoju zběrku</a>, zo byšće změny widźał."
 
 #: src/olympia/bandwagon/views.py:579
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Symbol zhašany"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:3
 #: src/olympia/bandwagon/templates/bandwagon/add.html:11
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:26
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Nowu zběrku wutworić"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:9
 #: src/olympia/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Wutworić"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:24
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -2935,72 +2952,75 @@ msgid ""
 "collection arrangements are governed by the Creative Commons Attribution "
 "Share-Alike License"
 msgstr ""
+"Kaž w našich <a href=\"%(legal)s\">prawniskich pokazach</a> naspomnjene, su "
+"indiwiduelne zestawy zběrkow pod licencu Creative Commons Attribution Share-"
+"Alike"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:33
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr ""
+msgstr "Zběrku wutworić"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Tutu zběrku pokazać"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Započńće nowu zběrku..."
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:2
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Nowu zběrku započeć"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:6
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:7
 msgid "Name:"
-msgstr ""
+msgstr "Mjeno:"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:39
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "abo <a id=\"collections-new-cancel\" href=\"#\">Přetorhnyć</a>"
 
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html:15
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Zo byšće zběrki pohódnoćił, dyribće konto na AMO měć."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html:18
 #: src/olympia/templates/base.html:145
 #: src/olympia/templates/impala/base.html:198
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Załožće konto na AMO"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html:21
 #: src/olympia/templates/base.html:148
 #: src/olympia/templates/impala/base.html:201
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "abo <a href=\"%(login)s\">přizjewće so pola swojeho aktualneho konta</a>"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:5
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:26
 msgid "private"
-msgstr ""
+msgstr "priwatna"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:45
 #: src/olympia/bandwagon/templates/bandwagon/mobile/listing_items.html:9
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<span>%(num)s</span> wobkedźbowar"
+msgstr[1] "<span>%(num)s</span> wobkedźbowarjej"
+msgstr[2] "<span>%(num)s</span> wobkedźbowarjo"
+msgstr[3] "<span>%(num)s</span> wobkedźbowarjow"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
-msgstr ""
+msgstr "Wo tutej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
