@@ -98,6 +98,16 @@ FXA_CONFIG = {
     'redirect_url': 'http://olympia.dev/api/v3/accounts/authorize/',
     'scope': 'profile',
 }
+ADMIN_FXA_CONFIG = {
+    'client_id': '0f95f6474c24c1dc',
+    'client_secret':
+        'ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
+    'content_host': 'https://stable.dev.lcip.org',
+    'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+    'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+    'redirect_uri': 'http://localhost:3000/fxa-authenticate',
+    'scope': 'profile',
+}
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
