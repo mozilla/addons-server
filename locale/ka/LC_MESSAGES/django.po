@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 21:23+0000\n"
-"PO-Revision-Date: 2016-04-18 12:50+0000\n"
+"PO-Revision-Date: 2016-04-18 22:53+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1818,15 +1818,15 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:92
 msgid "Admin Tools"
-msgstr ""
+msgstr "ადმინის ხელსაწყოები"
 
 #: src/olympia/amo/fields.py:15
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "არასწორი, გთხოვთ, ცადეთ ხელახლა."
 
 #: src/olympia/amo/fields.py:16
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "შენატანის დამოწმების შეცდომა, გთხოვთ, ცადეთ ხელახლა."
 
 #: src/olympia/amo/fields.py:32
 msgid "This must be a valid hex color code, such as #000000."
@@ -2579,11 +2579,11 @@ msgstr ""
 #: src/olympia/applications/templates/applications/appversions.html:26
 #: src/olympia/versions/templates/versions/version_list.html:23
 msgid "Versions"
-msgstr ""
+msgstr "ვერსიები"
 
 #: src/olympia/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: src/olympia/applications/templates/applications/appversions.html:31
 #, python-format
@@ -2632,31 +2632,31 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py:132
 msgid "Privacy:"
-msgstr ""
+msgstr "პირადულობა:"
 
 #: src/olympia/bandwagon/forms.py:137
 msgid "Icon"
-msgstr ""
+msgstr "ხატულა"
 
 #: src/olympia/bandwagon/forms.py:143
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "გთხოვთ ეს ველი გამოტოვეთ, ის ბოტების დასაჭერად გამოიყენება."
 
 #: src/olympia/bandwagon/forms.py:167
 msgid "This name cannot be used."
-msgstr ""
+msgstr "ეს სახელი ვერ გამიყენება."
 
 #: src/olympia/bandwagon/forms.py:175 src/olympia/users/forms.py:485
 msgid "No links are allowed."
-msgstr ""
+msgstr "ბმულები დაშვებული არაა."
 
 #: src/olympia/bandwagon/forms.py:187
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "ამ ბმულს სხვა კრებული უკვე იყენებს"
 
 #: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1049
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "ხატულები უნდა იყოს PNG ან JPG."
 
 #: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1067
 #: src/olympia/users/forms.py:476
@@ -2683,16 +2683,16 @@ msgstr ""
 #: src/olympia/bandwagon/helpers.py:123
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Add to favorites"
-msgstr ""
+msgstr "რჩეულებში დამატება"
 
 #: src/olympia/bandwagon/helpers.py:124
 msgid "Favorite"
-msgstr ""
+msgstr "რჩეული"
 
 #: src/olympia/bandwagon/helpers.py:124
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html:2
 msgid "Remove from favorites"
-msgstr ""
+msgstr "რჩეულებიდან ამოღება"
 
 #: src/olympia/bandwagon/views.py:98 src/olympia/bandwagon/views.py:191
 #: src/olympia/browse/views.py:58 src/olympia/browse/views.py:69
@@ -2704,20 +2704,20 @@ msgstr ""
 #: src/olympia/search/forms.py:17 src/olympia/search/forms.py:89
 #: src/olympia/users/templates/users/vcard.html:5
 msgid "Name"
-msgstr ""
+msgstr "სახელი"
 
 #: src/olympia/bandwagon/views.py:100
 msgid "Recently Popular"
-msgstr ""
+msgstr "ბოლო დროს პოპულარული"
 
 #: src/olympia/bandwagon/views.py:189
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:18
 msgid "Added"
-msgstr ""
+msgstr "დამატებული"
 
 #: src/olympia/bandwagon/views.py:190
 msgid "Popularity"
-msgstr ""
+msgstr "პოპულარობა"
 
 #: src/olympia/bandwagon/views.py:315
 msgid "Collection created!"
