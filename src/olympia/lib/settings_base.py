@@ -1308,7 +1308,6 @@ CSP_IMG_SRC = (
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
-    'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
 )
 CSP_MEDIA_SRC = (
