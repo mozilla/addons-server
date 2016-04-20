@@ -178,7 +178,7 @@ class TestLoginStartView(TestCase):
         state = 'somerandomstate'
         with mock.patch('olympia.internal_tools.views.generate_fxa_state',
                         lambda: state):
-            response = self.client.get(self.url)
+            self.client.get(self.url)
         assert 'fxa_state' in self.client.session
         assert self.client.session['fxa_state'] == state
 
@@ -203,7 +203,7 @@ class TestLoginStartView(TestCase):
 
     def test_state_is_not_overriden(self):
         self.initialize_session({'fxa_state': 'thisisthestate'})
-        response = self.client.get(self.url)
+        self.client.get(self.url)
         assert self.client.session['fxa_state'] == 'thisisthestate'
 
     def test_to_is_included_in_redirect_state(self):
