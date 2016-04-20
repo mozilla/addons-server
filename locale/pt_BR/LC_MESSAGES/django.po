@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-19 01:22+0000\n"
+"PO-Revision-Date: 2016-04-19 21:51+0000\n"
 "Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -9658,7 +9658,7 @@ msgstr "Plataformas"
 
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Procurar pelo nome do complemento / e-mail do autor / guid"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 # %1 is the add-ons rank in the queue, %2 is the total queue length
@@ -9916,7 +9916,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:387
 msgid "No Reviews"
-msgstr ""
+msgstr "Sem revisões"
 
 #: src/olympia/editors/helpers.py:561
 msgid "Push to public"
@@ -16403,4 +16403,4 @@ msgstr "Registrar mensagens em vez de enviá-las"
 
 #: src/olympia/zadmin/forms.py:215
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Versões excluídas não podem ser alteradas."
