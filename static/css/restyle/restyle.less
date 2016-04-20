@@ -2217,6 +2217,11 @@ body.file-viewer {
     font-family: @mono-stack !important;
   }
 
+  div.section {
+    max-width: none;
+    width: 95%
+  }
+
   /* Notice. */
   #file-viewer.messages-duplicate #files a.notice-duplicate,
   #file-viewer.messages-signing #files a.notice-signing,
@@ -2258,6 +2263,11 @@ body.file-viewer {
   #thinking,
   #validation-options {
     padding-left: 19em;
+  }
+
+  .syntaxhighlighter .line-code {
+    max-width: none;
+    word-break: break-all;
   }
 
   .collapsed-files {
