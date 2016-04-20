@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-20 06:59+0000\n"
+"PO-Revision-Date: 2016-04-20 08:19+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -441,7 +441,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
-msgstr[2] ""
+msgstr[2] "&hellip;і ще {0}"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497
 #: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743
@@ -483,7 +483,7 @@ msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} попередженням."
 msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
-msgstr[2] ""
+msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} попередженнями."
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
@@ -491,7 +491,7 @@ msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленням."
 msgstr[1] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
-msgstr[2] ""
+msgstr[2] "Ваш додаток пройшов перевірку без помилок і з {0} повідомленнями."
 
 #: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662
 #: static/js/zamboni/devhub-min.js:1
@@ -596,7 +596,7 @@ msgstr "Тиждень {0}"
 #: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900
 #: static/js/zamboni/stats-min.js:5
 msgid " downloads"
-msgstr ""
+msgstr " завантажень"
 
 #: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901
 #: static/js/zamboni/stats-min.js:5
@@ -1304,18 +1304,19 @@ msgstr "Спочатку виберіть програму"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-"Встановити для додатку {0} максимальну версію {1} та надіслати лист автору."
+"Встановити {0} додатку максимальну версію {1} та надіслати лист автору."
 msgstr[1] ""
-"Встановити для додатку {0} максимальну версію {1} та надіслати лист авторам."
+"Встановити {0} додаткам максимальну версію {1} та надіслати лист автору."
 msgstr[2] ""
+"Встановити {0} додаткам максимальну версію {1} та надіслати лист автору."
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Надіслати лист автору додатку {2}, який не пройшов перевірку."
-msgstr[1] "Надіслати лист авторам додатку {2}, який не пройшов перевірку."
-msgstr[2] ""
+msgstr[0] "Надіслати лист автору {2} додатку, який не пройшов перевірку."
+msgstr[1] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
+msgstr[2] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:110
@@ -1343,15 +1344,15 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файли"
-msgstr[2] ""
+msgstr[2] "{files} файлів"
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} відгук користувача"
-msgstr[1] "{reviews} відгуки користувача"
-msgstr[2] ""
+msgstr[1] "{reviews} відгуки користувачів"
+msgstr[2] "{reviews} відгуків користувачів"
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
@@ -1440,7 +1441,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} помилка"
 msgstr[1] "{0} помилки"
-msgstr[2] ""
+msgstr[2] "{0} помилок"
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:483
@@ -1448,7 +1449,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
-msgstr[2] ""
+msgstr[2] "{0} попереджень"
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:485
@@ -1456,7 +1457,7 @@ msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} повідомлення"
 msgstr[1] "{0} повідомлення"
-msgstr[2] ""
+msgstr[2] "{0} повідомлень"
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:577
