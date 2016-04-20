@@ -189,11 +189,9 @@ class TestLoginStartView(TestCase):
             response = self.client.get(self.url)
         assert response.status_code == 302
         url = urlparse.urlparse(response['location'])
-        assert '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme,
-            netloc=url.netloc,
-            path=url.path,
-        ) == 'https://accounts.firefox.com/v1/authorization'
+        redirect = '{scheme}://{netloc}{path}'.format(
+            scheme=url.scheme, netloc=url.netloc, path=url.path)
+        assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert urlparse.parse_qs(url.query) == {
             'client_id': ['999abc111'],
             'redirect_uri': ['https://addons-frontend/fxa-authenticate'],

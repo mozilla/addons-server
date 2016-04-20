@@ -27,7 +27,7 @@ responses of the following endpoints:
     * ``/api/v3/accounts/authenticate/``
 
 A JWT may also be obtained through the JSON API as outlined in the
-:ref:`internal login JSON API <internal-login-json-api>` section.  This is only
+:ref:`internal login JSON API <internal-login-json-api>` section. This is only
 accessible through the VPN and requires using the following endpoints:
 
     * ``/api/v3/internal/accounts/login/start/``
