@@ -168,7 +168,7 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'By second Addôn'}
 
 
-@override_settings(ADMIN_FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
 class TestLoginStartView(TestCase):
 
     def setUp(self):
