@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-20 21:29+0000\n"
+"PO-Revision-Date: 2016-04-21 10:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3754,19 +3754,19 @@ msgstr "Pytanske rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Firefox pytansku funkcionalnosć přidać"
 
 #: src/olympia/browse/templates/browse/search_tools.html:74
 msgid "Search Providers"
-msgstr ""
+msgstr "Pytanscy poskićowarjo"
 
 #: src/olympia/browse/templates/browse/search_tools.html:75
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Nowych poskićowarjow za pytanske polo pytać"
 
 #: src/olympia/browse/templates/browse/search_tools.html:90
 msgid "Additional Resources"
-msgstr ""
+msgstr "Přidatne resursy"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html:93
@@ -3774,12 +3774,16 @@ msgid ""
 "Learn more about the <a "
 "href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
 msgstr ""
+"Zhońće wjace wo <a "
+"href=\"http://support.mozilla.com/kb/Search+bar\">pytanskim polu</a> w {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html:94
 msgid ""
 "Browse through even more search providers at <a "
 "href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
 msgstr ""
+"Přepytujće hišće wjace poskićowarjow na <a "
+"href=\"http://mycroft.mozdev.org/\">mycroft.mozilla.org</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html:95
 msgid ""
@@ -3787,83 +3791,86 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make"
 " your own</a> search tool"
 msgstr ""
+"<a "
+"href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Wutworće"
+" swójski</a> pytanski nastroj"
 
 #: src/olympia/browse/templates/browse/themes.html:6
 #: src/olympia/browse/templates/browse/themes.html:9
 #: src/olympia/constants/base.py:174
 msgid "Complete Themes"
-msgstr ""
+msgstr "Dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:12
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Najbóle woblubowane rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:13
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Najwyše pohódnoćene rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:14
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Najnowše rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:15
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Rozšěrjenja po mjenje"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:16
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Rozšěrjenja po tydźenskich sćehnjenjach"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:17
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Njedawno zaktualizowane rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Nastawace rozšěrjenja"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html:21
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Předstajene dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:22
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Najbóle woblubowane dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:23
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Najwyše pohódnoćene dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Najnowše dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Dospołne drasty po mjenje"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:26
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Dospołne drasty po tydźenskich sćehnjenjach"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:27
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Njedawno zaktualizowane dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Nastawace dospołne drasty"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html:44
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Hlejće %(cnt)s rozšěrjenje w %(name)s &raquo;"
+msgstr[1] "Hlejće %(cnt)s rozšěrjeni w %(name)s &raquo;"
+msgstr[2] "Hlejće %(cnt)s rozšěrjenja w %(name)s &raquo;"
+msgstr[3] "Hlejće %(cnt)s rozšěrjenjow w %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html:13
 #: src/olympia/devhub/templates/devhub/devhub_search.html:24
@@ -3871,50 +3878,50 @@ msgstr[3] ""
 #: src/olympia/search/templates/search/no_results.html:4
 #: src/olympia/search/templates/search/mobile/results.html:36
 msgid "No results found."
-msgstr ""
+msgstr "Žane wuslědki namakane."
 
 #: src/olympia/browse/templates/browse/personas/base.html:6
 #: src/olympia/browse/templates/browse/personas/mobile/base.html:7
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} drastow"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html:15
 #: src/olympia/browse/templates/browse/personas/base.html:40
 #: src/olympia/browse/templates/browse/personas/grid.html:8
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Drasty awtora {0}"
 
 #: src/olympia/browse/templates/browse/personas/base.html:37
 msgid "View Profile"
-msgstr ""
+msgstr "Profil pokazać"
 
 #: src/olympia/browse/templates/browse/personas/base.html:44
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Wutworće swójsku drastu"
 
 #: src/olympia/browse/templates/browse/personas/base.html:46
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Waš wobhladowak, waš stil! Wupyšće jón přez swójski design!"
 
 #: src/olympia/browse/templates/browse/personas/base.html:51
 msgid "Learn more"
-msgstr ""
+msgstr "Dalše informacije"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:6
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:5
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Wšě njedawno přidate pokazać"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:7
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:6
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Wšě najbóle woblubowane pokazać"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:8
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:7
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Wšě najwyše pohódnoćene pokazać"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:40
 #, python-format
@@ -3923,10 +3930,13 @@ msgid ""
 "Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start"
 " exploring</a>"
 msgstr ""
+"Wjace hač 300,000 designow, zo byšće swój wobhladowak personalzował! "
+"Pohibujće swoju myšku nad pozadkowu drastu, zo by ju wupruwował. <a "
+"href=\"%(url)s\" class=\"more-info\">Rozhladajće so</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:47
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Chceće wjace personalizacije?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3937,52 +3947,55 @@ msgid ""
 "window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" "
 "class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Dospołne drasty měnjeja wonkowny napohlad wašeho wobhladowaka přez stile za "
+"woknowy wobłuk, adresowu lajstu, tłóčatka, rajtarki a menije. <a "
+"href=\"%(url)s\" class=\"more-info\">Rozhladujće so</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Nastawace drasty"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Wšě nastawace pokazać"
 
 #: src/olympia/browse/templates/browse/personas/grid.html:26
 msgid "No themes found"
-msgstr ""
+msgstr "Žane drasty namakane"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:20
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Lochko wužiwajomne drasty za Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:61
 msgid "More Themes"
-msgstr ""
+msgstr "Dalše drasty"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html:3
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Wšě drasty"
 
 #: src/olympia/compat/forms.py:16
 msgid "All"
-msgstr ""
+msgstr "Wšě"
 
 #: src/olympia/compat/forms.py:22
 #: src/olympia/editors/templates/editors/base.html:69
 #: src/olympia/search/views.py:518
 msgid "All Add-ons"
-msgstr ""
+msgstr "Wšě přidatki"
 
 #: src/olympia/compat/forms.py:23
 msgid "Binary"
-msgstr ""
+msgstr "Binarne"
 
 #: src/olympia/compat/forms.py:24
 msgid "Non-binary"
-msgstr ""
+msgstr "Njebinarne"
 
 #: src/olympia/compat/templates/compat/reporter.html:3
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Rozprawy wo přidatkowej kompatibelnosći"
 
 #: src/olympia/compat/templates/compat/reporter.html:11
 #: src/olympia/compat/templates/compat/reporter_detail.html:35
@@ -3993,54 +4006,60 @@ msgid ""
 "reports help us determine which add-ons will need help supporting an "
 "upcoming Firefox version. </p>"
 msgstr ""
+"<p> Rozprawy, kotrež su so nam přez <a href=\"%(url_)s\">rozprawjak "
+"přidatkoweje kompatibelnosće</a> připokazali, so tu zběraja, zo móhli "
+"wuwiwarjo je čitać. Tute rozprawy nam pomhaja postajić, kotre přidatki pomoc"
+" trjebaja, zo bychu přichodnu wersiju Firefox podpěrowali.</p>"
 
 #: src/olympia/compat/templates/compat/reporter.html:18
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Rozprawy za waše přidatki"
 
 #: src/olympia/compat/templates/compat/reporter.html:30
 #: src/olympia/compat/templates/compat/reporter_detail.html:9
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Centrum přidatkoweje kompatibelnosće"
 
 #: src/olympia/compat/templates/compat/reporter.html:34
 msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr ""
+"Zapodajće GUID jednoho ze slědowacych přidatkow, zo byšće rozprawy čitał, "
+"kotrež smy dóstali."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:3
 #: src/olympia/compat/templates/compat/reporter_detail.html:10
 #: src/olympia/compat/templates/compat/reporter_detail.html:25
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Rozprawy kompatibelnosće přidatka {addon}"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:14
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} rozprawa wuspěcha"
+msgstr[1] "{0} rozprawje wuspěcha"
+msgstr[2] "{0} rozprawy wuspěcha"
+msgstr[3] "{0} rozprawow wuspěcha"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} rozprawa wo problemach"
+msgstr[1] "{0} rozprawje wo problemach"
+msgstr[2] "{0} rozprawy wo problemach"
+msgstr[3] "{0} rozprawow wo problemach"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:21
 #: src/olympia/users/templates/users/profile.html:70
 msgid "View all"
-msgstr ""
+msgstr "Wšě pokazać"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:28
 msgid "Filter by Application"
-msgstr ""
+msgstr "Po nałoženju filtrować"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:45
 msgid "Report Type"
-msgstr ""
+msgstr "Typ rozprawy"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:47
 #: src/olympia/devhub/forms.py:785
@@ -4048,161 +4067,161 @@ msgstr ""
 #: src/olympia/editors/forms.py:108 src/olympia/editors/forms.py:248
 #: src/olympia/zadmin/forms.py:45
 msgid "Application"
-msgstr ""
+msgstr "Nałoženje"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
-msgstr ""
+msgstr "Wersija nałoženja"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:49
 msgid "Platform"
-msgstr ""
+msgstr "Platforma"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:50
 #: src/olympia/editors/templates/editors/themes/themes.html:40
 msgid "Submitted"
-msgstr ""
+msgstr "Wotpósłane"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
 msgid "Success"
-msgstr ""
+msgstr "Wuspěch"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
-msgstr ""
+msgstr "Problem"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:82
 msgid "No reports found."
-msgstr ""
+msgstr "Žane rpzprawy namakane."
 
 #: src/olympia/constants/applications.py:19
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: src/olympia/constants/applications.py:43
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: src/olympia/constants/applications.py:57
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: src/olympia/constants/applications.py:75
 #: src/olympia/pages/templates/pages/sunbird.html:4
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py:89
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilny"
 
 #: src/olympia/constants/applications.py:104
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox za Android"
 
 #: src/olympia/constants/applications.py:139
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: src/olympia/constants/applications.py:149
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznaty"
 
 #: src/olympia/constants/base.py:25
 msgid "Incomplete"
-msgstr ""
+msgstr "Njedospołny"
 
 #: src/olympia/constants/base.py:26
 msgid "Awaiting Preliminary Review"
-msgstr ""
+msgstr "Čaka na nachwilne přepruwowanje"
 
 #: src/olympia/constants/base.py:27
 msgid "Awaiting Full Review"
-msgstr ""
+msgstr "Čaka na dospołne přepruwowanje"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:49
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "Dospołnje přepruwowany"
 
 #: src/olympia/constants/base.py:29 src/olympia/constants/base.py:50
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Wot Mozilla znjemóžnjeny"
 
 #: src/olympia/constants/base.py:30 src/olympia/constants/base.py:52
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "Nachwilu přepruwowany"
 
 #: src/olympia/constants/base.py:31
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr ""
+msgstr "Nachwilu přepruwowany a čaka na dospołne přepruwowanje"
 
 #: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258
 #: src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1004
 #: src/olympia/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
-msgstr ""
+msgstr "Zhašane"
 
 #: src/olympia/constants/base.py:38
 msgid "Pending approval"
-msgstr ""
+msgstr "Čaka na schwalenje"
 
 #: src/olympia/constants/base.py:44
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Za dalše přepruwowanje woznamjenjene"
 
 #: src/olympia/constants/base.py:51
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: src/olympia/constants/base.py:123
 msgid "Full"
-msgstr ""
+msgstr "Dospołne"
 
 #: src/olympia/constants/base.py:124
 msgid "Preliminary"
-msgstr ""
+msgstr "Nachwilne"
 
 #: src/olympia/constants/base.py:135 src/olympia/users/notifications.py:157
 msgid "Developer"
-msgstr ""
+msgstr "Wuwiwar"
 
 #: src/olympia/constants/base.py:136
 msgid "Viewer"
-msgstr ""
+msgstr "Wobkedźbowar"
 
 #: src/olympia/constants/base.py:137
 #: src/olympia/templates/mobile/header.html:7
 msgid "Support"
-msgstr ""
+msgstr "Pomoc"
 
 #: src/olympia/constants/base.py:159 src/olympia/constants/base.py:172
 #: src/olympia/constants/platforms.py:10
 msgid "Any"
-msgstr ""
+msgstr "Wšě"
 
 #: src/olympia/constants/base.py:160
 msgid "Extension"
-msgstr ""
+msgstr "Rozšěrjenje"
 
 #: src/olympia/constants/base.py:161
 msgid "Complete Theme"
-msgstr ""
+msgstr "Dospołna drasta"
 
 #: src/olympia/constants/base.py:163
 msgid "Search Engine"
-msgstr ""
+msgstr "Pytawa"
 
 #: src/olympia/constants/base.py:164
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Rěčny pakćik (nałoženje)"
 
 #: src/olympia/constants/base.py:165
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Rěčny pakćik (přidatk)"
 
 #: src/olympia/constants/base.py:166
 msgid "Plugin"
-msgstr ""
+msgstr "Tykač"
 
 #: src/olympia/constants/base.py:167
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:5
@@ -4210,7 +4229,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/history_table.html:8
 #: src/olympia/editors/templates/editors/themes/logs.html:17
 msgid "Theme"
-msgstr ""
+msgstr "Drasta"
 
 #: src/olympia/constants/base.py:175
 msgid "Dictionaries"
