@@ -1,10 +1,22 @@
 # -*- coding: utf-8 -*-
+import base64
 import json
+import urlparse
 
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
-from olympia.amo.tests import addon_factory, ESTestCase
+import mock
+
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.users.models import UserProfile
+
+FXA_CONFIG = {
+    'oauth_host': 'https://accounts.firefox.com/v1',
+    'client_id': '999abc111',
+    'redirect_uri': 'https://addons-frontend/fxa-authenticate',
+    'scope': 'profile',
+}
 
 
 class TestInternalAddonSearchView(ESTestCase):
@@ -151,3 +163,71 @@ class TestInternalAddonSearchView(ESTestCase):
         result = data['results'][0]
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'By second Addôn'}
+
+
+@override_settings(ADMIN_FXA_CONFIG=FXA_CONFIG)
+class TestLoginStartView(TestCase):
+
+    def setUp(self):
+        super(TestLoginStartView, self).setUp()
+        self.url = reverse('internal-login-start')
+
+    def test_state_is_set(self):
+        self.initialize_session({})
+        assert 'fxa_state' not in self.client.session
+        state = 'somerandomstate'
+        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
+                        lambda: state):
+            self.client.get(self.url)
+        assert 'fxa_state' in self.client.session
+        assert self.client.session['fxa_state'] == state
+
+    def test_redirect_uri_is_correct(self):
+        self.initialize_session({})
+        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
+                        lambda: 'arandomstring'):
+            response = self.client.get(self.url)
+        assert response.status_code == 302
+        url = urlparse.urlparse(response['location'])
+        redirect = '{scheme}://{netloc}{path}'.format(
+            scheme=url.scheme, netloc=url.netloc, path=url.path)
+        assert redirect == 'https://accounts.firefox.com/v1/authorization'
+        assert urlparse.parse_qs(url.query) == {
+            'client_id': ['999abc111'],
+            'redirect_uri': ['https://addons-frontend/fxa-authenticate'],
+            'scope': ['profile'],
+            'state': ['arandomstring'],
+        }
+
+    def test_state_is_not_overriden(self):
+        self.initialize_session({'fxa_state': 'thisisthestate'})
+        self.client.get(self.url)
+        assert self.client.session['fxa_state'] == 'thisisthestate'
+
+    def test_to_is_included_in_redirect_state(self):
+        path = '/addons/unlisted-addon/'
+        # The =s will be stripped from the URL.
+        assert '=' in base64.urlsafe_b64encode(path)
+        state = 'somenewstatestring'
+        self.initialize_session({})
+        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
+                        lambda: state):
+            response = self.client.get(
+                '{url}?to={path}'.format(path=path, url=self.url))
+        assert self.client.session['fxa_state'] == state
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        state_parts = query['state'][0].split(':')
+        assert len(state_parts) == 2
+        assert state_parts[0] == state
+        assert '=' not in state_parts[1]
+        assert base64.urlsafe_b64decode(state_parts[1] + '====') == path
+
+    def test_to_is_excluded_when_unsafe(self):
+        path = 'https://www.google.com'
+        self.initialize_session({})
+        response = self.client.get(
+            '{url}?to={path}'.format(path=path, url=self.url))
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        assert ':' not in query['state'][0]
