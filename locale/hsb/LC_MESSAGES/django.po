@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-21 10:44+0000\n"
+"PO-Revision-Date: 2016-04-21 15:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4233,535 +4233,549 @@ msgstr "Drasta"
 
 #: src/olympia/constants/base.py:175
 msgid "Dictionaries"
-msgstr ""
+msgstr "Słowniki"
 
 #: src/olympia/constants/base.py:177
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Rěčne pakćiki (nałoženje)"
 
 #: src/olympia/constants/base.py:178
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Rěčne pakćiki (přidatk)"
 
 #: src/olympia/constants/base.py:179
 msgid "Plugins"
-msgstr ""
+msgstr "Tykače"
 
 #: src/olympia/constants/base.py:271
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Jenož so na stronje tutoho přidatka a w profilu wuwiwarja prašeć"
 
 #: src/olympia/constants/base.py:272
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Prašeć so, po tym zo wužiwarjo su započeli, tutón přidatk sćahować"
 
 #: src/olympia/constants/base.py:273
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Prašeć so, prjedy hač wužiwarjo móžeja tutón přidatk sćahnyć"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py:388 src/olympia/devhub/forms.py:162
 #: src/olympia/editors/templates/editors/performance.html:75
 msgid "Other"
-msgstr ""
+msgstr "Druhe"
 
 #: src/olympia/constants/base.py:389
 msgid "Exception"
-msgstr ""
+msgstr "Wuwzaće"
 
 #: src/olympia/constants/base.py:390
 msgid "Release"
-msgstr ""
+msgstr "Wersija"
 
 #: src/olympia/constants/base.py:391
 msgid "Change"
-msgstr ""
+msgstr "Změna"
 
 #: src/olympia/constants/base.py:401
 msgid "App"
-msgstr ""
+msgstr "Nałoženje"
 
 #: src/olympia/constants/base.py:402
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 #: src/olympia/constants/base.py:435
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Dypki za manuelne přepruwowanje"
 
 #: src/olympia/constants/base.py:436
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Dospołne přepruwowanje přidatka"
 
 #: src/olympia/constants/base.py:437
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje přidatka"
 
 #: src/olympia/constants/base.py:438
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Přepruwowanje zaktualizowaneho přidatka"
 
 #: src/olympia/constants/base.py:439
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Dospołne přepruwowanje słownika"
 
 #: src/olympia/constants/base.py:440
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje słownika"
 
 #: src/olympia/constants/base.py:441
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Přepruwowanje zaktualizowaneho słownika"
 
 #: src/olympia/constants/base.py:442
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Dospołne přepruwowanje rěčneho pakćika"
 
 #: src/olympia/constants/base.py:443
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Nachwilne přepruowanje rěčneho pakćika"
 
 #: src/olympia/constants/base.py:444
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
 
 #: src/olympia/constants/base.py:445
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus za pózdnje přepruwowanja"
 
 #: src/olympia/constants/base.py:446
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dny, prjedy hač bonusowe dypki płaćiwosć nabudu"
 
 #: src/olympia/constants/base.py:447
 msgid "Theme Review"
-msgstr ""
+msgstr "Přepruwowanje drasty"
 
 #: src/olympia/constants/base.py:448
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Dospołne přepruwowanje pytanskeho poskićowarja"
 
 #: src/olympia/constants/base.py:449
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
 
 #: src/olympia/constants/base.py:450
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
 
 #: src/olympia/constants/base.py:451
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Přepruwowanje dospołneje drasty"
 
 #: src/olympia/constants/base.py:452
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje dospołneje drasty"
 
 #: src/olympia/constants/base.py:453
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
 
 #: src/olympia/constants/base.py:454
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Přepruwowanje moderěrowaneho přidatka"
 
 #: src/olympia/constants/base.py:455
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija za přepruwowanje přidatka je so cofnyła"
 
 #: src/olympia/constants/base.py:502
 msgid "Level 1"
-msgstr ""
+msgstr "Schodźenk 1"
 
 #: src/olympia/constants/base.py:503
 msgid "Level 2"
-msgstr ""
+msgstr "Schodźenk 2"
 
 #: src/olympia/constants/base.py:504
 msgid "Level 3"
-msgstr ""
+msgstr "Schodźenk 3"
 
 #: src/olympia/constants/base.py:505
 msgid "Level 4"
-msgstr ""
+msgstr "Schodźenk 4"
 
 #: src/olympia/constants/base.py:506
 msgid "Level 5"
-msgstr ""
+msgstr "Schodźenk 5"
 
 #: src/olympia/constants/base.py:507
 msgid "Level 6"
-msgstr ""
+msgstr "Schodźenk 6"
 
 #: src/olympia/constants/base.py:508
 msgid "Level 7"
-msgstr ""
+msgstr "Schodźenk 7"
 
 #: src/olympia/constants/base.py:509
 msgid "Level 8"
-msgstr ""
+msgstr "Schodźenk 8"
 
 #: src/olympia/constants/base.py:510
 msgid "Level 9"
-msgstr ""
+msgstr "Schodźenk 9"
 
 #: src/olympia/constants/base.py:523
 msgid "Not signed"
-msgstr ""
+msgstr "Njesignowane"
 
 #: src/olympia/constants/base.py:524
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Za dospołne přepruwowanje signowane"
 
 #: src/olympia/constants/base.py:525
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Za nachwilne přepruwowanje signowanje"
 
 #: src/olympia/constants/editors.py:14
 #: src/olympia/editors/templates/editors/themes/queue.html:76
 #: src/olympia/editors/templates/editors/themes/themes.html:87
 msgid "Request More Info"
-msgstr ""
+msgstr "Dalše informacije požadać"
 
 #: src/olympia/constants/editors.py:15
 #: src/olympia/editors/templates/editors/themes/queue.html:74
 #: src/olympia/editors/templates/editors/themes/themes.html:91
 msgid "Flag"
-msgstr ""
+msgstr "Markěrować"
 
 #: src/olympia/constants/editors.py:16
 #: src/olympia/editors/templates/editors/themes/queue.html:72
 #: src/olympia/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:575
 #: src/olympia/editors/templates/editors/themes/queue.html:71
 #: src/olympia/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
-msgstr ""
+msgstr "Wotpokazać"
 
 #: src/olympia/constants/editors.py:18
 #: src/olympia/editors/templates/editors/themes/queue.html:70
 msgid "Approve"
-msgstr ""
+msgstr "Schwalić"
 
 #: src/olympia/constants/editors.py:23
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksualny abo pornografiski wobsah"
 
 #: src/olympia/constants/editors.py:24
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Njepřistojny abo křiwdźacy wobsah"
 
 #: src/olympia/constants/editors.py:25
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Wobrazy wo namocy, wójnje abo brónjach"
 
 #: src/olympia/constants/editors.py:26
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nacistiski abo druhi hidu rozšěrjacy wobsah"
 
 #: src/olympia/constants/editors.py:27
 msgid "Defamatory content"
-msgstr ""
+msgstr "Přisłodźaty wobsah"
 
 #: src/olympia/constants/editors.py:28
 msgid "Online gambling"
-msgstr ""
+msgstr "Hraće wo zbožo online"
 
 #: src/olympia/constants/editors.py:29
 msgid "Spam content"
-msgstr ""
+msgstr "Spam"
 
 #: src/olympia/constants/editors.py:30
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Wobraz niskeje kwality, rozćehnjeny abo prózdny wobraz"
 
 #: src/olympia/constants/editors.py:31
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problem z wusměrjenjom hłowoweho wobraza"
 
 #: src/olympia/constants/licenses.py:13
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Wšě prawa wuměnjene"
 
 #: src/olympia/constants/licenses.py:21
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: src/olympia/constants/licenses.py:50
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py:18
 msgid "All Platforms"
-msgstr ""
+msgstr "Wšě platformy"
 
 #: src/olympia/constants/platforms.py:25
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/constants/platforms.py:32
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 #: src/olympia/constants/platforms.py:39
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 #: src/olympia/constants/platforms.py:46
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/constants/platforms.py:53
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py:60
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/core/apps.py:21
 msgid "Core"
-msgstr ""
+msgstr "Jadro"
 
 #: src/olympia/devhub/feeds.py:35
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Najnowše změny za %s"
 
 #: src/olympia/devhub/feeds.py:37
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Najnowše změny za moje přidatki"
 
 #: src/olympia/devhub/forms.py:69
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Dyrbi znajmjeńša jednoho wobsedźerja měć."
 
 #: src/olympia/devhub/forms.py:72
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Znajmjeńša jedyn awtor dyrbi podaty być."
 
 #: src/olympia/devhub/forms.py:76
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Awtor smě jenož jadyn raz w lisínje być."
 
 #: src/olympia/devhub/forms.py:94
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Wopačne adresowe mjeno."
 
 #: src/olympia/devhub/forms.py:106
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Njepłaćiwy JSON-objekt"
 
 #: src/olympia/devhub/forms.py:111
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Powěsć za přispomnjenje wuběrajomna njeje"
 
 #: src/olympia/devhub/forms.py:124
 #: src/olympia/devhub/templates/devhub/versions/edit.html:94
 #: src/olympia/users/templates/users/edit.html:150
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosće"
 
 #: src/olympia/devhub/forms.py:141
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Kak waša licenca rěka?"
 
 #: src/olympia/devhub/forms.py:144
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Podajće tekst swojeje licency."
 
 #: src/olympia/devhub/forms.py:181
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Licencny tekst je trěbny, hdyž Druhe wuběraće."
 
 #: src/olympia/devhub/forms.py:231
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Tutón přidatk ma licencne dojednanje za kónčnych wužiwarjow (EULA)"
 
 #: src/olympia/devhub/forms.py:234
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Prošu podajće swoje ličencne dojednanje za kónčnych wužiwarjow:"
 
 #: src/olympia/devhub/forms.py:237
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Tutón přidatk ma prawidła priwatnosće"
 
 #: src/olympia/devhub/forms.py:240
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Prošu podajće prawidła priwatnosće swojeho přidatka:"
 
 #: src/olympia/devhub/forms.py:278
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Čehodla sće tutón přidatk wutworił?"
 
 #: src/olympia/devhub/forms.py:279
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Što za tutón přidatk jako přichodne přińdźe?"
 
 #: src/olympia/devhub/forms.py:316
 msgid "The developers of this add-on"
-msgstr ""
+msgstr "Wuwiwarjo tutoho přidatka"
 
 #: src/olympia/devhub/forms.py:317
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "Mozilla Foundation"
 
 #: src/olympia/devhub/forms.py:318
 msgid "An organization of my choice"
-msgstr ""
+msgstr "Organizacija mojeje wólby"
 
 #: src/olympia/devhub/forms.py:361
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Prošu zapodajće namjetowanu sumu, kotraž je wjetša hač 0."
 
 #: src/olympia/devhub/forms.py:364
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Prošu zapodajće namjetowanu sumu, kotraž je mjeńša hač ${0}."
 
 #: src/olympia/devhub/forms.py:373
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "ID PayPal je za akceptowanje přinoškow trěbny."
 
 #: src/olympia/devhub/forms.py:379
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "ID PayPal njeda so přepruwować."
 
 #: src/olympia/devhub/forms.py:388
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
+"Njepodpěrany datajowy typ, prošu nahrajće archiwowu dataju {extensions}."
 
 #: src/olympia/devhub/forms.py:407
 msgid "View current"
-msgstr ""
+msgstr "Aktualne pokazać"
 
 #: src/olympia/devhub/forms.py:456
 msgid "Invalid version range."
-msgstr ""
+msgstr "Njepłaćiwy wersijowy rozsah."
 
 #: src/olympia/devhub/forms.py:487
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Znajmjeńša jedne kompatibelne nałoženje trěbne."
 
 #: src/olympia/devhub/forms.py:501 src/olympia/devhub/forms.py:522
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Při nahrawanju je zmylk wustupił. Prošu spytajće hišće raz."
 
 #: src/olympia/devhub/forms.py:506
 msgid "Override failed validation"
-msgstr ""
+msgstr "Njeporadźene přepruwowanje přepisać"
 
 #: src/olympia/devhub/forms.py:510
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Mój přidatk za manuelne přepruwowanje zapodać."
 
 #: src/olympia/devhub/forms.py:537
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Mój přidatk na tutym sydle njenalistować"
 
 #: src/olympia/devhub/forms.py:538
 msgid ""
 "Check this option if you intend to distribute your add-on on your own and "
 "only need it to be signed by Mozilla."
 msgstr ""
+"Kontrolujće tute nastajenje, jeli wy chceće swój přidatk sam rozšěrjeć a "
+"jenož signowanje wot Mozilla trjebaće."
 
 #: src/olympia/devhub/forms.py:544
 msgid "This add-on will be bundled with an application installer."
-msgstr ""
+msgstr "Tutón přidatk bu z instalowanskim programom za nałoženja zwjazany."
 
 #: src/olympia/devhub/forms.py:546
 msgid ""
 "Add-ons that are bundled with application installers will be code reviewed "
 "by Mozilla before they are signed and are held to a higher quality standard."
 msgstr ""
+"Žórłowy kod přidatkow, kotrež su z instalowanskim programom za nałoženja "
+"zwjazane, budu so wot Mozilla přepruwować, prjedy hač so signuja, a płaći "
+"wyši kwalitny standard."
 
 #: src/olympia/devhub/forms.py:565
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:24
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:42
 msgid "Full Review"
-msgstr ""
+msgstr "Dospołne přepruwowanje"
 
 #: src/olympia/devhub/forms.py:566
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:47
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:153
 msgid "Preliminary Review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje"
 
 #: src/olympia/devhub/forms.py:570
 msgid "Please choose a review nomination type"
-msgstr ""
+msgstr "Prošu wubjerće nominowanski typ za přepruwowanje"
 
 #: src/olympia/devhub/forms.py:574
 msgid ""
 "A file with a version ending with a|alpha|b|beta|pre|rc and an optional "
 "number is detected as beta."
 msgstr ""
+"Dataja z wersiju, kotraž so na a|alpha|b|beta|pre|rc a opcionalnu ličbu "
+"kónči, ma so za beta."
 
 #: src/olympia/devhub/forms.py:592
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Wersija %s hižo eksistuje abo je so do toho nahrała."
 
 #: src/olympia/devhub/forms.py:605
 msgid ""
 "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
+"Wubjerće płaćiwu hódnotu. Tuta hódnota ke k dispoziciji stejacym hódnotam "
+"njesłuša."
 
 #: src/olympia/devhub/forms.py:611
 msgid ""
 "A file with a version ending with a|alpha|b|beta and an optional number is "
 "detected as beta."
 msgstr ""
+"Dataja z wersiju, kotraž so na a|alpha|b|beta a opcionalnu ličbu kónči, ma "
+"so za beta."
 
 #: src/olympia/devhub/forms.py:634
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Njemóžeće hižo dataje za tutu wersiju nahrać."
 
 #: src/olympia/devhub/forms.py:640
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Wersija so njehodźi"
 
 #: src/olympia/devhub/forms.py:669
 msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Njemóžeće dataju zhašeć, hdyž přepruwowanski proces je so započał. Dyrbiće "
+"cyłu wersiju zhašeć."
 
 #: src/olympia/devhub/forms.py:689
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Platforma Wšě njeda so z wěstymi platformami kombinować."
 
 #: src/olympia/devhub/forms.py:694
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Platforma da so jenož jedyn raz wubrać."
 
 #: src/olympia/devhub/forms.py:707
 msgid "A review type must be selected."
-msgstr ""
+msgstr "Přepruwowanski typ dyrbi so wubrać."
 
 #: src/olympia/devhub/forms.py:789 src/olympia/editors/forms.py:114
 #: src/olympia/editors/forms.py:254 src/olympia/zadmin/forms.py:49
 #: src/olympia/zadmin/forms.py:52
 msgid "Select an application first"
-msgstr ""
+msgstr "Wubjerće najprjedy nałoženje"
 
 #: src/olympia/devhub/forms.py:841
 msgid "There cannot be more than 3 required add-ons."
