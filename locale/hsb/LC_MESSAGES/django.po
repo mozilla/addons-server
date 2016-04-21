@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-20 19:42+0000\n"
+"PO-Revision-Date: 2016-04-20 21:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3418,22 +3418,25 @@ msgid ""
 "Explore collections created by other users or <a href=\"%(url)s\">create "
 "your own</a>."
 msgstr ""
+"Zběrki su skupiny přiwuznych přidatkow, kotrež kóždy móže wutworić a dale "
+"dać. Wuslědźće zběrki wutworjene wot druhich wužiwarjow abo <a "
+"href=\"%(url)s\">wutworće swójsku</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:37
 #: src/olympia/browse/templates/browse/extensions.html:13
 #: src/olympia/browse/templates/browse/themes.html:14
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonować"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:50
 msgid "Following"
-msgstr ""
+msgstr "Wobkedźbować"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:22
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:28
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:32
 msgid "Create a Collection"
-msgstr ""
+msgstr "Zběrku wutworić"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:23
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:27
@@ -3441,108 +3444,116 @@ msgid ""
 "Collections make it easy to keep track of favorite add-ons and share your "
 "perfectly customized browser with others."
 msgstr ""
+"Zběrki wosnadnjeja slědowanje wašich najlubšich přidatkow a dźělenje wašeho "
+"perfektnje přiměrjeneho wobhladowaka z druhimi."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:42
 msgid "Collection Icon"
-msgstr ""
+msgstr "Symbol zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:44
 msgid "Reset"
-msgstr ""
+msgstr "Wróćo stajić"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:53
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG a JPG so podpěrujetej. Wobraz so na 32x32 přiměrja."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Zmylki su w formularje. Prošu poprawće je deleka."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Přidatki we wašej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:4
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"Zo byšće tutej zběrce přidatk přidał, zapodajće jeho mjeno w lsědowacym polu"
+" a tłóčće Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
 #: src/olympia/devhub/templates/devhub/addons/activity.html:62
 #: src/olympia/editors/helpers.py:273 src/olympia/editors/helpers.py:360
 msgid "Add-on"
-msgstr ""
+msgstr "Přidatk"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:24
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Zapodajće mjeno přidatka, kotryž ma so přidać"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:26
 msgid "Add to Collection"
-msgstr ""
+msgstr "Zběrce přidać"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43
 #: src/olympia/editors/helpers.py:1016 src/olympia/editors/helpers.py:1036
 msgid "Pending"
-msgstr ""
+msgstr "Wustejacy"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 msgid "Add a comment"
-msgstr ""
+msgstr "Komentar přidać"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:46
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Tutón přidatk ze zběrki wotstronić"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:7
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "ZBĚRKI"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html:8
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Skupiny přiwuznych přidatkow, kotrež kóždy móže wutworić."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:3
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:3
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:10
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Zablokowane přidatki"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:8
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr ""
+msgstr "Blokowanska lisćina"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:13
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> je so za waš škit zablokował."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Čehodla je so zablokował?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "Štó je potrjecheny?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "Što to rěka?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:22
 msgid ""
 "Users are strongly encouraged to disable the problematic add-on or plugin, "
 "but may choose to continue using it if they accept the risks described."
 msgstr ""
+"Wužiwarjo so wuraznje pozbudźeja, problematiski přdatk abo tykač znjemóžnić,"
+" ale móžeće jón dale wužiwać, jeli podate rizika akceptujeće."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:27
 msgid ""
 "The problematic add-on or plugin will be automatically disabled and no "
 "longer usable."
 msgstr ""
+"Problematiski přidatk abo tykač so awtomatisce znjemóžni a njebudźe hižo "
+"wužiwajomny."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:33
 #, python-format
@@ -3553,39 +3564,48 @@ msgid ""
 "software may be blocked from general use.  For more information, please read"
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Hdyž Mozilla zhoni, zo přidatki, tykače abo druhe programy třećich "
+"poskićowarjow strašnje wěstotu, stabilnosć abo wukon přidatka %(app)s "
+"wohrožuja a  <a href=\"%(criteria)s\">wěstym kriterijam</a> wotpowěduja, "
+"hodźi so softwara při powšitkownym wužiwanju haćić. Za dalše informacije "
+"čitajće prošu <a href=\"%(support)s\">tutón nastawk pomocy</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
 msgstr ""
+"Dnja %(date)s zablokowany. <a href=\"%(link)s\">Blokowanske naprašowanje "
+"pokazać</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:48
 #, python-format
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Dnja %(date)s zablokowany."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:11
 msgid ""
 "The following software is known to cause serious security, stability, or "
 "performance issues with {app}."
 msgstr ""
+"Wo slědowacych programach je znate, zo strašne wěstotne, stabilnostne abo "
+"wukonowe problemy z {app} zawinuja."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:76 src/olympia/browse/feeds.py:98
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "Přidatki kategorije %s"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:113
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "Drasty kategorije %s"
 
 #: src/olympia/browse/feeds.py:129
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Předstajene přidatki :: %s"
 
 #. L10n: %s is an app name.
 #: src/olympia/browse/feeds.py:138
@@ -3593,25 +3613,27 @@ msgstr ""
 msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing %s."
 msgstr ""
+"Tu su někotre z našich najlubšich přidatkow, zo bychmy wam přiměrjenje "
+"přidatka %s wosnadnili."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py:157
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Pytanske nastroje za kategoriju %s"
 
 #: src/olympia/browse/feeds.py:159
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Pytanske nastroje a pytanske rozšěrjenja"
 
 #: src/olympia/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Pytanske nastroje"
 
 #: src/olympia/browse/views.py:55 src/olympia/browse/views.py:65
 #: src/olympia/search/forms.py:85
 msgid "Most Users"
-msgstr ""
+msgstr "Najwjace wužiwarjow"
 
 #: src/olympia/browse/views.py:61 src/olympia/browse/views.py:72
 #: src/olympia/browse/views.py:246
@@ -3619,19 +3641,19 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/pane.html:67
 #: src/olympia/search/forms.py:92
 msgid "Up & Coming"
-msgstr ""
+msgstr "Nastawace"
 
 #: src/olympia/browse/views.py:427 src/olympia/devhub/views.py:74
 #: src/olympia/devhub/views.py:81
 #: src/olympia/discovery/templates/discovery/addons/detail.html:66
 msgid "Created"
-msgstr ""
+msgstr "Wutworjene"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html:5
 #: src/olympia/browse/templates/browse/creatured.html:13
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Předstajene přidatki"
 
 #: src/olympia/browse/templates/browse/creatured.html:12
 #: src/olympia/browse/templates/browse/featured.html:4
@@ -3646,12 +3668,12 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/pane.html:52
 #: src/olympia/templates/menu_links.html:7
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Předstajene přidatki"
 
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html:21
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Žane předstajene přidatki w kategoriji {0}."
 
 #: src/olympia/browse/templates/browse/featured.html:15
 #, python-format
@@ -3659,73 +3681,76 @@ msgid ""
 "Here's a few of our favorite add-ons to help you get started customizing "
 "%(app)s."
 msgstr ""
+"Tu su někotre z našich najlubšich přidatkow, zo bychmy wam při přiměrjenju "
+"přidatka %(app)s pomhali."
 
 #: src/olympia/browse/templates/browse/language_tools.html:9
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Słownik instalować"
 
 #: src/olympia/browse/templates/browse/language_tools.html:10
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Rěčny pakćik instalować"
 
 #: src/olympia/browse/templates/browse/language_tools.html:12
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Słownik sćahnyć"
 
 #: src/olympia/browse/templates/browse/language_tools.html:13
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Rěčny pakćik sćahnyć"
 
 #: src/olympia/browse/templates/browse/language_tools.html:36
 msgid "Available in your locale"
-msgstr ""
+msgstr "We wašej rěči k dispoziciji"
 
 #: src/olympia/browse/templates/browse/language_tools.html:38
 msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
+"Lisćina rěčnych pakćikow a słownikow, kotrež su we wašej rěči k dispoziciji."
 
 #: src/olympia/browse/templates/browse/language_tools.html:41
 #: src/olympia/browse/templates/browse/language_tools.html:63
 msgid "Language"
-msgstr ""
+msgstr "Rěč"
 
 #: src/olympia/browse/templates/browse/language_tools.html:42
 #: src/olympia/browse/templates/browse/language_tools.html:64
 #: src/olympia/constants/base.py:162
 msgid "Dictionary"
-msgstr ""
+msgstr "Słownik"
 
 #: src/olympia/browse/templates/browse/language_tools.html:43
 #: src/olympia/browse/templates/browse/language_tools.html:65
 msgid "Language Pack"
-msgstr ""
+msgstr "Rěčny pakćik"
 
 #: src/olympia/browse/templates/browse/language_tools.html:58
 msgid "All locales"
-msgstr ""
+msgstr "Wšě přełožki"
 
 #: src/olympia/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Lisćina rěčnych pakćikow a słownikow."
 
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html:8
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Pytanske nastroje"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html:39
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:17
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> přidatk"
+msgstr[1] "<b>{0}</b> přidatkaj"
+msgstr[2] "<b>{0}</b> přidatki"
+msgstr[3] "<b>{0}</b> přidatkow"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
-msgstr ""
+msgstr "Pytanske rozšěrjenja"
 
 #: src/olympia/browse/templates/browse/search_tools.html:62
 msgid "Add search-related functionality to Firefox"
