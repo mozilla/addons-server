@@ -6,7 +6,7 @@ from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.template import Context, Template, TemplateSyntaxError
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
 import happyforms
@@ -208,6 +208,13 @@ class FileStatusForm(ModelForm):
         model = File
         fields = ('status',)
 
+    def clean_status(self):
+        changed = not self.cleaned_data['status'] == self.instance.status
+        if changed and self.instance.version.deleted:
+            raise forms.ValidationError(
+                _('Deleted versions can`t be changed.'))
+        return self.cleaned_data['status']
+
 
 FileFormSet = modelformset_factory(File, form=FileStatusForm,
                                    formset=BaseModelFormSet, extra=0)
@@ -292,7 +299,3 @@ class GenerateErrorForm(happyforms.Form):
                    'PATH_INFO': '/', 'REQUEST_METHOD': 'GET',
                    'HTTP_USER_AGENT': 'MySuperBrowser'}
             log_cef(settings.STATSD_PREFIX, 6, env)
-
-
-class PriceTiersForm(happyforms.Form):
-    prices = forms.FileField()

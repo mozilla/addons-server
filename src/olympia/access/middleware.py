@@ -18,10 +18,10 @@ class ACLMiddleware(object):
         """Attach authentication/permission helpers to request."""
         request.check_ownership = partial(acl.check_ownership, request)
 
-        # figure out our list of groups...
+        # Persist the user in the thread to make it accessible in log()
+        # statements etc.
         if request.user.is_authenticated():
             amo.set_user(request.user)
-            request.groups = request.user.groups.all()
 
     def process_response(self, request, response):
         amo.set_user(None)

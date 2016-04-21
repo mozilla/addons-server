@@ -40,12 +40,12 @@
                 <td>
                   {% if not file.version.deleted %}
                     {{ form_map[file.id].status }}
-                    {% for hidden in form_map[file.id].hidden_fields() %}
-                        {{ hidden }}
-                    {% endfor %}
                   {% else %}
-                    Deleted
+                    Deleted{{ form_map[file.id].status|hidden_field }}
                   {% endif %}
+                  {% for hidden in form_map[file.id].hidden_fields() %}
+                    {{ hidden }}
+                  {% endfor %}
                 </td>
                 <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" class="recalc" title="{{ file.hash }}">Recalc Hash</a></td>
                 <td>

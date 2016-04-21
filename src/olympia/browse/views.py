@@ -197,39 +197,6 @@ def extensions(request, category=None, template=None):
                    'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
 
 
-@mobile_template('browse/{mobile/}extensions.html')
-@non_atomic_requests
-def es_extensions(request, category=None, template=None):
-    TYPE = amo.ADDON_EXTENSION
-
-    if category is not None:
-        q = Category.objects.filter(application=request.APP.id, type=TYPE)
-        category = get_object_or_404(q, slug=category)
-
-    if ('sort' not in request.GET and not request.MOBILE
-            and category and category.count > 4):
-        return category_landing(request, category)
-
-    qs = (Addon.search().filter(type=TYPE, app=request.APP.id,
-                                is_disabled=False,
-                                status__in=amo.REVIEWED_STATUSES))
-    filter = ESAddonFilter(request, qs, key='sort', default='popular')
-    qs, sorting = filter.qs, filter.field
-    src = 'cb-btn-%s' % sorting
-    dl_src = 'cb-dl-%s' % sorting
-
-    if category:
-        qs = qs.filter(category=category.id)
-    addons = amo.utils.paginate(request, qs)
-
-    return render(request, template,
-                  {'section': 'extensions', 'addon_type': TYPE,
-                   'category': category, 'addons': addons,
-                   'filter': filter, 'sorting': sorting,
-                   'sort_opts': filter.opts, 'src': src,
-                   'dl_src': dl_src, 'search_cat': '%s,0' % TYPE})
-
-
 class CategoryLandingFilter(BaseFilter):
 
     opts = (('featured', _lazy(u'Featured')),
@@ -506,12 +473,3 @@ def search_tools(request, category=None):
                   {'categories': categories, 'category': category,
                    'addons': addons, 'filter': filter,
                    'search_extensions_filter': sidebar_ext})
-
-
-@non_atomic_requests
-def moreinfo_redirect(request):
-    try:
-        addon_id = int(request.GET.get('id', ''))
-        return redirect('discovery.addons.detail', addon_id, permanent=True)
-    except ValueError:
-        raise Http404

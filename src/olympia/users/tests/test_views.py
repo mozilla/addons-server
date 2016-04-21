@@ -1360,9 +1360,9 @@ class TestThemesProfile(TestCase):
         doc = pq(res.content)
         eq_(doc('.no-results').length, 0)
 
-        results = doc('.personas-grid .persona-preview')
+        results = doc('.personas-grid .persona.hovercard')
         eq_(results.length, 1)
-        eq_(results.find('h6').text(), unicode(self.theme.name))
+        eq_(results.find('h3').text(), unicode(self.theme.name))
 
     def test_bad_user(self):
         res = self.client.get(reverse('users.themes', args=['yolo']))

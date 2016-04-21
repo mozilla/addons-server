@@ -15,7 +15,7 @@ import commonware.log
 import waffle
 from django_statsd.clients import statsd
 
-from olympia import amo, api
+from olympia import amo, legacy_api
 from olympia.amo.utils import log_cef
 
 from . import monitors
@@ -96,7 +96,7 @@ def contribute(request):
 def handler403(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler403 view in api if api was targeted.
-        return api.views.handler403(request)
+        return legacy_api.views.handler403(request)
     else:
         return render(request, 'amo/403.html', status=403)
 
@@ -105,7 +105,7 @@ def handler403(request):
 def handler404(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted.
-        return api.views.handler404(request)
+        return legacy_api.views.handler404(request)
     else:
         return render(request, 'amo/404.html', status=404)
 
@@ -114,7 +114,7 @@ def handler404(request):
 def handler500(request):
     if request.path_info.startswith('/api/'):
         # Pass over to handler500 view in api if api was targeted.
-        return api.views.handler500(request)
+        return legacy_api.views.handler500(request)
     else:
         return render(request, 'amo/500.html', status=500)
 

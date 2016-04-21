@@ -8,12 +8,12 @@ We're using a mix of `Django's Unit Testing`_ and `pytest`_ with
 `pytest-django`_, and `Selenium`_ for our automated testing. This gives us a
 lot of power and flexibility to test all aspects of the site.
 
-Selenium tests are maintained in a separate `Selenium repository`_.
+Selenium tests are in a separate `Selenium repository`_.
 
 Configuration
 -------------
 
-Configuration for your unit tests is mostly handled automatically.  The only
+Configuration for your unit tests is handled automatically.  The only
 thing you'll need to ensure is that the database credentials in your settings
 has full permissions to modify a database with ``test_`` prepended to it. By
 default the database name is ``olympia``, so the test database is
@@ -36,7 +36,7 @@ On the contrary, if you only want to run Elasticsearch tests, use the
 Running Tests
 -------------
 
-To run the whole shebang use::
+To run the whole test suite use::
 
     py.test
 

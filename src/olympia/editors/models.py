@@ -243,6 +243,81 @@ class ViewFastTrackQueue(ViewQueue):
         return q
 
 
+class ViewAllList(RawSQLModel):
+    id = models.IntegerField()
+    addon_name = models.CharField(max_length=255)
+    addon_slug = models.CharField(max_length=30)
+    guid = models.CharField(max_length=255)
+    version_date = models.DateTimeField()
+    _author_ids = models.CharField(max_length=255)
+    _author_usernames = models.CharField()
+    review_date = models.DateField()
+    review_version_num = models.CharField(max_length=255)
+    addon_status = models.IntegerField()
+    latest_version = models.CharField(max_length=255)
+    admin_review = models.BooleanField()
+    is_deleted = models.BooleanField()
+
+    listed = True  # ViewAll for listed or unlisted addons.
+
+    def base_query(self):
+        return {
+            'select': SortedDict([
+                ('id', 'addons.id'),
+                ('addon_name', 'tr.localized_string'),
+                ('addon_status', 'addons.status'),
+                ('addon_slug', 'addons.slug'),
+                ('latest_version', 'versions.version'),
+                ('guid', 'addons.guid'),
+                ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
+                ('_author_usernames', 'GROUP_CONCAT(users.username)'),
+                ('admin_review', 'addons.adminreview'),
+                ('is_deleted', 'IF (addons.status=11, true, false)'),
+                ('version_date', 'versions.nomination'),
+                ('review_date', 'reviewed_versions.created'),
+                ('review_version_num', 'reviewed_versions.version'),
+            ]),
+            'from': [
+                'addons',
+                'LEFT JOIN versions ON (versions.id = addons.latest_version)',
+                """JOIN translations AS tr ON (
+                    tr.id = addons.name AND
+                    tr.locale = addons.defaultlocale)""",
+                """LEFT JOIN addons_users AS authors
+                    ON addons.id = authors.addon_id""",
+                'LEFT JOIN users as users ON users.id = authors.user_id',
+                """LEFT JOIN (
+                    SELECT versions.id AS id, addon_id, log.created, version
+                    FROM versions
+                    JOIN log_activity_version AS log_v ON (
+                        log_v.version_id=versions.id)
+                    JOIN log_activity as log ON (
+                        log.id=log_v.activity_log_id)
+                    WHERE log.user_id <> 4757633
+                    ORDER BY id desc
+                    ) AS reviewed_versions
+                    ON reviewed_versions.addon_id = addons.id""",
+            ],  # 4757633 is Mozilla, used for auto-signing versions.
+            'where': [
+                'NOT addons.inactive',  # disabled_by_user
+                # Are we showing listed or unlisted addons?
+                '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
+                """((reviewed_versions.id = (select max(reviewed_versions.id)))
+                    OR
+                    (reviewed_versions.id IS NULL))
+                """.format('1' if self.listed else '0'),
+                'addons.status NOT IN (%s, %s)' % (
+                    amo.STATUS_NULL, amo.STATUS_DISABLED)
+            ],
+            'group_by': 'id'}
+
+    @property
+    def authors(self):
+        ids = self._explode_concat(self._author_ids)
+        usernames = self._explode_concat(self._author_usernames, cast=unicode)
+        return list(set(zip(ids, usernames)))
+
+
 class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
     listed = False
 
@@ -252,6 +327,10 @@ class ViewUnlistedPendingQueue(ViewPendingQueue):
 
 
 class ViewUnlistedPreliminaryQueue(ViewPreliminaryQueue):
+    listed = False
+
+
+class ViewUnlistedAllList(ViewAllList):
     listed = False
 
 

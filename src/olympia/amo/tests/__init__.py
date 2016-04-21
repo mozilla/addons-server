@@ -13,6 +13,7 @@ from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
 from django import forms, test
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.management import call_command
 from django.db.models.signals import post_save
@@ -27,7 +28,6 @@ from django.utils.importlib import import_module
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
-from nose.tools import eq_, nottest
 from pyquery import PyQuery as pq
 from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView
@@ -35,7 +35,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.acl import check_ownership
-from olympia.addons import search as addons_search
+from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -48,6 +48,8 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.lib.es.signals import process, reset
+from olympia.lib.es.utils import timestamp_index
+from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import ApplicationsVersions, Version
 from olympia.users.models import UserProfile
@@ -100,7 +102,7 @@ def initial(form):
 
 
 def assert_required(error_msg):
-    eq_(error_msg, unicode(Field.default_error_messages['required']))
+    assert error_msg == unicode(Field.default_error_messages['required'])
 
 
 def check_links(expected, elements, selected=None, verify=True):
@@ -129,18 +131,17 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            eq_(e.text(), text)
+            assert e.text() == text
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
                 e = e.find('a')
             assert_url_equal(e.attr('href'), link)
             if verify and link != '#':
-                eq_(Client().head(link, follow=True).status_code, 200,
-                    '%r is dead' % link)
+                assert Client().head(link, follow=True).status_code == 200
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
-            eq_(bool(e.length), text == selected)
+            assert bool(e.length) == (text == selected)
 
 
 def check_selected(expected, links, selected):
@@ -151,11 +152,11 @@ def assert_url_equal(url, other, compare_host=False):
     """Compare url paths and query strings."""
     parsed = urlparse(unicode(url))
     parsed_other = urlparse(unicode(other))
-    eq_(parsed.path, parsed_other.path)  # Paths are equal.
-    eq_(parse_qs(parsed.query),
-        parse_qs(parsed_other.query))  # Params are equal.
+    assert parsed.path == parsed_other.path  # Paths are equal.
+    # Params are equal.
+    assert parse_qs(parsed.query) == parse_qs(parsed_other.query)
     if compare_host:
-        eq_(parsed.netloc, parsed_other.netloc)
+        assert parsed.netloc == parsed_other.netloc
 
 
 def create_sample(name=None, **kw):
@@ -222,7 +223,6 @@ class MobileTest(object):
         self.MOBILE = self.request.MOBILE = True
 
 
-@nottest
 def mobile_test(f):
     """Test decorator for hitting mobile views."""
     @wraps(f)
@@ -268,6 +268,33 @@ class TestClient(Client):
             return partial(method, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         else:
             raise AttributeError
+
+    def generate_api_token(self, user, **payload_overrides):
+        """
+        Creates a jwt token for this user.
+        """
+        from rest_framework_jwt.settings import api_settings
+        payload = api_settings.JWT_PAYLOAD_HANDLER(user)
+        payload.update(payload_overrides)
+        token = api_settings.JWT_ENCODE_HANDLER(payload)
+        return token
+
+    def login_api(self, user):
+        """
+        Creates a jwt token for this user as if they just logged in. This token
+        will be sent in an Authorization header with all future requests for
+        this client.
+        """
+        from rest_framework_jwt.settings import api_settings
+        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
+        token = self.generate_api_token(user)
+        self.defaults['HTTP_AUTHORIZATION'] = '{0} {1}'.format(prefix, token)
+
+    def logout_api(self):
+        """
+        Removes the Authorization header from future requests.
+        """
+        self.defaults.pop('HTTP_AUTHORIZATION', None)
 
 
 Mocked_ES = mock.patch('olympia.amo.search.get_es', spec=True)
@@ -459,8 +486,8 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         Oh, and Django's `assertSetEqual` is lame and requires actual sets:
         http://bit.ly/RO9sTr
         """
-        eq_(set(a), set(b), message)
-        eq_(len(a), len(b), message)
+        assert set(a) == set(b), message
+        assert len(a) == len(b), message
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -500,14 +527,14 @@ class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
         Determines if a response has suitable CORS headers. Appends 'OPTIONS'
         on to the list of verbs.
         """
-        eq_(res['Access-Control-Allow-Origin'], '*')
+        assert res['Access-Control-Allow-Origin'] == '*'
         assert 'API-Status' in res['Access-Control-Expose-Headers']
         assert 'API-Version' in res['Access-Control-Expose-Headers']
 
         verbs = map(str.upper, verbs) + ['OPTIONS']
         actual = res['Access-Control-Allow-Methods'].split(', ')
         self.assertSetEqual(verbs, actual)
-        eq_(res['Access-Control-Allow-Headers'],
+        assert res['Access-Control-Allow-Headers'] == (
             'X-HTTP-Method-Override, Content-Type')
 
     def update_session(self, session):
@@ -612,6 +639,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
     persona_id = kw.pop('persona_id', None)
+    tags = kw.pop('tags', [])
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -647,6 +675,9 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         persona_id = persona_id if persona_id is not None else a.id
         Persona.objects.create(addon=a, popularity=a.weekly_downloads,
                                persona_id=persona_id)  # Save 3.
+
+    for tag in tags:
+        Tag(tag_text=tag).save_tag(a)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -687,8 +718,9 @@ def collection_factory(**kw):
 def file_factory(**kw):
     v = kw['version']
     status = kw.pop('status', amo.STATUS_PUBLIC)
+    platform = kw.pop('platform', amo.PLATFORM_ALL.id)
     f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=amo.PLATFORM_ALL.id, status=status, **kw)
+                            platform=platform, status=status, **kw)
     return f
 
 
@@ -701,7 +733,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req = req.get(url, data or {})
     if user:
         req.user = UserProfile.objects.get(id=user.id)
-        req.groups = user.groups.all()
+    else:
+        req.user = AnonymousUser()
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
@@ -750,7 +783,14 @@ class ESTestCase(TestCase):
     # ES is slow to set up so this uses class setup/teardown. That happens
     # outside Django transactions so be careful to clean up afterwards.
     mock_es = False
-    exempt_from_fixture_bundling = True  # ES doesn't support bundling (yet?)
+
+    # We need ES indexes aliases to match prod behaviour, but also we need the
+    # names need to stay consistent during the whole test run, so we generate
+    # them at import time. Note that this works because pytest overrides
+    # ES_INDEXES before the test run even begins - if we were using
+    # override_settings() on ES_INDEXES we'd be in trouble.
+    index_names = {key: timestamp_index(value)
+                   for key, value in settings.ES_INDEXES.items()}
 
     @classmethod
     def setUpClass(cls):
@@ -771,12 +811,28 @@ class ESTestCase(TestCase):
             'english': ['en-us'],
             'spanish': ['es'],
         }
+        aliases_and_indexes = set(settings.ES_INDEXES.values() +
+                                  cls.es.indices.get_aliases().keys())
+        for key in aliases_and_indexes:
+            if key.startswith('test_amo'):
+                cls.es.indices.delete(key, ignore=[404])
 
-        for index in set(settings.ES_INDEXES.values()):
-            cls.es.indices.delete(index, ignore=[404])
+        # Create new search and stats indexes with the timestamped name.
+        # This is crucial to set up the correct mappings before we start
+        # indexing things in tests.
+        search_indexers.create_new_index(
+            index_name=cls.index_names['default'])
+        stats_search.create_new_index(index_name=cls.index_names['stats'])
 
-        addons_search.create_new_index()
-        stats_search.create_new_index()
+        # Alias it to the name the code is going to use (which is suffixed by
+        # pytest to avoid clashing with the real thing).
+        actions = [
+            {'add': {'index': cls.index_names['default'],
+                     'alias': settings.ES_INDEXES['default']}},
+            {'add': {'index': cls.index_names['stats'],
+                     'alias': settings.ES_INDEXES['stats']}}
+        ]
+        cls.es.indices.update_aliases({'actions': actions})
 
     @classmethod
     def tearDownClass(cls):
@@ -796,7 +852,8 @@ class ESTestCase(TestCase):
     @classmethod
     def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
-        [o.save() for o in model.objects.all()]
+        manager = getattr(model, 'unfiltered', model.objects)
+        [o.save() for o in manager.all()]
         cls.refresh(index)
 
     @classmethod

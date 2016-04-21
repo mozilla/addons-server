@@ -17,6 +17,13 @@ var notavail = '<div class="extra"><span class="notavail">{0}</span></div>',
     noappsupport = '<div class="extra"><span class="notsupported">{0}</span></div>',
     download_re = new RegExp('(/downloads/(?:latest|file)/\\d+)');
 
+// Restyle is enabled; we're going to modify the text.
+if ($('body').hasClass('restyle')) {
+    notavail = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
+    incompat = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
+    noappsupport = '<div class="extra"><span class="button disabled not-available" disabled>{0}</span></div>';
+}
+
 // The lowest maxVersion an app has to support to allow default-to-compatible.
 var D2C_MAX_VERSIONS = {
     firefox: '4.0',
@@ -267,6 +274,7 @@ var installButton = function() {
             warn(gettext('Not available for your platform'));
             $button.addClass('concealed');
             $button.first().css('display', 'inherit');
+            $button.closest('.item.addon').addClass('incompatible');
         }
 
         if (appSupported && !compatible && (olderBrowser || newerBrowser)) {
@@ -283,6 +291,7 @@ var installButton = function() {
                 }
                 $button.closest('div').attr('data-version-supported', false);
                 $button.addClass('concealed');
+                $button.closest('.item.addon').addClass('incompatible');
 
                 var $ishell = $button.closest('.install-shell');
                 if (!compatible && $d2c_reasons.children().length) {
@@ -316,6 +325,7 @@ var installButton = function() {
                             [z.appName, z.browserVersion]));
                 $button.closest('div').attr('data-version-supported', false);
                 $button.addClass('concealed');
+                $button.closest('.item.addon').addClass('incompatible');
                 if (!opts.addPopup) return;
 
                 if (badPlatform && olderBrowser) {

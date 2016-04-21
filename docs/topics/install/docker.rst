@@ -11,9 +11,9 @@ First you'll need to install docker_, please check the information for
 the installation steps specific to your operating system.
 
 .. note::
-    Docker recommends installing docker-toolbox_ if you're on OSX or
+    Docker recommends installing docker-toolbox_ if you're on OS X or
     windows and that will provide you with the ``docker-machine`` and
-    ``docker-compose`` (mac-only).
+    ``docker-compose`` (Mac-only).
 
 
 .. _creating-the-docker-vm:
@@ -74,9 +74,9 @@ Now you can connect to port 80 of that ip address. Here's an example
     http://192.168.99.100/
 
 .. note::
-    Bear in mind docker-machine hands out ip addresses as each vm is started;
-    so you might find this ip address changes over time. You can always find out
-    what ip is being used with ``docker-machine ip [machine name]``
+    ``docker-machine`` hands out IP addresses as each VM boots; your IP
+    addresses can change over time. You can find out which IP is in use using
+    ``docker-machine ip [machine name]``
 
 You may need to use a reliable hostname to access your container server (e.g. for
 Firefox Accounts). You can set one by editing your ``/etc/hosts`` file on your
@@ -93,11 +93,15 @@ setting it in the environment and restarting the docker containers, like this::
 Running common commands
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Any other commands can now be run in a shell on the running container::
+Run the tests using ``make``, *outside* of the docker container::
+
+    make test
+
+You can run commands inside the docker container by ``ssh``\ing into it using::
 
     make shell
 
-Then, to run the tests for example, just run this command in the shell::
+Then to run the tests inside the docker container you can run::
 
     py.test
 
@@ -120,8 +124,9 @@ debug Django view code, check out the :ref:`debugging` section.
 Updating your containers
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Any time you update Olympia (e.g., by running ``git pull``), you should make sure to
-update your Docker image and database with any new requirements or migrations::
+Any time you update Olympia (e.g., by running ``git pull``), you should make
+sure to update your Docker image and database with any new requirements or
+migrations::
 
     docker-compose stop
     docker-compose pull
@@ -133,16 +138,16 @@ Gotchas!
 
 Please note: any command that would result in files added or modified
 outside of the ``addons-server`` folder (e.g. modifying pip or npm
-dependencies) won't be persisted, and thus won't survive after the
+dependencies) won't persist, and thus won't survive after the
 running container exits.
 
 .. note::
     If you need to persist any changes to the image, they should be carried out
-    via the ``Dockerfile``. Commits to master will result in the Dockerfile being
-    rebuilt on the docker hub.
+    via the ``Dockerfile``. Commits to master will result in the Dockerfile
+    being rebuilt on the docker hub.
 
 If you quit docker-machine, or restart your computer, docker-machine will need
-to be started again using::
+to start again using::
 
     docker-machine start addons-dev
 
@@ -162,9 +167,8 @@ such as this to build a new image::
     docker build -t addons/addons-server .
     docker-compose up -d
 
-After you've tested your new image, simply commit to master and the
-image will be published to Docker Hub for other developers to use after
-they pull image changes.
+After you test your new image, commit to master and the image will be published
+to Docker Hub for other developers to use after they pull image changes.
 
 .. _docker: https://docs.docker.com/installation/#installation
 .. _docker-toolbox: https://www.docker.com/toolbox

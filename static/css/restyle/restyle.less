@@ -1,0 +1,2290 @@
+// Needed for hovercards
+@import '../impala/hovercards';
+
+// Colors
+@primary-blue: rgba(12, 153, 213, 1);
+@primary-link: #6ac3e2;
+@primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
+@link-on-white-bg: #0996F8;
+@link-on-color-bg: #fff;
+@header-font-color: #c63717;
+@default-font-color: #333;
+
+// Common styles
+@detail-border: 1px solid #ebebeb;
+
+// Sizes
+@containerWidth: 1018px;
+@pageWidth: 960px;
+
+// Fonts
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'),
+       local('OpenSans'),
+       url('../impala/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'),
+       local('OpenSans-Bold'),
+       url('../impala/fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Open Sans BoldItalic'),
+       local('OpenSans-BoldItalic'),
+       url('../impala/fonts/OpenSans-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'),
+       local('OpenSans-Italic'),
+       url('../impala/fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.5;
+  font-family: @primary-font !important;
+  font-style: normal !important;
+  font-weight: normal;
+}
+
+* {
+  font-family: @primary-font !important;
+}
+
+// Styles
+#tabzilla:before {
+  background: none;
+}
+
+html {
+  font-size: 13px;
+}
+
+body.restyle {
+  background: #fff none repeat scroll 0 0;
+  color: @default-font-color;
+  font-family: @primary-font;
+  font-style: normal;
+  line-height: 1.5;
+  min-width: @containerWidth;
+}
+
+h1,
+#masthead h1 {
+  font-family: @primary-font;
+}
+#masthead h1 a {
+  color: @link-on-color-bg;
+}
+
+h2 {
+  margin-top: 1em;
+}
+
+.primary h1,
+.island h2 {
+  margin-top: 0;
+}
+
+h1,
+.primary h2,
+hgroup h2.addon,
+hgroup h2.collection,
+.developer-hub header h2,
+.developer-hub #homepage h2,
+.personas-featured h3 {
+  color: @default-font-color;
+  font-size: 1.692rem;
+  font-style: normal;
+}
+
+masthead.submit-theme,
+#collections-landing {
+  margin-top: 20px;
+}
+
+.addon-description-header,
+.addon-details .secondary.addon-vitals {
+  background: none;
+}
+
+.addon-details h2 {
+  color: inherit;
+  font-size: 1.75rem;
+}
+
+.primary header h2,
+.personas-featured h3 {
+  margin: 0 0 15px;
+}
+
+// These are all defined in AMO's original CSS and seem to need overriding :'(
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active,
+.more-info,
+.more-info:link,
+.more-info:visited,
+.more-info:hover,
+.more-info:focus,
+.more-info:active {
+  color: @link-on-white-bg;
+}
+
+a.button,
+a.delete-button,
+a.delete-button:hover,
+button.link:hover span,
+button.link:focus span,
+button.link:active span {
+  color: @link-on-color-bg;
+}
+
+.amo-header,
+.primary:not(.more-island),
+.secondary {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    width: 100%;
+  }
+}
+
+.primary,
+.secondary {
+  background: #fff;
+}
+
+.header-bg {
+  background-color: #0c99d5;
+  /*
+    Main Content Wrapper Background - General
+    blue-pattern, blue-gradient, white overlay
+    (sharp-cut at 130px)
+  */
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 100px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(12, 153, 213, 0) 0,
+      @primary-blue 500px,
+      #fff 0%
+    ),
+    repeating-linear-gradient(
+      118deg,
+      rgba(12, 153, 213, 0) 0,
+      #00a7e0 550px,
+      rgba(12, 153, 213, 0) 550px,
+      #00a7e0 800px,
+      rgba(12, 153,213, 0) 800px,
+      #00a7e0 950px
+    );
+  background-position:
+    0 416px,
+    0 0,
+    0 0;
+  // This breaks the background panel wrapper out of the containing box,
+  // allowing it to be full-width. This means the background gradient can
+  // span the entire width of the viewport, even though the parent has a
+  // max-width.
+  margin: 0 0 12px ~"calc(-1 * ((100vw - 100%) / 2))";
+  min-width: @containerWidth;
+  width: 100vw;
+
+  .html-rtl & {
+    margin: 0 ~"calc(-1 * ((100vw - 100%) / 2))" 12px 0;
+  }
+}
+
+/*
+  Main Content Wrapper Background - Home and Add-on Details page
+  blue-pattern, blue-gradient, white overlay
+  (sharp-cut at 416px)
+*/
+.home .header-bg,
+.addon-details .header-bg {
+  background-image:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 100px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(12, 153, 213, 0) 0,
+      @primary-blue 500px,
+      @primary-blue 0%
+    ),
+    repeating-linear-gradient(
+      118deg,
+      rgba(12, 153, 213, 0) 0,
+      #00a7e0 550px,
+      rgba(12, 153, 213, 0) 550px,
+      #00a7e0 800px,
+      rgba(12, 153, 213, 0) 800px,
+      #00a7e0 950px
+    );
+  background-position:
+    0 416px,
+    0 0,
+    0 0;
+}
+
+.amo-header {
+  margin-bottom: 0;
+}
+
+.amo-header-wrapper {
+  margin: 0 auto;
+  max-width: @pageWidth;
+}
+
+.category-landing [role="main"],
+.amo-header + .primary {
+  width: 78%;
+}
+
+.category-landing .amo-header + .primary header {
+  display: none;
+}
+
+// hide overflow to cover streching of bg in
+// .addon-details .primary:first-of-type:before
+.addon-details #background-wrapper {
+  overflow: hidden;
+}
+
+.amo-header {
+  font-family: inherit;
+}
+
+body:not(.home) .amo-header,
+.addon-details .header-bg,
+.home .header-bg {
+  min-height: 130px;
+  margin-bottom: 10px;
+}
+
+#site-nav ul {
+  margin-bottom: 0;
+}
+
+.menu-nav {
+  color: @link-on-color-bg;
+}
+
+.amo-header ul a {
+  color: @link-on-color-bg;
+  font-family: inherit;
+
+  ul a {
+    color: #fff;
+  }
+}
+
+#masthead h1 {
+  font-size: 4.308rem; // 56px
+  line-height: 3.692rem; // 48px
+  letter-spacing: -1px;
+  text-transform: none;
+}
+
+.site-title {
+  margin-bottom: 0;
+  padding-bottom: 7px;
+
+  a {
+    color: @link-on-color-bg;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      color: @link-on-color-bg;
+      text-shadow: none;
+    }
+
+    img {
+      width: 70px;
+    }
+  }
+}
+
+// DevHub Title
+.site-title.prominent {
+  // These are tied up in some really nested class + id selectors, so we
+  // cave and use !important
+  margin-bottom: 20px !important;
+  margin-top: -20px !important;
+
+  a {
+    color: @link-on-color-bg;
+
+    &:before {
+      background-image: none;
+    }
+
+    small {
+      margin-left: 5px;
+    }
+  }
+}
+
+// Navigation Menu and Panels
+#site-nav,
+.secondary .categories {
+  > ul > li {
+    border-left: none;
+    left: -9px;
+
+    > a  {
+      padding-bottom: 8px;
+    }
+
+    // arrow
+    > ul:after {
+      left: 10px;
+    }
+
+    &:hover:after {
+      top: 25px;
+      left: 1px;
+      height: 10px;
+    }
+  }
+
+  #themes ul.two-col {
+    height: 293px;
+    padding: 8px;
+
+    div {
+      display: none;
+    }
+
+    + div {
+      left: -1px;
+      top: 305px
+    }
+  }
+}
+
+.secondary .categories {
+  background: none;
+
+  h3 {
+    background: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    padding: 6px;
+    text-transform: uppercase;
+
+    a {
+      color: #aaa;
+    }
+  }
+}
+
+#aux-nav,
+#site-nav {
+  line-height: inherit;
+}
+
+.menu-nav {
+  a {
+    color: #000;
+  }
+
+  > ul > li {
+    // Menu Panel
+    > ul {
+      a {
+        color: #000;
+      }
+
+      > a {
+        color: @link-on-color-bg;
+      }
+
+      background-color: #fff;
+      border: 0;
+      border-radius: 0;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+      top: 25px;
+
+      // Menu Panel triangle
+      &:after {
+        box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
+        content: '';
+        display: block;
+        position: absolute;
+        top: -6px;
+        z-index: 1;
+        transform: rotate(45deg);
+        background-color: #fff;
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    > a,
+    &:hover > a {
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+
+    &:hover:after {
+      background: #fff;
+      content: '';
+      height: 16px;
+      position: absolute;
+      width: 200px;
+      z-index: 62;
+    }
+  }
+}
+
+#aux-nav > ul > li {
+  > ul:after {
+    right: 10px;
+  }
+
+  &:hover:after {
+    top: 32px;
+    right: 1px;
+    height: 10px;
+  }
+}
+
+// Top Menu
+#aux-nav > ul > li {
+  // Other Applications Panel triangle position
+  ul:after {
+    left: auto;
+    right: 15px;
+  }
+
+  // Other Applications Menu Arrow
+  a:after {
+    display: none;
+  }
+
+  &:not(:first-child):before {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      #fff 20%,
+      #fff 80%,
+      transparent 80%
+    );
+  }
+}
+
+.header-search {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  input {
+    border-radius: 0;
+    box-shadow: none;
+    font: inherit;
+    height: 30px;
+  }
+}
+
+
+// fix color of search suggestions
+#site-search-suggestions a span {
+  color: @link-on-white-bg;
+}
+
+#main-wrapper {
+  background: #fff;
+}
+
+.restyle .site-balloon,
+.restyle .notification-box {
+  background: #fbfbfb;
+  border: 2px solid #1f386e;
+  border-radius: 6px;
+  color: @default-font-color;
+  margin-top: 22px;
+  padding: 15px 45px 15px 15px;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  .close {
+    background-image: url(../../img/impala/banner-close-style-refresh.png);
+    color: @default-font-color;
+
+    &:focus,
+    &:hover {
+      background-color: @dark-gray;
+    }
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  &.error {
+    background-color: #fee3e5;
+    border-color: ##e0c9d6;
+    // Previous selector is !important, so we have to do this :'(
+    color: @default-font-color !important;
+  }
+
+  &.warning {
+    background-color: #fd9;
+    border-color: #664400;
+  }
+}
+
+#promos {
+  margin: 20px 0 0;
+  min-height: 0;
+  opacity: 1;
+  visibility: visible;
+  width: @pageWidth;
+
+  &.show {
+    display: block;
+  }
+
+  #monthly {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
+
+    h2,
+    h3,
+    p {
+      color: @link-on-color-bg;
+      text-shadow: @dark-gray 1px 1px;
+    }
+  }
+
+  .promo,
+  .promo-collection.webdev,
+  .promo-purple,
+  #holiday,
+  #travel {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-2.png);
+
+    h2,
+    h3,
+    a,
+    p.desc {
+      color: @link-on-color-bg;
+      text-align: left;
+      text-shadow: @dark-gray 1px 1px;
+    }
+  }
+
+  .promo-collection.webdev h2,
+  #monthly h2,
+  #monthly h3 {
+    font-size: 36px;
+    font-weight: 100;
+  }
+
+  #travel {
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+  }
+}
+
+#promos,
+#promos li > div,
+#promos > div,
+#promos .feature {
+  border-radius: 0;
+  border-radius: 0;
+}
+
+.island {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.restyle .primary.island {
+  border-top: @detail-border;
+}
+
+.island > section {
+  border-bottom: @detail-border;
+}
+
+#reviews .review,
+#detail-relnotes .items {
+  border: 0;
+}
+
+#reviews a.more-info,
+#detail-relnotes a.more-info {
+  float: none;
+}
+
+.promo h2 {
+  margin-top: 0;
+}
+
+.featured li {
+  height: auto;
+  width: auto;
+}
+
+// Featured/Monthly Add-on background modification
+#featured-addon,
+#monthly {
+  background: none;
+
+  &::before {
+    display: none;
+  }
+
+  .wrap > div  {
+    max-height: 160px;
+  }
+}
+
+#starter.feature {
+  background: none;
+}
+
+#promos .feature {
+  padding: 10px 78px;
+}
+
+#promos .control,
+.carousel > a {
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:after {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: rgba(255, 255, 255, 1);
+    font-family: @primary-font;
+    height: 100%;
+    line-height: 260px;
+    vertical-align: middle;
+  }
+}
+
+.restyle .control {
+  font-family: @primary-font;
+}
+
+#promos {
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  h2, h3 {
+    font-family: inherit;
+    font-style: normal;
+  }
+
+  .promo {
+    background-size: cover;
+  }
+}
+
+// Featured/Monthly Add-on Carousel Element
+// move icon to the left
+#featured-addon .wrap > div,
+#monthly .wrap > div {
+  display: block;
+}
+
+#featured-addon .blurb,
+#featured-addon .thumb,
+#monthly .blurb,
+#monthly .thumb {
+  display: inline-block;;
+}
+
+#featured-addon .thumb,
+#monthly .thumb {
+  float: left;
+}
+
+#featured-addon > div,
+#go-mobile > div,
+#monthly > div,
+.addons li > a {
+  background: none;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition-property: background-color;
+}
+
+.addons li > a:active,
+.addons li > a:focus,
+.addons li > a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  transition-property: background-color;
+
+  h3 {
+    text-decoration: none;
+  }
+}
+
+.addons img {
+  float: left;
+  margin-bottom: 3px;
+  margin-right: 8px;
+}
+
+.addons h3,
+#featured-addon h3,
+#monthly h3 {
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.3rem;
+  max-height: 1.2rem;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+#featured-addon h3 a,
+#monthly h3 a {
+  color: @link-on-color-bg;
+}
+
+#monthly .addons p.desc,
+#monthly .wrap p {
+  clear: both;
+  color: #fff;
+  font-weight: 200;
+  max-height: 5.4em;
+  text-overflow: ellipsis;
+}
+
+// Side nav on Home
+.home #side-nav {
+  // pushed down to make room for more header
+  margin-top: 0;
+}
+
+.toplist li a {
+  line-height: 1.5;
+  padding: 0.25em 0;
+
+  small {
+    margin-top: -3px;
+  }
+}
+
+// Button overrides.
+
+// Display is set here so it doesn't clobber low specificity
+// platform specific button hiding.
+button,
+.button {
+  display: inline-block;
+}
+
+// Add a selector here if there's a different style coming from
+// elsewhere.
+.sidebar a.button,
+.sidebar button,
+.linux .button.linux,
+.mac .button.mac,
+.other .button.bsd,
+.other .button.solaris,
+.windows .button.windows,
+a.delete-button.delete-addon,
+#upload-file-finish.button,
+#upload-file-widget .button.prominent,
+#promos .view-button a,
+.cta a.button:link,
+.theme-queue a.button,
+.theme-queue button,
+.theme .choices button,
+button,
+button.button,
+.button,
+a.button:link,
+input:not(.upvotes):not(.downvotes)[type="submit"],
+.persona-install button {
+  background: #5784bf;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+       inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+  box-sizing: border-box;
+  color: #fff;
+  font-family: @primary-font;
+  font-size: 1rem;
+  height: auto;
+  line-height: 1.5;
+  padding: 8px 14px 9px;
+  position: relative;
+  text-shadow: none;
+  transition: box-shadow linear 0.25s;
+
+  &.download,
+  &.add {
+    background: #57bd35;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+          inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
+
+    span:not(.os) {
+      border: none;
+      margin: 0;
+      background: url(../../img/impala/button-icons.png) no-repeat 0 -191px;
+      padding: 0 0 0 24px;
+    }
+  }
+
+  &.contribute b {
+    display: inline;
+    background-position: 0 -444px;
+  }
+
+  &.approve,
+  &#commit,
+  &.good {
+    background: #57bd35;
+  }
+
+  &.delete-button,
+  &.developer {
+    background: #bc2b1a;
+    span {
+      background-position: 0 -383px;
+    }
+  }
+
+  &.disabled,
+  &:disabled,
+  &.concealed {
+    background: #ccc;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+          inset 0 -2px 0 0 rgba(136, 136, 136, 0.50);
+    text-shadow: none;
+
+    &:hover {
+      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
+           inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+    }
+
+    &:active {
+      top: 0;
+    }
+  }
+
+  b {
+    display: none;
+  }
+
+  &.selected,
+  &:hover,
+  &:focus {
+    box-shadow: 0 2px rgba(0, 0, 0, 0.1),
+          inset 0 -2px rgba(0, 0, 0, 0.1),
+          inset 0 0 100px rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    top: 2px;
+    box-shadow: none;
+  }
+
+  &.installer.warning,
+  &.installer.caution,
+  &.caution,
+  &.warning {
+    background-image: url(../../img/impala/warning-bg.png);
+    color: #333 !important;
+
+    span,
+    span:not(.os) {
+       background-position: 0 -317px;
+    }
+  }
+}
+
+.theme .choices button,
+.theme-queue a.button,
+.theme-queue button {
+  padding: 8px 20px 9px;
+  min-width: 100px;
+}
+
+.sidebar a.button,
+.sidebar button {
+  width: 100%;
+
+  &#commit:before {
+    top: 12px;
+  }
+}
+
+a.button.release-theme-lock {
+  bottom: 4px;
+  position: absolute;
+  right: 0;
+  top: -14px;
+  z-index: 10;
+
+  span {
+    top: 0;
+  }
+
+  &:active {
+    bottom: 2px;
+    top: -12px;
+  }
+}
+
+.header-search .search-button {
+  background-color: #57bd35;
+  background-image: url('../../img/icons/go-arrow.png');
+  border-radius: 0;
+  box-shadow: none;
+  height: 30px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    top: 1px;
+  }
+}
+
+.button.CTA {
+  background: #57bd35 !important;
+  font-size: 16px !important;
+  padding: 16px !important;
+}
+
+.invisible-upload {
+  padding: 5px 0;
+}
+
+.item .install {
+  border-radius: none;
+  background: none;
+
+  strong {
+    padding: 0;
+    margin: 10px 0 2px;
+  }
+}
+
+#popular-extensions {
+  margin-top: 0;
+}
+
+.addon-details .secondary,
+.reviews .secondary,
+.category-landing .secondary,
+body:not(.developer-hub) section.secondary {
+  .highlight {
+    padding: 7px 0 0;
+  }
+  width: 180px;
+}
+
+.secondary {
+  margin: 0 0 12px;
+  width: 21.49%;
+
+  h2, h3 {
+    color: #aaa;
+    font-family: inherit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    padding: 6px;
+    text-transform: uppercase;
+  }
+
+  li {
+    border: 0;
+  }
+}
+
+
+.island .pager {
+  display: none;
+}
+
+#featured-extensions {
+  padding-top: 0;
+}
+
+// NOTE: This was originally `.sidebar-breakout h3, h2` but I assumed the <h2>
+// should be scoped.
+.sidebar-breakout h2,
+.sidebar-breakout h3 {
+  font: inherit;
+  font-size: 1.25rem;
+}
+
+#footer {
+  background-color: #fff;
+  background-image: linear-gradient(to bottom,
+    #fff 0,
+    #fff 123px,
+    rgba(12, 153, 213, 1) 123px,
+    rgba(12, 153, 213, 1) 200px,
+    #FFF 200px,
+    rgba(12, 153, 213, 0.0) 400px);
+  color: #666;
+  font-family: inherit;
+  font-style: normal;
+  width: 100%;
+
+  .links-footer a {
+    color: @link-on-color-bg !important;
+  }
+}
+
+#footer #lang_form {
+  margin-top: 12px;
+
+  label {
+    color: @link-on-white-bg;
+    font-family: @primary-font;
+    text-transform: none;
+  }
+}
+
+// Add-on Details Page
+#breadcrumbs {
+  display: none;
+}
+
+.addon-details {
+  .primary,
+  .secondary {
+    background: none;
+    font-family: @primary-font;
+  }
+}
+
+#addon h1 {
+  color: #fff;
+}
+
+.version-number {
+  color: #ccc;
+  font-size: 0.5em;
+}
+
+// first block of details - icon, name, description...
+.addon-details {
+  .primary:first-of-type {
+    min-height: 257px;
+    padding-bottom: 1em;
+  }
+
+  .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-wrapper .install-button a.button.download {
+    margin-bottom: 10px;
+  }
+}
+
+#addon-description.prose {
+  font-family: @primary-font;
+}
+
+// DevHub
+#devhub-promo h2 strong {
+  font-family: @primary-font;
+}
+
+#masthead h1 {
+  margin-top: -5px;
+}
+
+.addon-vitals .widgets .widget {
+  color: #fff;
+}
+
+#addon-summary a,
+.notice.c.author a {
+  color: @link-on-color-bg;
+  text-decoration: underline;
+}
+
+.notice.c.author {
+  h3, p {
+    margin-left: 90px;
+
+    a {
+      color: @link-on-color-bg;
+    }
+  }
+}
+
+
+.notice {
+  background: 0;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid #ccd6e3;
+  box-shadow: none;
+}
+
+// move elements in front of the background
+.addon-details .primary .notice,
+.addon-details .secondary.addon-vitals {
+  color: #fff;
+  z-index: 1;
+}
+
+.hovercard a h3,
+.secondary li a,
+#footer a:link,
+#footer a:visited {
+  color: @link-on-white-bg;
+}
+
+/* Notice - underneath description (asking for contribution &/or showing dependencies )*/
+.addon-details .primary .notice {
+  background: 0;
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  box-shadow: none;
+  padding-bottom: 18px;
+
+  .hovercard.addon {
+    .rating b {
+      color: #fff;
+    }
+
+    &:hover,
+    &:focus {
+      .summary a h3,
+      .summary a .category.more-info,
+      .rating b {
+        color: @default-font-color;
+      }
+    }
+
+    .more .addon-summary {
+      display: none;
+    }
+  }
+}
+
+// Standard pages have the default
+// text color. This is overridden for details
+// pages below.
+h3.author a,
+h4.author a {
+  color: @default-font-color;
+  text-decoration: underline;
+}
+
+h3.author .transfer-ownership {
+  color: @link-on-color-bg;
+  text-decoration: none;
+}
+
+// font issues on addon-details
+.addon-details {
+  .version-number,
+  h4.author,
+  h4.author a,
+  a.eula,
+  a.privacy-policy,
+  .notice h3,
+  .notice p,
+  .notice p a,
+  .notice p b,
+  .vital a,
+  .warning a,
+  #addon-summary,
+  #weekly-downloads .stats,
+  #reviews-link,
+  #daily-users a {
+    color: @link-on-color-bg;
+  }
+
+  h4.author a,
+  a.privacy-policy,
+  a.eula,
+  .vital a,
+  .warning a,
+  #contribution.notice p a,
+  #reviews-link {
+    text-decoration: underline;
+  }
+
+  #weekly-downloads .stats {
+    font-size: 1rem;
+  }
+
+  .version-number {
+    font-size: 0.39em;
+  }
+
+  .notice h3 {
+    font-style: normal;
+  }
+
+  .addon-vitals .stats {
+    background: none;
+  }
+
+  .widgets {
+    display: none;
+  }
+}
+
+.restyle #promos.shown {
+  height: 271px;
+  min-height: 271px;
+}
+
+#side-nav.c.expanded {
+  margin-top: 0;
+}
+
+.home #side-nav.top {
+  margin-top: 0;
+}
+
+#main-wrapper,
+#background-wrapper {
+    border-top: 1px solid #fff;
+}
+
+#background-wrapper.expanded {
+  height: 420px;
+}
+
+// Create a new collection pages/collections I'm following pages
+.featured {
+  background: none;
+  border: 0;
+}
+
+.banner-box .featured {
+  background: #489615;
+}
+
+.featured-inner {
+  border: 0;
+  padding-top: 0;
+}
+
+// Navigation
+.secondary .other-categories,
+.secondary .categories {
+  background-color: transparent;
+  border: 0;
+  margin-top: 0;
+  padding-top: 0;
+
+  ul {
+    border-top: none;
+    padding: 0;
+
+    ul li {
+      margin: 0;
+    }
+
+    li {
+      padding: 0;
+    }
+  }
+
+  h3 a {
+    color: #aaa;
+    font-family: @primary-font;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  li a {
+    color: @link-on-white-bg;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 5px 6px;
+    position: relative;
+    text-decoration: none;
+
+    &:after {
+      color: rgba(0, 0, 0, 0.125);
+      content: '\203a';
+      font-family: Georgia;
+      font-weight: normal;
+      font-size: 18px;
+      position: absolute;
+      right: 6px;
+      top: 0;
+    }
+
+    &:hover {
+      background-color: #ecf5fe;
+    }
+
+    &:hover:after,
+    &:focus:after,
+    &.selected:after {
+      color: inherit;
+    }
+  }
+}
+
+.addons-column {
+  h3 a {
+    font-family: @primary-font;
+  }
+
+  > ul.personas {
+    border: 0;
+  }
+
+  .persona-install {
+    border: 0;
+
+    .add {
+      background-image: none;
+      background-color: #57bd35;
+      text-shadow: none;
+    }
+  }
+}
+
+.secondary .submit-theme {
+  border: 0;
+
+  h3, p {
+    font-family: @primary-font;
+  }
+}
+
+.personas-home .intro {
+  font-size: 1.2em;
+}
+
+#featured-addons.featured.personas-home {
+  display: none;
+}
+
+// Theme Page
+.section > hgroup a,
+.article.prose a,
+#persona-side a {
+  color: @link-on-white-bg;
+}
+
+.xoxo a {
+  color: @link-on-white-bg;
+}
+
+.restyle .previews {
+  background: #f5f5f5;
+  // This breaks the preview panel out of the containing box, allowing
+  // it to be full-width.
+  // See: https://github.com/mozilla/addons-server/pull/1947
+  margin-left: ~"calc(-1 * ((100vw - 100%) / 2))";
+  padding: 30px 0;
+  width: 100vw;
+
+  .html-rtl& {
+    margin-right: ~"calc(-1 * ((100vw - 100%) / 2))";
+  }
+
+  .carousel {
+    margin: 0 auto;
+    max-width: @pageWidth;
+    padding: 6px 20px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+
+  .control {
+    color: @link-on-white-bg;
+    height: 170px;
+    line-height: 3.5;
+
+    &:hover {
+      color: @link-on-white-bg;
+    }
+
+    &.prev {
+      background: linear-gradient(to right, rgba(245, 245, 245, 1) 50%,
+                                            rgba(245, 245, 245, 0));
+    }
+
+    &.next {
+      background: linear-gradient(to left, rgba(245, 245, 245, 1) 50%,
+                                           rgba(245, 245, 245, 0));
+    }
+
+    &.disabled {
+      opacity: 0;
+      transition: opacity 100ms linear;
+    }
+  }
+}
+
+// If the viewport is smaller than the min-width of the page weirdness
+// happens, so we go back to a non-full-width screenshot then.
+// See: https://github.com/mozilla/addons-server/issues/1983
+@media (max-width: @pageWidth) {
+  .restyle .previews {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: @containerWidth) {
+  .header-bg {
+    // This should be a negative result so this order is intentional :-)
+    margin-left: (@pageWidth - @containerWidth) / 2;
+  }
+}
+
+// lightbox
+#lightbox {
+  background: rgba(0, 0, 0, 0.75);
+
+  section {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .close {
+    border-radius: 0;
+  }
+}
+
+// Unified theme view
+.personas-featured .persona-list-3col {
+  border: 0;
+  min-height: 125px;
+  padding-bottom: 20px;
+}
+
+.persona-list-3col {
+  li {
+    border: 0;
+    display: inline;
+    overflow: hidden;
+    padding: 0.6em 0 0;
+    position: relative;
+
+    &:nth-of-type(3n) .persona.hovercard {
+      margin-right: 0;
+
+      &:hover,
+      &:focus {
+        margin-bottom: -14.5px;
+      }
+    }
+
+    &:nth-of-type(4n) .persona.hovercard {
+      clear: both;
+    }
+  }
+
+  .persona.hovercard {
+    margin-right: 34px;
+    width: 33.3%;
+
+    a {
+      padding: 0;
+    }
+
+    h3 {
+      max-width: 200px;
+    }
+  }
+}
+
+.category-landing {
+  .addons-column {
+    ul.personas {
+      padding: 0;
+    }
+
+    ul li {
+      overflow: visible;
+
+      .persona a {
+        padding: 0;
+      }
+    }
+  }
+
+  // Featured add-ons in a category listing page.
+  // This fixes https://github.com/mozilla/addons-server/issues/2025
+  #featured-addons {
+    background: none;
+    border: 0;
+
+    .featured-inner {
+      background: none;
+      border: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0 0 25px;
+      width: auto;
+    }
+  }
+
+  .view-all {
+    text-align: left;
+
+    a:link,
+    a:visited {
+      color: @link-on-white-bg;
+    }
+  }
+}
+
+.category-landing .featured.three-col .addon.hovercard {
+
+  &:hover {
+    height: 320px;
+    margin-bottom: -320px;
+  }
+
+  .addon-writeup {
+    display: none;
+  }
+
+  .extra {
+    max-width: 200px;
+
+    .button.not-available {
+      margin-top: -12px;
+      font-size: 12px;
+    }
+  }
+}
+
+.extra .button.disabled.not-available {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 0;
+  box-shadow: none;
+  color: @default-font-color;
+  font-size: 1rem;
+  font-weight: normal;
+  padding: 5px 14px 5px 28px;
+
+  .addon-description-header &  {
+    border: 0;
+  }
+
+  .addon.hovercard & {
+    border: 1px solid #ebebeb;
+  }
+}
+
+.persona.hovercard {
+  max-width: 200px;
+
+  .persona-install {
+    border: 0;
+    display: none;
+    float: right;
+    margin-top: 8px;
+    padding-bottom: 5px;
+    position: static;
+
+    button {
+      height: auto;
+      padding: 3px;
+    }
+  }
+
+  &:hover {
+    height: 100px;
+    margin-bottom: -22px;
+
+    .persona-install {
+      display: block;
+    }
+  }
+
+  h3 {
+    clear: none;
+    font-size: 14px;
+    margin: 0;
+    padding: 6px 0 3px;
+  }
+
+  .persona-preview {
+    float: none;
+  }
+}
+
+// This is used to override JS that tries to mess with these styles :'(
+.restyle .persona.hovercard a {
+  background: none !important;
+
+  .persona-preview [data-browsertheme] {
+    background: none;
+    border: 0 !important; // zamboni.css defines this as !important :-/
+  }
+}
+
+.personas-grid li {
+  height: auto;
+  width: auto;
+}
+
+.manage-button {
+  margin: 1em 0 0;
+}
+
+// Install buttons
+.install-button .concealed.CTA {
+  display: block !important;
+}
+
+.extra .button.not-available {
+  background: #fbfbfb url(../../img/impala/no.png) 6px 50% no-repeat;
+  border: 1px solid #b1b1b1;
+  border-radius: 3px;
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
+              inset 0 -2px 0 0 rgba(30, 30, 30, 0.25);
+  color: #b1b1b1;
+  cursor: default;
+  font-size: 14px;
+  padding-left: 20px;
+  padding-right: 5px;
+  pointer-events: all;
+  margin-bottom: 5px;
+  white-space: normal;
+  text-shadow: none;
+}
+
+.addon.hovercard,
+.items .item.incompatible {
+
+  .extra .button.not-available {
+    display: none;
+    float: right;
+  }
+
+  &:focus .extra .button.not-available,
+  &:hover .extra .button.not-available {
+    display: block !important;
+
+    span {
+      padding-left: 1rem;
+    }
+  }
+
+  .install-shell .install {
+    display: inline-block;
+  }
+}
+
+.addon.hovercard,
+.items .item {
+  .more-versions {
+    padding-left: 1rem;
+  }
+}
+
+#addon .more-versions a {
+  color: @link-on-white-bg;
+  margin-left: 10px;
+}
+
+// Contribute button fixes
+.notice.author .aux {
+  text-align: right;
+
+  #contribute-button {
+    text-decoration: none;
+  }
+
+  .install-button {
+    margin-right: 0;
+
+    .add {
+      margin-top: 5px;
+      text-decoration: none;
+    }
+  }
+}
+
+.notice.c.author {
+  h3,
+  p {
+    margin-left: 0;
+    margin-right: 160px;
+
+    &.suggestion {
+      margin-right: 0;
+    }
+  }
+}
+
+
+.secondary .submit-theme {
+  padding: 0;
+
+  a.button {
+    white-space: normal;
+  }
+}
+
+// Fix theme button alignment
+.theme .choices {
+  float: none;
+}
+
+.theme-queue a.button:active,
+.sidebar a.button:active,
+.theme-queue button:active,
+.sidebar button:active {
+  border: 0;
+  box-shadow: inset 1px 1px 1px #fff;
+}
+
+// Developer Hub
+.developer-hub {
+  .addon-submission-process {
+    padding-top: 0;
+
+    form {
+      margin-top: 0;
+    }
+  }
+}
+
+#edit-addon h3 a {
+  top: 0;
+}
+
+#downloadAnyway {
+  color: @link-on-color-bg;
+}
+
+.action-needed {
+  overflow: auto;
+}
+
+#persona-summary {
+
+  .install,
+  .install-wrapper,
+  .install-persona,
+  p.warning,
+  .persona-inner {
+    padding: 0;
+  }
+
+  .widgets,
+  p {
+    clear: left;
+  }
+
+  .install-wrapper {
+    float: left;
+  }
+
+  table {
+    margin-top: 15px;
+    width: 290px;
+
+    td {
+      width: 100%;
+    }
+  }
+}
+
+#review-box form {
+  height: auto;
+  min-height: 270px;
+}
+
+#contribute-box,
+.install-note,
+.modal,
+.popup {
+  border: 1px solid grey;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.install-note.left {
+  &::before {
+    border: 6px solid transparent;
+    border-bottom-color: grey;
+    right: 71px;
+    top: -13px;
+  }
+
+  &::after {
+    border-bottom-width: 6px;
+    right: 72px;
+    top: -11px;
+  }
+}
+
+.contrib-overlay,
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.primary.island {
+  border: 1px solid #ebebeb;
+  margin-top: 10px;
+}
+
+.prettyform .listing-footer {
+  background: none;
+  border-top: 0;
+}
+
+.prettyform .listing-footer {
+  background: none;
+}
+
+// Theme detail page
+#persona #more-personas .article {
+  padding: 0 10px 10px;
+
+  .persona.hovercard {
+    height: 78px;
+
+    &:nth-of-type(2n+1) {
+      clear: left;
+    }
+  }
+}
+
+.restyle.statistics {
+  #page {
+    max-width: @pageWidth;
+    min-width: @pageWidth;
+  }
+
+  .primary {
+    float: left;
+    margin-left: 0;
+    width: 74%;
+  }
+
+  .stat-criteria .island.criteria {
+    float: left;
+  }
+
+  .notification-box {
+    clear: both;
+  }
+}
+
+/* Editor pages */
+body.editor-tools {
+  .site-title strong {
+    color: @link-on-color-bg;
+  }
+
+  .pill-nav-amo {
+    border-radius: 0;
+    background-color: transparent;
+    background-image: none;
+  }
+
+  .pill-nav-amo a {
+    color: @link-on-color-bg;
+    border-radius: 0;
+  }
+
+  .pill-nav-amo a.selected {
+    background-color: #ffffff;
+    color: @link-on-white-bg;
+    background-image: none;
+  }
+
+  #navbar {
+    border: none;
+    overflow: visible;
+  }
+
+  #navbar ul li.top {
+    width: 20%;
+    border-right: 0;
+    text-align: center;
+  }
+
+  #navbar > ul > li > ul {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  }
+
+  #navbar > ul li > ul li {
+    background-color: #fff;
+    background-image: none;
+    color: @default-font-color;
+    border-bottom: none;
+    text-align: left;
+
+    a, a:link, a:visited {
+      color: @default-font-color;
+      border-bottom: none;
+    }
+
+    a:hover {
+      background: #ebf4fe;
+    }
+  }
+
+  #navbar li.top:hover, #navbar li.top.selected {
+    background-image: none;
+    text-decoration: underline;
+  }
+
+  #navbar li.top a.controller {
+    border-right: none;
+  }
+
+  .daily-message .featured-inner {
+    border: @detail-border;
+  }
+
+  .listing-header {
+    background: none;
+    background-color: #ecf5fe;
+    background-image: none;
+    text-align: center;
+    border-bottom: 0;
+    border-radius: 0;
+  }
+
+  #editors-stats-charts, #editors-stats-charts-unlisted, #editors-stats {
+    border: @detail-border;
+    border-radius: 0;
+  }
+
+  .editor-stats-dark {
+    text-align: center;
+    background-color: transparent;
+  }
+
+  div.editor-waiting {
+    border-radius: 0;
+    border: @detail-border;
+  }
+
+  .waiting_new, .waiting_med, .waiting_old {
+    box-shadow: none;
+  }
+
+  .editor-stats-table:first-child > div {
+    border-left-width: 0;
+  }
+
+  .editor-stats-table .int {
+    color: @default-font-color;
+  }
+
+  #editors_main, .section {
+    .results {
+      border: @detail-border;
+      background-color: #ecf5fe;
+      border-radius: 0;
+
+      .results-inner {
+        border: none;
+      }
+    }
+  }
+
+  #reviewers-score-bar {
+    background: none;
+    border-radius: 0;
+    border: @detail-border;
+    box-shadow: none;
+  }
+
+  div.section {
+    ul.tabnav {
+      li a {
+        padding-bottom: 5px;
+        background-color: #ecf5fe;
+        border-radius: 0;
+        color: @link-on-white-bg;
+      }
+
+      li.selected a {
+        background-color: #ffffff;
+        border-color: #ebebeb;
+        color: @default-font-color;
+      }
+    }
+
+    .queue-outer {
+      border-radius: 0;
+      border: @detail-border;
+
+      .queue-inner {
+        border-radius: 0;
+        border: none;
+
+        .data-grid th.ordered {
+          background: #ffffff;
+        }
+
+        a,
+        a:visited {
+          color: @link-on-white-bg;
+        }
+      }
+    }
+
+    .queue-search form #id_q {
+      border-radius: 0;
+    }
+
+    #queue-island {
+      border: @detail-border;
+    }
+
+    #addon.primary {
+
+      #addon-summary {
+        a {
+          color: @link-on-white-bg;
+          text-decoration: none;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .article {
+        border: @detail-border;
+        border-radius: 0;
+      }
+
+      .results .files {
+        width: 230px;
+      }
+
+      div#review-actions {
+        border: @detail-border;
+        border-radius: 0;
+
+        #review-actions-form {
+          border: none;
+          border-radius: 0;
+        }
+
+        .action_nav {
+          background: none;
+          background-color: #ecf5fe;
+
+          li {
+            text-shadow: none;
+            border: none;
+            background: none;
+            color: @link-on-white-bg;
+          }
+
+          li.on-tab {
+            color: @default-font-color;
+            background-color: #ffffff;
+            border-top: none;
+          }
+
+          li:first-child, li:last-child {
+            border-radius: 0;
+            border-left: none;
+
+          }
+        }
+      }
+
+      .whiteboard {
+        border: @detail-border;
+        border-radius: 0;
+      }
+    }
+
+    .secondary {
+      width: 15%;
+
+      a.thumbnail.thumbnail {
+        border: @detail-border;
+      }
+    }
+
+    #addon {
+      .object-lead {
+        background: none;
+      }
+    }
+  }
+
+}
+
+.listing .item {
+  .desc {
+    color: #777;
+    font-size: 1rem;
+  }
+
+  &.incompatible {
+    .action {
+      opacity: 1;
+
+      .info,
+      .install.clickHijack .install-button > .button {
+        opacity: 0.4;
+      }
+    }
+  }
+}
+
+/* Source/Diff viewer */
+body.file-viewer {
+  pre, code, kbd, tt, samp, tt {
+    font-family: @mono-stack !important;
+  }
+
+  div.section {
+    max-width: none;
+    width: 95%
+  }
+
+  /* Notice. */
+  #file-viewer.messages-duplicate #files a.notice-duplicate,
+  #file-viewer.messages-signing #files a.notice-signing,
+  #file-viewer.messages-all #files a.notice,
+  /* Warning. */
+  #file-viewer.messages-duplicate #files a.warning-duplicate,
+  #file-viewer.messages-signing #files a.warning-signing,
+  #file-viewer.messages-all #files a.warning,
+  /* Error. */
+  #file-viewer.messages-duplicate #files a.error-duplicate,
+  #files a.error-signing,
+  #files a.error {
+    > span:after {
+      vertical-align: baseline;
+    }
+  }
+
+  #files {
+    width: 18em;
+
+    #files-tree {
+      a > span {
+        border-radius: 0;
+      }
+
+      .notice {
+        border-top: none;
+      }
+    }
+  }
+
+  #content-wrapper {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #content-wrapper,
+  #messages,
+  #thinking,
+  #validation-options {
+    padding-left: 19em;
+  }
+
+  .syntaxhighlighter .line-code {
+    max-width: none;
+    word-break: break-all;
+  }
+
+  .collapsed-files {
+    #files {
+      width: 5em;
+    }
+
+    #content-wrapper,
+    #messages,
+    #thinking,
+    #validation-options {
+      padding-left: 3em;
+    }
+  }
+}
+
+.collection-add-dropdown,
+.collection-rate-dropdown {
+  width: auto;
+}

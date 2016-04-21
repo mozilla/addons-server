@@ -17,12 +17,13 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.utils import urlparams
-from olympia.api.jwt_auth.views import JWTProtectedView
+from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 from olympia.accounts.serializers import (
@@ -162,7 +163,11 @@ def with_user(format):
     def outer(fn):
         @functools.wraps(fn)
         def inner(self, request):
-            data = request.GET if request.method == 'GET' else request.DATA
+            if request.method == 'GET':
+                data = request.query_params
+            else:
+                data = request.data
+
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
             next_path = parse_next_path(state_parts)
@@ -217,6 +222,24 @@ def with_user(format):
     return outer
 
 
+def add_api_token_to_response(response, user):
+    # Generate API token and add it to the json response.
+    payload = jwt_api_settings.JWT_PAYLOAD_HANDLER(user)
+    token = jwt_api_settings.JWT_ENCODE_HANDLER(payload)
+    if hasattr(response, 'data'):
+        response.data['token'] = token
+    # Also include the API token in a session cookie, so that it is available
+    # for universal frontend apps.
+    response.set_cookie(
+        'jwt_api_auth_token',
+        token,
+        max_age=settings.SESSION_COOKIE_AGE or None,
+        secure=settings.SESSION_COOKIE_SECURE or None,
+        httponly=settings.SESSION_COOKIE_HTTPONLY or None)
+
+    return response
+
+
 class LoginView(APIView):
 
     @waffle_switch('fxa-auth')
@@ -226,7 +249,9 @@ class LoginView(APIView):
             return Response({'error': ERROR_NO_USER}, status=422)
         else:
             login_user(request, user, identity)
-            return Response({'email': identity['email']})
+            response = Response({'email': identity['email']})
+            add_api_token_to_response(response, user)
+            return response
 
 
 class RegisterView(APIView):
@@ -239,7 +264,9 @@ class RegisterView(APIView):
                             status=422)
         else:
             user = register_user(request, identity)
-            return Response({'email': user.email})
+            response = Response({'email': user.email})
+            add_api_token_to_response(response, user)
+            return response
 
 
 class AuthenticateView(APIView):
@@ -252,10 +279,14 @@ class AuthenticateView(APIView):
             return safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
-            return safe_redirect(next_path, 'login')
+            response = safe_redirect(next_path, 'login')
+            add_api_token_to_response(response, user)
+            return response
 
 
-class ProfileView(JWTProtectedView, generics.RetrieveAPIView):
+class ProfileView(generics.RetrieveAPIView):
+    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = UserProfileSerializer
 
     def retrieve(self, request, *args, **kw):
@@ -268,6 +299,8 @@ class AccountSourceView(generics.RetrieveAPIView):
     @waffle_switch('fxa-auth')
     def retrieve(self, request, *args, **kwargs):
         email = request.GET.get('email')
+        if email is None:
+            return Response({'error': 'Email is required.'}, status=422)
         try:
             user = UserProfile.objects.get(email=email)
         except UserProfile.DoesNotExist:
@@ -278,25 +311,26 @@ class AccountSourceView(generics.RetrieveAPIView):
         return Response(self.get_serializer(user).data)
 
 
-class AccountSuperCreate(JWTProtectedView):
+class AccountSuperCreate(APIView):
+    authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
         IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
-        serializer = AccountSuperCreateSerializer(data=request.DATA)
+        serializer = AccountSuperCreateSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({'errors': serializer.errors},
                             status=422)
 
         data = serializer.data
-        # In a future version of DRF this could be validated_data['group']:
-        group = serializer.object.get('group')
+
+        group = serializer.validated_data.get('group', None)
         user_token = os.urandom(4).encode('hex')
-        username = data['username'] or 'super-created-{}'.format(user_token)
-        fxa_id = data['fxa_id'] or None
-        email = data['email'] or '{}@addons.mozilla.org'.format(username)
-        password = data['password'] or os.urandom(16).encode('hex')
+        username = data.get('username', 'super-created-{}'.format(user_token))
+        fxa_id = data.get('fxa_id', None)
+        email = data.get('email', '{}@addons.mozilla.org'.format(username))
+        password = data.get('password', os.urandom(16).encode('hex'))
 
         user = UserProfile.objects.create(
             username=username,

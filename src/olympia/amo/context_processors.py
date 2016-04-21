@@ -4,8 +4,6 @@ from django.utils.translation import (
     ugettext as _, get_language, get_language_bidi)
 from django.utils.http import urlquote
 
-import waffle
-
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.access import acl
@@ -41,6 +39,7 @@ def global_settings(request):
 
     if request.user.is_authenticated():
         user = request.user
+
         profile = request.user
         is_reviewer = (acl.check_addons_reviewer(request) or
                        acl.check_personas_reviewer(request))
@@ -79,9 +78,8 @@ def global_settings(request):
             {'text': _('Developer Hub'),
              'href': reverse('devhub.index')},
         ]
-        if waffle.switch_is_active('signing-api'):
-            links.append({'text': _('Manage API Keys'),
-                          'href': reverse('devhub.api_key')})
+        links.append({'text': _('Manage API Keys'),
+                      'href': reverse('devhub.api_key')})
 
         tools_links += links
         if is_reviewer:

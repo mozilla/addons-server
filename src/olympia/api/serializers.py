@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from elasticsearch_dsl.result import Result
 from rest_framework.serializers import ModelSerializer
 
 from .fields import ESTranslationSerializerField, TranslationSerializerField
@@ -40,9 +41,14 @@ class BaseESSerializer(ModelSerializer):
                 fields[key] = ESTranslationSerializerField(source=field.source)
         return fields
 
-    def to_native(self, data):
+    def to_representation(self, data):
+        # Support `Result` instances to allow passing in ElasticSearch
+        # results directly into the serializer.
+        if isinstance(data, Result):
+            data = data.to_dict()
+
         obj = self.fake_object(data)
-        return super(BaseESSerializer, self).to_native(obj)
+        return super(BaseESSerializer, self).to_representation(obj)
 
     def fake_object(self, data):
         """
@@ -51,12 +57,17 @@ class BaseESSerializer(ModelSerializer):
         """
         raise NotImplementedError
 
+    def handle_date(self, value):
+        if not value:
+            return None
+        return datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
+
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""
         for field_name in field_names:
-            value = getattr(data, field_name, None)
+            value = data.get(field_name, None)
             if field_name in self.datetime_fields and value:
-                value = datetime.strptime(value, u'%Y-%m-%dT%H:%M:%S')
+                value = self.handle_date(value)
             setattr(obj, field_name, value)
         return obj
 

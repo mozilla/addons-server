@@ -211,6 +211,7 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # path that isn't just one /, and doesn't require any locale or app.
 SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
     'api/v3',
+    'blocked/blocklists.json',
 )
 
 # paths that don't require an app prefix
@@ -249,6 +250,7 @@ JINGO_EXCLUDE_APPS = (
     'admin',
     'toolbar_statsd',
     'registration',
+    'rest_framework',
     'debug_toolbar',
     'waffle',
 )
@@ -376,6 +378,8 @@ INSTALLED_APPS = (
     'olympia.discovery',
     'olympia.editors',
     'olympia.files',
+    'olympia.internal_tools',
+    'olympia.legacy_api',
     'olympia.lib.es',
     'olympia.pages',
     'olympia.perf',
@@ -397,6 +401,7 @@ INSTALLED_APPS = (
     'aesfield',
     'django_extensions',
     'raven.contrib.django',
+    'rest_framework',
     'waffle',
     'jingo_minify',
     'puente',
@@ -459,7 +464,7 @@ PUENTE = {
 MINIFY_BUNDLES = {
     'css': {
         'restyle/css': (
-            'css/restyle.less',
+            'css/restyle/restyle.less',
         ),
         # CSS files common to the entire site.
         'zamboni/css': (
@@ -566,6 +571,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/editors': (
             'css/zamboni/editors.styl',
+            'css/zamboni/unlisted.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
@@ -655,9 +661,6 @@ MINIFY_BUNDLES = {
 
             # Users
             'js/zamboni/users.js',
-
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
 
             # Hover delay for global header
             'moz_header/menu.js',
@@ -766,9 +769,6 @@ MINIFY_BUNDLES = {
 
             # Login
             'js/impala/login.js',
-
-            # Fix-up outgoing links
-            'js/zamboni/outgoing_links.js',
         ),
         'zamboni/discovery': (
             'js/lib/jquery-1.12.0.js',
@@ -1012,7 +1012,7 @@ CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
-    'olympia.lib.video.tasks')
+)
 
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
@@ -1053,9 +1053,6 @@ CELERY_ROUTES = {
     # be on a worker that listens to the same queue.
     'celery.chord_unlock': {'queue': 'devhub'},
     'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
-
-    # Videos.
-    'olympia.lib.video.tasks.resize_video': {'queue': 'devhub'},
 
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
@@ -1184,7 +1181,6 @@ CELERY_ROUTES = {
 #   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
 # Otherwise your task will use the default settings.
 CELERY_TIME_LIMITS = {
-    'olympia.lib.video.tasks.resize_video': {'soft': 360, 'hard': 600},
     # The reindex management command can take up to 3 hours to run.
     'olympia.lib.es.management.commands.reindex': {
         'soft': 10800, 'hard': 14400},
@@ -1312,7 +1308,6 @@ CSP_IMG_SRC = (
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
-    'https://ssl.gstatic.com/',
     'https://sentry.prod.mozaws.net',
 )
 CSP_MEDIA_SRC = (
@@ -1327,7 +1322,6 @@ CSP_SCRIPT_SRC = (
     "'self'",
     'https://addons.mozilla.org',
     'https://www.paypalobjects.com',
-    'https://apis.google.com',
     'https://www.google.com/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     ANALYTICS_HOST,
@@ -1480,7 +1474,6 @@ ES_INDEXES = {
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
-ES_USE_PLUGINS = False
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
@@ -1515,20 +1508,11 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 # Testing responsiveness without rate limits.
 CELERY_DISABLE_RATE_LIMITS = True
 
-# Super temporary. Or Not.
-MARKETPLACE = False
-
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
 # Defined in the site, this is to allow settings patch to work for tests.
 NO_ADDONS_MODULES = ()
-
-# Where to find ffmpeg and totem if it's not in the PATH.
-FFMPEG_BINARY = 'ffmpeg'
-TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
-                  'indexer': 'totem-video-indexer'}
-VIDEO_LIBRARIES = ['olympia.lib.video.totem', 'olympia.lib.video.ffmpeg']
 
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
@@ -1644,30 +1628,33 @@ AES_KEYS = {
     #'api_key:secret': os.path.join(ROOT, 'path', 'to', 'file.key'),
 }
 
-# Time in seconds for how long a JWT auth token can live.
-# When developers are creating auth tokens they cannot set the expiration any
-# longer than this.
-MAX_JWT_AUTH_TOKEN_LIFETIME = 60
-
+# Time in seconds for how long a JWT auth token created by developers with
+# their API key can live. When developers are creating auth tokens they cannot
+# set the expiration any longer than this.
+MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 60
 
 # django-rest-framework-jwt settings:
 JWT_AUTH = {
-    # We don't want to refresh tokens right now. Refreshing a token is when
-    # you accept a request with a valid token and return a new one with a
-    # longer expiration.
-    'JWT_ALLOW_REFRESH': False,
-
-    # JWTs are only valid for one minute.
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(
-        seconds=MAX_JWT_AUTH_TOKEN_LIFETIME),
-
-    'JWT_ENCODE_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_encode_handler',
-    'JWT_DECODE_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_decode_handler',
-    'JWT_PAYLOAD_HANDLER': 'olympia.api.jwt_auth.handlers.jwt_payload_handler',
+    # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
+    # want to make sure it does not change behind our backs.
+    # See https://github.com/jpadilla/pyjwt/blob/master/docs/algorithms.rst
     'JWT_ALGORITHM': 'HS256',
+
     # This adds some padding to timestamp validation in case client/server
     # clocks are off.
     'JWT_LEEWAY': 5,
+
+    # Expiration for non-apikey jwt tokens. Since this will be used by our
+    # frontend clients we want a longer expiration than normal, matching the
+    # session cookie expiration.
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=SESSION_COOKIE_AGE),
+
+    # We don't allow refreshes, instead we simply have a long duration.
+    'JWT_ALLOW_REFRESH': False,
+
+    # Prefix for non-apikey jwt tokens. Should be different from 'JWT' which we
+    # already used for api key tokens.
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 REST_FRAMEWORK = {
@@ -1677,6 +1664,11 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'olympia.api.authentication.JSONWebTokenAuthentication',
+    ),
+    # Enable pagination
+    'PAGE_SIZE': 25,
 }
 
 # This is the DSN to the local Sentry service. It might be overidden in

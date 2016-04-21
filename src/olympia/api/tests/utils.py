@@ -2,17 +2,17 @@ from datetime import datetime
 
 from rest_framework.test import APITestCase
 
-from olympia.api.jwt_auth.views import JWTKeyAuthentication
-from olympia.api.tests.test_jwt_auth import JWTAuthTester
+from olympia.api.authentication import JWTKeyAuthentication
+from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
 from olympia.users.models import UserProfile
 
 
-class APIAuthTestCase(APITestCase, JWTAuthTester):
+class APIKeyAuthTestCase(APITestCase, JWTAuthKeyTester):
 
     def create_api_user(self):
         self.user = UserProfile.objects.create(
             email='a@m.o',
-            read_dev_agreement=datetime.today()
+            read_dev_agreement=datetime.today(),
         )
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 

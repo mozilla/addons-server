@@ -6,104 +6,17 @@ from django.db.models import Count
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.translation import ugettext as _
 
 from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.amo.decorators import post_required
-from olympia.amo.utils import urlparams
-from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
 from olympia.search.utils import floor_version
-from olympia.versions.compare import version_dict as vdict, version_int as vint
+from olympia.versions.compare import version_dict as vdict
 
-from .models import CompatReport, AppCompat, CompatTotals
-from .forms import AppVerForm, CompatForm
-
-
-@non_atomic_requests
-def index(request, version=None):
-    template = 'compat/index.html'
-    COMPAT = [v for v in amo.COMPAT if v['app'] == request.APP.id]
-    compat_dict = dict((v['main'], v) for v in COMPAT)
-    if not COMPAT:
-        return render(request, template, {'results': False})
-    if version not in compat_dict:
-        return http.HttpResponseRedirect(reverse('compat.index',
-                                                 args=[COMPAT[0]['main']]))
-    qs = AppCompat.search()
-    binary = None
-
-    initial = {'appver': '%s-%s' % (request.APP.id, version), 'type': 'all'}
-    initial.update(request.GET.items())
-    form = CompatForm(initial)
-    if request.GET and form.is_valid():
-        if form.cleaned_data['appver']:
-            app, ver = form.cleaned_data['appver'].split('-')
-            if int(app) != request.APP.id or ver != version:
-                new = reverse('compat.index', args=[ver], add_prefix=False)
-                url = '/%s%s' % (amo.APP_IDS[int(app)].short, new)
-                type_ = form.cleaned_data['type'] or None
-                return http.HttpResponseRedirect(urlparams(url, type=type_))
-
-        if form.cleaned_data['type'] != 'all':
-            binary = form.cleaned_data['type'] == 'binary'
-
-    compat, app = compat_dict[version], str(request.APP.id)
-    compat_queries = (
-        ('prev', qs.query(**{
-            'top_95.%s.%s' % (app, vint(compat['previous'])): True,
-            'support.%s.max__gte' % app: vint(compat['previous'])})),
-        ('top_95', qs.query(**{'top_95_all.%s' % app: True})),
-        ('all', qs),
-    )
-    compat_levels = [(key, version_compat(queryset, compat, app, binary))
-                     for key, queryset in compat_queries]
-    usage_addons, usage_total = usage_stats(request, compat, app, binary)
-    return render(request, template,
-                  {'version': version, 'usage_addons': usage_addons,
-                   'usage_total': usage_total, 'compat_levels': compat_levels,
-                   'form': form, 'results': True,
-                   'show_previous': request.GET.get('previous')})
-
-
-def version_compat(qs, compat, app, binary):
-    facets = []
-    for v, prev in zip(compat['versions'], (None,) + compat['versions']):
-        d = {'from': vint(v)}
-        if prev:
-            d['to'] = vint(prev)
-        facets.append(d)
-    # Pick up everything else for an Other count.
-    facets.append({'to': vint(compat['versions'][-1])})
-    facet = {'range': {'support.%s.max' % app: facets}}
-    if binary is not None:
-        qs = qs.query(binary=binary)
-    qs = qs.facet(by_status=facet)
-    result = qs[:0].raw()
-    total_addons = result['hits']['total']
-    ranges = result['facets']['by_status']['ranges']
-    titles = compat['versions'] + (_('Other'),)
-    faceted = [(v, r['count']) for v, r in zip(titles, ranges)]
-    return total_addons, faceted
-
-
-def usage_stats(request, compat, app, binary=None):
-    # Get the list of add-ons for usage stats.
-    qs = AppCompat.search().order_by('-usage.%s' % app).values_dict()
-    if request.GET.get('previous'):
-        qs = qs.filter(**{
-            'support.%s.max__gte' % app: vint(compat['previous'])})
-    else:
-        qs = qs.filter(**{'support.%s.max__gte' % app: 0})
-    if binary is not None:
-        qs = qs.filter(binary=binary)
-    addons = amo_utils.paginate(request, qs)
-    for obj in addons.object_list:
-        obj['usage'] = obj['usage'][app]
-        obj['max_version'] = obj['max_version'][app]
-    return addons, CompatTotals.objects.get(app=app).total
+from .models import CompatReport
+from .forms import AppVerForm
 
 
 @csrf_exempt

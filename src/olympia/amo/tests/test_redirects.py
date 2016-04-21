@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Check all our redirects from remora to zamboni."""
-from nose.tools import eq_
 from django.db import connection
 
 from olympia import amo
@@ -16,12 +15,6 @@ class TestRedirects(TestCase):
         r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
             '/en-US/firefox/themes/film-and-tv')
-
-    def test_top_tags(self):
-        """`/top-tags/?` should 301 to `/tags/top`."""
-        response = self.client.get(u'/top-tags/', follow=True)
-        self.assert3xx(response, '/en-US/firefox/tags/top',
-                       status_code=301)
 
     def test_contribute_installed(self):
         """`/addon/\d+/about` should go to
@@ -42,7 +35,7 @@ class TestRedirects(TestCase):
         response = self.client.get(u'/api/1.5/search/ツールバー',
                                    follow=True)
         # Sphinx will be off so let's just test that it redirects.
-        eq_(response.redirect_chain[0][1], 301)
+        assert response.redirect_chain[0][1] == 301
 
     def test_parameters(self):
         """Bug 554976. Make sure when we redirect, we preserve our query
@@ -147,7 +140,7 @@ class TestRedirects(TestCase):
         r = self.client.get('/browse/type:1/cat:12?sort=averagerating',
                             follow=True)
         url, code = r.redirect_chain[-1]
-        eq_(code, 301)
+        assert code == 301
         assert url.endswith('/en-US/firefox/extensions/woo/?sort=rating')
 
     def test_addons_versions(self):
@@ -197,7 +190,7 @@ class TestPersonaRedirect(TestCase):
                 SET FOREIGN_KEY_CHECKS = 1;
             """)
             r = self.client.get('/persona/813', follow=True)
-            eq_(r.status_code, 404)
+            assert r.status_code == 404
         finally:
             connection.cursor().execute("""
                 SET FOREIGN_KEY_CHECKS = 0;

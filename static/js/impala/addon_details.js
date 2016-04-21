@@ -1,10 +1,11 @@
 $(function () {
     if (!$("body").hasClass('addon-details')) return;
 
-    if($("body.restyle").length === 1) {
+    if ($("body.restyle").length === 1) {
         $('#background-wrapper').height(
             $('.amo-header').height() +
-            $('#addon-description-header').height() + 20
+            ($('.notification-box').length ? 80 : 0) +
+            $('.addon-description-header').height() + 20
         );
     }
 

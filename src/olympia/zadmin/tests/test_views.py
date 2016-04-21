@@ -9,7 +9,6 @@ from django.core import mail
 from django.core.cache import cache
 
 import mock
-from nose.plugins.attrib import attr
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -27,7 +26,7 @@ from olympia.compat.cron import compatibility_report
 from olympia.compat.models import CompatReport
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub.models import ActivityLog
-from olympia.files.models import Approval, File, FileUpload
+from olympia.files.models import File, FileUpload
 from olympia.stats.models import UpdateCount
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -84,60 +83,6 @@ class TestSiteEvents(TestCase):
         eq_(response.status_code, 200)
         events = response.context['events']
         eq_(len(events), 0)
-
-
-class TestFlagged(TestCase):
-    fixtures = ['base/users', 'zadmin/tests/flagged']
-
-    def setUp(self):
-        super(TestFlagged, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
-        self.url = reverse('zadmin.flagged')
-
-    def test_get(self):
-        response = self.client.get(self.url, follow=True)
-
-        addons = dict((a.id, a) for a in response.context['addons'])
-        eq_(len(addons), 3)
-
-        # 1. an addon should have latest version and approval attached
-        addon = Addon.objects.get(id=1)
-        eq_(addons[1], addon)
-        eq_(addons[1].version.id,
-            Version.objects.filter(addon=addon).latest().id)
-        eq_(addons[1].approval.id,
-            Approval.objects.filter(addon=addon).latest().id)
-
-        # 2. missing approval is ok
-        addon = Addon.objects.get(id=2)
-        eq_(addons[2], addon)
-        eq_(addons[2].version.id,
-            Version.objects.filter(addon=addon).latest().id)
-        eq_(addons[2].approval, None)
-
-        # 3. missing approval is ok
-        addon = Addon.objects.get(id=3)
-        eq_(addons[3], addon)
-        eq_(addons[3].approval.id,
-            Approval.objects.filter(addon=addon).latest().id)
-        eq_(addons[3].version, None)
-
-    def test_post(self):
-        response = self.client.post(self.url, {'addon_id': ['1', '2']},
-                                    follow=True)
-        self.assert3xx(response, self.url)
-
-        assert not Addon.objects.no_cache().get(id=1).admin_review
-        assert not Addon.objects.no_cache().get(id=2).admin_review
-
-        addons = response.context['addons']
-        eq_(len(addons), 1)
-        eq_(addons[0], Addon.objects.get(id=3))
-
-    def test_empty(self):
-        Addon.objects.update(admin_review=False)
-        res = self.client.get(self.url)
-        eq_(set(res.context['addons']), set([]))
 
 
 class BulkValidationTest(TestCase):
@@ -709,29 +654,31 @@ class TestBulkNotify(BulkValidationTest):
 
 class TestBulkValidationTask(BulkValidationTest):
 
-    @attr('validator')
     def test_validate(self):
         self.start_validation()
         res = ValidationResult.objects.get()
         self.assertCloseToNow(res.completed)
         assert not res.task_error
-        eq_(res.errors, 1)  # package could not be found
-        eq_(res.valid, False)
-        eq_(res.warnings, 0)
-        eq_(res.notices, 0)
-        v = json.loads(res.validation)
-        eq_(v['errors'], 1)
+        validation = json.loads(res.validation)
+        assert res.errors == 1
+        assert validation['messages'][0]['id'] == (
+            ['main', 'prepare_package', 'not_found'])
+        assert res.valid is False
+        assert res.warnings == 0, [mess['message']
+                                   for mess in validation['messages']]
+        assert res.notices == 0
+        assert validation['errors'] == 1
         self.assertCloseToNow(res.validation_job.completed)
-        eq_(res.validation_job.stats['total'], 1)
-        eq_(res.validation_job.stats['completed'], 1)
-        eq_(res.validation_job.stats['passing'], 0)
-        eq_(res.validation_job.stats['failing'], 1)
-        eq_(res.validation_job.stats['errors'], 0)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject,
+        assert res.validation_job.stats['total'] == 1
+        assert res.validation_job.stats['completed'] == 1
+        assert res.validation_job.stats['passing'] == 0
+        assert res.validation_job.stats['failing'] == 1
+        assert res.validation_job.stats['errors'] == 0
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
             'Behold! Validation results for Firefox %s->%s'
             % (self.curr_max.version, self.new_max.version))
-        eq_(mail.outbox[0].to, ['fliggy@mozilla.com'])
+        assert mail.outbox[0].to == ['fliggy@mozilla.com']
 
     @mock.patch('validator.validate.validate')
     def test_validator_bulk_compat_flag(self, validate):
@@ -1454,6 +1401,16 @@ class TestAddonManagement(TestCase):
         file = File.objects.get(pk=67442)
         eq_(file.status, 1)
 
+    def test_addon_deleted_file_status_change(self):
+        file = File.objects.get(pk=67442)
+        file.version.update(deleted=True)
+        data = self._form_data({'form-0-status': '1'})
+        r = self.client.post(self.url, data, follow=True)
+        # Form errors are silently suppressed.
+        assert r.status_code == 200
+        # But no change.
+        assert file.status == 4
+
     @mock.patch.object(File, 'file_path',
                        amo.tests.AMOPaths().file_fixture_path(
                            'delicious_bookmarks-2.1.106-fx.xpi'))
@@ -1794,7 +1751,7 @@ class TestFileDownload(TestCase):
 
 
 class TestPerms(TestCase):
-    fixtures = ['base/users', 'zadmin/tests/flagged']
+    fixtures = ['base/users']
 
     FILE_ID = '1234567890abcdef1234567890abcdef'
 
@@ -1809,7 +1766,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1826,7 +1782,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1843,7 +1798,6 @@ class TestPerms(TestCase):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
         self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.flagged', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -1859,7 +1813,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.validation', 200)
-        self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
@@ -1871,7 +1824,6 @@ class TestPerms(TestCase):
                                  password='password')
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.flagged', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)

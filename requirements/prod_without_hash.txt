@@ -1,0 +1,21 @@
+
+## Not on pypi.
+-e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
+-e git+https://github.com/miracle2k/django-tables.git@ce508b4b31f4c7a6ca3c24855d7be3aade6b6d3e#egg=django-tables
+-e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
+
+# Temporary fork.
+-e git+https://github.com/mozilla/schematic.git@a3adf69738a2d99b718be35eef58addd5857e11c#egg=schematic
+-e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
+-e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header
+-e git+https://github.com/mozilla/nuggets.git@9c4344a802b07d95c0dd6256570a4facddf54784#egg=nuggets
+-e git+https://github.com/mozilla/django-session-csrf@f00ad913c62e139d36078e8a7e07dab65a021386#egg=django-session-csrf
+
+## Forked.
+-e git+https://github.com/EnTeQuAk/django-cache-machine@1cac98a3e1dcc3cb654665cc67b6b15ab60d62c4#egg=django-cache-machine
+-e git+https://github.com/andymckay/django-uuidfield.git@029dd1263794ec36c327617cd6c2346da81c8c33#egg=django-uuidfield
+
+
+## Out of date or not sure on pypi.
+-e git+https://github.com/jbalogh/django-mobility.git@e2b60a1f96e4c4aed736395c01bf707e969d8e83#egg=django-mobility
+

@@ -10,18 +10,18 @@ from olympia.files.models import FileUpload
 
 
 class FileUploadSerializer(serializers.ModelSerializer):
-    active = serializers.SerializerMethodField('get_active')
-    url = serializers.SerializerMethodField('get_url')
-    files = serializers.SerializerMethodField('get_files')
-    passed_review = serializers.SerializerMethodField('get_passed_review')
+    active = serializers.SerializerMethodField()
+    url = serializers.SerializerMethodField()
+    files = serializers.SerializerMethodField()
+    passed_review = serializers.SerializerMethodField()
+
     # For backwards-compatibility reasons, we return the uuid as "pk".
     pk = serializers.CharField(source='uuid')
-    processed = serializers.BooleanField(source='processed')
-    reviewed = serializers.SerializerMethodField('get_reviewed')
+    processed = serializers.BooleanField()
+    reviewed = serializers.SerializerMethodField()
     valid = serializers.BooleanField(source='passed_all_validations')
-    validation_results = serializers.SerializerMethodField(
-        'get_validation_results')
-    validation_url = serializers.SerializerMethodField('get_validation_url')
+    validation_results = serializers.SerializerMethodField()
+    validation_url = serializers.SerializerMethodField()
 
     class Meta:
         model = FileUpload

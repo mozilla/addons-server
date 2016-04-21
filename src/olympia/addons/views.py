@@ -41,7 +41,10 @@ from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import (
     Collection, CollectionFeature, CollectionPromo)
 from olympia import paypal
-from olympia.api.paginator import ESPaginator
+from olympia.api.paginator import ESPageNumberPagination
+from olympia.api.permissions import (
+    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer,
+    AllowReviewerUnlisted, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -53,8 +56,8 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .forms import ContributionForm
+from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
-from .search import get_alias
 from .serializers import AddonSerializer, ESAddonSerializer
 
 
@@ -647,12 +650,25 @@ def persona_redirect(request, persona_id):
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
-    authentication_classes = []
-    permission_classes = []
+    permission_classes = [
+        AnyOf(AllowReadOnlyIfPublicAndListed, AllowAddonAuthor,
+              AllowReviewer, AllowReviewerUnlisted),
+    ]
     serializer_class = AddonSerializer
     addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
-    queryset = Addon.objects.public()  # Only public+enabled add-ons for now.
+    # Permission classes disallow access to non-public/unlisted add-ons unless
+    # logged in as a reviewer/addon owner/admin, so the unfiltered queryset
+    # is fine here.
+    queryset = Addon.with_unlisted.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+
+    def get_queryset(self):
+        # Special case: admins - and only admins - can see deleted add-ons.
+        # This is handled outside a permission class because that condition
+        # would pollute all other classes otherwise.
+        if self.request.user.is_authenticated() and self.request.user.is_staff:
+            return Addon.unfiltered.all()
+        return super(AddonViewSet, self).get_queryset()
 
     def get_object(self):
         value = self.kwargs.get('pk')
@@ -674,16 +690,15 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonSearchView(ListAPIView):
     authentication_classes = []
     filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
-    paginator_class = ESPaginator
+    pagination_class = ESPageNumberPagination
     permission_classes = []
     serializer_class = ESAddonSerializer
-    paginate_by = 25
-    paginate_by_param = 'page_size'
+    page_size = 25
 
     def get_queryset(self):
         return Search(using=amo.search.get_es(),
-                      index=get_alias(),
-                      doc_type=Addon._meta.db_table)
+                      index=AddonIndexer.get_index_alias(),
+                      doc_type=AddonIndexer.get_doctype_name())
 
     @classmethod
     def as_view(cls, **kwargs):

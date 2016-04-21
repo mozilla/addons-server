@@ -28,6 +28,8 @@ urlpatterns = (
         name='editors.unlisted_queue_pending'),
     url(r'^unlisted_queue/preliminary$', views.unlisted_queue_prelim,
         name='editors.unlisted_queue_prelim'),
+    url(r'^unlisted_queue/all$', views.unlisted_list,
+        name='editors.unlisted_queue_all'),
     url(r'^logs$', views.eventlog, name='editors.eventlog'),
     url(r'^log/(\d+)$', views.eventlog_detail, name='editors.eventlog.detail'),
     url(r'^reviewlog$', views.reviewlog, name='editors.reviewlog'),

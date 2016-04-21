@@ -231,6 +231,110 @@ class QueueSearchForm(happyforms.Form):
         return qs
 
 
+class AllAddonSearchForm(happyforms.Form):
+    text_query = forms.CharField(
+        required=False,
+        label=_lazy(u'Search by add-on name / author email / guid'))
+    searching = forms.BooleanField(
+        widget=forms.HiddenInput,
+        required=False,
+        initial=True)
+    admin_review = forms.ChoiceField(
+        required=False,
+        choices=[('', ''), ('1', _lazy(u'yes')), ('0', _lazy(u'no'))],
+        label=_lazy(u'Admin Flag'))
+    application_id = forms.ChoiceField(
+        required=False,
+        label=_lazy(u'Application'),
+        choices=([('', '')] +
+                 [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
+    max_version = forms.ChoiceField(
+        required=False,
+        label=_lazy(u'Max. Version'),
+        choices=[('', _lazy(u'Select an application first'))])
+    deleted = forms.ChoiceField(
+        required=False,
+        choices=[('', ''), ('1', _lazy(u'yes')), ('0', _lazy(u'no'))],
+        label=_lazy(u'Deleted'))
+
+    def __init__(self, *args, **kw):
+        super(AllAddonSearchForm, self).__init__(*args, **kw)
+        widget = self.fields['application_id'].widget
+        # Get the URL after the urlconf has loaded.
+        widget.attrs['data-url'] = reverse('editors.application_versions_json')
+
+    def version_choices_for_app_id(self, app_id):
+        versions = AppVersion.objects.filter(application=app_id)
+        return [('', '')] + [(v.version, v.version) for v in versions]
+
+    def clean_application_id(self):
+        if self.cleaned_data['application_id']:
+            choices = self.version_choices_for_app_id(
+                self.cleaned_data['application_id'])
+            self.fields['max_version'].choices = choices
+        return self.cleaned_data['application_id']
+
+    def clean_max_version(self):
+        if self.cleaned_data['max_version']:
+            if not self.cleaned_data['application_id']:
+                raise forms.ValidationError('No application selected')
+        return self.cleaned_data['max_version']
+
+    def filter_qs(self, qs):
+        data = self.cleaned_data
+        if data['admin_review']:
+            qs = qs.filter(admin_review=data['admin_review'])
+        if data['deleted']:
+            qs = qs.filter(is_deleted=data['deleted'])
+        if data['application_id']:
+            qs = qs.filter_raw('apps_match.application_id =',
+                               data['application_id'])
+            # We join twice so it includes all apps, and not just the ones
+            # filtered by the search criteria.
+            app_join = ('LEFT JOIN applications_versions apps_match ON '
+                        '(versions.id = apps_match.version_id)')
+            qs.base_query['from'].extend([app_join])
+
+            if data['max_version']:
+                joins = ["""JOIN applications_versions vs
+                            ON (versions.id = vs.version_id)""",
+                         """JOIN appversions max_version
+                            ON (max_version.id = vs.max)"""]
+                qs.base_query['from'].extend(joins)
+                qs = qs.filter_raw('max_version.version =',
+                                   data['max_version'])
+        if data['text_query']:
+            lang = get_language()
+            joins = [
+                'LEFT JOIN addons_users au on (au.addon_id = addons.id)',
+                'LEFT JOIN users u on (u.id = au.user_id)',
+                """LEFT JOIN translations AS supportemail_default ON
+                        (supportemail_default.id = addons.supportemail AND
+                         supportemail_default.locale=addons.defaultlocale)""",
+                """LEFT JOIN translations AS supportemail_local ON
+                        (supportemail_local.id = addons.supportemail AND
+                         supportemail_local.locale=%%(%s)s)""" %
+                qs._param(lang),
+                """LEFT JOIN translations AS ad_name_local ON
+                        (ad_name_local.id = addons.name AND
+                         ad_name_local.locale=%%(%s)s)""" %
+                qs._param(lang)]
+            qs.base_query['from'].extend(joins)
+            fuzzy_q = u'%' + data['text_query'] + u'%'
+            qs = qs.filter_raw(
+                Q('addon_name LIKE', fuzzy_q) |
+                Q('guid LIKE', fuzzy_q) |
+                # Search translated add-on names / support emails in
+                # the editor's locale:
+                Q('ad_name_local.localized_string LIKE', fuzzy_q) |
+                Q('supportemail_default.localized_string LIKE', fuzzy_q) |
+                Q('supportemail_local.localized_string LIKE', fuzzy_q) |
+                Q('au.role IN', [amo.AUTHOR_ROLE_OWNER,
+                                 amo.AUTHOR_ROLE_DEV],
+                  'u.email LIKE', fuzzy_q))
+        return qs
+
+
 class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, addon_file):
         addon = addon_file.version.addon

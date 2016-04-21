@@ -9,7 +9,7 @@
   {{ editor_page_title(title=addon.name) }}
 {% endblock %}
 
-{% block bodyclass %}inverse{% endblock %}
+{% block bodyclass %}{{ super() }} inverse{% endblock %}
 
 {% block breadcrumbs %}
 {{ editors_breadcrumbs(addon_queue=addon, items=[(None, addon.name)]) }}
@@ -227,7 +227,7 @@
   </div>
 </form>
 
-<form method="POST" action="{{ url('editors.whiteboard', addon.slug) }}">
+<form method="POST" action="{{ url('editors.whiteboard', addon.slug if addon.slug else addon.pk) }}">
   {{ csrf() }}
   <div class="whiteboard">
     <div class="whiteboard-inner">
@@ -250,6 +250,7 @@
   <div id="scroll_sidebar">
   <div class="currently_viewing_warning"></div>
 
+  {% if not addon.is_deleted %}
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
     {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>{% endif %}
@@ -258,6 +259,7 @@
     <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
     {% endif %}
   </ul>
+  {% endif %}
 
 
   <strong>{{ _('Review This Add-on') }}</strong>

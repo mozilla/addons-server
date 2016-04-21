@@ -30,11 +30,15 @@ function initListingCompat(domContext) {
     // Mark incompatible add-ons on listing pages unless marked with ignore.
     $('.listing .item.addon', domContext).each(function() {
         var $this = $(this);
+        var isIncompatible = (!$this.hasClass('ignore-compatibility') &&
+          ($this.find('.concealed').length == $this.find('.button').length ||
+           $this.find('button.not-available').length)
+        );
+
         if ($this.find('.acr-override').length) {
             $this.addClass('acr');
-        } else if (!$this.hasClass('ignore-compatibility') &&
-                   $this.find('.concealed').length == $this.find('.button').length) {
-            $this.addClass('incompatible');
+        } else if (isIncompatible) {
+          $this.addClass('incompatible');
         }
     });
 }

@@ -56,14 +56,21 @@ class CachedProperty(object):
                 # calculate something important here
                 return 42
 
-    Lifted from werkzeug.
+    Originally lifted from werkzeug. It's slighly more useful than the one in
+    django because you can write/delete to the property to overwrite it or
+    force it to be re-calculated.
     """
 
-    def __init__(self, func, name=None, doc=None, writable=False):
+    def __init__(self, func, writable=False):
         self.func = func
         self.writable = writable
-        self.__name__ = name or func.__name__
-        self.__doc__ = doc or func.__doc__
+        self.__name__ = func.__name__
+        self.__doc__ = func.__doc__
+
+    def __delete__(self, obj):
+        if not self.writable:
+            raise TypeError('read only attribute')
+        obj.__dict__.pop(self.__name__, None)
 
     def __get__(self, obj, type=None):
         if obj is None:

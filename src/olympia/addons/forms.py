@@ -15,7 +15,8 @@ from quieter_formset.formset import BaseFormSet
 
 from olympia import amo
 from olympia.access import acl
-from olympia.amo.fields import ColorField, ReCaptchaField
+from olympia.amo.fields import (
+    ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     slug_validator, slugify, sorted_groupby, remove_icons)
@@ -31,7 +32,6 @@ from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation
 from olympia.translations.utils import transfield_changed
-from olympia.translations.widgets import TranslationTextInput
 from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
@@ -164,7 +164,9 @@ class AddonFormBasic(AddonFormBase):
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)
 
-        self.fields['tags'].initial = ', '.join(self.get_tags(self.instance))
+        if self.fields.get('tags'):
+            self.fields['tags'].initial = ', '.join(
+                self.get_tags(self.instance))
 
         # Do not simply append validators, as validators will persist between
         # instances.
@@ -176,16 +178,18 @@ class AddonFormBasic(AddonFormBase):
         self.fields['name'].validators = name_validators
 
     def save(self, addon, commit=False):
-        tags_new = self.cleaned_data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
-        # Add new tags.
-        for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon)
+        if self.fields.get('tags'):
+            tags_new = self.cleaned_data['tags']
+            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
 
-        # Remove old tags.
-        for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon)
+            # Add new tags.
+            for t in set(tags_new) - set(tags_old):
+                Tag(tag_text=t).save_tag(addon)
+
+            # Remove old tags.
+            for t in set(tags_old) - set(tags_new):
+                Tag(tag_text=t).remove_tag(addon)
 
         # We ignore `commit`, since we need it to be `False` so we can save
         # the ManyToMany fields on our own.
@@ -343,6 +347,7 @@ class AddonFormMedia(AddonFormBase):
 
 class AddonFormDetails(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
+    homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
 
     class Meta:
         model = Addon
@@ -373,7 +378,7 @@ class AddonFormDetails(AddonFormBase):
 
 
 class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(forms.URLField)(required=False)
+    support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:
@@ -395,40 +400,6 @@ class AddonFormTechnical(AddonFormBase):
         fields = ('developer_comments', 'view_source', 'site_specific',
                   'external_software', 'auto_repackage', 'public_stats',
                   'whiteboard')
-
-
-class AddonForm(happyforms.ModelForm):
-    name = forms.CharField(widget=TranslationTextInput,)
-    homepage = forms.CharField(widget=TranslationTextInput, required=False)
-    eula = forms.CharField(widget=TranslationTextInput,)
-    description = forms.CharField(widget=TranslationTextInput,)
-    developer_comments = forms.CharField(widget=TranslationTextInput,)
-    privacy_policy = forms.CharField(widget=TranslationTextInput,)
-    the_future = forms.CharField(widget=TranslationTextInput,)
-    the_reason = forms.CharField(widget=TranslationTextInput,)
-    support_email = forms.CharField(widget=TranslationTextInput,)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'homepage', 'default_locale', 'support_email',
-                  'support_url', 'description', 'summary',
-                  'developer_comments', 'eula', 'privacy_policy', 'the_reason',
-                  'the_future', 'view_source', 'prerelease', 'site_specific',)
-
-        exclude = ('status', )
-
-    def clean_name(self):
-        return clean_addon_name(
-            self.cleaned_data['name'], instance=self.instance)
-
-    def save(self):
-        desc = self.data.get('description')
-        if desc and desc != unicode(self.instance.description):
-            amo.log(amo.LOG.EDIT_DESCRIPTIONS, self.instance)
-        if self.changed_data:
-            amo.log(amo.LOG.EDIT_PROPERTIES, self.instance)
-
-        super(AddonForm, self).save()
 
 
 class AbuseForm(happyforms.Form):

@@ -1,12 +1,16 @@
 .. _api-auth:
 
-================
-Authentication
-================
+=========================
+Authentication (External)
+=========================
 
-To access the API, you need to include a `JSON Web Token (JWT)`_
-in an authorization header for every request. This header authenticates
-your user account so you could think of it like a session cookie.
+To access the API as an external consumer, you need to include a
+`JSON Web Token (JWT)`_ in the ``Authorization`` header for every request.
+This header authenticates your user account so you could think of it like a
+session cookie.
+
+If you are building an app that lives on the AMO domain, read the
+:ref:`documentation for internal authentication <api-auth-internal>` instead.
 
 Access Credentials
 ==================
@@ -113,6 +117,7 @@ Find a JWT library
 
 There are robust open source libraries for creating JWTs in
 `all major programming languages <http://jwt.io/>`_.
+
 
 .. _`manage-credentials`: https://addons.mozilla.org/en-US/developers/addon/api/key/
 .. _`API Credentials Management Page`: manage-credentials_

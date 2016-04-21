@@ -1,8 +1,8 @@
 import collections
 import tempfile
 
+import mock
 import pytest
-from nose.tools import eq_, ok_
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
@@ -33,21 +33,21 @@ class TestAttachTransDict(TestCase):
         # Quick sanity checks: is description properly escaped? The underlying
         # implementation should leave localized_string un-escaped but never use
         # it for __unicode__. We depend on this behaviour later in the test.
-        ok_('<script>' in addon.description.localized_string)
-        ok_('<script>' not in addon.description.localized_string_clean)
-        ok_('<script>' not in unicode(addon.description))
+        assert '<script>' in addon.description.localized_string
+        assert '<script>' not in addon.description.localized_string_clean
+        assert '<script>' not in unicode(addon.description)
 
         # Attach trans dict.
         attach_trans_dict(Addon, [addon])
-        ok_(isinstance(addon.translations, collections.defaultdict))
+        assert isinstance(addon.translations, collections.defaultdict)
         translations = dict(addon.translations)
 
         # addon.translations is a defaultdict.
-        eq_(addon.translations['whatever'], [])
+        assert addon.translations['whatever'] == []
 
         # No-translated fields should be absent.
-        eq_(addon.thankyou_note_id, None)
-        ok_(None not in translations)
+        assert addon.thankyou_note_id is None
+        assert None not in translations
 
         # Build expected translations dict.
         expected_translations = {
@@ -64,7 +64,7 @@ class TestAttachTransDict(TestCase):
             addon.support_email_id: [('en-us', unicode(addon.support_email))],
             addon.support_url_id: [('en-us', unicode(addon.support_url))]
         }
-        eq_(translations, expected_translations)
+        assert translations == expected_translations
 
     def test_multiple_objects_with_multiple_translations(self):
         addon = addon_factory()
@@ -81,10 +81,10 @@ class TestAttachTransDict(TestCase):
         }
         addon2.save()
         attach_trans_dict(Addon, [addon, addon2])
-        eq_(set(addon.translations[addon.description_id]),
+        assert set(addon.translations[addon.description_id]) == (
             set([('en-us', 'English Description'),
                  ('fr', 'French Description')]))
-        eq_(set(addon2.translations[addon2.name_id]),
+        assert set(addon2.translations[addon2.name_id]) == (
             set([('en-us', 'English 2 Name'),
                  ('es', 'Spanish 2 Name'),
                  ('fr', 'French 2 Name')]))
@@ -93,7 +93,7 @@ class TestAttachTransDict(TestCase):
         version = Version.objects.create(addon=Addon.objects.create())
 
         # No translations.
-        eq_(translations_for_field(version.releasenotes), {})
+        assert translations_for_field(version.releasenotes) == {}
 
         # With translations.
         initial = {'en-us': 'release notes', 'fr': 'notes de version'}
@@ -101,7 +101,7 @@ class TestAttachTransDict(TestCase):
         version.save()
 
         translations = translations_for_field(version.releasenotes)
-        eq_(translations, initial)
+        assert translations == initial
 
 
 def test_has_links():
@@ -126,8 +126,49 @@ def test_walkfiles():
     file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
 
     # Only files ending with _foo.
-    eq_(list(walkfiles(basedir, suffix='_foo')), [file1path, file2path])
+    assert list(walkfiles(basedir, suffix='_foo')) == [file1path, file2path]
     # All files.
     all_files = list(walkfiles(basedir))
-    eq_(len(all_files), 3)
-    eq_(set(all_files), set([file1path, file2path, file3path]))
+    assert len(all_files) == 3
+    assert set(all_files) == set([file1path, file2path, file3path])
+
+
+def test_cached_property():
+    callme = mock.Mock()
+
+    class Foo(object):
+
+        @amo.cached_property
+        def bar(self):
+            callme()
+            return 'value'
+
+    foo = Foo()
+    # Call twice...
+    assert foo.bar == 'value'
+    assert foo.bar == 'value'
+
+    # Check that callme() was called only once.
+    assert callme.call_count == 1
+
+
+def test_set_writable_cached_property():
+    callme = mock.Mock()
+
+    class Foo(object):
+
+        @amo.cached_property(writable=True)
+        def bar(self):
+            callme()
+            return 'original value'
+
+    foo = Foo()
+    foo.bar = 'new value'
+    assert foo.bar == 'new value'
+
+    # Check that callme() was never called, since we overwrote the prop value.
+    assert callme.call_count == 0
+
+    del foo.bar
+    assert foo.bar == 'original value'
+    assert callme.call_count == 1

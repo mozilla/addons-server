@@ -16,7 +16,7 @@ import happyforms
 
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
-from olympia.amo.fields import ReCaptchaField
+from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
 from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import clean_nl, has_links, log_cef, slug_validator
@@ -308,7 +308,7 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
                                 widget=PasswordMixin.widget(render_value=False,
                                                             required=True))
     recaptcha = ReCaptchaField()
-    homepage = forms.URLField(label=_lazy(u'Homepage'), required=False)
+    homepage = HttpHttpsOnlyURLField(label=_lazy(u'Homepage'), required=False)
 
     class Meta:
         model = UserProfile

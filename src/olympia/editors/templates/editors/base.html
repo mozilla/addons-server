@@ -65,6 +65,8 @@
                 {{ _('Pending Updates') }} ({{ unlisted_queue_counts['pending'] }})</a></li>
           <li><a href="{{ url('editors.unlisted_queue_prelim') }}">
                 {{ _('Preliminary Reviews') }} ({{ unlisted_queue_counts['prelim'] }})</a></li>
+          <li><a href="{{ url('editors.unlisted_queue_all') }}">
+                {{ _('All Add-ons') }} ({{ unlisted_queue_counts['all'] }})</a></li>
         </ul>
       </li>
     {% endif %}

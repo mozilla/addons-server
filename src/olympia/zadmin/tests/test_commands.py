@@ -10,9 +10,13 @@ class TestCommand(TestCase):
     fixtures = ['zadmin/group_admin', 'zadmin/users']
 
     def test_group_management(self):
-        x = UserProfile.objects.get(pk=10968)
-        assert not action_allowed_user(x, 'Admin', '%')
+        user = UserProfile.objects.get(pk=10968)
+        assert not action_allowed_user(user, 'Admin', '%')
+
         do_adduser('10968', '1')
-        assert action_allowed_user(x, 'Admin', '%')
+        del user.groups_list
+        assert action_allowed_user(user, 'Admin', '%')
+
         do_removeuser('10968', '1')
-        assert not action_allowed_user(x, 'Admin', '%')
+        del user.groups_list
+        assert not action_allowed_user(user, 'Admin', '%')

@@ -2,8 +2,6 @@
 import json
 from datetime import datetime
 
-from nose.tools import eq_
-
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
@@ -26,8 +24,8 @@ class LogTest(TestCase):
         magic = dict(title='no', body='way!')
         al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 
-        eq_(al.details, magic)
-        eq_(al._details, json.dumps(magic))
+        assert al.details == magic
+        assert al._details == json.dumps(magic)
 
     def test_created(self):
         """
@@ -35,4 +33,4 @@ class LogTest(TestCase):
         """
         al = amo.log(amo.LOG.CUSTOM_TEXT, 'hi', created=datetime(2009, 1, 1))
 
-        eq_(al.created, datetime(2009, 1, 1))
+        assert al.created == datetime(2009, 1, 1)

@@ -24,7 +24,6 @@ import commonware.log
 import waffle
 from django_statsd.clients import statsd
 from PIL import Image
-from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.amo import utils as amo_utils
@@ -32,7 +31,6 @@ from olympia.access import acl
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonUser
-from olympia.addons.tasks import unindex_addons
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -392,6 +390,9 @@ def cancel(request, addon_id, addon):
 @post_required
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
+    if addon.latest_version:
+        addon.latest_version.files.filter(
+            status=amo.STATUS_UNREVIEWED).update(status=amo.STATUS_DISABLED)
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
@@ -401,7 +402,6 @@ def disable(request, addon_id, addon):
 def unlist(request, addon_id, addon):
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
-    unindex_addons.delay([addon.id])
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1747,7 +1747,6 @@ def docs(request, doc_name=None):
 
 
 @login_required
-@waffle_switch('signing-api')
 def api_key_agreement(request):
     next_step = reverse('devhub.api_key')
     return render_agreement(request, 'devhub/api/agreement.html', next_step)
@@ -1767,7 +1766,6 @@ def render_agreement(request, template, next_step, step=None):
 
 
 @login_required
-@waffle_switch('signing-api')
 @transaction.atomic
 def api_key(request):
     if request.user.read_dev_agreement is None:

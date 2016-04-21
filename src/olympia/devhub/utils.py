@@ -27,12 +27,13 @@ def process_validation(validation, is_compatibility=False, file_hash=None):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
+    validation = fix_addons_linter_output(validation)
 
     if is_compatibility:
         mangle_compatibility_messages(validation)
 
     # Set an ending tier if we don't have one (which probably means
-    # we're dealing with mock validation results).
+    # we're dealing with mock validation results or the addons-linter).
     validation.setdefault('ending_tier', 0)
 
     if not validation['ending_tier'] and validation['messages']:
@@ -127,6 +128,49 @@ def htmlify_validation(validation):
                 msg[key] = [linkify_escape(text) for text in msg[key]]
 
 
+def fix_addons_linter_output(validation, listed=True):
+    """Make sure the output from the addons-linter is the same as amo-validator
+    for backwards compatibility reasons."""
+    if 'messages' in validation:
+        # addons-linter doesn't contain this, return the original validation
+        # untouched
+        return validation
+
+    def _merged_messages():
+        for type_ in ('errors', 'notices', 'warnings'):
+            for msg in validation[type_]:
+                msg['type'] = msg.pop('_type')
+                msg['id'] = [msg.pop('code')]
+                # We don't have the concept of tiers for the addons-linter
+                # currently
+                msg['tier'] = 1
+                yield msg
+
+    return {
+        'success': not validation['errors'],
+        'compatibility_summary': {
+            'warnings': 0,
+            'errors': 0,
+            'notices': 0,
+        },
+        'notices': validation['summary']['notices'],
+        'warnings': validation['summary']['warnings'],
+        'errors': validation['summary']['errors'],
+        'messages': list(_merged_messages()),
+        'metadata': {
+            'listed': listed,
+        },
+        'signing_summary': {
+            'low': 0,
+            'medium': 0,
+            'high': 0,
+            'trivial': 0
+        },
+        'detected_type': 'extension',  # TODO: ['metadata']['architecture']
+        'ending_tier': 5,
+    }
+
+
 class ValidationAnnotator(object):
     """Class which handles creating or fetching validation results for File
     and FileUpload instances, and annotating them based on information not
@@ -140,19 +184,21 @@ class ValidationAnnotator(object):
 
         if isinstance(file_, FileUpload):
             save = tasks.handle_upload_validation_result
-            validate = self.validate_upload(file_, listed)
-
+            is_webextension = False
             # We're dealing with a bare file upload. Try to extract the
             # metadata that we need to match it against a previous upload
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, check=False)
+                is_webextension = addon_data.get('is_webextension', False)
             except ValidationError as form_error:
                 log.info('could not parse addon for upload {}: {}'
                          .format(file_.pk, form_error))
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
+
+            validate = self.validate_upload(file_, listed, is_webextension)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -232,15 +278,21 @@ class ValidationAnnotator(object):
     @staticmethod
     def validate_file(file):
         """Return a subtask to validate a File instance."""
-        return tasks.validate_file.subtask([file.pk, file.original_hash])
+        kwargs = {
+            'hash_': file.original_hash,
+            'is_webextension': file.is_webextension}
+        return tasks.validate_file.subtask([file.pk], kwargs)
 
     @staticmethod
-    def validate_upload(upload, is_listed):
+    def validate_upload(upload, is_listed, is_webextension):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        return tasks.validate_file_path.subtask([upload.path, upload.hash,
-                                                 is_listed])
+        kwargs = {
+            'hash_': upload.hash,
+            'listed': is_listed,
+            'is_webextension': is_webextension}
+        return tasks.validate_file_path.subtask([upload.path], kwargs)
 
     def find_previous_version(self, version):
         """Find the most recent previous version of this add-on, prior to

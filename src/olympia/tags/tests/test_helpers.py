@@ -5,11 +5,6 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.tags.models import AddonTag, Tag
-from olympia.tags.helpers import tag_link
-
-
-xss = "<script>alert('xss')</script>"
 
 
 def render(s, context={}):
@@ -27,7 +22,6 @@ class TestHelpers(amo.tests.BaseTestCase):
 
         request = Mock()
         request.user = addon.authors.all()[0]
-        request.groups = ()
 
         tags = addon.tags.not_blacklisted()
 
@@ -46,19 +40,3 @@ class TestHelpers(amo.tests.BaseTestCase):
         assert s, "Non-empty tags must return tag list."
         doc = pq(s)
         eq_(doc('li').length, len(tags))
-
-    def test_helper(self):
-        addon = Addon.objects.get(pk=3615)
-        tag = addon.tags.all()[0]
-        tag.tag_text = xss
-        tag.num_addons = 1
-        tag.save()
-
-        doc = pq(tag_link(tag, 1, 1))
-        assert not doc('a')
-
-
-def create_tags(addon, author, number):
-    for x in range(0, number):
-        tag = Tag.objects.create(tag_text='tag %s' % x, blacklisted=False)
-        AddonTag.objects.create(tag=tag, addon=addon, user=author)

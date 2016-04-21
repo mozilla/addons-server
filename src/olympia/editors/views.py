@@ -28,12 +28,13 @@ from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewQueue, ViewUnlistedFullReviewQueue,
+    ViewPreliminaryQueue, ViewQueue, ViewUnlistedAllList,
+    ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper,
     ViewFastTrackQueueTable, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewPreliminaryQueueTable,
+    ViewPendingQueueTable, ViewPreliminaryQueueTable, ViewUnlistedAllListTable,
     ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable,
     ViewUnlistedPreliminaryQueueTable)
 from olympia.reviews.forms import ReviewFlagFormSet
@@ -163,12 +164,12 @@ def home(request):
     # Try to read user position from retrieved reviews.
     # If not available, query for it.
     reviews_total_position = (
-        ActivityLog.objects.user_position(reviews_total, request.user)
-        or ActivityLog.objects.total_reviews_user_position(request.user))
+        ActivityLog.objects.user_position(reviews_total, request.user) or
+        ActivityLog.objects.total_reviews_user_position(request.user))
 
     reviews_monthly_position = (
-        ActivityLog.objects.user_position(reviews_monthly, request.user)
-        or ActivityLog.objects.monthly_reviews_user_position(request.user))
+        ActivityLog.objects.user_position(reviews_monthly, request.user) or
+        ActivityLog.objects.monthly_reviews_user_position(request.user))
 
     limited_reviewer = is_limited_reviewer(request)
     data = context(
@@ -402,7 +403,8 @@ def exclude_admin_only_addons(queryset):
     return queryset.filter(admin_review=False)
 
 
-def _queue(request, TableObj, tab, qs=None, unlisted=False):
+def _queue(request, TableObj, tab, qs=None, unlisted=False,
+           SearchForm=forms.QueueSearchForm):
     if qs is None:
         qs = TableObj.Meta.model.objects.all()
 
@@ -410,18 +412,19 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False):
         qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
 
     if request.GET:
-        search_form = forms.QueueSearchForm(request.GET)
+        search_form = SearchForm(request.GET)
         if search_form.is_valid():
             qs = search_form.filter_qs(qs)
     else:
-        search_form = forms.QueueSearchForm()
+        search_form = SearchForm()
     admin_reviewer = is_admin_reviewer(request)
     if not admin_reviewer and not search_form.data.get('searching'):
         qs = exclude_admin_only_addons(qs)
 
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     order_by = request.GET.get('sort', TableObj.default_order_by())
-    order_by = TableObj.translate_sort_cols(order_by)
+    if hasattr(TableObj, 'translate_sort_cols'):
+        order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
     default = 100
     per_page = request.GET.get('per_page', default)
@@ -469,7 +472,10 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         counts = {
             'pending': construct_query(ViewUnlistedPendingQueue, **kw),
             'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
-            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw)}
+            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw),
+            'all': (ViewUnlistedAllList.objects if admin_reviewer
+                    else exclude_admin_only_addons(
+                        ViewUnlistedAllList.objects)).count}
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -575,7 +581,7 @@ def application_versions_json(request):
 
 
 @addons_reviewer_required
-@addon_view_factory(qs=Addon.with_unlisted.all)
+@addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon):
     if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
         raise http.Http404
@@ -835,7 +841,7 @@ def leaderboard(request):
 
 
 @addons_reviewer_required
-@addon_view_factory(qs=Addon.with_unlisted.all)
+@addon_view_factory(qs=Addon.unfiltered.all)
 def whiteboard(request, addon):
     form = forms.WhiteboardForm(request.POST or None, instance=addon)
 
@@ -843,3 +849,9 @@ def whiteboard(request, addon):
         addon = form.save()
         return redirect('editors.review', addon.pk)
     raise PermissionDenied
+
+
+@unlisted_addons_reviewer_required
+def unlisted_list(request):
+    return _queue(request, ViewUnlistedAllListTable, 'all',
+                  unlisted=True, SearchForm=forms.AllAddonSearchForm)

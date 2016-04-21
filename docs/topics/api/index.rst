@@ -31,7 +31,9 @@ using the API.
 
    overview
    auth
+   auth_internal
    accounts
    addons
+   internal
    signing
    stats

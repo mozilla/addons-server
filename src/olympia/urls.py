@@ -80,7 +80,10 @@ urlpatterns = patterns(
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
-    # SAMO/API
+    # SAMO (Legacy API)
+    ('^api/', include('olympia.legacy_api.urls')),
+
+    # API v3.
     ('^api/', include('olympia.api.urls')),
 
     ('^compatibility/', include('olympia.compat.urls')),
@@ -128,10 +131,6 @@ urlpatterns = patterns(
 
     url('^persona/(?P<persona_id>\d+)',
         'olympia.addons.views.persona_redirect', name='persona'),
-
-    # Redirect top-tags to tags/top
-    ('^top-tags/?',
-     lambda r: redirect('tags.top_cloud', permanent=True)),
 
     ('^personas/film and tv/?$',
      lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),

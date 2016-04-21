@@ -534,7 +534,7 @@ class NewAddonForm(AddonUploadForm):
     is_unlisted = forms.BooleanField(
         initial=False,
         required=False,
-        label=_lazy(u'Do not list my add-on on this site (beta)'),
+        label=_lazy(u'Do not list my add-on on this site'),
         help_text=_lazy(
             u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
@@ -709,11 +709,11 @@ class ReviewTypeForm(forms.Form):
 
 class Step3Form(AddonFormBasic):
     description = TransField(widget=TransTextarea, required=False)
+    tags = None
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'description',
-                  'homepage', 'support_email', 'support_url')
+        fields = ('name', 'slug', 'summary', 'description')
 
 
 class PreviewForm(happyforms.ModelForm):

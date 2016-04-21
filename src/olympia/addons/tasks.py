@@ -21,7 +21,7 @@ from olympia.versions.models import Version
 
 # pulling tasks from cron
 from . import cron  # noqa
-from . import search
+from .indexers import AddonIndexer
 from .models import (
     Addon, attach_categories, attach_tags, attach_translations, CompatOverride,
     IncompatibleVersions, Preview)
@@ -105,8 +105,8 @@ def delete_preview_files(id, **kw):
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
     transforms = (attach_categories, attach_tags, attach_translations)
-    index_objects(ids, Addon, search, kw.pop('index', None), transforms,
-                  Addon.with_unlisted)
+    index_objects(ids, Addon, AddonIndexer.extract_document,
+                  kw.pop('index', None), transforms, Addon.unfiltered)
 
 
 @task

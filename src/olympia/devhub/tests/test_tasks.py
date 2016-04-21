@@ -11,10 +11,10 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
-from nose.tools import eq_
 from PIL import Image
 
 from olympia import amo
+from olympia.applications.models import AppVersion
 from olympia.amo.tests import TestCase
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.addons.models import Addon
@@ -28,6 +28,10 @@ from olympia.versions.models import Version
 
 ADDON_TEST_FILES = os.path.join(os.path.dirname(__file__), 'addons')
 pytestmark = pytest.mark.django_db
+
+
+def get_addon_file(name):
+    return os.path.join(ADDON_TEST_FILES, name)
 
 
 def test_resize_icon_shrink():
@@ -77,7 +81,7 @@ def _uploader(resize_size, final_size):
     shutil.copyfile(img, src.name)
 
     src_image = Image.open(src.name)
-    eq_(src_image.size, original_size)
+    assert src_image.size == original_size
 
     if isinstance(final_size, list):
         uploadto = user_media_path('addon_icons')
@@ -90,7 +94,7 @@ def _uploader(resize_size, final_size):
 
             tasks.resize_icon(src.name, dest_name, resize_size, locally=True)
             dest_image = Image.open(open('%s-%s.png' % (dest_name, rsize)))
-            eq_(dest_image.size, fsize)
+            assert dest_image.size == fsize
 
             if os.path.exists(dest_image.filename):
                 os.remove(dest_image.filename)
@@ -100,12 +104,31 @@ def _uploader(resize_size, final_size):
         dest = tempfile.mktemp(suffix='.png')
         tasks.resize_icon(src.name, dest, resize_size, locally=True)
         dest_image = Image.open(dest)
-        eq_(dest_image.size, final_size)
+        assert dest_image.size == final_size
 
     assert not os.path.exists(src.name)
 
 
-class TestValidator(TestCase):
+class ValidatorTestCase(TestCase):
+    def setUp(self):
+        # 3.7a1pre is somehow required to exist by
+        # amo-validator.
+        # The other ones are app-versions we're using in our
+        # tests
+        self.create_appversion('firefox', '3.7a1pre')
+        self.create_appversion('firefox', '38.0a1')
+
+        # Required for WebExtensions
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '42.0')
+        self.create_appversion('firefox', '43.0')
+
+    def create_appversion(self, name, version):
+        return AppVersion.objects.create(
+            application=amo.APPS[name].id, version=version)
+
+
+class TestValidator(ValidatorTestCase):
     mock_sign_addon_warning = json.dumps({
         "warnings": 1,
         "errors": 0,
@@ -131,7 +154,7 @@ class TestValidator(TestCase):
     def setUp(self):
         super(TestValidator, self).setUp()
         self.upload = FileUpload.objects.create(
-            path=os.path.join(ADDON_TEST_FILES, 'desktop.xpi'))
+            path=get_addon_file('desktop.xpi'))
         assert not self.upload.valid
 
     def get_upload(self):
@@ -153,7 +176,7 @@ class TestValidator(TestCase):
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
 
-        self.upload.update(path=os.path.join(ADDON_TEST_FILES, 'desktop.xpi'))
+        self.upload.update(path=get_addon_file('desktop.xpi'))
 
         assert self.upload.validation is None
 
@@ -476,6 +499,95 @@ class TestTrackValidatorStats(TestCase):
         )
 
 
+class TestRunAddonsLinter(ValidatorTestCase):
+
+    def setUp(self):
+        super(TestRunAddonsLinter, self).setUp()
+
+        self.create_switch('addons-linter')
+
+        valid_path = get_addon_file('valid_webextension.xpi')
+        invalid_path = get_addon_file('invalid_webextension_missing_id.xpi')
+
+        self.valid_upload = FileUpload.objects.create(path=valid_path)
+        self.invalid_upload = FileUpload.objects.create(path=invalid_path)
+
+    def get_upload(self, upload):
+        return FileUpload.objects.get(pk=upload.pk)
+
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_calls_run_linter(self, run_linter):
+        run_linter.return_value = '{"errors": 0}'
+
+        assert not self.valid_upload.valid
+
+        tasks.validate(self.valid_upload)
+
+        upload = self.get_upload(self.valid_upload)
+        assert upload.valid, upload.validation
+
+    def test_run_linter_fail(self):
+        tasks.validate(self.invalid_upload)
+        assert not self.get_upload(self.invalid_upload).valid
+
+    def test_run_linter_path_doesnt_exist(self):
+        with pytest.raises(ValueError) as exc:
+            tasks.run_addons_linter('doesntexist')
+
+        assert exc.value.message == (
+            'Path "doesntexist" is not a file or directory or '
+            'does not exist.\n')
+
+
+class TestValidateFilePath(ValidatorTestCase):
+
+    def test_amo_validator_success(self):
+        result = tasks.validate_file_path(
+            get_addon_file('valid_firefox_addon.xpi'),
+            hash_=None, listed=True)
+        assert result['success']
+        assert not result['errors']
+        assert not result['warnings']
+
+    def test_amo_validator_fail_warning(self):
+        result = tasks.validate_file_path(
+            get_addon_file('invalid_firefox_addon_warning.xpi'),
+            hash_=None, listed=True)
+        assert not result['success']
+        assert not result['errors']
+        assert result['warnings']
+
+    def test_amo_validator_fail_error(self):
+        result = tasks.validate_file_path(
+            get_addon_file('invalid_firefox_addon_error.xpi'),
+            hash_=None, listed=True)
+        assert not result['success']
+        assert result['errors']
+        assert not result['warnings']
+
+    def test_amo_validator_addons_linter_success(self):
+        self.create_switch('addons-linter')
+
+        result = tasks.validate_file_path(
+            get_addon_file('valid_webextension.xpi'),
+            hash_=None, listed=True, is_webextension=True)
+        assert result['success']
+        assert not result['errors']
+        assert not result['warnings']
+
+    def test_amo_validator_addons_linter_error(self):
+        self.create_switch('addons-linter')
+
+        # This test assumes that `amo-validator` doesn't correctly
+        # validate a missing id in manifest.json
+        result = tasks.validate_file_path(
+            get_addon_file('invalid_webextension_missing_id.xpi'),
+            hash_=None, listed=True, is_webextension=True)
+        assert not result['success']
+        assert result['errors']
+        assert not result['warnings']
+
+
 class TestFlagBinary(TestCase):
     fixtures = ['base/addon_3615']
 
@@ -488,24 +600,24 @@ class TestFlagBinary(TestCase):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 1, '
                               '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+        assert Addon.objects.get(pk=self.addon.pk).binary
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
                               '"contains_binary_content": 1}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, True)
+        assert Addon.objects.get(pk=self.addon.pk).binary
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_flag_not_binary(self, _mock):
         _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
                               '"contains_binary_content": 0}}')
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+        assert not Addon.objects.get(pk=self.addon.pk).binary
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_flag_error(self, _mock):
         _mock.side_effect = RuntimeError()
         tasks.flag_binary([self.addon.pk])
-        eq_(Addon.objects.get(pk=self.addon.pk).binary, False)
+        assert not Addon.objects.get(pk=self.addon.pk).binary
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')

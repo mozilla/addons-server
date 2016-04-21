@@ -34,7 +34,7 @@ from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
-from django.utils.http import urlquote
+from django.utils.http import urlquote, urlunquote
 
 import bleach
 import html5lib
@@ -80,7 +80,7 @@ def urlparams(url_, hash=None, **query):
     query_dict = dict(urlparse.parse_qsl(smart_str(q))) if q else {}
     query_dict.update((k, v) for k, v in query.items())
 
-    query_string = urlencode([(k, v) for k, v in query_dict.items()
+    query_string = urlencode([(k, urlunquote(v)) for k, v in query_dict.items()
                              if v is not None])
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)

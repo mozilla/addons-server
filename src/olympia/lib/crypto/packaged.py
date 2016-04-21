@@ -140,11 +140,13 @@ def sign_file(file_obj, server):
     # Sign the file. If there's any exception, we skip the rest.
     cert_serial_num = unicode(call_signing(file_obj, endpoint))
 
+    size = storage.size(file_obj.file_path)
     # Save the certificate serial number for revocation if needed, and re-hash
     # the file now that it's been signed.
     file_obj.update(cert_serial_num=cert_serial_num,
                     hash=file_obj.generate_hash(),
-                    is_signed=True)
+                    is_signed=True,
+                    size=size)
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
     return file_obj
 

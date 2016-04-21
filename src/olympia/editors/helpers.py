@@ -22,7 +22,7 @@ from olympia.amo.utils import send_mail as amo_send_mail
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewUnlistedFullReviewQueue,
+    ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.sql_table import SQLTable
 from olympia.lib.crypto.packaged import sign_file
@@ -53,8 +53,8 @@ def file_review_status(addon, file):
             return _(u'Pending Preliminary Review')
     # Special case: prelim upgrading to full approval,
     # file can already be preliminary reviewed or not
-    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]
-            and addon.status == amo.STATUS_LITE_AND_NOMINATED):
+    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED] and
+            addon.status == amo.STATUS_LITE_AND_NOMINATED):
         if addon.latest_version.version_int == file.version.version_int:
             return _(u'Pending Full Review')
     if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
@@ -138,7 +138,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
                 'queue': _('Queue'),
                 'pending': _('Unlisted Pending Updates'),
                 'nominated': _('Unlisted Full Reviews'),
-                'prelim': _('Unlisted Preliminary Reviews')
+                'prelim': _('Unlisted Preliminary Reviews'),
+                'all': _('Unlisted All Add-ons'),
             }
 
         if items and not queue == 'queue':
@@ -208,7 +209,12 @@ def queue_tabnav(context):
                    (ngettext('Unlisted Preliminary Review ({0})',
                              'Unlisted Preliminary Reviews ({0})',
                              unlisted_counts['prelim'])
-                    .format(unlisted_counts['prelim'])))]
+                    .format(unlisted_counts['prelim']))),
+                  ('all', 'unlisted_queue_all',
+                   (ngettext('Unlisted All Add-ons ({0})',
+                             'Unlisted All Add-ons ({0})',
+                             unlisted_counts['all'])
+                    .format(unlisted_counts['all'])))]
 
     return tabnav
 
@@ -259,8 +265,12 @@ class ItemStateTable(object):
         self.item_number = page.start_index()
 
 
+def safe_substitute(string, *args):
+    return string % tuple(jinja2.escape(arg) for arg in args)
+
+
 class EditorQueueTable(SQLTable, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_lazy(u'Addon'))
+    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
     addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
     waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
     flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
@@ -270,6 +280,11 @@ class EditorQueueTable(SQLTable, ItemStateTable):
                               sortable=False)
     additional_info = tables.Column(
         verbose_name=_lazy(u'Additional'), sortable=False)
+
+    class Meta:
+        sortable = True
+        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
+                   'flags', 'applications', 'additional_info']
 
     def render_addon_name(self, row):
         url = reverse('editors.review', args=[row.addon_slug])
@@ -310,6 +325,15 @@ class EditorQueueTable(SQLTable, ItemStateTable):
                        u'title="%s"></div>' % flag
                        for flag in row.flags)
 
+    @classmethod
+    def translate_sort_cols(cls, colname):
+        legacy_sorts = {
+            'name': 'addon_name',
+            'age': 'waiting_time_min',
+            'type': 'addon_type_id',
+        }
+        return legacy_sorts.get(colname, colname)
+
     def render_waiting_time_min(self, row):
         if row.waiting_time_min == 0:
             r = _lazy('moments ago')
@@ -328,26 +352,59 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return jinja2.escape(r)
 
     @classmethod
-    def translate_sort_cols(cls, colname):
-        legacy_sorts = {
-            'name': 'addon_name',
-            'age': 'waiting_time_min',
-            'type': 'addon_type_id',
-        }
-        return legacy_sorts.get(colname, colname)
-
-    @classmethod
     def default_order_by(cls):
         return '-waiting_time_min'
 
-    @classmethod
-    def review_url(cls, row):
-        return reverse('editors.review', args=[row.addon_slug])
+
+class EditorAllListTable(SQLTable, ItemStateTable):
+    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
+    guid = tables.Column(verbose_name=_lazy(u'GUID'))
+    authors = tables.Column(verbose_name=_lazy(u'Authors'),
+                            sortable=False)
+    last_review = tables.Column(verbose_name=_lazy(u'Last Review'),
+                                sortable=False)
+    version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
 
     class Meta:
-        sortable = True
-        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
-                   'flags', 'applications', 'additional_info']
+        columns = ['addon_name', 'guid', 'authors', 'last_review',
+                   'version_date']
+
+    def render_addon_name(self, row):
+        url = reverse('editors.review', args=[
+            row.addon_slug if row.addon_slug is not None else row.id])
+        self.increment_item()
+        return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
+                               url, row.addon_name, row.latest_version)
+
+    def render_guid(self, row):
+        return safe_substitute(u'%s', row.guid)
+
+    def render_version_date(self, row):
+        return safe_substitute(u'<span>%s</span>', row.version_date)
+
+    def render_last_review(self, row):
+        if row.review_version_num is None:
+            return _('No Reviews')
+        return safe_substitute(u'<span><em>%s</em> on %s</span>',
+                               row.review_version_num, row.review_date)
+
+    def render_authors(self, row):
+        authors = row.authors
+        if not len(authors):
+            return ''
+        more = '\n'.join(
+            safe_substitute(u'%s', uname) for (_, uname) in authors)
+        author_links = ''.join(
+            safe_substitute(u'<a href="%s">%s</a>',
+                            UserProfile.create_user_url(id_, username=uname),
+                            uname)
+            for (id_, uname) in authors[0:3])
+        return u'<span title="%s">%s%s</span>' % (
+            more, author_links, '...' if len(authors) > 3 else '')
+
+    @classmethod
+    def default_order_by(cls):
+        return '-version_date'
 
 
 class ViewPendingQueueTable(EditorQueueTable):
@@ -390,6 +447,12 @@ class ViewUnlistedPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewUnlistedPreliminaryQueue
+
+
+class ViewUnlistedAllListTable(EditorAllListTable):
+
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedAllList
 
 
 log = commonware.log.getLogger('z.mailer')
@@ -476,10 +539,15 @@ class ReviewHelper:
             self.handler = ReviewFiles(request, addon, version, 'pending')
 
     def get_actions(self, request, addon):
-        labels, details = self._review_actions()
-
         actions = SortedDict()
-        reviewable_because_complete = addon.status != amo.STATUS_NULL
+        if request is None:
+            # If request is not set, it means we are just (ab)using the
+            # ReviewHelper for its `handler` attribute and we don't care about
+            # the actions.
+            return actions
+        labels, details = self._review_actions()
+        reviewable_because_complete = addon.status not in (
+            amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
             not addon.admin_review or
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
@@ -669,7 +737,10 @@ class ReviewBase(object):
         emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         if self.version:
-            self.version.update(has_info_request=True)
+            kw = {'has_info_request': True}
+            if not self.addon.is_listed and not self.version.reviewed:
+                kw['reviewed'] = datetime.datetime.now()
+            self.version.update(**kw)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
         subject = u'Mozilla Add-ons: %s %s' % (
@@ -691,6 +762,8 @@ class ReviewBase(object):
             kw = {'has_editor_comment': True}
             if self.data.get('clear_info_request'):
                 kw['has_info_request'] = False
+            if not self.addon.is_listed and not self.version.reviewed:
+                kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
@@ -700,8 +773,9 @@ class ReviewAddon(ReviewBase):
     def __init__(self, *args, **kwargs):
         super(ReviewAddon, self).__init__(*args, **kwargs)
 
-        self.is_upgrade = (self.addon.status == amo.STATUS_LITE_AND_NOMINATED
-                           and self.review_type == 'nominated')
+        self.is_upgrade = (
+            self.addon.status == amo.STATUS_LITE_AND_NOMINATED and
+            self.review_type == 'nominated')
 
     def set_data(self, data):
         self.data = data
