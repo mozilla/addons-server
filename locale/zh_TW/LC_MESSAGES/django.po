@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-19 15:20+0000\n"
+"PO-Revision-Date: 2016-04-21 16:12+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -174,7 +174,7 @@ msgstr "使用者可以選擇比這個金額更多或較少的捐助。"
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
-msgstr ""
+msgstr "使用者會在附加元件管理員中（Firefox 4 或更新版）被詢問，只對桌面版有效。"
 
 # Column name in a table.
 #: src/olympia/addons/models.py:1802
@@ -2753,7 +2753,7 @@ msgstr "已建立收藏集！"
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
-msgstr ""
+msgstr "下面是您的新收藏集。需要的話您可以 <a href=\"%(url)s\">編輯其他設定</a>。"
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -3273,7 +3273,7 @@ msgstr "您收藏集中的附加元件"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
-msgstr ""
+msgstr "若要將附加元件加入至此收藏集，請在下方的欄位輸入該元件名稱，然後按 Enter。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -6197,6 +6197,9 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"若您找到網站上的問題，我們很樂意修正。請到 GitHub <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">回報 "
+"Bug</a>，當中請包含問題所在位置，以及您是怎麼遇到這個問題的。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
