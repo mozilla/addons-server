@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-21 15:02+0000\n"
+"PO-Revision-Date: 2016-04-21 22:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4779,57 +4779,57 @@ msgstr "Wubjerće najprjedy nałoženje"
 
 #: src/olympia/devhub/forms.py:841
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Wjace hač 3 trěbnych přidatkow móžno njeje."
 
 #: src/olympia/devhub/helpers.py:45
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Dokumentacija přidatka :: Centrum wuwiwarjow"
 
 #: src/olympia/devhub/helpers.py:69
 msgid "My Submissions"
-msgstr ""
+msgstr "Moje zapodaća"
 
 #: src/olympia/devhub/helpers.py:103
 msgid "Developer Docs"
-msgstr ""
+msgstr "Wuwiwarske dokumenty"
 
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py:200
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} zmylk"
+msgstr[1] "{0} zmylkaj"
+msgstr[2] "{0} zmylki"
+msgstr[3] "{0} zmylkow"
 
 #. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/helpers.py:203
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} warnowanje"
+msgstr[1] "{0} warnowani"
+msgstr[2] "{0} warnowanja"
+msgstr[3] "{0} warnowanjow"
 
 #: src/olympia/devhub/models.py:375
 #: src/olympia/reviews/templates/reviews/add.html:58
 msgid "Review"
-msgstr ""
+msgstr "Pohódnoćenje"
 
 #: src/olympia/devhub/tasks.py:583
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s je z %s (%s) wotmołwił."
 
 #: src/olympia/devhub/tasks.py:587
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Zwisk z „%s“ je čas překročił."
 
 #: src/olympia/devhub/tasks.py:589
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Host na „%s“ njeda so kontaktować."
 
 #: src/olympia/devhub/utils.py:105
 #, python-format
@@ -4837,151 +4837,158 @@ msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated."
 " After addressing the visible messages, you'll be able to see the others."
 msgstr ""
+"Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s "
+"powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe "
+"widźeć."
 
 #: src/olympia/devhub/views.py:181
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Wšě moje přidatki"
 
 #: src/olympia/devhub/views.py:208
 msgid "All Activity"
-msgstr ""
+msgstr "Wša aktiwita"
 
 #: src/olympia/devhub/views.py:209
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Aktualizacije přidatkow"
 
 #: src/olympia/devhub/views.py:210
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status přidatka"
 
 #: src/olympia/devhub/views.py:211
 msgid "User Collections"
-msgstr ""
+msgstr "Wužiwarske zběrki"
 
 #: src/olympia/devhub/views.py:212
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:68
 #: src/olympia/pages/templates/pages/dev_faq.html:38
 #: src/olympia/pages/templates/pages/dev_faq.html:484
 msgid "User Reviews"
-msgstr ""
+msgstr "Wužiwarske pohódnoćenja"
 
 #: src/olympia/devhub/views.py:325 src/olympia/devhub/views.py:329
 #: src/olympia/devhub/views.py:484 src/olympia/devhub/views.py:513
 #: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1156
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Změny su so wuspěšnje składowali."
 
 #: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1637
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Prošu přepytujće formular za zmylkami."
 
 #: src/olympia/devhub/views.py:344
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Přidatk njeda so zhašeć. Znjemóžńće tutón přidatk město toho."
 
 #: src/olympia/devhub/views.py:354
 msgid "Theme deleted."
-msgstr ""
+msgstr "Drasta je so zhašała."
 
 #: src/olympia/devhub/views.py:354
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Přidatk je so zhašał."
 
 #: src/olympia/devhub/views.py:360
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL-mjeno bě wopak. Drasta njeje so zhašała."
 
 #: src/olympia/devhub/views.py:365
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL-mjeno bě wopak. Přidatk njeje so zhašał."
 
 #: src/olympia/devhub/views.py:449
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Awtor je so wašemu přidatkej přidał"
 
 #: src/olympia/devhub/views.py:456
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Awtor ma rólu, kotraž je so za waš přidatk změniła"
 
 #: src/olympia/devhub/views.py:476
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Awtor je so z wašeho přidatka wotstronił"
 
 #: src/olympia/devhub/views.py:519
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Při zapodawanju su zmylki wustupili."
 
 #: src/olympia/devhub/views.py:583
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Přidatk přepruwować"
 
 #: src/olympia/devhub/views.py:594
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć přidatka přepruwować"
 
 #: src/olympia/devhub/views.py:808 src/olympia/signing/views.py:95
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
 #: src/olympia/devhub/views.py:1051 src/olympia/users/forms.py:471
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobrazy dyrbja format PNG abo JPG měć."
 
 #: src/olympia/devhub/views.py:1055
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Symbole njedadźa so animować."
 
 #: src/olympia/devhub/views.py:1057
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Wobrazy njedadźa so animować."
 
 #: src/olympia/devhub/views.py:1070
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Wobrazy njesmědźa wjetše hač %d KB być."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py:1080
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Wobraz dyrbi eksaktnje {0} pikselow šěroki a {1} pikselow wysoki być."
 
 #: src/olympia/devhub/views.py:1087
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
 
 #: src/olympia/devhub/views.py:1195
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Wersija %s je so znjemóžniła."
 
 #: src/olympia/devhub/views.py:1199
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Wersija %s je so zhašała."
 
 #: src/olympia/devhub/views.py:1209
 msgid ""
 "This upload has failed validation, and may lack complete validation results."
 " Please take due care when reviewing it."
 msgstr ""
+"Tute nahraće njeje přepruwowanje wobstało a nima snano žane dospołne "
+"přepruwowanske wuslědki. Prošu dźiwajće na to, hdyž jo přepruwujeće."
 
 #: src/olympia/devhub/views.py:1683
 msgid "Preliminary Review Requested."
-msgstr ""
+msgstr "Nachwilne přepruwowanje požadane."
 
 #: src/olympia/devhub/views.py:1684
 msgid "Full Review Requested."
-msgstr ""
+msgstr "Dospołne přepruwowanje požadane."
 
 #: src/olympia/devhub/views.py:1783
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
 msgstr ""
+"Waše stare daty su so wotwołali a hižo płaćiwe njejsu. Zaktualizujće na "
+"kóždy pad wšě API-klienty z nowymi datami."
 
 #: src/olympia/devhub/views.py:1801
 msgid "New API key created"
-msgstr ""
+msgstr "Nowy API-kluč wutworjeny"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -4989,24 +4996,27 @@ msgid ""
 "Agreement. It also links to our Privacy Notice which explains how we handle "
 "your information."
 msgstr ""
+"Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo "
+"rozdźělowanju přidatkow Firefox. Wobsahuje tež wotkaz k našeje pokazce "
+"priwatnosće, kotraž wujasnja, kak z wašimi informacijemi wobchadźamy."
 
 #: src/olympia/devhub/templates/devhub/agreement.html:13
 msgid "Printable Version"
-msgstr ""
+msgstr "Ćišćomna wersija"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:19
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Sym přezjedny z tutym dojednanjom"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:21
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "abo <a href=\"{0}\">Přetorhnyć</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html:23
 #: src/olympia/devhub/templates/devhub/base_impala.html:20
 #: src/olympia/discovery/templates/discovery/addons/base.html:17
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Wróćo k přidatkam"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -5014,7 +5024,7 @@ msgstr ""
 #: src/olympia/search/templates/search/results.html:9
 #: src/olympia/search/templates/search/mobile/results.html:6
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Pytać"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:6
 #: src/olympia/devhub/templates/devhub/search.html:8
@@ -5028,50 +5038,52 @@ msgstr ""
 #: src/olympia/templates/search.html:14
 #: src/olympia/templates/impala/search.html:18
 msgid "Search"
-msgstr ""
+msgstr "Pytać"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:11
 #: src/olympia/devhub/templates/devhub/devhub_search.html:15
 #: src/olympia/search/templates/search/collections.html:18
 #: src/olympia/search/templates/search/personas.html:20
 msgid "Search Results"
-msgstr ""
+msgstr "Pytanske wuslědki"
 
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html:13
 #: src/olympia/search/templates/search/results.html:11
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Pytanske wuslědki za „{0}“"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:19
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Prošu zapodajće někotre pytanske zapřijeća."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html:21
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Wuslědki so začituja&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Přidatk zapodać"
 
 #: src/olympia/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Přepruwowarjo AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html:29
 msgid ""
 "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed "
 "faster."
 msgstr ""
+"Přińdźće doprědka! Stańće so dźensa z přepruwowarjom na AMO a dajće swojim "
+"přidatkam spěšnišo přepruwować."
 
 #: src/olympia/devhub/templates/devhub/index.html:32
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Stańće so z přepruwowarjom na AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html:39
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Zhońće wšitko wo přidatkach"
 
 #: src/olympia/devhub/templates/devhub/index.html:41
 msgid ""
@@ -5082,58 +5094,67 @@ msgid ""
 "and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
 "already have all the necessary skills to make a great add-on."
 msgstr ""
+"Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske "
+"dožiwjenje polěpšić. Jeli sće webwuwiwar a so w <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a "
+"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> wuznawaće, "
+"maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
 
 #: src/olympia/devhub/templates/devhub/index.html:51
 msgid ""
 "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
 "Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Dźiće k <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a> (wuwiwarska syć Mozilla), zo byšće wšo zhonił, štož dyrbiće "
+"wědźeć, zo byšće započał."
 
 #: src/olympia/devhub/templates/devhub/index.html:58
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Započńće přidatki wutworjeć"
 
 #: src/olympia/devhub/templates/devhub/index.html:86
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:25
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:20
 #: src/olympia/devhub/templates/devhub/personas/edit.html:43
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/index.html:90
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:87
 msgid "Visibility:"
-msgstr ""
+msgstr "Widźomnosć:"
 
 #: src/olympia/devhub/templates/devhub/index.html:101
 msgid "Latest Version:"
-msgstr ""
+msgstr "Najnowša wersija:"
 
 #: src/olympia/devhub/templates/devhub/index.html:109
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:131
 #: src/olympia/devhub/templates/devhub/personas/edit.html:49
 msgid "Queue Position:"
-msgstr ""
+msgstr "Pozicija w čakanskim rynku:"
 
 #: src/olympia/devhub/templates/devhub/index.html:110
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:50
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s z %(total)s"
 
 #: src/olympia/devhub/templates/devhub/index.html:120
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
-msgstr ""
+msgstr "Najnowšu wersiju nahrać"
 
 #: src/olympia/devhub/templates/devhub/index.html:128
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Wšě přidatki pokazać ►"
 
 #: src/olympia/devhub/templates/devhub/index.html:131
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Wozjewće swoje přidatki!"
 
 #: src/olympia/devhub/templates/devhub/index.html:136
 #, python-format
@@ -5141,31 +5162,33 @@ msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
 "href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Nahrajće <a href=\"%(addon_url)s\">přidatk</a> abo <a "
+"href=\"%(theme_url)s\">drastu</a>, zo byšće započał!"
 
 #: src/olympia/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Wróćo k startowej stronje centruma wuwiwarjow"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Centrum wuwiwarjow <small>přidatkow</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html:20
 msgid "more add-ons..."
-msgstr ""
+msgstr "dalše přidatki..."
 
 #: src/olympia/devhub/templates/devhub/nav.html:32
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentacija"
 
 #: src/olympia/devhub/templates/devhub/nav.html:35
 msgid "Extension Development"
-msgstr ""
+msgstr "Wuwiwanje rozšěrjenjow"
 
 #: src/olympia/devhub/templates/devhub/nav.html:37
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Lochke drasty"
 
 #: src/olympia/devhub/templates/devhub/nav.html:39
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:6
@@ -5179,106 +5202,110 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:38
 #: src/olympia/devhub/templates/devhub/docs/policies.html:39
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Prawidła přidatkow"
 
 #: src/olympia/devhub/templates/devhub/nav.html:46
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Pruwowanski program za přidatki"
 
 #: src/olympia/devhub/templates/devhub/nav.html:48
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Kontrola kompatibelnosće přidatkow"
 
 #: src/olympia/devhub/templates/devhub/nav.html:50
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Wuwiwarske přidatki"
 
 #: src/olympia/devhub/templates/devhub/nav.html:54
 msgid "Community & Support"
-msgstr ""
+msgstr "Zhromadźenstwo a pomoc"
 
 #: src/olympia/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog přidatkow"
 
 #: src/olympia/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Forum přidatkow"
 
 #: src/olympia/devhub/templates/devhub/nav.html:61
 msgid "More Resources"
-msgstr ""
+msgstr "Dalše resursy"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Wuwiwarske dokumenty přepytować"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:13
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Wužiwajće slědowace polo, zo byšće swój přidatkowy pakćik nahrał."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:19
 msgid ""
 "After upload, a series of automated validation tests will run to check "
 "compatibility with the following application version:"
 msgstr ""
+"Po nahrawanju so rjad awtomatiskich přepruwowanskich testow přewjedźe, zo "
+"bychu komptatibelnosć ze slědowacej wersiju nałoženja přepruwowali:"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:34
 msgid ""
 "After upload, a series of automated validation tests will be run on your "
 "file."
 msgstr ""
+"Po nahrawanju so rjad awtomatiskich přepruwowanskich testow na wašej dataji "
+"přewjedźe."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:42
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Chceće, zo so waš přidatk na tutym sydle rozdźěluje?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Přepruwowanske wuslědki za {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Přepruwowanske wuslědki"
 
 #: src/olympia/devhub/templates/devhub/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Přepruwowany:"
 
 #: src/olympia/devhub/templates/devhub/validation.html:26
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testowany na kompatibelnosć přećiwo:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4
 #: src/olympia/devhub/templates/devhub/addons/activity.html:20
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Najnowša aktiwita za moje přidatki"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:14
 #: src/olympia/devhub/templates/devhub/addons/activity.html:19
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:33
 msgid "Recent Activity"
-msgstr ""
+msgstr "Najnowša aktiwita"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Najnowša aktiwita za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:36
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> wot %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:59
 msgid "Refine Activity"
-msgstr ""
+msgstr "Aktiwitu polěpšić"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:72
 msgid "Activity"
-msgstr ""
+msgstr "Aktiwita"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:83
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:34
@@ -5286,7 +5313,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:4
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:6
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Tutón kanal abonować"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:7
 #, python-format
