@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2015-06-18 05:41+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2016-04-22 12:46+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -975,7 +975,7 @@ msgstr "Izvedite več o Firefoxu"
 
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "ali <b><a class=\"button installer\" href=\"{url}\">prenesite vseeno</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -3445,6 +3445,8 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"Za vključitev dodatka v to zbirko v spodnje polje vnesite njegovo ime in "
+"pritisnite Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -5032,7 +5034,7 @@ msgstr "Nalaganje rezultatov &hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html:22
 msgid "Submit an Add-on"
-msgstr "Pošljite dodatek"
+msgstr "Pošlji dodatek"
 
 #: src/olympia/devhub/templates/devhub/index.html:27
 msgid "AMO Reviewers"
@@ -9552,7 +9554,7 @@ msgstr "Platforme"
 
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Išči po imenu dodatka/avtorjevi e-pošti/GUID-ju"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py:342
@@ -16237,4 +16239,4 @@ msgstr "Zavedi e-pošto, namesto da se jo pošlje"
 
 #: src/olympia/zadmin/forms.py:215
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Izbrisanih različic ni mogoče spreminjati."
