@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-21 22:23+0000\n"
+"PO-Revision-Date: 2016-04-22 19:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5322,6 +5322,10 @@ msgid ""
 "latest release of %(app_name)s. Please consider updating your add-on's "
 "compatibility info, or uploading a newer version of this add-on."
 msgstr ""
+"Tutón přidatk je inkompatibelny z <b>%(app_name)s%(app_version)s</b>, "
+"najnowšej wersiju %(app_name)s. Prošu rozwažće aktualizowanje informacijow "
+"kompatibelnosće swojeho přidatka, abo nahrawanje nowšeje wersije tutoho "
+"přidatka."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html:15
 #, python-format
@@ -5331,19 +5335,23 @@ msgid ""
 "href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a "
 "href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-"
+"updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a "
+"href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a "
+"href=\"#\" class=\"close\">Ignorować</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html:5
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Kompatibelnosć z nałoženjemi pokazać a aktualizować."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html:6
 #: src/olympia/devhub/templates/devhub/versions/edit.html:44
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:2
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć aktualizować"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:4
 #: src/olympia/devhub/templates/devhub/versions/edit.html:45
@@ -5352,15 +5360,18 @@ msgid ""
 "on even if the install manifest in the package indicates that the add-on is "
 "incompatible."
 msgstr ""
+"Přiměrjenje nałoženskich informacijow tu wužiwarjam zmóžnja, waš přidatk "
+"instalować, samo hdyž instalowanski manifest w pakćiku podawa, zo přidatk je"
+" inkompatibelny."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:18
 msgid "Supported Versions"
-msgstr ""
+msgstr "Podpěrane wersije"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:31
 #: src/olympia/devhub/templates/devhub/versions/edit.html:63
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Druhe nałoženje přidać&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:38
 #: src/olympia/devhub/templates/devhub/addons/owner.html:86
@@ -5372,26 +5383,26 @@ msgstr ""
 #: src/olympia/templates/impala/base.html:158
 #: src/olympia/templates/impala/base.html:168
 msgid "Close"
-msgstr ""
+msgstr "Začinić"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:43
 #: src/olympia/zadmin/templates/zadmin/index.html:22
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s wot %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:52
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Starša aktiwita za moje přidatki"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:76
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> drasta"
+msgstr[1] "<b>{0}</b> drasće"
+msgstr[2] "<b>{0}</b> drasty"
+msgstr[3] "<b>{0}</b> drastow"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -5400,29 +5411,29 @@ msgstr[3] ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:6
 #: src/olympia/editors/templates/editors/themes/single.html:37
 msgid "Edit Listing"
-msgstr ""
+msgstr "Zapisk lisćiny wobdźěłać"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:13
 #: src/olympia/devhub/templates/devhub/includes/macros.html:18
 #: src/olympia/translations/templates/translations/all-locales.html:6
 msgid "None"
-msgstr ""
+msgstr "Žadyn"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:4
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:52
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Awtorow a licencu rjadować"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:29
 #: src/olympia/editors/helpers.py:362
 #: src/olympia/editors/templates/editors/review.html:270
 msgid "Authors"
-msgstr ""
+msgstr "Awtorojo"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:30
 msgid "About author roles"
-msgstr ""
+msgstr "Wo awtorowych rólach"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:78
 msgid ""
@@ -5433,12 +5444,19 @@ msgid ""
 "authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's "
 "settings and statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> "
+"<li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, "
+"inkluziwnje přidawanje a wotstronjenje druhich awtorow</li> "
+"<li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo "
+"přidawanja a wotstronjenja druhich awtorow a rjadowanja płaćenjow</li> "
+"<li><b>Wobhladowar:</b> Móže sej nastajenja a statistiku přidatka wobhladać,"
+" ale njemóže změny přewjesć</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Wuwiwarski profil rjadować"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:16
 #, python-format
@@ -5446,10 +5464,12 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
+"Waš <a href=\"%(url)s\">wuwiwarski profil</a> je tuchwilu "
+"<strong>zjawny</strong> a <strong>trěbny</strong> za přinoški."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
-msgstr ""
+msgstr "Wobaj wotstronić"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:27
 #, python-format
@@ -5457,31 +5477,33 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong>."
 msgstr ""
+"Waš <a href=\"%(url)s\">wuwiwarski profil</a> je tuchwilu "
+"<strong>zjawny</strong>."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:33
 msgid "Remove Profile"
-msgstr ""
+msgstr "Profil wotstronić"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:42
 msgid "Create Profile"
-msgstr ""
+msgstr "Profil załožić"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:7
 msgid "Basic Information"
-msgstr ""
+msgstr "Zakładne informacije"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:17
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Zakładne informacije za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:32
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL přidatka"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:33
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Wubjerće krótke, jónkróćne adresowe mjeno za URL za tutón přidatk."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:35
@@ -5489,11 +5511,11 @@ msgstr ""
 #: src/olympia/editors/templates/editors/review.html:255
 #: src/olympia/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk pokazać"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:50
 msgid "Summary"
-msgstr ""
+msgstr "Zjeće"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:52
 msgid ""
@@ -5501,6 +5523,9 @@ msgid ""
 "in search and browse listings, as well as at the top of your add-on's "
 "details page. It is only relevant for listed add-ons."
 msgstr ""
+"Krótke wujasnjenje zakładneje funkcionalnosće wašeho přidatka, kotrež so w "
+"pytanskich wuslědkach a lisćinach pokazuje, kaž tež horjeka na lisćinje "
+"podrobnosćow wašeho přidatka. Je jenož wažne za nalistowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:73
 msgid ""
@@ -5508,6 +5533,10 @@ msgid ""
 " fit your add-on's functionality for the most exposure. It is only relevant "
 "for listed add-ons."
 msgstr ""
+"Kategorije su najwažniša móžnosć, z kotarejž pomocu wužiwarjo móža přidatki "
+"přepytować. Wubjerće kategoriju, kotraž hodźi so k funkcionalnosći wašeho "
+"přidatka, zo byšće tak wulki kaž móžno publikum docpěk. To je relewantne "
+"jenož za nalistowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:90
 #, python-format
@@ -5516,6 +5545,10 @@ msgid ""
 "application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if "
 "there is a reason you need to modify your categories."
 msgstr ""
+"Kategorije njedadźa so změnić, dołhož so waš přidatk za tute nałoženje "
+"předstaja. Prošu pósćelće e-mejlku na <a "
+"href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje "
+"kategorije změnił."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:119
 msgid ""
@@ -5523,38 +5556,41 @@ msgid ""
 "tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Znački wužiwarjam pomhaja, waš přidatk namakać a měli krótke pomjenjowanja "
+"kaž „rajtarki“, „symbolowa lajsta“ abo „Twitter“ być. Móžeće maksimalnje {0}"
+" značkow měć. To je jenož relewantne za nalistowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:129
 #: src/olympia/devhub/templates/devhub/personas/edit.html:97
 #: src/olympia/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Přez komu wotdźělene, minimalnje {0} znamješko."
+msgstr[1] "Přez komu wotdźělene, minimalnje {0} znamješce."
+msgstr[2] "Přez komu wotdźělene, minimalnje {0} znamješka."
+msgstr[3] "Přez komu wotdźělene, minimalnje {0} znamješkow."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:100
 #: src/olympia/devhub/templates/devhub/personas/submit.html:49
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Přikład: ćmowy, kino, čorny. Maksimalnje 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:136
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Rezerwowana značka:"
+msgstr[1] "Rezerwowanej značce:"
+msgstr[2] "Rezerwowane znački:"
+msgstr[3] "Rezerwowane znački:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
-msgstr ""
+msgstr "Podrobnosće přidatka"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:15
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Podrobnosće přidatka za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:22
 msgid ""
@@ -5562,11 +5598,14 @@ msgid ""
 "information. This field is only displayed on the add-on's details page. It "
 "is only relevant for listed add-ons."
 msgstr ""
+"Dlěše wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych "
+"informacijow. Tute polo je so jenož na stronje podrobnosćow přidatka "
+"pokazuje. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:44
 #: src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardna rěč"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:45
 msgid ""
@@ -5574,6 +5613,9 @@ msgid ""
 "override it with a locale-specific translation. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Informacije wo wašim přidatku so jenož w tutej rěči pokazuja, chibazo "
+"přepisujeće ju přez přełožk za wěstu rěč. To je jenož za nalistowane "
+"přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:61
 #: src/olympia/users/forms.py:311
@@ -5581,7 +5623,7 @@ msgstr ""
 #: src/olympia/users/templates/users/register.html:57
 #: src/olympia/users/templates/users/vcard.html:22
 msgid "Homepage"
-msgstr ""
+msgstr "Startowa strona"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:63
 msgid ""
@@ -5589,19 +5631,22 @@ msgid ""
 " is localized into other languages multiple translations of this field can "
 "be added. It is only relevant for listed add-ons."
 msgstr ""
+"Jeli waš přidatk ma druhu startowu stronu, zapodajće tu jeje adresu. Jeli "
+"waše websydło je so do druhich rěčow přełožili, móžeće wjacore přełožki "
+"tutoho pola přidać. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
-msgstr ""
+msgstr "Wobrazy"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:5
 msgid "Support Information"
-msgstr ""
+msgstr "Imformacije pomocy"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:15
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informacije pomocy za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:22
 msgid ""
