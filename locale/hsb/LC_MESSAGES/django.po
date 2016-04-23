@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-22 19:35+0000\n"
+"PO-Revision-Date: 2016-04-23 11:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5655,6 +5655,9 @@ msgid ""
 "translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju "
+"tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho "
+"pola přidać. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:45
 msgid ""
@@ -5662,15 +5665,18 @@ msgid ""
 "your website is localized into other languages, multiple translations of "
 "this field can be added. It is only relevant for listed add-ons."
 msgstr ""
+"Jeli waš přidatk ma websydło pomocy abo forum, zapodajće tu jeho adresu. "
+"Jeli waše websydło je do druhich rěčow přełožene, móžeće wjacore přełožki "
+"tutoho pola přidać. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:6
 msgid "Technical Details"
-msgstr ""
+msgstr "Techniske podrobnoscé"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:16
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Techniske podrobnosće za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:23
 msgid ""
@@ -5679,24 +5685,31 @@ msgid ""
 "major bugs, information on how to report bugs, anticipated release date of a"
 " new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Kónčni wužiwarjo chcedźa snano informacije wědźeć, kotrež do zjeća abo "
+"wopisanja přidatka runjewon njesłušeja. Typiske wužiwanja su znate "
+"programowe zmylki, informacije wo wozjewjenju programowych zmylkow, "
+"wočakowany datum wuńdźenja atd. To je jenož za nalistowane přidatki "
+"relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Limit 3"
-msgstr ""
+msgstr "Maksimalnje 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:68
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Přidatkowe markěrowanja"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:69
 msgid ""
 "These flags are used to classify add-ons. It is only relevant for listed "
 "add-ons."
 msgstr ""
+"Tute markěrowanja so wužiwaja, zo bychu přidatki klasifikowali. To je jenož "
+"za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:74
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "To je přidatk, kotryž je za wěste sydło mysleny."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:77
 msgid "This add-on requires external software."
