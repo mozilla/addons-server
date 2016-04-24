@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 11:14+0000\n"
+"PO-Revision-Date: 2016-04-23 21:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5713,82 +5713,94 @@ msgstr "To je přidatk, kotryž je za wěste sydło mysleny."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:77
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Přidatk sej eksternu softwaru wužaduje."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:89
 msgid "View Source?"
-msgstr ""
+msgstr "Žórłowy kod pokazać?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:90
 msgid ""
 "Whether the source of your add-on can be displayed in our online viewer. It "
 "is only relevant for listed add-ons."
 msgstr ""
+"Postaja, hač žórłowy kod da so za waš přidatk w našim wobhladowanskim "
+"programje online pokazać. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:94
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Žórłowy kod tutoho přidatka je zjawnje widźomny."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:96
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Ně, žórłowy kod tutoho přidatka zjawnje widźomny njeje."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:101
 msgid "Public Stats?"
-msgstr ""
+msgstr "Zjawna statistika?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:102
 msgid ""
 "Whether the download and usage stats of your add-on can be displayed in our "
 "online viewer. It is only relevant for listed add-ons."
 msgstr ""
+"Postaja, hač sćehnjenska a wužiwanska statistika wašeho přidatka da so w "
+"našim wobhladowanskim programje online pokazać. To je jenož za nalistowane "
+"přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:107
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statistika tutoho přidatka je zjawnje widźomna."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:109
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Ně, statistika tutoho přidatka zjawnje widźomna njeje."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:115
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "SDK aktualizować?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:116
 msgid ""
 "If selected, we will try to automatically upgrade your add-on when a new "
 "version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
+"Jeli to je wubrane, pospytujemy waš přidatk awtomatisce aktualizować, hdyž "
+"nowa wersija SDK je wušła. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:121
 msgid ""
 "This add-on will be automatically upgraded to new versions of the Add-on "
 "SDK."
 msgstr ""
+"Tutón přidatk budźe so awtomatisce na nowe wersije přidatkoweho SDK "
+"aktualizować."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:123
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Ně, tutón přidatk budźe so manuelnje aktualizować."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:129
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Uniwerselny jónkróćny identifikator"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:130
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:132
 msgid ""
 "The UUID of your add-on is specified in its install manifest and uniquely "
 "identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
+"UUID wašeho přidatka so w jeho instalowanskim manifesće podawa a "
+"identifikuje jón jako jónkróćny. Njemóžeće swój UUID změnić, po tym zo sće "
+"jón zapodał."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:143
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:144
 msgid "Whiteboard"
-msgstr ""
+msgstr "Informaciska taflička"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:146
 msgid ""
@@ -5797,22 +5809,26 @@ msgid ""
 "addon, and any additional information that may help. This whiteboard is also"
 " editable by editors."
 msgstr ""
+"Informaciska taflička je městno, hdźež móžeće redaktorej informacije podać, "
+"kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo"
+" byšće móžnosće za testowanje přidatka a dalše informacije podał, kotrež "
+"móhli pomhać. Informaciska taflička da so tež wot redaktorow wobdźěłać."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html:9
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Tutón wotwisny přidatk wotstronić"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html:41
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Zapodajće mjeno přidatka"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Přidatkowe medije za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr ""
+msgstr "Přidatkowy symbol"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid ""
@@ -5821,95 +5837,103 @@ msgid ""
 "the following image types: .png, .jpg. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Nahrajće symbol za swój přidatk abo wubjerće jedyn z našich. Symbol so "
+"nimale wšudźe zwobraznja, hdźež waš přidatk je. Nahrate wobrazy dyrbja jedyn"
+" ze slědowacych wobrazowych typow měć: .png, .jpg. To je jenož za "
+"nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Wubjerće symbol za swój přidatk:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:37
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
+"Wužiwa so w zapiskach lisćinow přidatkow, kaž na přikład w pytanskich "
+"wuslědkach a předstajenych přidatkach."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Wužiwa so na stronach podrobnosćow přidatka."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:56
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Swójski symbol nahrać..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
+"PNG a JPG so podpěrujetej. Wjetše symbole so na 64x64 piskelow přiměrjeja."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:83
 msgid "Screenshots"
-msgstr ""
+msgstr "Fota wobrazowki"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:89
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
+"Prošu podajće znajmjeńša jedne foto wobrazowki abo widejo swojeho přidatka:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:114
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Prošu podajće pomjenjowanje za tute foto wobrazowki:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:130
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Foto wobrazowki přidać..."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:17
 msgid "Tests"
-msgstr ""
+msgstr "Testy"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:25
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
-msgstr ""
+msgstr "Powšitkowne testy"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:32
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:9
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
-msgstr ""
+msgstr "Wěstotne testy"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:39
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
-msgstr ""
+msgstr "Testy rozšěrjenjow"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html:46
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:17
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
-msgstr ""
+msgstr "Testy přełožkow"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:21
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:106
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Testy kompatibelnosće"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:29
 #: src/olympia/files/templates/files/viewer.html:142
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Powěsće schować, kotrež za awtomatiske signowanje trěbne njejsu"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:35
 #: src/olympia/files/templates/files/viewer.html:150
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Powěsće w předchadnej wersiji a ignorowane schować"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:50
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:64
@@ -5917,208 +5941,216 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:90
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:103
 msgid "Top"
-msgstr ""
+msgstr "Horje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/personas/edit.html:63
 msgid "Delete Theme"
-msgstr ""
+msgstr "Drastu zhašeć"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2
 #: src/olympia/devhub/templates/devhub/versions/list.html:117
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Přidatk zhašeć"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:11
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Hdyž ju zhašeće, so waša drasta na přeco ze sydła wotstroni."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:14
 msgid ""
 "Deleting your add-on will permanently remove it from the site and prevent "
 "its GUID from being submitted again by others."
 msgstr ""
+"Hdyž jón zhašeće, so waš přidatk na přeco wot sydła wotstroni a jeho GUID "
+"hižo njeda so wot druhich zapodać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter the following text confirm your decision: {slug}"
-msgstr ""
+msgstr "Zapodajće slědowacy tekst, zo byšće swój rozsud wobkrućił: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Prošu nam zdźělće, čehodla swoju drastu hašeće:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:35
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Prošu nam zdźělće, čehodla swój přidatk hašeće:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
 #: src/olympia/editors/templates/editors/review.html:253
 msgid "Actions"
-msgstr ""
+msgstr "Akcije"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Ze zapodawanskim procesom za tutón přidatk pokročować."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:8
 msgid "Resume"
-msgstr ""
+msgstr "Pokročować"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:14
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Tutón přidatk zhašeć."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:24
 msgid "Edit details about this add-on's listing."
-msgstr ""
+msgstr "Podrobosće wo lisćinowym zapisku tutoho přidatka wobdźěłać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:29
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Nowu wersiju tutoho nałoženja nahrać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "New Version"
-msgstr ""
+msgstr "Nowa wersija"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:44
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Wšědna statistika wo sćehnjenjach a wužiwarjach."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:45
 #: src/olympia/stats/templates/stats/stats.html:31
 #: src/olympia/stats/templates/stats/stats.html:35
 #: src/olympia/stats/templates/stats/stats.html:37
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:5
 #: src/olympia/devhub/templates/devhub/payments/payments.html:3
 #: src/olympia/devhub/templates/devhub/payments/tier.html:4
 msgid "Manage Payments"
-msgstr ""
+msgstr "Płaćenja rjadować"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:55
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:6
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Status a wersije rjadować"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk přidatka pokazać"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:64
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:37
 #: src/olympia/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Najnowše změny pokazać"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:6
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Podrobnosće wo lisćinowym zapisku tuteje drasty wobdźěłać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:16
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Woblubowanosć tuteje drasty po času pokazać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:22
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Wobsedźerja tuteje drasty změnić."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:23
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Wobsedźenstwo přenošować"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:28
 msgid "Delete this theme."
-msgstr ""
+msgstr "Tutu drastu zhašeć."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:10
 msgid ""
 "This add-on will be deleted automatically after a few days if the submission"
 " process is not completed."
 msgstr ""
+"Tutón přidatk so po někotrych dnjach awtomatisce zhaša, jeli zapodawanski "
+"proces dokónčeny njeje."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:27
 msgid "Disabled"
-msgstr ""
+msgstr "Znjemóžnjeny"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:36
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Pozicija w čakanskim rynku:</b> %(pos)s z %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:23
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<strong>{0}</strong> aktiwny wužiwar"
+msgstr[1] "<strong>{0}</strong> aktiwnej wužiwarjej"
+msgstr[2] "<strong>{0}</strong> aktiwni wužiwarjo"
+msgstr[3] "<strong>{0}</strong> aktiwnych wužiwarjow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Přidatk zapodać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:4
 msgid "Step 3"
-msgstr ""
+msgstr "Krok 3"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:7
 msgid "Step 3. Describe"
-msgstr ""
+msgstr "Krok 3. Wopisać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:11
 msgid "Name and version:"
-msgstr ""
+msgstr "Mjeno a wersija:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:20
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Strona podrobnosćow budźe:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:24
 #: src/olympia/devhub/templates/devhub/personas/edit.html:89
 #: src/olympia/devhub/templates/devhub/personas/submit.html:38
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+"Prošu wužiwajće jenož pismiki, ličby, podmsužki a nakósne smužki w swojim "
+"URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:34
 msgid "Provide a brief summary:"
-msgstr ""
+msgstr "Podajće krótke zjimanje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:39
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Zjimanje budźe so w lisćinowych zapiskach a pytanjach pokazować."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:58
 msgid "Provide a more detailed description:"
-msgstr ""
+msgstr "Podajće nadrobniše wopisanje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:62
 msgid "The description will appear on the detail page."
-msgstr ""
+msgstr "Wopisanje so na stronje podrobnosćow zjewi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:4
 msgid "Submission Complete"
-msgstr ""
+msgstr "Zapodaće dokónčene"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:8
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:13
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:8
 msgid "You're done!"
-msgstr ""
+msgstr "Sće hotowy!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:12
 msgid "Your add-on has been submitted to the Preliminary Review queue."
 msgstr ""
+"Waš přidatk je so k čakanskemu rynkej nachwilneho přepruwowanja pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:14
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr ""
+"Waš přidatk je so k čakanskemu rynkej dospołneho přepruwowanja pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:18
 msgid ""
@@ -6126,27 +6158,34 @@ msgid ""
 "meantime, you and your friends can install it directly from its details "
 "page:"
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž je so wot wobdźěłarja přepruwował. Mjeztym wy a "
+"waše přećeljo móža jón direktnje z jeho strony podorbnosćow instalować:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:16
 msgid "Next steps:"
-msgstr ""
+msgstr "Přichodne kroki:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:32
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:82
 msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
 msgstr ""
+"<a href=\"{0}\">Nahrajće</a> dalšu dataju wěsteje platformy k tutej wersiji."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:34
 msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
 msgstr ""
+"Podajće wjace podrobnosćow <a href=\"{0}\">wobdźěłujo jeho lisćinowy "
+"zapisk</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:35
 msgid ""
 "Tell your users why you created this in your <a href=\"{0}\">Developer "
 "Profile</a>."
 msgstr ""
+"Zdźělće swojim wužiwarjam w swojim <a href=\"{0}\">wuwiwarskim profilu</a>, "
+"čehodla sće jón wutworił."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:36
 msgid ""
