@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 21:40+0000\n"
+"PO-Revision-Date: 2016-04-24 13:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6192,56 +6192,71 @@ msgid ""
 "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to "
 "stay updated on reviews, collections, and more."
 msgstr ""
+"Pokazajće a abonujće <a href=\"{0}\">kanal aktiwity</a> swojeho přidatka, zo"
+" byšće wo přepruwowanjach, zběrkach a wjace na běžnym wostał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:37
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:86
 msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
 msgstr ""
+"Wobhladajće sej prawdźepodobne <a href=\"{0}\">čakanske časy</a> w čakanskim"
+" rynku."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:42
 msgid "Get Ahead in the Review Queue!"
-msgstr ""
+msgstr "Přińdźće w čakanskim rynku doprědka!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:45
 msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
+"Stańće so dźensa z přepruwowarjom AMO a dajće sej swoje přidatki spěšnišo "
+"přepruwować."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:54
 msgid ""
 "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr ""
+"Waš přidatk je so signował a da so nětko wužiwać. Móžeće jón tu sćahnyć:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid ""
 "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
+"Waš přidatk je so na čakanski rynk za njenalistowane nachwilne přepruwowanja"
+" pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:66
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
 msgstr ""
+"Waš přidatk je so na čakanski rynk za njenalistowane dospołne přepruwowanja "
+"pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:70
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed."
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž přidatk je so wot wobdźěłarja přepruwował a "
+"signował."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:74
 msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+msgstr "Waš přidatk na tutym websydle zjawnje k dispoziciji njeje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:84
 msgid ""
 "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's "
 "developer page</a>."
 msgstr ""
+"Móžeće nowe wersije swojeho přidatka na <a href=\"{0}\">stronje wuwiwarja "
+"přidatka</a> nahrać."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:4
 msgid "Step 5"
-msgstr ""
+msgstr "Krok 5"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:7
 msgid "Step 5. Select a License"
-msgstr ""
+msgstr "Krok 5. Wubjerće licencu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:9
 msgid ""
@@ -6249,18 +6264,21 @@ msgid ""
 "is licensed. Please select a license from the list below or enter a custom "
 "license."
 msgstr ""
+"Dyrbimy za wšě přidatki wuměnjenja podać, pod kotrymiž jich žórłowy kod je "
+"licencowany. Prošu wubjerće licencu ze slědowaceje lisćiny abo zapodajće "
+"swójsku licencu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html:18
 msgid "Select a license for your add-on:"
-msgstr ""
+msgstr "Wubjerće licencu za swój přidatk:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:3
 msgid "Step 4"
-msgstr ""
+msgstr "Krok 4"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:6
 msgid "Step 4. Add Images"
-msgstr ""
+msgstr "Krok 4. Přidajće wobrazy"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html:9
 msgid ""
@@ -6268,14 +6286,17 @@ msgid ""
 "it does. We strongly recommend uploading a custom icon, as in some areas of "
 "the website, only the icon and name will appear."
 msgstr ""
+"Swójske symbole a fota wobrazowki złoža kedźbnosć na so a pomhaja wužiwarjej"
+" rozumić, štož wón čini. Doporučemy wam swójski symbol nahrać, dokelž so w "
+"někotrych wobłukach websydła jenož symbol a mjeno jewjetej."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:5
 msgid "Step 6"
-msgstr ""
+msgstr "Krok 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:8
 msgid "Step 6. Select a Review Process"
-msgstr ""
+msgstr "Krok 6. Wubjerće přepruwowanski proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:10
 msgid ""
@@ -6284,6 +6305,11 @@ msgid ""
 "on can still be accessed through its direct URL. Please choose the review "
 "process below that best fits your add-on."
 msgstr ""
+"Wšě přidatki, kotrež so w našej galeriji hospoduja, dyrbja so wot "
+"wobdźěłarja přepruwować, prjedy hač so w kategorijach abo pytanskich "
+"wuslědkach pokazuja. Mjeztym zo na přepruwowanje čakaće, móžeće hišće přez "
+"jeho direktny URL přistup na waš přidatk měć. Prošu wubjerće deleka "
+"přepruwowanski proces, kotryž wašemu přidatkej najlěpje wotpowěduje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:26
 #, python-format
@@ -6291,30 +6317,32 @@ msgid ""
 "A complete review of your add-on's source and functionality. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Dospołne přepruwowanje žórłoweho koda a funkcionalnosće wašeho přidatka. <a "
+"href=\"%(url)s\">Dalše informacije&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:32
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Přihódny za zlěpšene přidatki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:33
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Trěbny, jeli přidatk je z instalowanskim programom zwjazany"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:34
 msgid "Review should take place within 10 days"
-msgstr ""
+msgstr "Přepruwowanje měło so w běhu 10 dnjow wotměć"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:35
 msgid "Review of subsequent versions within 5 days"
-msgstr ""
+msgstr "Přepruwowanje naslědnych wersijow w běhu 5 dnjow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:36
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Instalacija bjez warnowanja a žane wobmjezowanja funkcijow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:40
 msgid "Choose Full Review"
-msgstr ""
+msgstr "Wubjerće dospołne přepruwowanje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:49
 #, python-format
@@ -6322,73 +6350,75 @@ msgid ""
 "A faster review of your add-on's source for any major problems. <a "
 "href=\"%(url)s\">Learn more&hellip;</a>"
 msgstr ""
+"Spěšniše přepruwowanje žórłoweho koda wašeho přidatka za wjetš problemy. <a "
+"href=\"%(url)s\">Dalše informacije&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:55
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Přihódny za eksperimentelne přidatki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:56
 msgid "Review should take place within 3 days"
-msgstr ""
+msgstr "Přepruwowanje měło so w běhu 3 dnjow wotměć"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:57
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Někotre wobmjezowanja funkcijow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:58
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Binarne a zamazane přidatki dowolene njejsu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html:62
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Wubjerće nachwilne přepruwowanje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:7
 msgid "Getting Started"
-msgstr ""
+msgstr "Prěnje kroki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:8
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Nahrajće swój přidatk"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:9
 msgid "Describe your add-on"
-msgstr ""
+msgstr "Wopisajće swój přidatk"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:10
 msgid "Add images"
-msgstr ""
+msgstr "Přidajće wobrazy"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:11
 msgid "Select a license"
-msgstr ""
+msgstr "Wubjerće licencu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:12
 msgid "Select a review process"
-msgstr ""
+msgstr "Wubjerće přepruwowanski proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html:18
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:9
 msgid "Submission Process"
-msgstr ""
+msgstr "Zapodawanski proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:4
 msgid "Step 1"
-msgstr ""
+msgstr "Krok 1"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html:7
 msgid "Step 1. Getting Started"
-msgstr ""
+msgstr "Krok 1. Prěnje kroki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:3
 msgid "Step 2"
-msgstr ""
+msgstr "Krok 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:9
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "Krok 2. Nahrajće swój přidatk"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:11
 msgid ""
@@ -6396,25 +6426,28 @@ msgid ""
 "restrictions. After upload, a series of automated validation tests will be "
 "run on your file."
 msgstr ""
+"Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał a wubjerće "
+"platformowe wobmjezowanja. Po nahraću so rjad awtomatiskich přepruwowanjow "
+"na wašej dataji přewjedźe."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:51
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:28
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Z kotrymiž platformami je tuta dataja kompatibelna?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:45
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Přepisanja wot administratorow"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html:3
 #: src/olympia/devhub/templates/devhub/api/agreement.html:11
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Dojednanje za rozdźělowanje přidatkow Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:17
 msgid "API Credentials"
-msgstr ""
+msgstr "API-daty"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:20
 #, python-format
@@ -6422,14 +6455,16 @@ msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Konsultujće <a href=\"%(docs_url)s\">API-dokumentaciju</a> za nadrobne "
+"instrukcije."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:28
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-wudawar"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:32
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-kluč"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:37
 #, python-format
@@ -6439,10 +6474,13 @@ msgid ""
 "every request as explained in the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
 msgstr ""
+"Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web "
+"Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje"
+" tworić, kaž so to w<a href=\"%(docs_url)s\">API-dokumentaciji</a> wujasnja."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials yet."
-msgstr ""
+msgstr "API-daty hišće nimaće."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:53
 #, python-format
@@ -6450,14 +6488,16 @@ msgid ""
 "This feature is under active development. If you find a problem please <a "
 "target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Tuta funkcija so hišće aktiwnje wuwiwa. Jeli problem namakaće, <a "
+"target=\"_blank\" href=\"%(bug_link)s\">zdźělće prošu zmylkowu rozprawu</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:61
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Daty wotwołać a znowa tworić"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:63
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Nowe daty tworić"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html:7
@@ -6465,7 +6505,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:24
 #: src/olympia/devhub/templates/devhub/docs/policies.html:103
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Wuwiwarske dojednanje"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:7
@@ -6473,17 +6513,20 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies.html:27
 #: src/olympia/devhub/templates/devhub/docs/policies.html:115
 msgid "Contacting Us"
-msgstr ""
+msgstr "Kontakt"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:12
 msgid ""
 "Thanks for your interest in contacting the Mozilla Add-ons team. Please read"
 " this page carefully to ensure your request goes to the right place."
 msgstr ""
+"Dźakujemy so za waš zajim na kontakće z teamom přidatkow Mozilla. Prošu "
+"čitajće tutu stronu starosćiwje, zo byšće zawěsćił, zo so waše naprašowanje "
+"k prawemu městnu dóstanje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:17
 msgid "Add-on Support"
-msgstr ""
+msgstr "Pomoc za přidatk"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:19
 msgid ""
@@ -6492,14 +6535,18 @@ msgid ""
 "that add-on's author through the support channels listed on the add-on's "
 "listing page."
 msgstr ""
+"Jeli prašenje pomocy za wěsty přidatk maće, na přikład „Kak móžu tutón "
+"přidatk wužiwać?“ abo „Čehodla to prawje njefunguje?“, stajće so z awtorom "
+"tutoho přidatka přez kanale pomocy do zwiska, kotrež su na lisćinje "
+"podrobnosćow přidatka podate."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:24
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Redakcionalne naležnosće přidatka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors at mozilla dypk org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:26
 #, python-format
@@ -6510,14 +6557,19 @@ msgid ""
 " a link to the add-on in question and a detailed description of your "
 "question or comment."
 msgstr ""
+"Jeli maće prašenje wo přepruwowanju wobdźěłarja přidatka abo chceće "
+"přestupjenje prawidłow zdźělić, sćelće prošu e-mejlku na %(mail_editors)s. "
+"<strong>Nimale wšě přidatkowe rozprawy pod tutu kategoriju słušeja.</strong>"
+" Prošu njezabywajće wotkaz k wodpowědnemu přidatkej a nadrobne wopisanje "
+"swojeho prašenja abo komentara podać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:31
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Wěstotne dźěry přidatka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dypk org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:36
 #, python-format
@@ -6530,10 +6582,17 @@ msgid ""
 "policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Jeli sće wěstotnu dźěru w přidatku wotkrył, samo hdyž so tu njehospoduje, so"
+" Mozilla za tute wotkryće zajimuje a budźe z wuwiwarjom přidatka hromadźe "
+"dźěłać, zo by so problem tak bórze kaž móžno rozrisał. Problemy z wěstotu "
+"přidatkow móžeće <a href=\"http://www.mozilla.org/projects/security"
+"/security-bugs-policy.html\">dowěrliwje</a> na <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> zdźělić abo móžeće e-mejlku na "
+"%(mail_admins)s słać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:42
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Funkcionalnosć a wuwiwanje websydła"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html:44
 msgid ""
@@ -6541,16 +6600,20 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Jeli sće problem ze sydłom namakał, bychmy jón rady rozrisowali. Prošu <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">spisajće zmylkowu "
+"rozprawu</a> na GitHub, inkluziwnje městno problema a kak sće na njón "
+"storčił."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:8
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Waše přidatki wothladować"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:10
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Nowe wersije wašeho přidatka zapodać"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:12
 msgid ""
