@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 16:06+0000\n"
+"PO-Revision-Date: 2016-04-23 22:26+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -491,7 +491,7 @@ msgstr "Näkyvyys"
 #: src/olympia/devhub/templates/devhub/index.html:94
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid "Hidden"
-msgstr ""
+msgstr "Piilotettu"
 
 #: src/olympia/addons/templates/addons/details_box.html:59
 #: src/olympia/devhub/templates/devhub/index.html:96
@@ -1121,13 +1121,13 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:18
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "Otsikko:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:17
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:19
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr "Arvostelu:"
+msgstr "Arvio:"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:18
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:20
@@ -1174,7 +1174,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/review_list.html:19
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
-msgstr "Arvostelut"
+msgstr "Arviot"
 
 #: src/olympia/addons/templates/addons/review_list_box.html:14
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:14
@@ -1192,8 +1192,8 @@ msgstr ""
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Näytä tämän lisäosan kaikki arvostelut"
-msgstr[1] "Näytä tämän lisäosan kaikki %(cnt)s arvostelua"
+msgstr[0] "Näytä tämän lisäosan kaikki arviot"
+msgstr[1] "Näytä tämän lisäosan kaikki %(cnt)s arviota"
 
 # 100%
 #: src/olympia/addons/templates/addons/tags_box.html:3
@@ -1269,7 +1269,7 @@ msgstr "Keskiarvo"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
-msgstr "Kirjoita arvostelu"
+msgstr "Kirjoita arvio"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
@@ -1290,8 +1290,8 @@ msgstr[1] "Muita lisäosia samoilta tekijöiltä"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> arvostelu"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> arvostelua"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> arvio"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> arviota"
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
@@ -1506,8 +1506,8 @@ msgstr "käännä"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Näytä kaikki arvostelut"
-msgstr[1] "Näytä kaikki %(cnt)s arvostelua"
+msgstr[0] "Näytä kaikki arviot"
+msgstr[1] "Näytä kaikki %(cnt)s arviota"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
@@ -1857,7 +1857,7 @@ msgstr "Ylläpitotyökalut"
 
 #: src/olympia/amo/fields.py:20
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Väärin. Yritä uudelleen."
 
 #: src/olympia/amo/fields.py:21
 msgid "Error verifying input, please try again."
@@ -1932,11 +1932,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py:67 src/olympia/amo/log.py:417
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} poistettu käytöstä."
 
 #: src/olympia/amo/log.py:73
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} otettu käyttöön."
 
 #: src/olympia/amo/log.py:80
 msgid "Stats set public for {addon}."
@@ -2323,7 +2323,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Ei sallittu"
 
 #: src/olympia/amo/templates/amo/403.html:7
 msgid ""
@@ -2362,7 +2362,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr ""
+msgstr "Hups"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
@@ -2374,7 +2374,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Jotkut oikeudet pidätetään"
 
 #: src/olympia/amo/templates/amo/no_results.html:1
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:26
@@ -2570,12 +2570,12 @@ msgstr[1] "Sivu {n}"
 #: src/olympia/reviews/templates/reviews/add.html:56
 #: src/olympia/reviews/templates/reviews/reply.html:30
 msgid "Title"
-msgstr ""
+msgstr "Otsikko"
 
 #: src/olympia/amo/tests/test_messages.py:56
 #: src/olympia/amo/tests/test_messages.py:57
 msgid "Body"
-msgstr ""
+msgstr "Runko"
 
 #: src/olympia/amo/tests/test_messages.py:58
 msgid "Another Title"
@@ -3418,7 +3418,7 @@ msgstr ""
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:8
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html:6
 msgid "Blocklist"
-msgstr ""
+msgstr "Estolista"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:13
@@ -4054,7 +4054,7 @@ msgstr "Beeta"
 
 #: src/olympia/constants/base.py:123
 msgid "Full"
-msgstr ""
+msgstr "Täysi"
 
 #: src/olympia/constants/base.py:124
 msgid "Preliminary"
@@ -4323,7 +4323,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/queue.html:72
 #: src/olympia/editors/templates/editors/themes/themes.html:93
 msgid "Duplicate"
-msgstr ""
+msgstr "Kaksoiskappale"
 
 #: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:575
 #: src/olympia/editors/templates/editors/themes/queue.html:71
@@ -9191,7 +9191,7 @@ msgstr "Omia lisäosiaan ei voi tarkastaa."
 
 #: src/olympia/editors/views.py:613
 msgid "Review successfully processed."
-msgstr "Arvostelu käsiteltiin."
+msgstr "Arvio käsiteltiin."
 
 #: src/olympia/editors/views.py:812
 msgid "was approved"
@@ -9551,7 +9551,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html:78
 #: src/olympia/editors/templates/editors/queue.html:128
 msgid "Process Reviews"
-msgstr "Käsittele arvostelut"
+msgstr "Käsittele arviot"
 
 #: src/olympia/editors/templates/editors/queue.html:86
 msgid "Moderation actions:"
@@ -9779,7 +9779,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/single.html:26
 #: src/olympia/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr "Tarkastaja"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
@@ -11036,12 +11036,12 @@ msgstr "Lokalisoijat"
 
 #: src/olympia/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr "Tarkastajat"
+msgstr "Arvioijat"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr "Yli {0} lisäosatarkastusta"
+msgstr "Yli {0} lisäosa-arvioita"
 
 #: src/olympia/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
@@ -12456,7 +12456,7 @@ msgstr ""
 #: src/olympia/reviews/feeds.py:23
 #, python-format
 msgid "Reviews for %s"
-msgstr "Arvostelut lisäosalle %s"
+msgstr "Arviot lisäosalle %s"
 
 #: src/olympia/reviews/feeds.py:31
 msgid "Review History for this Addon"
@@ -12603,14 +12603,14 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/mobile/add.html:4
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:4
 msgid "Reviews for {0}"
-msgstr "Arvostelut lisäosalle {0}"
+msgstr "Arviot lisäosalle {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html:27
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "Tällä lisäosalla on <b>{0}</b> arvostelu"
-msgstr[1] "Tällä lisäosalla on <b>{0}</b> arvostelua"
+msgstr[0] "Tällä lisäosalla on <b>{0}</b> arvio"
+msgstr[1] "Tällä lisäosalla on <b>{0}</b> arviota"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html:33
@@ -12621,8 +12621,8 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Käyttäjän %(user)s arvostelu lisäosalle %(addon)s"
-msgstr[1] "Käyttäjän %(user)s arvostelut lisäosalle %(addon)s"
+msgstr[0] "Käyttäjän %(user)s arvio lisäosalle %(addon)s"
+msgstr[1] "Käyttäjän %(user)s arviot lisäosalle %(addon)s"
 
 # 76%
 # 100%
@@ -12649,8 +12649,8 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reviews_link.html:17
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} arvostelu"
-msgstr[1] "{num} arvostelua"
+msgstr[0] "{num} arvio"
+msgstr[1] "{num} arviota"
 
 # %1 is the number of stars this add-on has
 # 87%
@@ -14430,11 +14430,11 @@ msgstr "Luomani"
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html:94
 msgid "My Reviews"
-msgstr "Arvosteluni"
+msgstr "Omat arviot"
 
 #: src/olympia/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
-msgstr "Ei vielä lisäosa-arvosteluja."
+msgstr "Ei vielä lisäosa-arvioita."
 
 #: src/olympia/users/templates/users/profile.html:120
 msgid "Report User"

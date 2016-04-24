@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 16:08+0000\n"
+"PO-Revision-Date: 2016-04-23 22:23+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -188,7 +188,7 @@ msgstr "Poista suosikeista"
 #: static/js/impala-all.js:13883 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "Odottaa"
 
 #: static/js/common-all.js:11648 static/js/common-min.js:7
 #: static/js/impala-all.js:13884 static/js/impala-min.js:8
@@ -374,7 +374,7 @@ msgstr "Lopeta seuraaminen"
 #: static/js/impala-all.js:14243 static/js/impala-min.js:8
 #: static/js/impala/collections.js:20
 msgid "Following"
-msgstr ""
+msgstr "Seurataan"
 
 #: static/js/impala-all.js:14313 static/js/impala-min.js:8
 #: static/js/impala/users.js:33
@@ -1520,7 +1520,7 @@ msgstr ""
 #: static/js/zamboni/editors-all.js:16198 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
-msgstr ""
+msgstr "Kaksoiskappale"
 
 #: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:179
