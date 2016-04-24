@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 00:26+0000\n"
+"PO-Revision-Date: 2016-04-13 04:13+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -13215,9 +13215,7 @@ msgstr "Galeria de extras"
 
 #: src/olympia/pages/templates/pages/faq.html:171
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
-"Como escolho entre extras que parecem fazer a mesma\n"
-"    coisa?"
+msgstr "Como é que escolho entre extras que parecem fazer a mesma coisa?"
 
 #: src/olympia/pages/templates/pages/faq.html:172
 msgid ""
@@ -13353,9 +13351,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:228
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
-"O que significa quando um extra é sinalizado como\n"
-"    lento?"
+msgstr "O que significa quando um extra é marcado como lento?"
 
 #: src/olympia/pages/templates/pages/faq.html:229
 msgid ""
