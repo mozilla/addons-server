@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-23 22:26+0000\n"
+"PO-Revision-Date: 2016-04-24 09:03+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -672,9 +672,8 @@ msgstr "Suositellut laajennukset"
 
 # 78%
 #: src/olympia/addons/templates/addons/home.html:14
-#, fuzzy
 msgid "Popular Extensions"
-msgstr "Suosituimmat laajennukset"
+msgstr "Suositut laajennukset"
 
 #: src/olympia/addons/templates/addons/home.html:44
 #: src/olympia/amo/templates/amo/side_nav.html:3
@@ -1312,7 +1311,7 @@ msgid "No Restart"
 msgstr "Ei uudelleenkäynnistystä"
 
 #: src/olympia/addons/templates/addons/impala/details.html:124
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Tapaa kehittäjä: <a href=\"%(url)s\">%(name)s</a>"
@@ -2051,9 +2050,8 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
 #: src/olympia/editors/helpers.py:584
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
-#, fuzzy
 msgid "Comment"
-msgstr "Kommentit"
+msgstr "Kommentoi"
 
 #: src/olympia/amo/log.py:245
 msgid "{tag} added to {addon}."
@@ -2422,7 +2420,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/read-only.html:3
 #: src/olympia/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Ylläpitotoimet ovat meneillään"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid ""
@@ -2832,9 +2830,8 @@ msgstr "Luo uusi kokoelma"
 # 85%
 #: src/olympia/bandwagon/templates/bandwagon/add.html:9
 #: src/olympia/devhub/templates/devhub/personas/submit.html:14
-#, fuzzy
 msgid "Create"
-msgstr "Luotu"
+msgstr "Luo"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:24
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -3242,9 +3239,8 @@ msgstr ""
 # 81%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:60
-#, fuzzy
 msgid "Contributor"
-msgstr "Contribute"
+msgstr "Avustaja"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html:68
 msgid "Admin Settings"
@@ -3539,9 +3535,8 @@ msgstr "Luotu"
 # 100%
 #: src/olympia/browse/templates/browse/creatured.html:5
 #: src/olympia/browse/templates/browse/creatured.html:13
-#, fuzzy
 msgid "{0}: Featured Add-ons"
-msgstr "Suositellut lisäosat"
+msgstr "{0}: Suositellut lisäosat"
 
 #: src/olympia/browse/templates/browse/creatured.html:12
 #: src/olympia/browse/templates/browse/featured.html:4
@@ -3936,9 +3931,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: src/olympia/editors/forms.py:108 src/olympia/editors/forms.py:248
 #: src/olympia/zadmin/forms.py:45
-#, fuzzy
 msgid "Application"
-msgstr "Ohjelmat:"
+msgstr "Sovellus"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:48
 msgid "Application Build"
@@ -3957,9 +3951,8 @@ msgstr ""
 
 # 87%
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
-#, fuzzy
 msgid "Success"
-msgstr "Onnistui!"
+msgstr "Onnistui"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:56
 msgid "Problem"
@@ -4036,9 +4029,8 @@ msgstr ""
 #: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258
 #: src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1004
 #: src/olympia/editors/templates/editors/themes/history_table.html:34
-#, fuzzy
 msgid "Deleted"
-msgstr "Poista"
+msgstr "Poistettu"
 
 #: src/olympia/constants/base.py:38
 msgid "Pending approval"
@@ -4062,9 +4054,8 @@ msgstr ""
 
 # 77%
 #: src/olympia/constants/base.py:135 src/olympia/users/notifications.py:157
-#, fuzzy
 msgid "Developer"
-msgstr "Kehitys"
+msgstr "Kehittäjä"
 
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/constants/base.py:136
@@ -4165,9 +4156,8 @@ msgstr "Muutos"
 
 # 75%
 #: src/olympia/constants/base.py:401
-#, fuzzy
 msgid "App"
-msgstr "Sovellukset"
+msgstr "Sovellus"
 
 # 87%
 # 100%
@@ -4718,9 +4708,8 @@ msgstr ""
 
 # 78%
 #: src/olympia/devhub/views.py:181
-#, fuzzy
 msgid "All My Add-ons"
-msgstr "Kaikki lisäosat"
+msgstr "Kaikki lisäosani"
 
 #: src/olympia/devhub/views.py:208
 msgid "All Activity"
@@ -5265,9 +5254,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit.html:13
 #: src/olympia/devhub/templates/devhub/includes/macros.html:18
 #: src/olympia/translations/templates/translations/all-locales.html:6
-#, fuzzy
 msgid "None"
-msgstr "ei mitään"
+msgstr "Ei mitään"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:4
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:52
@@ -5765,9 +5753,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
 #: src/olympia/editors/templates/editors/review.html:253
-#, fuzzy
 msgid "Actions"
-msgstr "Osiot"
+msgstr "Toiminnot"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
@@ -14131,13 +14118,14 @@ msgstr "Poista käyttäjäkuvani nyt"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "Aseta näyttönimesi"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
 msgstr ""
+"Viimeistele rekisteröinti asettamalla näyttönimesi tai käyttäjätunnuksesi."
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
