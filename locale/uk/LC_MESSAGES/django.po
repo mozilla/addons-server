@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-22 13:48+0000\n"
+"PO-Revision-Date: 2016-04-23 20:50+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -200,6 +200,8 @@ msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
 msgstr ""
+"Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище). "
+"Стосується тільки ПК."
 
 #: src/olympia/addons/models.py:1802
 #: src/olympia/addons/templates/addons/details_box.html:55
@@ -972,6 +974,8 @@ msgstr "Дізнатись більше про Firefox"
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
+"чи <b><a class=\"button installer\" href=\"{url}\">всеодно "
+"завантажити</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -2670,32 +2674,34 @@ msgstr "Інший вміст"
 
 #: src/olympia/api/authentication.py:76
 msgid "Signature has expired."
-msgstr ""
+msgstr "Підпис прострочений."
 
 #: src/olympia/api/authentication.py:79
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Помилка декодування підпису."
 
 #: src/olympia/api/authentication.py:82
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Невірний JWT токен."
 
 #: src/olympia/api/authentication.py:130
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Неприпустимий заголовок авторизації. Не надано повноважень."
 
 #: src/olympia/api/authentication.py:133
 msgid ""
 "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+"Неприпустимий заголовок авторизації. Строчка повноважень не повинна містити "
+"пропусків."
 
 #: src/olympia/api/fields.py:29
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Поле повинно містити не менше {num} символів."
 
 #: src/olympia/api/fields.py:31
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Код мови {lang_code} неправильний."
 
 #: src/olympia/applications/views.py:39
 #: src/olympia/applications/templates/applications/appversions.html:3
@@ -3435,6 +3441,8 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"Щоб додати додаток до цієї колекції, введіть його ім'я в поле нижче й "
+"натисніть enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -4633,7 +4641,7 @@ msgstr "Подати мій додаток на ручну перевірку."
 
 #: src/olympia/devhub/forms.py:537
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Не показувати мій додаток на цьому сайті"
 
 #: src/olympia/devhub/forms.py:538
 msgid ""
@@ -4682,7 +4690,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:592
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Версія %s вже існує або була завантажена раніше."
 
 #: src/olympia/devhub/forms.py:605
 msgid ""
@@ -6554,6 +6562,10 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Якщо ви знайшли проблему з сайтом, то нам би хотілося її виправити. Будь "
+"ласка, <a href=\"https://github.com/mozilla/addons/issues/new\">повідомте "
+"про помилку</a> на GitHub, включивши місце розташування проблеми і як вона "
+"вам трапилася."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8223,6 +8235,11 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL.It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Користувачам треба буде обов'язково прийняти наступну Ліцензійну Угоду "
+"Кінцевого Користувача (EULA) до встановлення вашого додатка. Присутність "
+"EULA істотно впливає на кількість завантажень додатка. Будь ласка, зауважте,"
+" що ліцензійна угода це не те ж саме, що і ліцензія на код, така як GPL або "
+"MPL. Це стосується тільки додатків, які включені до галереї."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid ""
@@ -8929,6 +8946,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own."
 msgstr ""
+"Не поширюється через {0}. Розробники будуть завантажувати нові версії для "
+"підпису і самі поширювати додаток."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
@@ -9049,6 +9068,8 @@ msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
 msgstr ""
+"Файли, що очікують на перевірку, будуть відключені і вам треба буде "
+"завантажити нові версії."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
@@ -9532,6 +9553,7 @@ msgstr "Платформи"
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+"Пошук за назвою додатку / електронною адресою автора / ідентифікатором GUID"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py:342
