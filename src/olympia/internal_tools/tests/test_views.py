@@ -7,7 +7,10 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
+from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
+from olympia.accounts import verify, views
+from olympia.accounts.tests.test_views import BaseAuthenticationView
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.users.models import UserProfile
 
@@ -165,7 +168,7 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'By second Addôn'}
 
 
-@override_settings(ADMIN_FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
 class TestLoginStartView(TestCase):
 
     def setUp(self):
@@ -231,3 +234,74 @@ class TestLoginStartView(TestCase):
         url = urlparse.urlparse(response['location'])
         query = urlparse.parse_qs(url.query)
         assert ':' not in query['state'][0]
+
+
+@override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
+class TestLoginView(BaseAuthenticationView):
+    view_name = 'internal-login'
+
+    def setUp(self):
+        super(TestLoginView, self).setUp()
+        self.state = 'stateaosidoiajsdaagdsasi'
+        self.initialize_session({'fxa_state': self.state})
+        self.code = 'codeaosidjoiajsdioasjdoa'
+        self.update_user = self.patch(
+            'olympia.internal_tools.views.update_user')
+
+    def post(self, **kwargs):
+        kwargs.setdefault('state', self.state)
+        kwargs.setdefault('code', self.code)
+        return self.client.post(self.url, kwargs)
+
+    def test_no_code_provided(self):
+        response = self.post(code='')
+        assert response.status_code == 422
+        assert response.data['error'] == views.ERROR_NO_CODE
+        assert not self.update_user.called
+
+    def test_wrong_state(self):
+        response = self.post(state='a-different-state')
+        assert response.status_code == 400
+        assert response.data['error'] == views.ERROR_STATE_MISMATCH
+        assert not self.update_user.called
+
+    def test_no_fxa_profile(self):
+        self.fxa_identify.side_effect = verify.IdentificationError
+        response = self.post()
+        assert response.status_code == 401
+        assert response.data['error'] == views.ERROR_NO_PROFILE
+        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
+        assert not self.update_user.called
+
+    def test_no_amo_account_cant_login(self):
+        self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
+        response = self.post()
+        assert response.status_code == 422
+        assert response.data['error'] == views.ERROR_NO_USER
+        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
+        assert not self.update_user.called
+
+    def test_login_success(self):
+        user = UserProfile.objects.create(
+            username='foobar', email='real@yeahoo.com')
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity
+        response = self.post()
+        assert response.status_code == 200
+        assert response.data['email'] == 'real@yeahoo.com'
+        assert 'jwt_api_auth_token' not in self.client.cookies
+        verify = VerifyJSONWebTokenSerializer().validate(response.data)
+        assert verify['user'] == user
+        self.update_user.assert_called_with(user, identity)
+
+    def test_account_exists_migrated_multiple(self):
+        """Test that login fails if the user is logged in but the fxa_id is
+        set on a different UserProfile."""
+        UserProfile.objects.create(email='real@yeahoo.com', username='foo')
+        UserProfile.objects.create(
+            email='different@yeahoo.com', fxa_id='9005', username='bar')
+        self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
+                                          'uid': '9005'}
+        with self.assertRaises(UserProfile.MultipleObjectsReturned):
+            self.post()
+        assert not self.update_user.called

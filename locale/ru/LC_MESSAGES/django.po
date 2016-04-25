@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-20 17:19+0000\n"
-"Last-Translator: bychek.ru <a@bychek.ru>\n"
+"PO-Revision-Date: 2016-04-24 11:46+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "У вас на {0} метку больше, чем это допустимо."
 msgstr[1] "У вас на {0} метки больше, чем это допустимо."
-msgstr[2] ""
+msgstr[2] "У вас на {0} меток больше, чем это допустимо."
 
 #: src/olympia/addons/forms.py:117
 #, python-format
@@ -1587,7 +1587,7 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Просмотреть все %(cnt)s отзыва пользователей"
 msgstr[1] "Просмотреть все %(cnt)s отзыва пользователей"
-msgstr[2] ""
+msgstr[2] "Просмотреть все %(cnt)s отзывов пользователей"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
@@ -3465,6 +3465,8 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"Чтобы добавить дополнение в эту подборку, введите его имя в поле ниже и "
+"нажмите enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -9637,7 +9639,7 @@ msgstr "Платформы"
 
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Поиск по имени дополнения / адресу автора / guid"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py:342
@@ -10735,9 +10737,9 @@ msgstr[2] "{num} тем ожидающих проверки"
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} проверка с флагом"
-msgstr[1] "{num} проверки с флагом"
-msgstr[2] ""
+msgstr[0] "{num} выбранный для проверки"
+msgstr[1] "{num} выбранных для проверки"
+msgstr[2] "{num} выбранных для проверки"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"

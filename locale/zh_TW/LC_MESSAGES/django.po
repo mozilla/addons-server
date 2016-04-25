@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-19 15:20+0000\n"
+"PO-Revision-Date: 2016-04-22 14:13+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -174,7 +174,7 @@ msgstr "使用者可以選擇比這個金額更多或較少的捐助。"
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
-msgstr ""
+msgstr "使用者會在附加元件管理員中（Firefox 4 或更新版）被詢問，只對桌面版有效。"
 
 # Column name in a table.
 #: src/olympia/addons/models.py:1802
@@ -2753,7 +2753,7 @@ msgstr "已建立收藏集！"
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
-msgstr ""
+msgstr "下面是您的新收藏集。需要的話您可以 <a href=\"%(url)s\">編輯其他設定</a>。"
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -3273,7 +3273,7 @@ msgstr "您收藏集中的附加元件"
 msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
-msgstr ""
+msgstr "若要將附加元件加入至此收藏集，請在下方的欄位輸入該元件名稱，然後按 Enter。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -6197,6 +6197,9 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"若您找到網站上的問題，我們很樂意修正。請到 GitHub <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">回報 "
+"Bug</a>，當中請包含問題所在位置，以及您是怎麼遇到這個問題的。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -7326,7 +7329,7 @@ msgid ""
 "You will receive an email when the review is complete. Until then, your add-"
 "on is not listed in our gallery but can be accessed directly from its "
 "details page. "
-msgstr ""
+msgstr "審查完成後您將收到郵件通知。在那之前，您的附加元件還不會公開在網站上展示，但可直接開啟其詳細資訊頁面。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:49
 msgid ""
@@ -7518,6 +7521,8 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL.It is only "
 "relevant for listed add-ons."
 msgstr ""
+"使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或"
+" MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid ""
@@ -8169,7 +8174,7 @@ msgstr "不上架:"
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own."
-msgstr ""
+msgstr "未於 {0} 發行。開發者需自行上傳新版本簽署，並自行發行新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
@@ -8280,7 +8285,7 @@ msgstr "隱藏您的附加元件將會讓該附加元件消失，使用者並將
 msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
-msgstr ""
+msgstr "等待審核中的檔案將被停用，您將需要上傳新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
@@ -8858,7 +8863,7 @@ msgstr "未上架的初步審查"
 
 #: src/olympia/editors/helpers.py:142
 msgid "Unlisted All Add-ons"
-msgstr ""
+msgstr "所有下架的附加元件"
 
 #: src/olympia/editors/helpers.py:173
 msgid "Fast Track ({0})"
@@ -8903,7 +8908,7 @@ msgstr[0] "未上架的準備中審查 ({0})"
 #: src/olympia/editors/helpers.py:214
 msgid "Unlisted All Add-ons ({0})"
 msgid_plural "Unlisted All Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "所有下架的附加元件 ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"

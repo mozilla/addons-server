@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-10 18:04+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2016-04-23 20:50+0000\n"
+"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Недійсна мітка: {0}"
 msgstr[1] "Недійсні мітки: {0}"
-msgstr[2] ""
+msgstr[2] "Недійсних міток: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py:103
@@ -116,14 +116,14 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" є зарезервованою міткою і не може використовуватись."
 msgstr[1] "\"{0}\" є зарезервованими мітками і не можуть використовуватись."
-msgstr[2] ""
+msgstr[2] "\"{0}\" є зарезервованими мітками і не можуть використовуватись."
 
 #: src/olympia/addons/forms.py:111
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "У вас на {0} мітку більше допустимого."
 msgstr[1] "У вас на {0} мітки більше допустимого."
-msgstr[2] ""
+msgstr[2] "У вас на {0} міток більше допустимого."
 
 #: src/olympia/addons/forms.py:117
 #, python-format
@@ -137,8 +137,8 @@ msgstr ""
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Довжина всіх міток повинна бути не меншою {0} символу."
-msgstr[1] "Довжина всіх міток повинна бути не меншою {0} символи."
-msgstr[2] ""
+msgstr[1] "Довжина всіх міток повинна бути не меншою {0} символів."
+msgstr[2] "Довжина всіх міток повинна бути не меншою {0} символів."
 
 #: src/olympia/addons/forms.py:238
 msgid ""
@@ -153,7 +153,7 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "У вас може бути лише {0} категорія."
 msgstr[1] "У вас може бути лише {0} категорії."
-msgstr[2] ""
+msgstr[2] "У вас може бути лише {0} категорій."
 
 #: src/olympia/addons/forms.py:250
 msgid ""
@@ -200,6 +200,8 @@ msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
 msgstr ""
+"Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище). "
+"Стосується тільки ПК."
 
 #: src/olympia/addons/models.py:1802
 #: src/olympia/addons/templates/addons/details_box.html:55
@@ -777,7 +779,7 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s щотижневе завантаження"
 msgstr[1] "%(num)s щотижневі завантаження"
-msgstr[2] ""
+msgstr[2] "%(num)s щотижневих завантажень"
 
 #: src/olympia/addons/templates/addons/macros.html:28
 #, python-format
@@ -785,7 +787,7 @@ msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s користувач"
 msgstr[1] "%(num)s користувача"
-msgstr[2] ""
+msgstr[2] "%(num)s користувачів"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/macros.html:53
@@ -794,7 +796,7 @@ msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} щотижневе завантаження"
 msgstr[1] "{0} щотижневі завантаження"
-msgstr[2] ""
+msgstr[2] "{0} щотижневих завантажень"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/macros.html:61
@@ -804,7 +806,7 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} користувач"
 msgstr[1] "{0} користувача"
-msgstr[2] ""
+msgstr[2] "{0} користувачів"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -905,7 +907,7 @@ msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> користувач"
 msgstr[1] "<strong>{0}</strong> користувача"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> користувачів"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:41
 msgid "Hover to Preview"
@@ -972,6 +974,8 @@ msgstr "Дізнатись більше про Firefox"
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
+"чи <b><a class=\"button installer\" href=\"{url}\">всеодно "
+"завантажити</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -1256,7 +1260,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Дивитися всі відгуки для цього додатку"
 msgstr[1] "Дивитися всі %(cnt)s відгуки для цього додатку"
-msgstr[2] ""
+msgstr[2] "Дивитися всі %(cnt)s відгуків для цього додатку"
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:118
@@ -1347,7 +1351,7 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Інші додатки від %(author)s"
 msgstr[1] "Інші додатки від цих розробників"
-msgstr[2] ""
+msgstr[2] "Інші додатки від цих розробників"
 
 #: src/olympia/addons/templates/addons/impala/details.html:39
 #, python-format
@@ -1355,7 +1359,7 @@ msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> відгук користувача"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> відгуки користувачів"
-msgstr[2] ""
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> відгуків користувачів"
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
@@ -1381,7 +1385,7 @@ msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Познайомитися з розробником: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Познайомитися з розробниками</a>"
-msgstr[2] ""
+msgstr[2] "<a href=\"%(url)s\">Познайомитися з розробниками</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:134
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -1524,7 +1528,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "Про розробника"
 msgstr[1] "Про розробників"
-msgstr[2] ""
+msgstr[2] "Про розробників"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:96
 #: src/olympia/users/templates/users/edit.html:130
@@ -1570,7 +1574,7 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Дивитися всі відгуки користувачів"
 msgstr[1] "Дивитися всі %(cnt)s відгуки користувачів"
-msgstr[2] ""
+msgstr[2] "Дивитися всі %(cnt)s відгуків користувачів"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
@@ -1647,7 +1651,7 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> завантаження щотижня"
 msgstr[1] "<strong>{0}</strong> завантаження щотижня"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> завантажень щотижня"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
@@ -2645,7 +2649,7 @@ msgid "Page {n}"
 msgid_plural "Page {n}"
 msgstr[0] "Сторінка {n}"
 msgstr[1] "Сторінка {n}"
-msgstr[2] ""
+msgstr[2] "Сторінка {n}"
 
 #: src/olympia/amo/tests/test_messages.py:56
 #: src/olympia/amo/tests/test_messages.py:57 src/olympia/reviews/forms.py:25
@@ -2670,32 +2674,34 @@ msgstr "Інший вміст"
 
 #: src/olympia/api/authentication.py:76
 msgid "Signature has expired."
-msgstr ""
+msgstr "Підпис прострочений."
 
 #: src/olympia/api/authentication.py:79
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Помилка декодування підпису."
 
 #: src/olympia/api/authentication.py:82
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Невірний JWT токен."
 
 #: src/olympia/api/authentication.py:130
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Неприпустимий заголовок авторизації. Не надано повноважень."
 
 #: src/olympia/api/authentication.py:133
 msgid ""
 "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+"Неприпустимий заголовок авторизації. Строчка повноважень не повинна містити "
+"пропусків."
 
 #: src/olympia/api/fields.py:29
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Поле повинно містити не менше {num} символів."
 
 #: src/olympia/api/fields.py:31
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Код мови {lang_code} неправильний."
 
 #: src/olympia/applications/views.py:39
 #: src/olympia/applications/templates/applications/appversions.html:3
@@ -2984,7 +2990,7 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> прихильник"
 msgstr[1] "<span>%(num)s</span> прихильника"
-msgstr[2] ""
+msgstr[2] "<span>%(num)s</span> прихильників"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
@@ -3025,7 +3031,7 @@ msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "%(num)s тема в цій збірці"
 msgstr[1] "%(num)s теми в цій збірці"
-msgstr[2] ""
+msgstr[2] "%(num)s тем у цій збірці"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:111
 #, python-format
@@ -3033,7 +3039,7 @@ msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "%(num)s додаток у цій збірці"
 msgstr[1] "%(num)s додатки в цій збірці"
-msgstr[2] ""
+msgstr[2] "%(num)s додатків у цій збірці"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:125
 #: src/olympia/compat/templates/compat/reporter_detail.html:29
@@ -3099,7 +3105,7 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> додаток"
 msgstr[1] "<span>%(addons)s</span> додатки"
-msgstr[2] ""
+msgstr[2] "<span>%(addons)s</span> додатків"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html:32
 #, python-format
@@ -3107,7 +3113,7 @@ msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> прихильник"
 msgstr[1] "<span>%(followers)s</span> прихильника"
-msgstr[2] ""
+msgstr[2] "<span>%(followers)s</span> прихильників"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3121,7 +3127,7 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s щотижневий прихильник"
 msgstr[1] "%(num)s щотижневих прихильника"
-msgstr[2] ""
+msgstr[2] "%(num)s щотижневих прихильників"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3132,7 +3138,7 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "%(num)s щомісячний прихильник"
 msgstr[1] "%(num)s щомісячні прихильника"
-msgstr[2] ""
+msgstr[2] "%(num)s щомісячних прихильників"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3146,7 +3152,7 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s прихильник"
 msgstr[1] "%(num)s прихильника"
-msgstr[2] ""
+msgstr[2] "%(num)s прихильників"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3435,6 +3441,8 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"Щоб додати додаток до цієї колекції, введіть його ім'я в поле нижче й "
+"натисніть enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -3705,7 +3713,7 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> додаток"
 msgstr[1] "<b>{0}</b> додатка"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> додатків"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -3828,7 +3836,7 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Показати %(cnt)s розширення в %(name)s &raquo;"
 msgstr[1] "Показати всі %(cnt)s розширення в %(name)s &raquo;"
-msgstr[2] ""
+msgstr[2] "Показати всі %(cnt)s розширень в %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html:13
 #: src/olympia/devhub/templates/devhub/devhub_search.html:24
@@ -3994,14 +4002,14 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] "{0} повідомлення про успіх"
 msgstr[1] "{0} повідомлення про успіх"
-msgstr[2] ""
+msgstr[2] "{0} повідомлень про успіх"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} повідомлення про проблему"
 msgstr[1] "{0} повідомлення про проблему"
-msgstr[2] ""
+msgstr[2] "{0} повідомлень про проблему"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:21
 #: src/olympia/users/templates/users/profile.html:70
@@ -4633,7 +4641,7 @@ msgstr "Подати мій додаток на ручну перевірку."
 
 #: src/olympia/devhub/forms.py:537
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Не показувати мій додаток на цьому сайті"
 
 #: src/olympia/devhub/forms.py:538
 msgid ""
@@ -4682,7 +4690,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:592
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Версія %s вже існує або була завантажена раніше."
 
 #: src/olympia/devhub/forms.py:605
 msgid ""
@@ -4753,7 +4761,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} помилка"
 msgstr[1] "{0} помилки"
-msgstr[2] ""
+msgstr[2] "{0} помилок"
 
 #. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/helpers.py:203
@@ -4761,7 +4769,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} попередження"
 msgstr[1] "{0} попередження"
-msgstr[2] ""
+msgstr[2] "{0} попереджень"
 
 #: src/olympia/devhub/models.py:375
 #: src/olympia/reviews/templates/reviews/add.html:58
@@ -5356,7 +5364,7 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> тема"
 msgstr[1] "<b>{0}</b> теми"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> тем"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -5521,7 +5529,7 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Розділені комами, не менше {0} символа."
 msgstr[1] "Розділені комами, не менше {0} символів."
-msgstr[2] ""
+msgstr[2] "Розділені комами, не менше {0} символів."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:100
@@ -5534,7 +5542,7 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Зарезервована мітка:"
 msgstr[1] "Зарезервовані мітки:"
-msgstr[2] ""
+msgstr[2] "Зарезервовані мітки:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
@@ -6040,7 +6048,7 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> активний користувач"
 msgstr[1] "<strong>{0}</strong> активних користувача"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> активних користувачів"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -6554,6 +6562,10 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Якщо ви знайшли проблему з сайтом, то нам би хотілося її виправити. Будь "
+"ласка, <a href=\"https://github.com/mozilla/addons/issues/new\">повідомте "
+"про помилку</a> на GitHub, включивши місце розташування проблеми і як вона "
+"вам трапилася."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8213,7 +8225,7 @@ msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "Виберіть <b>не більше {0}</b> {1} категорії для цього додатку:"
 msgstr[1] "Виберіть <b>не більше {0}</b> {1} категорій для цього додатку:"
-msgstr[2] ""
+msgstr[2] "Виберіть <b>не більше {0}</b> {1} категорій для цього додатку:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid ""
@@ -8223,6 +8235,11 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL.It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Користувачам треба буде обов'язково прийняти наступну Ліцензійну Угоду "
+"Кінцевого Користувача (EULA) до встановлення вашого додатка. Присутність "
+"EULA істотно впливає на кількість завантажень додатка. Будь ласка, зауважте,"
+" що ліцензійна угода це не те ж саме, що і ліцензія на код, така як GPL або "
+"MPL. Це стосується тільки додатків, які включені до галереї."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid ""
@@ -8860,7 +8877,7 @@ msgid "{0} file"
 msgid_plural "{0} files"
 msgstr[0] "{0} файл"
 msgstr[1] "{0} файли"
-msgstr[2] ""
+msgstr[2] "{0} файлів"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8929,6 +8946,8 @@ msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own."
 msgstr ""
+"Не поширюється через {0}. Розробники будуть завантажувати нові версії для "
+"підпису і самі поширювати додаток."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:122
 msgid "Current versions"
@@ -9049,6 +9068,8 @@ msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
 msgstr ""
+"Файли, що очікують на перевірку, будуть відключені і вам треба буде "
+"завантажити нові версії."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
@@ -9532,6 +9553,7 @@ msgstr "Платформи"
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+"Пошук за назвою додатку / електронною адресою автора / ідентифікатором GUID"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py:342
@@ -9656,70 +9678,70 @@ msgstr "Попередні перевірки невказаних"
 
 #: src/olympia/editors/helpers.py:142
 msgid "Unlisted All Add-ons"
-msgstr ""
+msgstr "Усі приховані додатки"
 
 #: src/olympia/editors/helpers.py:173
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Швидке відстеження ({0})"
 msgstr[1] "Швидкі відстеження ({0})"
-msgstr[2] ""
+msgstr[2] "Швидких відстежень ({0})"
 
 #: src/olympia/editors/helpers.py:178
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Повний розгляд ({0})"
 msgstr[1] "Повні розгляди ({0})"
-msgstr[2] ""
+msgstr[2] "Повних розглядів ({0})"
 
 #: src/olympia/editors/helpers.py:183
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Очікуване оновлення ({0})"
 msgstr[1] "Очікувані оновлення ({0})"
-msgstr[2] ""
+msgstr[2] "Очікуваних оновлень ({0})"
 
 #: src/olympia/editors/helpers.py:188
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Попередній розгляд ({0})"
 msgstr[1] "Попередні розгляди ({0})"
-msgstr[2] ""
+msgstr[2] "Попередніх розглядів ({0})"
 
 #: src/olympia/editors/helpers.py:193
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Модерований розгляд ({0})"
 msgstr[1] "Модеровані розгляди ({0})"
-msgstr[2] ""
+msgstr[2] "Модерованих розглядів ({0})"
 
 #: src/olympia/editors/helpers.py:199
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
 msgstr[0] "Повна перевірка невказаних ({0})"
 msgstr[1] "Повні перевірки невказаних ({0})"
-msgstr[2] ""
+msgstr[2] "Повні перевірки невказаних ({0})"
 
 #: src/olympia/editors/helpers.py:204
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "Невказане очікуване оновлення ({0})"
 msgstr[1] "Невказані очікувані оновлення ({0})"
-msgstr[2] ""
+msgstr[2] "Невказані очікувані оновлення ({0})"
 
 #: src/olympia/editors/helpers.py:209
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "Попередня перевірка невідображених ({0})"
 msgstr[1] "Попередні перевірки невідображених ({0})"
-msgstr[2] ""
+msgstr[2] "Попередні перевірки невідображених ({0})"
 
 #: src/olympia/editors/helpers.py:214
 msgid "Unlisted All Add-ons ({0})"
 msgid_plural "Unlisted All Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Усі приховані додатки ({0})"
+msgstr[1] "Усі приховані додатки ({0})"
+msgstr[2] "Усі приховані додатки ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
@@ -9764,7 +9786,7 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} хвилина"
 msgstr[1] "{0} хвилини"
-msgstr[2] ""
+msgstr[2] "{0} хвилин"
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py:346
@@ -9772,7 +9794,7 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} година"
 msgstr[1] "{0} години"
-msgstr[2] ""
+msgstr[2] "{0} годин"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py:350
@@ -9780,19 +9802,19 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} день"
 msgstr[1] "{0} дні"
-msgstr[2] ""
+msgstr[2] "{0} днів"
 
 #: src/olympia/editors/helpers.py:364
 msgid "Last Review"
-msgstr ""
+msgstr "Остання перевірка"
 
 #: src/olympia/editors/helpers.py:366
 msgid "Last Update"
-msgstr ""
+msgstr "Останнє оновлення"
 
 #: src/olympia/editors/helpers.py:387
 msgid "No Reviews"
-msgstr ""
+msgstr "Немає відгуків"
 
 #: src/olympia/editors/helpers.py:561
 msgid "Push to public"
@@ -10020,7 +10042,7 @@ msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "успішно проведена {0} перевірка теми (+{1} балів, всього: {2})."
 msgstr[1] "успішно проведено {0} перевірки теми (+{1} балів, всього: {2})."
-msgstr[2] ""
+msgstr[2] "успішно проведено {0} перевірок теми (+{1} балів, всього: {2})."
 
 #: src/olympia/editors/views_themes.py:341
 msgid ""
@@ -10166,21 +10188,21 @@ msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] "Повний розгляд ({num})"
 msgstr[1] "Повні розгляди ({num})"
-msgstr[2] ""
+msgstr[2] "Повних розглядів ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
 msgstr[0] "Очікуване оновлення ({num})"
 msgstr[1] "Очікувані оновлення ({num})"
-msgstr[2] ""
+msgstr[2] "Очікуваних оновлень ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] "Попередній розгляд ({num})"
 msgstr[1] "Попередні розгляди ({num})"
-msgstr[2] ""
+msgstr[2] "Попередніх розглядів ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:36
 #: src/olympia/editors/templates/editors/home.html:86
@@ -10193,7 +10215,7 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} додаток"
 msgstr[1] "{0} додатки"
-msgstr[2] ""
+msgstr[2] "{0} додатків"
 
 #: src/olympia/editors/templates/editors/home.html:45
 #: src/olympia/editors/templates/editors/home.html:95
@@ -10206,21 +10228,21 @@ msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
 msgstr[0] "Повна перевірка невідображених ({num})"
 msgstr[1] "Повні перевірки невідображених ({num})"
-msgstr[2] ""
+msgstr[2] "Повні перевірки невідображених ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
 msgstr[0] "Очікуване оновлення невідображених ({num})"
 msgstr[1] "Очікувані оновлення невідображених ({num})"
-msgstr[2] ""
+msgstr[2] "Очікувані оновлення невідображених ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
 msgstr[0] "Попередня перевірка невідображених ({num})"
 msgstr[1] "Попередні перевірки невідображених ({num})"
-msgstr[2] ""
+msgstr[2] "Попередні перевірки невідображених ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:109
 #: src/olympia/editors/templates/editors/performance.html:37
@@ -10248,7 +10270,7 @@ msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "Модерована перевірка ({num})"
 msgstr[1] "Модеровані перевірки ({num})"
-msgstr[2] ""
+msgstr[2] "Модеровані перевірки ({num})"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:3
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:56
@@ -10622,21 +10644,21 @@ msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] "{num} тема очікує на перевірку"
 msgstr[1] "{num} теми очікують на перевірку"
-msgstr[2] ""
+msgstr[2] "{num} тем очікують на перевірку"
 
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] "{num} перевірка з позначкою"
 msgstr[1] "{num} перевірки з позначкою"
-msgstr[2] ""
+msgstr[2] "{num} перевірок з позначкою"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] "{num} Оновлення"
 msgstr[1] "{num} Оновлення"
-msgstr[2] ""
+msgstr[2] "{num} Оновлень"
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -13807,6 +13829,8 @@ msgstr[1] ""
 "Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередні "
 "відгуки</a> про цей додаток."
 msgstr[2] ""
+"Цей користувач має <a href=\"%(user_review_url)s\">%(cnt)s попередніх "
+"відгуків</a> про цей додаток."
 
 #: src/olympia/reviews/templates/reviews/review.html:62
 #, python-format
@@ -13859,7 +13883,7 @@ msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] "<b>{0}</b> відгук для цього додатку"
 msgstr[1] "<b>{0}</b> відгуки для цього додатку"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> відгуків для цього додатку"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html:33
@@ -13872,7 +13896,7 @@ msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] "Відгук для %(addon)s від %(user)s"
 msgstr[1] "Відгуки для %(addon)s від %(user)s"
-msgstr[2] ""
+msgstr[2] "Відгуків для %(addon)s від %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html:42
 msgid "No reviews found."
@@ -13897,7 +13921,7 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} відгук"
 msgstr[1] "{num} відгуки"
-msgstr[2] ""
+msgstr[2] "{num} відгуків"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -13926,7 +13950,7 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] "Середнє з {0} рейтинга"
 msgstr[1] "Середнє з {0} рейтингів"
-msgstr[2] ""
+msgstr[2] "Середнє з {0} рейтингів"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:34
 #, python-format
@@ -13943,7 +13967,7 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Подивитися всі відгуки"
 msgstr[1] "Подивитися всі %(cnt)s відгуки"
-msgstr[2] ""
+msgstr[2] "Подивитися всі %(cnt)s відгуків"
 
 #: src/olympia/search/forms.py:11
 msgid "Most popular this week"
@@ -14070,7 +14094,7 @@ msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "<b>{0}</b> відповідний результат"
 msgstr[1] "<b>{0}</b> відповідних результата"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> відповідних результатів"
 
 #: src/olympia/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -14093,7 +14117,7 @@ msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] "{0} пост"
 msgstr[1] "{0} поста"
-msgstr[2] ""
+msgstr[2] "{0} пости"
 
 #: src/olympia/sharing/__init__.py:20
 msgid "Post to Facebook"
@@ -14104,7 +14128,7 @@ msgid "{0} Like"
 msgid_plural "{0} Likes"
 msgstr[0] "{0} вподобання"
 msgstr[1] "{0} вподобання"
-msgstr[2] ""
+msgstr[2] "{0} вподобань"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -14115,7 +14139,7 @@ msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} твіт"
 msgstr[1] "{0} твіти"
-msgstr[2] ""
+msgstr[2] "{0} твітів"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
@@ -14150,7 +14174,7 @@ msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] "{0} поширення на Facebook"
 msgstr[1] "{0} поширення на Facebook"
-msgstr[2] ""
+msgstr[2] "{0} поширень на Facebook"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:76
@@ -14173,7 +14197,7 @@ msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] "{0} post on localservice2"
 msgstr[1] "{0} posts on localservice2"
-msgstr[2] ""
+msgstr[2] "{0} posts on localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:91
@@ -14196,7 +14220,7 @@ msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] "{0} post on localservice3"
 msgstr[1] "{0} posts on localservice3"
-msgstr[2] ""
+msgstr[2] "{0} posts on localservice3"
 
 #: src/olympia/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -16042,7 +16066,7 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s тема"
 msgstr[1] "%(num)s теми"
-msgstr[2] ""
+msgstr[2] "%(num)s тем"
 
 #: src/olympia/users/templates/users/vcard.html:62
 #, python-format
@@ -16050,7 +16074,7 @@ msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s додаток"
 msgstr[1] "%(num)s додатка"
-msgstr[2] ""
+msgstr[2] "%(num)s додатків"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
@@ -16113,7 +16137,7 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> версія"
 msgstr[1] "<b>{0}</b> версії"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> версій"
 
 #: src/olympia/versions/templates/versions/version_list.html:35
 #: src/olympia/versions/templates/versions/mobile/version_list.html:14
@@ -16161,4 +16185,4 @@ msgstr "Журнал електронних листів замість надс
 
 #: src/olympia/zadmin/forms.py:215
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Видалені версії змінювати неможливо."

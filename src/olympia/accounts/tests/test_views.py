@@ -252,6 +252,11 @@ class TestWithUser(TestCase):
             'next_path': None,
         }
 
+    @override_settings(FXA_CONFIG={'default': {}})
+    def test_unknown_config_blows_up_early(self):
+        with self.assertRaises(AssertionError):
+            views.with_user(format='json', config='notconfigured')
+
     def test_profile_exists_with_user_and_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
@@ -490,7 +495,7 @@ class TestRegisterUser(TestCase):
         assert not user.has_usable_password()
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_CONFIG={'default': FXA_CONFIG})
 class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
 
     def setUp(self):
